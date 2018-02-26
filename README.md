@@ -66,7 +66,7 @@ Gebruik Apache met mod-php, Apache met PHP-FPM, Nginx met PHP-FPM of IIS. Gebrui
     
 Configueer tenslote een vhost van de webserver. Zie ook de specifieke handleiding per webserver [in de Symfony 4.0 handleiding](http://symfony.com/doc/current/setup/web_server_configuration.html)
 
-### Installatie via Docker
+### Installatie via Docker (productie)
 
 Installeer via:
 
@@ -80,3 +80,13 @@ Verwijderen via:
     docker stop schuldhulp-app-instance
     docker rm schuldhulp-app-instance
     docker rmi schuldhulp-app
+
+### Installatie via Docker (development)
+
+Deze Docker maakt gebruikt van een Docker volume zodat er geen nieuwe build nodig is bij wijziging van code.
+
+    git clone git@github.com:amsterdam/fixxx-schuldhulp.git
+    cd fixxx-schuldhulp
+    docker build -t schuldhulp-app-dev -f Dockerfile-dev .
+    docker run -p 80:80 --volume .:/srv/app --name schuldhulp-app-dev-instance schuldhulp-app-dev
+
