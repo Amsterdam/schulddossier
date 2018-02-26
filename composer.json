@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "GemeenteAmsterdam\\FixxxSchuldhulp\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "GemeenteAmsterdam\\FixxxSchuldhulp\\Tests\\": "tests/"
         }
     },
     "replace": {

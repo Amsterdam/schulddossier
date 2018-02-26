@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace GemeenteAmsterdam\FixxxSchuldhulp;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
