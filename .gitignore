@@ -1,4 +1,17 @@
 
+# IDE
+.buildpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+__MACOSX
+
+# Composer
+composer.phar
+
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
