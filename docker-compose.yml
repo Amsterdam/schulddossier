@@ -1,0 +1,23 @@
+version: '3.0'
+services:
+  database:
+    image: postgres:latest
+    ports:
+      - "5402:5432"
+    environment:
+      POSTGRES_PASSWORD: insecure
+      POSTGRES_USER: schuldhulp
+      POSTGRES_USER: schuldhulp
+
+  web:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    links:
+      - database
+    environment:
+      - SECRET_KEY=insecure
+      - DATABASE_NAME=schuldhulp
+      - DATABASE_PASSWORD=insecure
