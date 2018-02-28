@@ -17,6 +17,6 @@ services:
     links:
       - database
     environment:
-      - APP_ENV=prod
+      - APP_ENV=production
       - APP_SECRET=secret
       - DATABASE_URL=pgsql://schuldhulp:insecure@database:5432/schuldhulp

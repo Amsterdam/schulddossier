@@ -62,7 +62,8 @@ Gebruik Apache met mod-php, Apache met PHP-FPM, Nginx met PHP-FPM of IIS. Gebrui
     git clone git@github.com:amsterdam/fixxx-schuldhulp.git
     cd fixxx-schuldhulp
     composer install
-    php bin/console cache:clear --env=prod
+    php bin/console cache:clear --env=acceptance
+    php bin/console cache:clear --env=production
     
 Configueer tenslote een vhost van de webserver. Zie ook de specifieke handleiding per webserver [in de Symfony 4.0 handleiding](http://symfony.com/doc/current/setup/web_server_configuration.html)
 
