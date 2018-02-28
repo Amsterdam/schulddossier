@@ -80,6 +80,5 @@ Deze Docker maakt gebruikt van een Docker volume zodat er geen nieuwe build nodi
 
     git clone git@github.com:amsterdam/fixxx-schuldhulp.git
     cd fixxx-schuldhulp
-    docker build -t schuldhulp-app-dev -f Dockerfile-dev .
-    docker run -p 80:80 --volume "$(pwd)":/srv/app --name schuldhulp-app-dev-instance schuldhulp-app-dev
+    docker-compose -f docker-compose-dev.yml up
 
