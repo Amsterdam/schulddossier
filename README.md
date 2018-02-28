@@ -72,14 +72,7 @@ Installeer via:
 
     git clone git@github.com:amsterdam/fixxx-schuldhulp.git
     cd fixxx-schuldhulp
-    docker build -t schuldhulp-app .
-    docker run -p 80:80 --name schuldhulp-app-instance schuldhulp-app
-
-Verwijderen via:
-
-    docker stop schuldhulp-app-instance
-    docker rm schuldhulp-app-instance
-    docker rmi schuldhulp-app
+    docker-compose up
 
 ### Installatie via Docker (development)
 
