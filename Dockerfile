@@ -11,6 +11,9 @@ RUN apk add bash
 RUN apk add nginx \
  && mkdir /run/nginx
 
+RUN apk add postgresql-dev libmcrypt libmcrypt-dev \
+ && docker-php-ext-install pdo_pgsql pgsql mcrypt opcache
+
 COPY --from=composer:1.5 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /
