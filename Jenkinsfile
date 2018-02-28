@@ -34,7 +34,7 @@ node {
             echo 'start git version'
             sh "git rev-parse HEAD > version_file"
             def commit_id = readFile('version_file').trim()
-            sh 'echo SOURCE_COMMIT := $commit_id >> .env'
+            sh 'echo SOURCE_COMMIT := $commit_id >> .build'
             println commit_id
             echo 'end git version'
             def image = docker.build("build.app.amsterdam.nl:5000/fixxx/schuldhulp:${env.BUILD_NUMBER}")
