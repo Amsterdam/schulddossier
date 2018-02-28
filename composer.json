@@ -11,6 +11,7 @@
         "symfony/lts": "^4@dev",
         "symfony/maker-bundle": "^1.1",
         "symfony/orm-pack": "^1.0",
+        "symfony/security-bundle": "^4.0",
         "symfony/templating": "^4.0",
         "symfony/validator": "^4.0",
         "symfony/yaml": "^4.0"
