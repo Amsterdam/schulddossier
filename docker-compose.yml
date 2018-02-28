@@ -1,23 +1,22 @@
 version: '3.0'
 services:
   database:
-    image: postgres:latest
+    image: postgres:9.5.11-alpine
     ports:
-      - "5402:5432"
+      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: insecure
       POSTGRES_USER: schuldhulp
-      POSTGRES_USER: schuldhulp
-
+      POSTGRES_DB: schuldhulp
   web:
     build:
         context: .
         dockerfile: Dockerfile
     ports:
-      - "8000:8000"
+      - "80:80"
     links:
       - database
     environment:
-      - SECRET_KEY=insecure
-      - DATABASE_NAME=schuldhulp
-      - DATABASE_PASSWORD=insecure
+      - APP_ENV=prod
+      - APP_SECRET=secret
+      - DATABASE_URL=pgsql://schuldhulp:insecure@database:5432/schuldhulp
