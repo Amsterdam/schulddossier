@@ -11,7 +11,7 @@ body {
 	margin: 0 auto;
 	font-family: "Gill Sans";
 	background-color: white;
-	background-image: url(logo.svg);
+	background-image: url(/pix/logo.svg);
 	background-size: 30px;
 	background-repeat: no-repeat;
 	background-position: 98% 1%;

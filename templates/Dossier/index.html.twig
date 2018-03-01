@@ -1,9 +1,34 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Dossierindex</title>
+<meta name="viewport" content="width = device-width">
+<link rel="stylesheet" href="/css/dossierindex.css">
+</head>
+
 <body>
     <h1>Dossiers</h1>
-    <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}">Nieuw</a></p>
-    <ul>
+    <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}">Maak nieuw dossier aan</a></p>
+    <h2>Bestaande dossiers</h2>
 {% for dossier in dossiers %}
-        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.Id}) }}">#{{ dossier.id }}</a></li>
+<section>
+	<p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a></p>
+	<p>MaDi: {{ dossier.schuldhulpbureau }}</p>
+	<p>GKA: {{ dossier.teamGKA }} 
+	<p>Regas: {{ dossier.regasNummer }} 
+	<p>Allegro: 
+	{% if dossier.allegroNummer is empty %}
+		nog niet aangemaakt
+	{% else %}	
+		{{ dossier.allegroNummer }} 
+	{% endif %}
+	</p>
+	{% if dossier.partnerNaam is not empty %}
+		<p>Naam partner: {{ dossier.partnerNaam }} 
+	{% endif %}
+	</p>
+</section>
 {% endfor %}
-    </ul>
 </body>
+</html>
