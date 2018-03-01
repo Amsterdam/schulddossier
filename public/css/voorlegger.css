@@ -62,7 +62,9 @@ section:not(.header):hover,fieldset label:hover {
 section {
 	display: grid;
 	grid-template-columns: 1fr 80px 30px 40px;
+	-ms-grid-template-columns: 1fr 80px 30px 40px;
 	grid-column-gap: 10px;
+	/* -ms-grid-gap does not exist */
 	padding: 5px 0;
 }
 
