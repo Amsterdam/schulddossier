@@ -80,8 +80,11 @@ class AppDossierController extends Controller
         $form = $this->createForm(VoorleggerFormType::class, $voorlegger, []);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            echo 'AAAAAAAAAAAAAA';
             if ($voorlegger->getId() === null) {
+                echo 'BBBBBBBBBBBBBBBB';
                 $voorlegger->setDossier($dossier);
+                $dossier->setVoorlegger($voorlegger);
                 $em->persist($voorlegger);
             }
             $em->flush();
