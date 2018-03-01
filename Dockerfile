@@ -23,6 +23,9 @@ WORKDIR /srv/app
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-RUN composer install --prefer-dist --no-progress --no-suggest --no-autoloader --no-scripts
+RUN composer install --prefer-dist --no-progress --no-suggest \
+ && php bin/console cache:clear --env=production \
+ && php bin/console cache:clear --env=acceptance \
+ && php bin/console cache:clear --env=dev
 
 ENTRYPOINT /srv/app/docker-entrypoint.sh
