@@ -24,4 +24,19 @@ class Team
      * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $naam;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getNaam()
+    {
+        return $this->naam;
+    }
+
+    public function setNaam($naam)
+    {
+        $this->naam = $naam;
+    }
 }
