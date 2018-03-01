@@ -58,14 +58,14 @@ class Dossier
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
      */
     private $regasNummer;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
      */
     private $allegroNummer;
