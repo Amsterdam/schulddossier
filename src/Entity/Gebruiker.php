@@ -49,6 +49,14 @@ class Gebruiker implements UserInterface, \Serializable
     private $type;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(min=1, max=255)
+     */
+    private $naam;
+
+    /**
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getRoles()
      */
@@ -98,6 +106,11 @@ class Gebruiker implements UserInterface, \Serializable
         return $this->type;
     }
 
+    public function getNaam()
+    {
+        return $this->naam;
+    }
+
     public function setUsername($username)
     {
         $this->username = $username;
@@ -113,12 +126,17 @@ class Gebruiker implements UserInterface, \Serializable
         $this->type = $type;
     }
 
+    public function setNaam($naam)
+    {
+        $this->naam = $naam;
+    }
+
     /**
      * @return string
      */
     public function __toString()
     {
-        return $this->username;
+        return $this->naam . ' (' . $this->username . ')';
     }
 
     /**
