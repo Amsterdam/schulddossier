@@ -39,4 +39,12 @@ class Team
     {
         $this->naam = $naam;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->naam;
+    }
 }
