@@ -49,9 +49,9 @@ class Dossier
     private $schuldhulpbureau;
 
     /**
-     * @var string
+     * @var Gebruiker
      * @ORM\ManyToOne(targetEntity="Gebruiker")
-     * @ORM\JoinColumn(name="medewerker_schuldhulpbureau_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="medewerker_schuldhulpbureau_id", referencedColumnName="id", nullable=false)
      * @Assert\NotBlank
      */
     private $medewerkerSchuldhulpbureau;
