@@ -116,12 +116,28 @@ section div label {
 	white-space: nowrap;
 }
 
-input[type=submit] {
+input[type=submit],label.GKA {
 	-webkit-appearance: none;
 	font-size: 120%;
 	width: 200px;
 	margin: 10px 30px 10px auto;
 	display: block;
+	white-space: normal;
+}
+
+input[type=submit] {
+	border-radius: 15px;
+}
+
+input[type=submit]:hover {
+	cursor: pointer;
+	background: rgba(255,0,0,0.4);
+}
+
+label.GKA input {
+	float: left;
+	margin-bottom: 30px;
+	margin-top: 8px;
 }
 
 

@@ -1,0 +1,27 @@
+
+html {
+	--rood: #ff0000;
+	--grijs: #f3f3f3;
+	--donkergrijs: #666666;	
+	background-color: var(--grijs);
+}
+
+body {
+	max-width: 13cm;
+	margin: 0 auto;
+	font-family: "Gill Sans";
+	background-color: white;
+	background-image: url(/pix/logo.svg);
+	background-size: 30px;
+	background-repeat: no-repeat;
+	background-position: 98% 1%;
+	font-size: 18px;
+}
+
+section {
+	border-bottom: 2px solid;
+}
+
+section p {
+
+}
