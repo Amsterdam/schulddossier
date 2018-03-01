@@ -91,6 +91,13 @@ class Dossier
      */
     private $aanmaakDatumTijd;
 
+    /**
+     * @var Voorlegger
+     * @ORM\OneToOne(targetEntity="Voorlegger", mappedBy="dossier")
+     * @ORM\JoinColumn(name="voorlegger_id", referencedColumnName="id", nullable=true)
+     */
+    private $voorlegger;
+
     public function __construct()
     {
         $this->aanmaakDatumTijd = new \DateTime();
@@ -228,4 +235,19 @@ class Dossier
         $this->aanmaakDatumTijd = $aanmaakDatumTijd;
     }
 
+    /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger
+     */
+    public function getVoorlegger()
+    {
+        return $this->voorlegger;
+    }
+
+    /**
+     * @param Voorlegger $voorlegger
+     */
+    public function setVoorlegger(Voorlegger $voorlegger)
+    {
+        $this->voorlegger = $voorlegger;
+    }
 }
