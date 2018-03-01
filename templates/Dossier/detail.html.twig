@@ -51,12 +51,27 @@
 	<span>{{ form_widget(form.beschikkingUwvOntvangenGka)}}</span>
 	<span>{{ form_widget(form.beschikkingUwvNvt)}}</span>
 	<div>
-	<label>{{ form_widget(form.beschikkingUwvNvt)}} WW</label>
-	<label>{{ form_widget(form.beschikkingUwvNvt)}} WIA</label>
-	<label>{{ form_widget(form.beschikkingUwvNvt)}} ZW</label>
-	<label>{{ form_widget(form.beschikkingUwvNvt)}} Overig</label>
+	<label>{{ form_widget(form.beschikkingUwvWw)}} WW</label>
+	<label>{{ form_widget(form.beschikkingUwvWia)}} WIA</label>
+	<label>{{ form_widget(form.beschikkingUwvZw)}} ZW</label>
+	<label>Overig</label>
 	</div>
 </section>
+
+<section>
+	<h3>Voorlopige teruggave Belastingdienst</h3>
+	<span>{{ form_widget(form.voorlopigeTerugaafBelastingdienstOntvangenMadi)}}</span>
+	<span>{{ form_widget(form.voorlopigeTerugaafBelastingdienstOntvangenGka)}}</span>
+	<span>{{ form_widget(form.voorlopigeTerugaafBelastingdienstNvt)}}</span>
+</section>
+
+<section>
+	<h3>Alimentatie ontvangen</h3>
+	<span>{{ form_widget(form.alimentatieOntvangenMadi)}}</span>
+	<span>{{ form_widget(form.alimentatieOntvangenGka)}}</span>
+	<span>{{ form_widget(form.alimentatieNvt)}}</span>
+</section>
+
 
 
 
