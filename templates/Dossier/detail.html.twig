@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{{ dossier.clientNaam }} - voorlegger</title>
 <meta name="viewport" content="width = device-width">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body class="voorlegger">
@@ -20,15 +20,47 @@
 
 {{ form_start(form) }}
 
-{% for iets in ietsanders %}
+<section>
+	<h3>Legitimatie</h3>
+	<span>{{ form_widget(form.legitimatieOntvangenMadi)}}</span>
+	<span>{{ form_widget(form.legitimatieOntvangenGka)}}</span>
+</section>
 
-	<section class="check">
-		<h3>{{ form_label($dinges) }}</h3>
-		<span>{{ form_widget($dinges) }}</span>
-		<span>{{ form_widget($dinges) }}</span>
-	</section>
+<section>
+	<h3>Inkomstenspecificatie</h3>
+	<span>{{ form_widget(form.inkomstenspecificatieOntvangenMadi)}}</span>
+	<span>{{ form_widget(form.inkomstenspecificatieOntvangenGka)}}</span>
+</section>
 
-{% endfor %}
+<section>
+	<h3>VTLB</h3>
+	<span>{{ form_widget(form.vtlbMadi)}}</span>
+	<span>{{ form_widget(form.vtlbGka)}}</span>
+</section>
+
+<section>
+	<h3>Arbeidsovereenkomst</h3>
+	<span>{{ form_widget(form.arbeidsovereenkomstOntvangenMadi)}}</span>
+	<span>{{ form_widget(form.arbeidsovereenkomstOntvangenGka)}}</span>
+	<span>{{ form_widget(form.arbeidsovereenkomstNvt)}}</span>
+</section>
+
+<section>
+	<h3>Beschikking UWV</h3>
+	<span>{{ form_widget(form.beschikkingUwvOntvangenMadi)}}</span>
+	<span>{{ form_widget(form.beschikkingUwvOntvangenGka)}}</span>
+	<span>{{ form_widget(form.beschikkingUwvNvt)}}</span>
+	<div>
+	<label>{{ form_widget(form.beschikkingUwvNvt)}} WW</label>
+	<label>{{ form_widget(form.beschikkingUwvNvt)}} WIA</label>
+	<label>{{ form_widget(form.beschikkingUwvNvt)}} ZW</label>
+	<label>{{ form_widget(form.beschikkingUwvNvt)}} Overig</label>
+	</div>
+</section>
+
+
+
+
 
 <h2>Aanvullende informatie</h2>
 <textarea name="aanvullend">Hallo daar dus nog een keer misschien wanneer</textarea>
@@ -45,6 +77,11 @@
 	<input type="submit" value="Stuur in naar GKA">
 </fieldset>
 
+
 </form>
+
+
+{{ dump() }}
+
 </body>
 </html>
