@@ -133,9 +133,9 @@ class Gebruiker implements UserInterface, \Serializable
     public function unserialize($serialized)
     {
         $data = unserialize($serialized);
-        $this->id = $data[0];
-        $this->username = $data[1];
-        $this->password = $data[2];
+        $this->id = $data['id'];
+        $this->username = $data['username'];
+        $this->password = $data['password'];
     }
 
     /**
