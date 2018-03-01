@@ -18,6 +18,8 @@
 	<span>n.v.t.</span>
 </section>
 
+{{ form_start(form) }}
+
 {% for iets in ietsanders %}
 
 	<section class="check">
@@ -34,6 +36,10 @@
 <fieldset>
 	<input type="submit" value="Sla op">
 </fieldset>
+
+{{ form_end(form) }}
+
+<p>Werkt nog niet</p>
 <fieldset>
 	<label class="GKA"><input type="checkbox" name="klaar_voor_GKA"> Dit dossier is klaar voor het GKA</label>
 	<input type="submit" value="Stuur in naar GKA">

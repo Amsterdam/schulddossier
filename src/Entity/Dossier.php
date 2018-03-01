@@ -49,6 +49,14 @@ class Dossier
     private $schuldhulpbureau;
 
     /**
+     * @var Gebruiker
+     * @ORM\ManyToOne(targetEntity="Gebruiker")
+     * @ORM\JoinColumn(name="medewerker_schuldhulpbureau_id", referencedColumnName="id", nullable=false)
+     * @Assert\NotBlank
+     */
+    private $medewerkerSchuldhulpbureau;
+
+    /**
      * @var Team
      * @ORM\ManyToOne(targetEntity="Team")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=false)
@@ -83,6 +91,13 @@ class Dossier
      */
     private $aanmaakDatumTijd;
 
+    /**
+     * @var Voorlegger
+     * @ORM\OneToOne(targetEntity="Voorlegger", mappedBy="dossier")
+     * @ORM\JoinColumn(name="voorlegger_id", referencedColumnName="id", nullable=true)
+     */
+    private $voorlegger;
+
     public function __construct()
     {
         $this->aanmaakDatumTijd = new \DateTime();
@@ -114,6 +129,14 @@ class Dossier
     public function getSchuldhulpbureau()
     {
         return $this->schuldhulpbureau;
+    }
+
+    /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker
+     */
+    public function getMedewerkerSchuldhulpbureau()
+    {
+        return $this->medewerkerSchuldhulpbureau;
     }
 
     /**
@@ -174,6 +197,14 @@ class Dossier
     }
 
     /**
+     * @param Gebruiker $medewerkerSchuldhulpbureau
+     */
+    public function setMedewerkerSchuldhulpbureau(Gebruiker $medewerkerSchuldhulpbureau)
+    {
+        $this->medewerkerSchuldhulpbureau = $medewerkerSchuldhulpbureau;
+    }
+
+    /**
      * @param Team $teamGka
      */
     public function setTeamGka(Team $teamGka)
@@ -204,4 +235,19 @@ class Dossier
         $this->aanmaakDatumTijd = $aanmaakDatumTijd;
     }
 
+    /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger
+     */
+    public function getVoorlegger()
+    {
+        return $this->voorlegger;
+    }
+
+    /**
+     * @param Voorlegger $voorlegger
+     */
+    public function setVoorlegger(Voorlegger $voorlegger)
+    {
+        $this->voorlegger = $voorlegger;
+    }
 }

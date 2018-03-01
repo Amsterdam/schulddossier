@@ -13,6 +13,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 
 
 /**
@@ -72,10 +74,25 @@ class AppDossierController extends Controller
      * @Route("/detail/{dossierId}")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailAction(Request $request, Dossier $dossier)
+    public function detailAction(Request $request, EntityManagerInterface $em, Dossier $dossier)
     {
+        $voorlegger = $dossier->getVoorlegger() ? $dossier->getVoorlegger() : new Voorlegger();
+        $form = $this->createForm(VoorleggerFormType::class, $voorlegger, []);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($voorlegger->getId() === null) {
+                $voorlegger->setDossier($dossier);
+                $em->persist($voorlegger);
+            }
+            $em->flush();
+            $this->addFlash('success', 'Opgeslagen');
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', [
+                'dossierId' => $dossier->getId()
+            ]);
+        }
         return $this->render('Dossier/detail.html.twig', [
-            'dossier' => $dossier
+            'dossier' => $dossier,
+            'form' => $form->createView()
         ]);
     }
 
