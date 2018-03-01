@@ -114,6 +114,14 @@ class Gebruiker implements UserInterface, \Serializable
     }
 
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->username;
+    }
+
+    /**
      * {@inheritDoc}
      * @see Serializable::serialize()
      */

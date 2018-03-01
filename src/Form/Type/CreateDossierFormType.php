@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
+use Doctrine\ORM\EntityRepository;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 
 class CreateDossierFormType extends AbstractType
 {
@@ -25,6 +27,19 @@ class CreateDossierFormType extends AbstractType
             'class' => Schuldhulpbureau::class,
             'multiple' => false,
             'expanded' => false
+        ]);
+        $builder->add('medewerkerSchuldhulpbureau', EntityType::class, [
+            'required' => true,
+            'class' => Gebruiker::class,
+            'multiple' => false,
+            'expanded' => false,
+            'query_builder' => function (EntityRepository $repository) {
+                $qb = $repository->createQueryBuilder('gebruiker');
+                $qb->andWhere('gebruiker.type = :type');
+                $qb->setParameter('type', Gebruiker::TYPE_MADI);
+                $qb->addOrderBy('gebruiker.username', 'ASC');
+                return $qb;
+            }
         ]);
         $builder->add('teamGka', EntityType::class, [
             'required' => false,

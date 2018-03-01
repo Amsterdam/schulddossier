@@ -49,6 +49,14 @@ class Dossier
     private $schuldhulpbureau;
 
     /**
+     * @var string
+     * @ORM\ManyToOne(targetEntity="Gebruiker")
+     * @ORM\JoinColumn(name="medewerker_schuldhulpbureau_id", referencedColumnName="id")
+     * @Assert\NotBlank
+     */
+    private $medewerkerSchuldhulpbureau;
+
+    /**
      * @var Team
      * @ORM\ManyToOne(targetEntity="Team")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=false)
@@ -117,6 +125,14 @@ class Dossier
     }
 
     /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker
+     */
+    public function getMedewerkerSchuldhulpbureau()
+    {
+        return $this->medewerkerSchuldhulpbureau;
+    }
+
+    /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team
      */
     public function getTeamGka()
@@ -171,6 +187,14 @@ class Dossier
     public function setSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau)
     {
         $this->schuldhulpbureau = $schuldhulpbureau;
+    }
+
+    /**
+     * @param Gebruiker $medewerkerSchuldhulpbureau
+     */
+    public function setMedewerkerSchuldhulpbureau(Gebruiker $medewerkerSchuldhulpbureau)
+    {
+        $this->medewerkerSchuldhulpbureau = $medewerkerSchuldhulpbureau;
     }
 
     /**
