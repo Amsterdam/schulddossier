@@ -4,10 +4,10 @@ echo 'Start docker-entrypoint.sh'
 
 set -u
 
-composer install --no-interaction --no-suggest --prefer-dist
-php bin/console cache:clear --env=production
-php bin/console cache:clear --env=acceptance
-php bin/console cache:clear --env=dev
+#composer install --no-interaction --no-suggest --prefer-dist
+#php bin/console cache:clear --env=production
+#php bin/console cache:clear --env=acceptance
+#php bin/console cache:clear --env=dev
 php bin/console doctrine:migrations:migrate --no-interaction
 chown -R www-data:www-data var
 
