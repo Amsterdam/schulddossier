@@ -1,0 +1,13 @@
+<body>
+    <h1>Nieuw dossier</h1>
+    <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
+    {{ form_start(form) }}
+    {{ form_row(form.clientNaam) }}
+    {{ form_row(form.partnerNaam) }}
+    {{ form_row(form.schuldhulpbureau) }}
+    {{ form_row(form.teamGka) }}
+    {{ form_row(form.regasNummer) }}
+    {{ form_row(form.allegroNummer) }}
+    <button type="submit">Aanmaken</button>
+    {{ form_end(form) }}
+</body>

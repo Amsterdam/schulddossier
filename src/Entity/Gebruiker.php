@@ -16,6 +16,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class Gebruiker implements UserInterface, \Serializable
 {
+    const TYPE_GKA = 'gka';
+    const TYPE_MADI = 'madi';
+    const TYPE_ADMIN = 'admin';
+
     /**
      * @var integer
      * @ORM\Id
@@ -35,6 +39,14 @@ class Gebruiker implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $password;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=10, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Choice(callback="getTypes")
+     */
+    private $type;
 
     /**
      * {@inheritDoc}
@@ -81,6 +93,26 @@ class Gebruiker implements UserInterface, \Serializable
         return $this->password;
     }
 
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
     /**
      * {@inheritDoc}
      * @see Serializable::serialize()
@@ -101,8 +133,20 @@ class Gebruiker implements UserInterface, \Serializable
     public function unserialize($serialized)
     {
         $data = unserialize($serialized);
-        $this->id = $data[0];
-        $this->username = $data[1];
-        $this->password = $data[2];
+        $this->id = $data['id'];
+        $this->username = $data['username'];
+        $this->password = $data['password'];
+    }
+
+    /**
+     * @return string[]
+     */
+    public static function getTypes()
+    {
+        return [
+            self::TYPE_MADI => self::TYPE_MADI,
+            self::TYPE_GKA => self::TYPE_GKA,
+            self::TYPE_ADMIN => self::TYPE_ADMIN,
+        ];
     }
 }
