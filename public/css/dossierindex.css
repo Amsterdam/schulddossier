@@ -18,8 +18,25 @@ body {
 	font-size: 18px;
 }
 
+a.knop {
+	border: 1px solid rgb(216,216,216);
+	border-radius: 15px;
+	padding: 3px 10px;
+	text-decoration: none;
+	font-size: 120%;
+	width: auto;
+	display: inline-block;
+	color: black;
+}
+
+a.knop:hover {
+	cursor: pointer;
+	background: rgba(255,0,0,0.4);
+}
+
+
 section {
-	border-bottom: 2px solid;
+	border-top: 2px solid;
 }
 
 section p {
