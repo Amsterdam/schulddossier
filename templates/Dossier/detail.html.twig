@@ -1,4 +1,44 @@
-<body>
-    <h1>Dossier {{ dossier.clientNaam }}</h1>
-    <p>Dump {{ dump() }}</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{ dossier.clientNaam }} - voorlegger</title>
+<meta name="viewport" content="width = device-width">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="voorlegger">
+
+<h1>Dossier {{ dossier.clientNaam }}</h1>
+
+<section class="header">
+	<span></span>
+	<span>Schuldhulp</span>
+	<span>GKA</span>
+	<span>n.v.t.</span>
+</section>
+
+{% for iets in ietsanders %}
+
+	<section class="check">
+		<h3>{{ form_label($dinges) }}</h3>
+		<span>{{ form_widget($dinges) }}</span>
+		<span>{{ form_widget($dinges) }}</span>
+	</section>
+
+{% endfor %}
+
+<h2>Aanvullende informatie</h2>
+<textarea name="aanvullend">Hallo daar dus nog een keer misschien wanneer</textarea>
+
+<fieldset>
+	<input type="submit" value="Sla op">
+</fieldset>
+<fieldset>
+	<label class="GKA"><input type="checkbox" name="klaar_voor_GKA"> Dit dossier is klaar voor het GKA</label>
+	<input type="submit" value="Stuur in naar GKA">
+</fieldset>
+
+</form>
 </body>
+</html>
