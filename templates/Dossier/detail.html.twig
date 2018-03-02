@@ -328,16 +328,18 @@
     <span>{{ form_widget(form.ondertekendAanvraagFormulierGka)}}</span>
 </section>
 
+<footer>
 
-
-<h2>Aanvullende informatie</h2>
+<h3>Aanvullende informatie</h3>
 {{ form_widget(form.aanvullendeInformatie)}}
 
-<input type="submit" value="Sla op">
+<p><input type="submit" value="Sla op"></p>
 
 {{ form_end(form) }}
 
 <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
+
+</footer>
 
 <!--
 <p>Werkt nog niet</p>

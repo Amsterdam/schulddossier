@@ -171,6 +171,11 @@ body.voorlegger input[type=submit] {
 	float: right;
 }
 
+body.voorlegger footer h3, body.voorlegger footer p {
+	margin-top: 20px;
+	overflow: auto;
+}
+
 label.GKA {
 	-webkit-appearance: none;
 	font-size: 120%;
@@ -179,15 +184,6 @@ label.GKA {
 	display: block;
 	color: black;
 	white-space: normal;
-}
-
-input[type=submit] {
-	border-radius: 15px;
-}
-
-input[type=submit]:hover {
-	cursor: pointer;
-	background: rgba(255,0,0,0.4);
 }
 
 label.GKA input {
