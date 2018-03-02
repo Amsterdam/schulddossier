@@ -11,7 +11,7 @@
 
 <h1>Dossier {{ dossier.clientNaam }}</h1>
 
-<form>
+<header>
 {% if dossier.partnerNaam is not empty %}
     <p>Partner: {{ dossier.partnerNaam }}</p>
 {% endif %}</p>
@@ -24,7 +24,9 @@
 {% if dossier.allegroNummer is not empty %}
     <p>Allegro: {{ dossier.allegroNummer }}</p>
 {% endif %}</p>
-</form>
+</header>
+
+<p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
 
 <section class="header">
     <span></span>
@@ -225,7 +227,7 @@
 
 
 <section>
-    <h3>inzageToetsingBkr</h3>
+    <h3>Inzage toetsing BKR</h3>
     <span>{{ form_widget(form.inzageToetsingBkrOntvangenMadi)}}</span>
     <span>{{ form_widget(form.inzageToetsingBkrOntvangenGka)}}</span>
 </section>
@@ -253,7 +255,7 @@
 </section>
 
 <section>
-    <h3>waternet</h3>
+    <h3>Waternet</h3>
     <span>{{ form_widget(form.waternetOntvangenMadi)}}</span>
     <span>{{ form_widget(form.waternetOntvangenGka)}}</span>
     <span>{{ form_widget(form.waternetNvt)}}</span>
@@ -291,7 +293,7 @@
 </section>
 
 <section>
-    <h3>beschikkingOnderBewindstelling</h3>
+    <h3>Beschikking onderbewindstelling</h3>
     <span>{{ form_widget(form.beschikkingOnderBewindstellingOntvangenMadi)}}</span>
     <span>{{ form_widget(form.beschikkingOnderBewindstellingOntvangenGka)}}</span>
     <span>{{ form_widget(form.beschikkingOnderBewindstellingNvt)}}</span>
@@ -326,26 +328,24 @@
     <span>{{ form_widget(form.ondertekendAanvraagFormulierGka)}}</span>
 </section>
 
+<footer>
 
-
-<h2>Aanvullende informatie</h2>
+<h3>Aanvullende informatie</h3>
 {{ form_widget(form.aanvullendeInformatie)}}
 
-<fieldset>
-    <input type="submit" value="Sla op">
-</fieldset>
+<p><input type="submit" value="Sla op"></p>
 
 {{ form_end(form) }}
 
+<p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
 
-</form>
+</footer>
 
+<!--
 <p>Werkt nog niet</p>
-<fieldset>
-    <label class="GKA"><input type="checkbox" name="klaar_voor_GKA"> Dit dossier is klaar voor het GKA</label>
-    <input type="submit" value="Stuur in naar GKA">
-</fieldset>
-
+<label class="GKA"><input type="checkbox" name="klaar_voor_GKA"> Dit dossier is klaar voor het GKA</label>
+<input type="submit" value="Stuur in naar GKA">
+-->
 
 </body>
 </html>
