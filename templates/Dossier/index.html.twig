@@ -25,14 +25,14 @@
             <tr>
                 <td><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a></td>
                 <td>{{ dossier.schuldhulpbureau }}</td>
-                <td>
+                <td class="nummer">
                 {% if dossier.regasNummer is empty %}
                     -
                 {% else %}    
                     {{ dossier.regasNummer }} 
                 {% endif %}                
                 </td>
-                <td>
+                <td class="nummer">
                 {% if dossier.allegroNummer is empty %}
                     -
                 {% else %}    

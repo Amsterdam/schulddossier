@@ -7,7 +7,8 @@ body {
 	max-width: 20cm;
 	box-sizing: border-box;
 	margin: 0 auto;
-	padding: 5px 10%;
+	padding: 25px 10%;
+	padding-bottom: 50px;
 	font-family: "Gill Sans";
 	background-color: white;
 	background-image: url(logo.svg);
@@ -90,7 +91,8 @@ body.index {
 }
 
 body.index table {
-	border: 1px solid;
+	width: 100%;
+	border-spacing: 5px;
 }
 
 body.index th {
@@ -98,13 +100,17 @@ body.index th {
 }
 
 body.index td {
-	min-width: 100px;
+	min-width: 50px;
+}
+
+body.index td.nummer {
+	text-align: center;
 }
 
 /* DIGITALE VOORLEGGER */
 
-body.voorlegger form {
-
+body.voorlegger header p {
+	margin: 5px 0;
 }
 
 body.voorlegger section {
@@ -152,7 +158,7 @@ body.voorlegger span {
 }
 
 body.voorlegger input.overig {
-	border: 1px solid #333333;
+	border: 1px solid #666666;
 }
 
 section div label {
@@ -162,7 +168,7 @@ section div label {
 body.voorlegger input[type=submit] {
 	display: block;
 	width: 200px;
-	margin: 10px 30px 10px auto;
+	float: right;
 }
 
 label.GKA {
