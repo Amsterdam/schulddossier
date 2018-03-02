@@ -1430,7 +1430,7 @@ class Voorlegger
     {
         $oldDossier = $this->dossier;
         $this->dossier = $dossier;
-        if ($oldDossier->getVoorlegger() === $this) {
+        if ($oldDossier !== null && $oldDossier->getVoorlegger() === $this) {
             $oldDossier->setVoorlegger(null);
         }
         if ($dossier !== null && $dossier->getVoorlegger() !== $this) {
