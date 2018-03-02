@@ -12,6 +12,9 @@ __MACOSX
 # Composer
 composer.phar
 
+# Docker
+docker-compose.override.yml
+
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
