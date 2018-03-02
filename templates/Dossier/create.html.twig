@@ -1,13 +1,23 @@
-<body>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Maak nieuw dossier aan</title>
+<meta name="viewport" content="width = device-width">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="create">
     <h1>Nieuw dossier</h1>
     <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
     {{ form_start(form) }}
-    {{ form_row(form.clientNaam) }}
-    {{ form_row(form.partnerNaam) }}
-    {{ form_row(form.schuldhulpbureau) }}
-    {{ form_row(form.teamGka) }}
-    {{ form_row(form.regasNummer) }}
-    {{ form_row(form.allegroNummer) }}
-    <button type="submit">Aanmaken</button>
+    <p><label>Naam cliënt{{ form_widget(form.clientNaam) }}</label></p>
+    <p><label>Naam partner{{ form_widget(form.partnerNaam) }}</label></p>
+    <p><label>Schuldhulpbureau{{ form_widget(form.schuldhulpbureau) }}</label></p>
+    <p><label>Medewerker{{ form_widget(form.medewerkerSchuldhulpbureau) }}</label></p>
+    <p><label>Team GKA{{ form_widget(form.teamGka) }}</label></p>
+    <p><label>Regas{{ form_widget(form.regasNummer) }}</label></p>
+    <p><label>Allegro{{ form_widget(form.allegroNummer) }}</label></p>
+    <input type="submit" value="Maak aan">
     {{ form_end(form) }}
 </body>
+</html>

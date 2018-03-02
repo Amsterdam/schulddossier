@@ -13,317 +13,317 @@
 
 <form>
 {% if dossier.partnerNaam is not empty %}
-	<p>Partner: {{ dossier.partnerNaam }}</p>
+    <p>Partner: {{ dossier.partnerNaam }}</p>
 {% endif %}</p>
 <p>{{ dossier.schuldhulpbureau }}</p>
 <p>{{ dossier.teamGka }}</p>
 
 {% if dossier.regasNummer is not empty %}
-	<p>Regas: {{ dossier.regasNummer }}</p>
+    <p>Regas: {{ dossier.regasNummer }}</p>
 {% endif %}</p>
 {% if dossier.allegroNummer is not empty %}
-	<p>Allegro: {{ dossier.allegroNummer }}</p>
+    <p>Allegro: {{ dossier.allegroNummer }}</p>
 {% endif %}</p>
-</forn>
+</form>
 
 <section class="header">
-	<span></span>
-	<span>MaDi</span>
-	<span>GKA</span>
-	<span>n.v.t.</span>
+    <span></span>
+    <span>MaDi</span>
+    <span>GKA</span>
+    <span>n.v.t.</span>
 </section>
 
 {{ form_start(form) }}
 
 <section class="topLevel">
-	<h3>Legitimatie</h3>
-	<span>{{ form_widget(form.legitimatieOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.legitimatieOntvangenGka)}}</span>
+    <h3>Legitimatie</h3>
+    <span>{{ form_widget(form.legitimatieOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.legitimatieOntvangenGka)}}</span>
 </section>
 
 <section class="topLevel">
-	<h3>VTLB</h3>
-	<span>{{ form_widget(form.vtlbMadi)}}</span>
-	<span>{{ form_widget(form.vtlbGka)}}</span>
+    <h3>VTLB</h3>
+    <span>{{ form_widget(form.vtlbMadi)}}</span>
+    <span>{{ form_widget(form.vtlbGka)}}</span>
 </section>
 
 <h2>Inkomsten</h2>
 
 <section>
-	<h3>Inkomstenspecificatie</h3>
-	<span>{{ form_widget(form.inkomstenspecificatieOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.inkomstenspecificatieOntvangenGka)}}</span>
+    <h3>Inkomstenspecificatie</h3>
+    <span>{{ form_widget(form.inkomstenspecificatieOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.inkomstenspecificatieOntvangenGka)}}</span>
 </section>
 
 <section>
-	<h3>Arbeidsovereenkomst</h3>
-	<span>{{ form_widget(form.arbeidsovereenkomstOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.arbeidsovereenkomstOntvangenGka)}}</span>
-	<span>{{ form_widget(form.arbeidsovereenkomstNvt)}}</span>
+    <h3>Arbeidsovereenkomst</h3>
+    <span>{{ form_widget(form.arbeidsovereenkomstOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.arbeidsovereenkomstOntvangenGka)}}</span>
+    <span>{{ form_widget(form.arbeidsovereenkomstNvt)}}</span>
 </section>
 
 <section>
-	<h3>Beschikking UWV</h3>
-	<span>{{ form_widget(form.beschikkingUwvOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.beschikkingUwvOntvangenGka)}}</span>
-	<span>{{ form_widget(form.beschikkingUwvNvt)}}</span>
-	<div>
-	<label>{{ form_widget(form.beschikkingUwvWw)}} WW</label>
-	<label>{{ form_widget(form.beschikkingUwvWia)}} WIA</label>
-	<label>{{ form_widget(form.beschikkingUwvZw)}} ZW</label>
-	<label>{{ form_widget(form.beschikkingUwvOverig,{attr: {
-		'placeholder': 'Overig',
-		'class': 'overig',
-	}})}}</label>
-	</div>
+    <h3>Beschikking UWV</h3>
+    <span>{{ form_widget(form.beschikkingUwvOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.beschikkingUwvOntvangenGka)}}</span>
+    <span>{{ form_widget(form.beschikkingUwvNvt)}}</span>
+    <div>
+    <label>{{ form_widget(form.beschikkingUwvWw)}} WW</label>
+    <label>{{ form_widget(form.beschikkingUwvWia)}} WIA</label>
+    <label>{{ form_widget(form.beschikkingUwvZw)}} ZW</label>
+    <label>{{ form_widget(form.beschikkingUwvOverig,{attr: {
+        'placeholder': 'Overig',
+        'class': 'overig',
+    }})}}</label>
+    </div>
 </section>
 
 <section>
-	<h3>Voorlopige teruggave Belastingdienst</h3>
-	<span>{{ form_widget(form.voorlopigeTerugaafBelastingdienstOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.voorlopigeTerugaafBelastingdienstOntvangenGka)}}</span>
-	<span>{{ form_widget(form.voorlopigeTerugaafBelastingdienstNvt)}}</span>
+    <h3>Voorlopige teruggave Belastingdienst</h3>
+    <span>{{ form_widget(form.voorlopigeTerugaafBelastingdienstOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.voorlopigeTerugaafBelastingdienstOntvangenGka)}}</span>
+    <span>{{ form_widget(form.voorlopigeTerugaafBelastingdienstNvt)}}</span>
 </section>
 
 <section>
-	<h3>Alimentatie ontvangen</h3>
-	<span>{{ form_widget(form.alimentatieOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.alimentatieOntvangenGka)}}</span>
-	<span>{{ form_widget(form.alimentatieNvt)}}</span>
+    <h3>Alimentatie ontvangen</h3>
+    <span>{{ form_widget(form.alimentatieOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.alimentatieOntvangenGka)}}</span>
+    <span>{{ form_widget(form.alimentatieNvt)}}</span>
 </section>
 
 <section>
-	<h3>Kostgeld</h3>
-	<span>{{ form_widget(form.kostgeldOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.kostgeldOntvangenGka)}}</span>
-	<span>{{ form_widget(form.kostgeldNvt)}}</span>
+    <h3>Kostgeld</h3>
+    <span>{{ form_widget(form.kostgeldOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.kostgeldOntvangenGka)}}</span>
+    <span>{{ form_widget(form.kostgeldNvt)}}</span>
 </section>
 
 <section>
-	<h3>Huurtoeslag</h3>
-	<span>{{ form_widget(form.huurtoeslagOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.huurtoeslagOntvangenGka)}}</span>
-	<span>{{ form_widget(form.huurtoeslagNvt)}}</span>
+    <h3>Huurtoeslag</h3>
+    <span>{{ form_widget(form.huurtoeslagOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.huurtoeslagOntvangenGka)}}</span>
+    <span>{{ form_widget(form.huurtoeslagNvt)}}</span>
 </section>
 
 <section>
-	<h3>Zorgtoeslag</h3>
-	<span>{{ form_widget(form.zorgtoeslagOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.zorgtoeslagOntvangenGka)}}</span>
-	<span>{{ form_widget(form.zorgtoeslagNvt)}}</span>
+    <h3>Zorgtoeslag</h3>
+    <span>{{ form_widget(form.zorgtoeslagOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.zorgtoeslagOntvangenGka)}}</span>
+    <span>{{ form_widget(form.zorgtoeslagNvt)}}</span>
 </section>
 
 <section>
-	<h3>Kinderopvangtoeslag</h3>
-	<span>{{ form_widget(form.kinderopvangtoeslagOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.kinderopvangtoeslagOntvangenGka)}}</span>
-	<span>{{ form_widget(form.kinderopvangtoeslagNvt)}}</span>
+    <h3>Kinderopvangtoeslag</h3>
+    <span>{{ form_widget(form.kinderopvangtoeslagOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.kinderopvangtoeslagOntvangenGka)}}</span>
+    <span>{{ form_widget(form.kinderopvangtoeslagNvt)}}</span>
 </section>
 
 <section>
-	<h3>Kindgebonden budget</h3>
-	<span>{{ form_widget(form.kindgebondenBudgetOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.kindgebondenBudgetOntvangenGka)}}</span>
-	<span>{{ form_widget(form.kindgebondenBudgetNvt)}}</span>
+    <h3>Kindgebonden budget</h3>
+    <span>{{ form_widget(form.kindgebondenBudgetOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.kindgebondenBudgetOntvangenGka)}}</span>
+    <span>{{ form_widget(form.kindgebondenBudgetNvt)}}</span>
 </section>
 
 <h2>Uitgaven</h2>
 
 <section>
-	<h3>Huurspecificatie</h3>
-	<span>{{ form_widget(form.huurspecificatieOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.huurspecificatieOntvangenGka)}}</span>
-	<span>{{ form_widget(form.huurspecificatieNvt)}}</span>
+    <h3>Huurspecificatie</h3>
+    <span>{{ form_widget(form.huurspecificatieOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.huurspecificatieOntvangenGka)}}</span>
+    <span>{{ form_widget(form.huurspecificatieNvt)}}</span>
 </section>
 
 <section>
-	<h3>Polisblad zorgverzekering</h3>
-	<span>{{ form_widget(form.polisbladZorgverzekeringOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.polisbladZorgverzekeringOntvangenGka)}}</span>
-	<span>{{ form_widget(form.polisbladZorgverzekeringNvt)}}</span>
+    <h3>Polisblad zorgverzekering</h3>
+    <span>{{ form_widget(form.polisbladZorgverzekeringOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.polisbladZorgverzekeringOntvangenGka)}}</span>
+    <span>{{ form_widget(form.polisbladZorgverzekeringNvt)}}</span>
 </section>
 
 <section>
-	<h3>Alimentatie echtscheidingsconvenant</h3>
-	<span>{{ form_widget(form.alimentatieEchtscheidingsconvenantOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.alimentatieEchtscheidingsconvenantOntvangenGka)}}</span>
-	<span>{{ form_widget(form.alimentatieEchtscheidingsconvenantNvt)}}</span>
+    <h3>Alimentatie echtscheidingsconvenant</h3>
+    <span>{{ form_widget(form.alimentatieEchtscheidingsconvenantOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.alimentatieEchtscheidingsconvenantOntvangenGka)}}</span>
+    <span>{{ form_widget(form.alimentatieEchtscheidingsconvenantNvt)}}</span>
 </section>
 
 <section>
-	<h3>Overeenkomst kinderopvang</h3>
-	<span>{{ form_widget(form.overeenkomstKinderopvangOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.overeenkomstKinderopvangOntvangenGka)}}</span>
-	<span>{{ form_widget(form.overeenkomstKinderopvangNvt)}}</span>
+    <h3>Overeenkomst kinderopvang</h3>
+    <span>{{ form_widget(form.overeenkomstKinderopvangOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.overeenkomstKinderopvangOntvangenGka)}}</span>
+    <span>{{ form_widget(form.overeenkomstKinderopvangNvt)}}</span>
 </section>
 
 <section>
-	<h3>Kwijtschelding gemeentebelasting</h3>
-	<span>{{ form_widget(form.kwijtscheldingGemeenteBelastingOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.kwijtscheldingGemeenteBelastingOntvangenGka)}}</span>
-	<span>{{ form_widget(form.kwijtscheldingGemeenteBelastingNvt)}}</span>
+    <h3>Kwijtschelding gemeentebelasting</h3>
+    <span>{{ form_widget(form.kwijtscheldingGemeenteBelastingOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.kwijtscheldingGemeenteBelastingOntvangenGka)}}</span>
+    <span>{{ form_widget(form.kwijtscheldingGemeenteBelastingNvt)}}</span>
 </section>
 
 <section>
-	<h3>Corrigeren GemeenteBelasting</h3>
-	<span></span>
-	<span>{{ form_widget(form.corrigerenGemeenteBelastingOntvangenGka)}}</span>
-	<span>{{ form_widget(form.corrigerenGemeenteBelastingNvt)}}</span>
+    <h3>Corrigeren GemeenteBelasting</h3>
+    <span></span>
+    <span>{{ form_widget(form.corrigerenGemeenteBelastingOntvangenGka)}}</span>
+    <span>{{ form_widget(form.corrigerenGemeenteBelastingNvt)}}</span>
 </section>
 
 <section class="header">
-	<span></span>
-	<span>MaDi</span>
-	<span>GKA</span>
-	<span>n.v.t.</span>
+    <span></span>
+    <span>MaDi</span>
+    <span>GKA</span>
+    <span>n.v.t.</span>
 </section>
 
 <h2>Autolasten</h2>
 
 <section>
-	<h3>Km woonwerkverkeer</h3>
-	<span>{{ form_widget(form.autolastenKmWoonwerkverkeerOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.autolastenKmWoonwerkverkeerOntvangenGka)}}</span>
-	<span>{{ form_widget(form.autolastenKmWoonwerkverkeerNvt)}}</span>
+    <h3>Km woonwerkverkeer</h3>
+    <span>{{ form_widget(form.autolastenKmWoonwerkverkeerOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.autolastenKmWoonwerkverkeerOntvangenGka)}}</span>
+    <span>{{ form_widget(form.autolastenKmWoonwerkverkeerNvt)}}</span>
 </section>
 
 <section>
-	<h3>Kenteken</h3>
-	<span>{{ form_widget(form.kentekenOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.kentekenOntvangenGka)}}</span>
-	<span>{{ form_widget(form.kentekenNvt)}}</span>
+    <h3>Kenteken</h3>
+    <span>{{ form_widget(form.kentekenOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.kentekenOntvangenGka)}}</span>
+    <span>{{ form_widget(form.kentekenNvt)}}</span>
 </section>
 
 <section>
-	<h3>Verklaring werkgever</h3>
-	<span>{{ form_widget(form.verklaringWerkgeverOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.verklaringWerkgeverOntvangenGka)}}</span>
-	<span>{{ form_widget(form.verklaringWerkgeverNvt)}}</span>
+    <h3>Verklaring werkgever</h3>
+    <span>{{ form_widget(form.verklaringWerkgeverOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.verklaringWerkgeverOntvangenGka)}}</span>
+    <span>{{ form_widget(form.verklaringWerkgeverNvt)}}</span>
 </section>
 
 <section>
-	<h3>Vrijwaringsbewijs</h3>
-	<span>{{ form_widget(form.vrijwaringsbewijsOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.vrijwaringsbewijsOntvangenGka)}}</span>
-	<span>{{ form_widget(form.vrijwaringsbewijsNvt)}}</span>
+    <h3>Vrijwaringsbewijs</h3>
+    <span>{{ form_widget(form.vrijwaringsbewijsOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.vrijwaringsbewijsOntvangenGka)}}</span>
+    <span>{{ form_widget(form.vrijwaringsbewijsNvt)}}</span>
 </section>
 
 <h2>Schulden</h2>
 
 <section>
-	<h3>Schuldenoverzicht</h3>
-	<span>{{ form_widget(form.schuldenoverzichtOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.schuldenoverzichtOntvangenGka)}}</span>
+    <h3>Schuldenoverzicht</h3>
+    <span>{{ form_widget(form.schuldenoverzichtOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.schuldenoverzichtOntvangenGka)}}</span>
 </section>
 
 
 <section>
-	<h3>Vorderingen</h3>
-	<span>{{ form_widget(form.vorderingenOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.vorderingenOntvangenGka)}}</span>
+    <h3>Vorderingen</h3>
+    <span>{{ form_widget(form.vorderingenOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.vorderingenOntvangenGka)}}</span>
 </section>
 
 
 <section>
-	<h3>inzageToetsingBkr</h3>
-	<span>{{ form_widget(form.inzageToetsingBkrOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.inzageToetsingBkrOntvangenGka)}}</span>
+    <h3>inzageToetsingBkr</h3>
+    <span>{{ form_widget(form.inzageToetsingBkrOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.inzageToetsingBkrOntvangenGka)}}</span>
 </section>
 
 <section>
-	<h3>Stabilisatieovereenkomst</h3>
-	<span>{{ form_widget(form.stabilisatieovereenkomstOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.stabilisatieovereenkomstOntvangenGka)}}</span>
-	<span>{{ form_widget(form.stabilisatieovereenkomstNvt)}}</span>
+    <h3>Stabilisatieovereenkomst</h3>
+    <span>{{ form_widget(form.stabilisatieovereenkomstOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.stabilisatieovereenkomstOntvangenGka)}}</span>
+    <span>{{ form_widget(form.stabilisatieovereenkomstNvt)}}</span>
 </section>
 
 <section>
-	<h3>CJIB</h3>
-	<span>{{ form_widget(form.cjibOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.cjibOntvangenGka)}}</span>
-	<span>{{ form_widget(form.cjibNvt)}}</span>
-</section>
-
-
-<section>
-	<h3>Meterstanden energie</h3>
-	<span>{{ form_widget(form.meterstandenEnergieOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.meterstandenEnergieOntvangenGka)}}</span>
-	<span>{{ form_widget(form.meterstandenEnergieNvt)}}</span>
-</section>
-
-<section>
-	<h3>waternet</h3>
-	<span>{{ form_widget(form.waternetOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.waternetOntvangenGka)}}</span>
-	<span>{{ form_widget(form.waternetNvt)}}</span>
+    <h3>CJIB</h3>
+    <span>{{ form_widget(form.cjibOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.cjibOntvangenGka)}}</span>
+    <span>{{ form_widget(form.cjibNvt)}}</span>
 </section>
 
 
 <section>
-	<h3>Klantnummer Ziggo</h3>
-	<span>{{ form_widget(form.klantnummerZiggoOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.klantnummerZiggoOntvangenGka)}}</span>
-	<span>{{ form_widget(form.klantnummerZiggoNvt)}}</span>
+    <h3>Meterstanden energie</h3>
+    <span>{{ form_widget(form.meterstandenEnergieOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.meterstandenEnergieOntvangenGka)}}</span>
+    <span>{{ form_widget(form.meterstandenEnergieNvt)}}</span>
+</section>
+
+<section>
+    <h3>waternet</h3>
+    <span>{{ form_widget(form.waternetOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.waternetOntvangenGka)}}</span>
+    <span>{{ form_widget(form.waternetNvt)}}</span>
 </section>
 
 
 <section>
-	<h3>Retourbewijs modem</h3>
-	<span>{{ form_widget(form.retourbewijsModemOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.retourbewijsModemOntvangenGka)}}</span>
-	<span>{{ form_widget(form.retourbewijsModemNvt)}}</span>
+    <h3>Klantnummer Ziggo</h3>
+    <span>{{ form_widget(form.klantnummerZiggoOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.klantnummerZiggoOntvangenGka)}}</span>
+    <span>{{ form_widget(form.klantnummerZiggoNvt)}}</span>
 </section>
 
 
 <section>
-	<h3>Toelichting aanvraag schuldsanering</h3>
-	<span>{{ form_widget(form.toelichtingAanvraagSchuldsaneringOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.toelichtingAanvraagSchuldsaneringOntvangenGka)}}</span>
+    <h3>Retourbewijs modem</h3>
+    <span>{{ form_widget(form.retourbewijsModemOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.retourbewijsModemOntvangenGka)}}</span>
+    <span>{{ form_widget(form.retourbewijsModemNvt)}}</span>
 </section>
 
 
 <section>
-	<h3>Bewindstelling of budgetbeheer</h3>
-	<span></span>
-	<span></span>
-	<span>{{ form_widget(form.bewindstellingOfBudgetbeheerNvt)}}</span>
+    <h3>Toelichting aanvraag schuldsanering</h3>
+    <span>{{ form_widget(form.toelichtingAanvraagSchuldsaneringOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.toelichtingAanvraagSchuldsaneringOntvangenGka)}}</span>
+</section>
+
+
+<section>
+    <h3>Bewindstelling of budgetbeheer</h3>
+    <span></span>
+    <span></span>
+    <span>{{ form_widget(form.bewindstellingOfBudgetbeheerNvt)}}</span>
 </section>
 
 <section>
-	<h3>beschikkingOnderBewindstelling</h3>
-	<span>{{ form_widget(form.beschikkingOnderBewindstellingOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.beschikkingOnderBewindstellingOntvangenGka)}}</span>
-	<span>{{ form_widget(form.beschikkingOnderBewindstellingNvt)}}</span>
+    <h3>beschikkingOnderBewindstelling</h3>
+    <span>{{ form_widget(form.beschikkingOnderBewindstellingOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.beschikkingOnderBewindstellingOntvangenGka)}}</span>
+    <span>{{ form_widget(form.beschikkingOnderBewindstellingNvt)}}</span>
 </section>
 
 <section>
-	<h3>Budgetbeheer</h3>
-	<span>{{ form_widget(form.budgetbeheerOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.budgetbeheerOntvangenGka)}}</span>
-	<span>{{ form_widget(form.budgetbeheerNvt)}}</span>
-	<div>
-	<label>{{ form_widget(form.budgetbeheerPlangroep)}} Plangroep</label>
-	<label>{{ form_widget(form.budgetbeheerCav)}} CAV</label>
-	<label>{{ form_widget(form.budgetbeheerFibi)}} Fibi</label>
-	<label>{{ form_widget(form.budgetbeheerOverig,{attr: {
-		'placeholder': 'Overig',
-		'class': 'overig',
-	}})}}</label>
-	</div>
+    <h3>Budgetbeheer</h3>
+    <span>{{ form_widget(form.budgetbeheerOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.budgetbeheerOntvangenGka)}}</span>
+    <span>{{ form_widget(form.budgetbeheerNvt)}}</span>
+    <div>
+    <label>{{ form_widget(form.budgetbeheerPlangroep)}} Plangroep</label>
+    <label>{{ form_widget(form.budgetbeheerCav)}} CAV</label>
+    <label>{{ form_widget(form.budgetbeheerFibi)}} Fibi</label>
+    <label>{{ form_widget(form.budgetbeheerOverig,{attr: {
+        'placeholder': 'Overig',
+        'class': 'overig',
+    }})}}</label>
+    </div>
 </section>
 
 <section>
-	<h3>Gereserveerde gelden</h3>
-	<span>{{ form_widget(form.gereserveerdeGeldenOntvangenMadi)}}</span>
-	<span>{{ form_widget(form.gereserveerdeGeldenOntvangenGka)}}</span>
-	<span>{{ form_widget(form.gereserveerdeGeldenNvt)}}</span>
+    <h3>Gereserveerde gelden</h3>
+    <span>{{ form_widget(form.gereserveerdeGeldenOntvangenMadi)}}</span>
+    <span>{{ form_widget(form.gereserveerdeGeldenOntvangenGka)}}</span>
+    <span>{{ form_widget(form.gereserveerdeGeldenNvt)}}</span>
 </section>
 
 <section>
-	<h3>Ondertekend aanvraagformulier</h3>
-	<span>{{ form_widget(form.ondertekendAanvraagFormulierMadi)}}</span>
-	<span>{{ form_widget(form.ondertekendAanvraagFormulierGka)}}</span>
+    <h3>Ondertekend aanvraagformulier</h3>
+    <span>{{ form_widget(form.ondertekendAanvraagFormulierMadi)}}</span>
+    <span>{{ form_widget(form.ondertekendAanvraagFormulierGka)}}</span>
 </section>
 
 
@@ -332,7 +332,7 @@
 {{ form_widget(form.aanvullendeInformatie)}}
 
 <fieldset>
-	<input type="submit" value="Sla op">
+    <input type="submit" value="Sla op">
 </fieldset>
 
 {{ form_end(form) }}
@@ -342,8 +342,8 @@
 
 <p>Werkt nog niet</p>
 <fieldset>
-	<label class="GKA"><input type="checkbox" name="klaar_voor_GKA"> Dit dossier is klaar voor het GKA</label>
-	<input type="submit" value="Stuur in naar GKA">
+    <label class="GKA"><input type="checkbox" name="klaar_voor_GKA"> Dit dossier is klaar voor het GKA</label>
+    <input type="submit" value="Stuur in naar GKA">
 </fieldset>
 
 
