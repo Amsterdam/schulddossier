@@ -9,13 +9,13 @@ body {
 	margin: 0 auto;
 	padding: 25px 10%;
 	padding-bottom: 50px;
-	font-family: "Gill Sans","Open Sans";
+	font-family: verdana;
 	background-color: white;
 	background-image: url(/pix/logo.svg);
 	background-size: 30px;
 	background-repeat: no-repeat;
 	background-position: 98% 1%;
-	font-size: 16px;
+	font-size: 15px;
 }
 
 /* HOVER STYLES */
@@ -92,7 +92,6 @@ body.index {
 
 body.index table {
 	width: 100%;
-	border-spacing: 5px;
 }
 
 body.index th {
@@ -101,6 +100,7 @@ body.index th {
 
 body.index td {
 	min-width: 50px;
+	padding: 3px 0;
 }
 
 body.index td.nummer {
@@ -133,7 +133,7 @@ body.voorlegger section.header + h2 {
 
 body.voorlegger section div {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 3fr;
+	grid-template-columns: 1fr 1fr 1fr 2fr;
 	font-size: 85%;
 	margin-top: 3px;
 	margin-left: 25px;
