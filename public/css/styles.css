@@ -9,9 +9,9 @@ body {
 	margin: 0 auto;
 	padding: 25px 10%;
 	padding-bottom: 50px;
-	font-family: "Gill Sans";
+	font-family: "Gill Sans","Open Sans";
 	background-color: white;
-	background-image: url(logo.svg);
+	background-image: url(/pix/logo.svg);
 	background-size: 30px;
 	background-repeat: no-repeat;
 	background-position: 98% 1%;
