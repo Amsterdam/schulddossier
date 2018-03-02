@@ -93,7 +93,7 @@ class Dossier
 
     /**
      * @var Voorlegger
-     * @ORM\OneToOne(targetEntity="Voorlegger", mappedBy="dossier")
+     * @ORM\OneToOne(targetEntity="Voorlegger", mappedBy="dossier", orphanRemoval=true)
      * @ORM\JoinColumn(name="voorlegger_id", referencedColumnName="id", nullable=true)
      */
     private $voorlegger;
@@ -246,8 +246,15 @@ class Dossier
     /**
      * @param Voorlegger $voorlegger
      */
-    public function setVoorlegger(Voorlegger $voorlegger)
+    public function setVoorlegger(Voorlegger $voorlegger = null)
     {
+        $oldVoorlegger = $this->voorlegger;
         $this->voorlegger = $voorlegger;
+        if ($oldVoorlegger !== null) {
+            $oldVoorlegger->setDossier(null);
+        }
+        if ($voorlegger !== null && $voorlegger->getDossier() !== $this) {
+            $voorlegger->setDossier($this);
+        }
     }
 }

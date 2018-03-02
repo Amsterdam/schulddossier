@@ -21,7 +21,7 @@ class Voorlegger
 
     /**
      * @var Dossier
-     * @ORM\OneToOne(targetEntity="Dossier", inversedBy="voorlegger")
+     * @ORM\OneToOne(targetEntity="Dossier", inversedBy="voorlegger", orphanRemoval=true)
      * @ORM\JoinColumn(name="dossier_id", referencedColumnName="id", nullable=false)
      */
     private $dossier;
@@ -1426,9 +1426,16 @@ class Voorlegger
     /**
      * @param Dossier $dossier
      */
-    public function setDossier(Dossier $dossier)
+    public function setDossier(Dossier $dossier = null)
     {
+        $oldDossier = $this->dossier;
         $this->dossier = $dossier;
+        if ($oldDossier->getVoorlegger() === $this) {
+            $oldDossier->setVoorlegger(null);
+        }
+        if ($dossier !== null && $dossier->getVoorlegger() !== $this) {
+            $dossier->setVoorlegger(null);
+        }
     }
 
     public function setLegitimatieOntvangenGka($legitimatieOntvangenGka)
