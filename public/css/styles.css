@@ -85,7 +85,21 @@ body.create input[type=submit] {
 
 /* DOSSIERINDEX */
 
-	/* Nog geen speciale stijlen */
+body.index {
+
+}
+
+body.index table {
+	border: 1px solid;
+}
+
+body.index th {
+	font-weight: normal;
+}
+
+body.index td {
+	min-width: 100px;
+}
 
 /* DIGITALE VOORLEGGER */
 
