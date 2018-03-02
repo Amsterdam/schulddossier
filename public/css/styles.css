@@ -102,6 +102,7 @@ section div {
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	font-size: 85%;
 	margin-top: 3px;
+	margin-left: 25px;
 }
 
 section h3 {
@@ -110,6 +111,7 @@ section h3 {
 
 section.topLevel h3 {
 	text-indent: 0;
+	font-size: 110%;
 }
 
 section.header span {

@@ -58,7 +58,9 @@
 	<label>{{ form_widget(form.beschikkingUwvWw)}} WW</label>
 	<label>{{ form_widget(form.beschikkingUwvWia)}} WIA</label>
 	<label>{{ form_widget(form.beschikkingUwvZw)}} ZW</label>
-	<label>Overig</label>
+	<label>{{ form_widget(form.beschikkingUwvOverig,{attr: {
+		'placeholder': 'Overig'}
+	})}}</label>
 	</div>
 </section>
 
@@ -303,7 +305,7 @@
 
 
 <h2>Aanvullende informatie</h2>
-<textarea name="aanvullend">Hallo daar dus nog een keer misschien wanneer</textarea>
+{{ form_widget(form.aanvullendeInformatie)}}
 
 <fieldset>
 	<input type="submit" value="Sla op">
