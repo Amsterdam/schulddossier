@@ -5,8 +5,9 @@ html {
 
 body {
 	max-width: 20cm;
+	box-sizing: border-box;
 	margin: 0 auto;
-	padding: 5px;
+	padding: 5px 10%;
 	font-family: "Gill Sans";
 	background-color: white;
 	background-image: url(logo.svg);
@@ -60,6 +61,27 @@ h3 {
 	font-size: 100%;
 }
 
+/* MAAK NIEUW DOSSIER AAN */
+
+body.create p {
+	padding: 3px 0;
+}
+
+body.create label {
+	display: block;
+	width: 400px;
+}	
+
+body.create input,body.create select {
+	float: right;
+	width: 200px;
+}
+
+body.create input[type=submit] {
+	float: none;
+	margin-left: 200px;
+}
+
 
 /* DOSSIERINDEX */
 
@@ -68,7 +90,7 @@ h3 {
 /* DIGITALE VOORLEGGER */
 
 body.voorlegger form {
-	margin: 0 10%;
+
 }
 
 body.voorlegger section {
