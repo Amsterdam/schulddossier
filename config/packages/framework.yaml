@@ -1,13 +1,11 @@
 framework:
     secret: '%env(APP_SECRET)%'
-    #default_locale: en
+    default_locale: nl
     #csrf_protection: true
     #http_method_override: true
 
-    # Enables session support. Note that the session will ONLY be started if you read or write from it.
-    # Remove or comment this section to explicitly disable session support.
     session:
-        handler_id: ~
+        handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
 
     #esi: true
     #fragments: true
@@ -28,3 +26,8 @@ framework:
 
         # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
         #app: cache.adapter.apcu
+
+services:
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
+        arguments:
+            - !service { class: PDO, factory: 'database_connection:getWrappedConnection' }
