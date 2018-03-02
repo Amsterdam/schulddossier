@@ -16,6 +16,12 @@ body {
 	font-size: 16px;
 }
 
+/* HOVER STYLES */
+
+section:not(.header):hover,tr:hover {
+	background-color: #f3f3f3;
+}
+
 /* SUBMIT-KNOPPEN EN ALS ZODANIG VERMOMDE LINKS */
 
 input[type=submit],a.knop {
@@ -50,11 +56,6 @@ h2,h3 {
 	font-weight: normal;
 }
 
-h2 {
-	margin-top: 15px;
-	margin-bottom: 5px;
-}
-
 h3 {
 	font-size: 100%;
 }
@@ -66,81 +67,56 @@ h3 {
 
 /* DIGITALE VOORLEGGER */
 
-fieldset {
-	border: none;
-	border-bottom: 1px solid #ff0000;
-	margin: 15px 0;
-	padding: 0;
-	padding-bottom: 10px;
+body.voorlegger form {
+	margin: 0 10%;
 }
 
-fieldset label {
-	display: block;
-	padding: 3px 0;
-	white-space: nowrap;
-}
-
-fieldset input {
-	margin-right: 5px;
-}
-
-section:not(.header):hover,tr:hover {
-	background-color: var(--grijs);
-}
-
-section {
+body.voorlegger section {
 	display: grid;
-	grid-template-columns: 1fr 80px 30px 40px;
+	grid-template-columns: 1fr 40px 40px 40px;
 	-ms-grid-template-columns: 1fr 80px 30px 40px;
 	grid-column-gap: 10px;
 	/* -ms-grid-gap does not exist */
 	padding: 5px 0;
 }
 
-section div {
+body.voorlegger h2 {
+	margin-top: 15px;
+}
+
+body.voorlegger section.header + h2 {
+	margin-top: -10px;
+	margin-bottom: 5px;
+}
+
+body.voorlegger section div {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 3fr;
 	font-size: 85%;
 	margin-top: 3px;
 	margin-left: 25px;
 }
 
-section h3 {
+body.voorlegger section h3 {
 	text-indent: 25px;
 }
 
-section.topLevel h3 {
+body.voorlegger section.topLevel h3 {
 	text-indent: 0;
 	font-size: 110%;
 }
 
-section.header span {
+body.voorlegger section.header {
+	margin-top: 10px;
 	font-size: 14px;
 }
 
-section.header span:nth-child(2) {
-	text-align: right;
-}
-
-section.header span:nth-child(4) {
+body.voorlegger span {
 	text-align: center;
 }
 
-section:not(.header) span {
-
-}
-
-section:not(.header) span:first-of-type {
-	text-align: right;
-	padding-right: 5px;
-}
-
-section:not(.header) span:nth-child(0n+3) {
-	padding-left: 5px;
-}
-
-section:not(.header) span:last-of-type {
-	text-align: center;
+body.voorlegger input.overig {
+	border: 1px solid #333333;
 }
 
 section div label {
@@ -189,6 +165,28 @@ textarea {
 
 
 /*
+
+section.header span:nth-child(2) {
+	text-align: right;
+}
+
+section.header span:nth-child(4) {
+	text-align: center;
+}
+
+section:not(.header) span:first-of-type {
+	text-align: right;
+	padding-right: 5px;
+}
+
+section:not(.header) span:nth-child(0n+3) {
+	padding-left: 5px;
+}
+
+section:not(.header) span:last-of-type {
+	text-align: center;
+}
+
 
 Ouwe meuk; niet aankomen
 
@@ -245,6 +243,24 @@ div span:last-of-type,div label:last-of-type {
 
 input[type=checkbox] {
 	transform: scale(1.4);
+}
+
+fieldset {
+	border: none;
+	border-bottom: 1px solid #ff0000;
+	margin: 15px 0;
+	padding: 0;
+	padding-bottom: 10px;
+}
+
+fieldset label {
+	display: block;
+	padding: 3px 0;
+	white-space: nowrap;
+}
+
+fieldset input {
+	margin-right: 5px;
 }
 
 
