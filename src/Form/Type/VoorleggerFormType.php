@@ -3,9 +3,11 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class VoorleggerFormType extends AbstractType
 {
@@ -26,6 +28,7 @@ class VoorleggerFormType extends AbstractType
         $builder->add('beschikkingUwvWw', CheckboxType::class, ['required' => false]);
         $builder->add('beschikkingUwvWia', CheckboxType::class, ['required' => false]);
         $builder->add('beschikkingUwvZw', CheckboxType::class, ['required' => false]);
+        $builder->add('beschikkingUwvOverig', TextType::class, ['required' => false]);
         $builder->add('voorlopigeTerugaafBelastingdienstOntvangenMadi', CheckboxType::class, ['required' => false]);
         $builder->add('voorlopigeTerugaafBelastingdienstOntvangenGka', CheckboxType::class, ['required' => false]);
         $builder->add('voorlopigeTerugaafBelastingdienstNvt', CheckboxType::class, ['required' => false]);
@@ -112,11 +115,13 @@ class VoorleggerFormType extends AbstractType
         $builder->add('budgetbeheerPlangroep', CheckboxType::class, ['required' => false]);
         $builder->add('budgetbeheerCav', CheckboxType::class, ['required' => false]);
         $builder->add('budgetbeheerFibi', CheckboxType::class, ['required' => false]);
+        $builder->add('budgetbeheerOverig', TextType::class, ['required' => false]);
         $builder->add('gereserveerdeGeldenOntvangenMadi', CheckboxType::class, ['required' => false]);
         $builder->add('gereserveerdeGeldenOntvangenGka', CheckboxType::class, ['required' => false]);
         $builder->add('gereserveerdeGeldenNvt', CheckboxType::class, ['required' => false]);
         $builder->add('ondertekendAanvraagFormulierMadi', CheckboxType::class, ['required' => false]);
         $builder->add('ondertekendAanvraagFormulierGka', CheckboxType::class, ['required' => false]);
+        $builder->add('aanvullendeInformatie', TextareaType::class, ['required' => false]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
