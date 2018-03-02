@@ -11,6 +11,8 @@
 
 <h1>Dossier {{ dossier.clientNaam }}</h1>
 
+<p>HIER NOG ANDER FORMULIERTJE</p>
+
 <section class="header">
 	<span></span>
 	<span>Schuldhulp</span>
@@ -20,22 +22,24 @@
 
 {{ form_start(form) }}
 
-<section>
+<section class="topLevel">
 	<h3>Legitimatie</h3>
 	<span>{{ form_widget(form.legitimatieOntvangenMadi)}}</span>
 	<span>{{ form_widget(form.legitimatieOntvangenGka)}}</span>
 </section>
 
+<section class="topLevel">
+	<h3>VTLB</h3>
+	<span>{{ form_widget(form.vtlbMadi)}}</span>
+	<span>{{ form_widget(form.vtlbGka)}}</span>
+</section>
+
+<h2>Inkomen</h2>
+
 <section>
 	<h3>Inkomstenspecificatie</h3>
 	<span>{{ form_widget(form.inkomstenspecificatieOntvangenMadi)}}</span>
 	<span>{{ form_widget(form.inkomstenspecificatieOntvangenGka)}}</span>
-</section>
-
-<section>
-	<h3>VTLB</h3>
-	<span>{{ form_widget(form.vtlbMadi)}}</span>
-	<span>{{ form_widget(form.vtlbGka)}}</span>
 </section>
 
 <section>
@@ -99,6 +103,8 @@
 	<span>{{ form_widget(form.kinderopvangtoeslagOntvangenGka)}}</span>
 	<span>{{ form_widget(form.kinderopvangtoeslagNvt)}}</span>
 </section>
+
+<h2>Uitgaven</h2>
 
 <section>
 	<h3>Kindgebonden budget ontvangen</h3>
@@ -178,6 +184,8 @@
 	<span>{{ form_widget(form.vrijwaringsbewijsOntvangenGka)}}</span>
 	<span>{{ form_widget(form.vrijwaringsbewijsNvt)}}</span>
 </section>
+
+<h2>Schulden</h2>
 
 <section>
 	<h3>Schuldenoverzicht ontvangen</h3>
@@ -279,10 +287,6 @@
 	</div>
 </section>
 
-
-
-
-
 <section>
 	<h3>Gereserveerde gelden</h3>
 	<span>{{ form_widget(form.gereserveerdeGeldenOntvangenMadi)}}</span>
@@ -307,17 +311,15 @@
 
 {{ form_end(form) }}
 
+
+</form>
+
 <p>Werkt nog niet</p>
 <fieldset>
 	<label class="GKA"><input type="checkbox" name="klaar_voor_GKA"> Dit dossier is klaar voor het GKA</label>
 	<input type="submit" value="Stuur in naar GKA">
 </fieldset>
 
-
-</form>
-
-
-{{ dump() }}
 
 </body>
 </html>
