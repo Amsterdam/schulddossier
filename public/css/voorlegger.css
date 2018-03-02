@@ -122,6 +122,7 @@ input[type=submit],label.GKA {
 	width: 200px;
 	margin: 10px 30px 10px auto;
 	display: block;
+	color: black;
 	white-space: normal;
 }
 

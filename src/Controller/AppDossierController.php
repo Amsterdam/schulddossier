@@ -3,6 +3,8 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -13,6 +15,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
+
 
 /**
  * @Route("/app/dossier")
@@ -89,6 +92,21 @@ class AppDossierController extends Controller
         }
         return $this->render('Dossier/detail.html.twig', [
             'dossier' => $dossier,
+            'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @Route("/formtest")
+     */
+    public function formtestAction(Request $request)
+    {
+		$form = $this->createFormBuilder()
+				   ->add('task', TextType::class)
+				   ->add('dueDate', DateType::class)
+				   ->getForm();
+		return $this->render('Dossier/formtest.html.twig', [
             'form' => $form->createView()
         ]);
     }

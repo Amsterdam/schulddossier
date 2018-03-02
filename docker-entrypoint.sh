@@ -4,7 +4,7 @@ echo 'Start docker-entrypoint.sh'
 
 set -u
 
-composer install --no-interaction --no-suggest --prefer-dist
+#composer install --no-interaction --no-suggest --prefer-dist
 php bin/console cache:clear --env=production
 php bin/console cache:clear --env=acceptance
 php bin/console cache:clear --env=dev
