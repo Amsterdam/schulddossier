@@ -285,7 +285,9 @@
 	<label>{{ form_widget(form.budgetbeheerPlangroep)}} Plangroep</label>
 	<label>{{ form_widget(form.budgetbeheerCav)}} CAV</label>
 	<label>{{ form_widget(form.budgetbeheerFibi)}} Fibi</label>
-	<label>Overig</label>
+	<label>{{ form_widget(form.budgetbeheerOverig,{attr: {
+		'placeholder': 'Overig'}
+	})}}</label>
 	</div>
 </section>
 
