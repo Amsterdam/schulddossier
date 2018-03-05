@@ -24,18 +24,9 @@
 		<td>Schuldhulpbureau</td>
 		<td>{{ dossier.schuldhulpbureau }}</td>
 	</tr>
-	<tr>
-		<td>Team GKA</td>
-		<td>{{ form_widget(form.teamGka)}}</td>
-	</tr>
-	<tr>
-		<td>Regas</td>
-		<td>{{ form_widget(form.regasNummer)}}</td>
-	</tr>
-	<tr>
-		<td>Allegro</td>
-		<td>{{ form_widget(form.allegroNummer)}}</td>
-	</tr>
+	{{ form_row(form.teamGka)}}
+	{{ form_row(form.regasNummer)}}
+	{{ form_row(form.allegroNummer)}}
 	<tr>
 		<td></td>
 		<td><input type="submit" value="Sla op"></td>
@@ -368,7 +359,23 @@
 <h3>Aanvullende informatie</h3>
 {{ form_widget(form.voorlegger.aanvullendeInformatie)}}
 
+<h2>Meterstanden en aanverwanten</h2>
 
+<table>
+	{{ form_row(form.voorlegger.energieBedrijf) }}
+	{{ form_row(form.voorlegger.energieBedrijfKlantnummer) }}
+	{{ form_row(form.voorlegger.energieBedrijfDatumOpname) }}
+	{{ form_row(form.voorlegger.energieBedrijfT1) }}
+	{{ form_row(form.voorlegger.energieBedrijfT2) }}
+	{{ form_row(form.voorlegger.energieBedrijfGas) }}
+	{{ form_row(form.voorlegger.warmteBedrijf) }}
+	{{ form_row(form.voorlegger.warmteBedrijfKlantnummer) }}
+	{{ form_row(form.voorlegger.warmteBedrijfDatumOpname) }}
+	{{ form_row(form.voorlegger.warmteBedrijfOpname) }}
+	{{ form_row(form.voorlegger.drinkwaterKlantnummer) }}
+	{{ form_row(form.voorlegger.drinkwaterDatumOpname) }}
+	{{ form_row(form.voorlegger.drinkwaterOpname) }}
+</table>
 
 <p><input type="submit" value="Sla op"></p>
 
