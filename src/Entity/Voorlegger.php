@@ -2158,7 +2158,7 @@ class Voorlegger
     /**
      * @param \DateTime $energieBedrijfDatumOpname
      */
-    public function setEnergieBedrijfDatumOpname(\DateTime $energieBedrijfDatumOpname)
+    public function setEnergieBedrijfDatumOpname(\DateTime $energieBedrijfDatumOpname = null)
     {
         $this->energieBedrijfDatumOpname = $energieBedrijfDatumOpname;
     }
@@ -2191,7 +2191,7 @@ class Voorlegger
     /**
      * @param \DateTime $warmteBedrijfDatumOpname
      */
-    public function setWarmteBedrijfDatumOpname(\DateTime $warmteBedrijfDatumOpname)
+    public function setWarmteBedrijfDatumOpname(\DateTime $warmteBedrijfDatumOpname = null)
     {
         $this->warmteBedrijfDatumOpname = $warmteBedrijfDatumOpname;
     }
@@ -2209,7 +2209,7 @@ class Voorlegger
     /**
      * @param \DateTime $drinkwaterDatumOpname
      */
-    public function setDrinkwaterDatumOpname(\DateTime $drinkwaterDatumOpname)
+    public function setDrinkwaterDatumOpname(\DateTime $drinkwaterDatumOpname = null)
     {
         $this->drinkwaterDatumOpname = $drinkwaterDatumOpname;
     }

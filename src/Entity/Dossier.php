@@ -210,7 +210,7 @@ class Dossier
     /**
      * @param Team $teamGka
      */
-    public function setTeamGka(Team $teamGka)
+    public function setTeamGka(Team $teamGka = null)
     {
         $this->teamGka = $teamGka;
     }
