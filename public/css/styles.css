@@ -98,28 +98,27 @@ body.create input[type=submit] {
 
 /* DOSSIERINDEX */
 
-body.index {
-
+body.index header {
+	padding-bottom: 50px;
+	margin-bottom: 50px;
 }
 
 body.index table {
 	width: 100%;
+	margin-top: 25px;
 }
 
 body.index th {
-	font-weight: normal;
+	text-align: left;
+	padding: 10px 0;
 }
 
 body.index td {
 	min-width: 50px;
-	padding: 3px 0;
+	padding: 5px 0;
 }
 
-body.index td.nummer {
-	text-align: center;
-}
-
-body.index tr:hover {
+body.index tbody tr:hover {
 	background-color: #f3f3f3;
 }
 
@@ -180,7 +179,7 @@ body.voorlegger section.header {
 	font-size: 14px;
 }
 
-body.voorlegger span {
+body.voorlegger section span {
 	background: #f8f8f8;
 	text-align: center;
 }
