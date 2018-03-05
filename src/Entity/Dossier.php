@@ -95,8 +95,9 @@ class Dossier
 
     /**
      * @var Voorlegger
-     * @ORM\OneToOne(targetEntity="Voorlegger", mappedBy="dossier", orphanRemoval=true)
+     * @ORM\OneToOne(targetEntity="Voorlegger", mappedBy="dossier", orphanRemoval=true, cascade={"persist"})
      * @ORM\JoinColumn(name="voorlegger_id", referencedColumnName="id", nullable=true)
+     * @Assert\Valid
      */
     private $voorlegger;
 

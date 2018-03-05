@@ -15,6 +15,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierFormType;
 
 /**
  * @Route("/app/dossier")
@@ -75,16 +76,14 @@ class AppDossierController extends Controller
      */
     public function detailAction(Request $request, EntityManagerInterface $em, Dossier $dossier)
     {
-        $voorlegger = $dossier->getVoorlegger() ? $dossier->getVoorlegger() : new Voorlegger();
-        $form = $this->createForm(VoorleggerFormType::class, $voorlegger, [
+        if ($dossier->getVoorlegger() === null) {
+            $dossier->setVoorlegger(new Voorlegger());
+        }
+        $form = $this->createForm(DetailDossierFormType::class, $dossier, [
             'disable_group' => $this->getUser()->getType()
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($voorlegger->getId() === null) {
-                $dossier->setVoorlegger($voorlegger);
-                $em->persist($voorlegger);
-            }
             $em->flush();
             $this->addFlash('success', 'Opgeslagen');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', [
