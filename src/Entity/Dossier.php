@@ -59,7 +59,7 @@ class Dossier
     /**
      * @var Team
      * @ORM\ManyToOne(targetEntity="Team")
-     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true)
      */
     private $teamGka;
 
