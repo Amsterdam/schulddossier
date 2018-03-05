@@ -76,7 +76,9 @@ class AppDossierController extends Controller
     public function detailAction(Request $request, EntityManagerInterface $em, Dossier $dossier)
     {
         $voorlegger = $dossier->getVoorlegger() ? $dossier->getVoorlegger() : new Voorlegger();
-        $form = $this->createForm(VoorleggerFormType::class, $voorlegger, []);
+        $form = $this->createForm(VoorleggerFormType::class, $voorlegger, [
+            'disable_group' => $this->getUser()->getType()
+        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if ($voorlegger->getId() === null) {
