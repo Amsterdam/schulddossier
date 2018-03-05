@@ -1,0 +1,13 @@
+<body>
+    <h1>Bewerken: {{ gebruiker.naam }}</h1>
+    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}">Terug naar overzicht</a>
+    
+    {{ form_start(form) }}
+    {{ form_row(form.naam) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.clearPassword) }}
+    <p><em>Wachtwoord: Alleen invullen als het wachtwoord gewijzigd moet worden</em></p>
+    {{ form_row(form.type) }}
+    <button type="submit">Aanmaken</button>
+    {{ form_end(form) }}
+</body>

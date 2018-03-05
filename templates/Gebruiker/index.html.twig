@@ -1,0 +1,20 @@
+<body>
+    <h1>Gebruiker</h1>
+    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_create') }}">Nieuw</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+{% for gebruiker in gebruikers %}
+            <tr>
+                <td><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', {'gebruikerId': gebruiker.id}) }}">{{ gebruiker.username }}</a></td>
+                <td>{{ gebruiker.type }}</td>
+            </tr>
+{% endfor %}
+       </tbody>
+    </table>
+</body>

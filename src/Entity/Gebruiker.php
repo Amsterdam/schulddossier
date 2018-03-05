@@ -5,9 +5,10 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
  * @ORM\Table(
  *  uniqueConstraints={
  *      @ORM\UniqueConstraint(name="uq_username", columns={"username"})
@@ -42,6 +43,19 @@ class Gebruiker implements UserInterface, \Serializable
 
     /**
      * @var string
+     * Not mapped to database
+     * @Assert\Length(min=8)
+     */
+    private $clearPassword;
+
+    /**
+     * @var \DateTime|NULL
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $passwordChangedDateTime;
+
+    /**
+     * @var string
      * @ORM\Column(type="string", length=10, nullable=false)
      * @Assert\NotBlank
      * @Assert\Choice(callback="getTypes")
@@ -62,7 +76,7 @@ class Gebruiker implements UserInterface, \Serializable
      */
     public function getRoles()
     {
-        return ['ROLE_USER'];
+        return ['ROLE_USER', 'ROLE_' . strtoupper($this->getType())];
     }
 
     /**
@@ -101,6 +115,27 @@ class Gebruiker implements UserInterface, \Serializable
         return $this->password;
     }
 
+    /**
+     * @return string
+     */
+    public function getClearPassword()
+    {
+        return $this->clearPassword;
+    }
+
+    /**
+     * @return \DateTime|NULL
+     */
+    public function getPasswordChangedDateTime()
+    {
+        return $this->passwordChangedDateTime;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function getType()
     {
         return $this->type;
@@ -129,6 +164,19 @@ class Gebruiker implements UserInterface, \Serializable
     public function setNaam($naam)
     {
         $this->naam = $naam;
+    }
+
+    public function setClearPassword($clearPassword)
+    {
+        $this->clearPassword = $clearPassword;
+    }
+
+    /**
+     * @param \DateTime $passwordChangedDateTime
+     */
+    public function setPasswordChangedDateTime(\DateTime $passwordChangedDateTime = null)
+    {
+        $this->passwordChangedDateTime = $passwordChangedDateTime;
     }
 
     /**
@@ -174,5 +222,20 @@ class Gebruiker implements UserInterface, \Serializable
             self::TYPE_GKA => self::TYPE_GKA,
             self::TYPE_ADMIN => self::TYPE_ADMIN,
         ];
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function isValid(ExecutionContextInterface $context)
+    {
+        if ($this->getPassword() === null || $this->getPassword() === '') {
+            if ($this->getClearPassword() === null || $this->getClearPassword() === '') {
+                $context
+                    ->buildViolation('A password is required for new users')
+                    ->atPath('clearPassword')
+                    ->addViolation();
+            }
+        }
     }
 }
