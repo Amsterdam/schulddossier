@@ -58,5 +58,6 @@ class CreateDossierFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('data_class', Dossier::class);
+        $resolver->setDefault('choice_translation_domain', false);
     }
 }

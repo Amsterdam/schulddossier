@@ -1,0 +1,12 @@
+<body>
+    <h1>Nieuwe gebruiker</h1>
+    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}">Terug naar overzicht</a>
+    
+    {{ form_start(form) }}
+    {{ form_row(form.naam) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.clearPassword) }}
+    {{ form_row(form.type) }}
+    <button type="submit">Aanmaken</button>
+    {{ form_end(form) }}
+</body>
