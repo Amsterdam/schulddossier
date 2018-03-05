@@ -132,6 +132,7 @@ body.voorlegger section.header + h2 {
 }
 
 body.voorlegger section div {
+	grid-column: span 4;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 2fr;
 	font-size: 85%;
