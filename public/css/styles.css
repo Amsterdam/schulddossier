@@ -3,11 +3,13 @@ html {
 	background-color: #f3f3f3;
 }
 
+
 body {
-	max-width: 1000px;
+	max-width: 1024px;
 	box-sizing: border-box;
-	margin: 0 auto;
-	padding: 25px 10%;
+	box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
+	margin: 50px auto;
+	padding: 25px 50px;
 	padding-bottom: 50px;
 	font-family: verdana;
 	background-color: white;
@@ -51,6 +53,7 @@ input[type=submit]:hover,a.knop:hover {
 
 h1 {
 	margin: 0;
+	margin-bottom: 20px;
 }
 
 h2,h3 {
@@ -108,6 +111,15 @@ body.index td.nummer {
 }
 
 /* DIGITALE VOORLEGGER */
+
+body.voorlegger header {
+	margin-bottom: 40px;
+	background: #f8f8f8;
+	margin-left: -50px;
+	margin-right: -50px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
 
 body.voorlegger header p {
 	margin: 5px 0;
