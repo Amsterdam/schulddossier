@@ -4,7 +4,7 @@ html {
 }
 
 body {
-	max-width: 20cm;
+	max-width: 1000px;
 	box-sizing: border-box;
 	margin: 0 auto;
 	padding: 25px 10%;
@@ -115,11 +115,14 @@ body.voorlegger header p {
 
 body.voorlegger section {
 	display: grid;
-	grid-template-columns: 1fr 40px 40px 40px;
+	grid-template-columns: 1fr 40px 40px 70px;
 	-ms-grid-template-columns: 1fr 80px 30px 40px;
 	grid-column-gap: 10px;
 	/* -ms-grid-gap does not exist */
-	padding: 5px 0;
+}
+
+section:not(.header):hover, section:not(.header):hover span {
+	background-color: #eeeeee;
 }
 
 body.voorlegger h2 {
@@ -131,17 +134,25 @@ body.voorlegger section.header + h2 {
 	margin-bottom: 5px;
 }
 
+body.voorlegger section.header span.madi {
+	text-align: right;
+	white-space: nowrap;
+}
+
 body.voorlegger section div {
-	grid-column: span 4;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 2fr;
+	display: flex;
 	font-size: 85%;
 	margin-top: 3px;
 	margin-left: 25px;
 }
 
+body.voorlegger section div label {
+	margin-right: 10px;
+}
+
 body.voorlegger section h3 {
 	text-indent: 25px;
+	padding: 5px 0;
 }
 
 body.voorlegger section.topLevel h3 {
@@ -155,7 +166,25 @@ body.voorlegger section.header {
 }
 
 body.voorlegger span {
+	background: #f8f8f8;
 	text-align: center;
+}
+
+body.voorlegger span:nth-child(0n+4) {
+	background: transparent;
+}
+
+body.voorlegger span.actief {
+	border: 1px solid;
+	border-width: 0 1px;
+}
+
+body.voorlegger section.header span {
+	background-color: transparent;
+}
+
+body.voorlegger section.metSub span {
+	grid-row: span 2;
 }
 
 body.voorlegger input.overig {
