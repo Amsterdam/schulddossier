@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class VoorleggerFormType extends AbstractType
 {
@@ -407,6 +409,46 @@ class VoorleggerFormType extends AbstractType
         $builder->add('ondertekendAanvraagFormulierGka', CheckboxType::class, [
             'required' => false,
             'disabled' => $options['disable_group'] === 'madi'
+        ]);
+
+        $builder->add('energieBedrijf', TextType::class, [
+            'required' => false
+        ]);
+        $builder->add('energieBedrijfKlantnummer', TextType::class, [
+            'required' => false
+        ]);
+        $builder->add('energieBedrijfDatumOpname', DateType::class, [
+            'required' => false
+        ]);
+        $builder->add('energieBedrijfT1', NumberType::class, [
+            'required' => false
+        ]);
+        $builder->add('energieBedrijfT2', NumberType::class, [
+            'required' => false
+        ]);
+        $builder->add('energieBedrijfGas', NumberType::class, [
+            'required' => false
+        ]);
+        $builder->add('warmteBedrijf', TextType::class, [
+            'required' => false
+        ]);
+        $builder->add('warmteBedrijfKlantnummer', TextType::class, [
+            'required' => false
+        ]);
+        $builder->add('warmteBedrijfDatumOpname', DateType::class, [
+            'required' => false
+        ]);
+        $builder->add('warmteBedrijfOpname', TextType::class, [
+            'required' => false
+        ]);
+        $builder->add('drinkwaterKlantnummer', TextType::class, [
+            'required' => false
+        ]);
+        $builder->add('drinkwaterDatumOpname', DateType::class, [
+            'required' => false
+        ]);
+        $builder->add('drinkwaterOpname', TextType::class, [
+            'required' => false
         ]);
         $builder->add('aanvullendeInformatie', TextareaType::class, [
             'required' => false

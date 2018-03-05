@@ -755,6 +755,94 @@ class Voorlegger
 
     // ---
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=125, nullable=true)
+     * @Assert\Length(min=0, max=125)
+     */
+    private $energieBedrijf;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=25, nullable=true)
+     * @Assert\Length(min=0, max=25)
+     */
+    private $energieBedrijfKlantnummer;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date
+     */
+    private $energieBedrijfDatumOpname;
+
+    /**
+     * @var long
+     * @ORM\Column(type="bigint", nullable=true)
+     */
+    private $energieBedrijfT1;
+
+    /**
+     * @var long
+     * @ORM\Column(type="bigint", nullable=true)
+     */
+    private $energieBedrijfT2;
+
+    /**
+     * @var float
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $energieBedrijfGas;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=125, nullable=true)
+     * @Assert\Length(min=0, max=125)
+     */
+    private $warmteBedrijf;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=25, nullable=true)
+     * @Assert\Length(min=0, max=25)
+     */
+    private $warmteBedrijfKlantnummer;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date
+     */
+    private $warmteBedrijfDatumOpname;
+
+    /**
+     * @var float
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $warmteBedrijfOpname;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=25, nullable=true)
+     * @Assert\Length(min=0, max=25)
+     */
+    private $drinkwaterKlantnummer;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date
+     */
+    private $drinkwaterDatumOpname;
+
+    /**
+     * @var float
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $drinkwaterOpname;
+
+    // ---
+
     public function __construct()
     {
         $this->legitimatieOntvangenGka = false;
@@ -1423,6 +1511,80 @@ class Voorlegger
         return $this->aanvullendeInformatie;
     }
 
+    public function getEnergieBedrijf()
+    {
+        return $this->energieBedrijf;
+    }
+
+    public function getEnergieBedrijfKlantnummer()
+    {
+        return $this->energieBedrijfKlantnummer;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getEnergieBedrijfDatumOpname()
+    {
+        return $this->energieBedrijfDatumOpname;
+    }
+
+    public function getEnergieBedrijfT1()
+    {
+        return $this->energieBedrijfT1;
+    }
+
+    public function getEnergieBedrijfT2()
+    {
+        return $this->energieBedrijfT2;
+    }
+
+    public function getEnergieBedrijfGas()
+    {
+        return $this->energieBedrijfGas;
+    }
+
+    public function getWarmteBedrijf()
+    {
+        return $this->warmteBedrijf;
+    }
+
+    public function getWarmteBedrijfKlantnummer()
+    {
+        return $this->warmteBedrijfKlantnummer;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getWarmteBedrijfDatumOpname()
+    {
+        return $this->warmteBedrijfDatumOpname;
+    }
+
+    public function getWarmteBedrijfOpname()
+    {
+        return $this->warmteBedrijfOpname;
+    }
+
+    public function getDrinkwaterKlantnummer()
+    {
+        return $this->drinkwaterKlantnummer;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDrinkwaterDatumOpname()
+    {
+        return $this->drinkwaterDatumOpname;
+    }
+
+    public function getDrinkwaterOpname()
+    {
+        return $this->drinkwaterOpname;
+    }
+
     /**
      * @param Dossier $dossier
      */
@@ -1981,6 +2143,80 @@ class Voorlegger
     public function setAanvullendeInformatie($aanvullendeInformatie)
     {
         $this->aanvullendeInformatie = $aanvullendeInformatie;
+    }
+
+    public function setEnergieBedrijf($energieBedrijf)
+    {
+        $this->energieBedrijf = $energieBedrijf;
+    }
+
+    public function setEnergieBedrijfKlantnummer($energieBedrijfKlantnummer)
+    {
+        $this->energieBedrijfKlantnummer = $energieBedrijfKlantnummer;
+    }
+
+    /**
+     * @param \DateTime $energieBedrijfDatumOpname
+     */
+    public function setEnergieBedrijfDatumOpname(\DateTime $energieBedrijfDatumOpname)
+    {
+        $this->energieBedrijfDatumOpname = $energieBedrijfDatumOpname;
+    }
+
+    public function setEnergieBedrijfT1($energieBedrijfT1)
+    {
+        $this->energieBedrijfT1 = $energieBedrijfT1;
+    }
+
+    public function setEnergieBedrijfT2($energieBedrijfT2)
+    {
+        $this->energieBedrijfT2 = $energieBedrijfT2;
+    }
+
+    public function setEnergieBedrijfGas($energieBedrijfGas)
+    {
+        $this->energieBedrijfGas = $energieBedrijfGas;
+    }
+
+    public function setWarmteBedrijf($warmteBedrijf)
+    {
+        $this->warmteBedrijf = $warmteBedrijf;
+    }
+
+    public function setWarmteBedrijfKlantnummer($warmteBedrijfKlantnummer)
+    {
+        $this->warmteBedrijfKlantnummer = $warmteBedrijfKlantnummer;
+    }
+
+    /**
+     * @param \DateTime $warmteBedrijfDatumOpname
+     */
+    public function setWarmteBedrijfDatumOpname(\DateTime $warmteBedrijfDatumOpname)
+    {
+        $this->warmteBedrijfDatumOpname = $warmteBedrijfDatumOpname;
+    }
+
+    public function setWarmteBedrijfOpname($warmteBedrijfOpname)
+    {
+        $this->warmteBedrijfOpname = $warmteBedrijfOpname;
+    }
+
+    public function setDrinkwaterKlantnummer($drinkwaterKlantnummer)
+    {
+        $this->drinkwaterKlantnummer = $drinkwaterKlantnummer;
+    }
+
+    /**
+     * @param \DateTime $drinkwaterDatumOpname
+     */
+    public function setDrinkwaterDatumOpname(\DateTime $drinkwaterDatumOpname)
+    {
+        $this->drinkwaterDatumOpname = $drinkwaterDatumOpname;
+    }
+
+    public function setDrinkwaterOpname($drinkwaterOpname)
+    {
+        $this->drinkwaterOpname = $drinkwaterOpname;
     }
 
 }
