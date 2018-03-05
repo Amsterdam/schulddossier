@@ -6,18 +6,26 @@
 <link rel="stylesheet" href="/css/styles.css">
 </head>
 
-<body class="create">
+<body>
 	<header>
     <h1>Bewerken: {{ gebruiker.naam }}</h1>
     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}">Terug naar overzicht</a>
     </header>
+
     {{ form_start(form) }}
-    <p>{{ form_row(form.naam) }}</p>
-    {{ form_row(form.username) }}
-    {{ form_row(form.clearPassword) }}
+    
+    <table>
+		{{ form_row(form.naam) }}
+		{{ form_row(form.username) }}
+	    {{ form_row(form.clearPassword) }}
+    	{{ form_row(form.type) }}
+    	<tr>
+    		<td></td>
+    		<td><input type="submit" value="Aanmaken"></td>
+    	</tr>
+    </table>
     <p><em>Wachtwoord: Alleen invullen als het wachtwoord gewijzigd moet worden</em></p>
-    {{ form_row(form.type) }}
-    <button type="submit">Aanmaken</button>
+    
     {{ form_end(form) }}
 </body>
 </html>
