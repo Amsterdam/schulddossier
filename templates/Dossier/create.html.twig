@@ -7,8 +7,11 @@
 </head>
 
 <body class="create">
+	
+	<header>
     <h1>Nieuw dossier</h1>
     <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
+    </header>
     {{ form_start(form) }}
     <p><label>Naam cliënt{{ form_widget(form.clientNaam) }}</label>{{ form_errors(form.clientNaam) }}</p>
     <p><label>Naam partner{{ form_widget(form.partnerNaam) }}</label>{{ form_errors(form.partnerNaam) }}</p>
