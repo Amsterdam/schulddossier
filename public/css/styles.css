@@ -21,10 +21,18 @@ body {
 	font-size: 15px;
 }
 
-/* HOVER STYLES */
+/* PAGINA-HEADER */
 
-section:not(.header):hover,tr:hover {
-	background-color: #f3f3f3;
+header {
+	margin-bottom: 75px;
+	margin-left: -75px;
+	margin-right: -75px;
+	padding: 50px 75px;
+	border-bottom: 1px solid #cccccc;
+}
+
+header p {
+	margin: 5px 0;
 }
 
 /* SUBMIT-KNOPPEN EN ALS ZODANIG VERMOMDE LINKS */
@@ -111,19 +119,13 @@ body.index td.nummer {
 	text-align: center;
 }
 
+body.index tr:hover {
+	background-color: #f3f3f3;
+}
+
+
+
 /* DIGITALE VOORLEGGER */
-
-header {
-	margin-bottom: 75px;
-	margin-left: -75px;
-	margin-right: -75px;
-	padding: 50px 75px;
-	border-bottom: 1px solid #cccccc;
-}
-
-body.voorlegger header p {
-	margin: 5px 0;
-}
 
 body.voorlegger section {
 	display: grid;
@@ -133,7 +135,7 @@ body.voorlegger section {
 	/* -ms-grid-gap does not exist */
 }
 
-section:not(.header):hover, section:not(.header):hover span {
+section:not(.header):hover,section:not(.header):hover span {
 	background-color: #eeeeee;
 }
 
