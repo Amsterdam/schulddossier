@@ -52,6 +52,15 @@ td {
 	padding-left: 0;
 }
 
+td input,td select {
+	width: 200px;
+}
+
+td div select {
+	width: 61px;
+	margin-right: 10px;
+}
+
 tbody tr:hover {
 	background-color: #f3f3f3;
 }
@@ -62,8 +71,6 @@ tbody tr:hover {
 input[type=submit],a.knop {
 	-webkit-appearance: none;
 	font-size: 120%;
-	width: 200px;
-	display: block;
 	color: black;
 	white-space: normal;
 	border: 1px solid rgb(216,216,216);
@@ -124,8 +131,6 @@ body.index header {
 	padding-bottom: 50px;
 	margin-bottom: 50px;
 }
-
-
 
 /* DIGITALE VOORLEGGER */
 
