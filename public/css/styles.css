@@ -17,7 +17,7 @@ body {
 	background-image: url(/pix/logo.svg);
 	background-size: 30px;
 	background-repeat: no-repeat;
-	background-position: 94% 2.6%;
+	background-position: 94% 50px;
 	font-size: 15px;
 }
 
@@ -113,7 +113,7 @@ body.index td.nummer {
 
 /* DIGITALE VOORLEGGER */
 
-body.voorlegger header {
+header {
 	margin-bottom: 75px;
 	margin-left: -75px;
 	margin-right: -75px;
@@ -187,7 +187,7 @@ body.voorlegger span:nth-child(0n+4) {
 	background: transparent;
 }
 
-body.voorlegger section span.actief {
+body.madi section span.madi, body.gka section span.gka {
 	border: 1px solid lightgray;
 	border-width: 0 1px;
 }
@@ -196,6 +196,12 @@ body.voorlegger section.eerste span {
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	border-top-width: 1px;
+}
+
+body.voorlegger section.laatste span {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-width: 1px;
 }
 
 body.voorlegger section.header span {
