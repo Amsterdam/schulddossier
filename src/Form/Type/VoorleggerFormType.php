@@ -416,6 +416,7 @@ class VoorleggerFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('data_class', Voorlegger::class);
+        $resolver->setDefault('choice_translation_domain', false);
         $resolver->setDefault('disable_group', null);
     }
 }
