@@ -11,18 +11,37 @@
 
 <header>
 <h1>Voorlegger {{ dossier.clientNaam }}</h1>
-{% if dossier.partnerNaam is not empty %}
-    <p>Partner: {{ dossier.partnerNaam }}</p>
-{% endif %}</p>
-<p>{{ dossier.schuldhulpbureau }}</p>
-<p>{{ dossier.teamGka }}</p>
 
-{% if dossier.regasNummer is not empty %}
-    <p>Regas: {{ dossier.regasNummer }}</p>
-{% endif %}</p>
-{% if dossier.allegroNummer is not empty %}
-    <p>Allegro: {{ dossier.allegroNummer }}</p>
-{% endif %}</p>
+
+<table>
+{% if dossier.partnerNaam is not empty %}
+	<tr>
+		<td>Partner</td>
+		<td>{{ dossier.partnerNaam }}</td>
+	</tr>
+{% endif %}
+	<tr>
+		<td>Schuldhulpbureau</td>
+		<td>{{ dossier.schuldhulpbureau }}</td>
+	</tr>
+	<tr>
+		<td>Team GKA</td>
+		<td>{{ form_widget(form.teamGka)}}</td>
+	</tr>
+	<tr>
+		<td>Regas</td>
+		<td>{{ form_widget(form.regasNummer)}}</td>
+	</tr>
+	<tr>
+		<td>Allegro</td>
+		<td>{{ form_widget(form.allegroNummer)}}</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" value="Sla op"></td>
+	</tr>
+</table>
+
 <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
 </header>
 
@@ -348,6 +367,8 @@
 
 <h3>Aanvullende informatie</h3>
 {{ form_widget(form.voorlegger.aanvullendeInformatie)}}
+
+
 
 <p><input type="submit" value="Sla op"></p>
 

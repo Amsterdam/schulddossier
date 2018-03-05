@@ -1,9 +1,18 @@
-<body>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Gebruiker bewerken</title>
+<meta name="viewport" content="width = device-width">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="create">
+	<header>
     <h1>Bewerken: {{ gebruiker.naam }}</h1>
     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}">Terug naar overzicht</a>
-    
+    </header>
     {{ form_start(form) }}
-    {{ form_row(form.naam) }}
+    <p>{{ form_row(form.naam) }}</p>
     {{ form_row(form.username) }}
     {{ form_row(form.clearPassword) }}
     <p><em>Wachtwoord: Alleen invullen als het wachtwoord gewijzigd moet worden</em></p>
@@ -11,3 +20,4 @@
     <button type="submit">Aanmaken</button>
     {{ form_end(form) }}
 </body>
+</html>
