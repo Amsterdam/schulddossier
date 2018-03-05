@@ -7,11 +7,11 @@
 <link rel="stylesheet" href="/css/styles.css">
 </head>
 
-<body class="voorlegger">
+<body class="voorlegger {{ app.user.type }}">
 
-<h1>Voorlegger {{ dossier.clientNaam }}</h1>
 
 <header>
+<h1>Voorlegger {{ dossier.clientNaam }}</h1>
 {% if dossier.partnerNaam is not empty %}
     <p>Partner: {{ dossier.partnerNaam }}</p>
 {% endif %}</p>
@@ -30,13 +30,13 @@
 
 <section class="header">
     <span></span>
-    <span class="madi">MaDi</span>
+    <span>MaDi</span>
     <span>GKA</span>
 </section>
 
 {{ form_start(form) }}
 
-<section class="topLevel">
+<section class="topLevel eerste">
     <h3>Legitimatie</h3>
     <span class="actief">{{ form_widget(form.legitimatieOntvangenMadi)}}</span>
     <span>{{ form_widget(form.legitimatieOntvangenGka,{attr: {
@@ -51,7 +51,7 @@
     <span>{{ form_widget(form.vtlbGka)}}</span>
 </section>
 
-<section>
+<section class="subheader">
 	<h2>Inkomsten</h2>
 	<span class="actief"></span>
 	<span></span>
@@ -135,7 +135,12 @@
     <span>{{ form_widget(form.kindgebondenBudgetNvt)}} n.v.t.</span>
 </section>
 
-<h2>Uitgaven</h2>
+<section class="subheader">
+	<h2>Uitgaven</h2>
+	<span class="actief"></span>
+	<span></span>
+</section>
+
 
 <section>
     <h3>Huurspecificatie</h3>
@@ -179,7 +184,12 @@
     <span>{{ form_widget(form.corrigerenGemeenteBelastingNvt)}} n.v.t.</span>
 </section>
 
-<h2>Autolasten</h2>
+<section class="subheader">
+	<h2>Autolasten</h2>
+	<span class="actief"></span>
+	<span></span>
+</section>
+
 
 <section>
     <h3>Km woonwerkverkeer</h3>
@@ -209,7 +219,12 @@
     <span>{{ form_widget(form.vrijwaringsbewijsNvt)}} n.v.t.</span>
 </section>
 
-<h2>Schulden</h2>
+<section class="subheader">
+	<h2>Schulden</h2>
+	<span class="actief"></span>
+	<span></span>
+</section>
+
 
 <section>
     <h3>Schuldenoverzicht</h3>
@@ -245,6 +260,7 @@
     <span>{{ form_widget(form.cjibNvt)}} n.v.t.</span>
 </section>
 
+<section><h3>&nbsp;</h3></section>
 
 <section>
     <h3>Meterstanden energie</h3>
@@ -283,6 +299,11 @@
     <span>{{ form_widget(form.toelichtingAanvraagSchuldsaneringOntvangenGka)}}</span>
 </section>
 
+<section class="subheader">
+	<h2>Bewindstelling of budgetbeheer</h2>
+	<span class="actief"></span>
+	<span></span>
+</section>
 
 <section>
     <h3>Bewindstelling of budgetbeheer</h3>

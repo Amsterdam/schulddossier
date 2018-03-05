@@ -9,14 +9,15 @@ body {
 	box-sizing: border-box;
 	box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
 	margin: 50px auto;
-	padding: 25px 50px;
+	padding: 75px;
+	padding-top: 0;
 	padding-bottom: 50px;
 	font-family: verdana;
 	background-color: white;
 	background-image: url(/pix/logo.svg);
 	background-size: 30px;
 	background-repeat: no-repeat;
-	background-position: 98% 1%;
+	background-position: 94% 2.6%;
 	font-size: 15px;
 }
 
@@ -113,12 +114,11 @@ body.index td.nummer {
 /* DIGITALE VOORLEGGER */
 
 body.voorlegger header {
-	margin-bottom: 40px;
-	background: #f8f8f8;
-	margin-left: -50px;
-	margin-right: -50px;
-	padding-left: 50px;
-	padding-right: 50px;
+	margin-bottom: 75px;
+	margin-left: -75px;
+	margin-right: -75px;
+	padding: 50px 75px;
+	border-bottom: 1px solid #cccccc;
 }
 
 body.voorlegger header p {
@@ -138,24 +138,25 @@ section:not(.header):hover, section:not(.header):hover span {
 }
 
 body.voorlegger h2 {
-	margin-top: 15px;
+	margin-top: 25px;
+	margin-bottom: 15px;
+	font-size: 110%;
+}
+
+body.voorlegger section.header span {
+	padding-bottom: 30px;
+	padding-top: 10px;
 }
 
 body.voorlegger section.header + h2 {
-	margin-top: -10px;
-	margin-bottom: 5px;
-}
 
-body.voorlegger section.header span.madi {
-	text-align: right;
-	white-space: nowrap;
 }
 
 body.voorlegger section div {
 	display: flex;
 	font-size: 85%;
 	margin-top: 3px;
-	margin-left: 25px;
+	margin-left: 40px;
 }
 
 body.voorlegger section div label {
@@ -163,7 +164,7 @@ body.voorlegger section div label {
 }
 
 body.voorlegger section h3 {
-	text-indent: 25px;
+	text-indent: 40px;
 	padding: 5px 0;
 }
 
@@ -186,9 +187,15 @@ body.voorlegger span:nth-child(0n+4) {
 	background: transparent;
 }
 
-body.voorlegger span.actief {
-	border: 1px solid;
+body.voorlegger section span.actief {
+	border: 1px solid lightgray;
 	border-width: 0 1px;
+}
+
+body.voorlegger section.eerste span {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-top-width: 1px;
 }
 
 body.voorlegger section.header span {
