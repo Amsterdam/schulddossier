@@ -5,6 +5,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository")
@@ -101,9 +102,16 @@ class Dossier
      */
     private $voorlegger;
 
+    /**
+     * @var DossierDocument[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="DossierDocument", mappedBy="dossier")
+     */
+    private $documenten;
+
     public function __construct()
     {
         $this->aanmaakDatumTijd = new \DateTime();
+        $this->documenten = new ArrayCollection();
     }
 
     public function getId()
@@ -258,6 +266,40 @@ class Dossier
         }
         if ($voorlegger !== null && $voorlegger->getDossier() !== $this) {
             $voorlegger->setDossier($this);
+        }
+    }
+
+    /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getDocumenten()
+    {
+        return $this->documenten;
+    }
+
+    /**
+     * @param string $onderwerp
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getDocumentenByOnderwerp($onderwerp)
+    {
+        return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerp) {
+            return $dossierDocument->getOnderwerp() === $onderwerp;
+        });
+    }
+
+    public function hasDocument(Document $document)
+    {
+        return $this->documenten->contains($document);
+    }
+
+    public function addDocument(Document $document)
+    {
+        if ($this->hasDocument($document) === false) {
+            $this->documenten->add($document);
+        }
+        if ($document->getDossier() !== $this) {
+            $document->setDossier($this);
         }
     }
 }
