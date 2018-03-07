@@ -1,19 +1,20 @@
 
 html {
 	background-color: #f3f3f3;
+	margin: 0;
+	padding: 0;
 }
 
-
 body {
+	background-color: white;
 	max-width: 1024px;
-	box-sizing: border-box;
-	box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
 	margin: 50px auto;
 	padding: 75px;
 	padding-top: 0;
 	padding-bottom: 50px;
+	box-sizing: border-box;
+	box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
 	font-family: verdana;
-	background-color: white;
 	background-image: url(/pix/logo.svg);
 	background-size: 30px;
 	background-repeat: no-repeat;
@@ -24,10 +25,11 @@ body {
 /* PAGINA-HEADER */
 
 header {
-	margin-bottom: 75px;
+	margin-bottom: 50px;
 	margin-left: -75px;
 	margin-right: -75px;
 	padding: 50px 75px;
+	padding-bottom: 50px;
 	border-bottom: 1px solid #cccccc;
 }
 
@@ -47,7 +49,7 @@ th {
 }
 
 td {
-	min-width: 100px;
+	min-width: 25%;
 	padding: 5px 10px;
 	padding-left: 0;
 }
@@ -70,6 +72,7 @@ tbody tr:hover {
 
 input[type=submit],a.knop {
 	-webkit-appearance: none;
+	background-color: white;
 	font-size: 120%;
 	color: black;
 	white-space: normal;
@@ -127,22 +130,31 @@ body.create input[type=submit] {
 
 /* DOSSIERINDEX */
 
-body.index header {
-	padding-bottom: 50px;
-	margin-bottom: 50px;
-}
-
 /* DIGITALE VOORLEGGER */
 
-body.voorlegger section {
-	display: grid;
-	grid-template-columns: 1fr 40px 40px 70px;
-	-ms-grid-template-columns: 1fr 80px 30px 40px;
-	grid-column-gap: 10px;
-	/* -ms-grid-gap does not exist */
+body.voorlegger table {
+	border-collapse: collapse;
 }
 
-section:not(.header):hover,section:not(.header):hover span {
+body.voorlegger table.main td {
+	text-align: center;
+	padding: 0;
+}
+
+body.voorlegger table.main label {
+	white-space: nowrap;
+	margin: 0 10px;
+}
+
+body.voorlegger table.main input {
+	width: auto;
+}
+
+body.voorlegger table.main td:first-child {
+	width: 80%;
+}
+
+body.voorlegger table.main tr:not(.header):hover td {
 	background-color: #eeeeee;
 }
 
@@ -150,9 +162,11 @@ body.voorlegger h2 {
 	margin-top: 25px;
 	margin-bottom: 15px;
 	font-size: 110%;
+	text-align: left;
 }
 
-body.voorlegger section.header span {
+body.voorlegger thead th {
+	padding: 0 10px;
 	padding-bottom: 30px;
 	padding-top: 10px;
 }
@@ -161,33 +175,41 @@ body.voorlegger section.header + h2 {
 
 }
 
-body.voorlegger section div {
+body.voorlegger tr.sub div {
 	display: flex;
 	font-size: 85%;
 	margin-top: 3px;
 	margin-left: 40px;
 }
 
-body.voorlegger section div label {
+body.voorlegger tr.sub label {
 	margin-right: 10px;
+	white-space: nowrap;
 }
 
-body.voorlegger section h3 {
-	text-indent: 40px;
+body.voorlegger tr.sub input {
+	display: inline;
+	width: auto;
+}
+
+body.voorlegger table.main h3 {
 	padding: 5px 0;
+	padding-left: 40px;
+	hyphens: auto;
+	text-align: left;
 }
 
-body.voorlegger section.topLevel h3 {
-	text-indent: 0;
+body.voorlegger tr.topLevel h3 {
+	padding-left: 0;
 	font-size: 110%;
 }
 
-body.voorlegger section.header {
+body.voorlegger tr.header h2 {
 	margin-top: 10px;
 	font-size: 14px;
 }
 
-body.voorlegger section span {
+body.voorlegger table.main td:not(:first-child) {
 	background: #f8f8f8;
 	text-align: center;
 }
@@ -196,18 +218,18 @@ body.voorlegger span:nth-child(0n+4) {
 	background: transparent;
 }
 
-body.madi section span.madi, body.gka section span.gka {
+body.madi td.madi, body.gka td.gka {
 	border: 1px solid lightgray;
 	border-width: 0 1px;
 }
 
-body.voorlegger section.eerste span {
+body.voorlegger tr.eerste td {
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	border-top-width: 1px;
 }
 
-body.voorlegger section.laatste span {
+body.voorlegger tr.laatste span {
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	border-bottom-width: 1px;
@@ -267,111 +289,44 @@ textarea {
 	font-size: 100%;
 }
 
+@media all and (max-width: 480px) {
+	body {
+		padding: 10px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	header {
+		margin-left: -10px;
+		margin-right: -10px;
+		margin-bottom: 20px;
+		padding: 10px;	
+	}
+	body.create label {
+		display: block;
+		width: 100%;
+		overflow: auto;
+	}	
 
+	body.create input,body.create select {
+		float: right;
+		width: 150px;
+	}
 
-
-/*
-
-section.header span:nth-child(2) {
-	text-align: right;
-}
-
-section.header span:nth-child(4) {
-	text-align: center;
-}
-
-section:not(.header) span:first-of-type {
-	text-align: right;
-	padding-right: 5px;
-}
-
-section:not(.header) span:nth-child(0n+3) {
-	padding-left: 5px;
-}
-
-section:not(.header) span:last-of-type {
-	text-align: center;
-}
-
-
-Ouwe meuk; niet aankomen
-
-Frut in case of IE
-
-h1 {
-	padding: 10px 5px;
+	body.create input[type=submit] {
+		width: 150px;
+		float: right;	
+	}
 	
-}
+	body.voorlegger table.main h3 {
+		padding-left: 10px;
+		max-width: 120px;
+	}
 
-h2,h3,h4 {
-	margin: 0;
-	float: left;
-	max-width: 7cm;
-	font-weight: normal;
-	font-size: 18px;
-	color: var(--donkergrijs);
-}
-
-
-section {
-	padding-left: 25px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin-bottom: 5px;
-	clear: both;
-	overflow: auto;
-	border: 1px solid;
-}
-
-div {
-	text-align: left;
-	float: right;
-}
-
-div span,div label {
-	display: inline-block;
-	min-width: 50px;
-}
-
-div label {
-	box-sizing: border-box;
-	padding: 0 3px;
-}
-
-div span:first-of-type,div label:first-of-type {
-	text-align: right;
-	margin-right: 10px;
-}
-
-div span:last-of-type,div label:last-of-type {
-	text-align: center;
-}
-
-input[type=checkbox] {
-	transform: scale(1.4);
-}
-
-fieldset {
-	border: none;
-	border-bottom: 1px solid #ff0000;
-	margin: 15px 0;
-	padding: 0;
-	padding-bottom: 10px;
-}
-
-fieldset label {
-	display: block;
-	padding: 3px 0;
-	white-space: nowrap;
-}
-
-fieldset input {
-	margin-right: 5px;
-}
-
-
-*/
-
-span.tothier ~ section {
-	display: none;
+	body.voorlegger table.main label {
+		white-space: nowrap;
+		margin: 0 5px;
+	}
+	body.voorlegger tr.sub div {
+		display: block;
+	}
 }
