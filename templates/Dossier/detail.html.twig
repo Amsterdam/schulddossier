@@ -48,13 +48,18 @@
 	</thead>
 	<tbody>
 <tr class="topLevel eerste">
-    <td><h3>Legitimatie</h3></td>
+    <td>
+    	<h3>Legitimatie</h3>
+    	<label class="upload"><span>+</span> Voeg document toe</label>
+    </td>
     <td class="madi"><label>{{ form_widget(form.voorlegger.legitimatieOntvangenMadi)}}</label></td>
     <td class="gka"><label>{{ form_widget(form.voorlegger.legitimatieOntvangenGka)}}</label></td>
 </tr>
 
 <tr class="topLevel">
-    <td><h3>VTLB</h3></td>
+    <td><h3>VTLB</h3>
+    	<label class="upload"><span>+</span> Voeg document toe</label>
+    </td>
     <td class="madi"><label>{{ form_widget(form.voorlegger.vtlbMadi)}}</label></td>
     <td class="gka"><label>{{ form_widget(form.voorlegger.vtlbGka)}}</label></td>
 </tr>
@@ -377,6 +382,15 @@
 </table>
 
 <p><input type="submit" value="Sla op"></p>
+
+<div id="uploadForm">
+	<p>U gaat nu een document uploaden. Voeg hier informatie aan toe.</p>
+	<input type="file" id="uploadVeld">
+	<p><label>Titel<input id="uploadNaam"></label></p>
+	<p><label>Verzenddatum<input type="date" id="uploadDatum"></label></p>
+	<input type="hdden" id="uploadCategorie">
+	<p class="buttons"><button>Annuleer</button><input type="submit" value="Sla op"></p>
+</div>
 
 {{ form_end(form) }}
 

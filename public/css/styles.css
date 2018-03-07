@@ -161,6 +161,7 @@ body.voorlegger table.main input {
 
 body.voorlegger table.main td:first-child {
 	width: 80%;
+	text-align: left;
 }
 
 body.voorlegger table.main tr:not(.header):hover td {
@@ -201,11 +202,45 @@ body.voorlegger tr.sub input {
 	width: auto;
 }
 
+body.voorlegger table.main label.upload {
+	position: relative;
+	font-size: 12px;
+	color: #666666;
+	float: right;
+	margin-right: 30px;
+	margin-top: 5px;
+	visibility: hidden;
+}
+
+body.voorlegger table.main td:hover label.upload {
+	visibility: visible;
+}
+
+body.voorlegger table.main label.upload span {
+	background-color: #9b9b9b;
+	color: white;
+	padding: 3px;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	text-align: center;
+	font-size: 18px;
+	line-height: 15px;
+	border-radius: 15px;
+}
+
+body.voorlegger table.main label.upload input {
+	position: absolute;
+	left: 0;
+	opacity: 0;
+}
+
 body.voorlegger table.main h3 {
 	padding: 5px 0;
 	padding-left: 40px;
 	hyphens: auto;
 	text-align: left;
+	display: inline-block;
 }
 
 body.voorlegger tr.topLevel h3 {
@@ -291,6 +326,45 @@ label.GKA input {
 	margin-top: 8px;
 }
 
+div#uploadForm {
+	width: 300px;
+	padding: 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: white;
+	border: 1px solid;
+	font-size: 13px;
+	visibility: hidden;
+}
+
+div#uploadForm p {
+	margin-top: 0;
+}
+
+div#uploadForm label {
+	font-size: 14px;
+}
+
+div#uploadForm input:not([type=hidden]) {
+	display: block;
+	margin-top: 5px;
+}
+
+div#uploadForm p.buttons {
+	display: flex;
+	justify-content: space-between;
+}
+
+div#uploadForm input[type=submit] {
+	width: auto;
+}
+
+div#uploadForm button {
+	-webkit-appearance: none;
+	border: none;
+	background: transparent;
+}
 
 textarea {
 	width: 100%;
