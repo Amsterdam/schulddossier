@@ -8,6 +8,7 @@ parameters:
     swift_project_id: '%env(SWIFT_PROJECT_ID)%' 
     swift_container_prefix: '%env(SWIFT_CONTAINER_PREFIX)%'
     swift_temp_url_key: '%env(SWIFT_TEMP_URL_KEY)%'
+    swift_public_url: '%env(SWIFT_PUBLIC_URL=)%'
 
 services:
     _defaults:
