@@ -11,21 +11,24 @@ function uploadDocument() {
 	var uploadFormulier = $('uploadForm');
 	var uploadVenster = $('uploadVenster');
 	var uploadVeld = $('dossier_document_form_document_file');
+	var categorieLijst = $('dossier_document_form_onderwerp');
 	var dimensions = [uploadVenster.offsetWidth/2,uploadVenster.offsetHeight/2];
 	uploadFormulier.querySelector('button').onclick = breekAf;
 	uploadFormulier.onsubmit = upload;
 	var categorie = '';
+	var labelHTML= '<label class="upload"><span>+</span> Voeg document toe</label>';
 
+	var items = document.querySelectorAll('h3');
+	for (var i=0;i<items.length;i+=1) {
+		items[i].parentNode.innerHTML += labelHTML;
+	}
 
 	document.addEventListener('click',function (e) {
 		if (e.target.className === 'upload') {		
 			e.target.appendChild(uploadVeld);
 			toonFormulier();
 			categorie = goUp(e.target,'TR').querySelector('input[type=checkbox]').name;
-			var regexp = new RegExp(/.*\[(.*)\]/);
-			var result = regexp.exec(categorie);
-			console.log(result);
-			// detail_dossier_form[voorlegger][legitimatieOntvangenMadi]
+			console.log(categorie);
 		}
 	},true);
 
@@ -37,12 +40,23 @@ function uploadDocument() {
 		uploadVenster.style.top = (coors[1] - dimensions[1]) + 'px';
 		uploadVenster.style.visibility = 'visible';
 		uploadVeld.onchange = startUpload;
+		document.addEventListener('keydown',function (e) {
+			if (e.keyCode === 27) {
+				breekAf();
+			}
+		},false);
 	}
 	
 	function startUpload() {
 		console.log('startUpload');
 		$('dossier_document_form_document_naam').value = this.value.substring(this.value.lastIndexOf('\\')+1);
-//		$('uploadCategorie').value = categorie; // checkboxtext
+		for (var i=0;i<categorieLijst.length;i+=1) {
+			var waarde = categorieLijst.options[i].value;
+			if (categorie.indexOf(waarde) !== -1) {
+				categorieLijst.options[i].selected = true;
+			}
+		}
+		
 	}
 	
 	function upload() {
@@ -57,7 +71,7 @@ function uploadDocument() {
 	}
 	
 	function breekAf() {
-		uploadFormulier.style.visibility = 'hidden';
+		uploadVenster.style.visibility = 'hidden';
 		if (uploadVeld.value) {
 			vernieuwVeld();
 		}
