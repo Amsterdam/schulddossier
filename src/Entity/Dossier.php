@@ -104,7 +104,7 @@ class Dossier
 
     /**
      * @var DossierDocument[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="DossierDocument", mappedBy="dossier")
+     * @ORM\OneToMany(targetEntity="DossierDocument", mappedBy="dossier", cascade={"persist"})
      */
     private $documenten;
 
@@ -288,12 +288,12 @@ class Dossier
         });
     }
 
-    public function hasDocument(Document $document)
+    public function hasDocument(DossierDocument $document)
     {
         return $this->documenten->contains($document);
     }
 
-    public function addDocument(Document $document)
+    public function addDocument(DossierDocument $document)
     {
         if ($this->hasDocument($document) === false) {
             $this->documenten->add($document);
