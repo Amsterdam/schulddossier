@@ -1,7 +1,7 @@
 
 window.onload = function () {
 	if (document.body.classList.contains('voorlegger')) {
-//		autoSave();
+		autoSave();
 		uploadDocument();
 	}
 }
@@ -36,7 +36,7 @@ function uploadDocument() {
 	function metaData() {
 		console.log('Metadata');
 		$('uploadNaam').value = this.value.substring(this.value.lastIndexOf('\\'));
-		$('uploadCategorie').value = categorie;
+		$('uploadCategorie').value = categorie; // checkboxtext
 	}
 	
 	function breekAf() {
@@ -61,12 +61,13 @@ function uploadDocument() {
 function autoSave() {
 
 	document.addEventListener('click',logClick,false);
-	document.onkeyup = logKeys;
+	document.addEventListener('keyup',logKeys,false);
 	document.addEventListener('change',logChange,true);
 	
 	var saveTimer;
 	var wachttijd = 1;
 	var saveInProgress = false;
+	var scheduleNewSave = false;
 
 	function logClick(e) {
 		if (e.target.nodeName === 'INPUT' && e.target.type === 'checkbox') {
@@ -92,17 +93,26 @@ function autoSave() {
 		}
 		if (!saveInProgress) {
 			saveTimer = setTimeout(autoSave,wachttijd*1000)
+		} else {
+			scheduleNewSave = true;	
 		}
 		// + als save in progress en er verandert iets: nieuwe save schedulen
+		// + saveInProgress testen
+		// + response OK -> 'Autosaved'
 	}
 
 	function autoSave() {
+		saveInProgress = true;
 		var data = verzamelData();
 		sendRequest(location.href,function (req) {
-/*			for (var i in req) {
-				if (i === 'response' || i === 'responseText') continue;
-				console.log(i + ': ' + req[i]);
-			} */
+			if (req.status === 400) {
+				console.log('Vaudt! ' + req.responseText)
+			}
+			saveInProgress = false;
+			if (scheduleNewSave) {
+				prepareAutoSave();
+				scheduleNewSave = false;
+			}
 		},data);
 	}
 	
@@ -110,10 +120,10 @@ function autoSave() {
 		var els = document.forms[0].elements;
 		var formData = [];
 		for (var i=0;i<els.length;i+=1) {
-			if (els[i].type === 'checkbox') {
-				formData.push(encodeURIComponent(els[i].name) + '=' + encodeURIComponent(els[i].checked ? 'on' : ''));			
-			} else {
-				formData.push(encodeURIComponent(els[i].name) + '=' + encodeURIComponent(els[i].value || ''));
+			if (els[i].type === 'checkbox' && els[i].checked) {
+				formData.push(encodeURIComponent(els[i].name) + '=on');
+			} else if (els[i].type !== 'checkbox') {
+				formData.push(encodeURIComponent(els[i].name) + '=' + encodeURIComponent(els[i].value));
 			}
 		}
 		return formData.join('&');
@@ -130,20 +140,18 @@ function sendRequest(url,callback,postData) {
 	if (!req) return;
 	var method = (postData) ? "POST" : "GET";
 	req.open(method,url,true);
+	req.setRequestHeader('X-Requested-With','XMLHttpRequest');
 	if (postData)
 		req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
 	req.onreadystatechange = function () {
 		if (req.readyState !== 4) return;
-		console.log('Status is ' + req.status);
-		if (req.status != 200 && req.status != 304) {
+//		if (req.status != 200 && req.status != 304) {
 //			return;
-		}
-		saveInProgress = false;
+//		}
 		callback(req);
 	}
 	if (req.readyState == 4) return;
 	req.send(postData);
-	saveInProgress = true;
 }
 
 function findPos(obj) {

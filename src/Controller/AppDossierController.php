@@ -137,18 +137,4 @@ class AppDossierController extends Controller
             'form' => $form->createView()
         ]);
     }
-
-    /**
-     * @Route("/formtest")
-     */
-    public function formtestAction(Request $request)
-    {
-        $form = $this->createFormBuilder()
-            ->add('task', TextType::class)
-            ->add('dueDate', DateType::class)
-        ->getForm();
-        return $this->render('Dossier/formtest.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
 }
