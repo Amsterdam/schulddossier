@@ -1,5 +1,13 @@
 parameters:
     locale: 'nl'
+    swift_auth_url: '%env(SWIFT_AUTH_URL)%'
+    swift_region: '%env(SWIFT_REGION)%'
+    swift_user_name: '%env(SWIFT_USER_NAME)%' 
+    swift_user_domain_id: '%env(SWIFT_USER_DOMAIN_ID)%' 
+    swift_user_password: '%env(SWIFT_USER_PASSWORD)%' 
+    swift_project_id: '%env(SWIFT_PROJECT_ID)%' 
+    swift_container_prefix: '%env(SWIFT_CONTAINER_PREFIX)%'
+    swift_temp_url_key: '%env(SWIFT_TEMP_URL_KEY)%'
 
 services:
     _defaults:
@@ -15,8 +23,41 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    # Doctrine EventListeners
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\GebruikerPasswordSubscriber:
         arguments:
             - '@security.user_password_encoder.generic'
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\DocumentUploadSubscriber:
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+    
+    # Services
+    GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector:
+        arguments:
+            - '@flysystem_dossier'
+
+    # OpenStack
+    openstack:
+        class: OpenStack\OpenStack
+        arguments:
+            - { authUrl: '%swift_auth_url%', region: '%swift_region%', user: { name: '%swift_user_name%', domain: { id: '%swift_user_domain_id%' }, password: '%swift_user_password%' }, scope: { project: { id: '%swift_project_id%' } } }
+    openstack_objectstore:
+        class: OpenStack\ObjectStore\v1\Service
+        factory: ['@openstack', 'objectStoreV1']
+    openstack_objectstore_container_dossier:
+        class: OpenStack\ObjectStore\v1\Models\Container
+        factory: ['@openstack_objectstore', 'getContainer']
+        arguments:
+            - '%swift_container_prefix%dossier'
+            
+    # Flysystem
+    flysystem_openstack_adapter_dossier:
+        class: Nimbusoft\Flysystem\OpenStack\SwiftAdapter
+        arguments:
+            - '@openstack_objectstore_container_dossier'
+    flysystem_dossier:
+        class: League\Flysystem\Filesystem
+        arguments:
+            - '@flysystem_openstack_adapter_dossier'

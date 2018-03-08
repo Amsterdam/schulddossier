@@ -4,6 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity
@@ -22,18 +23,26 @@ class Document
     private $id;
 
     /**
+     * @var File
+     * Not mapped to database
+     */
+    private $file;
+
+    /**
+     * @var string
+     * Not mapped
+     */
+    private $mainTag;
+
+    /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank
-     * @Assert\Length(min=1, max=255)
      */
     private $origineleBestandsnaam;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=15, nullable=false)
-     * @Assert\NotBlank
-     * @Assert\Length(min=1, max=15)
      */
     private $origineleExtensie;
 
@@ -49,7 +58,6 @@ class Document
      * @var Gebruiker
      * @ORM\ManyToOne(targetEntity="Gebruiker")
      * @ORM\JoinColumn(name="gebruiker_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotBlank
      */
     private $uploader;
 
@@ -89,6 +97,19 @@ class Document
         return $this->id;
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\File\File
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function getMainTag()
+    {
+        return $this->mainTag;
+    }
+
     public function getOrigineleBestandsnaam()
     {
         return $this->origineleBestandsnaam;
@@ -104,69 +125,12 @@ class Document
         return $this->origineleExtensie;
     }
 
-    public function setOrigineleExtensie($origineleExtensie)
-    {
-        $this->origineleExtensie = $origineleExtensie;
-    }
-
-    public function getNaam()
-    {
-        return $this->naam;
-    }
-
-    public function setNaam($naam)
-    {
-        $this->naam = $naam;
-    }
-
-    public function getUploader()
-    {
-        return $this->uploader;
-    }
-
-    public function setUploader($uploader)
-    {
-        $this->uploader = $uploader;
-    }
-
+    /**
+     * @return \DateTime
+     */
     public function getUploadDatumTijd()
     {
         return $this->uploadDatumTijd;
-    }
-
-    public function setUploadDatumTijd($uploadDatumTijd)
-    {
-        $this->uploadDatumTijd = $uploadDatumTijd;
-    }
-
-    public function getMd5Hash()
-    {
-        return $this->md5Hash;
-    }
-
-    public function setMd5Hash($md5Hash)
-    {
-        $this->md5Hash = $md5Hash;
-    }
-
-    public function getGroep()
-    {
-        return $this->groep;
-    }
-
-    public function setGroep($groep)
-    {
-        $this->groep = $groep;
-    }
-
-    public function getDirectory()
-    {
-        return $this->directory;
-    }
-
-    public function setDirectory($directory)
-    {
-        $this->directory = $directory;
     }
 
     public function getBestandsnaam()
@@ -174,9 +138,80 @@ class Document
         return $this->bestandsnaam;
     }
 
+    public function getDirectory()
+    {
+        return $this->directory;
+    }
+
+    public function getGroep()
+    {
+        return $this->groep;
+    }
+
+    public function getMd5Hash()
+    {
+        return $this->md5Hash;
+    }
+
+    public function getUploader()
+    {
+        return $this->uploader;
+    }
+
+    public function getNaam()
+    {
+        return $this->naam;
+    }
+
+    public function setOrigineleExtensie($origineleExtensie)
+    {
+        $this->origineleExtensie = $origineleExtensie;
+    }
+
+    public function setNaam($naam)
+    {
+        $this->naam = $naam;
+    }
+
+    public function setUploader($uploader)
+    {
+        $this->uploader = $uploader;
+    }
+
+
+    public function setFile(File $file)
+    {
+        $this->file = $file;
+    }
+
+    public function setUploadDatumTijd($uploadDatumTijd)
+    {
+        $this->uploadDatumTijd = $uploadDatumTijd;
+    }
+
+    public function setMd5Hash($md5Hash)
+    {
+        $this->md5Hash = $md5Hash;
+    }
+
+    public function setGroep($groep)
+    {
+        $this->groep = $groep;
+    }
+
+    public function setDirectory($directory)
+    {
+        $this->directory = $directory;
+    }
+
     public function setBestandsnaam($bestandsnaam)
     {
         $this->bestandsnaam = $bestandsnaam;
+    }
+
+    public function setMainTag($mainTag)
+    {
+        $this->mainTag = $mainTag;
     }
 
 }

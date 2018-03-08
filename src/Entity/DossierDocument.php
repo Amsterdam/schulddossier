@@ -27,7 +27,7 @@ class DossierDocument
 
     /**
      * @var Document
-     * @ORM\ManyToOne(targetEntity="Document")
+     * @ORM\ManyToOne(targetEntity="Document", cascade={"persist"})
      * @ORM\JoinColumn(name="document_id", referencedColumnName="id", nullable=false)
      */
     private $document;

@@ -16,6 +16,8 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DossierDocumentFormType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\FormError;
 
@@ -103,7 +105,38 @@ class AppDossierController extends Controller
             }
             return new JsonResponse($errors, Response::HTTP_BAD_REQUEST);
         }
+
+        $uploadForm = $this->createForm(DossierDocumentFormType::class, null, ['action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocument', ['dossierId' => $dossier->getId()])]);
+
         return $this->render('Dossier/detail.html.twig', [
+            'dossier' => $dossier,
+            'form' => $form->createView(),
+            'uploadForm' => $uploadForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/documenten/nieuw")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function addDocumentAction(Request $request, EntityManagerInterface $em, Dossier $dossier)
+    {
+        $dossierDocument = new DossierDocument();
+        $form = $this->createForm(DossierDocumentFormType::class, $dossierDocument);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $dossierDocument->setDossier($dossier);
+            $dossierDocument->getDocument()->setUploader($this->getUser());
+            $dossierDocument->getDocument()->setMainTag('dossier-' . $dossier->getId());
+            $dossierDocument->getDocument()->setGroep('dossier');
+            $em->persist($dossierDocument);
+            $em->flush();
+            $this->addFlash('success', 'Document toegevoegd');
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', [
+                'dossierId' => $dossier->getId()
+            ]);
+        }
+        return $this->render('Dossier/addDocument.html.twig', [
             'dossier' => $dossier,
             'form' => $form->createView()
         ]);

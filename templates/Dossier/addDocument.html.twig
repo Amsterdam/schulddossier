@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Voeg document toe aan dossier</title>
+<meta name="viewport" content="width = device-width">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="create">
+    <header>
+    <h1>Voeg document toe aan dossier {{ dossier.clientNaam }}</h1>
+    <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a></p>
+    </header>
+    {{ form_start(form) }}
+    <input type="submit" value="Document toevoegen">
+    {{ form_end(form) }}
+</body>
+</html>
