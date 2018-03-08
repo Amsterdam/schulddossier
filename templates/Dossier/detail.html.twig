@@ -13,6 +13,16 @@
 <header>
 <h1>Voorlegger {{ dossier.clientNaam }}</h1>
 
+{% for document in dossier.getDocumenten %}
+    {# dump(document) #}
+{% endfor %}
+{% for document in dossier.getDocumentenByOnderwerp('legitimatie') %}
+    {#{ dump(document) }#}
+{% endfor %}
+{% for document in dossier.getDocumentenByOnderwerp('vtlb') %}
+    {#{ dump(document) }#}
+{% endfor %}
+
 {{ form_start(form) }}
 
 <table>
