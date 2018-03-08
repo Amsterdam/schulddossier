@@ -22,7 +22,7 @@ class DossierDocumentFormType extends AbstractType
                 'vtlb' => 'vtlb',
                 'inkomstenspecificatie' => 'inkomstenspecificatie',
                 'arbeidsovereenkomst' => 'arbeidsovereenkomst',
-                'beschikkingUwv' => 'beschikkingUwvOntvangen',
+                'beschikkingUwv' => 'beschikkingUwv',
                 'voorlopigeTerugaafBelastingdienst' => 'voorlopigeTerugaafBelastingdienst',
                 'alimentatie' => 'alimentatie',
                 'kostgeld' => 'kostgeld',
