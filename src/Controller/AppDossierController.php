@@ -20,6 +20,9 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DossierDocumentFormType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\FormError;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * @Route("/app/dossier")
@@ -140,5 +143,14 @@ class AppDossierController extends Controller
             'dossier' => $dossier,
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/documenten/detail/{documentId}")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("document", options={"id"="documentId"})
+     */
+    public function detailDocumentAction(Request $request, Dossier $dossier, Document $document)
+    {
     }
 }
