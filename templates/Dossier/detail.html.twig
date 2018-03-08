@@ -14,7 +14,8 @@
 <h1>Voorlegger {{ dossier.clientNaam }}</h1>
 
 {% for document in dossier.getDocumenten %}
-    {# dump(document.document) #}
+    {# dump(document) #}
+    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>
 {% endfor %}
 {% for document in dossier.getDocumentenByOnderwerp('legitimatie') %}
     {#{ dump(document) }#}
