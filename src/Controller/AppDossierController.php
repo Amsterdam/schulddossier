@@ -16,6 +16,8 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierFormType;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Form\FormError;
 
 /**
  * @Route("/app/dossier")
@@ -86,9 +88,20 @@ class AppDossierController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             $this->addFlash('success', 'Opgeslagen');
+            if ($request->isXmlHttpRequest() === true) {
+                return new JsonResponse(['status' => 'OK']);
+            }
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', [
                 'dossierId' => $dossier->getId()
             ]);
+        }
+        if ($request->isXmlHttpRequest() === true) {
+            $errors = [];
+            foreach ($form->getErrors(true, true) as $error) {
+                /** @var $error FormError */
+                $errors[] = ['origin' => $error->getOrigin(), 'message' => $error->getMessage()];
+            }
+            return new JsonResponse($errors);
         }
         return $this->render('Dossier/detail.html.twig', [
             'dossier' => $dossier,
