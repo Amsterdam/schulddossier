@@ -13,9 +13,10 @@
 <header>
 <h1>Voorlegger {{ dossier.clientNaam }}</h1>
 
+
 {% for document in dossier.getDocumenten %}
     {# dump(document) #}
-    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>
+{#    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': document.dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>  #}
 {% endfor %}
 {% for document in dossier.getDocumentenByOnderwerp('legitimatie') %}
     {#{ dump(document) }#}
@@ -49,6 +50,12 @@
 <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
 </header>
 
+<div id="documenten">
+{% for document in dossier.getDocumenten %}
+	<li data-onderwerp="{{ document.onderwerp }}"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': document.dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a></li>
+{% endfor %}
+</div>
+
 <table class="main">
 	<thead>
 		<tr>
@@ -65,6 +72,7 @@
     <td class="madi"><label>{{ form_widget(form.voorlegger.legitimatieOntvangenMadi)}}</label></td>
     <td class="gka"><label>{{ form_widget(form.voorlegger.legitimatieOntvangenGka)}}</label></td>
 </tr>
+
 
 <tr class="topLevel">
     <td><h3>VTLB</h3></td>
@@ -396,9 +404,9 @@
 <div id="uploadVenster">
 {{ form_start(uploadForm,{attr: {id: 'uploadForm'}}) }}
     <p>U gaat nu een document uploaden. Voeg hier informatie aan toe.</p>
-    {{ form_row(uploadForm.onderwerp) }}
-    {{ form_row(uploadForm.document.file) }}
+    {{ form_widget(uploadForm.document.file) }}
     {{ form_row(uploadForm.document.naam) }}
+    {{ form_row(uploadForm.onderwerp) }}
     <p class="buttons"><button>Annuleer</button><input type="submit" class="primair" value="Sla op"></p>
 {{ form_end(uploadForm) }}
 </div>

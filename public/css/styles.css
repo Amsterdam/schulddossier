@@ -68,9 +68,15 @@ tbody tr:hover {
 }
 
 
-/* SUBMIT-KNOPPEN EN ALS ZODANIG VERMOMDE LINKS */
+/* KNOPPEN EN ALS ZODANIG VERMOMDE LINKS */
 
-input[type=submit],a.knop {
+input.primair,a.primair {
+	-webkit-appearance: none;
+	background-color: #ec0000;
+	cursor: pointer;
+}
+
+input[type=submi],a.knop {
 	-webkit-appearance: none;
 	background-color: white;
 	font-size: 120%;
@@ -83,11 +89,6 @@ input[type=submit],a.knop {
 	width: auto;
 	display: inline-block;
 	color: black;
-}
-
-input[type=submit]:hover,a.knop:hover {
-	cursor: pointer;
-	background: rgba(255,0,0,0.4);
 }
 
 /* ALGEMENE PAGINA-ELEMENTEN */
@@ -157,6 +158,11 @@ body.voorlegger td.gka label {
 
 body.voorlegger table.main input {
 	width: auto;
+}
+
+body.voorlegger table.main input[type=checkbox] {
+	width: 16px;
+	height: 16px;
 }
 
 body.voorlegger table.main td:first-child {
@@ -327,14 +333,15 @@ label.GKA input {
 }
 
 div#uploadVenster {
-	width: 300px;
+	width: 550px;
+	height: 245px;
 	padding: 20px;
 	position: absolute;
 	top: 0;
 	left: 0;
 	background: white;
-	border: 1px solid;
-	font-size: 13px;
+	font-size: 11px;
+	box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
 	visibility: hidden;
 }
 
@@ -343,12 +350,15 @@ div#uploadVenster p {
 }
 
 div#uploadVenster label {
-	font-size: 14px;
+	display: block;
+	margin-top: 15px;
+	margin-left: 3px;
+	margin-bottom: 5px;
 }
 
-div#uploadVenster input:not([type=hidden]) {
+div#uploadVenster input:not([type=hidden]),div#uploadVenster select {
 	display: block;
-	margin-top: 5px;
+	width: 80%;
 }
 
 div#uploadVenster input[type=file] {
@@ -356,17 +366,22 @@ div#uploadVenster input[type=file] {
 }
 
 div#uploadVenster p.buttons {
+	margin-top: 15px;
 	display: flex;
 	justify-content: space-between;
 }
 
 div#uploadVenster input[type=submit] {
-	width: auto;
+	width: 85px;
+	font-size: 16px;
+	height: 33px;
+	color: white;
 }
 
 div#uploadVenster button {
 	-webkit-appearance: none;
 	border: none;
+	font-size: 16px;
 	background: transparent;
 }
 
