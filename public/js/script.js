@@ -9,45 +9,62 @@ window.onload = function () {
 function uploadDocument() {
 
 	var uploadFormulier = $('uploadForm');
-	var uploadVeld = $('uploadVeld');
-	var dimensions = [uploadFormulier.offsetWidth/2,uploadFormulier.offsetHeight/2];
+	var uploadVenster = $('uploadVenster');
+	var uploadVeld = $('dossier_document_form_document_file');
+	var dimensions = [uploadVenster.offsetWidth/2,uploadVenster.offsetHeight/2];
 	uploadFormulier.querySelector('button').onclick = breekAf;
+	uploadFormulier.onsubmit = upload;
 	var categorie = '';
 
 
 	document.addEventListener('click',function (e) {
 		if (e.target.className === 'upload') {		
 			e.target.appendChild(uploadVeld);
-			startUpload();
-			categorie = e.target.parentNode.querySelector('h3').textContent;
+			toonFormulier();
+			categorie = goUp(e.target,'TR').querySelector('input[type=checkbox]').name;
+			var regexp = new RegExp(/.*\[(.*)\]/);
+			var result = regexp.exec(categorie);
+			console.log(result);
+			// detail_dossier_form[voorlegger][legitimatieOntvangenMadi]
 		}
 	},true);
 
 
-	function startUpload() {
-		console.log('start upload');
+	function toonFormulier() {
+		console.log('toonFormulier');
 		var coors = findPos(uploadVeld);
-		uploadFormulier.style.left = (coors[0] - dimensions[0]) + 'px';
-		uploadFormulier.style.top = (coors[1] - dimensions[1]) + 'px';
-		uploadFormulier.style.visibility = 'visible';
-		uploadVeld.onchange = metaData;
+		uploadVenster.style.left = (coors[0] - dimensions[0]) + 'px';
+		uploadVenster.style.top = (coors[1] - dimensions[1]) + 'px';
+		uploadVenster.style.visibility = 'visible';
+		uploadVeld.onchange = startUpload;
 	}
 	
-	function metaData() {
-		console.log('Metadata');
-		$('uploadNaam').value = this.value.substring(this.value.lastIndexOf('\\'));
-		$('uploadCategorie').value = categorie; // checkboxtext
+	function startUpload() {
+		console.log('startUpload');
+		$('dossier_document_form_document_naam').value = this.value.substring(this.value.lastIndexOf('\\')+1);
+//		$('uploadCategorie').value = categorie; // checkboxtext
+	}
+	
+	function upload() {
+		console.log('upload');
+		this.appendChild(uploadVeld);
+		var data = verzamelData(uploadFormulier);
+		sendRequest(uploadFormulier.action,function () {
+			console.log('Upload klaar');
+			breekAf();
+		},data);
+		return false;
 	}
 	
 	function breekAf() {
 		uploadFormulier.style.visibility = 'hidden';
 		if (uploadVeld.value) {
-			nieuwVeld();
+			vernieuwVeld();
 		}
 		return false;
 	}
 	
-	function nieuwVeld() {
+	function vernieuwVeld() {
 		uploadVeld.parentNode.removeChild(uploadVeld);
 		uploadVeld = document.createElement('input');
 		uploadVeld.type = 'file';
@@ -56,7 +73,6 @@ function uploadDocument() {
 	}
 	
 }
-
 
 function autoSave() {
 
@@ -103,7 +119,7 @@ function autoSave() {
 
 	function autoSave() {
 		saveInProgress = true;
-		var data = verzamelData();
+		var data = verzamelData(document.detail_dossier_form);
 		sendRequest(location.href,function (req) {
 			if (req.status === 400) {
 				console.log('Vaudt! ' + req.responseText)
@@ -116,19 +132,13 @@ function autoSave() {
 		},data);
 	}
 	
-	function verzamelData() {
-		var els = document.forms[0].elements;
-		var formData = [];
-		for (var i=0;i<els.length;i+=1) {
-			if (els[i].type === 'checkbox' && els[i].checked) {
-				formData.push(encodeURIComponent(els[i].name) + '=on');
-			} else if (els[i].type !== 'checkbox') {
-				formData.push(encodeURIComponent(els[i].name) + '=' + encodeURIComponent(els[i].value));
-			}
-		}
-		return formData.join('&');
-	}
 	
+}
+
+function verzamelData(form) {
+	var data = new FormData(form);
+	console.log(data);
+	return data;
 }
 
 function $(id) {
@@ -141,17 +151,30 @@ function sendRequest(url,callback,postData) {
 	var method = (postData) ? "POST" : "GET";
 	req.open(method,url,true);
 	req.setRequestHeader('X-Requested-With','XMLHttpRequest');
-	if (postData)
-		req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+	if (postData) {
+		var sBoundary = "---------------------------" + Date.now().toString(16);
+		req.setRequestHeader('Content-Disposition','multipart/form-data; boundary=' + sBoundary);
+	}
 	req.onreadystatechange = function () {
 		if (req.readyState !== 4) return;
-//		if (req.status != 200 && req.status != 304) {
-//			return;
-//		}
+		var token = req.getResponseHeader('X-Debug-Token-Link');
+		if (token) {
+			console.log(token);
+		}
 		callback(req);
 	}
 	if (req.readyState == 4) return;
 	req.send(postData);
+}
+
+function goUp(node,tagName) {
+	while (node.nodeName !== tagName) {
+		node = node.parentNode;
+		if (node.nodeName === 'BODY') {
+			return false;
+		}
+	}
+	return node;
 }
 
 function findPos(obj) {

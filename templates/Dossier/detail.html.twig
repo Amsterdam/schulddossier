@@ -395,15 +395,15 @@
 
 {{ form_end(form) }}
 
-{{ form_start(uploadForm) }}
-<div id="uploadForm">
+<div id="uploadVenster">
+{{ form_start(uploadForm,{attr: {id: 'uploadForm'}}) }}
     <p>U gaat nu een document uploaden. Voeg hier informatie aan toe.</p>
     {{ form_row(uploadForm.onderwerp) }}
     {{ form_row(uploadForm.document.file) }}
     {{ form_row(uploadForm.document.naam) }}
     <p class="buttons"><button>Annuleer</button><input type="submit" value="Sla op"></p>
-</div>
 {{ form_end(uploadForm) }}
+</div>
 
 
 <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
