@@ -14,7 +14,7 @@
 <h1>Voorlegger {{ dossier.clientNaam }}</h1>
 
 {% for document in dossier.getDocumenten %}
-    {# dump(document) #}
+    {# dump(document.document) #}
 {% endfor %}
 {% for document in dossier.getDocumentenByOnderwerp('legitimatie') %}
     {#{ dump(document) }#}
@@ -47,6 +47,13 @@
 
 <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
 </header>
+
+{% for document in dossier.getDocumenten %}
+	{% if document.onderwerp = 'legitimatieOntvangen' %}
+	    {{ dump(document.onderwerp) }}
+	{% endif %}
+{% endfor %}
+
 
 <table class="main">
 	<thead>
@@ -395,9 +402,9 @@
 <div id="uploadVenster">
 {{ form_start(uploadForm,{attr: {id: 'uploadForm'}}) }}
     <p>U gaat nu een document uploaden. Voeg hier informatie aan toe.</p>
-    {{ form_row(uploadForm.onderwerp) }}
-    {{ form_row(uploadForm.document.file) }}
+    {{ form_widget(uploadForm.document.file) }}
     {{ form_row(uploadForm.document.naam) }}
+    {{ form_row(uploadForm.onderwerp) }}
     <p class="buttons"><button>Annuleer</button><input type="submit" class="primair" value="Sla op"></p>
 {{ form_end(uploadForm) }}
 </div>
