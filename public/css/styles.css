@@ -326,7 +326,7 @@ label.GKA input {
 	margin-top: 8px;
 }
 
-div#uploadForm {
+div#uploadVenster {
 	width: 300px;
 	padding: 20px;
 	position: absolute;
@@ -338,29 +338,33 @@ div#uploadForm {
 	visibility: hidden;
 }
 
-div#uploadForm p {
+div#uploadVenster p {
 	margin-top: 0;
 }
 
-div#uploadForm label {
+div#uploadVenster label {
 	font-size: 14px;
 }
 
-div#uploadForm input:not([type=hidden]) {
+div#uploadVenster input:not([type=hidden]) {
 	display: block;
 	margin-top: 5px;
 }
 
-div#uploadForm p.buttons {
+div#uploadVenster input[type=file] {
+	display: none;
+}
+
+div#uploadVenster p.buttons {
 	display: flex;
 	justify-content: space-between;
 }
 
-div#uploadForm input[type=submit] {
+div#uploadVenster input[type=submit] {
 	width: auto;
 }
 
-div#uploadForm button {
+div#uploadVenster button {
 	-webkit-appearance: none;
 	border: none;
 	background: transparent;
