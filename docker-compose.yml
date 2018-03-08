@@ -26,3 +26,4 @@ services:
       - SWIFT_PROJECT_ID=
       - SWIFT_CONTAINER_PREFIX=
       - SWIFT_TEMP_URL_KEY=
+      - SWIFT_PUBLIC_URL=

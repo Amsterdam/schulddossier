@@ -5,8 +5,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -152,5 +150,18 @@ class AppDossierController extends Controller
      */
     public function detailDocumentAction(Request $request, Dossier $dossier, Document $document)
     {
+        $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
+            return $dossierDocument->getDocument() === $document;
+        });
+        if ($dossierDocumenten->count() === 0) {
+            throw new NotFoundHttpException('Document does not match with dossier');
+        }
+
+        $timestamp = intval(time() + 30);
+        $path = '/' . $this->getParameter('swift_container_prefix') . $document->getGroep() . '/' . $document->getDirectory() . '/' . $document->getBestandsnaam();
+        $sign = hash_hmac('sha1', "GET\n" . $timestamp . "\n" . $path, $this->getParameter('swift_temp_url_key'));
+        $fullUrl = $this->getParameter('swift_public_url') . $path . '?temp_url_sig=' . $sign . '&temp_url_expires=' . $timestamp;
+
+        return new RedirectResponse($fullUrl, Response::HTTP_TEMPORARY_REDIRECT);
     }
 }
