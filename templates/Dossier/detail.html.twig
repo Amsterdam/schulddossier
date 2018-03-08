@@ -61,16 +61,13 @@
 <tr class="topLevel eerste">
     <td>
     	<h3>Legitimatie</h3>
-    	<label class="upload"><span>+</span> Voeg document toe</label>
     </td>
     <td class="madi"><label>{{ form_widget(form.voorlegger.legitimatieOntvangenMadi)}}</label></td>
     <td class="gka"><label>{{ form_widget(form.voorlegger.legitimatieOntvangenGka)}}</label></td>
 </tr>
 
 <tr class="topLevel">
-    <td><h3>VTLB</h3>
-    	<label class="upload"><span>+</span> Voeg document toe</label>
-    </td>
+    <td><h3>VTLB</h3></td>
     <td class="madi"><label>{{ form_widget(form.voorlegger.vtlbMadi)}}</label></td>
     <td class="gka"><label>{{ form_widget(form.voorlegger.vtlbGka)}}</label></td>
 </tr>
@@ -402,7 +399,7 @@
     {{ form_row(uploadForm.onderwerp) }}
     {{ form_row(uploadForm.document.file) }}
     {{ form_row(uploadForm.document.naam) }}
-    <p class="buttons"><button>Annuleer</button><input type="submit" value="Sla op"></p>
+    <p class="buttons"><button>Annuleer</button><input type="submit" class="primair" value="Sla op"></p>
 {{ form_end(uploadForm) }}
 </div>
 
