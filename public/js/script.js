@@ -19,7 +19,11 @@ function uploadDocument() {
 		if (e.target.className === 'upload') {		
 			e.target.appendChild(uploadVeld);
 			startUpload();
-			categorie = e.target.parentNode.querySelector('h3').textContent;
+			categorie = goUp(e.target,'TR').querySelector('input[type=checkbox]').name;
+			var regexp = new RegExp(/.*[(.*)]/);
+			var result = regexp.exec(categorie);
+			console.log(result);
+			// detail_dossier_form[voorlegger][legitimatieOntvangenMadi]
 		}
 	},true);
 
@@ -35,19 +39,19 @@ function uploadDocument() {
 	
 	function metaData() {
 		console.log('Metadata');
-		$('uploadNaam').value = this.value.substring(this.value.lastIndexOf('\\'));
+		$('uploadNaam').value = this.value.substring(this.value.lastIndexOf('\\')+1);
 		$('uploadCategorie').value = categorie; // checkboxtext
 	}
 	
 	function breekAf() {
 		uploadFormulier.style.visibility = 'hidden';
 		if (uploadVeld.value) {
-			nieuwVeld();
+			vernieuwVeld();
 		}
 		return false;
 	}
 	
-	function nieuwVeld() {
+	function vernieuwVeld() {
 		uploadVeld.parentNode.removeChild(uploadVeld);
 		uploadVeld = document.createElement('input');
 		uploadVeld.type = 'file';
@@ -56,7 +60,6 @@ function uploadDocument() {
 	}
 	
 }
-
 
 function autoSave() {
 
@@ -152,6 +155,16 @@ function sendRequest(url,callback,postData) {
 	}
 	if (req.readyState == 4) return;
 	req.send(postData);
+}
+
+function goUp(node,tagName) {
+	while (node.nodeName !== tagName) {
+		node = node.parentNode;
+		if (node.nodeName === 'BODY') {
+			return false;
+		}
+	}
+	return node;
 }
 
 function findPos(obj) {
