@@ -75,6 +75,8 @@ Installeer via:
     cd fixxx-schuldhulp
     docker-compose up
 
+D.m.v. het aanmaken van [docker-compose.override.yml](https://docs.docker.com/compose/extends/#example-use-case) bestand kunnen environment variabelen en poorten aangepast worden.
+
 ### Installatie via Docker (development)
 
 Deze Docker maakt gebruikt van een Docker volume zodat er geen nieuwe build nodig is bij wijziging van code.
@@ -83,3 +85,4 @@ Deze Docker maakt gebruikt van een Docker volume zodat er geen nieuwe build nodi
     cd fixxx-schuldhulp
     docker-compose -f docker-compose-dev.yml up
 
+D.m.v. het aanmaken van [docker-compose.override.yml](https://docs.docker.com/compose/extends/#example-use-case) bestand kunnen environment variabelen en poorten aangepast worden. Laad de override file als volgt in `docker-compose -f docker-compose-dev.yml -f docker-compose-dev.override.yml up`.
