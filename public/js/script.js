@@ -3,6 +3,35 @@ window.onload = function () {
 	if (document.body.classList.contains('voorlegger')) {
 		autoSave();
 		uploadDocument();
+		documentLinks();
+	}
+}
+
+var onderwerpTemplate = document.createElement('tr');
+var cell  = onderwerpTemplate.appendChild(document.createElement('td'));
+cell.colSpan = 4;
+cell.appendChild(document.createElement('ul'));
+
+
+function documentLinks() {
+	var links = $('documenten').querySelectorAll('li'),
+		checkboxes = document.querySelectorAll('.main input[type=checkbox]'),
+		insertPoint,
+		onderwerp;
+	for (var i=0,link;link=links[i];i+=1) {
+		onderwerp = link.dataset.onderwerp;
+		if (!$(onderwerp+'Documenten')) {
+			for (var j=0,box;box=checkboxes[j];j+=1) {
+				if (box.name.indexOf(onderwerp) !== -1) {
+					insertPoint = goUp(box,'TR');
+				}
+			}
+			if (!insertPoint) continue;
+			var newTR = onderwerpTemplate.cloneNode(true)
+			insertPoint.parentNode.insertBefore(newTR,insertPoint.nextSibling);
+			newTR.querySelector('ul').id = onderwerp+'Documenten';
+		}
+		$(onderwerp+'Documenten').appendChild(link);
 	}
 }
 
