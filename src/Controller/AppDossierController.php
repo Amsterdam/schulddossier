@@ -105,9 +105,13 @@ class AppDossierController extends Controller
             }
             return new JsonResponse($errors, Response::HTTP_BAD_REQUEST);
         }
+
+        $uploadForm = $this->createForm(DossierDocumentFormType::class, null, ['action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocument', ['dossierId' => $dossier->getId()])]);
+
         return $this->render('Dossier/detail.html.twig', [
             'dossier' => $dossier,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'uploadForm' => $uploadForm->createView()
         ]);
     }
 
