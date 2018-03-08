@@ -101,7 +101,7 @@ class AppDossierController extends Controller
                 /** @var $error FormError */
                 $errors[] = ['origin' => $error->getOrigin(), 'message' => $error->getMessage()];
             }
-            return new JsonResponse($errors);
+            return new JsonResponse($errors, Response::HTTP_BAD_REQUEST);
         }
         return $this->render('Dossier/detail.html.twig', [
             'dossier' => $dossier,
