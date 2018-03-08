@@ -4,7 +4,11 @@ echo 'Start docker-entrypoint.sh'
 
 set -u
 
-#composer install --no-interaction --no-suggest --prefer-dist
+if [ "$APP_ENV" = "dev" ]
+then
+    composer install --no-interaction --no-suggest --prefer-dist
+fi
+
 php bin/console cache:warmup --env=production
 php bin/console cache:warmup --env=acceptance
 php bin/console doctrine:migrations:migrate --no-interaction
