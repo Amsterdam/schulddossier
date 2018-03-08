@@ -18,3 +18,11 @@ services:
       - APP_ENV=production
       - APP_SECRET=secret
       - DATABASE_URL=pgsql://schuldhulp:insecure@database:5432/schuldhulp
+      - SWIFT_AUTH_URL=
+      - SWIFT_REGION=
+      - SWIFT_USER_NAME=
+      - SWIFT_USER_DOMAIN_ID=
+      - SWIFT_USER_PASSWORD=
+      - SWIFT_PROJECT_ID=
+      - SWIFT_CONTAINER_PREFIX=
+      - SWIFT_TEMP_URL_KEY=
