@@ -418,7 +418,9 @@ class VoorleggerFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('energieBedrijfDatumOpname', DateType::class, [
-            'required' => false
+            'required' => false,
+            'html5' => true,
+            'widget' => 'single_text'
         ]);
         $builder->add('energieBedrijfT1', NumberType::class, [
             'required' => false
@@ -436,7 +438,9 @@ class VoorleggerFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('warmteBedrijfDatumOpname', DateType::class, [
-            'required' => false
+            'required' => false,
+            'html5' => true,
+            'widget' => 'single_text'
         ]);
         $builder->add('warmteBedrijfOpname', TextType::class, [
             'required' => false
@@ -445,7 +449,9 @@ class VoorleggerFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('drinkwaterDatumOpname', DateType::class, [
-            'required' => false
+            'required' => false,
+            'html5' => true,
+            'widget' => 'single_text'
         ]);
         $builder->add('drinkwaterOpname', TextType::class, [
             'required' => false
