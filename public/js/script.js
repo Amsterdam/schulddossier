@@ -8,9 +8,19 @@ window.onload = function () {
 }
 
 var onderwerpTemplate = document.createElement('tr');
+onderwerpTemplate.classList.add('documenten');
 var cell  = onderwerpTemplate.appendChild(document.createElement('td'));
-cell.colSpan = 4;
-cell.appendChild(document.createElement('ul'));
+cell.colSpan = 1;
+var cellMadi = document.createElement('td');
+cellMadi.classList.add('madi');
+onderwerpTemplate.appendChild(cellMadi);
+var cellGka = document.createElement('td');
+cellGka.classList.add('gka');
+onderwerpTemplate.appendChild(cellGka);
+onderwerpTemplate.appendChild(document.createElement('td'));
+var ulDom = document.createElement('ul');
+//ulDom.classList.add('documenten');
+cell.appendChild(ulDom);
 
 
 function documentLinks() {

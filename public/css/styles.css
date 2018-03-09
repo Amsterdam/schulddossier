@@ -249,6 +249,27 @@ body.voorlegger table.main h3 {
 	display: inline-block;
 }
 
+body.voorlegger .documenten {
+	background-color: #CCC;
+}
+
+body.voorlegger .documenten ul {
+	margin: 10px;
+}
+
+body.voorlegger .documenten ul li {
+	font-size: 0.7rem;
+	list-style-type: none; 
+}
+
+body.voorlegger .documenten ul li a {
+	color: #333333;
+}
+
+body.voorlegger .documenten ul li a:hover {
+	color: #000000;
+}
+
 body.voorlegger tr.topLevel h3 {
 	padding-left: 0;
 	font-size: 110%;
