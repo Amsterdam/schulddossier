@@ -104,6 +104,7 @@ function uploadDocument() {
 		if (uploadVeld.value) {
 			vernieuwVeld();
 		}
+		window.location.reload();
 		return false;
 	}
 	
@@ -199,14 +200,18 @@ function sendRequest(url,callback,postData) {
 		req.setRequestHeader('Content-Disposition','multipart/form-data; boundary=' + sBoundary);
 	}
 	req.onreadystatechange = function () {
-		if (req.readyState !== 4) return;
+		if (req.readyState !== 4) {
+			return;
+		}
 		var token = req.getResponseHeader('X-Debug-Token-Link');
 		if (token) {
 			console.log(token);
 		}
 		callback(req);
 	}
-	if (req.readyState == 4) return;
+	if (req.readyState == 4) {
+		return;
+	}
 	req.send(postData);
 }
 
