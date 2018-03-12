@@ -133,6 +133,9 @@ class AppDossierController extends Controller
             $em->persist($dossierDocument);
             $em->flush();
             $this->addFlash('success', 'Document toegevoegd');
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(['status' => 'OK', 'url' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', ['dossierId' => $dossier->getId(), 'documentId' => $dossierDocument->getDocument()->getId()]) ]);
+            }
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', [
                 'dossierId' => $dossier->getId()
             ]);
