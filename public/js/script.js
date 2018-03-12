@@ -71,13 +71,12 @@ function uploadDocument() {
 			e.target.appendChild(uploadVeld);
 			toonFormulier();
 			categorie = goUp(e.target,'TR').querySelector('input[type=checkbox]').name;
-			console.log(categorie);
+//			console.log(categorie);
 		}
 	},true);
 
 
 	function toonFormulier() {
-		console.log('toonFormulier');
 		var coors = findPos(uploadVeld);
 		uploadVenster.style.left = (coors[0] - dimensions[0]) + 'px';
 		uploadVenster.style.top = (coors[1] - dimensions[1]) + 'px';
@@ -120,7 +119,7 @@ function uploadDocument() {
 		if (uploadVeld.value) {
 			vernieuwVeld();
 		}
-//		window.location.reload();
+		window.location.reload();
 		return false;
 	}
 	
