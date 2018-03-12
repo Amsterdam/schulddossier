@@ -191,6 +191,10 @@ body.voorlegger section.header + h2 {
 
 }
 
+div#detail_dossier_form_voorlegger {
+	display: none;
+}
+
 body.voorlegger tr.sub div {
 	display: flex;
 	font-size: 85%;
@@ -215,8 +219,7 @@ body.voorlegger table.main label.upload {
 	float: right;
 	margin-right: 30px;
 	margin-top: 5px;
-	isibility: hidden;
-	border: 1px solid;
+	visibility: hidden;
 }
 
 body.voorlegger table.main td:hover label.upload {
