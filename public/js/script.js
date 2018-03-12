@@ -66,7 +66,8 @@ function uploadDocument() {
 	}
 
 	document.addEventListener('click',function (e) {
-		if (e.target.className === 'upload') {		
+		if (e.target.className === 'upload') {
+			console.log('Click on upload');		
 			e.target.appendChild(uploadVeld);
 			toonFormulier();
 			categorie = goUp(e.target,'TR').querySelector('input[type=checkbox]').name;
@@ -119,7 +120,7 @@ function uploadDocument() {
 		if (uploadVeld.value) {
 			vernieuwVeld();
 		}
-		window.location.reload();
+//		window.location.reload();
 		return false;
 	}
 	

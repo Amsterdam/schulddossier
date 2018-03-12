@@ -215,7 +215,8 @@ body.voorlegger table.main label.upload {
 	float: right;
 	margin-right: 30px;
 	margin-top: 5px;
-	visibility: hidden;
+	isibility: hidden;
+	border: 1px solid;
 }
 
 body.voorlegger table.main td:hover label.upload {
@@ -238,7 +239,7 @@ body.voorlegger table.main label.upload span {
 body.voorlegger table.main label.upload input {
 	position: absolute;
 	left: 0;
-	opacity: 0;
+	opacity: 1;
 }
 
 body.voorlegger table.main h3 {
