@@ -21,6 +21,7 @@ docker-compose-dev.override.yml
 /public/bundles/
 /var/
 /vendor/
+/public/vendor/
 ###< symfony/framework-bundle ###
 
 ###> symfony/web-server-bundle ###

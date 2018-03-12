@@ -83,8 +83,14 @@
     "league/flysystem": {
         "version": "1.0.43"
     },
+    "markei/filesystemoperations": {
+        "version": "v1.0.0"
+    },
     "monolog/monolog": {
         "version": "1.23.0"
+    },
+    "mozilla/pdf.js": {
+        "version": "1.9.426"
     },
     "nimbusoft/flysystem-openstack-swift": {
         "version": "0.2.1"

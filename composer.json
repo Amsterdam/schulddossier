@@ -22,7 +22,9 @@
         "symfony/templating": "^4.0",
         "symfony/validator": "^4.0",
         "symfony/var-dumper": "^4.0",
-        "symfony/yaml": "^4.0"
+        "symfony/yaml": "^4.0",
+        "mozilla/pdf.js": "1.9.426",
+        "markei/filesystemoperations": "^1"
     },
     "require-dev": {
         "symfony/dotenv": "^4.0",
@@ -56,10 +58,12 @@
             "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "Markei\\FileSystemOperations\\Composer::run"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "Markei\\FileSystemOperations\\Composer::run"
         ]
     },
     "conflict": {
@@ -69,6 +73,23 @@
         "symfony": {
             "id": "01C78G17XCNVEZ49WHBEVGCP02",
             "allow-contrib": false
+        },
+        "markei-filesystemoperations": [
+            ["mkdir", "public/vendor"],
+            ["mirror", "vendor/mozilla/pdf.js", "public/vendor/mozilla/pdf.js", null, {"delete": true}]
+        ]
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "mozilla/pdf.js",
+                "version": "1.9.426",
+                "dist": {
+                    "url": "https://github.com/mozilla/pdf.js/releases/download/v1.9.426/pdfjs-1.9.426-dist.zip",
+                    "type": "zip"
+                }
+            }
         }
-    }
+    ]
 }
