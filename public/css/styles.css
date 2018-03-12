@@ -63,7 +63,7 @@ td div select {
 	margin-right: 10px;
 }
 
-tbody tr:hover {
+table:not(.main) tbody tr:hover {
 	background-color: #f3f3f3;
 }
 
@@ -170,7 +170,7 @@ body.voorlegger table.main td:first-child {
 	text-align: left;
 }
 
-body.voorlegger table.main tr:not(.header):hover td {
+body.voorlegger table.main tr:not(.header):not(.documenten):hover td {
 	background-color: #eeeeee;
 }
 
@@ -214,6 +214,7 @@ body.voorlegger tr.sub input {
 
 body.voorlegger table.main label.upload {
 	position: relative;
+	top: -5px;
 	font-size: 12px;
 	color: #666666;
 	float: right;
@@ -224,6 +225,10 @@ body.voorlegger table.main label.upload {
 
 body.voorlegger table.main td:hover label.upload {
 	visibility: visible;
+}
+
+body.voorlegger table.main label.upload input[type=file] {
+	opacity: 0;
 }
 
 body.voorlegger table.main label.upload span {
@@ -257,13 +262,21 @@ body.voorlegger table.main h3 {
 }
 
 body.voorlegger .documenten {
-	background-color: #e8e8e8;
+
+}
+
+body.voorlegger .documenten td {
+	font-size: 14px;
 }
 
 body.voorlegger .documenten ul {
 	padding: 0;
-	padding-left: 25px;
+	padding-left: 60px;
+	margin: 0;
+	margin-bottom: 10px;
 }
+
+
 
 body.voorlegger .documenten ul li {
 	list-style-type: none;
@@ -416,7 +429,7 @@ div#uploadVenster input[type=submit] {
 div#uploadVenster button {
 	-webkit-appearance: none;
 	border: none;
-	font-size: 16px;
+	font-size: inherit;
 	background: transparent;
 }
 
