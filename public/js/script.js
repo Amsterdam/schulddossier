@@ -3,7 +3,7 @@ var docs=
 
 document.addEventListener("DOMContentLoaded", function(event) {
 	if (document.body.classList.contains('voorlegger')) {
-//		autoSave();
+		autoSave();
 		uploadDocument();
 		docs = documentLinks();
 	}
@@ -134,12 +134,21 @@ function uploadDocument() {
 		sendRequest(uploadFormulier.action,function (req) {
 			console.log('Upload klaar');
 			$('spinnerContainer').removeChild(spinner);
-			if (req.responseURL) {
-				docs.voegDocToe({
-					href: req.responseURL,
-					onderwerp: categorie,
-					tekst: naam,
-				});
+			console.log(req);
+			if (req.status === 200) {
+				var href;
+				try {
+					href = JSON.parse(req.response).url;
+				} catch (e) {
+				
+				}
+				if (href) {
+					docs.voegDocToe({
+						href: req.responseURL,
+						onderwerp: categorie,
+						tekst: naam,
+					});
+				}
 			}
 			breekAf();
 		},data);
@@ -167,11 +176,11 @@ function uploadDocument() {
 function autoSave() {
 
 	document.addEventListener('click',logClick,false);
-	document.addEventListener('keyup',logKeys,false);
+	document.addEventListener('keypress',logKeys,false);
 	document.addEventListener('change',logChange,true);
 	
 	var saveTimer;
-	var wachttijd = 5;
+	var wachttijd = 1;
 	var saveInProgress = false;
 	var scheduleNewSave = false;
 
@@ -202,24 +211,39 @@ function autoSave() {
 		} else {
 			scheduleNewSave = true;	
 		}
-		// + als save in progress en er verandert iets: nieuwe save schedulen
 		// + saveInProgress testen
-		// + response OK -> 'Autosaved'
 	}
 
 	function autoSave() {
+		console.log('Save begint');
 		saveInProgress = true;
 		var data = verzamelData(document.detail_dossier_form);
 		sendRequest(location.href,function (req) {
 			if (req.status === 400) {
 				console.log('Vaudt! ' + req.responseText)
+			} else {
+				bevestigSave();
 			}
+			console.log('Save eindigt');
 			saveInProgress = false;
 			if (scheduleNewSave) {
 				prepareAutoSave();
 				scheduleNewSave = false;
 			}
 		},data);
+	}
+	
+	var bevestigTekst = $('autoSaveBevestig');
+	var pos = bevestigTekst.offsetWidth/2;
+	
+	
+	function bevestigSave() {
+		var positie = (document.documentElement.clientWidth/2) - pos;
+		bevestigTekst.style.visibility = 'visible';
+		bevestigTekst.style.left = positie + 'px';
+		setTimeout(function () {
+			bevestigTekst.style.visibility = 'hidden';		
+		},5000);
 	}
 	
 	
