@@ -150,6 +150,27 @@ class AppDossierController extends Controller
     }
 
     /**
+     * @Route("/detail/{dossierId}/documenten/nieuw-wizard")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function addDocumentViaWizardAction(Request $request, EntityManagerInterface $em, Dossier $dossier)
+    {
+        $dossierDocument = new DossierDocument();
+
+        $form = $this->createForm(DossierDocumentFormType::class, $dossierDocument);
+        $form->handleRequest($request);
+
+        if ($request->isXmlHttpRequest()) {
+            return new JsonResponse(['status' => 'ERROR']);
+        }
+
+        return $this->render('Dossier/addDocumentViaWizard.html.twig', [
+            'dossier' => $dossier,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/detail/{dossierId}/documenten/detail/{documentId}")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
@@ -170,4 +191,5 @@ class AppDossierController extends Controller
 
         return new RedirectResponse($fullUrl, Response::HTTP_TEMPORARY_REDIRECT);
     }
+
 }
