@@ -140,6 +140,9 @@ class AppDossierController extends Controller
                 'dossierId' => $dossier->getId()
             ]);
         }
+        if ($request->isXmlHttpRequest()) {
+            return new JsonResponse(['status' => 'ERROR']);
+        }
         return $this->render('Dossier/addDocument.html.twig', [
             'dossier' => $dossier,
             'form' => $form->createView()
