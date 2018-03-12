@@ -220,7 +220,7 @@ body.voorlegger table.main label.upload {
 	float: right;
 	margin-right: 30px;
 	margin-top: 5px;
-	visibility: hidden;
+/*	visibility: hidden; */
 }
 
 body.voorlegger table.main td:hover label.upload {
@@ -437,6 +437,16 @@ textarea {
 	width: 100%;
 	min-height: 3cm;
 	font-size: 100%;
+}
+
+p#autoSaveBevestig {
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	background: #e8e8e8;
+	padding: 10px;
+	border: 1px solid;
+	visibility: hidden;
 }
 
 @media all and (max-width: 480px) {
