@@ -35,6 +35,7 @@ class DossierDocumentFormType extends AbstractType
                 'alimentatieEchtscheidingsconvenant' => 'alimentatieEchtscheidingsconvenant',
                 'overeenkomstKinderopvang' => 'overeenkomstKinderopvang',
                 'kwijtscheldingGemeenteBelasting' => 'kwijtscheldingGemeenteBelasting',
+                'autoTaxatie' => 'autoTaxatie',
                 'autolastenKmWoonwerkverkeer' => 'autolastenKmWoonwerkverkeer',
                 'verklaringWerkgever' => 'verklaringWerkgever',
                 'vrijwaringsbewijs' => 'vrijwaringsbewijs',

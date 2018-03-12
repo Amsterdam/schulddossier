@@ -203,7 +203,10 @@
 </tr>
 
 <tr class="sub">
-	<td colspan="4"><div><label>Ja</label><label>Nee</label></div?</td>
+	<td colspan="4">
+	<div><label>{{ form_widget(form.voorlegger.kwijtscheldingGemeenteBelasting[1]) }} Ja</label><label>{{ form_widget(form.voorlegger.kwijtscheldingGemeenteBelasting[0]) }} Nee</label></div>
+	{% do form.voorlegger.kwijtscheldingGemeenteBelasting.setRendered() %}
+</td>
 </tr>
 
 <tr>
@@ -217,8 +220,16 @@
 	<td><h2>Auto</h2></td>
 	<td class="madi"></td>
 	<td class="gka"></td>
+	<td><label>{{ form_widget(form.voorlegger.autoNvt)}} n.v.t.</label></td>
 </tr>
 
+
+<tr>
+	<td><h3>Auto taxatie</h3></td>
+	<td class="madi"><label>{{ form_widget(form.voorlegger.autoTaxatieOntvangenMadi)}}</label></td>
+	<td class="gka"><label>{{ form_widget(form.voorlegger.autoTaxatieOntvangenGka)}}</label></td>
+	<td><label>{{ form_widget(form.voorlegger.autoTaxatieNvt)}} n.v.t.</label></td>
+</tr>
 
 <tr>
 	<td><h3>Km woonwerkverkeer</h3></td>
@@ -316,12 +327,6 @@
 	<td><h2>Bewindstelling of budgetbeheer</h2></td>
 	<td class="madi"></td>
 	<td class="gka"></td>
-</tr>
-
-<tr>
-	<td><h3>Bewindstelling of budgetbeheer</h3></td>
-	<td></td>
-	<td></td>
 	<td><label>{{ form_widget(form.voorlegger.bewindstellingOfBudgetbeheerNvt)}} n.v.t.</label></td>
 </tr>
 
@@ -343,7 +348,7 @@
 	<div>
 	<label>{{ form_widget(form.voorlegger.budgetbeheerPlangroep)}} Plangroep</label>
 	<label>{{ form_widget(form.voorlegger.budgetbeheerCav)}} CAV</label>
-	<label>{{ form_widget(form.voorlegger.budgetbeheerFibi)}} Fibi</label>
+	<label>{{ form_widget(form.voorlegger.budgetbeheerFibu)}} Fibu</label>
 	<label>{{ form_widget(form.voorlegger.budgetbeheerOverig,{attr: {
 		'placeholder': 'Overig',
 		'class': 'overig',
