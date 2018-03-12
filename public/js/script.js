@@ -66,9 +66,10 @@ function uploadDocument() {
 	}
 
 	document.addEventListener('click',function (e) {
-		if (e.target.className === 'upload') {
+		var tgt = goUp(e.target,'LABEL');
+		if (tgt.className === 'upload') {
 			console.log('Click on upload');		
-			e.target.appendChild(uploadVeld);
+			tgt.appendChild(uploadVeld);
 			toonFormulier();
 			categorie = goUp(e.target,'TR').querySelector('input[type=checkbox]').name;
 //			console.log(categorie);
