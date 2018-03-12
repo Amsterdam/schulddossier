@@ -1,13 +1,13 @@
 
 var docs=
 
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function(event) {
 	if (document.body.classList.contains('voorlegger')) {
 //		autoSave();
 		uploadDocument();
 		docs = documentLinks();
 	}
-}
+},false);
 
 
 
@@ -94,16 +94,15 @@ function uploadDocument() {
 	document.addEventListener('click',function (e) {
 		var tgt = goUp(e.target,'LABEL');
 		if (tgt.className === 'upload') {
-			console.log('Click on upload');		
 			tgt.appendChild(uploadVeld);
 			toonFormulier();
 			categorie = goUp(e.target,'TR').querySelector('input[type=checkbox]').name;
-//			console.log(categorie);
 		}
 	},true);
 
 
 	function toonFormulier() {
+		var userCancellation = false;
 		var coors = findPos(uploadVeld);
 		uploadVenster.style.left = (coors[0] - dimensions[0]) + 'px';
 		uploadVenster.style.top = (coors[1] - dimensions[1]) + 'px';
@@ -117,8 +116,7 @@ function uploadDocument() {
 	}
 	
 	function startUpload() {
-		console.log('startUpload');
-		$('dossier_document_form_document_naam').value = this.value.substring(this.value.lastIndexOf('\\')+1);
+		$('dossier_document_form_document_naam').value = uploadVeld.value.substring(uploadVeld.value.lastIndexOf('\\')+1);
 		for (var i=0;i<categorieLijst.length;i+=1) {
 			var waarde = categorieLijst.options[i].value;
 			if (categorie.indexOf(waarde) !== -1) {
@@ -129,7 +127,6 @@ function uploadDocument() {
 	}
 	
 	function upload() {
-		console.log('upload');
 		this.appendChild(uploadVeld);
 		naam = $('dossier_document_form_document_naam').value;
 		$('spinnerContainer').appendChild(spinner);
@@ -154,7 +151,6 @@ function uploadDocument() {
 		if (uploadVeld.value) {
 			vernieuwVeld();
 		}
-//		window.location.reload();
 		return false;
 	}
 	

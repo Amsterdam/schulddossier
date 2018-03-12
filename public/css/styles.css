@@ -227,6 +227,10 @@ body.voorlegger table.main td:hover label.upload {
 	visibility: visible;
 }
 
+body.voorlegger table.main label.upload input[type=file] {
+	opacity: 0;
+}
+
 body.voorlegger table.main label.upload span {
 	background-color: #9b9b9b;
 	color: white;
@@ -425,7 +429,7 @@ div#uploadVenster input[type=submit] {
 div#uploadVenster button {
 	-webkit-appearance: none;
 	border: none;
-	font-size: 16px;
+	font-size: inherit;
 	background: transparent;
 }
 
