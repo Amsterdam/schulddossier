@@ -14,6 +14,7 @@ composer.phar
 
 # Docker
 docker-compose.override.yml
+docker-compose-dev.override.yml
 
 ###> symfony/framework-bundle ###
 .env

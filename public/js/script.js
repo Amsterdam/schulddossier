@@ -56,6 +56,9 @@ function uploadDocument() {
 	uploadFormulier.onsubmit = upload;
 	var categorie = '';
 	var labelHTML= '<label class="upload"><span>+</span> Voeg document toe</label>';
+	
+	var spinner = document.createElement('img');
+	spinner.src = '/pix/spinner.gif';
 
 	var items = document.querySelectorAll('h3');
 	for (var i=0;i<items.length;i+=1) {
@@ -101,9 +104,11 @@ function uploadDocument() {
 	function upload() {
 		console.log('upload');
 		this.appendChild(uploadVeld);
+		$('spinnerContainer').appendChild(spinner);
 		var data = verzamelData(uploadFormulier);
 		sendRequest(uploadFormulier.action,function () {
 			console.log('Upload klaar');
+			$('spinnerContainer').removeChild(spinner);
 			breekAf();
 		},data);
 		return false;

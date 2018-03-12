@@ -250,16 +250,16 @@ body.voorlegger table.main h3 {
 }
 
 body.voorlegger .documenten {
-	background-color: #CCC;
+	background-color: #e8e8e8;
 }
 
 body.voorlegger .documenten ul {
-	margin: 10px;
+	padding: 0;
+	padding-left: 25px;
 }
 
 body.voorlegger .documenten ul li {
-	font-size: 0.7rem;
-	list-style-type: none; 
+	list-style-type: none;
 }
 
 body.voorlegger .documenten ul li a {
@@ -355,7 +355,6 @@ label.GKA input {
 
 div#uploadVenster {
 	width: 550px;
-	height: 245px;
 	padding: 20px;
 	position: absolute;
 	top: 0;
@@ -364,6 +363,10 @@ div#uploadVenster {
 	font-size: 11px;
 	box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
 	visibility: hidden;
+}
+
+div#uploadVenster img {
+	width: 50px;
 }
 
 div#uploadVenster p {
