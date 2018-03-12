@@ -10,6 +10,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class VoorleggerFormType extends AbstractType
 {
@@ -49,14 +50,6 @@ class VoorleggerFormType extends AbstractType
         ]);
         $builder->add('arbeidsovereenkomstNvt', CheckboxType::class, [
             'required' => false
-        ]);
-        $builder->add('beschikkingUwvOntvangenMadi', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'gka'
-        ]);
-        $builder->add('beschikkingUwvOntvangenGka', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('beschikkingUwvNvt', CheckboxType::class, [
             'required' => false
@@ -194,22 +187,33 @@ class VoorleggerFormType extends AbstractType
         $builder->add('overeenkomstKinderopvangNvt', CheckboxType::class, [
             'required' => false
         ]);
-        $builder->add('kwijtscheldingGemeenteBelastingOntvangenMadi', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'gka'
-        ]);
-        $builder->add('kwijtscheldingGemeenteBelastingOntvangenGka', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'madi'
-        ]);
         $builder->add('kwijtscheldingGemeenteBelastingNvt', CheckboxType::class, [
             'required' => false
+        ]);
+        $builder->add('kwijtscheldingGemeenteBelasting', ChoiceType::class, [
+            'required' => false,
+            'choices' => ['ja' => 1, 'nee' => 0],
+            'expanded' => true
         ]);
         $builder->add('corrigerenGemeenteBelastingOntvangenGka', CheckboxType::class, [
             'required' => false,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('corrigerenGemeenteBelastingNvt', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('autoNvt', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('autoTaxatieOntvangenMadi', CheckboxType::class, [
+            'required' => false,
+            'disabled' => $options['disable_group'] === 'gka'
+        ]);
+        $builder->add('autoTaxatieOntvangenGka', CheckboxType::class, [
+            'required' => false,
+            'disabled' => $options['disable_group'] === 'madi'
+        ]);
+        $builder->add('autoTaxatieNvt', CheckboxType::class, [
             'required' => false
         ]);
         $builder->add('autolastenKmWoonwerkverkeerOntvangenMadi', CheckboxType::class, [
@@ -346,14 +350,6 @@ class VoorleggerFormType extends AbstractType
         $builder->add('beschikkingOnderBewindstellingNvt', CheckboxType::class, [
             'required' => false
         ]);
-        $builder->add('budgetbeheerOntvangenMadi', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'gka'
-        ]);
-        $builder->add('budgetbeheerOntvangenGka', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'madi'
-        ]);
         $builder->add('budgetbeheerNvt', CheckboxType::class, [
             'required' => false
         ]);
@@ -363,7 +359,7 @@ class VoorleggerFormType extends AbstractType
         $builder->add('budgetbeheerCav', CheckboxType::class, [
             'required' => false
         ]);
-        $builder->add('budgetbeheerFibi', CheckboxType::class, [
+        $builder->add('budgetbeheerFibu', CheckboxType::class, [
             'required' => false
         ]);
         $builder->add('budgetbeheerOverig', TextType::class, [

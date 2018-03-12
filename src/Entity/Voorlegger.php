@@ -92,18 +92,6 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $beschikkingUwvOntvangenMadi;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $beschikkingUwvOntvangenGka;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
     private $beschikkingUwvNvt;
 
     /**
@@ -357,19 +345,13 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $kwijtscheldingGemeenteBelastingOntvangenMadi;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $kwijtscheldingGemeenteBelastingOntvangenGka;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
     private $kwijtscheldingGemeenteBelastingNvt;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $kwijtscheldingGemeenteBelasting;
 
     /**
      * @var boolean
@@ -382,6 +364,34 @@ class Voorlegger
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $corrigerenGemeenteBelastingNvt;
+
+    // ---
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $autoNvt;
+
+    // ---
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $autoTaxatieOntvangenMadi;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $autoTaxatieOntvangenGka;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $autoTaxatieNvt;
 
     // ---
 
@@ -633,18 +643,6 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $budgetbeheerOntvangenMadi;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $budgetbeheerOntvangenGka;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
     private $budgetbeheerNvt;
 
     /**
@@ -663,7 +661,7 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $budgetbeheerFibi;
+    private $budgetbeheerFibu;
 
     /**
      * @var string
@@ -814,8 +812,6 @@ class Voorlegger
         $this->arbeidsovereenkomstOntvangenMadi = false;
         $this->arbeidsovereenkomstOntvangenGka = false;
         $this->arbeidsovereenkomstNvt = false;
-        $this->beschikkingUwvOntvangenMadi = false;
-        $this->beschikkingUwvOntvangenGka = false;
         $this->beschikkingUwvNvt = false;
         $this->beschikkingUwvWw = false;
         $this->beschikkingUwvWia = false;
@@ -853,11 +849,14 @@ class Voorlegger
         $this->overeenkomstKinderopvangOntvangenMadi = false;
         $this->overeenkomstKinderopvangOntvangenGka = false;
         $this->overeenkomstKinderopvangNvt = false;
-        $this->kwijtscheldingGemeenteBelastingOntvangenMadi = false;
-        $this->kwijtscheldingGemeenteBelastingOntvangenGka = false;
         $this->kwijtscheldingGemeenteBelastingNvt = false;
+        $this->kwijtscheldingGemeenteBelasting = false;
         $this->corrigerenGemeenteBelastingOntvangenGka = false;
         $this->corrigerenGemeenteBelastingNvt = false;
+        $this->autoNvt = false;
+        $this->autoTaxatieOntvangenMadi = false;
+        $this->autoTaxatieOntvangenGka = false;
+        $this->autoTaxatieNvt = false;
         $this->autolastenKmWoonwerkverkeerOntvangenMadi = false;
         $this->autolastenKmWoonwerkverkeerOntvangenGka = false;
         $this->autolastenKmWoonwerkverkeerNvt = false;
@@ -894,12 +893,10 @@ class Voorlegger
         $this->beschikkingOnderBewindstellingOntvangenMadi = false;
         $this->beschikkingOnderBewindstellingOntvangenGka = false;
         $this->beschikkingOnderBewindstellingNvt = false;
-        $this->budgetbeheerOntvangenMadi = false;
-        $this->budgetbeheerOntvangenGka = false;
         $this->budgetbeheerNvt = false;
         $this->budgetbeheerPlangroep = false;
         $this->budgetbeheerCav = false;
-        $this->budgetbeheerFibi = false;
+        $this->budgetbeheerFibu = false;
         $this->gereserveerdeGeldenOntvangenMadi = false;
         $this->gereserveerdeGeldenOntvangenGka = false;
         $this->gereserveerdeGeldenNvt = false;
@@ -963,16 +960,6 @@ class Voorlegger
     public function isArbeidsovereenkomstNvt()
     {
         return $this->arbeidsovereenkomstNvt;
-    }
-
-    public function isBeschikkingUwvOntvangenMadi()
-    {
-        return $this->beschikkingUwvOntvangenMadi;
-    }
-
-    public function isBeschikkingUwvOntvangenGka()
-    {
-        return $this->beschikkingUwvOntvangenGka;
     }
 
     public function isBeschikkingUwvNvt()
@@ -1165,19 +1152,14 @@ class Voorlegger
         return $this->overeenkomstKinderopvangNvt;
     }
 
-    public function isKwijtscheldingGemeenteBelastingOntvangenMadi()
-    {
-        return $this->kwijtscheldingGemeenteBelastingOntvangenMadi;
-    }
-
-    public function isKwijtscheldingGemeenteBelastingOntvangenGka()
-    {
-        return $this->kwijtscheldingGemeenteBelastingOntvangenGka;
-    }
-
     public function isKwijtscheldingGemeenteBelastingNvt()
     {
         return $this->kwijtscheldingGemeenteBelastingNvt;
+    }
+
+    public function isKwijtscheldingGemeenteBelasting()
+    {
+        return $this->kwijtscheldingGemeenteBelasting;
     }
 
     public function isCorrigerenGemeenteBelastingOntvangenGka()
@@ -1188,6 +1170,26 @@ class Voorlegger
     public function isCorrigerenGemeenteBelastingNvt()
     {
         return $this->corrigerenGemeenteBelastingNvt;
+    }
+
+    public function isAutoNvt()
+    {
+        return $this->autoNvt;
+    }
+
+    public function isAutoTaxatieOntvangenMadi()
+    {
+        return $this->autoTaxatieOntvangenMadi;
+    }
+
+    public function isAutoTaxatieOntvangenGka()
+    {
+        return $this->autoTaxatieOntvangenGka;
+    }
+
+    public function isAutoTaxatieNvt()
+    {
+        return $this->autoTaxatieNvt;
     }
 
     public function isAutolastenKmWoonwerkverkeerOntvangenMadi()
@@ -1370,16 +1372,6 @@ class Voorlegger
         return $this->beschikkingOnderBewindstellingNvt;
     }
 
-    public function isBudgetbeheerOntvangenMadi()
-    {
-        return $this->budgetbeheerOntvangenMadi;
-    }
-
-    public function isBudgetbeheerOntvangenGka()
-    {
-        return $this->budgetbeheerOntvangenGka;
-    }
-
     public function isBudgetbeheerNvt()
     {
         return $this->budgetbeheerNvt;
@@ -1395,9 +1387,9 @@ class Voorlegger
         return $this->budgetbeheerCav;
     }
 
-    public function isBudgetbeheerFibi()
+    public function isBudgetbeheerFibu()
     {
-        return $this->budgetbeheerFibi;
+        return $this->budgetbeheerFibu;
     }
 
     public function getBudgetbeheerOverig()
@@ -1567,16 +1559,6 @@ class Voorlegger
     public function setArbeidsovereenkomstNvt($arbeidsovereenkomstNvt)
     {
         $this->arbeidsovereenkomstNvt = $arbeidsovereenkomstNvt;
-    }
-
-    public function setBeschikkingUwvOntvangenMadi($beschikkingUwvOntvangenMadi)
-    {
-        $this->beschikkingUwvOntvangenMadi = $beschikkingUwvOntvangenMadi;
-    }
-
-    public function setBeschikkingUwvOntvangenGka($beschikkingUwvOntvangenGka)
-    {
-        $this->beschikkingUwvOntvangenGka = $beschikkingUwvOntvangenGka;
     }
 
     public function setBeschikkingUwvNvt($beschikkingUwvNvt)
@@ -1769,19 +1751,14 @@ class Voorlegger
         $this->overeenkomstKinderopvangNvt = $overeenkomstKinderopvangNvt;
     }
 
-    public function setKwijtscheldingGemeenteBelastingOntvangenMadi($kwijtscheldingGemeenteBelastingOntvangenMadi)
-    {
-        $this->kwijtscheldingGemeenteBelastingOntvangenMadi = $kwijtscheldingGemeenteBelastingOntvangenMadi;
-    }
-
-    public function setKwijtscheldingGemeenteBelastingOntvangenGka($kwijtscheldingGemeenteBelastingOntvangenGka)
-    {
-        $this->kwijtscheldingGemeenteBelastingOntvangenGka = $kwijtscheldingGemeenteBelastingOntvangenGka;
-    }
-
     public function setKwijtscheldingGemeenteBelastingNvt($kwijtscheldingGemeenteBelastingNvt)
     {
         $this->kwijtscheldingGemeenteBelastingNvt = $kwijtscheldingGemeenteBelastingNvt;
+    }
+
+    public function setKwijtscheldingGemeenteBelasting($kwijtscheldingGemeenteBelasting)
+    {
+        $this->kwijtscheldingGemeenteBelasting = $kwijtscheldingGemeenteBelasting;
     }
 
     public function setCorrigerenGemeenteBelastingOntvangenGka($corrigerenGemeenteBelastingOntvangenGka)
@@ -1792,6 +1769,26 @@ class Voorlegger
     public function setCorrigerenGemeenteBelastingNvt($corrigerenGemeenteBelastingNvt)
     {
         $this->corrigerenGemeenteBelastingNvt = $corrigerenGemeenteBelastingNvt;
+    }
+
+    public function setAutoNvt($autoNvt)
+    {
+        $this->autoNvt = $autoNvt;
+    }
+
+    public function setAutoTaxatieOntvangenMadi($autoTaxatieOntvangenMadi)
+    {
+        $this->autoTaxatieOntvangenMadi = $autoTaxatieOntvangenMadi;
+    }
+
+    public function setAutoTaxatieOntvangenGka($autoTaxatieOntvangenGka)
+    {
+        $this->autoTaxatieOntvangenGka = $autoTaxatieOntvangenGka;
+    }
+
+    public function setAutoTaxatieNvt($autoTaxatieNvt)
+    {
+        $this->autoTaxatieNvt = $autoTaxatieNvt;
     }
 
     public function setAutolastenKmWoonwerkverkeerOntvangenMadi($autolastenKmWoonwerkverkeerOntvangenMadi)
@@ -1974,16 +1971,6 @@ class Voorlegger
         $this->beschikkingOnderBewindstellingNvt = $beschikkingOnderBewindstellingNvt;
     }
 
-    public function setBudgetbeheerOntvangenMadi($budgetbeheerOntvangenMadi)
-    {
-        $this->budgetbeheerOntvangenMadi = $budgetbeheerOntvangenMadi;
-    }
-
-    public function setBudgetbeheerOntvangenGka($budgetbeheerOntvangenGka)
-    {
-        $this->budgetbeheerOntvangenGka = $budgetbeheerOntvangenGka;
-    }
-
     public function setBudgetbeheerNvt($budgetbeheerNvt)
     {
         $this->budgetbeheerNvt = $budgetbeheerNvt;
@@ -1999,9 +1986,9 @@ class Voorlegger
         $this->budgetbeheerCav = $budgetbeheerCav;
     }
 
-    public function setBudgetbeheerFibi($budgetbeheerFibi)
+    public function setBudgetbeheerFibu($budgetbeheerFibu)
     {
-        $this->budgetbeheerFibi = $budgetbeheerFibi;
+        $this->budgetbeheerFibu = $budgetbeheerFibu;
     }
 
     public function setBudgetbeheerOverig($budgetbeheerOverig)
