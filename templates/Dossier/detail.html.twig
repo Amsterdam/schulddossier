@@ -8,9 +8,19 @@
 <script src="/js/script.js"></script>
 </head>
 
-<body class="voorlegger {{ app.user.type }}">
+<body class="{{ app.user.type }}">
 
-<header>
+	<header>
+	<img src="/pix/logo_klein.svg">
+	<h2>Digitale voorlegger</h2>
+	<div>Ingelogd als: Petriculus Pucq <a href="#">(Uitloggen)</a></div>
+    </header>
+
+<p class="kleineNav">
+    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a> | 
+    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a>
+</p>
+<main class="voorlegger">
 <h1>Voorlegger {{ dossier.clientNaam }}</h1>
 
 
@@ -32,15 +42,10 @@
 	{{ form_row(form.allegroNummer)}}
 	<tr>
 		<td></td>
-		<td><input type="submit" value="Sla op"></td>
+		<td><input type="submit" class="primair" value="Opslaan"></td>
 	</tr>
 </table>
 
-<p>
-    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a>
-    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a>
-</p>
-</header>
 
 <div id="documenten">
 {% for document in dossier.getDocumenten %}
@@ -394,9 +399,11 @@
 	{{ form_row(form.voorlegger.drinkwaterKlantnummer) }}
 	{{ form_row(form.voorlegger.drinkwaterDatumOpname) }}
 	{{ form_row(form.voorlegger.drinkwaterOpname) }}
+	<tr>
+		<td></td>
+		<td><input type="submit" class="primair" value="Opslaan"></td>
+	</tr>
 </table>
-
-<p><input type="submit" value="Sla op"></p>
 
 {{ form_end(form) }}
 
@@ -406,7 +413,7 @@
 	{{ form_widget(uploadForm.document.file) }}
 	{{ form_row(uploadForm.document.naam) }}
 	{{ form_row(uploadForm.onderwerp) }}
-	<p class="buttons"><button>Annuleer</button><span id="spinnerContainer"></span><input type="submit" class="primair" value="Sla op"></p>
+	<p class="buttons"><button class="tertiair">Annuleren</button>	<span id="spinnerContainer"></span><input type="submit" class="primair" value="Opslaan"></p>
 {{ form_end(uploadForm) }}
 </div>
 
@@ -414,6 +421,7 @@
 <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
 
 <p id="autoSaveBevestig">Uw wijzigingen zijn opgeslagen</p>
+</main>
 
 <!--
 <p>Werkt nog niet</p>

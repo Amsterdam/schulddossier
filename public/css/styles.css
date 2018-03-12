@@ -6,25 +6,86 @@ html {
 }
 
 body {
-	background-color: white;
-	max-width: 1024px;
-	margin: 50px auto;
-	padding: 75px;
-	padding-top: 0;
-	padding-bottom: 50px;
-	box-sizing: border-box;
-	box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
-	font-family: verdana;
-	background-image: url(/pix/logo.svg);
-	background-size: 30px;
-	background-repeat: no-repeat;
-	background-position: 94% 50px;
-	font-size: 15px;
+	font-family: avenir,lato,sans-serif;
+	margin: 0;
+	padding: 0;
 }
 
 /* PAGINA-HEADER */
 
 header {
+	background: white;
+	width: 100%;
+	box-sizing: border-box;
+	height: 50px;
+	margin: 0;
+	padding: 0 10px;
+	display: flex;
+	justify-content: space-between;
+}
+
+header > * {
+
+}
+
+header img {
+	width: 65px;
+	padding-top: 10px;
+}
+
+header h2 {
+	flex-grow: 1;
+	margin-left: 30px;
+	line-height: 50px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+header div {
+	margin: 0;
+	line-height: 50px;
+	font-weight: lighter;
+}
+
+header div a {
+	color: black;
+	font-size: 12px;
+}
+
+p.kleineNav {
+	max-width: 1024px;
+	margin: 0 auto;
+	margin-top: 50px;
+	font-size: 12px;
+}
+
+p.kleineNav a {
+	color: black;
+}
+
+
+main {
+	background-color: white;
+	max-width: 1024px;
+	margin: 50px auto;
+	margin-top: 0;
+	padding: 75px;
+	padding-top: 0;
+	padding-bottom: 50px;
+	box-sizing: border-box;
+	box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
+	font-size: 16px;
+	overflow: auto;
+
+}
+
+h1 {
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+
+oude_header {
 	margin-bottom: 50px;
 	margin-left: -75px;
 	margin-right: -75px;
@@ -70,13 +131,38 @@ table:not(.main) tbody tr:hover {
 
 /* KNOPPEN EN ALS ZODANIG VERMOMDE LINKS */
 
-input.primair,a.primair {
+.primair,.secundair,.tertiair {
+	font-size: 16px;
 	-webkit-appearance: none;
-	background-color: #ec0000;
+	border: none;
+	font-family: inherit;
+	background: transparent;
+	font-weight: normal;
 	cursor: pointer;
+	color: inherit;
+	text-decoration: none;
+	padding: 5px 8px;
 }
 
-input[type=submi],a.knop {
+input.primair,a.primair,button.primair {
+	background-color: #ec0000;
+	color: white;
+}
+
+input.secundair,a.secundair,button.secundair {
+	border: 1px solid;
+}
+
+input.tertiair,a.tertiair,button.tertiair {
+
+}
+
+input[type=text],input[type=date] {
+	height: 24px;
+	font-size: 16px;
+}
+
+nput[type=submi],ai.knop {
 	-webkit-appearance: none;
 	background-color: white;
 	font-size: 120%;
@@ -92,11 +178,6 @@ input[type=submi],a.knop {
 }
 
 /* ALGEMENE PAGINA-ELEMENTEN */
-
-h1 {
-	margin: 0;
-	margin-bottom: 20px;
-}
 
 h2,h3 {
 	margin: 0;
@@ -133,22 +214,22 @@ body.create input[type=submit] {
 
 /* DIGITALE VOORLEGGER */
 
-body.voorlegger table {
+main.voorlegger table {
 	border-collapse: collapse;
 }
 
-body.voorlegger table.main td {
+main.voorlegger table.main td {
 	text-align: center;
 	padding: 0;
 }
 
-body.voorlegger table.main label {
+main.voorlegger table.main label {
 	white-space: nowrap;
 	margin: 0 10px;
 }
 
-body.voorlegger td.madi label,
-body.voorlegger td.gka label {
+main.voorlegger td.madi label,
+main.voorlegger td.gka label {
 	display: inline-block;
 	width: 100%;
 	height: 25px;
@@ -156,38 +237,38 @@ body.voorlegger td.gka label {
 }
 
 
-body.voorlegger table.main input {
+main.voorlegger table.main input {
 	width: auto;
 }
 
-body.voorlegger table.main input[type=checkbox] {
+main.voorlegger table.main input[type=checkbox] {
 	width: 16px;
 	height: 16px;
 }
 
-body.voorlegger table.main td:first-child {
+main.voorlegger table.main td:first-child {
 	width: 80%;
 	text-align: left;
 }
 
-body.voorlegger table.main tr:not(.header):not(.documenten):hover td {
+main.voorlegger table.main tr:not(.header):not(.documenten):hover td {
 	background-color: #eeeeee;
 }
 
-body.voorlegger h2 {
+main.voorlegger h2 {
 	margin-top: 25px;
 	margin-bottom: 15px;
 	font-size: 110%;
 	text-align: left;
 }
 
-body.voorlegger thead th {
+main.voorlegger thead th {
 	padding: 0 10px;
 	padding-bottom: 30px;
 	padding-top: 10px;
 }
 
-body.voorlegger section.header + h2 {
+main.voorlegger section.header + h2 {
 
 }
 
@@ -195,24 +276,24 @@ div#detail_dossier_form_voorlegger {
 	display: none;
 }
 
-body.voorlegger tr.sub div {
+main.voorlegger tr.sub div {
 	display: flex;
 	font-size: 85%;
 	margin-top: 3px;
 	margin-left: 40px;
 }
 
-body.voorlegger tr.sub label {
+main.voorlegger tr.sub label {
 	margin-right: 10px;
 	white-space: nowrap;
 }
 
-body.voorlegger tr.sub input {
+main.voorlegger tr.sub input {
 	display: inline;
 	width: auto;
 }
 
-body.voorlegger table.main label.upload {
+main.voorlegger table.main label.upload {
 	position: relative;
 	top: -5px;
 	font-size: 12px;
@@ -223,15 +304,15 @@ body.voorlegger table.main label.upload {
 /*	visibility: hidden; */
 }
 
-body.voorlegger table.main td:hover label.upload {
+main.voorlegger table.main td:hover label.upload {
 	visibility: visible;
 }
 
-body.voorlegger table.main label.upload input[type=file] {
+main.voorlegger table.main label.upload input[type=file] {
 	opacity: 0;
 }
 
-body.voorlegger table.main label.upload span {
+main.voorlegger table.main label.upload span {
 	background-color: #9b9b9b;
 	color: white;
 	padding: 3px;
@@ -247,13 +328,13 @@ body.voorlegger table.main label.upload span {
 	top: 2px;
 }
 
-body.voorlegger table.main label.upload input {
+main.voorlegger table.main label.upload input {
 	position: absolute;
 	left: 0;
 	opacity: 1;
 }
 
-body.voorlegger table.main h3 {
+main.voorlegger table.main h3 {
 	padding: 5px 0;
 	padding-left: 40px;
 	hyphens: auto;
@@ -261,15 +342,15 @@ body.voorlegger table.main h3 {
 	display: inline-block;
 }
 
-body.voorlegger .documenten {
+main.voorlegger .documenten {
 
 }
 
-body.voorlegger .documenten td {
+main.voorlegger .documenten td {
 	font-size: 14px;
 }
 
-body.voorlegger .documenten ul {
+main.voorlegger .documenten ul {
 	padding: 0;
 	padding-left: 60px;
 	margin: 0;
@@ -278,34 +359,34 @@ body.voorlegger .documenten ul {
 
 
 
-body.voorlegger .documenten ul li {
+main.voorlegger .documenten ul li {
 	list-style-type: none;
 }
 
-body.voorlegger .documenten ul li a {
+main.voorlegger .documenten ul li a {
 	color: #333333;
 }
 
-body.voorlegger .documenten ul li a:hover {
+main.voorlegger .documenten ul li a:hover {
 	color: #000000;
 }
 
-body.voorlegger tr.topLevel h3 {
+main.voorlegger tr.topLevel h3 {
 	padding-left: 0;
 	font-size: 110%;
 }
 
-body.voorlegger tr.header h2 {
+main.voorlegger tr.header h2 {
 	margin-top: 10px;
 	font-size: 14px;
 }
 
-body.voorlegger table.main td:not(:first-child) {
+main.voorlegger table.main td:not(:first-child) {
 	background: #f8f8f8;
 	text-align: center;
 }
 
-body.voorlegger span:nth-child(0n+4) {
+main.voorlegger span:nth-child(0n+4) {
 	background: transparent;
 }
 
@@ -314,27 +395,27 @@ body.madi td.madi, body.gka td.gka {
 	border-width: 0 1px;
 }
 
-body.voorlegger tr.eerste td {
+main.voorlegger tr.eerste td {
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	border-top-width: 1px;
 }
 
-body.voorlegger tr.laatste td {
+main.voorlegger tr.laatste td {
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	border-bottom-width: 1px;
 }
 
-body.voorlegger section.header span {
+main.voorlegger section.header span {
 	background-color: transparent;
 }
 
-body.voorlegger section.metSub span {
+main.voorlegger section.metSub span {
 	grid-row: span 2;
 }
 
-body.voorlegger input.overig {
+main.voorlegger input.overig {
 	border: 1px solid #666666;
 }
 
@@ -342,17 +423,17 @@ section div label {
 	white-space: nowrap;
 }
 
-body.voorlegger input[type=submit] {
+main.voorlegger input[type=submit] {
 	display: block;
 	width: 200px;
 	float: right;
 }
 
-body.voorlegger td input[type=submit] {
+main.voorlegger td input[type=submit] {
 	float: none;
 }
 
-body.voorlegger footer h3, body.voorlegger footer p {
+main.voorlegger footer h3, main.voorlegger footer p {
 	margin-top: 20px;
 	overflow: auto;
 }
@@ -377,10 +458,10 @@ div#uploadVenster {
 	width: 550px;
 	padding: 20px;
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 30px;
+	left: 30px;
 	background: white;
-	font-size: 11px;
+	font-size: 85%;
 	box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
 	visibility: hidden;
 }
@@ -424,13 +505,6 @@ div#uploadVenster input[type=submit] {
 	font-size: 16px;
 	height: 33px;
 	color: white;
-}
-
-div#uploadVenster button {
-	-webkit-appearance: none;
-	border: none;
-	font-size: inherit;
-	background: transparent;
 }
 
 textarea {
@@ -477,16 +551,16 @@ p#autoSaveBevestig {
 		float: right;	
 	}
 	
-	body.voorlegger table.main h3 {
+	main.voorlegger table.main h3 {
 		padding-left: 10px;
 		max-width: 120px;
 	}
 
-	body.voorlegger table.main label {
+	main.voorlegger table.main label {
 		white-space: nowrap;
 		margin: 0 5px;
 	}
-	body.voorlegger tr.sub div {
+	main.voorlegger tr.sub div {
 		display: block;
 	}
 }

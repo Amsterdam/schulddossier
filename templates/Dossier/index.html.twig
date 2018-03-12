@@ -8,11 +8,16 @@
 </head>
 
 <body class="index">
-
 	<header>
-    <h1>Dossiers</h1>
-    <p><a class="knop" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}">Maak nieuw dossier aan</a></p>
+	<img src="/pix/logo_klein.svg">
+	<h2>Digitale voorlegger</h2>
+	<div>Ingelogd als: Petriculus Pucq <a href="#">(Uitloggen)</a></div>
     </header>
+
+    <p class="kleineNav">&nbsp;</p>
+	<main>
+    <h1>Dossiers</h1>
+    <p><a class="primair" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}">Maak nieuw dossier aan</a></p>
     
     <h2>Bestaande dossiers</h2>
     <table>
@@ -47,6 +52,7 @@
 {% endfor %}
        </tbody>
     </table>
+    </main>
     
     
 </body>

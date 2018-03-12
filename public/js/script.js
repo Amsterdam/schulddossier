@@ -2,7 +2,7 @@
 var docs=
 
 document.addEventListener("DOMContentLoaded", function(event) {
-	if (document.body.classList.contains('voorlegger')) {
+	if (document.querySelector('main.voorlegger')) {
 		autoSave();
 		uploadDocument();
 		docs = documentLinks();

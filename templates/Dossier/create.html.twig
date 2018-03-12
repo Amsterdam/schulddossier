@@ -7,11 +7,15 @@
 </head>
 
 <body class="create">
-	
 	<header>
-    <h1>Nieuw dossier</h1>
-    <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
+	<img src="/pix/logo_klein.svg">
+	<h2>Digitale voorlegger</h2>
+	<div>Ingelogd als: Petriculus Pucq <a href="#">(Uitloggen)</a></div>
     </header>
+	
+    <p class="kleineNav"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
+	<main>
+    <h1>Nieuw dossier</h1>
     {{ form_start(form) }}
     <p><label>Naam cliënt{{ form_widget(form.clientNaam) }}</label>{{ form_errors(form.clientNaam) }}</p>
     <p><label>Naam partner{{ form_widget(form.partnerNaam) }}</label>{{ form_errors(form.partnerNaam) }}</p>
@@ -22,5 +26,6 @@
     <p><label>Allegro{{ form_widget(form.allegroNummer) }}</label>{{ form_errors(form.allegroNummer) }}</p>
     <input type="submit" value="Maak aan">
     {{ form_end(form) }}
+    </main>
 </body>
 </html>
