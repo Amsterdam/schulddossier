@@ -233,10 +233,13 @@ body.voorlegger table.main label.upload span {
 	display: inline-block;
 	width: 15px;
 	height: 15px;
+	border: 1px solid;
 	text-align: center;
 	font-size: 18px;
 	line-height: 15px;
 	border-radius: 15px;
+	position: relative;
+	top: 2px;
 }
 
 body.voorlegger table.main label.upload input {

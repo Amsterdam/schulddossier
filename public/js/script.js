@@ -1,34 +1,42 @@
 
+var docs=
+
 window.onload = function () {
 	if (document.body.classList.contains('voorlegger')) {
-		autoSave();
+//		autoSave();
 		uploadDocument();
-		documentLinks();
+		docs = documentLinks();
 	}
 }
 
-var onderwerpTemplate = document.createElement('tr');
-onderwerpTemplate.classList.add('documenten');
-var cell  = onderwerpTemplate.appendChild(document.createElement('td'));
-cell.colSpan = 1;
-var cellMadi = document.createElement('td');
-cellMadi.classList.add('madi');
-onderwerpTemplate.appendChild(cellMadi);
-var cellGka = document.createElement('td');
-cellGka.classList.add('gka');
-onderwerpTemplate.appendChild(cellGka);
-onderwerpTemplate.appendChild(document.createElement('td'));
-var ulDom = document.createElement('ul');
-//ulDom.classList.add('documenten');
-cell.appendChild(ulDom);
 
 
 function documentLinks() {
+
+	var onderwerpTemplate = document.createElement('tr');
+	onderwerpTemplate.classList.add('documenten');
+	var cell  = onderwerpTemplate.appendChild(document.createElement('td'));
+	cell.colSpan = 1;
+	var cellMadi = document.createElement('td');
+	cellMadi.classList.add('madi');
+	onderwerpTemplate.appendChild(cellMadi);
+	var cellGka = document.createElement('td');
+	cellGka.classList.add('gka');
+	onderwerpTemplate.appendChild(cellGka);
+	onderwerpTemplate.appendChild(document.createElement('td'));
+	var ulDom = document.createElement('ul');
+	//ulDom.classList.add('documenten');
+	cell.appendChild(ulDom);
+
 	var links = $('documenten').querySelectorAll('li'),
 		checkboxes = document.querySelectorAll('.main input[type=checkbox]'),
 		insertPoint,
 		onderwerp;
 	for (var i=0,link;link=links[i];i+=1) {
+		plaatsDocument(link);
+	}
+
+	function plaatsDocument(link) {
 		onderwerp = link.dataset.onderwerp;
 		if (!$(onderwerp+'Documenten')) {
 			for (var j=0,box;box=checkboxes[j];j+=1) {
@@ -36,13 +44,32 @@ function documentLinks() {
 					insertPoint = goUp(box,'TR');
 				}
 			}
-			if (!insertPoint) continue;
+			if (!insertPoint) return;
 			var newTR = onderwerpTemplate.cloneNode(true)
 			insertPoint.parentNode.insertBefore(newTR,insertPoint.nextSibling);
 			newTR.querySelector('ul').id = onderwerp+'Documenten';
 		}
 		$(onderwerp+'Documenten').appendChild(link);
+
 	}
+	
+	function creeerLink(data) {
+		var li = document.createElement('li');
+		var a = document.createElement('a')
+		li.dataset.onderwerp  = data.onderwerp;
+		a.href = data.href;
+		a.innerHTML = data.tekst;
+		li.appendChild(a);
+		return li;
+	}
+	
+	return {
+		voegDocToe: function (data) {
+			var nieuweLI = creeerLink(data);
+			plaatsDocument(nieuweLI);
+		}
+	}
+
 }
 
 function uploadDocument() {
@@ -54,7 +81,7 @@ function uploadDocument() {
 	var dimensions = [uploadVenster.offsetWidth/2,uploadVenster.offsetHeight/2];
 	uploadFormulier.querySelector('button').onclick = breekAf;
 	uploadFormulier.onsubmit = upload;
-	var categorie = '';
+	var categorie = '',naam = '';
 	var labelHTML= '<label class="upload"><span>+</span> Voeg document toe</label>';
 	
 	var spinner = document.createElement('img');
@@ -105,11 +132,19 @@ function uploadDocument() {
 	function upload() {
 		console.log('upload');
 		this.appendChild(uploadVeld);
+		naam = $('dossier_document_form_document_naam').value;
 		$('spinnerContainer').appendChild(spinner);
 		var data = verzamelData(uploadFormulier);
-		sendRequest(uploadFormulier.action,function () {
+		sendRequest(uploadFormulier.action,function (req) {
 			console.log('Upload klaar');
 			$('spinnerContainer').removeChild(spinner);
+			if (req.responseURL) {
+				docs.voegDocToe({
+					href: req.responseURL,
+					onderwerp: categorie,
+					tekst: naam,
+				});
+			}
 			breekAf();
 		},data);
 		return false;
@@ -120,7 +155,7 @@ function uploadDocument() {
 		if (uploadVeld.value) {
 			vernieuwVeld();
 		}
-		window.location.reload();
+//		window.location.reload();
 		return false;
 	}
 	
@@ -141,7 +176,7 @@ function autoSave() {
 	document.addEventListener('change',logChange,true);
 	
 	var saveTimer;
-	var wachttijd = 1;
+	var wachttijd = 5;
 	var saveInProgress = false;
 	var scheduleNewSave = false;
 
