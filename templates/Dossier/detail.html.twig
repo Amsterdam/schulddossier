@@ -36,7 +36,10 @@
 	</tr>
 </table>
 
-<p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
+<p>
+    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a>
+    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a>
+</p>
 </header>
 
 <div id="documenten">
