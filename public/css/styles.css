@@ -384,7 +384,11 @@ div#uploadVenster label {
 	margin-bottom: 5px;
 }
 
-div#uploadVenster input:not([type=hidden]),div#uploadVenster select {
+div#uploadVenster select,div#uploadVenster label[for=dossier_document_form_onderwerp] {
+	display: none;
+}
+
+div#uploadVenster input:not([type=hidden]) {
 	display: block;
 	width: 80%;
 }
