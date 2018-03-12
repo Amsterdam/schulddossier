@@ -223,17 +223,6 @@ class VoorleggerFormType extends AbstractType
         $builder->add('autolastenKmWoonwerkverkeerNvt', CheckboxType::class, [
             'required' => false
         ]);
-        $builder->add('kentekenOntvangenMadi', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'gka'
-        ]);
-        $builder->add('kentekenOntvangenGka', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'madi'
-        ]);
-        $builder->add('kentekenNvt', CheckboxType::class, [
-            'required' => false
-        ]);
         $builder->add('verklaringWerkgeverOntvangenMadi', CheckboxType::class, [
             'required' => false,
             'disabled' => $options['disable_group'] === 'gka'
@@ -322,17 +311,6 @@ class VoorleggerFormType extends AbstractType
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('waternetNvt', CheckboxType::class, [
-            'required' => false
-        ]);
-        $builder->add('klantnummerZiggoOntvangenMadi', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'gka'
-        ]);
-        $builder->add('klantnummerZiggoOntvangenGka', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'madi'
-        ]);
-        $builder->add('klantnummerZiggoNvt', CheckboxType::class, [
             'required' => false
         ]);
         $builder->add('retourbewijsModemOntvangenMadi', CheckboxType::class, [

@@ -409,26 +409,6 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $kentekenOntvangenMadi;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $kentekenOntvangenGka;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $kentekenNvt;
-
-    // ---
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
     private $verklaringWerkgeverOntvangenMadi;
 
     /**
@@ -584,26 +564,6 @@ class Voorlegger
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $waternetNvt;
-
-    // ---
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $klantnummerZiggoOntvangenMadi;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $klantnummerZiggoOntvangenGka;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $klantnummerZiggoNvt;
 
     // ---
 
@@ -901,9 +861,6 @@ class Voorlegger
         $this->autolastenKmWoonwerkverkeerOntvangenMadi = false;
         $this->autolastenKmWoonwerkverkeerOntvangenGka = false;
         $this->autolastenKmWoonwerkverkeerNvt = false;
-        $this->kentekenOntvangenMadi = false;
-        $this->kentekenOntvangenGka = false;
-        $this->kentekenNvt = false;
         $this->verklaringWerkgeverOntvangenMadi = false;
         $this->verklaringWerkgeverOntvangenGka = false;
         $this->verklaringWerkgeverNvt = false;
@@ -928,9 +885,6 @@ class Voorlegger
         $this->waternetOntvangenMadi = false;
         $this->waternetOntvangenGka = false;
         $this->waternetNvt = false;
-        $this->klantnummerZiggoOntvangenMadi = false;
-        $this->klantnummerZiggoOntvangenGka = false;
-        $this->klantnummerZiggoNvt = false;
         $this->retourbewijsModemOntvangenMadi = false;
         $this->retourbewijsModemOntvangenGka = false;
         $this->retourbewijsModemNvt = false;
@@ -1251,21 +1205,6 @@ class Voorlegger
         return $this->autolastenKmWoonwerkverkeerNvt;
     }
 
-    public function isKentekenOntvangenMadi()
-    {
-        return $this->kentekenOntvangenMadi;
-    }
-
-    public function isKentekenOntvangenGka()
-    {
-        return $this->kentekenOntvangenGka;
-    }
-
-    public function isKentekenNvt()
-    {
-        return $this->kentekenNvt;
-    }
-
     public function isVerklaringWerkgeverOntvangenMadi()
     {
         return $this->verklaringWerkgeverOntvangenMadi;
@@ -1384,21 +1323,6 @@ class Voorlegger
     public function isWaternetNvt()
     {
         return $this->waternetNvt;
-    }
-
-    public function isKlantnummerZiggoOntvangenMadi()
-    {
-        return $this->klantnummerZiggoOntvangenMadi;
-    }
-
-    public function isKlantnummerZiggoOntvangenGka()
-    {
-        return $this->klantnummerZiggoOntvangenGka;
-    }
-
-    public function isKlantnummerZiggoNvt()
-    {
-        return $this->klantnummerZiggoNvt;
     }
 
     public function isRetourbewijsModemOntvangenMadi()
@@ -1885,21 +1809,6 @@ class Voorlegger
         $this->autolastenKmWoonwerkverkeerNvt = $autolastenKmWoonwerkverkeerNvt;
     }
 
-    public function setKentekenOntvangenMadi($kentekenOntvangenMadi)
-    {
-        $this->kentekenOntvangenMadi = $kentekenOntvangenMadi;
-    }
-
-    public function setKentekenOntvangenGka($kentekenOntvangenGka)
-    {
-        $this->kentekenOntvangenGka = $kentekenOntvangenGka;
-    }
-
-    public function setKentekenNvt($kentekenNvt)
-    {
-        $this->kentekenNvt = $kentekenNvt;
-    }
-
     public function setVerklaringWerkgeverOntvangenMadi($verklaringWerkgeverOntvangenMadi)
     {
         $this->verklaringWerkgeverOntvangenMadi = $verklaringWerkgeverOntvangenMadi;
@@ -2018,21 +1927,6 @@ class Voorlegger
     public function setWaternetNvt($waternetNvt)
     {
         $this->waternetNvt = $waternetNvt;
-    }
-
-    public function setKlantnummerZiggoOntvangenMadi($klantnummerZiggoOntvangenMadi)
-    {
-        $this->klantnummerZiggoOntvangenMadi = $klantnummerZiggoOntvangenMadi;
-    }
-
-    public function setKlantnummerZiggoOntvangenGka($klantnummerZiggoOntvangenGka)
-    {
-        $this->klantnummerZiggoOntvangenGka = $klantnummerZiggoOntvangenGka;
-    }
-
-    public function setKlantnummerZiggoNvt($klantnummerZiggoNvt)
-    {
-        $this->klantnummerZiggoNvt = $klantnummerZiggoNvt;
     }
 
     public function setRetourbewijsModemOntvangenMadi($retourbewijsModemOntvangenMadi)
