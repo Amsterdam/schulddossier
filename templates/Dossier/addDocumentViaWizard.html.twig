@@ -9,9 +9,70 @@
 <script src="/vendor/mrrio/jspdf/plugins/addimage.js"></script>
 <script src="/js/script.js"></script>
 <style>
-canvas {
-	border: 5px solid red;
+
+div.canvascontainer {
+	overflow: auto;
 }
+
+div#canvases {
+	margin: 0 5%;
+}
+
+div.canvascontainer canvas {
+	width: 100px;
+	border: 2px solid black;
+	margin: 5px;
+}
+
+.actief {
+	border: 2px solid red;
+}
+
+canvas#groot  {
+	width: 90%;
+	margin: 15px auto;
+	display: block;
+}
+
+main {
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+}
+
+section.naast input[type=file] {
+	display: none;
+}
+
+main h1 {
+	flex-basis: 100%;
+}
+
+main section.hoofd {
+	flex-basis: 60%;
+	max-width: 60%;
+	border: 1px solid;
+	flex-grow: 1;
+}
+
+main section.naast {
+	flex-basis: 30%;
+	border: 1px solid;
+}
+
+section.naast form {
+	margin: 10px;
+	border: 1px solid;
+}
+
+div.knoppenbalk {
+	margin: 10px;
+	display: flex;
+	justify-content: space-between;
+	
+}
+
+
 </style>
 <script>
 
@@ -27,42 +88,50 @@ window.onload = function () {
 }
 
 function makePDFInterface(URL) {
+	var scale = 3; // nog te bekijken
 
 
 	PDFJS.getDocument(URL).then(function (pdf) {
-		document.getElementById('numOfPages').textContent = pdf.numPages;
-
-		function fnShowPage (pageNum) {
-			pdf.getPage(pageNum).then(function (page) {
-
-
-				document.getElementById('page').textContent = pageNum;
-
-				var scale = 0.5;
+		var wr = $('canvases');
+		var pages = pdf.numPages;
+		$('canvases').style.width = 114*(pages) + 'px';
+		for (var i=1;i<=pages;i+=1) {
+			console.log(i);
+			pdf.getPage(i).then(function (page) {
+				var canvas = document.createElement('canvas');
 				var viewport = page.getViewport(scale);
-				var canvas = document.getElementById('the-canvas');
 				var context = canvas.getContext('2d');
-				canvas.height = viewport.height;
 				canvas.width = viewport.width;
+				canvas.height = viewport.height;
 
 				var renderContext = {
 					canvasContext: context,
 					viewport: viewport
 				};
 				page.render(renderContext);
+				wr.appendChild(canvas);
+				console.log(canvas.parentNode.nodeName);
 			});
 		}
-	
-		document.getElementById('page-selector').onchange = function (event) {
-			fnShowPage(parseInt(document.getElementById('page-selector').value));
-		} 
-	
-		fnShowPage(1);
-	
-	
 	});
+	var groteCanvas = $('groot');
+	var nieuweContext = groteCanvas.getContext('2d');
+	
+	$('canvases').onclick = function (e) {
+		var tgt = e.target;
+		if (tgt.nodeName === 'CANVAS') {
+			if (tgt.classList.contains('actief')) {
+				tgt.classList.remove('actief');
+			}
+			groteCanvas.width = e.target.width;
+			groteCanvas.height = e.target.height;
+			nieuweContext.drawImage(e.target,0,0); 
+			tgt.classList.add('actief');
+		}
+	}
 
 	document.getElementById('grab').onclick = function () {
+		return;
 		var img = document.createElement('img');
 		var imgData = document.getElementById('the-canvas').toDataURL("image/jpeg");
 		img.src = imgData;
@@ -73,20 +142,10 @@ function makePDFInterface(URL) {
 		newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
 		newPDF.addPage();
 		newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
-//		$('dossier_document_form_file').value = newPDF.output('datauristring');
 		var form = document.forms['dossier_document_form'];
 		console.log(typeof newPDF.output('blob'));
 		var data = new FormData(form);
 		data.append('dossier_document_form[document][file]',newPDF.output('blob'),$('completeDocument').value);
-		
-		/*
-		var entries = data.entries();
-		console.log(entries.next().value);
-		console.log(entries.next().value);
-		console.log(entries.next().value);
-		console.log(entries.next().value);
-		*/
-		
 		sendRequest(location.href,function (req) {
 			for (var i in req) {
 				console.log(i + ': ' + req[i]);
@@ -110,27 +169,36 @@ function $(id) {
     </header>
 	
 	<p class="kleinNav"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a></p>
+
+
 	<main>
     <h1>Voeg document toe aan dossier {{ dossier.clientNaam }}</h1>
-    <input type="file" id="completeDocument">
-    <hr>
-
-    <h2>Page <span id="page">?</span> of <span id="numOfPages">?</span></h2>
-    <canvas id="the-canvas"></canvas>
-    <select id="page-selector">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select>
     
-    <a id="grab" href="#grab">Grab the data from the canvas</a>
-    <table>
+    <section class="hoofd">    
+    <input type="file" id="completeDocument">
+    <div class="canvascontainer"><div id="canvases"></div></div>
+    <canvas id="groot"></canvas>
+    </section>
+    
+    <section class="naast">
     {{ form_start(form) }}
-    {{ form_row(form.onderwerp) }}
+    <table>
     {{ form_row(form.document.naam) }}
+    {{ form_row(form.onderwerp) }}
     </table>
+    
+    <div class="canvascontainer"><div class="uploadCanvases">x</div></div>
+    
+    <button class="upload primair">Dit als 1 document uploaden</button>
+    {{ form_widget(form.document.file) }}
     {{ form_end(form) }}
+    <div class="knoppenbalk">
+	<button class="secundair">Nieuw formulier</button>
+	<button class="secundair">Klaar</button>
+	</div>
+    </section>
+
+
 	</main>
 
 </body>
