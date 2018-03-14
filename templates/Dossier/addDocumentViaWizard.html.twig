@@ -73,12 +73,24 @@ function makePDFInterface(URL) {
 		newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
 		newPDF.addPage();
 		newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
-		$('dossier_document_form_file').value = newPDF.output('datauristring');
+//		$('dossier_document_form_file').value = newPDF.output('datauristring');
 		var form = document.forms['dossier_document_form'];
+		console.log(typeof newPDF.output('blob'));
 		var data = new FormData(form);
-		data.append('dossier_document_form[file]',newPDF.output('datauristring'),$('completeDocument').value);
-		sendRequest(location.href,function () {
-			console.log('Upload klaar');
+		data.append('dossier_document_form[document][file]',newPDF.output('blob'),$('completeDocument').value);
+		
+		/*
+		var entries = data.entries();
+		console.log(entries.next().value);
+		console.log(entries.next().value);
+		console.log(entries.next().value);
+		console.log(entries.next().value);
+		*/
+		
+		sendRequest(location.href,function (req) {
+			for (var i in req) {
+				console.log(i + ': ' + req[i]);
+			}
 		},data)
 	};
 }
@@ -118,7 +130,6 @@ function $(id) {
     {{ form_row(form.onderwerp) }}
     {{ form_row(form.document.naam) }}
     </table>
-    <input type="hidden" id="dossier_document_form_file" name="dossier_document_form[file]">
     {{ form_end(form) }}
 	</main>
 
