@@ -9,9 +9,22 @@
 <script src="/vendor/mrrio/jspdf/plugins/addimage.js"></script>
 <script src="/js/script.js"></script>
 <style>
-canvas {
-	border: 5px solid red;
+
+dic#canvases {
+	overflow: auto;
+	white-space: nowrap;
 }
+
+canvas {
+	width: 100px;
+	border: 2px solid black;
+	margin: 5px;
+}
+
+canvas#groot  {
+	width: 100%;
+}
+
 </style>
 <script>
 
@@ -27,40 +40,49 @@ window.onload = function () {
 }
 
 function makePDFInterface(URL) {
+	var scale = 3; // nog te bekijken
 
 
 	PDFJS.getDocument(URL).then(function (pdf) {
-		document.getElementById('numOfPages').textContent = pdf.numPages;
-
-		function fnShowPage (pageNum) {
-			pdf.getPage(pageNum).then(function (page) {
-
-
-				document.getElementById('page').textContent = pageNum;
-
-				var scale = 0.5;
+		var wr = $('canvases');
+		var pages = pdf.numPages;
+		for (var i=1;i<=pages;i+=1) {
+			console.log(i);
+			pdf.getPage(i).then(function (page) {
+				var canvas = document.createElement('canvas');
 				var viewport = page.getViewport(scale);
-				var canvas = document.getElementById('the-canvas');
+//				console.log(viewport);
+//				var canvas = document.getElementById('the-canvas');
 				var context = canvas.getContext('2d');
-				canvas.height = viewport.height;
 				canvas.width = viewport.width;
+				canvas.height = viewport.height;
 
 				var renderContext = {
 					canvasContext: context,
 					viewport: viewport
 				};
 				page.render(renderContext);
+				wr.appendChild(canvas);
+				console.log(canvas.parentNode.nodeName);
 			});
 		}
-	
-		document.getElementById('page-selector').onchange = function (event) {
-			fnShowPage(parseInt(document.getElementById('page-selector').value));
-		} 
-	
-		fnShowPage(1);
-	
-	
 	});
+	var groteCanvas = $('groot');
+	var nieuweContext = groteCanvas.getContext('2d');
+	
+	var oudeVergroting;
+	$('canvases').onclick = function (e) {
+		if (e.target.nodeName === 'CANVAS') {
+			if (oudeVergroting) {
+				oudeVergroting.style.border = '';
+			}
+			groteCanvas.width = e.target.width;
+			groteCanvas.height = e.target.height;
+			nieuweContext.drawImage(e.target,0,0);
+			e.target.style.border = '5px solid red';
+			oudeVergroting = e.target;
+		}
+	}
 
 	document.getElementById('grab').onclick = function () {
 		var img = document.createElement('img');
@@ -114,16 +136,13 @@ function $(id) {
     <h1>Voeg document toe aan dossier {{ dossier.clientNaam }}</h1>
     <input type="file" id="completeDocument">
     <hr>
-
-    <h2>Page <span id="page">?</span> of <span id="numOfPages">?</span></h2>
-    <canvas id="the-canvas"></canvas>
-    <select id="page-selector">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select>
+    <div id="canvases"></div>
+    <hr>
     
+    <canvas id="groot"></canvas>
+    
+    <hr>
+
     <a id="grab" href="#grab">Grab the data from the canvas</a>
     <table>
     {{ form_start(form) }}
