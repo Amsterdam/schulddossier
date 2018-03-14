@@ -29,7 +29,9 @@ class DocumentFormType extends AbstractType
             /** @var $entity Document */
             $entity = $event->getData();
             $entity->setUploadDatumTijd(new \DateTime());
-            $entity->setMd5Hash(md5($entity->getFile()->getRealPath()));
+            if ($entity->getFile() !== null) {
+                $entity->setMd5Hash(md5($entity->getFile()->getRealPath()));
+            }
         });
     }
 
