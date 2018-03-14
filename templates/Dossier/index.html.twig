@@ -15,6 +15,16 @@
     </header>
 
     <p class="kleineNav">&nbsp;</p>
+    
+{% for type, messages in app.flashes %}
+	{% for message in messages %}
+		<div class="flash-message flash-type-{{ type }}">
+			<a class="btn" href="#close-flash">x</a>
+			<span class="message">{{ message }}</span>
+		</div>
+	{% endfor %}
+{% endfor %}
+
 	<main>
     <h1>Dossiers</h1>
     <p><a class="primair" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}">Maak nieuw dossier aan</a></p>

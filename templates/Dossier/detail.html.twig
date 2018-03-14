@@ -14,20 +14,30 @@
 	<img src="/pix/logo_klein.svg">
 	<h2>Digitale voorlegger</h2>
 	<div>Ingelogd als: Petriculus Pucq <a href="#">(Uitloggen)</a></div>
-    </header>
+	</header>
 
 <p class="kleineNav">
-    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a> | 
-    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a> |
-    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id}) }}" method="post">
-        <select name="status">
-            <option value="madi" {{ dossier.status == 'madi' ? 'selected' }}>Dossier bij MADI</option>
-            <option value="gka" {{ dossier.status == 'gka' ? 'selected' }}>Dossier naar GKA</option>
-            <option value="gesloten" {{ dossier.status == 'gesloten' ? 'selected' }}>Dossier afgesloten</option>
-        </select>
-        <button type="submit">Status aanpassen</button>
-    </form>
+	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a> | 
+	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a> |
+	<form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id}) }}" method="post">
+		<select name="status">
+			<option value="madi" {{ dossier.status == 'madi' ? 'selected' }}>Dossier bij MADI</option>
+			<option value="gka" {{ dossier.status == 'gka' ? 'selected' }}>Dossier naar GKA</option>
+			<option value="gesloten" {{ dossier.status == 'gesloten' ? 'selected' }}>Dossier afgesloten</option>
+		</select>
+		<button type="submit">Status aanpassen</button>
+	</form>
 </p>
+
+{% for type, messages in app.flashes %}
+	{% for message in messages %}
+		<div class="flash-message flash-type-{{ type }}">
+			<a class="btn" href="#close-flash">x</a>
+			<span class="message">{{ message }}</span>
+		</div>
+	{% endfor %}
+{% endfor %}
+
 <main class="voorlegger">
 <h1>Voorlegger {{ dossier.clientNaam }}</h1>
 
