@@ -308,6 +308,9 @@ function findPos(obj) {
 window.schuldhulp = window.schuldhulp || {};
 
 window.schuldhulp.flashMessage = function (flashDom) {
+        window.setTimeout(function () {
+            flashDom.remove();
+        }, 9000);
         flashDom.querySelector('a[href="#close-flash"]').addEventListener('click', (function (event) {
             flashDom.remove();
             event.preventDefault();
