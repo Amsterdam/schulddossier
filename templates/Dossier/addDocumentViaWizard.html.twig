@@ -10,20 +10,68 @@
 <script src="/js/script.js"></script>
 <style>
 
-dic#canvases {
+div.canvascontainer {
 	overflow: auto;
-	white-space: nowrap;
 }
 
-canvas {
+div#canvases {
+	margin: 0 5%;
+}
+
+div.canvascontainer canvas {
 	width: 100px;
 	border: 2px solid black;
 	margin: 5px;
 }
 
-canvas#groot  {
-	width: 100%;
+.actief {
+	border: 2px solid red;
 }
+
+canvas#groot  {
+	width: 90%;
+	margin: 15px auto;
+	display: block;
+}
+
+main {
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+}
+
+section.naast input[type=file] {
+	display: none;
+}
+
+main h1 {
+	flex-basis: 100%;
+}
+
+main section.hoofd {
+	flex-basis: 60%;
+	max-width: 60%;
+	border: 1px solid;
+	flex-grow: 1;
+}
+
+main section.naast {
+	flex-basis: 30%;
+	border: 1px solid;
+}
+
+section.naast form {
+	margin: 10px;
+	border: 1px solid;
+}
+
+div.knoppenbalk {
+	margin: 10px;
+	display: flex;
+	justify-content: space-between;
+	
+}
+
 
 </style>
 <script>
@@ -46,13 +94,12 @@ function makePDFInterface(URL) {
 	PDFJS.getDocument(URL).then(function (pdf) {
 		var wr = $('canvases');
 		var pages = pdf.numPages;
+		$('canvases').style.width = 114*(pages) + 'px';
 		for (var i=1;i<=pages;i+=1) {
 			console.log(i);
 			pdf.getPage(i).then(function (page) {
 				var canvas = document.createElement('canvas');
 				var viewport = page.getViewport(scale);
-//				console.log(viewport);
-//				var canvas = document.getElementById('the-canvas');
 				var context = canvas.getContext('2d');
 				canvas.width = viewport.width;
 				canvas.height = viewport.height;
@@ -70,21 +117,21 @@ function makePDFInterface(URL) {
 	var groteCanvas = $('groot');
 	var nieuweContext = groteCanvas.getContext('2d');
 	
-	var oudeVergroting;
 	$('canvases').onclick = function (e) {
-		if (e.target.nodeName === 'CANVAS') {
-			if (oudeVergroting) {
-				oudeVergroting.style.border = '';
+		var tgt = e.target;
+		if (tgt.nodeName === 'CANVAS') {
+			if (tgt.classList.contains('actief')) {
+				tgt.classList.remove('actief');
 			}
 			groteCanvas.width = e.target.width;
 			groteCanvas.height = e.target.height;
-			nieuweContext.drawImage(e.target,0,0);
-			e.target.style.border = '5px solid red';
-			oudeVergroting = e.target;
+			nieuweContext.drawImage(e.target,0,0); 
+			tgt.classList.add('actief');
 		}
 	}
 
 	document.getElementById('grab').onclick = function () {
+		return;
 		var img = document.createElement('img');
 		var imgData = document.getElementById('the-canvas').toDataURL("image/jpeg");
 		img.src = imgData;
@@ -95,20 +142,10 @@ function makePDFInterface(URL) {
 		newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
 		newPDF.addPage();
 		newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
-//		$('dossier_document_form_file').value = newPDF.output('datauristring');
 		var form = document.forms['dossier_document_form'];
 		console.log(typeof newPDF.output('blob'));
 		var data = new FormData(form);
 		data.append('dossier_document_form[document][file]',newPDF.output('blob'),$('completeDocument').value);
-		
-		/*
-		var entries = data.entries();
-		console.log(entries.next().value);
-		console.log(entries.next().value);
-		console.log(entries.next().value);
-		console.log(entries.next().value);
-		*/
-		
 		sendRequest(location.href,function (req) {
 			for (var i in req) {
 				console.log(i + ': ' + req[i]);
@@ -132,24 +169,36 @@ function $(id) {
     </header>
 	
 	<p class="kleinNav"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a></p>
+
+
 	<main>
     <h1>Voeg document toe aan dossier {{ dossier.clientNaam }}</h1>
+    
+    <section class="hoofd">    
     <input type="file" id="completeDocument">
-    <hr>
-    <div id="canvases"></div>
-    <hr>
-    
+    <div class="canvascontainer"><div id="canvases"></div></div>
     <canvas id="groot"></canvas>
+    </section>
     
-    <hr>
-
-    <a id="grab" href="#grab">Grab the data from the canvas</a>
-    <table>
+    <section class="naast">
     {{ form_start(form) }}
-    {{ form_row(form.onderwerp) }}
+    <table>
     {{ form_row(form.document.naam) }}
+    {{ form_row(form.onderwerp) }}
     </table>
+    
+    <div class="canvascontainer"><div class="uploadCanvases">x</div></div>
+    
+    <button class="upload primair">Dit als 1 document uploaden</button>
+    {{ form_widget(form.document.file) }}
     {{ form_end(form) }}
+    <div class="knoppenbalk">
+	<button class="secundair">Nieuw formulier</button>
+	<button class="secundair">Klaar</button>
+	</div>
+    </section>
+
+
 	</main>
 
 </body>
