@@ -43,6 +43,8 @@
 	<tr>
 		<td>Schuldhulpbureau</td>
 		<td>{{ dossier.schuldhulpbureau }}</td>
+		<td>Datum aanmaak dossier</td>
+		<td>{{ dossier.aanmaakDatumTijd|date('d-m-Y') }}</td>
 	</tr>
 	{{ form_row(form.teamGka)}}
 	{{ form_row(form.regasNummer)}}

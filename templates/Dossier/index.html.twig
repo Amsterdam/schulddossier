@@ -27,6 +27,7 @@
                 <th>MaDi</th>
                 <th>Regas</th>
                 <th>Allegro</th>
+                <th>Aanmaak datum dossier</th>
             </tr>
         </thead>
         <tbody>
@@ -35,20 +36,15 @@
                 <td><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a></td>
                 <td>{{ dossier.schuldhulpbureau }}</td>
                 <td class="nummer">
-                {% if dossier.regasNummer is empty %}
-                    -
-                {% else %}    
-                    {{ dossier.regasNummer }} 
-                {% endif %}                
+                    {{ dossier.regasNummer|default('-') }} 
                 </td>
                 <td class="nummer">
-                {% if dossier.allegroNummer is empty %}
-                    -
-                {% else %}    
-                    {{ dossier.allegroNummer }} 
-                {% endif %}
+                    {{ dossier.allegroNummer|default('-') }} 
                 </td>
-            </tr>        
+                <td class="datum">
+                    {{ dossier.aanmaakDatumTijd|date('d-m-Y') }}
+                </td>
+            </tr>
 {% endfor %}
        </tbody>
     </table>
