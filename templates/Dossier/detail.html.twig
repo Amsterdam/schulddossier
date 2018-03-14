@@ -21,7 +21,7 @@
 	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a> |
 	<form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id}) }}" method="post">
 		<select name="status">
-			<option value="madi" {{ dossier.status == 'madi' ? 'selected' }}>Dossier bij MADI</option>
+			<option value="madi" {{ dossier.status == 'madi' ? 'selected' }}>Dossier bij MaDi</option>
 			<option value="gka" {{ dossier.status == 'gka' ? 'selected' }}>Dossier naar GKA</option>
 			<option value="gesloten" {{ dossier.status == 'gesloten' ? 'selected' }}>Dossier afgesloten</option>
 		</select>
@@ -51,7 +51,7 @@
 	</tr>
 {% endif %}
 	<tr>
-		<td>MADI medewerker</td>
+		<td>MaDi medewerker</td>
 		<td>{{ dossier.aanmaker.naam }}</td>
 	</tr>
 	<tr>
