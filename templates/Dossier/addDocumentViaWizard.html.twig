@@ -5,6 +5,13 @@
 <meta name="viewport" content="width = device-width">
 <link rel="stylesheet" href="/css/styles.css">
 <script src="/vendor/mozilla/pdf.js/build/pdf.js"></script>
+<script src="/jsPDF/jsPDF-1.3.2/jspdf.js"></script>
+<script src="/jsPDF/jsPDF-1.3.2/plugins/addimage.js"></script>
+<style>
+canvas {
+	border: 5px solid red;
+}
+</style>
 <script>
 
 window.onload = function () {
@@ -13,6 +20,9 @@ window.onload = function () {
 		var URL = window.URL.createObjectURL(this.files[0]);
 		makePDFInterface(URL);
 	}
+	
+//	console.log(jsPDF);
+	
 }
 
 function makePDFInterface(URL) {
@@ -21,21 +31,8 @@ function makePDFInterface(URL) {
 	PDFJS.getDocument(URL).then(function (pdf) {
 		document.getElementById('numOfPages').textContent = pdf.numPages;
 
-		console.log('PDF API');
-		for (var i in pdf) {
-			if (typeof pdf[i] === 'function')
-				console.log(i); // + ': ' + pdf[i]);	
-		}
-	
 		function fnShowPage (pageNum) {
 			pdf.getPage(pageNum).then(function (page) {
-
-			console.log('');
-			console.log('Page API');
-			for (var i in pdf) {
-				if (typeof pdf[i] === 'function')
-					console.log(i); // + ': ' + pdf[i]);	
-			}
 
 
 				document.getElementById('page').textContent = pageNum;
@@ -65,7 +62,20 @@ function makePDFInterface(URL) {
 	});
 
 	document.getElementById('grab').onclick = function () {
-		document.getElementById('the-content').textContent = document.getElementById('the-canvas').toDataURL("image/jpeg");
+		var img = document.createElement('img');
+		var imgData = document.getElementById('the-canvas').toDataURL("image/jpeg");
+		img.src = imgData;
+		document.body.appendChild(img);
+		
+		var newPDF = new jsPDF();
+		
+		newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
+		newPDF.addPage();
+		newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
+		var PDFFile = new File(newPDF);
+		console.log(PDFFile);
+		
+
 	};
 }
 
