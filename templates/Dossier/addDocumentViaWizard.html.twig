@@ -4,18 +4,107 @@
 <title>Voeg document toe aan dossier</title>
 <meta name="viewport" content="width = device-width">
 <link rel="stylesheet" href="/css/styles.css">
+<script src="/vendor/mozilla/pdf.js/build/pdf.js"></script>
+<script>
+
+window.onload = function () {
+	
+	$('dossier_document_form_document_file').onchange = function () {
+		var URL = window.URL.createObjectURL(this.files[0]);
+		makePDFInterface(URL);
+	}
+}
+
+function makePDFInterface(URL) {
+
+
+	PDFJS.getDocument(URL).then(function (pdf) {
+		document.getElementById('numOfPages').textContent = pdf.numPages;
+
+		console.log('PDF API');
+		for (var i in pdf) {
+			if (typeof pdf[i] === 'function')
+				console.log(i); // + ': ' + pdf[i]);	
+		}
+	
+		function fnShowPage (pageNum) {
+			pdf.getPage(pageNum).then(function (page) {
+
+			console.log('');
+			console.log('Page API');
+			for (var i in pdf) {
+				if (typeof pdf[i] === 'function')
+					console.log(i); // + ': ' + pdf[i]);	
+			}
+
+
+				document.getElementById('page').textContent = pageNum;
+
+				var scale = 0.5;
+				var viewport = page.getViewport(scale);
+				var canvas = document.getElementById('the-canvas');
+				var context = canvas.getContext('2d');
+				canvas.height = viewport.height;
+				canvas.width = viewport.width;
+
+				var renderContext = {
+					canvasContext: context,
+					viewport: viewport
+				};
+				page.render(renderContext);
+			});
+		}
+	
+		document.getElementById('page-selector').onchange = function (event) {
+			fnShowPage(parseInt(document.getElementById('page-selector').value));
+		} 
+	
+		fnShowPage(1);
+	
+	
+	});
+
+	document.getElementById('grab').onclick = function () {
+		document.getElementById('the-content').textContent = document.getElementById('the-canvas').toDataURL("image/jpeg");
+	};
+}
+
+function $(id) {
+	return document.getElementById(id);
+}
+
+</script>
 </head>
 
-<body class="create">
+<body>
     <header>
     <h1>Voeg document toe aan dossier {{ dossier.clientNaam }}</h1>
     <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a></p>
     </header>
+    <table>
     {{ form_start(form) }}
     {{ form_row(form.onderwerp) }}
     {{ form_row(form.document.file) }}
     {{ form_row(form.document.naam) }}
+    </table>
     <p><input type="submit" value="Document toevoegen"></p>
     {{ form_end(form) }}
 </body>
+
+    <h2>Page <span id="page">?</span> of <span id="numOfPages">?</span></h2>
+    <canvas id="the-canvas"></canvas>
+    <select id="page-selector">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    
+    <a id="grab" href="#grab">Grab the data from the canvas</a>
+    <textarea id="the-content"></textarea>
+    
+    <script>
+    </script>
+
+
 </html>
