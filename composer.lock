@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b54c9939a6b11ff48c942f9d123c69a",
+    "content-hash": "932bd00416bacccd2b512b921115f472",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1481,6 +1481,17 @@
             "type": "library"
         },
         {
+            "name": "mrrio/jspdf",
+            "version": "1.3.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/MrRio/jsPDF/archive/v1.3.5.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
             "name": "nimbusoft/flysystem-openstack-swift",
             "version": "0.2.1",
             "source": {
@@ -1657,16 +1668,16 @@
         },
         {
             "name": "php-opencloud/openstack",
-            "version": "v3.0.4",
+            "version": "v3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-opencloud/openstack.git",
-                "reference": "92109146fb6f4168afc5a27dfdc6f2c8317a0e29"
+                "reference": "2883c92cdfe05d4a11533497c2b74cc018c7cf0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-opencloud/openstack/zipball/92109146fb6f4168afc5a27dfdc6f2c8317a0e29",
-                "reference": "92109146fb6f4168afc5a27dfdc6f2c8317a0e29",
+                "url": "https://api.github.com/repos/php-opencloud/openstack/zipball/2883c92cdfe05d4a11533497c2b74cc018c7cf0b",
+                "reference": "2883c92cdfe05d4a11533497c2b74cc018c7cf0b",
                 "shasum": ""
             },
             "require": {
@@ -1676,11 +1687,11 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.9",
-                "jakub-onderka/php-parallel-lint": "0.*",
+                "jakub-onderka/php-parallel-lint": "^1.0",
                 "phpunit/phpunit": "^6.5",
-                "psr/log": "~1.0",
+                "psr/log": "^1.0",
                 "sami/sami": "dev-master",
-                "satooshi/php-coveralls": "~1.0"
+                "satooshi/php-coveralls": "^2.0"
             },
             "type": "library",
             "extra": {
@@ -1717,7 +1728,7 @@
                 "php",
                 "sdk"
             ],
-            "time": "2018-02-16T08:28:10+00:00"
+            "time": "2018-03-13T10:03:02+00:00"
         },
         {
             "name": "psr/cache",
@@ -3345,16 +3356,16 @@
         },
         {
             "name": "symfony/maker-bundle",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "ba427289009de6f0fd51fb51186eeaa70ab3a33d"
+                "reference": "9db72995231c12c701249f07743c0591ccf70e73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/ba427289009de6f0fd51fb51186eeaa70ab3a33d",
-                "reference": "ba427289009de6f0fd51fb51186eeaa70ab3a33d",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/9db72995231c12c701249f07743c0591ccf70e73",
+                "reference": "9db72995231c12c701249f07743c0591ccf70e73",
                 "shasum": ""
             },
             "require": {
@@ -3401,7 +3412,7 @@
                 "scaffold",
                 "scaffolding"
             ],
-            "time": "2018-02-21T19:43:12+00:00"
+            "time": "2018-03-14T01:02:47+00:00"
         },
         {
             "name": "symfony/monolog-bridge",
