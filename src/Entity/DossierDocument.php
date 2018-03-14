@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -29,6 +30,7 @@ class DossierDocument
      * @var Document
      * @ORM\ManyToOne(targetEntity="Document", cascade={"persist"}, fetch="EAGER")
      * @ORM\JoinColumn(name="document_id", referencedColumnName="id", nullable=false)
+     * @Assert\Valid
      */
     private $document;
 
