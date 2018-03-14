@@ -25,7 +25,7 @@ div.canvascontainer canvas {
 }
 
 .actief {
-	border: 2px solid red;
+	border: 2px solid red !important;
 }
 
 canvas#groot  {
@@ -77,61 +77,97 @@ div.knoppenbalk {
 <script>
 
 window.onload = function () {
-	
-	$('completeDocument').onchange = function () {
-		var URL = window.URL.createObjectURL(this.files[0]);
-		makePDFInterface(URL);
-	}
-	
-//	console.log(jsPDF);
-	
+	maakUploadWizard();
 }
 
-function makePDFInterface(URL) {
+function maakUploadWizard() {
 	var scale = 3; // nog te bekijken
 
-
-	PDFJS.getDocument(URL).then(function (pdf) {
-		var wr = $('canvases');
-		var pages = pdf.numPages;
-		$('canvases').style.width = 114*(pages) + 'px';
-		for (var i=1;i<=pages;i+=1) {
-			console.log(i);
-			pdf.getPage(i).then(function (page) {
-				var canvas = document.createElement('canvas');
-				var viewport = page.getViewport(scale);
-				var context = canvas.getContext('2d');
-				canvas.width = viewport.width;
-				canvas.height = viewport.height;
-
-				var renderContext = {
-					canvasContext: context,
-					viewport: viewport
-				};
-				page.render(renderContext);
-				wr.appendChild(canvas);
-				console.log(canvas.parentNode.nodeName);
-			});
-		}
-	});
-	var groteCanvas = $('groot');
-	var nieuweContext = groteCanvas.getContext('2d');
+	$('completeDocument').onchange = function () {
+		var URL = window.URL.createObjectURL(this.files[0]);
+		laadPDF(URL);
+	}
 	
-	$('canvases').onclick = function (e) {
-		var tgt = e.target;
-		if (tgt.nodeName === 'CANVAS') {
-			if (tgt.classList.contains('actief')) {
-				tgt.classList.remove('actief');
+	function laadPDF(URL) {
+		PDFJS.getDocument(URL).then(function (pdf) {
+			var wr = $('canvases');
+			var pages = pdf.numPages;
+			$('canvases').style.width = 114*(pages) + 'px';
+			for (var i=1;i<=pages;i+=1) {
+				pdf.getPage(i).then(function (page) {
+					var canvas = document.createElement('canvas');
+					canvas.id = 'id'+page.pageIndex;
+					var viewport = page.getViewport(scale);
+					var context = canvas.getContext('2d');
+					canvas.width = viewport.width;
+					canvas.height = viewport.height;
+
+					var renderContext = {
+						canvasContext: context,
+						viewport: viewport
+					};
+					page.render(renderContext);
+					wr.appendChild(canvas);
+				});
 			}
-			groteCanvas.width = e.target.width;
-			groteCanvas.height = e.target.height;
-			nieuweContext.drawImage(e.target,0,0); 
-			tgt.classList.add('actief');
+		});
+		var groteCanvas = $('groot');
+		var nieuweContext = groteCanvas.getContext('2d');
+	
+		$('canvases').onclick = function (e) {
+			var tgt = e.target;
+			if (tgt.nodeName === 'CANVAS') {
+				if (tgt.classList.contains('actief')) {
+					tgt.classList.remove('actief');
+				}
+				groteCanvas.width = e.target.width;
+				groteCanvas.height = e.target.height;
+				nieuweContext.drawImage(e.target,0,0); 
+				tgt.classList.add('actief');
+				if (actiefFormulier) {
+					var nieuwID = e.target.id + 'copy';
+					console.log(nieuwID);
+					var canvas;
+					if ($(nieuwID)) {
+						canvas = $(nieuwID);
+					} else {
+						canvas = document.createElement('canvas');
+						var thumbContext = canvas.getContext('2d');
+						canvas.width = e.target.width;
+						canvas.height = e.target.height;
+						thumbContext.drawImage(e.target,0,0);
+						canvas.id = nieuwID;
+					}
+					actiefFormulier.querySelector('.uploadCanvases').appendChild(canvas);
+				}
+			}
 		}
 	}
+	
+	var actiefFormulier;
+	
+	$('nieuwForm').onclick = function () {
+		var newForm = $('templateForm').cloneNode(true);
+		newForm.id = '';
+		newForm.querySelector('.activeer').onclick = function () {
+			if (actiefFormulier) {
+				actiefFormulier.classList.remove('actief');
+			}
+			if (actiefFormulier === newForm) {
+				actiefFormulier = null;
+				return false;
+			}
+			actiefFormulier = newForm;
+			newForm.uploadList = {};
+			newForm.classList.add('actief');
+			return false;
+		}
+		$('insertForm').parentNode.insertBefore(newForm,$('insertForm'))
+	}
+	$('nieuwForm').onclick();
 
-	document.getElementById('grab').onclick = function () {
-		return;
+	return;
+	$('grab').onclick = function () {
 		var img = document.createElement('img');
 		var imgData = document.getElementById('the-canvas').toDataURL("image/jpeg");
 		img.src = imgData;
@@ -181,25 +217,26 @@ function $(id) {
     </section>
     
     <section class="naast">
-    {{ form_start(form) }}
-    <table>
-    {{ form_row(form.document.naam) }}
-    {{ form_row(form.onderwerp) }}
-    </table>
-    
-    <div class="canvascontainer"><div class="uploadCanvases">x</div></div>
-    
-    <button class="upload primair">Dit als 1 document uploaden</button>
-    {{ form_widget(form.document.file) }}
-    {{ form_end(form) }}
-    <div class="knoppenbalk">
-	<button class="secundair">Nieuw formulier</button>
+    <div class="knoppenbalk" id="insertForm">
+	<button class="secundair" id="nieuwForm">Nieuw formulier</button>
 	<button class="secundair">Klaar</button>
 	</div>
     </section>
 
 
 	</main>
+	
+    {{ form_start(form,{attr: {id:'templateForm'}}) }}
+    <table>
+    {{ form_row(form.document.naam) }}
+    {{ form_row(form.onderwerp) }}
+    </table>    
+    <div class="canvascontainer"><div class="uploadCanvases"></div></div>
+    <div class="knoppenbalk">
+    <button class="secundair activeer">Maak actief formulier</button><button class="upload primair">Dit uploaden</button>
+    </div>
+    {{ form_widget(form.document.file) }}
+    {{ form_end(form) }}
 
 </body>
 </html>
