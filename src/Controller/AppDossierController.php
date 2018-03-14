@@ -59,6 +59,7 @@ class AppDossierController extends Controller
         $dossier = new Dossier();
         $dossier->setAanmaker($this->getUser());
         $dossier->setDossierTemplate('v1');
+        $dossier->setStatus(Dossier::STATUS_MADI);
         $form = $this->createForm(CreateDossierFormType::class, $dossier);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
