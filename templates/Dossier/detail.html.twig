@@ -18,11 +18,18 @@
 
 <p class="kleineNav">
     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a> | 
-    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a>
+    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a> |
+    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id}) }}" method="post">
+        <select name="status">
+            <option value="madi" {{ dossier.status == 'madi' ? 'selected' }}>Dossier bij MADI</option>
+            <option value="gka" {{ dossier.status == 'gka' ? 'selected' }}>Dossier naar GKA</option>
+            <option value="gesloten" {{ dossier.status == 'gesloten' ? 'selected' }}>Dossier afgesloten</option>
+        </select>
+        <button type="submit">Status aanpassen</button>
+    </form>
 </p>
 <main class="voorlegger">
 <h1>Voorlegger {{ dossier.clientNaam }}</h1>
-
 
 {{ form_start(form) }}
 
@@ -34,8 +41,14 @@
 	</tr>
 {% endif %}
 	<tr>
+		<td>MADI medewerker</td>
+		<td>{{ dossier.aanmaker.naam }}</td>
+	</tr>
+	<tr>
 		<td>Schuldhulpbureau</td>
 		<td>{{ dossier.schuldhulpbureau }}</td>
+		<td>Datum aanmaak dossier</td>
+		<td>{{ dossier.aanmaakDatumTijd|date('d-m-Y') }}</td>
 	</tr>
 	{{ form_row(form.teamGka)}}
 	{{ form_row(form.regasNummer)}}
