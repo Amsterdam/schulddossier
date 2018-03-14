@@ -15,6 +15,10 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Dossier
 {
+    const STATUS_MADI = 'madi';
+    const STATUS_GKA = 'gka';
+    const STATUS_GESLOTEN = 'gesloten';
+
     /**
      * @var integer
      * @ORM\Id
@@ -28,6 +32,12 @@ class Dossier
      * @ORM\Column(type="string", length=25, nullable=false)
      */
     private $dossierTemplate;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=25, nullable=false)
+     */
+    private $status;
 
     /**
      * @var string
@@ -124,6 +134,11 @@ class Dossier
         return $this->dossierTemplate;
     }
 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
     public function getClientNaam()
     {
         return $this->clientNaam;
@@ -187,6 +202,11 @@ class Dossier
     public function setDossierTemplate($dossierTemplate)
     {
         $this->dossierTemplate = $dossierTemplate;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 
     public function setClientNaam($clientNaam)
@@ -301,5 +321,14 @@ class Dossier
         if ($document->getDossier() !== $this) {
             $document->setDossier($this);
         }
+    }
+
+    public static function getStatussen()
+    {
+        return [
+            self::STATUS_MADI => self::STATUS_MADI,
+            self::STATUS_GKA => self::STATUS_GKA,
+            self::STATUS_GESLOTEN => self::STATUS_GESLOTEN
+        ];
     }
 }
