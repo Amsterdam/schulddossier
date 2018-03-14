@@ -5,8 +5,9 @@
 <meta name="viewport" content="width = device-width">
 <link rel="stylesheet" href="/css/styles.css">
 <script src="/vendor/mozilla/pdf.js/build/pdf.js"></script>
-<script src="/jsPDF/jsPDF-1.3.2/jspdf.js"></script>
-<script src="/jsPDF/jsPDF-1.3.2/plugins/addimage.js"></script>
+<script src="/vendor/mrrio/jspdf/jspdf.js"></script>
+<script src="/vendor/mrrio/jspdf/plugins/addimage.js"></script>
+<script src="/js/script.js"></script>
 <style>
 canvas {
 	border: 5px solid red;
@@ -16,7 +17,7 @@ canvas {
 
 window.onload = function () {
 	
-	$('dossier_document_form_document_file').onchange = function () {
+	$('completeDocument').onchange = function () {
 		var URL = window.URL.createObjectURL(this.files[0]);
 		makePDFInterface(URL);
 	}
@@ -72,10 +73,13 @@ function makePDFInterface(URL) {
 		newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
 		newPDF.addPage();
 		newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
-		var PDFFile = new File(newPDF);
-		console.log(PDFFile);
-		
-
+		$('dossier_document_form_file').value = newPDF.output('datauristring');
+		var form = document.forms['dossier_document_form'];
+		var data = new FormData(form);
+		data.append('dossier_document_form[file]',newPDF.output('datauristring'),$('completeDocument').value);
+		sendRequest(location.href,function () {
+			console.log('Upload klaar');
+		},data)
 	};
 }
 
@@ -87,19 +91,17 @@ function $(id) {
 </head>
 
 <body>
-    <header>
-    <h1>Voeg document toe aan dossier {{ dossier.clientNaam }}</h1>
-    <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a></p>
+	<header>
+	<img src="/pix/logo_klein.svg">
+	<h2>Digitale voorlegger</h2>
+	<div>Ingelogd als: Petriculus Pucq <a href="#">(Uitloggen)</a></div>
     </header>
-    <table>
-    {{ form_start(form) }}
-    {{ form_row(form.onderwerp) }}
-    {{ form_row(form.document.file) }}
-    {{ form_row(form.document.naam) }}
-    </table>
-    <p><input type="submit" value="Document toevoegen"></p>
-    {{ form_end(form) }}
-</body>
+	
+	<p class="kleinNav"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a></p>
+	<main>
+    <h1>Voeg document toe aan dossier {{ dossier.clientNaam }}</h1>
+    <input type="file" id="completeDocument">
+    <hr>
 
     <h2>Page <span id="page">?</span> of <span id="numOfPages">?</span></h2>
     <canvas id="the-canvas"></canvas>
@@ -111,10 +113,14 @@ function $(id) {
     </select>
     
     <a id="grab" href="#grab">Grab the data from the canvas</a>
-    <textarea id="the-content"></textarea>
-    
-    <script>
-    </script>
+    <table>
+    {{ form_start(form) }}
+    {{ form_row(form.onderwerp) }}
+    {{ form_row(form.document.naam) }}
+    </table>
+    <input type="hidden" id="dossier_document_form_file" name="dossier_document_form[file]">
+    {{ form_end(form) }}
+	</main>
 
-
+</body>
 </html>
