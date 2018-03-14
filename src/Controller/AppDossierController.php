@@ -160,6 +160,17 @@ class AppDossierController extends Controller
 
         $form = $this->createForm(DossierDocumentFormType::class, $dossierDocument);
         $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $dossierDocument->setDossier($dossier);
+            $dossierDocument->getDocument()->setUploader($this->getUser());
+            $dossierDocument->getDocument()->setMainTag('dossier-' . $dossier->getId());
+            $dossierDocument->getDocument()->setGroep('dossier');
+            $em->persist($dossierDocument);
+            $em->flush();
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(['status' => 'OK', 'url' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', ['dossierId' => $dossier->getId(), 'documentId' => $dossierDocument->getDocument()->getId()]) ]);
+            }
+        }
 
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse(['status' => 'ERROR']);
