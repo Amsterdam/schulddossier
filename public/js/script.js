@@ -1,6 +1,4 @@
 
-var docs=
-
 document.addEventListener("DOMContentLoaded", function(event) {
 	if (document.querySelector('main.voorlegger')) {
 		autoSave();
