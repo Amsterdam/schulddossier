@@ -709,6 +709,12 @@ class Voorlegger
      */
     private $gereserveerdeGeldenNvt;
 
+    /**
+     * @var float
+     * @ORM\Column(type="decimal", nullable=true, precision=5, scale=2)
+     */
+    private $gereserveerdeGelden;
+
     // ---
 
     /**
@@ -827,7 +833,7 @@ class Voorlegger
         $this->legitimatieOntvangenMadi = false;
         $this->vtlbMadi = false;
         $this->vtlbGka = false;
-        $this->vtlbBedrag = 0;
+        $this->vtlbBedrag = 0.00;
         $this->inkomstenspecificatieOntvangenMadi = false;
         $this->inkomstenspecificatieOntvangenGka = false;
         $this->arbeidsovereenkomstOntvangenMadi = false;
@@ -923,6 +929,7 @@ class Voorlegger
         $this->gereserveerdeGeldenOntvangenMadi = false;
         $this->gereserveerdeGeldenOntvangenGka = false;
         $this->gereserveerdeGeldenNvt = false;
+        $this->gereserveerdeGelden = 0.00;
         $this->ondertekendAanvraagFormulierOntvangenMadi = false;
         $this->ondertekendAanvraagFormulierOntvangenGka = false;
     }
@@ -1448,6 +1455,11 @@ class Voorlegger
     public function isGereserveerdeGeldenNvt()
     {
         return $this->gereserveerdeGeldenNvt;
+    }
+
+    public function getGereserveerdeGelden()
+    {
+        return $this->gereserveerdeGelden;
     }
 
     public function isOndertekendAanvraagFormulierOntvangenMadi()
@@ -2062,6 +2074,11 @@ class Voorlegger
     public function setGereserveerdeGeldenNvt($gereserveerdeGeldenNvt)
     {
         $this->gereserveerdeGeldenNvt = $gereserveerdeGeldenNvt;
+    }
+
+    public function setGereserveerdeGelden($gereserveerdeGelden)
+    {
+        $this->gereserveerdeGelden = $gereserveerdeGelden;
     }
 
     public function setOndertekendAanvraagFormulierOntvangenMadi($ondertekendAanvraagFormulierOntvangenMadi)
