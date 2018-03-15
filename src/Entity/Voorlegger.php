@@ -703,13 +703,13 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $ondertekendAanvraagFormulierMadi;
+    private $ondertekendAanvraagFormulierOntvangenMadi;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $ondertekendAanvraagFormulierGka;
+    private $ondertekendAanvraagFormulierOntvangenGka;
 
     // ---
 
@@ -909,8 +909,8 @@ class Voorlegger
         $this->gereserveerdeGeldenOntvangenMadi = false;
         $this->gereserveerdeGeldenOntvangenGka = false;
         $this->gereserveerdeGeldenNvt = false;
-        $this->ondertekendAanvraagFormulierMadi = false;
-        $this->ondertekendAanvraagFormulierGka = false;
+        $this->ondertekendAanvraagFormulierOntvangenMadi = false;
+        $this->ondertekendAanvraagFormulierOntvangenGka = false;
     }
 
     public function getId()
@@ -1426,14 +1426,14 @@ class Voorlegger
         return $this->gereserveerdeGeldenNvt;
     }
 
-    public function isOndertekendAanvraagFormulierMadi()
+    public function isOndertekendAanvraagFormulierOntvangenMadi()
     {
-        return $this->ondertekendAanvraagFormulierMadi;
+        return $this->ondertekendAanvraagFormulierOntvangenMadi;
     }
 
-    public function isOndertekendAanvraagFormulierGka()
+    public function isOndertekendAanvraagFormulierOntvangenGka()
     {
-        return $this->ondertekendAanvraagFormulierGka;
+        return $this->ondertekendAanvraagFormulierOntvangenGka;
     }
 
     public function getAanvullendeInformatie()
@@ -2030,14 +2030,14 @@ class Voorlegger
         $this->gereserveerdeGeldenNvt = $gereserveerdeGeldenNvt;
     }
 
-    public function setOndertekendAanvraagFormulierMadi($ondertekendAanvraagFormulierMadi)
+    public function setOndertekendAanvraagFormulierOntvangenMadi($ondertekendAanvraagFormulierOntvangenMadi)
     {
-        $this->ondertekendAanvraagFormulierMadi = $ondertekendAanvraagFormulierMadi;
+        $this->ondertekendAanvraagFormulierOntvangenMadi = $ondertekendAanvraagFormulierOntvangenMadi;
     }
 
-    public function setOndertekendAanvraagFormulierGka($ondertekendAanvraagFormulierGka)
+    public function setOndertekendAanvraagFormulierOntvangenGka($ondertekendAanvraagFormulierOntvangenGka)
     {
-        $this->ondertekendAanvraagFormulierGka = $ondertekendAanvraagFormulierGka;
+        $this->ondertekendAanvraagFormulierOntvangenGka = $ondertekendAanvraagFormulierOntvangenGka;
     }
 
     public function setAanvullendeInformatie($aanvullendeInformatie)

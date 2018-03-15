@@ -381,11 +381,11 @@ class VoorleggerFormType extends AbstractType
         $builder->add('gereserveerdeGeldenNvt', CheckboxType::class, [
             'required' => false
         ]);
-        $builder->add('ondertekendAanvraagFormulierMadi', CheckboxType::class, [
+        $builder->add('ondertekendAanvraagFormulierOntvangenMadi', CheckboxType::class, [
             'required' => false,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('ondertekendAanvraagFormulierGka', CheckboxType::class, [
+        $builder->add('ondertekendAanvraagFormulierOntvangenGka', CheckboxType::class, [
             'required' => false,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
