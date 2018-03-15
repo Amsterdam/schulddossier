@@ -197,7 +197,7 @@ body.create p {
 body.create label {
 	display: block;
 	width: 400px;
-}	
+}
 
 body.create input,body.create select {
 	float: right;
@@ -257,6 +257,7 @@ main.voorlegger table.main input[type=checkbox] {
 	width: 16px;
 	height: 16px;
 	vertical-align: middle;
+	cursor: pointer;
 }
 
 main.voorlegger table.main td:first-child {
@@ -314,7 +315,17 @@ main.voorlegger table.main label.upload {
 	float: right;
 	margin-right: 30px;
 	margin-top: 5px;
+	cursor: pointer;
 /*	visibility: hidden; */
+}
+
+main.voorlegger table.main label.upload:hover {
+	text-decoration: underline;
+}
+main.voorlegger table.main label.upload:hover span {
+   /* Deze span zou on-hover niet underlined moeten zijn, maar
+	 text-decoration: none;
+	 werkt niet */
 }
 
 main.voorlegger table.main td:hover label.upload {
@@ -326,16 +337,16 @@ main.voorlegger table.main label.upload input[type=file] {
 }
 
 main.voorlegger table.main label.upload span {
-	background-color: #9b9b9b;
-	color: white;
-	padding: 3px;
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border: 1px solid;
+	/* background-color: #9b9b9b; */
+	color: #9b9b9b;
+	/* padding: 3px; */
+	/* display: inline-block; */
+	/* width: 15px;
+	height: 15px; */
+	/* border: 1px solid; */
 	text-align: center;
 	font-size: 18px;
-	line-height: 15px;
+	/* line-height: 15px; */
 	border-radius: 15px;
 	position: relative;
 	top: 2px;
@@ -574,13 +585,13 @@ p#autoSaveBevestig {
 		margin-left: -10px;
 		margin-right: -10px;
 		margin-bottom: 20px;
-		padding: 10px;	
+		padding: 10px;
 	}
 	body.create label {
 		display: block;
 		width: 100%;
 		overflow: auto;
-	}	
+	}
 
 	body.create input,body.create select {
 		float: right;
@@ -589,9 +600,9 @@ p#autoSaveBevestig {
 
 	body.create input[type=submit] {
 		width: 150px;
-		float: right;	
+		float: right;
 	}
-	
+
 	main.voorlegger table.main h3 {
 		padding-left: 10px;
 		max-width: 120px;

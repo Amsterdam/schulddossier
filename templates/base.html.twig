@@ -1,12 +1,412 @@
+{% set categorieen = [
+
+	{
+		'systeemNaam': 'legitimatie',
+		'schermNaam': 'Legitimatie',
+		'madi': true,
+		'gka': true,
+		'nvt': false,
+		'kop': '',
+		
+		
+		
+	},
+	{
+		'systeemNaam': 'vtlb',
+		'schermNaam': 'VTLB',
+		'madi': true,
+		'gka': true,
+		'nvt': false,
+		'kop': '',
+		
+		
+		
+	},
+	{
+		'systeemNaam': 'inkomstenspecificatie',
+		'schermNaam': 'Inkomensspecificatie',
+		'madi': true,
+		'gka': true,
+		'nvt': false,
+		'kop': 'Inkomsten',
+		
+		
+	},
+	{
+		'systeemNaam': 'arbeidsovereenkomst',
+		'schermNaam': 'Arbeidsovereenkomst',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Inkomsten',
+		
+		
+	},
+	{
+		'systeemNaam': 'beschikkingUwv',
+		'schermNaam': 'Beschikking UWV',
+		'madi': false,
+		'gka': false,
+		'nvt': true,
+		'kop': 'Inkomsten',
+		
+	},
+	{
+		'systeemNaam': 'voorlopigeTeruggaafBelastingdienst',
+		'schermNaam': 'Voorlopige teruggave Belastingdienst',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Inkomsten',
+		
+		
+	},
+	{
+		'systeemNaam': 'alimentatie',
+		'schermNaam': 'Alimentatie ontvangen',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Inkomsten',
+		
+		
+	},
+	{
+		'systeemNaam': 'kostgeld',
+		'schermNaam': 'Kostgeld',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Inkomsten',
+		
+		
+	},
+	{
+		'systeemNaam': 'huurtoeslag',
+		'schermNaam': 'Huurtoeslag',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Inkomsten',
+		
+		
+	},
+	{
+		'systeemNaam': 'zorgtoeslag',
+		'schermNaam': 'Zorgtoeslag',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Inkomsten',
+		
+		
+	},
+	{
+		'systeemNaam': 'kinderopvangtoeslag',
+		'schermNaam': 'Kinderopvangtoeslag',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Inkomsten',
+		
+		
+	},
+	{
+		'systeemNaam': 'kindgebondenBudget',
+		'schermNaam': 'Kindgebonden budget',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Inkomsten',
+		
+		
+	},
+	{
+		'systeemNaam': 'huurspecificatie',
+		'schermNaam': 'Huurspecificatie / kostgeldspecificatie',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Uitgaven',
+		
+		
+	},
+	{
+		'systeemNaam': 'polisbladZorgverzekering',
+		'schermNaam': 'Polisblad zorgverzekering',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Uitgaven',
+		
+		
+	},
+	{
+		'systeemNaam': 'alimentatieEchtscheidingsconvenant',
+		'schermNaam': 'Alimentatie (echtscheidingsconvenant)',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Uitgaven',
+		
+		
+	},
+	{
+		'systeemNaam': 'overeenkomstKinderopvang',
+		'schermNaam': 'Overeenkomst kinderopvang + kostenspecificatie',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Uitgaven',
+		
+		
+	},
+	{
+		'systeemNaam': 'kwijtscheldingGemeentebelasting',
+		'schermNaam': 'Kwijtschelding gemeentebelasting',
+		'madi': false,
+		'gka': false,
+		'nvt': true,
+		'kop': 'Uitgaven',
+		
+	},
+	{
+		'systeemNaam': 'corrigerenGemeentebelasting',
+		'schermNaam': 'Corrigeren gemeentebelasting',
+		'madi': false,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Uitgaven',
+		
+		
+	},
+	{
+		'systeemNaam': 'auto',
+		'schermNaam': 'Auto',
+		'madi': false,
+		'gka': false,
+		'nvt': true,
+		'isKop': true,
+		'kop': '',
+		
+		
+	},
+	{
+		'systeemNaam': 'autoTaxatie',
+		'schermNaam': 'Taxatie auto',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Auto',
+		
+		
+	},
+	{
+		'systeemNaam': 'autolastenKmWoonwerkverkeer',
+		'schermNaam': 'Km woon-werkverkeer',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Auto',
+		
+		
+	},
+	{
+		'systeemNaam': 'verklaringWerkgever',
+		'schermNaam': 'Verklaring werkgever',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Auto',
+		
+		
+	},
+	{
+		'systeemNaam': 'vrijwaringsbewijs',
+		'schermNaam': 'Vrijwaringsbewijs',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Auto',
+		
+		
+	},
+	{
+		'systeemNaam': 'schuldenoverzicht',
+		'schermNaam': 'Schuldenoverzicht',
+		'madi': true,
+		'gka': true,
+		'nvt': false,
+		'kop': 'Schulden',
+		
+		
+	},
+	{
+		'systeemNaam': 'vorderingen',
+		'schermNaam': 'Vorderingen',
+		'madi': true,
+		'gka': true,
+		'nvt': false,
+		'kop': 'Schulden',
+		
+		
+	},
+	{
+		'systeemNaam': 'inzageToetsingBkr',
+		'schermNaam': 'Inzage toetsing BKR',
+		'madi': true,
+		'gka': true,
+		'nvt': false,
+		'kop': 'Schulden',
+		
+		
+	},
+	{
+		'systeemNaam': 'stabilisatieovereenkomst',
+		'schermNaam': 'Stabilisatieovereenkomst',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Schulden',
+		
+		
+	},
+	{
+		'systeemNaam': 'cjib',
+		'schermNaam': 'CJIB (niet-saneerbare vorderingen)',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Schulden',
+		
+		
+	},
+	{
+		'systeemNaam': 'meterstandenEnergie',
+		'schermNaam': 'Meterstanden huidige energiemaatschappij',
+		'madi': true,
+		'gka': true,
+		'nvt': false,
+		'kop': 'Schulden',
+		
+		
+	},
+	{
+		'systeemNaam': 'retourbewijsModem',
+		'schermNaam': 'Bewijs verzending modem',
+		'madi': true,
+		'gka': true,
+		'nvt': false,
+		'kop': 'Schulden',
+		
+		
+	},
+	{
+		'systeemNaam': 'toelichtingAanvraagSchuldsanering',
+		'schermNaam': 'Toelichting aanvraag schuldsanering',
+		'madi': true,
+		'gka': true,
+		'nvt': false,
+		'kop': 'Schulden',
+		
+		
+	},
+	{
+		'systeemNaam': 'bewindstellingOfbudgetbeheer',
+		'schermNaam': 'Onderbewindstelling of budgetbeheer',
+		'madi': false,
+		'gka': false,
+		'nvt': true,
+		'isKop': true,
+		'kop': '',
+		
+		
+	},
+	{
+		'systeemNaam': 'beschikkingOnderBewindstelling',
+		'schermNaam': 'Beschikking onderbewindstelling',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Onderbewindstelling of budgetbeheer',
+		
+		
+	},
+	{
+		'systeemNaam': 'budgetBeheer',
+		'schermNaam': 'Budgetbeheer',
+		'madi': false,
+		'gka': false,
+		'nvt': true,
+		'kop': 'Onderbewindstelling of budgetbeheer',
+		
+		
+	},
+	{
+		'systeemNaam': 'gereserveerdeGelden',
+		'schermNaam': 'Gereserveerde gelden',
+		'madi': true,
+		'gka': true,
+		'nvt': true,
+		'kop': 'Onderbewindstelling of budgetbeheer',
+		
+		
+	},
+	{
+		'systeemNaam': 'OndertekendAanvraagFormulier',
+		'schermNaam': 'Ondertekend aanvraagformulier',
+		'madi': true,
+		'gka': true,
+		'nvt': false,
+		'kop': 'Onderbewindstelling of budgetbeheer',
+		
+		
+	},
+
+] %}
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{% block title %}
+		Digitale Voorlegger
+	{% endblock %}</title>
+<meta name="viewport" content="width = device-width">
+<link rel="stylesheet" href="/css/styles.css">
+<script src="/js/script.js"></script>
+{% block extraScripts %}
+
+{% endblock %}
+</head>
+
+<body class="{{ app.user.type }}">
+
+	<header>
+	<img src="/pix/logo_klein.svg">
+	<h2>Digitale voorlegger</h2>
+	<div>Ingelogd als: {{ app.user.userName }} <a href="#">(Uitloggen)</a></div>
+	</header>
+
+	{% block kleineNavigatie %}
+		<p class="kleineNav">&nbsp;</p>	
+	{% endblock %}
+
+{% for type, messages in app.flashes %}
+	{% for message in messages %}
+		<div class="flash-message flash-type-{{ type }}">
+			<a class="btn" href="#close-flash">x</a>
+			<span class="message">{{ message }}</span>
+		</div>
+	{% endfor %}
+{% endfor %}
+
+
+<main>
+	{% block main %}
+		Nog geen inhoud.
+	{% endblock %}
+</main>
+
+
+</body>
 </html>
