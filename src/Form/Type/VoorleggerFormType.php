@@ -284,13 +284,10 @@ class VoorleggerFormType extends AbstractType
         $builder->add('stabilisatieovereenkomstNvt', CheckboxType::class, [
             'required' => false
         ]);
-        $builder->add('cjibOntvangenMadi', CheckboxType::class, [
+        $builder->add('cjib', ChoiceType::class, [
             'required' => false,
-            'disabled' => $options['disable_group'] === 'gka'
-        ]);
-        $builder->add('cjibOntvangenGka', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'madi'
+            'choices' => ['ja' => 1, 'nee' => 0],
+            'expanded' => true
         ]);
         $builder->add('cjibNvt', CheckboxType::class, [
             'required' => false

@@ -323,12 +323,19 @@
 
 <tr>
 	<td><h3>CJIB (niet saneerbare vorderingen)</h3></td>
-	<td class="madi"><label>{{ form_widget(form.voorlegger.cjibOntvangenMadi)}}</label></td>
-	<td class="gka"><label>{{ form_widget(form.voorlegger.cjibOntvangenGka)}}</label></td>
+	<td class="madi"></td>
+	<td class="gka"></td>
 	<td class="nvt"><label>{{ form_widget(form.voorlegger.cjibNvt)}} n.v.t.</label></td>
 </tr>
 
-<tr><td><h3>&nbsp;</h3></td></tr>
+<tr class="sub">
+	<td colspan="1">
+	<div><label>{{ form_widget(form.voorlegger.cjib[1]) }} Ja</label><label>{{ form_widget(form.voorlegger.cjib[0]) }} Nee</label></div>
+	{% do form.voorlegger.cjib.setRendered() %}
+	</td>
+    <td class="madi"></td>
+    <td class="gka"></td>
+</tr>
 
 <tr>
 	<td><h3>Meterstanden huidige energiemaatschappij</h3></td>
