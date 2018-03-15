@@ -204,6 +204,11 @@ class VoorleggerFormType extends AbstractType
             'required' => false,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
+        $builder->add('corrigerenGemeenteBelasting', ChoiceType::class, [
+            'required' => false,
+            'choices' => ['ja' => 1, 'nee' => 0],
+            'expanded' => true
+        ]);
         $builder->add('corrigerenGemeenteBelastingNvt', CheckboxType::class, [
             'required' => false
         ]);

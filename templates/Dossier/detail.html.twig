@@ -269,6 +269,16 @@
 	<td class="nvt"><label>{{ form_widget(form.voorlegger.corrigerenGemeenteBelastingNvt)}} n.v.t.</label></td>
 </tr>
 
+<tr class="sub">
+	<td colspan="1">
+	<div><label>{{ form_widget(form.voorlegger.corrigerenGemeenteBelasting[1]) }} Ja</label><label>{{ form_widget(form.voorlegger.corrigerenGemeenteBelasting[0]) }} Nee</label></div>
+	{% do form.voorlegger.corrigerenGemeenteBelasting.setRendered() %}
+	</td>
+    <td class="madi"></td>
+    <td class="gka"></td>
+</tr>
+
+
 <tr class="subheader">
 	<td><h2>Auto</h2></td>
 	<td class="madi"></td>

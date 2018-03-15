@@ -369,6 +369,12 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
+    private $corrigerenGemeenteBelasting;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
     private $corrigerenGemeenteBelastingNvt;
 
     // ---
@@ -880,6 +886,7 @@ class Voorlegger
         $this->kwijtscheldingGemeenteBelasting = false;
         $this->corrigerenGemeenteBelastingOntvangenGka = false;
         $this->corrigerenGemeenteBelastingNvt = false;
+        $this->corrigerenGemeenteBelasting = false;
         $this->autoNvt = false;
         $this->autoTaxatieOntvangenMadi = false;
         $this->autoTaxatieOntvangenGka = false;
@@ -1205,6 +1212,11 @@ class Voorlegger
     public function isCorrigerenGemeenteBelastingNvt()
     {
         return $this->corrigerenGemeenteBelastingNvt;
+    }
+
+    public function isCorrigerenGemeenteBelasting()
+    {
+        return $this->corrigerenGemeenteBelasting;
     }
 
     public function isAutoNvt()
@@ -1824,6 +1836,11 @@ class Voorlegger
     public function setCorrigerenGemeenteBelastingNvt($corrigerenGemeenteBelastingNvt)
     {
         $this->corrigerenGemeenteBelastingNvt = $corrigerenGemeenteBelastingNvt;
+    }
+
+    public function setCorrigerenGemeenteBelasting($corrigerenGemeenteBelasting)
+    {
+        $this->corrigerenGemeenteBelasting = $corrigerenGemeenteBelasting;
     }
 
     public function setAutoNvt($autoNvt)
