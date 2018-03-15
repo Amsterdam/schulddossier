@@ -46,7 +46,7 @@ class DossierDocumentNormalizer implements NormalizerInterface, NormalizerAwareI
                 'origineleExtensie' => $object->getDocument()->getOrigineleExtensie(),
                 'uploadDatumTijd' => $this->normalizer->normalize($object->getDocument()->getUploadDatumTijd(), $format, $context),
                 'uploader' => $this->normalizer->normalize($object->getDocument()->getUploader(), $format, $context),
-                'url' => $this->router->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', ['dossierId' => $object->getDossier()->getId()], UrlGeneratorInterface::ABSOLUTE_URL)
+                'url' => $this->router->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', ['dossierId' => $object->getDossier()->getId(), 'documentId' => $object->getDocument()->getId()], UrlGeneratorInterface::ABSOLUTE_URL)
             ]
         ];
     }
