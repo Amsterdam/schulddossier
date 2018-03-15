@@ -284,13 +284,10 @@ class VoorleggerFormType extends AbstractType
         $builder->add('stabilisatieovereenkomstNvt', CheckboxType::class, [
             'required' => false
         ]);
-        $builder->add('cjibOntvangenMadi', CheckboxType::class, [
+        $builder->add('cjib', ChoiceType::class, [
             'required' => false,
-            'disabled' => $options['disable_group'] === 'gka'
-        ]);
-        $builder->add('cjibOntvangenGka', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'madi'
+            'choices' => ['ja' => 1, 'nee' => 0],
+            'expanded' => true
         ]);
         $builder->add('cjibNvt', CheckboxType::class, [
             'required' => false
@@ -328,11 +325,19 @@ class VoorleggerFormType extends AbstractType
         $builder->add('retourbewijsModemNvt', CheckboxType::class, [
             'required' => false
         ]);
-        $builder->add('toelichtingAanvraagSchuldsaneringOntvangenMadi', CheckboxType::class, [
+        $builder->add('toelichtingAanvraagSchuldsaneringClientOntvangenMadi', CheckboxType::class, [
             'required' => false,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('toelichtingAanvraagSchuldsaneringOntvangenGka', CheckboxType::class, [
+        $builder->add('toelichtingAanvraagSchuldsaneringClientOntvangenGka', CheckboxType::class, [
+            'required' => false,
+            'disabled' => $options['disable_group'] === 'madi'
+        ]);
+        $builder->add('toelichtingAanvraagSchuldsaneringMadiOntvangenMadi', CheckboxType::class, [
+            'required' => false,
+            'disabled' => $options['disable_group'] === 'gka'
+        ]);
+        $builder->add('toelichtingAanvraagSchuldsaneringMadiOntvangenGka', CheckboxType::class, [
             'required' => false,
             'disabled' => $options['disable_group'] === 'madi'
         ]);

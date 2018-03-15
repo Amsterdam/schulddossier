@@ -521,13 +521,7 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $cjibOntvangenMadi;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $cjibOntvangenGka;
+    private $cjib;
 
     /**
      * @var boolean
@@ -601,13 +595,27 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $toelichtingAanvraagSchuldsaneringOntvangenMadi;
+    private $toelichtingAanvraagSchuldsaneringClientOntvangenMadi;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $toelichtingAanvraagSchuldsaneringOntvangenGka;
+    private $toelichtingAanvraagSchuldsaneringClientOntvangenGka;
+
+    // ---
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $toelichtingAanvraagSchuldsaneringMadiOntvangenMadi;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $toelichtingAanvraagSchuldsaneringMadiOntvangenGka;
 
     // ---
 
@@ -875,8 +883,7 @@ class Voorlegger
         $this->stabilisatieovereenkomstOntvangenMadi = false;
         $this->stabilisatieovereenkomstOntvangenGka = false;
         $this->stabilisatieovereenkomstNvt = false;
-        $this->cjibOntvangenMadi = false;
-        $this->cjibOntvangenGka = false;
+        $this->cjib = false;
         $this->cjibNvt = false;
         $this->meterstandenEnergieOntvangenMadi = false;
         $this->meterstandenEnergieOntvangenGka = false;
@@ -887,8 +894,10 @@ class Voorlegger
         $this->retourbewijsModemOntvangenMadi = false;
         $this->retourbewijsModemOntvangenGka = false;
         $this->retourbewijsModemNvt = false;
-        $this->toelichtingAanvraagSchuldsaneringOntvangenMadi = false;
-        $this->toelichtingAanvraagSchuldsaneringOntvangenGka = false;
+        $this->toelichtingAanvraagSchuldsaneringClientOntvangenMadi = false;
+        $this->toelichtingAanvraagSchuldsaneringClientOntvangenGka = false;
+        $this->toelichtingAanvraagSchuldsaneringMadiOntvangenMadi = false;
+        $this->toelichtingAanvraagSchuldsaneringMadiOntvangenGka = false;
         $this->bewindstellingOfBudgetbeheerNvt = false;
         $this->beschikkingOnderBewindstellingOntvangenMadi = false;
         $this->beschikkingOnderBewindstellingOntvangenGka = false;
@@ -1282,14 +1291,9 @@ class Voorlegger
         return $this->stabilisatieovereenkomstNvt;
     }
 
-    public function isCjibOntvangenMadi()
+    public function isCjib()
     {
-        return $this->cjibOntvangenMadi;
-    }
-
-    public function isCjibOntvangenGka()
-    {
-        return $this->cjibOntvangenGka;
+        return $this->cjib;
     }
 
     public function isCjibNvt()
@@ -1342,14 +1346,24 @@ class Voorlegger
         return $this->retourbewijsModemNvt;
     }
 
-    public function isToelichtingAanvraagSchuldsaneringOntvangenMadi()
+    public function isToelichtingAanvraagSchuldsaneringClientOntvangenMadi()
     {
-        return $this->toelichtingAanvraagSchuldsaneringOntvangenMadi;
+        return $this->toelichtingAanvraagSchuldsaneringClientOntvangenMadi;
     }
 
-    public function isToelichtingAanvraagSchuldsaneringOntvangenGka()
+    public function isToelichtingAanvraagSchuldsaneringClientOntvangenGka()
     {
-        return $this->toelichtingAanvraagSchuldsaneringOntvangenGka;
+        return $this->toelichtingAanvraagSchuldsaneringClientOntvangenGka;
+    }
+
+    public function isToelichtingAanvraagSchuldsaneringMadiOntvangenMadi()
+    {
+        return $this->toelichtingAanvraagSchuldsaneringMadiOntvangenMadi;
+    }
+
+    public function isToelichtingAanvraagSchuldsaneringMadiOntvangenGka()
+    {
+        return $this->toelichtingAanvraagSchuldsaneringMadiOntvangenGka;
     }
 
     public function isBewindstellingOfBudgetbeheerNvt()
@@ -1881,14 +1895,9 @@ class Voorlegger
         $this->stabilisatieovereenkomstNvt = $stabilisatieovereenkomstNvt;
     }
 
-    public function setCjibOntvangenMadi($cjibOntvangenMadi)
+    public function setCjib($cjib)
     {
-        $this->cjibOntvangenMadi = $cjibOntvangenMadi;
-    }
-
-    public function setCjibOntvangenGka($cjibOntvangenGka)
-    {
-        $this->cjibOntvangenGka = $cjibOntvangenGka;
+        $this->cjib = $cjib;
     }
 
     public function setCjibNvt($cjibNvt)
@@ -1941,14 +1950,24 @@ class Voorlegger
         $this->retourbewijsModemNvt = $retourbewijsModemNvt;
     }
 
-    public function setToelichtingAanvraagSchuldsaneringOntvangenMadi($toelichtingAanvraagSchuldsaneringOntvangenMadi)
+    public function setToelichtingAanvraagSchuldsaneringClientOntvangenMadi($toelichtingAanvraagSchuldsaneringClientOntvangenMadi)
     {
-        $this->toelichtingAanvraagSchuldsaneringOntvangenMadi = $toelichtingAanvraagSchuldsaneringOntvangenMadi;
+        $this->toelichtingAanvraagSchuldsaneringClientOntvangenMadi = $toelichtingAanvraagSchuldsaneringClientOntvangenMadi;
     }
 
-    public function setToelichtingAanvraagSchuldsaneringOntvangenGka($toelichtingAanvraagSchuldsaneringOntvangenGka)
+    public function setToelichtingAanvraagSchuldsaneringClientOntvangenGka($toelichtingAanvraagSchuldsaneringClientOntvangenGka)
     {
-        $this->toelichtingAanvraagSchuldsaneringOntvangenGka = $toelichtingAanvraagSchuldsaneringOntvangenGka;
+        $this->toelichtingAanvraagSchuldsaneringClientOntvangenGka = $toelichtingAanvraagSchuldsaneringClientOntvangenGka;
+    }
+
+    public function setToelichtingAanvraagSchuldsaneringMadiOntvangenMadi($toelichtingAanvraagSchuldsaneringMadiOntvangenMadi)
+    {
+        $this->toelichtingAanvraagSchuldsaneringMadiOntvangenMadi = $toelichtingAanvraagSchuldsaneringMadiOntvangenMadi;
+    }
+
+    public function setToelichtingAanvraagSchuldsaneringMadiOntvangenGka($toelichtingAanvraagSchuldsaneringMadiOntvangenGka)
+    {
+        $this->toelichtingAanvraagSchuldsaneringMadiOntvangenGka = $toelichtingAanvraagSchuldsaneringMadiOntvangenGka;
     }
 
     public function setBewindstellingOfBudgetbeheerNvt($bewindstellingOfBudgetbeheerNvt)
