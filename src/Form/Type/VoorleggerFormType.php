@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 
 class VoorleggerFormType extends AbstractType
 {
@@ -31,6 +32,9 @@ class VoorleggerFormType extends AbstractType
         $builder->add('vtlbGka', CheckboxType::class, [
             'required' => false,
             'disabled' => $options['disable_group'] === 'madi'
+        ]);
+        $builder->add('vtlbBedrag', NumberType::class, [
+            'required' => false
         ]);
         $builder->add('inkomstenspecificatieOntvangenMadi', CheckboxType::class, [
             'required' => false,

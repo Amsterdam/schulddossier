@@ -54,6 +54,12 @@ class Voorlegger
      */
     private $vtlbGka;
 
+    /**
+     * @var float
+     * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
+     */
+    private $vtlbBedrag;
+
     // ---
 
     /**
@@ -815,6 +821,7 @@ class Voorlegger
         $this->legitimatieOntvangenMadi = false;
         $this->vtlbMadi = false;
         $this->vtlbGka = false;
+        $this->vtlbBedrag = 0;
         $this->inkomstenspecificatieOntvangenMadi = false;
         $this->inkomstenspecificatieOntvangenGka = false;
         $this->arbeidsovereenkomstOntvangenMadi = false;
@@ -944,6 +951,11 @@ class Voorlegger
     public function isVtlbGka()
     {
         return $this->vtlbGka;
+    }
+
+    public function getVtlbBedrag()
+    {
+        return $this->vtlbBedrag;
     }
 
     public function isInkomstenspecificatieOntvangenMadi()
@@ -1548,6 +1560,11 @@ class Voorlegger
     public function setVtlbGka($vtlbGka)
     {
         $this->vtlbGka = $vtlbGka;
+    }
+
+    public function setVtlbBedrag($vtlbBedrag)
+    {
+        $this->vtlbBedrag = $vtlbBedrag;
     }
 
     public function setInkomstenspecificatieOntvangenMadi($inkomstenspecificatieOntvangenMadi)

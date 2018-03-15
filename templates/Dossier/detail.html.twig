@@ -98,8 +98,24 @@
 </tr>
 
 
-<tr class="topLevel">
-	<td><h3>VTLB</h3></td>
+<tr class="subheader">
+	<td><h2>VTLB</h2></td>
+	<td class="madi"></td>
+	<td class="gka"></td>
+</tr>
+
+<tr>
+	<td><h3>VTLB berekening</h3></td>
+	<td class="madi"><label>{{ form_widget(form.voorlegger.vtlbMadi)}}</label></td>
+	<td class="gka"><label>{{ form_widget(form.voorlegger.vtlbGka)}}</label></td>
+</tr>
+
+<tr class="sub">
+	<td>
+		<div>
+			<label>VTLB bedrag {{ form_widget(form.voorlegger.vtlbBedrag) }}</label>
+		</div>
+    </td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.vtlbMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.vtlbGka)}}</label></td>
 </tr>
