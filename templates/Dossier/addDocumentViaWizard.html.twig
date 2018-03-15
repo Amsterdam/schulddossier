@@ -22,7 +22,7 @@ function maakUploadWizard() {
 		var URL = window.URL.createObjectURL(this.files[0]);
 		laadPDF(URL);
 	}
-	
+
 	function laadPDF(URL) {
 		var pages;
 		PDFJS.getDocument(URL).then(function (pdf) {
@@ -49,9 +49,9 @@ function maakUploadWizard() {
 			}
 //			console.log('Loop beeindigd');
 		});
-		
+
 		var logObj = {};
-				
+
 		function logKlaar(nummer) {
 //			console.log('Pagina ' + nummer + ' klaar');
 			logObj['p'+nummer] = true;
@@ -62,14 +62,14 @@ function maakUploadWizard() {
 			}
 //			console.log('Geheel klaar');
 			PDFJS = null;
-			
+
 		}
-		
+
 		// hier closure afbreken
 		// destroy PDFJS
-	
+
 	}
-	
+
 	var groteCanvas = $('groot');
 	var nieuweContext = groteCanvas.getContext('2d');
 	$('canvases').onclick = function (e) {
@@ -81,7 +81,7 @@ function maakUploadWizard() {
 			/*
 			groteCanvas.width = e.target.width;
 			groteCanvas.height = e.target.height;
-			nieuweContext.drawImage(e.target,0,0); 
+			nieuweContext.drawImage(e.target,0,0);
 			*/
 			tgt.classList.add('actief');
 			console.log(actiefFormulier);
@@ -112,11 +112,11 @@ function maakUploadWizard() {
 		} else if (source.classList.contains('nieuwDocument')) {
 			console.log('Nieuw document');
 		} else if (source.classList.contains('upload')) {
-			stuurFormulier(source);	
+			stuurFormulier(source);
 		}
 		e.preventDefault();
 	},false);
-	
+
 
 	function stuurFormulier(source) {
 		var form = goUp(source,'FORM');
@@ -129,7 +129,7 @@ function maakUploadWizard() {
 		}
 		for (var i=0,cv;cv=canvases[i];i+=1) {
 			if (i > 0) {
-				newPDF.addPage();	
+				newPDF.addPage();
 			}
 			imgData = cv.toDataURL("image/jpeg");
 			newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
@@ -168,18 +168,18 @@ function maakUploadWizard() {
 		var form = data.container;
 		form.parentNode.insertBefore(div,form);
 		form.parentNode.removeChild(form);
-		
+
 	}
 
 	function wijzigActiefFormulier(source) {
 		if (actiefFormulier) {
-			actiefFormulier.style.display = '';				
+			actiefFormulier.style.display = '';
 		}
 		var tgt = source.nextElementSibling;
 		tgt.style.display = 'block';
 		tgt.onderwerp = source.textContent
 		actiefFormulier = tgt;
-		console.log(actiefFormulier);	
+		console.log(actiefFormulier);
 	}
 }
 
@@ -189,7 +189,7 @@ function $(id) {
 }
 /*
 	return;
-	var actiefFormulier;	
+	var actiefFormulier;
 	$('nieuwForm').onclick = function () {
 		var newForm = $('templateForm').cloneNode(true);
 		newForm.id = '';
@@ -222,19 +222,21 @@ function $(id) {
 
 
 {% block main %}
-    <h1>Voeg document toe aan dossier {{ dossier.clientNaam }}</h1>
-    
-    <section class="hoofd">    
+		<section class="top">
+		<h1>Voeg document toe aan dossier {{ dossier.clientNaam }}</h1>
+		<p>Sleep de pagina’s naar de juiste plek in het dossier om ze toe te voegen</p>
+		</section>
+    <section class="hoofd">
     <input type="file" id="completeDocument">
     <div id="canvases"></div>
     <canvas id="groot"></canvas>
     </section>
-    
+
     <section class="naast">
 	{% set kopje = "" %}
     {% for categorie in categorieen %}
     	{% if categorie.isKop is defined %}
-			<h2>{{ categorie.schermNaam }}</h2>    	
+			<h2>{{ categorie.schermNaam }}</h2>
 			{% set kopje = categorie.schermNaam %}
     	{% else %}
 			{% if categorie.kop != kopje %}
@@ -266,17 +268,17 @@ function $(id) {
     <table>
     {{ form_row(form.document.naam) }}
     {{ form_row(form.onderwerp) }}
-    </table>    
+    </table>
     <div class="knoppenbalk">
     <button class="secundair activeer">Maak actief formulier</button><button class="upload primair">Dit uploaden</button>
     </div>
     {{ form_widget(form.document.file) }}
     {{ form_end(form) }}
-    
+
     <div id="resultaatTemplate">
     	<p>Document upgeload naar <span></span>.</p>
     	<p><a href="#" target="_blank"></a></p>
     </div>
     </div>
-    
-{% endblock %}	
+
+{% endblock %}

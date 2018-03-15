@@ -438,6 +438,12 @@ main.voorlegger section.metSub span {
 	grid-row: span 2;
 }
 
+section.top {
+	/* background-color: #f8f8f8; */ /*   deze regel is voor als deze sectie de complete breedte kan beslaan van .main */
+	width: 100%;
+	margin-bottom: 50px;
+}
+
 main.voorlegger input.overig {
 	border: 1px solid #666666;
 }
