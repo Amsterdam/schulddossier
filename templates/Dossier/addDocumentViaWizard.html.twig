@@ -111,11 +111,13 @@ function maakUploadWizard() {
 	}
 	
 	function laadPDF(URL) {
+		var pages;
 		PDFJS.getDocument(URL).then(function (pdf) {
 			var wr = $('canvases');
-			var pages = pdf.numPages;
+			pages = pdf.numPages;
 			$('canvases').style.width = 114*(pages) + 'px';
 			for (var i=1;i<=pages;i+=1) {
+				console.log('Init pagina ' + i);
 				pdf.getPage(i).then(function (page) {
 					var canvas = document.createElement('canvas');
 					canvas.id = 'id'+page.pageIndex;
@@ -130,9 +132,26 @@ function maakUploadWizard() {
 					};
 					page.render(renderContext);
 					wr.appendChild(canvas);
+					logKlaar(page.pageIndex);
 				});
 			}
+			console.log('Loop beeindigd');
 		});
+		
+		var logObj = {};
+				
+		function logKlaar(nummer) {
+			console.log('Pagina ' + nummer + ' klaar');
+			logObj['p'+nummer] = true;
+			for (var i=0;i<pages;i+=1) {
+				if (!logObj['p'+i]) {
+					return;
+				}
+			}
+			console.log('Geheel klaar');
+			PDFJS = null;
+			
+		}
 		
 		// hier closure afbreken
 		// destroy PDFJS
