@@ -102,6 +102,7 @@ function maakUploadWizard() {
 	}
 
 	var actiefFormulier;	
+	return;
 	$('nieuwForm').onclick = function () {
 		var newForm = $('templateForm').cloneNode(true);
 		newForm.id = '';
@@ -172,33 +173,22 @@ function maakUploadWizard() {
 		form.parentNode.removeChild(form);
 		
 	}
-
-
-	return;
-	function maak() {
-		var img = document.createElement('img');
-		img.src = imgData;
-		document.body.appendChild(img);
-		
-		
-		newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
-		var form = document.forms['dossier_document_form'];
-	};
 }
 
 function accordeon() {
+	var huidigeOpen;
 	document.addEventListener('click',function (e) {
 		var source = e.target;
 		if (source.nodeName === 'H3') {
-			var tgt = source.nextElementSibling;
-			if (tgt.style.display === 'block') {
-				tgt.style.display = 'none';
-			} else {
-				tgt.style.display = 'block';			
+			if (huidigeOpen) {
+				huidigeOpen.style.display = 'none';				
 			}
+			var tgt = source.nextElementSibling;
+			tgt.style.display = 'block';			
+			huidigeOpen = tgt;
 		}
 	},false);
-	document.querySelector('.naast h3').click();
+	document.querySelectorAll('.naast h3')[4].click();
 }
 
 function $(id) {
@@ -236,12 +226,12 @@ function $(id) {
 			<h3>{{ categorie.schermNaam }}</h3>
 			<div class="container">
 				<form>
-				<div class="naam"><input placeholder="Naam document"></div>
+				<div class="naamVeld"><input placeholder="Naam document"></div>
 				<div class="uploadCanvases"></div>
 				<div class="knoppenbalk">
 					<button class="secundair activeer">Nieuw document</button><button class="upload primair">Opslaan en volgende</button>
 				</div>
-				</forn>
+				</form>
 			</div>
     	{% endif %}
     {% endfor %}

@@ -1,7 +1,21 @@
-
-#templates {
-	display: none;
+main {
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
 }
+
+main section.hoofd {
+	flex-basis: 30%;
+	max-width: 60%;
+	border: 1px solid;
+	flex-grow: 1;
+}
+
+main section.naast {
+	flex-basis: 60%;
+	border: 1px solid;
+}
+
 
 div#canvases {
 	margin: 0 5%;
@@ -23,12 +37,6 @@ canvas#groot  {
 	display: block;
 }
 
-main {
-	display: flex;
-	flex-wrap: wrap;
-	box-sizing: border-box;
-}
-
 section.naast input[type=file] {
 	display: none;
 }
@@ -37,21 +45,16 @@ main h1 {
 	flex-basis: 100%;
 }
 
-main section.hoofd {
-	flex-basis: 60%;
-	max-width: 60%;
-	border: 1px solid;
-	flex-grow: 1;
-}
+section.naast h2 {
+	margin: 5px 0;
+	padding: 5px 10px;
 
-main section.naast {
-	flex-basis: 30%;
-	border: 1px solid;
 }
 
 section.naast h3 {
 	background-color: #e8e8e8;
-	padding: 3px 10px;
+	margin-top: 5px;
+	padding: 5px 10px;
 	cursor: pointer;
 }
 
@@ -59,11 +62,20 @@ section.naast div.container {
 	display: none;
 }
 
-
 section.naast form {
-	margin: 10px;
-	border: 1px solid;
-	position: relative;
+	padding: 10px;
+	background-color: #e8e8e8;
+}
+
+div.naamVeld {
+	margin: 5px 10px 15px;
+	padding-bottom: 5px;
+	border-bottom: 2px solid #cccccc;
+}
+
+div.naamVeld input {
+	width: 60%;
+	font-size: 16px;
 }
 
 div.knoppenbalk {
@@ -90,4 +102,8 @@ div.knoppenbalk {
 	height: 100%;
 }
 
+
+#templates {
+	display: none;
+}
 
