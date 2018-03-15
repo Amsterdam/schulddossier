@@ -118,18 +118,18 @@
 	<td><h3>Arbeidsovereenkomst</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.arbeidsovereenkomstOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.arbeidsovereenkomstOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.arbeidsovereenkomstNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.arbeidsovereenkomstNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Beschikking UWV</h3></td>
 	<td class="madi"></td>
 	<td class="gka"></td>
-	<td><label>{{ form_widget(form.voorlegger.beschikkingUwvNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.beschikkingUwvNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr class="sub">
-	<td colspan="4">
+	<td colspan="1">
 	<div>
 	<label>{{ form_widget(form.voorlegger.beschikkingUwvWw)}} WW</label>
 	<label>{{ form_widget(form.voorlegger.beschikkingUwvWia)}} WIA</label>
@@ -140,55 +140,57 @@
 	}})}}</label>
 	</div>
 	</td>
+    <td class="madi"></td>
+    <td class="gka"></td>
 </tr>
 
 <tr>
 	<td><h3>Voorlopige teruggave Belastingdienst</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.voorlopigeTerugaafBelastingdienstOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.voorlopigeTerugaafBelastingdienstOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.voorlopigeTerugaafBelastingdienstNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.voorlopigeTerugaafBelastingdienstNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Alimentatie ontvangen</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.alimentatieOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.alimentatieOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.alimentatieNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.alimentatieNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Kostgeld</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.kostgeldOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.kostgeldOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.kostgeldNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.kostgeldNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Huurtoeslag</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.huurtoeslagOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.huurtoeslagOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.huurtoeslagNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.huurtoeslagNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Zorgtoeslag</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.zorgtoeslagOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.zorgtoeslagOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.zorgtoeslagNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.zorgtoeslagNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Kinderopvangtoeslag</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.kinderopvangtoeslagOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.kinderopvangtoeslagOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.kinderopvangtoeslagNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.kinderopvangtoeslagNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Kindgebonden budget</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.kindgebondenBudgetOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.kindgebondenBudgetOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.kindgebondenBudgetNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.kindgebondenBudgetNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr class="subheader">
@@ -202,56 +204,58 @@
 	<td><h3>Huurspecificatie / kostgeldspecificatie</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.huurspecificatieOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.huurspecificatieOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.huurspecificatieNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.huurspecificatieNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Polisblad zorgverzekering</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.polisbladZorgverzekeringOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.polisbladZorgverzekeringOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.polisbladZorgverzekeringNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.polisbladZorgverzekeringNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Alimentatie (echtscheidingsconvenant)</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.alimentatieEchtscheidingsconvenantOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.alimentatieEchtscheidingsconvenantOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.alimentatieEchtscheidingsconvenantNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.alimentatieEchtscheidingsconvenantNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Overeenkomst kinderopvang + kostenspecificatie</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.overeenkomstKinderopvangOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.overeenkomstKinderopvangOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.overeenkomstKinderopvangNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.overeenkomstKinderopvangNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Kwijtschelding gemeentebelasting</h3></td>
 	<td class="madi"></td>
 	<td class="gka"></td>
-	<td><label>{{ form_widget(form.voorlegger.kwijtscheldingGemeenteBelastingNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.kwijtscheldingGemeenteBelastingNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr class="sub">
-	<td colspan="4">
+	<td colspan="1">
 	<div><label>{{ form_widget(form.voorlegger.kwijtscheldingGemeenteBelasting[1]) }} Ja</label><label>{{ form_widget(form.voorlegger.kwijtscheldingGemeenteBelasting[0]) }} Nee</label></div>
 	{% do form.voorlegger.kwijtscheldingGemeenteBelasting.setRendered() %}
-</td>
+	</td>
+    <td class="madi"></td>
+    <td class="gka"></td>
 </tr>
 
 <tr>
 	<td><h3>Corrigeren GemeenteBelasting</h3></td>
 	<td class="madi"></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.corrigerenGemeenteBelastingOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.corrigerenGemeenteBelastingNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.corrigerenGemeenteBelastingNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr class="subheader">
 	<td><h2>Auto</h2></td>
 	<td class="madi"></td>
 	<td class="gka"></td>
-	<td><label>{{ form_widget(form.voorlegger.autoNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.autoNvt)}} n.v.t.</label></td>
 </tr>
 
 
@@ -259,28 +263,28 @@
 	<td><h3>Auto taxatie</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.autoTaxatieOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.autoTaxatieOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.autoTaxatieNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.autoTaxatieNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Km woonwerkverkeer</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.autolastenKmWoonwerkverkeerOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.autolastenKmWoonwerkverkeerOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.autolastenKmWoonwerkverkeerNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.autolastenKmWoonwerkverkeerNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Verklaring werkgever</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.verklaringWerkgeverOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.verklaringWerkgeverOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.verklaringWerkgeverNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.verklaringWerkgeverNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Vrijwaringsbewijs</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.vrijwaringsbewijsOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.vrijwaringsbewijsOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.vrijwaringsbewijsNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.vrijwaringsbewijsNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr class="subheader">
@@ -314,14 +318,14 @@
 	<td><h3>Stabilisatieovereenkomst</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.stabilisatieovereenkomstOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.stabilisatieovereenkomstOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.stabilisatieovereenkomstNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.stabilisatieovereenkomstNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>CJIB (niet saneerbare vorderingen)</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.cjibOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.cjibOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.cjibNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.cjibNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr><td><h3>&nbsp;</h3></td></tr>
@@ -330,14 +334,14 @@
 	<td><h3>Meterstanden huidige energiemaatschappij</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.meterstandenEnergieOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.meterstandenEnergieOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.meterstandenEnergieNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.meterstandenEnergieNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Meterstanden Waternet</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.waternetOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.waternetOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.waternetNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.waternetNvt)}} n.v.t.</label></td>
 </tr>
 
 
@@ -345,7 +349,7 @@
 	<td><h3>Bewijs verzending modem</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.retourbewijsModemOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.retourbewijsModemOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.retourbewijsModemNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.retourbewijsModemNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr class="subheader">
@@ -370,24 +374,24 @@
 	<td><h2>Onderbewindstelling of budgetbeheer</h2></td>
 	<td class="madi"></td>
 	<td class="gka"></td>
-	<td><label>{{ form_widget(form.voorlegger.bewindstellingOfBudgetbeheerNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.bewindstellingOfBudgetbeheerNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Beschikking onderbewindstelling</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.beschikkingOnderBewindstellingOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.beschikkingOnderBewindstellingOntvangenGka)}}</label></td>
-	<td><label>{{ form_widget(form.voorlegger.beschikkingOnderBewindstellingNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.beschikkingOnderBewindstellingNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr>
 	<td><h3>Budgetbeheer</h3></td>
 	<td class="madi"></td>
 	<td class="gka"></td>
-	<td><label>{{ form_widget(form.voorlegger.budgetbeheerNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label>{{ form_widget(form.voorlegger.budgetbeheerNvt)}} n.v.t.</label></td>
 </tr>
 <tr class="sub">
-	<td colspan="4">
+	<td colspan="1">
 	<div>
 	<label>{{ form_widget(form.voorlegger.budgetbeheerPlangroep)}} Plangroep</label>
 	<label>{{ form_widget(form.voorlegger.budgetbeheerCav)}} CAV</label>
@@ -398,13 +402,15 @@
 	}})}}</label>
 	</div>
 	</td>
+    <td class="madi"></td>
+	<td class="gka"></td>
 </tr>
 
 <tr>
 	<td><h3>Gereserveerde gelden</h3></td>
 	<td class="madi"><label>{{ form_widget(form.voorlegger.gereserveerdeGeldenOntvangenMadi)}}</label></td>
 	<td class="gka"><label>{{ form_widget(form.voorlegger.gereserveerdeGeldenOntvangenGka)}}</label></td>
-	<td><label<>{{ form_widget(form.voorlegger.gereserveerdeGeldenNvt)}} n.v.t.</label></td>
+	<td class="nvt"><label<>{{ form_widget(form.voorlegger.gereserveerdeGeldenNvt)}} n.v.t.</label></td>
 </tr>
 
 <tr class="laatste">
