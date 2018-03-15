@@ -5,108 +5,10 @@
 {% endblock %}
 
 {% block extraScripts %}
+<link rel="stylesheet" href="/css/wizard.css">
 <script src="/vendor/mozilla/pdf.js/build/pdf.js"></script>
 <script src="/vendor/mrrio/jspdf/jspdf.js"></script>
 <script src="/vendor/mrrio/jspdf/plugins/addimage.js"></script>
-<style>
-
-#templates {
-	display: none;
-}
-
-div.canvascontainer {
-	overflow: auto;
-}
-
-div#canvases {
-	margin: 0 5%;
-}
-
-div.canvascontainer canvas {
-	width: 100px;
-	border: 2px solid black;
-	margin: 5px;
-}
-
-.actief {
-	border: 2px solid red !important;
-}
-
-canvas#groot  {
-	width: 90%;
-	margin: 15px auto;
-	display: block;
-}
-
-main {
-	display: flex;
-	flex-wrap: wrap;
-	box-sizing: border-box;
-}
-
-section.naast input[type=file] {
-	display: none;
-}
-
-main h1 {
-	flex-basis: 100%;
-}
-
-main section.hoofd {
-	flex-basis: 60%;
-	max-width: 60%;
-	border: 1px solid;
-	flex-grow: 1;
-}
-
-main section.naast {
-	flex-basis: 30%;
-	border: 1px solid;
-}
-
-section.naast h3 {
-	background-color: #e8e8e8;
-	padding: 3px 10px;
-	cursor: pointer;
-}
-
-section.naast div.container {
-	display: none;
-}
-
-
-section.naast form {
-	margin: 10px;
-	border: 1px solid;
-	position: relative;
-}
-
-div.knoppenbalk {
-	margin: 10px;
-	display: flex;
-	justify-content: space-between;
-	
-}
-
-.spinnercontainer {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background: rgba(128,128,128,0.6);
-	top: 0;
-	left: 0;
-	display: none;
-	text-align: center;
-}
-
-.spinnercontainer img {
-	opacity: 0.6;
-	width: 100%;
-	height: 100%;
-}
-
-
-</style>
 <script>
 
 window.onload = function () {
@@ -127,7 +29,6 @@ function maakUploadWizard() {
 		PDFJS.getDocument(URL).then(function (pdf) {
 			var wr = $('canvases');
 			pages = pdf.numPages;
-			$('canvases').style.width = 114*(pages) + 'px';
 			for (var i=1;i<=pages;i+=1) {
 				console.log('Init pagina ' + i);
 				pdf.getPage(i).then(function (page) {
@@ -288,7 +189,7 @@ function maakUploadWizard() {
 function accordeon() {
 	document.addEventListener('click',function (e) {
 		var source = e.target;
-		if (source.nodeName === 'H2' || source.nodeName === 'H3') {
+		if (source.nodeName === 'H3') {
 			var tgt = source.nextElementSibling;
 			if (tgt.style.display === 'block') {
 				tgt.style.display = 'none';
@@ -297,6 +198,7 @@ function accordeon() {
 			}
 		}
 	},false);
+	document.querySelector('.naast h3').click();
 }
 
 function $(id) {
@@ -316,7 +218,7 @@ function $(id) {
     
     <section class="hoofd">    
     <input type="file" id="completeDocument">
-    <div class="canvascontainer"><div id="canvases"></div></div>
+    <div id="canvases"></div>
     <canvas id="groot"></canvas>
     </section>
     
@@ -332,10 +234,16 @@ function $(id) {
 				{% set kopje = categorie.kop %}
 			{% endif %}
 			<h3>{{ categorie.schermNaam }}</h3>
+			<div class="container">
+				<form>
+				<div class="naam"><input placeholder="Naam document"></div>
+				<div class="uploadCanvases"></div>
+				<div class="knoppenbalk">
+					<button class="secundair activeer">Nieuw document</button><button class="upload primair">Opslaan en volgende</button>
+				</div>
+				</forn>
+			</div>
     	{% endif %}
-    	<div class="container">
-    		Het formulier
-    	</div>
     {% endfor %}
     <div class="knoppenbalk" id="insertForm">
 	<button class="secundair" id="nieuwForm">Nieuw formulier</button>
@@ -351,7 +259,6 @@ function $(id) {
     {{ form_row(form.document.naam) }}
     {{ form_row(form.onderwerp) }}
     </table>    
-    <div class="canvascontainer"><div class="uploadCanvases"></div></div>
     <div class="knoppenbalk">
     <button class="secundair activeer">Maak actief formulier</button><button class="upload primair">Dit uploaden</button>
     </div>
