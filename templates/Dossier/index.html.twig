@@ -1,31 +1,10 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Dossierindex</title>
-<meta name="viewport" content="width = device-width">
-<link rel="stylesheet" href="/css/styles.css">
-</head>
+{% extends 'base.html.twig' %}
 
-<body class="index">
-	<header>
-	<img src="/pix/logo_klein.svg">
-	<h2>Digitale voorlegger</h2>
-	<div>Ingelogd als: Petriculus Pucq <a href="#">(Uitloggen)</a></div>
-    </header>
+{% block title %}
+	Dossierindex
+{% endblock %}
 
-    <p class="kleineNav">&nbsp;</p>
-    
-{% for type, messages in app.flashes %}
-	{% for message in messages %}
-		<div class="flash-message flash-type-{{ type }}">
-			<a class="btn" href="#close-flash">x</a>
-			<span class="message">{{ message }}</span>
-		</div>
-	{% endfor %}
-{% endfor %}
-
-	<main>
+{% block main %}
     <h1>Dossiers</h1>
     <p><a class="primair" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}">Maak nieuw dossier aan</a></p>
     
@@ -58,8 +37,4 @@
 {% endfor %}
        </tbody>
     </table>
-    </main>
-    
-    
-</body>
-</html>
+{% endblock %}

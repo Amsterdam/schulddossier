@@ -1,20 +1,15 @@
-<html lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Maak nieuw dossier aan</title>
-<meta name="viewport" content="width = device-width">
-<link rel="stylesheet" href="/css/styles.css">
-</head>
+{% extends 'base.html.twig' %}
 
-<body class="create">
-	<header>
-	<img src="/pix/logo_klein.svg">
-	<h2>Digitale voorlegger</h2>
-	<div>Ingelogd als: Petriculus Pucq <a href="#">(Uitloggen)</a></div>
-    </header>
-	
+{% block title %}
+	Maak nieuw dossier aan
+{% endblock %}
+
+
+{% block kleineNavigatie %}
     <p class="kleineNav"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
-	<main>
+{% endblock %}
+
+{% block main %}
     <h1>Nieuw dossier</h1>
     {{ form_start(form) }}
     <p><label>Naam cliënt{{ form_widget(form.clientNaam) }}</label>{{ form_errors(form.clientNaam) }}</p>
@@ -26,6 +21,4 @@
     <p><label>Allegro{{ form_widget(form.allegroNummer) }}</label>{{ form_errors(form.allegroNummer) }}</p>
     <input type="submit" value="Maak aan">
     {{ form_end(form) }}
-    </main>
-</body>
-</html>
+{% endblock %}

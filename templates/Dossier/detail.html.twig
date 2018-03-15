@@ -8,6 +8,7 @@
 <script src="/js/script.js"></script>
 </head>
 
+
 <body class="{{ app.user.type }}">
 
 	<header>
@@ -17,6 +18,7 @@
 	</header>
 
 <p class="kleineNav">
+// NOG NIET EXTENDED!!!
 	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a> | 
 	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a> |
 	<form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id}) }}" method="post">

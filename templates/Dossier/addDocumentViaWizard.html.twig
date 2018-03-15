@@ -1,16 +1,16 @@
-<html lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Voeg document toe aan dossier</title>
-<meta name="viewport" content="width = device-width">
-<link rel="stylesheet" href="/css/styles.css">
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Bulk-upload documenten
+{% endblock %}
+
+{% block extraScripts %}
 <script src="/vendor/mozilla/pdf.js/build/pdf.js"></script>
 <script src="/vendor/mrrio/jspdf/jspdf.js"></script>
 <script src="/vendor/mrrio/jspdf/plugins/addimage.js"></script>
-<script src="/js/script.js"></script>
 <style>
 
-#templateForm {
+#templates {
 	display: none;
 }
 
@@ -64,6 +64,17 @@ main section.naast {
 	border: 1px solid;
 }
 
+section.naast h3 {
+	background-color: #e8e8e8;
+	padding: 3px 10px;
+	cursor: pointer;
+}
+
+section.naast div.container {
+	display: none;
+}
+
+
 section.naast form {
 	margin: 10px;
 	border: 1px solid;
@@ -99,6 +110,7 @@ div.knoppenbalk {
 <script>
 
 window.onload = function () {
+	accordeon();
 	maakUploadWizard();
 }
 
@@ -111,11 +123,13 @@ function maakUploadWizard() {
 	}
 	
 	function laadPDF(URL) {
+		var pages;
 		PDFJS.getDocument(URL).then(function (pdf) {
 			var wr = $('canvases');
-			var pages = pdf.numPages;
+			pages = pdf.numPages;
 			$('canvases').style.width = 114*(pages) + 'px';
 			for (var i=1;i<=pages;i+=1) {
+				console.log('Init pagina ' + i);
 				pdf.getPage(i).then(function (page) {
 					var canvas = document.createElement('canvas');
 					canvas.id = 'id'+page.pageIndex;
@@ -130,9 +144,26 @@ function maakUploadWizard() {
 					};
 					page.render(renderContext);
 					wr.appendChild(canvas);
+					logKlaar(page.pageIndex);
 				});
 			}
+			console.log('Loop beeindigd');
 		});
+		
+		var logObj = {};
+				
+		function logKlaar(nummer) {
+			console.log('Pagina ' + nummer + ' klaar');
+			logObj['p'+nummer] = true;
+			for (var i=0;i<pages;i+=1) {
+				if (!logObj['p'+i]) {
+					return;
+				}
+			}
+			console.log('Geheel klaar');
+			PDFJS = null;
+			
+		}
 		
 		// hier closure afbreken
 		// destroy PDFJS
@@ -254,24 +285,33 @@ function maakUploadWizard() {
 	};
 }
 
+function accordeon() {
+	document.addEventListener('click',function (e) {
+		var source = e.target;
+		if (source.nodeName === 'H2' || source.nodeName === 'H3') {
+			var tgt = source.nextElementSibling;
+			if (tgt.style.display === 'block') {
+				tgt.style.display = 'none';
+			} else {
+				tgt.style.display = 'block';			
+			}
+		}
+	},false);
+}
+
 function $(id) {
 	return document.getElementById(id);
 }
 
 </script>
-</head>
+{% endblock %}
 
-<body>
-	<header>
-	<img src="/pix/logo_klein.svg">
-	<h2>Digitale voorlegger</h2>
-	<div>Ingelogd als: Petriculus Pucq <a href="#">(Uitloggen)</a></div>
-    </header>
-	
-	<p class="kleinNav"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a></p>
+{% block kleineNavigatie %}
+	<p class="kleineNav"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a></p>
+{% endblock %}
 
 
-	<main>
+{% block main %}
     <h1>Voeg document toe aan dossier {{ dossier.clientNaam }}</h1>
     
     <section class="hoofd">    
@@ -281,6 +321,22 @@ function $(id) {
     </section>
     
     <section class="naast">
+	{% set kopje = "" %}
+    {% for categorie in categorieen %}
+    	{% if categorie.isKop is defined %}
+			<h2>{{ categorie.schermNaam }}</h2>    	
+			{% set kopje = categorie.schermNaam %}
+    	{% else %}
+			{% if categorie.kop != kopje %}
+				<h2>{{ categorie.kop }}</h2>
+				{% set kopje = categorie.kop %}
+			{% endif %}
+			<h3>{{ categorie.schermNaam }}</h3>
+    	{% endif %}
+    	<div class="container">
+    		Het formulier
+    	</div>
+    {% endfor %}
     <div class="knoppenbalk" id="insertForm">
 	<button class="secundair" id="nieuwForm">Nieuw formulier</button>
 	<button class="secundair">Klaar</button>
@@ -288,8 +344,7 @@ function $(id) {
     </section>
 
 
-	</main>
-	
+	<div id="templates">
     {{ form_start(form,{attr: {id:'templateForm'}}) }}
     <span class="spinnercontainer"><img src="/pix/spinner.gif"></span>
     <table>
@@ -307,6 +362,6 @@ function $(id) {
     	<p>Document upgeload naar <span></span>.</p>
     	<p><a href="#" target="_blank"></a></p>
     </div>
-
-</body>
-</html>
+    </div>
+    
+{% endblock %}	
