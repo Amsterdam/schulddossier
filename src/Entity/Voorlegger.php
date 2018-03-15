@@ -419,6 +419,12 @@ class Voorlegger
      */
     private $autolastenKmWoonwerkverkeerNvt;
 
+    /**
+     * @var integer
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $autolastenKmWoonwerkverkeer;
+
     // ---
 
     /**
@@ -875,6 +881,7 @@ class Voorlegger
         $this->autolastenKmWoonwerkverkeerOntvangenMadi = false;
         $this->autolastenKmWoonwerkverkeerOntvangenGka = false;
         $this->autolastenKmWoonwerkverkeerNvt = false;
+        $this->autolastenKmWoonwerkverkeer = 0;
         $this->verklaringWerkgeverOntvangenMadi = false;
         $this->verklaringWerkgeverOntvangenGka = false;
         $this->verklaringWerkgeverNvt = false;
@@ -1226,6 +1233,11 @@ class Voorlegger
     public function isAutolastenKmWoonwerkverkeerNvt()
     {
         return $this->autolastenKmWoonwerkverkeerNvt;
+    }
+
+    public function getAutolastenKmWoonwerkverkeer()
+    {
+        return $this->autolastenKmWoonwerkverkeer;
     }
 
     public function isVerklaringWerkgeverOntvangenMadi()
@@ -1835,6 +1847,11 @@ class Voorlegger
     public function setAutolastenKmWoonwerkverkeerNvt($autolastenKmWoonwerkverkeerNvt)
     {
         $this->autolastenKmWoonwerkverkeerNvt = $autolastenKmWoonwerkverkeerNvt;
+    }
+
+    public function setAutolastenKmWoonwerkverkeer($autolastenKmWoonwerkverkeer)
+    {
+        $this->autolastenKmWoonwerkverkeer = $autolastenKmWoonwerkverkeer;
     }
 
     public function setVerklaringWerkgeverOntvangenMadi($verklaringWerkgeverOntvangenMadi)

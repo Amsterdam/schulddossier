@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class VoorleggerFormType extends AbstractType
 {
@@ -229,6 +230,9 @@ class VoorleggerFormType extends AbstractType
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('autolastenKmWoonwerkverkeerNvt', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('autolastenKmWoonwerkverkeer', IntegerType::class, [
             'required' => false
         ]);
         $builder->add('verklaringWerkgeverOntvangenMadi', CheckboxType::class, [
