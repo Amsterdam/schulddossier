@@ -21,7 +21,7 @@ div#canvases {
 	margin: 0 5%;
 }
 
-div#canvases canvas {
+canvas {
 	width: 100px;
 	border: 2px solid black;
 	margin: 5px;
