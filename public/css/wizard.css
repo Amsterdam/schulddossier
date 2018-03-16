@@ -169,6 +169,7 @@ div.naamVeld input {
 
 div.uploadCanvases {
 	margin: 20px 10px;
+	min-height: 75px;
 }
 
 div.knoppenbalk {
