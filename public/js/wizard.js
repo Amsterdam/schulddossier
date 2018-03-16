@@ -140,8 +140,14 @@ function maakUploadWizard() {
 			newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
 		}
 		var linkData = {};
+		var naamSource = form.querySelector('input[type=text]');
+		if (!naamSource.value) {
+			naamSource.placeholder = 'Vul aub. een naam in';
+			naamSource.focus();
+			return false;
+		}
 		linkData.container = form;
-		linkData.naam = form.querySelector('input[type=text]').value;
+		linkData.naam = naamSource.value;
 		linkData.onderwerp = form.dataset.systeemnaam;
 
 		var echtFormulier = $('uploadForm');
@@ -173,7 +179,6 @@ function maakUploadWizard() {
 		var form = data.container;
 		form.parentNode.insertBefore(div,form);
 		form.parentNode.removeChild(form);
-
 	}
 
 	function wijzigActiefFormulier(source) {
@@ -185,6 +190,11 @@ function maakUploadWizard() {
 		tgt.onderwerp = source.textContent
 		actiefFormulier = tgt;
 	}
+	
+	function voegFormulierToe(target) {
+	
+	}
+	
 }
 
 
