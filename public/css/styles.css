@@ -73,7 +73,7 @@ main {
 	padding-bottom: 50px;
 	box-sizing: border-box;
 	box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
-	font-size: 16px;
+	/*! font-size: 16px; */
 	overflow: auto;
 
 }
@@ -156,10 +156,14 @@ input.tertiair,a.tertiair,button.tertiair {
 
 }
 
-input[type=text],input[type=date] {
-	height: 24px;
-	font-size: 16px;
+input[type="text"],input[type=date] {
+/* 	height: 24px; */
+	padding: 5px;
+	font-size: 12px;
+	font-family: verdana;
 }
+
+/* @PPK, zitten hieronder typos of verwijst dit echt ergens naar? */
 
 nput[type=submi],ai.knop {
 	-webkit-appearance: none;

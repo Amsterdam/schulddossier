@@ -37,12 +37,12 @@ div#canvases {
 canvas {
 	width: 100%;
 	border: 1px solid #979797;
-	cursor: pointer; /* Rik, mee eens? Dus niet op hover maar altijd op canvas? */
+	cursor: pointer;
 }
 
 div#canvases div {
 	display: inline-block;
-	width: 110px;
+	width: 100px;
 	margin: 0px 40px 20px 0px;
 	position: relative;
 }
@@ -53,9 +53,9 @@ div.actief canvas {
 
 form canvas {
 	/* Thumbnail-canvas in formulier rechts */
-	width: 100px;
+	width: 70px;
 	margin: 0;
-	margin-right: 10px;
+	margin-right: 20px;
 }
 
 div.actief:before {
@@ -71,6 +71,21 @@ div.actief:before {
 	background-repeat: no-repeat;
 	z-index: 1;
 }
+
+/* div#canvases div:hover:after{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	content: " ";
+	background-image: url(/pix/checked-hover.svg);
+	background-size: 25px 25px;
+	background-position: center;
+	background-repeat: no-repeat;
+	z-index: 1;
+	opacity: 0.3;
+} */
 
 #canvases div.loep {
 	position: absolute;
@@ -101,15 +116,17 @@ main h1 {
 }
 
 section.naast h2 {
-	margin: 5px 0;
-	padding: 5px 10px;
-
+	margin: 30px 0 20px auto;
+	/*! padding: 5px 10px; */
+  font-size: 18px;
+	font-weight: bold;
+	border-bottom: solid red 1px;
 }
 
 section.naast h3 {
 	background-color: #f8f8f8;
 	margin-top: 8px;
-	padding: 8px 10px;
+	padding: 8px 30px;
 	cursor: pointer;
 }
 
@@ -119,34 +136,45 @@ section.naast h3:after {
 		height: 16px;
 		float: right;
 		margin-top: 3px;
-	}
+}
+
+section.naast h3.uitgeklapt:after {
+		content: url("../pix/chevron-up.svg");
+		width: 16px;
+		height: 16px;
+		float: right;
+		margin-top: 3px;
+}
 
 section.naast div.container {
 	display: none;
 }
 
 section.naast form {
-	padding: 10px;
+	padding: 10px 20px;
 	background-color: #f8f8f8;
 	position: relative;
 }
 
 div.naamVeld {
-	margin: 5px 10px 15px;
-	padding-bottom: 5px;
+	margin: 15px 10px;
+	padding-bottom: 8px;
 	border-bottom: 2px solid #cccccc;
 }
 
 div.naamVeld input {
 	width: 60%;
-	font-size: 16px;
+	/*! font-size: 16px; */
+}
+
+div.uploadCanvases {
+	margin: 20px 10px;
 }
 
 div.knoppenbalk {
-	margin: 10px;
+	margin: 30px 10px 20px;
 	display: flex;
 	justify-content: space-between;
-
 }
 
 .spinnerContainer {
