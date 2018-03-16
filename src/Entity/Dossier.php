@@ -106,8 +106,7 @@ class Dossier
 
     /**
      * @var Voorlegger
-     * @ORM\OneToOne(targetEntity="Voorlegger", mappedBy="dossier", orphanRemoval=true, cascade={"persist"})
-     * @ORM\JoinColumn(name="voorlegger_id", referencedColumnName="id", nullable=true)
+     * @ORM\OneToOne(targetEntity="Voorlegger", mappedBy="dossier", orphanRemoval=true, cascade={"persist", "remove"})
      * @Assert\Valid
      */
     private $voorlegger;
@@ -118,10 +117,17 @@ class Dossier
      */
     private $documenten;
 
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $inPrullenbak;
+
     public function __construct()
     {
         $this->aanmaakDatumTijd = new \DateTime();
         $this->documenten = new ArrayCollection();
+        $this->inPrullenbak = false;
     }
 
     public function getId()
@@ -197,6 +203,11 @@ class Dossier
     public function getAanmaakDatumTijd()
     {
         return $this->aanmaakDatumTijd;
+    }
+
+    public function isInPrullenbak()
+    {
+        return $this->inPrullenbak;
     }
 
     public function setDossierTemplate($dossierTemplate)
@@ -321,6 +332,11 @@ class Dossier
         if ($document->getDossier() !== $this) {
             $document->setDossier($this);
         }
+    }
+
+    public function setInPrullenbak($inPrullenbak)
+    {
+        $this->inPrullenbak = $inPrullenbak;
     }
 
     public static function getStatussen()

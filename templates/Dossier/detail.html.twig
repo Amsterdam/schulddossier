@@ -28,7 +28,23 @@
 			<option value="gesloten" {{ dossier.status == 'gesloten' ? 'selected' }}>Dossier afgesloten</option>
 		</select>
 		<button type="submit">Status aanpassen</button>
-	</form>
+	</form> |
+    {% if dossier.inPrullenbak == false %}
+    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', {'dossierId': dossier.id}) }}" method="post">
+        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak') }}">
+        <button type="submit">Naar prullenbak</button>
+    </form> |
+	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexdocumenteninprullenbak', {'dossierId': dossier.id}) }}">Prullenbak van dit dossier</a>
+    {% else %}
+    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove', {'dossierId': dossier.id}) }}" method="post">
+        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove') }}">
+        <button type="submit">Definitief verwijderen</button>
+    </form>
+    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore', {'dossierId': dossier.id}) }}" method="post">
+        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore') }}">
+        <button type="submit">Herstellen</button>
+    </form>
+    {% endif %}
 </p>
 
 {% for type, messages in app.flashes %}
@@ -42,6 +58,10 @@
 
 <main class="voorlegger">
 <h1>Voorlegger {{ dossier.clientNaam }}</h1>
+
+{% if dossier.inPrullenbak %}
+    <p><strong>Dit dossier staat in de prullenbak!</strong></p>
+{% endif %}
 
 {{ form_start(form) }}
 
@@ -73,9 +93,10 @@
 
 
 <div id="documenten">
-{% for document in dossier.getDocumenten %}
+{% for document in dossier.getDocumenten if document.document.inPrullenbak == false %}
 	<li data-onderwerp="{{ document.onderwerp }}">
-		<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': document.dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>
+		<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': document.dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a> |
+        <a class="link-as-submit" data-token="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_movedocumenttoprullenbak') }}" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_movedocumenttoprullenbak', {'dossierId': document.dossier.id, 'documentId': document.document.id}) }}">verwijderen</a>
 	</li>
 {% endfor %}
 </div>

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
@@ -38,9 +39,32 @@ class AppDossierController extends Controller
 
         $maxPageSize = 10;
 
-        $dossiers = $repository->findAll($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+        $dossiers = $repository->findActive($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
         return $this->render('Dossier/index.html.twig', [
+            'dossiers' => $dossiers,
+            'pagination' => [
+                'page' => $request->query->getInt('page', 0),
+                'pageSize' => $maxPageSize,
+                'numberOfItems' => count($dossiers),
+                'numberOfPages' => ceil(count($dossiers) / $request->query->getInt('pageSize', $maxPageSize))
+            ]
+        ]);
+    }
+
+    /**
+     * @Route("/prullenbak")
+     */
+    public function indexPrullenbakAction(Request $request, EntityManagerInterface $em)
+    {
+        /** @var $repository DossierRepository */
+        $repository = $em->getRepository(Dossier::class);
+
+        $maxPageSize = 10;
+
+        $dossiers = $repository->findInactive($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+
+        return $this->render('Dossier/indexPrullenbak.html.twig', [
             'dossiers' => $dossiers,
             'pagination' => [
                 'page' => $request->query->getInt('page', 0),
@@ -86,6 +110,7 @@ class AppDossierController extends Controller
             $dossier->setVoorlegger(new Voorlegger());
         }
         $form = $this->createForm(DetailDossierFormType::class, $dossier, [
+            'disabled' => $dossier->isInPrullenbak() === true,
             'disable_group' => $this->getUser()->getType()
         ]);
         $form->handleRequest($request);
@@ -195,6 +220,22 @@ class AppDossierController extends Controller
     }
 
     /**
+     * @Route("/detail/{dossierId}/documenten/prullenbak")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function indexDocumentenInPrullenbak(Request $request, Dossier $dossier)
+    {
+        $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) {
+            return $dossierDocument->getDocument()->isInPrullenbak();
+        });
+
+        return $this->render('Dossier/indexDocumentenInPrullenbak.html.twig', [
+            'dossier' => $dossier,
+            'dossierDocumenten' => $dossierDocumenten,
+        ]);
+    }
+
+    /**
      * @Route("/detail/{dossierId}/documenten/detail/{documentId}")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
@@ -208,6 +249,10 @@ class AppDossierController extends Controller
             throw new NotFoundHttpException('Document does not match with dossier');
         }
 
+        if ($document->isInPrullenbak() === true) {
+            throw $this->createNotFoundException('Document not available');
+        }
+
         $timestamp = intval(time() + 30);
         $path = '/' . $this->getParameter('swift_container_prefix') . $document->getGroep() . '/' . $document->getDirectory() . '/' . $document->getBestandsnaam();
         $sign = hash_hmac('sha1', "GET\n" . $timestamp . "\n" . $path, $this->getParameter('swift_temp_url_key'));
@@ -217,7 +262,97 @@ class AppDossierController extends Controller
     }
 
     /**
+     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/naar-prullenbak")
+     * @Method("POST")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("document", options={"id"="documentId"})
+     */
+    public function moveDocumentToPrullenbakAction(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em)
+    {
+        $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
+            return $dossierDocument->getDocument() === $document;
+        });
+        if ($dossierDocumenten->count() === 0) {
+            throw new NotFoundHttpException('Document does not match with dossier');
+        }
+
+        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_movedocumenttoprullenbak', $request->request->get('token')) === false) {
+            throw $this->createAccessDeniedException('CSRF token invalid');
+        }
+
+        $document->setInPrullenbak(true);
+        $this->addFlash('success', 'Document in prullenbak geplaatst');
+
+        $em->flush();
+
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', ['dossierId' => $dossier->getId()]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/verwijderen")
+     * @Method("POST")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("document", options={"id"="documentId"})
+     */
+    public function removeDocumentAction(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em)
+    {
+        $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
+            return $dossierDocument->getDocument() === $document;
+        });
+        if ($dossierDocumenten->count() === 0) {
+            throw new NotFoundHttpException('Document does not match with dossier');
+        }
+
+        if ($document->isInPrullenbak() === false) {
+            throw $this->createNotFoundException('Document not in prullenbak already', ['documentId' => $document->getId()]);
+        }
+
+        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_removedocument', $request->request->get('token')) === false) {
+            throw $this->createAccessDeniedException('CSRF token invalid');
+        }
+
+        $em->remove($document);
+
+        $em->flush();
+        $this->addFlash('success', 'Document definitief verwijderd');
+
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', ['dossierId' => $dossier->getId()]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/herstellen")
+     * @Method("POST")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("document", options={"id"="documentId"})
+     */
+    public function restoreDocumentAction(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em)
+    {
+        $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
+            return $dossierDocument->getDocument() === $document;
+        });
+        if ($dossierDocumenten->count() === 0) {
+            throw new NotFoundHttpException('Document does not match with dossier');
+        }
+
+        if ($document->isInPrullenbak() === false) {
+            throw $this->createNotFoundException('Document not in prullenbak already', ['documentId' => $document->getId()]);
+        }
+
+        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoredocument', $request->request->get('token')) === false) {
+            throw $this->createAccessDeniedException('CSRF token invalid');
+        }
+
+        $document->setInPrullenbak(false);
+
+        $em->flush();
+        $this->addFlash('success', 'Document hersteld');
+
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', ['dossierId' => $dossier->getId()]);
+    }
+
+    /**
      * @Route("/detail/{dossierId}/verander-status")
+     * @Method("POST")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function changeStatusAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
@@ -227,6 +362,70 @@ class AppDossierController extends Controller
             $dossier->setStatus($newStatus);
             $em->flush($dossier);
         }
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', ['dossierId' => $dossier->getId()]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/naar-prullenbak")
+     * @Method("POST")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function moveToPrullenbakAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    {
+        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', $request->request->get('token')) === false) {
+            throw $this->createAccessDeniedException('CSRF token invalid');
+        }
+
+        $dossier->setInPrullenbak(true);
+        $em->flush();
+        $this->addFlash('success', 'Dossier in prullenbak geplaatst');
+
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/verwijderen")
+     * @Method("POST")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function removeAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    {
+        if ($dossier->isInPrullenbak() === false) {
+            throw $this->createNotFoundException('Dossier not in prullenbak, dossierId=' . $dossier->getId());
+        }
+
+        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove', $request->request->get('token')) === false) {
+            throw $this->createAccessDeniedException('CSRF token invalid');
+        }
+
+        foreach ($dossier->getDocumenten() as $dossierDocument) {
+            $em->remove($dossierDocument->getDocument());
+            $em->remove($dossierDocument);
+        }
+        $em->remove($dossier);
+
+        $em->flush();
+        $this->addFlash('success', 'Dossier definitief verwijderd');
+
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/herstellen")
+     * @Method("POST")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function restoreAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    {
+        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore', $request->request->get('token')) === false) {
+            throw $this->createAccessDeniedException('CSRF token invalid');
+        }
+
+        $dossier->setInPrullenbak(false);
+
+        $em->flush();
+        $this->addFlash('success', 'Dossier hersteld');
+
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', ['dossierId' => $dossier->getId()]);
     }
 }

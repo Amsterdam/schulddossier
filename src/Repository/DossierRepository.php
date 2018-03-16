@@ -15,4 +15,28 @@ class DossierRepository extends EntityRepository
 
         return new Paginator($qb->getQuery());
     }
+
+    public function findActive($page = 0, $pageSize = 100)
+    {
+        $qb = $this->createQueryBuilder('dossier');
+        $qb->orderBy('dossier.aanmaakDatumTijd', 'DESC');
+        $qb->andWhere('dossier.inPrullenbak = :inPrullenbak');
+        $qb->setParameter('inPrullenbak', false);
+        $qb->setFirstResult($page * $pageSize);
+        $qb->setMaxResults($pageSize);
+
+        return new Paginator($qb->getQuery());
+    }
+
+    public function findInactive($page = 0, $pageSize = 100)
+    {
+        $qb = $this->createQueryBuilder('dossier');
+        $qb->orderBy('dossier.aanmaakDatumTijd', 'DESC');
+        $qb->andWhere('dossier.inPrullenbak = :inPrullenbak');
+        $qb->setParameter('inPrullenbak', true);
+        $qb->setFirstResult($page * $pageSize);
+        $qb->setMaxResults($pageSize);
+
+        return new Paginator($qb->getQuery());
+    }
 }

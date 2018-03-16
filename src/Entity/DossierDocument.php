@@ -29,7 +29,7 @@ class DossierDocument
     /**
      * @var Document
      * @ORM\ManyToOne(targetEntity="Document", cascade={"persist"}, fetch="EAGER")
-     * @ORM\JoinColumn(name="document_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="document_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      * @Assert\Valid
      */
     private $document;

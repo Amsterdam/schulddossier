@@ -32,7 +32,7 @@ class DocumentUploadSubscriber implements EventSubscriber
      */
     public function getSubscribedEvents()
     {
-        return ['prePersist'];
+        return ['prePersist', 'postRemove'];
     }
 
     /**
@@ -59,5 +59,28 @@ class DocumentUploadSubscriber implements EventSubscriber
         $stream = fopen($uploadedFile->getPathname(), 'r+');
         $flysystem->writeStream($object->getDirectory() . '/' . $object->getBestandsnaam(), $stream);
         fclose($stream);
+    }
+
+    /**
+     * @param LifecycleEventArgs $args
+     */
+    public function postRemove(LifecycleEventArgs $args)
+    {
+        $object = $args->getObject();
+        if (($object instanceof Document) === false) {
+            return;
+        }
+        /** @var $object Document */
+
+        $flysystem = $this->fileStorageSelector->getByGroep($object->getGroep());
+
+        if ($flysystem->has($object->getDirectory() . '/' . $object->getBestandsnaam())) {
+            $flysystem->delete($object->getDirectory() . '/' . $object->getBestandsnaam());
+        }
+
+        $contents = $flysystem->listContents($object->getDirectory(), false);
+        if (count($contents) === 0) {
+            $flysystem->deleteDir($object->getDirectory());
+        }
     }
 }

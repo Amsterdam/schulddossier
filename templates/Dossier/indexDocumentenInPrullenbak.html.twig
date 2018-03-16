@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{ dossier.clientNaam }} - voorlegger</title>
+<meta name="viewport" content="width = device-width">
+<link rel="stylesheet" href="/css/styles.css">
+<script src="/js/script.js"></script>
+</head>
+
+
+<body class="{{ app.user.type }}">
+
+	<header>
+	<img src="/pix/logo_klein.svg">
+	<h2>Digitale voorlegger</h2>
+	<div>Ingelogd als: Petriculus Pucq <a href="#">(Uitloggen)</a></div>
+	</header>
+
+<p class="kleineNav">
+// NOG NIET EXTENDED!!!
+	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a>
+</p>
+
+{% for type, messages in app.flashes %}
+	{% for message in messages %}
+		<div class="flash-message flash-type-{{ type }}">
+			<a class="btn" href="#close-flash">x</a>
+			<span class="message">{{ message }}</span>
+		</div>
+	{% endfor %}
+{% endfor %}
+
+<main class="voorlegger">
+<h1>Prullenbak van voorlegger {{ dossier.clientNaam }}</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Document</th>
+            <td>&nbsp;</td>
+        </tr>
+    </thead>
+    <tbody>
+{% for document in dossier.documenten if document.document.inPrullenbak == true %}
+        <tr>
+            <th>{{ document.document.naam }}</th>
+            <td>
+                <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_removedocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}" method="post">
+                    <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_removedocument') }}">
+                    <button type="submit">Definitief verwijderen</button>
+                </form>
+                <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoredocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}" method="post">
+                    <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoredocument') }}">
+                    <button type="submit">Herstellen</button>
+                </form>
+            </td>
+        </tr>
+{% else %}
+        <tr>
+            <td>Geen documenten in de prullenbak</td>
+        </tr>
+{% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

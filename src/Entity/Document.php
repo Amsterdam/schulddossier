@@ -25,6 +25,8 @@ class Document
     /**
      * @var File
      * Not mapped to database
+     * @Assert\NotBlank
+     * @Assert\File
      */
     private $file;
 
@@ -91,6 +93,17 @@ class Document
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $bestandsnaam;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $inPrullenbak;
+
+    public function __construct()
+    {
+        $this->inPrullenbak = false;
+    }
 
     public function getId()
     {
@@ -163,6 +176,11 @@ class Document
         return $this->naam;
     }
 
+    public function isInPrullenbak()
+    {
+        return $this->inPrullenbak;
+    }
+
     public function setOrigineleExtensie($origineleExtensie)
     {
         $this->origineleExtensie = $origineleExtensie;
@@ -177,7 +195,6 @@ class Document
     {
         $this->uploader = $uploader;
     }
-
 
     public function setFile(File $file)
     {
@@ -214,4 +231,8 @@ class Document
         $this->mainTag = $mainTag;
     }
 
+    public function setInPrullenbak($inPrullenbak)
+    {
+        $this->inPrullenbak = $inPrullenbak;
+    }
 }
