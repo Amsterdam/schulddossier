@@ -19,14 +19,14 @@ main section.naast {
 
 div#canvases {
 	margin: 0 5%;
-	max-height: 500px;
-	overflow: scroll;
+	max-height: 100vh;
+	overflow-y: scroll;
 }
 
 canvas {
 	width: 100px;
 	border: 1px solid #979797;
-	margin: 0px 50px 20px 0px;
+	margin: 0px 40px 20px 0px;
 }
 
 .actief:hover{
@@ -63,6 +63,14 @@ section.naast h3 {
 	padding: 8px 10px;
 	cursor: pointer;
 }
+
+section.naast h3:after {
+		content: url("../pix/chevron-down.svg");
+		width: 16px;
+		height: 16px;
+		float: right;
+		margin-top: 3px;
+	}
 
 section.naast div.container {
 	display: none;

@@ -231,9 +231,11 @@ main.voorlegger table.main label {
 
 main.voorlegger td.madi,
 main.voorlegger td.gka {
+	min-width: initial;
 	width: 50px;
 }
 main.voorlegger td.nvt {
+	min-width: initial;
 	width: 80px;
 }
 
