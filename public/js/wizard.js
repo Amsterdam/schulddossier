@@ -13,12 +13,17 @@ function maakUploadWizard() {
 	}
 
 	function laadPDF(URL) {
+	
+		var template = document.createElement('div');
+		template.appendChild(document.createElement('div')).className = 'loep';
+		
 		var pages;
 		PDFJS.getDocument(URL).then(function (pdf) {
 			var wr = $('canvases');
 			pages = pdf.numPages;
 			for (var i=1;i<=pages;i+=1) {
 				pdf.getPage(i).then(function (page) {
+					var div = template.cloneNode(true);
 					var canvas = document.createElement('canvas');
 					canvas.id = 'id'+page.pageIndex;
 					var viewport = page.getViewport(scale);
@@ -31,7 +36,8 @@ function maakUploadWizard() {
 						viewport: viewport
 					};
 					page.render(renderContext);
-					wr.appendChild(canvas);
+					div.appendChild(canvas);
+					wr.appendChild(div);
 //					logKlaar(page.pageIndex);
 				});
 			}
@@ -55,21 +61,28 @@ function maakUploadWizard() {
 
 	}
 
-	var groteCanvas = $('groot');
-	var nieuweContext = groteCanvas.getContext('2d');
+//	var groteCanvas = $('groot');
+//	var nieuweContext = groteCanvas.getContext('2d');
 	$('canvases').onclick = function (e) {
 		var tgt = e.target;
+		if (tgt.classList.contains('loep')) {
+			console.log('Vergroot');
+			return false;
+		}
+		if (tgt.classList.contains('actief')) {
+			tgt = tgt.querySelector('canvas');
+		}
 		if (tgt.nodeName === 'CANVAS') {
-			if (tgt.classList.contains('actief')) {
-				tgt.classList.remove('actief');
+			var div = tgt.parentNode;
+			if (div.classList.contains('actief')) {
+				div.classList.remove('actief');
 			}
 			/*
 			groteCanvas.width = e.target.width;
 			groteCanvas.height = e.target.height;
 			nieuweContext.drawImage(e.target,0,0);
 			*/
-			tgt.classList.add('actief');
-			console.log(actiefFormulier);
+			div.classList.add('actief');
 			if (actiefFormulier) {
 				var nieuwID = e.target.id + 'copy';
 				var canvas;
@@ -78,9 +91,9 @@ function maakUploadWizard() {
 				} else {
 					canvas = document.createElement('canvas');
 					var thumbContext = canvas.getContext('2d');
-					canvas.width = e.target.width;
-					canvas.height = e.target.height;
-					thumbContext.drawImage(e.target,0,0);
+					canvas.width = tgt.width;
+					canvas.height = tgt.height;
+					thumbContext.drawImage(tgt,0,0);
 					canvas.id = nieuwID;
 				}
 				actiefFormulier.querySelector('.uploadCanvases').appendChild(canvas);
@@ -92,11 +105,12 @@ function maakUploadWizard() {
 	document.querySelector('.naast').addEventListener('click',function (e) {
 		var source = e.target;
 		if (source.nodeName === 'H3') {
-			wijzigActiefFormulier(source);
 			console.log('wijzig formulier');
+			wijzigActiefFormulier(source);
 		} else if (source.classList.contains('nieuwDocument')) {
 			console.log('Nieuw document');
 		} else if (source.classList.contains('upload')) {
+			console.log('Stuur formulier');
 			stuurFormulier(source);
 		}
 		e.preventDefault();
@@ -105,13 +119,13 @@ function maakUploadWizard() {
 
 	function stuurFormulier(source) {
 		var form = goUp(source,'FORM');
-		var canvases = form.querySelectorAll('canvas'),
-			newPDF = new jsPDF(),
+		var canvases = form.querySelectorAll('canvas');
+		if (!canvases.length) {
+			return false; // iets van een foutmelding
+		}
+		var	newPDF = new jsPDF(),
 			imgData
 		;
-		if (!canvases.length) {
-			return; // iets van een foutmelding
-		}
 		for (var i=0,cv;cv=canvases[i];i+=1) {
 			if (i > 0) {
 				newPDF.addPage();
@@ -122,13 +136,11 @@ function maakUploadWizard() {
 		var linkData = {};
 		linkData.container = form;
 		linkData.naam = form.querySelector('input[type=text]').value;
-		return false;
 		linkData.onderwerp = form.dataset.systeemnaam;
-		console.log(linkData.onderwerp);
 
 		var echtFormulier = $('uploadForm');
 		echtFormulier.querySelector('input[type=text]').value = linkData.naam;
-//		echtFormulier.querySelector('select').value = linkData.onderwerp;
+		echtFormulier.querySelector('select').value = linkData.onderwerp;
 		var data = new FormData(echtFormulier);
 		data.append('dossier_document_form[document][file]',newPDF.output('blob'),'document');
 		form.querySelector('.spinnerContainer').style.display = 'block'
@@ -139,6 +151,7 @@ function maakUploadWizard() {
 				linkData.link = resp.document.url;
 				newPDF = null;
 				maakLink(linkData);
+				// + nieuwe form onder onderwerp
 			}
 		},data)
 		return false;
@@ -165,7 +178,6 @@ function maakUploadWizard() {
 		tgt.style.display = 'block';
 		tgt.onderwerp = source.textContent
 		actiefFormulier = tgt;
-		console.log(actiefFormulier);
 	}
 }
 

@@ -23,21 +23,70 @@ div#canvases {
 	overflow-y: scroll;
 }
 
+/*
+	LET OP: HTML-structuur grwijzigd:
+	<div>
+		<div class="loep"></div>
+		<canvas></canvas>
+	</div>
+	De buitenste div krijgt nu class=actief
+	Dit is nodig omdat canvas geen :before en :after ondersteunt; die moeten we op de div zetten
+	Tevens moeten we een divje hebben voor het loepje om het klikbaar te houden
+*/
+
 canvas {
-	width: 100px;
+	width: 100%;
 	border: 1px solid #979797;
+	cursor: pointer; /* Rik, mee eens? Dus niet op hover maar altijd op canvas? */
+}
+
+div#canvases div {
+	display: inline-block;
+	width: 110px;
 	margin: 0px 40px 20px 0px;
+	position: relative;
 }
 
-.actief:hover{
-	cursor: pointer;
-}
-
-.actief {
+div.actief canvas {
 	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
 }
 
+form canvas {
+	/* Thumbnail-canvas in formulier rechts */
+	width: 100px;
+	margin: 0;
+	margin-right: 10px;
+}
+
+div.actief:before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	content: " ";
+	background-image: url(/pix/checked-hover.svg);
+	background-size: 25px 25px;
+	background-position: center;
+	background-repeat: no-repeat;
+	z-index: 1;
+}
+
+#canvases div.loep {
+	position: absolute;
+	margin: 0;
+	bottom: 0;
+	right: 0;
+	width: 25px;
+	height: 30px;
+	background-image: url(/pix/zoom-in.svg);
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	z-index: 1;
+}
+
 canvas#groot  {
+	/* wordt de canvas om de vergroting te laten zien; nu niet in gebruik */
 	width: 90%;
 	margin: 15px auto;
 	display: block;
@@ -79,6 +128,7 @@ section.naast div.container {
 section.naast form {
 	padding: 10px;
 	background-color: #f8f8f8;
+	position: relative;
 }
 
 div.naamVeld {
@@ -99,7 +149,7 @@ div.knoppenbalk {
 
 }
 
-.spinnercontainer {
+.spinnerContainer {
 	width: 100%;
 	height: 100%;
 	position: absolute;

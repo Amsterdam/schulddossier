@@ -25,7 +25,6 @@
     <section class="hoofd">
     <input type="file" id="completeDocument">
     <div id="canvases"></div>
-    <canvas id="groot"></canvas>
     </section>
 
     <section class="naast">
@@ -42,8 +41,8 @@
 			<h3>{{ categorie.schermNaam }}</h3>
 			<div class="container">
 				<form data-systeemnaam="{{ categorie.systeemNaam }}">
-			    <span class="spinnercontainer"><img src="/pix/spinner.gif"></span>
-				<div class="naamVeld"><input placeholder="Naam document"></div>
+			    <span class="spinnerContainer"><img src="/pix/spinner.gif"></span>
+				<div class="naamVeld"><input type="text" placeholder="Naam document"></div>
 				<div class="uploadCanvases"></div>
 				<div class="knoppenbalk">
 					<button class="secundair nieuwDocument">Nieuw document</button><button class="upload primair">Opslaan en volgende</button>
