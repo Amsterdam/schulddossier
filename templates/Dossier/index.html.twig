@@ -17,6 +17,7 @@
                 <th>Regas</th>
                 <th>Allegro</th>
                 <th>Aanmaak datum dossier</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@
                 <td class="datum">
                     {{ dossier.aanmaakDatumTijd|date('d-m-Y') }}
                 </td>
+                <td>{{ dossier.status }}</td>
             </tr>
 {% endfor %}
        </tbody>
