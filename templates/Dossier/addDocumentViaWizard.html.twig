@@ -28,6 +28,29 @@
     </section>
 
     <section class="naast">
+    <h3>Opmaaktest</h3>
+			<div id="stijlcontainer" class="container" style="display: block">
+				<form>
+			    <span class="spinnerContainer"><img src="/pix/spinner.gif"></span>
+				<div class="naamVeld"><input type="text" placeholder="Naam document"></div>
+				<div class="uploadCanvases"></div>
+				<div class="knoppenbalk">
+					<button class="secundair nieuwDocument">Nieuw document</button><button class="upload primair">Opslaan en volgende</button>
+				</div>
+				</form>
+			</div>
+			<div class="container" style="display: block">
+				<form>
+			    <span class="spinnerContainer"><img src="/pix/spinner.gif"></span>
+				<div class="naamVeld"><input type="text" placeholder="Naam document"></div>
+				<div class="uploadCanvases"></div>
+				<div class="knoppenbalk">
+					<button class="secundair nieuwDocument">Nieuw document</button><button class="upload primair">Opslaan en volgende</button>
+				</div>
+				</form>
+			</div>
+    
+    
 	{% set kopje = "" %}
     {% for categorie in categorieen %}
     	{% if categorie.isKop is defined %}

@@ -11,6 +11,12 @@ function maakUploadWizard() {
 		var URL = window.URL.createObjectURL(this.files[0]);
 		laadPDF(URL);
 	}
+	
+	maakLink({
+		naam: 'Test link',
+		onderwerp: 'test',
+		container: $('stijlcontainer').querySelector('form'),
+	});
 
 	function laadPDF(URL) {
 	
