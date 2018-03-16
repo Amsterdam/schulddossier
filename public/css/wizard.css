@@ -166,6 +166,10 @@ div.knoppenbalk {
 	height: 100%;
 }
 
+div.succes {
+	/* Wordt zichtbaar na succesvolle upload */
+}
+
 
 #templates {
 	display: none;
