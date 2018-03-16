@@ -62,15 +62,7 @@
 				{% set kopje = categorie.kop %}
 			{% endif %}
 			<h3>{{ categorie.schermNaam }}</h3>
-			<div class="container">
-				<form data-systeemnaam="{{ categorie.systeemNaam }}">
-			    <span class="spinnerContainer"><img src="/pix/spinner.gif"></span>
-				<div class="naamVeld"><input type="text" placeholder="Naam document" required></div>
-				<div class="uploadCanvases"></div>
-				<div class="knoppenbalk">
-					<button class="secundair nieuwDocument">Nieuw document</button><button class="upload primair">Opslaan en volgende</button>
-				</div>
-				</form>
+			<div class="container" data-systeemnaam="{{ categorie.systeemNaam }}">
 			</div>
     	{% endif %}
     {% endfor %}
@@ -92,6 +84,15 @@
     </div>
     {{ form_widget(form.document.file) }}
     {{ form_end(form) }}
+    
+	<form id="templateForm">
+	<span class="spinnerContainer"><img src="/pix/spinner.gif"></span>
+	<div class="naamVeld"><input type="text" placeholder="Naam document" required></div>
+	<div class="uploadCanvases"></div>
+	<div class="knoppenbalk">
+		<button class="secundair nieuwDocument">Opslaan en nieuw document</button><button class="upload primair">Opslaan en volgende</button>
+	</div>
+	</form>
 
     <div id="resultaatTemplate" class="succes">
     	<p>Document upgeload naar <span></span>.</p>
