@@ -57,6 +57,7 @@ class Voorlegger
     /**
      * @var float
      * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
+     * @Assert\Type("numeric")
      */
     private $vtlbBedrag;
 
@@ -428,6 +429,7 @@ class Voorlegger
     /**
      * @var integer
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("numeric")
      */
     private $autolastenKmWoonwerkverkeer;
 
@@ -718,6 +720,7 @@ class Voorlegger
     /**
      * @var float
      * @ORM\Column(type="decimal", nullable=true, precision=5, scale=2)
+     * @Assert\Type("numeric")
      */
     private $gereserveerdeGelden;
 
@@ -769,18 +772,21 @@ class Voorlegger
     /**
      * @var long
      * @ORM\Column(type="bigint", nullable=true)
+     * @Assert\Type("numeric")
      */
     private $energieBedrijfT1;
 
     /**
      * @var long
      * @ORM\Column(type="bigint", nullable=true)
+     * @Assert\Type("numeric")
      */
     private $energieBedrijfT2;
 
     /**
      * @var float
      * @ORM\Column(type="float", nullable=true)
+     * @Assert\Type("numeric")
      */
     private $energieBedrijfGas;
 
@@ -808,6 +814,7 @@ class Voorlegger
     /**
      * @var float
      * @ORM\Column(type="float", nullable=true)
+     * @Assert\Type("numeric")
      */
     private $warmteBedrijfOpname;
 
@@ -828,6 +835,7 @@ class Voorlegger
     /**
      * @var float
      * @ORM\Column(type="float", nullable=true)
+     * @Assert\Type("numeric")
      */
     private $drinkwaterOpname;
 

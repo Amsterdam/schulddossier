@@ -437,7 +437,7 @@ class VoorleggerFormType extends AbstractType
             'html5' => true,
             'widget' => 'single_text'
         ]);
-        $builder->add('warmteBedrijfOpname', TextType::class, [
+        $builder->add('warmteBedrijfOpname', NumberType::class, [
             'required' => false
         ]);
         $builder->add('drinkwaterKlantnummer', TextType::class, [
@@ -448,7 +448,7 @@ class VoorleggerFormType extends AbstractType
             'html5' => true,
             'widget' => 'single_text'
         ]);
-        $builder->add('drinkwaterOpname', TextType::class, [
+        $builder->add('drinkwaterOpname', NumberType::class, [
             'required' => false
         ]);
         $builder->add('aanvullendeInformatie', TextareaType::class, [
