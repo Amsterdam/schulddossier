@@ -28,6 +28,31 @@ function maakUploadWizard() {
 		
 	}
 	
+
+	function showAPI(obj) {
+	var tmp = [];
+		for (var i in obj) {
+			tmp.push(i);
+			if (typeof obj[i] === 'object') {
+				for (var j in obj[i]) {
+					tmp.push(i + '.' + j);
+				}
+			}
+		}
+		tmp.sort();
+		for (var i=0;i<tmp.length;i+=1) {
+			console.log(tmp[i]);
+	//		console.log(tmp[i] + ': ' + typeof PDFJS[tmp[i]]);
+		
+		}
+	}
+//	showAPI(PDFJS);
+
+	function showOnce(obj) {
+		showOnce = function () {};
+		return showAPI(obj);
+	}
+	
 /*	maakLink({
 		naam: 'Test link',
 		onderwerp: 'test',
@@ -41,10 +66,12 @@ function maakUploadWizard() {
 		
 		var pages;
 		PDFJS.getDocument(URL).then(function (pdf) {
+			console.log('pdf object');
 			var wr = $('canvases');
 			pages = pdf.numPages;
 			for (var i=1;i<=pages;i+=1) {
 				pdf.getPage(i).then(function (page) {
+//					showOnce(page);
 					var div = template.cloneNode(true);
 					var canvas = document.createElement('canvas');
 					canvas.id = 'id'+page.pageIndex;
@@ -52,7 +79,7 @@ function maakUploadWizard() {
 					var context = canvas.getContext('2d');
 					canvas.width = viewport.width;
 					canvas.height = viewport.height;
-
+					console.log(viewport.width + ' ' + viewport.height);
 					var renderContext = {
 						canvasContext: context,
 						viewport: viewport
@@ -60,27 +87,9 @@ function maakUploadWizard() {
 					page.render(renderContext);
 					div.appendChild(canvas);
 					wr.appendChild(div);
-//					logKlaar(page.pageIndex);
 				});
 			}
 		});
-
-		var logObj = {};
-
-		function logKlaar(nummer) {
-			logObj['p'+nummer] = true;
-			for (var i=0;i<pages;i+=1) {
-				if (!logObj['p'+i]) {
-					return;
-				}
-			}
-			PDFJS = null;
-
-		}
-
-		// hier closure afbreken
-		// destroy PDFJS
-
 	}
 
 //	var groteCanvas = $('groot');
@@ -94,8 +103,8 @@ function maakUploadWizard() {
 		if (tgt.nodeName === 'DIV') {
 			tgt = tgt.querySelector('canvas');
 		}
-		console.log(tgt);
 		if (tgt.nodeName === 'CANVAS') {
+			console.log(tgt);
 			var div = tgt.parentNode;
 			if (div.classList.contains('actief')) {
 				div.classList.remove('actief');
@@ -107,7 +116,8 @@ function maakUploadWizard() {
 			*/
 			div.classList.add('actief');
 			if (actiefFormulier) {
-				var nieuwID = e.target.id + 'copy';
+				var nieuwID = tgt.id + 'copy';
+				console.log(nieuwID);
 				var canvas;
 				if ($(nieuwID)) {
 					canvas = $(nieuwID);
