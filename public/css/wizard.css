@@ -23,6 +23,11 @@ div#canvases {
 	overflow-y: scroll;
 }
 
+div#canvases:empty:before{
+	content: "Upload hierboven een document om beginnen.";
+	min-height: 100px;
+}
+
 /*
 	LET OP: HTML-structuur grwijzigd:
 	<div>
@@ -37,7 +42,6 @@ div#canvases {
 canvas {
 	width: 100%;
 	border: 1px solid #979797;
-	cursor: pointer;
 }
 
 div#canvases div {
@@ -45,6 +49,7 @@ div#canvases div {
 	width: 100px;
 	margin: 0px 40px 20px 0px;
 	position: relative;
+	cursor: pointer;
 }
 
 div.actief canvas {
@@ -91,6 +96,8 @@ div#canvases > div:not(.actief):hover:before {
 	opacity: 0.3;
 } */
 
+/*
+Het loepje voorlopig even verbergen t/m demo
 #canvases div.loep {
 	position: absolute;
 	margin: 0;
@@ -103,6 +110,7 @@ div#canvases > div:not(.actief):hover:before {
 	background-repeat: no-repeat;
 	z-index: 1;
 }
+*/
 
 canvas#groot  {
 	/* wordt de canvas om de vergroting te laten zien; nu niet in gebruik */
