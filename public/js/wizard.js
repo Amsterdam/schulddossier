@@ -63,47 +63,45 @@ function maakUploadWizard() {
 //	var groteCanvas = $('groot');
 //	var nieuweContext = groteCanvas.getContext('2d');
 	$('canvases').onclick = function (e) {
-		var tgt = e.target;
-		if (tgt.classList.contains('loep')) {
+		var div = canvas = e.target;
+		if (div.classList.contains('loep')) {
 //			toonGrotePDF(canvas);
 			console.log('Vergroot');
 			return false;
 		}
-		var canvas = tgt;
-		if (canvas.nodeName !== 'CANVAS') {
-			canvas = tgt.parentNode.querySelector('canvas');
+		if (div.nodeName === 'DIV') {
+			canvas = div.querySelector('canvas');		
+		} else if (div.nodeName === 'CANVAS') {
+			div = div.parentNode;
 		}
-		if (tgt.nodeName === 'DIV') {
-			if (tgt.classList.contains('upgeload')) {
-				return false;
+
+		if (div.classList.contains('upgeload')) {
+			return false;
+		}
+
+
+		if (div.classList.contains('actief')) {
+			div.classList.remove('actief');
+			var kopie = $(canvas.id+'copy')
+			if (kopie && kopie.parentNode) {
+				kopie.parentNode.removeChild(kopie);
 			}
-			tgt = tgt.querySelector('canvas');
-		}
-		if (tgt.nodeName === 'CANVAS') {
-			var div = tgt.parentNode;
-			if (div.classList.contains('actief')) {
-				div.classList.remove('actief');
-				var kopie = $(tgt.id+'copy')
-				if (kopie.parentNode) {
-					kopie.parentNode.removeChild(kopie);
+		} else {
+			div.classList.add('actief');
+			if (actiefFormulier) {
+				var nieuwID = canvas.id + 'copy';
+				var canvasNode;
+				if ($(nieuwID)) {
+					canvasNode = $(nieuwID);
+				} else {
+					canvasNode = document.createElement('canvas');
+					var thumbContext = canvasNode.getContext('2d');
+					canvasNode.width = canvas.width;
+					canvasNode.height = canvas.height;
+					thumbContext.drawImage(canvas,0,0);
+					canvasNode.id = nieuwID;
 				}
-			}  else {
-				div.classList.add('actief');
-				if (actiefFormulier) {
-					var nieuwID = tgt.id + 'copy';
-					var canvas;
-					if ($(nieuwID)) {
-						canvas = $(nieuwID);
-					} else {
-						canvas = document.createElement('canvas');
-						var thumbContext = canvas.getContext('2d');
-						canvas.width = tgt.width;
-						canvas.height = tgt.height;
-						thumbContext.drawImage(tgt,0,0);
-						canvas.id = nieuwID;
-					}
-					actiefFormulier.querySelector('.uploadCanvases').appendChild(canvas);
-				}
+				actiefFormulier.querySelector('.uploadCanvases').appendChild(canvasNode);
 			}
 		}
 	}
