@@ -109,6 +109,9 @@ function maakUploadWizard() {
 	var actiefFormulier;
 	document.querySelector('.naast').addEventListener('click',function (e) {
 		var source = e.target;
+		if (source.nodeName === 'A') {
+			return true;
+		}
 		if (source.nodeName === 'H3') {
 			wijzigActiefFormulier(source);
 		} else if (source.classList.contains('nieuwDocument')) {
@@ -187,6 +190,16 @@ function maakUploadWizard() {
 	}
 
 	function maakLink(data) {
+		var link = document.createElement('a');
+		link.href =  data.link;
+		link.innerHTML = data.naam;
+		data.container.appendChild(link);
+		var knoppen = data.container.querySelector('.knoppenbalk');
+		data.container.removeChild(knoppen);
+		data.container.classList.remove('leegFormulier');
+		return;
+	
+	
 		var div = $('resultaatTemplate').cloneNode(true);
 		div.id = '';
 		div.querySelector('span').innerHTML = data.onderwerp;
@@ -199,14 +212,16 @@ function maakUploadWizard() {
 	}
 
 	function wijzigActiefFormulier(source) {
+		console.log(source.nodeName);
 		if (actiefFormulier) {
 			actiefFormulier.style.display = '';
 			actiefFormulier.header.classList.remove('uitgeklapt');
 		}
 		var tgt = source.container;
-		if (!tgt.querySelector('form')) {
+		if (!tgt.querySelector('form.leegFormulier')) {
 			var nieuwForm = $('templateForm').cloneNode(true);
 			nieuwForm.id = '';
+			nieuwForm.className = 'leegFormulier';
 			nieuwForm.header = source;
 			source.classList.add('uitgeklapt');
 			tgt.appendChild(nieuwForm);

@@ -51,15 +51,30 @@ header div a {
 	font-size: 12px;
 }
 
-p.kleineNav {
+div.kleineNav {
 	max-width: 1024px;
 	margin: 0 auto;
 	margin-top: 50px;
 	font-size: 12px;
 }
 
-p.kleineNav a {
+div.kleineNav a {
 	color: black;
+	margin-right: 10px;
+}
+
+div.kleineNav form {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+div.kleineNav button {
+	background-color: transparent;
+	border: 0px none;
+	font-family: inherit;
+	font-size: inherit;
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 
@@ -129,6 +144,13 @@ table:not(.main) tbody tr:hover {
 
 
 /* KNOPPEN EN ALS ZODANIG VERMOMDE LINKS */
+
+
+div.knoppenbalk {
+	margin: 30px 10px 20px;
+	display: flex;
+	justify-content: space-between;
+}
 
 .primair,.secundair,.tertiair {
 	font-size: 16px;

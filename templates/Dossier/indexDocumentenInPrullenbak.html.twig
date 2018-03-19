@@ -17,10 +17,9 @@
 	<div>Ingelogd als: Petriculus Pucq <a href="#">(Uitloggen)</a></div>
 	</header>
 
-<p class="kleineNav">
-// NOG NIET EXTENDED!!!
+<div class="kleineNav">
 	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a>
-</p>
+</div>
 
 {% for type, messages in app.flashes %}
 	{% for message in messages %}

@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block kleineNavigatie %}
-	<p class="kleineNav"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a></p>
+	<div class="kleineNav"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a></div>
 {% endblock %}
 
 
@@ -44,7 +44,7 @@
     {% endfor %}
     <div class="knoppenbalk" id="insertForm">
 	<button class="secundair" id="nieuwForm">Nieuw formulier</button>
-	<button class="secundair">Klaar</button>
+	<a class="secundair" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Klaar</a>
 	</div>
     </section>
 
