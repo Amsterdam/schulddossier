@@ -133,7 +133,7 @@ function uploadDocument() {
 			console.log('Upload klaar');
 			$('spinnerContainer').removeChild(spinner);
 			console.log(req);
-			if (req.status === 200) {
+			if (req.status === 201) {
 				var href;
 				try {
 					href = JSON.parse(req.response).url;
