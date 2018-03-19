@@ -26,6 +26,7 @@ div#canvases {
 div#canvases:empty:before{
 	content: "Upload hierboven een document om beginnen.";
 	min-height: 100px;
+  color: #666666;
 }
 
 /*
@@ -57,7 +58,7 @@ div.actief canvas {
 }
 
 div#canvases div.upgeload {
-	opacity: 0.4;
+	opacity: 0.3;
 	cursor: default;
 }
 
@@ -187,6 +188,12 @@ div.naamVeld input {
 div.uploadCanvases {
 	margin: 20px 10px;
 	min-height: 75px;
+}
+
+div.uploadCanvases:empty:before{
+	color: #8d8d8d;
+	content: "Selecteer pagina's om ze hier toe te voegen";
+	min-height: 100px;
 }
 
 div.knoppenbalk {
