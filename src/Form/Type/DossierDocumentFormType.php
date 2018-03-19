@@ -23,7 +23,7 @@ class DossierDocumentFormType extends AbstractType
                 'inkomstenspecificatie' => 'inkomstenspecificatie',
                 'arbeidsovereenkomst' => 'arbeidsovereenkomst',
                 'beschikkingUwv' => 'beschikkingUwv',
-                'voorlopigeTerugaafBelastingdienst' => 'voorlopigeTerugaafBelastingdienst',
+                'voorlopigeTeruggaafBelastingdienst' => 'voorlopigeTeruggaafBelastingdienst',
                 'alimentatie' => 'alimentatie',
                 'kostgeld' => 'kostgeld',
                 'huurtoeslag' => 'huurtoeslag',
