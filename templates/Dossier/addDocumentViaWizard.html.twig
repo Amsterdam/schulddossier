@@ -25,32 +25,10 @@
     <section class="hoofd">
     <input type="file" id="completeDocument">
     <div id="canvases"></div>
+    {{ dump(dossier.documenten) }}
     </section>
 
     <section class="naast">
-    <h3 class="uitgeklapt">Opmaaktest</h3>
-			<div id="stijlcontainer" class="container" style="display: block">
-				<form>
-			    <span class="spinnerContainer"><img src="/pix/spinner.gif"></span>
-				<div class="naamVeld"><input type="text" placeholder="Naam document"></div>
-				<div class="uploadCanvases"></div>
-				<div class="knoppenbalk">
-					<button class="secundair nieuwDocument">Nieuw document</button><button class="upload primair">Opslaan en volgende</button>
-				</div>
-				</form>
-			</div>
-			<div class="container" style="display: block">
-				<form>
-			    <span class="spinnerContainer"><img src="/pix/spinner.gif"></span>
-				<div class="naamVeld"><input type="text" placeholder="Naam document"></div>
-				<div class="uploadCanvases"></div>
-				<div class="knoppenbalk">
-					<button class="secundair nieuwDocument">Nieuw document</button><button class="upload primair">Opslaan en volgende</button>
-				</div>
-				</form>
-			</div>
-    
-    
 	{% set kopje = "" %}
     {% for categorie in categorieen %}
     	{% if categorie.isKop is defined %}
@@ -62,8 +40,7 @@
 				{% set kopje = categorie.kop %}
 			{% endif %}
 			<h3>{{ categorie.schermNaam }}</h3>
-			<div class="container" data-systeemnaam="{{ categorie.systeemNaam }}">
-			</div>
+			<div class="container" data-systeemnaam="{{ categorie.systeemNaam }}"></div>
     	{% endif %}
     {% endfor %}
     <div class="knoppenbalk" id="insertForm">

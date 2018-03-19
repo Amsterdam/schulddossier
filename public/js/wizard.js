@@ -28,11 +28,11 @@ function maakUploadWizard() {
 		
 	}
 	
-	maakLink({
+/*	maakLink({
 		naam: 'Test link',
 		onderwerp: 'test',
 		container: $('stijlcontainer').querySelector('form'),
-	});
+	}); */
 
 	function laadPDF(URL) {
 	

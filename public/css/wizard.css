@@ -58,7 +58,7 @@ form canvas {
 	margin-right: 20px;
 }
 
-div.actief:before {
+div.actief:before,div#canvases > div:hover:before {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -70,6 +70,10 @@ div.actief:before {
 	background-position: center;
 	background-repeat: no-repeat;
 	z-index: 1;
+}
+
+div#canvases > div:hover:before {
+	opacity: 0.6;
 }
 
 /* div#canvases div:hover:after{
@@ -131,19 +135,19 @@ section.naast h3 {
 }
 
 section.naast h3:after {
-		content: url("../pix/chevron-down.svg");
-		width: 16px;
-		height: 16px;
-		float: right;
-		margin-top: 3px;
+	content: url("../pix/chevron-down.svg");
+	width: 16px;
+	height: 16px;
+	float: right;
+	margin-top: 3px;
 }
 
 section.naast h3.uitgeklapt:after {
-		content: url("../pix/chevron-up.svg");
-		width: 16px;
-		height: 16px;
-		float: right;
-		margin-top: 3px;
+	content: url("../pix/chevron-up.svg");
+	width: 16px;
+	height: 16px;
+	float: right;
+	margin-top: 3px;
 }
 
 section.naast div.container {
