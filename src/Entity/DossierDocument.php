@@ -37,6 +37,7 @@ class DossierDocument
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $onderwerp;
 
