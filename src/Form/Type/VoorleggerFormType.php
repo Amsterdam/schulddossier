@@ -71,15 +71,15 @@ class VoorleggerFormType extends AbstractType
         $builder->add('beschikkingUwvOverig', TextType::class, [
             'required' => false
         ]);
-        $builder->add('voorlopigeTerugaafBelastingdienstOntvangenMadi', CheckboxType::class, [
+        $builder->add('voorlopigeTeruggaafBelastingdienstOntvangenMadi', CheckboxType::class, [
             'required' => false,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('voorlopigeTerugaafBelastingdienstOntvangenGka', CheckboxType::class, [
+        $builder->add('voorlopigeTeruggaafBelastingdienstOntvangenGka', CheckboxType::class, [
             'required' => false,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
-        $builder->add('voorlopigeTerugaafBelastingdienstNvt', CheckboxType::class, [
+        $builder->add('voorlopigeTeruggaafBelastingdienstNvt', CheckboxType::class, [
             'required' => false
         ]);
         $builder->add('alimentatieOntvangenMadi', CheckboxType::class, [

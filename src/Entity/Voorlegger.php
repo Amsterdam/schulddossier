@@ -132,19 +132,19 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $voorlopigeTerugaafBelastingdienstOntvangenMadi;
+    private $voorlopigeTeruggaafBelastingdienstOntvangenMadi;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $voorlopigeTerugaafBelastingdienstOntvangenGka;
+    private $voorlopigeTeruggaafBelastingdienstOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $voorlopigeTerugaafBelastingdienstNvt;
+    private $voorlopigeTeruggaafBelastingdienstNvt;
 
     // ---
 
@@ -857,9 +857,9 @@ class Voorlegger
         $this->beschikkingUwvWw = false;
         $this->beschikkingUwvWia = false;
         $this->beschikkingUwvZw = false;
-        $this->voorlopigeTerugaafBelastingdienstOntvangenMadi = false;
-        $this->voorlopigeTerugaafBelastingdienstOntvangenGka = false;
-        $this->voorlopigeTerugaafBelastingdienstNvt = false;
+        $this->voorlopigeTeruggaafBelastingdienstOntvangenMadi = false;
+        $this->voorlopigeTeruggaafBelastingdienstOntvangenGka = false;
+        $this->voorlopigeTeruggaafBelastingdienstNvt = false;
         $this->alimentatieOntvangenMadi = false;
         $this->alimentatieOntvangenGka = false;
         $this->alimentatieNvt = false;
@@ -1037,19 +1037,19 @@ class Voorlegger
         return $this->beschikkingUwvOverig;
     }
 
-    public function isVoorlopigeTerugaafBelastingdienstOntvangenMadi()
+    public function isVoorlopigeTeruggaafBelastingdienstOntvangenMadi()
     {
-        return $this->voorlopigeTerugaafBelastingdienstOntvangenMadi;
+        return $this->voorlopigeTeruggaafBelastingdienstOntvangenMadi;
     }
 
-    public function isVoorlopigeTerugaafBelastingdienstOntvangenGka()
+    public function isVoorlopigeTeruggaafBelastingdienstOntvangenGka()
     {
-        return $this->voorlopigeTerugaafBelastingdienstOntvangenGka;
+        return $this->voorlopigeTeruggaafBelastingdienstOntvangenGka;
     }
 
-    public function isVoorlopigeTerugaafBelastingdienstNvt()
+    public function isVoorlopigeTeruggaafBelastingdienstNvt()
     {
-        return $this->voorlopigeTerugaafBelastingdienstNvt;
+        return $this->voorlopigeTeruggaafBelastingdienstNvt;
     }
 
     public function isAlimentatieOntvangenMadi()
@@ -1661,19 +1661,19 @@ class Voorlegger
         $this->beschikkingUwvOverig = $beschikkingUwvOverig;
     }
 
-    public function setVoorlopigeTerugaafBelastingdienstOntvangenMadi($voorlopigeTerugaafBelastingdienstOntvangenMadi)
+    public function setVoorlopigeTeruggaafBelastingdienstOntvangenMadi($voorlopigeTeruggaafBelastingdienstOntvangenMadi)
     {
-        $this->voorlopigeTerugaafBelastingdienstOntvangenMadi = $voorlopigeTerugaafBelastingdienstOntvangenMadi;
+        $this->voorlopigeTeruggaafBelastingdienstOntvangenMadi = $voorlopigeTeruggaafBelastingdienstOntvangenMadi;
     }
 
-    public function setVoorlopigeTerugaafBelastingdienstOntvangenGka($voorlopigeTerugaafBelastingdienstOntvangenGka)
+    public function setVoorlopigeTeruggaafBelastingdienstOntvangenGka($voorlopigeTeruggaafBelastingdienstOntvangenGka)
     {
-        $this->voorlopigeTerugaafBelastingdienstOntvangenGka = $voorlopigeTerugaafBelastingdienstOntvangenGka;
+        $this->voorlopigeTeruggaafBelastingdienstOntvangenGka = $voorlopigeTeruggaafBelastingdienstOntvangenGka;
     }
 
-    public function setVoorlopigeTerugaafBelastingdienstNvt($voorlopigeTerugaafBelastingdienstNvt)
+    public function setVoorlopigeTeruggaafBelastingdienstNvt($voorlopigeTeruggaafBelastingdienstNvt)
     {
-        $this->voorlopigeTerugaafBelastingdienstNvt = $voorlopigeTerugaafBelastingdienstNvt;
+        $this->voorlopigeTeruggaafBelastingdienstNvt = $voorlopigeTeruggaafBelastingdienstNvt;
     }
 
     public function setAlimentatieOntvangenMadi($alimentatieOntvangenMadi)
