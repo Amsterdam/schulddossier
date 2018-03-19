@@ -11,6 +11,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 use Doctrine\ORM\EntityRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class DetailDossierFormType extends AbstractType
 {
@@ -31,6 +32,10 @@ class DetailDossierFormType extends AbstractType
         $builder->add('voorlegger', VoorleggerFormType::class, [
             'required' => false,
             'disable_group' => $options['disable_group']
+        ]);
+        $builder->add('status', ChoiceType::class, [
+            'required' => false,
+            'choices' => Dossier::getStatussen()
         ]);
     }
 

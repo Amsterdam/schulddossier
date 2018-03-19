@@ -351,21 +351,6 @@ class AppDossierController extends Controller
     }
 
     /**
-     * @Route("/detail/{dossierId}/verander-status")
-     * @Method("POST")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function changeStatusAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
-    {
-        $newStatus = $request->request->get('status', '-1');
-        if (isset(Dossier::getStatussen()[$newStatus]) === true) {
-            $dossier->setStatus($newStatus);
-            $em->flush($dossier);
-        }
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', ['dossierId' => $dossier->getId()]);
-    }
-
-    /**
      * @Route("/detail/{dossierId}/naar-prullenbak")
      * @Method("POST")
      * @ParamConverter("dossier", options={"id"="dossierId"})

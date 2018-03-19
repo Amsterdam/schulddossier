@@ -21,14 +21,6 @@
 // NOG NIET EXTENDED!!!
 	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a> | 
 	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a> |
-	<form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id}) }}" method="post">
-		<select name="status">
-			<option value="madi" {{ dossier.status == 'madi' ? 'selected' }}>Dossier bij MaDi</option>
-			<option value="gka" {{ dossier.status == 'gka' ? 'selected' }}>Dossier naar GKA</option>
-			<option value="gesloten" {{ dossier.status == 'gesloten' ? 'selected' }}>Dossier afgesloten</option>
-		</select>
-		<button type="submit">Status aanpassen</button>
-	</form> |
     {% if dossier.inPrullenbak == false %}
     <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', {'dossierId': dossier.id}) }}" method="post">
         <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak') }}">
@@ -85,6 +77,7 @@
 	{{ form_row(form.teamGka)}}
 	{{ form_row(form.regasNummer)}}
 	{{ form_row(form.allegroNummer)}}
+	{{ form_row(form.status)}}
 	<tr>
 		<td></td>
 		<td><input type="submit" class="primair" value="Opslaan"></td>
