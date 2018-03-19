@@ -72,7 +72,7 @@ div.actief:before,div#canvases > div:hover:before {
 	z-index: 1;
 }
 
-div#canvases > div:hover:before {
+div#canvases > div:not(.actief):hover:before {
 	opacity: 0.6;
 }
 

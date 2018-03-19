@@ -91,9 +91,10 @@ function maakUploadWizard() {
 			console.log('Vergroot');
 			return false;
 		}
-		if (tgt.classList.contains('actief')) {
+		if (tgt.nodeName === 'DIV') {
 			tgt = tgt.querySelector('canvas');
 		}
+		console.log(tgt);
 		if (tgt.nodeName === 'CANVAS') {
 			var div = tgt.parentNode;
 			if (div.classList.contains('actief')) {
