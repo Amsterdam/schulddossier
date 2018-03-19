@@ -138,15 +138,13 @@ function uploadDocument() {
 				try {
 					href = JSON.parse(req.response).url;
 				} catch (e) {
-				
+					console.log(e);
 				}
-				if (href) {
-					docs.voegDocToe({
-						href: req.responseURL,
-						onderwerp: categorie,
-						tekst: naam,
-					});
-				}
+				docs.voegDocToe({
+					href: req.responseURL,
+					onderwerp: categorie,
+					tekst: naam,
+				});
 			}
 			breekAf();
 		},data);
