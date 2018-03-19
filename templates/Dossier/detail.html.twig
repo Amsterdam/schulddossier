@@ -55,7 +55,7 @@
     <p><strong>Dit dossier staat in de prullenbak!</strong></p>
 {% endif %}
 
-{{ form_start(form) }}
+{{ form_start(form, {'attr': {'id': 'voorlegger_mainform'}}) }}
 
 <table>
 {% if dossier.partnerNaam is not empty %}
@@ -515,7 +515,11 @@
 	{{ form_widget(uploadForm.document.file) }}
 	{{ form_row(uploadForm.document.naam) }}
 	{{ form_row(uploadForm.onderwerp) }}
-	<p class="buttons"><button class="tertiair">Annuleren</button>	<span id="spinnerContainer"></span><input type="submit" class="primair" value="Opslaan"></p>
+	<p class="buttons">
+		<a class="tertiair cancel">Annuleren</a>
+		<span id="spinnerContainer"></span>
+		<button type="submit" class="primair">Opslaan</button>
+	</p>
 {{ form_end(uploadForm) }}
 </div>
 

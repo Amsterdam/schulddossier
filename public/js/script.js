@@ -76,8 +76,7 @@ function uploadDocument() {
 	var uploadVeld = $('dossier_document_form_document_file');
 	var categorieLijst = $('dossier_document_form_onderwerp');
 	var dimensions = [uploadVenster.offsetWidth/2,uploadVenster.offsetHeight/2];
-	uploadFormulier.querySelector('button').onclick = breekAf;
-	uploadFormulier.onsubmit = upload;
+	uploadFormulier.querySelector('.cancel').onclick = breekAf;
 	var categorie = '',naam = '';
 	var labelHTML= '<label class="upload"><span>+</span> Voeg document toe</label>';
 	
@@ -115,6 +114,7 @@ function uploadDocument() {
 	
 	function startUpload() {
 		$('dossier_document_form_document_naam').value = uploadVeld.value.substring(uploadVeld.value.lastIndexOf('\\')+1);
+		$('dossier_document_form_document_naam').focus();
 		for (var i=0;i<categorieLijst.length;i+=1) {
 			var waarde = categorieLijst.options[i].value;
 			if (categorie.indexOf(waarde) !== -1) {
@@ -124,7 +124,8 @@ function uploadDocument() {
 		
 	}
 	
-	function upload() {
+	uploadFormulier.addEventListener('submit', function (event) {
+		event.preventDefault();
 		this.appendChild(uploadVeld);
 		naam = $('dossier_document_form_document_naam').value;
 		$('spinnerContainer').appendChild(spinner);
@@ -149,7 +150,7 @@ function uploadDocument() {
 			breekAf();
 		},data);
 		return false;
-	}
+	});
 	
 	function breekAf() {
 		uploadVenster.style.visibility = 'hidden';
@@ -161,7 +162,6 @@ function uploadDocument() {
 	
 	function vernieuwVeld() {
 		var oldName = uploadVeld.name;
-		console.log(oldName);
 		uploadVeld.parentNode.removeChild(uploadVeld);
 		uploadVeld = document.createElement('input');
 		uploadVeld.type = 'file';
@@ -174,9 +174,9 @@ function uploadDocument() {
 
 function autoSave() {
 
-	document.addEventListener('click',logClick,false);
-	document.addEventListener('keypress',logKeys,false);
-	document.addEventListener('change',logChange,true);
+	document.getElementById('voorlegger_mainform').addEventListener('click', logClick, false);
+	document.getElementById('voorlegger_mainform').addEventListener('keypress', logKeys, false);
+	document.getElementById('voorlegger_mainform').addEventListener('change', logChange, true);
 	
 	var saveTimer;
 	var wachttijd = 1;

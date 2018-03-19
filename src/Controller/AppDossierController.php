@@ -164,9 +164,8 @@ class AppDossierController extends Controller
             if ($request->isXmlHttpRequest()) {
                 return new JsonResponse($this->get('json_serializer')->normalize($dossierDocument), JsonResponse::HTTP_CREATED);
             }
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', [
-                'dossierId' => $dossier->getId(),
-                'documentId' => $dossierDocument->getDocument()->getId()
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', [
+                'dossierId' => $dossier->getId()
             ]);
         }
 
