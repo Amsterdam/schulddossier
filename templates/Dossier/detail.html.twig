@@ -17,15 +17,13 @@
 	<div>Ingelogd als: Petriculus Pucq <a href="#">(Uitloggen)</a></div>
 	</header>
 
-<p class="kleineNav">
-// NOG NIET EXTENDED!!!
-	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a> | 
-	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a> |
+<div class="kleineNav">
+	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a>
     {% if dossier.inPrullenbak == false %}
     <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', {'dossierId': dossier.id}) }}" method="post">
         <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak') }}">
         <button type="submit">Naar prullenbak</button>
-    </form> |
+    </form>
 	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexdocumenteninprullenbak', {'dossierId': dossier.id}) }}">Prullenbak van dit dossier</a>
     {% else %}
     <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove', {'dossierId': dossier.id}) }}" method="post">
@@ -37,7 +35,7 @@
         <button type="submit">Herstellen</button>
     </form>
     {% endif %}
-</p>
+</div>
 
 {% for type, messages in app.flashes %}
 	{% for message in messages %}
@@ -63,6 +61,11 @@
 		<td>Partner</td>
 		<td>{{ dossier.partnerNaam }}</td>
 	</tr>
+	<tr>
+		<td>Datum aanmaak dossier</td>
+		<td>{{ dossier.aanmaakDatumTijd|date('d-m-Y') }}</td>
+		<td></td>
+	</tr>
 {% endif %}
 	<tr>
 		<td>MaDi medewerker</td>
@@ -71,19 +74,18 @@
 	<tr>
 		<td>Schuldhulpbureau</td>
 		<td>{{ dossier.schuldhulpbureau }}</td>
-		<td>Datum aanmaak dossier</td>
-		<td>{{ dossier.aanmaakDatumTijd|date('d-m-Y') }}</td>
 	</tr>
 	{{ form_row(form.teamGka)}}
 	{{ form_row(form.regasNummer)}}
 	{{ form_row(form.allegroNummer)}}
 	{{ form_row(form.status)}}
-	<tr>
-		<td></td>
-		<td><input type="submit" class="primair" value="Opslaan"></td>
-	</tr>
 </table>
 
+<div class="knoppenbalk">
+	<a class="tertiair">Annuleren</a>
+	<a class="secundair" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a>
+	<input type="submit" class="primair" value="Opslaan">
+</div>
 
 <div id="documenten">
 {% for document in dossier.getDocumenten if document.document.inPrullenbak == false %}
