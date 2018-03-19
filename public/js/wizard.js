@@ -25,40 +25,8 @@ function maakUploadWizard() {
 		} else {
 			console.log('Structuurfout bij header ' + header.textContent);
 		}
-		
 	}
 	
-
-	function showAPI(obj) {
-	var tmp = [];
-		for (var i in obj) {
-			tmp.push(i);
-			if (typeof obj[i] === 'object') {
-				for (var j in obj[i]) {
-					tmp.push(i + '.' + j);
-				}
-			}
-		}
-		tmp.sort();
-		for (var i=0;i<tmp.length;i+=1) {
-			console.log(tmp[i]);
-	//		console.log(tmp[i] + ': ' + typeof PDFJS[tmp[i]]);
-		
-		}
-	}
-//	showAPI(PDFJS);
-
-	function showOnce(obj) {
-		showOnce = function () {};
-		return showAPI(obj);
-	}
-	
-/*	maakLink({
-		naam: 'Test link',
-		onderwerp: 'test',
-		container: $('stijlcontainer').querySelector('form'),
-	}); */
-
 	function laadPDF(URL) {
 	
 		var template = document.createElement('div');
@@ -97,39 +65,45 @@ function maakUploadWizard() {
 	$('canvases').onclick = function (e) {
 		var tgt = e.target;
 		if (tgt.classList.contains('loep')) {
+//			toonGrotePDF(canvas);
 			console.log('Vergroot');
 			return false;
 		}
+		var canvas = tgt;
+		if (canvas.nodeName !== 'CANVAS') {
+			canvas = tgt.parentNode.querySelector('canvas');
+		}
 		if (tgt.nodeName === 'DIV') {
+			if (tgt.classList.contains('upgeload')) {
+				return false;
+			}
 			tgt = tgt.querySelector('canvas');
 		}
 		if (tgt.nodeName === 'CANVAS') {
-			console.log(tgt);
 			var div = tgt.parentNode;
 			if (div.classList.contains('actief')) {
 				div.classList.remove('actief');
-			}
-			/*
-			groteCanvas.width = e.target.width;
-			groteCanvas.height = e.target.height;
-			nieuweContext.drawImage(e.target,0,0);
-			*/
-			div.classList.add('actief');
-			if (actiefFormulier) {
-				var nieuwID = tgt.id + 'copy';
-				console.log(nieuwID);
-				var canvas;
-				if ($(nieuwID)) {
-					canvas = $(nieuwID);
-				} else {
-					canvas = document.createElement('canvas');
-					var thumbContext = canvas.getContext('2d');
-					canvas.width = tgt.width;
-					canvas.height = tgt.height;
-					thumbContext.drawImage(tgt,0,0);
-					canvas.id = nieuwID;
+				var kopie = $(tgt.id+'copy')
+				if (kopie.parentNode) {
+					kopie.parentNode.removeChild(kopie);
 				}
-				actiefFormulier.querySelector('.uploadCanvases').appendChild(canvas);
+			}  else {
+				div.classList.add('actief');
+				if (actiefFormulier) {
+					var nieuwID = tgt.id + 'copy';
+					var canvas;
+					if ($(nieuwID)) {
+						canvas = $(nieuwID);
+					} else {
+						canvas = document.createElement('canvas');
+						var thumbContext = canvas.getContext('2d');
+						canvas.width = tgt.width;
+						canvas.height = tgt.height;
+						thumbContext.drawImage(tgt,0,0);
+						canvas.id = nieuwID;
+					}
+					actiefFormulier.querySelector('.uploadCanvases').appendChild(canvas);
+				}
 			}
 		}
 	}
@@ -154,6 +128,7 @@ function maakUploadWizard() {
 		}
 		e.preventDefault();
 	},false);
+	headers[0].click();
 
 
 	function stuurFormulier(source,fn) {
@@ -171,13 +146,16 @@ function maakUploadWizard() {
 		var	newPDF = new jsPDF(),
 			imgData
 		;
+		var canvasIDs = [];
 		for (var i=0,cv;cv=canvases[i];i+=1) {
+			canvasIDs.push(cv.id.replace(/copy/g,''));
 			if (i > 0) {
 				newPDF.addPage();
 			}
 			imgData = cv.toDataURL("image/jpeg");
 			newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
 		}
+		console.log(canvasIDs);
 		var linkData = {};
 		linkData.container = form;
 		linkData.naam = naamSource.value;
@@ -196,6 +174,10 @@ function maakUploadWizard() {
 				linkData.link = resp.document.url;
 				newPDF = null;
 				maakLink(linkData);
+				for (var i=0,cv;cv=canvasIDs[i];i+=1) {
+					$(cv).parentNode.classList.add('upgeload');
+					$(cv).parentNode.classList.remove('actief');
+				}
 				if (fn) {
 					fn();
 				}
@@ -234,7 +216,42 @@ function maakUploadWizard() {
 		tgt.style.display = 'block';
 		tgt.onderwerp = source.textContent
 		actiefFormulier = tgt;
-	}	
+	}
+	
+/*	var groteCanvas = document.createElement('canvas');
+	groteCanvas.id = 'groot';
+	document.body.appendChild(groteCanvas); */
+	
+	function toonGrotePDF(pdf) {
+		// aanname: pdf is eigenlijk canvas-element
+//		groteCanvas
+	}
+	
+	
+}
+
+function showAPI(obj) {
+var tmp = [];
+	for (var i in obj) {
+		tmp.push(i);
+		if (typeof obj[i] === 'object') {
+			for (var j in obj[i]) {
+				tmp.push(i + '.' + j);
+			}
+		}
+	}
+	tmp.sort();
+	for (var i=0;i<tmp.length;i+=1) {
+		console.log(tmp[i]);
+//		console.log(tmp[i] + ': ' + typeof PDFJS[tmp[i]]);
+	
+	}
+}
+//	showAPI(PDFJS);
+
+function showOnce(obj) {
+	showOnce = function () {};
+	return showAPI(obj);
 }
 
 

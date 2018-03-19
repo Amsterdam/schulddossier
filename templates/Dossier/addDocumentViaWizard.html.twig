@@ -20,7 +20,7 @@
 {% block main %}
 		<section class="top">
 		<h1>Voeg document toe aan dossier {{ dossier.clientNaam }}</h1>
-		<!-- p>Sleep de pagina’s naar de juiste plek in het dossier om ze toe te voegen</p -->
+		<p><strong>Stap 1.</strong> Upload hieronder een document. <strong>Stap 2.</strong> Open rechts een categorie en vink links de pagina's aan die je in de categorie wilt plaatsen. <strong>Stap 3.</strong> Klik op 'Sla op en volgende' om door te gaan naar de volgende.</p>
 		</section>
     <section class="hoofd">
     <input type="file" id="completeDocument">
@@ -60,7 +60,7 @@
     </div>
     {{ form_widget(form.document.file) }}
     {{ form_end(form) }}
-    
+
 	<form id="templateForm">
 	<span class="spinnerContainer"><img src="/pix/spinner.gif"></span>
 	<div class="naamVeld"><input type="text" placeholder="Naam document" required></div>
