@@ -5,6 +5,13 @@
 <title>{{ dossier.clientNaam }} - voorlegger</title>
 <meta name="viewport" content="width = device-width">
 <link rel="stylesheet" href="/css/styles.css">
+<script>
+window.schuldhulp = window.schuldhulp || {};
+window.schuldhulp.routes = window.schuldhulp.routes || {};
+window.schuldhulp.routes.appdossier_movedocumenttoprullenbak = '{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_movedocumenttoprullenbak', {'dossierId': dossier.id, 'documentId': '__DOCUMENTID__'}) }}'
+window.schuldhulp.tokens = window.schuldhulp.tokens || {};
+window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_movedocumenttoprullenbak') }}';
+</script>
 <script src="/js/script.js"></script>
 </head>
 

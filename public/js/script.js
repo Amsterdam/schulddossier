@@ -51,12 +51,26 @@ function documentLinks() {
 	}
 	
 	function creeerLink(data) {
-		var li = document.createElement('li');
-		var a = document.createElement('a')
+		var li, a;
+		
+		li = document.createElement('li');
 		li.dataset.onderwerp  = data.onderwerp;
+		
+		a = document.createElement('a')
 		a.href = data.href;
-		a.innerHTML = data.tekst;
+		a.appendChild(document.createTextNode(data.tekst));
 		li.appendChild(a);
+		
+		li.appendChild(document.createTextNode(' | '));
+		
+		a = document.createElement('a');
+		a.href = window.schuldhulp.routes.appdossier_movedocumenttoprullenbak.replace('__DOCUMENTID__', data.id);
+		a.setAttribute('data-token', window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak);
+		a.classList.add('link-as-submit');
+		a.appendChild(document.createTextNode('verwijderen'));
+		new window.schuldhulp.linkAsSubmit(a);
+		li.appendChild(a);
+		
 		return li;
 	}
 	
@@ -135,17 +149,18 @@ function uploadDocument() {
 			$('spinnerContainer').removeChild(spinner);
 			console.log(req);
 			if (req.status === 201) {
-				var href;
+				var data = {};
 				try {
-					href = JSON.parse(req.response).url;
+					data = JSON.parse(req.response);
+					docs.voegDocToe({
+						href: data.document.url,
+						onderwerp: data.onderwerp,
+						tekst: data.document.naam,
+						id: data.document.id
+					});
 				} catch (e) {
 					console.log(e);
 				}
-				docs.voegDocToe({
-					href: req.responseURL,
-					onderwerp: categorie,
-					tekst: naam,
-				});
 			}
 			breekAf();
 		},data);
