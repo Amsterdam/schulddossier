@@ -160,9 +160,12 @@ function uploadDocument() {
 	}
 	
 	function vernieuwVeld() {
+		var oldName = uploadVeld.name;
+		console.log(oldName);
 		uploadVeld.parentNode.removeChild(uploadVeld);
 		uploadVeld = document.createElement('input');
 		uploadVeld.type = 'file';
+		uploadVeld.name = oldName;
 		uploadFormulier.appendChild(uploadVeld);
 		uploadFormulier.querySelector('input').value = '';
 	}
