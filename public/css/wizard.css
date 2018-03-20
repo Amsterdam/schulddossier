@@ -63,7 +63,7 @@ div#canvases div.upgeload {
 	cursor: default;
 }
 
-form canvas {
+section.naast canvas {
 	/* Thumbnail-canvas in formulier rechts */
 	width: 70px;
 	margin: 0;
@@ -175,6 +175,11 @@ section.naast form {
 	position: relative;
 }
 
+section.naast div.succes {
+	padding: 10px 30px;
+	background-color: #f8f8f8;
+}
+
 div.naamVeld {
 	margin: 15px 10px;
 	padding-bottom: 8px;
@@ -201,7 +206,8 @@ div.uploadCanvases:empty:before{
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background: rgba(128,128,128,0.6);
+	background: white;
+	opacity: 0.6;
 	top: 0;
 	left: 0;
 	display: none;

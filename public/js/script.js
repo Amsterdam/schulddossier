@@ -288,9 +288,9 @@ function sendRequest(url,callback,postData) {
 			return;
 		}
 		var token = req.getResponseHeader('X-Debug-Token-Link');
-		if (token) {
+/*		if (token) {
 			console.log(token);
-		}
+		} */
 		callback(req);
 	}
 	if (req.readyState == 4) {
