@@ -152,6 +152,10 @@ div.knoppenbalk {
 	justify-content: space-between;
 }
 
+div.knoppenbalk div.hoofdknoppen {
+
+}
+
 .primair,.secundair,.tertiair {
 	font-size: 16px;
 	-webkit-appearance: none;
@@ -168,10 +172,11 @@ div.knoppenbalk {
 input.primair,a.primair,button.primair {
 	background-color: #ec0000;
 	color: white;
+	margin-left: 20px;
 }
 
 input.secundair,a.secundair,button.secundair {
-	border: 1px solid;
+	border: 1px solid #979797;
 }
 
 input.tertiair,a.tertiair,button.tertiair {
@@ -479,12 +484,13 @@ main.voorlegger input.overig {
 section div label {
 	white-space: nowrap;
 }
-
+/*
+weggehaald ivm herschikking knoppen op voorlegger */
 main.voorlegger input[type=submit] {
-	display: block;
-	width: 200px;
-	float: right;
-}
+	/* display: block; */
+	width: 120px;
+	/* float: right; */
+} */
 
 main.voorlegger td input[type=submit] {
 	float: none;

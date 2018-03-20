@@ -23,10 +23,11 @@ div#canvases {
 	overflow-y: scroll;
 }
 
-div#canvases:empty:before{
+div#canvases:empty:after{
 	content: "Upload hierboven een document om beginnen.";
-	min-height: 100px;
-  color: #666666;
+	color: #666666;
+	margin-top: 30px;
+	display: block;
 }
 
 /*
