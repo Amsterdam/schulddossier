@@ -47,6 +47,10 @@ class SchuldItemFormType extends AbstractType
             'html5' => true,
             'widget' => 'single_text'
         ]);
+        $builder->add('ontstaansDatum', DateType::class, [
+            'html5' => true,
+            'widget' => 'single_text'
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

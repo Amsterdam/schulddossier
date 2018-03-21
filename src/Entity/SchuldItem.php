@@ -122,6 +122,13 @@ class SchuldItem
     private $vaststelDatum;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(type="date", nullable=false)
+     * @Assert\NotBlank
+     */
+    private $ontstaansDatum;
+
+    /**
      * @var DossierDocument[]|ArrayCollection
      * @ORM\OneToMany(targetEntity="DossierDocument", mappedBy="schuldItem")
      * @ORM\OrderBy({"id"="ASC"})
@@ -284,6 +291,16 @@ class SchuldItem
     public function setVaststelDatum(\DateTime $vaststelDatum)
     {
         $this->vaststelDatum = $vaststelDatum;
+    }
+
+    public function getOntstaansDatum()
+    {
+        return $this->ontstaansDatum;
+    }
+
+    public function setOntstaansDatum(\DateTime $ontstaansDatum)
+    {
+        $this->ontstaansDatum = $ontstaansDatum;
     }
 
     public function getDossierDocumenten()
