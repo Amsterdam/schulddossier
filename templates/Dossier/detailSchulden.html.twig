@@ -42,8 +42,8 @@
 	<div id="templates">
 	{{ form_start(createForm,{attr:{id:'templateForm'}}) }}
 		<section class="velden">
-		<!--  label>Schuldeiser {{ form_widget(createForm.schuldeiser) }}</label -->
-		<label>Schuldeiser <input name="schuld_item_form[schuldeiser]"></label>
+		<label>Schuldeiser {{ form_widget(createForm.schuldeiser) }}</label>
+		<!-- label>Schuldeiser <input name="schuld_item_form[schuldeiser]"></label -->
 		<label>Incassobureau {{ form_widget(createForm.incassant) }}</label>
 		<label>Ref.nr. {{ form_widget(createForm.referentie) }}</label>
 		<label>Preferent {{ form_widget(createForm.type) }}</label>
