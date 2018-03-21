@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	for (var i=0;i<accordeons.length;i+=1) {
 		maakAccordeon(accordeons[i]);
 	}
+	zetDatumWidget();
+	
 },false);
-
-
 
 function documentLinks() {
 
@@ -310,11 +310,30 @@ function maakAccordeon(block) {
 
 }
 
+function zetDatumWidget() {
+	var widgetNodig = false;
+	var testDate = document.querySelector('input[type=date]');
+	if (testDate) {
+		if (testDate.getAttribute('type') === 'date' && testDate.type !== 'date') {
+			document.addEventListener('click',function (e) {
+				var tgt = e.target;
+				if (tgt.nodeName === 'INPUT' && tgt.getAttribute('type') === 'date') {
+					flatpickr(tgt,{
+						clickOpens: true,
+					});
+				}
+			},false);
+		}
+	}
+}
+
 function verzamelData(form) {
 	var data = new FormData(form);
 	console.log(data);
 	return data;
 }
+
+/* UTILITIES */
 
 function $(id) {
 	return document.getElementById(id);

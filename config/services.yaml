@@ -61,16 +61,16 @@ services:
     # OpenStack
     openstack:
         class: OpenStack\OpenStack
-        #lazy: true
+        lazy: true
         arguments:
             - { authUrl: '%swift_auth_url%', region: '%swift_region%', user: { name: '%swift_user_name%', domain: { id: '%swift_user_domain_id%' }, password: '%swift_user_password%' }, scope: { project: { id: '%swift_project_id%' } } }
     openstack_objectstore:
         class: OpenStack\ObjectStore\v1\Service
-        #lazy: true
+        lazy: true
         factory: ['@openstack', 'objectStoreV1']
     openstack_objectstore_container_dossier:
         class: OpenStack\ObjectStore\v1\Models\Container
-        #lazy: true
+        lazy: true
         factory: ['@openstack_objectstore', 'getContainer']
         arguments:
             - '%swift_container_prefix%dossier'
@@ -78,11 +78,11 @@ services:
     # Flysystem
     flysystem_openstack_adapter_dossier:
         class: Nimbusoft\Flysystem\OpenStack\SwiftAdapter
-        #lazy: true
+        lazy: true
         arguments:
             - '@openstack_objectstore_container_dossier'
     flysystem_dossier:
         class: League\Flysystem\Filesystem
-        #lazy: true
+        lazy: true
         arguments:
             - '@flysystem_openstack_adapter_dossier'
