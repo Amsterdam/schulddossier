@@ -9,8 +9,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
 	$('uploadVenster').addEventListener('click',creeernieuweSchuldEiser,false);
 },false);
 
-var schuldEisersLijst = {};
-
 function haalSchuldeiserLijst() {
 	var lijstSrc = '/app/schuldeiser/';
 	sendRequest(lijstSrc,function(req) {
@@ -66,13 +64,30 @@ function creeernieuweSchuldEiser(e) {
 	e.preventDefault();
 }
 
-function creeerSchuldEiserLijst(json) {
-	for (var i in json) {
-		schuldEisersLijst[json.bedrijfsnaam] = {};
-		schuldEisersLijst[json.bedrijfsnaam].id = json.id;
-		schuldEisersLijst[json.bedrijfsnaam].rekening = json.rekening;
-	}
+var schuldEisersLijst = {};
 
+function creeerSchuldEiserLijst(json) {
+	var alfabetisch = [];
+	console.log(typeof json);
+	for (var i=0;i<json.length;i+=1) {
+		alfabetisch.push(json[i].bedrijfsnaam);
+		schuldEisersLijst[json[i].bedrijfsnaam] = {};
+		schuldEisersLijst[json[i].bedrijfsnaam].id = json[i].id;
+		schuldEisersLijst[json[i].bedrijfsnaam].rekening = json[i].rekening;
+	}
+	console.log(schuldEisersLijst);
+	alfabetisch.sort();
+	var dataContainer = document.querySelector('datalist#schuldeiserdata');
+	if (dataContainer) {
+		for (var i=0,eiser;eiser=schuldEisersLijst[alfabetisch[i]];i+=1) {
+			console.log(alfabetisch[i]);
+			var opt = document.createElement('option');
+			opt.setAttribute('label',alfabetisch[i]);
+			opt.setAttribute('value',alfabetisch[i]);
+			dataContainer.appendChild(opt);
+		return;
+		}
+	}
 }
 
 function handelFormulierenAf(e) {
