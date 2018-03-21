@@ -203,9 +203,8 @@ function maakUploadWizard() {
 				actiefFormulier.header.classList.remove('uitgeklapt');
 				actiefFormulier.header.open = false;
 			}
-			actiefFormulier = source.container.querySelector('form');
 		}
-		console.log('Actief formulier is ' + actiefFormulier.header.textContent);
+		actiefFormulier = source.container.querySelector('form');
 	}
 	
 /*	var groteCanvas = document.createElement('canvas');
