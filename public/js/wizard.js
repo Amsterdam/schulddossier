@@ -6,26 +6,15 @@ window.onload = function () {
 
 function maakUploadWizard() {
 	var scale = 3; // nog te bekijken
-
-	$('completeDocument').onchange = function () {
+	
+	var uploadVeld = $('completeDocument');
+	if (uploadVeld) {
+		uploadVeld.onchange = function () {
 		var URL = window.URL.createObjectURL(this.files[0]);
 		laadPDF(URL);
 	}
-	
-	var headers = document.querySelectorAll('.naast h3'),
-		container;
-	for (var i=0,header;header=headers[i];i+=1) {
-		container = header.nextElementSibling;
-		if (container.nodeName === 'DIV') {
-			header.container = container;
-			container.header = header;
-			if (headers[i+1]) {
-				header.nextHeader = headers[i+1];
-			}
-		} else {
-			console.log('Structuurfout bij header ' + header.textContent);
-		}
 	}
+	
 	
 	function laadPDF(URL) {
 	
@@ -34,7 +23,6 @@ function maakUploadWizard() {
 		
 		var pages;
 		PDFJS.getDocument(URL).then(function (pdf) {
-			console.log('pdf object');
 			var wr = $('canvases');
 			pages = pdf.numPages;
 			for (var i=1;i<=pages;i+=1) {
@@ -111,8 +99,7 @@ function maakUploadWizard() {
 		var source = e.target;
 		if (source.nodeName === 'A') {
 			return true;
-		}
-		if (source.nodeName === 'H3') {
+		} else if (source.nodeName === 'H3') {
 			wijzigActiefFormulier(source);
 		} else if (source.classList.contains('nieuwDocument')) {
 			var huidigeHeader = source.form.header;
@@ -156,12 +143,10 @@ function maakUploadWizard() {
 			imgData = cv.toDataURL("image/jpeg");
 			newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
 		}
-		console.log(canvasIDs);
 		var linkData = {};
 		linkData.container = form;
 		linkData.naam = naamSource.value;
-		linkData.onderwerp = form.parentNode.dataset.systeemnaam;
-		console.log(linkData.onderwerp);
+		linkData.onderwerp = form.container.dataset.systeemnaam;
 		var echtFormulier = $('uploadForm');
 		echtFormulier.querySelector('input[type=text]').value = linkData.naam;
 		echtFormulier.querySelector('select').value = linkData.onderwerp;
@@ -190,45 +175,40 @@ function maakUploadWizard() {
 	}
 
 	function maakLink(data) {
-		var link = document.createElement('a');
+		var resultaat = $('resultaatTemplate').cloneNode(true);
+		resultaat.id = '';
+		var link = resultaat.querySelector('a');
 		link.href =  data.link;
-		link.innerHTML = data.naam;
-		data.container.appendChild(link);
-		var knoppen = data.container.querySelector('.knoppenbalk');
-		data.container.removeChild(knoppen);
-		data.container.classList.remove('leegFormulier');
-		return;
-	
-	
-		var div = $('resultaatTemplate').cloneNode(true);
-		div.id = '';
-		div.querySelector('span').innerHTML = data.onderwerp;
-		var link = div.querySelector('a');
-		link.href = data.link;
-		link.innerHTML = data.naam;
-		var form = data.container;
-		form.parentNode.insertBefore(div,form);
-		form.parentNode.removeChild(form);
+		link.textContent = link.innerText = data.naam;
+		var canvasSource = data.container.querySelector('.uploadCanvases');
+		var canvasTarget = resultaat.querySelector('.canvasThumbs');
+		var canvases = canvasSource.querySelectorAll('canvas');
+		for (var i=0;i<canvases.length;i+=1) {
+			canvasTarget.appendChild(canvases[i]);
+		}
+		data.container.container.appendChild(resultaat);
+		actiefFormulier.parentNode.removeChild(actiefFormulier);
+//		actiefFormulier = undefined;
 	}
 
 	function wijzigActiefFormulier(source) {
-		console.log(source.nodeName);
 		if (actiefFormulier) {
-			actiefFormulier.style.display = '';
+			actiefFormulier.container.style.display = '';
 			actiefFormulier.header.classList.remove('uitgeklapt');
 		}
-		var tgt = source.container;
-		if (!tgt.querySelector('form.leegFormulier')) {
-			var nieuwForm = $('templateForm').cloneNode(true);
+		var div = source.container,
+			nieuwForm = div.querySelector('form');
+		if (!nieuwForm) {
+			nieuwForm = $('templateForm').cloneNode(true);
 			nieuwForm.id = '';
 			nieuwForm.className = 'leegFormulier';
 			nieuwForm.header = source;
-			source.classList.add('uitgeklapt');
-			tgt.appendChild(nieuwForm);
+			nieuwForm.container = div;
+			div.appendChild(nieuwForm);
 		}
-		tgt.style.display = 'block';
-		tgt.onderwerp = source.textContent
-		actiefFormulier = tgt;
+		source.classList.add('uitgeklapt');
+		actiefFormulier = nieuwForm;
+		div.style.display = 'block';
 	}
 	
 /*	var groteCanvas = document.createElement('canvas');
@@ -266,31 +246,4 @@ function showOnce(obj) {
 	showOnce = function () {};
 	return showAPI(obj);
 }
-
-
-/*
-	return;
-	var actiefFormulier;
-	$('nieuwForm').onclick = function () {
-		var newForm = $('templateForm').cloneNode(true);
-		newForm.id = '';
-		newForm.querySelector('.activeer').onclick = function () {
-			if (actiefFormulier) {
-				actiefFormulier.classList.remove('actief');
-			}
-			if (actiefFormulier === newForm) {
-				actiefFormulier = null;
-				return false;
-			}
-			actiefFormulier = newForm;
-			newForm.uploadList = {};
-			newForm.classList.add('actief');
-			return false;
-		}
-		newForm.onsubmit = stuurFormulier;
-		newForm.querySelector('input[type=file]').required = false;
-		$('insertForm').parentNode.insertBefore(newForm,$('insertForm'))
-	}
-	$('nieuwForm').onclick();
-*/
 

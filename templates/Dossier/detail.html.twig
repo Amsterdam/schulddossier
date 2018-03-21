@@ -90,8 +90,8 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 
 <div class="knoppenbalk">
 	<a class="tertiair">Annuleren</a>
-	<a class="secundair" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a>
-	<input type="submit" class="primair" value="Opslaan">
+	<div class="hoofdknoppen"><a class="secundair" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a>
+	<input type="submit" class="primair" value="Opslaan"></div>
 </div>
 
 <div id="documenten">

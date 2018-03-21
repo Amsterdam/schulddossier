@@ -6,8 +6,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController
+class DefaultController extends Controller
 {
     /**
      * @Route("/")
@@ -18,10 +19,13 @@ class DefaultController
     }
 
     /**
-     * @Route("/special/for/ppk")
+     * @Route("/app/special/for/ppk")
      */
     public function uploadTestAction(Request $request)
     {
+        return $this->render('Dossier/schuldenlijst/index.html.twig', [
+
+		]);
         if ($request->getMethod() === 'POST') {
             $data = [];
             foreach ($request->files->all() as $form) {

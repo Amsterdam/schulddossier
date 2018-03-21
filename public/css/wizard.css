@@ -23,10 +23,11 @@ div#canvases {
 	overflow-y: scroll;
 }
 
-div#canvases:empty:before{
+div#canvases:empty:after{
 	content: "Upload hierboven een document om beginnen.";
-	min-height: 100px;
-  color: #666666;
+	color: #666666;
+	margin-top: 30px;
+	display: block;
 }
 
 /*
@@ -62,7 +63,7 @@ div#canvases div.upgeload {
 	cursor: default;
 }
 
-form canvas {
+section.naast canvas {
 	/* Thumbnail-canvas in formulier rechts */
 	width: 70px;
 	margin: 0;
@@ -141,37 +142,9 @@ section.naast h2 {
 	border-bottom: solid red 1px;
 }
 
-section.naast h3 {
+section.naast div.succes {
+	padding: 10px 30px;
 	background-color: #f8f8f8;
-	margin-top: 8px;
-	padding: 8px 30px;
-	cursor: pointer;
-}
-
-section.naast h3:after {
-	content: url("../pix/chevron-down.svg");
-	width: 16px;
-	height: 16px;
-	float: right;
-	margin-top: 3px;
-}
-
-section.naast h3.uitgeklapt:after {
-	content: url("../pix/chevron-up.svg");
-	width: 16px;
-	height: 16px;
-	float: right;
-	margin-top: 3px;
-}
-
-section.naast div.container {
-	display: none;
-}
-
-section.naast form {
-	padding: 10px 20px;
-	background-color: #f8f8f8;
-	position: relative;
 }
 
 div.naamVeld {
@@ -200,7 +173,8 @@ div.uploadCanvases:empty:before{
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background: rgba(128,128,128,0.6);
+	background: white;
+	opacity: 0.6;
 	top: 0;
 	left: 0;
 	display: none;
