@@ -24,6 +24,21 @@
 	<p class="totaal">Totale schuld: <span id="totaleSchuld"></span>
 	<div class="knoppenbalk"><button class="secundair" id="nieuweSchuldeiser">Nieuwe schuldeiser</button></div>
 	
+<div id="uploadVenster">
+	<form>
+	<p>Voer hier een nieuwe schuldeiser in.</p>
+	<label>Nieuwe schuldeiser <input></label>
+	<label>Bankrekening <input></label>
+	<p class="buttons">
+		<a class="tertiair cancel">Annuleren</a>
+		<span id="spinnerContainer"></span>
+		<button type="submit" class="primair">Opslaan</button>
+	</p>
+	</form>
+</div>
+	
+	
+	
 	<div id="templates">
 	{{ form_start(createForm,{attr:{id:'templateForm'}}) }}
 		<section class="velden">
@@ -36,8 +51,14 @@
 		<label>Datum 1 {{ form_widget(createForm.vastStelDatum) }}</label>
 		<label>Datum 2 <input name="datum2" type="date"> (nog niet)</label>
 		</section>
+		<div class="canvases">
+			<section class="nieuw">
+			<p id="tekst">Nieuw document</p>
+			<input type="file">
+			</section>
+		</div>
 		<span style="display:none">{{ form_widget(createForm.verwijderd) }}</span>
-		<div class="knoppenbalk"><button class="tertiair annuleren">Annuleren</button>
+		<div class="knoppenbalk"><input type="reset" class="tertiair annuleren" value="Annuleren">
 			<button class="secundair verwijderen">Verwijderen</button>
 			<input type="submit" class="primair" value="Opslaan"></div>
 {{ form_end(createForm) }}
