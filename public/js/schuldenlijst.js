@@ -59,34 +59,35 @@ function nieuwSchuldBedrag() {
 }
 
 function creeernieuweSchuldEiser(e) {
-	console.log('Nieuwe schuldeiser');
 	stuurFormulier(e.target);
 	e.preventDefault();
 }
 
-var schuldEisersLijst = {};
+var schuldEisersLijst = {},alfabetisch = [];
 
 function creeerSchuldEiserLijst(json) {
-	var alfabetisch = [];
-	console.log(typeof json);
 	for (var i=0;i<json.length;i+=1) {
 		alfabetisch.push(json[i].bedrijfsnaam);
 		schuldEisersLijst[json[i].bedrijfsnaam] = {};
 		schuldEisersLijst[json[i].bedrijfsnaam].id = json[i].id;
 		schuldEisersLijst[json[i].bedrijfsnaam].rekening = json[i].rekening;
 	}
-	console.log(schuldEisersLijst);
 	alfabetisch.sort();
+	return;
 	var dataContainer = document.querySelector('datalist#schuldeiserdata');
 	if (dataContainer) {
 		for (var i=0,eiser;eiser=schuldEisersLijst[alfabetisch[i]];i+=1) {
-			console.log(alfabetisch[i]);
 			var opt = document.createElement('option');
 			opt.setAttribute('label',alfabetisch[i]);
 			opt.setAttribute('value',alfabetisch[i]);
 			dataContainer.appendChild(opt);
-		return;
 		}
+	}
+	console.log(dataContainer);
+	dataContainer.style.display = 'block';
+	dataContainer.style.border = '10px solid red';
+	dataContainer.onclick = function (e) {
+		console.log(e.target);
 	}
 }
 
@@ -96,6 +97,13 @@ function handelFormulierenAf(e) {
 		console.log('Submit formulier');
 		stuurFormulier(button);
 		e.preventDefault();
+	} else if (button.id === "schuldeiserdata" ) {
+		if (!button.initialized) {
+			horsey(button, {
+				source: [{ list: alfabetisch }]
+			});
+			button.initialized = true;
+		}
 	} else if (button.name === "schuld_item_form[bedrag]" ) {
 		button.onblur = nieuwSchuldBedrag;	
 		e.preventDefault();

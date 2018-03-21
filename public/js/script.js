@@ -301,7 +301,7 @@ function maakAccordeon(block) {
 					nieuwForm.id = '';
 					nieuwForm.header = header;
 					nieuwForm.container = header.container;
-					header.container.appendChild(nieuwForm);				
+					header.container.appendChild(nieuwForm);
 				}
 			}
 		}
