@@ -1,4 +1,7 @@
 {
+    "bevacqua/horsey": {
+        "version": "4.2.2"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -94,6 +97,9 @@
     },
     "mrrio/jspdf": {
         "version": "1.3.5"
+    },
+    "nikic/php-parser": {
+        "version": "v4.0.0"
     },
     "nimbusoft/flysystem-openstack-swift": {
         "version": "0.2.1"

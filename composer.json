@@ -27,7 +27,8 @@
         "symfony/templating": "^4.0",
         "symfony/validator": "^4.0",
         "symfony/var-dumper": "^4.0",
-        "symfony/yaml": "^4.0"
+        "symfony/yaml": "^4.0",
+        "bevacqua/horsey": "4.2.2"
     },
     "require-dev": {
         "symfony/dotenv": "^4.0",
@@ -80,7 +81,8 @@
         "markei-filesystemoperations": [
             ["mkdir", "public/vendor"],
             ["mirror", "vendor/mozilla/pdf.js", "public/vendor/mozilla/pdf.js", null, {"delete": true}],
-            ["mirror", "vendor/mrrio/jspdf", "public/vendor/mrrio/jspdf", null, {"delete": true}]
+            ["mirror", "vendor/mrrio/jspdf", "public/vendor/mrrio/jspdf", null, {"delete": true}],
+            ["mirror", "vendor/bevacqua/horsey", "public/vendor/bevacqua/horsey", null, {"delete": true}]
         ]
     },
     "repositories": [
@@ -102,6 +104,17 @@
                 "version": "1.3.5",
                 "dist": {
                     "url": "https://github.com/MrRio/jsPDF/archive/v1.3.5.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "bevacqua/horsey",
+                "version": "4.2.2",
+                "dist": {
+                    "url": "https://github.com/bevacqua/horsey/archive/v4.2.2.zip",
                     "type": "zip"
                 }
             }
