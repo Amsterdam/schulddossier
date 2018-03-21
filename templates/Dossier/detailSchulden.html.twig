@@ -63,4 +63,12 @@
 			<input type="submit" class="primair" value="Opslaan"></div>
 {{ form_end(createForm) }}
 	</div>
+	
+	<div id="nieuweSchuldeiser">
+	{{ form_start(createSchuldeiserForm) }}
+	{{ form_row(createSchuldeiserForm.bedrijfsnaam) }}
+	{{ form_row(createSchuldeiserForm.rekening) }}
+	<button type="submit">Aanmaken</button>
+	{{ form_end(createSchuldeiserForm) }}
+	</div>
 {% endblock %}

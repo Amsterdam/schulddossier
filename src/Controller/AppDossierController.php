@@ -24,6 +24,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldItemFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
 
 /**
  * @Route("/app/dossier")
@@ -441,13 +443,19 @@ class AppDossierController extends Controller
             ])
         ]);
 
+        $schuldeiser = new Schuldeiser();
+        $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser, [
+            'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create', [])
+        ]);
+
         return $this->render('Dossier/detailSchulden.html.twig', [
             'dossier' => $dossier,
             'schuldItems' => $schuldItems,
             'updateForms' => array_map(function ($form) {
                     return $form->createView();
                 }, $updateForms),
-            'createForm' => $createForm->createView()
+            'createForm' => $createForm->createView(),
+            'createSchuldeiserForm' => $createSchuldeiserForm->createView()
         ]);
     }
 
@@ -499,6 +507,6 @@ class AppDossierController extends Controller
             }
         }
 
-        return;
+        return; // 500
     }
 }
