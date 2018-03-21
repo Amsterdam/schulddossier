@@ -318,9 +318,13 @@ function zetDatumWidget() {
 			document.addEventListener('click',function (e) {
 				var tgt = e.target;
 				if (tgt.nodeName === 'INPUT' && tgt.getAttribute('type') === 'date') {
-					flatpickr(tgt,{
-						clickOpens: true,
-					});
+					if (!tgt.datePicker) {
+						var fp = flatpickr(tgt,{
+							clickOpens: true,
+						});
+						fp.open();
+						tgt.datePicker = true;
+					}
 				}
 			},false);
 		}
