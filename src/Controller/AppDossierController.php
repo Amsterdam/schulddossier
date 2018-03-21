@@ -426,11 +426,20 @@ class AppDossierController extends Controller
 
         $updateForms = [];
         foreach ($schuldItems as $schuldItem) {
-            $updateForms[$schuldItem->getId()] = $this->createForm(SchuldItemFormType::class, $schuldItem);
+            $updateForms[$schuldItem->getId()] = $this->createForm(SchuldItemFormType::class, $schuldItem, [
+                'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_updateschulditem', [
+                    'dossierId' => $dossier->getId(),
+                    'schuldItemId' => $schuldItem->getId()
+                ])
+            ]);
         }
 
         $schuldItem = new SchuldItem();
-        $createForm = $this->createForm(SchuldItemFormType::class, $schuldItem);
+        $createForm = $this->createForm(SchuldItemFormType::class, $schuldItem, [
+            'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_addschulditem', [
+                'dossierId' => $dossier->getId()
+            ])
+        ]);
 
         return $this->render('Dossier/detailSchulden.html.twig', [
             'dossier' => $dossier,
@@ -440,5 +449,56 @@ class AppDossierController extends Controller
                 }, $updateForms),
             'createForm' => $createForm->createView()
         ]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/schulden/nieuw")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function addSchuldItemAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    {
+        $schuldItem = new SchuldItem();
+        $schuldItem->setAanmaker($this->getUser());
+        $schuldItem->setBewerker($this->getUser());
+        $dossier->addSchuldItem($schuldItem);
+
+        $form = $this->createForm(SchuldItemFormType::class, $schuldItem);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($schuldItem);
+            $em->flush();
+
+            return new JsonResponse($this->get('json_serializer')->normalize($schuldItem));
+        } elseif ($form->isSubmitted() && $form->isValid() === false) {
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
+            }
+        }
+
+        return; // 500
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/schulden/nieuw")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
+     */
+    public function updateSchuldItemAction(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em)
+    {
+        $schuldItem->setBewerker($this->getUser());
+        $schuldItem->setBewerkDatumTijd(new \DateTime());
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+
+            return new JsonResponse($this->get('json_serializer')->normalize($schuldItem));
+        } elseif ($form->isSubmitted() && $form->isValid() === false) {
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
+            }
+        }
+
+        return;
     }
 }
