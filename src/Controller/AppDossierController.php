@@ -22,6 +22,8 @@ use Symfony\Component\Form\FormError;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldItemFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 
 /**
  * @Route("/app/dossier")
@@ -412,5 +414,31 @@ class AppDossierController extends Controller
         $this->addFlash('success', 'Dossier hersteld');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', ['dossierId' => $dossier->getId()]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/schulden")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function detailSchuldenAction(Request $request, Dossier $dossier)
+    {
+        $schuldItems = $dossier->getSchuldItems();
+
+        $updateForms = [];
+        foreach ($schuldItems as $schuldItem) {
+            $updateForms[$schuldItem->getId()] = $this->createForm(SchuldItemFormType::class, $schuldItem);
+        }
+
+        $schuldItem = new SchuldItem();
+        $createForm = $this->createForm(SchuldItemFormType::class, $schuldItem);
+
+        return $this->render('Dossier/detailSchulden.html.twig', [
+            'dossier' => $dossier,
+            'schuldItems' => $schuldItems,
+            'updateForms' => array_map(function ($form) {
+                    return $form->createView();
+                }, $updateForms),
+            'createForm' => $createForm->createView()
+        ]);
     }
 }

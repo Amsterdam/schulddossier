@@ -1,0 +1,12 @@
+<p>Dossier: {{ dossier.id }}</p>
+
+{% for schuldItem in schuldItems if schuldItem.verwijderd == false %}
+    <p>{{ schuldItem.id }}</p>
+    {{ form(updateForms[schuldItem.id]) }}
+{% endfor %}
+
+<hr>
+
+<p>Nieuw</p>
+
+{{ form(createForm) }}

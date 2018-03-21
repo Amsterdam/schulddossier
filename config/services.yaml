@@ -51,6 +51,7 @@ services:
                 - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\FormErrorIteratorNormalizer'
                 - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\GebruikerNormalizer'
                 - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\DossierDocumentNormalizer'
+                - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\SchuldeiserNormalizer'
             1:
                 - '@json_encoder'
         public: true

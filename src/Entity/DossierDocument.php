@@ -41,6 +41,13 @@ class DossierDocument
      */
     private $onderwerp;
 
+    /**
+     * @var SchuldItem
+     * @ORM\ManyToOne(targetEntity="SchuldItem", inversedBy="dossierDocumenten")
+     * @ORM\JoinColumn(name="schuld_item_id", referencedColumnName="id", nullable=true)
+     */
+    private $schuldItem;
+
     public function getId()
     {
         return $this->id;
@@ -83,5 +90,20 @@ class DossierDocument
     public function setOnderwerp($onderwerp)
     {
         $this->onderwerp = $onderwerp;
+    }
+
+    public function getSchuldItem()
+    {
+        return $this->schuldItem;
+    }
+
+    public function setSchuldItem(SchuldItem $schuldItem = null)
+    {
+        if ($this->schuldItem !== $schuldItem) {
+            $this->schuldItem = $schuldItem;
+        }
+        if ($schuldItem->hasDossierDocument($this) === false) {
+            $schuldItem->addDossierDocumenten($this);
+        }
     }
 }
