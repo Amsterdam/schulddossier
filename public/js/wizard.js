@@ -205,6 +205,7 @@ function maakUploadWizard() {
 			}
 			actiefFormulier = source.container.querySelector('form');
 		}
+		console.log('Actief formulier is ' + actiefFormulier.header.textContent);
 	}
 	
 /*	var groteCanvas = document.createElement('canvas');
