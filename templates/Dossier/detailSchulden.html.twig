@@ -1,12 +1,55 @@
-<p>Dossier: {{ dossier.id }}</p>
 
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Schuldenlijst
+{% endblock %}
+
+
+{% block extraScripts %}
+<script src="/js/schuldenlijst.js"></script>
+<link rel="stylesheet" href="/css/schuldenlijst.css">
+<link rel="stylesheet" href="/css/datepicker.css">
+<script src="/js/datepicker.js"></script>
+{% endblock %}
+
+{% block main %}
+	<h1>SCHULDENLIJST</h1>
 {% for schuldItem in schuldItems if schuldItem.verwijderd == false %}
     <p>{{ schuldItem.id }}</p>
     {{ form(updateForms[schuldItem.id]) }}
 {% endfor %}
+	
+	<section class="accordeon">
+	</section>
+	<p class="totaal">Totale schuld: <span id="totaleSchuld"></span>
+	<div class="knoppenbalk"><button class="secundair" id="nieuweSchuldeiser">Nieuwe schuldeiser</button></div>
+	
+	
 
-<hr>
 
-<p>Nieuw</p>
 
-{{ form(createForm) }}
+
+
+
+
+
+
+
+	<div id="templates">
+	{{ form_start(createForm,{attr:{id:'templateForm'}}) }}
+		<section class="velden">
+		<!--  label>Schuldeiser {{ form_widget(createForm.schuldeiser) }}</label -->
+		<label>Schuldeiser <input name="schuld_item_form[schuldeiser]"></label>
+		<label>Incassobureau {{ form_widget(createForm.incassant) }}</label>
+		<label>Ref.nr. {{ form_widget(createForm.referentie) }}</label>
+		<label>Preferent {{ form_widget(createForm.type) }}</label>
+		<label>Schuld {{ form_widget(createForm.bedrag) }}</label>
+		<label>Datum 1 {{ form_widget(createForm.vastStelDatum) }}</label>
+		<label>Datum 2 <input name="datum2" type="date"> (nog niet)</label>
+		</section>
+		{{ form_widget(createForm.verwijderd) }} Verwijderd (te verbergen)
+		<div class="knoppenbalk"><button class="tertiair">Annuleren</button><button class="primair">Opslaan</button></div>
+{{ form_end(createForm) }}
+	</div>
+{% endblock %}
