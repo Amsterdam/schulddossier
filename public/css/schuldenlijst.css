@@ -1,15 +1,16 @@
 
 section.velden {
-	column-count: 2;
-	column-gap: 50px;
 	padding: 0 10px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 section.velden label {
+	flex-basis: 40%;
+	flex-grow: 1;
+	margin: 10px 20px 10px 0;
 	display: flex;
 	justify-content: space-between;
-	min-height: 30px;
-	margin: 10px 0;
 }
 
 section.velden input,section.velden select  {

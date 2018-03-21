@@ -22,19 +22,15 @@
 	<section class="accordeon">
 	</section>
 	<p class="totaal">Totale schuld: <span id="totaleSchuld"></span>
-	<div class="knoppenbalk"><button class="secundair" id="nieuweSchuldeiser">Nieuwe schuldeiser</button></div>
+	<div class="knoppenbalk"><button class="secundair" id="nieuweSchuld">Nieuwe schuld</button></div>
 	
-<div id="uploadVenster">
-	<form>
+<div id="uploadVenster" style="visibility:visibe">
 	<p>Voer hier een nieuwe schuldeiser in.</p>
-	<label>Nieuwe schuldeiser <input></label>
-	<label>Bankrekening <input></label>
-	<p class="buttons">
-		<a class="tertiair cancel">Annuleren</a>
-		<span id="spinnerContainer"></span>
-		<button type="submit" class="primair">Opslaan</button>
-	</p>
-	</form>
+	{{ form_start(createSchuldeiserForm) }}
+	{{ form_row(createSchuldeiserForm.bedrijfsnaam) }}
+	{{ form_row(createSchuldeiserForm.rekening) }}
+	<button type="submit" class="primair">Aanmaken</button>
+	{{ form_end(createSchuldeiserForm) }}
 </div>
 	
 	
@@ -42,14 +38,15 @@
 	<div id="templates">
 	{{ form_start(createForm,{attr:{id:'templateForm'}}) }}
 		<section class="velden">
-		<label>Schuldeiser {{ form_widget(createForm.schuldeiser) }}</label>
-		<!-- label>Schuldeiser <input name="schuld_item_form[schuldeiser]"></label -->
+		<!-- label>Schuldeiser {{ form_widget(createForm.schuldeiser) }}</label -->
+		<label>Schuldeiser <input name="schuld_item_form[schuldeiser]" list="schuldeiserdata"></label>
+		<label></label>
 		<label>Incassobureau {{ form_widget(createForm.incassant) }}</label>
-		<label>Ref.nr. {{ form_widget(createForm.referentie) }}</label>
-		<label>Preferent {{ form_widget(createForm.type) }}</label>
 		<label>Schuld {{ form_widget(createForm.bedrag) }}</label>
+		<label>Ref.nr. {{ form_widget(createForm.referentie) }}</label>
 		<label>Datum 1 {{ form_widget(createForm.vastStelDatum) }}</label>
-		<label>Datum 2 <input name="datum2" type="date"> (nog niet)</label>
+		<label>Preferent {{ form_widget(createForm.type) }}</label>
+		<label>Datum 2 <input name="datum2" type="date"></label>
 		</section>
 		<div class="canvases">
 			<section class="nieuw">
@@ -61,14 +58,8 @@
 		<div class="knoppenbalk"><input type="reset" class="tertiair annuleren" value="Annuleren">
 			<button class="secundair verwijderen">Verwijderen</button>
 			<input type="submit" class="primair" value="Opslaan"></div>
+		<datalist id="schuldeiserdata"></datalist>
 {{ form_end(createForm) }}
 	</div>
 	
-	<div id="nieuweSchuldeiser">
-	{{ form_start(createSchuldeiserForm) }}
-	{{ form_row(createSchuldeiserForm.bedrijfsnaam) }}
-	{{ form_row(createSchuldeiserForm.rekening) }}
-	<button type="submit">Aanmaken</button>
-	{{ form_end(createSchuldeiserForm) }}
-	</div>
 {% endblock %}
