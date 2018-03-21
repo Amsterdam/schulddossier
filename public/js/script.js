@@ -285,7 +285,6 @@ function maakAccordeon(block) {
 	}
 	
 	block.addEventListener('click',function (e) {
-		console.log('Openklappen');
 		var header = e.target;
 		if (header.nodeName === 'H3') {
 			if (header.open) {

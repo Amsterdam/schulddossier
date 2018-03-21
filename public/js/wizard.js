@@ -194,9 +194,7 @@ function maakUploadWizard() {
 	}
 
 	function wijzigActiefFormulier(source) {
-		console.log('wijzig formulier');
 		if (actiefFormulier && actiefFormulier.header === source) {
-			console.log('Dezelfde!');
 			source.click();
 		} else {
 			if (actiefFormulier) {
