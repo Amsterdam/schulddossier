@@ -6,26 +6,15 @@ window.onload = function () {
 
 function maakUploadWizard() {
 	var scale = 3; // nog te bekijken
-
-	$('completeDocument').onchange = function () {
+	
+	var uploadVeld = $('completeDocument');
+	if (uploadVeld) {
+		uploadVeld.onchange = function () {
 		var URL = window.URL.createObjectURL(this.files[0]);
 		laadPDF(URL);
 	}
-	
-	var headers = document.querySelectorAll('.naast h3'),
-		container;
-	for (var i=0,header;header=headers[i];i+=1) {
-		container = header.nextElementSibling;
-		if (container.nodeName === 'DIV') {
-			header.container = container;
-			container.header = header;
-			if (headers[i+1]) {
-				header.nextHeader = headers[i+1];
-			}
-		} else {
-			console.log('Structuurfout bij header ' + header.textContent);
-		}
 	}
+	
 	
 	function laadPDF(URL) {
 	
@@ -190,7 +179,7 @@ function maakUploadWizard() {
 		resultaat.id = '';
 		var link = resultaat.querySelector('a');
 		link.href =  data.link;
-		link.innerHTML = data.naam;
+		link.textContent = link.innerText = data.naam;
 		var canvasSource = data.container.querySelector('.uploadCanvases');
 		var canvasTarget = resultaat.querySelector('.canvasThumbs');
 		var canvases = canvasSource.querySelectorAll('canvas');

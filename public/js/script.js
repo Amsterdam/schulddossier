@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		uploadDocument();
 		docs = documentLinks();
 	}
+	var accordeons = document.querySelectorAll('.accordeon');
+	for (var i=0;i<accordeons.length;i+=1) {
+		maakAccordeon(accordeons[i]);
+	}
 },false);
 
 
@@ -261,6 +265,25 @@ function autoSave() {
 	}
 	
 	
+}
+
+function maakAccordeon(block) {
+
+	var headers = block.querySelectorAll('h3'),
+		container;
+	for (var i=0,header;header=headers[i];i+=1) {
+		container = header.nextElementSibling;
+		if (container.nodeName === 'DIV') {
+			header.container = container;
+			container.header = header;
+			if (headers[i+1]) {
+				header.nextHeader = headers[i+1];
+			}
+		} else {
+			console.log('Structuurfout bij header ' + header.textContent);
+		}
+	}
+
 }
 
 function verzamelData(form) {

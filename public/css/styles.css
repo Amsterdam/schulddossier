@@ -655,3 +655,39 @@ p#autoSaveBevestig {
 		display: block;
 	}
 }
+
+/* ACCORDEONS */
+
+section.accordeon h3 {
+	background-color: #f8f8f8;
+	margin-top: 8px;
+	padding: 8px 30px;
+	cursor: pointer;
+}
+
+section.accordeon h3:after {
+	content: url("../pix/chevron-down.svg");
+	width: 16px;
+	height: 16px;
+	float: right;
+	margin-top: 3px;
+}
+
+section.accordeon h3.uitgeklapt:after {
+	content: url("../pix/chevron-up.svg");
+	width: 16px;
+	height: 16px;
+	float: right;
+	margin-top: 3px;
+}
+
+section.accordeon div.container {
+	display: none;
+}
+
+section.accordeon form {
+	padding: 10px 20px;
+	background-color: #f8f8f8;
+	position: relative;
+}
+
