@@ -283,6 +283,31 @@ function maakAccordeon(block) {
 			console.log('Structuurfout bij header ' + header.textContent);
 		}
 	}
+	
+	block.addEventListener('click',function (e) {
+		console.log('Openklappen');
+		var header = e.target;
+		if (header.nodeName === 'H3') {
+			if (header.open) {
+				header.container.style.display = '';
+				header.classList.remove('uitgeklapt');
+				header.open = false;
+			} else {
+				header.container.style.display = 'block';
+				header.classList.add('uitgeklapt');
+				header.open = true;
+				var nieuwForm = header.container.querySelector('form');
+				if (!nieuwForm) {
+					nieuwForm = $('templateForm').cloneNode(true);
+					nieuwForm.id = '';
+					nieuwForm.header = header;
+					nieuwForm.container = header.container;
+					header.container.appendChild(nieuwForm);				
+				}
+			}
+		}
+	},false);
+	
 
 }
 

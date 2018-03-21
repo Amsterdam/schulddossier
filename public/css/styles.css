@@ -691,3 +691,6 @@ section.accordeon form {
 	position: relative;
 }
 
+#templates {
+	display: none;
+}

@@ -50,6 +50,8 @@ function maakUploadWizard() {
 
 //	var groteCanvas = $('groot');
 //	var nieuweContext = groteCanvas.getContext('2d');
+
+	
 	$('canvases').onclick = function (e) {
 		var div = canvas = e.target;
 		if (div.classList.contains('loep')) {
@@ -116,7 +118,7 @@ function maakUploadWizard() {
 		}
 		e.preventDefault();
 	},false);
-	headers[0].click();
+//	headers[0].click();
 
 
 	function stuurFormulier(source,fn) {
@@ -192,23 +194,18 @@ function maakUploadWizard() {
 	}
 
 	function wijzigActiefFormulier(source) {
-		if (actiefFormulier) {
-			actiefFormulier.container.style.display = '';
-			actiefFormulier.header.classList.remove('uitgeklapt');
+		console.log('wijzig formulier');
+		if (actiefFormulier && actiefFormulier.header === source) {
+			console.log('Dezelfde!');
+			source.click();
+		} else {
+			if (actiefFormulier) {
+				actiefFormulier.container.style.display = '';
+				actiefFormulier.header.classList.remove('uitgeklapt');
+				actiefFormulier.header.open = false;
+			}
+			actiefFormulier = source.container.querySelector('form');
 		}
-		var div = source.container,
-			nieuwForm = div.querySelector('form');
-		if (!nieuwForm) {
-			nieuwForm = $('templateForm').cloneNode(true);
-			nieuwForm.id = '';
-			nieuwForm.className = 'leegFormulier';
-			nieuwForm.header = source;
-			nieuwForm.container = div;
-			div.appendChild(nieuwForm);
-		}
-		source.classList.add('uitgeklapt');
-		actiefFormulier = nieuwForm;
-		div.style.display = 'block';
 	}
 	
 /*	var groteCanvas = document.createElement('canvas');
