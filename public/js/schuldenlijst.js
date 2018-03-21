@@ -1,27 +1,29 @@
 
 (function () {
 document.addEventListener("DOMContentLoaded", function(e) {
-	schuldeiserLijst();
-	$('nieuweSchuldeiser').onclick = nieuweSchuldeiser;
+	haalSchuldeiserLijst();
+	$('nieuweSchuld').onclick = nieuweSchuld;
 	berekenTotaleSchuld();
 	var formulieren  = document.querySelector('.accordeon');
 	formulieren.addEventListener('click',handelFormulierenAf,false);
+	$('uploadVenster').addEventListener('click',creeernieuweSchuldEiser,false);
 },false);
 
-function schuldeiserLijst() {
-	console.log('Laadn schuldeiserlijst');
+var schuldEisersLijst = {};
+
+function haalSchuldeiserLijst() {
 	var lijstSrc = '/app/schuldeiser/';
-	
-	// laad lijst en stop 'm in variabele
-	
-	// maak autocorrect/datalist/whatever van schuldeiser-velden
-	
+	sendRequest(lijstSrc,function(req) {
+		if (req.status === 200) {
+			creeerSchuldEiserLijst(JSON.parse(req.response));
+		}
+	});
 }
 
-function nieuweSchuldeiser() {
+function nieuweSchuld() {
 	var wr = document.querySelector('.accordeon');
 	var h3 = document.createElement('h3');
-	h3.innerText = h3.textContent = 'Nieuwe schuldeiser';
+	h3.innerText = h3.textContent = 'Nieuwe schuld';
 	var div = document.createElement('div');
 	div.className = 'container';
 	h3.container = div;
@@ -51,11 +53,26 @@ function berekenTotaleSchuld() {
 	}
 }
 
-function nieuweSchuld() {
+function nieuwSchuldBedrag() {
 	var container = goUp(this,'DIV');
 	container.header.dataset.schuld = this.value;
 	berekenTotaleSchuld();
 	this.onblur = null;
+}
+
+function creeernieuweSchuldEiser(e) {
+	console.log('Nieuwe schuldeiser');
+	stuurFormulier(e.target);
+	e.preventDefault();
+}
+
+function creeerSchuldEiserLijst(json) {
+	for (var i in json) {
+		schuldEisersLijst[json.bedrijfsnaam] = {};
+		schuldEisersLijst[json.bedrijfsnaam].id = json.id;
+		schuldEisersLijst[json.bedrijfsnaam].rekening = json.rekening;
+	}
+
 }
 
 function handelFormulierenAf(e) {
@@ -65,7 +82,7 @@ function handelFormulierenAf(e) {
 		stuurFormulier(button);
 		e.preventDefault();
 	} else if (button.name === "schuld_item_form[bedrag]" ) {
-		button.onblur = nieuweSchuld;	
+		button.onblur = nieuwSchuldBedrag;	
 		e.preventDefault();
 	} else if (button.classList.contains('verwijderen')) {
 		console.log('Verwijder schuld');
