@@ -54,13 +54,16 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 {% endfor %}
 
 <main class="voorlegger">
+
+{{ form_start(form, {'attr': {'id': 'voorlegger_mainform'}}) }}
+
+<section id="formulierKop">
 <h1>Voorlegger {{ dossier.clientNaam }}</h1>
 
 {% if dossier.inPrullenbak %}
     <p><strong>Dit dossier staat in de prullenbak!</strong></p>
 {% endif %}
 
-{{ form_start(form, {'attr': {'id': 'voorlegger_mainform'}}) }}
 
 <table>
 {% if dossier.partnerNaam is not empty %}
@@ -93,7 +96,7 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	<div class="hoofdknoppen"><a class="secundair" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a>
 	<input type="submit" class="primair" value="Opslaan"></div>
 </div>
-
+</section>
 <div id="documenten">
 {% for document in dossier.getDocumenten if document.document.inPrullenbak == false %}
 	<li data-onderwerp="{{ document.onderwerp }}">
@@ -102,7 +105,7 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	</li>
 {% endfor %}
 </div>
-
+<section>
 <table class="main">
 	<thead>
 		<tr>
@@ -490,7 +493,8 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 </tr>
 	</tbody>
 </table>
-
+</section>
+<section id="aanvullend">
 <h2>Aanvullende informatie</h2>
 {{ form_widget(form.voorlegger.aanvullendeInformatie)}}
 
@@ -510,14 +514,13 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	{{ form_row(form.voorlegger.drinkwaterKlantnummer) }}
 	{{ form_row(form.voorlegger.drinkwaterDatumOpname) }}
 	{{ form_row(form.voorlegger.drinkwaterOpname) }}
-	<tr>
-		<td></td>
-		<td><input type="submit" class="primair" value="Opslaan"></td>
-	</tr>
 </table>
-
+<div class=knoppenbalk>
+	<a class="tertiair" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a>
+	<input type="submit" class="primair" value="Opslaan"></td>
+</div>
+</section>
 {{ form_end(form) }}
-
 <div id="uploadVenster">
 {{ form_start(uploadForm,{attr: {id: 'uploadForm'}}) }}
 	<p>U gaat nu een document uploaden. Voeg hier informatie aan toe.</p>
@@ -531,9 +534,6 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	</p>
 {{ form_end(uploadForm) }}
 </div>
-
-
-<p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></p>
 
 <p id="autoSaveBevestig">Uw wijzigingen zijn opgeslagen</p>
 </main>
