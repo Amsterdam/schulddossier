@@ -123,10 +123,17 @@ class Dossier
      */
     private $inPrullenbak;
 
+    /**
+     * @var SchuldItem[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="SchuldItem", mappedBy="dossier", cascade={"persist"})
+     */
+    private $schuldItems;
+
     public function __construct()
     {
         $this->aanmaakDatumTijd = new \DateTime();
         $this->documenten = new ArrayCollection();
+        $this->schuldItems = new ArrayCollection();
         $this->inPrullenbak = false;
     }
 
@@ -337,6 +344,36 @@ class Dossier
     public function setInPrullenbak($inPrullenbak)
     {
         $this->inPrullenbak = $inPrullenbak;
+    }
+
+    public function getSchuldItems()
+    {
+        return $this->schuldItems;
+    }
+
+    public function addSchuldItem(SchuldItem $schuldItem)
+    {
+        if ($this->hasSchuldItem($schuldItem) === false) {
+            $this->schuldItems->add($schuldItem);
+        }
+        if ($schuldItem->getDossier() !== $this) {
+            $schuldItem->setDossier($this);
+        }
+    }
+
+    public function removeSchuldItem(SchuldItem $schuldItem)
+    {
+        if ($this->hasSchuldItem($schuldItem) === true) {
+            $this->schuldItems->removeElement($schuldItem);
+        }
+        if ($schuldItem->getDossier() === $this) {
+            $schuldItem->setDossier(null);
+        }
+    }
+
+    public function hasSchuldItem(SchuldItem $schuldItem)
+    {
+        return $this->schuldItems->contains($schuldItem);
     }
 
     public static function getStatussen()
