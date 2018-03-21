@@ -99,6 +99,7 @@ function maakUploadWizard() {
 	var actiefFormulier;
 	document.querySelector('.naast').addEventListener('click',function (e) {
 		var source = e.target;
+		console.log('Geklikt op ' + source.nodeName);
 		if (source.nodeName === 'A') {
 			return true;
 		} else if (source.nodeName === 'H3') {
@@ -106,13 +107,17 @@ function maakUploadWizard() {
 		} else if (source.classList.contains('nieuwDocument')) {
 			var huidigeHeader = source.form.header;
 			stuurFormulier(source,function () {
-				wijzigActiefFormulier(huidigeHeader);
+//				wijzigActiefFormulier(huidigeHeader);
+				console.log('');
+				console.log('Einde upload');
+				huidigeHeader.open = false;
+				huidigeHeader.click();
 			});
 		} else if (source.classList.contains('upload')) {
 			var nieuweHeader = source.form.header.nextHeader
 			stuurFormulier(source,function () {
 				if (nieuweHeader) {
-					wijzigActiefFormulier(nieuweHeader);
+					nieuweHeader.click();
 				}
 			});
 		}
@@ -195,12 +200,16 @@ function maakUploadWizard() {
 
 	function wijzigActiefFormulier(source) {
 		if (actiefFormulier && actiefFormulier.header === source) {
+			console.log('actiefFormulier is OK');
 			source.click();
 		} else {
 			if (actiefFormulier) {
+				console.log('actiefFormulier moet verborgen');
 				actiefFormulier.container.style.display = '';
 				actiefFormulier.header.classList.remove('uitgeklapt');
 				actiefFormulier.header.open = false;
+			} else {
+				console.log('Er is geen actiefFormulier');
 			}
 			actiefFormulier = source.container.querySelector('form');
 		}

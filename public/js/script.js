@@ -285,6 +285,7 @@ function maakAccordeon(block) {
 	}
 	
 	block.addEventListener('click',function (e) {
+		console.log('Main click event');
 		var header = e.target;
 		if (header.nodeName === 'H3') {
 			if (header.open) {
