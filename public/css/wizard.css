@@ -2,6 +2,7 @@ main {
 	display: flex;
 	flex-wrap: wrap;
 	box-sizing: border-box;
+	padding: 75px;
 }
 
 main section.hoofd {
@@ -192,3 +193,6 @@ div.succes {
 }
 
 
+#templates {
+	display: none;
+}

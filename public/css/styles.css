@@ -83,7 +83,7 @@ main {
 	max-width: 1024px;
 	margin: 50px auto;
 	margin-top: 0;
-	padding: 75px;
+	/* padding: 75px; */
 	padding-top: 0;
 	padding-bottom: 50px;
 	box-sizing: border-box;
@@ -147,7 +147,7 @@ table:not(.main) tbody tr:hover {
 
 
 div.knoppenbalk {
-	margin: 30px 10px 20px;
+	margin: 40px 0px 20px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -172,15 +172,18 @@ div.knoppenbalk div.hoofdknoppen {
 input.primair,a.primair,button.primair {
 	background-color: #ec0000;
 	color: white;
-	margin-left: 20px;
+}
+
+div.knoppenbalk input.primair,div.knoppenbalk a.primair,div.knoppenbalk button.primair {
+		margin-left: 20px;
 }
 
 input.secundair,a.secundair,button.secundair {
 	border: 1px solid #979797;
 }
 
-input.tertiair,a.tertiair,button.tertiair {
-
+input.tertiair:hover,a.tertiair:hover,button.tertiair:hover {
+  text-decoration: underline;
 }
 
 input[type="text"],input[type=date] {
@@ -471,11 +474,25 @@ main.voorlegger section.metSub span {
 	grid-row: span 2;
 }
 
-section.top {
-	/* background-color: #f8f8f8; */ /*   deze regel is voor als deze sectie de complete breedte kan beslaan van .main */
-	width: 100%;
-	margin-bottom: 50px;
+main section#formulierKop {
+	background-color: #FAFAFA;
+	padding-top: 35px;
+	padding-bottom: 35px;
 }
+
+main.voorlegger section, main.dossiers section{
+	padding: 0 75px;
+}
+
+main form {
+	/* padding-left: 75px; */
+}
+
+/* section.top { */
+	/* background-color: #f8f8f8;  /*   deze regel is voor als deze sectie de complete breedte kan beslaan van .main */
+	/* width: 100%;
+	margin-bottom: 50px;
+} */
 
 main.voorlegger input.overig {
 	border: 1px solid #666666;
