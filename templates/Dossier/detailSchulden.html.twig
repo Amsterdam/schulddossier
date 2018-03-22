@@ -12,13 +12,61 @@
 <script src="/vendor/bevacqua/horsey/dist/horsey.min.js"></script>
 <link rel="stylesheet" href="/css/datepicker.css">
 <link rel="stylesheet" href="/vendor/bevacqua/horsey/dist/horsey.min.css">
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	var matches = function(el, selector) {
+	       return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
+	    };
+
+    document.addEventListener('click', function (event) {
+		if (matches(event.target, '.file-uploads [href$="#add"]')) {
+			var container = event.target.parentNode;
+			var clone = container.querySelector('.prototype').cloneNode(true);
+			var input = clone.querySelector('input');
+			var counter = container.getAttribute('data-counter') || 0;
+			container.setAttribute('data-counter', counter + 1);
+			input.setAttribute('name', input.getAttribute('name').replace('__name__', 'new-' + counter));
+			input.setAttribute('id', input.getAttribute('id').replace('__name__', 'new-' + counter));
+			for (var i = 0; i < clone.children.length; i ++) {
+			    container.append(clone.children[i]);
+			}
+			event.preventDefault();
+		}
+	});
+});
+</script>
 {% endblock %}
 
 {% block main %}
 	<h1>SCHULDENLIJST</h1>
 {% for schuldItem in schuldItems if schuldItem.verwijderd == false %}
+    {% set form = updateForms[schuldItem.id] %}
     <p>{{ schuldItem.id }}</p>
-    {{ form(updateForms[schuldItem.id]) }}
+    {{ form_start(form) }}
+    {{ form_row(form.schuldeiser) }}
+    {{ form_row(form.incassant) }}
+    {{ form_row(form.verwijderd) }}
+    {{ form_row(form.bedrag) }}
+    {{ form_row(form.vastStelDatum) }}
+    {{ form_row(form.ontstaansDatum) }}
+    {{ form_row(form.referentie) }}
+    {{ form_row(form.type) }}
+    <div class="file-uploads">
+        <div class="prototype" style="display: none;">
+            <div class="file-veld">{{ form_row(form.file.vars.prototype) }}</div>
+        </div>
+        <div class="file-veld online">
+            {% for document in schuldItem.dossierDocumenten %}
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>
+            {% endfor %}
+        </div>
+        {% for file in form.file %}
+            <div class="file-veld">{{ form_row(file) }}</div>
+        {% endfor %}
+        <a href="#add">Nog een documenten uploaden</a>
+    </div>
+    <button type="submit">Opslaan</button>
+    {{ form_end(form) }}
 {% endfor %}
 	
 	<section class="accordeon">
@@ -50,11 +98,22 @@
 		<label>Preferent {{ form_widget(createForm.type) }}</label>
 		<label>Datum 2 {{ form_widget(createForm.ontstaansDatum) }}</label>
 		</section>
+		{#
 		<div class="canvases">
 			<section class="nieuw">
 			<p id="tekst">Nieuw document</p>
 			<input type="file">
 			</section>
+		</div>
+		#}
+		<div class="file-uploads">
+		    <div class="prototype" style="display: none;">
+		        <div class="file-veld">{{ form_row(createForm.file.vars.prototype) }}</div>
+		    </div>
+		    {% for file in createForm.file %}
+		        <div class="file-veld">{{ form_row(file) }}</div>
+		    {% endfor %}
+		    <a href="#add">Nog een documenten uploaden</a>
 		</div>
 		<span style="display:none">{{ form_widget(createForm.verwijderd) }}</span>
 		<div class="knoppenbalk"><input type="reset" class="tertiair annuleren" value="Annuleren">

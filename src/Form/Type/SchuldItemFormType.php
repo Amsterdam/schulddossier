@@ -17,6 +17,11 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\Valid;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
 
 class SchuldItemFormType extends AbstractType
 {
@@ -51,6 +56,23 @@ class SchuldItemFormType extends AbstractType
             'html5' => true,
             'widget' => 'single_text'
         ]);
+        $builder->add('file', CollectionType::class, [
+            'mapped' => false,
+            'entry_type' => FileType::class,
+            'allow_add' => true,
+            'allow_delete' => true,
+            'prototype_name' => '__name__',
+            'by_reference' => false,
+            'constraints' => [
+                new Valid()
+            ]
+        ]);
+
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+            unset($data['file']['__name__']);
+            $event->setData($data);
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver)

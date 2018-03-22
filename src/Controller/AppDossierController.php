@@ -26,6 +26,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldItemFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @Route("/app/dossier")
@@ -474,6 +475,24 @@ class AppDossierController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $files = $form->get('file')->getData();
+            foreach ($files as $file) {
+                /** @var $file File */
+                $document = new Document();
+                $document->setFile($file);
+                $document->setMd5Hash(md5($document->getFile()->getRealPath()));
+                $document->setMainTag('dossier-' . $dossier->getId());
+                $document->setNaam('naamloos');
+                $document->setGroep('dossier');
+                $document->setUploader($this->getUser());
+                $document->setUploadDatumTijd(new \DateTime());
+                $dossierDocument = new DossierDocument();
+                $dossierDocument->setDocument($document);
+                $dossierDocument->setDossier($dossier);
+                $dossierDocument->setOnderwerp('schuldenoverzicht');
+                $dossierDocument->setSchuldItem($schuldItem);
+            }
+
             $em->persist($schuldItem);
             $em->flush();
 

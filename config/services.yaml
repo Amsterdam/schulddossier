@@ -52,6 +52,7 @@ services:
                 - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\GebruikerNormalizer'
                 - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\DossierDocumentNormalizer'
                 - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\SchuldeiserNormalizer'
+                - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\SchuldItemNormalizer'
             1:
                 - '@json_encoder'
         public: true
