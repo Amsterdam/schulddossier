@@ -507,7 +507,7 @@ class AppDossierController extends Controller
     }
 
     /**
-     * @Route("/detail/{dossierId}/schulden/nieuw")
+     * @Route("/detail/{dossierId}/schulden/{schuldItemId}/bijwerken")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
      */
