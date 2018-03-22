@@ -59,6 +59,7 @@ class SchuldItemFormType extends AbstractType
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
             'entry_type' => FileType::class,
+            'entry_options' => ['required' => false],
             'allow_add' => true,
             'allow_delete' => true,
             'prototype_name' => '__name__',
