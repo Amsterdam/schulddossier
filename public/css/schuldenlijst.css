@@ -5,7 +5,7 @@ section.velden {
 	flex-wrap: wrap;
 }
 
-section.velden label {
+section.velden > * {
 	flex-basis: 40%;
 	flex-grow: 1;
 	margin: 10px 20px 10px 0;

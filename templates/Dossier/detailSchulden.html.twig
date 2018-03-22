@@ -9,6 +9,7 @@
 <script src="/js/schuldenlijst.js"></script>
 <link rel="stylesheet" href="/css/schuldenlijst.css">
 <script src="/js/datepicker.js"></script>
+<script src="/js/horsey.js"></script>
 <script src="/vendor/bevacqua/horsey/dist/horsey.min.js"></script>
 <link rel="stylesheet" href="/css/datepicker.css">
 <script>
@@ -38,8 +39,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
 {% block main %}
 	<h1>SCHULDENLIJST</h1>
+	<section class="accordeon">
 {% for schuldItem in schuldItems if schuldItem.verwijderd == false %}
+	<h3>Naam?</h3>
+	<div class="container">	
+	{{ form_start(createForm) }}
     {% set form = updateForms[schuldItem.id] %}
+		<section class="velden">
+		<!-- label>Schuldeiser {{ form_widget(createForm.schuldeiser) }}</label -->
+		<label>Schuldeiser <input name="schuld_item_form[schuldeiser]" id="schuldeiserVeld"></label>
+		<p><a href="#" id="nieuweSchuldeiser">Nieuwe schuldeiser aanmaken</a></p>
+		<label>Incassobureau {{ form_widget(createForm.incassant) }}</label>
+		<label>Schuld {{ form_widget(createForm.bedrag) }}</label>
+		<label>Ref.nr. {{ form_widget(createForm.referentie) }}</label>
+		<label>Datum 1 {{ form_widget(createForm.vastStelDatum) }}</label>
+		<label>Preferent {{ form_widget(createForm.type) }}</label>
+		<label>Datum 2 {{ form_widget(createForm.ontstaansDatum) }}</label>
+		</section>
+
+		<div class="canvases">
+			<section class="nieuw">
+			<p id="tekst">Nieuw document</p>
+			{{ form_widget(createForm.file.vars.prototype) }}
+			</section>
+		</div>
+		<span style="display:none">{{ form_widget(createForm.verwijderd) }}</span>
+		<div class="knoppenbalk"><input type="reset" class="tertiair" value="Annuleren" id="annuleren">
+			<button class="secundair" id="verwijderen">Verwijderen</button>
+			<input type="submit" class="primair" value="Opslaan" id="opslaan"></div>
+		<datalist id="schuldeiserdata"></datalist>
+{{ form_end(createForm) }}
+	</div>
+
+{#
     <p>{{ schuldItem.id }}</p>
     {{ form_start(form) }}
     {{ form_row(form.schuldeiser) }}
@@ -51,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
     {{ form_row(form.referentie) }}
     {{ form_row(form.type) }}
     <div class="file-uploads">
-        <div class="prototype" style="display: none;">
+        <div class="prototype">
             <div class="file-veld">{{ form_row(form.file.vars.prototype) }}</div>
         </div>
         <div class="file-veld online">
@@ -66,19 +98,20 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
     <button type="submit">Opslaan</button>
     {{ form_end(form) }}
+#}
 {% endfor %}
 	
-	<section class="accordeon">
 	</section>
 	<p class="totaal">Totale schuld: <span id="totaleSchuld"></span>
 	<div class="knoppenbalk"><button class="secundair" id="nieuweSchuld">Nieuwe schuld</button></div>
 	
-<div id="uploadVenster" style="visibility:visibe">
+<div id="uploadVenster">
 	<p>Voer hier een nieuwe schuldeiser in.</p>
 	{{ form_start(createSchuldeiserForm) }}
 	{{ form_row(createSchuldeiserForm.bedrijfsnaam) }}
 	{{ form_row(createSchuldeiserForm.rekening) }}
-	<button type="submit" class="primair">Aanmaken</button>
+	<div class="knoppenbalk"><button class="tertiair" id="uploadAnnuleren">Annuleren</button>
+		<button type="submit" class="primair" id="uploadAanmaken">Aanmaken</button></div>
 	{{ form_end(createSchuldeiserForm) }}
 </div>
 	
@@ -88,8 +121,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	{{ form_start(createForm,{attr:{id:'templateForm'}}) }}
 		<section class="velden">
 		<!-- label>Schuldeiser {{ form_widget(createForm.schuldeiser) }}</label -->
-		<label>Schuldeiser <input name="schuld_item_form[schuldeiser]" id="schuldeiserdata"></label>
-		<label></label>
+		<label>Schuldeiser <input name="schuld_item_form[schuldeiser]" id="schuldeiserVeld"></label>
+		<p><a href="#" id="nieuweSchuldeiser">Nieuwe schuldeiser aanmaken</a></p>
 		<label>Incassobureau {{ form_widget(createForm.incassant) }}</label>
 		<label>Schuld {{ form_widget(createForm.bedrag) }}</label>
 		<label>Ref.nr. {{ form_widget(createForm.referentie) }}</label>
@@ -97,14 +130,14 @@ document.addEventListener('DOMContentLoaded', function () {
 		<label>Preferent {{ form_widget(createForm.type) }}</label>
 		<label>Datum 2 {{ form_widget(createForm.ontstaansDatum) }}</label>
 		</section>
-		{#
+
 		<div class="canvases">
 			<section class="nieuw">
 			<p id="tekst">Nieuw document</p>
-			<input type="file">
+			{{ form_widget(createForm.file.vars.prototype) }}
 			</section>
 		</div>
-		#}
+
 		<div class="file-uploads">
 		    <div class="prototype" style="display: none;">
 		        <div class="file-veld">{{ form_row(createForm.file.vars.prototype) }}</div>
@@ -115,9 +148,9 @@ document.addEventListener('DOMContentLoaded', function () {
 		    <a href="#add">Nog een documenten uploaden</a>
 		</div>
 		<span style="display:none">{{ form_widget(createForm.verwijderd) }}</span>
-		<div class="knoppenbalk"><input type="reset" class="tertiair annuleren" value="Annuleren">
-			<button class="secundair verwijderen">Verwijderen</button>
-			<input type="submit" class="primair" value="Opslaan"></div>
+		<div class="knoppenbalk"><input type="reset" class="tertiair" value="Annuleren" id="annuleren">
+			<button class="secundair" id="verwijderen">Verwijderen</button>
+			<input type="submit" class="primair" value="Opslaan" id="opslaan"></div>
 		<datalist id="schuldeiserdata"></datalist>
 {{ form_end(createForm) }}
 	</div>
