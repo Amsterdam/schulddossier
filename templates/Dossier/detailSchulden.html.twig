@@ -38,17 +38,23 @@ document.addEventListener('DOMContentLoaded', function () {
 {% endblock %}
 
 {% block main %}
+
+{{ dump(schuldItems) }}
+
 	<h1>SCHULDENLIJST</h1>
 	<section class="accordeon">
 {% for schuldItem in schuldItems if schuldItem.verwijderd == false %}
     {% set form = updateForms[schuldItem.id] %}
-	<h3>Naam?</h3>
+	<h3 data-schuld="{{ schuldItem.bedrag }}">Naam?</h3>
 	<div class="container">	
+		<p>Naam schuldeiser:
 	{{ form_start(form) }}
+		{% do form.schuldeiser.setRendered() %}
+		{% do form.file.setRendered() %}
 		<section class="velden">
-		<!-- label>Schuldeiser {{ form_widget(createForm.schuldeiser) }}</label -->
+		<!-- label>Schuldeiser {{ form_widget(form.schuldeiser) }}</label -->
 		<label>Schuldeiser <input name="schuld_item_form[schuldeiser]" id="schuldeiserVeld"></label>
-		<p><a href="#" id="nieuweSchuldeiser">Nieuwe schuldeiser aanmaken</a></p>
+		<label></label>
 		<label>Incassobureau {{ form_widget(form.incassant) }}</label>
 		<label>Schuld {{ form_widget(form.bedrag) }}</label>
 		<label>Ref.nr. {{ form_widget(form.referentie) }}</label>
@@ -57,16 +63,21 @@ document.addEventListener('DOMContentLoaded', function () {
 		<label>Datum 2 {{ form_widget(form.ontstaansDatum) }}</label>
 		</section>
 
+			{{ form_widget(form.file.vars.prototype) }}
 		<div class="canvases">
 			<section class="nieuw">
 			<p id="tekst">Nieuw document</p>
-			{{ form_widget(form.file.vars.prototype) }}
+            {% for document in schuldItem.dossierDocumenten %}
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>
+            {% endfor %}
 			</section>
 		</div>
 		<span style="display:none">{{ form_widget(form.verwijderd) }}</span>
-		<div class="knoppenbalk"><input type="reset" class="tertiair" value="Annuleren" id="annuleren">
+		<div class="knoppenbalk">
+			<input type="reset" class="tertiair" value="Annuleren" id="annuleren">
 			<button class="secundair" id="verwijderen">Verwijderen</button>
-			<input type="submit" class="primair" value="Opslaan" id="opslaan"></div>
+			<input type="submit" class="primair" value="Opslaan" id="opslaan">
+		</div>
 {{ form_end(form) }}
 	</div>
 

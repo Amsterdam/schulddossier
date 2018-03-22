@@ -197,8 +197,10 @@ function schuldenLijst() {
 		var data = new FormData(form);
 		var schuldEiserNaam = data.getAll('schuld_item_form[schuldeiser]');
 		if (schuldEiserNaam) {
-			var ID = schuldEisersLijst[schuldEiserNaam.join('')].id;
-			data.set('schuld_item_form[schuldeiser]',ID);
+			var ID = schuldEiserNaam.join('') && schuldEisersLijst[schuldEiserNaam.join('')].id;
+			if (ID) {
+				data.set('schuld_item_form[schuldeiser]',ID);
+			}
 		}
 		console.log('Zend formulier');
 		var spinner = form.querySelector('.spinnerContainer');
