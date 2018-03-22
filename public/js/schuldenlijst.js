@@ -61,10 +61,7 @@ function schuldenLijst() {
 				if (!schuldEisersLijst[element.value]) {
 					console.log('Schuldeiser bestaat niet!');
 					// doe iets
-				} else {
-					
-				}
-								
+				}				
 			}
 		},
 		'verwijderen': {

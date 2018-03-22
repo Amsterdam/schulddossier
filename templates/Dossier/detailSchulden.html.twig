@@ -41,64 +41,35 @@ document.addEventListener('DOMContentLoaded', function () {
 	<h1>SCHULDENLIJST</h1>
 	<section class="accordeon">
 {% for schuldItem in schuldItems if schuldItem.verwijderd == false %}
+    {% set form = updateForms[schuldItem.id] %}
 	<h3>Naam?</h3>
 	<div class="container">	
-	{{ form_start(createForm) }}
-    {% set form = updateForms[schuldItem.id] %}
+	{{ form_start(form) }}
 		<section class="velden">
 		<!-- label>Schuldeiser {{ form_widget(createForm.schuldeiser) }}</label -->
 		<label>Schuldeiser <input name="schuld_item_form[schuldeiser]" id="schuldeiserVeld"></label>
 		<p><a href="#" id="nieuweSchuldeiser">Nieuwe schuldeiser aanmaken</a></p>
-		<label>Incassobureau {{ form_widget(createForm.incassant) }}</label>
-		<label>Schuld {{ form_widget(createForm.bedrag) }}</label>
-		<label>Ref.nr. {{ form_widget(createForm.referentie) }}</label>
-		<label>Datum 1 {{ form_widget(createForm.vastStelDatum) }}</label>
-		<label>Preferent {{ form_widget(createForm.type) }}</label>
-		<label>Datum 2 {{ form_widget(createForm.ontstaansDatum) }}</label>
+		<label>Incassobureau {{ form_widget(form.incassant) }}</label>
+		<label>Schuld {{ form_widget(form.bedrag) }}</label>
+		<label>Ref.nr. {{ form_widget(form.referentie) }}</label>
+		<label>Datum 1 {{ form_widget(form.vastStelDatum) }}</label>
+		<label>Preferent {{ form_widget(form.type) }}</label>
+		<label>Datum 2 {{ form_widget(form.ontstaansDatum) }}</label>
 		</section>
 
 		<div class="canvases">
 			<section class="nieuw">
 			<p id="tekst">Nieuw document</p>
-			{{ form_widget(createForm.file.vars.prototype) }}
+			{{ form_widget(form.file.vars.prototype) }}
 			</section>
 		</div>
-		<span style="display:none">{{ form_widget(createForm.verwijderd) }}</span>
+		<span style="display:none">{{ form_widget(form.verwijderd) }}</span>
 		<div class="knoppenbalk"><input type="reset" class="tertiair" value="Annuleren" id="annuleren">
 			<button class="secundair" id="verwijderen">Verwijderen</button>
 			<input type="submit" class="primair" value="Opslaan" id="opslaan"></div>
-		<datalist id="schuldeiserdata"></datalist>
-{{ form_end(createForm) }}
+{{ form_end(form) }}
 	</div>
 
-{#
-    <p>{{ schuldItem.id }}</p>
-    {{ form_start(form) }}
-    {{ form_row(form.schuldeiser) }}
-    {{ form_row(form.incassant) }}
-    {{ form_row(form.verwijderd) }}
-    {{ form_row(form.bedrag) }}
-    {{ form_row(form.vastStelDatum) }}
-    {{ form_row(form.ontstaansDatum) }}
-    {{ form_row(form.referentie) }}
-    {{ form_row(form.type) }}
-    <div class="file-uploads">
-        <div class="prototype">
-            <div class="file-veld">{{ form_row(form.file.vars.prototype) }}</div>
-        </div>
-        <div class="file-veld online">
-            {% for document in schuldItem.dossierDocumenten %}
-                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>
-            {% endfor %}
-        </div>
-        {% for file in form.file %}
-            <div class="file-veld">{{ form_row(file) }}</div>
-        {% endfor %}
-        <a href="#add">Nog een documenten uploaden</a>
-    </div>
-    <button type="submit">Opslaan</button>
-    {{ form_end(form) }}
-#}
 {% endfor %}
 	
 	</section>
@@ -153,6 +124,41 @@ document.addEventListener('DOMContentLoaded', function () {
 			<input type="submit" class="primair" value="Opslaan" id="opslaan"></div>
 		<datalist id="schuldeiserdata"></datalist>
 {{ form_end(createForm) }}
+
+
+
+
+
+
+{# 
+    <p>{{ schuldItem.id }}</p>
+    {{ form_start(form) }}
+    {{ form_row(form.schuldeiser) }}
+    {{ form_row(form.incassant) }}
+    {{ form_row(form.verwijderd) }}
+    {{ form_row(form.bedrag) }}
+    {{ form_row(form.vastStelDatum) }}
+    {{ form_row(form.ontstaansDatum) }}
+    {{ form_row(form.referentie) }}
+    {{ form_row(form.type) }}
+    <div class="file-uploads">
+        <div class="prototype">
+            <div class="file-veld">{{ form_row(form.file.vars.prototype) }}</div>
+        </div>
+        <div class="file-veld online">
+            {% for document in schuldItem.dossierDocumenten %}
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>
+            {% endfor %}
+        </div>
+        {% for file in form.file %}
+            <div class="file-veld">{{ form_row(file) }}</div>
+        {% endfor %}
+        <a href="#add">Nog een documenten uploaden</a>
+    </div>
+    <button type="submit">Opslaan</button>
+    {{ form_end(form) }}
+#}
+
 	</div>
 	
 {% endblock %}
