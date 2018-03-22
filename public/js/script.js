@@ -1,9 +1,9 @@
 
 document.addEventListener("DOMContentLoaded", function(event) {
 	if (document.querySelector('main.voorlegger')) {
-		autoSave();
-		uploadDocument();
-		docs = documentLinks();
+		//autoSave();
+		//uploadDocument();
+		//docs = documentLinks();
 	}
 	var accordeons = document.querySelectorAll('.accordeon');
 	for (var i=0;i<accordeons.length;i+=1) {

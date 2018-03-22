@@ -27,6 +27,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
 use Symfony\Component\HttpFoundation\File\File;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerLegitimatieFormType;
 
 /**
  * @Route("/app/dossier")
@@ -105,6 +106,7 @@ class AppDossierController extends Controller
         ]);
     }
 
+
     /**
      * @Route("/detail/{dossierId}")
      * @ParamConverter("dossier", options={"id"="dossierId"})
@@ -114,36 +116,53 @@ class AppDossierController extends Controller
         if ($dossier->getVoorlegger() === null) {
             $dossier->setVoorlegger(new Voorlegger());
         }
+
         $form = $this->createForm(DetailDossierFormType::class, $dossier, [
             'disabled' => $dossier->isInPrullenbak() === true,
             'disable_group' => $this->getUser()->getType()
         ]);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            if ($request->isXmlHttpRequest() === true) {
-                return new JsonResponse(['status' => 'OK']);
-            }
             $this->addFlash('success', 'Opgeslagen');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', [
                 'dossierId' => $dossier->getId()
             ]);
         }
-        if ($request->isXmlHttpRequest() === true) {
-            $errors = [];
-            foreach ($form->getErrors(true, true) as $error) {
-                /** @var $error FormError */
-                $errors[] = ['origin' => $error->getOrigin(), 'message' => $error->getMessage()];
-            }
-            return new JsonResponse($errors, Response::HTTP_BAD_REQUEST);
-        }
 
-        $uploadForm = $this->createForm(DossierDocumentFormType::class, null, ['action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocument', ['dossierId' => $dossier->getId()])]);
+        $voorleggerForms = [];
+        $voorleggerForms['legitimatie'] = $this->createForm(VoorleggerLegitimatieFormType::class, $dossier->getVoorlegger());
+
+        foreach ($voorleggerForms as $key => $voorleggerForm) {
+            $voorleggerForm->handleRequest($request);
+            if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
+
+                $file = $voorleggerForm->get('file')->getData();
+                if ($file !== null) {
+                    /** @var $file File */
+                    $document = new Document();
+                    $document->setFile($file);
+                    $document->setMd5Hash(md5($document->getFile()->getRealPath()));
+                    $document->setMainTag('dossier-' . $dossier->getId());
+                    $document->setNaam($voorleggerForm->get('fileNaam')->getData());
+                    $document->setGroep('dossier');
+                    $document->setUploader($this->getUser());
+                    $document->setUploadDatumTijd(new \DateTime());
+                    $dossierDocument = new DossierDocument();
+                    $dossierDocument->setDocument($document);
+                    $dossierDocument->setDossier($dossier);
+                    $dossierDocument->setOnderwerp($key);
+                }
+
+                $em->flush();
+            }
+        }
 
         return $this->render('Dossier/detail.html.twig', [
             'dossier' => $dossier,
             'form' => $form->createView(),
-            'uploadForm' => $uploadForm->createView()
+            'voorleggerForms' => array_map(function ($form) { return $form->createView(); }, $voorleggerForms)
         ]);
     }
 

@@ -17,6 +17,31 @@ class DetailDossierFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('clientNaam', TextType::class, [
+            'required' => true
+        ]);
+        $builder->add('partnerNaam', TextType::class, [
+            'required' => false
+        ]);
+        $builder->add('schuldhulpbureau', EntityType::class, [
+            'required' => true,
+            'class' => Schuldhulpbureau::class,
+            'multiple' => false,
+            'expanded' => false
+        ]);
+        $builder->add('medewerkerSchuldhulpbureau', EntityType::class, [
+            'required' => true,
+            'class' => Gebruiker::class,
+            'multiple' => false,
+            'expanded' => false,
+            'query_builder' => function (EntityRepository $repository) {
+                    $qb = $repository->createQueryBuilder('gebruiker');
+                    $qb->andWhere('gebruiker.type = :type');
+                    $qb->setParameter('type', Gebruiker::TYPE_MADI);
+                    $qb->addOrderBy('gebruiker.username', 'ASC');
+                    return $qb;
+                }
+            ]);
         $builder->add('teamGka', EntityType::class, [
             'required' => false,
             'class' => Team::class,
@@ -29,12 +54,8 @@ class DetailDossierFormType extends AbstractType
         $builder->add('allegroNummer', TextType::class, [
             'required' => false
         ]);
-        $builder->add('voorlegger', VoorleggerFormType::class, [
-            'required' => false,
-            'disable_group' => $options['disable_group']
-        ]);
         $builder->add('status', ChoiceType::class, [
-            'required' => false,
+            'required' => true,
             'choices' => Dossier::getStatussen()
         ]);
     }
