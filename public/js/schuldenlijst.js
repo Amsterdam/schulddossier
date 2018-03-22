@@ -189,9 +189,6 @@ function schuldenLijst() {
 		}
 	}
 
-
-
-
 	function stuurFormulier(source,fn) {
 		var form = goUp(source,'FORM');
 		var data = new FormData(form);

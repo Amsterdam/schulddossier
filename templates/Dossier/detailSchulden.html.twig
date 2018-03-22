@@ -39,20 +39,18 @@ document.addEventListener('DOMContentLoaded', function () {
 {% block main %}
 
 {{ dump(schuldItems) }}
-
 	<h1>SCHULDENLIJST</h1>
 	<section class="accordeon">
 {% for schuldItem in schuldItems if schuldItem.verwijderd == false %}
     {% set form = updateForms[schuldItem.id] %}
-	<h3 data-schuld="{{ schuldItem.bedrag }}">Naam?</h3>
+	<h3 data-schuld="{{ schuldItem.bedrag }}">{{ schuldItem.schuldeiser.bedrijfsnaam|default('?') }}</h3>
 	<div class="container">	
-		<p>Naam schuldeiser:
 	{{ form_start(form) }}
 		{% do form.schuldeiser.setRendered() %}
 		{% do form.file.setRendered() %}
 		<section class="velden">
 		<!-- label>Schuldeiser {{ form_widget(form.schuldeiser) }}</label -->
-		<label>Schuldeiser <input name="schuld_item_form[schuldeiser]" id="schuldeiserVeld"></label>
+		<label>Schuldeiser <input name="schuld_item_form[schuldeiser]" value="{{ schuldItem.schuldeiser }}" id="schuldeiserVeld"></label>
 		<label></label>
 		<label>Incassobureau {{ form_widget(form.incassant) }}</label>
 		<label>Schuld {{ form_widget(form.bedrag) }}</label>
@@ -65,8 +63,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		<div class="canvases">
 			<section class="nieuw">
 			<p id="tekst">Nieuw document</p>
+			<input type="file" name="{{ form.file.vars.prototype.vars.full_name|replace({'__name__': 0}) }}">
 			</section>
-			HIER DE OUDE DOCUMENTEN
             {% for document in schuldItem.dossierDocumenten %}
                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>
             {% endfor %}
@@ -74,8 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		<span style="display:none">{{ form_widget(form.verwijderd) }}
 			{{ form_widget(form.file.vars.prototype) }}		
 		</span>
-			NIEUWE INPUT
-			<input type="file" name="{{ form.file.vars.prototype.vars.full_name|replace({'__name__': 0}) }}">
 		<div class="knoppenbalk">
 			<input type="reset" class="tertiair" value="Annuleren" id="annuleren">
 			<button class="secundair" id="verwijderen">Verwijderen</button>
@@ -119,15 +115,11 @@ document.addEventListener('DOMContentLoaded', function () {
 		<div class="canvases">
 			<section class="nieuw">
 			<p id="tekst">Nieuw document</p>
-			{{ form_widget(createForm.file.vars.prototype) }}
+			<input type="file" name="{{ createForm.file.vars.prototype.vars.full_name|replace({'__name__': 0}) }}">
 			</section>
 		</div>
 
 		<div class="file-uploads">
-		    {% for file in createForm.file %}
-		        <div class="file-veld">{{ form_row(file) }}</div>
-		    {% endfor %}
-		    <a href="#add">Nog een documenten uploaden</a>
 		    <div class="prototype" style="display: none;">
 		        <div class="file-veld">{{ form_row(createForm.file.vars.prototype) }}</div>
 		    </div>
