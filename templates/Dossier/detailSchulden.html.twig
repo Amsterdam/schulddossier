@@ -9,7 +9,6 @@
 <script src="/js/schuldenlijst.js"></script>
 <link rel="stylesheet" href="/css/schuldenlijst.css">
 <script src="/js/datepicker.js"></script>
-<script src="/js/horsey.js"></script>
 <script src="/vendor/bevacqua/horsey/dist/horsey.min.js"></script>
 <link rel="stylesheet" href="/css/datepicker.css">
 <script>
@@ -63,16 +62,20 @@ document.addEventListener('DOMContentLoaded', function () {
 		<label>Datum 2 {{ form_widget(form.ontstaansDatum) }}</label>
 		</section>
 
-			{{ form_widget(form.file.vars.prototype) }}
 		<div class="canvases">
 			<section class="nieuw">
 			<p id="tekst">Nieuw document</p>
+			</section>
+			HIER DE OUDE DOCUMENTEN
             {% for document in schuldItem.dossierDocumenten %}
                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>
             {% endfor %}
-			</section>
 		</div>
-		<span style="display:none">{{ form_widget(form.verwijderd) }}</span>
+		<span style="display:none">{{ form_widget(form.verwijderd) }}
+			{{ form_widget(form.file.vars.prototype) }}		
+		</span>
+			NIEUWE INPUT
+			<input type="file" name="{{ form.file.vars.prototype.vars.full_name|replace({'__name__': 0}) }}">
 		<div class="knoppenbalk">
 			<input type="reset" class="tertiair" value="Annuleren" id="annuleren">
 			<button class="secundair" id="verwijderen">Verwijderen</button>
@@ -121,13 +124,13 @@ document.addEventListener('DOMContentLoaded', function () {
 		</div>
 
 		<div class="file-uploads">
-		    <div class="prototype" style="display: none;">
-		        <div class="file-veld">{{ form_row(createForm.file.vars.prototype) }}</div>
-		    </div>
 		    {% for file in createForm.file %}
 		        <div class="file-veld">{{ form_row(file) }}</div>
 		    {% endfor %}
 		    <a href="#add">Nog een documenten uploaden</a>
+		    <div class="prototype" style="display: none;">
+		        <div class="file-veld">{{ form_row(createForm.file.vars.prototype) }}</div>
+		    </div>
 		</div>
 		<span style="display:none">{{ form_widget(createForm.verwijderd) }}</span>
 		<div class="knoppenbalk"><input type="reset" class="tertiair" value="Annuleren" id="annuleren">
