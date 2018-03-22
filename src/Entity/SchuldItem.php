@@ -79,7 +79,7 @@ class SchuldItem
     /**
      * @var Schuldeiser
      * @ORM\ManyToOne(targetEntity="Schuldeiser", cascade={"persist"})
-     * @ORM\JoinColumn(name="schuldeiser_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="incassant_id", referencedColumnName="id")
      */
     private $incassant;
 
