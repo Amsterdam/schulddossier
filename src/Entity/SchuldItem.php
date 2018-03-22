@@ -108,7 +108,7 @@ class SchuldItem
 
     /**
      * @var float
-     * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
+     * @ORM\Column(type="decimal", precision=8, scale=2, nullable=true)
      * @Assert\NotBlank
      * @Assert\Type("numeric")
      */
