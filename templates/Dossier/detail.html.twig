@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{{ dossier.clientNaam }} - voorlegger</title>
-<meta name="viewport" content="width = device-width">
-<link rel="stylesheet" href="/css/styles.css">
+{% extends 'base.html.twig' %}
+{% block title %}
+	Aanmelding
+{% endblock %}
+
+{% block extraScripts %}
 <script>
 window.schuldhulp = window.schuldhulp || {};
 window.schuldhulp.routes = window.schuldhulp.routes || {};
@@ -12,37 +11,10 @@ window.schuldhulp.routes.appdossier_movedocumenttoprullenbak = '{{ path('gemeent
 window.schuldhulp.tokens = window.schuldhulp.tokens || {};
 window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_movedocumenttoprullenbak') }}';
 </script>
-<script src="/js/script.js"></script>
-</head>
+{% endblock %}
 
 
-<body class="{{ app.user.type }}">
-
-	<header>
-	<img src="/pix/logo_klein.svg">
-	<h2>Digitale voorlegger</h2>
-	<div>Ingelogd als: Petriculus Pucq <a href="#">(Uitloggen)</a></div>
-	</header>
-
-<div class="kleineNav">
-	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a>
-    {% if dossier.inPrullenbak == false %}
-    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', {'dossierId': dossier.id}) }}" method="post">
-        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak') }}">
-        <button type="submit">Naar prullenbak</button>
-    </form>
-	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexdocumenteninprullenbak', {'dossierId': dossier.id}) }}">Prullenbak van dit dossier</a>
-    {% else %}
-    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove', {'dossierId': dossier.id}) }}" method="post">
-        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove') }}">
-        <button type="submit">Definitief verwijderen</button>
-    </form>
-    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore', {'dossierId': dossier.id}) }}" method="post">
-        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore') }}">
-        <button type="submit">Herstellen</button>
-    </form>
-    {% endif %}
-</div>
+{% block main %}
 
 {% for type, messages in app.flashes %}
 	{% for message in messages %}
@@ -97,7 +69,7 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	<input type="submit" class="primair" value="Opslaan"></div>
 </div>
 </section>
-<div id="documenten">
+<div id="documenten" style="display: none">
 {% for document in dossier.getDocumenten if document.document.inPrullenbak == false %}
 	<li data-onderwerp="{{ document.onderwerp }}">
 		<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': document.dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a> |
@@ -106,7 +78,31 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 {% endfor %}
 </div>
 <section>
-<table class="main">
+
+<section class="accordeon">
+{% for categorie in categorieen %}
+	<h3>{{ categorie.schermNaam }}</h3>
+	<div class="container" data-systeemnaam="{{ categorie.systeemNaam }}">
+	<form>
+	<p>
+		{% if categorie.madi == true %}
+			<input type="checkbox"> MaDi
+		{% endif %}
+		{% if categorie.gka == true %}
+			<input type="checkbox"> GKA
+		{% endif %}
+		{% if categorie.nvt == true %}
+			<input type="checkbox"> n.v.t.
+		{% endif %}
+	</p>
+	<p>Documenten hier</p>
+	</form>
+	</div>
+{% endfor %}
+</section>
+
+
+<table class="main" style="display: none">
 	<thead>
 		<tr>
 			<th></th>
@@ -494,6 +490,7 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	</tbody>
 </table>
 </section>
+
 <section id="aanvullend">
 <h2>Aanvullende informatie</h2>
 {{ form_widget(form.voorlegger.aanvullendeInformatie)}}
@@ -536,13 +533,4 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 </div>
 
 <p id="autoSaveBevestig">Uw wijzigingen zijn opgeslagen</p>
-</main>
-
-<!--
-<p>Werkt nog niet</p>
-<label class="GKA"><input type="checkbox" name="klaar_voor_GKA"> Dit dossier is klaar voor het GKA</label>
-<input type="submit" value="Stuur in naar GKA">
--->
-
-</body>
-</html>
+{% endblock %}

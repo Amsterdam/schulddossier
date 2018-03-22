@@ -101,10 +101,10 @@ function uploadDocument() {
 	var spinner = document.createElement('img');
 	spinner.src = '/pix/spinner.gif';
 
-	var items = document.querySelectorAll('h3');
+/*	var items = document.querySelectorAll('h3');
 	for (var i=0;i<items.length;i+=1) {
 		items[i].parentNode.innerHTML += labelHTML;
-	}
+	} */
 
 	document.addEventListener('click',function (e) {
 		var tgt = goUp(e.target,'LABEL');
@@ -193,6 +193,9 @@ function uploadDocument() {
 
 function autoSave() {
 
+
+	return;
+
 	document.getElementById('voorlegger_mainform').addEventListener('click', logClick, false);
 	document.getElementById('voorlegger_mainform').addEventListener('keypress', logKeys, false);
 	document.getElementById('voorlegger_mainform').addEventListener('change', logChange, true);
@@ -276,6 +279,11 @@ function maakAccordeon(block) {
 		if (container.nodeName === 'DIV') {
 			header.container = container;
 			container.header = header;
+			var form = container.querySelector('form');
+			if (form) {
+				form.container = container;
+				form.header = header;
+			}
 			if (headers[i+1]) {
 				header.nextHeader = headers[i+1];
 			}

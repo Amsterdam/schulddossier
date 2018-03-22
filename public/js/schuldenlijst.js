@@ -13,21 +13,18 @@ function schuldenLijst() {
 			creeerSchuldEiserLijst(JSON.parse(req.response));
 		}
 	});
-	$('nieuweSchuld').onclick = nieuweSchuld;
 	berekenTotaleSchuld();
 	var formulieren  = document.querySelector('.accordeon');
 	document.addEventListener('click',handelEventsAf,false);
 	document.addEventListener('blur',handelEventsAf,true);
 
-
-
 	function handelEventsAf(e) {
 		var element = e.target;
 		var elementID = element.id;
 		var type = e.type;
+		e.preventDefault();
 		if (elementID && eventHandlers[elementID] && eventHandlers[elementID][type]) {
 			eventHandlers[elementID][type](element);
-			e.preventDefault();
 		}
 	}
 
@@ -47,7 +44,6 @@ function schuldenLijst() {
 						tmp.value = schuldEisersLijst[alfabetisch[i]].id;
 						lijst.push(tmp);
 					}
-					console.log(lijst);
 					horsey(element, {
 						source: [{ list: lijst}],
 						getText: 'text',
@@ -55,7 +51,6 @@ function schuldenLijst() {
 					});
 					element.initialized = true;
 				}
-				console.log('clicked');
 			},
 			'blur': function (element) {
 				if (!schuldEisersLijst[element.value]) {
@@ -68,7 +63,12 @@ function schuldenLijst() {
 			'click': function (element) {
 				var form = goUp(element,'FORM');
 				form.elements['schuld_item_form[verwijderd]'].checked = true;
-				stuurFormulier(element);
+				var accordeon = goUp(form,'SECTION');
+				stuurFormulier(element,function () {
+					console.log('Schuld verwijderd');
+					accordeon.removeChild(form.container);
+					accordeon.removeChild(form.header);
+				});
 			},
 		},
 		'annuleren': {
@@ -79,7 +79,12 @@ function schuldenLijst() {
 		},
 		'nieuweSchuldeiser': {
 			'click': function () {
-				toonNieuweSchuldEiser();		
+				var venster = $('uploadVenster');
+				var dims = [venster.offsetWidth/2,venster.offsetHeight/2];
+				var vp = [document.documentElement.clientWidth/2,document.documentElement.clientHeight/2];
+				venster.style.left = vp[0] - dims[0] + 'px';
+				venster.style.top = vp[1] - dims[1] + 'px';
+				venster.style.visibility = 'visible';
 			},
 		},
 		'schuld_item_form_bedrag': {
@@ -102,10 +107,11 @@ function schuldenLijst() {
 		},
 		'uploadAanmaken': {
 			'click': function (element) {
-				stuurFormulier(element,function () {
-					console.log('Schuldeiser aangemaakt');
+				stuurFormulier(element,function (req) {
+					console.log(req);
 					$('uploadVenster').style.visibility = 'hidden';
 					var velden = $('uploadVenster').querySelectorAll('input');
+					var nieuweSchuldEiser = velden[0].value;
 					actiefFormulier.elements['schuld_item_form[schuldeiser]'].value = velden[0].value;
 					for (var i=0;i<velden.length;i+=1) {
 						velden[i].value = '';
@@ -127,10 +133,10 @@ function schuldenLijst() {
 				h3.click();
 				actiefFormulier = div.querySelector('form');
 				actiefFormulier.container = div;		
+				actiefFormulier.header = h3;		
 			}
 		}
 	}
-
 
 	function berekenTotaleSchuld() {
 		var schulden  = document.querySelectorAll('h3');
@@ -150,15 +156,6 @@ function schuldenLijst() {
 		function nummerNaarPrint(nummer) {
 			return nummer.toFixed(2).replace(/\./,',');
 		}
-	}
-
-	function toonNieuweSchuldEiser() {
-		var venster = $('uploadVenster');
-		var dims = [venster.offsetWidth/2,venster.offsetHeight/2];
-		var vp = [document.documentElement.clientWidth/2,document.documentElement.clientHeight/2];
-		venster.style.left = vp[0] - dims[0] + 'px';
-		venster.style.top = vp[1] - dims[1] + 'px';
-		venster.style.visibility = 'visible';
 	}
 
 	var schuldEisersLijst = {},alfabetisch = [];
@@ -214,7 +211,7 @@ function schuldenLijst() {
 			spinner.style.display = '';
 			console.log(req.status);
 			if (fn) {
-				fn();
+				fn(req);
 			}
 		},data)
 	}

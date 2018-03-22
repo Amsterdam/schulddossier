@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 {% block main %}
 
-{{ dump(schuldItems) }}
+{# dump(schuldItems) #}
 	<h1>SCHULDENLIJST</h1>
 	<section class="accordeon">
 {% for schuldItem in schuldItems if schuldItem.verwijderd == false %}
