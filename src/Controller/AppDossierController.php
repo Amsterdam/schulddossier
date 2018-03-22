@@ -516,6 +516,9 @@ class AppDossierController extends Controller
         $schuldItem->setBewerker($this->getUser());
         $schuldItem->setBewerkDatumTijd(new \DateTime());
 
+        $form = $this->createForm(SchuldItemFormType::class, $schuldItem);
+        $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $files = $form->get('file')->getData();
             foreach ($files as $file) {
