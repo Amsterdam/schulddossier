@@ -15,6 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\FormEvents;
 
 class VoorleggerLegitimatieFormType extends AbstractType
 {
@@ -36,6 +38,7 @@ class VoorleggerLegitimatieFormType extends AbstractType
             'required' => false,
             'mapped' => false,
             'constraints' => [
+                new NotBlank(),
                 new Length(['min' => 1, 'max' => 255])
             ]
         ]);
