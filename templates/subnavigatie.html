@@ -2,7 +2,7 @@
 <section id="subnavigatie">
 	<ul>
 		<li><a href="#">Klantdetails</a></li>
-		<li><a href="#">Aanmelding</a></li>
-		<li><a href="#">Schulden</a></li>
+		<li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.Id}) }}">Aanmelding</a></li>
+		<li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.Id}) }}">Schulden</a></li>
 	</ul>
 </section>
