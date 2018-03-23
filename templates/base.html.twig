@@ -10,8 +10,8 @@
 	{
 		'systeemNaam': 'vtlb',
 		'schermNaam': 'Vrij te laten bedrag (VTLB)',
-		'madi': true,
-		'gka': true,
+		'madi': false,
+		'gka': false,
 		'nvt': false,
 		'kop': '',
 	},
@@ -134,6 +134,12 @@
 		'gka': false,
 		'nvt': true,
 		'kop': 'Uitgaven',
+		'extraVelden': [
+			{
+				'systeemNaam': 'kwijtscheldingGemeenteBelasting',
+				'schermNaam': 'Onbekend',
+			},
+		],
 	},
 	{
 		'systeemNaam': 'corrigerenGemeenteBelasting',
@@ -142,12 +148,6 @@
 		'gka': true,
 		'nvt': true,
 		'kop': 'Uitgaven',
-		'extraVelden': [
-			{
-				'systeemNaam': 'kwijtscheldingGemeenteBelasting',
-				'schermNaam': 'Onbekend',
-			},
-		],
 	},
 	{
 		'systeemNaam': 'auto',
@@ -209,7 +209,7 @@
 	{
 		'systeemNaam': 'cjib',
 		'schermNaam': 'CJIB (niet-saneerbare vorderingen)',
-		'madi': true,
+		'madi': false,
 		'gka': false,
 		'nvt': true,
 		'kop': 'Schulden',
