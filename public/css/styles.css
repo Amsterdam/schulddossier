@@ -193,23 +193,6 @@ input[type="text"],input[type=date] {
 	font-family: verdana;
 }
 
-/* @PPK, zitten hieronder typos of verwijst dit echt ergens naar? */
-
-nput[type=submi],ai.knop {
-	-webkit-appearance: none;
-	background-color: white;
-	font-size: 120%;
-	color: black;
-	white-space: normal;
-	border: 1px solid rgb(216,216,216);
-	border-radius: 15px;
-	padding: 3px 10px;
-	text-decoration: none;
-	width: auto;
-	display: inline-block;
-	color: black;
-}
-
 /* ALGEMENE PAGINA-ELEMENTEN */
 
 h2,h3 {
@@ -506,6 +489,43 @@ main section#formulierKop {
 	padding-top: 35px;
 	padding-bottom: 35px;
 }
+
+main section#subnavigatie {
+	border-bottom: 1px solid lightgray;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	height: 50px;
+}
+
+main section#subnavigatie ul{
+	list-style: none;
+	display: flex;
+	justify-content: space-around;
+	padding: 0;
+	margin: 0;
+}
+
+main section#subnavigatie ul li{
+	text-align: center;
+}
+
+main section#subnavigatie ul li:hover{
+	border-bottom: 1px solid lightgray;
+}
+
+main section#subnavigatie ul li.active {
+		border-bottom: 2px solid red;
+		font-weight: bold;
+}
+
+main section#subnavigatie a {
+	color: inherit;
+	text-decoration: none;
+}
+
 
 main.voorlegger section, main.dossiers section{
 	padding: 0 75px;
