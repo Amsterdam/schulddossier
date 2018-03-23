@@ -27,47 +27,9 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 
 {{ form_start(form, {'attr': {'id': 'voorlegger_mainform'}}) }}
 
-<section id="formulierKop">
-<h1>Voorlegger {{ dossier.clientNaam }}</h1>
+{% include 'clientFormulier.html' %}
+{% include 'subnavigatie.html' %}
 
-{% if dossier.inPrullenbak %}
-    <p><strong>Dit dossier staat in de prullenbak!</strong></p>
-{% endif %}
-
-
-<table>
-{% if dossier.partnerNaam is not empty %}
-	<tr>
-		<td>Partner</td>
-		<td>{{ dossier.partnerNaam }}</td>
-	</tr>
-	<tr>
-		<td>Datum aanmaak dossier</td>
-		<td>{{ dossier.aanmaakDatumTijd|date('d-m-Y') }}</td>
-		<td></td>
-	</tr>
-{% endif %}
-	<tr>
-		<td>MaDi medewerker</td>
-		<td>{{ dossier.aanmaker.naam }}</td>
-	</tr>
-	<tr>
-		<td>Schuldhulpbureau</td>
-		<td>{{ dossier.schuldhulpbureau }}</td>
-	</tr>
-	{{ form_row(form.teamGka)}}
-	{{ form_row(form.regasNummer)}}
-	{{ form_row(form.allegroNummer)}}
-	{{ form_row(form.status)}}
-</table>
-
-<div class="knoppenbalk">
-	<a class="tertiair">Annuleren</a>
-	<div class="hoofdknoppen"><a class="secundair" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_adddocumentviawizard', {'dossierId': dossier.id}) }}">Meerdere documenten toevoegen</a>
-	<input type="submit" class="primair" value="Opslaan"></div>
-</div>
-	{{ form_end(form) }}
-</section>
 <div id="documenten" style="display: none">
 {% for document in dossier.getDocumenten if document.document.inPrullenbak == false %}
 	<li data-onderwerp="{{ document.onderwerp }}">
@@ -80,6 +42,7 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 
 <section class="accordeon aanmelding">
 {% for categorie in categorieen %}
+	{% if categorie.isKop is not defined %}
 	<h3>{{ categorie.schermNaam }} <span>({{ dossier.getDocumentenByOnderwerp(categorie.systeemNaam)|length }} documenten)</span></h3>
 	<div class="container" data-systeemnaam="{{ categorie.systeemNaam }}">
 	{% set form = voorleggerForms[categorie.systeemNaam]|default('') %}
@@ -88,42 +51,39 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	{% else %}
 	   {{ form_start(form) }}
 	<p class="checkboxes">
-		{% if categorie.madi == true %}
-			<label>{{ form_widget(form[categorie.systeemNaam ~ 'OntvangenMadi']) }} Madi</label>
-		{% endif %}
-		{% if categorie.gka == true %}
-			<label>{{ form_widget(form[categorie.systeemNaam ~ 'OntvangenGka']) }} Gka</label>
-		{% endif %}
-		{% if categorie.nvt == true %}
-			<label>{{ form_widget(form[categorie.systeemNaam ~ 'Nvt']) }} n.v.t.</label>
-		    {% if form[categorie.systeemNaam ~ 'OntvangenMadi'] is not defined %}
-		          Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} ontvangen madi)
-		    {% else %}
-			     {{ form_widget(form[categorie.systeemNaam ~ 'OntvangenMadi']) }} Madi
-			{% endif %}
+		{% if form[categorie.systeemNaam ~ 'OntvangenMadi'] is not defined %}
+			  <p>Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} ontvangen madi)</p>
+			  <script>console.log('{{ categorie.systeemNaam }} heeft geen Ontvangen')</script>
+		{% else %}
+			 {{ form_widget(form[categorie.systeemNaam ~ 'OntvangenMadi']) }} Madi
 		{% endif %}
 		{% if categorie.gka == true %}
             {% if form[categorie.systeemNaam ~ 'OntvangenGka'] is not defined %}
-                Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} ontvangen gka)
+                <p>Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} ontvangen gka)</p>
             {% else %}
                 {{ form_widget(form[categorie.systeemNaam ~ 'OntvangenGka']) }} Gka
             {% endif %}
 		{% endif %}
 		{% if categorie.nvt == true %}
 		    {% if form[categorie.systeemNaam ~ 'Nvt'] is not defined %}
-		          Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} nvt)
+		          <p>Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} nvt)</p>
             {% else %}
 	           {{ form_widget(form[categorie.systeemNaam ~ 'Nvt']) }} N.v.t.
             {% endif %}
 		{% endif %}
+		{% if categorie.extraVelden is defined %}
+			{% for extraVeld in categorie.extraVelden %}
+				 {# form_widget(form[extraVeld.systeemNaam]) #} {{ extraVeld.schermNaam }}
+			{% endfor %}
+		{% endif %}
 	</p>
 	{% if dossier.getDocumentenByOnderwerp(categorie.systeemNaam)|length > 0 %}
-	<p>Toegevoegde documenten:</p>
-	<ul class="documentenLijst">
-	{% for dossierDocument in dossier.getDocumentenByOnderwerp(categorie.systeemNaam) %}
-	   <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a></li>
-	{% endfor %}
-	</ul>
+		<p>Toegevoegde documenten:</p>
+		<ul class="documentenLijst">
+		{% for dossierDocument in dossier.getDocumentenByOnderwerp(categorie.systeemNaam) %}
+		   <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a></li>
+		{% endfor %}
+		</ul>
 	{% endif %}
 	<p>
 	   Nieuw document {{ form_widget(form.file) }}
@@ -132,6 +92,7 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	{{ form_end(form) }}
 	{% endif %}
 	</div>
+	{% endif %}
 {% endfor %}
 </section>
 

@@ -128,7 +128,7 @@
 		'kop': 'Uitgaven',
 	},
 	{
-		'systeemNaam': 'kwijtscheldingGemeentebelasting',
+		'systeemNaam': 'kwijtscheldingGemeenteBelasting',
 		'schermNaam': 'Kwijtschelding gemeentebelasting',
 		'madi': false,
 		'gka': false,
@@ -136,12 +136,18 @@
 		'kop': 'Uitgaven',
 	},
 	{
-		'systeemNaam': 'corrigerenGemeentebelasting',
+		'systeemNaam': 'corrigerenGemeenteBelasting',
 		'schermNaam': 'Corrigeren gemeentebelasting',
-		'madi': false,
+		'madi': true,
 		'gka': true,
 		'nvt': true,
 		'kop': 'Uitgaven',
+		'extraVelden': [
+			{
+				'systeemNaam': 'corrigerenGemeenteBelastingPlaceholder',
+				'schermNaam': 'Onbekend',
+			},
+		],
 	},
 	{
 		'systeemNaam': 'auto',
@@ -185,22 +191,6 @@
 		'kop': 'Auto',
 	},
 	{
-		'systeemNaam': 'schuldenoverzicht',
-		'schermNaam': 'Schuldenoverzicht',
-		'madi': true,
-		'gka': true,
-		'nvt': false,
-		'kop': 'Schulden',
-	},
-	{
-		'systeemNaam': 'vorderingen',
-		'schermNaam': 'Vorderingen',
-		'madi': true,
-		'gka': true,
-		'nvt': false,
-		'kop': 'Schulden',
-	},
-	{
 		'systeemNaam': 'inzageToetsingBkr',
 		'schermNaam': 'Inzage toetsing BKR',
 		'madi': true,
@@ -241,7 +231,7 @@
 		'kop': 'Schulden',
 	},
 	{
-		'systeemNaam': 'toelichtingAanvraagSchuldsanering',
+		'systeemNaam': 'toelichtingAanvraagSchuldsaneringClient',
 		'schermNaam': 'Toelichting aanvraag schuldsanering',
 		'madi': true,
 		'gka': true,
@@ -266,7 +256,7 @@
 		'kop': 'Onderbewindstelling of budgetbeheer',
 	},
 	{
-		'systeemNaam': 'budgetBeheer',
+		'systeemNaam': 'budgetbeheer',
 		'schermNaam': 'Budgetbeheer',
 		'madi': false,
 		'gka': false,
