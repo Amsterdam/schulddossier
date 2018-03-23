@@ -19,15 +19,19 @@ class VoorleggerBeschikkingUwvFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('beschikkingOnderBewindstellingOntvangenMadi', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'gka'
+        $builder->add('beschikkingUwvNvt', CheckboxType::class, [
+            'required' => false
         ]);
-        $builder->add('beschikkingOnderBewindstellingOntvangenGka', CheckboxType::class, [
-            'required' => false,
-            'disabled' => $options['disable_group'] === 'madi'
+        $builder->add('beschikkingUwvWw', CheckboxType::class, [
+            'required' => false
         ]);
-        $builder->add('beschikkingOnderBewindstellingNvt', CheckboxType::class, [
+        $builder->add('beschikkingUwvWia', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('beschikkingUwvZw', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('beschikkingUwvOverig', TextType::class, [
             'required' => false
         ]);
         $builder->add('file', FileType::class, [
