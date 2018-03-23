@@ -336,7 +336,8 @@ function maakUploadWizard() {
 		});
 	}
 	
-	$('canvases').onclick = function (e) {
+	if ($('canvases')) {
+		$('canvases').onclick = function (e) {
 		var div = canvas = e.target;
 		if (div.classList.contains('loep')) {
 //			toonGrotePDF(canvas);
@@ -381,6 +382,7 @@ function maakUploadWizard() {
 				// waarschuw gebruiker
 			}
 		}
+	}
 	}
 
 	function stuurFormulier(source,fn) {
