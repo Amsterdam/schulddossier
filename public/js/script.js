@@ -26,10 +26,21 @@ function submitAanmeldFormulieren() {
 	
 	function slaFormulierOp() {
 		var form = this.form;
-		console.log(form.elements.length);
 		var data = new FormData(form);
 		// append ook nog document
 		console.log('Uploaden');
+		var documentVeld = form.querySelector('input[type=file]');
+		if (documentVeld.value) {
+			console.log(documentVeld.value);
+		}
+		return false;
+/*		var schuldEiserNaam = data.getAll('schuld_item_form[schuldeiser]');
+		if (schuldEiserNaam) {
+			var ID = schuldEiserNaam.join('') && schuldEisersLijst[schuldEiserNaam.join('')].id;
+			if (ID) {
+				data.set('schuld_item_form[schuldeiser]',ID);
+			}
+		} */
 		var spinner = form.querySelector('.spinnerContainer');
 		if (!spinner) {
 			spinner = document.createElement('span');
@@ -391,27 +402,6 @@ function $(id) {
 	return document.getElementById(id);
 }
 
-function stuurFormulier(source,fn) {
-	var form = goUp(source,'FORM');
-	var data = new FormData(form);
-	var schuldEiserNaam = data.getAll('schuld_item_form[schuldeiser]');
-	if (schuldEiserNaam) {
-		var ID = schuldEiserNaam.join('') && schuldEisersLijst[schuldEiserNaam.join('')].id;
-		if (ID) {
-			data.set('schuld_item_form[schuldeiser]',ID);
-		}
-	}
-	console.log('Zend formulier');
-	sendRequest(form.action,function (req) {
-		spinner.style.display = '';
-		console.log(req.status);
-		if (fn) {
-			fn(req);
-		}
-	},data)
-}
-
-
 function sendRequest(url,callback,postData) {
 	var req = new XMLHttpRequest();
 	if (!req) return;
@@ -426,7 +416,7 @@ function sendRequest(url,callback,postData) {
 		if (req.readyState !== 4) {
 			return;
 		}
-		console.log(req.responseText);
+		console.log(JSON.parse(req.responseText));
 //		var token = req.getResponseHeader('X-Debug-Token-Link');
 		callback(req);
 	}
