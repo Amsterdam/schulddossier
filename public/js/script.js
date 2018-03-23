@@ -10,8 +10,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		maakAccordeon(accordeons[i]);
 	}
 	zetDatumWidget();
+	submitAanmeldFormulieren();
 	
 },false);
+
+function submitAanmeldFormulieren() {
+	var submits = document.querySelectorAll('input[type=submit].detailOpslaan');
+	for (var i=0;i<submits.length;i+=1) {
+		submits[i].onclick = slaFormulierOp;
+	}
+	
+	function slaFormulierOp() {
+		var form = this.form;
+		console.log(form.elements.length);
+		var data = new FormData(form);
+		// append ook nog document
+		console.log('Uploaden');
+		sendRequest(form.action,function () {
+			console.log('Upgeload');
+		},data);
+		return false;
+	}
+	
+}
 
 function documentLinks() {
 
@@ -341,7 +362,6 @@ function zetDatumWidget() {
 
 function verzamelData(form) {
 	var data = new FormData(form);
-	console.log(data);
 	return data;
 }
 
@@ -366,9 +386,6 @@ function sendRequest(url,callback,postData) {
 			return;
 		}
 		var token = req.getResponseHeader('X-Debug-Token-Link');
-/*		if (token) {
-			console.log(token);
-		} */
 		callback(req);
 	}
 	if (req.readyState == 4) {
