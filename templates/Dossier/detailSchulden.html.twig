@@ -36,10 +36,24 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 {% endblock %}
 
+{% block maintag %}
+<main class="voorlegger">
+{% endblock %}
+
 {% block main %}
 
+
 {# dump(schuldItems) #}
-	<h1>SCHULDENLIJST</h1>
+
+<section id="formulierKop">
+	<h1>Schulden {{ dossier.clientNaam }}</h1>
+	<p>[Formulier doet het nog niet]</p>
+
+</section>
+
+{# include 'clientFormulier.html' #}
+{% include 'subnavigatie.html' %}
+
 	<section class="accordeon">
 {% for schuldItem in schuldItems if schuldItem.verwijderd == false %}
     {% set form = updateForms[schuldItem.id] %}
@@ -83,9 +97,11 @@ document.addEventListener('DOMContentLoaded', function () {
 {% endfor %}
 	
 	</section>
+	<section style="padding:0 70px">
 	<p class="totaal">Totale schuld: <span id="totaleSchuld"></span>
-	<div class="knoppenbalk"><button class="secundair" id="nieuweSchuld">Nieuwe schuld</button></div>
-	
+	<div class="knoppenbalk" style="padding-left: 25px"><button class="secundair" id="nieuweSchuld">Nieuwe schuld</button></div>
+	</section>
+		
 <div id="uploadVenster">
 	<p>Voer hier een nieuwe schuldeiser in.</p>
 	{{ form_start(createSchuldeiserForm) }}
