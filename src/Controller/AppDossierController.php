@@ -28,6 +28,41 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
 use Symfony\Component\HttpFoundation\File\File;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerLegitimatieFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerAlimentatieEchtscheidingsconvenantFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerAlimentatieFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerArbeidsovereenkomstFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerAutolastenKmWoonwerkverkeerFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerAutoTaxatieFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBeschikkingOnderBewindstellingFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBeschikkingUwvFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBewindstellingOfBudgetbeheerFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBudgetbeheerFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerCjibFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerCorrigerenGemeenteBelastingFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerGereserveerdeGeldenFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerHuurtoeslagFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerHuurspecificatieFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerInkomstenspecificatieFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerInzageToetsingBkrFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerKinderopvangtoeslagFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerKindgebondenBudgetFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerKostgeldFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerKwijtscheldingGemeenteBelastingFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerMeterstandenEnergieFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerMeterstandenFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerOndertekendAanvraagFormulierFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerOvereenkomstKinderopvangFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerPolisbladZorgverzekeringFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerRetourbewijsModemFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerStabilisatieovereenkomstFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerToelichtingAanvraagSchuldsaneringClientFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerToelichtingAanvraagSchuldsaneringMadiFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerVerklaringWerkgeverFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerVoorlopigeTeruggaafBelastingdienstFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerVrijwaringsbewijsFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerVtlbFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerWaternetFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerZorgtoeslagFormType;
 
 /**
  * @Route("/app/dossier")
@@ -132,7 +167,42 @@ class AppDossierController extends Controller
         }
 
         $voorleggerForms = [];
+        $voorleggerForms['alimentatieEchtscheidingsconvenant'] = $this->createForm(VoorleggerAlimentatieEchtscheidingsconvenantFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['alimentatie'] = $this->createForm(VoorleggerAlimentatieFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['arbeidsovereenkomst'] = $this->createForm(VoorleggerArbeidsovereenkomstFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['autolastenKmWoonwerkverkeer'] = $this->createForm(VoorleggerAutolastenKmWoonwerkverkeerFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['autoTaxatie'] = $this->createForm(VoorleggerAutoTaxatieFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['beschikkingOnderBewindstelling'] = $this->createForm(VoorleggerBeschikkingOnderBewindstellingFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['beschikkingUwv'] = $this->createForm(VoorleggerBeschikkingUwvFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['bewindstellingOfBudgetbeheer'] = $this->createForm(VoorleggerBewindstellingOfBudgetbeheerFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['budgetbeheer'] = $this->createForm(VoorleggerBudgetbeheerFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['cjib'] = $this->createForm(VoorleggerCjibFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['corrigerenGemeenteBelasting'] = $this->createForm(VoorleggerCorrigerenGemeenteBelastingFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['gereserveerdeGelden'] = $this->createForm(VoorleggerGereserveerdeGeldenFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['huurspecificatie'] = $this->createForm(VoorleggerHuurspecificatieFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['huurtoeslag'] = $this->createForm(VoorleggerHuurtoeslagFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['inkomstenspecificatie'] = $this->createForm(VoorleggerInkomstenspecificatieFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['inzageToetsingBkr'] = $this->createForm(VoorleggerInzageToetsingBkrFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['kinderopvangtoeslag'] = $this->createForm(VoorleggerKinderopvangtoeslagFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['kindgebondenBudget'] = $this->createForm(VoorleggerKindgebondenBudgetFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['kostgeld'] = $this->createForm(VoorleggerKostgeldFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['kwijtscheldingGemeenteBelasting'] = $this->createForm(VoorleggerKwijtscheldingGemeenteBelastingFormType::class, $dossier->getVoorlegger());
         $voorleggerForms['legitimatie'] = $this->createForm(VoorleggerLegitimatieFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['meterstandenEnergie'] = $this->createForm(VoorleggerMeterstandenEnergieFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['meterstanden'] = $this->createForm(VoorleggerMeterstandenFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['ondertekendAanvraagFormulier'] = $this->createForm(VoorleggerOndertekendAanvraagFormulierFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['overeenkomstKinderopvang'] = $this->createForm(VoorleggerOvereenkomstKinderopvangFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['polisbladZorgverzekering'] = $this->createForm(VoorleggerPolisbladZorgverzekeringFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['retourbewijsModem'] = $this->createForm(VoorleggerRetourbewijsModemFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['stabilisatieovereenkomst'] = $this->createForm(VoorleggerStabilisatieovereenkomstFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['toelichtingAanvraagSchuldsaneringClient'] = $this->createForm(VoorleggerToelichtingAanvraagSchuldsaneringClientFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['toelichtingAanvraagSchuldsaneringMadi'] = $this->createForm(VoorleggerToelichtingAanvraagSchuldsaneringMadiFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['verklaringWerkgever'] = $this->createForm(VoorleggerVerklaringWerkgeverFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['voorlopigeTeruggaafBelastingdienst'] = $this->createForm(VoorleggerVoorlopigeTeruggaafBelastingdienstFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['vrijwaringsbewijs'] = $this->createForm(VoorleggerVrijwaringsbewijsFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['vtlb'] = $this->createForm(VoorleggerVtlbFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['waternet'] = $this->createForm(VoorleggerWaternetFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['zorgtoeslag'] = $this->createForm(VoorleggerZorgtoeslagFormType::class, $dossier->getVoorlegger());
 
         foreach ($voorleggerForms as $key => $voorleggerForm) {
             $voorleggerForm->handleRequest($request);
