@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\Length;
 
 class VoorleggerToelichtingAanvraagSchuldsaneringClientFormType extends AbstractType
 {
@@ -33,7 +34,10 @@ class VoorleggerToelichtingAanvraagSchuldsaneringClientFormType extends Abstract
         ]);
         $builder->add('fileNaam', TextType::class, [
             'required' => false,
-            'mapped' => false
+            'mapped' => false,
+            'constraints' => [
+                new Length(['min' => 1, 'max' => 255])
+            ]
         ]);
     }
 
