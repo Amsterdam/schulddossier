@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		//autoSave();
 		//uploadDocument();
 		//docs = documentLinks();
+		maakUploadWizard();
 	}
 	var accordeons = document.querySelectorAll('.accordeon');
 	for (var i=0;i<accordeons.length;i+=1) {
@@ -51,7 +52,12 @@ function submitAanmeldFormulieren() {
 		}
 		spinner.style.display = 'block';
 		var succes = succesMessage.cloneNode(true);
-		sendRequest(form.action,function () {
+		sendRequest(form.action,function (req) {
+			var parsedJSON = JSON.parse(req.responseText);
+			var document = parsedJSON.document;
+			if (document) {
+				console.log(parsedJSON.document);
+			}
 			spinner.style.display = '';
 			form.appendChild(succes);
 			setTimeout(function () {
@@ -242,6 +248,51 @@ function uploadDocument() {
 	
 }
 
+function maakUploadWizard() {
+	var scale = 3; // nog te bekijken
+	
+	var uploadVeld = $('completeDocument');
+	if (uploadVeld) {
+		uploadVeld.onchange = function () {
+			var URL = window.URL.createObjectURL(this.files[0]);
+			laadPDF(URL);
+		}
+	}
+	
+	
+	function laadPDF(URL) {
+	
+		var template = document.createElement('div');
+		template.appendChild(document.createElement('div')).className = 'loep';
+		
+		var pages;
+		PDFJS.getDocument(URL).then(function (pdf) {
+			var wr = $('canvases');
+			pages = pdf.numPages;
+			for (var i=1;i<=pages;i+=1) {
+				pdf.getPage(i).then(function (page) {
+//					showOnce(page);
+					var div = template.cloneNode(true);
+					var canvas = document.createElement('canvas');
+					canvas.id = 'id'+page.pageIndex;
+					var viewport = page.getViewport(scale);
+					var context = canvas.getContext('2d');
+					canvas.width = viewport.width;
+					canvas.height = viewport.height;
+					console.log(viewport.width + ' ' + viewport.height);
+					var renderContext = {
+						canvasContext: context,
+						viewport: viewport
+					};
+					page.render(renderContext);
+					div.appendChild(canvas);
+					wr.appendChild(div);
+				});
+			}
+		});
+	}
+}
+
 function autoSave() {
 
 
@@ -415,11 +466,6 @@ function sendRequest(url,callback,postData) {
 		if (req.readyState !== 4) {
 			return;
 		}
-		var parsedJSON = JSON.parse(req.responseText);
-		if (parsedJSON) {
-			console.log('OK');
-		}
-//		var token = req.getResponseHeader('X-Debug-Token-Link');
 		callback(req);
 	}
 	if (req.readyState == 4) {
@@ -449,6 +495,11 @@ function findPos(obj) {
 	}
 	return [curleft,curtop];
 }
+
+
+
+
+
 
 window.schuldhulp = window.schuldhulp || {};
 

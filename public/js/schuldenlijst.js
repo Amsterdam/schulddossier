@@ -18,7 +18,7 @@ function schuldenLijst() {
 	document.addEventListener('blur',handelEventsAf,true);
 	var forms = document.forms;
 	for (var i=0;i<forms.length;i+=1) {
-		forms[i].addEventListener('submit',submitForm,false);
+//		forms[i].addEventListener('submit',submitForm,false);
 		var fileField = forms[i].querySelectorAll('input[type=file]');
 		for (var j=0;j<fileField.length;j+=1) {
 			fileField[j].onchange = function () {

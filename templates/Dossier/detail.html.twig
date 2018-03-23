@@ -4,6 +4,9 @@
 {% endblock %}
 
 {% block extraScripts %}
+<script src="/vendor/mozilla/pdf.js/build/pdf.js"></script>
+<script src="/vendor/mrrio/jspdf/jspdf.js"></script>
+<script src="/vendor/mrrio/jspdf/plugins/addimage.js"></script>
 <script>
 window.schuldhulp = window.schuldhulp || {};
 window.schuldhulp.routes = window.schuldhulp.routes || {};
@@ -50,6 +53,13 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 		</div>
 	{% endfor %}
 {% endfor %}
+
+<section class="documentSplitser">
+	<input type="file" id="completeDocument">
+	<div id="canvases"></div>
+</section>
+
+
 
 {% include 'clientFormulier.html' %}
 {% include 'subnavigatie.html' %}
@@ -111,8 +121,9 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 		</ul>
 	{% endif %}
 	<p>
+	   Document naam {{ form_widget(form.fileNaam,{attr:{required:'required'}}) }}<br>
 	   Nieuw document {{ form_widget(form.file) }}
-	   Document naam {{ form_widget(form.fileNaam) }}</p>
+	</p>
 	<p><input type="submit" class="primair detailOpslaan" value="Opslaan"></p>
 	{{ form_end(form) }}
 	{% endif %}

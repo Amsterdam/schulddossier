@@ -10,9 +10,9 @@ function maakUploadWizard() {
 	var uploadVeld = $('completeDocument');
 	if (uploadVeld) {
 		uploadVeld.onchange = function () {
-		var URL = window.URL.createObjectURL(this.files[0]);
-		laadPDF(URL);
-	}
+			var URL = window.URL.createObjectURL(this.files[0]);
+			laadPDF(URL);
+		}
 	}
 	
 	
