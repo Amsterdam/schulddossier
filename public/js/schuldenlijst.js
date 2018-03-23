@@ -22,9 +22,9 @@ function schuldenLijst() {
 		var element = e.target;
 		var elementID = element.id;
 		var type = e.type;
-		e.preventDefault();
 		if (elementID && eventHandlers[elementID] && eventHandlers[elementID][type]) {
 			eventHandlers[elementID][type](element);
+			e.preventDefault();
 		}
 	}
 
