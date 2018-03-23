@@ -30,7 +30,7 @@ function submitAanmeldFormulieren() {
 		var canvases = form.querySelectorAll('canvas');
 		var canvasIDs = [];
 		var naamSource = form.querySelector('#' + form.name + '_fileNaam');
-		var fileSource = form.querySelector(form.name + '_file');
+		var fileSource = form.name + '[file]';
 		if (canvases.length && !naamSource.value) {
 			naamSource.placeholder = 'Vul aub. een naam in';
 			naamSource.focus();
@@ -73,6 +73,7 @@ function submitAanmeldFormulieren() {
 		spinner.style.display = 'block';
 		var succes = succesMessage.cloneNode(true);
 		sendRequest(form.action,function (req) {
+			newPDF = null;
 			console.log(req);
 			var parsedJSON = JSON.parse(req.response);
 			var errors = parsedJSON.errors;
@@ -81,18 +82,33 @@ function submitAanmeldFormulieren() {
 			} else {
 				console.log('Geen errors');
 			}
-			var document = parsedJSON.document;
-			if (document) {
+			var documentData = parsedJSON.document;
+			if (documentData) {
 				console.log(parsedJSON.document);
-			} else {
-				console.log('Geen document');
+				linkData.link = documentData.url;
+				console.log(linkData.link);
 			}
 			spinner.style.display = '';
 			form.appendChild(succes);
 			setTimeout(function () {
 				form.removeChild(succes);
 			},5000)
-			console.log('Upgeload');
+			var resp = JSON.parse(req.response);
+			if (linkData.link) {
+				var li = document.createElement('li');
+				var link = document.createElement('a');
+				link.href =  linkData.link;
+				link.textContent = link.innerText = linkData.naam;
+				li.appendChild(link);
+				console.log(li);
+				form.querySelector('.documentenLijst').appendChild(li);
+				form.querySelector('.uploadCanvases').innerHTML = '';
+				naamSource.value = '';
+				for (var i=0,cv;cv=canvasIDs[i];i+=1) {
+					$(cv).parentNode.classList.add('upgeload');
+					$(cv).parentNode.classList.remove('actief');
+				}
+			}
 		},data);
 		return false;
 	}
@@ -420,27 +436,9 @@ function maakUploadWizard() {
 			}
 		},data)
 		return false;
-	}
-
-	function maakLink(data) {
-		var resultaat = $('resultaatTemplate').cloneNode(true);
-		resultaat.id = '';
-		var link = resultaat.querySelector('a');
-		link.href =  data.link;
-		link.textContent = link.innerText = data.naam;
-		var canvasSource = data.container.querySelector('.uploadCanvases');
-		var canvasTarget = resultaat.querySelector('.canvasThumbs');
-		var canvases = canvasSource.querySelectorAll('canvas');
-		for (var i=0;i<canvases.length;i+=1) {
-			canvasTarget.appendChild(canvases[i]);
-		}
-		data.container.container.appendChild(resultaat);
-		actiefFormulier.parentNode.removeChild(actiefFormulier);
-//		actiefFormulier = undefined;
-	}
-
-	
+	}	
 }
+
 
 function autoSave() {
 
