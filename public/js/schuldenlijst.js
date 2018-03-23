@@ -19,6 +19,14 @@ function schuldenLijst() {
 	var forms = document.forms;
 	for (var i=0;i<forms.length;i+=1) {
 		forms[i].addEventListener('submit',submitForm,false);
+		var fileField = forms[i].querySelectorAll('input[type=file]');
+		for (var j=0;j<fileField.length;j+=1) {
+			fileField[j].onchange = function () {
+				var value = this.value.substring(this.value.lastIndexOf('\\')+1);
+				this.form.querySelector('#tekst').innerText = this.form.querySelector('#tekst').textContent = 'Document ' + value + '  bijgevoegd';
+				console.log(value);
+			}
+		}
 	}
 	
 	function handelEventsAf(e) {

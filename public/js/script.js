@@ -33,7 +33,6 @@ function submitAanmeldFormulieren() {
 		if (documentVeld.value) {
 			console.log(documentVeld.value);
 		}
-		return false;
 /*		var schuldEiserNaam = data.getAll('schuld_item_form[schuldeiser]');
 		if (schuldEiserNaam) {
 			var ID = schuldEiserNaam.join('') && schuldEisersLijst[schuldEiserNaam.join('')].id;
@@ -416,7 +415,10 @@ function sendRequest(url,callback,postData) {
 		if (req.readyState !== 4) {
 			return;
 		}
-		console.log(JSON.parse(req.responseText));
+		var parsedJSON = JSON.parse(req.responseText);
+		if (parsedJSON) {
+			console.log('OK');
+		}
 //		var token = req.getResponseHeader('X-Debug-Token-Link');
 		callback(req);
 	}
