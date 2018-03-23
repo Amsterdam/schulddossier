@@ -226,7 +226,10 @@ class AppDossierController extends Controller
                 $em->flush();
 
                 if ($request->isXmlHttpRequest()) {
-                    return new JsonResponse(['state' => 'OK']);
+                    return new JsonResponse(['state' => 'OK', 'document' => [
+                        'id' => $document->getId(),
+                        'url' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', ['dossierId' => $dossier->getId(), 'documentId' => $document->getId()])
+                    ]]);
                 }
             } elseif ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid() === false) {
                 return new JsonResponse($this->get('json_serializer')->normalize($voorleggerForm->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
