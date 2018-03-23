@@ -53,12 +53,12 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	   {{ form_start(form) }}
 	<p class="checkboxes">
 		{% if categorie.madi == true %}
-		{% if form[categorie.systeemNaam ~ 'OntvangenMadi'] is not defined %}
-			  <p>Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} ontvangen madi)</p>
-			  <script>console.log('{{ categorie.systeemNaam }} heeft geen Ontvangen')</script>
-		{% else %}
-			 {{ form_widget(form[categorie.systeemNaam ~ 'OntvangenMadi']) }} Madi
-		{% endif %}
+			{% if form[categorie.systeemNaam ~ 'OntvangenMadi'] is not defined %}
+				  <p>Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} ontvangen madi)</p>
+				  <script>console.log('{{ categorie.systeemNaam }} heeft geen Ontvangen')</script>
+			{% else %}
+				 {{ form_widget(form[categorie.systeemNaam ~ 'OntvangenMadi']) }} Madi
+			{% endif %}
 		{% endif %}
 		{% if categorie.gka == true %}
             {% if form[categorie.systeemNaam ~ 'OntvangenGka'] is not defined %}
