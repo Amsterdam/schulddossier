@@ -13,6 +13,10 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 </script>
 {% endblock %}
 
+{% block maintag %}
+<main class="voorlegger">
+{% endblock %}
+
 
 {% block main %}
 
@@ -38,7 +42,6 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	</li>
 {% endfor %}
 </div>
-<section>
 
 <section class="accordeon aanmelding">
 {% for categorie in categorieen %}

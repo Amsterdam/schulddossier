@@ -385,7 +385,8 @@ function sendRequest(url,callback,postData) {
 		if (req.readyState !== 4) {
 			return;
 		}
-		var token = req.getResponseHeader('X-Debug-Token-Link');
+		console.log(req.responseText);
+//		var token = req.getResponseHeader('X-Debug-Token-Link');
 		callback(req);
 	}
 	if (req.readyState == 4) {
