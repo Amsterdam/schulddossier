@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	}
 	zetDatumWidget();
 	submitAanmeldFormulieren();
-	
 },false);
 
 function submitAanmeldFormulieren() {
@@ -25,13 +24,19 @@ function submitAanmeldFormulieren() {
 	succesMessage.className = 'succesMessage';
 	succesMessage.innerHTML = 'Uw wijzigingen zijn opgeslagen.';
 	
-	function slaFormulierOp() {
+	function slaFormulierOp(e) {
+		e.preventDefault();
 		var form = this;
+		
 		var canvases = form.querySelectorAll('canvas');
 		var canvasIDs = [];
-		var naamSource = form.querySelector('#' + form.name + '_fileNaam');
+		var naamSource = form.querySelector('#' + form.name + '_fileNaam') || undefined;
 		var fileSource = form.name + '[file]';
-		if (canvases.length && !naamSource.value) {
+		if (form.classList.contains('schuldenformulier')) {
+			fileSource += '[0]';
+		}
+		
+		if (naamSource && canvases.length && !naamSource.value) {
 			naamSource.placeholder = 'Vul aub. een naam in';
 			naamSource.focus();
 			return false;
@@ -51,16 +56,16 @@ function submitAanmeldFormulieren() {
 		data.append(fileSource,newPDF.output('blob'),'document');
 		var linkData = {};
 		linkData.container = form;
-		linkData.naam = naamSource.value;
+		linkData.naam = (naamSource && naamSource.value) || 'Document';
 		linkData.onderwerp = form.container.dataset.systeemnaam;
-		console.log('Uploaden');
-/*		var schuldEiserNaam = data.getAll('schuld_item_form[schuldeiser]');
+		var schuldEiserNaam = data.getAll('schuld_item_form[schuldeiser]');
 		if (schuldEiserNaam) {
 			var ID = schuldEiserNaam.join('') && schuldEisersLijst[schuldEiserNaam.join('')].id;
 			if (ID) {
 				data.set('schuld_item_form[schuldeiser]',ID);
 			}
-		} */
+		}
+		console.log('Uploaden');
 		var spinner = form.querySelector('.spinnerContainer');
 		if (!spinner) {
 			spinner = document.createElement('span');
@@ -74,8 +79,8 @@ function submitAanmeldFormulieren() {
 		var succes = succesMessage.cloneNode(true);
 		sendRequest(form.action,function (req) {
 			newPDF = null;
-			console.log(req);
 			var parsedJSON = JSON.parse(req.response);
+			console.log(parsedJSON);
 			var errors = parsedJSON.errors;
 			if (errors) {
 				console.log(parsedJSON.errors);
@@ -84,9 +89,7 @@ function submitAanmeldFormulieren() {
 			}
 			var documentData = parsedJSON.document;
 			if (documentData) {
-				console.log(parsedJSON.document);
 				linkData.link = documentData.url;
-				console.log(linkData.link);
 			}
 			spinner.style.display = '';
 			form.appendChild(succes);
@@ -323,7 +326,7 @@ function maakUploadWizard() {
 					var context = canvas.getContext('2d');
 					canvas.width = viewport.width;
 					canvas.height = viewport.height;
-					console.log(viewport.width + ' ' + viewport.height);
+//					console.log(viewport.width + ' ' + viewport.height);
 					var renderContext = {
 						canvasContext: context,
 						viewport: viewport
@@ -365,7 +368,6 @@ function maakUploadWizard() {
 			if (actiefFormulier) {
 				div.classList.add('actief');
 				var nieuwID = canvas.id + 'copy';
-				console.log(nieuwID);
 				var canvasNode;
 				if ($(nieuwID)) {
 					canvasNode = $(nieuwID);

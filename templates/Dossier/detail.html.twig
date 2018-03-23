@@ -112,14 +112,14 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 			{% endfor %}
 		{% endif %}
 	</p>
-	{% if dossier.getDocumentenByOnderwerp(categorie.systeemNaam)|length > 0 %}
 		<p>Toegevoegde documenten:</p>
 		<ul class="documentenLijst">
+	{% if dossier.getDocumentenByOnderwerp(categorie.systeemNaam)|length > 0 %}
 		{% for dossierDocument in dossier.getDocumentenByOnderwerp(categorie.systeemNaam) %}
 		   <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a></li>
 		{% endfor %}
-		</ul>
 	{% endif %}
+		</ul>
 	<p>Documentnaam {{ form_widget(form.fileNaam) }}</p>
    <!--  Nieuw document {{ form_widget(form.file) }} -->
 	

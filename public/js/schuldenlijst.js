@@ -4,8 +4,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
 	schuldenLijst();
 },false);
 
+var schuldEisersLijst = {},alfabetisch = [];
+
 function schuldenLijst() {
-	var actiefFormulier;
 	var lijstSrc = '/app/schuldeiser/';
 	sendRequest(lijstSrc,function(req) {
 		if (req.status === 200) {
@@ -34,14 +35,14 @@ function schuldenLijst() {
 		var elementID = element.id;
 		var type = e.type;
 		if (elementID && eventHandlers[elementID] && eventHandlers[elementID][type]) {
-			console.log(elementID + ' ' + type);
+//			console.log(elementID + ' ' + type);
 			eventHandlers[elementID][type](element);
 			e.preventDefault();
 		}
 	}
 
 	function submitForm(e) {
-		console.log('submitForm aangeroepen');
+//		console.log('submitForm aangeroepen');
 		eventHandlers.opslaan.click(this);		
 		e.preventDefault();
 	}
@@ -66,8 +67,9 @@ function schuldenLijst() {
 		},
 		'schuldeiserVeld': {
 			'click': function (element) {
-				if (!element.initialized) {
+				if (!element.initialized && schuldEisersLijst) {
 					var lijst = [];
+//					console.log(alfabetisch.length);
 					for (var i=0,item;item=alfabetisch[i];i+=1) {
 						var tmp = {};
 						tmp.text = alfabetisch[i];
@@ -83,8 +85,10 @@ function schuldenLijst() {
 				}
 			},
 			'blur': function (element) {
+				return;
+				// heeft geen zin; op dit moment heeft Horsey de value nog niet aangepast
 				if (!schuldEisersLijst[element.value]) {
-					console.log('Schuldeiser bestaat niet!');
+					console.log('Schuldeiser ' + element.value + ' bestaat niet!');
 					// doe iets
 				}				
 			}
@@ -96,10 +100,12 @@ function schuldenLijst() {
 			},
 		},
 		'nieuweSchuldeiser': {
-			'click': function () {
+			'click': function (element) {
+				var form = goUp(element,'FORM');
 				var venster = $('uploadVenster');
+				form.appendChild(venster);
 				var dims = [venster.offsetWidth/2,venster.offsetHeight/2];
-				var vp = [document.documentElement.clientWidth/2,document.documentElement.clientHeight/2];
+				var vp = [form.offsetWidth/2,form.offsetHeight/2];
 				venster.style.left = vp[0] - dims[0] + 'px';
 				venster.style.top = vp[1] - dims[1] + 'px';
 				venster.style.visibility = 'visible';
@@ -176,8 +182,6 @@ function schuldenLijst() {
 		}
 	}
 
-	var schuldEisersLijst = {},alfabetisch = [];
-
 	function creeerSchuldEiserLijst(json) {
 		for (var i=0;i<json.length;i+=1) {
 			alfabetisch.push(json[i].bedrijfsnaam);
@@ -186,22 +190,6 @@ function schuldenLijst() {
 			schuldEisersLijst[json[i].bedrijfsnaam].rekening = json[i].rekening;
 		}
 		alfabetisch.sort();
-		return;
-		var dataContainer = document.querySelector('datalist#schuldeiserdata');
-		if (dataContainer) {
-			for (var i=0,eiser;eiser=schuldEisersLijst[alfabetisch[i]];i+=1) {
-				var opt = document.createElement('option');
-				opt.setAttribute('label',alfabetisch[i]);
-				opt.setAttribute('value',alfabetisch[i]);
-				dataContainer.appendChild(opt);
-			}
-		}
-		console.log(dataContainer);
-		dataContainer.style.display = 'block';
-		dataContainer.style.border = '10px solid red';
-		dataContainer.onclick = function (e) {
-			console.log(e.target);
-		}
 	}
 
 	var succesMessage = document.createElement('p');

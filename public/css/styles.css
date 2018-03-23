@@ -248,8 +248,13 @@ section.aanmelding ul.documentenLijst {
 	margin: 0;
 	padding: 0;
 	margin-left: 10px;
-
 }
+
+section.aanmelding ul.documentenLijst:empty:after {
+	content: "Nog geen documenten toegevoegd";
+	display: block;
+}
+
 
 section.aanmelding ul.documentenLijst a {
 	color: inherit;
