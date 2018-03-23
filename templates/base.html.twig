@@ -10,10 +10,16 @@
 	{
 		'systeemNaam': 'vtlb',
 		'schermNaam': 'Vrij te laten bedrag (VTLB)',
-		'madi': false,
-		'gka': false,
+		'madi': true,
+		'gka': true,
 		'nvt': false,
 		'kop': '',
+		'extraVelden': [
+			{
+				'systeemNaam': 'vtlbBedrag',
+				'schermNaam': 'Bedrag',
+			},
+		],
 	},
 	{
 		'systeemNaam': 'inkomstenspecificatie',
@@ -50,8 +56,8 @@
 	{
 		'systeemNaam': 'alimentatie',
 		'schermNaam': 'Alimentatie ontvangen',
-		'madi': true,
-		'gka': true,
+		'madi': false,
+		'gka': false,
 		'nvt': true,
 		'kop': 'Inkomsten',
 	},
@@ -116,7 +122,7 @@
 		'schermNaam': 'Alimentatie (echtscheidingsconvenant)',
 		'madi': true,
 		'gka': true,
-		'nvt': true,
+		'nvt': false,
 		'kop': 'Uitgaven',
 	},
 	{
@@ -137,17 +143,23 @@
 		'extraVelden': [
 			{
 				'systeemNaam': 'kwijtscheldingGemeenteBelasting',
-				'schermNaam': 'Onbekend',
+				'schermNaam': '',
 			},
 		],
 	},
 	{
 		'systeemNaam': 'corrigerenGemeenteBelasting',
 		'schermNaam': 'Corrigeren gemeentebelasting',
-		'madi': true,
+		'madi': false,
 		'gka': true,
 		'nvt': true,
 		'kop': 'Uitgaven',
+		'extraVelden': [
+			{
+				'systeemNaam': 'corrigerenGemeenteBelasting',
+				'schermNaam': '',
+			},
+		],
 	},
 	{
 		'systeemNaam': 'auto',
@@ -213,13 +225,19 @@
 		'gka': false,
 		'nvt': true,
 		'kop': 'Schulden',
+		'extraVelden': [
+			{
+				'systeemNaam': 'cjib',
+				'schermNaam': '',
+			},
+		],
 	},
 	{
 		'systeemNaam': 'meterstandenEnergie',
 		'schermNaam': 'Meterstanden huidige energiemaatschappij',
 		'madi': true,
 		'gka': true,
-		'nvt': false,
+		'nvt': true,
 		'kop': 'Schulden',
 	},
 	{
@@ -262,6 +280,24 @@
 		'gka': false,
 		'nvt': true,
 		'kop': 'Onderbewindstelling of budgetbeheer',
+		'extraVelden': [
+			{
+				'systeemNaam': 'budgetbeheerPlangroep',
+				'schermNaam': 'Plangroep',
+			},
+			{
+				'systeemNaam': 'budgetbeheerCav',
+				'schermNaam': 'CAV',
+			},
+			{
+				'systeemNaam': 'budgetbeheerFibu',
+				'schermNaam': 'Fibu',
+			},
+			{
+				'systeemNaam': 'budgetbeheerOverig',
+				'schermNaam': 'Overig',
+			},
+		],
 	},
 	{
 		'systeemNaam': 'gereserveerdeGelden',

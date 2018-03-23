@@ -17,6 +17,28 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 <main class="voorlegger">
 {% endblock %}
 
+{% block kleineNavigatie %}
+<div class="kleineNav">
+	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a>
+    {% if dossier.inPrullenbak == false %}
+    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', {'dossierId': dossier.id}) }}" method="post">
+        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak') }}">
+        <button type="submit">Naar prullenbak</button>
+    </form>
+	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexdocumenteninprullenbak', {'dossierId': dossier.id}) }}">Prullenbak van dit dossier</a>
+    {% else %}
+    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove', {'dossierId': dossier.id}) }}" method="post">
+        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove') }}">
+        <button type="submit">Definitief verwijderen</button>
+    </form>
+    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore', {'dossierId': dossier.id}) }}" method="post">
+        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore') }}">
+        <button type="submit">Herstellen</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
+
 
 {% block main %}
 
@@ -53,12 +75,12 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	   {{ form_start(form) }}
 	<p class="checkboxes">
 		{% if categorie.madi == true %}
-		{% if form[categorie.systeemNaam ~ 'OntvangenMadi'] is not defined %}
-			  <p>Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} ontvangen madi)</p>
-			  <script>console.log('{{ categorie.systeemNaam }} heeft geen Ontvangen')</script>
-		{% else %}
-			 {{ form_widget(form[categorie.systeemNaam ~ 'OntvangenMadi']) }} Madi
-		{% endif %}
+			{% if form[categorie.systeemNaam ~ 'OntvangenMadi'] is not defined %}
+				  <p>Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} ontvangen madi)</p>
+				  <script>console.log('{{ categorie.systeemNaam }} heeft geen Ontvangen')</script>
+			{% else %}
+				 {{ form_widget(form[categorie.systeemNaam ~ 'OntvangenMadi']) }} Madi
+			{% endif %}
 		{% endif %}
 		{% if categorie.gka == true %}
             {% if form[categorie.systeemNaam ~ 'OntvangenGka'] is not defined %}

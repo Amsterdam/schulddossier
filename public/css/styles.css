@@ -560,6 +560,10 @@ main.voorlegger td input[type=submit] {
 	float: none;
 }
 
+main.voorlegger p.succesMessage {
+
+}
+
 main.voorlegger footer h3, main.voorlegger footer p {
 	margin-top: 20px;
 	overflow: auto;
