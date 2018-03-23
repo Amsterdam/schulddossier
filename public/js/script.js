@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 function submitAanmeldFormulieren() {
 	var submits = document.querySelectorAll('input[type=submit].detailOpslaan');
 	for (var i=0;i<submits.length;i+=1) {
-		submits[i].onclick = slaFormulierOp;
+		submits[i].form.onsubmit = slaFormulierOp;
 	}
 	
 	var succesMessage = document.createElement('p');
@@ -26,14 +26,34 @@ function submitAanmeldFormulieren() {
 	succesMessage.innerHTML = 'Uw wijzigingen zijn opgeslagen.';
 	
 	function slaFormulierOp() {
-		var form = this.form;
-		var data = new FormData(form);
-		// append ook nog document
-		console.log('Uploaden');
-		var documentVeld = form.querySelector('input[type=file]');
-		if (documentVeld.value) {
-			console.log(documentVeld.value);
+		var form = this;
+		var canvases = form.querySelectorAll('canvas');
+		var canvasIDs = [];
+		var naamSource = form.querySelector('#' + form.name + '_fileNaam');
+		var fileSource = form.querySelector(form.name + '_file');
+		if (canvases.length && !naamSource.value) {
+			naamSource.placeholder = 'Vul aub. een naam in';
+			naamSource.focus();
+			return false;
 		}
+		var	newPDF = new jsPDF(),
+			imgData
+		;
+		for (var i=0,cv;cv=canvases[i];i+=1) {
+			canvasIDs.push(cv.id.replace(/copy/g,''));
+			if (i > 0) {
+				newPDF.addPage();
+			}
+			imgData = cv.toDataURL("image/jpeg");
+			newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
+		}
+		var data = new FormData(form);
+		data.append(fileSource,newPDF.output('blob'),'document');
+		var linkData = {};
+		linkData.container = form;
+		linkData.naam = naamSource.value;
+		linkData.onderwerp = form.container.dataset.systeemnaam;
+		console.log('Uploaden');
 /*		var schuldEiserNaam = data.getAll('schuld_item_form[schuldeiser]');
 		if (schuldEiserNaam) {
 			var ID = schuldEiserNaam.join('') && schuldEisersLijst[schuldEiserNaam.join('')].id;
@@ -53,10 +73,19 @@ function submitAanmeldFormulieren() {
 		spinner.style.display = 'block';
 		var succes = succesMessage.cloneNode(true);
 		sendRequest(form.action,function (req) {
-			var parsedJSON = JSON.parse(req.responseText);
+			console.log(req);
+			var parsedJSON = JSON.parse(req.response);
+			var errors = parsedJSON.errors;
+			if (errors) {
+				console.log(parsedJSON.errors);
+			} else {
+				console.log('Geen errors');
+			}
 			var document = parsedJSON.document;
 			if (document) {
 				console.log(parsedJSON.document);
+			} else {
+				console.log('Geen document');
 			}
 			spinner.style.display = '';
 			form.appendChild(succes);
@@ -263,7 +292,7 @@ function maakUploadWizard() {
 	function laadPDF(URL) {
 	
 		var template = document.createElement('div');
-		template.appendChild(document.createElement('div')).className = 'loep';
+//		template.appendChild(document.createElement('div')).className = 'loep';
 		
 		var pages;
 		PDFJS.getDocument(URL).then(function (pdf) {
@@ -271,7 +300,6 @@ function maakUploadWizard() {
 			pages = pdf.numPages;
 			for (var i=1;i<=pages;i+=1) {
 				pdf.getPage(i).then(function (page) {
-//					showOnce(page);
 					var div = template.cloneNode(true);
 					var canvas = document.createElement('canvas');
 					canvas.id = 'id'+page.pageIndex;
@@ -291,6 +319,127 @@ function maakUploadWizard() {
 			}
 		});
 	}
+	
+	$('canvases').onclick = function (e) {
+		var div = canvas = e.target;
+		if (div.classList.contains('loep')) {
+//			toonGrotePDF(canvas);
+			console.log('Vergroot');
+			return false;
+		}
+		if (div.nodeName === 'DIV') {
+			canvas = div.querySelector('canvas');		
+		} else if (div.nodeName === 'CANVAS') {
+			div = div.parentNode;
+		}
+
+		if (div.classList.contains('upgeload')) {
+			return false;
+		}
+
+
+		if (div.classList.contains('actief')) {
+			div.classList.remove('actief');
+			var kopie = $(canvas.id+'copy')
+			if (kopie && kopie.parentNode) {
+				kopie.parentNode.removeChild(kopie);
+			}
+		} else {
+			if (actiefFormulier) {
+				div.classList.add('actief');
+				var nieuwID = canvas.id + 'copy';
+				console.log(nieuwID);
+				var canvasNode;
+				if ($(nieuwID)) {
+					canvasNode = $(nieuwID);
+				} else {
+					canvasNode = document.createElement('canvas');
+					var thumbContext = canvasNode.getContext('2d');
+					canvasNode.width = canvas.width;
+					canvasNode.height = canvas.height;
+					thumbContext.drawImage(canvas,0,0);
+					canvasNode.id = nieuwID;
+				}
+				actiefFormulier.querySelector('.uploadCanvases').appendChild(canvasNode);
+			} else {
+				// waarschuw gebruiker
+			}
+		}
+	}
+
+	function stuurFormulier(source,fn) {
+		var form = goUp(source,'FORM');
+		var canvases = form.querySelectorAll('canvas');
+		if (!canvases.length) {
+			return false; // iets van een foutmelding
+		}
+		var naamSource = form.querySelector('input[type=text]');
+		if (!naamSource.value) {
+			naamSource.placeholder = 'Vul aub. een naam in';
+			naamSource.focus();
+			return false;
+		}
+		var	newPDF = new jsPDF(),
+			imgData
+		;
+		var canvasIDs = [];
+		for (var i=0,cv;cv=canvases[i];i+=1) {
+			canvasIDs.push(cv.id.replace(/copy/g,''));
+			if (i > 0) {
+				newPDF.addPage();
+			}
+			imgData = cv.toDataURL("image/jpeg");
+			newPDF.addImage(imgData, 'JPEG', 15, 40, 180, 180);
+		}
+		var linkData = {};
+		linkData.container = form;
+		linkData.naam = naamSource.value;
+		linkData.onderwerp = form.container.dataset.systeemnaam;
+		var echtFormulier = $('uploadForm');
+		echtFormulier.querySelector('input[type=text]').value = linkData.naam;
+		echtFormulier.querySelector('select').value = linkData.onderwerp;
+		var data = new FormData(echtFormulier);
+		data.append('dossier_document_form[document][file]',newPDF.output('blob'),'document');
+		form.querySelector('.spinnerContainer').style.display = 'block'
+		sendRequest(location.href,function (req) {
+			form.querySelector('.spinnerContainer').style.display = '';
+			if (req.status === 201) {
+				var resp = JSON.parse(req.response);
+				linkData.link = resp.document.url;
+				newPDF = null;
+				maakLink(linkData);
+				for (var i=0,cv;cv=canvasIDs[i];i+=1) {
+					$(cv).parentNode.classList.add('upgeload');
+					$(cv).parentNode.classList.remove('actief');
+				}
+				if (fn) {
+					fn();
+				}
+			} else {
+				console.log('\'t Is mis. Fout ' + req.status);
+			}
+		},data)
+		return false;
+	}
+
+	function maakLink(data) {
+		var resultaat = $('resultaatTemplate').cloneNode(true);
+		resultaat.id = '';
+		var link = resultaat.querySelector('a');
+		link.href =  data.link;
+		link.textContent = link.innerText = data.naam;
+		var canvasSource = data.container.querySelector('.uploadCanvases');
+		var canvasTarget = resultaat.querySelector('.canvasThumbs');
+		var canvases = canvasSource.querySelectorAll('canvas');
+		for (var i=0;i<canvases.length;i+=1) {
+			canvasTarget.appendChild(canvases[i]);
+		}
+		data.container.container.appendChild(resultaat);
+		actiefFormulier.parentNode.removeChild(actiefFormulier);
+//		actiefFormulier = undefined;
+	}
+
+	
 }
 
 function autoSave() {
@@ -400,25 +549,19 @@ function maakAccordeon(block) {
 		if (header.nodeName === 'H3') {
 			if (actiefFormulier) {
 				actiefFormulier.container.style.display = '';
+				actiefFormulier.header.classList.remove('uitgeklapt');
 			}
-			if (header.open) {
-				header.container.style.display = '';
-				header.classList.remove('uitgeklapt');
-				header.open = false;
-			} else {
-				header.container.style.display = 'block';
-				header.classList.add('uitgeklapt');
-				header.open = true;
-				var nieuwForm = header.container.querySelector('form');
-				if (!nieuwForm) {
-					nieuwForm = $('templateForm').cloneNode(true);
-					nieuwForm.id = '';
-					nieuwForm.header = header;
-					nieuwForm.container = header.container;
-					header.container.appendChild(nieuwForm);
-				}
-				actiefFormulier = nieuwForm;
+			header.container.style.display = 'block';
+			header.classList.add('uitgeklapt');
+			var nieuwForm = header.container.querySelector('form');
+			if (!nieuwForm) {
+				nieuwForm = $('templateForm').cloneNode(true);
+				nieuwForm.id = '';
+				nieuwForm.header = header;
+				nieuwForm.container = header.container;
+				header.container.appendChild(nieuwForm);
 			}
+			actiefFormulier = nieuwForm;
 		}
 	},false);
 	

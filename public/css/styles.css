@@ -577,22 +577,22 @@ div#canvases:empty:after{
 }
 
 /*
-	LET OP: HTML-structuur grwijzigd:
-	<div>
-		<div class="loep"></div>
-		<canvas></canvas>
-	</div>
-	De buitenste div krijgt nu class=actief
-	Dit is nodig omdat canvas geen :before en :after ondersteunt; die moeten we op de div zetten
-	Tevens moeten we een divje hebben voor het loepje om het klikbaar te houden
+	DOCUMENT-SPLITSER en CANVASES
 */
 
-canvas {
-	width: 100%;
-	border: 1px solid #979797;
+main.voorlegger section.documentSplitser {
+	position: fixed;
+	left: 0;
+	width: 160px;
+	border: 1px solid;
+	padding: 0;
+	background-color: #FAFAFA;
+	box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
-div#canvases div {
+canvas {
+	width: 100px;
+	border: 1px solid #979797;
 	display: inline-block;
 	width: 100px;
 	margin: 0px 40px 20px 0px;
@@ -604,21 +604,39 @@ div.actief canvas {
 	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
 }
 
+div#canvases div {
+	display: inline-block;
+	width: 100px;
+	margin: 0px auto 10px auto;
+	position: relative;
+	cursor: pointer;
+}
+
 div#canvases div.upgeload {
 	opacity: 0.3;
 	cursor: default;
 }
 
-
-main.voorlegger section.documentSplitser {
-	position: fixed;
+div.actief:before,div#canvases > div:hover:before {
+	position: absolute;
+	top: 0;
 	left: 0;
-	width: 160px;
-	border: 1px solid;
-	padding: 0;
-	background-color: #FAFAFA;
-	box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.2);
+	width: 100%;
+	height: 100%;
+	content: " ";
+	background-image: url(/pix/checked-hover.svg);
+	background-size: 25px 25px;
+	background-position: center;
+	background-repeat: no-repeat;
+	z-index: 1;
 }
+
+div#canvases > div:not(.actief):hover:before {
+	opacity: 0.6;
+}
+
+
+/****************************/
 
 main.voorlegger footer h3, main.voorlegger footer p {
 	margin-top: 20px;

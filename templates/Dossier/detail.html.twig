@@ -121,9 +121,10 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 		</ul>
 	{% endif %}
 	<p>
-	   Document naam {{ form_widget(form.fileNaam,{attr:{required:'required'}}) }}<br>
-	   Nieuw document {{ form_widget(form.file) }}
+	   Document naam {{ form_widget(form.fileNaam) }}<br>
+	   <!-- Nieuw document {{ form_widget(form.file) }} -->
 	</p>
+	<div class="uploadCanvases"></div>
 	<p><input type="submit" class="primair detailOpslaan" value="Opslaan"></p>
 	{{ form_end(form) }}
 	{% endif %}
