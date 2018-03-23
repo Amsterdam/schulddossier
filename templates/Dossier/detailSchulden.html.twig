@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		</span>
 		<div class="knoppenbalk">
 			<input type="reset" class="tertiair" value="Annuleren" id="annuleren">
-			<button class="secundair" id="verwijderen">Verwijderen</button>
+			<a href="#" class="secundair" id="verwijderen">Verwijderen</a>
 			<input type="submit" class="primair" value="Opslaan" id="opslaan">
 		</div>
 {{ form_end(form) }}
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		</div>
 		<span style="display:none">{{ form_widget(createForm.verwijderd) }}</span>
 		<div class="knoppenbalk"><input type="reset" class="tertiair" value="Annuleren" id="annuleren">
-			<button class="secundair" id="verwijderen">Verwijderen</button>
+			<a href="#" class="secundair" id="verwijderen">Verwijderen</a>
 			<input type="submit" class="primair" value="Opslaan" id="opslaan"></div>
 		<datalist id="schuldeiserdata"></datalist>
 {{ form_end(createForm) }}

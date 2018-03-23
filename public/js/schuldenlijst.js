@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
 },false);
 
 function schuldenLijst() {
-
 	var actiefFormulier;
 	var lijstSrc = '/app/schuldeiser/';
 	sendRequest(lijstSrc,function(req) {
@@ -17,21 +16,44 @@ function schuldenLijst() {
 	var formulieren  = document.querySelector('.accordeon');
 	document.addEventListener('click',handelEventsAf,false);
 	document.addEventListener('blur',handelEventsAf,true);
-
+	var forms = document.forms;
+	for (var i=0;i<forms.length;i+=1) {
+		forms[i].addEventListener('submit',submitForm,false);
+	}
+	
 	function handelEventsAf(e) {
 		var element = e.target;
 		var elementID = element.id;
 		var type = e.type;
 		if (elementID && eventHandlers[elementID] && eventHandlers[elementID][type]) {
+			console.log(elementID + ' ' + type);
 			eventHandlers[elementID][type](element);
 			e.preventDefault();
 		}
+	}
+
+	function submitForm(e) {
+		console.log('submitForm aangeroepen');
+		eventHandlers.opslaan.click(this);		
+		e.preventDefault();
 	}
 
 	var eventHandlers = {
 		'opslaan': {
 			'click': function (element) {
 				stuurFormulier(element);		
+			},
+		},
+		'verwijderen': {
+			'click': function (element) {
+				console.log('verwijderd aangeroepen');
+				var form = goUp(element,'FORM');
+				form.elements['schuld_item_form[verwijderd]'].checked = true;
+				var accordeon = goUp(form,'SECTION');
+				stuurFormulier(element,function () {
+					accordeon.removeChild(form.container);
+					accordeon.removeChild(form.header);
+				});
 			},
 		},
 		'schuldeiserVeld': {
@@ -58,18 +80,6 @@ function schuldenLijst() {
 					// doe iets
 				}				
 			}
-		},
-		'verwijderen': {
-			'click': function (element) {
-				var form = goUp(element,'FORM');
-				form.elements['schuld_item_form[verwijderd]'].checked = true;
-				var accordeon = goUp(form,'SECTION');
-				stuurFormulier(element,function () {
-					console.log('Schuld verwijderd');
-					accordeon.removeChild(form.container);
-					accordeon.removeChild(form.header);
-				});
-			},
 		},
 		'annuleren': {
 			'click': function () {
@@ -186,6 +196,10 @@ function schuldenLijst() {
 		}
 	}
 
+	var succesMessage = document.createElement('p');
+	succesMessage.className = 'succesMessage';
+	succesMessage.innerHTML = 'Uw wijzigingen zijn opgeslagen.';
+
 	function stuurFormulier(source,fn) {
 		var form = goUp(source,'FORM');
 		var data = new FormData(form);
@@ -210,6 +224,11 @@ function schuldenLijst() {
 		sendRequest(form.action,function (req) {
 			spinner.style.display = '';
 			console.log(req.status);
+			console.log(req.responseText);
+			form.insertBefore(succesMessage,form.firstChild);
+			setTimeout(function () {
+				form.removeChild(succesMessage);
+			},5000)
 			if (fn) {
 				fn(req);
 			}
