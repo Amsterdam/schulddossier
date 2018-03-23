@@ -372,6 +372,7 @@ function autoSave() {
 	
 }
 
+var actiefFormulier;
 function maakAccordeon(block) {
 
 	var headers = block.querySelectorAll('h3'),
@@ -397,6 +398,9 @@ function maakAccordeon(block) {
 	block.addEventListener('click',function (e) {
 		var header = goUp(e.target,'H3');
 		if (header.nodeName === 'H3') {
+			if (actiefFormulier) {
+				actiefFormulier.container.style.display = '';
+			}
 			if (header.open) {
 				header.container.style.display = '';
 				header.classList.remove('uitgeklapt');
@@ -413,6 +417,7 @@ function maakAccordeon(block) {
 					nieuwForm.container = header.container;
 					header.container.appendChild(nieuwForm);
 				}
+				actiefFormulier = nieuwForm;
 			}
 		}
 	},false);
