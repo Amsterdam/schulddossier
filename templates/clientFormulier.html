@@ -8,30 +8,28 @@
 {% endif %}
 
 <table>
-	{% do form.partnerNaam.setRendered() %}
+	{# do form.partnerNaam.setRendered() #}
 	{% do form.clientNaam.setRendered() %}
-	{% do form.medewerkerSchuldhulpbureau.setRendered() %}
-	{% do form.schuldhulpbureau.setRendered() %}
+	{# do form.medewerkerSchuldhulpbureau.setRendered() #}
+	{# do form.schuldhulpbureau.setRendered() #}
 	{{ form_row(form.status)}}
-{% if dossier.partnerNaam is not empty %}
 	<tr>
 		<td>Partner</td>
-		<td>{{ dossier.partnerNaam }}</td>
+		<td>{{ form_widget(form.partnerNaam)}}</td>
 	</tr>
-{% endif %}
 	<tr>
 		<th colspan="2">MaDi</th>
 		<th colspan="2">GKA</th>
 	</tr>
 	<tr>
 		<td>Schuldhulpbureau</td>
-		<td>{{ dossier.schuldhulpbureau }}</td>
+		<td>{{ form_widget(form.schuldhulpbureau)}}</td>
 		<td>GKA team</td>
 		<td>{{ form_widget(form.teamGka)}}</td>
 	</tr>
 	<tr>
 		<td>Naam hulpverlener</td>
-		<td>{{ dossier.aanmaker.naam }}</td>
+		<td>{{ form_widget(form.medewerkerSchuldhulpbureau)}}</td>
 	</tr>
 	<tr>
 		<td>Regas dossiernr.</td>

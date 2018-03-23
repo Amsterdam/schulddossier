@@ -42,16 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 {% block main %}
 
-
-{# dump(schuldItems) #}
-
-<section id="formulierKop">
-	<h1>Schulden {{ dossier.clientNaam }}</h1>
-	<p>[Formulier doet het nog niet]</p>
-
-</section>
-
-{# include 'clientFormulier.html' #}
+{% include 'clientFormulier.html' %}
 {% include 'subnavigatie.html' %}
 
 	<section class="accordeon">
