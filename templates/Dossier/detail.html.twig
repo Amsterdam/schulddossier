@@ -96,6 +96,25 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 		{% endif %}
 		{% if categorie.nvt == true %}
 			<label>{{ form_widget(form[categorie.systeemNaam ~ 'Nvt']) }} n.v.t.</label>
+		    {% if form[categorie.systeemNaam ~ 'OntvangenMadi'] is not defined %}
+		          Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} ontvangen madi)
+		    {% else %}
+			     {{ form_widget(form[categorie.systeemNaam ~ 'OntvangenMadi']) }} Madi
+			{% endif %}
+		{% endif %}
+		{% if categorie.gka == true %}
+            {% if form[categorie.systeemNaam ~ 'OntvangenGka'] is not defined %}
+                Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} ontvangen gka)
+            {% else %}
+                {{ form_widget(form[categorie.systeemNaam ~ 'OntvangenGka']) }} Gka
+            {% endif %}
+		{% endif %}
+		{% if categorie.nvt == true %}
+		    {% if form[categorie.systeemNaam ~ 'Nvt'] is not defined %}
+		          Help checkbox is niet aanwezig ({{ categorie.systeemNaam }} nvt)
+            {% else %}
+	           {{ form_widget(form[categorie.systeemNaam ~ 'Nvt']) }} N.v.t.
+            {% endif %}
 		{% endif %}
 	</p>
 	{% if dossier.getDocumentenByOnderwerp(categorie.systeemNaam)|length > 0 %}
