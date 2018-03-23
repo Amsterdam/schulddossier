@@ -140,7 +140,6 @@ class AppDossierController extends Controller
         ]);
     }
 
-
     /**
      * @Route("/detail/{dossierId}")
      * @ParamConverter("dossier", options={"id"="dossierId"})
@@ -521,6 +520,20 @@ class AppDossierController extends Controller
     {
         $schuldItems = $dossier->getSchuldItems();
 
+        $form = $this->createForm(DetailDossierFormType::class, $dossier, [
+            'disabled' => $dossier->isInPrullenbak() === true,
+            'disable_group' => $this->getUser()->getType()
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            $this->addFlash('success', 'Opgeslagen');
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', [
+                'dossierId' => $dossier->getId()
+            ]);
+        }
+
         $updateForms = [];
         foreach ($schuldItems as $schuldItem) {
             $updateForms[$schuldItem->getId()] = $this->createForm(SchuldItemFormType::class, $schuldItem, [
@@ -545,6 +558,7 @@ class AppDossierController extends Controller
 
         return $this->render('Dossier/detailSchulden.html.twig', [
             'dossier' => $dossier,
+            'form' => $form->createView(),
             'schuldItems' => $schuldItems,
             'updateForms' => array_map(function ($form) {
                     return $form->createView();
