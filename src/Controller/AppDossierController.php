@@ -226,6 +226,12 @@ class AppDossierController extends Controller
                 }
 
                 $em->flush();
+
+                if ($request->isXmlHttpRequest()) {
+                    return new JsonResponse(['state' => 'OK']);
+                }
+            } elseif ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid() === false) {
+                return new JsonResponse($this->get('json_serializer')->normalize($voorleggerForm->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
             }
         }
 
