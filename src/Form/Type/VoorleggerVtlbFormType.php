@@ -19,11 +19,11 @@ class VoorleggerVtlbFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('vtlbMadi', CheckboxType::class, [
+        $builder->add('vtlbOntvangenMadi', CheckboxType::class, [
             'required' => false,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('vtlbGka', CheckboxType::class, [
+        $builder->add('vtlbOntvangenGka', CheckboxType::class, [
             'required' => false,
             'disabled' => $options['disable_group'] === 'madi'
         ]);

@@ -46,13 +46,13 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $vtlbMadi;
+    private $vtlbOntvangenMadi;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $vtlbGka;
+    private $vtlbOntvangenGka;
 
     /**
      * @var float
@@ -845,8 +845,8 @@ class Voorlegger
     {
         $this->legitimatieOntvangenGka = false;
         $this->legitimatieOntvangenMadi = false;
-        $this->vtlbMadi = false;
-        $this->vtlbGka = false;
+        $this->vtlbOntvangenMadi = false;
+        $this->vtlbOntvangenGka = false;
         $this->vtlbBedrag = 0.00;
         $this->inkomstenspecificatieOntvangenMadi = false;
         $this->inkomstenspecificatieOntvangenGka = false;
@@ -972,14 +972,14 @@ class Voorlegger
         return $this->legitimatieOntvangenMadi;
     }
 
-    public function isVtlbMadi()
+    public function isVtlbOntvangenMadi()
     {
-        return $this->vtlbMadi;
+        return $this->vtlbOntvangenMadi;
     }
 
-    public function isVtlbGka()
+    public function isVtlbOntvangenGka()
     {
-        return $this->vtlbGka;
+        return $this->vtlbOntvangenGka;
     }
 
     public function getVtlbBedrag()
@@ -1596,14 +1596,14 @@ class Voorlegger
         $this->legitimatieOntvangenMadi = $legitimatieOntvangenMadi;
     }
 
-    public function setVtlbMadi($vtlbMadi)
+    public function setVtlbOntvangenMadi($vtlbOntvangenMadi)
     {
-        $this->vtlbMadi = $vtlbMadi;
+        $this->vtlbOntvangenMadi = $vtlbOntvangenMadi;
     }
 
-    public function setVtlbGka($vtlbGka)
+    public function setVtlbOntvangenGka($vtlbOntvangenGka)
     {
-        $this->vtlbGka = $vtlbGka;
+        $this->vtlbOntvangenGka = $vtlbOntvangenGka;
     }
 
     public function setVtlbBedrag($vtlbBedrag)
