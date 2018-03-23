@@ -25,8 +25,6 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	{% endfor %}
 {% endfor %}
 
-<main class="voorlegger">
-
 {{ form_start(form, {'attr': {'id': 'voorlegger_mainform'}}) }}
 
 <section id="formulierKop">
@@ -80,29 +78,29 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 </div>
 <section>
 
-<section class="accordeon">
+<section class="accordeon aanmelding">
 {% for categorie in categorieen %}
-	<h3>{{ categorie.schermNaam }}</h3>
+	<h3>{{ categorie.schermNaam }} <span>({{ dossier.getDocumentenByOnderwerp(categorie.systeemNaam)|length }} documenten)</span></h3>
 	<div class="container" data-systeemnaam="{{ categorie.systeemNaam }}">
 	{% set form = voorleggerForms[categorie.systeemNaam]|default('') %}
 	{% if form is empty %}
 	   <p>Dit moeten we nog implementeren: {{ categorie.systeemNaam }}</p>
 	{% else %}
 	   {{ form_start(form) }}
-	<p>
+	<p class="checkboxes">
 		{% if categorie.madi == true %}
-			{{ form_widget(form[categorie.systeemNaam ~ 'OntvangenMadi']) }} Madi
+			<label>{{ form_widget(form[categorie.systeemNaam ~ 'OntvangenMadi']) }} Madi</label>
 		{% endif %}
 		{% if categorie.gka == true %}
-			{{ form_widget(form[categorie.systeemNaam ~ 'OntvangenGka']) }} Gka
+			<label>{{ form_widget(form[categorie.systeemNaam ~ 'OntvangenGka']) }} Gka</label>
 		{% endif %}
 		{% if categorie.nvt == true %}
-			{{ form_widget(form[categorie.systeemNaam ~ 'Nvt']) }} N.v.t.
+			<label>{{ form_widget(form[categorie.systeemNaam ~ 'Nvt']) }} n.v.t.</label>
 		{% endif %}
 	</p>
-	Aantal documenten: {{ dossier.getDocumentenByOnderwerp(categorie.systeemNaam)|length }}
 	{% if dossier.getDocumentenByOnderwerp(categorie.systeemNaam)|length > 0 %}
-	<ul>
+	<p>Toegevoegde documenten:</p>
+	<ul class="documentenLijst">
 	{% for dossierDocument in dossier.getDocumentenByOnderwerp(categorie.systeemNaam) %}
 	   <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a></li>
 	{% endfor %}

@@ -243,7 +243,34 @@ body.create input[type=submit] {
 }
 
 
-/* DOSSIERINDEX */
+/* AANMELDING */
+
+section.aanmelding div.container form {
+	padding-left: 30px;
+	padding-top: 5px;
+}
+
+section.aanmelding h3 span {
+	font-size: 14px;
+	padding-left: 10px;
+}
+
+section.aanmelding p.checkboxes {
+	margin: 0;
+}
+
+section.aanmelding ul.documentenLijst {
+	font-size: 14px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	margin-left: 10px;
+
+}
+
+section.aanmelding ul.documentenLijst a {
+	color: inherit;
+}
 
 /* DIGITALE VOORLEGGER */
 

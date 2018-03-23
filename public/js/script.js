@@ -293,7 +293,7 @@ function maakAccordeon(block) {
 	}
 	
 	block.addEventListener('click',function (e) {
-		var header = e.target;
+		var header = goUp(e.target,'H3');
 		if (header.nodeName === 'H3') {
 			if (header.open) {
 				header.container.style.display = '';
