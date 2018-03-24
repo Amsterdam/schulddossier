@@ -520,7 +520,7 @@ class AppDossierController extends Controller
      * @Route("/detail/{dossierId}/schulden")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailSchuldenAction(Request $request, Dossier $dossier)
+    public function detailSchuldenAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
     {
         $schuldItems = $dossier->getSchuldItems();
 
