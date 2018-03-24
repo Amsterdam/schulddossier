@@ -126,6 +126,7 @@ class Dossier
     /**
      * @var SchuldItem[]|ArrayCollection
      * @ORM\OneToMany(targetEntity="SchuldItem", mappedBy="dossier", cascade={"persist"})
+     * @ORM\OrderBy({"id"="ASC"})
      */
     private $schuldItems;
 
