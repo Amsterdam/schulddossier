@@ -1,4 +1,7 @@
 {
+    "bevacqua/dragula": {
+        "version": "3.7.2"
+    },
     "bevacqua/horsey": {
         "version": "4.2.2"
     },

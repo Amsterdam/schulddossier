@@ -28,7 +28,8 @@
         "symfony/validator": "^4.0",
         "symfony/var-dumper": "^4.0",
         "symfony/yaml": "^4.0",
-        "bevacqua/horsey": "4.2.2"
+        "bevacqua/horsey": "4.2.2",
+        "bevacqua/dragula": "3.7.2"
     },
     "require-dev": {
         "symfony/dotenv": "^4.0",
@@ -82,7 +83,8 @@
             ["mkdir", "public/vendor"],
             ["mirror", "vendor/mozilla/pdf.js", "public/vendor/mozilla/pdf.js", null, {"delete": true}],
             ["mirror", "vendor/mrrio/jspdf", "public/vendor/mrrio/jspdf", null, {"delete": true}],
-            ["mirror", "vendor/bevacqua/horsey", "public/vendor/bevacqua/horsey", null, {"delete": true}]
+            ["mirror", "vendor/bevacqua/horsey", "public/vendor/bevacqua/horsey", null, {"delete": true}],
+            ["mirror", "vendor/bevacqua/dragula", "public/vendor/bevacqua/dragula", null, {"delete": true}]
         ]
     },
     "repositories": [
@@ -115,6 +117,17 @@
                 "version": "4.2.2",
                 "dist": {
                     "url": "https://github.com/bevacqua/horsey/archive/v4.2.2.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "bevacqua/dragula",
+                "version": "3.7.2",
+                "dist": {
+                    "url": "https://github.com/bevacqua/dragula/archive/v3.7.2.zip",
                     "type": "zip"
                 }
             }
