@@ -76,7 +76,7 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 <section class="accordeon aanmelding">
 {% for categorie in categorieen %}
 	{% if categorie.isKop is not defined %}
-	<h3>{{ categorie.schermNaam }} <span>({{ dossier.getDocumentenByOnderwerp(categorie.systeemNaam)|length }} documenten)</span></h3>
+	<h3>{{ categorie.schermNaam }} <span>(<span class="aantal">{{ dossier.getDocumentenByOnderwerp(categorie.systeemNaam)|length }}</span> documenten)</span></h3>
 	<div class="container" data-systeemnaam="{{ categorie.systeemNaam }}">
 	{% set form = voorleggerForms[categorie.systeemNaam]|default('') %}
 	{% if form is empty %}
@@ -112,14 +112,16 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 			{% endfor %}
 		{% endif %}
 	</p>
+	{% if dossier.getDocumentenByOnderwerp(categorie.systeemNaam)|length > 0 %}
 		<p>Toegevoegde documenten:</p>
 		<ul class="documentenLijst">
-	{% if dossier.getDocumentenByOnderwerp(categorie.systeemNaam)|length > 0 %}
 		{% for dossierDocument in dossier.getDocumentenByOnderwerp(categorie.systeemNaam) %}
 		   <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a></li>
 		{% endfor %}
-	{% endif %}
 		</ul>
+	{% else %}
+		<span class="insertDocumentenLijst"></span>
+	{% endif %}
 	<p>Documentnaam {{ form_widget(form.fileNaam) }}</p>
    <!--  Nieuw document {{ form_widget(form.file) }} -->
 	
@@ -131,5 +133,14 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	{% endif %}
 {% endfor %}
 </section>
+
+<div id="templates">
+
+	<div id="documentenLijstTemplate">
+		<p>Toegevoegde documenten:</p>
+		<ul class="documentenLijst">
+		</ul>	
+	</div>
+</div>
 
 {% endblock %}

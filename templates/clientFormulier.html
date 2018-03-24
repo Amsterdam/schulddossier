@@ -9,9 +9,10 @@
 
 <table>
 	{# do form.partnerNaam.setRendered() #}
-	{% do form.clientNaam.setRendered() %}
+	{# do form.clientNaam.setRendered() #}
 	{# do form.medewerkerSchuldhulpbureau.setRendered() #}
 	{# do form.schuldhulpbureau.setRendered() #}
+	{{ form_row(form.clientNaam)}}
 	{{ form_row(form.status)}}
 	<tr>
 		<td>Partner</td>

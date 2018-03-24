@@ -15,16 +15,62 @@ document.addEventListener("DOMContentLoaded", function(event) {
 },false);
 
 function submitAanmeldFormulieren() {
-	var submits = document.querySelectorAll('input[type=submit].detailOpslaan');
+	var submits = document.querySelectorAll('input[type=submit]');
 	for (var i=0;i<submits.length;i+=1) {
-		submits[i].form.onsubmit = slaFormulierOp;
+		if (submits[i].classList.contains('detailOpslaan')) {
+			submits[i].form.onsubmit = slaDocumentFormulierOp;
+		} else {
+			submits[i].form.onsubmit = slaFormulierOp;
+		}
 	}
 	
 	var succesMessage = document.createElement('p');
 	succesMessage.className = 'succesMessage';
 	succesMessage.innerHTML = 'Uw wijzigingen zijn opgeslagen.';
-	
+
 	function slaFormulierOp(e) {
+		e.preventDefault();
+		var form = this;
+		var data = new FormData(form);
+		var spinner = form.querySelector('.spinnerContainer');
+		if (!spinner) {
+			spinner = document.createElement('span');
+			spinner.className = 'spinnerContainer';
+			var img = document.createElement('img');
+			img.src= '/pix/spinner.gif'
+			spinner.appendChild(img);
+			form.appendChild(spinner);
+		}
+		spinner.style.display = 'block';
+		var succes = succesMessage.cloneNode(true);
+		sendRequest(form.action,function (req) {
+			console.log(req);
+			spinner.style.display = '';
+			var parsedJSON;
+			try {
+				parsedJSON = JSON.parse(req.response);
+			} catch (e) {
+			}
+			
+			if (req.status === 400 || req.status === 500) {
+				
+				console.log(parsedJSON);
+				var errors = parsedJSON.errors;
+				if (errors) {
+					console.log(parsedJSON.errors);
+				} else {
+					console.log('Geen errors');
+				}
+			} else if (req.status === 200 || req.status === 201) {
+				form.appendChild(succes);
+	/*			setTimeout(function () {
+					form.removeChild(succes);
+				},5000) */
+			}
+		},data);
+	}
+	
+	function slaDocumentFormulierOp(e) {
 		e.preventDefault();
 		var form = this;
 		
@@ -103,9 +149,21 @@ function submitAanmeldFormulieren() {
 				link.href =  linkData.link;
 				link.textContent = link.innerText = linkData.naam;
 				li.appendChild(link);
-				console.log(li);
-				form.querySelector('.documentenLijst').appendChild(li);
+				var documentenLijst = form.querySelector('.documentenLijst');
+				if (!documentenLijst) {
+					documentenLijst = $('documentenLijstTemplate').cloneNode(true);
+					documentenLijst.id = '';
+					var insert = form.querySelector('.insertDocumentenLijst');
+					insert.parentNode.insertBefore(documentenLijst,insert);
+					insert.parentNode.removeChild(insert);
+				}
+				documentenLijst.appendChild(li);
 				form.querySelector('.uploadCanvases').innerHTML = '';
+				var aantalDocumenten = documentenLijst.querySelectorAll('li').length;
+				var huidigeTeller = form.header.querySelector('span.aantal');
+				if (huidigeTeller) {
+					huidigeTeller.innerText = huidigeTeller.textContent = aantalDocumenten 
+				}
 				naamSource.value = '';
 				for (var i=0,cv;cv=canvasIDs[i];i+=1) {
 					$(cv).parentNode.classList.add('upgeload');
