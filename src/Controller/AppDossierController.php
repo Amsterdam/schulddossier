@@ -612,9 +612,9 @@ class AppDossierController extends Controller
 
             return new JsonResponse($this->get('json_serializer')->normalize($schuldItem));
         } elseif ($form->isSubmitted() && $form->isValid() === false) {
-            if ($request->isXmlHttpRequest()) {
+            //if ($request->isXmlHttpRequest()) {
                 return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-            }
+            //}
         }
 
         return; // 500

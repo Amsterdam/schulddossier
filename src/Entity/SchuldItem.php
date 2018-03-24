@@ -228,7 +228,7 @@ class SchuldItem
         return $this->schuldeiser;
     }
 
-    public function setSchuldeiser(Schuldeiser $schuldeiser)
+    public function setSchuldeiser(Schuldeiser $schuldeiser = null)
     {
         $this->schuldeiser = $schuldeiser;
     }

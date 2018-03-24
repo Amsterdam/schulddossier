@@ -16,7 +16,8 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\FormInterface;
 
 class VoorleggerLegitimatieFormType extends AbstractType
 {
@@ -32,14 +33,17 @@ class VoorleggerLegitimatieFormType extends AbstractType
         ]);
         $builder->add('file', FileType::class, [
             'required' => false,
-            'mapped' => false
+            'mapped' => false,
+            'constraints' => [
+                new File(['groups' => ['withFile']])
+            ]
         ]);
         $builder->add('fileNaam', TextType::class, [
             'required' => false,
             'mapped' => false,
             'constraints' => [
-                new NotBlank(),
-                new Length(['min' => 1, 'max' => 255])
+                new NotBlank(['groups' => ['withFile']]),
+                new Length(['min' => 1, 'max' => 255, 'groups' => ['withFile']])
             ]
         ]);
     }
@@ -49,5 +53,11 @@ class VoorleggerLegitimatieFormType extends AbstractType
         $resolver->setDefault('data_class', Voorlegger::class);
         $resolver->setDefault('choice_translation_domain', false);
         $resolver->setDefault('disable_group', null);
+        $resolver->setDefault('validation_groups', function (FormInterface $form) {
+            $dataFile = $form->get('file')->getData();
+            $dataNaam = $form->get('fileNaam')->getData();
+            $required = ($dataFile !== null) || ($dataNaam !== null);
+            return ['Default', $required ? 'withFile' : null];
+        });
     }
 }
