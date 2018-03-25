@@ -237,7 +237,7 @@ section.aanmelding div.container form {
 	padding-top: 5px;
 }
 
-section.aanmelding h3 ? span {
+section.aanmelding h3 > span {
 	font-size: 14px;
 	padding-left: 10px;
 }

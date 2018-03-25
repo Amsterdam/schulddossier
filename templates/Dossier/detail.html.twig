@@ -82,7 +82,7 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	{% if form is empty %}
 	   <p>Dit moeten we nog implementeren: {{ categorie.systeemNaam }}</p>
 	{% else %}
-	   {{ form_start(form) }}
+	   {{ form_start(form,{attr:{class:'aanmeldformulier'}}) }}
 	<p class="checkboxes">
 		{% if categorie.madi == true %}
 			{% if form[categorie.systeemNaam ~ 'OntvangenMadi'] is not defined %}
