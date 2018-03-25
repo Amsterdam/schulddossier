@@ -22,6 +22,8 @@ function submitAanmeldFormulieren(form) {
 		form.onsubmit = verstuurNieuweSchuldeiserFormulier;
 	} else if (form.classList.contains('aanmeldformulier')) {
 		form.onsubmit = verstuurAanmeldFormulier;
+	} else if (form.classList.contains('novalidate')) {
+		return;
 	} else {
 		form.onsubmit = verstuurFormulierDefault;
 	}

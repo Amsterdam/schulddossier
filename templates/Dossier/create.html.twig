@@ -11,14 +11,33 @@
 
 {% block main %}
     <h1>Nieuw dossier</h1>
-    {{ form_start(form) }}
-    <p><label>Naam cliënt{{ form_widget(form.clientNaam) }}</label>{{ form_errors(form.clientNaam) }}</p>
-    <p><label>Naam partner{{ form_widget(form.partnerNaam) }}</label>{{ form_errors(form.partnerNaam) }}</p>
-    <p><label>Schuldhulpbureau{{ form_widget(form.schuldhulpbureau) }}</label>{{ form_errors(form.schuldhulpbureau) }}</p>
-    <p><label>Medewerker{{ form_widget(form.medewerkerSchuldhulpbureau) }}</label>{{ form_errors(form.medewerkerSchuldhulpbureau) }}</p>
-    <p><label>Team GKA{{ form_widget(form.teamGka) }}</label>{{ form_errors(form.teamGka) }}</p>
-    <p><label>Regas{{ form_widget(form.regasNummer) }}</label>{{ form_errors(form.regasNummer) }}</p>
-    <p><label>Allegro{{ form_widget(form.allegroNummer) }}</label>{{ form_errors(form.allegroNummer) }}</p>
-    <input type="submit" value="Maak aan">
-    {{ form_end(form) }}
+
+<div class="document">
+        <div class="header">
+
+            {% form_theme form with ['forms2.html.twig'] only %}
+            {{ form_start(form, {'attr': {'class': 'default-form-style ajax novalidate'} }) }}
+            {{ form_row(form.clientNaam) }}
+            {{ form_row(form.partnerNaam) }}
+            {# form_row(form.status) #}
+            <div class="columns">
+                <div class="column">
+                    <h3>MaDi</h3>
+                    {{ form_row(form.schuldhulpbureau) }}
+                    {{ form_row(form.medewerkerSchuldhulpbureau) }}
+                    {{ form_row(form.regasNummer) }}
+                </div>
+                <div class="column">
+                    <h3>GKA</h3>
+                    {{ form_row(form.teamGka) }}
+                    {{ form_row(form.allegroNummer) }}
+                </div>
+            </div>
+            <div class="nav">
+                <button type="submit">Opslaan</button>
+            </div>
+            {{ form_end(form) }}
+		</div>
+	</div>
+
 {% endblock %}
