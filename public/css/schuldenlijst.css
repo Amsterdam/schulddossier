@@ -5,23 +5,36 @@ form {
 
 section.velden {
 	padding: 0 10px;
-	display: flex;
-	flex-wrap: wrap;
+/*	display: flex;
+	flex-wrap: wrap; */
+	overflow: auto;
 }
 
 section.velden > * {
-	flex-basis: 40%;
-	flex-grow: 1;
+/*	flex-basis: 40%;
+	flex-grow: 1; */
+	float: left;
+	width: 45%;
 	margin: 10px 20px 10px 0;
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+section.velden > *:nth-child(2n+1) {
+	clear: left;
+}	
+
+section.velden p.foutmelding {
+	white-space: normal;
+	margin: 0;
+	margin-top: 3px;
 }
 
 section.velden input,section.velden select  {
 	width: 50%;
 	box-sizing: border-box;
 }
-
 
 section.accordeon h3 {
 	position: relative;

@@ -11,6 +11,10 @@ body {
 	padding: 0;
 }
 
+form {
+	position: relative;
+}
+
 /* PAGINA-HEADER */
 
 header {
@@ -233,7 +237,7 @@ section.aanmelding div.container form {
 	padding-top: 5px;
 }
 
-section.aanmelding h3 span {
+section.aanmelding h3 > span {
 	font-size: 14px;
 	padding-left: 10px;
 }
@@ -857,7 +861,6 @@ section.accordeon div.container {
 section.accordeon form {
 	padding: 10px 20px;
 	background-color: #f8f8f8;
-	position: relative;
 }
 
 #templates {

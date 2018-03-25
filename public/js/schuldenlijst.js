@@ -14,22 +14,10 @@ function schuldenLijst() {
 		}
 	});
 	berekenTotaleSchuld();
-	var formulieren  = document.querySelector('.accordeon');
 	document.addEventListener('click',handelEventsAf,false);
 	document.addEventListener('blur',handelEventsAf,true);
-	var forms = document.forms;
-	for (var i=0;i<forms.length;i+=1) {
-//		forms[i].addEventListener('submit',submitForm,false);
-		var fileField = forms[i].querySelectorAll('input[type=file]');
-		for (var j=0;j<fileField.length;j+=1) {
-			fileField[j].onchange = function () {
-				var value = this.value.substring(this.value.lastIndexOf('\\')+1);
-				this.form.querySelector('#tekst').innerText = this.form.querySelector('#tekst').textContent = 'Document ' + value + '  bijgevoegd';
-				console.log(value);
-			}
-		}
-	}
-	
+	document.addEventListener('focus',handelEventsAf,true);
+
 	function handelEventsAf(e) {
 		var element = e.target;
 		var elementID = element.id;
@@ -41,35 +29,35 @@ function schuldenLijst() {
 		}
 	}
 
-	function submitForm(e) {
-//		console.log('submitForm aangeroepen');
-		eventHandlers.opslaan.click(this);		
-		e.preventDefault();
-	}
-
 	var eventHandlers = {
-		'opslaan': {
-			'click': function (element) {
-				stuurFormulier(element);		
-			},
-		},
 		'verwijderen': {
 			'click': function (element) {
-				console.log('verwijderd aangeroepen');
 				var form = goUp(element,'FORM');
 				form.elements['schuld_item_form[verwijderd]'].checked = true;
+				var formData = new FormData(form);
+				var schuldEiserVelden = ['schuldeiser','incassant'];
+				for (var i=0;i<schuldEiserVelden.length;i+=1) {
+					var veldNaam = 'schuld_item_form[' + schuldEiserVelden[i] + ']';
+					if (form.elements[veldNaam].value && !controleerSchuldEiserNaam(formData,veldNaam)) {
+						handelSchuldeiserFoutAf(form.elements[veldNaam]);
+						return;
+					}	
+				}
 				var accordeon = goUp(form,'SECTION');
-				stuurFormulier(element,function () {
-					accordeon.removeChild(form.container);
-					accordeon.removeChild(form.header);
+				stuurFormulier({
+					form: form,
+					data: formData,
+					success: function () {
+						accordeon.removeChild(form.container);
+						accordeon.removeChild(form.header);					
+					}
 				});
 			},
 		},
 		'schuldeiserVeld': {
 			'click': function (element) {
-				if (!element.initialized && schuldEisersLijst) {
+				if (schuldEisersLijst) {
 					var lijst = [];
-//					console.log(alfabetisch.length);
 					for (var i=0,item;item=alfabetisch[i];i+=1) {
 						var tmp = {};
 						tmp.text = alfabetisch[i];
@@ -81,17 +69,23 @@ function schuldenLijst() {
 						getText: 'text',
 						getValue: 'value',
 					});
-					element.initialized = true;
 				}
 			},
 			'blur': function (element) {
-				return;
-				// heeft geen zin; op dit moment heeft Horsey de value nog niet aangepast
-				if (!schuldEisersLijst[element.value]) {
-					console.log('Schuldeiser ' + element.value + ' bestaat niet!');
-					// doe iets
-				}				
-			}
+				setTimeout(function () {
+					if (!element.value) return;
+					if (!schuldEisersLijst[element.value]) {
+						handelSchuldeiserFoutAf(element);
+					}				
+				},200)
+			},
+			'focus': function (element) {
+				var error = element.parentNode.querySelector('p.foutmelding');
+				if (error) {
+					error.parentNode.removeChild(error);
+				}
+				element.classList.remove('error');
+			},
 		},
 		'annuleren': {
 			'click': function () {
@@ -120,27 +114,22 @@ function schuldenLijst() {
 		},
 		'uploadAnnuleren': {
 			'click': function (element) {
-				$('uploadVenster').style.visibility = 'hidden';
+				var venster = $('uploadVenster');
+				venster.style.visibility = 'hidden';
 				var els = goUp(element,'FORM').elements;
 				for (var i=0,el;el=els[i];i+=1) {
 					if (el.type === 'text') {
 						el.value = '';
 					}
 				}
-			},
-		},
-		'uploadAanmaken': {
-			'click': function (element) {
-				stuurFormulier(element,function (req) {
-					console.log(req);
-					$('uploadVenster').style.visibility = 'hidden';
-					var velden = $('uploadVenster').querySelectorAll('input');
-					var nieuweSchuldEiser = velden[0].value;
-					actiefFormulier.elements['schuld_item_form[schuldeiser]'].value = velden[0].value;
-					for (var i=0;i<velden.length;i+=1) {
-						velden[i].value = '';
-					}
-				});		
+				var statusMsg = venster.querySelector('.status');
+				if (statusMsg) {
+					statusMsg.parentNode.removeChild(statusMsg);
+				}
+				var errors = venster.querySelectorAll('p.foutmelding');
+				for (var i=0,error;error=errors[i];i+=1) {
+					error.parentNode.removeChild(error);
+				}
 			},
 		},
 		'nieuweSchuld': {
@@ -156,6 +145,8 @@ function schuldenLijst() {
 				wr.appendChild(div);
 				h3.click();
 				actiefFormulier = div.querySelector('form');
+				submitAanmeldFormulieren(actiefFormulier);
+//				actiefFormulier.onsubmit = zendSchuldenFormulier;
 				actiefFormulier.container = div;		
 				actiefFormulier.header = h3;		
 			}
@@ -192,43 +183,15 @@ function schuldenLijst() {
 		alfabetisch.sort();
 	}
 
-	var succesMessage = document.createElement('p');
-	succesMessage.className = 'succesMessage';
-	succesMessage.innerHTML = 'Uw wijzigingen zijn opgeslagen.';
-
-	function stuurFormulier(source,fn) {
-		var form = goUp(source,'FORM');
-		var data = new FormData(form);
-		var schuldEiserNaam = data.getAll('schuld_item_form[schuldeiser]');
-		if (schuldEiserNaam) {
-			var ID = schuldEiserNaam.join('') && schuldEisersLijst[schuldEiserNaam.join('')].id;
-			if (ID) {
-				data.set('schuld_item_form[schuldeiser]',ID);
-			}
-		}
-		console.log('Zend formulier');
-		var spinner = form.querySelector('.spinnerContainer');
-		if (!spinner) {
-			spinner = document.createElement('span');
-			spinner.className = 'spinnerContainer';
-			var img = document.createElement('img');
-			img.src= '/pix/spinner.gif'
-			spinner.appendChild(img);
-			form.appendChild(spinner);
-		}
-		spinner.style.display = 'block';
-		sendRequest(form.action,function (req) {
-			spinner.style.display = '';
-			console.log(req.status);
-			console.log(req.responseText);
-			form.insertBefore(succesMessage,form.firstChild);
-			setTimeout(function () {
-				form.removeChild(succesMessage);
-			},5000)
-			if (fn) {
-				fn(req);
-			}
-		},data)
-	}
-
 }
+
+/*
+		var fileField = forms[i].querySelectorAll('input[type=file]');
+		for (var j=0;j<fileField.length;j+=1) {
+			fileField[j].onchange = function () {
+				var value = this.value.substring(this.value.lastIndexOf('\\')+1);
+				this.form.querySelector('#tekst').innerText = this.form.querySelector('#tekst').textContent = 'Document ' + value + '  bijgevoegd';
+				console.log(value);
+			}
+		} */
+	
