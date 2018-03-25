@@ -177,7 +177,7 @@ function PDFUploadSuccess(obj) {
 			insert.parentNode.removeChild(insert);
 		}
 		documentenLijst.appendChild(li);
-		console.log(obj.form.querySelector('.uploadCanvases').innerHTML);
+//		console.log(obj.form.querySelector('.uploadCanvases').innerHTML);
 		obj.form.querySelector('.uploadCanvases').innerHTML = '';
 		var aantalDocumenten = documentenLijst.querySelectorAll('li').length;
 		var huidigeTeller = obj.form.header.querySelector('span.aantal');
