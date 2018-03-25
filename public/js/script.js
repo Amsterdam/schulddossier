@@ -19,13 +19,14 @@ function submitAanmeldFormulieren(form) {
 	if (form.classList.contains('schuldenformulier')) {
 		form.onsubmit = verstuurSchuldenFormulier;
 	} else if (form.id === 'voorlegger_mainform') {
-		form.onsubmit = verstuurClientFormulier;
+		form.onsubmit = verstuurFormulierDefault;
 	} else if (form.classList.contains('nieuweSchuldeiser')) {
 		form.onsubmit = verstuurNieuweSchuldeiserFormulier;
 	} else if (form.classList.contains('aanmeldformulier')) {
 		form.onsubmit = verstuurAanmeldFormulier;
-	} 
-	else {
+	} else if (form.classList.contains('aanvullend')) {
+		form.onsubmit = verstuurFormulierDefault;
+	} else {
 		form.onsubmit = function (e) {
 			e.preventDefault();
 			console.log('Nog niet aangesloten');
@@ -110,7 +111,7 @@ function verstuurSchuldenFormulier(e) {
 	});
 }
 
-function verstuurClientFormulier(e) {
+function verstuurFormulierDefault(e) {
 	e.preventDefault();
 	var formData = new FormData(this);
 	stuurFormulier({
