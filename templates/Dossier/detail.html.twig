@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-	Aanmelding
+	{{ dossier.clientNaam }} - Aanmelding
 {% endblock %}
 
 {% block extraScripts %}
@@ -17,7 +17,7 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 {% endblock %}
 
 {% block page_title %}
-Schuldenlijst: {{ dossier.clientNaam }}
+Aanmelding: {{ dossier.clientNaam }}
 {% endblock %}
 
 
@@ -160,8 +160,23 @@ Schuldenlijst: {{ dossier.clientNaam }}
 	<p>Documentnaam {{ form_widget(form.fileNaam) }}</p>
    <!--  Nieuw document {{ form_widget(form.file) }} -->
 	
+                        <div class="files-container">
+                            <div class="file-container prototype" {# data-name="{{ form.file.vars.prototype.file.vars.full_name }} #}">
+                                {# form_widget(form.file.vars.prototype.naam, {'attr': {'placeholder': 'Voer een naam in voor het document'} }) #}
+                                <div class="file-selector">
+                                    <button>Selecteer een bestand</button>
+                                    {{ form_widget(form.file) }}
+                                    {# form_widget(form.file.vars.prototype.file) #}
+                                </div>
+                                <div class="drop-area"></div>
+                            </div>
+                            <a class="add" href="#add">Nieuw bestand toevoegen</a>
+                        </div>
+
+{#
 	<div class="uploadCanvases"></div>
 	<p><input type="submit" class="primair detailOpslaan" value="Opslaan"></p>
+#}
 	{{ form_end(form) }}
 	{% endif %}
 	</div>

@@ -252,7 +252,7 @@ div.document-container { width: 900px; margin: 85px auto;}
 }
 
 
-div.document { background-color: #FFFFFF; border: 1px solid #CCCCCC; padding-bottom: 100px; }
+div.document { background-color: #FFFFFF; border: 1px solid #CCCCCC; }
 div.document .header { background-color: #F3F3F3; padding: 20px 40px; }
 div.document .header h1 { font-weight: normal; margin-bottom: 10px; }
 div.document .header h3 { border-bottom: 1px solid #CCCCCC; font-size: 1.0rem; padding: 0px 0 2px 0; margin: 10px 0; }
@@ -299,6 +299,25 @@ aside.pdf-splitter .pages { padding: 0 15px; }
 aside.pdf-splitter .pages .page { background-color: #FFFFFF; width: 100%; margin: 10px 0; border: 1px solid #CCC; cursor: move; }
 aside.pdf-splitter .pages .page canvas { width: 100%; height: auto; }
 aside.pdf-splitter .pages .page.dragged { opacity: 0.4; }
+
+
+.files-container { overflow: auto; }
+.files-container .file-container { border: 1px solid #CCC; background-color: #FFFFFF; width: 200px; display: inline-block; height: 110px; padding: 5px; margin-right: 10px; margin-bottom: 10px; vertical-align: middle; position: relative; }
+.files-container .file-container.prototype { display: none; }
+.files-container .file-container input[type="text"] { width: 100%; font-size: 0.6rem; box-sizing: border-box; margin-bottom: 5px; border: 0 none; border-bottom: 1px dotted #999; border-radius: 0; }
+.files-container .file-container .file-selector { position: relative; overflow: hidden; }
+.files-container .file-container .file-selector button { background-color: #FFFFFF; border: 1px solid #CCCCCC; font-family: inherit; font-size: 0.8rem; border-radius: 3px; width: 100%; padding: 4px; }
+.files-container .file-container .file-selector input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; }
+.files-container .file-container.files-only .file-selector button { background-color: #F3F3F3; }
+.files-container .file-container .drop-area { border: 2px dashed #FFF; height: 30px; position: relative; }
+.files-container .file-container .drop-area:before { width: 100%; position: absolute; content: "Sleep pagina's hierheen'"; line-height: 30px; height: 30px; text-align: center; color: #FFF; }
+.files-container .file-container .drop-area .page { display: inline-block; }
+.files-container .file-container .drop-area .page canvas { width: 50px; }
+.files-container .file-container .errors { padding-left: 0; }
+.pdf-splitter-page-drag .files-container .file-container .drop-area { border-color: #CCC; position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 9; background-color: #FFF; }
+.pdf-splitter-page-drag .files-container .file-container.files-only { cursor: no-drop; }
+.pdf-splitter-page-drag .files-container .file-container .drop-area:before { color: #CCC; }
+.files-container .add { background-color: #F00; display: inline-block; height: auto; padding: 5px; border-radius: 2px; text-decoration: none; color: #FFF; font-size: 0.9rem; width: 100px; }
 
 /* AANMELDING */
 
