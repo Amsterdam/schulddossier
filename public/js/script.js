@@ -18,19 +18,12 @@ function submitAanmeldFormulieren(form) {
 
 	if (form.classList.contains('schuldenformulier')) {
 		form.onsubmit = verstuurSchuldenFormulier;
-	} else if (form.id === 'voorlegger_mainform') {
-		form.onsubmit = verstuurFormulierDefault;
 	} else if (form.classList.contains('nieuweSchuldeiser')) {
 		form.onsubmit = verstuurNieuweSchuldeiserFormulier;
 	} else if (form.classList.contains('aanmeldformulier')) {
 		form.onsubmit = verstuurAanmeldFormulier;
-	} else if (form.classList.contains('aanvullend')) {
-		form.onsubmit = verstuurFormulierDefault;
 	} else {
-		form.onsubmit = function (e) {
-			e.preventDefault();
-			console.log('Nog niet aangesloten');
-		}
+		form.onsubmit = verstuurFormulierDefault;
 	}
 }
 
@@ -497,11 +490,11 @@ function stuurFormulier(obj) {
 	}
 	spinner.style.display = 'block';
 	sendRequest(obj.form.action,function (req) {
-		console.log('Response: ' + req.response);
 		verwijderFormulierVeldErrors();
 		var serverBoodschap = {};
 		try {
 			serverBoodschap = JSON.parse(req.response);
+			console.log('Response: ' + req.response);
 		} catch (e) {
 			console.log('Geen JSON teruggekregen; status ' + req.status);
 		};
