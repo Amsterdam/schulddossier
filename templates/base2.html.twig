@@ -11,7 +11,7 @@
 html, body { height: 100%; }
 body { background-color: #F3F3F3; font-family: Avenir, Lato, sans-serif; padding-left: 160px; }
 
-header.top { background-color: #FFFFFF; display: flex; padding: 15px 15px 10px 15px; height: 35px; position: fixed; left: 160px; top: 0; right: 0; border-bottom: 1px solid #999; z-index: 99; }
+header.top { background-color: #FFFFFF; display: flex; padding: 15px 15px 10px 15px; height: 35px; /*position: fixed; left: 160px; top: 0; right: 0;*/ border-bottom: 1px solid #999; z-index: 99; }
 header.top>.logo { width: 65px; margin-right: 15px; flex-grow: 0; height: 35px; }
 header.top>.logo img { width: 100%; }
 header.top>.title { width: auto; flex-grow: 1; font-size: 0.7rem; height: 35px; line-height: 30px; }
@@ -26,7 +26,7 @@ aside.pdf-splitter .pages .page { background-color: #FFFFFF; width: 100%; margin
 aside.pdf-splitter .pages .page canvas { width: 100%; height: auto; }
 aside.pdf-splitter .pages .page.dragged { opacity: 0.4; }
 
-div.document-container { width: 900px; margin: 85px auto; }
+div.document-container { width: 900px; /*margin: 85px auto;*/ margin: 50px auto; }
 
 nav.document { font-size: 0.7rem; margin-bottom: 10px; }
 nav.document ul { }
@@ -87,8 +87,8 @@ div.document .columns .column:last-child { margin-right: 0; }
 .accordion-container { padding: 0 20px; }
 .accordion-container .accordion { margin-bottom: 10px; background-color: #F3F3F3; padding: 8px 15px; border-radius: 2px; }
 .accordion-container .accordion .accordion-header { }
-.accordion-container .accordion .accordion-body { height: 0; transition: 1s height; overflow: hidden; padding-top: 10px; }
-.accordion-container .accordion:target .accordion-body { height: 400px; }
+.accordion-container .accordion .accordion-body { height: 0; transition: 1s height; overflow: hidden; }
+.accordion-container .accordion:target .accordion-body { height: 400px; padding-top: 10px; }
 
 .schulditem-header { display: flex; width: 100%; height: 20px; }
 .schulditem-header .naam { flex-grow: 1; height: 20px; line-height: 20px; }
