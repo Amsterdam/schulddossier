@@ -16,6 +16,11 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 </script>
 {% endblock %}
 
+{% block body %}
+<body class="{{ app.user.type }}">
+{% endblock %}
+
+
 {% block page_title %}
 Aanmelding: {{ dossier.clientNaam }}
 {% endblock %}
@@ -160,18 +165,18 @@ Aanmelding: {{ dossier.clientNaam }}
 	<p>Documentnaam {{ form_widget(form.fileNaam) }}</p>
    <!--  Nieuw document {{ form_widget(form.file) }} -->
 	
-                        <div class="files-container">
-                            <div class="file-container prototype" {# data-name="{{ form.file.vars.prototype.file.vars.full_name }} #}">
-                                {# form_widget(form.file.vars.prototype.naam, {'attr': {'placeholder': 'Voer een naam in voor het document'} }) #}
-                                <div class="file-selector">
-                                    <button>Selecteer een bestand</button>
-                                    {{ form_widget(form.file) }}
-                                    {# form_widget(form.file.vars.prototype.file) #}
-                                </div>
-                                <div class="drop-area"></div>
-                            </div>
-                            <a class="add" href="#add">Nieuw bestand toevoegen</a>
-                        </div>
+		<div class="files-container">
+			<div class="file-container prototype" {# data-name="{{ form.file.vars.prototype.file.vars.full_name }} #}">
+				{# form_widget(form.file.vars.prototype.naam, {'attr': {'placeholder': 'Voer een naam in voor het document'} }) #}
+				<div class="file-selector">
+					<button>Selecteer een bestand</button>
+					{{ form_widget(form.file) }}
+					{# form_widget(form.file.vars.prototype.file) #}
+				</div>
+				<div class="drop-area"></div>
+			</div>
+			<a class="add" href="#add">Nieuw bestand toevoegen</a>
+		</div>
 
 {#
 	<div class="uploadCanvases"></div>
@@ -192,5 +197,13 @@ Aanmelding: {{ dossier.clientNaam }}
 		</ul>	
 	</div>
 </div>
+
+        <script type="text/javascript" src="/vendor/jshjohnson/choices/assets/scripts/dist/choices.min.js"></script>
+        <script type="text/javascript" src="/vendor/bevacqua/dragula/dist/dragula.min.js"></script>
+        <script type="text/javascript" src="/js/pdfSplitser.js"></script>
+        <script type="text/javascript" src="/js/formSubmit.js"></script>
+        <script type="text/javascript" src="/js/filesContainer.js"></script>
+
+
 
 {% endblock %}

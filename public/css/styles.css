@@ -319,6 +319,20 @@ aside.pdf-splitter .pages .page.dragged { opacity: 0.4; }
 .pdf-splitter-page-drag .files-container .file-container .drop-area:before { color: #CCC; }
 .files-container .add { background-color: #F00; display: inline-block; height: auto; padding: 5px; border-radius: 2px; text-decoration: none; color: #FFF; font-size: 0.9rem; width: 100px; }
 
+/* Overrule voor simpele pagina's */
+
+body.simpelePagina aside {
+	display: none;
+}
+
+body.simpelePagina {
+	padding-left: 0;
+}
+
+body.simpelePagina header.top {
+	left: 0;
+}
+
 /* AANMELDING */
 
 section.aanmelding div.container form {
