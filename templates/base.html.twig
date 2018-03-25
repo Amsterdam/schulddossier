@@ -359,11 +359,19 @@
 <body class="{{ app.user.type }}">
 {% endblock %}
 
-	<header>
-	<img src="/pix/logo_klein.svg">
-	<h2>Digitale voorlegger</h2>
-	<div>Ingelogd als: {{ app.user.userName }} <a href="#">(Uitloggen)</a></div>
-	</header>
+        <header class="top">
+            <div class="logo">
+                <img alt="Gemeente Amsterdam" src="/pix/logo_klein.svg">
+            </div>
+            <div class="title">
+                <h2>{% block page_title %}Schulddossier{% endblock %}</h2>
+            </div>
+            <div class="gebruiker">
+                {{ app.user.userName }}
+            </div>
+        </header>
+
+<div class="document-container">
 
 	{% block kleineNavigatie %}
 		<p class="kleineNav">&nbsp;</p>	
@@ -387,6 +395,18 @@
 		Nog geen inhoud.
 	{% endblock %}
 </main>
+
+</div>
+
+        <aside class="pdf-splitter expanded">
+            <div class="file-selector">
+                <button>Selecteer een bestand</button>
+                <input type="file" name="file">
+            </div>
+            <div class="pages">
+            </div>
+        </aside>
+
 
 
 </body>

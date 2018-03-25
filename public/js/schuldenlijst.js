@@ -1,5 +1,4 @@
 
-
 document.addEventListener("DOMContentLoaded", function(e) {
 	schuldenLijst();
 },false);

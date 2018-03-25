@@ -16,6 +16,11 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 </script>
 {% endblock %}
 
+{% block page_title %}
+Schuldenlijst: {{ dossier.clientNaam }}
+{% endblock %}
+
+
 {% block maintag %}
 <main class="voorlegger">
 {% endblock %}
@@ -54,16 +59,46 @@ window.schuldhulp.tokens.appdossier_movedocumenttoprullenbak = '{{ csrf_token('g
 	{% endfor %}
 {% endfor %}
 
-<section class="documentSplitser">
+<!-- section class="documentSplitser">
 	<input type="file" id="completeDocument">
 	<div id="canvases"></div>
-</section>
+</section -->
+
+<div class="document">
+        <div class="header">
+            <h1>{{ dossier.clientNaam }}</h1>
+            {% form_theme form with ['forms2.html.twig'] only %}
+            {{ form_start(form, {'attr': {'class': 'default-form-style ajax'} }) }}
+            {{ form_row(form.clientNaam) }}
+            {{ form_row(form.partnerNaam) }}
+            {{ form_row(form.status) }}
+            <div class="columns">
+                <div class="column">
+                    <h3>MaDi</h3>
+                    {{ form_row(form.schuldhulpbureau) }}
+                    {{ form_row(form.medewerkerSchuldhulpbureau) }}
+                    {{ form_row(form.regasNummer) }}
+                </div>
+                <div class="column">
+                    <h3>GKA</h3>
+                    {{ form_row(form.teamGka) }}
+                    {{ form_row(form.allegroNummer) }}
+                </div>
+            </div>
+            <div class="nav">
+                <button type="submit">Opslaan</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+</div>
 
 
-
-{% include 'clientFormulier.html' %}
-{% include 'subnavigatie.html' %}
-
+<div class="tabs">
+	<ul>
+		<li class="active"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.Id}) }}">Aanmelding</a></li>
+		<li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.Id}) }}">Schulden</a></li>
+	</ul>
+</div>
 <div id="documenten" style="display: none">
 {% for document in dossier.getDocumenten if document.document.inPrullenbak == false %}
 	<li data-onderwerp="{{ document.onderwerp }}">
