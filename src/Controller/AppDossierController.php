@@ -595,14 +595,11 @@ class AppDossierController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $files = $form->get('file')->getData();
-            foreach ($files as $file) {
-                /** @var $file File */
-                if ($file !== null) {
-                    $document = new Document();
-                    $document->setFile($file);
+            foreach ($files as $document) {
+                /** @var $file Document */
+                if ($document !== null) {
                     $document->setMd5Hash(md5($document->getFile()->getRealPath()));
                     $document->setMainTag('dossier-' . $dossier->getId());
-                    $document->setNaam('naamloos');
                     $document->setGroep('dossier');
                     $document->setUploader($this->getUser());
                     $document->setUploadDatumTijd(new \DateTime());
@@ -617,7 +614,15 @@ class AppDossierController extends Controller
             $em->persist($schuldItem);
             $em->flush();
 
-            return new JsonResponse($this->get('json_serializer')->normalize($schuldItem));
+            $newUpdateForm = $this->createForm(SchuldItemFormType::class, $schuldItem, [
+                'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_updateschulditem', ['dossierId' => $dossier->getId(), 'schuldItemId' => $schuldItem->getId()])
+            ]);
+
+            return $this->render('Dossier/updateSchuldItem.html.twig', [
+                'dossier' => $dossier,
+                'schuldItem' => $schuldItem,
+                'form' => $newUpdateForm->createView()
+            ]);
         } elseif ($form->isSubmitted() && $form->isValid() === false) {
             //if ($request->isXmlHttpRequest()) {
                 return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
@@ -642,14 +647,11 @@ class AppDossierController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $files = $form->get('file')->getData();
-            foreach ($files as $file) {
-                /** @var $file File */
-                if ($file !== null) {
-                    $document = new Document();
-                    $document->setFile($file);
+            foreach ($files as $document) {
+                /** @var $file Document */
+                if ($document !== null) {
                     $document->setMd5Hash(md5($document->getFile()->getRealPath()));
                     $document->setMainTag('dossier-' . $dossier->getId());
-                    $document->setNaam('naamloos');
                     $document->setGroep('dossier');
                     $document->setUploader($this->getUser());
                     $document->setUploadDatumTijd(new \DateTime());
@@ -663,7 +665,15 @@ class AppDossierController extends Controller
 
             $em->flush();
 
-            return new JsonResponse($this->get('json_serializer')->normalize($schuldItem));
+            $newUpdateForm = $this->createForm(SchuldItemFormType::class, $schuldItem, [
+                'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_updateschulditem', ['dossierId' => $dossier->getId(), 'schuldItemId' => $schuldItem->getId()])
+            ]);
+
+            return $this->render('Dossier/updateSchuldItem.html.twig', [
+                'dossier' => $dossier,
+                'schuldItem' => $schuldItem,
+                'form' => $newUpdateForm->createView()
+            ]);
         } elseif ($form->isSubmitted() && $form->isValid() === false) {
             if ($request->isXmlHttpRequest()) {
                 return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);

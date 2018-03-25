@@ -6,6 +6,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
 use Symfony\Component\Form\FormErrorIterator;
+use Symfony\Component\Form\FormError;
 
 class FormErrorIteratorNormalizer implements NormalizerInterface, NormalizerAwareInterface
 {
@@ -22,10 +23,23 @@ class FormErrorIteratorNormalizer implements NormalizerInterface, NormalizerAwar
         $errorData = [];
         foreach ($object as $formError) {
             /** @var $formError FormError */
-            if (isset($errorData[$formError->getOrigin()->getName()]) === false) {
-                $errorData[$formError->getOrigin()->getName()] = [];
+            $pathParts = [];
+            $parent = $formError->getOrigin();
+            while ($parent !== null && $parent->isRoot() === false) {
+                $pathParts[] = $parent->getName();
+                $parent = $parent->getParent();
             }
-            $errorData[$formError->getOrigin()->getName()][] = $formError->getMessage();
+            $pathParts = array_reverse($pathParts);
+
+            $fullPath = '';
+            foreach ($pathParts as $pathPart) {
+                $fullPath .= '[' . $pathPart . ']';
+            }
+
+            if (isset($errorData[$fullPath]) === false) {
+                $errorData[$fullPath] = [];
+            }
+            $errorData[$fullPath][] = $formError->getMessage();
         }
 
         return [

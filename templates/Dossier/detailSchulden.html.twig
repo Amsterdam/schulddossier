@@ -1,209 +1,153 @@
+{% extends 'base2.html.twig' %}
 
-{% extends 'base.html.twig' %}
+{% block title %}{{ dossier.clientNaam }} - {{ parent() }}{% endblock %}
 
-{% block title %}
-	Schuldenlijst
-{% endblock %}
+{% block page_title %}Schuldenlijst: {{ dossier.clientNaam }}{% endblock %}
 
-{% block extraScripts %}
-<link rel="stylesheet" href="/css/schuldenlijst.css">
-<script src="/js/schuldenlijst.js"></script>
-<script src="/js/datepicker.js"></script>
-<script src="/vendor/bevacqua/horsey/dist/horsey.min.js"></script>
-<link rel="stylesheet" href="/css/datepicker.css">
-<script src="/vendor/mozilla/pdf.js/build/pdf.js"></script>
-<script src="/vendor/mrrio/jspdf/jspdf.js"></script>
-<script src="/vendor/mrrio/jspdf/plugins/addimage.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-	var matches = function(el, selector) {
-	       return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
-	    };
-
-    document.addEventListener('click', function (event) {
-		if (matches(event.target, '.file-uploads [href$="#add"]')) {
-			var container = event.target.parentNode;
-			var clone = container.querySelector('.prototype').cloneNode(true);
-			var input = clone.querySelector('input');
-			var counter = container.getAttribute('data-counter') || 0;
-			container.setAttribute('data-counter', counter + 1);
-			input.setAttribute('name', input.getAttribute('name').replace('__name__', 'new-' + counter));
-			input.setAttribute('id', input.getAttribute('id').replace('__name__', 'new-' + counter));
-			for (var i = 0; i < clone.children.length; i ++) {
-			    container.append(clone.children[i]);
-			}
-			event.preventDefault();
-		}
-	});
-});
-</script>
-{% endblock %}
-
-{% block kleineNavigatie %}
-<div class="kleineNav">
-	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a>
-    {% if dossier.inPrullenbak == false %}
-    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', {'dossierId': dossier.id}) }}" method="post">
-        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak') }}">
-        <button type="submit">Naar prullenbak</button>
-    </form>
-	<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexdocumenteninprullenbak', {'dossierId': dossier.id}) }}">Prullenbak van dit dossier</a>
-    {% else %}
-    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove', {'dossierId': dossier.id}) }}" method="post">
-        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove') }}">
-        <button type="submit">Definitief verwijderen</button>
-    </form>
-    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore', {'dossierId': dossier.id}) }}" method="post">
-        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore') }}">
-        <button type="submit">Herstellen</button>
-    </form>
-    {% endif %}
-</div>
-{% endblock %}
-
-
-{% block maintag %}
-<main class="voorlegger">
-{% endblock %}
-
-{% block main %}
-
-<section class="documentSplitser">
-	<input type="file" id="completeDocument">
-	<div id="canvases"></div>
-</section>
-
-
-{% include 'clientFormulier.html' %}
-{% include 'subnavigatie.html' %}
-
-	<section class="accordeon">
-{% for schuldItem in schuldItems if schuldItem.verwijderd == false %}
-    {% set form = updateForms[schuldItem.id] %}
-	<h3 data-schuld="{{ schuldItem.bedrag }}">{{ schuldItem.schuldeiser.bedrijfsnaam|default('?') }}</h3>
-	<div class="container">	
-	{{ form_start(form,{attr:{class:'schuldenformulier'}}) }}
-		{% do form.schuldeiser.setRendered() %}
-		{% do form.file.setRendered() %}
-		<section class="velden">
-		<!-- label>Schuldeiser {{ form_widget(form.schuldeiser) }}</label -->
-		<label>Schuldeiser <input name="schuld_item_form[schuldeiser]" value="{{ schuldItem.schuldeiser }}" id="schuldeiserVeld"></label>
-		<p><a href="#" id="nieuweSchuldeiser" class="secundair">Nieuwe schuldeiser aanmaken</a></p>
-		<label>Incassobureau {{ form_widget(form.incassant) }}</label>
-		<label>Schuld {{ form_widget(form.bedrag) }}</label>
-		<label>Ref.nr. {{ form_widget(form.referentie) }}</label>
-		<label>Datum 1 {{ form_widget(form.vastStelDatum) }}</label>
-		<label>Preferent {{ form_widget(form.type) }}</label>
-		<label>Datum 2 {{ form_widget(form.ontstaansDatum) }}</label>
-		</section>
-
-			<!-- input type="file" name="{{ form.file.vars.prototype.vars.full_name|replace({'__name__': 0}) }}" -->
-			<!-- schuld_item_form[file][0] -->
-			<ul class="documentenLijst">
-            {% for document in schuldItem.dossierDocumenten %}
-                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a></li>
-            {% endfor %}
+{% block document %}
+    
+    <nav class="document">
+        <ul>
+            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></li>
+            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak', {'dossierId': dossier.id}) }}">Dossier prullenbak</a></li>
+        </ul>
+    </nav>
+    
+    <div class="document">
+        <div class="header">
+            <h1>{{ dossier.clientNaam }}</h1>
+            {% form_theme form with ['forms2.html.twig'] only %}
+            {{ form_start(form, {'attr': {'class': 'default-form-style ajax'} }) }}
+            {{ form_row(form.clientNaam) }}
+            {{ form_row(form.partnerNaam) }}
+            {{ form_row(form.status) }}
+            <div class="columns">
+                <div class="column">
+                    <h3>MaDi</h3>
+                    {{ form_row(form.schuldhulpbureau) }}
+                    {{ form_row(form.medewerkerSchuldhulpbureau) }}
+                    {{ form_row(form.regasNummer) }}
+                </div>
+                <div class="column">
+                    <h3>GKA</h3>
+                    {{ form_row(form.teamGka) }}
+                    {{ form_row(form.allegroNummer) }}
+                </div>
+            </div>
+            <div class="nav">
+                <button type="submit">Opslaan</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+        <div class="tabs">
+            <ul>
+                <li class=""><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Aanmelding</a></li>
+                <li class="active"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">Schulden</a></li>
             </ul>
-			<div class="uploadCanvases"></div>
-		<span style="display:none">{{ form_widget(form.verwijderd) }}
-			{{ form_widget(form.file.vars.prototype) }}		
-		</span>
-		<div class="knoppenbalk">
-			<a href="#" class="tertiair" id="annuleren">Annuleren</a>
-			<a href="#" class="secundair" id="verwijderen">Verwijderen</a>
-			<input type="submit" class="primair detailOpslaan" value="Opslaan">
-		</div>
-{{ form_end(form) }}
-	</div>
-
+        </div>
+        <div class="accordion-container">
+{% for schuldItem in schuldItems %}
+            {% set form = updateForms[schuldItem.id] %}
+            {% include 'Dossier/partial.schuldItem.html.twig' with {'schuldItem': schuldItem, 'form': form, 'dossier': dossier} only %}
 {% endfor %}
-	
-	</section>
-	<section style="padding:0 70px">
-	<p class="totaal">Totale schuld: <span id="totaleSchuld"></span>
-	<div class="knoppenbalk" style="padding-left: 25px"><button class="secundair" id="nieuweSchuld">Nieuwe schuld</button></div>
-	</section>
-		
-<div id="uploadVenster">
-	<p>Voer hier een nieuwe schuldeiser in.</p>
-	{{ form_start(createSchuldeiserForm) }}
-	{{ form_row(createSchuldeiserForm.bedrijfsnaam) }}
-	{{ form_row(createSchuldeiserForm.rekening) }}
-	<div class="knoppenbalk"><button class="tertiair" id="uploadAnnuleren">Annuleren</button>
-		<button type="submit" class="primair " id="uploadAanmaken">Aanmaken</button></div>
-	{{ form_end(createSchuldeiserForm) }}
-</div>
-	
-	
-	
-	<div id="templates">
-	{{ form_start(createForm,{attr:{id:'templateForm',class:'schuldenformulier'}}) }}
-	
-\		<section class="velden">
-		<!-- label>Schuldeiser {{ form_widget(createForm.schuldeiser) }}</label -->
-		<label>Schuldeiser <input name="schuld_item_form[schuldeiser]" id="schuldeiserVeld"></label>
-		<p><a href="#" id="nieuweSchuldeiser" class="secundair">Nieuwe schuldeiser aanmaken</a></p>
-		<label>Incassobureau {{ form_widget(createForm.incassant) }}</label>
-		<label>Schuld {{ form_widget(createForm.bedrag) }}</label>
-		<label>Ref.nr. {{ form_widget(createForm.referentie) }}</label>
-		<label>Datum 1 {{ form_widget(createForm.vastStelDatum) }}</label>
-		<label>Preferent {{ form_widget(createForm.type) }}</label>
-		<label>Datum 2 {{ form_widget(createForm.ontstaansDatum) }}</label>
-		</section>
-
-		<div class="canvases">
-			<section class="nieuw">
-			<p id="tekst">Nieuw document</p>
-			<input type="file" name="{{ createForm.file.vars.prototype.vars.full_name|replace({'__name__': 0}) }}">
-			</section>
-		</div>
-
-		<div class="file-uploads">
-		    <div class="prototype" style="display: none;">
-		        <div class="file-veld">{{ form_row(createForm.file.vars.prototype) }}</div>
-		    </div>
-		</div>
-		<span style="display:none">{{ form_widget(createForm.verwijderd) }}</span>
-		<div class="knoppenbalk"><input type="reset" class="tertiair" value="Annuleren" id="annuleren">
-			<a href="#" class="secundair" id="verwijderen">Verwijderen</a>
-			<input type="submit" class="primair detailOpslaan" value="Opslaan"></div>
-		<datalist id="schuldeiserdata"></datalist>
-{{ form_end(createForm) }}
-
-
-
-
-
-
-{# 
-    <p>{{ schuldItem.id }}</p>
-    {{ form_start(form) }}
-    {{ form_row(form.schuldeiser) }}
-    {{ form_row(form.incassant) }}
-    {{ form_row(form.verwijderd) }}
-    {{ form_row(form.bedrag) }}
-    {{ form_row(form.vastStelDatum) }}
-    {{ form_row(form.ontstaansDatum) }}
-    {{ form_row(form.referentie) }}
-    {{ form_row(form.type) }}
-    <div class="file-uploads">
-        <div class="prototype">
-            <div class="file-veld">{{ form_row(form.file.vars.prototype) }}</div>
         </div>
-        <div class="file-veld online">
-            {% for document in schuldItem.dossierDocumenten %}
-                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>
-            {% endfor %}
+        <div class="form-container">
+            <h2>Nieuw schuld toevoegen</h2>
+            {% form_theme createForm with ['forms2.html.twig'] only %}
+            {{ form_start(createForm, {'attr': {'class': 'ajax default-form-style'} }) }}
+            <div class="columns">
+                <div class="column">
+                    <div class="form-row">
+                        <div class="label-widget">
+                            {{ form_label(createForm.schuldeiser) }}
+                            <select class="lookup" name="{{ createForm.schuldeiser.vars.full_name }}" id="{{ createForm.schuldeiser.vars.id }}">
+                            </select>
+                            {% do createForm.schuldeiser.setRendered() %}
+                        </div>
+                        {{ form_errors(createForm.schuldeiser) }}
+                    </div>
+                    <div class="form-row">
+                        <div class="label-widget">
+                            {{ form_label(createForm.incassant) }}
+                            <select class="lookup" name="{{ createForm.incassant.vars.full_name }}" id="{{ createForm.incassant.vars.id }}">
+                            </select>
+                            {% do createForm.incassant.setRendered() %}
+                        </div>
+                        {{ form_errors(createForm.incassant) }}
+                    </div>
+                    <div class="form-row">
+                        <div class="label-widget">
+                            <label>&nbsp;</label>
+                            <a href="#nieuwe-schuldeiser">Nieuwe schuldeiser of incassant toevoegen</a>
+                        </div>
+                    </div>
+                    {{ form_row(createForm.type) }}
+                    {{ form_row(createForm.referentie) }}
+                </div>
+                <div class="column">
+                    {{ form_row(createForm.bedrag) }}
+                    {{ form_row(createForm.vastStelDatum) }}
+                    {{ form_row(createForm.ontstaansDatum) }}
+                </div>
+            </div>
+            <div class="files-container">
+                <div class="file-container prototype" data-name="{{ createForm.file.vars.prototype.file.vars.full_name }}">
+                    {{ form_widget(createForm.file.vars.prototype.naam, {'attr': {'placeholder': 'Voer een naam in voor het document'} }) }}
+                    <div class="file-selector">
+                        <button>Selecteer een bestand</button>
+                        {{ form_widget(createForm.file.vars.prototype.file) }}
+                    </div>
+                    <div class="drop-area"></div>
+                </div>
+                <a class="add" href="#add">Nieuw bestand toevoegen</a>
+            </div>
+            {% do createForm.file.setRendered() %}
+            <div class="nav">
+                {% do createForm.verwijderd.setRendered() %}
+                <button type="submit">Aanmaken</button>
+            </div>
+            {{ form_end(createForm) }}
         </div>
-        {% for file in form.file %}
-            <div class="file-veld">{{ form_row(file) }}</div>
-        {% endfor %}
-        <a href="#add">Nog een documenten uploaden</a>
     </div>
-    <button type="submit">Opslaan</button>
-    {{ form_end(form) }}
-#}
-
-	</div>
-	
+    <div class="modal-container" id="nieuwe-schuldeiser">
+        <a href="#" class="esc">&nbsp;</a>
+        <div class="modal-window">
+            <div class="modal-header">
+                <h2>Nieuwe schuldeiser</h2>
+            </div>
+            <div class="modal-body">
+                {% form_theme createSchuldeiserForm with ['forms2.html.twig'] only %}
+                {{ form_start(createSchuldeiserForm, {'attr': {'class': 'default-form-style ajax'} }) }}
+                {{ form_row(createSchuldeiserForm.bedrijfsnaam) }}
+                {{ form_row(createSchuldeiserForm.rekening) }}
+                <div class="nav">
+                    <button type="submit">Aanmaken</button>
+                </div>
+                {{ form_end(createSchuldeiserForm) }}
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function (event) {
+        elms = document.querySelectorAll('.lookup');
+        for (var i = 0; i < elms.length; i ++) {
+            elm = elms.item(i);
+            choices = new Choices(elm, {
+                removeItemButton: true,
+                itemSelectText: ''
+            }).ajax(function(callback) {
+                var request = new XMLHttpRequest();
+                request.open('GET', '/app/schuldeiser/', true);
+                request.onload = function() {
+                    if (request.status >= 200 && request.status < 400) {
+                        var data = JSON.parse(request.responseText);
+                        callback(data, 'id', 'bedrijfsnaam');
+                    } else {
+                    }
+                };
+                request.send();
+            });
+        }
+     });
+    </script>
 {% endblock %}

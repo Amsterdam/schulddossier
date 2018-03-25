@@ -28,8 +28,8 @@ class DocumentFormType extends AbstractType
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             /** @var $entity Document */
             $entity = $event->getData();
-            $entity->setUploadDatumTijd(new \DateTime());
-            if ($entity->getFile() !== null) {
+            if ($entity !== null && $entity->getFile() !== null) {
+                $entity->setUploadDatumTijd(new \DateTime());
                 $entity->setMd5Hash(md5($entity->getFile()->getRealPath()));
             }
         });

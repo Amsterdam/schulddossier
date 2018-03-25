@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Schulddossier - Gemeente Amsterdam{% endblock %}</title>
+        <meta name="viewport" content="width=device-width">
+        <style type="text/css">
+* { margin: 0; padding: 0; }
+html, body { height: 100%; }
+body { background-color: #F3F3F3; font-family: Avenir, Lato, sans-serif; padding-left: 160px; }
+
+header.top { background-color: #FFFFFF; display: flex; padding: 15px 15px 10px 15px; height: 35px; position: fixed; left: 160px; top: 0; right: 0; border-bottom: 1px solid #999; z-index: 99; }
+header.top>.logo { width: 65px; margin-right: 15px; flex-grow: 0; height: 35px; }
+header.top>.logo img { width: 100%; }
+header.top>.title { width: auto; flex-grow: 1; font-size: 0.7rem; height: 35px; line-height: 30px; }
+header.top>.gebruiker { width: 150px; flex-grow: 0; height: 35px; line-height: 30px; }
+
+aside.pdf-splitter { background-color: #F3F3F3; position: fixed; top: 0; left: 0; width: 160px; height: 100%; border-right: 1px solid #CCC; box-shadow: inset -5px 0px 10px 0px rgba(204,204,204,0.37); overflow: auto; }
+aside.pdf-splitter .file-selector { position: relative; overflow: hidden; padding: 15px 5px 5px 5px; }
+aside.pdf-splitter .file-selector button { background-color: #FFFFFF; border: 1px solid #CCCCCC; font-family: inherit; font-size: 0.8rem; border-radius: 3px; width: 100%; padding: 4px; }
+aside.pdf-splitter .file-selector input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; }
+aside.pdf-splitter .pages { padding: 0 15px; }
+aside.pdf-splitter .pages .page { background-color: #FFFFFF; width: 100%; margin: 10px 0; border: 1px solid #CCC; cursor: move; }
+aside.pdf-splitter .pages .page canvas { width: 100%; height: auto; }
+aside.pdf-splitter .pages .page.dragged { opacity: 0.4; }
+
+div.document-container { width: 900px; margin: 85px auto; }
+
+nav.document { font-size: 0.7rem; margin-bottom: 10px; }
+nav.document ul { }
+nav.document ul li { list-style-type: none; display: inline-block; margin-right: 10px; }
+nav.document ul li a { color: #000000; }
+
+div.document { background-color: #FFFFFF; border: 1px solid #CCCCCC; padding-bottom: 100px; }
+div.document .header { background-color: #F3F3F3; padding: 20px 40px; }
+div.document .header h1 { font-weight: normal; margin-bottom: 10px; }
+div.document .header h3 { border-bottom: 1px solid #CCCCCC; font-size: 1.0rem; padding: 0px 0 2px 0; margin: 10px 0; }
+div.document .columns { display: flex; }
+div.document .columns .column { width: 50%; margin-right: 20px; }
+div.document .columns .column:last-child { margin-right: 0; }
+
+.default-form-style { font-size: 0.7rem; }
+.default-form-style input[type="date"] { padding: 5px; font-family: inherit; font-size: 0.8rem; border: 0.7px solid #999; border-radius: 2px; }
+.default-form-style input[type="text"] { padding: 5px; font-family: inherit; font-size: 0.8rem; border: 0.7px solid #999; border-radius: 2px; }
+.default-form-style select { padding: 5px; font-family: inherit; font-size: 0.8rem; border: 0.7px solid #999; border-radius: 2px; }
+.default-form-style .form-row { margin-bottom: 5px; }
+.default-form-style .label-widget { display: flex; align-items: center; }
+.default-form-style .label-widget>label { width: 180px; flex-grow: 0; }
+.default-form-style .label-widget>input[type="date"] { width: auto; flex-grow: 1; }
+.default-form-style .label-widget>input[type="text"] { width: auto; flex-grow: 1; }
+.default-form-style .label-widget>select { width: auto; flex-grow: 1; }
+.default-form-style .label-widget>.choices { width: auto; flex-grow: 1; padding-right: 20px; box-sizing: border-box; }
+.default-form-style .label-widget>.choices .choices__inner { min-height: 25px; padding-top: 2px; padding-bottom: 2px; }
+.default-form-style .nav { text-align: right; }
+.default-form-style .nav button[type="submit"] { background-color: #FF0000; color: #FFFFFF; border: 0 none; padding: 8px 13px; cursor: pointer; transition: 0.5s background-color; }
+.default-form-style .nav button[type="submit"]:hover { background-color: #CC0000; }
+.default-form-style .errors { list-style-type: none; color: #FF0000; padding-left: 180px; }
+.default-form-style .errors li { padding: 5px 0; }
+.default-form-style .files-container { overflow: auto; }
+.default-form-style .files-container .file-container { border: 1px solid #CCC; background-color: #FFFFFF; width: 200px; display: inline-block; height: 110px; padding: 5px; margin-right: 10px; margin-bottom: 10px; vertical-align: middle; position: relative; }
+.default-form-style .files-container .file-container.prototype { display: none; }
+.default-form-style .files-container .file-container input[type="text"] { width: 100%; font-size: 0.6rem; box-sizing: border-box; margin-bottom: 5px; border: 0 none; border-bottom: 1px dotted #999; border-radius: 0; }
+.default-form-style .files-container .file-container .file-selector { position: relative; overflow: hidden; }
+.default-form-style .files-container .file-container .file-selector button { background-color: #FFFFFF; border: 1px solid #CCCCCC; font-family: inherit; font-size: 0.8rem; border-radius: 3px; width: 100%; padding: 4px; }
+.default-form-style .files-container .file-container .file-selector input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; }
+.default-form-style .files-container .file-container.files-only .file-selector button { background-color: #F3F3F3; }
+.default-form-style .files-container .file-container .drop-area { border: 2px dashed #FFF; height: 30px; position: relative; }
+.default-form-style .files-container .file-container .drop-area:before { width: 100%; position: absolute; content: "Sleep pagina's hierheen'"; line-height: 30px; height: 30px; text-align: center; color: #FFF; }
+.default-form-style .files-container .file-container .drop-area .page { display: inline-block; }
+.default-form-style .files-container .file-container .drop-area .page canvas { width: 50px; }
+.default-form-style .files-container .file-container .errors { padding-left: 0; }
+.pdf-splitter-page-drag .default-form-style .files-container .file-container .drop-area { border-color: #CCC; position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 9; background-color: #FFF; }
+.pdf-splitter-page-drag .default-form-style .files-container .file-container.files-only { cursor: no-drop; }
+.pdf-splitter-page-drag .default-form-style .files-container .file-container .drop-area:before { color: #CCC; }
+.default-form-style .files-container .add { background-color: #F00; display: inline-block; height: auto; padding: 5px; border-radius: 2px; text-decoration: none; color: #FFF; font-size: 0.9rem; width: 100px; }
+
+.default-form-style.in-progress { opacity: 0.5; }
+
+.tabs { width: 100%; margin-top: 20px; margin-bottom: 20px; }
+.tabs ul { display: flex; list-style-type: none; flex-wrap: nowrap; width: 100%; padding: 0px 100px; box-sizing: border-box; }
+.tabs li { flex-grow: 1; }
+.tabs li a { text-align: center; display: block; color: #666666; text-decoration: none; padding: 10px 0; }
+.tabs li.active a { border-bottom: 3px solid #F00; } 
+
+.accordion-container { padding: 0 20px; }
+.accordion-container .accordion { margin-bottom: 10px; background-color: #F3F3F3; padding: 8px 15px; border-radius: 2px; }
+.accordion-container .accordion .accordion-header { }
+.accordion-container .accordion .accordion-body { height: 0; transition: 1s height; overflow: hidden; padding-top: 10px; }
+.accordion-container .accordion:target .accordion-body { height: 400px; }
+
+.schulditem-header { display: flex; width: 100%; height: 20px; }
+.schulditem-header .naam { flex-grow: 1; height: 20px; line-height: 20px; }
+.schulditem-header .naam .referentie { font-size: 0.8rem; color: #666666; }
+.schulditem-header .naam a { color: inherit; text-decoration: none; display: block; }
+.schulditem-header .voortgang { width: 150px; flex-grow: 0; font-size: 0.8rem; height: 20px; line-height: 20px; }
+.schulditem-header .bedrag { width: 150px; flex-grow: 0; height: 20px; line-height: 20px; text-align: right; }
+
+.form-container { padding: 20px 20px 20px 20px; }
+.form-container h2 { font-size: 1.3rem; font-weight: normal; }
+
+.modal-container { height: 0; width: 0; overflow: hidden; background-color: rgba(0, 0, 0, 0.0); transition: background-color 1s; }
+.modal-container>* { display: none; }
+.modal-container:target { background-color: rgba(0, 0, 0, 0.2); position: fixed; top: 0; left: 0; z-index: 9999; width: 100%; height: 100%; }
+.modal-container:target>* { display: block; }
+.modal-container>a { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.modal-container .modal-window { position: absolute; top: 50%; left: 50%; margin-left: -300px; margin-top: -150px; width: 600px; height: 300px; background-color: #FFF; border: 1px solid #999; border-radius: 2px; }
+.modal-container .modal-window .modal-header { border-bottom: 1px solid #CCC; padding: 10px 20px; }
+.modal-container .modal-window .modal-header h2 { font-weight: normal; }
+.modal-container .modal-window .modal-body { padding: 10px 20px; }
+
+/* dragula */
+.gu-mirror { position: fixed !important; margin: 0 !important; z-index: 9999 !important; opacity: 0.8; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; filter: alpha(opacity=80); }
+.gu-hide { display: none !important; }
+.gu-unselectable { -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; user-select: none !important; }
+.gu-transit { opacity: 0.2; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; filter: alpha(opacity=20); }
+
+.gu-mirror.page { width: 100px; cursor: move; }
+.gu-mirror.page canvas { width: 100px; }
+
+/* horsey */
+.sey-container { display: none; position: absolute; box-shadow: 1px 2px 6px; background-color: #fff; color: #333; transition: left 0.1s ease-in-out; z-index: 1; }
+.sey-list { padding: 0; margin: 0; list-style-type: none; }
+.sey-show { display: block; }
+.sey-hide { display: none; }
+.sey-empty { cursor: default; padding: 7px; }
+.sey-item { cursor: pointer; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 7px; }
+.sey-item:hover { background-color: #444; color: #fff; }
+.sey-selected { background-color: #333; color: #fff; }
+.sey-char-highlight { font-weight: bold; }
+.sey-category-id { background-color: #eee; color: #aaa; text-align: right; text-transform: capitalize; font-style: italic; font-size: 12px; box-shadow: 1px 0px 1px; padding: 7px; }
+
+/* some responsive steps */
+@media only screen and (max-width: 1100px) {
+    div.document-container { width: 800px; }
+}
+
+@media only screen and (max-width: 1000px) {
+    div.document-container { width: 700px; }
+}
+
+@media only screen and (max-width: 900px) {
+    div.document-container { width: 600px; }
+}
+
+
+        </style>
+        <link type="text/css" rel="stylesheet" href="/vendor/jshjohnson/choices/assets/styles/css/choices.css">
+    </head>
+    <body class="{% block body_classes %}{% endblock %}">
+        <header class="top">
+            <div class="logo">
+                <img alt="Gemeente Amsterdam" src="/pix/logo_klein.svg">
+            </div>
+            <div class="title">
+                <h2>{% block page_title %}Schulddossier{% endblock %}</h2>
+            </div>
+            <div class="gebruiker">
+                {{ app.user.userName }}
+            </div>
+        </header>
+        <div class="document-container">
+{% block document %}.{% endblock %}
+        </div>
+        <aside class="pdf-splitter expanded">
+            <div class="file-selector">
+                <button>Selecteer een bestand</button>
+                <input type="file" name="file">
+            </div>
+            <div class="pages">
+            </div>
+        </aside>
+        <script type="text/javascript" src="/vendor/mozilla/pdf.js/build/pdf.js"></script>
+        <script type="text/javascript" src="/vendor/mrrio/jspdf/dist/jspdf.min.js"></script>
+        <script type="text/javascript" src="/vendor/jshjohnson/choices/assets/scripts/dist/choices.min.js"></script>
+        <script type="text/javascript" src="/vendor/bevacqua/dragula/dist/dragula.min.js"></script>
+        <script type="text/javascript" src="/vendor/bevacqua/horsey/dist/horsey.min.js"></script>
+        <script type="text/javascript" src="/js/pdfSplitser.js"></script>
+        <script type="text/javascript" src="/js/formSubmit.js"></script>
+        <script type="text/javascript" src="/js/filesContainer.js"></script>
+        <script type="text/javascript">
+        </script>
+    </body>
+</html>
