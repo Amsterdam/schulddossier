@@ -56,7 +56,7 @@ class Voorlegger
 
     /**
      * @var float
-     * @ORM\Column(type="decimal", precision=5, scale=2, nullable=true)
+     * @ORM\Column(type="decimal", precision=8, scale=2, nullable=true)
      * @Assert\Type("numeric")
      */
     private $vtlbBedrag;
@@ -719,7 +719,7 @@ class Voorlegger
 
     /**
      * @var float
-     * @ORM\Column(type="decimal", nullable=true, precision=5, scale=2)
+     * @ORM\Column(type="decimal", nullable=true, precision=8, scale=2)
      * @Assert\Type("numeric")
      */
     private $gereserveerdeGelden;
