@@ -73,7 +73,7 @@ Aanmelding: {{ dossier.clientNaam }}
         <div class="header">
             <h1>{{ dossier.clientNaam }}</h1>
             {% form_theme form with ['forms2.html.twig'] only %}
-            {{ form_start(form, {'attr': {'class': 'default-form-style ajax'} }) }}
+            {{ form_start(form, {'attr': {'class': 'default-form-style ajax',id:'voorlegger_mainform'} }) }}
             {{ form_row(form.clientNaam) }}
             {{ form_row(form.partnerNaam) }}
             {{ form_row(form.status) }}
@@ -165,28 +165,48 @@ Aanmelding: {{ dossier.clientNaam }}
 	<p>Documentnaam {{ form_widget(form.fileNaam) }}</p>
    <!--  Nieuw document {{ form_widget(form.file) }} -->
 	
-		<div class="files-container">
-			<div class="file-container prototype" {# data-name="{{ form.file.vars.prototype.file.vars.full_name }} #}">
-				{# form_widget(form.file.vars.prototype.naam, {'attr': {'placeholder': 'Voer een naam in voor het document'} }) #}
-				<div class="file-selector">
-					<button>Selecteer een bestand</button>
-					{{ form_widget(form.file) }}
-					{# form_widget(form.file.vars.prototype.file) #}
-				</div>
-				<div class="drop-area"></div>
-			</div>
-			<a class="add" href="#add">Nieuw bestand toevoegen</a>
-		</div>
-
-{#
 	<div class="uploadCanvases"></div>
 	<p><input type="submit" class="primair detailOpslaan" value="Opslaan"></p>
-#}
 	{{ form_end(form) }}
 	{% endif %}
 	</div>
 	{% endif %}
 {% endfor %}
+</section>
+
+<section id="aanvullend">
+
+
+	{% set form = voorleggerForms.meterstanden %}
+	{{ form_start(form,{attr:{class:'aanvullend'}}) }}
+		{% do form.file.setRendered() %}
+		{% do form.fileNaam.setRendered() %}
+
+<h2>Aanvullende informatie</h2>
+{{ form_widget(form.aanvullendeInformatie)}}
+
+<h2>Meterstanden</h2>
+
+<table>
+	{{ form_row(form.energieBedrijf) }}
+	{{ form_row(form.energieBedrijfKlantnummer) }}
+	{{ form_row(form.energieBedrijfDatumOpname) }}
+	{{ form_row(form.energieBedrijfT1) }}
+	{{ form_row(form.energieBedrijfT2) }}
+	{{ form_row(form.energieBedrijfGas) }}
+	{{ form_row(form.warmteBedrijf) }}
+	{{ form_row(form.warmteBedrijfKlantnummer) }}
+	{{ form_row(form.warmteBedrijfDatumOpname) }}
+	{{ form_row(form.warmteBedrijfOpname) }}
+	{{ form_row(form.drinkwaterKlantnummer) }}
+	{{ form_row(form.drinkwaterDatumOpname) }}
+	{{ form_row(form.drinkwaterOpname) }}
+</table>
+
+<div class=knoppenbalk>
+	<input type="submit" class="primair" value="Opslaan"></td>
+</div>
+	{{ form_end(form) }}
 </section>
 
 <div id="templates">
@@ -197,13 +217,5 @@ Aanmelding: {{ dossier.clientNaam }}
 		</ul>	
 	</div>
 </div>
-
-        <script type="text/javascript" src="/vendor/jshjohnson/choices/assets/scripts/dist/choices.min.js"></script>
-        <script type="text/javascript" src="/vendor/bevacqua/dragula/dist/dragula.min.js"></script>
-        <script type="text/javascript" src="/js/pdfSplitser.js"></script>
-        <script type="text/javascript" src="/js/formSubmit.js"></script>
-        <script type="text/javascript" src="/js/filesContainer.js"></script>
-
-
 
 {% endblock %}

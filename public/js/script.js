@@ -18,18 +18,14 @@ function submitAanmeldFormulieren(form) {
 
 	if (form.classList.contains('schuldenformulier')) {
 		form.onsubmit = verstuurSchuldenFormulier;
-	} else if (form.id === 'voorlegger_mainform') {
-		form.onsubmit = verstuurClientFormulier;
 	} else if (form.classList.contains('nieuweSchuldeiser')) {
 		form.onsubmit = verstuurNieuweSchuldeiserFormulier;
 	} else if (form.classList.contains('aanmeldformulier')) {
 		form.onsubmit = verstuurAanmeldFormulier;
-	} 
-	else {
-		form.onsubmit = function (e) {
-			e.preventDefault();
-			console.log('Nog niet aangesloten');
-		}
+	} else if (form.classList.contains('novalidate')) {
+		return;
+	} else {
+		form.onsubmit = verstuurFormulierDefault;
 	}
 }
 
@@ -110,7 +106,7 @@ function verstuurSchuldenFormulier(e) {
 	});
 }
 
-function verstuurClientFormulier(e) {
+function verstuurFormulierDefault(e) {
 	e.preventDefault();
 	var formData = new FormData(this);
 	stuurFormulier({
@@ -177,7 +173,7 @@ function PDFUploadSuccess(obj) {
 			insert.parentNode.removeChild(insert);
 		}
 		documentenLijst.appendChild(li);
-		console.log(obj.form.querySelector('.uploadCanvases').innerHTML);
+//		console.log(obj.form.querySelector('.uploadCanvases').innerHTML);
 		obj.form.querySelector('.uploadCanvases').innerHTML = '';
 		var aantalDocumenten = documentenLijst.querySelectorAll('li').length;
 		var huidigeTeller = obj.form.header.querySelector('span.aantal');
@@ -496,11 +492,11 @@ function stuurFormulier(obj) {
 	}
 	spinner.style.display = 'block';
 	sendRequest(obj.form.action,function (req) {
-		console.log('Response: ' + req.response);
 		verwijderFormulierVeldErrors();
 		var serverBoodschap = {};
 		try {
 			serverBoodschap = JSON.parse(req.response);
+			console.log('Response: ' + req.response);
 		} catch (e) {
 			console.log('Geen JSON teruggekregen; status ' + req.status);
 		};
