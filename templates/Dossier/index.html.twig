@@ -54,13 +54,13 @@
             {% if pagination.page <= 0 %}
             <span class="prev">vorige</span>
             {% else %}
-            <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {'page': pagination.page - 1}) }}">vorige</a>
+            <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', {'page': pagination.page - 1}) }}">vorige</a>
             {% endif %}
             <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
             {% if (pagination.page + 1) >= pagination.numberOfPages %}
             <span class="next">volgende</span>
             {% else %}
-            <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {'page': pagination.page + 1}) }}">volgende</a>
+            <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', {'page': pagination.page + 1}) }}">volgende</a>
             {% endif %}
         </div>
     </div>
