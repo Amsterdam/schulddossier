@@ -19,7 +19,9 @@ security:
             form_login:
                 login_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
                 check_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
-                
+            logout:
+                path: /app/logout
+                target: /
         main:
             anonymous: true
     access_control:
