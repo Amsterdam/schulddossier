@@ -7,10 +7,15 @@
 {% block body_classes %}hide-pdf-splitter{% endblock %}
 
 {% block document %}
+<nav class="document">
+    <ul>
+        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}">Terug naar overzicht</a></li>
+    </ul>
+</nav>
+
 <div class="document">
     <div class="header">
         <h1>Gebruiker: {{ gebruiker.naam }}</h1>
-        <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}">Terug naar overzicht</a></p>
     </div>
     <div class="form-container">
         {% form_theme form with ['forms2.html.twig'] only %}
