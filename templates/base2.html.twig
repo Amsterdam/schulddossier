@@ -118,6 +118,20 @@ div.document .columns .column:last-child { margin-right: 0; }
 .modal-container .modal-window .modal-header h2 { font-weight: normal; }
 .modal-container .modal-window .modal-body { padding: 10px 20px; }
 
+.table { padding: 10px 20px; }
+.table table { width: 100%; border-spacing: 0; table-layout: fixed; }
+.table table thead tr th { text-align: left; padding: 5px; border-bottom: 1px solid #F3F3F3; }
+.table table tbody tr td { text-align: left; padding: 5px; border-bottom: 1px solid #F3F3F3; }
+.table table tbody tr td a { color: #0000FF; transition: color 0.5s; }
+.table table tbody tr td a:hover { color: #0000CC; }
+
+.pagination { width: 100%; display: flex; padding: 20px; box-sizing: border-box; font-size: 0.8rem; }
+.pagination>* { width: 33%; flex-grow: 1; }
+.pagination>a { color: #000000; }
+.pagination>.prev { text-align: left; }
+.pagination>span { text-align: center; }
+.pagination>.next { text-align: right; }
+
 /* dragula */
 .gu-mirror { position: fixed !important; margin: 0 !important; z-index: 9999 !important; opacity: 0.8; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; filter: alpha(opacity=80); }
 .gu-hide { display: none !important; }

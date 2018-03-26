@@ -1,32 +1,54 @@
-<html lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Gebruikers</title>
-<meta name="viewport" content="width = device-width">
-<link rel="stylesheet" href="/css/styles.css">
-</head>
+{% extends 'base2.html.twig' %}
 
+{% block title %}Gebruikerslijst - {{ parent() }}{% endblock %}
 
-<body class="index">
-	<header>
-    <h1>Gebruiker</h1>
-    <a class="knop" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_create') }}">Nieuwe gebruiker toevoegen</a>
-    </header>
-    <table>
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Type</th>
-            </tr>
-        </thead>
-        <tbody>
+{% block page_title %}Gebruikerslijst{% endblock %}
+
+{% block body_classes %}hide-pdf-splitter{% endblock %}
+
+{% block document %}
+    <nav class="document">
+        <ul>
+            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_create') }}">Nieuwe gebruiker</a></li>
+        </ul>
+    </nav>
+
+    <div class="document">
+        <div class="header">
+            <h1>Gebruiker</h1>
+        </div>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Naam</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
 {% for gebruiker in gebruikers %}
-            <tr>
-                <td><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', {'gebruikerId': gebruiker.id}) }}">{{ gebruiker.username }}</a></td>
-                <td>{{ gebruiker.type }}</td>
-            </tr>
+                    <tr>
+                        <td><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', {'gebruikerId': gebruiker.id}) }}">{{ gebruiker.username }}</a></td>
+                        <td>{{ gebruiker.naam }}</td>
+                        <td>{{ gebruiker.type }}</td>
+                    </tr>
 {% endfor %}
-       </tbody>
-    </table>
-</body>
-</html>
+               </tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            {% if pagination.page <= 0 %}
+            <span class="prev">vorige</span>
+            {% else %}
+            <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {'page': pagination.page - 1}) }}">vorige</a>
+            {% endif %}
+            <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
+            {% if (pagination.page + 1) >= pagination.numberOfPages %}
+            <span class="next">volgende</span>
+            {% else %}
+            <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {'page': pagination.page + 1}) }}">volgende</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

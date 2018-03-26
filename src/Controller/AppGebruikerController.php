@@ -26,7 +26,7 @@ class AppGebruikerController extends Controller
         /** @var $repository GebruikerRepository */
         $repository = $em->getRepository(Gebruiker::class);
 
-        $maxPageSize = 10;
+        $maxPageSize = 1;
 
         $gebruikers = $repository->findAll($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
