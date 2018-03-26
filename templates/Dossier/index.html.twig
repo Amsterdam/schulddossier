@@ -1,50 +1,67 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
-{% block title %}
-	Dossierindex
-{% endblock %}
-{% block maintag %}
-<main class="dossiers">
-{% endblock %}
-{% block main %}
-<section id="formulierKop">
-    <h1>Dossiers</h1>
-    <p>
-        <a class="primair" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}">Maak nieuw dossier aan</a> |
-        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak') }}">Prullenbak</a>
-    </p>
-</section>
-<section>
-    <h2>Bestaande dossiers</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Naam</th>
-                <th>MaDi</th>
-                <th>Regas</th>
-                <th>Allegro</th>
-                <th>Aanmaak datum dossier</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
+{% block title %}Dossiers - {{ parent() }}{% endblock %}
+
+{% block page_title %}Dossiers{% endblock %}
+
+{% block body_classes %}hide-pdf-splitter{% endblock %}
+
+{% block document %}
+    <nav class="document">
+        <ul>
+            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}">Nieuw dossier</a></li>
+            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak') }}">Prullenbak</a></li>
+        </ul>
+    </nav>
+
+    <div class="document">
+        <div class="header">
+            <h1>Dossiers</h1>
+        </div>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Naam</th>
+                        <th>MaDi</th>
+                        <th style="width: 75px;">Regas</th>
+                        <th style="width: 75px;">Allegro</th>
+                        <th>Aanmaak datum dossier</th>
+                        <th style="width: 75px;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
 {% for dossier in dossiers %}
-            <tr>
-                <td><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a></td>
-                <td>{{ dossier.schuldhulpbureau }}</td>
-                <td class="nummer">
-                    {{ dossier.regasNummer|default('-') }}
-                </td>
-                <td class="nummer">
-                    {{ dossier.allegroNummer|default('-') }}
-                </td>
-                <td class="datum">
-                    {{ dossier.aanmaakDatumTijd|date('d-m-Y') }}
-                </td>
-                <td>{{ dossier.status }}</td>
-            </tr>
+                    <tr>
+                        <td><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a></td>
+                        <td>{{ dossier.schuldhulpbureau }}</td>
+                        <td class="nummer">
+                            {{ dossier.regasNummer|default('-') }}
+                        </td>
+                        <td class="nummer">
+                            {{ dossier.allegroNummer|default('-') }}
+                        </td>
+                        <td class="datum">
+                            {{ dossier.aanmaakDatumTijd|date('d-m-Y') }}
+                        </td>
+                        <td>{{ dossier.status }}</td>
+                    </tr>
 {% endfor %}
-       </tbody>
-    </table>
-</section>
+               </tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            {% if pagination.page <= 0 %}
+            <span class="prev">vorige</span>
+            {% else %}
+            <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {'page': pagination.page - 1}) }}">vorige</a>
+            {% endif %}
+            <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
+            {% if (pagination.page + 1) >= pagination.numberOfPages %}
+            <span class="next">volgende</span>
+            {% else %}
+            <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {'page': pagination.page + 1}) }}">volgende</a>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
