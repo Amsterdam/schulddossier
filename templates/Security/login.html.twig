@@ -1,0 +1,45 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Login - {{ parent() }}{% endblock %}
+
+{% block page_title %}Aanmelden - Online schuldhulpdossier{% endblock %}
+
+{% block body_classes %}hide-pdf-splitter{% endblock %}
+
+{% block document %}
+
+
+<div class="document">
+    <div class="header">
+        <h1>Aanmelden voor medewerkers</h1>
+        <p>Medewerkers van het GKA en de MaDi kunnen zich hier aanmelden.</p>
+    </div>
+    <div class="form-container">
+<form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_login') }}" method="post" class="default-form-style">
+            {% if error %}
+            <div style="color: #F00;">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+    <div class="form-row">
+        <div class="label-widget">
+            <label for="username">Gebruikersnaam:</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="label-widget">
+            <label for="password">Wachtwoord:</label>
+            <input type="password" id="password" name="_password" />
+        </div>
+    </div>
+    {#
+        If you want to control the URL the user
+        is redirected to on success (more details below)
+        <input type="hidden" name="_target_path" value="/account" />
+    #}
+    <div class="nav">
+        <button type="submit">Aanmelden</button>
+    </div>
+</form>
+</div>
+</div>
+{% endblock %}

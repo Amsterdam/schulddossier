@@ -15,8 +15,11 @@ security:
             pattern: ^/app
             security: true
             provider: database
-            http_basic:
-                realm: "Schuldhulp Amsterdam"
+            anonymous: true
+            form_login:
+                login_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
+                check_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
+                
         main:
             anonymous: true
     access_control:
