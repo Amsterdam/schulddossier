@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 },false);
 
 function submitAanmeldFormulieren(form) {
-
 	if (form.classList.contains('schuldenformulier')) {
 		form.onsubmit = verstuurSchuldenFormulier;
 	} else if (form.classList.contains('nieuweSchuldeiser')) {
@@ -166,10 +165,11 @@ function PDFUploadSuccess(obj) {
 		li.appendChild(link);
 		var documentenLijst = obj.form.querySelector('.documentenLijst');
 		if (!documentenLijst) {
-			documentenLijst = $('documentenLijstTemplate').cloneNode(true);
-			documentenLijst.id = '';
+			var clone = $('documentenLijstTemplate').cloneNode(true);
+			clone.id = '';
+			documentenLijst = clone.querySelector('.documentenLijst');
 			var insert = obj.form.querySelector('.insertDocumentenLijst');
-			insert.parentNode.insertBefore(documentenLijst,insert);
+			insert.parentNode.insertBefore(clone,insert);
 			insert.parentNode.removeChild(insert);
 		}
 		documentenLijst.appendChild(li);

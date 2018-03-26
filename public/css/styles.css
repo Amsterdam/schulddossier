@@ -602,7 +602,7 @@ main section#formulierKop {
 	padding-bottom: 35px;
 }
 
-.tabs { width: 100%; margin-top: 20px; margin-bottom: 20px; }
+.tabs { width: 100%; margin-top: 20px; margin-bottom: 20px; font-size: 16px}
 .tabs ul { display: flex; list-style-type: none; flex-wrap: nowrap; width: 100%; padding: 0px 100px; box-sizing: border-box; }
 .tabs li { flex-grow: 1; }
 .tabs li a { text-align: center; display: block; color: #666666; text-decoration: none; padding: 10px 0; }
