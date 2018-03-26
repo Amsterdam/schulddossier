@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class GebruikerFormType extends AbstractType
 {
@@ -22,6 +23,9 @@ class GebruikerFormType extends AbstractType
     {
         $builder->add('naam', TextType::class, [
             'required' => true
+        ]);
+        $builder->add('email', EmailType::class, [
+            'required' => true,
         ]);
         $builder->add('username', TextType::class, [
             'required' => true
@@ -35,6 +39,18 @@ class GebruikerFormType extends AbstractType
         $builder->add('type', ChoiceType::class, [
             'required' => true,
             'choices' => Gebruiker::getTypes()
+        ]);
+        $builder->add('teamGka', EntityType::class, [
+            'required' => false,
+            'expanded' => false,
+            'multiple' => false,
+            'class' => Team::class
+        ]);
+        $builder->add('schuldhulpbureau', EntityType::class, [
+            'required' => false,
+            'expanded' => false,
+            'multiple' => false,
+            'class' => Schuldhulpbureau::class
         ]);
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {

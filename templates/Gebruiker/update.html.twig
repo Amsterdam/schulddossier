@@ -1,31 +1,34 @@
-<html lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Gebruiker bewerken</title>
-<meta name="viewport" content="width = device-width">
-<link rel="stylesheet" href="/css/styles.css">
-</head>
+{% extends 'base2.html.twig' %}
 
-<body>
-	<header>
-    <h1>Bewerken: {{ gebruiker.naam }}</h1>
-    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}">Terug naar overzicht</a>
-    </header>
+{% block title %}Gebruiker: {{ gebruiker.naam }} - {{ parent() }}{% endblock %}
 
-    {{ form_start(form) }}
-    
-    <table>
-		{{ form_row(form.naam) }}
-		{{ form_row(form.username) }}
-	    {{ form_row(form.clearPassword) }}
-    	{{ form_row(form.type) }}
-    	<tr>
-    		<td></td>
-    		<td><input type="submit" value="Aanmaken"></td>
-    	</tr>
-    </table>
-    <p><em>Wachtwoord: Alleen invullen als het wachtwoord gewijzigd moet worden</em></p>
-    
-    {{ form_end(form) }}
-</body>
-</html>
+{% block page_title %}Gebruiker: {{ gebruiker.naam }}{% endblock %}
+
+{% block body_classes %}hide-pdf-splitter{% endblock %}
+
+{% block document %}
+<div class="document">
+    <div class="header">
+        <h1>Gebruiker: {{ gebruiker.naam }}</h1>
+        <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}">Terug naar overzicht</a></p>
+    </div>
+    <div class="form-container">
+        {% form_theme form with ['forms2.html.twig'] only %}
+        {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
+        {{ form_row(form.naam) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.username) }}
+        <p>Alleen invullen indien wachtwoord gewijzigd moet worden:</p>
+        {{ form_row(form.clearPassword) }}
+        {{ form_row(form.type) }}
+        <p>Alleen invullen indien werkzaam voor het GKA:</p>
+        {{ form_row(form.teamGka) }}
+        <p>Alleen invullen indien werkzaam voor een MaDi:</p>
+        {{ form_row(form.schuldhulpbureau) }}
+        <div class="nav">
+            <button type="submit">Opslaan</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

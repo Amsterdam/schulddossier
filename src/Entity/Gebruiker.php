@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Serializable;
 
 /**
  * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
@@ -69,6 +70,29 @@ class Gebruiker implements UserInterface, \Serializable
      * @Assert\Length(min=1, max=255)
      */
     private $naam;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Email
+     * @Assert\Length(min=1, max=255)
+     */
+    private $email;
+
+    /**
+     * @var Team
+     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true)
+     */
+    private $teamGka;
+
+    /**
+     * @var Schuldhulpbureau
+     * @ORM\ManyToOne(targetEntity="Schuldhulpbureau")
+     * @ORM\JoinColumn(name="schuldhulpbureau_id", referencedColumnName="id", nullable=true)
+     */
+    private $schuldhulpbureau;
 
     /**
      * {@inheritDoc}
@@ -177,6 +201,36 @@ class Gebruiker implements UserInterface, \Serializable
     public function setPasswordChangedDateTime(\DateTime $passwordChangedDateTime = null)
     {
         $this->passwordChangedDateTime = $passwordChangedDateTime;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function getTeamGka()
+    {
+        return $this->teamGka;
+    }
+
+    public function setTeamGka(Team $teamGka = null)
+    {
+        $this->teamGka = $teamGka;
+    }
+
+    public function getSchuldhulpbureau()
+    {
+        return $this->schuldhulpbureau;
+    }
+
+    public function setSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau = null)
+    {
+        $this->schuldhulpbureau = $schuldhulpbureau;
     }
 
     /**
