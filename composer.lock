@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "54d429134f37d21516b9fdca33c452fa",
+    "content-hash": "32ef0b03fd428506133f8264232d2e25",
     "packages": [
         {
             "name": "bevacqua/dragula",
@@ -23,6 +23,17 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/bevacqua/horsey/archive/v4.2.2.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "bevacqua/rome",
+            "version": "2.1.22",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/bevacqua/rome/archive/v2.1.22.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -1526,16 +1537,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.0.0",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "9c18e3db49fa469f5feffe40dbd7b1ec2b61e41f"
+                "reference": "e4a54fa90a5cd8e8dd3fb4099942681731c5cdd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/9c18e3db49fa469f5feffe40dbd7b1ec2b61e41f",
-                "reference": "9c18e3db49fa469f5feffe40dbd7b1ec2b61e41f",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/e4a54fa90a5cd8e8dd3fb4099942681731c5cdd3",
+                "reference": "e4a54fa90a5cd8e8dd3fb4099942681731c5cdd3",
                 "shasum": ""
             },
             "require": {
@@ -1573,7 +1584,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2018-02-28T20:39:30+00:00"
+            "time": "2018-03-25T17:35:16+00:00"
         },
         {
             "name": "nimbusoft/flysystem-openstack-swift",

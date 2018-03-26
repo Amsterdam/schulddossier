@@ -30,6 +30,7 @@
         "symfony/yaml": "^4.0",
         "bevacqua/horsey": "4.2.2",
         "bevacqua/dragula": "3.7.2",
+        "bevacqua/rome": "2.1.22",
         "jshjohnson/choices": "3.0.3"
     },
     "require-dev": {
@@ -86,6 +87,7 @@
             ["mirror", "vendor/mrrio/jspdf", "public/vendor/mrrio/jspdf", null, {"delete": true}],
             ["mirror", "vendor/jshjohnson/choices", "public/vendor/jshjohnson/choices", null, {"delete": true}],
             ["mirror", "vendor/bevacqua/horsey", "public/vendor/bevacqua/horsey", null, {"delete": true}],
+            ["mirror", "vendor/bevacqua/rome", "public/vendor/bevacqua/rome", null, {"delete": true}],
             ["mirror", "vendor/bevacqua/dragula", "public/vendor/bevacqua/dragula", null, {"delete": true}]
         ]
     },
@@ -130,6 +132,17 @@
                 "version": "4.2.2",
                 "dist": {
                     "url": "https://github.com/bevacqua/horsey/archive/v4.2.2.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "bevacqua/rome",
+                "version": "2.1.22",
+                "dist": {
+                    "url": "https://github.com/bevacqua/rome/archive/v2.1.22.zip",
                     "type": "zip"
                 }
             }

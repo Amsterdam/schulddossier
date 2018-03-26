@@ -5,6 +5,9 @@
     "bevacqua/horsey": {
         "version": "4.2.2"
     },
+    "bevacqua/rome": {
+        "version": "2.1.22"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
