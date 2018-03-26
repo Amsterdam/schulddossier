@@ -22,4 +22,12 @@ class AppSecurityController extends Controller
             'error' => $error,
         ));
     }
+
+    /**
+     * @Route("/app/logout")
+     */
+    public function logoutAction()
+    {
+        //
+    }
 }

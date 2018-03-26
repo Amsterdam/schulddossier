@@ -367,7 +367,7 @@
                 <h2>{% block page_title %}Schulddossier{% endblock %}</h2>
             </div>
             <div class="gebruiker">
-                {{ app.user.userName }}
+                {{ app.user.userName }} - <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Afmelden</a>
             </div>
         </header>
 
