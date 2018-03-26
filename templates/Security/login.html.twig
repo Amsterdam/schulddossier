@@ -7,39 +7,36 @@
 {% block body_classes %}hide-pdf-splitter{% endblock %}
 
 {% block document %}
-
-
 <div class="document">
     <div class="header">
         <h1>Aanmelden voor medewerkers</h1>
         <p>Medewerkers van het GKA en de MaDi kunnen zich hier aanmelden.</p>
     </div>
     <div class="form-container">
-<form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_login') }}" method="post" class="default-form-style">
-            {% if error %}
-            <div style="color: #F00;">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-    <div class="form-row">
-        <div class="label-widget">
-            <label for="username">Gebruikersnaam:</label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}" />
-        </div>
+        <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_login') }}" method="post" class="default-form-style">
+            <div class="form-row">
+                <div class="label-widget">
+                    <label for="username">Gebruikersnaam:</label>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="label-widget">
+                    <label for="password">Wachtwoord:</label>
+                    <input type="password" id="password" name="_password">
+                </div>
+{% if error %}
+                <ul class="errors">
+                    <li>{{ error.messageKey|trans(error.messageData, 'security') }}</li>
+                </ul>
+{% endif %}
+            </div>
+            {# <input type="hidden" name="_target_path" value="/account"> #}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <div class="nav">
+                <button type="submit">Aanmelden</button>
+            </div>
+        </form>
     </div>
-    <div class="form-row">
-        <div class="label-widget">
-            <label for="password">Wachtwoord:</label>
-            <input type="password" id="password" name="_password" />
-        </div>
-    </div>
-    {#
-        If you want to control the URL the user
-        is redirected to on success (more details below)
-        <input type="hidden" name="_target_path" value="/account" />
-    #}
-    <div class="nav">
-        <button type="submit">Aanmelden</button>
-    </div>
-</form>
-</div>
 </div>
 {% endblock %}
