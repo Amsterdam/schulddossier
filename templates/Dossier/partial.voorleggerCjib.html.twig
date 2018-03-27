@@ -1,0 +1,28 @@
+            {% form_theme form with ['forms2.html.twig'] only %}
+            {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
+            <div class="accordion" id="voorlegger-cjib">
+                <div class="accordion-header">
+                    <div class="voorlegger-header">
+                        <div class="naam">
+                            <a href="#voorlegger-cjib">CJIB (niet saneerbare vorderingen)</a>
+                        </div>
+                        <div class="status">
+                        </div>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.cjibNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.cjibNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-body">
+                    {{ form_row(form.cjibNvt) }}
+                    {{ form_row(form.cjib) }}
+                    <div class="voorlegger-body">
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('cjib')} only %}
+                        <div class="nav">
+                            <button type="submit">Opslaan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}

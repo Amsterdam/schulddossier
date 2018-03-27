@@ -1,0 +1,31 @@
+            {% form_theme form with ['forms2.html.twig'] only %}
+            {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
+            <div class="accordion" id="voorlegger-voorlopigeTeruggaafBelastingdienst">
+                <div class="accordion-header">
+                    <div class="voorlegger-header">
+                        <div class="naam">
+                            <a href="#voorlegger-voorlopigeTeruggaafBelastingdienst">Voorlopige teruggaaf Belastingdienst</a>
+                        </div>
+                        <div class="status">
+                            <span class="{{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
+                            <span class="{{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                        </div>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-body">
+                    <div class="voorlegger-body">
+                        {{ form_row(form.voorlopigeTeruggaafBelastingdienstNvt) }}
+                        {{ form_row(form.voorlopigeTeruggaafBelastingdienstOntvangenMadi) }}
+                        {{ form_row(form.voorlopigeTeruggaafBelastingdienstOntvangenGka) }}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('voorlopigeTeruggaafBelastingdienst')} only %}
+                        <div class="nav">
+                            <button type="submit">Opslaan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}

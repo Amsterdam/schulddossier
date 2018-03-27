@@ -35,26 +35,8 @@
                                 {{ form_row(form.ontstaansDatum) }}
                             </div>
                         </div>
-                        <div class="files-container">
-                            <div class="file-container prototype" data-name="{{ form.file.vars.prototype.file.vars.full_name }}">
-                                {{ form_widget(form.file.vars.prototype.naam, {'attr': {'placeholder': 'Voer een naam in voor het document'} }) }}
-                                <div class="file-selector">
-                                    <button>Selecteer een bestand</button>
-                                    {{ form_widget(form.file.vars.prototype.file) }}
-                                </div>
-                                <div class="drop-area"></div>
-                            </div>
-                            <a class="add" href="#add">Nieuw bestand toevoegen</a>
-                        </div>
-                        {% do form.file.setRendered() %}
-                        {% if schuldItem.dossierDocumenten|length > 0 %}
-                        <p>Bestanden:</p>
-                        <ul>
-                            {% for dossierDocument in schuldItem.dossierDocumenten %}
-                                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a></li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten} only %}
                         <div class="nav">
                             <button type="submit" class="remove" name="{{ form.verwijderd.vars.full_name }}" value="1">Verwijderen</button>
                             {% do form.verwijderd.setRendered() %}

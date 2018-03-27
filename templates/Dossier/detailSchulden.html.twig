@@ -90,18 +90,7 @@
                     {{ form_row(createForm.ontstaansDatum) }}
                 </div>
             </div>
-            <div class="files-container">
-                <div class="file-container prototype" data-name="{{ createForm.file.vars.prototype.file.vars.full_name }}">
-                    {{ form_widget(createForm.file.vars.prototype.naam, {'attr': {'placeholder': 'Voer een naam in voor het document'} }) }}
-                    <div class="file-selector">
-                        <button>Selecteer een bestand</button>
-                        {{ form_widget(createForm.file.vars.prototype.file) }}
-                    </div>
-                    <div class="drop-area"></div>
-                </div>
-                <a class="add" href="#add">Nieuw bestand toevoegen</a>
-            </div>
-            {% do createForm.file.setRendered() %}
+            {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
             <div class="nav">
                 {% do createForm.verwijderd.setRendered() %}
                 <button type="submit">Aanmaken</button>

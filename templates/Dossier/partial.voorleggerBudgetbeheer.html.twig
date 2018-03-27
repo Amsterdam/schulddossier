@@ -1,0 +1,31 @@
+            {% form_theme form with ['forms2.html.twig'] only %}
+            {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
+            <div class="accordion" id="voorlegger-budgetbeheer">
+                <div class="accordion-header">
+                    <div class="voorlegger-header">
+                        <div class="naam">
+                            <a href="#voorlegger-budgetbeheer">Budgetbeheer</a>
+                        </div>
+                        <div class="status">
+                        </div>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.budgetbeheerNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.budgetbeheerNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-body">
+                    <div class="voorlegger-body">
+                        {{ form_row(form.budgetbeheerNvt) }}
+                        {{ form_row(form.budgetbeheerPlangroep) }}
+                        {{ form_row(form.budgetbeheerCav) }}
+                        {{ form_row(form.budgetbeheerFibu) }}
+                        {{ form_row(form.budgetbeheerOverig) }}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('budgetbeheer')} only %}
+                        <div class="nav">
+                            <button type="submit">Opslaan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}

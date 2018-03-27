@@ -62,6 +62,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerVrijwaringsbewijsFormT
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerVtlbFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerWaternetFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerZorgtoeslagFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerSchuldenoverzichtFormType;
 
 /**
  * @Route("/app/dossier")
@@ -192,6 +193,7 @@ class AppDossierController extends Controller
         $voorleggerForms['overeenkomstKinderopvang'] = $this->createForm(VoorleggerOvereenkomstKinderopvangFormType::class, $dossier->getVoorlegger());
         $voorleggerForms['polisbladZorgverzekering'] = $this->createForm(VoorleggerPolisbladZorgverzekeringFormType::class, $dossier->getVoorlegger());
         $voorleggerForms['retourbewijsModem'] = $this->createForm(VoorleggerRetourbewijsModemFormType::class, $dossier->getVoorlegger());
+        $voorleggerForms['schuldenoverzicht'] = $this->createForm(VoorleggerSchuldenoverzichtFormType::class, $dossier->getVoorlegger());
         $voorleggerForms['stabilisatieovereenkomst'] = $this->createForm(VoorleggerStabilisatieovereenkomstFormType::class, $dossier->getVoorlegger());
         $voorleggerForms['toelichtingAanvraagSchuldsaneringClient'] = $this->createForm(VoorleggerToelichtingAanvraagSchuldsaneringClientFormType::class, $dossier->getVoorlegger());
         $voorleggerForms['toelichtingAanvraagSchuldsaneringMadi'] = $this->createForm(VoorleggerToelichtingAanvraagSchuldsaneringMadiFormType::class, $dossier->getVoorlegger());
@@ -205,39 +207,37 @@ class AppDossierController extends Controller
         foreach ($voorleggerForms as $key => $voorleggerForm) {
             $voorleggerForm->handleRequest($request);
             if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
-
-                $file = $voorleggerForm->get('file')->getData();
-                $document = null;
-                if ($file !== null) {
-                    /** @var $file File */
-                    $document = new Document();
-                    $document->setFile($file);
-                    $document->setMd5Hash(md5($document->getFile()->getRealPath()));
-                    $document->setMainTag('dossier-' . $dossier->getId());
-                    $document->setNaam($voorleggerForm->get('fileNaam')->getData());
-                    $document->setGroep('dossier');
-                    $document->setUploader($this->getUser());
-                    $document->setUploadDatumTijd(new \DateTime());
-                    $dossierDocument = new DossierDocument();
-                    $dossierDocument->setDocument($document);
-                    $dossierDocument->setDossier($dossier);
-                    $dossierDocument->setOnderwerp($key);
+                $files = $voorleggerForm->get('file')->getData();
+                foreach ($files as $document) {
+                    /** @var $file Document */
+                    if ($document !== null) {
+                        $document->setMd5Hash(md5($document->getFile()->getRealPath()));
+                        $document->setMainTag('dossier-' . $dossier->getId());
+                        $document->setGroep('dossier');
+                        $document->setUploader($this->getUser());
+                        $document->setUploadDatumTijd(new \DateTime());
+                        $dossierDocument = new DossierDocument();
+                        $dossierDocument->setDocument($document);
+                        $dossierDocument->setDossier($dossier);
+                        $dossierDocument->setOnderwerp($key);
+                    }
                 }
 
                 $em->flush();
 
                 if ($request->isXmlHttpRequest()) {
-                    return new JsonResponse(['state' => 'OK', 'document' => $document !== null ? [
+                    /*return new JsonResponse(['state' => 'OK', 'document' => $document !== null ? [
                         'id' => $document->getId(),
                         'url' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', ['dossierId' => $dossier->getId(), 'documentId' => $document->getId()])
-                    ] : null]);
+                    ] : null]);*/
+                    return new JsonResponse('ok');
                 }
             } elseif ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid() === false) {
                 return new JsonResponse($this->get('json_serializer')->normalize($voorleggerForm->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
             }
         }
 
-        return $this->render('Dossier/detail.html.twig', [
+        return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
             'form' => $form->createView(),
             'voorleggerForms' => array_map(function ($form) { return $form->createView(); }, $voorleggerForms)

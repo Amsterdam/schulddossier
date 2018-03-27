@@ -1,0 +1,29 @@
+            {% form_theme form with ['forms2.html.twig'] only %}
+            {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
+            <div class="accordion" id="voorlegger-toelichtingAanvraagSchuldsaneringMadi">
+                <div class="accordion-header">
+                    <div class="voorlegger-header">
+                        <div class="naam">
+                            <a href="#voorlegger-toelichtingAanvraagSchuldsaneringMadi">Toelichting aanvraag schuldsanering MaDi</a>
+                        </div>
+                        <div class="status">
+                            <span class="{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringMadiOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
+                            <span class="{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringMadiOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                        </div>
+                        <div class="nvt">
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-body">
+                    <div class="voorlegger-body">
+                        {{ form_row(form.toelichtingAanvraagSchuldsaneringMadiOntvangenMadi) }}
+                        {{ form_row(form.toelichtingAanvraagSchuldsaneringMadiOntvangenGka) }}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('toelichtingAanvraagSchuldsaneringMadi')} only %}
+                        <div class="nav">
+                            <button type="submit">Opslaan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}

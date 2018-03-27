@@ -1,0 +1,31 @@
+            {% form_theme form with ['forms2.html.twig'] only %}
+            {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
+            <div class="accordion" id="voorlegger-kindgebondenBudget">
+                <div class="accordion-header">
+                    <div class="voorlegger-header">
+                        <div class="naam">
+                            <a href="#voorlegger-kindgebondenBudget">Kindgebonden budget</a>
+                        </div>
+                        <div class="status">
+                            <span class="{{ dossier.voorlegger.kindgebondenBudgetOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
+                            <span class="{{ dossier.voorlegger.kindgebondenBudgetOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                        </div>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.kindgebondenBudgetNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.kindgebondenBudgetNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-body">
+                    <div class="voorlegger-body">
+                        {{ form_row(form.kindgebondenBudgetNvt) }}
+                        {{ form_row(form.kindgebondenBudgetOntvangenMadi) }}
+                        {{ form_row(form.kindgebondenBudgetOntvangenGka) }}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kindgebondenBudget')} only %}
+                        <div class="nav">
+                            <button type="submit">Opslaan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}

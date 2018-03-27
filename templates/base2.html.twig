@@ -93,10 +93,11 @@ div.document .columns .column:last-child { margin-right: 0; }
 .tabs li.active a { border-bottom: 3px solid #F00; } 
 
 .accordion-container { padding: 0 20px; }
+.accordion-container>h2 { font-weight: normal; margin-top: 20px; margin-bottom: 10px; }
 .accordion-container .accordion { margin-bottom: 10px; background-color: #F3F3F3; padding: 8px 15px; border-radius: 2px; }
 .accordion-container .accordion .accordion-header { }
-.accordion-container .accordion .accordion-body { height: 0; transition: 1s height; overflow: hidden; }
-.accordion-container .accordion:target .accordion-body { height: 400px; padding-top: 10px; }
+.accordion-container .accordion .accordion-body { height: 0; overflow: hidden; }
+.accordion-container .accordion.open .accordion-body { height: auto; padding-top: 10px; }
 
 .schulditem-header { display: flex; width: 100%; height: 20px; }
 .schulditem-header .naam { flex-grow: 1; height: 20px; line-height: 20px; }
@@ -104,6 +105,16 @@ div.document .columns .column:last-child { margin-right: 0; }
 .schulditem-header .naam a { color: inherit; text-decoration: none; display: block; }
 .schulditem-header .voortgang { width: 150px; flex-grow: 0; font-size: 0.8rem; height: 20px; line-height: 20px; }
 .schulditem-header .bedrag { width: 150px; flex-grow: 0; height: 20px; line-height: 20px; text-align: right; }
+
+.voorlegger-header { display: flex; width: 100%; height: 20px; font-size: 1.0rem; }
+.voorlegger-header .naam { flex-grow: 1; height: 20px; line-height: 20px; }
+.voorlegger-header .naam a { color: inherit; text-decoration: none; display: block; }
+.voorlegger-header .status { flex-grow: 0; height: 20px; line-height: 20px; width: 150px; }
+.voorlegger-header .status span { padding-left: 17px; font-size: 0; }
+.voorlegger-header .status span:before { content: ''; display: inline-block; height: 17px; width: 17px; background-image: url(/pix/bezig.png); }
+.voorlegger-header .status span.afgerond:before { background-image: url(/pix/compleet.png); }
+.voorlegger-header .status span.na:before { background-image: none; }
+.voorlegger-header .nvt { flex-grow: 0; height: 20px; line-height: 20px; width: 50px; }
 
 .form-container { padding: 20px 20px 20px 20px; }
 .form-container h2 { font-size: 1.3rem; font-weight: normal; }
@@ -205,6 +216,7 @@ div.document .columns .column:last-child { margin-right: 0; }
         <script type="text/javascript" src="/js/pdfSplitser.js"></script>
         <script type="text/javascript" src="/js/formSubmit.js"></script>
         <script type="text/javascript" src="/js/filesContainer.js"></script>
+        <script type="text/javascript" src="/js/accordion.js"></script>
         <script type="text/javascript">
         </script>
     </body>

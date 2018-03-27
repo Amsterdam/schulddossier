@@ -1,0 +1,31 @@
+            {% form_theme form with ['forms2.html.twig'] only %}
+            {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
+            <div class="accordion" id="voorlegger-zorgtoeslag">
+                <div class="accordion-header">
+                    <div class="voorlegger-header">
+                        <div class="naam">
+                            <a href="#voorlegger-zorgtoeslag">Zorgtoeslag</a>
+                        </div>
+                        <div class="status">
+                            <span class="{{ dossier.voorlegger.zorgtoeslagOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
+                            <span class="{{ dossier.voorlegger.zorgtoeslagOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                        </div>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.zorgtoeslagNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.zorgtoeslagNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-body">
+                    <div class="voorlegger-body">
+                        {{ form_row(form.zorgtoeslagNvt) }}
+                        {{ form_row(form.zorgtoeslagOntvangenMadi) }}
+                        {{ form_row(form.zorgtoeslagOntvangenGka) }}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('zorgtoeslag')} only %}
+                        <div class="nav">
+                            <button type="submit">Opslaan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}

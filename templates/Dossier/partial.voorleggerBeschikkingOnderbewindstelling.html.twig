@@ -1,0 +1,31 @@
+            {% form_theme form with ['forms2.html.twig'] only %}
+            {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
+            <div class="accordion" id="voorlegger-beschikkingOnderBewindstelling">
+                <div class="accordion-header">
+                    <div class="voorlegger-header">
+                        <div class="naam">
+                            <a href="#voorlegger-beschikkingOnderBewindstelling">Beschikking onderbewindstelling</a>
+                        </div>
+                        <div class="status">
+                            <span class="{{ dossier.voorlegger.beschikkingOnderBewindstellingOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
+                            <span class="{{ dossier.voorlegger.beschikkingOnderBewindstellingOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                        </div>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.beschikkingOnderBewindstellingNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.beschikkingOnderBewindstellingNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-body">
+                    <div class="voorlegger-body">
+                        {{ form_row(form.beschikkingOnderBewindstellingNvt) }}
+                        {{ form_row(form.beschikkingOnderBewindstellingOntvangenMadi) }}
+                        {{ form_row(form.beschikkingOnderBewindstellingOntvangenGka) }}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('beschikkingOnderBewindstelling')} only %}
+                        <div class="nav">
+                            <button type="submit">Opslaan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}

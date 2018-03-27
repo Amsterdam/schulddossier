@@ -1,0 +1,8 @@
+                        {% if dossierDocumenten|length > 0 %}
+                        <p>Bestanden:</p>
+                        <ul>
+                            {% for dossierDocument in dossierDocumenten %}
+                                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
