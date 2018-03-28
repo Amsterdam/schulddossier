@@ -50,11 +50,13 @@ class SchuldItemFormType extends AbstractType
         ]);
         $builder->add('vastStelDatum', DateType::class, [
             'html5' => true,
-            'widget' => 'single_text'
+            'widget' => 'single_text',
+            'label' => 'Contactdatum'
         ]);
         $builder->add('ontstaansDatum', DateType::class, [
             'html5' => true,
-            'widget' => 'single_text'
+            'widget' => 'single_text',
+            'label' => 'Ontstaansdatum'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
