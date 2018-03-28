@@ -2,7 +2,10 @@
                         <p>Bestanden:</p>
                         <ul>
                             {% for dossierDocument in dossierDocumenten %}
-                                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a></li>
+                                <li>
+                                    <a class="quick-viewer-file" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a>
+                                    | Download <a class="download" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a>
+                                </li>
                             {% endfor %}
                         </ul>
                         {% endif %}

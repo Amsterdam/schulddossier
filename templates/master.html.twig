@@ -129,6 +129,8 @@ div.document .columns .column:last-child { margin-right: 0; }
 .modal-container>* { display: none; }
 .modal-container:target { background-color: rgba(0, 0, 0, 0.2); position: fixed; top: 0; left: 0; z-index: 9999; width: 100%; height: 100%; }
 .modal-container:target>* { display: block; }
+.modal-container.open { background-color: rgba(0, 0, 0, 0.2); position: fixed; top: 0; left: 0; z-index: 9999; width: 100%; height: 100%; }
+.modal-container.open>* { display: block; }
 .modal-container>a { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
 .modal-container .modal-window { position: absolute; top: 50%; left: 50%; margin-left: -300px; margin-top: -150px; width: 600px; height: 300px; background-color: #FFF; border: 1px solid #999; border-radius: 2px; }
 .modal-container .modal-window .modal-header { border-bottom: 1px solid #CCC; padding: 10px 20px; }
@@ -149,6 +151,23 @@ div.document .columns .column:last-child { margin-right: 0; }
 .pagination>.prev { text-align: left; }
 .pagination>span { text-align: center; }
 .pagination>.next { text-align: right; }
+
+.quick-viewer {}
+.quick-viewer .modal-window { width: 90%; height: 90%; top: 5%; left: 5%; margin: 0; }
+.quick-viewer .modal-window .modal-header { }
+.quick-viewer .modal-window .modal-body { position: absolute; top: 40px; bottom: 0; left: 0; right: 0; }
+.quick-viewer .modal-window .modal-body img { position: absolute; top: 50%; left: 50%; display: none; margin-left: -100px; margin-top: -100px; }
+.quick-viewer .modal-window .modal-body img.visible { display: block; }
+.quick-viewer .modal-window .modal-body canvas { width: 100%; }
+.quick-viewer .modal-window .modal-body .viewer-container { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: scroll; }
+.quick-viewer .modal-window .modal-body .page-counter { position: absolute; bottom: 50px; left: 50%; margin-left: -80px; width: 160px; text-align: center; background-color: #333; color: #999; padding: 10px 15px; border-radius: 5px; }
+.quick-viewer .modal-window .modal-body .button { position: absolute; width: 20px; height: 20px; text-align: center; background-color: #333; color: #999; padding: 10px 15px; border-radius: 5px; top: 50%; margin-top: -10px; }
+.quick-viewer .modal-window .modal-body .button:before { width: 16px; height: 16px; position: absolute; left: 50%; top: 50%; margin-left: -8px; margin-top: -8px; }
+.quick-viewer .modal-window .modal-body .button.prev { left: 30px; }
+.quick-viewer .modal-window .modal-body .button.prev:before { content: url("/pix/chevron-left.svg"); }
+.quick-viewer .modal-window .modal-body .button.next { right: 30px; }
+.quick-viewer .modal-window .modal-body .button.next:before { content: url("/pix/chevron-right.svg"); }
+
 
 /* dragula */
 .gu-mirror { position: fixed !important; margin: 0 !important; z-index: 9999 !important; opacity: 0.8; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; filter: alpha(opacity=80); }
@@ -232,7 +251,6 @@ div.document .columns .column:last-child { margin-right: 0; }
         <script type="text/javascript" src="/js/formSubmit.js"></script>
         <script type="text/javascript" src="/js/filesContainer.js"></script>
         <script type="text/javascript" src="/js/accordion.js"></script>
-        <script type="text/javascript">
-        </script>
+        <script type="text/javascript" src="/js/quickViewer.js"></script>
     </body>
 </html>
