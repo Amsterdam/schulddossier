@@ -203,6 +203,16 @@ div.document .columns .column:last-child { margin-right: 0; }
             </div>
         </header>
         <div class="document-container">
+
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-message flash-type-{{ type }}">
+            <a class="btn" href="#close-flash">x</a>
+            <span class="message">{{ message }}</span>
+        </div>
+    {% endfor %}
+{% endfor %}
+
 {% block document %}.{% endblock %}
         </div>
         <aside class="pdf-splitter expanded">

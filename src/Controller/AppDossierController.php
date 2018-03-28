@@ -245,93 +245,16 @@ class AppDossierController extends Controller
     }
 
     /**
-     * @Route("/detail/{dossierId}/documenten/nieuw")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function addDocumentAction(Request $request, EntityManagerInterface $em, Dossier $dossier)
-    {
-        $dossierDocument = new DossierDocument();
-        $form = $this->createForm(DossierDocumentFormType::class, $dossierDocument);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $dossierDocument->setDossier($dossier);
-            $dossierDocument->getDocument()->setUploader($this->getUser());
-            $dossierDocument->getDocument()->setMainTag('dossier-' . $dossier->getId());
-            $dossierDocument->getDocument()->setGroep('dossier');
-
-            $em->persist($dossierDocument);
-            $em->flush();
-
-            if ($request->isXmlHttpRequest()) {
-                return new JsonResponse($this->get('json_serializer')->normalize($dossierDocument), JsonResponse::HTTP_CREATED);
-            }
-
-            $this->addFlash('success', 'Document toegevoegd');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', [
-                'dossierId' => $dossier->getId()
-            ]);
-        }
-
-        if ($request->isXmlHttpRequest() && $form->isSubmitted()) {
-            return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-        }
-
-        return $this->render('Dossier/addDocument.html.twig', [
-            'dossier' => $dossier,
-            'form' => $form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/detail/{dossierId}/documenten/nieuw-wizard")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function addDocumentViaWizardAction(Request $request, EntityManagerInterface $em, Dossier $dossier)
-    {
-        $dossierDocument = new DossierDocument();
-
-        $form = $this->createForm(DossierDocumentFormType::class, $dossierDocument);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $dossierDocument->setDossier($dossier);
-            $dossierDocument->getDocument()->setUploader($this->getUser());
-            $dossierDocument->getDocument()->setMainTag('dossier-' . $dossier->getId());
-            $dossierDocument->getDocument()->setGroep('dossier');
-
-            $em->persist($dossierDocument);
-            $em->flush();
-
-            if ($request->isXmlHttpRequest()) {
-                return new JsonResponse($this->get('json_serializer')->normalize($dossierDocument), JsonResponse::HTTP_CREATED);
-            }
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', [
-                'dossierId' => $dossier->getId(),
-                'documentId' => $dossierDocument->getDocument()->getId()
-            ]);
-        }
-
-        if ($request->isXmlHttpRequest() && $form->isSubmitted()) {
-            return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-        }
-
-        return $this->render('Dossier/addDocumentViaWizard.html.twig', [
-            'dossier' => $dossier,
-            'form' => $form->createView()
-        ]);
-    }
-
-    /**
      * @Route("/detail/{dossierId}/documenten/prullenbak")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function indexDocumentenInPrullenbak(Request $request, Dossier $dossier)
+    public function detailPrullenbak(Request $request, Dossier $dossier)
     {
         $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) {
             return $dossierDocument->getDocument()->isInPrullenbak();
         });
 
-        return $this->render('Dossier/indexDocumentenInPrullenbak.html.twig', [
+        return $this->render('Dossier/detailPrullenbak.html.twig', [
             'dossier' => $dossier,
             'dossierDocumenten' => $dossierDocumenten,
         ]);

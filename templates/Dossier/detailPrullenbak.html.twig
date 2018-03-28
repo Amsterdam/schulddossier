@@ -1,0 +1,52 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}{{ dossier.clientNaam }} - {{ parent() }}{% endblock %}
+
+{% block page_title %}Prullenbak: {{ dossier.clientNaam }}{% endblock %}
+
+{% block document %}
+
+<nav class="document">
+    <ul>
+        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a></li>
+    </ul>
+</nav>
+
+<div class="document">
+    <div class="header">
+        <h1>Prullenbak: {{ dossier.clientNaam }}</h1>
+    </div>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Document</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+{% set empty = true %}
+{% for document in dossier.documenten if document.document.inPrullenbak == true %}
+{% set empty = false %}
+                <tr>
+                    <th>{{ document.document.naam }}</th>
+                    <td>
+                        <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_removedocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}" method="post">
+                            <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_removedocument') }}">
+                            <button type="submit">Definitief verwijderen</button>
+                        </form>
+                        <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoredocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}" method="post">
+                            <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoredocument') }}">
+                            <button type="submit">Herstellen</button>
+                        </form>
+                    </td>
+                </tr>
+{% endfor %}
+            </tbody>
+        </table>
+{% if empty %}
+        <p class="empty-table">Prullenbak is leeg</p>
+{% endif %}
+    </div>
+</div>
+{% endblock %}
