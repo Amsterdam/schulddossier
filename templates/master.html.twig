@@ -160,6 +160,13 @@ div.document .columns .column:last-child { margin-right: 0; }
 .quick-viewer .modal-window .modal-body canvas { width: 100%; }
 .quick-viewer .modal-window .modal-body .viewer-container { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: scroll; }
 .quick-viewer .modal-window .modal-body .page-counter { position: absolute; bottom: 50px; left: 50%; margin-left: -80px; width: 160px; text-align: center; background-color: #333; color: #999; padding: 10px 15px; border-radius: 5px; }
+.quick-viewer .modal-window .modal-body .button { position: absolute; width: 20px; height: 20px; text-align: center; background-color: #333; color: #999; padding: 10px 15px; border-radius: 5px; top: 50%; margin-top: -10px; }
+.quick-viewer .modal-window .modal-body .button:before { width: 16px; height: 16px; position: absolute; left: 50%; top: 50%; margin-left: -8px; margin-top: -8px; }
+.quick-viewer .modal-window .modal-body .button.prev { left: 30px; }
+.quick-viewer .modal-window .modal-body .button.prev:before { content: url("/pix/chevron-left.svg"); }
+.quick-viewer .modal-window .modal-body .button.next { right: 30px; }
+.quick-viewer .modal-window .modal-body .button.next:before { content: url("/pix/chevron-right.svg"); }
+
 
 /* dragula */
 .gu-mirror { position: fixed !important; margin: 0 !important; z-index: 9999 !important; opacity: 0.8; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; filter: alpha(opacity=80); }

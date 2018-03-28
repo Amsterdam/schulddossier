@@ -14,6 +14,7 @@ window.schuldhulp.quickViewer = {
         nextButton: null,
         prevButton: null
     },
+    currentPage: 0,
     currentPDFJS: null,
     
     showDocument: function (dom) {
@@ -42,6 +43,8 @@ window.schuldhulp.quickViewer = {
         
         self.clear();
         
+        self.currentPage = num;
+        
         this.currentPDFJS.getPage(num).then(function (page) {
             var canvasDom = document.createElement('canvas');
             var context = canvasDom.getContext('2d');
@@ -53,7 +56,7 @@ window.schuldhulp.quickViewer = {
             self.dom.viewerContainer.appendChild(canvasDom);
             
             self.dom.pageCounter.innerHTML = '';
-            self.dom.pageCounter.appendChild(document.createTextNode('Aantal pagina\'s ' + self.currentPDFJS.numPages ));
+            self.dom.pageCounter.appendChild(document.createTextNode(num + ' / ' + self.currentPDFJS.numPages ));
             
             page.render({canvasContext: context, viewport: viewport }).then(function () {
                 self.dom.spinner.classList.remove('visible');
@@ -75,7 +78,7 @@ window.schuldhulp.quickViewer = {
         
         self.dom.container = document.createElement('div');
         self.dom.container.classList.add('quick-viewer', 'modal-container');
-
+        
         self.dom.close = document.createElement('a');
         self.dom.close.addEventListener('click', function (event) {
             self.dom.container.classList.remove('open');
@@ -102,6 +105,28 @@ window.schuldhulp.quickViewer = {
         self.dom.spinner = document.createElement('img');
         self.dom.spinner.src = '/pix/spinner.gif';
         self.dom.body.appendChild(self.dom.spinner);
+        
+        self.dom.prevButton = document.createElement('a');
+        self.dom.prevButton.href = '#';
+        self.dom.prevButton.classList.add('button', 'nav', 'prev');
+        self.dom.prevButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (self.currentPage > 1) {
+                self.showPage(self.currentPage - 1);
+            }
+        });
+        self.dom.body.appendChild(self.dom.prevButton);
+        
+        self.dom.nextButton = document.createElement('a');
+        self.dom.nextButton.href = '#';
+        self.dom.nextButton.classList.add('button', 'nav', 'next');
+        self.dom.nextButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (self.currentPage < self.currentPDFJS.numPages) {
+                self.showPage(self.currentPage + 1);
+            }
+        });
+        self.dom.body.appendChild(self.dom.nextButton);
         
         self.dom.pageCounter = document.createElement('div');
         self.dom.pageCounter.classList.add('page-counter');
