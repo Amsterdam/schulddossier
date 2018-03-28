@@ -770,14 +770,14 @@ class Voorlegger
     private $energieBedrijfDatumOpname;
 
     /**
-     * @var long
+     * @var float
      * @ORM\Column(type="bigint", nullable=true)
      * @Assert\Type("numeric")
      */
     private $energieBedrijfT1;
 
     /**
-     * @var long
+     * @var float
      * @ORM\Column(type="bigint", nullable=true)
      * @Assert\Type("numeric")
      */
