@@ -19,12 +19,16 @@ window.schuldhulp.quickViewer = {
     
     currentPDFJS: null,
     
+    accordion: null,
+    
+    documentLink: null,
+    
     showDocument: function (dom) {
         var self = this;
-        var url = dom.getAttribute('href');
+        self.documentLink = dom;
 
-        if (this.dom.container === null) {
-            this.init();
+        if (self.dom.container === null) {
+            self.init();
         }
         
         self.clear();
@@ -32,14 +36,19 @@ window.schuldhulp.quickViewer = {
         self.dom.spinner.classList.add('visible');
 
         self.dom.header.innerHTML = '';
+        
         // indien onderdeel van een accordion?
         if (window.schuldhulp._.matches(dom, '.accordion a')) {
-            self.dom.header.appendChild(document.createTextNode(dom.childNodes[0].nodeValue));
+            self.accordion = window.schuldhulp._.findParent(dom, '.accordion');
+            var accordionTitle = self.accordion.querySelector('.accordion-header .naam a').textContent;
+            var documentTitle = dom.childNodes[0].textContent;
+            self.dom.header.appendChild(document.createTextNode(accordionTitle + ': ' + documentTitle));
         } else {
-            self.dom.header.appendChild(document.createTextNode(dom.childNodes[0].nodeValue));
+            self.dom.header.appendChild(document.createTextNode(dom.childNodes[0].textContent));
+            self.accordion = null;
         }
         
-        PDFJS.getDocument(url).then(function (pdf) {
+        PDFJS.getDocument(self.documentLink.getAttribute('href')).then(function (pdf) {
             self.currentPDFJS = pdf;
             self.showPage(1);
         });
@@ -118,9 +127,7 @@ window.schuldhulp.quickViewer = {
         self.dom.prevButton.classList.add('button', 'nav', 'prev');
         self.dom.prevButton.addEventListener('click', function (event) {
             event.preventDefault();
-            if (self.currentPage > 1) {
-                self.showPage(self.currentPage - 1);
-            }
+            self.prev();
         });
         self.dom.body.appendChild(self.dom.prevButton);
         
@@ -129,9 +136,7 @@ window.schuldhulp.quickViewer = {
         self.dom.nextButton.classList.add('button', 'nav', 'next');
         self.dom.nextButton.addEventListener('click', function (event) {
             event.preventDefault();
-            if (self.currentPage < self.currentPDFJS.numPages) {
-                self.showPage(self.currentPage + 1);
-            }
+            self.next();
         });
         self.dom.body.appendChild(self.dom.nextButton);
         
@@ -140,6 +145,38 @@ window.schuldhulp.quickViewer = {
         self.dom.body.appendChild(self.dom.pageCounter);
         
         window.document.getElementsByTagName('body')[0].appendChild(self.dom.container);
+    },
+    
+    next: function () {
+        var self = this;
+        if (self.currentPage < self.currentPDFJS.numPages) {
+            self.showPage(self.currentPage + 1);
+        } else if (self.accordion !== null) {
+            var container = window.schuldhulp._.findParent(self.accordion, '.accordion-container');
+            var files = container.querySelectorAll('.quick-viewer-file');
+            for (var i = 0; i < files.length; i ++) {
+                if (i > 0 && files.item(i - 1) === self.documentLink) {
+                    self.showDocument(files.item(i));
+                    break;
+                }
+            }
+        }
+    },
+    
+    prev: function () {
+        var self = this;
+        if (self.currentPage > 1) {
+            self.showPage(self.currentPage - 1);
+        } else if (self.accordion !== null) {
+            var container = window.schuldhulp._.findParent(self.accordion, '.accordion-container');
+            var files = container.querySelectorAll('.quick-viewer-file');
+            for (var i = 0; i < files.length; i ++) {
+                if (i > 1 && files.item(i) === self.documentLink) {
+                    self.showDocument(files.item(i - 1));
+                    break;
+                }
+            }
+        }
     }
 };
 
