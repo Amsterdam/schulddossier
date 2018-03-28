@@ -1,43 +1,47 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
-{% block title %}
-	Maak nieuw dossier aan
-{% endblock %}
+{% block title %}Nieuw dossier - {{ parent() }}{% endblock %}
 
+{% block page_title %}Nieuw dossier{% endblock %}
 
-{% block kleineNavigatie %}
-    <div class="kleineNav"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></div>
-{% endblock %}
+{% block body_classes %}hide-pdf-splitter{% endblock %}
 
-{% block main %}
-    <h1>Nieuw dossier</h1>
+{% block document %}
+
+<nav class="document">
+    <ul>
+        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></li>
+    </ul>
+</nav>
 
 <div class="document">
-        <div class="header">
-
-            {% form_theme form with ['forms2.html.twig'] only %}
-            {{ form_start(form, {'attr': {'class': 'default-form-style ajax novalidate'} }) }}
-            {{ form_row(form.clientNaam) }}
-            {{ form_row(form.partnerNaam) }}
-            {# form_row(form.status) #}
-            <div class="columns">
-                <div class="column">
-                    <h3>MaDi</h3>
-                    {{ form_row(form.schuldhulpbureau) }}
-                    {{ form_row(form.medewerkerSchuldhulpbureau) }}
-                    {{ form_row(form.regasNummer) }}
-                </div>
-                <div class="column">
-                    <h3>GKA</h3>
-                    {{ form_row(form.teamGka) }}
-                    {{ form_row(form.allegroNummer) }}
-                </div>
+    <div class="header">
+        <h1>Nieuw dossier</h1>
+        <p>Vul onderstaand formulier in om een nieuw dossier te openen.</p>
+    </div>
+    <div class="form-container">
+        {% form_theme form with ['forms2.html.twig'] only %}
+        {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
+        {{ form_row(form.clientNaam) }}
+        {{ form_row(form.partnerNaam) }}
+        <div class="columns">
+            <div class="column">
+                <h3>MaDi</h3>
+                {{ form_row(form.schuldhulpbureau) }}
+                {{ form_row(form.medewerkerSchuldhulpbureau) }}
+                {{ form_row(form.regasNummer) }}
             </div>
-            <div class="nav">
-                <button type="submit">Opslaan</button>
+            <div class="column">
+                <h3>GKA</h3>
+                {{ form_row(form.teamGka) }}
+                {{ form_row(form.allegroNummer) }}
             </div>
-            {{ form_end(form) }}
-		</div>
-	</div>
+        </div>
+        <div class="nav">
+            <button type="submit">Opslaan</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
 
 {% endblock %}
