@@ -20,7 +20,6 @@
         <p>Vul onderstaand formulier in om een nieuw dossier te openen.</p>
     </div>
     <div class="form-container">
-        {% form_theme form with ['forms2.html.twig'] only %}
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
         {{ form_row(form.clientNaam) }}
         {{ form_row(form.partnerNaam) }}

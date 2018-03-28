@@ -15,7 +15,6 @@
     <div class="document">
         <div class="header">
             <h1>{{ dossier.clientNaam }}</h1>
-            {% form_theme form with ['forms2.html.twig'] only %}
             {{ form_start(form, {'attr': {'class': 'default-form-style ajax'} }) }}
             {{ form_row(form.clientNaam) }}
             {{ form_row(form.partnerNaam) }}

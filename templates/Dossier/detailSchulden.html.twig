@@ -16,7 +16,6 @@
     <div class="document">
         <div class="header">
             <h1>{{ dossier.clientNaam }}</h1>
-            {% form_theme form with ['forms2.html.twig'] only %}
             {{ form_start(form, {'attr': {'class': 'default-form-style ajax'} }) }}
             {{ form_row(form.clientNaam) }}
             {{ form_row(form.partnerNaam) }}
@@ -53,7 +52,6 @@
         </div>
         <div class="form-container">
             <h2>Nieuw schuld toevoegen</h2>
-            {% form_theme createForm with ['forms2.html.twig'] only %}
             {{ form_start(createForm, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="columns">
                 <div class="column">
@@ -105,7 +103,6 @@
                 <h2>Nieuwe schuldeiser</h2>
             </div>
             <div class="modal-body">
-                {% form_theme createSchuldeiserForm with ['forms2.html.twig'] only %}
                 {{ form_start(createSchuldeiserForm, {'attr': {'class': 'default-form-style ajax'} }) }}
                 {{ form_row(createSchuldeiserForm.bedrijfsnaam) }}
                 {{ form_row(createSchuldeiserForm.rekening) }}

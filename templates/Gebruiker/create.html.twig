@@ -19,7 +19,6 @@
         <h1>Nieuwe gebruiker</h1>
     </div>
     <div class="form-container">
-        {% form_theme form with ['forms2.html.twig'] only %}
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
         {{ form_row(form.naam) }}
         {{ form_row(form.email) }}
