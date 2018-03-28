@@ -48,10 +48,12 @@ class CreateDossierFormType extends AbstractType
             'expanded' => false
         ]);
         $builder->add('regasNummer', TextType::class, [
-            'required' => false
+            'required' => false,
+            'label' => 'Regas dossiernr.'
         ]);
         $builder->add('allegroNummer', TextType::class, [
-            'required' => false
+            'required' => false,
+            'label' => 'Allegro dossiernr.'
         ]);
     }
 

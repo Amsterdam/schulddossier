@@ -23,6 +23,7 @@ aside.pdf-splitter { background-color: #F3F3F3; position: fixed; top: 0; left: 0
 aside.pdf-splitter .file-selector { position: relative; overflow: hidden; padding: 15px 5px 5px 5px; }
 aside.pdf-splitter .file-selector button { background-color: #FFFFFF; border: 1px solid #CCCCCC; font-family: inherit; font-size: 0.8rem; border-radius: 3px; width: 100%; padding: 4px; }
 aside.pdf-splitter .file-selector input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; }
+aside.pdf-splitter .pages:empty:after { content: "Voeg pagina's toe door hierboven een document te uploaden."; color: #666666; margin-top: 15px; display: block; font-size: 0.7rem}
 aside.pdf-splitter .pages { padding: 0 15px; }
 aside.pdf-splitter .pages .page { background-color: #FFFFFF; width: 100%; margin: 10px 0; border: 1px solid #CCC; cursor: move; }
 aside.pdf-splitter .pages .page canvas { width: 100%; height: auto; }
@@ -91,7 +92,7 @@ div.document .columns .column:last-child { margin-right: 0; }
 .tabs ul { display: flex; list-style-type: none; flex-wrap: nowrap; width: 100%; padding: 0px 100px; box-sizing: border-box; }
 .tabs li { flex-grow: 1; }
 .tabs li a { text-align: center; display: block; color: #666666; text-decoration: none; padding: 10px 0; }
-.tabs li.active a { border-bottom: 3px solid #F00; } 
+.tabs li.active a { border-bottom: 3px solid #F00; }
 
 .accordion-container { padding: 0 20px; }
 .accordion-container>h2 { font-weight: normal; margin-top: 20px; margin-bottom: 10px; }
@@ -216,7 +217,7 @@ div.document .columns .column:last-child { margin-right: 0; }
             </div>
             <div class="gebruiker">
                 {% if app.user %}
-                    {{ app.user.userName }} - 
+                    {{ app.user.userName }} -
                     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Afmelden</a>
                 {% endif %}
             </div>
@@ -239,8 +240,7 @@ div.document .columns .column:last-child { margin-right: 0; }
                 <button>Selecteer een bestand</button>
                 <input type="file" name="file">
             </div>
-            <div class="pages">
-            </div>
+            <div class="pages"></div>
         </aside>
         <script type="text/javascript" src="/vendor/mozilla/pdf.js/build/pdf.js"></script>
         <script type="text/javascript" src="/vendor/mrrio/jspdf/dist/jspdf.min.js"></script>
