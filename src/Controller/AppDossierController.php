@@ -159,10 +159,17 @@ class AppDossierController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
+
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(['msg' => 'OK']);
+            }
+
             $this->addFlash('success', 'Opgeslagen');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', [
                 'dossierId' => $dossier->getId()
             ]);
+        } elseif ($form->isSubmitted() && $request->isXmlHttpRequest()) {
+            return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         }
 
         $voorleggerForms = [];

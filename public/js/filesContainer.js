@@ -32,11 +32,7 @@ window.schuldhulp.filesContainer.add = function (dom) {
 };
 
 document.addEventListener('click', function (event) {
-    var matches = function(el, selector) {
-        return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
-    };
-    
-    if (matches(event.target, 'a[href$="#add"]') && matches(event.target.parentNode, '.files-container')) {
+    if (window.schuldhulp._.matches(event.target, 'a[href$="#add"]') && window.schuldhulp._.matches(event.target.parentNode, '.files-container')) {
         window.schuldhulp.filesContainer.add(event.target.parentNode);
         event.preventDefault();
     }

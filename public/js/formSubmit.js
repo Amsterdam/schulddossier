@@ -104,19 +104,15 @@ window.schuldhulp.formSubmit = function (event, formDataCallback, successCallbac
 };
 
 document.addEventListener('submit', function (event) {
-    var matches = function(el, selector) {
-       return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
-    };
-    
     // implementatie voor schuldeiser
-    if (matches(event.target, '.ajax[name="schuldeiser_form"]')) {
+    if (window.schuldhulp._.matches(event.target, '.ajax[name="schuldeiser_form"]')) {
         window.schuldhulp.formSubmit(event, null, function (response, data, dom, event) {
             window.location.replace(window.location.href.split('#')[0]);
         });
     }
     
     // implementatie voor voorlegger
-    if (matches(event.target, '.ajax[name^="voorlegger_"]')) {
+    if (window.schuldhulp._.matches(event.target, '.ajax[name^="voorlegger_"]')) {
         window.schuldhulp.formSubmit(event, null, function (response, data, dom, event) {
             dom.parentNode.replaceChild(response[0], dom);
         });
@@ -124,7 +120,7 @@ document.addEventListener('submit', function (event) {
     }
     
     // implementatie voor schuld item
-    if (matches(event.target, '.ajax[name="schuld_item_form"]')) {
+    if (window.schuldhulp._.matches(event.target, '.ajax[name="schuld_item_form"]')) {
         window.schuldhulp.formSubmit(event, function (data, dom, event) {
             if (document.activeElement.classList.contains('remove')) {
                 data.append(document.activeElement.getAttribute('name'), document.activeElement.value);
@@ -147,7 +143,7 @@ document.addEventListener('submit', function (event) {
     }
     
     // algemene implementatie
-    if (matches(event.target, '.ajax')) {
+    if (window.schuldhulp._.matches(event.target, '.ajax')) {
         window.schuldhulp.formSubmit(event, null, function () {});
         return;
     }

@@ -14,7 +14,9 @@ window.schuldhulp.quickViewer = {
         nextButton: null,
         prevButton: null
     },
+    
     currentPage: 0,
+    
     currentPDFJS: null,
     
     showDocument: function (dom) {
@@ -29,9 +31,14 @@ window.schuldhulp.quickViewer = {
         self.dom.container.classList.add('open');
         self.dom.spinner.classList.add('visible');
 
-        this.dom.header.innerHTML = '';
-        this.dom.header.appendChild(document.createTextNode(dom.childNodes[0].nodeValue));
-
+        self.dom.header.innerHTML = '';
+        // indien onderdeel van een accordion?
+        if (window.schuldhulp._.matches(dom, '.accordion a')) {
+            self.dom.header.appendChild(document.createTextNode(dom.childNodes[0].nodeValue));
+        } else {
+            self.dom.header.appendChild(document.createTextNode(dom.childNodes[0].nodeValue));
+        }
+        
         PDFJS.getDocument(url).then(function (pdf) {
             self.currentPDFJS = pdf;
             self.showPage(1);
@@ -133,10 +140,7 @@ window.schuldhulp.quickViewer = {
         self.dom.body.appendChild(self.dom.pageCounter);
         
         window.document.getElementsByTagName('body')[0].appendChild(self.dom.container);
-    },
-    remove: function () {},
-    next: function () {},
-    prev: function () {}
+    }
 };
 
 document.addEventListener('click', function (event) {
