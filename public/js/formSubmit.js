@@ -115,6 +115,14 @@ document.addEventListener('submit', function (event) {
         });
     }
     
+    // implementatie voor voorlegger
+    if (matches(event.target, '.ajax[name^="voorlegger_"]')) {
+        window.schuldhulp.formSubmit(event, null, function (response, data, dom, event) {
+            dom.parentNode.replaceChild(response[0], dom);
+        });
+        return;
+    }
+    
     // implementatie voor schuld item
     if (matches(event.target, '.ajax[name="schuld_item_form"]')) {
         window.schuldhulp.formSubmit(event, function (data, dom, event) {
