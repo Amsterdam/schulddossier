@@ -58,6 +58,7 @@ class Voorlegger
      * @var float
      * @ORM\Column(type="decimal", precision=8, scale=2, nullable=true)
      * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
     private $vtlbBedrag;
 
@@ -721,6 +722,7 @@ class Voorlegger
      * @var float
      * @ORM\Column(type="decimal", nullable=true, precision=8, scale=2)
      * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
     private $gereserveerdeGelden;
 
@@ -770,16 +772,18 @@ class Voorlegger
     private $energieBedrijfDatumOpname;
 
     /**
-     * @var float
+     * @var int
      * @ORM\Column(type="bigint", nullable=true)
      * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
     private $energieBedrijfT1;
 
     /**
-     * @var float
+     * @var int
      * @ORM\Column(type="bigint", nullable=true)
      * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
     private $energieBedrijfT2;
 
@@ -787,6 +791,7 @@ class Voorlegger
      * @var float
      * @ORM\Column(type="float", nullable=true)
      * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
     private $energieBedrijfGas;
 
@@ -815,6 +820,7 @@ class Voorlegger
      * @var float
      * @ORM\Column(type="float", nullable=true)
      * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
     private $warmteBedrijfOpname;
 
@@ -836,6 +842,7 @@ class Voorlegger
      * @var float
      * @ORM\Column(type="float", nullable=true)
      * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
     private $drinkwaterOpname;
 

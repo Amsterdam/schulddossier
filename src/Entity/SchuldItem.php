@@ -111,6 +111,7 @@ class SchuldItem
      * @ORM\Column(type="decimal", precision=8, scale=2, nullable=true)
      * @Assert\NotBlank
      * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
     private $bedrag;
 
