@@ -15,6 +15,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return new Response($request->query->has('msg') === false ? 'Hoi' : $request->query->get('msg'));
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 }
