@@ -33,15 +33,16 @@ window.schuldhulp.formSubmit = function (event, formDataCallback, successCallbac
     for (var i = 0; i < fileContainers.length; i ++) {
         var canvasElms = fileContainers.item(i).querySelectorAll('canvas.upload-as-pdf');
         if (canvasElms.length > 0) {
-            var pdf = new jsPDF();
+            var pdf = new jsPDF('portrait', 'mm', 'a4');
             for (var j = 0; j < canvasElms.length; j ++) {
                 if (j > 0) {
                     pdf.addPage();
                 }
                 var imgData = canvasElms.item(j).toDataURL("image/jpeg");
-                pdf.addImage(imgData, 'JPEG', 15, 40, 180, 180);
+                //(imageData, format, x, y, w, h, alias, compression, rotation)
+                pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
             }
-            data.append(fileContainers.item(i).getAttribute('data-name'), pdf.output('blob'), 'document');
+            data.append(fileContainers.item(i).getAttribute('data-name'), pdf.output('blob'), 'document.pdf');
         }
     }
     
