@@ -1,0 +1,49 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}{{ dossier.clientNaam }} - {{ parent() }}{% endblock %}
+
+{% block page_title %}Documenten: {{ dossier.clientNaam }}{% endblock %}
+
+{% block document %}
+
+<nav class="document">
+    <ul>
+        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Terug naar dossier</a></li>
+        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocumenten', {'dossierId': dossier.id}) }}">Alle documenten</a></li>
+    </ul>
+</nav>
+
+<div class="document">
+    <div class="header">
+        <h1>Documenten: {{ dossier.clientNaam }}</h1>
+    </div>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Document</th>
+                    <th>Gelinkt aan</th>
+                </tr>
+            </thead>
+            <tbody>
+{% set empty = true %}
+{% for document in dossier.documenten if document.document.inPrullenbak == false %}
+{% set empty = false %}
+                <tr>
+                    <td>
+                        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>
+                    </td>
+                    <td>
+{% if document.schuldItem %}Schulditem: {{ document.schuldItem.schuldeiser.bedrijfsnaam }}/{{ document.schuldItem.referentie }}{% endif %} 
+{% if document.onderwerp %}Onderwerp: {{ document.onderwerp}}{% endif %} 
+                    </td>
+                </tr>
+{% endfor %}
+            </tbody>
+        </table>
+{% if empty %}
+        <p class="empty-table">Er zijn nog geen documenten in dit dossier toegevoegd.</p>
+{% endif %}
+    </div>
+</div>
+{% endblock %}

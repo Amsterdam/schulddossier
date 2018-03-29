@@ -254,7 +254,7 @@ class AppDossierController extends Controller
      * @Route("/detail/{dossierId}/documenten/prullenbak")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailPrullenbak(Request $request, Dossier $dossier)
+    public function detailPrullenbakAction(Request $request, Dossier $dossier)
     {
         $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) {
             return $dossierDocument->getDocument()->isInPrullenbak();
@@ -263,6 +263,17 @@ class AppDossierController extends Controller
         return $this->render('Dossier/detailPrullenbak.html.twig', [
             'dossier' => $dossier,
             'dossierDocumenten' => $dossierDocumenten,
+        ]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/documenten")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function detailDocumentenAction(Request $request, Dossier $dossier)
+    {
+        return $this->render('Dossier/detailDocumenten.html.twig', [
+            'dossier' => $dossier
         ]);
     }
 

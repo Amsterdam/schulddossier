@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a2ab39c388138956ee269142af60dcb",
+    "content-hash": "32b4dcf166635e004400c138982d6064",
     "packages": [
         {
             "name": "bevacqua/dragula",
