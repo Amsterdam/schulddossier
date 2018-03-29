@@ -82,6 +82,8 @@ class AppDossierController extends Controller
 
         $dossiers = $repository->findActive($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
+        $this->addFlash('success', 'Hoi');
+
         return $this->render('Dossier/index.html.twig', [
             'dossiers' => $dossiers,
             'pagination' => [

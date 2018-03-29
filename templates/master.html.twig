@@ -170,6 +170,10 @@ div.document .columns .column:last-child { margin-right: 0; }
 .quick-viewer .modal-window .modal-body .button.next { right: 30px; }
 .quick-viewer .modal-window .modal-body .button.next:before { content: url("/pix/chevron-right.svg"); }
 
+.flash-message { width: 500px; margin: 10px auto; display: flex; border: 1px solid #CCC; background-color: #FFF; }
+.flash-message.flash-type-success { border-color: #72C82E; color: #155724; background-color: #d4edda; }
+.flash-message .message { order: 0; flex-grow: 1; padding: 10px; }
+.flash-message .btn { order: 2; flex-grow: 0; width: 25px; text-align: center; padding: 10px; text-decoration: none; color: #72C82E; }
 
 /* dragula */
 .gu-mirror { position: fixed !important; margin: 0 !important; z-index: 9999 !important; opacity: 0.8; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; filter: alpha(opacity=80); }
@@ -255,5 +259,6 @@ div.document .columns .column:last-child { margin-right: 0; }
         <script type="text/javascript" src="/js/filesContainer.js"></script>
         <script type="text/javascript" src="/js/accordion.js"></script>
         <script type="text/javascript" src="/js/quickViewer.js"></script>
+        <script type="text/javascript" src="/js/flashMessage.js"></script>
     </body>
 </html>
