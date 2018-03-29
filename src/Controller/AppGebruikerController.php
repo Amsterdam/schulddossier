@@ -48,6 +48,7 @@ class AppGebruikerController extends Controller
     {
         $gebruiker = new Gebruiker();
         $form = $this->createForm(GebruikerFormType::class, $gebruiker);
+        $form->remove('enabled');
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($gebruiker);

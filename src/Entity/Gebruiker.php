@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Serializable;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
@@ -16,7 +17,7 @@ use Serializable;
  *  }
  * )
  */
-class Gebruiker implements UserInterface, \Serializable
+class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface
 {
     const TYPE_GKA = 'gka';
     const TYPE_MADI = 'madi';
@@ -93,6 +94,17 @@ class Gebruiker implements UserInterface, \Serializable
      * @ORM\JoinColumn(name="schuldhulpbureau_id", referencedColumnName="id", nullable=true)
      */
     private $schuldhulpbureau;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $enabled;
+
+    public function __construct()
+    {
+        $this->enabled = true;
+    }
 
     /**
      * {@inheritDoc}
@@ -233,6 +245,31 @@ class Gebruiker implements UserInterface, \Serializable
         $this->schuldhulpbureau = $schuldhulpbureau;
     }
 
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
     /**
      * @return string
      */
@@ -250,7 +287,8 @@ class Gebruiker implements UserInterface, \Serializable
         return serialize([
             'id' => $this->id,
             'username' => $this->username,
-            'password' => $this->password
+            'password' => $this->password,
+            'enabled' => $this->enabled
         ]);
     }
 
@@ -264,6 +302,7 @@ class Gebruiker implements UserInterface, \Serializable
         $this->id = $data['id'];
         $this->username = $data['username'];
         $this->password = $data['password'];
+        $this->enabled = $data['enabled'];
     }
 
     /**

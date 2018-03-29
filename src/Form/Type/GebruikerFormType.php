@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class GebruikerFormType extends AbstractType
 {
@@ -51,6 +52,9 @@ class GebruikerFormType extends AbstractType
             'expanded' => false,
             'multiple' => false,
             'class' => Schuldhulpbureau::class
+        ]);
+        $builder->add('enabled', CheckboxType::class, [
+            'required' => false
         ]);
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
