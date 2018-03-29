@@ -89,7 +89,8 @@
             ["mirror", "vendor/jshjohnson/choices", "public/vendor/jshjohnson/choices", null, {"delete": true}],
             ["mirror", "vendor/bevacqua/horsey", "public/vendor/bevacqua/horsey", null, {"delete": true}],
             ["mirror", "vendor/bevacqua/rome", "public/vendor/bevacqua/rome", null, {"delete": true}],
-            ["mirror", "vendor/bevacqua/dragula", "public/vendor/bevacqua/dragula", null, {"delete": true}]
+            ["mirror", "vendor/bevacqua/dragula", "public/vendor/bevacqua/dragula", null, {"delete": true}],
+            ["mirror", "vendor/moment/moment", "public/vendor/moment/moment", null, {"delete": true}]
         ]
     },
     "repositories": [
