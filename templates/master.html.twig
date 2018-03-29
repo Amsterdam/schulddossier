@@ -70,7 +70,7 @@ div.document .columns .column:last-child { margin-right: 0; }
 .default-form-style .nav button[type="submit"]:hover { background-color: #CC0000; }
 .default-form-style .errors { list-style-type: none; color: #FF0000; padding-left: 180px; }
 .default-form-style .errors li { padding: 5px 0; }
-.default-form-style .files-container { overflow: auto; }
+.default-form-style .files-container { overflow: ; min-height: 100px;}
 .default-form-style .files-container .file-container { border: 1px solid #CCC; background-color: #FFFFFF; width: 200px; display: inline-block; height: 110px; padding: 5px; margin-right: 10px; margin-bottom: 10px; vertical-align: middle; position: relative; }
 .default-form-style .files-container .file-container.prototype { display: none; }
 .default-form-style .files-container .file-container input[type="text"] { width: 100%; font-size: 0.6rem; box-sizing: border-box; margin-bottom: 5px; border: 0 none; border-bottom: 1px dotted #999; border-radius: 0; }
@@ -86,7 +86,12 @@ div.document .columns .column:last-child { margin-right: 0; }
 .pdf-splitter-page-drag .default-form-style .files-container .file-container .drop-area { border-color: #CCC; position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 9; background-color: #FFF; }
 .pdf-splitter-page-drag .default-form-style .files-container .file-container.files-only { cursor: no-drop; }
 .pdf-splitter-page-drag .default-form-style .files-container .file-container .drop-area:before { color: #CCC; }
-.default-form-style .files-container .add { background-color: #F00; display: inline-block; height: auto; padding: 5px; border-radius: 2px; text-decoration: none; color: #FFF; font-size: 0.9rem; width: 100px; }
+.default-form-style .files-container .add { /*background-color: #F00; */display: inline-block; height: auto; /*padding: 5px; border-radius: 2px; text-decoration: none; color: #FFF; font-size: 0.9rem; */width: 100px; }
+
+.primair,.secundair,.tertiair { font-size: 14px; -webkit-appearance: none; border: none; font-family: inherit; background: transparent; font-weight: normal; cursor: pointer; padding: 5px 8px; text-decoration: none; color: inherit;}
+input.primair,a.primair,button.primair { background-color: #ec0000; color: white; }
+input.secundair,a.secundair,button.secundair { border: 1px solid #979797; background-color: #FFF; }
+input.tertiair:hover,a.tertiair:hover,button.tertiair:hover { text-decoration: underline; }
 
 .default-form-style.in-progress { opacity: 0.5; }
 
