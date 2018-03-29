@@ -7,8 +7,8 @@
                             <a href="#voorlegger-vtlb">VTLB (Vrij te laten bedrag)</a>
                         </div>
                         <div class="status">
-                            <span class="{{ dossier.voorlegger.vtlbOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
-                            <span class="{{ dossier.voorlegger.vtlbOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                            <span title="{{ dossier.voorlegger.vtlbOntvangenMadi ? 'MaDi: gecontroleerd' : 'MaDi: niet gecontroleerd' }} " class="{{ dossier.voorlegger.vtlbOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
+                            <span title="{{ dossier.voorlegger.vtlbOntvangenGka ? 'GKA: gecontroleerd' : 'GKA: niet gecontroleerd' }} "  class="{{ dossier.voorlegger.vtlbOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
                         </div>
                         <div class="nvt">
                         </div>
@@ -16,13 +16,15 @@
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.vtlbOntvangenMadi) }}
-                        {{ form_row(form.vtlbOntvangenGka) }}
                         {{ form_row(form.vtlbBedrag) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('vtlb')} only %}
+                        <div class="checks">
+                            {{ form_row(form.vtlbOntvangenMadi) }}
+                            {{ form_row(form.vtlbOntvangenGka) }}
+                        </div>
                         <div class="nav">
-                            <button type="submit">Opslaan</button>
+                            <button class="primair" type="submit">Opslaan</button>
                         </div>
                     </div>
                 </div>
