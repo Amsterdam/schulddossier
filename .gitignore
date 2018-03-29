@@ -1,4 +1,7 @@
 
+# Components
+components/
+
 # IDE
 .buildpath
 .project

@@ -131,6 +131,12 @@ document.addEventListener('submit', function (event) {
             if (data.get('schuld_item_form[verwijderd]') == true) {
                 dom.parentNode.parentNode.parentNode.parentNode.removeChild(dom.parentNode.parentNode.parentNode);
             } else {
+                // datepicker opnieuw toewijzen
+                elms = response[0].querySelectorAll('.rome');
+                for (var i = 0; i < elms.length; i ++) {
+                    window.schuldhulp._.datePicker(elms.item(i));
+                }
+                
                 var original = dom.parentNode.parentNode.parentNode.parentNode.querySelector('#' + response[0].getAttribute('id'));
                 if (original) {
                     original.parentNode.replaceChild(response[0], original);

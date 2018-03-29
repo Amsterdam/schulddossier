@@ -136,6 +136,11 @@
                 request.send();
             });
         }
+
+        elms = document.querySelectorAll('.rome');
+        for (var i = 0; i < elms.length; i ++) {
+            window.schuldhulp._.datePicker(elms.item(i));
+        }
      });
     </script>
 {% endblock %}

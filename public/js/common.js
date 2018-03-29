@@ -16,3 +16,15 @@ window.schuldhulp._.findParent = function(elm, find) {
     }
     return window.schuldhulp._.findParent(elm.parentNode, find);
 };
+
+window.schuldhulp._.datePicker = function (elm) {
+    rome(elm, {
+        'inputFormat': 'DD-MM-YYYY',
+        'time': false,
+        'moment': {
+            'locale': 'nl'
+        }
+    });  
+};
+
+//moment.locale('nl');

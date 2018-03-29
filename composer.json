@@ -31,7 +31,8 @@
         "bevacqua/horsey": "4.2.2",
         "bevacqua/dragula": "3.7.2",
         "bevacqua/rome": "2.1.22",
-        "jshjohnson/choices": "3.0.3"
+        "jshjohnson/choices": "3.0.3",
+        "moment/moment": "2.21.0"
     },
     "require-dev": {
         "symfony/dotenv": "^4.0",
