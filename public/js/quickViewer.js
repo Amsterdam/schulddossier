@@ -40,7 +40,7 @@ window.schuldhulp.quickViewer = {
         // indien onderdeel van een accordion?
         if (window.schuldhulp._.matches(dom, '.accordion a')) {
             self.accordion = window.schuldhulp._.findParent(dom, '.accordion');
-            var accordionTitle = self.accordion.querySelector('.accordion-header .naam a').textContent;
+            var accordionTitle = self.accordion.querySelector('.accordion-header .naam').textContent;
             var documentTitle = dom.childNodes[0].textContent;
             self.dom.header.appendChild(document.createTextNode(accordionTitle + ': ' + documentTitle));
         } else {
