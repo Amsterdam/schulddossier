@@ -22,7 +22,7 @@
                         {{ form_row(form.zorgtoeslagNvt) }}
                         {{ form_row(form.zorgtoeslagOntvangenMadi) }}
                         {{ form_row(form.zorgtoeslagOntvangenGka) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Zorgtoeslag'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('zorgtoeslag')} only %}
                         <div class="nav">
                             <button type="submit">Opslaan</button>

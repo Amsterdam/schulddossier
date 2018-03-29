@@ -22,7 +22,7 @@
                         {{ form_row(form.verklaringWerkgeverNvt) }}
                         {{ form_row(form.verklaringWerkgeverOntvangenMadi) }}
                         {{ form_row(form.verklaringWerkgeverOntvangenGka) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Verklaring werkgever'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('verklaringWerkgever')} only %}
                         <div class="nav">
                             <button type="submit">Opslaan</button>

@@ -20,7 +20,7 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.toelichtingAanvraagSchuldsaneringMadiOntvangenMadi) }}
                         {{ form_row(form.toelichtingAanvraagSchuldsaneringMadiOntvangenGka) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Toelichting aanvraag schuldsanering MaDi'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('toelichtingAanvraagSchuldsaneringMadi')} only %}
                         <div class="nav">
                             <button type="submit">Opslaan</button>

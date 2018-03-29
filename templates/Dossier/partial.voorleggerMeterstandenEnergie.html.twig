@@ -22,7 +22,7 @@
                         {{ form_row(form.meterstandenEnergieNvt) }}
                         {{ form_row(form.meterstandenEnergieOntvangenMadi) }}
                         {{ form_row(form.meterstandenEnergieOntvangenGka) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden energie'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('meterstandenEnergie')} only %}
                         <div class="nav">
                             <button type="submit">Opslaan</button>

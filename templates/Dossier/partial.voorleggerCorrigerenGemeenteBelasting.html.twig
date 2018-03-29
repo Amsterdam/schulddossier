@@ -22,7 +22,7 @@
                         {{ form_row(form.corrigerenGemeenteBelastingNvt) }}
                         {{ form_row(form.corrigerenGemeenteBelastingOntvangenGka) }}
                         {{ form_row(form.corrigerenGemeenteBelasting) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Corrigeren gemeente belasting'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('corrigerenGemeenteBelasting')} only %}
                         <div class="nav">
                             <button type="submit">Opslaan</button>

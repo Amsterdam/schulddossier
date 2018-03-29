@@ -22,7 +22,7 @@
                         {{ form_row(form.autoTaxatieNvt) }}
                         {{ form_row(form.autoTaxatieOntvangenMadi) }}
                         {{ form_row(form.autoTaxatieOntvangenGka) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Auto taxatie'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('autoTaxatie')} only %}
                         <div class="nav">
                             <button type="submit">Opslaan</button>

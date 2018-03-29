@@ -30,7 +30,7 @@
                         {{ form_row(form.drinkwaterDatumOpname) }}
                         {{ form_row(form.drinkwaterOpname) }}
                         {{ form_row(form.aanvullendeInformatie) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('meterstanden')} only %}
                         <div class="nav">
                             <button type="submit">Opslaan</button>

@@ -22,7 +22,7 @@
                         {{ form_row(form.stabilisatieovereenkomstNvt) }}
                         {{ form_row(form.stabilisatieovereenkomstOntvangenMadi) }}
                         {{ form_row(form.stabilisatieovereenkomstOntvangenGka) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Stabilisatieovereenkomst'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('stabilisatieovereenkomst')} only %}
                         <div class="nav">
                             <button type="submit">Opslaan</button>

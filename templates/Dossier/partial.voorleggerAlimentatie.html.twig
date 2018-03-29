@@ -17,7 +17,7 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.alimentatieNvt) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Alimentatie'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('alimentatie')} only %}
                         <div class="nav">
                             <button type="submit">Opslaan</button>

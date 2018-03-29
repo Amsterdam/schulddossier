@@ -22,7 +22,7 @@
                         {{ form_row(form.voorlopigeTeruggaafBelastingdienstNvt) }}
                         {{ form_row(form.voorlopigeTeruggaafBelastingdienstOntvangenMadi) }}
                         {{ form_row(form.voorlopigeTeruggaafBelastingdienstOntvangenGka) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Voorlopige teruggaaf Belastingdienst'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('voorlopigeTeruggaafBelastingdienst')} only %}
                         <div class="nav">
                             <button type="submit">Opslaan</button>

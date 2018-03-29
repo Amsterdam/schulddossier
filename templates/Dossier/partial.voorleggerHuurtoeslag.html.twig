@@ -22,7 +22,7 @@
                         {{ form_row(form.huurtoeslagNvt) }}
                         {{ form_row(form.huurtoeslagOntvangenMadi) }}
                         {{ form_row(form.huurtoeslagOntvangenGka) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Huurtoeslag'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('huurtoeslag')} only %}
                         <div class="nav">
                             <button type="submit">Opslaan</button>

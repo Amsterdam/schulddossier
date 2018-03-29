@@ -22,7 +22,7 @@
                         {{ form_row(form.waternetNvt) }}
                         {{ form_row(form.waternetOntvangenMadi) }}
                         {{ form_row(form.waternetOntvangenGka) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Waternet'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('waternet')} only %}
                         <div class="nav">
                             <button type="submit">Opslaan</button>
