@@ -88,6 +88,7 @@
                     {{ form_row(createForm.ontstaansDatum) }}
                 </div>
             </div>
+            {{ form_row(createForm.opmerkingen) }}
             {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
             <div class="nav">
                 {% do createForm.verwijderd.setRendered() %}

@@ -22,6 +22,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class SchuldItemFormType extends AbstractType
 {
@@ -57,6 +58,9 @@ class SchuldItemFormType extends AbstractType
             'html5' => true,
             'widget' => 'single_text',
             'label' => 'Ontstaansdatum'
+        ]);
+        $builder->add('opmerkingen', TextareaType::class, [
+            'required' => false,
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
