@@ -2,18 +2,20 @@
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion" id="voorlegger-gereserveerdeGelden">
                 <div class="accordion-header">
-                    <div class="voorlegger-header">
-                        <div class="naam">
-                            <a href="#voorlegger-gereserveerdeGelden">Gereserveerde gelden</a>
+                    <a href="#voorlegger-gereserveerdeGelden">
+                        <div class="voorlegger-header">
+                            <div class="naam">
+                                Gereserveerde gelden
+                            </div>
+                            <div class="status">
+                                <span class="{{ dossier.voorlegger.gereserveerdeGeldenOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
+                                <span class="{{ dossier.voorlegger.gereserveerdeGeldenOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                            </div>
+                            <div class="nvt">
+                                <span class="{{ dossier.voorlegger.gereserveerdeGeldenNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.gereserveerdeGeldenNvt ? 'n.v.t.' }}</span>
+                            </div>
                         </div>
-                        <div class="status">
-                            <span class="{{ dossier.voorlegger.gereserveerdeGeldenOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
-                            <span class="{{ dossier.voorlegger.gereserveerdeGeldenOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.gereserveerdeGeldenNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.gereserveerdeGeldenNvt ? 'n.v.t.' }}</span>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">

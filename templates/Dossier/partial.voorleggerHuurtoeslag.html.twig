@@ -2,18 +2,20 @@
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion" id="voorlegger-huurtoeslag">
                 <div class="accordion-header">
-                    <div class="voorlegger-header">
-                        <div class="naam">
-                            <a href="#voorlegger-huurtoeslag">Huurtoeslag</a>
+                    <a href="#voorlegger-huurtoeslag">
+                        <div class="voorlegger-header">
+                            <div class="naam">
+                                Huurtoeslag
+                            </div>
+                            <div class="status">
+                                <span class="{{ dossier.voorlegger.huurtoeslagOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
+                                <span class="{{ dossier.voorlegger.huurtoeslagOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                            </div>
+                            <div class="nvt">
+                                <span class="{{ dossier.voorlegger.huurtoeslagNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.huurtoeslagNvt ? 'n.v.t.' }}</span>
+                            </div>
                         </div>
-                        <div class="status">
-                            <span class="{{ dossier.voorlegger.huurtoeslagOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
-                            <span class="{{ dossier.voorlegger.huurtoeslagOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.huurtoeslagNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.huurtoeslagNvt ? 'n.v.t.' }}</span>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">

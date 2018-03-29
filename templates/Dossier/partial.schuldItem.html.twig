@@ -1,22 +1,22 @@
 {% if schuldItem.verwijderd == false %}
             <div class="accordion" id="schuldItem-{{ schuldItem.id }}">
                 <div class="accordion-header">
-                    <div class="schulditem-header">
-                        <div class="naam">
-                            <a href="#schuldItem-{{ schuldItem.id }}">
+                    <a href="#schuldItem-{{ schuldItem.id }}">
+                        <div class="schulditem-header">
+                            <div class="naam">
                                 <strong>{{ schuldItem.schuldeiser.bedrijfsnaam|default('-') }}
                                 {% if schuldItem.incassant %} / {{ schuldItem.incassant.bedrijfsnaam }}{% endif %}
                                 </strong>
                                 <span class="referentie">(referentie: {{ schuldItem.referentie }})</span>
-                            </a>
+                            </div>
+                            <div class="voortgang">
+                                {{ schuldItem.dossierDocumenten|length }} document(en)
+                            </div>
+                            <div class="bedrag">
+                                &euro; {{ schuldItem.bedrag|number_format(2, ',', '.') }}
+                            </div>
                         </div>
-                        <div class="voortgang">
-                            {{ schuldItem.dossierDocumenten|length }} document(en)
-                        </div>
-                        <div class="bedrag">
-                            &euro; {{ schuldItem.bedrag|number_format(2, ',', '.') }}
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="accordion-body">
                     <div class="schulditem-body">

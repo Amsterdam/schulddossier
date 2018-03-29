@@ -2,16 +2,18 @@
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion" id="voorlegger-cjib">
                 <div class="accordion-header">
-                    <div class="voorlegger-header">
-                        <div class="naam">
-                            <a href="#voorlegger-cjib">CJIB (niet saneerbare vorderingen)</a>
+                    <a href="#voorlegger-cjib">
+                        <div class="voorlegger-header">
+                            <div class="naam">
+                                CJIB (niet saneerbare vorderingen)
+                            </div>
+                            <div class="status">
+                            </div>
+                            <div class="nvt">
+                                <span class="{{ dossier.voorlegger.cjibNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.cjibNvt ? 'n.v.t.' }}</span>
+                            </div>
                         </div>
-                        <div class="status">
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.cjibNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.cjibNvt ? 'n.v.t.' }}</span>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="accordion-body">
                     {{ form_row(form.cjibNvt) }}

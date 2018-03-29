@@ -2,18 +2,20 @@
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion" id="voorlegger-corrigerenGemeenteBelasting">
                 <div class="accordion-header">
-                    <div class="voorlegger-header">
-                        <div class="naam">
-                            <a href="#voorlegger-corrigerenGemeenteBelasting">Corrigeren gemeente belasting</a>
+                    <a href="#voorlegger-corrigerenGemeenteBelasting">
+                        <div class="voorlegger-header">
+                            <div class="naam">
+                                Corrigeren gemeente belasting
+                            </div>
+                            <div class="status">
+                                <span class="na"></span>
+                                <span class="{{ dossier.voorlegger.corrigerenGemeenteBelastingOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                            </div>
+                            <div class="nvt">
+                                <span class="{{ dossier.voorlegger.corrigerenGemeenteBelastingNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.corrigerenGemeenteBelastingNvt ? 'n.v.t.' }}</span>
+                            </div>
                         </div>
-                        <div class="status">
-                            <span class="na"></span>
-                            <span class="{{ dossier.voorlegger.corrigerenGemeenteBelastingOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.corrigerenGemeenteBelastingNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.corrigerenGemeenteBelastingNvt ? 'n.v.t.' }}</span>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">

@@ -106,23 +106,20 @@ input.tertiair:hover,a.tertiair:hover,button.tertiair:hover { text-decoration: u
 .accordion-container>h2 { font-weight: normal; margin-top: 20px; margin-bottom: 10px; }
 .accordion-container .accordion { margin-bottom: 10px; background-color: #F3F3F3; padding: 8px 15px; border-radius: 2px; }
 .accordion-container .accordion .accordion-header { padding-right: 26px; position: relative; }
-.accordion-container .accordion .accordion-header:after { content: url("/pix/chevron-down.svg"); width: 16px; height: 16px; position: absolute; right: 0; top: 0; }
-.accordion-container .accordion.open .accordion-header:after { content: url("/pix/chevron-up.svg"); }
+.accordion-container .accordion .accordion-header>a { color: #000000; display: block; text-decoration: none; }
+.accordion-container .accordion .accordion-header>a:after { content: url("/pix/chevron-down.svg"); width: 16px; height: 16px; position: absolute; right: 0; top: 0; }
+.accordion-container .accordion.open .accordion-header>a:after { content: url("/pix/chevron-up.svg"); }
 .accordion-container .accordion .accordion-body { height: 0; overflow: hidden; }
 .accordion-container .accordion.open .accordion-body { height: auto; padding-top: 10px; }
 
 .schulditem-header { display: flex; width: 100%; height: 20px; }
 .schulditem-header .naam { flex-grow: 1; height: 20px; line-height: 20px; }
 .schulditem-header .naam .referentie { font-size: 0.8rem; color: #666666; }
-.schulditem-header .naam a { color: inherit; text-decoration: none; display: block; }
-.schulditem-header .naam a:hover { text-decoration: underline; }
 .schulditem-header .voortgang { width: 150px; flex-grow: 0; font-size: 0.8rem; height: 20px; line-height: 20px; }
 .schulditem-header .bedrag { width: 150px; flex-grow: 0; height: 20px; line-height: 20px; text-align: right; }
 
 .voorlegger-header { display: flex; width: 100%; height: 20px; font-size: 1.0rem; }
 .voorlegger-header .naam { flex-grow: 1; height: 20px; line-height: 20px; }
-.voorlegger-header .naam a { color: inherit; text-decoration: none; display: block; }
-.voorlegger-header .naam a:hover { text-decoration: underline; }
 .voorlegger-header .status { flex-grow: 0; height: 20px; line-height: 20px; width: 150px; }
 .voorlegger-header .status span { padding-left: 17px; font-size: 0; }
 .voorlegger-header .status span:before { content: ''; display: inline-block; height: 17px; width: 17px; background-image: url(/pix/bezig.png); }
