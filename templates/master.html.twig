@@ -72,7 +72,7 @@ div.document .columns .column:last-child { margin-right: 0; }
 .default-form-style .errors { list-style-type: none; color: #FF0000; padding-left: 180px; }
 .default-form-style .errors li { padding: 5px 0; }
 .default-form-style .files-container { overflow: ; min-height: 100px;}
-.default-form-style .files-container .file-container { border: 1px solid #CCC; background-color: #FFFFFF; width: 200px; display: inline-block; height: 110px; padding: 5px; margin-right: 10px; margin-bottom: 10px; vertical-align: middle; position: relative; }
+.default-form-style .files-container .file-container { border: 1px solid #CCC; background-color: #FFFFFF; min-width: 230px; display: inline-block; height: 180px; padding: 5px; margin-right: 10px; margin-bottom: 10px; vertical-align: middle; position: relative; }
 .default-form-style .files-container .file-container.prototype { display: none; }
 .default-form-style .files-container .file-container input[type="text"] { width: 100%; font-size: 0.6rem; box-sizing: border-box; margin-bottom: 5px; border: 0 none; border-bottom: 1px dotted #999; border-radius: 0; }
 .default-form-style .files-container .file-container .file-selector { position: relative; overflow: hidden; }
@@ -80,13 +80,13 @@ div.document .columns .column:last-child { margin-right: 0; }
 .default-form-style .files-container .file-container .file-selector input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; }
 .default-form-style .files-container .file-container.files-only .file-selector button { background-color: #F3F3F3; }
 .default-form-style .files-container .file-container .drop-area { border: 2px dashed #FFF; height: 30px; position: relative; }
-.default-form-style .files-container .file-container .drop-area:before { width: 100%; position: absolute; content: "Sleep pagina's hierheen'"; line-height: 30px; height: 30px; text-align: center; color: #FFF; }
-.default-form-style .files-container .file-container .drop-area .page { display: inline-block; }
-.default-form-style .files-container .file-container .drop-area .page canvas { width: 50px; }
+.default-form-style .files-container .file-container .drop-area:before { width: 100%; position: absolute; content: "Sleep pagina's hierheen"; text-align: center; color: #FFF; bottom: 0; display: none; }
+.default-form-style .files-container .file-container .drop-area .page { display: inline-block; border: 1px solid #CCC; margin: 0 5px; }
+.default-form-style .files-container .file-container .drop-area .page canvas { width: 100px; }
 .default-form-style .files-container .file-container .errors { padding-left: 0; }
 .pdf-splitter-page-drag .default-form-style .files-container .file-container .drop-area { border-color: #CCC; position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 9; background-color: #FFF; }
 .pdf-splitter-page-drag .default-form-style .files-container .file-container.files-only { cursor: no-drop; }
-.pdf-splitter-page-drag .default-form-style .files-container .file-container .drop-area:before { color: #CCC; }
+.pdf-splitter-page-drag .default-form-style .files-container .file-container .drop-area:before { color: #CCC; display: block; }
 .default-form-style .files-container .add { /*background-color: #F00; */display: inline-block; height: auto; /*padding: 5px; border-radius: 2px; text-decoration: none; color: #FFF; font-size: 0.9rem; */width: 100px; }
 
 .primair,.secundair,.tertiair { font-size: 14px; -webkit-appearance: none; border: none; font-family: inherit; background: transparent; font-weight: normal; cursor: pointer; padding: 5px 8px; text-decoration: none; color: inherit;}

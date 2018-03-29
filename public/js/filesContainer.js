@@ -17,6 +17,14 @@ window.schuldhulp.filesContainer.add = function (dom) {
     
     window.schuldhulp.pdfSplitter.dragula.containers.push(prototype.querySelector('.drop-area'));
     
+    prototype.addEventListener('filled', function (event) {
+        var elm = prototype.querySelector('input[type="text"]');
+        if (elm.value === '' || elm.value === null) {
+            elm.value = prototype.parentNode.getAttribute('data-default-document-naam');
+            elm.focus();
+        }
+    });
+    
     prototype.querySelector('input[type="file"]').addEventListener('change', function (event) {
         if (event.target.value) {
             if (prototype.querySelector('.drop-area')) {
@@ -25,6 +33,9 @@ window.schuldhulp.filesContainer.add = function (dom) {
             prototype.classList.add('files-only');
             var button = prototype.querySelector('button');
             button.textContent = event.target.value.replace('/', '\\').split('\\').pop();
+            
+            var event = new Event('filled');
+            prototype.dispatchEvent(event);
         }
     });
     

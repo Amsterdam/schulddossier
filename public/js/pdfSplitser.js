@@ -69,6 +69,8 @@ window.schuldhulp.pdfSplitterClass = function (dom) {
         }
         if (target !== null) {
             if (target.parentNode.classList.contains('file-container')) {
+                var event = new Event('filled');
+                target.parentNode.dispatchEvent(event);
                 if (target.parentNode.querySelector('input[type="file"]')) {
                     target.parentNode.removeChild(target.parentNode.querySelector('.file-selector'));
                 }
