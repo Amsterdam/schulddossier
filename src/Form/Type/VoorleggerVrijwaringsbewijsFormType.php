@@ -27,8 +27,8 @@ class VoorleggerVrijwaringsbewijsFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('vrijwaringsbewijsOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('vrijwaringsbewijsOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('vrijwaringsbewijsOntvangenGka', CheckboxType::class, [

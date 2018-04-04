@@ -27,8 +27,8 @@ class VoorleggerAlimentatieEchtscheidingsconvenantFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('alimentatieEchtscheidingsconvenantOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('alimentatieEchtscheidingsconvenantOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('alimentatieEchtscheidingsconvenantOntvangenGka', CheckboxType::class, [

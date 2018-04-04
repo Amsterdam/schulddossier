@@ -11,6 +11,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Voorlegger
 {
+    const STATUS_MADI_OPEN = 0;
+    const STATUS_MADI_BEZIG = 1;
+    const STATUS_MADI_OPGEVOERD = 2;
+    const STATUS_MADI_GECONTROLEERD = 3;
+
     /**
      * @var integer
      * @ORM\Id
@@ -28,23 +33,24 @@ class Voorlegger
 
     // ---
 
+
+    /**
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $legitimatieOntvangenMadi;
+
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $legitimatieOntvangenGka;
 
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $legitimatieOntvangenMadi;
-
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $vtlbOntvangenMadi;
 
@@ -65,8 +71,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $inkomstenspecificatieOntvangenMadi;
 
@@ -76,9 +82,11 @@ class Voorlegger
      */
     private $inkomstenspecificatieOntvangenGka;
 
+    // ---
+
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $arbeidsovereenkomstOntvangenMadi;
 
@@ -130,8 +138,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $voorlopigeTeruggaafBelastingdienstOntvangenMadi;
 
@@ -150,8 +158,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $alimentatieOntvangenMadi;
 
@@ -170,8 +178,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $kostgeldOntvangenMadi;
 
@@ -190,8 +198,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $huurtoeslagOntvangenMadi;
 
@@ -210,8 +218,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $zorgtoeslagOntvangenMadi;
 
@@ -230,8 +238,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $kinderopvangtoeslagOntvangenMadi;
 
@@ -250,8 +258,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $kindgebondenBudgetOntvangenMadi;
 
@@ -270,8 +278,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $huurspecificatieOntvangenMadi;
 
@@ -290,8 +298,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $polisbladZorgverzekeringOntvangenMadi;
 
@@ -310,8 +318,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $alimentatieEchtscheidingsconvenantOntvangenMadi;
 
@@ -330,8 +338,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $overeenkomstKinderopvangOntvangenMadi;
 
@@ -390,8 +398,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $autoTaxatieOntvangenMadi;
 
@@ -410,8 +418,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $autolastenKmWoonwerkverkeerOntvangenMadi;
 
@@ -437,8 +445,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $verklaringWerkgeverOntvangenMadi;
 
@@ -457,8 +465,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $vrijwaringsbewijsOntvangenMadi;
 
@@ -477,8 +485,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $schuldenoverzichtOntvangenMadi;
 
@@ -491,8 +499,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $vorderingenOntvangenMadi;
 
@@ -505,8 +513,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $inzageToetsingBkrOntvangenMadi;
 
@@ -519,8 +527,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $stabilisatieovereenkomstOntvangenMadi;
 
@@ -553,8 +561,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $meterstandenEnergieOntvangenMadi;
 
@@ -573,8 +581,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $waternetOntvangenMadi;
 
@@ -593,8 +601,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $retourbewijsModemOntvangenMadi;
 
@@ -613,8 +621,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $toelichtingAanvraagSchuldsaneringClientOntvangenMadi;
 
@@ -627,8 +635,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $toelichtingAanvraagSchuldsaneringMadiOntvangenMadi;
 
@@ -649,8 +657,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $beschikkingOnderBewindstellingOntvangenMadi;
 
@@ -701,8 +709,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $gereserveerdeGeldenOntvangenMadi;
 
@@ -729,8 +737,8 @@ class Voorlegger
     // ---
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $ondertekendAanvraagFormulierOntvangenMadi;
 
@@ -850,51 +858,51 @@ class Voorlegger
 
     public function __construct()
     {
+        $this->legitimatieOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->legitimatieOntvangenGka = false;
-        $this->legitimatieOntvangenMadi = false;
-        $this->vtlbOntvangenMadi = false;
+        $this->vtlbOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->vtlbOntvangenGka = false;
         $this->vtlbBedrag = 0.00;
-        $this->inkomstenspecificatieOntvangenMadi = false;
+        $this->inkomstenspecificatieOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->inkomstenspecificatieOntvangenGka = false;
-        $this->arbeidsovereenkomstOntvangenMadi = false;
+        $this->arbeidsovereenkomstOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->arbeidsovereenkomstOntvangenGka = false;
         $this->arbeidsovereenkomstNvt = false;
         $this->beschikkingUwvNvt = false;
         $this->beschikkingUwvWw = false;
         $this->beschikkingUwvWia = false;
         $this->beschikkingUwvZw = false;
-        $this->voorlopigeTeruggaafBelastingdienstOntvangenMadi = false;
+        $this->voorlopigeTeruggaafBelastingdienstOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->voorlopigeTeruggaafBelastingdienstOntvangenGka = false;
         $this->voorlopigeTeruggaafBelastingdienstNvt = false;
-        $this->alimentatieOntvangenMadi = false;
+        $this->alimentatieOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->alimentatieOntvangenGka = false;
         $this->alimentatieNvt = false;
-        $this->kostgeldOntvangenMadi = false;
+        $this->kostgeldOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->kostgeldOntvangenGka = false;
         $this->kostgeldNvt = false;
-        $this->huurtoeslagOntvangenMadi = false;
+        $this->huurtoeslagOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->huurtoeslagOntvangenGka = false;
         $this->huurtoeslagNvt = false;
-        $this->zorgtoeslagOntvangenMadi = false;
+        $this->zorgtoeslagOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->zorgtoeslagOntvangenGka = false;
         $this->zorgtoeslagNvt = false;
-        $this->kinderopvangtoeslagOntvangenMadi = false;
+        $this->kinderopvangtoeslagOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->kinderopvangtoeslagOntvangenGka = false;
         $this->kinderopvangtoeslagNvt = false;
-        $this->kindgebondenBudgetOntvangenMadi = false;
+        $this->kindgebondenBudgetOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->kindgebondenBudgetOntvangenGka = false;
         $this->kindgebondenBudgetNvt = false;
-        $this->huurspecificatieOntvangenMadi = false;
+        $this->huurspecificatieOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->huurspecificatieOntvangenGka = false;
         $this->huurspecificatieNvt = false;
-        $this->polisbladZorgverzekeringOntvangenMadi = false;
+        $this->polisbladZorgverzekeringOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->polisbladZorgverzekeringOntvangenGka = false;
         $this->polisbladZorgverzekeringNvt = false;
-        $this->alimentatieEchtscheidingsconvenantOntvangenMadi = false;
+        $this->alimentatieEchtscheidingsconvenantOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->alimentatieEchtscheidingsconvenantOntvangenGka = false;
         $this->alimentatieEchtscheidingsconvenantNvt = false;
-        $this->overeenkomstKinderopvangOntvangenMadi = false;
+        $this->overeenkomstKinderopvangOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->overeenkomstKinderopvangOntvangenGka = false;
         $this->overeenkomstKinderopvangNvt = false;
         $this->kwijtscheldingGemeenteBelastingNvt = false;
@@ -903,56 +911,56 @@ class Voorlegger
         $this->corrigerenGemeenteBelastingNvt = false;
         $this->corrigerenGemeenteBelasting = false;
         $this->autoNvt = false;
-        $this->autoTaxatieOntvangenMadi = false;
+        $this->autoTaxatieOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->autoTaxatieOntvangenGka = false;
         $this->autoTaxatieNvt = false;
-        $this->autolastenKmWoonwerkverkeerOntvangenMadi = false;
+        $this->autolastenKmWoonwerkverkeerOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->autolastenKmWoonwerkverkeerOntvangenGka = false;
         $this->autolastenKmWoonwerkverkeerNvt = false;
         $this->autolastenKmWoonwerkverkeer = 0;
-        $this->verklaringWerkgeverOntvangenMadi = false;
+        $this->verklaringWerkgeverOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->verklaringWerkgeverOntvangenGka = false;
         $this->verklaringWerkgeverNvt = false;
-        $this->vrijwaringsbewijsOntvangenMadi = false;
+        $this->vrijwaringsbewijsOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->vrijwaringsbewijsOntvangenGka = false;
         $this->vrijwaringsbewijsNvt = false;
-        $this->schuldenoverzichtOntvangenMadi = false;
+        $this->schuldenoverzichtOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->schuldenoverzichtOntvangenGka = false;
         $this->vorderingenOntvangenMadi = false;
         $this->vorderingenOntvangenGka = false;
-        $this->inzageToetsingBkrOntvangenMadi = false;
+        $this->inzageToetsingBkrOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->inzageToetsingBkrOntvangenGka = false;
-        $this->stabilisatieovereenkomstOntvangenMadi = false;
+        $this->stabilisatieovereenkomstOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->stabilisatieovereenkomstOntvangenGka = false;
         $this->stabilisatieovereenkomstNvt = false;
         $this->cjib = false;
         $this->cjibNvt = false;
-        $this->meterstandenEnergieOntvangenMadi = false;
+        $this->meterstandenEnergieOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->meterstandenEnergieOntvangenGka = false;
         $this->meterstandenEnergieNvt = false;
         $this->waternetOntvangenMadi = false;
         $this->waternetOntvangenGka = false;
         $this->waternetNvt = false;
-        $this->retourbewijsModemOntvangenMadi = false;
+        $this->retourbewijsModemOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->retourbewijsModemOntvangenGka = false;
         $this->retourbewijsModemNvt = false;
-        $this->toelichtingAanvraagSchuldsaneringClientOntvangenMadi = false;
+        $this->toelichtingAanvraagSchuldsaneringClientOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->toelichtingAanvraagSchuldsaneringClientOntvangenGka = false;
-        $this->toelichtingAanvraagSchuldsaneringMadiOntvangenMadi = false;
+        $this->toelichtingAanvraagSchuldsaneringMadiOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->toelichtingAanvraagSchuldsaneringMadiOntvangenGka = false;
         $this->bewindstellingOfBudgetbeheerNvt = false;
-        $this->beschikkingOnderBewindstellingOntvangenMadi = false;
+        $this->beschikkingOnderBewindstellingOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->beschikkingOnderBewindstellingOntvangenGka = false;
         $this->beschikkingOnderBewindstellingNvt = false;
         $this->budgetbeheerNvt = false;
         $this->budgetbeheerPlangroep = false;
         $this->budgetbeheerCav = false;
         $this->budgetbeheerFibu = false;
-        $this->gereserveerdeGeldenOntvangenMadi = false;
+        $this->gereserveerdeGeldenOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->gereserveerdeGeldenOntvangenGka = false;
         $this->gereserveerdeGeldenNvt = false;
         $this->gereserveerdeGelden = 0.00;
-        $this->ondertekendAanvraagFormulierOntvangenMadi = false;
+        $this->ondertekendAanvraagFormulierOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->ondertekendAanvraagFormulierOntvangenGka = false;
     }
 

@@ -27,8 +27,8 @@ class VoorleggerKostgeldFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('kostgeldOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('kostgeldOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('kostgeldOntvangenGka', CheckboxType::class, [

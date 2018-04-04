@@ -27,8 +27,8 @@ class VoorleggerVoorlopigeTeruggaafBelastingdienstFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('voorlopigeTeruggaafBelastingdienstOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('voorlopigeTeruggaafBelastingdienstOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('voorlopigeTeruggaafBelastingdienstOntvangenGka', CheckboxType::class, [

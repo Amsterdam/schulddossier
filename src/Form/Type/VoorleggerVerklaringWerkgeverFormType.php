@@ -27,8 +27,8 @@ class VoorleggerVerklaringWerkgeverFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('verklaringWerkgeverOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('verklaringWerkgeverOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('verklaringWerkgeverOntvangenGka', CheckboxType::class, [

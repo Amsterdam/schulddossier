@@ -27,7 +27,7 @@ class VoorleggerKwijtscheldingGemeenteBelastingFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('kwijtscheldingGemeenteBelastingNvt', CheckboxType::class, [
+        $builder->add('kwijtscheldingGemeenteBelastingNvt', MadiStatusFormType::class, [
             'required' => false
         ]);
         $builder->add('kwijtscheldingGemeenteBelasting', ChoiceType::class, [

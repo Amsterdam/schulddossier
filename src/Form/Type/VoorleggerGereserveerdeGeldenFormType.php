@@ -27,8 +27,8 @@ class VoorleggerGereserveerdeGeldenFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('gereserveerdeGeldenOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('gereserveerdeGeldenOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('gereserveerdeGeldenOntvangenGka', CheckboxType::class, [

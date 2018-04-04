@@ -27,8 +27,8 @@ class VoorleggerAutolastenKmWoonwerkverkeerFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('autolastenKmWoonwerkverkeerOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('autolastenKmWoonwerkverkeerOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('autolastenKmWoonwerkverkeerOntvangenGka', CheckboxType::class, [
