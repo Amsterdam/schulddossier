@@ -17,8 +17,16 @@ RUN apk add postgresql-dev libmcrypt libmcrypt-dev \
 COPY --from=composer:1.5 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /
+
 RUN mkdir /srv/app
-VOLUME /srv/app
+
+COPY . /srv/app
+
+VOLUME /srv/app/config
+VOLUME /srv/app/public
+VOLUME /srv/app/templates
+VOLUME /srv/app/src
+
 WORKDIR /srv/app
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
