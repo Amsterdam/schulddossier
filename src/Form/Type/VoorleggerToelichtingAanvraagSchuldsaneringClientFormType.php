@@ -60,11 +60,5 @@ class VoorleggerToelichtingAanvraagSchuldsaneringClientFormType extends Abstract
         $resolver->setDefault('data_class', Voorlegger::class);
         $resolver->setDefault('choice_translation_domain', false);
         $resolver->setDefault('disable_group', null);
-        $resolver->setDefault('validation_groups', function (FormInterface $form) {
-            $dataFile = $form->get('file')->getData();
-            $dataNaam = $form->get('fileNaam')->getData();
-            $required = ($dataFile !== null) || ($dataNaam !== null);
-            return ['Default', $required ? 'withFile' : null];
-        });
     }
 }
