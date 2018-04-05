@@ -1,0 +1,28 @@
+$fontSize: 1.4rem;
+$fontSmallSize: 1.2rem;
+$lineHeightRelative: 1.375;
+$lineHeight: $fontSize * $lineHeightRelative;
+
+// breakpoints
+$large: 1290px;
+$medium: 900px;
+$small: 700px;
+
+
+$brandColor1: #ec0000;
+$brandColor2: #6db5d6;
+
+$textColor: #333;
+$accentColor: $brandColor1;
+$lightColor: #f5f5f5;
+$borderColor: #e2e2e2;
+
+$padding: 3rem;
+$unit: 80px;
+
+$maxContentWidth: 1200px;
+$maxWidth: 1400px;
+
+$transition-ease-default: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+$pdfSplitterWidth: 20vw;

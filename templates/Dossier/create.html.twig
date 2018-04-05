@@ -2,45 +2,50 @@
 
 {% block title %}Nieuw dossier - {{ parent() }}{% endblock %}
 
-{% block page_title %}Nieuw dossier{% endblock %}
-
 {% block body_classes %}hide-pdf-splitter{% endblock %}
 
 {% block document %}
+  
 
-<nav class="document">
+<nav class="nav-internal">
     <ul>
-        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Terug naar overzicht</a></li>
+        <li>
+          <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"><i class="icon-arrow-left"></i> Terug naar overzicht</a>
+        </li>
     </ul>
 </nav>
 
-<div class="document">
-    <div class="header">
-        <h1>Nieuw dossier</h1>
-        <p>Vul onderstaand formulier in om een nieuw dossier te openen.</p>
+<div class="document well">
+    
+    <div class="document-header">
+      <h1 class="document-title">Nieuw dossier</h1>
+      <p class="document-help">Vul onderstaand formulier in om een nieuw dossier te openen.</p>
     </div>
+    
     <div class="form-container">
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
         {{ form_row(form.clientNaam) }}
         {{ form_row(form.partnerNaam) }}
         <div class="columns">
             <div class="column">
-                <h3>MaDi</h3>
+                <h3 class="document-team">MaDi</h3>
                 {{ form_row(form.schuldhulpbureau) }}
                 {{ form_row(form.medewerkerSchuldhulpbureau) }}
                 {{ form_row(form.regasNummer) }}
             </div>
             <div class="column">
-                <h3>GKA</h3>
+                <h3 class="document-team">GKA</h3>
                 {{ form_row(form.teamGka) }}
                 {{ form_row(form.allegroNummer) }}
             </div>
         </div>
-        <div class="nav">
-            <button type="submit">Opslaan</button>
+        <p class="buttons right">
+            <button type="submit" class="button primary">Opslaan</button>
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Annuleren</a>
         </div>
         {{ form_end(form) }}
     </div>
 </div>
+
 
 {% endblock %}

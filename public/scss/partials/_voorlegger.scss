@@ -1,0 +1,39 @@
+.voorlegger-header {
+  display: flex;
+  width: 100%;
+  height: 20px;
+  .naam {
+    flex-grow: 1;
+    height: 20px;
+    line-height: 20px;
+  }
+  .status {
+    flex-grow: 0;
+    height: 20px;
+    line-height: 20px;
+    width: 150px;
+    span {
+      padding-left: 17px;
+      font-size: 0;
+      &:before {
+        content: '';
+        display: inline-block;
+        height: 17px;
+        width: 17px;
+        background-image: url(/pix/bezig.png);
+      }
+      &.afgerond:before {
+        background-image: url(/pix/compleet.png);
+      }
+      &.na:before {
+        background-image: none;
+      }
+    }
+  }
+  .nvt {
+    flex-grow: 0;
+    height: 20px;
+    line-height: 20px;
+    width: 50px;
+  }
+}

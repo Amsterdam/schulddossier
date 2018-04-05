@@ -2,14 +2,12 @@
 
 {% block title %}Login - {{ parent() }}{% endblock %}
 
-{% block page_title %}Aanmelden - Online schuldhulpdossier{% endblock %}
-
 {% block body_classes %}hide-pdf-splitter{% endblock %}
 
 {% block document %}
-<div class="document">
-    <div class="header">
-        <h1>Aanmelden voor medewerkers</h1>
+<div class="document well">
+    <div class="document-header">
+        <h1 class="document-title">Aanmelden voor medewerkers</h1>
         <p>Medewerkers van het GKA en de MaDi kunnen zich hier aanmelden.</p>
     </div>
     <div class="form-container">
@@ -33,9 +31,9 @@
             </div>
             {# <input type="hidden" name="_target_path" value="/account"> #}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-            <div class="nav">
-                <button type="submit">Aanmelden</button>
-            </div>
+            <p class="buttons right">
+                <button type="submit" class="button primary">Aanmelden</button>
+            </p>
         </form>
     </div>
 </div>

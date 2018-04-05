@@ -1,0 +1,42 @@
+.icon-andreas {
+  display: inline-block;
+  vertical-align: top;
+  
+  width: 20px;
+  height: 68px;
+
+  background-image: url('../images/ico_andreas.svg');
+  background-size: auto 100%;
+  
+  background-repeat: no-repeat;
+}
+
+.icon-arrow,
+.icon-arrow-left,
+.icon-arrow-right,
+.icon-arrow-bottom,
+.icon-arrow-up {
+  position: relative;
+  top: .4em;
+  display: inline-block;
+  vertical-align: top;
+  content: '';
+  width: .4em;
+  height: .4em;
+  transform: rotate(45deg);
+  border-top: .15em solid $textColor;
+  border-right: .15em solid $textColor;
+}
+
+.icon-arrow-left {
+  transform: rotate(-135deg);
+}
+.icon-arrow-right {
+  transform: rotate(45deg);
+}
+.icon-arrow-bottom {
+  transform: rotate(135deg);
+}
+.icon-arrow-up {
+  transform: rotate(-45deg);
+}
