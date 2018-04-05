@@ -126,6 +126,13 @@ class Dossier
      */
     private $schuldItems;
 
+    /**
+     * @var DossierTimeline[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="DossierTimeline", mappedBy="dossier", cascade={"persist"})
+     * @ORM\OrderBy({"datumtijd"="DESC", "id"="DESC"})
+     */
+    private $timeline;
+
     public function __construct()
     {
         $this->aanmaakDatumTijd = new \DateTime();
@@ -373,12 +380,34 @@ class Dossier
         return $this->schuldItems->contains($schuldItem);
     }
 
-    public static function getStatussen()
+    public function getTimeline()
     {
-        return [
-            self::STATUS_MADI => self::STATUS_MADI,
-            self::STATUS_GKA => self::STATUS_GKA,
-            self::STATUS_GESLOTEN => self::STATUS_GESLOTEN
-        ];
+        return $this->timeline;
     }
+
+    public function addTimeline(DossierTimeline $timeline)
+    {
+        if ($this->hasTimeline($timeline) === false) {
+            $this->timeline->add($timeline);
+        }
+        if ($timeline->getDossier() !== $this) {
+            $timeline->setDossier($this);
+        }
+    }
+
+    public function removeTimeline(DossierTimeline $timeline)
+    {
+        if ($this->hasTimeline($timeline) === true) {
+            $this->timeline->removeElement($timeline);
+        }
+        if ($timeline->getDossier() === $this) {
+            $timeline->setDossier(null);
+        }
+    }
+
+    public function hasTimeline(DossierTimeline $timeline)
+    {
+        return $this->timeline->contains($timeline);
+    }
+
 }
