@@ -35,3 +35,4 @@ docker-compose-dev.override.yml
 .phpunit
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+/public/scss/.sass-cache
