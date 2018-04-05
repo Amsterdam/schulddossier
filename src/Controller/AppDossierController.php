@@ -63,6 +63,8 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerVtlbFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerWaternetFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerZorgtoeslagFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerSchuldenoverzichtFormType;
+use Symfony\Component\Workflow\Registry as WorkflowRegistry;
+use Symfony\Component\Workflow\Dumper\GraphvizDumper;
 
 /**
  * @Route("/app/dossier")
@@ -124,7 +126,7 @@ class AppDossierController extends Controller
         $dossier = new Dossier();
         $dossier->setAanmaker($this->getUser());
         $dossier->setDossierTemplate('v1');
-        $dossier->setStatus(Dossier::STATUS_MADI);
+        $dossier->setStatus('bezig_madi');
         $form = $this->createForm(CreateDossierFormType::class, $dossier);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -145,7 +147,7 @@ class AppDossierController extends Controller
      * @Route("/detail/{dossierId}")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailAction(Request $request, EntityManagerInterface $em, Dossier $dossier)
+    public function detailAction(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier)
     {
         if ($dossier->getVoorlegger() === null) {
             $dossier->setVoorlegger(new Voorlegger());
@@ -243,6 +245,8 @@ class AppDossierController extends Controller
             }
         }
 
+        $workflow = $registry->get($dossier);
+
         return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
             'form' => $form->createView(),
@@ -301,6 +305,33 @@ class AppDossierController extends Controller
         $fullUrl = $this->getParameter('swift_public_url') . $path . '?temp_url_sig=' . $sign . '&temp_url_expires=' . $timestamp;
 
         return new RedirectResponse($fullUrl, Response::HTTP_TEMPORARY_REDIRECT);
+    }
+
+    /**
+     * @Method("POST")
+     * @Route("/detail/{dossierId}/status")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function changeStatusAction(Request $request, Dossier $dossier, WorkflowRegistry $registry, EntityManagerInterface $em)
+    {
+        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', $request->request->get('token')) === false) {
+            throw $this->createAccessDeniedException('CSRF token invalid');
+        }
+
+        $workflow = $registry->get($dossier);
+
+        if ($workflow->can($dossier, $request->get('transition')) === false) {
+            throw $this->createNotFoundException('Transition not available');
+        }
+
+        $workflow->apply($dossier, $request->get('transition'));
+        $em->flush();
+
+        if ($request->isXmlHttpRequest()) {
+            return new JsonResponse(['status' => 'OK', 'status' => $workflow->getMarking($dossier)->getPlaces()]);
+        }
+
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
     /**

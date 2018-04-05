@@ -11,6 +11,50 @@
         </ul>
     </nav>
     
+    Workflow stappen:
+    <ul>
+{% if workflow_can(dossier, 'opgevoerd_madi') %}
+        <li>
+            <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'opgevoerd_madi'}) }}" method="post">
+                <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
+                <button type="submit">Ter controle aanbieden</button>
+            </form>
+        </li>
+{% endif %}
+{% if workflow_can(dossier, 'goedkeuren_madi') %}
+        <li>
+            <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'goedkeuren_madi'}) }}" method="post">
+                <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
+                <button type="submit">Goedkeuren</button>
+            </form>
+        </li>
+{% endif %}
+{% if workflow_can(dossier, 'afkeuren_madi') %}
+        <li>
+            <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'afkeuren_madi'}) }}" method="post">
+                <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
+                <button type="submit">Afkeuren</button>
+            </form>
+        </li>
+{% endif %}
+{% if workflow_can(dossier, 'verzenden_madi') %}
+        <li>
+            <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'verzenden_madi'}) }}" method="post">
+                <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
+                <button type="submit">Verzenden naar GKA</button>
+            </form>
+        </li>
+{% endif %}
+{% if workflow_can(dossier, 'gestart_gka') %}
+        <li>
+            <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'gestart_gka'}) }}" method="post">
+                <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
+                <button type="submit">GKA start proces</button>
+            </form>
+        </li>
+{% endif %}
+    </ul>
+    
     <div class="document well">
       <div class="document-header">
         <h1>{{ dossier.clientNaam }}</h1>
@@ -19,7 +63,6 @@
       {{ form_start(form, {'attr': {'class': 'default-form-style ajax'} }) }}
         {{ form_row(form.clientNaam) }}
         {{ form_row(form.partnerNaam) }}
-        {{ form_row(form.status) }}
         <div class="columns">
           <div class="column">
             <h3 class="document-team">MaDi</h3>
