@@ -11,6 +11,9 @@ html {
 
 body {
   padding: $padding;
+  @include medium {
+    padding: 10px;
+  }
 }
 
 p, ol, ul, dl, figure {

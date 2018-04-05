@@ -1,14 +1,16 @@
 .table {
-  
+  line-height: 1.2;  
   table {
     width: 100%;
     border-spacing: 0;
     text-align: left;
+
     
     overflow: hidden;
 
     th,
     td {
+      vertical-align: top;
       padding: .5rem;
       border-bottom: 1px solid $lightColor;
       &:first-child {
@@ -27,6 +29,7 @@
       a {
         position: relative;
         text-decoration: none;
+        display: block;
         &:before {
           content: '';
           position: absolute;

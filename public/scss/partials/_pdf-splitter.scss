@@ -100,4 +100,7 @@ body {
   header.top {
     left: 0;
   }
+  @include medium {
+    padding-left: 10px;
+  }
 }

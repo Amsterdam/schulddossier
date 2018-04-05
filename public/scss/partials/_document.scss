@@ -21,6 +21,9 @@ div.document-container {
   
   .document-header {
     margin: (-$padding) (-$padding) $padding (-$padding);
+    @include medium {
+      margin: (-10px) (-10px) 10px (-10px);
+    }
   }
   
   .buttons {
@@ -34,6 +37,9 @@ div.document-container {
   border-bottom: 1px solid #dfdfdf;
   margin-bottom: $lineHeight;
   padding: $padding;
+  @include medium {
+    padding: 10px;
+  }
   .document-title {
     margin-bottom: .2em;
   }
