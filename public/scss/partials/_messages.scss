@@ -1,0 +1,26 @@
+.flash-message {
+  width: 500px;
+  margin: 10px auto;
+  display: flex;
+  border: 1px solid #CCC;
+  background-color: #FFF;
+  &.flash-type-success {
+    border-color: #72C82E;
+    color: #155724;
+    background-color: #d4edda;
+  }
+  .message {
+    order: 0;
+    flex-grow: 1;
+    padding: 10px;
+  }
+  .btn {
+    order: 2;
+    flex-grow: 0;
+    width: 25px;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    color: #72C82E;
+  }
+}

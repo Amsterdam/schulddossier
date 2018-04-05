@@ -1,0 +1,83 @@
+header.top {
+
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  padding: $padding / 2 $padding;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  border-bottom: 1px solid $textColor;
+  z-index: 99;
+  
+  .logo {
+    width: 65px;
+    margin-right: 15px;
+    flex-grow: 0;
+    height: 35px;
+    img {
+      width: 100%;
+    }
+  }
+  
+}
+
+.logo {
+  position: relative;
+  display: inline-block;
+
+  font-size: 1.3rem;
+  width: 6em;
+  line-height: 1;
+  color: $accentColor;
+
+  text-decoration: none;
+  padding-left: 3rem;
+  min-height: 7rem;
+
+  i {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding-right: 1rem;
+  }
+  .icon-andreas {
+    width: 2rem;
+    height: 6.8rem;
+  }
+
+  strong {
+    position: absolute;
+    top: 0;
+    left: 14rem;
+    font-size: 2.8rem;
+    line-height: 1;
+    white-space: nowrap;
+    color: #000;
+    font-weight: normal;
+  }
+  &:hover {
+    color: $accentColor;
+  }
+  
+  @include medium {
+    font-size: 14px;
+    padding-left: 22px;
+    min-height: 41px;
+    strong {
+      font-size: 18px;
+      left: 120px;
+      top: -1px;
+    }
+    .icon-andreas {
+      height: 41px;
+    }
+  }
+}
+
+
+body {
+  padding-top: calc(60px + #{ 2 * $lineHeight});
+}

@@ -1,0 +1,36 @@
+.nav-internal {
+  margin-bottom: $lineHeight;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    display: flex;
+    white-space: nowrap;
+  }
+  li {
+    display: inline-block;
+    margin-left: 1rem;
+    &:first-child {
+      margin-left: 0;
+      flex-basis: 100%;
+    }
+  }
+  a {
+    font-size: $fontSize;
+    display: inline-block;
+    text-decoration: none;
+    @extend .bold !optional;
+    background-color: rgba(#fff, .6);
+    padding: .5em 1em;
+    
+    transition: all .3s;
+    
+    &:hover {
+      background-color: rgba(#fff, 1);
+    }
+    i {
+      margin-right: .5em;
+    }
+  }
+}

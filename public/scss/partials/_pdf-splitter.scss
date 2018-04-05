@@ -1,0 +1,103 @@
+.pdf-splitter {
+  background-color: darken($lightColor, 10);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $pdfSplitterWidth;
+
+  border-right: 1px solid #CCC;
+  box-shadow: inset -5px 0px 10px 0px rgba(204, 204, 204, 0.37);
+  overflow-x: hidden;
+  overflow-y: auto;
+  .file-selector {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    
+    text-align: center;
+    
+    &:before {
+      position: absolute;
+      content: 'Kies een ander bestand';
+      text-transform: uppercase;
+      
+      font-size: $fontSize;
+      color: #fff;
+      padding: 1em;
+      background-color: #000;
+      left: $padding / 2;
+      right: $padding / 2;
+      top: $padding / 2;
+    }
+
+    input[type="file"] {
+      position: absolute;
+      opacity: 0;
+    }
+  }
+  .pages {
+    position: relative;
+    padding: $padding / 2;
+    margin-top: 4.8rem;
+    z-index: 4;
+    &:empty {
+      display: flex;
+      align-items: center;
+      ~ .file-selector {
+        &:before {
+          content: 'Kies een bestand';
+        }
+      }
+    }
+    &:empty:after {
+      content: "Voeg pagina's toe door een document te uploaden.";
+      margin-top: $padding / 2;
+      line-height: 1.2;
+      color: $textColor;
+      padding: $padding / 2;
+      background-color: rgba($textColor, .1);
+      
+
+      display: block;
+    }
+    .page {
+      background-color: #FFFFFF;
+      
+      margin: $padding / 2 0;
+      border: 1px solid #CCC;
+      cursor: move;
+    
+      canvas {
+        width: 100%;
+        height: auto;
+      }
+      &.dragged {
+        opacity: 0.4;
+      }
+      &:hover {
+        border-color: $textColor;
+      }
+    }
+  }
+  .hide-pdf-splitter & {
+    display: none;
+  }
+}
+
+
+body {
+  padding-left: calc(#{$pdfSplitterWidth} + #{$padding});
+  header.top {
+    left: $pdfSplitterWidth;
+  }
+}
+.hide-pdf-splitter {
+  padding-left: $padding;
+  header.top {
+    left: 0;
+  }
+}

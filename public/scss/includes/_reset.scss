@@ -1,0 +1,30 @@
+html, body, h1, h2, h3, h4, h5, h6, fieldset, figure, blockquote, dl, dt, dd {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+html {
+	background-color: $lightColor;
+  overflow-x: hidden;
+}
+
+body {
+  padding: $padding;
+}
+
+p, ol, ul, dl, figure {
+	margin-top: 0;
+	margin-bottom: $lineHeight
+}
+
+img {
+  vertical-align: top;
+	max-width: 100%;
+  height: auto;
+  border: none;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0
+}

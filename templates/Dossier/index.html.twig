@@ -2,20 +2,18 @@
 
 {% block title %}Dossiers - {{ parent() }}{% endblock %}
 
-{% block page_title %}Dossiers{% endblock %}
-
 {% block body_classes %}hide-pdf-splitter{% endblock %}
 
 {% block document %}
-    <nav class="document">
+    <nav class="nav-internal">
         <ul>
             <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}">Nieuw dossier</a></li>
             <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak') }}">Prullenbak</a></li>
         </ul>
     </nav>
 
-    <div class="document">
-        <div class="header">
+    <div class="document well">
+        <div class="document-header">
             <h1>Dossiers</h1>
         </div>
         <div class="table">
@@ -33,7 +31,7 @@
                 <tbody>
 {% for dossier in dossiers %}
                     <tr>
-                        <td><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a></td>
+                        <th><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a></th>
                         <td>{{ dossier.schuldhulpbureau }}</td>
                         <td class="nummer">
                             {{ dossier.regasNummer|default('-') }}

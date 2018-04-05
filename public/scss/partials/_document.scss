@@ -1,0 +1,43 @@
+div.document-container {
+  max-width: 900px;
+  margin: 2 * $lineHeight auto;
+}
+
+.document {
+  background-color: #fff;
+  .document-team {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0 0 1rem 0;
+    margin: 0 0 $lineHeight 0;
+  }
+  .column {
+    width: 50%;
+    margin-right: $padding;
+    margin-bottom: $lineHeight;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  
+  .document-header {
+    margin: (-$padding) (-$padding) $padding (-$padding);
+  }
+  
+  .buttons {
+    margin-bottom: 0;
+  }
+  
+}
+
+.document-header {
+  background-color: #fbfbfb;
+  border-bottom: 1px solid #dfdfdf;
+  margin-bottom: $lineHeight;
+  padding: $padding;
+  .document-title {
+    margin-bottom: .2em;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}

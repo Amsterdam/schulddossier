@@ -6,251 +6,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}Schulddossier - Gemeente Amsterdam{% endblock %}</title>
         <meta name="viewport" content="width=device-width">
-        <style type="text/css">
-* { margin: 0; padding: 0; }
-html, body { height: 100%; }
-body { background-color: #F3F3F3; font-family: Avenir, Lato, sans-serif; padding-left: 160px; }
 
-header.top { background-color: #FFFFFF; display: flex; padding: 15px 15px 10px 15px; height: 35px; position: fixed; left: 160px; top: 0; right: 0; border-bottom: 1px solid #999; z-index: 99; }
-.hide-pdf-splitter header.top { left: 0; }
-header.top>.logo { width: 65px; margin-right: 15px; flex-grow: 0; height: 35px; }
-header.top>.logo img { width: 100%; }
-header.top>.title { width: auto; flex-grow: 1; font-size: 0.7rem; height: 35px; line-height: 30px; }
-header.top>.gebruiker { width: 150px; flex-grow: 0; height: 35px; line-height: 30px; font-size: 0.8rem; text-align: right; }
-header.top>.gebruiker a { color: #000; }
-
-aside.pdf-splitter { background-color: #F3F3F3; position: fixed; top: 0; left: 0; width: 160px; height: 100%; border-right: 1px solid #CCC; box-shadow: inset -5px 0px 10px 0px rgba(204,204,204,0.37); overflow: auto; }
-aside.pdf-splitter .file-selector { position: relative; overflow: hidden; padding: 15px 5px 5px 5px; }
-aside.pdf-splitter .file-selector button { background-color: #FFFFFF; border: 1px solid #CCCCCC; font-family: inherit; font-size: 0.8rem; border-radius: 3px; width: 100%; padding: 4px; }
-aside.pdf-splitter .file-selector input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; }
-aside.pdf-splitter .pages:empty:after { content: "Voeg pagina's toe door hierboven een document te uploaden."; color: #666666; margin-top: 15px; display: block; font-size: 0.7rem}
-aside.pdf-splitter .pages { padding: 0 15px; }
-aside.pdf-splitter .pages .page { background-color: #FFFFFF; width: 100%; margin: 10px 0; border: 1px solid #CCC; cursor: move; }
-aside.pdf-splitter .pages .page canvas { width: 100%; height: auto; }
-aside.pdf-splitter .pages .page.dragged { opacity: 0.4; }
-.hide-pdf-splitter aside.pdf-splitter { display: none; }
-.hide-pdf-splitter { padding-left: 0; }
-
-div.document-container { width: 900px; margin: 85px auto; }
-
-nav.document { font-size: 0.7rem; margin-bottom: 10px; }
-nav.document ul { }
-nav.document ul li { list-style-type: none; display: inline-block; margin-right: 10px; }
-nav.document ul li a { color: #000000; }
-
-div.document { background-color: #FFFFFF; border: 1px solid #CCCCCC; padding-bottom: 100px; }
-div.document .header { background-color: #F3F3F3; padding: 20px 40px; border-bottom: 1px solid #CCC; }
-div.document .header h1 { font-weight: normal; margin-bottom: 10px; }
-div.document .header a { color: #0000FF; }
-div.document h3 { border-bottom: 1px solid #CCCCCC; font-size: 1.0rem; padding: 0px 0 2px 0; margin: 10px 0; }
-div.document .columns { display: flex; }
-div.document .columns .column { width: 50%; margin-right: 20px; }
-div.document .columns .column:last-child { margin-right: 0; }
-
-.default-form-style { font-size: 0.7rem; }
-.default-form-style input[type="date"] { padding: 5px; font-family: inherit; font-size: 0.8rem; border: 0.7px solid #999; border-radius: 2px; }
-.default-form-style input[type="text"] { padding: 5px; font-family: inherit; font-size: 0.8rem; border: 0.7px solid #999; border-radius: 2px; }
-.default-form-style input[type="password"] { padding: 5px; font-family: inherit; font-size: 0.8rem; border: 0.7px solid #999; border-radius: 2px; }
-.default-form-style input[type="email"] { padding: 5px; font-family: inherit; font-size: 0.8rem; border: 0.7px solid #999; border-radius: 2px; }
-.default-form-style textarea { padding: 5px; font-family: inherit; font-size: 0.8rem; border: 0.7px solid #999; border-radius: 2px; }
-.default-form-style select { padding: 5px; font-family: inherit; font-size: 0.8rem; border: 0.7px solid #999; border-radius: 2px; }
-.default-form-style .form-row { margin-bottom: 5px; }
-.default-form-style .label-widget { display: flex; align-items: center; align-items: flex-start; }
-.default-form-style .label-widget>label { width: 180px; flex-grow: 0; padding-top: 5px; }
-.default-form-style .label-widget>input[type="checkbox"] { border: 3px solid #F00; margin-top: 1px; width: 20px; height: 20px; }
-.default-form-style .label-widget>input[type="date"] { width: auto; flex-grow: 1; }
-.default-form-style .label-widget>input[type="text"] { width: auto; flex-grow: 1; }
-.default-form-style .label-widget>input[type="password"] { width: auto; flex-grow: 1; }
-.default-form-style .label-widget>input[type="email"] { width: auto; flex-grow: 1; }
-.default-form-style .label-widget>textarea { width: auto; flex-grow: 1; }
-.default-form-style .label-widget>select { width: auto; flex-grow: 1; }
-.default-form-style .label-widget>.choices { width: auto; flex-grow: 1; padding-right: 20px; box-sizing: border-box; }
-.default-form-style .label-widget>.choices .choices__inner { min-height: 25px; padding-top: 2px; padding-bottom: 2px; }
-.default-form-style .nav { text-align: right; }
-.default-form-style .nav button[type="submit"] { background-color: #FF0000; color: #FFFFFF; border: 0 none; padding: 8px 13px; cursor: pointer; transition: 0.5s background-color; }
-.default-form-style .nav button[type="submit"]:hover { background-color: #CC0000; }
-.default-form-style .errors { list-style-type: none; color: #FF0000; padding-left: 180px; }
-.default-form-style .errors li { padding: 5px 0; }
-.default-form-style .files-container { overflow: ; min-height: 100px;}
-.default-form-style .files-container .file-container { border: 1px solid #CCC; background-color: #FFFFFF; min-width: 230px; display: inline-block; height: 180px; padding: 5px; margin-right: 10px; margin-bottom: 10px; vertical-align: middle; position: relative; }
-.default-form-style .files-container .file-container.prototype { display: none; }
-.default-form-style .files-container .file-container input[type="text"] { width: 100%; font-size: 0.6rem; box-sizing: border-box; margin-bottom: 5px; border: 0 none; border-bottom: 1px dotted #999; border-radius: 0; }
-.default-form-style .files-container .file-container .file-selector { position: relative; overflow: hidden; }
-.default-form-style .files-container .file-container .file-selector button { background-color: #FFFFFF; border: 1px solid #CCCCCC; font-family: inherit; font-size: 0.8rem; border-radius: 3px; width: 100%; padding: 4px; }
-.default-form-style .files-container .file-container .file-selector input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; }
-.default-form-style .files-container .file-container.files-only .file-selector button { background-color: #F3F3F3; }
-.default-form-style .files-container .file-container .drop-area { border: 2px dashed #FFF; height: 30px; position: relative; }
-.default-form-style .files-container .file-container .drop-area:before { width: 100%; position: absolute; content: "Sleep pagina's hierheen"; text-align: center; color: #FFF; bottom: 0; display: none; }
-.default-form-style .files-container .file-container .drop-area .page { display: inline-block; border: 1px solid #CCC; margin: 0 5px; }
-.default-form-style .files-container .file-container .drop-area .page canvas { width: 100px; }
-.default-form-style .files-container .file-container .errors { padding-left: 0; }
-.pdf-splitter-page-drag .default-form-style .files-container .file-container .drop-area { border-color: #CCC; position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 9; background-color: #FFF; }
-.pdf-splitter-page-drag .default-form-style .files-container .file-container.files-only { cursor: no-drop; }
-.pdf-splitter-page-drag .default-form-style .files-container .file-container .drop-area:before { color: #CCC; display: block; }
-.default-form-style .files-container .add { /*background-color: #F00; */display: inline-block; height: auto; /*padding: 5px; border-radius: 2px; text-decoration: none; color: #FFF; font-size: 0.9rem; */width: 100px; }
-
-.primair,.secundair,.tertiair { font-size: 14px; -webkit-appearance: none; border: none; font-family: inherit; background: transparent; font-weight: normal; cursor: pointer; padding: 5px 8px; text-decoration: none; color: inherit;}
-input.primair,a.primair,button.primair { background-color: #ec0000; color: white; }
-input.secundair,a.secundair,button.secundair { border: 1px solid #979797; background-color: #FFF; }
-input.tertiair:hover,a.tertiair:hover,button.tertiair:hover { text-decoration: underline; }
-
-.default-form-style.in-progress { opacity: 0.5; }
-
-.tabs { width: 100%; margin-top: 20px; margin-bottom: 20px; }
-.tabs ul { display: flex; list-style-type: none; flex-wrap: nowrap; width: 100%; padding: 0px 100px; box-sizing: border-box; }
-.tabs li { flex-grow: 1; }
-.tabs li a { text-align: center; display: block; color: #666666; text-decoration: none; padding: 10px 0; }
-.tabs li.active a { border-bottom: 3px solid #F00; }
-
-.accordion-container { padding: 0 20px; }
-.accordion-container>h2 { font-weight: normal; margin-top: 20px; margin-bottom: 10px; }
-.accordion-container .accordion { margin-bottom: 10px; background-color: #F3F3F3; padding: 8px 15px; border-radius: 2px; }
-.accordion-container .accordion .accordion-header { padding-right: 26px; position: relative; }
-.accordion-container .accordion .accordion-header>a { color: #000000; display: block; text-decoration: none; }
-.accordion-container .accordion .accordion-header>a:after { content: url("/pix/chevron-down.svg"); width: 16px; height: 16px; position: absolute; right: 0; top: 0; }
-.accordion-container .accordion.open .accordion-header>a:after { content: url("/pix/chevron-up.svg"); }
-.accordion-container .accordion .accordion-body { height: 0; overflow: hidden; }
-.accordion-container .accordion.open .accordion-body { height: auto; padding-top: 10px; }
-
-.schulditem-header { display: flex; width: 100%; height: 20px; }
-.schulditem-header .naam { flex-grow: 1; height: 20px; line-height: 20px; }
-.schulditem-header .naam .referentie { font-size: 0.8rem; color: #666666; }
-.schulditem-header .voortgang { width: 150px; flex-grow: 0; font-size: 0.8rem; height: 20px; line-height: 20px; }
-.schulditem-header .bedrag { width: 150px; flex-grow: 0; height: 20px; line-height: 20px; text-align: right; }
-
-.voorlegger-header { display: flex; width: 100%; height: 20px; font-size: 1.0rem; }
-.voorlegger-header .naam { flex-grow: 1; height: 20px; line-height: 20px; }
-.voorlegger-header .status { flex-grow: 0; height: 20px; line-height: 20px; width: 150px; }
-.voorlegger-header .status span { padding-left: 17px; font-size: 0; }
-.voorlegger-header .status span:before { content: ''; display: inline-block; height: 17px; width: 17px; background-image: url(/pix/bezig.png); }
-.voorlegger-header .status span.afgerond:before { background-image: url(/pix/compleet.png); }
-.voorlegger-header .status span.na:before { background-image: none; }
-.voorlegger-header .nvt { flex-grow: 0; height: 20px; line-height: 20px; width: 50px; }
-
-.form-container { padding: 20px 20px 20px 20px; }
-.form-container h2 { font-size: 1.3rem; font-weight: normal; }
-
-.modal-container { height: 0; width: 0; overflow: hidden; background-color: rgba(0, 0, 0, 0.0); transition: background-color 1s; }
-.modal-container>* { display: none; }
-.modal-container:target { background-color: rgba(0, 0, 0, 0.2); position: fixed; top: 0; left: 0; z-index: 9999; width: 100%; height: 100%; }
-.modal-container:target>* { display: block; }
-.modal-container.open { background-color: rgba(0, 0, 0, 0.2); position: fixed; top: 0; left: 0; z-index: 9999; width: 100%; height: 100%; }
-.modal-container.open>* { display: block; }
-.modal-container>a { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
-.modal-container .modal-window { position: absolute; top: 50%; left: 50%; margin-left: -300px; margin-top: -150px; width: 600px; height: 300px; background-color: #FFF; border: 1px solid #999; border-radius: 2px; }
-.modal-container .modal-window .modal-header { border-bottom: 1px solid #CCC; padding: 10px 20px; }
-.modal-container .modal-window .modal-header h2 { font-weight: normal; }
-.modal-container .modal-window .modal-body { padding: 10px 20px; }
-
-.table { padding: 10px 20px; }
-.table table { width: 100%; border-spacing: 0; table-layout: fixed; }
-.table table thead tr th { text-align: left; padding: 5px; border-bottom: 1px solid #F3F3F3; }
-.table table tbody tr td { text-align: left; padding: 5px; border-bottom: 1px solid #F3F3F3; }
-.table table tbody tr td a { color: #0000FF; transition: color 0.5s; }
-.table table tbody tr td a:hover { color: #0000CC; }
-.table .empty-table { text-align: center; padding: 15px; }
-
-.pagination { width: 100%; display: flex; padding: 20px; box-sizing: border-box; font-size: 0.8rem; }
-.pagination>* { width: 33%; flex-grow: 1; }
-.pagination>a { color: #000000; }
-.pagination>.prev { text-align: left; }
-.pagination>span { text-align: center; }
-.pagination>.next { text-align: right; }
-
-.quick-viewer {}
-.quick-viewer .modal-window { width: 90%; height: 90%; top: 5%; left: 5%; margin: 0; }
-.quick-viewer .modal-window .modal-header { }
-.quick-viewer .modal-window .modal-body { position: absolute; top: 40px; bottom: 0; left: 0; right: 0; }
-.quick-viewer .modal-window .modal-body img { position: absolute; top: 50%; left: 50%; display: none; margin-left: -100px; margin-top: -100px; }
-.quick-viewer .modal-window .modal-body img.visible { display: block; }
-.quick-viewer .modal-window .modal-body canvas { width: 100%; }
-.quick-viewer .modal-window .modal-body .viewer-container { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: scroll; }
-.quick-viewer .modal-window .modal-body .page-counter { position: absolute; bottom: 50px; left: 50%; margin-left: -80px; width: 160px; text-align: center; background-color: #333; color: #999; padding: 10px 15px; border-radius: 5px; }
-.quick-viewer .modal-window .modal-body .button { position: absolute; width: 20px; height: 20px; text-align: center; background-color: #333; color: #999; padding: 10px 15px; border-radius: 5px; top: 50%; margin-top: -10px; }
-.quick-viewer .modal-window .modal-body .button:before { width: 16px; height: 16px; position: absolute; left: 50%; top: 50%; margin-left: -8px; margin-top: -8px; }
-.quick-viewer .modal-window .modal-body .button.prev { left: 30px; }
-.quick-viewer .modal-window .modal-body .button.prev:before { content: url("/pix/chevron-left.svg"); }
-.quick-viewer .modal-window .modal-body .button.next { right: 30px; }
-.quick-viewer .modal-window .modal-body .button.next:before { content: url("/pix/chevron-right.svg"); }
-
-.flash-message { width: 500px; margin: 10px auto; display: flex; border: 1px solid #CCC; background-color: #FFF; }
-.flash-message.flash-type-success { border-color: #72C82E; color: #155724; background-color: #d4edda; }
-.flash-message .message { order: 0; flex-grow: 1; padding: 10px; }
-.flash-message .btn { order: 2; flex-grow: 0; width: 25px; text-align: center; padding: 10px; text-decoration: none; color: #72C82E; }
-
-/* dragula */
-.gu-mirror { position: fixed !important; margin: 0 !important; z-index: 9999 !important; opacity: 0.8; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"; filter: alpha(opacity=80); }
-.gu-hide { display: none !important; }
-.gu-unselectable { -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; user-select: none !important; }
-.gu-transit { opacity: 0.2; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; filter: alpha(opacity=20); }
-
-.gu-mirror.page { width: 100px; cursor: move; }
-.gu-mirror.page canvas { width: 100px; }
-
-/* horsey */
-.sey-container { display: none; position: absolute; box-shadow: 1px 2px 6px; background-color: #fff; color: #333; transition: left 0.1s ease-in-out; z-index: 1; }
-.sey-list { padding: 0; margin: 0; list-style-type: none; }
-.sey-show { display: block; }
-.sey-hide { display: none; }
-.sey-empty { cursor: default; padding: 7px; }
-.sey-item { cursor: pointer; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 7px; }
-.sey-item:hover { background-color: #444; color: #fff; }
-.sey-selected { background-color: #333; color: #fff; }
-.sey-char-highlight { font-weight: bold; }
-.sey-category-id { background-color: #eee; color: #aaa; text-align: right; text-transform: capitalize; font-style: italic; font-size: 12px; box-shadow: 1px 0px 1px; padding: 7px; }
-
-/* rome */
-.rd-container { display: none; border: 1px solid #333; background-color: #fff; padding: 10px; text-align: center; }
-.rd-container-attachment { position: absolute; }
-.rd-month { display: inline-block; margin-right: 25px; }
-.rd-month:last-child { margin-right: 0; }
-.rd-back, .rd-next { cursor: pointer; border: none; outline: none; background: none; padding: 0; margin: 0; }
-.rd-back[disabled], .rd-next[disabled] { cursor: default; }
-.rd-back { float: left; }
-.rd-next { float: right; }
-.rd-back:before { display: block; content: '\2190'; }
-.rd-next:before { display: block; content: '\2192'; }
-.rd-day-body { cursor: pointer; text-align: center; }
-.rd-day-selected, .rd-time-selected, .rd-time-option:hover { cursor: pointer; background-color: #333; color: #fff; }
-.rd-day-prev-month, .rd-day-next-month { color: #999; }
-.rd-day-disabled { cursor: default; color: #fcc; }
-.rd-time { position: relative; display: inline-block; margin-top: 5px; min-width: 80px; }
-.rd-time-list { display: none; position: absolute; overflow-y: scroll; max-height: 160px; left: 0; right: 0; background-color: #fff; color: #333; }
-.rd-time-selected { padding: 5px; }
-.rd-time-option { padding: 5px; }
-.rd-day-concealed { visibility: hidden; }
-
-/* some responsive steps */
-@media only screen and (max-width: 1100px) {
-    div.document-container { width: 800px; }
-}
-
-@media only screen and (max-width: 1000px) {
-    div.document-container { width: 700px; }
-}
-
-@media only screen and (max-width: 900px) {
-    div.document-container { width: 600px; }
-}
-
-
-        </style>
+        <link type="text/css" rel="stylesheet" href="/css/screen.css">
         <link type="text/css" rel="stylesheet" href="/vendor/jshjohnson/choices/assets/styles/css/choices.css">
+    
+        <script type="text/javascript">!function(a){a.className=a.className.replace(/\bno-js\b/g,'js'),'ontouchstart'in window&&(a.className=a.className.replace(/\bno-touch\b/g,'touch'))}(document.documentElement)</script>
+
+        <!-- TODO: USE FONTS FROM AMSTERDAM -->
+        <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/0037f97b-b0f6-41de-8f33-75b12c9f76ea.css"/>
     </head>
     <body class="{% block body_classes %}{% endblock %}">
+
         <header class="top">
-            <div class="logo">
-                <img alt="Gemeente Amsterdam" src="/pix/logo_klein.svg">
-            </div>
-            <div class="title">
-                <h2>{% block page_title %}Schulddossier{% endblock %}</h2>
-            </div>
-            <div class="gebruiker">
-                {% if app.user %}
-                    {{ app.user.userName }} -
-                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Afmelden</a>
-                {% endif %}
-            </div>
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class="logo">
+              <i class="icon-andreas"></i>Gemeente Amsterdam
+              <strong>{% block page_title %}Schulddossier{% endblock %}</strong>
+            </a>
+            {% if app.user %}
+              <div class="gebruiker">
+                {{ app.user.userName }} -
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Afmelden</a>
+              </div>
+            {% endif %}
         </header>
         <div class="document-container">
 
@@ -266,11 +43,10 @@ input.tertiair:hover,a.tertiair:hover,button.tertiair:hover { text-decoration: u
 {% block document %}.{% endblock %}
         </div>
         <aside class="pdf-splitter expanded">
-            <div class="file-selector">
-                <button>Selecteer een bestand</button>
-                <input type="file" name="file">
-            </div>
             <div class="pages"></div>
+            <label class="file-selector">
+                <input type="file" name="file">
+            </label>
         </aside>
         <script type="text/javascript" src="/vendor/mozilla/pdf.js/build/pdf.js"></script>
         <script type="text/javascript" src="/vendor/mrrio/jspdf/dist/jspdf.min.js"></script>
