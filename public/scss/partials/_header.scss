@@ -22,6 +22,11 @@ header.top {
     }
   }
   
+  
+  @include medium {
+    padding: 10px;
+  }
+  
 }
 
 .logo {
@@ -80,4 +85,7 @@ header.top {
 
 body {
   padding-top: calc(60px + #{ 2 * $lineHeight});
+  @include medium {
+    padding-top: calc(30px + #{ 2 * $lineHeight});
+  }
 }

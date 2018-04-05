@@ -2,20 +2,19 @@
 
 {% block title %}Gebruikers - {{ parent() }}{% endblock %}
 
-{% block page_title %}Gebruikers{% endblock %}
-
 {% block body_classes %}hide-pdf-splitter{% endblock %}
 
 {% block document %}
-    <nav class="document">
+    <nav class="nav-internal">
         <ul>
+            <li>Gebruikers</li>
             <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_create') }}">Nieuwe gebruiker</a></li>
         </ul>
     </nav>
 
-    <div class="document">
-        <div class="header">
-            <h1>Gebruikers</h1>
+    <div class="document well">
+        <div class="document-header">
+            <h1 class="document-title">Gebruikers</h1>
         </div>
         <div class="table">
             <table>
@@ -29,7 +28,7 @@
                 <tbody>
 {% for gebruiker in gebruikers %}
                     <tr>
-                        <td><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', {'gebruikerId': gebruiker.id}) }}">{{ gebruiker.username }}</a></td>
+                        <th><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', {'gebruikerId': gebruiker.id}) }}">{{ gebruiker.username }}</a></th>
                         <td>{{ gebruiker.naam }}</td>
                         <td>{{ gebruiker.type }}</td>
                     </tr>
@@ -37,18 +36,20 @@
                </tbody>
             </table>
         </div>
-        <div class="pagination">
-            {% if pagination.page <= 0 %}
-            <span class="prev">vorige</span>
-            {% else %}
-            <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {'page': pagination.page - 1}) }}">vorige</a>
-            {% endif %}
-            <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
-            {% if (pagination.page + 1) >= pagination.numberOfPages %}
-            <span class="next">volgende</span>
-            {% else %}
-            <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {'page': pagination.page + 1}) }}">volgende</a>
-            {% endif %}
-        </div>
+        {% if pagination.numberOfPages > 1 %}
+          <div class="pagination">
+              {% if pagination.page <= 0 %}
+              <span class="prev">vorige</span>
+              {% else %}
+              <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {'page': pagination.page - 1}) }}">vorige</a>
+              {% endif %}
+              <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
+              {% if (pagination.page + 1) >= pagination.numberOfPages %}
+              <span class="next">volgende</span>
+              {% else %}
+              <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {'page': pagination.page + 1}) }}">volgende</a>
+              {% endif %}
+          </div>
+        {% endif %}
     </div>
 {% endblock %}

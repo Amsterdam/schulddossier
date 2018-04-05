@@ -9,6 +9,9 @@ html {
 
 body {
   padding: 3rem; }
+@media (max-width: 900px) {
+  body {
+    padding: 10px; } }
 
 p, ol, ul, dl, figure {
   margin-top: 0;
@@ -235,6 +238,9 @@ div.document-container {
   margin-right: 0; }
 .document .document-header {
   margin: -3rem -3rem 3rem -3rem; }
+@media (max-width: 900px) {
+  .document .document-header {
+    margin: -10px -10px 10px -10px; } }
 .document .buttons {
   margin-bottom: 0; }
 
@@ -243,6 +249,9 @@ div.document-container {
   border-bottom: 1px solid #dfdfdf;
   margin-bottom: 1.925rem;
   padding: 3rem; }
+@media (max-width: 900px) {
+  .document-header {
+    padding: 10px; } }
 .document-header .document-title {
   margin-bottom: .2em; }
 .document-header > *:last-child {
@@ -650,6 +659,9 @@ header.top .logo {
   height: 35px; }
 header.top .logo img {
   width: 100%; }
+@media (max-width: 900px) {
+  header.top {
+    padding: 10px; } }
 
 .logo {
   position: relative;
@@ -694,6 +706,9 @@ header.top .logo img {
 
 body {
   padding-top: calc(60px + 3.85rem); }
+@media (max-width: 900px) {
+  body {
+    padding-top: calc(30px + 3.85rem); } }
 
 .flash-message {
   width: 500px;
@@ -853,6 +868,9 @@ body header.top {
   padding-left: 3rem; }
 .hide-pdf-splitter header.top {
   left: 0; }
+@media (max-width: 900px) {
+  .hide-pdf-splitter {
+    padding-left: 10px; } }
 
 .quick-viewer .modal-window {
   width: 90%;
@@ -945,12 +963,15 @@ body header.top {
   line-height: 20px;
   text-align: right; }
 
+.table {
+  line-height: 1.2; }
 .table table {
   width: 100%;
   border-spacing: 0;
   text-align: left;
   overflow: hidden; }
 .table table th, .table table td {
+  vertical-align: top;
   padding: .5rem;
   border-bottom: 1px solid #f5f5f5; }
 .table table th:first-child, .table table td:first-child {
@@ -961,7 +982,8 @@ body header.top {
   background-color: rgba(245, 245, 245, 0.2); }
 .table table tbody th a {
   position: relative;
-  text-decoration: none; }
+  text-decoration: none;
+  display: block; }
 .table table tbody th a:before {
   content: '';
   position: absolute;
