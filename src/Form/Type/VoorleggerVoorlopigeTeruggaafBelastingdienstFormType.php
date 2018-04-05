@@ -31,8 +31,8 @@ class VoorleggerVoorlopigeTeruggaafBelastingdienstFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('voorlopigeTeruggaafBelastingdienstOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('voorlopigeTeruggaafBelastingdienstOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('voorlopigeTeruggaafBelastingdienstNvt', CheckboxType::class, [

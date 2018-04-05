@@ -31,8 +31,8 @@ class VoorleggerLegitimatieFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('legitimatieOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('legitimatieOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('file', CollectionType::class, [

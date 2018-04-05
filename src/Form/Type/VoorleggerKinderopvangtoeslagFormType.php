@@ -31,8 +31,8 @@ class VoorleggerKinderopvangtoeslagFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('kinderopvangtoeslagOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('kinderopvangtoeslagOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('kinderopvangtoeslagNvt', CheckboxType::class, [

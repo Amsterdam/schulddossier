@@ -31,8 +31,8 @@ class VoorleggerInkomstenspecificatieFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('inkomstenspecificatieOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('inkomstenspecificatieOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('file', CollectionType::class, [

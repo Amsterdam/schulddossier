@@ -31,8 +31,8 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('meterstandenEnergieOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('meterstandenEnergieOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('meterstandenEnergieNvt', CheckboxType::class, [

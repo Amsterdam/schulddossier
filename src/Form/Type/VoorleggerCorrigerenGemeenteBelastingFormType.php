@@ -27,7 +27,7 @@ class VoorleggerCorrigerenGemeenteBelastingFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('corrigerenGemeenteBelastingOntvangenGka', MadiStatusFormType::class, [
+        $builder->add('corrigerenGemeenteBelastingOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);

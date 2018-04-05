@@ -31,8 +31,8 @@ class VoorleggerAutoTaxatieFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('autoTaxatieOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('autoTaxatieOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('autoTaxatieNvt', CheckboxType::class, [

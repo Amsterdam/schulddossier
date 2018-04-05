@@ -31,8 +31,8 @@ class VoorleggerVrijwaringsbewijsFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('vrijwaringsbewijsOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('vrijwaringsbewijsOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('vrijwaringsbewijsNvt', CheckboxType::class, [

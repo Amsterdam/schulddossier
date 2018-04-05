@@ -31,8 +31,8 @@ class VoorleggerSchuldenoverzichtFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('schuldenoverzichtOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('schuldenoverzichtOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('file', CollectionType::class, [

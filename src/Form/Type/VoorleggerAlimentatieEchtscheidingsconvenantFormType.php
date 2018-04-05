@@ -31,8 +31,8 @@ class VoorleggerAlimentatieEchtscheidingsconvenantFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('alimentatieEchtscheidingsconvenantOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('alimentatieEchtscheidingsconvenantOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('file', CollectionType::class, [

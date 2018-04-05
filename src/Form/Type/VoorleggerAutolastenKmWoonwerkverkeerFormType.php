@@ -31,8 +31,8 @@ class VoorleggerAutolastenKmWoonwerkverkeerFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('autolastenKmWoonwerkverkeerOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('autolastenKmWoonwerkverkeerOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('autolastenKmWoonwerkverkeerNvt', CheckboxType::class, [

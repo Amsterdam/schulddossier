@@ -31,8 +31,8 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('ondertekendAanvraagFormulierOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('ondertekendAanvraagFormulierOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('file', CollectionType::class, [
