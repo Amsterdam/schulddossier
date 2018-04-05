@@ -56,10 +56,6 @@ class DetailDossierFormType extends AbstractType
             'required' => false,
             'label' => 'Allegro dossiernr.'
         ]);
-        $builder->add('status', ChoiceType::class, [
-            'required' => true,
-            'choices' => Dossier::getStatussen()
-        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

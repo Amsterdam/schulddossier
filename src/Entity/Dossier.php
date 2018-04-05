@@ -15,10 +15,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Dossier
 {
-    const STATUS_MADI = 'madi';
-    const STATUS_GKA = 'gka';
-    const STATUS_GESLOTEN = 'gesloten';
-
     /**
      * @var integer
      * @ORM\Id
