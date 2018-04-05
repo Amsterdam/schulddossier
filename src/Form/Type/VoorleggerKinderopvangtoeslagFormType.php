@@ -27,8 +27,8 @@ class VoorleggerKinderopvangtoeslagFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('kinderopvangtoeslagOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('kinderopvangtoeslagOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('kinderopvangtoeslagOntvangenGka', CheckboxType::class, [

@@ -27,8 +27,8 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('ondertekendAanvraagFormulierOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('ondertekendAanvraagFormulierOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('ondertekendAanvraagFormulierOntvangenGka', CheckboxType::class, [

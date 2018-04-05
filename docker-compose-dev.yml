@@ -1,4 +1,4 @@
-version: '3.0'
+version: '3.2'
 services:
   database_dev:
     image: postgres:9.5.11-alpine
@@ -14,7 +14,18 @@ services:
         dockerfile: Dockerfile-dev
     restart: always
     volumes:
-      - .:/srv/app
+      - type: bind
+        source: ./config
+        target: /srv/app/config
+      - type: bind
+        source: ./public
+        target: /srv/app/public
+      - type: bind
+        source: ./src
+        target: /srv/app/src
+      - type: bind
+        source: ./templates
+        target: /srv/app/templates
     ports:
       - "80:80"
     links:
@@ -32,3 +43,4 @@ services:
       - SWIFT_CONTAINER_PREFIX=
       - SWIFT_TEMP_URL_KEY=
       - SWIFT_EXTERNAL_DOMAIN=
+

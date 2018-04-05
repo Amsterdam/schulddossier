@@ -27,8 +27,8 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('arbeidsovereenkomstOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('arbeidsovereenkomstOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('arbeidsovereenkomstOntvangenGka', CheckboxType::class, [

@@ -27,8 +27,8 @@ class VoorleggerInzageToetsingBkrFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('inzageToetsingBkrOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('inzageToetsingBkrOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('inzageToetsingBkrOntvangenGka', CheckboxType::class, [

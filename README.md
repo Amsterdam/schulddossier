@@ -86,3 +86,12 @@ Deze Docker maakt gebruikt van een Docker volume zodat er geen nieuwe build nodi
     docker-compose -f docker-compose-dev.yml up
 
 D.m.v. het aanmaken van [docker-compose.override.yml](https://docs.docker.com/compose/extends/#example-use-case) bestand kunnen environment variabelen en poorten aangepast worden. Laad de override file als volgt in `docker-compose -f docker-compose-dev.yml -f docker-compose-dev.override.yml up`.
+
+
+### Standaard accounts
+
+De volgende accounts worden tijdens de installatie aangemaakt. Wijzig de gegevens na de installatie!
+
+    gebruikersnaam: gka1 / wachtwoord: test12345
+    gebruikersnaam: madi1 / wachtwoord: test12345
+    gebruikersnaam: admin1 / wachtwoord: test12345

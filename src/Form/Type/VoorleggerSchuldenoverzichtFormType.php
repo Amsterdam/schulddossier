@@ -27,8 +27,8 @@ class VoorleggerSchuldenoverzichtFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('schuldenoverzichtOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('schuldenoverzichtOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('schuldenoverzichtOntvangenGka', CheckboxType::class, [

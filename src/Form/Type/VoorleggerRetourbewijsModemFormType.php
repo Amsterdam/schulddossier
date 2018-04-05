@@ -27,8 +27,8 @@ class VoorleggerRetourbewijsModemFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('retourbewijsModemOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('retourbewijsModemOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('retourbewijsModemOntvangenGka', CheckboxType::class, [

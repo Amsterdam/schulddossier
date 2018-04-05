@@ -27,8 +27,8 @@ class VoorleggerHuurtoeslagFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('huurtoeslagOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('huurtoeslagOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('huurtoeslagOntvangenGka', CheckboxType::class, [

@@ -27,8 +27,8 @@ class VoorleggerBeschikkingOnderBewindstellingFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('beschikkingOnderBewindstellingOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('beschikkingOnderBewindstellingOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('beschikkingOnderBewindstellingOntvangenGka', CheckboxType::class, [

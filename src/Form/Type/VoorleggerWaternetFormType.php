@@ -27,8 +27,8 @@ class VoorleggerWaternetFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('waternetOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('waternetOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('waternetOntvangenGka', CheckboxType::class, [

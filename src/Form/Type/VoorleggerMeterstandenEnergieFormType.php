@@ -27,8 +27,8 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('meterstandenEnergieOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('meterstandenEnergieOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('meterstandenEnergieOntvangenGka', CheckboxType::class, [

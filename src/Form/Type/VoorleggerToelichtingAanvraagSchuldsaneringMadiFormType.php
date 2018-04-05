@@ -27,8 +27,8 @@ class VoorleggerToelichtingAanvraagSchuldsaneringMadiFormType extends AbstractTy
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('toelichtingAanvraagSchuldsaneringMadiOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('toelichtingAanvraagSchuldsaneringMadiOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('toelichtingAanvraagSchuldsaneringMadiOntvangenGka', CheckboxType::class, [

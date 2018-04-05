@@ -27,8 +27,8 @@ class VoorleggerToelichtingAanvraagSchuldsaneringClientFormType extends Abstract
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('toelichtingAanvraagSchuldsaneringClientOntvangenMadi', CheckboxType::class, [
-            'required' => false,
+        $builder->add('toelichtingAanvraagSchuldsaneringClientOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('toelichtingAanvraagSchuldsaneringClientOntvangenGka', CheckboxType::class, [
