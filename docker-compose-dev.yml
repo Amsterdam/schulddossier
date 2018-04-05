@@ -17,12 +17,16 @@ services:
       - type: bind
         source: ./config
         target: /srv/app/config
+        volume:
+          consistency: cached
       - type: bind
         source: ./public
         target: /srv/app/public
       - type: bind
         source: ./src
         target: /srv/app/src
+        volume:
+          consistency: cached
       - type: bind
         source: ./templates
         target: /srv/app/templates
