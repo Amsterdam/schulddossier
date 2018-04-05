@@ -7,8 +7,8 @@
         <title>{% block title %}Schulddossier - Gemeente Amsterdam{% endblock %}</title>
         <meta name="viewport" content="width=device-width">
 
-        <link type="text/css" rel="stylesheet" href="/css/screen.css">
-        <link type="text/css" rel="stylesheet" href="/vendor/jshjohnson/choices/assets/styles/css/choices.css">
+        <link type="text/css" rel="stylesheet" href="{{ asset('/css/screen.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('/vendor/jshjohnson/choices/assets/styles/css/choices.css') }}">
     
         <script type="text/javascript">!function(a){a.className=a.className.replace(/\bno-js\b/g,'js'),'ontouchstart'in window&&(a.className=a.className.replace(/\bno-touch\b/g,'touch'))}(document.documentElement)</script>
 
@@ -48,21 +48,21 @@
                 <input type="file" name="file">
             </label>
         </aside>
-        <script type="text/javascript" src="/vendor/mozilla/pdf.js/build/pdf.js"></script>
-        <script type="text/javascript" src="/vendor/mrrio/jspdf/dist/jspdf.min.js"></script>
-        <script type="text/javascript" src="/vendor/jshjohnson/choices/assets/scripts/dist/choices.min.js"></script>
-        <script type="text/javascript" src="/vendor/bevacqua/dragula/dist/dragula.min.js"></script>
-        <script type="text/javascript" src="/vendor/bevacqua/horsey/dist/horsey.min.js"></script>
-        <script type="text/javascript" src="/vendor/moment/moment/moment.js"></script>
-        <script type="text/javascript" src="/vendor/moment/moment/locale/nl.js"></script>
-        <script type="text/javascript" src="/vendor/bevacqua/rome/dist/rome.standalone.min.js"></script>
-        <script type="text/javascript" src="/js/polyfill.formData.js"></script>
-        <script type="text/javascript" src="/js/common.js"></script>
-        <script type="text/javascript" src="/js/pdfSplitser.js"></script>
-        <script type="text/javascript" src="/js/formSubmit.js"></script>
-        <script type="text/javascript" src="/js/filesContainer.js"></script>
-        <script type="text/javascript" src="/js/accordion.js"></script>
-        <script type="text/javascript" src="/js/quickViewer.js"></script>
-        <script type="text/javascript" src="/js/flashMessage.js"></script>
+        <script type="text/javascript" src="{{ asset('/vendor/mozilla/pdf.js/build/pdf.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/vendor/mrrio/jspdf/dist/jspdf.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/vendor/jshjohnson/choices/assets/scripts/dist/choices.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/vendor/bevacqua/dragula/dist/dragula.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/vendor/bevacqua/horsey/dist/horsey.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/vendor/moment/moment/moment.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/vendor/moment/moment/locale/nl.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/vendor/bevacqua/rome/dist/rome.standalone.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/polyfill.formData.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/common.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/pdfSplitser.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/formSubmit.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/filesContainer.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/accordion.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/quickViewer.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/flashMessage.js') }}"></script>
     </body>
 </html>

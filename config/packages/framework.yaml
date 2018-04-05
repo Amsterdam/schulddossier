@@ -28,8 +28,18 @@ framework:
 
         # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
         #app: cache.adapter.apcu
+        
+    assets:
+        version_strategy: 'app.asset.my_versioning_strategy'
 
 services:
+    
+    app.asset.my_versioning_strategy:
+        class: Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy
+        arguments:
+            - !service { class: GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion, factory: 'GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion:getEnvVersion' }
+
+
     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
         arguments:
             - !service { class: PDO, factory: 'database_connection:getWrappedConnection' }

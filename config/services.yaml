@@ -41,6 +41,10 @@ services:
         #lazy: true
         arguments:
             - '@flysystem_dossier'
+    GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion:
+        arguments:
+            - '%kernel.environment%'
+            - '%kernel.project_dir%'
             
     # Serializer
     json_serializer:
@@ -88,3 +92,5 @@ services:
         lazy: true
         arguments:
             - '@flysystem_openstack_adapter_dossier'
+            
+
