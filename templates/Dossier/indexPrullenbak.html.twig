@@ -2,21 +2,19 @@
 
 {% block title %}Prullenbak - {{ parent() }}{% endblock %}
 
-{% block page_title %}Prullenbak{% endblock %}
-
 {% block body_classes %}hide-pdf-splitter{% endblock %}
 
 {% block document %}
 
-    <nav class="document">
+    <nav class="nav-internal">
         <ul>
-            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Overzicht dossiers</a></li>
+            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"><i class="icon-arrow-left"></i>Terug naar overzicht</a></li>
         </ul>
     </nav>
 
-    <div class="document">
-        <div class="header">
-            <h1>Prullenbak</h1>
+    <div class="document well">
+        <div class="document-header">
+            <h1 class="document-title">Prullenbak</h1>
             <p>Dossiers in de prullenbak zijn weggegooid maar kunnen nog hersteld worden. Als een dossier definitief wordt verwijderd is deze niet meer te herstellen.</p>
         </div>
         <div class="table">
@@ -48,18 +46,20 @@
             <p class="empty-table">Prullenbak is leeg</p>
 {% endif %}
         </div>
-        <div class="pagination">
-            {% if pagination.page <= 0 %}
-            <span class="prev">vorige</span>
-            {% else %}
-            <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak', {'page': pagination.page - 1}) }}">vorige</a>
-            {% endif %}
-            <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
-            {% if (pagination.page + 1) >= pagination.numberOfPages %}
-            <span class="next">volgende</span>
-            {% else %}
-            <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak', {'page': pagination.page + 1}) }}">volgende</a>
-            {% endif %}
-        </div>
+        {% if pagination.numberOfPages > 1 %}
+          <div class="pagination">
+              {% if pagination.page <= 0 %}
+              <span class="prev">vorige</span>
+              {% else %}
+              <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak', {'page': pagination.page - 1}) }}">vorige</a>
+              {% endif %}
+              <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
+              {% if (pagination.page + 1) >= pagination.numberOfPages %}
+              <span class="next">volgende</span>
+              {% else %}
+              <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak', {'page': pagination.page + 1}) }}">volgende</a>
+              {% endif %}
+            </div>
+          {% endif %}
     </div>
 {% endblock %}

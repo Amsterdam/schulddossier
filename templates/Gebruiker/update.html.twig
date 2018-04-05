@@ -2,20 +2,18 @@
 
 {% block title %}Gebruiker: {{ gebruiker.naam }} - {{ parent() }}{% endblock %}
 
-{% block page_title %}Gebruiker: {{ gebruiker.naam }}{% endblock %}
-
 {% block body_classes %}hide-pdf-splitter{% endblock %}
 
 {% block document %}
-<nav class="document">
+<nav class="nav-internal">
     <ul>
-        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}">Terug naar overzicht</a></li>
+        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}"><i class="icon-arrow-left"></i> Terug naar overzicht</a></li>
     </ul>
 </nav>
 
-<div class="document">
-    <div class="header">
-        <h1>Gebruiker: {{ gebruiker.naam }}</h1>
+<div class="document well">
+    <div class="document-header">
+        <h1 class="document-title">Gebruiker: {{ gebruiker.naam }}</h1>
     </div>
     <div class="form-container">
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
@@ -31,9 +29,10 @@
         {{ form_row(form.schuldhulpbureau) }}
         <p>Accounts kunnen niet verwijderd worden maar wel uitgeschakkeld. Verwijder onderstaand vinkje om een account uit te schakkelen.</p>
         {{ form_row(form.enabled) }}
-        <div class="nav">
-            <button type="submit">Opslaan</button>
-        </div>
+        <p class="buttons right">
+            <button type="submit" class="button primary">Opslaan</button>
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}">Annuleren</a>
+        </p>
         {{ form_end(form) }}
     </div>
 </div>
