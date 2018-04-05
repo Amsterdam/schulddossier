@@ -485,6 +485,24 @@ class AppDossierController extends Controller
             return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         }
 
+        $schuldenoverzichtForm = $this->createForm(VoorleggerSchuldenoverzichtFormType::class, $dossier->getVoorlegger(), [
+            'disable_group' => $this->getUser()->getType()
+        ]);
+        $schuldenoverzichtForm->handleRequest($request);
+
+        if ($schuldenoverzichtForm->isSubmitted() && $schuldenoverzichtForm->isValid()) {
+            $em->flush();
+
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(['msg' => 'OK']);
+            }
+
+            $this->addFlash('success', 'Opgeslagen');
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', [
+                'dossierId' => $dossier->getId()
+            ]);
+        }
+
         $updateForms = [];
         foreach ($schuldItems as $schuldItem) {
             $updateForms[$schuldItem->getId()] = $this->createForm(SchuldItemFormType::class, $schuldItem, [
@@ -511,6 +529,7 @@ class AppDossierController extends Controller
             'dossier' => $dossier,
             'form' => $form->createView(),
             'schuldItems' => $schuldItems,
+            'schuldenoverzichtForm' => $schuldenoverzichtForm->createView(),
             'updateForms' => array_map(function ($form) {
                     return $form->createView();
                 }, $updateForms),
