@@ -31,8 +31,8 @@ class VoorleggerVerklaringWerkgeverFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('verklaringWerkgeverOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('verklaringWerkgeverOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('verklaringWerkgeverNvt', CheckboxType::class, [

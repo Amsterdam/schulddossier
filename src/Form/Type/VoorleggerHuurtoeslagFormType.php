@@ -31,8 +31,8 @@ class VoorleggerHuurtoeslagFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('huurtoeslagOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('huurtoeslagOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('huurtoeslagNvt', CheckboxType::class, [

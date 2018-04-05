@@ -31,8 +31,8 @@ class VoorleggerRetourbewijsModemFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('retourbewijsModemOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('retourbewijsModemOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('retourbewijsModemNvt', CheckboxType::class, [

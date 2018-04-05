@@ -31,8 +31,8 @@ class VoorleggerKostgeldFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('kostgeldOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('kostgeldOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('kostgeldNvt', CheckboxType::class, [

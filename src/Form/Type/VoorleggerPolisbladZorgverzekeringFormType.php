@@ -31,8 +31,8 @@ class VoorleggerPolisbladZorgverzekeringFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('polisbladZorgverzekeringOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('polisbladZorgverzekeringOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('polisbladZorgverzekeringNvt', CheckboxType::class, [

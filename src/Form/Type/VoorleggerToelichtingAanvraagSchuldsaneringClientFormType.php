@@ -31,8 +31,8 @@ class VoorleggerToelichtingAanvraagSchuldsaneringClientFormType extends Abstract
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('toelichtingAanvraagSchuldsaneringClientOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('toelichtingAanvraagSchuldsaneringClientOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('file', CollectionType::class, [

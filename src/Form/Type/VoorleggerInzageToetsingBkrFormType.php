@@ -31,8 +31,8 @@ class VoorleggerInzageToetsingBkrFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('inzageToetsingBkrOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('inzageToetsingBkrOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('file', CollectionType::class, [

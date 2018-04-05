@@ -31,8 +31,8 @@ class VoorleggerGereserveerdeGeldenFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('gereserveerdeGeldenOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('gereserveerdeGeldenOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('gereserveerdeGeldenNvt', CheckboxType::class, [

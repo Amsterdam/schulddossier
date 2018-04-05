@@ -31,8 +31,8 @@ class VoorleggerKindgebondenBudgetFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('kindgebondenBudgetOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('kindgebondenBudgetOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('kindgebondenBudgetNvt', CheckboxType::class, [

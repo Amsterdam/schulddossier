@@ -31,8 +31,8 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('arbeidsovereenkomstOntvangenGka', CheckboxType::class, [
-            'required' => false,
+        $builder->add('arbeidsovereenkomstOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('arbeidsovereenkomstNvt', CheckboxType::class, [
