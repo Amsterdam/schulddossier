@@ -1,0 +1,31 @@
+framework:
+  workflows:
+
+    dossier_flow:
+      type: state_machine
+      marking_store:
+        type: single_state
+        arguments:
+          - status
+      supports:
+        - GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier
+#      places:
+#        - bezig
+#        - ter_controle
+#        - gecontroleerd
+#        - verzonden_naar_gka
+#        - opgepakt_door_gka
+#        - nadenken_over_status_incompleet
+#      transitions:
+#        controleerbaar: { from: [bezig, ter_controle, verzonden_naar_gka, opgepakt_door_gka], to: ter_controle }
+#        goedkeuren: { from: [te_controleren], to: goedgekeuerd }
+#        verzenden: { from: [goedgekeurd], to: verzonden_naar_gka }
+#        openendoorgka: { from: [verzonden_naar_gka], to: geopend_door_gka }
+      places:
+          - madi
+          - gka
+          - compleet
+      transitions:
+          t1: { from: madi, to: gka }
+          t2: { from: gka, to: compleet }
+          
