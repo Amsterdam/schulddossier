@@ -9,7 +9,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class DossierTimelineSubscriber implements EventSubscriberInterface
+class DossierTimelineWorkflowSubscriber implements EventSubscriberInterface
 {
     /**
      * @var EntityManagerInterface
