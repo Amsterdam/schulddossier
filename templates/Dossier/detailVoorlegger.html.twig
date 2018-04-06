@@ -11,7 +11,7 @@
         </ul>
     </nav>
     
-    Workflow stappen:
+    <p><strong>Workflow stappen:</strong></p>
     <ul>
 {% if workflow_can(dossier, 'opgevoerd_madi') %}
         <li>
@@ -53,6 +53,13 @@
             </form>
         </li>
 {% endif %}
+    </ul>
+    
+    <p><strong>Timeline van dossier:</strong></p>
+    <ul>
+{% for timeline in dossier.timeline %}
+        <li>{{ timeline.type|upper }}: {{ timeline.omschrijving }} ({{ timeline.datumtijd|date('d-m-Y H:i:s') }} / {{ timeline.gebruiker|default('-systeem-') }}) {{ timeline.data|json_encode }}</li>
+{% endfor %}
     </ul>
     
     <div class="document well">
