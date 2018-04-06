@@ -48,7 +48,6 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerKindgebondenBudgetForm
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerKostgeldFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerKwijtscheldingGemeenteBelastingFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerMeterstandenEnergieFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerMeterstandenFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerOndertekendAanvraagFormulierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerOvereenkomstKinderopvangFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerPolisbladZorgverzekeringFormType;
@@ -212,7 +211,6 @@ class AppDossierController extends Controller
         $voorleggerForms['kwijtscheldingGemeenteBelasting'] = $this->createForm(VoorleggerKwijtscheldingGemeenteBelastingFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
         $voorleggerForms['legitimatie'] = $this->createForm(VoorleggerLegitimatieFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
         $voorleggerForms['meterstandenEnergie'] = $this->createForm(VoorleggerMeterstandenEnergieFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['meterstanden'] = $this->createForm(VoorleggerMeterstandenFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
         $voorleggerForms['ondertekendAanvraagFormulier'] = $this->createForm(VoorleggerOndertekendAanvraagFormulierFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
         $voorleggerForms['overeenkomstKinderopvang'] = $this->createForm(VoorleggerOvereenkomstKinderopvangFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
         $voorleggerForms['polisbladZorgverzekering'] = $this->createForm(VoorleggerPolisbladZorgverzekeringFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);

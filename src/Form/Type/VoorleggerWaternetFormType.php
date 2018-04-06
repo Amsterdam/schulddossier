@@ -38,6 +38,19 @@ class VoorleggerWaternetFormType extends AbstractType
         $builder->add('waternetNvt', CheckboxType::class, [
             'required' => false
         ]);
+
+        $builder->add('drinkwaterKlantnummer', TextType::class, [
+            'required' => false
+        ]);
+        $builder->add('drinkwaterDatumOpname', DateType::class, [
+            'required' => false,
+            'html5' => true,
+            'widget' => 'single_text'
+        ]);
+        $builder->add('drinkwaterOpname', NumberType::class, [
+            'required' => false
+        ]);
+
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
             'entry_type' => DocumentFormType::class,

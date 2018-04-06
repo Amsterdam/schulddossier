@@ -16,20 +16,6 @@
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.energieBedrijf) }}
-                        {{ form_row(form.energieBedrijfKlantnummer) }}
-                        {{ form_row(form.energieBedrijfDatumOpname) }}
-                        {{ form_row(form.energieBedrijfT1) }}
-                        {{ form_row(form.energieBedrijfT2) }}
-                        {{ form_row(form.energieBedrijfGas) }}
-                        {{ form_row(form.warmteBedrijf) }}
-                        {{ form_row(form.warmteBedrijfKlantnummer) }}
-                        {{ form_row(form.warmteBedrijfDatumOpname) }}
-                        {{ form_row(form.warmteBedrijfOpname) }}
-                        {{ form_row(form.drinkwaterKlantnummer) }}
-                        {{ form_row(form.drinkwaterDatumOpname) }}
-                        {{ form_row(form.drinkwaterOpname) }}
-                        {{ form_row(form.aanvullendeInformatie) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('meterstanden')} only %}
                         <div class="nav">
