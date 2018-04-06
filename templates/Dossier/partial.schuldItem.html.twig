@@ -1,5 +1,5 @@
 {% if schuldItem.verwijderd == false %}
-            <div class="accordion" id="schuldItem-{{ schuldItem.id }}">
+            <div class="accordion {{ app.request.isXmlHttpRequest ? 'open' }}" id="schuldItem-{{ schuldItem.id }}">
                 <div class="accordion-header">
                     <a href="#schuldItem-{{ schuldItem.id }}">
                         <div class="schulditem-header">

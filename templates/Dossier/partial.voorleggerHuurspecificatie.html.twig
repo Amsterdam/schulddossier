@@ -1,6 +1,6 @@
 
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
-            <div class="accordion" id="voorlegger-huurspecificatie">
+            <div class="accordion {{ app.request.isXmlHttpRequest ? 'open' }}" id="voorlegger-huurspecificatie">
                 <div class="accordion-header">
                     <a href="#voorlegger-huurspecificatie">
                         <div class="voorlegger-header">
