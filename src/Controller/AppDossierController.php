@@ -65,6 +65,8 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerZorgtoeslagFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerSchuldenoverzichtFormType;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
 use Symfony\Component\Workflow\Dumper\GraphvizDumper;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 
 /**
  * @Route("/app/dossier")
@@ -82,10 +84,23 @@ class AppDossierController extends Controller
 
         $maxPageSize = 10;
 
-        $dossiers = $repository->findActive($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+        $seachQuery = [
+            'naam' => '',
+            'status' => ['bezig_madi'],
+            'schuldhulpbureau' => $this->getUser()->getSchuldhulpbureau(),
+            'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI ? $this->getUser() : null,
+            'teamGka' => $this->getUser()->getTeamGka()
+        ];
+
+        $searchForm = $this->createForm(SearchDossierFormType::class, $seachQuery, ['method' => 'GET']);
+        $searchForm->handleRequest($request);
+
+        $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
         return $this->render('Dossier/index.html.twig', [
             'dossiers' => $dossiers,
+            'searchQuery' => $seachQuery,
+            'searchForm' => $searchForm->createView(),
             'pagination' => [
                 'page' => $request->query->getInt('page', 0),
                 'pageSize' => $maxPageSize,
