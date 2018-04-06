@@ -51,7 +51,7 @@
                         <td class="datum">
                             {{ dossier.aanmaakDatumTijd|date('d-m-Y') }}
                         </td>
-                        <td>{{ dossier.status }}</td>
+                        <td>{{ dossier.status|trans }}</td>
                     </tr>
 {% endfor %}
                </tbody>
