@@ -125,6 +125,9 @@
     "php-opencloud/openstack": {
         "version": "v3.0.4"
     },
+    "phpoffice/phpspreadsheet": {
+        "version": "1.2.0"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
