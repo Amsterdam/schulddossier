@@ -387,34 +387,8 @@ form {
       }
     }
   }
-  .form-checks & {
-    border-bottom: 1px solid $lightColor;
-    align-items: center;
-    padding: 1rem 0;
-    .accordion & {
-      border-color: #fff;
-    }
-    > label {
-      
-      padding: 0 2rem 0 0;
-      flex-basis: 50%;
-    }
-    .status {
-      margin: 0;
-    }
-  }
 }
-.form-checks {
-  margin-bottom: $lineHeight;
-  border-top: 1px solid $lightColor;
-  .accordion & {
-    border-color: #fff;
-  }
-  
-  .form-row {
-    margin-bottom: 0;
-  }
-}
+
 .errors {
   list-style-type: none;
   color: #FF0000;

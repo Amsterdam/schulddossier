@@ -21,13 +21,11 @@
                         {{ form_row(form.vtlbBedrag) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'VTLB'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('vtlb')} only %}
-                        <div class="checks">
-                            {{ form_row(form.vtlbOntvangenMadi) }}
-                            {{ form_row(form.vtlbOntvangenGka) }}
-                        </div>
-                        <div class="nav">
-                            <button class="primair" type="submit">Opslaan</button>
-                        </div>
+                        {{ form_row(form.vtlbOntvangenMadi) }}
+                        {{ form_row(form.vtlbOntvangenGka) }}
+                        <p class="buttons right">
+                            <button class="button primary" type="submit">Opslaan</button>
+                        </p>
                     </div>
                 </div>
             </div>

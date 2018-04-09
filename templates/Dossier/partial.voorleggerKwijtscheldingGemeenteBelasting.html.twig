@@ -21,9 +21,9 @@
                         {{ form_row(form.kwijtscheldingGemeenteBelasting) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kwijtschelding gemeente belasting'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kwijtscheldingGemeenteBelasting')} only %}
-                        <div class="nav">
-                            <button type="submit">Opslaan</button>
-                        </div>
+                        <p class="buttons right">
+                            <button class="button primary" type="submit">Opslaan</button>
+                        </p>
                     </div>
                 </div>
             </div>
