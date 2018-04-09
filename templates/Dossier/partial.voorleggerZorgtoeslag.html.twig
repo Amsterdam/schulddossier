@@ -1,3 +1,4 @@
+{% import 'partial.macros.html.twig' as tools %}
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'open' }}" id="voorlegger-zorgtoeslag">
                 <div class="accordion-header">
@@ -7,8 +8,8 @@
                                 Zorgtoeslag
                             </div>
                             <div class="status">
-                                <span class="{{ dossier.voorlegger.zorgtoeslagOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
-                                <span class="{{ dossier.voorlegger.zorgtoeslagOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.zorgtoeslagOntvangenMadi) }}">MaDi</span>
+                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.zorgtoeslagOntvangenGka) }}">GKA</span>
                             </div>
                             <div class="nvt">
                                 <span class="{{ dossier.voorlegger.zorgtoeslagNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.zorgtoeslagNvt ? 'n.v.t.' }}</span>
@@ -19,10 +20,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.zorgtoeslagNvt) }}
-                        {{ form_row(form.zorgtoeslagOntvangenMadi) }}
-                        {{ form_row(form.zorgtoeslagOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Zorgtoeslag'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('zorgtoeslag')} only %}
+                        {{ form_row(form.zorgtoeslagOntvangenMadi) }}
+                        {{ form_row(form.zorgtoeslagOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

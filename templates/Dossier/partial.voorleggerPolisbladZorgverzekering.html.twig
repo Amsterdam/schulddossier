@@ -1,4 +1,4 @@
-
+{% import 'partial.macros.html.twig' as tools %}
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'open' }}" id="voorlegger-polisbladZorgverzekering">
                 <div class="accordion-header">
@@ -8,8 +8,8 @@
                                 Polisblad zorgverzekering
                             </div>
                             <div class="status">
-                                <span class="{{ dossier.voorlegger.polisbladZorgverzekeringOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
-                                <span class="{{ dossier.voorlegger.polisbladZorgverzekeringOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.polisbladZorgverzekeringOntvangenMadi) }}">MaDi</span>
+                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.polisbladZorgverzekeringOntvangenGka) }}">GKA</span>
                             </div>
                             <div class="nvt">
                                 <span class="{{ dossier.voorlegger.polisbladZorgverzekeringNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.polisbladZorgverzekeringNvt ? 'n.v.t.' }}</span>
@@ -20,10 +20,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.polisbladZorgverzekeringNvt) }}
-                        {{ form_row(form.polisbladZorgverzekeringOntvangenMadi) }}
-                        {{ form_row(form.polisbladZorgverzekeringOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Polisblad zorgverzekering'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('polisbladZorgverzekering')} only %}
+                        {{ form_row(form.polisbladZorgverzekeringOntvangenMadi) }}
+                        {{ form_row(form.polisbladZorgverzekeringOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

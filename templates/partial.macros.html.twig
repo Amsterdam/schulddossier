@@ -1,0 +1,20 @@
+{% macro madi_status_to_class(status) -%}
+    {%- if status == 0 -%}
+        status-open
+    {%- elseif status == 1 -%}
+        status-bezig
+    {%- elseif status == 2 -%}
+        status-opgevoerd
+    {%- elseif status == 3 -%}
+        status-gecontroleerd
+    {%- endif -%}
+{%- endmacro %}
+{% macro gka_status_to_class(status) -%}
+    {%- if status == 0 -%}
+        status-open
+    {%- elseif status == 2 -%}
+        status-opgevoerd
+    {%- elseif status == 3 -%}
+        status-gecontroleerd
+    {%- endif -%}
+{%- endmacro %}

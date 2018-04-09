@@ -1,4 +1,4 @@
-
+{% import 'partial.macros.html.twig' as tools %}
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'open' }}" id="voorlegger-arbeidsovereenkomst">
                 <div class="accordion-header">
@@ -8,8 +8,8 @@
                                 Arbeidsovereenkomst
                             </div>
                             <div class="status">
-                                <span class="{{ dossier.voorlegger.arbeidsovereenkomstOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
-                                <span class="{{ dossier.voorlegger.arbeidsovereenkomstOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.arbeidsovereenkomstOntvangenMadi) }}">MaDi</span>
+                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.arbeidsovereenkomstOntvangenGka) }}">GKA</span>
                             </div>
                             <div class="nvt">
                                 <span class="{{ dossier.voorlegger.arbeidsovereenkomstNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.arbeidsovereenkomstNvt ? 'n.v.t.' }}</span>
@@ -20,10 +20,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.arbeidsovereenkomstNvt) }}
-                        {{ form_row(form.arbeidsovereenkomstOntvangenMadi) }}
-                        {{ form_row(form.arbeidsovereenkomstOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Arbeidsovereenkomst'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('arbeidsovereenkomst')} only %}
+                        {{ form_row(form.arbeidsovereenkomstOntvangenMadi) }}
+                        {{ form_row(form.arbeidsovereenkomstOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

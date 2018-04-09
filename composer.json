@@ -30,6 +30,7 @@
         "symfony/proxy-manager-bridge": "^4.0",
         "symfony/security-bundle": "^4.0",
         "symfony/serializer": "^4.0",
+        "symfony/swiftmailer-bundle": "^3.2",
         "symfony/templating": "^4.0",
         "symfony/validator": "^4.0",
         "symfony/var-dumper": "^4.0",

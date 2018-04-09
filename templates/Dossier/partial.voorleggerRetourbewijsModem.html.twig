@@ -1,4 +1,4 @@
-
+{% import 'partial.macros.html.twig' as tools %}
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'open' }}" id="voorlegger-retourbewijsModem">
                 <div class="accordion-header">
@@ -8,8 +8,8 @@
                                 Retourbewijs modem
                             </div>
                             <div class="status">
-                                <span class="{{ dossier.voorlegger.retourbewijsModemOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
-                                <span class="{{ dossier.voorlegger.retourbewijsModemOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.retourbewijsModemOntvangenMadi) }}">MaDi</span>
+                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.retourbewijsModemOntvangenGka) }}">GKA</span>
                             </div>
                             <div class="nvt">
                                 <span class="{{ dossier.voorlegger.retourbewijsModemNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.retourbewijsModemNvt ? 'n.v.t.' }}</span>
@@ -20,10 +20,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.retourbewijsModemNvt) }}
-                        {{ form_row(form.retourbewijsModemOntvangenMadi) }}
-                        {{ form_row(form.retourbewijsModemOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Retourbewijs modem'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('retourbewijsModem')} only %}
+                        {{ form_row(form.retourbewijsModemOntvangenMadi) }}
+                        {{ form_row(form.retourbewijsModemOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

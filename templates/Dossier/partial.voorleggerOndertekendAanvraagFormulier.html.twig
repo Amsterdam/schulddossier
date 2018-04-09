@@ -1,4 +1,4 @@
-
+{% import 'partial.macros.html.twig' as tools %}
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'open' }}" id="voorlegger-ondertekendAanvraagFormulier">
                 <div class="accordion-header">
@@ -8,8 +8,8 @@
                                 Ondertekend aanvraag formulier
                             </div>
                             <div class="status">
-                                <span class="{{ dossier.voorlegger.ondertekendAanvraagFormulierOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
-                                <span class="{{ dossier.voorlegger.ondertekendAanvraagFormulierOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.ondertekendAanvraagFormulierOntvangenMadi) }}">MaDi</span>
+                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.ondertekendAanvraagFormulierOntvangenGka) }}">GKA</span>
                             </div>
                             <div class="nvt">
                             </div>
@@ -18,11 +18,11 @@
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.ondertekendAanvraagFormulierOntvangenMadi) }}
-                        {{ form_row(form.ondertekendAanvraagFormulierOntvangenGka) }}
                         {{ form_row(form.aanvullendeInformatie) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Ondertekend aanvraag formulier'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('ondertekendAanvraagFormulier')} only %}
+                        {{ form_row(form.ondertekendAanvraagFormulierOntvangenMadi) }}
+                        {{ form_row(form.ondertekendAanvraagFormulierOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>
