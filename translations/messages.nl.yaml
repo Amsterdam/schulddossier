@@ -5,6 +5,9 @@ compleet_madi: Compleet, wachten op goedkeuren (MaDi)
 gecontroleerd_madi: Gecontroleerd, wachten op verzenden (MaDi)
 verzonden_madi: Verzonden naar GKA
 bezig_gka: Bezig (GKA)
+compleet_gka: Dossier intern aangemaakt (GKA)
+dossier_gecontroleerd_gka: Gecontroleerd
+geactualiseerd_gka: Schuldenlijst geactualiseerd door GKA
 
 # forms
 Team gka: Team GKA
