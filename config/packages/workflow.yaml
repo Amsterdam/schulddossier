@@ -14,9 +14,16 @@ framework:
         - gecontroleerd_madi
         - verzonden_madi
         - bezig_gka
+        - compleet_gka
+        - dossier_gecontroleerd_gka
+        - geactualiseerd_gka
       transitions:
         opgevoerd_madi: { from: [bezig_madi], to: compleet_madi }
         goedkeuren_madi: { from: [compleet_madi], to: gecontroleerd_madi }
         afkeuren_madi: { from: [compleet_madi, gecontroleerd_madi], to: bezig_madi }
         verzenden_madi: { from: [gecontroleerd_madi], to: verzonden_madi }
         gestart_gka: { from: [verzonden_madi], to: bezig_gka }
+        opgevoerd_gka: { from: [bezig_gka], to: compleet_gka }
+        goedkeuren_dossier_gka: { from: [compleet_gka], to: dossier_gecontroleerd_gka }
+        afkeuren_dossier_gka: { from: [compleet_gka], to: bezig_madi }
+        schulden_geactualiseerd_gka: { from: dossier_gecontroleerd_gka, to: geactualiseerd_gka }
