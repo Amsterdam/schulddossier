@@ -32,6 +32,56 @@
   
   var decorators = {
     
+    'droppable': function(){
+      var
+        container = this;
+        // div = document.createElement('div');
+      // if (!(('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window) return;
+      
+      
+      // container.class
+      
+      var _reset = function(e){
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      var _over = function(e){
+        var zone = (e && e.target) && _closest(e.target, '.accordion');
+        if (!zone) return;
+        
+        zone.classList.add('drop-over');
+        
+        
+      };
+      var _out = function(e){
+        var zone = (e && e.target) && _closest(e.target, '.accordion');
+        if (!zone) return;
+        
+        zone.classList.remove('drop-over');
+      };
+      var _drop = function(e){
+        
+      };
+
+      var events = 'drag dragstart dragend dragover dragenter dragleave drop'.split(' ');
+      for (var i = 0; i < events.length; i++) {
+        this.addEventListener(events[i], _reset);
+      }
+
+      var events = 'dragover dragenter'.split(' ');
+      for (var i = 0; i < events.length; i++) {
+        this.addEventListener(events[i], _over);
+      }
+
+      var events = 'dragleave dragend drop'.split(' ');
+      for (var i = 0; i < events.length; i++) {
+        this.addEventListener(events[i], _out);
+      }
+
+      this.addEventListener('drop', _drop);
+
+    },
+    
     'status': function(){
       this.addEventListener('change', function(){
         var 
@@ -44,11 +94,15 @@
         
         if (!token.length || !checked) return;
         
+        if (this.request) this.request.abort();
+        
+        form.classList.add('in-progress');
+        
         data[checked.name] = checked.value;
         data[token[0].name] = token[0].value;
         
         
-        helpers.ajax({
+        this.request = helpers.ajax({
           type: 'POST',
           url: form.action,
           data: data,
@@ -61,7 +115,13 @@
               if (result) {
                 container.querySelector('.accordion-header').innerHTML = result.querySelector('.accordion-header').innerHTML;
               }
+              
+              form.classList.remove('in-progress');
             }
+          },
+          error: function(){
+            form.classList.remove('in-progress');
+            form.classList.add('ajax-error');
           }
         })
       });
@@ -109,6 +169,8 @@
       } else data = null;
 
       request.send(data);
+      
+      return request;
     },
     
   };

@@ -26,24 +26,55 @@ div.document-container {
     }
   }
   
+  .document-footer {
+    margin: $padding (-$padding) (-$padding) (-$padding);
+    @include medium {
+      margin: 10px (-10px) (-10px) (-10px);
+    }
+  }
+  
+  .document-meta {
+    margin: 0 0 0 $padding;
+    font-size: $fontSmallSize;
+    list-style: none;
+    text-align: right;
+  }
+  
+  
   .buttons {
     margin-bottom: 0;
   }
   
 }
 
-.document-header {
+.document-header,
+.document-footer {
   background-color: #fbfbfb;
-  border-bottom: 1px solid #dfdfdf;
   margin-bottom: $lineHeight;
   padding: $padding;
   @include medium {
     padding: 10px;
   }
+  p {
+    margin: 0;
+  }
+}
+.document-footer {
+  border-top: 1px solid #dfdfdf;
+}
+
+.document-header {
+  border-bottom: 1px solid #dfdfdf;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   .document-title {
     margin-bottom: .2em;
   }
-  > *:last-child {
-    margin-bottom: 0;
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

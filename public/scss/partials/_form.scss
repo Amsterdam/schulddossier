@@ -526,7 +526,22 @@ form {
 //}
 //
 .default-form-style.in-progress {
-  opacity: 0.5;
+//  opacity: 0.6;
+  &,
+  .button[type="submit"] {
+    position: relative;
+  }
+  .button[type="submit"]:before,
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 2px;
+    background-color: rgba(#000, .5);
+    animation: progress 2s infinite;
+  }
 }
 //
 //.form-container {
@@ -535,3 +550,8 @@ form {
 //    font-weight: normal;
 //  }
 //}
+
+@keyframes progress {
+  33%   { left: 20%; right: 0; }
+  66%   { left: 0; right: 20%; }
+}
