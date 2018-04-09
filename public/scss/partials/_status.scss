@@ -135,4 +135,18 @@
     max-height: $statusSize;
     
   }
+  
+  [disabled] + strong {
+    max-height: 0;
+    margin-bottom: 0;
+  }
+  [disabled]:checked + strong {
+    max-height: $statusSize;
+  }
+  label [disabled]:checked + strong {
+    &:after {
+      opacity: 0;
+    }
+  }
+  
 }

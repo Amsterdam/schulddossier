@@ -1165,11 +1165,11 @@ body header.top {
   border-right-color: red; }
 .voorlegger-header .status .afgerond {
   border-color: green; }
-.voorlegger-header .status .afgerond {
+.voorlegger-header .status .goedgekeurd {
   position: relative;
   border-color: green;
   background-color: green; }
-.voorlegger-header .status .afgerond:before {
+.voorlegger-header .status .goedgekeurd:before {
   content: '';
   position: absolute;
   left: 0;
@@ -1292,6 +1292,13 @@ body header.top {
 .status :checked + strong {
   color: #333;
   max-height: 2.4rem; }
+.status [disabled] + strong {
+  max-height: 0;
+  margin-bottom: 0; }
+.status [disabled]:checked + strong {
+  max-height: 2.4rem; }
+.status label [disabled]:checked + strong:after {
+  opacity: 0; }
 
 .document-workflow {
   margin-bottom: 1.925rem; }
