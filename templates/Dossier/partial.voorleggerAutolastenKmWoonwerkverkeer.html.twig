@@ -21,10 +21,10 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.autolastenKmWoonwerkverkeerNvt) }}
                         {{ form_row(form.autolastenKmWoonwerkverkeer) }}
-                        {{ form_row(form.autolastenKmWoonwerkverkeerOntvangenMadi) }}
-                        {{ form_row(form.autolastenKmWoonwerkverkeerOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Autolasten km woon-werk-verkeer'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('autolastenKmWoonwerkverkeer')} only %}
+                        {{ form_row(form.autolastenKmWoonwerkverkeerOntvangenMadi) }}
+                        {{ form_row(form.autolastenKmWoonwerkverkeerOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

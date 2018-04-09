@@ -20,10 +20,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.retourbewijsModemNvt) }}
-                        {{ form_row(form.retourbewijsModemOntvangenMadi) }}
-                        {{ form_row(form.retourbewijsModemOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Retourbewijs modem'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('retourbewijsModem')} only %}
+                        {{ form_row(form.retourbewijsModemOntvangenMadi) }}
+                        {{ form_row(form.retourbewijsModemOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

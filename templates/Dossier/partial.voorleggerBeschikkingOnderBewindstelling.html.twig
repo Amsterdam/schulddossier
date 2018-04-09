@@ -20,10 +20,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.beschikkingOnderBewindstellingNvt) }}
-                        {{ form_row(form.beschikkingOnderBewindstellingOntvangenMadi) }}
-                        {{ form_row(form.beschikkingOnderBewindstellingOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Beschikking onderbewindstelling'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('beschikkingOnderBewindstelling')} only %}
+                        {{ form_row(form.beschikkingOnderBewindstellingOntvangenMadi) }}
+                        {{ form_row(form.beschikkingOnderBewindstellingOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

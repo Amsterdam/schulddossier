@@ -20,10 +20,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.kostgeldNvt) }}
-                        {{ form_row(form.kostgeldOntvangenMadi) }}
-                        {{ form_row(form.kostgeldOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kostgeld'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kostgeld')} only %}
+                        {{ form_row(form.kostgeldOntvangenMadi) }}
+                        {{ form_row(form.kostgeldOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

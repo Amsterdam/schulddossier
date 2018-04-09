@@ -20,10 +20,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.arbeidsovereenkomstNvt) }}
-                        {{ form_row(form.arbeidsovereenkomstOntvangenMadi) }}
-                        {{ form_row(form.arbeidsovereenkomstOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Arbeidsovereenkomst'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('arbeidsovereenkomst')} only %}
+                        {{ form_row(form.arbeidsovereenkomstOntvangenMadi) }}
+                        {{ form_row(form.arbeidsovereenkomstOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

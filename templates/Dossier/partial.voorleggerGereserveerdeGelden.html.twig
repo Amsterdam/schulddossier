@@ -21,10 +21,10 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.gereserveerdeGeldenNvt) }}
                         {{ form_row(form.gereserveerdeGelden) }}
-                        {{ form_row(form.gereserveerdeGeldenOntvangenMadi) }}
-                        {{ form_row(form.gereserveerdeGeldenOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Gereserveerde gelden'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('gereserveerdeGelden')} only %}
+                        {{ form_row(form.gereserveerdeGeldenOntvangenMadi) }}
+                        {{ form_row(form.gereserveerdeGeldenOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

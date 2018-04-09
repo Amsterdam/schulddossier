@@ -20,10 +20,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.corrigerenGemeenteBelastingNvt) }}
-                        {{ form_row(form.corrigerenGemeenteBelastingOntvangenGka) }}
                         {{ form_row(form.corrigerenGemeenteBelasting) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Corrigeren gemeente belasting'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('corrigerenGemeenteBelasting')} only %}
+                        {{ form_row(form.corrigerenGemeenteBelastingOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

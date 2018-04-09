@@ -20,8 +20,6 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.meterstandenEnergieNvt) }}
-                        {{ form_row(form.meterstandenEnergieOntvangenMadi) }}
-                        {{ form_row(form.meterstandenEnergieOntvangenGka) }}
                         {{ form_row(form.energieBedrijf) }}
                         {{ form_row(form.energieBedrijfKlantnummer) }}
                         {{ form_row(form.energieBedrijfDatumOpname) }}
@@ -34,6 +32,8 @@
                         {{ form_row(form.warmteBedrijfOpname) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden energie'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('meterstandenEnergie')} only %}
+                        {{ form_row(form.meterstandenEnergieOntvangenMadi) }}
+                        {{ form_row(form.meterstandenEnergieOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

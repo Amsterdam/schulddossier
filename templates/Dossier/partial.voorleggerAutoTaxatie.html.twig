@@ -20,10 +20,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.autoTaxatieNvt) }}
-                        {{ form_row(form.autoTaxatieOntvangenMadi) }}
-                        {{ form_row(form.autoTaxatieOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Auto taxatie'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('autoTaxatie')} only %}
+                        {{ form_row(form.autoTaxatieOntvangenMadi) }}
+                        {{ form_row(form.autoTaxatieOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

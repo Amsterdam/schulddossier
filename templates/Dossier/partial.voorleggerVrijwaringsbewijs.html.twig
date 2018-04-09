@@ -20,10 +20,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.vrijwaringsbewijsNvt) }}
-                        {{ form_row(form.vrijwaringsbewijsOntvangenMadi) }}
-                        {{ form_row(form.vrijwaringsbewijsOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Vrijwaringsbewijs'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('vrijwaringsbewijs')} only %}
+                        {{ form_row(form.vrijwaringsbewijsOntvangenMadi) }}
+                        {{ form_row(form.vrijwaringsbewijsOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>

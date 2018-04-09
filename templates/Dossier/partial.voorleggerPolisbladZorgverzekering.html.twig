@@ -20,10 +20,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.polisbladZorgverzekeringNvt) }}
-                        {{ form_row(form.polisbladZorgverzekeringOntvangenMadi) }}
-                        {{ form_row(form.polisbladZorgverzekeringOntvangenGka) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Polisblad zorgverzekering'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('polisbladZorgverzekering')} only %}
+                        {{ form_row(form.polisbladZorgverzekeringOntvangenMadi) }}
+                        {{ form_row(form.polisbladZorgverzekeringOntvangenGka) }}
                         <p class="buttons right">
                             <button class="button primary" type="submit">Opslaan</button>
                         </p>
