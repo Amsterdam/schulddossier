@@ -1168,14 +1168,14 @@ body header.top {
   position: absolute;
   right: 0;
   top: 0; }
-.accordion-container .accordion.open .accordion-header > a:after {
+.accordion-container .accordion.active .accordion-header > a:after {
   content: url("/pix/chevron-up.svg"); }
-.accordion-container .accordion.open {
+.accordion-container .accordion.active {
   background-color: #f0f0f0; }
 .accordion-container .accordion .accordion-body {
   height: 0;
   overflow: hidden; }
-.accordion-container .accordion.open .accordion-body {
+.accordion-container .accordion.active .accordion-body {
   height: auto;
   padding: 17px 0 7px 0; }
 
@@ -1201,16 +1201,16 @@ body header.top {
   border-radius: 50%;
   margin-right: .5rem;
   background-color: #fff; }
-.voorlegger-header .status .bezig {
+.voorlegger-header .status .status-bezig {
   border-top-color: red;
   border-right-color: red; }
-.voorlegger-header .status .afgerond {
+.voorlegger-header .status .status-opgevoerd {
   border-color: green; }
-.voorlegger-header .status .goedgekeurd {
+.voorlegger-header .status .status-gecontroleerd {
   position: relative;
   border-color: green;
   background-color: green; }
-.voorlegger-header .status .goedgekeurd:before {
+.voorlegger-header .status .status-gecontroleerd:before {
   content: '';
   position: absolute;
   left: 0;
