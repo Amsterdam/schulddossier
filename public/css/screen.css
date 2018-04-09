@@ -1165,11 +1165,11 @@ body header.top {
   border-right-color: red; }
 .voorlegger-header .status .afgerond {
   border-color: green; }
-.voorlegger-header .status .afgerond {
+.voorlegger-header .status .goedgekeurd {
   position: relative;
   border-color: green;
   background-color: green; }
-.voorlegger-header .status .afgerond:before {
+.voorlegger-header .status .goedgekeurd:before {
   content: '';
   position: absolute;
   left: 0;
