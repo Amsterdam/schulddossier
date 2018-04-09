@@ -1058,16 +1058,17 @@ body header.top {
   padding-right: 0; }
 .table table tbody > tr:nth-child(2n+1) {
   background-color: rgba(245, 245, 245, 0.2); }
+.table table tbody th {
+  position: relative; }
 .table table tbody th a {
-  position: relative;
   text-decoration: none;
   display: block; }
 .table table tbody th a:before {
   content: '';
   position: absolute;
   left: 0;
-  top: -.5rem;
-  bottom: -.5rem;
+  top: 0;
+  bottom: 0;
   width: 100vw;
   background-color: transparent;
   border-bottom: 1px solid transparent;

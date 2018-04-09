@@ -26,16 +26,16 @@
     }
     
     tbody th {
+      position: relative;
       a {
-        position: relative;
         text-decoration: none;
         display: block;
         &:before {
           content: '';
           position: absolute;
           left: 0;
-          top: -.5rem;
-          bottom: -.5rem;
+          top: 0;
+          bottom: 0;
           width: 100vw;
           background-color: rgba(#000, 0);
           border-bottom: 1px solid rgba(#000, 0);
