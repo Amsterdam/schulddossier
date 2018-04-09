@@ -63,17 +63,17 @@
         }
       }
     }
-    &.open .accordion-header > a:after {
+    &.active .accordion-header > a:after {
       content: url("/pix/chevron-up.svg");
     }
-    &.open {
+    &.active {
       background-color: darken($lightColor, 2);
     }
     .accordion-body {
       height: 0;
       overflow: hidden;
     }
-    &.open .accordion-body {
+    &.active .accordion-body {
       height: auto;
       padding: 17px 0 7px 0;
     }

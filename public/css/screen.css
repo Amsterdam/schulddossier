@@ -248,21 +248,43 @@ div.document-container {
 @media (max-width: 900px) {
   .document .document-header {
     margin: -10px -10px 10px -10px; } }
+.document .document-footer {
+  margin: 3rem -3rem -3rem -3rem; }
+@media (max-width: 900px) {
+  .document .document-footer {
+    margin: 10px -10px -10px -10px; } }
+.document .document-meta {
+  margin: 0 0 0 3rem;
+  font-size: 1.2rem;
+  list-style: none;
+  text-align: right; }
 .document .buttons {
   margin-bottom: 0; }
 
-.document-header {
+.document-header, .document-footer {
   background-color: #fbfbfb;
-  border-bottom: 1px solid #dfdfdf;
   margin-bottom: 1.925rem;
   padding: 3rem; }
 @media (max-width: 900px) {
-  .document-header {
+  .document-header, .document-footer {
     padding: 10px; } }
+.document-header p, .document-footer p {
+  margin: 0; }
+
+.document-footer {
+  border-top: 1px solid #dfdfdf; }
+
+.document-header {
+  border-bottom: 1px solid #dfdfdf;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
 .document-header .document-title {
   margin-bottom: .2em; }
-.document-header > *:last-child {
-  margin-bottom: 0; }
+.document-header a {
+  text-decoration: none; }
+.document-header a:hover {
+  text-decoration: underline; }
 
 .button, button {
   display: inline-block;
@@ -624,9 +646,25 @@ form label strong, form .label strong {
   /*padding: 5px; border-radius: 2px; text-decoration: none; color: #FFF; font-size: 0.9rem; */
   width: 100px; }
 
-.default-form-style.in-progress {
-  opacity: 0.5; }
+.default-form-style.in-progress, .default-form-style.in-progress .button[type="submit"] {
+  position: relative; }
+.default-form-style.in-progress .button[type="submit"]:before, .default-form-style.in-progress:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: progress 2s infinite; }
 
+@keyframes progress {
+  33% {
+    left: 20%;
+    right: 0; }
+  66% {
+    left: 0;
+    right: 20%; } }
 .nav-internal {
   margin-bottom: 1.925rem; }
 .nav-internal ul {
@@ -853,6 +891,9 @@ body {
   font-weight: normal; }
 .modal-container .modal-window .modal-body {
   padding: 10px 20px; }
+
+.drop-over {
+  outline: 5px solid rgba(0, 0, 0, 0.4); }
 
 .pagination {
   width: 100%;
@@ -1127,14 +1168,14 @@ body header.top {
   position: absolute;
   right: 0;
   top: 0; }
-.accordion-container .accordion.open .accordion-header > a:after {
+.accordion-container .accordion.active .accordion-header > a:after {
   content: url("/pix/chevron-up.svg"); }
-.accordion-container .accordion.open {
+.accordion-container .accordion.active {
   background-color: #f0f0f0; }
 .accordion-container .accordion .accordion-body {
   height: 0;
   overflow: hidden; }
-.accordion-container .accordion.open .accordion-body {
+.accordion-container .accordion.active .accordion-body {
   height: auto;
   padding: 17px 0 7px 0; }
 
@@ -1160,16 +1201,16 @@ body header.top {
   border-radius: 50%;
   margin-right: .5rem;
   background-color: #fff; }
-.voorlegger-header .status .bezig {
+.voorlegger-header .status .status-bezig {
   border-top-color: red;
   border-right-color: red; }
-.voorlegger-header .status .afgerond {
+.voorlegger-header .status .status-opgevoerd {
   border-color: green; }
-.voorlegger-header .status .goedgekeurd {
+.voorlegger-header .status .status-gecontroleerd {
   position: relative;
   border-color: green;
   background-color: green; }
-.voorlegger-header .status .goedgekeurd:before {
+.voorlegger-header .status .status-gecontroleerd:before {
   content: '';
   position: absolute;
   left: 0;
