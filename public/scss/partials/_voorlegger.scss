@@ -70,13 +70,13 @@
 }
 .voorlegger-body {
   padding: 17px 0 7px 0;
-  .buttons {
-    max-height: 0;
-    transition: max-height .3s;
-    .changed & {
-      max-height: 200px;
-    }
-  }
+//  .buttons {
+//    max-height: 0;
+//    transition: max-height .3s;
+//    .changed & {
+//      max-height: 200px;
+//    }
+//  }
 }
 .accordion-body,
 .form-checks {

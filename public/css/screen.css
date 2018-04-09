@@ -1238,11 +1238,6 @@ body header.top {
 
 .voorlegger-body {
   padding: 17px 0 7px 0; }
-.voorlegger-body .buttons {
-  max-height: 0;
-  transition: max-height .3s; }
-.changed .voorlegger-body .buttons {
-  max-height: 200px; }
 
 .accordion-body .label-widget, .form-checks .label-widget {
   align-items: center;
