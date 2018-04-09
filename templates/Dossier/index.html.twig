@@ -17,14 +17,31 @@
         <div class="document-header">
             <h1>Dossiers</h1>
         </div>
-        {{ form_start(searchForm) }}
-        {{ form_row(searchForm.naam) }}
-        {{ form_row(searchForm.status) }}
-        {{ form_row(searchForm.schuldhulpbureau) }}
-        {{ form_row(searchForm.medewerkerSchuldhulpbureau) }}
-        {{ form_row(searchForm.teamGka) }}
-        <button type="submit">Zoeken</button>
-        {{ form_end(searchForm) }}
+        <div class="search">
+            {{ form_start(searchForm) }}
+            <fieldset class="search-basic">
+              <div class="group">
+                {{ form_row(searchForm.naam, {attr: {placeholder: 'Naam'}}) }}
+                <button type="submit" class="button">Zoeken</button>
+              </div>
+              <p class="search-more">
+                <a href="#search-extended" data-handler="toggle">Meer zoekopties</a>
+              </p>
+            </fieldset>
+        
+            <fieldset id="search-extended" class="search-extended">
+                {{ form_row(searchForm.status) }}
+                {{ form_row(searchForm.schuldhulpbureau) }}
+                {{ form_row(searchForm.medewerkerSchuldhulpbureau) }}
+                {{ form_row(searchForm.teamGka) }}
+                <p class="buttons right">
+                    <button type="submit" class="button">Zoeken</button>
+                    <a href="#search-extended" data-handler="toggle">Annuleren</a>
+                </p>
+            </fieldset>
+        
+            {{ form_end(searchForm) }}
+        </div>
         <div class="table">
             <table>
                 <thead>

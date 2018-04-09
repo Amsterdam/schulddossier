@@ -1,0 +1,87 @@
+.search {
+}
+.search-basic {
+  .form-row {
+    margin: 0;
+    width: 100%;
+  }
+  input {
+    width: 100%;
+    min-height: 4rem;
+  }
+  label {
+    display: none;
+  }
+  .button {
+    margin: 0;
+    padding: 0 $padding;
+  }
+}
+.search-more {
+  text-align: right;
+  a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 1em;
+    margin: 0 -1em;
+  }
+}
+.search-extended {
+  display: none;
+  &:target,
+  &.active {
+    display: block;
+  }
+  
+  #search_dossier_form_status {
+    label {
+      line-height: 1;
+      display: inline-block;
+      border: 1px solid rgba($textColor, .5);
+      padding: $padding / 4;
+      margin: 0 $padding / 4 $padding / 4 0;
+      border-radius: 3px;
+      color: rgba($textColor, .5);
+      padding-left: $padding;
+      &:before {
+        content: '';
+        position: absolute;
+        left: $padding / 4;
+        top: $padding / 4;
+        margin-top: -1px;
+        width: 1em;
+        height: 1em;
+        border: 1px solid rgba($textColor, .5);
+        border-radius: 3px;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        left: $padding/3;
+        top: $padding/4;
+        width: .8em;
+        height: .5em;
+        border-left: 3px solid $textColor;
+        border-bottom: 3px solid $textColor;
+        transform: rotate(-45deg);
+        opacity: 0;
+      }
+    }
+    input {
+      position: absolute;
+      opacity: 0;
+    }
+    input:checked + label {
+      color: $textColor;
+      border-color: $textColor;
+      &:before {
+        border-color: $textColor;
+      }
+      &:after {
+        opacity: 1;
+      }
+      
+    }
+  }
+  
+}
