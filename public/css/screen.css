@@ -309,7 +309,7 @@ div.document-container {
 .button:hover, button:hover {
   color: #fff; }
 
-input[type="text"], input[type="search"], input[type="date"], input[type="password"], input[type="tel"], input[type="email"], input[type="url"], select, textarea {
+input[type="text"], input[type="search"], input[type="date"], input[type="password"], input[type="tel"], input[type="email"], input[type="url"], input[type="number"], select, textarea {
   width: 100%;
   line-height: 1;
   padding: 0 1em;
@@ -317,9 +317,9 @@ input[type="text"], input[type="search"], input[type="date"], input[type="passwo
   box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.1);
   transition: border-color .3s; }
-input[type="text"]:hover, input[type="search"]:hover, input[type="date"]:hover, input[type="password"]:hover, input[type="tel"]:hover, input[type="email"]:hover, input[type="url"]:hover, select:hover, textarea:hover {
+input[type="text"]:hover, input[type="search"]:hover, input[type="date"]:hover, input[type="password"]:hover, input[type="tel"]:hover, input[type="email"]:hover, input[type="url"]:hover, input[type="number"]:hover, select:hover, textarea:hover {
   border: 1px solid rgba(0, 0, 0, 0.4); }
-input[type="text"]:focus, input[type="search"]:focus, input[type="date"]:focus, input[type="password"]:focus, input[type="tel"]:focus, input[type="email"]:focus, input[type="url"]:focus, select:focus, textarea:focus {
+input[type="text"]:focus, input[type="search"]:focus, input[type="date"]:focus, input[type="password"]:focus, input[type="tel"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
   border: 1px solid rgba(0, 0, 0, 0.8); }
 
 input[readonly], input[disabled] {
@@ -1155,29 +1155,37 @@ body header.top {
   border-radius: 2px;
   transition: background-color .3s; }
 .accordion-container .accordion .accordion-header {
-  padding-right: 26px;
   position: relative; }
 .accordion-container .accordion .accordion-header > a {
   color: #000000;
   display: block;
-  text-decoration: none; }
-.accordion-container .accordion .accordion-header > a:after {
-  content: url("/pix/chevron-down.svg");
-  width: 16px;
-  height: 16px;
+  text-decoration: none;
+  padding-right: 26px; }
+.accordion-container .accordion .accordion-header > a:before, .accordion-container .accordion .accordion-header > a:after {
+  content: '';
   position: absolute;
   right: 0;
-  top: 0; }
+  top: 8px;
+  width: 14px;
+  height: 4px;
+  background-color: #333;
+  transform: rotate(-45deg);
+  transition: all .3s; }
+.accordion-container .accordion .accordion-header > a:after {
+  right: 8px;
+  transform: rotate(45deg); }
+.accordion-container .accordion.active .accordion-header > a:before {
+  transform: rotate(45deg); }
 .accordion-container .accordion.active .accordion-header > a:after {
-  content: url("/pix/chevron-up.svg"); }
+  transform: rotate(-45deg); }
 .accordion-container .accordion.active {
   background-color: #f0f0f0; }
 .accordion-container .accordion .accordion-body {
-  height: 0;
-  overflow: hidden; }
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s; }
 .accordion-container .accordion.active .accordion-body {
-  height: auto;
-  padding: 17px 0 7px 0; }
+  max-height: 2000px; }
 
 .voorlegger-header {
   display: flex;
@@ -1227,6 +1235,14 @@ body header.top {
   height: 20px;
   line-height: 20px;
   width: 50px; }
+
+.voorlegger-body {
+  padding: 17px 0 7px 0; }
+.voorlegger-body .buttons {
+  max-height: 0;
+  transition: max-height .3s; }
+.changed .voorlegger-body .buttons {
+  max-height: 200px; }
 
 .accordion-body .label-widget, .form-checks .label-widget {
   align-items: center;

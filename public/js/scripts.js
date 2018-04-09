@@ -7,7 +7,7 @@
       if (el) {
         e.preventDefault();
         var 
-          wasActive = this.hash == w.location.hash,
+          wasActive = this.hash == w.location.hash || el.classList.contains('active'),
           addRemove = wasActive ? 'remove' : 'add';
 
         el.classList[addRemove]('active');
