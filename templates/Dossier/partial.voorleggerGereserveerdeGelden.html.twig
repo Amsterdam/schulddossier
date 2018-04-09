@@ -1,8 +1,8 @@
 {% import 'partial.macros.html.twig' as tools %}
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
-            <div class="accordion {{ app.request.isXmlHttpRequest ? 'open' }}" id="voorlegger-gereserveerdeGelden">
+            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-gereserveerdeGelden">
                 <div class="accordion-header">
-                    <a href="#voorlegger-gereserveerdeGelden">
+                    <a href="#voorlegger-gereserveerdeGelden" data-handler="toggle">
                         <div class="voorlegger-header">
                             <div class="naam">
                                 Gereserveerde gelden

@@ -14,7 +14,17 @@
     
     <div class="document well">
         <div class="document-header">
-            <h1 class="document-title">{{ dossier.clientNaam }}</h1>
+          <h1 class="document-title">{{ dossier.clientNaam }}</h1>
+          
+          <ul class="document-meta">
+            {% if dossier.regasNummer %}
+              <li>Regas: <strong>{{ dossier.regasNummer }}</strong></li>
+            {% endif %}
+            {% if dossier.allegroNummer %}
+              <li>Allegro: <strong>{{ dossier.allegroNummer }}</strong></li>
+            {% endif %}
+          </ul>
+          
         </div>
         {{ form_start(form, {'attr': {'class': 'default-form-style ajax'} }) }}
         {{ form_row(form.clientNaam) }}
