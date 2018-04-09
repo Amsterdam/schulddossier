@@ -1,26 +1,34 @@
 .tabs {
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 0 0 $lineHeight 0;
+  overflow: hidden;
   ul {
     display: flex;
     list-style-type: none;
-    flex-wrap: nowrap;
-    width: 100%;
-    padding: 0px 100px;
-    box-sizing: border-box;
+    padding: 0;
+    margin: 0 (-$padding/2);
+    border-bottom: 3px solid $lightColor;
   }
   li {
-    flex-grow: 1;
+    
     a {
       text-align: center;
       display: block;
-      color: #666666;
+      font-weight: 700;
+      font-size: 1.6rem;
       text-decoration: none;
-      padding: 10px 0;
+      padding: $padding/2;
+      border-bottom: 3px solid $lightColor;
+      margin-bottom: -3px;
+      
+      transition: all .3s;
+      
+      &:hover {
+        border-color: $textColor;
+      }
     }
     &.active a {
-      border-bottom: 3px solid #F00;
+      border-bottom-color: $brandColor1;
+      
     }
   }
 }
@@ -37,6 +45,7 @@
     background-color: $lightColor;
     padding: 8px 15px;
     border-radius: 2px;
+    transition: background-color .3s;
     .accordion-header {
       padding-right: 26px;
       position: relative;
@@ -56,6 +65,9 @@
     }
     &.open .accordion-header > a:after {
       content: url("/pix/chevron-up.svg");
+    }
+    &.open {
+      background-color: darken($lightColor, 2);
     }
     .accordion-body {
       height: 0;

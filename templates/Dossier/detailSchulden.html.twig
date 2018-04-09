@@ -32,11 +32,13 @@
                 {{ form_row(form.allegroNummer) }}
             </div>
         </div>
-        <div class="buttons">
+        <p class="buttons right">
             <button type="submit" class="button primary">Opslaan</button>
-        </div>
+        </p>
         {{ form_end(form) }}
-
+        
+        <hr>
+        
         <div class="tabs">
             <ul>
                 <li class=""><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Aanmelding</a></li>
@@ -44,15 +46,19 @@
             </ul>
         </div>
         
-        <hr>
-        <h2>Status van de schuldenlijst:</h2>
         {{ form_start(schuldenoverzichtForm) }}
-        {% do schuldenoverzichtForm.file.setRendered() %}
-        {{ form_row(schuldenoverzichtForm.schuldenoverzichtOntvangenMadi) }}
-        {{ form_row(schuldenoverzichtForm.schuldenoverzichtOntvangenGka) }}
-        <button type="submit">Opslaan</button>
+        <fieldset>
+          <legend>Status van de schuldenlijst</legend>
+          {% do schuldenoverzichtForm.file.setRendered() %}
+          <div class="form-checks">
+            {{ form_row(schuldenoverzichtForm.schuldenoverzichtOntvangenMadi) }}
+            {{ form_row(schuldenoverzichtForm.schuldenoverzichtOntvangenGka) }}
+          </div>
+          <p class="buttons right">
+            <button type="submit" class="button primary">Opslaan</button>
+          </p>
+        </fieldset>
         {{ form_end(schuldenoverzichtForm) }}
-        <hr>
         
         
         <div class="accordion-container">
@@ -62,49 +68,51 @@
 {% endfor %}
         </div>
         <div class="form-container">
-            <h2>Nieuw schuld toevoegen</h2>
             {{ form_start(createForm, {'attr': {'class': 'ajax default-form-style'} }) }}
-            <div class="columns">
-                <div class="column">
-                    <div class="form-row">
-                        <div class="label-widget">
-                            {{ form_label(createForm.schuldeiser) }}
-                            <select class="lookup" name="{{ createForm.schuldeiser.vars.full_name }}" id="{{ createForm.schuldeiser.vars.id }}">
-                            </select>
-                            {% do createForm.schuldeiser.setRendered() %}
+            <fieldset class="naked">
+                <legend>Nieuwe schuld toevoegen</legend>
+                <div class="columns">
+                    <div class="column">
+                        <div class="form-row">
+                            <div class="label-widget">
+                                {{ form_label(createForm.schuldeiser) }}
+                                <select class="lookup" name="{{ createForm.schuldeiser.vars.full_name }}" id="{{ createForm.schuldeiser.vars.id }}">
+                                </select>
+                                {% do createForm.schuldeiser.setRendered() %}
+                            </div>
+                            {{ form_errors(createForm.schuldeiser) }}
                         </div>
-                        {{ form_errors(createForm.schuldeiser) }}
-                    </div>
-                    <div class="form-row">
-                        <div class="label-widget">
-                            {{ form_label(createForm.incassant) }}
-                            <select class="lookup" name="{{ createForm.incassant.vars.full_name }}" id="{{ createForm.incassant.vars.id }}">
-                            </select>
-                            {% do createForm.incassant.setRendered() %}
+                        <div class="form-row">
+                            <div class="label-widget">
+                                {{ form_label(createForm.incassant) }}
+                                <select class="lookup" name="{{ createForm.incassant.vars.full_name }}" id="{{ createForm.incassant.vars.id }}">
+                                </select>
+                                {% do createForm.incassant.setRendered() %}
+                            </div>
+                            {{ form_errors(createForm.incassant) }}
                         </div>
-                        {{ form_errors(createForm.incassant) }}
-                    </div>
-                    <div class="form-row">
-                        <div class="label-widget">
-                            <label>&nbsp;</label>
-                            <a href="#nieuwe-schuldeiser">Nieuwe schuldeiser of incassant toevoegen</a>
+                        <div class="form-row">
+                            <div class="label-widget">
+                                <label>&nbsp;</label>
+                                <a href="#nieuwe-schuldeiser">Nieuwe schuldeiser of incassant toevoegen</a>
+                            </div>
                         </div>
+                        {{ form_row(createForm.type) }}
+                        {{ form_row(createForm.referentie) }}
                     </div>
-                    {{ form_row(createForm.type) }}
-                    {{ form_row(createForm.referentie) }}
+                    <div class="column">
+                        {{ form_row(createForm.bedrag) }}
+                        {{ form_row(createForm.vastStelDatum) }}
+                        {{ form_row(createForm.ontstaansDatum) }}
+                    </div>
                 </div>
-                <div class="column">
-                    {{ form_row(createForm.bedrag) }}
-                    {{ form_row(createForm.vastStelDatum) }}
-                    {{ form_row(createForm.ontstaansDatum) }}
+                {{ form_row(createForm.opmerkingen) }}
+                {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
+                <div class="nav">
+                    {% do createForm.verwijderd.setRendered() %}
+                    <button type="submit">Aanmaken</button>
                 </div>
-            </div>
-            {{ form_row(createForm.opmerkingen) }}
-            {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
-            <div class="nav">
-                {% do createForm.verwijderd.setRendered() %}
-                <button type="submit">Aanmaken</button>
-            </div>
+              </fieldset>
             {{ form_end(createForm) }}
         </div>
     </div>

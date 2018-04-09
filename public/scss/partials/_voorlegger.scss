@@ -1,17 +1,14 @@
 .voorlegger-header {
   display: flex;
-  width: 100%;
   height: 20px;
   .naam {
-    flex-grow: 1;
     height: 20px;
     line-height: 20px;
+    margin-right: auto;
   }
   .status {
-    flex-grow: 0;
-    height: 20px;
+
     line-height: 20px;
-    width: 150px;
     span {
       padding-left: 17px;
       font-size: 0;
@@ -31,7 +28,6 @@
     }
   }
   .nvt {
-    flex-grow: 0;
     height: 20px;
     line-height: 20px;
     width: 50px;

@@ -11,57 +11,6 @@
         </ul>
     </nav>
     
-    <p><strong>Workflow stappen:</strong></p>
-    <ul>
-{% if workflow_can(dossier, 'opgevoerd_madi') %}
-        <li>
-            <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'opgevoerd_madi'}) }}" method="post">
-                <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                <button type="submit">Ter controle aanbieden</button>
-            </form>
-        </li>
-{% endif %}
-{% if workflow_can(dossier, 'goedkeuren_madi') %}
-        <li>
-            <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'goedkeuren_madi'}) }}" method="post">
-                <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                <button type="submit">Goedkeuren</button>
-            </form>
-        </li>
-{% endif %}
-{% if workflow_can(dossier, 'afkeuren_madi') %}
-        <li>
-            <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'afkeuren_madi'}) }}" method="post">
-                <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                <button type="submit">Afkeuren</button>
-            </form>
-        </li>
-{% endif %}
-{% if workflow_can(dossier, 'verzenden_madi') %}
-        <li>
-            <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'verzenden_madi'}) }}" method="post">
-                <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                <button type="submit">Verzenden naar GKA</button>
-            </form>
-        </li>
-{% endif %}
-{% if workflow_can(dossier, 'gestart_gka') %}
-        <li>
-            <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'gestart_gka'}) }}" method="post">
-                <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                <button type="submit">GKA start proces</button>
-            </form>
-        </li>
-{% endif %}
-    </ul>
-    
-    <p><strong>Timeline van dossier:</strong></p>
-    <ul>
-{% for timeline in dossier.timeline %}
-        <li>{{ timeline.type|upper }}: {{ timeline.omschrijving }} ({{ timeline.datumtijd|date('d-m-Y H:i:s') }} / {{ timeline.gebruiker|default('-systeem-') }}) {{ timeline.data|json_encode }}</li>
-{% endfor %}
-    </ul>
-    
     <div class="document well">
       <div class="document-header">
         <h1>{{ dossier.clientNaam }}</h1>
@@ -87,6 +36,9 @@
             <button type="submit" class="button primary">Opslaan</button>
         </p>
       {{ form_end(form) }}
+      
+      <hr>
+      
       <div class="tabs">
         <ul>
           <li class="active"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Aanmelding</a></li>
@@ -138,5 +90,67 @@
         <h2>Overige</h2>
         {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForms['ondertekendAanvraagFormulier'], 'dossier': dossier} only %}
       </div>
+    </div>
+    
+    <div class="document well">
+      <div class="document-workflow">
+        <a href="#document-timeline" data-handler="toggle" class="document-workflow-timeline hidden">Timeline</a>
+        <h3 class="hidden">Workflow</h3>
+          <ul>
+              <li class="document-workflow-current">
+                  Status: <strong>{{ dossier.status|trans }}</strong>
+              </li>
+      {% if workflow_can(dossier, 'opgevoerd_madi') %}
+              <li>
+                  <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'opgevoerd_madi'}) }}" method="post">
+                      <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
+                      <button type="submit" class="button primary">Ter controle aanbieden</button>
+                  </form>
+              </li>
+      {% endif %}
+      {% if workflow_can(dossier, 'goedkeuren_madi') %}
+              <li>
+                  <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'goedkeuren_madi'}) }}" method="post">
+                      <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
+                      <button type="submit" class="button primary">Goedkeuren</button>
+                  </form>
+              </li>
+      {% endif %}
+      {% if workflow_can(dossier, 'afkeuren_madi') %}
+              <li>
+                  <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'afkeuren_madi'}) }}" method="post">
+                      <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
+                      <button type="submit" class="button secondary">Afkeuren</button>
+                  </form>
+              </li>
+      {% endif %}
+      {% if workflow_can(dossier, 'verzenden_madi') %}
+              <li>
+                  <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'verzenden_madi'}) }}" method="post">
+                      <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
+                      <button type="submit" class="button primary">Verzenden naar GKA</button>
+                  </form>
+              </li>
+      {% endif %}
+      {% if workflow_can(dossier, 'gestart_gka') %}
+              <li>
+                  <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'gestart_gka'}) }}" method="post">
+                      <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
+                      <button type="submit" class="button primary">GKA start proces</button>
+                  </form>
+              </li>
+      {% endif %}
+          </ul>
+      </div>
+    
+      <div class="document-timeline hidden" id="document-timeline">
+          <h3>Timeline</h3>
+          <ul>
+      {% for timeline in dossier.timeline %}
+              <li>{{ timeline.type|upper }}: {{ timeline.omschrijving }} ({{ timeline.datumtijd|date('d-m-Y H:i:s') }} / {{ timeline.gebruiker|default('-systeem-') }}) {{ timeline.data|json_encode }}</li>
+      {% endfor %}
+          </ul>
+      </div>
+      
     </div>
 {% endblock %}
