@@ -47,35 +47,49 @@
     border-radius: 2px;
     transition: background-color .3s;
     .accordion-header {
-      padding-right: 26px;
+      
       position: relative;
       > a {
         color: #000000;
         display: block;
         text-decoration: none;
+        padding-right: 26px;
+        &:before,
         &:after {
-          content: url("/pix/chevron-down.svg");
-          width: 16px;
-          height: 16px;
+          content: '';
           position: absolute;
           right: 0;
-          top: 0;
+          top: 8px;
+          width: 14px;
+          height: 4px;
+          background-color: $textColor;
+          transform: rotate(-45deg);
+          transition: all .3s;
+        }
+        &:after {
+          right: 8px;
+          transform: rotate(45deg);
         }
       }
     }
-    &.active .accordion-header > a:after {
-      content: url("/pix/chevron-up.svg");
+    &.active .accordion-header > a {
+      &:before {
+        transform: rotate(45deg);
+      }
+      &:after {
+        transform: rotate(-45deg);
+      }
     }
     &.active {
       background-color: darken($lightColor, 2);
     }
     .accordion-body {
-      height: 0;
+      max-height: 0;
       overflow: hidden;
+      transition: max-height .3s;
     }
     &.active .accordion-body {
-      height: auto;
-      padding: 17px 0 7px 0;
+      max-height: 2000px;
     }
   }
 }
