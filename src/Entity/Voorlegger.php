@@ -17,7 +17,7 @@ class Voorlegger
     const STATUS_MADI_GECONTROLEERD = 3;
 
     const STATUS_GKA_OPEN = 0;
-    const STATUS_GKA_OPGEVOERD = 1;
+    const STATUS_GKA_OPGEVOERD = 2;
     const STATUS_GKA_GECONTROLEERD = 3;
 
     /**
