@@ -1,4 +1,4 @@
-
+{% import 'partial.macros.html.twig' as tools %}
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'open' }}" id="voorlegger-verklaringWerkgever">
                 <div class="accordion-header">
@@ -8,8 +8,8 @@
                                 Verklaring werkgever
                             </div>
                             <div class="status">
-                                <span class="{{ dossier.voorlegger.verklaringWerkgeverOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
-                                <span class="{{ dossier.voorlegger.verklaringWerkgeverOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.verklaringWerkgeverOntvangenMadi) }}">MaDi</span>
+                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.verklaringWerkgeverOntvangenGka) }}">GKA</span>
                             </div>
                             <div class="nvt">
                                 <span class="{{ dossier.voorlegger.verklaringWerkgeverNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.verklaringWerkgeverNvt ? 'n.v.t.' }}</span>

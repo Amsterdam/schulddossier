@@ -1,4 +1,4 @@
-
+{% import 'partial.macros.html.twig' as tools %}
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'open' }}" id="voorlegger-beschikkingOnderBewindstelling">
                 <div class="accordion-header">
@@ -8,8 +8,8 @@
                                 Beschikking onderbewindstelling
                             </div>
                             <div class="status">
-                                <span class="{{ dossier.voorlegger.beschikkingOnderBewindstellingOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
-                                <span class="{{ dossier.voorlegger.beschikkingOnderBewindstellingOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.beschikkingOnderBewindstellingOntvangenMadi) }}">MaDi</span>
+                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.beschikkingOnderBewindstellingOntvangenGka) }}">GKA</span>
                             </div>
                             <div class="nvt">
                                 <span class="{{ dossier.voorlegger.beschikkingOnderBewindstellingNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.beschikkingOnderBewindstellingNvt ? 'n.v.t.' }}</span>

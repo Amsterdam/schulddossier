@@ -1,4 +1,4 @@
-
+{% import 'partial.macros.html.twig' as tools %}
             {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'open' }}" id="voorlegger-vtlb">
                 <div class="accordion-header">
@@ -8,8 +8,8 @@
                                 VTLB (Vrij te laten bedrag)
                             </div>
                             <div class="status">
-                                <span title="{{ dossier.voorlegger.vtlbOntvangenMadi ? 'MaDi: gecontroleerd' : 'MaDi: niet gecontroleerd' }} " class="{{ dossier.voorlegger.vtlbOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
-                                <span title="{{ dossier.voorlegger.vtlbOntvangenGka ? 'GKA: gecontroleerd' : 'GKA: niet gecontroleerd' }} "  class="{{ dossier.voorlegger.vtlbOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
+                                <span title="{{ tools.madi_status_to_class(dossier.voorlegger.vtlbOntvangenMadi) }} " class="{{ dossier.voorlegger.vtlbOntvangenMadi ? 'afgerond' : 'open' }}">MaDi</span>
+                                <span title="{{ tools.gka_status_to_class(dossier.voorlegger.vtlbOntvangenGka) }} "  class="{{ dossier.voorlegger.vtlbOntvangenGka ? 'afgerond' : 'open' }}">GKA</span>
                             </div>
                             <div class="nvt">
                             </div>
