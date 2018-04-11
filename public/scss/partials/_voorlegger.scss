@@ -65,18 +65,16 @@
     height: 20px;
     line-height: 20px;
     width: 50px;
+    text-align: center;
   }
   
 }
 .voorlegger-body {
   padding: 17px 0 7px 0;
-//  .buttons {
-//    max-height: 0;
-//    transition: max-height .3s;
-//    .changed & {
-//      max-height: 200px;
-//    }
-//  }
+  .button {
+    font-size: $fontSmallSize;
+    padding: $padding / 4 $padding / 2;
+  }
 }
 .accordion-body,
 .form-checks {
