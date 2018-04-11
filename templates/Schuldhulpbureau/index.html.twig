@@ -1,0 +1,51 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Schuldhulpbureau - {{ parent() }}{% endblock %}
+
+{% block body_classes %}hide-pdf-splitter{% endblock %}
+
+{% block document %}
+    <nav class="nav-internal">
+        <ul>
+            <li>Schuldhulpbureaus</li>
+            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_create') }}">Nieuw schuldhulpbureau</a></li>
+        </ul>
+    </nav>
+
+    <div class="document well">
+        <div class="document-header">
+            <h1 class="document-title">Schuldhulpbureau</h1>
+        </div>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Naam</th>
+                    </tr>
+                </thead>
+                <tbody>
+{% for schuldhulpbureau in schuldhulpbureaus %}
+                    <tr>
+                        <th><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_update', {'schuldhulpbureauId': schuldhulpbureau.id}) }}">{{ schuldhulpbureau.naam }}</a></th>
+                    </tr>
+{% endfor %}
+               </tbody>
+            </table>
+        </div>
+        {% if pagination.numberOfPages > 1 %}
+          <div class="pagination">
+              {% if pagination.page <= 0 %}
+              <span class="prev">vorige</span>
+              {% else %}
+              <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_index', {'page': pagination.page - 1}) }}">vorige</a>
+              {% endif %}
+              <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
+              {% if (pagination.page + 1) >= pagination.numberOfPages %}
+              <span class="next">volgende</span>
+              {% else %}
+              <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_index', {'page': pagination.page + 1}) }}">volgende</a>
+              {% endif %}
+          </div>
+        {% endif %}
+    </div>
+{% endblock %}

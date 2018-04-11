@@ -1,0 +1,29 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Team: {{ team.naam }} - {{ parent() }}{% endblock %}
+
+{% block body_classes %}hide-pdf-splitter{% endblock %}
+
+{% block document %}
+<nav class="nav-internal">
+    <ul>
+        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_index') }}"><i class="icon-arrow-left"></i> Terug naar overzicht</a></li>
+    </ul>
+</nav>
+
+<div class="document well">
+    <div class="document-header">
+        <h1 class="document-title">Team: {{ team.naam }}</h1>
+    </div>
+    <div class="form-container">
+        {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
+        {{ form_row(form.naam) }}
+        {{ form_row(form.email) }}
+        <p class="buttons right">
+            <button type="submit" class="button primary">Opslaan</button>
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_index') }}">Annuleren</a>
+        </p>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
