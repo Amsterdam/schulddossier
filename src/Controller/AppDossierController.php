@@ -66,6 +66,9 @@ use Symfony\Component\Workflow\Registry as WorkflowRegistry;
 use Symfony\Component\Workflow\Dumper\GraphvizDumper;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DocumentFormType;
+use Symfony\Component\Validator\Constraints\Valid;
 
 /**
  * @Route("/app/dossier")
@@ -280,6 +283,63 @@ class AppDossierController extends Controller
         return $this->render('Dossier/detailPrullenbak.html.twig', [
             'dossier' => $dossier,
             'dossierDocumenten' => $dossierDocumenten,
+        ]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/documenten/overige-documenten")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function detailOverigeDocumentenAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    {
+        $formBuilder = $this->createFormBuilder(['file' => []]);
+        $formBuilder->add('file', CollectionType::class, [
+            'mapped' => false,
+            'entry_type' => DocumentFormType::class,
+            'entry_options' => ['required' => false],
+            'allow_add' => true,
+            'allow_delete' => true,
+            'prototype_name' => '__name__',
+            'by_reference' => false,
+            'constraints' => [
+                new Valid()
+            ]
+        ]);
+
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $files = $form->get('file')->getData();
+            foreach ($files as $document) {
+                /** @var $file Document */
+                if ($document !== null) {
+                    $document->setMd5Hash(md5($document->getFile()->getRealPath()));
+                    $document->setMainTag('dossier-' . $dossier->getId());
+                    $document->setGroep('dossier');
+                    $document->setUploader($this->getUser());
+                    $document->setUploadDatumTijd(new \DateTime());
+                    $dossierDocument = new DossierDocument();
+                    $dossierDocument->setDocument($document);
+                    $dossierDocument->setDossier($dossier);
+                    $dossierDocument->setOnderwerp('overige');
+                }
+            }
+            $em->flush();
+
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(['msg' => 'OK']);
+            }
+
+            $this->addFlash('success', 'Document toegevoegd');
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', ['dossierId' => $dossier->getId()]);
+        } else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
+            return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        return $this->render('Dossier/detailOverigeDocumenten.html.twig', [
+            'dossier' => $dossier,
+            'form' => $form->createView()
         ]);
     }
 
