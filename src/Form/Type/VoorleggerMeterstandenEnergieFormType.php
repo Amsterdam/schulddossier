@@ -36,42 +36,53 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('meterstandenEnergieNvt', CheckboxType::class, [
-            'required' => false
+            'required' => false,
+            'label' => "Schuld energiebedrijf n.v.t."
         ]);
 
         $builder->add('energieBedrijf', TextType::class, [
-            'required' => false
+            'required' => false,
+            'label' => "Huidig energiebedrijf"
         ]);
         $builder->add('energieBedrijfKlantnummer', TextType::class, [
-            'required' => false
+            'required' => false,
+            'label' => "Klantnummer"
         ]);
         $builder->add('energieBedrijfDatumOpname', DateType::class, [
             'required' => false,
             'html5' => true,
-            'widget' => 'single_text'
+            'widget' => 'single_text',
+            'label' => "Datum opname"
         ]);
         $builder->add('energieBedrijfT1', NumberType::class, [
-            'required' => false
+            'required' => false,
+            'label' => "Meterstand Elektriciteit T1"
         ]);
         $builder->add('energieBedrijfT2', NumberType::class, [
-            'required' => false
+            'required' => false,
+            'label' => "Meterstand Elektriciteit T2"
         ]);
         $builder->add('energieBedrijfGas', NumberType::class, [
-            'required' => false
+            'required' => false,
+            'label' => "Meterstand Gas"
         ]);
         $builder->add('warmteBedrijf', TextType::class, [
-            'required' => false
+            'required' => false,
+            'label' => "Warmtebedrijf"
         ]);
         $builder->add('warmteBedrijfKlantnummer', TextType::class, [
-            'required' => false
+            'required' => false,
+            'label' => "Klantnummer (warmtebedrijf)"
         ]);
         $builder->add('warmteBedrijfDatumOpname', DateType::class, [
             'required' => false,
             'html5' => true,
-            'widget' => 'single_text'
+            'widget' => 'single_text',
+            'label' => "Datum opname (warmtebedrijf)"
         ]);
         $builder->add('warmteBedrijfOpname', NumberType::class, [
-            'required' => false
+            'required' => false,
+            'label' => "Meterstand Warmte"
         ]);
 
         $builder->add('file', CollectionType::class, [

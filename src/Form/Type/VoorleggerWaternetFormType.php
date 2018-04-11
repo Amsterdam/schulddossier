@@ -40,15 +40,18 @@ class VoorleggerWaternetFormType extends AbstractType
         ]);
 
         $builder->add('drinkwaterKlantnummer', TextType::class, [
-            'required' => false
+            'required' => false,
+            'label' => "Klantnummer"
         ]);
         $builder->add('drinkwaterDatumOpname', DateType::class, [
             'required' => false,
             'html5' => true,
-            'widget' => 'single_text'
+            'widget' => 'single_text',
+            'label' => "Datum opname"
         ]);
         $builder->add('drinkwaterOpname', NumberType::class, [
-            'required' => false
+            'required' => false,
+            'label' => "Meterstand water"
         ]);
 
         $builder->add('file', CollectionType::class, [
