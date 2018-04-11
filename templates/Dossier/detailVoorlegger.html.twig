@@ -12,7 +12,7 @@
     </nav>
     
     <div class="document well">
-      <div class="document-header">
+      <div class="document-header group">
         
         <div>
           <h1 class="document-title">{{ dossier.clientNaam }}</h1>
@@ -60,7 +60,7 @@
           <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', {'dossierId': dossier.id}) }}">Overige documenten</a></li>
         </ul>
       </div>
-      <div class="accordion-container" data-decorator="droppable">
+      <div class="accordion-container" data-decorator="droppable" data-changer="change">
         {% include 'Dossier/partial.voorleggerLegitimatie.html.twig' with {'form': voorleggerForms['legitimatie'], 'dossier': dossier} only %}
         {% include 'Dossier/partial.voorleggerVtlb.html.twig' with {'form': voorleggerForms['vtlb'], 'dossier': dossier} only %}
         <h2>Inkomen</h2>
@@ -104,6 +104,14 @@
         {% include 'Dossier/partial.voorleggerGereserveerdeGelden.html.twig' with {'form': voorleggerForms['gereserveerdeGelden'], 'dossier': dossier} only %}
         <h2>Overige</h2>
         {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForms['ondertekendAanvraagFormulier'], 'dossier': dossier} only %}
+        
+        
+        <p class="buttons right form-global-buttons">
+            <button type="submit" class="button primary">Opslaan</button>
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Annuleren</a>
+        </p>
+        
+        
       </div>
     
       <div class="document-footer">
