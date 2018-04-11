@@ -472,7 +472,7 @@ form {
   }
 }
 
-.pdf-splitter-page-drag .default-form-style .files-container .file-container {
+.pdf-splitter-page-drag .files-container .file-container {
   .drop-area {
     border-color: #CCC;
     position: absolute;
@@ -492,7 +492,7 @@ form {
   }
 }
 
-.default-form-style .files-container .add {
+.files-container .add {
   /*background-color: #F00; */
   display: inline-block;
   height: auto;
@@ -526,14 +526,24 @@ form {
 //  text-decoration: underline;
 //}
 //
-.default-form-style.in-progress {
+.in-progress {
 //  opacity: 0.6;
+//  &:after {
+//    content: '';
+//    position: absolute;
+//    z-index: 10;
+//    left: 0;
+//    right: 0;
+//    top: 0;
+//    bottom: 0;
+//    background-color: rgba(#000, .1);
+//  }
   &,
   .button[type="submit"] {
     position: relative;
   }
-  .button[type="submit"]:before,
-  &:before {
+  .button[type="submit"]:after,
+  &:after {
     content: '';
     position: absolute;
     left: 0;
@@ -544,6 +554,25 @@ form {
     animation: progress 2s infinite;
   }
 }
+
+.form-global-buttons {
+  position: fixed;
+  z-index: 100;
+  
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(#fff, .9);
+  padding: $padding / 2;
+  transition: all .3s;
+  bottom: -100px;
+  opacity: 0;
+  .form-changed & {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
 //
 //.form-container {
 //  padding: 20px 20px 20px 20px;
@@ -556,3 +585,46 @@ form {
   33%   { left: 20%; right: 0; }
   66%   { left: 0; right: 20%; }
 }
+
+
+//[data-changer*="change"] {
+//  .buttons {
+////    max-height: 0;
+////    overflow: hidden;
+////    opacity: 0;
+////    transition: all .3s;
+//    .primary {
+//      background-color: darken($lightColor, 10);
+//      border-color: darken($lightColor, 10);
+//      font-size: 0;
+//      &:before {
+//        font-size: $fontSmallSize;
+//        content: 'Opgeslagen';
+//
+//      }
+//    }
+//  }
+//
+//  &.form-changed {
+//    .buttons {
+//      .primary {
+//        background-color: $brandColor1;
+//        border-color: $brandColor1;
+//        font-size: $fontSmallSize;
+//        &:before {
+//          content: '';
+//        }
+//
+//      }
+//    }
+//    &.in-progress {
+//      .buttons {
+//        .primary {
+//          &:before {
+//            content: 'Bezig met ';
+//          }
+//        }
+//      }
+//    }
+//  }
+//}
