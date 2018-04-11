@@ -69,6 +69,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DocumentFormType;
 use Symfony\Component\Validator\Constraints\Valid;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 
 /**
  * @Route("/app/dossier")
@@ -261,11 +262,20 @@ class AppDossierController extends Controller
             }
         }
 
+
+        $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
+        $voorleggerForm->handleRequest($request);
+        if ($voorleggerForm->isSubmitted()) {
+            exit('NIY ' . __FILE__ . ':' . __LINE__);
+        }
+        $em->flush();
+
         $workflow = $registry->get($dossier);
 
         return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
             'form' => $form->createView(),
+            'voorleggerForm' => $voorleggerForm->createView(),
             'voorleggerForms' => array_map(function ($form) { return $form->createView(); }, $voorleggerForms)
         ]);
     }
