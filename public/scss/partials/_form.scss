@@ -562,14 +562,21 @@ form {
   left: 0;
   right: 0;
   bottom: 0;
+  
   background-color: rgba(#fff, .9);
-  padding: $padding / 2;
+  padding: $padding / 2 $padding;
   transition: all .3s;
   bottom: -100px;
   opacity: 0;
   .form-changed & {
     bottom: 0;
     opacity: 1;
+  }
+  .buttons {
+    margin: 0;
+    .document & {
+      margin: 0 $padding;
+    }
   }
 }
 

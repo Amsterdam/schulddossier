@@ -146,7 +146,13 @@
         form = this;
       
       form.classList.add('form-changed');
-      
+
+      if (!form.changed) {
+        form.changed = true;
+        w.onbeforeunload = function() {
+          return 'Je hebt nog niet opgeslagen wijzigingen. Deze zul verloren gaan als je niet eerst je wijzigingen opslaat';
+        }
+      }
       
       // if (form.files) {
       //

@@ -227,7 +227,11 @@ hr {
   padding: 0;
   margin: 3.85rem 0; }
 
-div.document-container {
+.container {
+  max-width: 900px;
+  margin: 0 auto; }
+
+.document-container {
   max-width: 900px;
   margin: 3.85rem auto; }
 
@@ -666,13 +670,17 @@ form label strong, form .label strong {
   right: 0;
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 1.5rem;
+  padding: 1.5rem 3rem;
   transition: all .3s;
   bottom: -100px;
   opacity: 0; }
 .form-changed .form-global-buttons {
   bottom: 0;
   opacity: 1; }
+.form-global-buttons .buttons {
+  margin: 0; }
+.document .form-global-buttons .buttons {
+  margin: 0 3rem; }
 
 @keyframes progress {
   33% {
@@ -998,11 +1006,15 @@ body {
   padding-left: calc(20vw + 3rem); }
 body header.top {
   left: 20vw; }
+body .form-global-buttons {
+  padding-left: calc(20vw + 3rem); }
 
 .hide-pdf-splitter {
   padding-left: 3rem; }
 .hide-pdf-splitter header.top {
   left: 0; }
+.hide-pdf-splitter .form-global-buttons {
+  padding-left: 3rem; }
 @media (max-width: 900px) {
   .hide-pdf-splitter {
     padding-left: 10px; } }

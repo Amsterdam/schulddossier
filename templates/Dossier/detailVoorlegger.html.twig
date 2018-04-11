@@ -57,7 +57,6 @@
         <ul>
           <li class="active"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Aanmelding</a></li>
           <li class=""><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">Schulden</a></li>
-          <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', {'dossierId': dossier.id}) }}">Overige documenten</a></li>
         </ul>
       </div>
       <div class="accordion-container" data-decorator="droppable" data-changer="change">
@@ -106,12 +105,15 @@
         {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForms['ondertekendAanvraagFormulier'], 'dossier': dossier} only %}
         
         
-        <p class="buttons right form-global-buttons">
-            <button type="submit" class="button primary">Opslaan</button>
-            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Annuleren</a>
-        </p>
-        
-        
+        <div class="form-global-buttons">
+            <div class="container">
+                <p class="buttons right">
+                    <button type="submit" class="button primary">Opslaan</button>
+                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Annuleren</a>
+                </p>
+            </div>
+        </div>
+
       </div>
     
       <div class="document-footer">

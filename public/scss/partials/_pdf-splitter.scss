@@ -93,6 +93,9 @@ body {
   padding-left: calc(#{$pdfSplitterWidth} + #{$padding});
   header.top {
     left: $pdfSplitterWidth;
+  } 
+  .form-global-buttons {
+    padding-left: calc(#{$pdfSplitterWidth} + #{$padding});
   }
 }
 .hide-pdf-splitter {
@@ -100,6 +103,10 @@ body {
   header.top {
     left: 0;
   }
+  .form-global-buttons {
+    padding-left: $padding;
+  }
+  
   @include medium {
     padding-left: 10px;
   }
