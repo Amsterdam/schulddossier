@@ -25,6 +25,14 @@ class Team
      */
     private $naam;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Email
+     */
+    private $email;
+
     public function getId()
     {
         return $this->id;
@@ -38,6 +46,16 @@ class Team
     public function setNaam($naam)
     {
         $this->naam = $naam;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 
     /**
