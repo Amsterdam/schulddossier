@@ -59,50 +59,54 @@
           <li class=""><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">Schulden</a></li>
         </ul>
       </div>
+      
+
+      {{ form_start(voorleggerForm) }}
+      
       <div class="accordion-container" data-decorator="droppable" data-changer="change">
-        {% include 'Dossier/partial.voorleggerLegitimatie.html.twig' with {'form': voorleggerForms['legitimatie'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerVtlb.html.twig' with {'form': voorleggerForms['vtlb'], 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerLegitimatie.html.twig' with {'form': voorleggerForm.legitimatie, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerVtlb.html.twig' with {'form': voorleggerForm.vtlb, 'dossier': dossier} only %}
         <h2>Inkomen</h2>
-        {% include 'Dossier/partial.voorleggerInkomstenspecificatie.html.twig' with {'form': voorleggerForms['inkomstenspecificatie'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerArbeidsovereenkomst.html.twig' with {'form': voorleggerForms['arbeidsovereenkomst'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerBeschikkingUwv.html.twig' with {'form': voorleggerForms['beschikkingUwv'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerVoorlopigeTeruggaafBelastingdienst.html.twig' with {'form': voorleggerForms['voorlopigeTeruggaafBelastingdienst'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerAlimentatie.html.twig' with {'form': voorleggerForms['alimentatie'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerKostgeld.html.twig' with {'form': voorleggerForms['kostgeld'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerHuurtoeslag.html.twig' with {'form': voorleggerForms['huurtoeslag'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerZorgtoeslag.html.twig' with {'form': voorleggerForms['zorgtoeslag'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerKinderopvangtoeslag.html.twig' with {'form': voorleggerForms['kinderopvangtoeslag'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerKindgebondenBudget.html.twig' with {'form': voorleggerForms['kindgebondenBudget'], 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerInkomstenspecificatie.html.twig' with {'form': voorleggerForm.inkomstenspecificatie, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerArbeidsovereenkomst.html.twig' with {'form': voorleggerForm.arbeidsovereenkomst, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerBeschikkingUwv.html.twig' with {'form': voorleggerForm.beschikkingUwv, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerVoorlopigeTeruggaafBelastingdienst.html.twig' with {'form': voorleggerForm.voorlopigeTeruggaafBelastingdienst, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerAlimentatie.html.twig' with {'form': voorleggerForm.alimentatie, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerKostgeld.html.twig' with {'form': voorleggerForm.kostgeld, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerHuurtoeslag.html.twig' with {'form': voorleggerForm.huurtoeslag, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerZorgtoeslag.html.twig' with {'form': voorleggerForm.zorgtoeslag, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerKinderopvangtoeslag.html.twig' with {'form': voorleggerForm.kinderopvangtoeslag, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerKindgebondenBudget.html.twig' with {'form': voorleggerForm.kindgebondenBudget, 'dossier': dossier} only %}
         <h2>Uitgaven</h2>
-        {% include 'Dossier/partial.voorleggerHuurspecificatie.html.twig' with {'form': voorleggerForms['huurspecificatie'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerAlimentatieEchtscheidingsconvenant.html.twig' with {'form': voorleggerForms['alimentatieEchtscheidingsconvenant'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerPolisbladZorgverzekering.html.twig' with {'form': voorleggerForms['polisbladZorgverzekering'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerOvereenkomstKinderopvang.html.twig' with {'form': voorleggerForms['overeenkomstKinderopvang'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerKwijtscheldingGemeenteBelasting.html.twig' with {'form': voorleggerForms['kwijtscheldingGemeenteBelasting'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerCorrigerenGemeenteBelasting.html.twig' with {'form': voorleggerForms['corrigerenGemeenteBelasting'], 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerHuurspecificatie.html.twig' with {'form': voorleggerForm.huurspecificatie, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerAlimentatieEchtscheidingsconvenant.html.twig' with {'form': voorleggerForm.alimentatieEchtscheidingsconvenant, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerPolisbladZorgverzekering.html.twig' with {'form': voorleggerForm.polisbladZorgverzekering, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerOvereenkomstKinderopvang.html.twig' with {'form': voorleggerForm.overeenkomstKinderopvang, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerKwijtscheldingGemeenteBelasting.html.twig' with {'form': voorleggerForm.kwijtscheldingGemeenteBelasting, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerCorrigerenGemeenteBelasting.html.twig' with {'form': voorleggerForm.corrigerenGemeenteBelasting, 'dossier': dossier} only %}
         <h2>Auto</h2>
-        {% include 'Dossier/partial.voorleggerAutoTaxatie.html.twig' with {'form': voorleggerForms['autoTaxatie'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerAutolastenKmWoonwerkverkeer.html.twig' with {'form': voorleggerForms['autolastenKmWoonwerkverkeer'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerVerklaringWerkgever.html.twig' with {'form': voorleggerForms['verklaringWerkgever'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerVrijwaringsbewijs.html.twig' with {'form': voorleggerForms['vrijwaringsbewijs'], 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerAutoTaxatie.html.twig' with {'form': voorleggerForm.autoTaxatie, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerAutolastenKmWoonwerkverkeer.html.twig' with {'form': voorleggerForm.autolastenKmWoonwerkverkeer, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerVerklaringWerkgever.html.twig' with {'form': voorleggerForm.verklaringWerkgever, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerVrijwaringsbewijs.html.twig' with {'form': voorleggerForm.vrijwaringsbewijs, 'dossier': dossier} only %}
         <h2>Schulden</h2>
-        {% include 'Dossier/partial.voorleggerSchuldenoverzicht.html.twig' with {'form': voorleggerForms['schuldenoverzicht'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerInzageToetsingBkr.html.twig' with {'form': voorleggerForms['inzageToetsingBkr'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerStabilisatieovereenkomst.html.twig' with {'form': voorleggerForms['stabilisatieovereenkomst'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerCjib.html.twig' with {'form': voorleggerForms['cjib'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerMeterstandenEnergie.html.twig' with {'form': voorleggerForms['meterstandenEnergie'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerWaternet.html.twig' with {'form': voorleggerForms['waternet'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerRetourbewijsModem.html.twig' with {'form': voorleggerForms['retourbewijsModem'], 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerSchuldenoverzicht.html.twig' with {'form': voorleggerForm.schuldenoverzicht, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerInzageToetsingBkr.html.twig' with {'form': voorleggerForm.inzageToetsingBkr, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerStabilisatieovereenkomst.html.twig' with {'form': voorleggerForm.stabilisatieovereenkomst, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerCjib.html.twig' with {'form': voorleggerForm.cjib, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerMeterstandenEnergie.html.twig' with {'form': voorleggerForm.meterstandenEnergie, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerWaternet.html.twig' with {'form': voorleggerForm.waternet, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerRetourbewijsModem.html.twig' with {'form': voorleggerForm.retourbewijsModem, 'dossier': dossier} only %}
         <h2>Aanvraag schuldsanering</h2>
-        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringClient.html.twig' with {'form': voorleggerForms['toelichtingAanvraagSchuldsaneringClient'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringMadi.html.twig' with {'form': voorleggerForms['toelichtingAanvraagSchuldsaneringMadi'], 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringClient.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringClient, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringMadi.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringMadi, 'dossier': dossier} only %}
         <h2>Onderbewindstelling of budgetbeheer</h2>
-        {% include 'Dossier/partial.voorleggerBewindstellingOfBudgetbeheer.html.twig' with {'form': voorleggerForms['bewindstellingOfBudgetbeheer'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerBeschikkingOnderBewindstelling.html.twig' with {'form': voorleggerForms['beschikkingOnderBewindstelling'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerBudgetbeheer.html.twig' with {'form': voorleggerForms['budgetbeheer'], 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerGereserveerdeGelden.html.twig' with {'form': voorleggerForms['gereserveerdeGelden'], 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerBewindstellingOfBudgetbeheer.html.twig' with {'form': voorleggerForm.bewindstellingOfBudgetbeheer, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerBeschikkingOnderBewindstelling.html.twig' with {'form': voorleggerForm.beschikkingOnderBewindstelling, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerBudgetbeheer.html.twig' with {'form': voorleggerForm.budgetbeheer, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerGereserveerdeGelden.html.twig' with {'form': voorleggerForm.gereserveerdeGelden, 'dossier': dossier} only %}
         <h2>Overige</h2>
-        {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForms['ondertekendAanvraagFormulier'], 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForm.ondertekendAanvraagFormulier, 'dossier': dossier} only %}
         
         
         <div class="form-global-buttons">
@@ -115,6 +119,7 @@
         </div>
 
       </div>
+      {{ form_end(voorleggerForm) }}
     
       <div class="document-footer">
         <div class="document-workflow" id="document-workflow">

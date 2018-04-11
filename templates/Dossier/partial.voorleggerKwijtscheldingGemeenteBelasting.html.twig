@@ -1,5 +1,4 @@
 {% import 'partial.macros.html.twig' as tools %}
-            {{ form_start(form) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-kwijtscheldingGemeenteBelasting">
                 <div class="accordion-header">
                     <a href="#voorlegger-kwijtscheldingGemeenteBelasting" data-handler="toggle">
@@ -21,10 +20,6 @@
                         {{ form_row(form.kwijtscheldingGemeenteBelasting) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kwijtschelding gemeente belasting'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kwijtscheldingGemeenteBelasting')} only %}
-                        <p class="buttons right">
-                            <button class="button primary" type="submit">Opslaan</button>
-                        </p>
                     </div>
                 </div>
             </div>
-            {{ form_end(form) }}

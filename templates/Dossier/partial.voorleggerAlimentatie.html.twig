@@ -1,6 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
 
-            {{ form_start(form) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-alimentatie">
                 <div class="accordion-header">
                     <a href="#voorlegger-alimentatie" data-handler="toggle">
@@ -21,10 +20,6 @@
                         {{ form_row(form.alimentatieNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Alimentatie'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('alimentatie')} only %}
-                        <p class="buttons right">
-                            <button class="button primary" type="submit">Opslaan</button>
-                        </p>
                     </div>
                 </div>
             </div>
-            {{ form_end(form) }}
