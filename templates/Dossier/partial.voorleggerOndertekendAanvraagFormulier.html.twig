@@ -1,5 +1,4 @@
 {% import 'partial.macros.html.twig' as tools %}
-            {{ form_start(form) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-ondertekendAanvraagFormulier">
                 <div class="accordion-header">
                     <a href="#voorlegger-ondertekendAanvraagFormulier" data-handler="toggle">
@@ -23,10 +22,6 @@
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('ondertekendAanvraagFormulier')} only %}
                         {{ form_row(form.ondertekendAanvraagFormulierOntvangenMadi) }}
                         {{ form_row(form.ondertekendAanvraagFormulierOntvangenGka) }}
-                        <p class="buttons right">
-                            <button class="button primary" type="submit">Opslaan</button>
-                        </p>
                     </div>
                 </div>
             </div>
-            {{ form_end(form) }}

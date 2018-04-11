@@ -1,5 +1,4 @@
 {% import 'partial.macros.html.twig' as tools %}
-            {{ form_start(form) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-bewindstellingOfBudgetbeheer">
                 <div class="accordion-header">
                     <a href="#voorlegger-bewindstellingOfBudgetbeheer" data-handler="toggle">
@@ -20,10 +19,6 @@
                         {{ form_row(form.bewindstellingOfBudgetbeheerNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Onderbewindstelling of Budgetbeheer'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('bewindstellingOfBudgetbeheer')} only %}
-                        <p class="buttons right">
-                            <button class="button primary" type="submit">Opslaan</button>
-                        </p>
                     </div>
                 </div>
             </div>
-            {{ form_end(form) }}

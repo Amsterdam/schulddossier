@@ -192,83 +192,30 @@ class AppDossierController extends Controller
             return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         }
 
-        $voorleggerForms = [];
-        $voorleggerForms['alimentatieEchtscheidingsconvenant'] = $this->createForm(VoorleggerAlimentatieEchtscheidingsconvenantFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['alimentatie'] = $this->createForm(VoorleggerAlimentatieFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['arbeidsovereenkomst'] = $this->createForm(VoorleggerArbeidsovereenkomstFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['autolastenKmWoonwerkverkeer'] = $this->createForm(VoorleggerAutolastenKmWoonwerkverkeerFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['autoTaxatie'] = $this->createForm(VoorleggerAutoTaxatieFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['beschikkingOnderBewindstelling'] = $this->createForm(VoorleggerBeschikkingOnderBewindstellingFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['beschikkingUwv'] = $this->createForm(VoorleggerBeschikkingUwvFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['bewindstellingOfBudgetbeheer'] = $this->createForm(VoorleggerBewindstellingOfBudgetbeheerFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['budgetbeheer'] = $this->createForm(VoorleggerBudgetbeheerFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['cjib'] = $this->createForm(VoorleggerCjibFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['corrigerenGemeenteBelasting'] = $this->createForm(VoorleggerCorrigerenGemeenteBelastingFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['gereserveerdeGelden'] = $this->createForm(VoorleggerGereserveerdeGeldenFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['huurspecificatie'] = $this->createForm(VoorleggerHuurspecificatieFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['huurtoeslag'] = $this->createForm(VoorleggerHuurtoeslagFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['inkomstenspecificatie'] = $this->createForm(VoorleggerInkomstenspecificatieFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['inzageToetsingBkr'] = $this->createForm(VoorleggerInzageToetsingBkrFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['kinderopvangtoeslag'] = $this->createForm(VoorleggerKinderopvangtoeslagFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['kindgebondenBudget'] = $this->createForm(VoorleggerKindgebondenBudgetFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['kostgeld'] = $this->createForm(VoorleggerKostgeldFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['kwijtscheldingGemeenteBelasting'] = $this->createForm(VoorleggerKwijtscheldingGemeenteBelastingFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['legitimatie'] = $this->createForm(VoorleggerLegitimatieFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['meterstandenEnergie'] = $this->createForm(VoorleggerMeterstandenEnergieFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['ondertekendAanvraagFormulier'] = $this->createForm(VoorleggerOndertekendAanvraagFormulierFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['overeenkomstKinderopvang'] = $this->createForm(VoorleggerOvereenkomstKinderopvangFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['polisbladZorgverzekering'] = $this->createForm(VoorleggerPolisbladZorgverzekeringFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['retourbewijsModem'] = $this->createForm(VoorleggerRetourbewijsModemFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['schuldenoverzicht'] = $this->createForm(VoorleggerSchuldenoverzichtFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['stabilisatieovereenkomst'] = $this->createForm(VoorleggerStabilisatieovereenkomstFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['toelichtingAanvraagSchuldsaneringClient'] = $this->createForm(VoorleggerToelichtingAanvraagSchuldsaneringClientFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['toelichtingAanvraagSchuldsaneringMadi'] = $this->createForm(VoorleggerToelichtingAanvraagSchuldsaneringMadiFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['verklaringWerkgever'] = $this->createForm(VoorleggerVerklaringWerkgeverFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['voorlopigeTeruggaafBelastingdienst'] = $this->createForm(VoorleggerVoorlopigeTeruggaafBelastingdienstFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['vrijwaringsbewijs'] = $this->createForm(VoorleggerVrijwaringsbewijsFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['vtlb'] = $this->createForm(VoorleggerVtlbFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['waternet'] = $this->createForm(VoorleggerWaternetFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-        $voorleggerForms['zorgtoeslag'] = $this->createForm(VoorleggerZorgtoeslagFormType::class, $dossier->getVoorlegger(), ['disable_group' => $this->getUser()->getType()]);
-
-        foreach ($voorleggerForms as $key => $voorleggerForm) {
-            $voorleggerForm->handleRequest($request);
-            if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
-                $files = $voorleggerForm->get('file')->getData();
-                foreach ($files as $document) {
-                    /** @var $file Document */
-                    if ($document !== null) {
-                        $document->setMd5Hash(md5($document->getFile()->getRealPath()));
-                        $document->setMainTag('dossier-' . $dossier->getId());
-                        $document->setGroep('dossier');
-                        $document->setUploader($this->getUser());
-                        $document->setUploadDatumTijd(new \DateTime());
-                        $dossierDocument = new DossierDocument();
-                        $dossierDocument->setDocument($document);
-                        $dossierDocument->setDossier($dossier);
-                        $dossierDocument->setOnderwerp($key);
-                    }
-                }
-
-                $em->flush();
-
-                if ($request->isXmlHttpRequest()) {
-                    return $this->render('Dossier/partial.voorlegger' . ucfirst($key) . '.html.twig', [
-                        'dossier' => $dossier,
-                        'form' => $voorleggerForm->createView()
-                    ]);
-                }
-            } elseif ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid() === false) {
-                return new JsonResponse($this->get('json_serializer')->normalize($voorleggerForm->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-            }
-        }
-
-
         $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         $voorleggerForm->handleRequest($request);
-        if ($voorleggerForm->isSubmitted()) {
-            exit('NIY ' . __FILE__ . ':' . __LINE__);
+        if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
+            foreach ($voorleggerForm->all() as $child) {
+                if ($child->has('file')) {
+                    $files = $child->get('file')->getData();
+                    foreach ($files as $document) {
+                        /** @var $file Document */
+                        if ($document !== null) {
+                            $document->setMd5Hash(md5($document->getFile()->getRealPath()));
+                            $document->setMainTag('dossier-' . $dossier->getId());
+                            $document->setGroep('dossier');
+                            $document->setUploader($this->getUser());
+                            $document->setUploadDatumTijd(new \DateTime());
+                            $dossierDocument = new DossierDocument();
+                            $dossierDocument->setDocument($document);
+                            $dossierDocument->setDossier($dossier);
+                            $dossierDocument->setOnderwerp($key);
+                        }
+                    }
+                }
+            }
+            $em->flush();
         }
-        $em->flush();
 
         $workflow = $registry->get($dossier);
 
@@ -276,7 +223,6 @@ class AppDossierController extends Controller
             'dossier' => $dossier,
             'form' => $form->createView(),
             'voorleggerForm' => $voorleggerForm->createView(),
-            'voorleggerForms' => array_map(function ($form) { return $form->createView(); }, $voorleggerForms)
         ]);
     }
 
