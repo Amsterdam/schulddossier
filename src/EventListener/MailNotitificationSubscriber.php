@@ -8,6 +8,8 @@ use Symfony\Component\Workflow\Event\Event;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
+use Psr\Log\LoggerInterface;
 
 class MailNotitificationSubscriber implements EventSubscriberInterface
 {
@@ -19,23 +21,35 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
     /**
      * @var string
      */
-    private $gkaNotificiatieAdres;
+    private $fromNotificiatieAdres;
 
-    public function __construct(\Swift_Mailer $mailer, $gkaNotificiatieAdres)
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    public function __construct(\Swift_Mailer $mailer, $fromNotificiatieAdres, LoggerInterface $logger)
     {
         $this->mailer = $mailer;
-        $this->gkaNotificiatieAdres = $gkaNotificiatieAdres;
+        $this->fromNotificiatieAdres = $fromNotificiatieAdres;
+        $this->logger = $logger;
     }
 
     public function notifyGka(Event $event)
     {
-        $message = new \Swift_Message();
-        $message->addFrom('test@markei.nl');
-        $message->addTo($this->gkaNotificiatieAdres);
-        $message->setSubject('Dossier overgedragen naar het GKA');
-        $message->setBody('Dossier: ' . $event->getSubject()->getId() . ' / Client: ' . $event->getSubject()->getClientNaam());
+        /** @var $dossier Dossier */
+        $dossier = $event->getSubject();
 
-        $this->mailer->send($message);
+        if (empty($dossier->getTeamGka()->getEmail()) === false) {
+            $message = new \Swift_Message();
+            $message->addFrom('test@markei.nl');
+            $message->addTo($dossier->getTeamGka()->getEmail());
+            $message->setSubject('Dossier overgedragen naar het GKA');
+            $message->setBody('Dossier: ' . $dossier->getId() . ' / Client: ' . $dossier->getClientNaam());
+            $this->mailer->send($message);
+        } else {
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen team is toegewezen of er geen e-mailadres is ingevuld voor het team van dit dossier', ['dossierId' => $dossier->getId(), 'teamId' => $dossier->getTeamGka() ? $dossier->getTeamGka()->getId() : 'n/a']);
+        }
     }
 
     public static function getSubscribedEvents()
