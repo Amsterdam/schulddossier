@@ -1,0 +1,37 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Nieuw schuldeiser - {{ parent() }}{% endblock %}
+
+{% block body_classes %}hide-pdf-splitter{% endblock %}
+
+{% block document %}
+
+<nav class="nav-internal">
+    <ul>
+        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}"><i class="icon-arrow-left"></i> Terug naar overzicht</a></li>
+    </ul>
+</nav>
+
+<div class="document well">
+    <div class="document-header">
+        <h1 class="document-title">Nieuw schuldeiser</h1>
+    </div>
+    <div class="form-container">
+        {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
+        {{ form_row(form.bedrijfsnaam) }}
+        {{ form_row(form.allegroCode) }}
+        {{ form_row(form.rekening) }}
+        {{ form_row(form.straat) }}
+        {{ form_row(form.huisnummer) }}
+        {{ form_row(form.huisnummerToevoeging) }}
+        {{ form_row(form.postcode) }}
+        {{ form_row(form.plaats) }}
+        {{ form_row(form.opmerkingen) }}
+        <p class="buttons right">
+            <button type="submit" class="button primary">Opslaan</button>
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_index') }}">Annuleren</a>
+        </p>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
