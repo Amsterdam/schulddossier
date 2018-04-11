@@ -3,7 +3,9 @@
         {{ form_widget(form_elm.vars.prototype.naam, {'attr': {'placeholder': 'Nieuw document'} }) }}
         <div class="file-selector">
             <button>Selecteer een bestand</button>
-            {{ form_widget(form_elm.vars.prototype.file) }}
+            <label>
+              {{ form_widget(form_elm.vars.prototype.file) }}
+            <label>
         </div>
         <div class="drop-area"></div>
     </div>
