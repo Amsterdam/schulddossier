@@ -70,6 +70,10 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DocumentFormType;
 use Symfony\Component\Validator\Constraints\Valid;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * @Route("/app/dossier")
@@ -596,6 +600,77 @@ class AppDossierController extends Controller
             'createForm' => $createForm->createView(),
             'createSchuldeiserForm' => $createSchuldeiserForm->createView()
         ]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/schulden/excel")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function detailSchuldenExcel(Request $request, Dossier $dossier)
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+        $sheet->getPageSetup()->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4);
+
+
+        $sheet->setCellValueByColumnAndRow(1, 1, 'Schuldeiser');
+        $sheet->setCellValueByColumnAndRow(2, 1, 'Incassant');
+        $sheet->setCellValueByColumnAndRow(3, 1, 'Bedrag');
+        $sheet->setCellValueByColumnAndRow(4, 1, 'Ontstaansdatum');
+        $sheet->setCellValueByColumnAndRow(5, 1, 'Vaststeldatum');
+        $sheet->setCellValueByColumnAndRow(6, 1, 'Referentie');
+        $sheet->setCellValueByColumnAndRow(7, 1, 'Type');
+
+        $sheet->getStyleByColumnAndRow(1, 1, 7, 1)->getFont()->setBold(true);
+
+        foreach ($dossier->getSchuldItems() as $rowIndex => $schuldItem) {
+            $rowIndex = $rowIndex + 2; // one-based instead of zero-based and one for the header
+            $sheet->setCellValueByColumnAndRow(1, $rowIndex, $schuldItem->getSchuldeiser() ? $schuldItem->getSchuldeiser()->getBedrijfsnaam() : '');
+            $sheet->setCellValueByColumnAndRow(2, $rowIndex, $schuldItem->getIncassant() ? $schuldItem->getIncassant()->getBedrijfsnaam() : '');
+            $sheet->setCellValueByColumnAndRow(3, $rowIndex, $schuldItem->getBedrag());
+            $sheet->setCellValueByColumnAndRow(4, $rowIndex, $schuldItem->getOntstaansDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getOntstaansDatum()) : null);
+            $sheet->setCellValueByColumnAndRow(5, $rowIndex, $schuldItem->getVaststelDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getVaststelDatum()) : null);
+            $sheet->setCellValueByColumnAndRow(6, $rowIndex, $schuldItem->getReferentie());
+            $sheet->setCellValueByColumnAndRow(7, $rowIndex, $schuldItem->getType());
+
+            if (empty($schuldItem->getOpmerkingen()) === false) {
+                $sheet->getCommentByColumnAndRow(6, $rowIndex)->getText()->createText($schuldItem->getOpmerkingen());
+            }
+
+            $sheet->getStyleByColumnAndRow(3, $rowIndex)->getNumberFormat()->setFormatCode('"€"#,##0.00_-');
+            $sheet->getStyleByColumnAndRow(4, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
+            $sheet->getStyleByColumnAndRow(5, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
+        }
+
+        $sheet->getColumnDimensionByColumn(1)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(2)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(3)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(4)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(5)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(6)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(7)->setAutoSize(true);
+
+        $sheet->getHeaderFooter()->setOddHeader('Schuldenlijst: ' . $dossier->getClientNaam());
+        $sheet->getHeaderFooter()->setEvenHeader('Schuldenlijst: ' . $dossier->getClientNaam());
+
+        $sheet->getHeaderFooter()->setOddFooter(date('d-m-Y H:i'));
+        $sheet->getHeaderFooter()->setEvenFooter(date('d-m-Y H:i'));
+
+        $fs = new Filesystem();
+        $fs->mkdir($this->container->getParameter('kernel.project_dir') . '/var/tmp');
+        $tmpName = $this->container->getParameter('kernel.project_dir') . '/var/tmp/schuldenlijst-excel-' . $dossier->getId() . '.xlsx';
+        $fs->touch($tmpName);
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($tmpName);
+
+        $response = new BinaryFileResponse($tmpName, BinaryFileResponse::HTTP_OK, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'Cache-Control' => 'max-age=0'
+        ], false, 'attachment');
+        $response->deleteFileAfterSend(true);
+        return $response;
     }
 
     /**
