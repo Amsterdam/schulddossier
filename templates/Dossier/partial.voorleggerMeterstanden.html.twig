@@ -1,17 +1,15 @@
 {% import 'partial.macros.html.twig' as tools %}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-meterstanden">
                 <div class="accordion-header">
-                    <a href="#voorlegger-meterstanden" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Meterstanden
-                            </div>
-                            <div class="status">
-                            </div>
-                            <div class="nvt">
-                            </div>
+                    
+                    <div class="voorlegger-header">
+                        <h3 class="naam">
+                            <a href="#voorlegger-meterstanden" data-handler="toggle">Meterstanden</a>
+                        </h3>
+                        <div class="nvt">
                         </div>
-                    </a>
+                    </div>
+                    
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">

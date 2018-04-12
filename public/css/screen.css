@@ -1183,13 +1183,9 @@ body .form-global-buttons {
   border-radius: 2px;
   transition: background-color .3s; }
 .accordion-container .accordion .accordion-header {
-  position: relative; }
-.accordion-container .accordion .accordion-header > a {
-  color: #000000;
-  display: block;
-  text-decoration: none;
-  padding-right: 26px; }
-.accordion-container .accordion .accordion-header > a:before, .accordion-container .accordion .accordion-header > a:after {
+  position: relative;
+  padding-right: 36px; }
+.accordion-container .accordion .accordion-header:before, .accordion-container .accordion .accordion-header:after {
   content: '';
   position: absolute;
   right: 0;
@@ -1199,12 +1195,21 @@ body .form-global-buttons {
   background-color: #333;
   transform: rotate(-45deg);
   transition: all .3s; }
-.accordion-container .accordion .accordion-header > a:after {
+.accordion-container .accordion .accordion-header:after {
   right: 8px;
   transform: rotate(45deg); }
-.accordion-container .accordion.active .accordion-header > a:before {
+.accordion-container .accordion .accordion-header a:before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: -15px;
+  top: -8px;
+  right: -15px;
+  bottom: -8px;
+  background-color: transparent; }
+.accordion-container .accordion.active .accordion-header:before {
   transform: rotate(45deg); }
-.accordion-container .accordion.active .accordion-header > a:after {
+.accordion-container .accordion.active .accordion-header:after {
   transform: rotate(-45deg); }
 .accordion-container .accordion.active {
   background-color: #f0f0f0; }
@@ -1219,46 +1224,12 @@ body .form-global-buttons {
   display: flex;
   height: 20px; }
 .voorlegger-header .naam {
+  font-size: 1.4rem;
   height: 20px;
   line-height: 20px;
   margin-right: auto; }
-.voorlegger-header .status {
-  margin: 0; }
-.voorlegger-header .status span {
-  font-size: 0;
-  display: inline-block;
-  vertical-align: top;
-  margin-top: -1px;
-  width: 2.4rem;
-  height: 2.4rem;
-  box-sizing: border-box;
-  border: 4px solid gainsboro;
-  transform: rotate(45deg);
-  border-radius: 50%;
-  margin-right: .5rem;
-  background-color: #fff; }
-.voorlegger-header .status .status-bezig {
-  border-top-color: red;
-  border-right-color: red; }
-.voorlegger-header .status .status-opgevoerd {
-  border-color: green; }
-.voorlegger-header .status .status-gecontroleerd {
-  position: relative;
-  border-color: green;
-  background-color: green; }
-.voorlegger-header .status .status-gecontroleerd:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1.2rem;
-  height: 0.6rem;
-  border: 4px solid #fff;
-  border-right: none;
-  border-top: none;
-  transform: rotate(-90deg); }
-.voorlegger-header .status .na {
-  opacity: 0; }
+.voorlegger-header a {
+  text-decoration: none; }
 .voorlegger-header .nvt {
   height: 20px;
   line-height: 20px;
@@ -1363,7 +1334,8 @@ body .form-global-buttons {
 .status:hover {
   z-index: 2; }
 .status:hover ul {
-  background-color: white; }
+  background-color: white;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
 .status:hover strong {
   max-height: 2.4rem;
   margin-bottom: .5rem; }
@@ -1383,6 +1355,24 @@ body .form-global-buttons {
   max-height: 2.4rem; }
 .status label [disabled]:checked + strong:after {
   opacity: 0; }
+
+.status-container {
+  display: flex; }
+.status-container .form-row {
+  margin: -2px 0 0 0; }
+.status-container .label-widget {
+  position: relative;
+  width: 3.4rem; }
+.status-container .label-widget > label {
+  display: none; }
+.status-container strong {
+  max-width: 0; }
+.status-container .status {
+  position: absolute;
+  left: 0;
+  top: 0; }
+.status-container .status:hover strong {
+  max-width: 100px; }
 
 .document-workflow {
   margin-bottom: 1.925rem; }

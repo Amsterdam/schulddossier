@@ -1,27 +1,24 @@
 {% import 'partial.macros.html.twig' as tools %}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-ondertekendAanvraagFormulier">
                 <div class="accordion-header">
-                    <a href="#voorlegger-ondertekendAanvraagFormulier" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Ondertekend aanvraag formulier
-                            </div>
-                            <div class="status">
-                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.ondertekendAanvraagFormulierOntvangenMadi) }}">MaDi</span>
-                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.ondertekendAanvraagFormulierOntvangenGka) }}">GKA</span>
-                            </div>
-                            <div class="nvt">
-                            </div>
-                        </div>
-                    </a>
+                    
+                <div class="voorlegger-header">
+                    <h3 class="naam">
+                        <a href="#voorlegger-ondertekendAanvraagFormulier" data-handler="toggle">Ondertekend aanvraag formulier</a>
+                    </h3>
+                    <div class="status-container">
+                      {{ form_row(form.ondertekendAanvraagFormulierOntvangenMadi) }}
+                      {{ form_row(form.ondertekendAanvraagFormulierOntvangenGka) }}
+                    </div>
+                    <div class="nvt">
+                    </div>
+                </div>
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.aanvullendeInformatie) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Ondertekend aanvraag formulier'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('ondertekendAanvraagFormulier')} only %}
-                        {{ form_row(form.ondertekendAanvraagFormulierOntvangenMadi) }}
-                        {{ form_row(form.ondertekendAanvraagFormulierOntvangenGka) }}
                     </div>
                 </div>
             </div>

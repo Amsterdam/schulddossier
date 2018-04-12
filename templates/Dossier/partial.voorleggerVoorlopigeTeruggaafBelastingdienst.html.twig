@@ -1,28 +1,25 @@
 {% import 'partial.macros.html.twig' as tools %}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-voorlopigeTeruggaafBelastingdienst">
                 <div class="accordion-header">
-                    <a href="#voorlegger-voorlopigeTeruggaafBelastingdienst" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Voorlopige teruggaaf Belastingdienst
-                            </div>
-                            <div class="status">
-                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.voorlopigeTeruggaafBelastingdienstOntvangenMadi) }}">MaDi</span>
-                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.voorlopigeTeruggaafBelastingdienstOntvangenGka) }}">GKA</span>
-                            </div>
-                            <div class="nvt">
-                                <span class="{{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstNvt ? 'n.v.t.' }}</span>
-                            </div>
+                    
+                    <div class="voorlegger-header">
+                        <h3 class="naam">
+                            <a href="#voorlegger-voorlopigeTeruggaafBelastingdienst" data-handler="toggle">Voorlopige teruggaaf Belastingdienst</a>
+                        </h3>
+                        <div class="status-container">
+                          {{ form_row(form.voorlopigeTeruggaafBelastingdienstOntvangenMadi) }}
+                          {{ form_row(form.voorlopigeTeruggaafBelastingdienstOntvangenGka) }}
                         </div>
-                    </a>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.voorlopigeTeruggaafBelastingdienstNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Voorlopige teruggaaf Belastingdienst'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('voorlopigeTeruggaafBelastingdienst')} only %}
-                        {{ form_row(form.voorlopigeTeruggaafBelastingdienstOntvangenMadi) }}
-                        {{ form_row(form.voorlopigeTeruggaafBelastingdienstOntvangenGka) }}
                     </div>
                 </div>
             </div>

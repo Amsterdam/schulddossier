@@ -1,18 +1,16 @@
 {% import 'partial.macros.html.twig' as tools %}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-budgetbeheer">
                 <div class="accordion-header">
-                    <a href="#voorlegger-budgetbeheer" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Budgetbeheer
-                            </div>
-                            <div class="status">
-                            </div>
-                            <div class="nvt">
-                                <span class="{{ dossier.voorlegger.budgetbeheerNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.budgetbeheerNvt ? 'n.v.t.' }}</span>
-                            </div>
+                    
+                    <div class="voorlegger-header">
+                        <h3 class="naam">
+                            <a href="#voorlegger-budgetbeheer" data-handler="toggle">Budgetbeheer</a>
+                        </h3>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.budgetbeheerNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.budgetbeheerNvt ? 'n.v.t.' }}</span>
                         </div>
-                    </a>
+                    </div>
+                    
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">

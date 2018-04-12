@@ -1,28 +1,26 @@
 {% import 'partial.macros.html.twig' as tools %}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-retourbewijsModem">
                 <div class="accordion-header">
-                    <a href="#voorlegger-retourbewijsModem" data-handler="toggle">
+                    
                         <div class="voorlegger-header">
-                            <div class="naam">
-                                Retourbewijs modem
-                            </div>
-                            <div class="status">
-                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.retourbewijsModemOntvangenMadi) }}">MaDi</span>
-                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.retourbewijsModemOntvangenGka) }}">GKA</span>
+                            <h3 class="naam">
+                                <a href="#voorlegger-retourbewijsModem" data-handler="toggle">Retourbewijs modem</a>
+                            </h3>
+                            <div class="status-container">
+                              {{ form_row(form.retourbewijsModemOntvangenMadi) }}
+                              {{ form_row(form.retourbewijsModemOntvangenGka) }}
                             </div>
                             <div class="nvt">
                                 <span class="{{ dossier.voorlegger.retourbewijsModemNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.retourbewijsModemNvt ? 'n.v.t.' }}</span>
                             </div>
                         </div>
-                    </a>
+                    
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.retourbewijsModemNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Retourbewijs modem'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('retourbewijsModem')} only %}
-                        {{ form_row(form.retourbewijsModemOntvangenMadi) }}
-                        {{ form_row(form.retourbewijsModemOntvangenGka) }}
                     </div>
                 </div>
             </div>

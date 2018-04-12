@@ -1,20 +1,19 @@
 {% import 'partial.macros.html.twig' as tools %}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-autolastenKmWoonwerkverkeer">
                 <div class="accordion-header">
-                    <a href="#voorlegger-autolastenKmWoonwerkverkeer" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Autolasten km woon-werk-verkeer
-                            </div>
-                            <div class="status">
-                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.autolastenKmWoonwerkverkeerOntvangenMadi) }}">MaDi</span>
-                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.autolastenKmWoonwerkverkeerOntvangenGka) }}">GKA</span>
-                            </div>
-                            <div class="nvt">
-                                <span class="{{ dossier.voorlegger.autolastenKmWoonwerkverkeerNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.autolastenKmWoonwerkverkeerNvt ? 'n.v.t.' }}</span>
-                            </div>
+                    
+                    <div class="voorlegger-header">
+                        <h3 class="naam">
+                            <a href="#voorlegger-autolastenKmWoonwerkverkeer" data-handler="toggle">Autolasten km woon-werk-verkeer</a>
+                        </h3>
+                        <div class="status-container">
+                          {{ form_row(form.autolastenKmWoonwerkverkeerOntvangenMadi) }}
+                          {{ form_row(form.autolastenKmWoonwerkverkeerOntvangenGka) }}
                         </div>
-                    </a>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.autolastenKmWoonwerkverkeerNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.autolastenKmWoonwerkverkeerNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
@@ -22,8 +21,6 @@
                         {{ form_row(form.autolastenKmWoonwerkverkeer) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Autolasten km woon-werk-verkeer'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('autolastenKmWoonwerkverkeer')} only %}
-                        {{ form_row(form.autolastenKmWoonwerkverkeerOntvangenMadi) }}
-                        {{ form_row(form.autolastenKmWoonwerkverkeerOntvangenGka) }}
                     </div>
                 </div>
             </div>

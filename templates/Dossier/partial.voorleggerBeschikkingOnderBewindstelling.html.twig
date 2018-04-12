@@ -1,28 +1,26 @@
 {% import 'partial.macros.html.twig' as tools %}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-beschikkingOnderBewindstelling">
                 <div class="accordion-header">
-                    <a href="#voorlegger-beschikkingOnderBewindstelling" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Beschikking onderbewindstelling
-                            </div>
-                            <div class="status">
-                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.beschikkingOnderBewindstellingOntvangenMadi) }}">MaDi</span>
-                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.beschikkingOnderBewindstellingOntvangenGka) }}">GKA</span>
-                            </div>
-                            <div class="nvt">
-                                <span class="{{ dossier.voorlegger.beschikkingOnderBewindstellingNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.beschikkingOnderBewindstellingNvt ? 'n.v.t.' }}</span>
-                            </div>
+                    
+                    <div class="voorlegger-header">
+                        <h3 class="naam">
+                            <a href="#voorlegger-beschikkingOnderBewindstelling" data-handler="toggle">Beschikking onderbewindstelling</a>
+                        </h3>
+                        <div class="status-container">
+                          {{ form_row(form.beschikkingOnderBewindstellingOntvangenMadi) }}
+                          {{ form_row(form.beschikkingOnderBewindstellingOntvangenGka) }}
                         </div>
-                    </a>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.beschikkingOnderBewindstellingNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.beschikkingOnderBewindstellingNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.beschikkingOnderBewindstellingNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Beschikking onderbewindstelling'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('beschikkingOnderBewindstelling')} only %}
-                        {{ form_row(form.beschikkingOnderBewindstellingOntvangenMadi) }}
-                        {{ form_row(form.beschikkingOnderBewindstellingOntvangenGka) }}
                     </div>
                 </div>
             </div>

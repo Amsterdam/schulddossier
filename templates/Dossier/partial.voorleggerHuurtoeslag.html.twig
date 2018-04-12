@@ -1,28 +1,26 @@
 {% import 'partial.macros.html.twig' as tools %}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-huurtoeslag">
                 <div class="accordion-header">
-                    <a href="#voorlegger-huurtoeslag" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Huurtoeslag
-                            </div>
-                            <div class="status">
-                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.huurtoeslagOntvangenMadi) }}">MaDi</span>
-                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.huurtoeslagOntvangenGka) }}">GKA</span>
-                            </div>
-                            <div class="nvt">
-                                <span class="{{ dossier.voorlegger.huurtoeslagNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.huurtoeslagNvt ? 'n.v.t.' }}</span>
-                            </div>
+                    
+                    <div class="voorlegger-header">
+                        <h3 class="naam">
+                            <a href="#voorlegger-huurtoeslag" data-handler="toggle">Huurtoeslag</a>
+                        </h3>
+                        <div class="status-container">
+                          {{ form_row(form.huurtoeslagOntvangenMadi) }}
+                          {{ form_row(form.huurtoeslagOntvangenGka) }}
                         </div>
-                    </a>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.huurtoeslagNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.huurtoeslagNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.huurtoeslagNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Huurtoeslag'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('huurtoeslag')} only %}
-                        {{ form_row(form.huurtoeslagOntvangenMadi) }}
-                        {{ form_row(form.huurtoeslagOntvangenGka) }}
                     </div>
                 </div>
             </div>

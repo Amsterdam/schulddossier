@@ -1,28 +1,25 @@
 {% import 'partial.macros.html.twig' as tools %}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-arbeidsovereenkomst">
                 <div class="accordion-header">
-                    <a href="#voorlegger-arbeidsovereenkomst" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Arbeidsovereenkomst
-                            </div>
-                            <div class="status">
-                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.arbeidsovereenkomstOntvangenMadi) }}">MaDi</span>
-                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.arbeidsovereenkomstOntvangenGka) }}">GKA</span>
-                            </div>
-                            <div class="nvt">
-                                <span class="{{ dossier.voorlegger.arbeidsovereenkomstNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.arbeidsovereenkomstNvt ? 'n.v.t.' }}</span>
-                            </div>
+                    
+                    <div class="voorlegger-header">
+                        <h3 class="naam">
+                            <a href="#voorlegger-arbeidsovereenkomst" data-handler="toggle">Arbeidsovereenkomst</a>
+                        </h3>
+                        <div class="status-container">
+                          {{ form_row(form.arbeidsovereenkomstOntvangenMadi) }}
+                          {{ form_row(form.arbeidsovereenkomstOntvangenGka) }}
                         </div>
-                    </a>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.arbeidsovereenkomstNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.arbeidsovereenkomstNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.arbeidsovereenkomstNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Arbeidsovereenkomst'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('arbeidsovereenkomst')} only %}
-                        {{ form_row(form.arbeidsovereenkomstOntvangenMadi) }}
-                        {{ form_row(form.arbeidsovereenkomstOntvangenGka) }}
                     </div>
                 </div>
             </div>

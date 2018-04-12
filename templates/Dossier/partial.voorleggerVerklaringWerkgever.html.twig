@@ -1,28 +1,26 @@
 {% import 'partial.macros.html.twig' as tools %}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-verklaringWerkgever">
                 <div class="accordion-header">
-                    <a href="#voorlegger-verklaringWerkgever" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Verklaring werkgever
-                            </div>
-                            <div class="status">
-                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.verklaringWerkgeverOntvangenMadi) }}">MaDi</span>
-                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.verklaringWerkgeverOntvangenGka) }}">GKA</span>
-                            </div>
-                            <div class="nvt">
-                                <span class="{{ dossier.voorlegger.verklaringWerkgeverNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.verklaringWerkgeverNvt ? 'n.v.t.' }}</span>
-                            </div>
+                    
+                    <div class="voorlegger-header">
+                        <h3 class="naam">
+                            <a href="#voorlegger-verklaringWerkgever" data-handler="toggle">Verklaring werkgever</a>
+                        </h3>
+                        <div class="status-container">
+                          {{ form_row(form.verklaringWerkgeverOntvangenMadi) }}
+                          {{ form_row(form.verklaringWerkgeverOntvangenGka) }}
                         </div>
-                    </a>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.verklaringWerkgeverNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.verklaringWerkgeverNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.verklaringWerkgeverNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Verklaring werkgever'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('verklaringWerkgever')} only %}
-                        {{ form_row(form.verklaringWerkgeverOntvangenMadi) }}
-                        {{ form_row(form.verklaringWerkgeverOntvangenGka) }}
                     </div>
                 </div>
             </div>

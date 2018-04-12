@@ -1,28 +1,26 @@
 {% import 'partial.macros.html.twig' as tools %}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-kostgeld">
                 <div class="accordion-header">
-                    <a href="#voorlegger-kostgeld" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Kostgeld
-                            </div>
-                            <div class="status">
-                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.kostgeldOntvangenMadi) }}">MaDi</span>
-                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.kostgeldOntvangenGka) }}">GKA</span>
-                            </div>
-                            <div class="nvt">
-                                <span class="{{ dossier.voorlegger.kostgeldNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.kostgeldNvt ? 'n.v.t.' }}</span>
-                            </div>
+                    
+                    <div class="voorlegger-header">
+                        <h3 class="naam">
+                            <a href="#voorlegger-kostgeld" data-handler="toggle">Kostgeld</a>
+                        </h3>
+                        <div class="status-container">
+                          {{ form_row(form.kostgeldOntvangenMadi) }}
+                          {{ form_row(form.kostgeldOntvangenGka) }}
                         </div>
-                    </a>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.kostgeldNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.kostgeldNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.kostgeldNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kostgeld'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kostgeld')} only %}
-                        {{ form_row(form.kostgeldOntvangenMadi) }}
-                        {{ form_row(form.kostgeldOntvangenGka) }}
                     </div>
                 </div>
             </div>

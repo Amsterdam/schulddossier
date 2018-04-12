@@ -1,28 +1,26 @@
 {% import 'partial.macros.html.twig' as tools %}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-vrijwaringsbewijs">
                 <div class="accordion-header">
-                    <a href="#voorlegger-vrijwaringsbewijs" data-handler="toggle">
+                    
                         <div class="voorlegger-header">
-                            <div class="naam">
-                                Vrijwaringsbewijs
-                            </div>
-                            <div class="status">
-                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.vrijwaringsbewijsOntvangenMadi) }}">MaDi</span>
-                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.vrijwaringsbewijsOntvangenGka) }}">GKA</span>
+                            <h3 class="naam">
+                                <a href="#voorlegger-vrijwaringsbewijs" data-handler="toggle">Vrijwaringsbewijs</a>
+                            </h3>
+                            <div class="status-container">
+                              {{ form_row(form.vrijwaringsbewijsOntvangenMadi) }}
+                              {{ form_row(form.vrijwaringsbewijsOntvangenGka) }}
                             </div>
                             <div class="nvt">
                                 <span class="{{ dossier.voorlegger.vrijwaringsbewijsNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.vrijwaringsbewijsNvt ? 'n.v.t.' }}</span>
                             </div>
                         </div>
-                    </a>
+                    
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.vrijwaringsbewijsNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Vrijwaringsbewijs'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('vrijwaringsbewijs')} only %}
-                        {{ form_row(form.vrijwaringsbewijsOntvangenMadi) }}
-                        {{ form_row(form.vrijwaringsbewijsOntvangenGka) }}
                     </div>
                 </div>
             </div>

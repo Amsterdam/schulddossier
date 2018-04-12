@@ -47,32 +47,38 @@
     border-radius: 2px;
     transition: background-color .3s;
     .accordion-header {
-      
       position: relative;
-      > a {
-        color: #000000;
-        display: block;
-        text-decoration: none;
-        padding-right: 26px;
-        &:before,
-        &:after {
+      padding-right: 36px;
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 8px;
+        width: 14px;
+        height: 4px;
+        background-color: $textColor;
+        transform: rotate(-45deg);
+        transition: all .3s;
+      }
+      &:after {
+        right: 8px;
+        transform: rotate(45deg);
+      }
+      a {
+        &:before {
           content: '';
           position: absolute;
-          right: 0;
-          top: 8px;
-          width: 14px;
-          height: 4px;
-          background-color: $textColor;
-          transform: rotate(-45deg);
-          transition: all .3s;
-        }
-        &:after {
-          right: 8px;
-          transform: rotate(45deg);
+          z-index: 1;
+          left: -15px;
+          top: -8px;
+          right: -15px;
+          bottom: -8px;
+          background-color: rgba(#000, 0);
         }
       }
     }
-    &.active .accordion-header > a {
+    &.active .accordion-header {
       &:before {
         transform: rotate(45deg);
       }
