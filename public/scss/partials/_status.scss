@@ -110,6 +110,7 @@
     z-index: 2;
     ul {
       background-color: rgba(#fff, 1);
+      box-shadow: 0 0 5px 0 rgba(#000, .2);
     }
     
     strong {
@@ -147,6 +148,35 @@
     &:after {
       opacity: 0;
     }
+  }
+  
+}
+
+.status-container {
+  display: flex;
+  .form-row {
+    margin: -2px 0 0 0;
+  }
+  .label-widget {
+    position: relative;
+    width: $statusSize + 1rem;
+    > label {
+      display: none;
+    }
+  }
+  strong {
+    max-width: 0;
+  }
+  .status {
+    position: absolute;
+    left: 0;
+    top: 0;
+    &:hover {
+      strong {
+        max-width: 100px;
+      }
+    }
+//    width: $statusSize + 1rem;
   }
   
 }

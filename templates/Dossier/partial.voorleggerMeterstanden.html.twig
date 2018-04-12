@@ -1,27 +1,20 @@
 {% import 'partial.macros.html.twig' as tools %}
-            {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-meterstanden">
                 <div class="accordion-header">
-                    <a href="#voorlegger-meterstanden" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Meterstanden
-                            </div>
-                            <div class="status">
-                            </div>
-                            <div class="nvt">
-                            </div>
+                    
+                    <div class="voorlegger-header">
+                        <h3 class="naam">
+                            <a href="#voorlegger-meterstanden" data-handler="toggle">Meterstanden</a>
+                        </h3>
+                        <div class="nvt">
                         </div>
-                    </a>
+                    </div>
+                    
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('meterstanden')} only %}
-                        <p class="buttons right">
-                            <button class="button primary" type="submit">Opslaan</button>
-                        </p>
                     </div>
                 </div>
             </div>
-            {{ form_end(form) }}

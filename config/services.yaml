@@ -35,10 +35,13 @@ services:
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\DocumentUploadSubscriber:
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+            
+    # Symfony EventListeners
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\MailNotitificationSubscriber:
         arguments:
             - '@mailer'
-            - '%env(APP_GKA_NOTIFICATIE_ADRES)%'
+            - '%env(APP_NOTIFICATIE_FROM)%'
+            - '@logger'
     
     # Services
     GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector:

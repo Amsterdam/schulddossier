@@ -12,6 +12,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 use Doctrine\ORM\EntityRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class SchuldeiserFormType extends AbstractType
 {
@@ -21,6 +22,27 @@ class SchuldeiserFormType extends AbstractType
             'required' => true
         ]);
         $builder->add('rekening', TextType::class, [
+            'required' => false
+        ]);
+        $builder->add('straat', TextType::class, [
+            'required' => true
+        ]);
+        $builder->add('huisnummer', TextType::class, [
+            'required' => true
+        ]);
+        $builder->add('huisnummerToevoeging', TextType::class, [
+            'required' => false
+        ]);
+        $builder->add('postcode', TextType::class, [
+            'required' => true
+        ]);
+        $builder->add('plaats', TextType::class, [
+            'required' => true
+        ]);
+        $builder->add('allegroCode', TextType::class, [
+            'required' => false
+        ]);
+        $builder->add('opmerkingen', TextareaType::class, [
             'required' => false
         ]);
     }

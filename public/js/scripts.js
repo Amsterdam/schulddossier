@@ -41,6 +41,8 @@
       
       // container.class
       
+      var currentZone;
+      
       var _reset = function(e){
         e.preventDefault();
         e.stopPropagation();
@@ -48,32 +50,45 @@
       var _over = function(e){
         var zone = (e && e.target) && _closest(e.target, '.accordion');
         if (!zone) return;
-        
-        zone.classList.add('drop-over');
-        
-        
+        if (currentZone != zone) {
+          if (currentZone) currentZone.classList.remove('drop-over');
+          currentZone = zone;
+          zone.classList.add('drop-over');
+        }
       };
       var _out = function(e){
-        var zone = (e && e.target) && _closest(e.target, '.accordion');
-        if (!zone) return;
         
-        zone.classList.remove('drop-over');
+        // var zone = (e && e.target) && _closest(e.target, '.accordion');
+        // if (!zone) return;
+        // zone.classList.remove('drop-over');
       };
       var _drop = function(e){
         
+        if (currentZone) currentZone.classList.remove('drop-over');
+        
+        var files = e.dataTransfer.files;
+        var zone = (e && e.target) && _closest(e.target, '.accordion');
+        var form = (e && e.target) && _closest(e.target, 'form');
+        if (!files) return;
+        
+        form.files = files;
+        
+        helpers.trigger(form, 'change');
+        
       };
-
-      var events = 'drag dragstart dragend dragover dragenter dragleave drop'.split(' ');
-      for (var i = 0; i < events.length; i++) {
-        this.addEventListener(events[i], _reset);
+      
+      if (!w.dropReset) {
+        w.addEventListener('drop', _reset);
+        w.addEventListener('dragover', _reset);
+        w.dropReset = true;
       }
 
-      var events = 'dragover dragenter'.split(' ');
+      var events = 'dragenter dropstart'.split(' ');
       for (var i = 0; i < events.length; i++) {
         this.addEventListener(events[i], _over);
       }
 
-      var events = 'dragleave dragend drop'.split(' ');
+      var events = 'dragleave dropend  drop'.split(' ');
       for (var i = 0; i < events.length; i++) {
         this.addEventListener(events[i], _out);
       }
@@ -82,64 +97,77 @@
 
     },
     
-    'status': function(){
-      this.addEventListener('change', function(){
-        var 
-          data = [],
-          form = _closest(this, 'form'),
-          checked = this.querySelector(':checked'),
-          container = _closest(this, '.accordion'),
-          token = form.querySelectorAll('[id$="form__token"]');
-        
-        
-        if (!token.length || !checked) return;
-        
-        if (this.request) this.request.abort();
-        
-        form.classList.add('in-progress');
-        
-        data[checked.name] = checked.value;
-        data[token[0].name] = token[0].value;
-        
-        
-        this.request = helpers.ajax({
-          type: 'POST',
-          url: form.action,
-          data: data,
-          callback: function(data){
-            if (container) {
-              var div = document.createElement('div');
-              div.innerHTML = data;
-              
-              var result = div.querySelector('#' + container.id);
-              if (result) {
-                container.querySelector('.accordion-header').innerHTML = result.querySelector('.accordion-header').innerHTML;
-              }
-              
-              form.classList.remove('in-progress');
-            }
-          },
-          error: function(){
-            form.classList.remove('in-progress');
-            form.classList.add('ajax-error');
-          }
-        })
-      });
-      
-    },
-    
-    'change': function(){
-      this.addEventListener('change', function(){
-        this.classList.add('changed');
-      });
-      this.addEventListener('keyup', function(){
-        this.classList.add('changed');
-      });
-    },
     
   };
   
   var submitters = {
+    
+    'save': function(){
+      var 
+        form = this;
+        
+      if (form.request) form.request.abort();
+
+      form.classList.add('in-progress');
+    
+      var data = new FormData(form);
+      
+      form.request = helpers.ajax({
+        type: 'POST',
+        url: form.action + '?v' + (new Date()).getTime(),
+        data: data,
+        callback: function(data){
+
+          var div = document.createElement('div');
+          div.innerHTML = data;
+        
+          var result = div.querySelector('#' + container.id);
+          if (result) {
+            container.innerHTML = result.innerHTML;
+          }
+        
+          form.classList.remove('in-progress');
+          form.classList.remove('form-changed');
+
+        },
+        error: function(){
+          form.classList.remove('in-progress');
+          form.classList.add('ajax-error');
+        }
+      });
+      
+    }
+    
+  };
+  
+  var changers = {
+    'change': function(){
+      var 
+        form = this;
+      
+      form.classList.add('form-changed');
+
+      if (!form.changed) {
+        form.changed = true;
+        // w.onbeforeunload = function() {
+        //   return 'Je hebt nog niet opgeslagen wijzigingen. Deze zul verloren gaan als je niet eerst je wijzigingen opslaat';
+        // }
+      }
+      
+      // if (form.files) {
+      //
+      //   var proto = form.querySelector('.file-container.prototype[data-name]');
+      //
+      //   for (var i = 0; i < form.files.length; i++) {
+      //     data.append(proto.dataset.name.replace('[__name__][file]', '[n' + i + '][file]'), form.files[i]);
+      //     data.append(proto.dataset.name.replace('[__name__][file]', '[n' + i + '][naam]'), proto.parentNode.dataset.defaultDocumentNaam + (i > 0 ? ' ' + i : ''));
+      //
+      //   }
+      //   form.files = false;
+      // }
+      
+
+    },
     
   };
   
@@ -161,23 +189,49 @@
         }
       };
 
-      if (options.data) {
-        var data = new FormData();
-        for (var k in options.data) {
-          data.append(k, options.data[k]);
-        }
-      } else data = null;
-
-      request.send(data);
+      request.send(options.data);
       
       return request;
     },
     
+    'trigger': function(el, eventType){
+      var e = document.createEvent('MouseEvents');
+      e.initMouseEvent(eventType, true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+      el.dispatchEvent(e);
+    }
+    
   };
+  
+  if (w.location.hash) {
+    var 
+      el = document.querySelector('.document ' + w.location.hash),
+      trigger = document.querySelector('[data-handler*="toggle"][href^="' + w.location.hash + '"]');
+    
+    if (el) {
+      
+      if (trigger) {
+        trigger.classList.add('active');
+        el.classList.add('active');
+      }
+
+      setTimeout(function(){
+        w.scrollTo(0,0);
+        setTimeout(function(){
+          _scrollTo(el);
+        }, 800);
+      },1);
+    }
+  }
+  
   
   d.addEventListener('click',function(t){var k,e,a=t&&t.target;if(a=_closest(a,'[data-handler]')){var r=a.getAttribute('data-handler').split(/\s+/);if('A'==a.tagName&&(t.metaKey||t.shiftKey||t.ctrlKey||t.altKey))return;for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);handlers[k[0]]&&handlers[k[0]].call(a,t,k[1])}}});
   
   d.addEventListener('submit',function(t){var k,e,f=t&&t.target;if(f=_closest(f,'[data-submitter]')){var r=f.getAttribute('data-submitter').split(/\s+/);for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);submitters[k[0]]&&submitters[k[0]].call(f,t,k[1])}}});
+
+  var _change = function(t){var k,e,c=t&&t.target;if(c=_closest(c,'[data-changer]')){var r=c.getAttribute('data-changer').split(/\s+/);for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);changers[k[0]]&&changers[k[0]].call(c,t,k[1])}}};
+
+  d.addEventListener('change', _change);
+  // d.addEventListener('keyup', _change);
 
   var scrollers=[];w.addEventListener('scroll',function(){requestAnimationFrame(function(){for(var l=0;l<scrollers.length;l++)scrollers[l].el&&scrollers[l].fn.call(scrollers[l].el)})},!1);
   

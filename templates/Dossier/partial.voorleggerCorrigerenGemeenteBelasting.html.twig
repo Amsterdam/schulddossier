@@ -1,21 +1,19 @@
 {% import 'partial.macros.html.twig' as tools %}
-            {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-corrigerenGemeenteBelasting">
                 <div class="accordion-header">
-                    <a href="#voorlegger-corrigerenGemeenteBelasting" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Corrigeren gemeente belasting
-                            </div>
-                            <div class="status">
-                                <span class="na"></span>
-                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.corrigerenGemeenteBelastingOntvangenGka) }}">GKA</span>
-                            </div>
-                            <div class="nvt">
-                                <span class="{{ dossier.voorlegger.corrigerenGemeenteBelastingNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.corrigerenGemeenteBelastingNvt ? 'n.v.t.' }}</span>
-                            </div>
+                    
+                    <div class="voorlegger-header">
+                        <h3 class="naam">
+                            <a href="#voorlegger-corrigerenGemeenteBelasting" data-handler="toggle">Corrigeren gemeente belasting</a>
+                        </h3>
+                        <div class="status-container">
+                            {{ form_row(form.corrigerenGemeenteBelastingOntvangenGka) }}
                         </div>
-                    </a>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.corrigerenGemeenteBelastingNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.corrigerenGemeenteBelastingNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
@@ -23,11 +21,7 @@
                         {{ form_row(form.corrigerenGemeenteBelasting) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Corrigeren gemeente belasting'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('corrigerenGemeenteBelasting')} only %}
-                        {{ form_row(form.corrigerenGemeenteBelastingOntvangenGka) }}
-                        <p class="buttons right">
-                            <button class="button primary" type="submit">Opslaan</button>
-                        </p>
+                        
                     </div>
                 </div>
             </div>
-            {{ form_end(form) }}

@@ -227,7 +227,11 @@ hr {
   padding: 0;
   margin: 3.85rem 0; }
 
-div.document-container {
+.container {
+  max-width: 900px;
+  margin: 0 auto; }
+
+.document-container {
   max-width: 900px;
   margin: 3.85rem auto; }
 
@@ -275,7 +279,8 @@ div.document-container {
   border-top: 1px solid #dfdfdf; }
 
 .document-header {
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid #dfdfdf; }
+.document-header.group {
   display: flex;
   align-items: center;
   justify-content: space-between; }
@@ -624,7 +629,7 @@ form label strong, form .label strong {
 .files-container .file-container .errors {
   padding-left: 0; }
 
-.pdf-splitter-page-drag .default-form-style .files-container .file-container .drop-area {
+.pdf-splitter-page-drag .files-container .file-container .drop-area {
   border-color: #CCC;
   position: absolute;
   left: 0;
@@ -633,22 +638,22 @@ form label strong, form .label strong {
   height: 100%;
   z-index: 9;
   background-color: #FFF; }
-.pdf-splitter-page-drag .default-form-style .files-container .file-container.files-only {
+.pdf-splitter-page-drag .files-container .file-container.files-only {
   cursor: no-drop; }
-.pdf-splitter-page-drag .default-form-style .files-container .file-container .drop-area:before {
+.pdf-splitter-page-drag .files-container .file-container .drop-area:before {
   color: #CCC;
   display: block; }
 
-.default-form-style .files-container .add {
+.files-container .add {
   /*background-color: #F00; */
   display: inline-block;
   height: auto;
   /*padding: 5px; border-radius: 2px; text-decoration: none; color: #FFF; font-size: 0.9rem; */
   width: 100px; }
 
-.default-form-style.in-progress, .default-form-style.in-progress .button[type="submit"] {
+.in-progress, .in-progress .button[type="submit"] {
   position: relative; }
-.default-form-style.in-progress .button[type="submit"]:before, .default-form-style.in-progress:before {
+.in-progress .button[type="submit"]:after, .in-progress:after {
   content: '';
   position: absolute;
   left: 0;
@@ -657,6 +662,25 @@ form label strong, form .label strong {
   height: 2px;
   background-color: rgba(0, 0, 0, 0.5);
   animation: progress 2s infinite; }
+
+.form-global-buttons {
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem 3rem;
+  transition: all .3s;
+  bottom: -100px;
+  opacity: 0; }
+.form-changed .form-global-buttons {
+  bottom: 0;
+  opacity: 1; }
+.form-global-buttons .buttons {
+  margin: 0; }
+.document .form-global-buttons .buttons {
+  margin: 0 3rem; }
 
 @keyframes progress {
   33% {
@@ -697,7 +721,7 @@ header.top {
   display: flex;
   justify-content: space-between;
   padding: 1.5rem 3rem;
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   right: 0;
@@ -982,11 +1006,15 @@ body {
   padding-left: calc(20vw + 3rem); }
 body header.top {
   left: 20vw; }
+body .form-global-buttons {
+  padding-left: calc(20vw + 3rem); }
 
 .hide-pdf-splitter {
   padding-left: 3rem; }
 .hide-pdf-splitter header.top {
   left: 0; }
+.hide-pdf-splitter .form-global-buttons {
+  padding-left: 3rem; }
 @media (max-width: 900px) {
   .hide-pdf-splitter {
     padding-left: 10px; } }
@@ -1155,13 +1183,9 @@ body header.top {
   border-radius: 2px;
   transition: background-color .3s; }
 .accordion-container .accordion .accordion-header {
-  position: relative; }
-.accordion-container .accordion .accordion-header > a {
-  color: #000000;
-  display: block;
-  text-decoration: none;
-  padding-right: 26px; }
-.accordion-container .accordion .accordion-header > a:before, .accordion-container .accordion .accordion-header > a:after {
+  position: relative;
+  padding-right: 36px; }
+.accordion-container .accordion .accordion-header:before, .accordion-container .accordion .accordion-header:after {
   content: '';
   position: absolute;
   right: 0;
@@ -1171,12 +1195,21 @@ body header.top {
   background-color: #333;
   transform: rotate(-45deg);
   transition: all .3s; }
-.accordion-container .accordion .accordion-header > a:after {
+.accordion-container .accordion .accordion-header:after {
   right: 8px;
   transform: rotate(45deg); }
-.accordion-container .accordion.active .accordion-header > a:before {
+.accordion-container .accordion .accordion-header a:before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: -15px;
+  top: -8px;
+  right: -15px;
+  bottom: -8px;
+  background-color: transparent; }
+.accordion-container .accordion.active .accordion-header:before {
   transform: rotate(45deg); }
-.accordion-container .accordion.active .accordion-header > a:after {
+.accordion-container .accordion.active .accordion-header:after {
   transform: rotate(-45deg); }
 .accordion-container .accordion.active {
   background-color: #f0f0f0; }
@@ -1191,53 +1224,23 @@ body header.top {
   display: flex;
   height: 20px; }
 .voorlegger-header .naam {
+  font-size: 1.4rem;
   height: 20px;
   line-height: 20px;
   margin-right: auto; }
-.voorlegger-header .status {
-  margin: 0; }
-.voorlegger-header .status span {
-  font-size: 0;
-  display: inline-block;
-  vertical-align: top;
-  margin-top: -1px;
-  width: 2.4rem;
-  height: 2.4rem;
-  box-sizing: border-box;
-  border: 4px solid gainsboro;
-  transform: rotate(45deg);
-  border-radius: 50%;
-  margin-right: .5rem;
-  background-color: #fff; }
-.voorlegger-header .status .status-bezig {
-  border-top-color: red;
-  border-right-color: red; }
-.voorlegger-header .status .status-opgevoerd {
-  border-color: green; }
-.voorlegger-header .status .status-gecontroleerd {
-  position: relative;
-  border-color: green;
-  background-color: green; }
-.voorlegger-header .status .status-gecontroleerd:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1.2rem;
-  height: 0.6rem;
-  border: 4px solid #fff;
-  border-right: none;
-  border-top: none;
-  transform: rotate(-90deg); }
-.voorlegger-header .status .na {
-  opacity: 0; }
+.voorlegger-header a {
+  text-decoration: none; }
 .voorlegger-header .nvt {
   height: 20px;
   line-height: 20px;
-  width: 50px; }
+  width: 50px;
+  text-align: center; }
 
 .voorlegger-body {
   padding: 17px 0 7px 0; }
+.voorlegger-body .button {
+  font-size: 1.2rem;
+  padding: 0.75rem 1.5rem; }
 
 .accordion-body .label-widget, .form-checks .label-widget {
   align-items: center;
@@ -1331,7 +1334,8 @@ body header.top {
 .status:hover {
   z-index: 2; }
 .status:hover ul {
-  background-color: white; }
+  background-color: white;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
 .status:hover strong {
   max-height: 2.4rem;
   margin-bottom: .5rem; }
@@ -1351,6 +1355,24 @@ body header.top {
   max-height: 2.4rem; }
 .status label [disabled]:checked + strong:after {
   opacity: 0; }
+
+.status-container {
+  display: flex; }
+.status-container .form-row {
+  margin: -2px 0 0 0; }
+.status-container .label-widget {
+  position: relative;
+  width: 3.4rem; }
+.status-container .label-widget > label {
+  display: none; }
+.status-container strong {
+  max-width: 0; }
+.status-container .status {
+  position: absolute;
+  left: 0;
+  top: 0; }
+.status-container .status:hover strong {
+  max-width: 100px; }
 
 .document-workflow {
   margin-bottom: 1.925rem; }

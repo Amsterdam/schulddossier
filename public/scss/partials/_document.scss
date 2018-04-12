@@ -1,5 +1,5 @@
-div.document-container {
-  max-width: 900px;
+.document-container {
+  max-width: $maxContentWidth;
   margin: 2 * $lineHeight auto;
 }
 
@@ -65,9 +65,12 @@ div.document-container {
 
 .document-header {
   border-bottom: 1px solid #dfdfdf;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  &.group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+  }
   .document-title {
     margin-bottom: .2em;
   }

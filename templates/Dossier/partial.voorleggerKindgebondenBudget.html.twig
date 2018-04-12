@@ -1,33 +1,26 @@
 {% import 'partial.macros.html.twig' as tools %}
-            {{ form_start(form, {'attr': {'class': 'ajax default-form-style'} }) }}
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-kindgebondenBudget">
                 <div class="accordion-header">
-                    <a href="#voorlegger-kindgebondenBudget" data-handler="toggle">
-                        <div class="voorlegger-header">
-                            <div class="naam">
-                                Kindgebonden budget
-                            </div>
-                            <div class="status">
-                                <span class="{{ tools.madi_status_to_class(dossier.voorlegger.kindgebondenBudgetOntvangenMadi) }}">MaDi</span>
-                                <span class="{{ tools.gka_status_to_class(dossier.voorlegger.kindgebondenBudgetOntvangenGka) }}">GKA</span>
-                            </div>
-                            <div class="nvt">
-                                <span class="{{ dossier.voorlegger.kindgebondenBudgetNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.kindgebondenBudgetNvt ? 'n.v.t.' }}</span>
-                            </div>
+                    
+                    <div class="voorlegger-header">
+                        <h3 class="naam">
+                            <a href="#voorlegger-kindgebondenBudget" data-handler="toggle">Kindgebonden budget</a>
+                        </h3>
+                        <div class="status-container">
+                          {{ form_row(form.kindgebondenBudgetOntvangenMadi) }}
+                          {{ form_row(form.kindgebondenBudgetOntvangenGka) }}
                         </div>
-                    </a>
+                        <div class="nvt">
+                            <span class="{{ dossier.voorlegger.kindgebondenBudgetNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.kindgebondenBudgetNvt ? 'n.v.t.' }}</span>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.kindgebondenBudgetNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kindgebonden budget'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kindgebondenBudget')} only %}
-                        {{ form_row(form.kindgebondenBudgetOntvangenMadi) }}
-                        {{ form_row(form.kindgebondenBudgetOntvangenGka) }}
-                        <p class="buttons right">
-                            <button class="button primary" type="submit">Opslaan</button>
-                        </p>
                     </div>
                 </div>
             </div>
-            {{ form_end(form) }}

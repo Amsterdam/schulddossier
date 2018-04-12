@@ -55,6 +55,7 @@ window.schuldhulp.formSubmit = function (event, formDataCallback, successCallbac
     request.onload = function() {
         // in progress state verwijderen
         dom.classList.remove('in-progress');
+        dom.classList.remove('form-changed');
         
         if (request.status >= 200 && request.status < 400) {
             var resp = request.responseText;
