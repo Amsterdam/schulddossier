@@ -57,7 +57,7 @@
                 <tbody>
 {% for dossier in dossiers %}
                     <tr>
-                        <th><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a></th>
+                        <th><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a></th>
                         <td>{{ dossier.schuldhulpbureau }}</td>
                         <td class="nummer">
                             {{ dossier.regasNummer|default('-') }}

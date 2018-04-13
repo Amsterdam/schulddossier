@@ -6,14 +6,16 @@
 
 <nav class="nav-internal">
     <ul>
-        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}"><i class="icon-arrow-left"></i> Terug naar dossier</a></li>
+        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', {'dossierId': dossier.id}) }}"><i class="icon-arrow-left"></i> Terug naar dossier</a></li>
     </ul>
 </nav>
 
 <div class="document well">
-    <div class="document-header">
-        <h1 class="document-title">Documenten: {{ dossier.clientNaam }}</h1>
-    </div>
+    
+    {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}
+    
+    {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'alleDocumenten'} only %}
+    
     <div class="table">
         <table>
             <thead>
