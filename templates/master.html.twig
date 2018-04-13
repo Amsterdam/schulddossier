@@ -24,9 +24,9 @@
             </a>
             <nav class="menu">
               <ul>
-                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"{% if ('/dossier/' in app.request.pathInfo) %} class="active"{% endif %}>Dossiers</a></li>
-                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}"{% if ('/schuldeiser/' in app.request.pathInfo) %} class="active"{% endif %}>Schuldeisers</a></li>
-                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}"{% if ('/gebruiker/' in app.request.pathInfo) %} class="active"{% endif %}>Gebruikers</a></li>
+                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appdossier_') %} class="active"{% endif %}>Dossiers</a></li>
+                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_') %} class="active"{% endif %}>Schuldeisers</a></li>
+                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_') %} class="active"{% endif %}>Gebruikers</a></li>
               </ul>
             </nav>
             {% if app.user %}
