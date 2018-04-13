@@ -12,6 +12,8 @@
     background-color: rgba(#fff, 0);
     margin-top: -.5rem;
     
+    overflow: hidden;
+    
   }
   input {
     position: absolute;
@@ -29,7 +31,8 @@
     overflow: hidden;
     margin: 0;
 
-    transition: max-height .2s;
+    transition: max-height 0;
+//    transition-delay: .3s;
     
     font-size: $fontSmallSize;
     line-height: $statusSize;
