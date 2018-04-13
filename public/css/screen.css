@@ -136,7 +136,7 @@ body, .font-normal, legend small, pre, input[type="checkbox"] + strong {
   font-size: 1.4rem;
   font-family: "AvenirNextLTW01-Regular", verdana, sans-serif; }
 
-.bold, legend, .nav-internal a, b, strong, th {
+.bold, legend, .nav-internal a, .menu a.active, .tabs li.active a, b, strong, th {
   font-family: "Avenir Next LT W01 Demi", verdana, sans-serif; }
 
 [type="text"], [type="search"], [type="email"], [type="password"], [type="url"], [type="number"], [type="date"], [type="time"], [type="tel"], [type="datalist"], select, option, textarea {
@@ -720,6 +720,7 @@ header.top {
   background-color: #FFFFFF;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1.5rem 3rem;
   position: absolute;
   left: 0;
@@ -778,6 +779,22 @@ header.top .logo img {
     top: -1px; }
   .logo .icon-andreas {
     height: 41px; } }
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; }
+.menu a {
+  font-size: 1.8rem;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  padding: .4em 1em;
+  margin-bottom: -3px;
+  border-bottom: 3px solid #fff; }
+.menu a.active {
+  border-color: #ec0000; }
 
 body {
   padding-top: calc(60px + 3.85rem); }
@@ -1153,10 +1170,12 @@ body .form-global-buttons {
   overflow: hidden; }
 .tabs ul {
   display: flex;
+  justify-content: space-evenly;
   list-style-type: none;
   padding: 0;
-  margin: 0 -1.5rem;
   border-bottom: 3px solid #f5f5f5; }
+.tabs li {
+  flex-basis: 100%; }
 .tabs li a {
   text-align: center;
   display: block;
@@ -1263,7 +1282,7 @@ body .form-global-buttons {
   height: 2.4rem; }
 .status ul {
   list-style: none;
-  padding: .5rem 1rem .5rem .5rem;
+  padding: .5rem 1rem 0 .5rem;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0);
   margin-top: -.5rem;
@@ -1359,21 +1378,26 @@ body .form-global-buttons {
 
 .status-container {
   display: flex; }
-.status-container .form-row {
-  margin: -2px 0 0 0; }
-.status-container .label-widget {
-  position: relative;
-  width: 3.4rem; }
 .status-container .label-widget > label {
+  display: none; }
+.status-container .status {
+  position: relative;
+  width: 3.4rem;
   display: none; }
 .status-container strong {
   max-width: 0; }
-.status-container .status {
+.status-container ul {
   position: absolute;
   left: 0;
-  top: 0; }
-.status-container .status:hover strong {
+  top: -2px; }
+.status-container ul:hover strong {
   max-width: 100px; }
+
+.team-gka .status-gka {
+  display: block; }
+
+.team-madi .status-madi {
+  display: block; }
 
 .document-workflow {
   margin-bottom: 1.925rem; }

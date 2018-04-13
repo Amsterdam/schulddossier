@@ -3,6 +3,7 @@ header.top {
   background-color: #FFFFFF;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: $padding / 2 $padding;
 
   position: absolute;
@@ -78,6 +79,28 @@ header.top {
     }
     .icon-andreas {
       height: 41px;
+    }
+  }
+}
+
+.menu {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  a {
+    font-size: 1.8rem;
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    padding: .4em 1em;
+    margin-bottom: -3px;
+    border-bottom: 3px solid #fff;
+    &.active {
+      border-color: $brandColor1;
+      @extend .bold !optional;
     }
   }
 }
