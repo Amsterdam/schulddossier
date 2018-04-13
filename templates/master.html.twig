@@ -27,9 +27,10 @@
                 <a href="#MENU" class="nav-open" data-handler="toggle"><i class="icon-menu"></i>Menu</a>
                 <nav class="nav" id="MENU">
                   <ul class="menu">
-                    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"{% if ('/dossier/' in app.request.pathInfo) %} class="active"{% endif %}>Dossiers</a></li>
-                    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}"{% if ('/schuldeiser/' in app.request.pathInfo) %} class="active"{% endif %}>Schuldeisers</a></li>
-                    <li class="divider"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}"{% if ('/gebruiker/' in app.request.pathInfo) %} class="active"{% endif %}>Gebruikers</a></li>
+                    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appdossier_') %} class="active"{% endif %}>Dossiers</a></li>
+                    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_') %} class="active"{% endif %}>Schuldeisers</a></li>
+                    <li class=""divider><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_') %} class="active"{% endif %}>Gebruikers</a></li>
+
                     {% if app.user %}
                       <li>
                         <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Afmelden <strong>({{ app.user.userName }})</strong></a>
