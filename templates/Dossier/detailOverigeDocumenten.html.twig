@@ -5,22 +5,19 @@
 {% block document %}
 
 <nav class="nav-internal">
-    <ul>
-        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}"><i class="icon-arrow-left"></i> Terug naar dossier</a></li>
-    </ul>
+  <ul>
+    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"><i class="icon-arrow-left"></i>Terug naar overzicht</a></li>
+    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocumenten', {'dossierId': dossier.id}) }}">Alle documenten</a></li>
+    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', {'dossierId': dossier.id}) }}">Prullenbak</a></li>
+  </ul>
 </nav>
 
 <div class="document well">
-    <div class="document-header">
-        <h1 class="document-title">Overige documenten: {{ dossier.clientNaam }}</h1>
-    </div>
-    <div class="tabs">
-        <ul>
-            <li class=""><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Aanmelding</a></li>
-            <li class=""><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">Schulden</a></li>
-            <li class="active"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', {'dossierId': dossier.id}) }}">Overige documenten</a></li>
-        </ul>
-    </div>
+    
+    {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}
+    
+    {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'overigeDocumenten'} only %}
+    
     {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
     {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
     {#% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten} only %#}

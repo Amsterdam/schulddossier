@@ -21,7 +21,6 @@
                 </div>
                 <div class="accordion-body">
                     <div class="schulditem-body">
-                        {{ form_start(form) }}
                         <div class="columns">
                             <div class="column">
                                 {{ form_row(form.schuldeiser) }}
@@ -38,12 +37,7 @@
                         {{ form_row(form.opmerkingen) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten} only %}
-                        <div class="nav">
-                            <button type="submit" class="remove" name="{{ form.verwijderd.vars.full_name }}" value="1">Verwijderen</button>
-                            {% do form.verwijderd.setRendered() %}
-                            <button type="submit">Opslaan</button>
-                        </div>
-                        {{ form_end(form) }}
+                        {{ form_row(form.verwijderd) }}
                     </div>
                 </div>
             </div>

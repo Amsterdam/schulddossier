@@ -70,6 +70,11 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DocumentFormType;
 use Symfony\Component\Validator\Constraints\Valid;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldenFormType;
 
 /**
  * @Route("/app/dossier")
@@ -151,7 +156,7 @@ class AppDossierController extends Controller
             $em->persist($dossier);
             $em->flush();
             $this->addFlash('success', 'Dossier aangemaakt');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', [
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
                 'dossierId' => $dossier->getId()
             ]);
         }
@@ -162,34 +167,13 @@ class AppDossierController extends Controller
     }
 
     /**
-     * @Route("/detail/{dossierId}")
+     * @Route("/detail/{dossierId}/voorlegger")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailAction(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier)
+    public function detailVoorleggerAction(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier)
     {
         if ($dossier->getVoorlegger() === null) {
             $dossier->setVoorlegger(new Voorlegger());
-        }
-
-        $form = $this->createForm(DetailDossierFormType::class, $dossier, [
-            'disabled' => $dossier->isInPrullenbak() === true,
-            'disable_group' => $this->getUser()->getType()
-        ]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->flush();
-
-            if ($request->isXmlHttpRequest()) {
-                return new JsonResponse(['msg' => 'OK']);
-            }
-
-            $this->addFlash('success', 'Opgeslagen');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', [
-                'dossierId' => $dossier->getId()
-            ]);
-        } elseif ($form->isSubmitted() && $request->isXmlHttpRequest()) {
-            return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         }
 
         $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
@@ -221,8 +205,40 @@ class AppDossierController extends Controller
 
         return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
-            'form' => $form->createView(),
             'voorleggerForm' => $voorleggerForm->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function detailAlgemeenAction(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier)
+    {
+        $form = $this->createForm(DetailDossierFormType::class, $dossier, [
+            'disabled' => $dossier->isInPrullenbak() === true,
+            'disable_group' => $this->getUser()->getType()
+        ]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(['msg' => 'OK']);
+            }
+
+            $this->addFlash('success', 'Opgeslagen');
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', [
+                'dossierId' => $dossier->getId()
+            ]);
+        } elseif ($form->isSubmitted() && $request->isXmlHttpRequest()) {
+            return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        return $this->render('Dossier/detailAlgemeen.html.twig', [
+            'dossier' => $dossier,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -337,6 +353,136 @@ class AppDossierController extends Controller
     }
 
     /**
+     * @Route("/detail/{dossierId}/schulden")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function detailSchuldenAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    {
+        $schuldItems = $dossier->getSchuldItems();
+
+        $form = $this->createForm(SchuldenFormType::class, $dossier);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($form->get('schuldItems') as $child) {
+                if ($child->has('files')) {
+                    $files = $child->get('file')->getData();
+                    foreach ($files as $document) {
+                        /** @var $file Document */
+                        if ($document !== null) {
+                            $document->setMd5Hash(md5($document->getFile()->getRealPath()));
+                            $document->setMainTag('dossier-' . $dossier->getId());
+                            $document->setGroep('dossier');
+                            $document->setUploader($this->getUser());
+                            $document->setUploadDatumTijd(new \DateTime());
+                            $dossierDocument = new DossierDocument();
+                            $dossierDocument->setDocument($document);
+                            $dossierDocument->setDossier($dossier);
+                            $dossierDocument->setOnderwerp('schuldenoverzicht');
+                        }
+                    }
+                }
+            }
+            $em->flush();
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(['status' => 'OK']);
+            }
+            $this->addFlash('success', 'Opgeslagen');
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
+        }
+
+        $schuldItem = new SchuldItem();
+        $createForm = $this->createForm(SchuldItemFormType::class, $schuldItem, [
+            'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_addschulditem', [
+                'dossierId' => $dossier->getId()
+            ])
+        ]);
+
+        $schuldeiser = new Schuldeiser();
+        $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser, [
+            'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create', [])
+        ]);
+
+        return $this->render('Dossier/detailSchulden.html.twig', [
+            'dossier' => $dossier,
+            'schuldItems' => $schuldItems,
+            'form' => $form->createView(),
+            'createForm' => $createForm->createView(),
+            'createSchuldeiserForm' => $createSchuldeiserForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/schulden/excel")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function detailSchuldenExcel(Request $request, Dossier $dossier)
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+        $sheet->getPageSetup()->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4);
+
+
+        $sheet->setCellValueByColumnAndRow(1, 1, 'Schuldeiser');
+        $sheet->setCellValueByColumnAndRow(2, 1, 'Incassant');
+        $sheet->setCellValueByColumnAndRow(3, 1, 'Bedrag');
+        $sheet->setCellValueByColumnAndRow(4, 1, 'Ontstaansdatum');
+        $sheet->setCellValueByColumnAndRow(5, 1, 'Vaststeldatum');
+        $sheet->setCellValueByColumnAndRow(6, 1, 'Referentie');
+        $sheet->setCellValueByColumnAndRow(7, 1, 'Type');
+
+        $sheet->getStyleByColumnAndRow(1, 1, 7, 1)->getFont()->setBold(true);
+
+        foreach ($dossier->getSchuldItems() as $rowIndex => $schuldItem) {
+            $rowIndex = $rowIndex + 2; // one-based instead of zero-based and one for the header
+            $sheet->setCellValueByColumnAndRow(1, $rowIndex, $schuldItem->getSchuldeiser() ? $schuldItem->getSchuldeiser()->getBedrijfsnaam() : '');
+            $sheet->setCellValueByColumnAndRow(2, $rowIndex, $schuldItem->getIncassant() ? $schuldItem->getIncassant()->getBedrijfsnaam() : '');
+            $sheet->setCellValueByColumnAndRow(3, $rowIndex, $schuldItem->getBedrag());
+            $sheet->setCellValueByColumnAndRow(4, $rowIndex, $schuldItem->getOntstaansDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getOntstaansDatum()) : null);
+            $sheet->setCellValueByColumnAndRow(5, $rowIndex, $schuldItem->getVaststelDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getVaststelDatum()) : null);
+            $sheet->setCellValueByColumnAndRow(6, $rowIndex, $schuldItem->getReferentie());
+            $sheet->setCellValueByColumnAndRow(7, $rowIndex, $schuldItem->getType());
+
+            if (empty($schuldItem->getOpmerkingen()) === false) {
+                $sheet->getCommentByColumnAndRow(6, $rowIndex)->getText()->createText($schuldItem->getOpmerkingen());
+            }
+
+            $sheet->getStyleByColumnAndRow(3, $rowIndex)->getNumberFormat()->setFormatCode('"€"#,##0.00_-');
+            $sheet->getStyleByColumnAndRow(4, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
+            $sheet->getStyleByColumnAndRow(5, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
+        }
+
+        $sheet->getColumnDimensionByColumn(1)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(2)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(3)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(4)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(5)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(6)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(7)->setAutoSize(true);
+
+        $sheet->getHeaderFooter()->setOddHeader('Schuldenlijst: ' . $dossier->getClientNaam());
+        $sheet->getHeaderFooter()->setEvenHeader('Schuldenlijst: ' . $dossier->getClientNaam());
+
+        $sheet->getHeaderFooter()->setOddFooter(date('d-m-Y H:i'));
+        $sheet->getHeaderFooter()->setEvenFooter(date('d-m-Y H:i'));
+
+        $fs = new Filesystem();
+        $fs->mkdir($this->container->getParameter('kernel.project_dir') . '/var/tmp');
+        $tmpName = $this->container->getParameter('kernel.project_dir') . '/var/tmp/schuldenlijst-excel-' . $dossier->getId() . '.xlsx';
+        $fs->touch($tmpName);
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($tmpName);
+
+        $response = new BinaryFileResponse($tmpName, BinaryFileResponse::HTTP_OK, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'Cache-Control' => 'max-age=0'
+        ], false, 'attachment');
+        $response->deleteFileAfterSend(true);
+        return $response;
+    }
+
+    /**
      * @Method("POST")
      * @Route("/detail/{dossierId}/status")
      * @ParamConverter("dossier", options={"id"="dossierId"})
@@ -387,7 +533,7 @@ class AppDossierController extends Controller
 
         $em->flush();
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', ['dossierId' => $dossier->getId()]);
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()]);
     }
 
     /**
@@ -418,7 +564,7 @@ class AppDossierController extends Controller
         $em->flush();
         $this->addFlash('success', 'Document definitief verwijderd');
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', ['dossierId' => $dossier->getId()]);
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
     }
 
     /**
@@ -449,7 +595,7 @@ class AppDossierController extends Controller
         $em->flush();
         $this->addFlash('success', 'Document hersteld');
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', ['dossierId' => $dossier->getId()]);
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
     }
 
     /**
@@ -513,89 +659,7 @@ class AppDossierController extends Controller
         $em->flush();
         $this->addFlash('success', 'Dossier hersteld');
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', ['dossierId' => $dossier->getId()]);
-    }
-
-    /**
-     * @Route("/detail/{dossierId}/schulden")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function detailSchuldenAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
-    {
-        $schuldItems = $dossier->getSchuldItems();
-
-        $form = $this->createForm(DetailDossierFormType::class, $dossier, [
-            'disabled' => $dossier->isInPrullenbak() === true,
-            'disable_group' => $this->getUser()->getType()
-        ]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->flush();
-
-            if ($request->isXmlHttpRequest()) {
-                return new JsonResponse(['msg' => 'OK']);
-            }
-
-            $this->addFlash('success', 'Opgeslagen');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', [
-                'dossierId' => $dossier->getId()
-            ]);
-        } elseif ($form->isSubmitted() && $request->isXmlHttpRequest()) {
-            return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-        }
-
-        $schuldenoverzichtForm = $this->createForm(VoorleggerSchuldenoverzichtFormType::class, $dossier->getVoorlegger(), [
-            'disable_group' => $this->getUser()->getType()
-        ]);
-        $schuldenoverzichtForm->handleRequest($request);
-
-        if ($schuldenoverzichtForm->isSubmitted() && $schuldenoverzichtForm->isValid()) {
-            $em->flush();
-
-            if ($request->isXmlHttpRequest()) {
-                return new JsonResponse(['msg' => 'OK']);
-            }
-
-            $this->addFlash('success', 'Opgeslagen');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', [
-                'dossierId' => $dossier->getId()
-            ]);
-        }
-
-        $updateForms = [];
-        foreach ($schuldItems as $schuldItem) {
-            $updateForms[$schuldItem->getId()] = $this->createForm(SchuldItemFormType::class, $schuldItem, [
-                'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_updateschulditem', [
-                    'dossierId' => $dossier->getId(),
-                    'schuldItemId' => $schuldItem->getId()
-                ])
-            ]);
-        }
-
-        $schuldItem = new SchuldItem();
-        $createForm = $this->createForm(SchuldItemFormType::class, $schuldItem, [
-            'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_addschulditem', [
-                'dossierId' => $dossier->getId()
-            ])
-        ]);
-
-        $schuldeiser = new Schuldeiser();
-        $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser, [
-            'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create', [])
-        ]);
-
-        return $this->render('Dossier/detailSchulden.html.twig', [
-            'dossier' => $dossier,
-            'form' => $form->createView(),
-            'schuldItems' => $schuldItems,
-            'schuldenoverzichtForm' => $schuldenoverzichtForm->createView(),
-            'updateForms' => array_map(function ($form) {
-                    return $form->createView();
-                }, $updateForms),
-            'createForm' => $createForm->createView(),
-            'createSchuldeiserForm' => $createSchuldeiserForm->createView()
-        ]);
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', ['dossierId' => $dossier->getId()]);
     }
 
     /**

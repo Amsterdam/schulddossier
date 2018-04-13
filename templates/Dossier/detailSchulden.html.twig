@@ -7,77 +7,40 @@
     <nav class="nav-internal">
         <ul>
             <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"><i class="icon-arrow-left"></i> Terug naar overzicht</a></li>
+            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschuldenexcel', {'dossierId': dossier.id}) }}">Download als Excel</a></li>
             <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocumenten', {'dossierId': dossier.id}) }}">Alle documenten</a></li>
             <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', {'dossierId': dossier.id}) }}">Prullenbak</a></li>
         </ul>
     </nav>
     
     <div class="document well">
-        <div class="document-header">
-          <h1 class="document-title">{{ dossier.clientNaam }}</h1>
-          
-          <ul class="document-meta">
-            {% if dossier.regasNummer %}
-              <li>Regas: <strong>{{ dossier.regasNummer }}</strong></li>
-            {% endif %}
-            {% if dossier.allegroNummer %}
-              <li>Allegro: <strong>{{ dossier.allegroNummer }}</strong></li>
-            {% endif %}
-          </ul>
-          
-        </div>
-        {{ form_start(form, {'attr': {'class': 'default-form-style ajax'} }) }}
-        {{ form_row(form.clientNaam) }}
-        {{ form_row(form.partnerNaam) }}
-        <div class="columns">
-            <div class="column">
-                <h3 class="document-team">MaDi</h3>
-                {{ form_row(form.schuldhulpbureau) }}
-                {{ form_row(form.medewerkerSchuldhulpbureau) }}
-                {{ form_row(form.regasNummer) }}
-            </div>
-            <div class="column">
-                <h3 class="document-team">GKA</h3>
-                {{ form_row(form.teamGka) }}
-                {{ form_row(form.allegroNummer) }}
-            </div>
-        </div>
-        <p class="buttons right">
-            <button type="submit" class="button primary">Opslaan</button>
-        </p>
-        {{ form_end(form) }}
         
-        <hr>
+        {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}
         
-        <div class="tabs">
-            <ul>
-                <li class=""><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Aanmelding</a></li>
-                <li class="active"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">Schulden</a></li>
-                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', {'dossierId': dossier.id}) }}">Overige documenten</a></li>
-            </ul>
-        </div>
+        {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'schulden'} only %}
         
-        {{ form_start(schuldenoverzichtForm) }}
+        {{ form_start(form) }}
         <fieldset>
           <legend>Status van de schuldenlijst</legend>
-          {% do schuldenoverzichtForm.file.setRendered() %}
+          {% do form.schuldenoverzicht.file.setRendered() %}
           <div class="form-checks">
-            {{ form_row(schuldenoverzichtForm.schuldenoverzichtOntvangenMadi) }}
-            {{ form_row(schuldenoverzichtForm.schuldenoverzichtOntvangenGka) }}
+            {{ form_row(form.schuldenoverzicht.schuldenoverzichtOntvangenMadi) }}
+            {{ form_row(form.schuldenoverzicht.schuldenoverzichtOntvangenGka) }}
           </div>
-          <p class="buttons right">
-            <button type="submit" class="button primary">Opslaan</button>
-          </p>
+          {% do form.schuldenoverzicht.setRendered() %}
         </fieldset>
-        {{ form_end(schuldenoverzichtForm) }}
-        
         
         <div class="accordion-container">
-{% for schuldItem in schuldItems %}
-            {% set form = updateForms[schuldItem.id] %}
-            {% include 'Dossier/partial.schuldItem.html.twig' with {'schuldItem': schuldItem, 'form': form, 'dossier': dossier} only %}
+{% for schuldItemForm in form.schuldItems %}
+            {% set schuldItem = schuldItemForm.vars.data %}
+            {% include 'Dossier/partial.schuldItem.html.twig' with {'schuldItem': schuldItem, 'form': schuldItemForm, 'dossier': dossier} only %}
 {% endfor %}
         </div>
+        
+        <button type="submit">Opslaan</button>
+        
+        {{ form_end(form) }}
+        
         <div class="form-container">
             {{ form_start(createForm, {'attr': {'class': 'ajax default-form-style'} }) }}
             <fieldset class="naked">
@@ -156,6 +119,7 @@
             }).ajax(function(callback) {
                 var request = new XMLHttpRequest();
                 request.open('GET', '/app/schuldeiser/', true);
+                request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                 request.onload = function() {
                     if (request.status >= 200 && request.status < 400) {
                         var data = JSON.parse(request.responseText);

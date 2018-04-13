@@ -1,0 +1,8 @@
+<div class="tabs">
+  <ul>
+    <li class="{{ active == 'algemeen' ? 'active' }}"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', {'dossierId': dossier.id}) }}">Algemeen</a></li>
+    <li class="{{ active == 'voorlegger' ? 'active' }}""><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}">Aanmelding</a></li>
+    <li class="{{ active == 'schulden' ? 'active' }}""><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">Schulden</a></li>
+    <li class="{{ active == 'overigeDocumenten' ? 'active' }}""><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', {'dossierId': dossier.id}) }}">Overige documenten</a></li>
+  </ul>
+</div>

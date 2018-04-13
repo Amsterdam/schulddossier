@@ -12,53 +12,10 @@
     </nav>
     
     <div class="document well">
-      <div class="document-header group">
-        
-        <div>
-          <h1 class="document-title">{{ dossier.clientNaam }}</h1>
-          <p>Huidige status: <a href="#document-workflow" data-handler="scroll"><strong>{{ dossier.status|trans }}</strong></a></p>
-        </div>
-        
-        <ul class="document-meta">
-          {% if dossier.regasNummer %}
-            <li>Regas: <strong>{{ dossier.regasNummer }}</strong></li>
-          {% endif %}
-          {% if dossier.allegroNummer %}
-            <li>Allegro: <strong>{{ dossier.allegroNummer }}</strong></li>
-          {% endif %}
-        </ul>
-        
-      </div>
-  
-      {{ form_start(form, {'attr': {'class': 'default-form-style ajax'} }) }}
-        {{ form_row(form.clientNaam) }}
-        {{ form_row(form.partnerNaam) }}
-        <div class="columns">
-          <div class="column">
-            <h3 class="document-team">MaDi</h3>
-            {{ form_row(form.schuldhulpbureau) }}
-            {{ form_row(form.medewerkerSchuldhulpbureau) }}
-            {{ form_row(form.regasNummer) }}
-          </div>
-          <div class="column">
-            <h3 class="document-team">GKA</h3>
-            {{ form_row(form.teamGka) }}
-            {{ form_row(form.allegroNummer) }}
-          </div>
-        </div>
-        <p class="buttons right">
-            <button type="submit" class="button primary">Opslaan</button>
-        </p>
-      {{ form_end(form) }}
       
-      <hr>
+      {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}
       
-      <div class="tabs">
-        <ul>
-          <li class="active"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Aanmelding</a></li>
-          <li class=""><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">Schulden</a></li>
-        </ul>
-      </div>
+      {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'voorlegger'} only %}
       
 
       {{ form_start(voorleggerForm, attr: {'data-submitter': 'save'}) }}
@@ -113,7 +70,7 @@
             <div class="container">
                 <p class="buttons right">
                     <button type="submit" class="button primary">Opslaan</button>
-                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detail', {'dossierId': dossier.id}) }}">Annuleren</a>
+                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}">Annuleren</a>
                 </p>
             </div>
         </div>
