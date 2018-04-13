@@ -13,5 +13,14 @@
       <li>Allegro: <strong>{{ dossier.allegroNummer }}</strong></li>
     {% endif %}
   </ul>
+  
+  <nav class="nav-internal">
+      <ul>
+          <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocumenten', {'dossierId': dossier.id}) }}" class="primary">Alle documenten</a></li>
+          <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', {'dossierId': dossier.id}) }}">Prullenbak</a></li>
+      </ul>
+  </nav>
+  
+  
 
 </div>

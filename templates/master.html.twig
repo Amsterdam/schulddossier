@@ -22,19 +22,23 @@
               <i class="icon-andreas"></i>Gemeente Amsterdam
               <strong>{% block page_title %}Schulddossier{% endblock %}</strong>
             </a>
-            <nav class="menu">
-              <ul>
-                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"{% if ('/dossier/' in app.request.pathInfo) %} class="active"{% endif %}>Dossiers</a></li>
-                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}"{% if ('/schuldeiser/' in app.request.pathInfo) %} class="active"{% endif %}>Schuldeisers</a></li>
-                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}"{% if ('/gebruiker/' in app.request.pathInfo) %} class="active"{% endif %}>Gebruikers</a></li>
-              </ul>
-            </nav>
-            {% if app.user %}
-              <div class="gebruiker">
-                {{ app.user.userName }} -
-                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Afmelden</a>
+            <div class="container">
+              <div class="nav-container">
+                <a href="#MENU" class="nav-open" data-handler="toggle"><i class="icon-menu"></i>Menu</a>
+                <nav class="nav" id="MENU">
+                  <ul class="menu">
+                    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"{% if ('/dossier/' in app.request.pathInfo) %} class="active"{% endif %}>Dossiers</a></li>
+                    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}"{% if ('/schuldeiser/' in app.request.pathInfo) %} class="active"{% endif %}>Schuldeisers</a></li>
+                    <li class="divider"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}"{% if ('/gebruiker/' in app.request.pathInfo) %} class="active"{% endif %}>Gebruikers</a></li>
+                    {% if app.user %}
+                      <li>
+                        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Afmelden <strong>({{ app.user.userName }})</strong></a>
+                      </li>
+                    {% endif %}
+                  </ul>
+                </nav>
               </div>
-            {% endif %}
+            </div>
         </header>
         <div class="document-container">
 

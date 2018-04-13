@@ -34,3 +34,157 @@
     }
   }
 }
+
+.nav-container {
+  position: absolute;
+  z-index: 200;
+  right: 0;
+  top: -10px;
+  text-align: right;
+  margin-left: 20rem;
+  @include small {
+    margin-left: 200px;
+  }
+}
+
+.nav-login {
+  display: inline-block;
+  margin: 0;
+  .button {
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: $textColor;
+    border-color: $textColor;
+    padding: 1em 1em;
+    margin: 0 0 0 1em;
+    color: #fff;
+  }
+  .icon-avatar {
+    top: -.2em;
+    margin: 0 .2em;
+  }
+  a {
+    text-decoration: none;
+  }
+  @include small {
+    .icon-avatar {
+      top: 0;
+    }
+  }
+}
+
+.nav {
+  position: relative;
+  z-index: 5;
+  display: none;
+  &.active,
+  &:target {
+    display: block;
+  }
+  
+}
+.menu {
+  list-style: none;
+  background-color: #fff;
+  box-shadow: 0 0 5px 0 rgba(#000, .2);
+  border: 1px solid $lightColor;
+  margin: 0 -1em 0 0;
+  padding: $padding / 4 $padding / 2;
+  
+  text-align: left;
+
+  a {
+    display: block;
+    min-width: 200px;
+    text-decoration: none;
+    padding: $padding / 4 0;
+    
+    
+    
+  }
+  li:first-child a {
+    margin-top: 4px;
+  }
+  .divider {
+    margin-bottom: 4px;
+    border-bottom: 1px solid $lightColor;
+  }
+}
+
+.nav-open, .nav-close {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  overflow: hidden;
+
+  text-decoration: none;
+  margin-bottom: 10px;
+  
+  font-weight: 700;
+  
+  padding: 1em 1em;
+  margin: 0 -1em 0 1em;
+  
+  padding-left: 40px;
+  
+  transition: all .3s;
+  
+  .icon-menu, .icon-close {
+    position: absolute;
+    background-color: transparent;
+    width: 32px;
+    left: 0;
+    top: 3px;
+    margin: 0;
+
+  }
+  &:hover {
+    background-color: $lightColor
+  }
+  @include medium {
+    padding-right: 35px;
+    .icon-menu, .icon-close {
+      top: -7px;
+      right: -5px;
+    }
+    
+  }
+  
+  @include small {
+    font-size: 0;
+    height: 30px;
+  }
+  
+}
+.nav-open.active {
+
+}
+.nav-close {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  top: 0;
+  display: none;
+  &:before {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(#000, .2);
+  }
+}
+.nav.active ~ .nav-close,
+.nav:target ~ .nav-close {
+  display: block;
+}
+
+
+
+.document-header .nav-internal {
+  .primary {
+    outline: 1px solid rgba($textColor, .2);
+  }
+}

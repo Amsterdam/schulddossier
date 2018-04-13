@@ -4,7 +4,7 @@ html, body, h1, h2, h3, h4, h5, h6, fieldset, figure, blockquote, dl, dt, dd {
   border: none; }
 
 html {
-  background-color: #f5f5f5;
+  background-color: #f8f8f8;
   overflow-x: hidden; }
 
 body {
@@ -50,7 +50,7 @@ button::-moz-focus-inner {
 .well {
   position: relative;
   padding: 3rem;
-  background-color: #f5f5f5;
+  background-color: #f8f8f8;
   margin-bottom: 1.925rem;
   border-bottom: 1px solid #bdbdbd;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); }
@@ -136,7 +136,7 @@ body, .font-normal, legend small, pre, input[type="checkbox"] + strong {
   font-size: 1.4rem;
   font-family: "AvenirNextLTW01-Regular", verdana, sans-serif; }
 
-.bold, legend, .nav-internal a, .menu a.active, .tabs li.active a, b, strong, th {
+.bold, legend, .nav-internal a, .tabs li.active a, b, strong, th {
   font-family: "Avenir Next LT W01 Demi", verdana, sans-serif; }
 
 [type="text"], [type="search"], [type="email"], [type="password"], [type="url"], [type="number"], [type="date"], [type="time"], [type="tel"], [type="datalist"], select, option, textarea {
@@ -220,10 +220,39 @@ h6, .tiny {
 .icon-arrow-up {
   transform: rotate(-45deg); }
 
+.icon-menu, .icon-close {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+  width: 44px;
+  height: 44px;
+  background-color: #fff;
+  text-align: center; }
+.icon-menu:before, .icon-menu:after, .icon-close:before, .icon-close:after {
+  position: absolute;
+  left: 12px;
+  top: 14px;
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 8px;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000; }
+.icon-menu:after, .icon-close:after {
+  top: 19px;
+  border-bottom: 0; }
+
+.icon-close {
+  background-color: #fff; }
+.icon-close:before {
+  display: none; }
+
 hr {
   border: none;
   height: 2px;
-  background-color: #f5f5f5;
+  background-color: #f8f8f8;
   padding: 0;
   margin: 3.85rem 0; }
 
@@ -396,7 +425,7 @@ legend small {
   line-height: 1.2; }
 
 fieldset {
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid #f8f8f8;
   padding-bottom: 1.925rem;
   margin-bottom: 1.925rem; }
 .well fieldset {
@@ -454,37 +483,37 @@ form label strong, form .label strong {
 .form-list li [name*="-DELETE"] {
   display: none; }
 
-.buttons, .nav {
+.buttons {
   overflow: hidden;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 1.925rem; }
-.buttons > *, .nav > * {
+.buttons > * {
   margin-right: 2em;
   margin-bottom: 0; }
-.buttons.right, .buttons.nav, .nav.right, .nav.nav {
+.buttons.right {
   flex-direction: row-reverse; }
-.buttons.right > *, .buttons.nav > *, .nav.right > *, .nav.nav > * {
+.buttons.right > * {
   margin-right: 0;
   margin-left: 2em; }
-.buttons.right > a:not(.button), .buttons.nav > a:not(.button), .nav.right > a:not(.button), .nav.nav > a:not(.button) {
+.buttons.right > a:not(.button) {
   padding: 1.2em 0 1em; }
-.buttons .left, .nav .left {
+.buttons .left {
   margin-right: auto;
   margin-left: 0; }
 @media (max-width: 700px) {
-  .buttons .left, .nav .left {
+  .buttons .left {
     margin-right: 0;
     margin-left: 2em; } }
-.buttons.sticky, .nav.sticky {
+.buttons.sticky {
   z-index: 101;
   left: 0;
   right: 0;
   bottom: -100px;
   margin: 0;
   transition: bottom 0.3s cubic-bezier(0.165, 0.84, 0.44, 1); }
-.changed .buttons.sticky, .changed .nav.sticky {
+.changed .buttons.sticky {
   position: fixed;
   bottom: 0;
   background-color: rgba(51, 51, 51, 0.3);
@@ -502,7 +531,7 @@ form label strong, form .label strong {
   width: 240px;
   box-sizing: border-box;
   margin: 0 0 1.925rem 3rem;
-  background-color: #f5f5f5;
+  background-color: #f8f8f8;
   font-size: 1.2rem; }
 .form-aside p, .form-aside ul {
   margin-bottom: 1.5rem; }
@@ -716,12 +745,120 @@ form label strong, form .label strong {
 .nav-internal a i {
   margin-right: .5em; }
 
+.nav-container {
+  position: absolute;
+  z-index: 200;
+  right: 0;
+  top: -10px;
+  text-align: right;
+  margin-left: 20rem; }
+@media (max-width: 700px) {
+  .nav-container {
+    margin-left: 200px; } }
+
+.nav-login {
+  display: inline-block;
+  margin: 0; }
+.nav-login .button {
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: #333;
+  border-color: #333;
+  padding: 1em 1em;
+  margin: 0 0 0 1em;
+  color: #fff; }
+.nav-login .icon-avatar {
+  top: -.2em;
+  margin: 0 .2em; }
+.nav-login a {
+  text-decoration: none; }
+@media (max-width: 700px) {
+  .nav-login .icon-avatar {
+    top: 0; } }
+
+.nav {
+  position: relative;
+  z-index: 5;
+  display: none; }
+.nav.active, .nav:target {
+  display: block; }
+
+.menu {
+  list-style: none;
+  background-color: #fff;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid #f8f8f8;
+  margin: 0 -1em 0 0;
+  padding: 0.75rem 1.5rem;
+  text-align: left; }
+.menu a {
+  display: block;
+  min-width: 200px;
+  text-decoration: none;
+  padding: 0.75rem 0; }
+.menu li:first-child a {
+  margin-top: 4px; }
+.menu .divider {
+  margin-bottom: 4px;
+  border-bottom: 1px solid #f8f8f8; }
+
+.nav-open, .nav-close {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-weight: 700;
+  padding: 1em 1em;
+  margin: 0 -1em 0 1em;
+  padding-left: 40px;
+  transition: all .3s; }
+.nav-open .icon-menu, .nav-open .icon-close, .nav-close .icon-menu, .nav-close .icon-close {
+  position: absolute;
+  background-color: transparent;
+  width: 32px;
+  left: 0;
+  top: 3px;
+  margin: 0; }
+.nav-open:hover, .nav-close:hover {
+  background-color: #f8f8f8; }
+@media (max-width: 900px) {
+  .nav-open, .nav-close {
+    padding-right: 35px; }
+  .nav-open .icon-menu, .nav-open .icon-close, .nav-close .icon-menu, .nav-close .icon-close {
+    top: -7px;
+    right: -5px; } }
+@media (max-width: 700px) {
+  .nav-open, .nav-close {
+    font-size: 0;
+    height: 30px; } }
+
+.nav-close {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  top: 0;
+  display: none; }
+.nav-close:before {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2); }
+
+.nav.active ~ .nav-close, .nav:target ~ .nav-close {
+  display: block; }
+
+.document-header .nav-internal .primary {
+  outline: 1px solid rgba(51, 51, 51, 0.2); }
+
 header.top {
   background-color: #FFFFFF;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
   padding: 1.5rem 3rem;
+  min-height: 68px;
   position: absolute;
   left: 0;
   top: 0;
@@ -729,12 +866,16 @@ header.top {
   border-bottom: 1px solid #333;
   z-index: 99; }
 header.top .logo {
+  position: absolute;
+  left: 3rem;
+  top: 1.5rem;
   width: 65px;
-  margin-right: 20em;
   flex-grow: 0;
   height: 35px; }
 header.top .logo img {
   width: 100%; }
+header.top .container {
+  position: relative; }
 @media (max-width: 900px) {
   header.top {
     padding: 10px; } }
@@ -779,24 +920,6 @@ header.top .logo img {
     top: -1px; }
   .logo .icon-andreas {
     height: 41px; } }
-
-.menu {
-  margin-right: auto; }
-.menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex; }
-.menu a {
-  font-size: 1.8rem;
-  line-height: 1;
-  display: inline-block;
-  text-decoration: none;
-  padding: .4em 1em;
-  margin-bottom: -3px;
-  border-bottom: 3px solid #fff; }
-.menu a.active {
-  border-color: #ec0000; }
 
 body {
   padding-top: calc(60px + 3.85rem); }
@@ -956,7 +1079,7 @@ body {
   text-align: right; }
 
 .pdf-splitter {
-  background-color: gainsboro;
+  background-color: #dfdfdf;
   position: fixed;
   top: 0;
   left: 0;
@@ -1139,13 +1262,13 @@ body .form-global-buttons {
 .table table th, .table table td {
   vertical-align: top;
   padding: .5rem;
-  border-bottom: 1px solid #f5f5f5; }
+  border-bottom: 1px solid #f8f8f8; }
 .table table th:first-child, .table table td:first-child {
   padding-left: 0; }
 .table table th:last-child, .table table td:last-child {
   padding-right: 0; }
 .table table tbody > tr:nth-child(2n+1) {
-  background-color: rgba(245, 245, 245, 0.2); }
+  background-color: rgba(248, 248, 248, 0.2); }
 .table table tbody th {
   position: relative; }
 .table table tbody th a {
@@ -1175,7 +1298,7 @@ body .form-global-buttons {
   justify-content: space-evenly;
   list-style-type: none;
   padding: 0;
-  border-bottom: 3px solid #f5f5f5; }
+  border-bottom: 3px solid #f8f8f8; }
 .tabs li {
   flex-basis: 100%; }
 .tabs li a {
@@ -1185,7 +1308,7 @@ body .form-global-buttons {
   font-size: 1.6rem;
   text-decoration: none;
   padding: 1.5rem;
-  border-bottom: 3px solid #f5f5f5;
+  border-bottom: 3px solid #f8f8f8;
   margin-bottom: -3px;
   transition: all .3s; }
 .tabs li a:hover {
@@ -1199,7 +1322,7 @@ body .form-global-buttons {
   margin-bottom: 10px; }
 .accordion-container .accordion {
   margin-bottom: 1.5rem;
-  background-color: #f5f5f5;
+  background-color: #f8f8f8;
   padding: 8px 15px;
   border-radius: 2px;
   transition: background-color .3s; }
@@ -1233,7 +1356,7 @@ body .form-global-buttons {
 .accordion-container .accordion.active .accordion-header:after {
   transform: rotate(-45deg); }
 .accordion-container .accordion.active {
-  background-color: #f0f0f0; }
+  background-color: #f3f3f3; }
 .accordion-container .accordion .accordion-body {
   max-height: 0;
   overflow: hidden;
@@ -1272,8 +1395,8 @@ body .form-global-buttons {
 .accordion-body .label-widget .status, .form-checks .label-widget .status {
   margin: 0; }
 .accordion-body .form-row, .form-checks .form-row {
-  border-top: 1px solid #f5f5f5;
-  border-bottom: 1px solid #f5f5f5; }
+  border-top: 1px solid #f8f8f8;
+  border-bottom: 1px solid #f8f8f8; }
 .accordion-body .form-row + .form-row, .form-checks .form-row + .form-row {
   margin-top: calc(-1.925rem - 1px); }
 
@@ -1311,12 +1434,12 @@ body .form-global-buttons {
   width: 2.4rem;
   height: 2.4rem;
   box-sizing: border-box;
-  border: 4px solid #f5f5f5;
+  border: 4px solid #f8f8f8;
   transform: rotate(45deg);
   border-radius: 50%;
   background-color: #fff; }
 .accordion .status strong:before {
-  border-color: #c2c2c2; }
+  border-color: #c5c5c5; }
 .status strong:after {
   content: '';
   position: absolute;
