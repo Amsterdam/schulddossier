@@ -19,27 +19,28 @@
         
         {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'schulden'} only %}
         
-        {{ form_start(schuldenoverzichtForm) }}
+        {{ form_start(form) }}
         <fieldset>
           <legend>Status van de schuldenlijst</legend>
-          {% do schuldenoverzichtForm.file.setRendered() %}
+          {% do form.schuldenoverzicht.file.setRendered() %}
           <div class="form-checks">
-            {{ form_row(schuldenoverzichtForm.schuldenoverzichtOntvangenMadi) }}
-            {{ form_row(schuldenoverzichtForm.schuldenoverzichtOntvangenGka) }}
+            {{ form_row(form.schuldenoverzicht.schuldenoverzichtOntvangenMadi) }}
+            {{ form_row(form.schuldenoverzicht.schuldenoverzichtOntvangenGka) }}
           </div>
-          <p class="buttons right">
-            <button type="submit" class="button primary">Opslaan</button>
-          </p>
+          {% do form.schuldenoverzicht.setRendered() %}
         </fieldset>
-        {{ form_end(schuldenoverzichtForm) }}
-        
         
         <div class="accordion-container">
-{% for schuldItem in schuldItems %}
-            {% set form = updateForms[schuldItem.id] %}
-            {% include 'Dossier/partial.schuldItem.html.twig' with {'schuldItem': schuldItem, 'form': form, 'dossier': dossier} only %}
+{% for schuldItemForm in form.schuldItems %}
+            {% set schuldItem = schuldItemForm.vars.data %}
+            {% include 'Dossier/partial.schuldItem.html.twig' with {'schuldItem': schuldItem, 'form': schuldItemForm, 'dossier': dossier} only %}
 {% endfor %}
         </div>
+        
+        <button type="submit">Opslaan</button>
+        
+        {{ form_end(form) }}
+        
         <div class="form-container">
             {{ form_start(createForm, {'attr': {'class': 'ajax default-form-style'} }) }}
             <fieldset class="naked">
@@ -118,6 +119,7 @@
             }).ajax(function(callback) {
                 var request = new XMLHttpRequest();
                 request.open('GET', '/app/schuldeiser/', true);
+                request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                 request.onload = function() {
                     if (request.status >= 200 && request.status < 400) {
                         var data = JSON.parse(request.responseText);

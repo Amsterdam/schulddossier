@@ -74,6 +74,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldenFormType;
 
 /**
  * @Route("/app/dossier")
@@ -359,32 +360,34 @@ class AppDossierController extends Controller
     {
         $schuldItems = $dossier->getSchuldItems();
 
-        $schuldenoverzichtForm = $this->createForm(VoorleggerSchuldenoverzichtFormType::class, $dossier->getVoorlegger(), [
-            'disable_group' => $this->getUser()->getType()
-        ]);
-        $schuldenoverzichtForm->handleRequest($request);
-
-        if ($schuldenoverzichtForm->isSubmitted() && $schuldenoverzichtForm->isValid()) {
-            $em->flush();
-
-            if ($request->isXmlHttpRequest()) {
-                return new JsonResponse(['msg' => 'OK']);
+        $form = $this->createForm(SchuldenFormType::class, $dossier);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($form->get('schuldItems') as $child) {
+                if ($child->has('files')) {
+                    $files = $child->get('file')->getData();
+                    foreach ($files as $document) {
+                        /** @var $file Document */
+                        if ($document !== null) {
+                            $document->setMd5Hash(md5($document->getFile()->getRealPath()));
+                            $document->setMainTag('dossier-' . $dossier->getId());
+                            $document->setGroep('dossier');
+                            $document->setUploader($this->getUser());
+                            $document->setUploadDatumTijd(new \DateTime());
+                            $dossierDocument = new DossierDocument();
+                            $dossierDocument->setDocument($document);
+                            $dossierDocument->setDossier($dossier);
+                            $dossierDocument->setOnderwerp('schuldenoverzicht');
+                        }
+                    }
+                }
             }
-
+            $em->flush();
+            if ($request->isXmlHttpRequest()) {
+                return new JsonResponse(['status' => 'OK']);
+            }
             $this->addFlash('success', 'Opgeslagen');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', [
-                'dossierId' => $dossier->getId()
-            ]);
-        }
-
-        $updateForms = [];
-        foreach ($schuldItems as $schuldItem) {
-            $updateForms[$schuldItem->getId()] = $this->createForm(SchuldItemFormType::class, $schuldItem, [
-                'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_updateschulditem', [
-                    'dossierId' => $dossier->getId(),
-                    'schuldItemId' => $schuldItem->getId()
-                ])
-            ]);
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
         }
 
         $schuldItem = new SchuldItem();
@@ -402,13 +405,10 @@ class AppDossierController extends Controller
         return $this->render('Dossier/detailSchulden.html.twig', [
             'dossier' => $dossier,
             'schuldItems' => $schuldItems,
-            'schuldenoverzichtForm' => $schuldenoverzichtForm->createView(),
-            'updateForms' => array_map(function ($form) {
-            return $form->createView();
-            }, $updateForms),
+            'form' => $form->createView(),
             'createForm' => $createForm->createView(),
             'createSchuldeiserForm' => $createSchuldeiserForm->createView()
-            ]);
+        ]);
     }
 
     /**
@@ -481,8 +481,6 @@ class AppDossierController extends Controller
         $response->deleteFileAfterSend(true);
         return $response;
     }
-
-
 
     /**
      * @Method("POST")
