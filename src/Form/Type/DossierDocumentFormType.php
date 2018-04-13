@@ -49,7 +49,6 @@ class DossierDocumentFormType extends AbstractType
                 'retourbewijsModem' => 'retourbewijsModem',
                 'toelichtingAanvraagSchuldsaneringClient' => 'toelichtingAanvraagSchuldsaneringClient',
                 'toelichtingAanvraagSchuldsaneringMadi' => 'toelichtingAanvraagSchuldsaneringMadi',
-                'bewindstellingOfBudgetbeheer' => 'bewindstellingOfBudgetbeheer',
                 'beschikkingOnderBewindstelling' => 'beschikkingOnderBewindstelling',
                 'budgetbeheer' => 'budgetbeheer',
                 'gereserveerdeGelden' => 'gereserveerdeGelden',

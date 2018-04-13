@@ -41,7 +41,6 @@ class VoorleggerFormType extends AbstractType
         $builder->add('autoTaxatie', VoorleggerAutoTaxatieFormType::class, $settings);
         $builder->add('beschikkingOnderBewindstelling', VoorleggerBeschikkingOnderBewindstellingFormType::class, $settings);
         $builder->add('beschikkingUwv', VoorleggerBeschikkingUwvFormType::class, $settings);
-        $builder->add('bewindstellingOfBudgetbeheer', VoorleggerBewindstellingOfBudgetbeheerFormType::class, $settings);
         $builder->add('budgetbeheer', VoorleggerBudgetbeheerFormType::class, $settings);
         $builder->add('cjib', VoorleggerCjibFormType::class, $settings);
         $builder->add('corrigerenGemeenteBelasting', VoorleggerCorrigerenGemeenteBelastingFormType::class, $settings);

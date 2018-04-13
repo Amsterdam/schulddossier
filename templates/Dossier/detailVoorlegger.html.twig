@@ -18,9 +18,9 @@
       {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'voorlegger'} only %}
       
 
-      {{ form_start(voorleggerForm) }}
+      {{ form_start(voorleggerForm, {'attr': {'data-submitter': 'save'}}) }}
       
-      <div class="accordion-container team-{{ app.user.type }}" data-decorator="droppable" data-changer="change">
+      <div class="accordion-container" data-decorator="droppable" data-changer="change">
         {% include 'Dossier/partial.voorleggerLegitimatie.html.twig' with {'form': voorleggerForm.legitimatie, 'dossier': dossier} only %}
         {% include 'Dossier/partial.voorleggerVtlb.html.twig' with {'form': voorleggerForm.vtlb, 'dossier': dossier} only %}
         <h2>Inkomen</h2>
@@ -58,7 +58,6 @@
         {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringClient.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringClient, 'dossier': dossier} only %}
         {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringMadi.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringMadi, 'dossier': dossier} only %}
         <h2>Onderbewindstelling of budgetbeheer</h2>
-        {% include 'Dossier/partial.voorleggerBewindstellingOfBudgetbeheer.html.twig' with {'form': voorleggerForm.bewindstellingOfBudgetbeheer, 'dossier': dossier} only %}
         {% include 'Dossier/partial.voorleggerBeschikkingOnderBewindstelling.html.twig' with {'form': voorleggerForm.beschikkingOnderBewindstelling, 'dossier': dossier} only %}
         {% include 'Dossier/partial.voorleggerBudgetbeheer.html.twig' with {'form': voorleggerForm.budgetbeheer, 'dossier': dossier} only %}
         {% include 'Dossier/partial.voorleggerGereserveerdeGelden.html.twig' with {'form': voorleggerForm.gereserveerdeGelden, 'dossier': dossier} only %}
