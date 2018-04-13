@@ -8,8 +8,17 @@
         e.preventDefault();
         var 
           wasActive = this.hash == w.location.hash || el.classList.contains('active'),
-          addRemove = wasActive ? 'remove' : 'add';
+          addRemove = wasActive ? 'remove' : 'add',
+          tabs = container = _closest(this, '.tabs');
 
+        if (tabs && !wasActive) {
+          var els = tabs.querySelectorAll('.active');
+          for (var i = 0; i < els.length; i++) {
+            els[i].classList.remove('active');
+          }
+          
+        }
+        
         el.classList[addRemove]('active');
         this.classList[addRemove]('active');
         var url = document.location.href.split('#')[0];
@@ -27,6 +36,37 @@
       e.preventDefault();
       _scrollTo(target);
     },
+    
+    'multistatus': function(e){
+      e.preventDefault();
+      var 
+        values = this.hash.substr(1).split(','),
+        container = _closest(this, 'ul'),
+        form = _closest(this, 'form');
+      
+      
+      var els = container.querySelectorAll('.active');
+      for (var i = 0; i < els.length; i++) {
+        els[i].classList.remove('active');
+      }
+      this.classList.add('active');
+      
+      var els = form.querySelectorAll('#search_dossier_form_status input');
+      for (var i = 0; i < els.length; i++) {
+        els[i].checked = false;
+      }
+      
+      
+      for (var i = 0; i < values.length; i++) {
+        var el = form.querySelector('input[value="' + values[i] + '"]');
+        if (el) {
+          el.checked = true;
+        }
+      }
+      
+      helpers.trigger(form, 'submit');
+      
+    }
     
   };
   
@@ -102,28 +142,45 @@
   
   var submitters = {
     
-    'save': function(){
+    'save': function(e){
       var 
         form = this;
         
+      e && e.preventDefault();
       if (form.request) form.request.abort();
 
       form.classList.add('in-progress');
     
       var data = new FormData(form);
       
+      var url = form.action + '?v' + (new Date()).getTime();
+      
+      if (form.method.toLowerCase() == 'get') {
+        var parameters = []
+        for (var pair of data.entries()) {
+          parameters.push(
+            encodeURIComponent(pair[0]) + '=' +
+            encodeURIComponent(pair[1])
+          );
+        }
+        url += '&' + parameters.join('&');
+        data = {};
+      };
+      
       form.request = helpers.ajax({
-        type: 'POST',
-        url: form.action + '?v' + (new Date()).getTime(),
+        type: form.method,
+        url: url,
         data: data,
         callback: function(data){
 
           var div = document.createElement('div');
           div.innerHTML = data;
         
-          var result = div.querySelector('#' + container.id);
-          if (result) {
-            container.innerHTML = result.innerHTML;
+          var 
+            result = div.querySelector(form.dataset.resultSelector),
+            target = d.querySelector(form.dataset.resultSelector);
+          if (result && target) {
+            d.querySelector(form.dataset.resultSelector).innerHTML = result.innerHTML;
           }
         
           form.classList.remove('in-progress');
@@ -144,15 +201,16 @@
     'change': function(){
       var 
         form = this;
-      
+        
+        
       form.classList.add('form-changed');
-
-      if (!form.changed) {
-        form.changed = true;
+      
+      // if (!form.changed) {
+      //   form.changed = true;
         // w.onbeforeunload = function() {
         //   return 'Je hebt nog niet opgeslagen wijzigingen. Deze zul verloren gaan als je niet eerst je wijzigingen opslaat';
         // }
-      }
+      // }
       
       // if (form.files) {
       //

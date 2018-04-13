@@ -2,17 +2,19 @@
     
   <div>
     <h1 class="document-title">{{ dossier.clientNaam }}</h1>
+    {% if dossier.regasNummer or dossier.allegroNummer %}
+      <ul class="document-meta">
+        {% if dossier.regasNummer %}
+          <li>Regas: <strong>{{ dossier.regasNummer }}</strong></li>
+        {% endif %}
+        {% if dossier.allegroNummer %}
+          <li>Allegro: <strong>{{ dossier.allegroNummer }}</strong></li>
+        {% endif %}
+      </ul>
+    {% endif %}
     <p>Huidige status: <a href="#document-workflow" data-handler="scroll"><strong>{{ dossier.status|trans }}</strong></a></p>
   </div>
 
-  <ul class="document-meta">
-    {% if dossier.regasNummer %}
-      <li>Regas: <strong>{{ dossier.regasNummer }}</strong></li>
-    {% endif %}
-    {% if dossier.allegroNummer %}
-      <li>Allegro: <strong>{{ dossier.allegroNummer }}</strong></li>
-    {% endif %}
-  </ul>
   
   <nav class="nav-internal">
       <ul>

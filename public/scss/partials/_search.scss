@@ -5,6 +5,11 @@
     margin: 0;
     width: 100%;
   }
+  fieldset {
+    margin: 0 0 $lineHeight 0;
+    border: none;
+    padding: 0;
+  }
   input {
     width: 100%;
     min-height: 4rem;
@@ -15,6 +20,21 @@
   .button {
     margin: 0;
     padding: 0 $padding;
+  }
+  .tabs {
+    margin: $lineHeight 0;
+    .minder {
+      display: none;
+    }
+    .active {
+      .minder {
+        display: inline;
+      }
+      .meer {
+        display: none;
+      }
+    }
+    
   }
 }
 .search-more {

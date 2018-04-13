@@ -1,3 +1,7 @@
 .drop-over {
-  outline: 5px solid rgba(#000, .4);
+  outline: 5px solid rgba($textColor, .4);
+  .files-container {
+    border-color: rgba($textColor, .4);
+    background-color: rgba(#fff, .8);
+  }
 }

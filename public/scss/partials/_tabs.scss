@@ -28,7 +28,8 @@
         border-color: $textColor;
       }
     }
-    &.active a {
+    &.active a,
+    a.active {
       @extend .bold !optional;
       border-bottom-color: $brandColor1;
       

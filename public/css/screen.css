@@ -136,7 +136,7 @@ body, .font-normal, legend small, pre, input[type="checkbox"] + strong {
   font-size: 1.4rem;
   font-family: "AvenirNextLTW01-Regular", verdana, sans-serif; }
 
-.bold, legend, .nav-internal a, .tabs li.active a, b, strong, th {
+.bold, legend, .nav-internal a, .tabs li.active a, .tabs li a.active, b, strong, th {
   font-family: "Avenir Next LT W01 Demi", verdana, sans-serif; }
 
 [type="text"], [type="search"], [type="email"], [type="password"], [type="url"], [type="number"], [type="date"], [type="time"], [type="tel"], [type="datalist"], select, option, textarea {
@@ -249,6 +249,34 @@ h6, .tiny {
 .icon-close:before {
   display: none; }
 
+.icon-file {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 39px;
+  height: 54px;
+  overflow: hidden; }
+.icon-file:before, .icon-file:after {
+  content: '';
+  position: absolute; }
+.icon-file:before {
+  content: '';
+  position: absolute;
+  left: -48px;
+  top: 12px;
+  width: 40px;
+  height: 120px;
+  background-color: #fff;
+  transform: rotate(45deg); }
+.icon-file:after {
+  width: 7px;
+  height: 5px;
+  border-top: 3px solid #333;
+  border-bottom: 3px solid #333;
+  left: 9px;
+  top: 18px;
+  box-shadow: 0 -2px 0 0 #fff inset, 0 -3px 0 0 #333 inset; }
+
 hr {
   border: none;
   height: 2px;
@@ -287,10 +315,12 @@ hr {
   .document .document-footer {
     margin: 10px -10px -10px -10px; } }
 .document .document-meta {
-  margin: 0 0 0 3rem;
-  font-size: 1.2rem;
-  list-style: none;
-  text-align: right; }
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+.document .document-meta li {
+  display: inline-block;
+  margin-right: 1em; }
 .document .buttons {
   margin-bottom: 0; }
 
@@ -599,7 +629,12 @@ form label strong, form .label strong {
   padding: 5px 0; }
 
 .files-container {
-  min-height: 100px; }
+  min-height: 100px;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  transition: all .3s; }
 .files-container .file-container {
   border: 1px solid #CCC;
   background-color: #FFFFFF;
@@ -953,6 +988,10 @@ body {
 .search-basic .form-row {
   margin: 0;
   width: 100%; }
+.search-basic fieldset {
+  margin: 0 0 1.925rem 0;
+  border: none;
+  padding: 0; }
 .search-basic input {
   width: 100%;
   min-height: 4rem; }
@@ -961,6 +1000,14 @@ body {
 .search-basic .button {
   margin: 0;
   padding: 0 3rem; }
+.search-basic .tabs {
+  margin: 1.925rem 0; }
+.search-basic .tabs .minder {
+  display: none; }
+.search-basic .tabs .active .minder {
+  display: inline; }
+.search-basic .tabs .active .meer {
+  display: none; }
 
 .search-more {
   text-align: right; }
@@ -1059,7 +1106,10 @@ body {
   padding: 10px 20px; }
 
 .drop-over {
-  outline: 5px solid rgba(0, 0, 0, 0.4); }
+  outline: 5px solid rgba(51, 51, 51, 0.4); }
+.drop-over .files-container {
+  border-color: rgba(51, 51, 51, 0.4);
+  background-color: rgba(255, 255, 255, 0.8); }
 
 .pagination {
   width: 100%;
@@ -1313,7 +1363,7 @@ body .form-global-buttons {
   transition: all .3s; }
 .tabs li a:hover {
   border-color: #333; }
-.tabs li.active a {
+.tabs li.active a, .tabs li a.active {
   border-bottom-color: #ec0000; }
 
 .accordion-container > h2 {
@@ -1522,6 +1572,11 @@ body .form-global-buttons {
   display: block; }
 
 .team-madi .status-madi {
+  display: block; }
+
+.team-admin .status-madi {
+  display: block; }
+.team-admin .status-gka {
   display: block; }
 
 .document-workflow {

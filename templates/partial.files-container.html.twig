@@ -1,6 +1,7 @@
 <div class="files-container" data-default-document-naam="{{ defaultDocumentNaam|default('') }}">
     <div class="file-container prototype" data-name="{{ form_elm.vars.prototype.file.vars.full_name }}">
         {{ form_widget(form_elm.vars.prototype.naam, {'attr': {'placeholder': 'Nieuw document'} }) }}
+        
         <div class="file-selector">
             <button>Selecteer een bestand</button>
             <label>

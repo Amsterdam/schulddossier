@@ -401,6 +401,13 @@ form {
 }
 .files-container {
   min-height: 100px;
+  padding: $padding / 2;
+  background-color: rgba(#fff, .5);
+  border: 2px dashed rgba(#fff, .5);
+  border-radius: 5px;
+  
+  transition: all .3s;
+  
   .file-container {
     border: 1px solid #CCC;
     background-color: #FFFFFF;
