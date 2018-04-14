@@ -1,15 +1,9 @@
 {% if dossierDocumenten|length > 0 %}
-                        <p>Bestanden:</p>
-                        <ul>
-{% for dossierDocument in dossierDocumenten %}
-                                <li>
-{% if dossierDocument.document.origineleExtensie|lower == 'pdf' %}
-                                    <a class="quick-viewer-file" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a>
-                                    | <a class="download" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}">Download</a>
-{% else %}
-                                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a>
-{% endif %}
-                                </li>
-{% endfor %}
-                        </ul>
+  <ul class="bestanden">
+    {% for dossierDocument in dossierDocumenten %}
+      <li>
+        <a class="bestand" title="{{ dossierDocument.document.naam }}" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"><i class="icon-file" data-extension="{{ dossierDocument.document.origineleExtensie|lower }}"></i><span class="bestand-naam">{{ dossierDocument.document.naam }}</a>
+      </li>
+    {% endfor %}
+  </ul>
 {% endif %}
