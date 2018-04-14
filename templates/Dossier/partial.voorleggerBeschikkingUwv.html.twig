@@ -19,10 +19,8 @@
                         {{ form_row(form.beschikkingUwvWia) }}
                         {{ form_row(form.beschikkingUwvZw) }}
                         {{ form_row(form.beschikkingUwvOverig) }}
-                        <div class="document-bestanden">
-                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Beschikking UWV'} only %}
-                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('beschikkingUwv')} only %}
-                        </div>
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Beschikking UWV'} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('beschikkingUwv'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

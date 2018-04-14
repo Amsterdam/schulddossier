@@ -19,10 +19,8 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.gereserveerdeGeldenNvt) }}
                         {{ form_row(form.gereserveerdeGelden) }}
-                        <div class="document-bestanden">
-                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Gereserveerde gelden'} only %}
-                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('gereserveerdeGelden')} only %}
-                        </div>
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Gereserveerde gelden'} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('gereserveerdeGelden'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

@@ -1,9 +1,22 @@
 {% if dossierDocumenten|length > 0 %}
-  <ul class="bestanden">
-    {% for dossierDocument in dossierDocumenten %}
-      <li>
-        <a class="bestand" title="{{ dossierDocument.document.naam }}" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"><i class="icon-file" data-extension="{{ dossierDocument.document.origineleExtensie|lower }}"></i><span class="bestand-naam">{{ dossierDocument.document.naam }}</a>
-      </li>
-    {% endfor %}
-  </ul>
+                        <p>Bestanden:</p>
+                        <ul>
+{% for dossierDocument in dossierDocumenten if dossierDocument.document.inPrullenbak == false %}
+                                <li>
+{% if dossierDocument.document.origineleExtensie|lower == 'pdf' %}
+                                    <a class="quick-viewer-file" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a>
+                                    | <a class="download" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}">Download</a>
+{% else %}
+                                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}">{{ dossierDocument.document.naam }}</a>
+{% endif %}
+{% if removeFile is defined %}
+{% do removeFile.setRendered() %}
+                                    <input type="checkbox" name="{{ removeFile.vars.prototype.vars.full_name|replace({'__name__': dossierDocument.document.id}) }}" id="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}" value="{{ dossierDocument.document.id }}"> <label for="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}">verwijderen</label>
+{% endif %}
+                                </li>
+{% endfor %}
+                        </ul>
+{% endif %}
+{% if removeFile is defined %}
+{% do removeFile.setRendered() %}
 {% endif %}

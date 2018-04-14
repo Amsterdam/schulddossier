@@ -17,10 +17,8 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.aanvullendeInformatie) }}
-                        <div class="document-bestanden">
-                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Ondertekend aanvraag formulier'} only %}
-                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('ondertekendAanvraagFormulier')} only %}
-                        </div>
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Ondertekend aanvraag formulier'} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('ondertekendAanvraagFormulier'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

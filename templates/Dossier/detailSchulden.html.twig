@@ -82,6 +82,7 @@
                 </div>
                 {{ form_row(createForm.opmerkingen) }}
                 {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
+                {% do createForm.removeFile.setRendered() %}
                 <div class="nav">
                     {% do createForm.verwijderd.setRendered() %}
                     <button type="submit">Aanmaken</button>

@@ -330,6 +330,30 @@ class Dossier
         });
     }
 
+    /**
+     * @param integer $id
+     * @return NULL|DossierDocument
+     */
+    public function getDossierDocumentByDocumentId($id)
+    {
+        $documenten = $this->documenten->filter(function (DossierDocument $dossierDocument) use ($id) {
+            return $dossierDocument->getDocument()->getId() === $id;
+        });
+        return $documenten->count() === 1 ? $documenten->first() : null;
+    }
+
+    /**
+     * @param integer $id
+     * @return NULL|DossierDocument
+     */
+    public function getDossierDocumentByDossierDocumentId($id)
+    {
+        $documenten = $this->documenten->filter(function (DossierDocument $dossierDocument) use ($id) {
+            return $dossierDocument->getId() === $id;
+        });
+        return $documenten->count() === 1 ? $documenten->first() : null;
+    }
+
     public function hasDocument(DossierDocument $document)
     {
         return $this->documenten->contains($document);

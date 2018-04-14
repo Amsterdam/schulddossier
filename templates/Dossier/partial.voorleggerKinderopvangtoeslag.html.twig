@@ -18,10 +18,8 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.kinderopvangtoeslagNvt) }}
-                        <div class="document-bestanden">
-                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kinderopvangtoeslag'} only %}
-                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kinderopvangtoeslag')} only %}
-                        </div>
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kinderopvangtoeslag'} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kinderopvangtoeslag'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

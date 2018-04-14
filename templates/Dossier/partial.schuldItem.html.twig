@@ -1,5 +1,4 @@
-{% if schuldItem.verwijderd == false %}
-            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="schuldItem-{{ schuldItem.id }}">
+            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="schuldItem-{{ schuldItem.id }}" style="{{ schuldItem.verwijderd ? 'display: none;' }}">
                 <div class="accordion-header">
                     
                     <div class="schulditem-header">
@@ -35,12 +34,9 @@
                             </div>
                         </div>
                         {{ form_row(form.opmerkingen) }}
-                        <div class="document-bestanden">
-                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
-                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten} only %}
-                        </div>
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.verwijderd) }}
                     </div>
                 </div>
             </div>
-{% endif %}

@@ -15,10 +15,8 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.alimentatieNvt) }}
-                        <div class="document-bestanden">
-                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Alimentatie'} only %}
-                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('alimentatie')} only %}
-                        </div>
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Alimentatie'} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('alimentatie'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

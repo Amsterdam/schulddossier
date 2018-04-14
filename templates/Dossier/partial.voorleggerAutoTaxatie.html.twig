@@ -18,10 +18,8 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.autoTaxatieNvt) }}
-                        <div class="document-bestanden">
-                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Auto taxatie'} only %}
-                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('autoTaxatie')} only %}
-                        </div>
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Auto taxatie'} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('autoTaxatie'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

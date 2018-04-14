@@ -29,10 +29,8 @@
                         {{ form_row(form.warmteBedrijfKlantnummer) }}
                         {{ form_row(form.warmteBedrijfDatumOpname) }}
                         {{ form_row(form.warmteBedrijfOpname) }}
-                        <div class="document-bestanden">
-                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden energie'} only %}
-                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('meterstandenEnergie')} only %}
-                        </div>
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden energie'} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('meterstandenEnergie'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

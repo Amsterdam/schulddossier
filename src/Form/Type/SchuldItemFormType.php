@@ -19,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
@@ -78,10 +79,19 @@ class SchuldItemFormType extends AbstractType
                 new Valid()
             ]
         ]);
+        $builder->add('removeFile', CollectionType::class, [
+            'mapped' => false,
+            'entry_type' => HiddenType::class,
+            'entry_options' => ['required' => false],
+            'allow_add' => true,
+            'prototype_name' => '__name__',
+            'by_reference' => false,
+        ]);
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
             unset($data['file']['__name__']);
+            unset($data['removeFile']['__name__']);
             $event->setData($data);
         });
     }

@@ -24,12 +24,15 @@
             </a>
             <div class="container">
               <div class="nav-container">
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <a href="#MENU" class="nav-open" data-handler="toggle"><i class="icon-menu"></i>Menu</a>
                 <nav class="nav" id="MENU">
                   <ul class="menu">
                     <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appdossier_') %} class="active"{% endif %}>Dossiers</a></li>
                     <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_') %} class="active"{% endif %}>Schuldeisers</a></li>
-                    <li class=""divider><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_') %} class="active"{% endif %}>Gebruikers</a></li>
+                    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_') %} class="active"{% endif %}>Schuldhulpbureaus</a></li>
+                    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appteam_') %} class="active"{% endif %}>Teams</a></li>
+                    <li class="divider"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_') %} class="active"{% endif %}>Gebruikers</a></li>
 
                     {% if app.user %}
                       <li>
@@ -38,6 +41,7 @@
                     {% endif %}
                   </ul>
                 </nav>
+{% endif %}
               </div>
             </div>
         </header>

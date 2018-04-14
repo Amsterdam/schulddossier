@@ -19,10 +19,8 @@
                         {{ form_row(form.budgetbeheerCav) }}
                         {{ form_row(form.budgetbeheerFibu) }}
                         {{ form_row(form.budgetbeheerOverig) }}
-                        <div class="document-bestanden">
-                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Budgetbeheer'} only %}
-                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('budgetbeheer')} only %}
-                        </div>
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Budgetbeheer'} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('budgetbeheer'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>
