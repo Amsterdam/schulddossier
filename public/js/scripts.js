@@ -258,10 +258,13 @@
           div.innerHTML = data;
         
           var 
-            result = div.querySelector(form.dataset.resultSelector),
-            target = d.querySelector(form.dataset.resultSelector);
+            result = div.querySelectorAll(form.dataset.resultSelector),
+            target = d.querySelectorAll(form.dataset.resultSelector);
+
           if (result && target) {
-            d.querySelector(form.dataset.resultSelector).innerHTML = result.innerHTML;
+            for (var i=0; i< target.length; i++) {
+              target[i].innerHTML = result[i].innerHTML;
+            }
           }
         
           form.classList.remove('in-progress');
@@ -274,7 +277,7 @@
         }
       });
       
-    }
+    },
     
   };
   

@@ -1161,8 +1161,8 @@ body {
   padding: 10px 20px; }
 
 .drop-over {
-  outline: 5px solid rgba(51, 51, 51, 0.4); }
-.drop-over .document-bestanden {
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.5) !important; }
+.drop-over .files-container {
   border-color: rgba(51, 51, 51, 0.4);
   background-color: rgba(255, 255, 255, 0.8); }
 
@@ -1430,7 +1430,8 @@ body .form-global-buttons {
   background-color: #f8f8f8;
   padding: 8px 15px;
   border-radius: 2px;
-  transition: background-color .3s; }
+  box-shadow: 0 0 0 5px transparent;
+  transition: all .3s; }
 .accordion-container .accordion .accordion-header {
   position: relative;
   padding-right: 36px; }

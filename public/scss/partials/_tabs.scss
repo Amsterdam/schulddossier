@@ -49,7 +49,8 @@
     background-color: $lightColor;
     padding: 8px 15px;
     border-radius: 2px;
-    transition: background-color .3s;
+    box-shadow: 0 0 0 5px rgba(#000, 0);
+    transition: all .3s;
     .accordion-header {
       position: relative;
       padding-right: 36px;

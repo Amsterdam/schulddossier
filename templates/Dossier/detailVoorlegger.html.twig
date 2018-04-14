@@ -14,7 +14,7 @@
       {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'voorlegger'} only %}
       
 
-      {{ form_start(voorleggerForm, {'attr': {'data-submitter': 'save', 'data-changer': "change"}}) }}
+      {{ form_start(voorleggerForm, {'attr': {'id': 'voorlegger_form', 'data-submitter': 'save', 'data-result-selector': '#voorlegger_form .accordion', 'data-changer': "change"}}) }}
       
       <div class="accordion-container team-{{ app.user.type }}" data-decorator="droppable">
         {% include 'Dossier/partial.voorleggerLegitimatie.html.twig' with {'form': voorleggerForm.legitimatie, 'dossier': dossier} only %}
