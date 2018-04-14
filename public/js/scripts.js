@@ -108,6 +108,12 @@
               prototype.dispatchEvent(event);
           }
       });
+      
+      prototype.querySelector('input[type="text"]').addEventListener('keydown', function(e){
+        if (e && e.keyCode == 13) {
+          e.preventDefault();
+        }
+      });
     
       files.dataset.counter = counter;
       
@@ -222,7 +228,7 @@
         
       e && e.preventDefault();
       if (form.request) form.request.abort();
-
+      
       form.classList.add('in-progress');
     
       var data = new FormData(form);
