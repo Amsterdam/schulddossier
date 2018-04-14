@@ -400,46 +400,64 @@ form {
   }
 }
 .files-container {
-  min-height: 100px;
-  padding: $padding / 2;
-  background-color: rgba(#fff, .5);
-  border: 2px dashed rgba(#fff, .5);
-  border-radius: 5px;
-  
-  transition: all .3s;
   
   .file-container {
-    border: 1px solid #CCC;
     background-color: #FFFFFF;
-    min-width: 230px;
-    display: inline-block;
-    height: 180px;
     padding: 5px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    vertical-align: middle;
+    margin: -5px 10px 10px -5px;
+    border: 1px dotted rgba($textColor, .2) ;
+    width: 230px;
+    display: inline-block;
+    vertical-align: top;
     position: relative;
+    text-align: center;
     &.prototype {
       display: none;
     }
-    input[type="text"] {
-      width: 100%;
-      box-sizing: border-box;
+    .bestand {
+      margin: 0 0 5px 0;
+    }
+    .bestand-naam {
+      left: -70px;
+      right: -70px;
+      padding: 0;
+      max-height: none;
+    }
+    label {
+      position: static;
+      cursor: pointer;
+      &:before {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(#000, 0);
+        cursor: pointer;
+      }
+    }
+    .bestand-nieuw {
+      z-index: 2;
+    }
+    .file {
+      font-size: $fontSmallSize;
+      display: block;
+      line-height: 1.2;
       margin-bottom: 5px;
-      border: 0 none;
-      border-bottom: 1px dotted #999;
-      border-radius: 0;
+    }
+    input[type="text"] {
+      padding: 0;
+      border: none;
+      border-bottom: 1px dashed $textColor;
+      font-family: Tahoma;
+      font-size: 10px;
+      text-align: center;
+      min-height: 2.4em;
+      background-color: #f3f3f3;
     }
     .file-selector {
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      button {
-        background-color: #FFFFFF;
-        color: #ccc;
-        border: 1px solid #ccc;
-        padding: $padding / 2;
-      }
       input[type=file] {
         font-size: 100px;
         position: absolute;
@@ -452,18 +470,13 @@ form {
       background-color: #F3F3F3;
     }
     .drop-area {
-      border: 2px dashed #FFF;
-      height: 30px;
-      position: relative;
-      &:before {
-        width: 100%;
-        position: absolute;
-        content: "Sleep pagina's hierheen";
-        text-align: center;
-        color: #FFF;
-        bottom: 0;
-        display: none;
-      }
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #f3f3f3;
+      display: none;
       .page {
         display: inline-block;
         border: 1px solid #CCC;
@@ -499,13 +512,6 @@ form {
   }
 }
 
-.files-container .add {
-  /*background-color: #F00; */
-  display: inline-block;
-  height: auto;
-  /*padding: 5px; border-radius: 2px; text-decoration: none; color: #FFF; font-size: 0.9rem; */
-  width: 100px;
-}
 
 //.primair, .secundair, .tertiair {
 //  -webkit-appearance: none;
@@ -534,7 +540,7 @@ form {
 //}
 //
 .in-progress {
-//  opacity: 0.6;
+  opacity: 0.6;
 //  &:after {
 //    content: '';
 //    position: absolute;
@@ -549,7 +555,7 @@ form {
   .button[type="submit"] {
     position: relative;
   }
-  .button[type="submit"]:after,
+  .form-global-buttons:after,
   &:after {
     content: '';
     position: absolute;

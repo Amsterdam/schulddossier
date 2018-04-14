@@ -1,15 +1,25 @@
 <div class="files-container" data-default-document-naam="{{ defaultDocumentNaam|default('') }}">
     <div class="file-container prototype" data-name="{{ form_elm.vars.prototype.file.vars.full_name }}">
-        {{ form_widget(form_elm.vars.prototype.naam, {'attr': {'placeholder': 'Nieuw document'} }) }}
+        <span class="bestand bestand-nieuw">
+          <i class="icon-file" data-extension="nieuw">+</i>
+          <span class="bestand-naam">
+            {{ form_widget(form_elm.vars.prototype.naam, {'attr': {'placeholder': 'Naam document'} }) }}
+          </span>
+          
+        </span>
         
         <div class="file-selector">
-            <button>Selecteer een bestand</button>
-            <label>
-              {{ form_widget(form_elm.vars.prototype.file) }}
-            <label>
+          <label>
+            {{ form_widget(form_elm.vars.prototype.file) }}
+            <span class="file">Kies een bestand<br>of sleep pagina's hier naartoe</span>
+          </label>
         </div>
         <div class="drop-area"></div>
     </div>
-    <a class="add secundair" href="#add">Nieuw bestand toevoegen</a>
+    <a class="add secundair bestand" href="#add" data-handler="add-file">
+      <i class="icon-file" data-extension="nieuw">+</i>
+      <span class="bestand-naam">Nieuw document toevoegen</span>
+      
+    </a>
 </div>
 {% do form_elm.setRendered() %}

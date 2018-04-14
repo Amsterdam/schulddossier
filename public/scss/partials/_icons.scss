@@ -82,32 +82,40 @@
   position: relative;
   
   display: inline-block;
-  vertical-align: middle;
-  width: 13px * 3;
-  height: 18px * 3;
-  overflow: hidden;
-  &:before, &:after {
-    content: '';
-    position: absolute;
-  }
-  &:before {
-    content: '';
-    position: absolute;
-    left: -16px * 3;
-    top: 4px * 3;
-    width: 40px;
-    height: 40px * 3;
-    background-color: #fff;
-    transform: rotate(45deg);
-  }
-  &:after {
-    width: 7px;
-    height: 5px;
-    border-top: 3px solid $textColor;
-    border-bottom: 3px solid $textColor;
-    left: 3px * 3;
-    top: 6px * 3;
-    box-shadow:  0 -2px 0 0 #fff inset, 0 -3px 0 0 $textColor inset;
+  vertical-align: top;
+  width: 4rem;
+  height: 5rem;
+  box-sizing: border-box;
+  padding-top: .2rem;
+  
+  border: 3px solid $textColor;
+  
+  background-color: #fff;
+  
+  text-transform: uppercase;
+  line-height: 1;
+  font-style: normal;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  font-family: Tahoma;
+  
+  border-radius: 0 14px 0 0;
+  
+  
+  
+  &[data-extension] {
+    &:after {
+      content: attr(data-extension);
+      position: absolute;
+      font-size: 8px;
+      color: #fff;
+      padding: .3em;
+      background-color: $textColor;
+      left: 20%;
+      right: -.6rem;
+      bottom: .5rem;
+    }
   }
   
 }

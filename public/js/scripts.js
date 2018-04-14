@@ -66,6 +66,52 @@
       
       helpers.trigger(form, 'submit');
       
+    },
+    
+    'add-file': function(e){
+      e && e.preventDefault();
+      
+      var 
+        files = _closest(this, '.files-container'),
+        counter = files.dataset.counter || -1,
+        prototype = files.querySelector('.prototype').cloneNode(true);
+        
+      
+      counter++;
+    
+      prototype.classList.remove('prototype');
+      prototype.setAttribute('data-name', prototype.getAttribute('data-name').replace('__name__', 'n' + counter));
+      prototype.querySelector('input[type="text"]').setAttribute('name', prototype.querySelector('input[type="text"]').getAttribute('name').replace('__name__', 'n' + counter));
+      prototype.querySelector('input[type="file"]').setAttribute('name', prototype.querySelector('input[type="file"]').getAttribute('name').replace('__name__', 'n' + counter));
+      files.insertBefore(prototype, this);
+    
+      window.schuldhulp.pdfSplitter.dragula.containers.push(prototype.querySelector('.drop-area'));
+    
+      prototype.addEventListener('filled', function (event) {
+          var elm = prototype.querySelector('input[type="text"]');
+          if (elm.value === '' || elm.value === null) {
+              elm.value = prototype.parentNode.getAttribute('data-default-document-naam');
+              elm.focus();
+          }
+      });
+    
+      prototype.querySelector('input[type="file"]').addEventListener('change', function (event) {
+          if (event.target.value) {
+              if (prototype.querySelector('.drop-area')) {
+                  prototype.removeChild(prototype.querySelector('.drop-area'));
+              }
+              prototype.classList.add('files-only');
+              var button = prototype.querySelector('.file');
+              button.textContent = event.target.value.replace('/', '\\').split('\\').pop();
+            
+              var event = new Event('filled');
+              prototype.dispatchEvent(event);
+          }
+      });
+    
+      files.dataset.counter = counter;
+      
+      return prototype;
     }
     
   };
@@ -111,7 +157,35 @@
         var form = (e && e.target) && _closest(e.target, 'form');
         if (!files) return;
         
-        form.files = files;
+        zone.classList.add('active');
+        
+        // create new file zone
+        for (var i=0; i<files.length; i++) {
+          var addButton = zone.querySelector('.files-container .add.bestand');
+          if (addButton) {
+            var 
+              file = handlers['add-file'].call(addButton),
+              input = file.querySelector('[type="file"]'),
+              button = file.querySelector('.file'),
+              icon = file.querySelector('[data-extension]');
+            
+            button.textContent = files[i].name.replace('/', '\\').split('\\').pop();
+            // icon.dataset.extension = files[i].type.split('/').pop();
+            
+            var event = new Event('filled');
+            file.dispatchEvent(event);
+            
+            form.files = form.files || [];
+            form.files.push({
+              'name': input.name,
+              'file': files[i]
+            });
+            input.parentNode.removeChild(input);
+          }
+          
+        }
+        
+        
         
         helpers.trigger(form, 'change');
         
@@ -166,6 +240,13 @@
         url += '&' + parameters.join('&');
         data = {};
       };
+      
+      if (form.files) {
+        for (var i=0; i< form.files.length; i++) {
+          data.append(form.files[i].name, form.files[i].file);
+        }
+      }
+      form.files = [];
       
       form.request = helpers.ajax({
         type: form.method,

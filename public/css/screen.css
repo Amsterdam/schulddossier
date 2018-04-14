@@ -252,30 +252,31 @@ h6, .tiny {
 .icon-file {
   position: relative;
   display: inline-block;
-  vertical-align: middle;
-  width: 39px;
-  height: 54px;
-  overflow: hidden; }
-.icon-file:before, .icon-file:after {
-  content: '';
-  position: absolute; }
-.icon-file:before {
-  content: '';
-  position: absolute;
-  left: -48px;
-  top: 12px;
-  width: 40px;
-  height: 120px;
+  vertical-align: top;
+  width: 4rem;
+  height: 5rem;
+  box-sizing: border-box;
+  padding-top: .2rem;
+  border: 3px solid #333;
   background-color: #fff;
-  transform: rotate(45deg); }
-.icon-file:after {
-  width: 7px;
-  height: 5px;
-  border-top: 3px solid #333;
-  border-bottom: 3px solid #333;
-  left: 9px;
-  top: 18px;
-  box-shadow: 0 -2px 0 0 #fff inset, 0 -3px 0 0 #333 inset; }
+  text-transform: uppercase;
+  line-height: 1;
+  font-style: normal;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  font-family: Tahoma;
+  border-radius: 0 14px 0 0; }
+.icon-file[data-extension]:after {
+  content: attr(data-extension);
+  position: absolute;
+  font-size: 8px;
+  color: #fff;
+  padding: .3em;
+  background-color: #333;
+  left: 20%;
+  right: -.6rem;
+  bottom: .5rem; }
 
 hr {
   border: none;
@@ -349,6 +350,48 @@ hr {
   text-decoration: none; }
 .document-header a:hover {
   text-decoration: underline; }
+
+.document-bestanden {
+  min-height: 100px;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  transition: all .3s; }
+.document-bestanden .bestanden {
+  font-size: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 -20px 0; }
+.document-bestanden .bestanden li {
+  display: inline; }
+.document-bestanden .bestand {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px 28px 20px;
+  margin: 0 10px 20px 0;
+  background-color: rgba(109, 181, 214, 0);
+  transition: background-color .3s; }
+.document-bestanden .bestand i {
+  transition: box-shadow .3s;
+  box-shadow: 0 0 5px 0 transparent; }
+.document-bestanden .bestand .bestand-naam {
+  position: absolute;
+  font-size: 10px;
+  line-height: 1.2;
+  font-family: Tahoma;
+  text-align: center;
+  padding: 4px 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+.document-bestanden a.bestand:hover {
+  background-color: rgba(109, 181, 214, 0.2); }
+.document-bestanden a.bestand:hover i {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4); }
 
 .button, button {
   display: inline-block;
@@ -628,42 +671,54 @@ form label strong, form .label strong {
 .errors li {
   padding: 5px 0; }
 
-.files-container {
-  min-height: 100px;
-  padding: 1.5rem;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: 2px dashed rgba(255, 255, 255, 0.5);
-  border-radius: 5px;
-  transition: all .3s; }
 .files-container .file-container {
-  border: 1px solid #CCC;
   background-color: #FFFFFF;
-  min-width: 230px;
-  display: inline-block;
-  height: 180px;
   padding: 5px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  vertical-align: middle;
-  position: relative; }
+  margin: -5px 10px 10px -5px;
+  border: 1px dotted rgba(51, 51, 51, 0.2);
+  width: 230px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  text-align: center; }
 .files-container .file-container.prototype {
   display: none; }
-.files-container .file-container input[type="text"] {
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 5px;
-  border: 0 none;
-  border-bottom: 1px dotted #999;
-  border-radius: 0; }
-.files-container .file-container .file-selector {
-  position: relative;
-  overflow: hidden;
+.files-container .file-container .bestand {
+  margin: 0 0 5px 0; }
+.files-container .file-container .bestand-naam {
+  left: -70px;
+  right: -70px;
+  padding: 0;
+  max-height: none; }
+.files-container .file-container label {
+  position: static;
   cursor: pointer; }
-.files-container .file-container .file-selector button {
-  background-color: #FFFFFF;
-  color: #ccc;
-  border: 1px solid #ccc;
-  padding: 1.5rem; }
+.files-container .file-container label:before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  cursor: pointer; }
+.files-container .file-container .bestand-nieuw {
+  z-index: 2; }
+.files-container .file-container .file {
+  font-size: 1.2rem;
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 5px; }
+.files-container .file-container input[type="text"] {
+  padding: 0;
+  border: none;
+  border-bottom: 1px dashed #333;
+  font-family: Tahoma;
+  font-size: 10px;
+  text-align: center;
+  min-height: 2.4em;
+  background-color: #f3f3f3; }
 .files-container .file-container .file-selector input[type=file] {
   font-size: 100px;
   position: absolute;
@@ -673,16 +728,12 @@ form label strong, form .label strong {
 .files-container .file-container.files-only .file-selector button {
   background-color: #F3F3F3; }
 .files-container .file-container .drop-area {
-  border: 2px dashed #FFF;
-  height: 30px;
-  position: relative; }
-.files-container .file-container .drop-area:before {
-  width: 100%;
   position: absolute;
-  content: "Sleep pagina's hierheen";
-  text-align: center;
-  color: #FFF;
+  left: 0;
+  top: 0;
+  right: 0;
   bottom: 0;
+  background-color: #f3f3f3;
   display: none; }
 .files-container .file-container .drop-area .page {
   display: inline-block;
@@ -708,16 +759,11 @@ form label strong, form .label strong {
   color: #CCC;
   display: block; }
 
-.files-container .add {
-  /*background-color: #F00; */
-  display: inline-block;
-  height: auto;
-  /*padding: 5px; border-radius: 2px; text-decoration: none; color: #FFF; font-size: 0.9rem; */
-  width: 100px; }
-
+.in-progress {
+  opacity: 0.6; }
 .in-progress, .in-progress .button[type="submit"] {
   position: relative; }
-.in-progress .button[type="submit"]:after, .in-progress:after {
+.in-progress .form-global-buttons:after, .in-progress:after {
   content: '';
   position: absolute;
   left: 0;
@@ -1107,7 +1153,7 @@ body {
 
 .drop-over {
   outline: 5px solid rgba(51, 51, 51, 0.4); }
-.drop-over .files-container {
+.drop-over .document-bestanden {
   border-color: rgba(51, 51, 51, 0.4);
   background-color: rgba(255, 255, 255, 0.8); }
 
