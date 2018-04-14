@@ -16,6 +16,7 @@
         <h1 class="document-title">Prullenbak: {{ dossier.clientNaam }}</h1>
     </div>
     
+    <h2>Documenten</h2>
     <div class="table">
         <table>
             <thead>
@@ -26,7 +27,7 @@
             </thead>
             <tbody>
 {% set empty = true %}
-{% for document in dossier.documenten if document.document.inPrullenbak == true %}
+{% for document in dossierDocumenten if (document.schuldItem is empty or document.schuldItem.verwijderd == false) %}
 {% set empty = false %}
                 <tr>
                     <th>{{ document.document.naam }}</th>
@@ -45,7 +46,45 @@
             </tbody>
         </table>
 {% if empty %}
-        <p class="empty-table">Prullenbak is leeg</p>
+        <p class="empty-table">Geen documenten in prullenbak</p>
+{% endif %}
+    </div>
+    
+    <h2>Schulden</h2>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Schuldeiser</th>
+                    <th>Incassant</th>
+                    <th>Referentie</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+{% set empty = true %}
+{% for schuldItem in schuldItems %}
+{% set empty = false %}
+                <tr>
+                    <td>{{ schuldItem.schuldeiser }}</td>
+                    <td>{{ schuldItem.incassant }}</td>
+                    <td>{{ schuldItem.referentie }}</td>
+                    <td>
+                        <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_removeschulditem', {'dossierId': dossier.id, 'schuldItemId': schuldItem.id}) }}" method="post">
+                            <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_removeschulditem') }}">
+                            <button type="submit">Definitief verwijderen</button>
+                        </form>
+                        <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoreschulditem', {'dossierId': dossier.id, 'schuldItemId': schuldItem.id}) }}" method="post">
+                            <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoreschulditem') }}">
+                            <button type="submit">Herstellen</button>
+                        </form>
+                    </td>
+                </tr>
+{% endfor %}
+            </tbody>
+        </table>
+{% if empty %}
+        <p class="empty-table">Geen schulden in prullenbak</p>
 {% endif %}
     </div>
 </div>

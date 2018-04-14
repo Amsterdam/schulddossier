@@ -131,7 +131,7 @@ class SchuldItem
 
     /**
      * @var DossierDocument[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="DossierDocument", mappedBy="schuldItem")
+     * @ORM\OneToMany(targetEntity="DossierDocument", mappedBy="schuldItem", cascade={"persist", "remove"})
      * @ORM\OrderBy({"id"="ASC"})
      */
     private $dossierDocumenten;

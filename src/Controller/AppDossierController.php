@@ -261,9 +261,14 @@ class AppDossierController extends Controller
             return $dossierDocument->getDocument()->isInPrullenbak();
         });
 
+        $schuldItems = $dossier->getSchuldItems()->filter(function (SchuldItem $schuldItem) {
+            return $schuldItem->isVerwijderd();
+        });
+
         return $this->render('Dossier/detailPrullenbak.html.twig', [
             'dossier' => $dossier,
             'dossierDocumenten' => $dossierDocumenten,
+            'schuldItems' => $schuldItems
         ]);
     }
 
@@ -408,6 +413,11 @@ class AppDossierController extends Controller
                             $dossierDocument->setOnderwerp('schuldenoverzicht');
                         }
                     }
+                }
+                $removeFiles = $child->get('removeFile')->getData();
+                foreach ($removeFiles as $documentId) {
+                    $documentId = intval($documentId);
+                    $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
                 }
             }
             $em->flush();
@@ -797,5 +807,61 @@ class AppDossierController extends Controller
         }
 
         return; // 500
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/schulden/detail/{schuldItemId}/verwijderen")
+     * @Method("POST")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
+     */
+    public function removeSchuldItemAction(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em)
+    {
+        if ($schuldItem->getDossier() !== $dossier) {
+            throw new NotFoundHttpException('SchuldItem does not match with dossier');
+        }
+
+        if ($schuldItem->isVerwijderd() === false) {
+            throw $this->createNotFoundException('SchuldItem not in prullenbak', ['schuldItemId' => $schuldItem->getId()]);
+        }
+
+        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_removeschulditem', $request->request->get('token')) === false) {
+            throw $this->createAccessDeniedException('CSRF token invalid');
+        }
+
+        $em->remove($schuldItem);
+
+        $em->flush();
+        $this->addFlash('success', 'Schuld definitief verwijderd');
+
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/schulden/detail/{schuldItemId}/herstellen")
+     * @Method("POST")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
+     */
+    public function restoreSchuldItemAction(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em)
+    {
+        if ($schuldItem->getDossier() !== $dossier) {
+            throw new NotFoundHttpException('SchuldItem does not match with dossier');
+        }
+
+        if ($schuldItem->isVerwijderd() === false) {
+            throw $this->createNotFoundException('SchuldItem not in prullenbak', ['schuldItemId' => $schuldItem->getId()]);
+        }
+
+        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoreschulditem', $request->request->get('token')) === false) {
+            throw $this->createAccessDeniedException('CSRF token invalid');
+        }
+
+        $schuldItem->setVerwijderd(false);
+
+        $em->flush();
+        $this->addFlash('success', 'Schuld hersteld');
+
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
     }
 }
