@@ -16,7 +16,7 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.alimentatieNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Alimentatie'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('alimentatie')} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('alimentatie'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

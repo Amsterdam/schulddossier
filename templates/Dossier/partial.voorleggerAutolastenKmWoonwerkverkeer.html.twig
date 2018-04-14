@@ -20,7 +20,7 @@
                         {{ form_row(form.autolastenKmWoonwerkverkeerNvt) }}
                         {{ form_row(form.autolastenKmWoonwerkverkeer) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Autolasten km woon-werk-verkeer'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('autolastenKmWoonwerkverkeer')} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('autolastenKmWoonwerkverkeer'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

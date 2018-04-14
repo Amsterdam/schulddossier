@@ -20,7 +20,7 @@
                         {{ form_row(form.budgetbeheerFibu) }}
                         {{ form_row(form.budgetbeheerOverig) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Budgetbeheer'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('budgetbeheer')} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('budgetbeheer'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

@@ -22,7 +22,7 @@
                         {{ form_row(form.drinkwaterDatumOpname) }}
                         {{ form_row(form.drinkwaterOpname) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Waternet'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('waternet')} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('waternet'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

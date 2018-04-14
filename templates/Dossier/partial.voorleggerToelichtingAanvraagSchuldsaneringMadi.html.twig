@@ -18,7 +18,7 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Toelichting aanvraag schuldsanering MaDi'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('toelichtingAanvraagSchuldsaneringMadi')} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('toelichtingAanvraagSchuldsaneringMadi'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

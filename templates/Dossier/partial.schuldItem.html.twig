@@ -36,7 +36,7 @@
                         </div>
                         {{ form_row(form.opmerkingen) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.verwijderd) }}
                     </div>
                 </div>

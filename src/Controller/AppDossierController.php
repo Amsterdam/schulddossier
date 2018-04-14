@@ -74,6 +74,9 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldenFormType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
 
 /**
  * @Route("/app/dossier")
@@ -178,12 +181,12 @@ class AppDossierController extends Controller
         $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
-            foreach ($voorleggerForm->all() as $child) {
+            foreach ($voorleggerForm->all() as $key => $child) {
                 if ($child->has('file')) {
                     $files = $child->get('file')->getData();
                     foreach ($files as $document) {
                         /** @var $file Document */
-                        if ($document !== null) {
+                        if ($document !== null && $document->getFile() !== null) {
                             $document->setMd5Hash(md5($document->getFile()->getRealPath()));
                             $document->setMainTag('dossier-' . $dossier->getId());
                             $document->setGroep('dossier');
@@ -194,6 +197,13 @@ class AppDossierController extends Controller
                             $dossierDocument->setDossier($dossier);
                             $dossierDocument->setOnderwerp($key);
                         }
+                    }
+                }
+                if ($child->has('removeFile')) {
+                    $removeFiles = $child->get('removeFile')->getData();
+                    foreach ($removeFiles as $documentId) {
+                        $documentId = intval($documentId);
+                        $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
                     }
                 }
             }
@@ -276,6 +286,20 @@ class AppDossierController extends Controller
                 new Valid()
             ]
         ]);
+        $formBuilder->add('removeFile', CollectionType::class, [
+            'mapped' => false,
+            'entry_type' => HiddenType::class,
+            'entry_options' => ['required' => false],
+            'allow_add' => true,
+            'prototype_name' => '__name__',
+            'by_reference' => false,
+        ]);
+        $formBuilder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+            unset($data['file']['__name__']);
+            unset($data['removeFile']['__name__']);
+            $event->setData($data);
+        });
 
         $form = $formBuilder->getForm();
         $form->handleRequest($request);
@@ -295,6 +319,11 @@ class AppDossierController extends Controller
                     $dossierDocument->setDossier($dossier);
                     $dossierDocument->setOnderwerp('overige');
                 }
+            }
+            $removeFiles = $child->get('removeFile')->getData();
+            foreach ($removeFiles as $documentId) {
+                $documentId = intval($documentId);
+                $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
             }
             $em->flush();
 
@@ -743,6 +772,11 @@ class AppDossierController extends Controller
                     $dossierDocument->setOnderwerp('schuldenoverzicht');
                     $dossierDocument->setSchuldItem($schuldItem);
                 }
+            }
+            $removeFiles = $child->get('removeFile')->getData();
+            foreach ($removeFiles as $documentId) {
+                $documentId = intval($documentId);
+                $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
             }
 
             $em->flush();

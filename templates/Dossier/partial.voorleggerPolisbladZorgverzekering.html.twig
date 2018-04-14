@@ -20,7 +20,7 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.polisbladZorgverzekeringNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Polisblad zorgverzekering'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('polisbladZorgverzekering')} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('polisbladZorgverzekering'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

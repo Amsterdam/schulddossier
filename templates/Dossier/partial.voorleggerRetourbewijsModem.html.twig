@@ -20,7 +20,7 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.retourbewijsModemNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Retourbewijs modem'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('retourbewijsModem')} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('retourbewijsModem'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

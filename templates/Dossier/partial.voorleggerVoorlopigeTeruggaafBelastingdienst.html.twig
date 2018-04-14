@@ -19,7 +19,7 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.voorlopigeTeruggaafBelastingdienstNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Voorlopige teruggaaf Belastingdienst'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('voorlopigeTeruggaafBelastingdienst')} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('voorlopigeTeruggaafBelastingdienst'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

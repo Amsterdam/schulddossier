@@ -20,7 +20,7 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.stabilisatieovereenkomstNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Stabilisatieovereenkomst'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('stabilisatieovereenkomst')} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('stabilisatieovereenkomst'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

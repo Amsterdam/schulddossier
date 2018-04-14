@@ -14,7 +14,7 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('meterstanden')} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('meterstanden'), 'removeFile': form.removeFile} only %}
                     </div>
                 </div>
             </div>

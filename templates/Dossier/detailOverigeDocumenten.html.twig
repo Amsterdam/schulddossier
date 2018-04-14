@@ -20,38 +20,12 @@
     
     {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
     {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
-    {#% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten} only %#}
+    {% do form.removeFile.setRendered() %}
     <p class="buttons right">
         <button type="submit" class="button primary">Opslaan</button>
     </p>
     {{ form_end(form) }}
-    <div class="table">
-        <table>
-            <thead>
-                <tr>
-                    <th>Document</th>
-                    <th>Gelinkt aan</th>
-                </tr>
-            </thead>
-            <tbody>
-{% set empty = true %}
-{% for document in dossier.documenten if document.document.inPrullenbak == false and document.onderwerp == 'overige' %}
-{% set empty = false %}
-                <tr>
-                    <th>
-                        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}">{{ document.document.naam }}</a>
-                    </th>
-                    <td>
-{% if document.schuldItem %}Schulditem: {{ document.schuldItem.schuldeiser.bedrijfsnaam }}/{{ document.schuldItem.referentie }}{% endif %} 
-{% if document.onderwerp %}Onderwerp: {{ document.onderwerp}}{% endif %} 
-                    </td>
-                </tr>
-{% endfor %}
-            </tbody>
-        </table>
-{% if empty %}
-        <p class="empty-table">Er zijn nog geen documenten in dit dossier toegevoegd.</p>
-{% endif %}
+    {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('overige'), 'removeFile': form.removeFile} only %}
     </div>
 </div>
 {% endblock %}
