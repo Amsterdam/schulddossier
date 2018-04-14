@@ -16,8 +16,10 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.kwijtscheldingGemeenteBelastingNvt) }}
                         {{ form_row(form.kwijtscheldingGemeenteBelasting) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kwijtschelding gemeente belasting'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kwijtscheldingGemeenteBelasting')} only %}
+                        <div class="document-bestanden">
+                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kwijtschelding gemeente belasting'} only %}
+                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kwijtscheldingGemeenteBelasting')} only %}
+                        </div>
                     </div>
                 </div>
             </div>

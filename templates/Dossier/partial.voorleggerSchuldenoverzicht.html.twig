@@ -16,8 +16,10 @@
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Schuldenoverzicht'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('schuldenoverzicht')} only %}
+                        <div class="document-bestanden">
+                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Schuldenoverzicht'} only %}
+                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('schuldenoverzicht')} only %}
+                        </div>
                         <div class="table">
                         <table>
                             <thead>

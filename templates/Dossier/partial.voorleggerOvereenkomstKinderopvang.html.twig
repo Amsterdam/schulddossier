@@ -19,8 +19,10 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {{ form_row(form.overeenkomstKinderopvangNvt) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Overeenkomst kinderopvang'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('overeenkomstKinderopvang')} only %}
+                        <div class="document-bestanden">
+                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Overeenkomst kinderopvang'} only %}
+                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('overeenkomstKinderopvang')} only %}
+                        </div>
                     </div>
                 </div>
             </div>

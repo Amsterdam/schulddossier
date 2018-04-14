@@ -16,8 +16,10 @@
                     {{ form_row(form.cjibNvt) }}
                     {{ form_row(form.cjib) }}
                     <div class="voorlegger-body">
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'CJIB (niet saneerbare vorderingen)'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('cjib')} only %}
+                        <div class="document-bestanden">
+                            {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'CJIB (niet saneerbare vorderingen)'} only %}
+                            {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('cjib')} only %}
+                        </div>
                     </div>
                 </div>
             </div>
