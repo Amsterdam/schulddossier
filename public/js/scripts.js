@@ -312,6 +312,12 @@
       
     },
     
+    'zeker-weten': function(e){
+      if (!confirm(this.dataset.copy ? this.dataset.copy : 'Weet je het zeker?')) {
+        e.preventDefault();
+      }
+    }
+    
   };
   
   var changers = {

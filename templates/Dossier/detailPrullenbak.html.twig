@@ -17,11 +17,12 @@
     </div>
     
     <h2>Documenten</h2>
-    <div class="table">
+    <div class="table table-actions">
         <table>
             <thead>
                 <tr>
-                    <th>Document</th>
+                    <th width="100%">Document</th>
+                    <th>&nbsp;</th>
                     <th>&nbsp;</th>
                 </tr>
             </thead>
@@ -32,14 +33,16 @@
                 <tr>
                     <th>{{ document.document.naam }}</th>
                     <td>
-                        <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_removedocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}" method="post">
+                        <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_removedocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}" method="post" data-submitter="zeker-weten">
                             <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_removedocument') }}">
-                            <button type="submit">Definitief verwijderen</button>
+                            <button type="submit" class="link danger">Definitief verwijderen</button>
                         </form>
-                        <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoredocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}" method="post">
-                            <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoredocument') }}">
-                            <button type="submit">Herstellen</button>
-                        </form>
+                    </td>
+                    <td>
+                      <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoredocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}" method="post">
+                          <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoredocument') }}">
+                          <button type="submit" class="link">Herstellen</button>
+                      </form>
                     </td>
                 </tr>
 {% endfor %}

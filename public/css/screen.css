@@ -424,7 +424,6 @@ a.bestand:hover i {
   box-sizing: border-box;
   margin: 0 0 10px 0;
   padding: 1.2em 2em 1em;
-  text-transform: uppercase;
   text-decoration: none;
   line-height: 1;
   font-size: 1.6rem;
@@ -439,6 +438,20 @@ a.bestand:hover i {
 .button.secondary, button.secondary {
   background-color: #000;
   border-color: #000; }
+.button.link, button.link {
+  white-space: nowrap;
+  font-size: inherit;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  color: #333; }
+.button.link:hover, button.link:hover {
+  color: #333;
+  text-decoration: underline; }
+.button.link.danger:hover, button.link.danger:hover {
+  color: red; }
 .button:hover, button:hover {
   color: #fff; }
 
@@ -1430,6 +1443,11 @@ body {
 .table .empty-table {
   text-align: center;
   padding: 1.5rem; }
+
+.table-actions .link {
+  opacity: .4; }
+.table-actions tr:hover .link {
+  opacity: 1; }
 
 .tabs {
   margin: 0 0 1.925rem 0;
