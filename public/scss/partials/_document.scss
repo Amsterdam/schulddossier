@@ -1,6 +1,8 @@
 .document-container {
   max-width: $maxContentWidth;
   margin: 2 * $lineHeight auto;
+  
+  transition: padding .3s;
 }
 
 .document {
@@ -9,14 +11,6 @@
     border-bottom: 1px solid #CCCCCC;
     padding: 0 0 1rem 0;
     margin: 0 0 $lineHeight 0;
-  }
-  .column {
-    width: 50%;
-    margin-right: $padding;
-    margin-bottom: $lineHeight;
-    &:last-child {
-      margin-right: 0;
-    }
   }
   
   .document-header {
@@ -44,10 +38,6 @@
     
   }
   
-  
-  .buttons {
-    margin-bottom: 0;
-  }
   
 }
 
@@ -117,7 +107,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    max-height: 20px;
+    max-height: 22px;
     overflow: hidden;
     text-overflow: ellipsis;
   }

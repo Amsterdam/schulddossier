@@ -16,14 +16,28 @@
     
     {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'overigeDocumenten'} only %}
     
-    {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
-    {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
-    {% do form.removeFile.setRendered() %}
-    <p class="buttons right">
-        <button type="submit" class="button primary">Opslaan</button>
-    </p>
+    {{ form_start(form, {'attr': {'id': 'overige_form', 'data-submitter': 'save', 'data-result-selector': '#overige_form .accordion', 'data-changer': 'change'}}) }}
+      <div class="accordion-container">
+        <div class="accordion">
+          <h3>Overige documenten</h3>
+          <p>Plaats hier documenten die niet thuishoren in overige secties</p>
+          {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+          {% do form.removeFile.setRendered() %}
+
+          {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('overige'), 'removeFile': form.removeFile} only %}
+      
+          <div class="form-global-buttons">
+              <div class="container">
+                  <p class="buttons right">
+                      <button type="submit" class="button primary">Opslaan</button>
+                      <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}">Annuleren</a>
+                  </p>
+              </div>
+          </div>
+        </div>
+
+      </div>
     {{ form_end(form) }}
-    {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('overige'), 'removeFile': form.removeFile} only %}
-    </div>
+
 </div>
 {% endblock %}

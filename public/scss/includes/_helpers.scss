@@ -65,6 +65,12 @@
 
 .columns {
   display: flex;
+  justify-content: space-between;
+  .column {
+    flex-basis: 40%;
+    margin-bottom: $lineHeight;
+  }
+  
 }
 
 .help {

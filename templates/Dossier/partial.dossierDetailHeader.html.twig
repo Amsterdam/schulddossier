@@ -12,7 +12,7 @@
         {% endif %}
       </ul>
     {% endif %}
-    <p>Huidige status: <a href="#document-workflow" data-handler="scroll"><strong>{{ dossier.status|trans }}</strong></a></p>
+    <p>Huidige status: <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.Id}) }}#document-workflow" data-handler="scroll"><strong>{{ dossier.status|trans }}</strong></a></p>
   </div>
 
   
@@ -24,6 +24,7 @@
             <a href="#acties" class="primary" data-handler="toggle">Alle acties <i class="icon-arrow-bottom"></i></a>
             <nav class="nav" id="acties">
               <ul class="menu">
+                <li><a href="#pdfsplitter" data-handler="toggle">Gescand document splitsen</a></li>
                 <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschuldenexcel', {'dossierId': dossier.id}) }}">Download schuldenlijst als Excel</a></li>
                 <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', {'dossierId': dossier.id}) }}">Prullenbak</a></li>
               </ul>

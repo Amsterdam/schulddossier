@@ -123,8 +123,9 @@
       return prototype;
     },
     
-    'bestand': function(){
+    'bestand': function(e){
       if (window.schuldhulp && window.schuldhulp.quickViewer && this.classList.contains('bestand-type-pdf')) {
+        e && e.preventDefault();
         window.schuldhulp.quickViewer.showDocument(this);
       }
     }
@@ -351,6 +352,8 @@
         pages = container.querySelector('.pages'),
         file = (e && e.dataTransfer && e.dataTransfer.files[0]) || this.querySelector('[name="file"]').files[0];
         
+      
+      container.classList.add('active');
       
       blob = window.URL.createObjectURL(file);
       

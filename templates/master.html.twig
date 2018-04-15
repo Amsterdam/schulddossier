@@ -17,6 +17,13 @@
     </head>
     <body class="{% block body_classes %}{% endblock %}">
 
+        <aside id="pdfsplitter" class="pdf-splitter accordion" data-decorator="droppable" data-changer="pdfsplitter">
+            <div class="pages"></div>
+            <label class="file-selector">
+                <input type="file" name="file">
+            </label>
+        </aside>
+
         <header class="top">
             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class="logo">
               <i class="icon-andreas"></i>Gemeente Amsterdam
@@ -45,6 +52,7 @@
               </div>
             </div>
         </header>
+        
         <div class="document-container">
 
 {% for type, messages in app.flashes %}
@@ -58,12 +66,6 @@
 
 {% block document %}.{% endblock %}
         </div>
-        <aside class="pdf-splitter expanded accordion" data-decorator="droppable" data-changer="pdfsplitter">
-            <div class="pages"></div>
-            <label class="file-selector">
-                <input type="file" name="file">
-            </label>
-        </aside>
         <script type="text/javascript" src="{{ asset('/vendor/mozilla/pdf.js/build/pdf.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/vendor/mrrio/jspdf/dist/jspdf.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/vendor/jshjohnson/choices/assets/scripts/dist/choices.min.js') }}"></script>

@@ -570,24 +570,29 @@ form {
   }
 }
 
-.form-global-buttons {
-  position: fixed;
-  z-index: 100;
+[data-changer="change"] {
   
-  left: 0;
-  right: 0;
-  bottom: 0;
+  .form-global-buttons {
+    position: fixed;
+    z-index: 100;
   
-  background-color: rgba(#fff, .9);
-  padding: $padding / 2 $padding;
-  transition: all .3s;
-  bottom: -100px;
-  opacity: 0;
-  .form-changed & {
+    left: 0;
+    right: 0;
+    bottom: 0;
+  
+    background-color: rgba(#fff, .9);
+    padding: $padding / 2 $padding;
+    transition: all .3s;
+    bottom: -100px;
+    opacity: 0;
+  }
+  
+  &.form-changed .form-global-buttons {
     bottom: 0;
     opacity: 1;
   }
-  .buttons {
+  
+  .form-global-buttons .buttons {
     margin: 0;
     .document & {
       margin: 0 $padding;

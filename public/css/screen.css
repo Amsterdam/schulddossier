@@ -86,7 +86,11 @@ button::-moz-focus-inner {
     display: initial; } }
 
 .columns {
-  display: flex; }
+  display: flex;
+  justify-content: space-between; }
+.columns .column {
+  flex-basis: 40%;
+  margin-bottom: 1.925rem; }
 
 .help {
   display: block;
@@ -292,7 +296,8 @@ hr {
 
 .document-container {
   max-width: 900px;
-  margin: 3.85rem auto; }
+  margin: 3.85rem auto;
+  transition: padding .3s; }
 
 .document {
   background-color: #fff; }
@@ -300,12 +305,6 @@ hr {
   border-bottom: 1px solid #CCCCCC;
   padding: 0 0 1rem 0;
   margin: 0 0 1.925rem 0; }
-.document .column {
-  width: 50%;
-  margin-right: 3rem;
-  margin-bottom: 1.925rem; }
-.document .column:last-child {
-  margin-right: 0; }
 .document .document-header {
   margin: -3rem -3rem 3rem -3rem; }
 @media (max-width: 900px) {
@@ -323,8 +322,6 @@ hr {
 .document .document-meta li {
   display: inline-block;
   margin-right: 1em; }
-.document .buttons {
-  margin-bottom: 0; }
 
 .document-header, .document-footer {
   background-color: #fbfbfb;
@@ -381,7 +378,7 @@ hr {
   bottom: 0;
   left: 0;
   right: 0;
-  max-height: 20px;
+  max-height: 22px;
   overflow: hidden;
   text-overflow: ellipsis; }
 
@@ -802,7 +799,7 @@ form label strong, form .label strong {
   background-color: rgba(0, 0, 0, 0.5);
   animation: progress 2s infinite; }
 
-.form-global-buttons {
+[data-changer="change"] .form-global-buttons {
   position: fixed;
   z-index: 100;
   left: 0;
@@ -813,12 +810,12 @@ form label strong, form .label strong {
   transition: all .3s;
   bottom: -100px;
   opacity: 0; }
-.form-changed .form-global-buttons {
+[data-changer="change"].form-changed .form-global-buttons {
   bottom: 0;
   opacity: 1; }
-.form-global-buttons .buttons {
+[data-changer="change"] .form-global-buttons .buttons {
   margin: 0; }
-.document .form-global-buttons .buttons {
+.document [data-changer="change"] .form-global-buttons .buttons {
   margin: 0 3rem; }
 
 @keyframes progress {
@@ -989,15 +986,17 @@ header.top {
   left: 0;
   top: 0;
   right: 0;
-  border-bottom: 1px solid #333;
-  z-index: 99; }
+  border-bottom: 1px solid #c5c5c5;
+  z-index: 99;
+  transition: transform .3s; }
 header.top .logo {
   position: absolute;
   left: 3rem;
   top: 1.5rem;
   width: 65px;
   flex-grow: 0;
-  height: 35px; }
+  height: 35px;
+  transition: transform .3s; }
 header.top .logo img {
   width: 100%; }
 header.top .container {
@@ -1225,6 +1224,7 @@ body {
 .pdf-splitter {
   background-color: #dfdfdf;
   position: fixed;
+  z-index: 101;
   top: 0;
   left: 0;
   bottom: 0;
@@ -1232,7 +1232,10 @@ body {
   border-right: 1px solid #CCC;
   box-shadow: inset -5px 0px 10px 0px rgba(204, 204, 204, 0.37);
   overflow-x: hidden;
-  overflow-y: auto; }
+  overflow-y: auto;
+  transform: translate3d(calc(-20vw + 44px), 0, 0);
+  transition: all .3s;
+  opacity: 0; }
 .pdf-splitter .file-selector {
   position: absolute;
   z-index: 3;
@@ -1286,25 +1289,16 @@ body {
   opacity: 0.4; }
 .pdf-splitter .pages .page:hover {
   border-color: #333; }
-.hide-pdf-splitter .pdf-splitter {
-  display: none; }
-
-body {
-  padding-left: calc(20vw + 3rem); }
-body header.top {
-  left: 20vw; }
-body .form-global-buttons {
-  padding-left: calc(20vw + 3rem); }
-
-.hide-pdf-splitter {
-  padding-left: 3rem; }
-.hide-pdf-splitter header.top {
-  left: 0; }
-.hide-pdf-splitter .form-global-buttons {
-  padding-left: 3rem; }
-@media (max-width: 900px) {
-  .hide-pdf-splitter {
-    padding-left: 10px; } }
+.pdf-splitter:hover {
+  opacity: 1;
+  transform: translate3d(-16.66667vw, 0, 0); }
+.pdf-splitter.active, .pdf-splitter.drop-over {
+  opacity: 1;
+  transform: translate3d(0, 0, 0); }
+.pdf-splitter.active ~ header.top, .pdf-splitter.active ~ header.top .logo, .pdf-splitter.active ~ .document-container .form-global-buttons, .pdf-splitter.drop-over ~ header.top, .pdf-splitter.drop-over ~ header.top .logo, .pdf-splitter.drop-over ~ .document-container .form-global-buttons {
+  transform: translate3d(10vw, 0, 0); }
+.pdf-splitter.active ~ .document-container, .pdf-splitter.drop-over ~ .document-container {
+  padding-left: 20vw; }
 
 .quick-viewer .modal-window {
   width: 90%;
@@ -1459,7 +1453,7 @@ body .form-global-buttons {
   margin-bottom: -3px;
   transition: all .3s; }
 .tabs li a:hover {
-  border-color: #333; }
+  border-color: #c5c5c5; }
 .tabs li.active a, .tabs li a.active {
   border-bottom-color: #ec0000; }
 
@@ -1472,8 +1466,7 @@ body .form-global-buttons {
   background-color: #f8f8f8;
   padding: 8px 15px;
   border-radius: 2px;
-  box-shadow: 0 0 0 5px transparent;
-  transition: all .3s; }
+  box-shadow: 0 0 0 5px transparent; }
 .accordion-container .accordion .accordion-header {
   position: relative;
   padding-right: 36px; }

@@ -1,15 +1,18 @@
 .pdf-splitter {
   background-color: darken($lightColor, 10);
   position: fixed;
+  z-index: 101;
   top: 0;
   left: 0;
   bottom: 0;
   width: $pdfSplitterWidth;
+  
 
   border-right: 1px solid #CCC;
   box-shadow: inset -5px 0px 10px 0px rgba(204, 204, 204, 0.37);
   overflow-x: hidden;
   overflow-y: auto;
+  
   .file-selector {
     position: absolute;
     z-index: 3;
@@ -84,31 +87,29 @@
       }
     }
   }
-  .hide-pdf-splitter & {
-    display: none;
-  }
-}
-
-
-body {
-  padding-left: calc(#{$pdfSplitterWidth} + #{$padding});
-  header.top {
-    left: $pdfSplitterWidth;
-  } 
-  .form-global-buttons {
-    padding-left: calc(#{$pdfSplitterWidth} + #{$padding});
-  }
-}
-.hide-pdf-splitter {
-  padding-left: $padding;
-  header.top {
-    left: 0;
-  }
-  .form-global-buttons {
-    padding-left: $padding;
+  
+  transform: translate3d(calc(-#{$pdfSplitterWidth} + 44px), 0, 0);
+  transition: all .3s;
+  opacity: 0;
+  
+  &:hover {
+    opacity: 1;
+    transform: translate3d(-$pdfSplitterWidth / 1.2, 0, 0);
   }
   
-  @include medium {
-    padding-left: 10px;
+  &.active, &.drop-over {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    & ~ header.top,
+    & ~ header.top .logo,
+    & ~ .document-container .form-global-buttons {
+      transform: translate3d($pdfSplitterWidth/2, 0, 0);
+      
+    }
+    & ~ .document-container {
+      padding-left: $pdfSplitterWidth;
+    }
   }
+  
+  
 }
