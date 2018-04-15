@@ -121,6 +121,12 @@
       files.dataset.counter = counter;
       
       return prototype;
+    },
+    
+    'bestand': function(){
+      if (window.schuldhulp && window.schuldhulp.quickViewer && this.classList.contains('bestand-type-pdf')) {
+        window.schuldhulp.quickViewer.showDocument(this);
+      }
     }
     
   };
@@ -391,7 +397,7 @@
       
       if (!container.sortable && Sortable) {
         container.sortable = Sortable.create(pages, {
-          filter: '.video-delete',
+          filter: '.page-delete',
           animation: 150,
           sort: false,
           scroll: true,

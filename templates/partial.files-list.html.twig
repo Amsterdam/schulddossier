@@ -9,7 +9,7 @@
           <label class="bestand-verwijderen" for="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}">verwijderen</label>
         {% endif %}
 
-        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}" title="{{ dossierDocument.document.naam }}" class="bestand bestand-type-{{ dossierDocument.document.origineleExtensie|lower }}"><i class="icon-file" data-extension="{{ dossierDocument.document.origineleExtensie|lower }}"></i><span class="bestand-naam">{{ dossierDocument.document.naam }}</span></a>
+        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}" title="{{ dossierDocument.document.naam }}" class="bestand bestand-type-{{ dossierDocument.document.origineleExtensie|lower }}" data-handler="bestand"><i class="icon-file" data-extension="{{ dossierDocument.document.origineleExtensie|lower }}"></i><span class="bestand-naam">{{ dossierDocument.document.naam }}</span></a>
       </li>
     {% endfor %}
   </ul>
