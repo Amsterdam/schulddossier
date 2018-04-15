@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html, body, h1, h2, h3, h4, h5, h6, fieldset, figure, blockquote, dl, dt, dd {
   margin: 0;
   padding: 0;
@@ -357,7 +358,8 @@ hr {
   padding: 0;
   margin: 0 0 -20px 0; }
 .bestanden li {
-  display: inline; }
+  display: inline-block;
+  position: relative; }
 
 .bestand {
   position: relative;
@@ -388,12 +390,37 @@ a.bestand:hover {
 a.bestand:hover i {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4); }
 
+.bestand-verwijderen-check {
+  position: absolute;
+  opacity: 0; }
+
 .bestand-verwijderen {
   position: absolute;
-  right: 0;
-  top: 0; }
-.bestand-verwijderen strong {
-  display: none; }
+  z-index: 2;
+  left: 0;
+  top: 0;
+  font-size: 0;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+  opacity: 0;
+  background-color: #fff;
+  transition: all .3s; }
+.bestand-verwijderen:before {
+  content: '×';
+  font-size: 3rem;
+  line-height: 2.8rem;
+  font-weight: bold; }
+
+.bestanden li:hover .bestand-verwijderen {
+  opacity: 1; }
+.bestanden .bestand-verwijderen-check:checked ~ label {
+  opacity: 1;
+  background-color: transparent; }
+.bestanden .bestand-verwijderen-check:checked ~ label:before {
+  color: red; }
+.bestanden .bestand-verwijderen-check:checked ~ .bestand {
+  opacity: .1; }
 
 .button, button {
   display: inline-block;

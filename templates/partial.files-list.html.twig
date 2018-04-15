@@ -2,17 +2,14 @@
   <ul class="bestanden">
     {% for dossierDocument in dossierDocumenten if dossierDocument.document.inPrullenbak == false %}
       <li>
-        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}" title="{{ dossierDocument.document.naam }}" class="bestand bestand-type-{{ dossierDocument.document.origineleExtensie|lower }}"><i class="icon-file" data-extension="{{ dossierDocument.document.origineleExtensie|lower }}"></i><span class="bestand-naam">{{ dossierDocument.document.naam }}</span></a>
-      
+        
         {% if removeFile is defined %}
           {% do removeFile.setRendered() %}
-          <label class="bestand-verwijderen">
-            <input type="checkbox" name="{{ removeFile.vars.prototype.vars.full_name|replace({'__name__': dossierDocument.document.id}) }}" id="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}" value="{{ dossierDocument.document.id }}"> 
-            <strong>verwijderen</strong>
-          </label>
-          
+          <input class="bestand-verwijderen-check" type="checkbox" name="{{ removeFile.vars.prototype.vars.full_name|replace({'__name__': dossierDocument.document.id}) }}" id="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}" value="{{ dossierDocument.document.id }}"> 
+          <label class="bestand-verwijderen" for="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}">verwijderen</label>
         {% endif %}
-    
+
+        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}" title="{{ dossierDocument.document.naam }}" class="bestand bestand-type-{{ dossierDocument.document.origineleExtensie|lower }}"><i class="icon-file" data-extension="{{ dossierDocument.document.origineleExtensie|lower }}"></i><span class="bestand-naam">{{ dossierDocument.document.naam }}</span></a>
       </li>
     {% endfor %}
   </ul>

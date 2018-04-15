@@ -91,7 +91,8 @@
   padding: 0;
   margin: 0 0 -20px 0;
   li {
-    display: inline;
+    display: inline-block;
+    position: relative;
   }
 }
 
@@ -128,11 +129,43 @@ a.bestand:hover {
     box-shadow: 0 0 5px 0 rgba(#000, .4);
   }
 }
+.bestand-verwijderen-check {
+  position: absolute;
+  opacity: 0;
+}
 .bestand-verwijderen {
   position: absolute;
-  right: 0;
+  z-index: 2;
+  left: 0;
   top: 0;
-  strong {
-    display: none;
+  font-size: 0;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+  opacity: 0;
+  background-color: #fff;
+  transition: all .3s;
+  &:before {
+    content: '×';
+    font-size: 3rem;
+    line-height: 2.8rem;
+    font-weight: bold;
+  }
+}
+.bestanden {
+  li:hover {
+    .bestand-verwijderen {
+      opacity: 1;
+    }
+  }
+  .bestand-verwijderen-check:checked ~ label {
+    opacity: 1;
+    background-color: transparent;
+    &:before {
+      color: red;
+    }
+  }
+  .bestand-verwijderen-check:checked ~ .bestand {
+    opacity: .1;
   }
 }
