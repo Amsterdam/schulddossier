@@ -47,6 +47,7 @@
     &:empty {
       display: flex;
       align-items: center;
+      z-index: 2;
       ~ .file-selector {
         &:before {
           content: 'Kies een bestand';

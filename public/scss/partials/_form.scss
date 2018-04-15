@@ -478,19 +478,13 @@ form {
       background-color: #F3F3F3;
     }
     .drop-area {
-      position: absolute;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #f3f3f3;
-      display: none;
       .page {
         display: inline-block;
-        border: 1px solid #CCC;
-        margin: 0 5px;
+        border: 1px solid $textColor;
+        margin: 0 5px 5px 0;
+        vertical-align: middle;
         canvas {
-          width: 100px;
+          width: 10rem;
         }
       }
     }

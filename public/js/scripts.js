@@ -83,9 +83,12 @@
       prototype.setAttribute('data-name', prototype.getAttribute('data-name').replace('__name__', 'n' + counter));
       prototype.querySelector('input[type="text"]').setAttribute('name', prototype.querySelector('input[type="text"]').getAttribute('name').replace('__name__', 'n' + counter));
       prototype.querySelector('input[type="file"]').setAttribute('name', prototype.querySelector('input[type="file"]').getAttribute('name').replace('__name__', 'n' + counter));
+      
+      prototype.classList.add('active');
+      
       files.insertBefore(prototype, this);
     
-      window.schuldhulp.pdfSplitter.dragula.containers.push(prototype.querySelector('.drop-area'));
+      // window.schuldhulp.pdfSplitter.dragula.containers.push(prototype.querySelector('.drop-area'));
     
       prototype.addEventListener('filled', function (event) {
           var elm = prototype.querySelector('input[type="text"]');
@@ -127,12 +130,6 @@
     'droppable': function(){
       var
         container = this;
-        // div = document.createElement('div');
-      // if (!(('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window) return;
-      
-      
-      // container.class
-      
       var currentZone;
       
       var _reset = function(e){
@@ -140,6 +137,7 @@
         e.stopPropagation();
       }
       var _over = function(e){
+        
         var zone = (e && e.target) && _closest(e.target, '.accordion');
         if (!zone) return;
         if (currentZone != zone) {
@@ -149,51 +147,56 @@
         }
       };
       var _out = function(e){
-        
-        // var zone = (e && e.target) && _closest(e.target, '.accordion');
-        // if (!zone) return;
-        // zone.classList.remove('drop-over');
       };
       var _drop = function(e){
+        if (currentZone) {
+          currentZone.classList.remove('drop-over');
+          currentZone = false;
+        }
         
-        if (currentZone) currentZone.classList.remove('drop-over');
+        if (d.classList.contains('sort-mode')) return;
         
         var files = e.dataTransfer.files;
         var zone = (e && e.target) && _closest(e.target, '.accordion');
         var form = (e && e.target) && _closest(e.target, 'form');
+        var changer = (e && e.target) && _closest(e.target, '[data-changer]');
+        
         if (!files) return;
         
         zone.classList.add('active');
         
-        // create new file zone
-        for (var i=0; i<files.length; i++) {
-          var addButton = zone.querySelector('.files-container .add.bestand');
-          if (addButton) {
-            var 
-              file = handlers['add-file'].call(addButton),
-              input = file.querySelector('[type="file"]'),
-              button = file.querySelector('.file'),
-              icon = file.querySelector('[data-extension]');
-            
-            button.textContent = files[i].name.replace('/', '\\').split('\\').pop();
-            // icon.dataset.extension = files[i].type.split('/').pop();
-            
-            var event = new Event('filled');
-            file.dispatchEvent(event);
-            
-            form.files = form.files || [];
-            form.files.push({
-              'name': input.name,
-              'file': files[i]
-            });
-            input.parentNode.removeChild(input);
-          }
+        if (form) {
           
+          // create new file zone
+          for (var i=0; i<files.length; i++) {
+            var addButton = zone.querySelector('.files-container .add.bestand');
+            if (addButton) {
+              var 
+                file = handlers['add-file'].call(addButton),
+                input = file.querySelector('[type="file"]'),
+                button = file.querySelector('.file'),
+                icon = file.querySelector('[data-extension]');
+            
+              button.textContent = files[i].name.replace('/', '\\').split('\\').pop();
+              // icon.dataset.extension = files[i].type.split('/').pop();
+            
+              var event = new Event('filled');
+              file.dispatchEvent(event);
+            
+              form.files = form.files || [];
+              form.files.push({
+                'name': input.name,
+                'file': files[i]
+              });
+              input.parentNode.removeChild(input);
+              
+              file.classList.add('has-file');
+            }
+          
+          }
         }
         
-        
-        
-        helpers.trigger(form, 'change');
+        changer && changers[changer.dataset.changer].call(changer, e);
         
       };
       
@@ -246,6 +249,23 @@
         url += '&' + parameters.join('&');
         data = {};
       };
+      
+      var els = form.querySelectorAll('.file-pdf-pages');
+      for (var i = 0; i < els.length; i++) {
+        var pages = els[i].querySelectorAll('.page canvas');
+        if (pages.length > 0) {
+          var pdf = new jsPDF('portrait', 'mm', 'a4');
+          for (var j = 0; j < pages.length; j++) {
+            if (j>0) {
+              pdf.addPage();
+              var img = pages[j].toDataURL("image/jpeg");
+              pdf.addImage(img, 'JPEG', 0, 0, 210, 297);
+            }
+          }
+          data.append(els[i].dataset.name, pdf.output('blob'), 'document.pdf');
+        }
+      }
+      
       
       if (form.files) {
         for (var i=0; i< form.files.length; i++) {
@@ -316,6 +336,147 @@
       
 
     },
+    
+    'pdfsplitter': function(e){
+      var 
+        container = this,
+        pages = container.querySelector('.pages'),
+        file = (e && e.dataTransfer && e.dataTransfer.files[0]) || this.querySelector('[name="file"]').files[0];
+        
+      
+      blob = window.URL.createObjectURL(file);
+      
+      var _clear = function(){
+        var els = pages.querySelectorAll('.page');
+        for (var i = 0; i < els.length; i ++) {
+          els[i].parentNode.removeChild(els[i]);
+        }
+      };
+      
+      var _load = function(){
+        PDFJS.getDocument(blob).then(function(pdf) {
+          for (var i = 1; i <= pdf.numPages; i += 1) {
+            pdf.getPage(i).then(function (pdfPage){ 
+              _thumb(pdfPage); 
+            });
+          }
+        });
+      };
+      
+      var _thumb = function(pdfPage){
+        var scale = 3;
+        
+        var thumb = document.createElement('div');
+        thumb.classList.add('page');
+        thumb.setAttribute('data-page-index', pdfPage.pageIndex);
+        pages.appendChild(thumb);
+
+        var canvas = document.createElement('canvas');
+        canvas.classList.add('upload-as-pdf');
+        var context = canvas.getContext('2d');
+        var viewport = pdfPage.getViewport(scale);
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        
+        var renderContext = {canvasContext: context, viewport: viewport};
+        pdfPage.render(renderContext);
+
+        thumb.appendChild(canvas);
+        
+      };
+      
+      
+      _clear();
+      _load();
+      
+      if (!container.sortable && Sortable) {
+        container.sortable = Sortable.create(pages, {
+          filter: '.video-delete',
+          animation: 150,
+          sort: false,
+          scroll: true,
+          scrollSensitivity: 30,
+          scrollSpeed: 10,
+          onStart: function(){
+            d.classList.add('sort-mode');
+          },
+          onEnd: function(e){
+
+            var 
+              zone = _closest(e.originalEvent.target, '.accordion'),
+              changer = _closest(e.originalEvent.target, '[data-changer]'),
+              file = _closest(e.originalEvent.target, '.file-container.active:not(.has-file)'),
+              dropZone = false;
+            
+            if (zone) {
+              
+              if (zone.classList.contains('pdf-splitter')) return;
+              
+              zone.classList.add('active');
+              
+              var lastFile = file ? [file] : zone.querySelectorAll('.file-container.active:not(.has-file)')
+              
+              if (!lastFile.length) {
+                var addButton = zone.querySelector('.files-container .add.bestand');
+                lastFile = handlers['add-file'].call(addButton);
+
+              } else {
+                lastFile = lastFile[(lastFile.length - 1)];
+              }
+              
+              var label = lastFile.querySelector('label');
+              if (label) label.parentNode.removeChild(label);
+              
+              var icon = lastFile.querySelector('[data-extension]');
+              if (icon) icon.dataset.extension = 'pdf';
+              
+              lastFile.classList.add('file-pdf-pages');
+              
+              var event = new Event('filled');
+              lastFile.dispatchEvent(event);
+              
+
+              dropZone = lastFile.querySelector('.drop-area');
+              
+              var original = e.item.querySelector('canvas');
+
+              var canvas = document.createElement('canvas');
+              var context = canvas.getContext('2d');
+              canvas.width = original.width;
+              canvas.height = original.height;
+              context.drawImage(original, 0, 0);
+              var page = document.createElement('div');
+              page.classList.add('page');
+              page.appendChild(canvas);
+              
+              dropZone.appendChild(page);
+              
+              changer && changers[changer.dataset.changer].call(changer, e.originalEvent);
+              
+              if (!dropZone.sortable) {
+                dropZone.sortable = Sortable.create(dropZone, {
+                  group: 'files'
+                });
+              }
+              
+            }
+            
+            d.classList.remove('sort-mode');
+          },
+
+          onFilter: function (e) {
+            // var item = e.item,
+            // ctrl = e.target;
+            // if (Sortable.utils.is(ctrl, ".video-delete")) {
+            //   if (confirm(copyDelete)) item.parentNode.removeChild(item);
+            //   _setOrder();
+            // }
+          }
+        });
+      }
+      
+      
+    }
     
   };
   

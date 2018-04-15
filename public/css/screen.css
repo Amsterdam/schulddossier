@@ -736,20 +736,13 @@ form label strong, form .label strong {
   opacity: 0; }
 .files-container .file-container.files-only .file-selector button {
   background-color: #F3F3F3; }
-.files-container .file-container .drop-area {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #f3f3f3;
-  display: none; }
 .files-container .file-container .drop-area .page {
   display: inline-block;
-  border: 1px solid #CCC;
-  margin: 0 5px; }
+  border: 1px solid #333;
+  margin: 0 5px 5px 0;
+  vertical-align: middle; }
 .files-container .file-container .drop-area .page canvas {
-  width: 100px; }
+  width: 10rem; }
 .files-container .file-container .errors {
   padding-left: 0; }
 
@@ -1166,6 +1159,9 @@ body {
   border-color: rgba(51, 51, 51, 0.4);
   background-color: rgba(255, 255, 255, 0.8); }
 
+.sort-mode .pdf-splitter.drop-over {
+  box-shadow: 0 0 0 0 transparent !important; }
+
 .pagination {
   width: 100%;
   display: flex;
@@ -1223,7 +1219,8 @@ body {
   z-index: 4; }
 .pdf-splitter .pages:empty {
   display: flex;
-  align-items: center; }
+  align-items: center;
+  z-index: 2; }
 .pdf-splitter .pages:empty ~ .file-selector:before {
   content: 'Kies een bestand'; }
 .pdf-splitter .pages:empty:after {
