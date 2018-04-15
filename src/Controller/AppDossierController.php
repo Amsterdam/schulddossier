@@ -325,7 +325,7 @@ class AppDossierController extends Controller
                     $dossierDocument->setOnderwerp('overige');
                 }
             }
-            $removeFiles = $child->get('removeFile')->getData();
+            $removeFiles = $form->get('removeFile')->getData();
             foreach ($removeFiles as $documentId) {
                 $documentId = intval($documentId);
                 $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
