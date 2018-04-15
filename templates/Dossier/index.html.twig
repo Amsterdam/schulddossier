@@ -5,17 +5,18 @@
 {% block body_classes %}hide-pdf-splitter{% endblock %}
 
 {% block document %}
-    <nav class="nav-internal">
-        <ul>
-            <li>Dossiers</li>
-            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}">Nieuw dossier</a></li>
-            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak') }}">Prullenbak</a></li>
-        </ul>
-    </nav>
 
     <div class="document well">
-        <div class="document-header">
+        <div class="document-header group">
+          <div>
             <h1 class="document-title">Dossiers</h1>
+          </div>
+          <nav class="nav-internal">
+              <ul>
+                  <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak') }}">Prullenbak</a></li>
+                  <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}" class="primary">Nieuw dossier</a></li>
+              </ul>
+          </nav>
         </div>
         <div class="search">
             {{ form_start(searchForm, {'attr': {'data-submitter': 'save', 'data-result-selector': '#search-results'}}) }}

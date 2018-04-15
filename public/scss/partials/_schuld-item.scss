@@ -1,15 +1,19 @@
 .schulditem-header {
   display: flex;
-  width: 100%;
   height: 20px;
   .naam {
-    flex-grow: 1;
+    font-size: $fontSize;
     height: 20px;
     line-height: 20px;
-    .referentie {
-      color: #666666;
-    }
+    margin-right: auto;
   }
+  a {
+    text-decoration: none;
+  }
+  .referentie {
+    color: #666666;
+  }
+
   .voortgang {
     width: 150px;
     flex-grow: 0;

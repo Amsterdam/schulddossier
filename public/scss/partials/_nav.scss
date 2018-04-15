@@ -9,6 +9,7 @@
     white-space: nowrap;
   }
   li {
+    position: relative;
     display: inline-block;
     margin-left: 1rem;
     &:first-child {
@@ -31,6 +32,22 @@
     }
     i {
       margin-right: .5em;
+    }
+  }
+  .icon-arrow-bottom {
+    margin-left: .5em;
+  }
+  .nav {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    .menu {
+      padding: $padding / 4 $padding / 2;
+      display: block;
+      li {
+        display: block;
+        margin: 0;
+      }
     }
   }
 }
@@ -184,7 +201,9 @@
 
 
 .document-header .nav-internal {
+  margin-bottom: 0;
   .primary {
+    background-color: #fff;
     outline: 1px solid rgba($textColor, .2);
   }
 }

@@ -838,6 +838,7 @@ form label strong, form .label strong {
   display: flex;
   white-space: nowrap; }
 .nav-internal li {
+  position: relative;
   display: inline-block;
   margin-left: 1rem; }
 .nav-internal li:first-child {
@@ -854,6 +855,18 @@ form label strong, form .label strong {
   background-color: white; }
 .nav-internal a i {
   margin-right: .5em; }
+.nav-internal .icon-arrow-bottom {
+  margin-left: .5em; }
+.nav-internal .nav {
+  position: absolute;
+  right: 0;
+  top: 100%; }
+.nav-internal .nav .menu {
+  padding: 0.75rem 1.5rem;
+  display: block; }
+.nav-internal .nav .menu li {
+  display: block;
+  margin: 0; }
 
 .nav-container {
   position: absolute;
@@ -962,7 +975,10 @@ form label strong, form .label strong {
 .nav.active ~ .nav-close, .nav:target ~ .nav-close {
   display: block; }
 
+.document-header .nav-internal {
+  margin-bottom: 0; }
 .document-header .nav-internal .primary {
+  background-color: #fff;
   outline: 1px solid rgba(51, 51, 51, 0.2); }
 
 header.top {
@@ -1361,13 +1377,15 @@ body .form-global-buttons {
 
 .schulditem-header {
   display: flex;
-  width: 100%;
   height: 20px; }
 .schulditem-header .naam {
-  flex-grow: 1;
+  font-size: 1.4rem;
   height: 20px;
-  line-height: 20px; }
-.schulditem-header .naam .referentie {
+  line-height: 20px;
+  margin-right: auto; }
+.schulditem-header a {
+  text-decoration: none; }
+.schulditem-header .referentie {
   color: #666666; }
 .schulditem-header .voortgang {
   width: 150px;

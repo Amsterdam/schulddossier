@@ -18,8 +18,17 @@
   
   <nav class="nav-internal">
       <ul>
-          <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocumenten', {'dossierId': dossier.id}) }}" class="primary">Alle documenten</a></li>
-          <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', {'dossierId': dossier.id}) }}">Prullenbak</a></li>
+          <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocumenten', {'dossierId': dossier.id}) }}">Alle documenten</a></li>
+          
+          <li>
+            <a href="#acties" class="primary" data-handler="toggle">Alle acties <i class="icon-arrow-bottom"></i></a>
+            <nav class="nav" id="acties">
+              <ul class="menu">
+                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschuldenexcel', {'dossierId': dossier.id}) }}">Download schuldenlijst als Excel</a></li>
+                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', {'dossierId': dossier.id}) }}">Prullenbak</a></li>
+              </ul>
+            </nav>
+          </li>
       </ul>
   </nav>
   
