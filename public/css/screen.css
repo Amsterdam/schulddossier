@@ -1241,12 +1241,12 @@ body {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 20vw;
+  width: 300px;
   border-right: 1px solid #CCC;
   box-shadow: inset -5px 0px 10px 0px rgba(204, 204, 204, 0.37);
   overflow-x: hidden;
   overflow-y: auto;
-  transform: translate3d(calc(-20vw + 44px), 0, 0);
+  transform: translate3d(-256px, 0, 0);
   transition: all .3s;
   opacity: 0; }
 .pdf-splitter .file-selector {
@@ -1304,14 +1304,14 @@ body {
   border-color: #333; }
 .pdf-splitter:hover {
   opacity: 1;
-  transform: translate3d(-16.66667vw, 0, 0); }
+  transform: translate3d(-212px, 0, 0); }
 .pdf-splitter.active, .pdf-splitter.drop-over {
   opacity: 1;
   transform: translate3d(0, 0, 0); }
 .pdf-splitter.active ~ header.top, .pdf-splitter.active ~ header.top .logo, .pdf-splitter.active ~ .document-container .form-global-buttons, .pdf-splitter.drop-over ~ header.top, .pdf-splitter.drop-over ~ header.top .logo, .pdf-splitter.drop-over ~ .document-container .form-global-buttons {
-  transform: translate3d(10vw, 0, 0); }
+  transform: translate3d(150px, 0, 0); }
 .pdf-splitter.active ~ .document-container, .pdf-splitter.drop-over ~ .document-container {
-  padding-left: 20vw; }
+  padding-left: 300px; }
 
 .quick-viewer .modal-window {
   width: 90%;
@@ -1413,6 +1413,8 @@ body {
   border-spacing: 0;
   text-align: left;
   overflow: hidden; }
+.table table th {
+  text-align: left; }
 .table table th, .table table td {
   vertical-align: top;
   padding: .5rem;

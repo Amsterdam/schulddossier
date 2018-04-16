@@ -88,13 +88,13 @@
     }
   }
   
-  transform: translate3d(calc(-#{$pdfSplitterWidth} + 44px), 0, 0);
+  transform: translate3d((-$pdfSplitterWidth + 44px), 0, 0);
   transition: all .3s;
   opacity: 0;
   
   &:hover {
     opacity: 1;
-    transform: translate3d(-$pdfSplitterWidth / 1.2, 0, 0);
+    transform: translate3d((-$pdfSplitterWidth + 88px), 0, 0);
   }
   
   &.active, &.drop-over {
