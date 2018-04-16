@@ -895,7 +895,6 @@ form label strong, form .label strong {
   margin: 0;
   padding: 0;
   font-size: 0;
-  display: flex;
   white-space: nowrap; }
 .nav-internal li {
   position: relative;
