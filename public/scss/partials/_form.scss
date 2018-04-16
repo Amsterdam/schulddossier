@@ -470,6 +470,8 @@ form {
       display: block;
       line-height: 1.2;
       margin-bottom: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     input[type="text"] {
       padding: 0;

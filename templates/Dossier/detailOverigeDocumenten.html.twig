@@ -17,7 +17,7 @@
     {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'overigeDocumenten'} only %}
     
     {{ form_start(form, {'attr': {'id': 'overige_form', 'data-submitter': 'save', 'data-result-selector': '#overige_form .accordion', 'data-changer': 'change'}}) }}
-      <div class="accordion-container">
+      <div class="accordion-container" data-decorator="droppable">
         <div class="accordion">
           <h3>Overige documenten</h3>
           <p>Plaats hier documenten die niet thuishoren in overige secties</p>
