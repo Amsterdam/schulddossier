@@ -957,11 +957,11 @@ form label strong, form .label strong {
   .nav-login .icon-avatar {
     top: 0; } }
 
-.nav {
+.nav-container .nav, .nav-internal .nav {
   position: relative;
   z-index: 5;
   display: none; }
-.nav.active, .nav:target {
+.nav-container .nav.active, .nav-container .nav:target, .nav-internal .nav.active, .nav-internal .nav:target {
   display: block; }
 
 .menu {
@@ -1410,7 +1410,7 @@ body {
   background-color: #333;
   color: #999;
   padding: 10px 15px;
-  border-radius: 5px;
+  border: none;
   top: 50%;
   margin-top: -10px; }
 .quick-viewer .modal-window .modal-body .button:before {

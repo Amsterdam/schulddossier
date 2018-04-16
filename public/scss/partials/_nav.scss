@@ -90,15 +90,18 @@
   }
 }
 
-.nav {
-  position: relative;
-  z-index: 5;
-  display: none;
-  &.active,
-  &:target {
-    display: block;
-  }
+.nav-container,
+.nav-internal {
+  .nav {
+    position: relative;
+    z-index: 5;
+    display: none;
+    &.active,
+    &:target {
+      display: block;
+    }
   
+  }
 }
 .menu {
   list-style: none;
