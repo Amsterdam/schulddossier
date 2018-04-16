@@ -430,11 +430,40 @@ class AppDossierController extends Controller
         }
 
         $schuldItem = new SchuldItem();
-        $createForm = $this->createForm(SchuldItemFormType::class, $schuldItem, [
-            'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_addschulditem', [
-                'dossierId' => $dossier->getId()
-            ])
-        ]);
+        $createForm = $this->createForm(SchuldItemFormType::class, $schuldItem);
+        $createForm->handleRequest($request);
+        if ($createForm->isSubmitted() && $createForm->isValid()) {
+            $schuldItem->setDossier($dossier);
+            $schuldItem->setAanmaker($this->getUser());
+            $schuldItem->setBewerker($this->getUser());
+
+            $files = $createForm->get('file')->getData();
+            foreach ($files as $document) {
+                /** @var $file Document */
+                if ($document !== null) {
+                    $document->setMd5Hash(md5($document->getFile()->getRealPath()));
+                    $document->setMainTag('dossier-' . $dossier->getId());
+                    $document->setGroep('dossier');
+                    $document->setUploader($this->getUser());
+                    $document->setUploadDatumTijd(new \DateTime());
+                    $dossierDocument = new DossierDocument();
+                    $dossierDocument->setDocument($document);
+                    $dossierDocument->setDossier($dossier);
+                    $dossierDocument->setOnderwerp('schuldenoverzicht');
+                    $dossierDocument->setSchuldItem($createForm->getData());
+                }
+            }
+            $removeFiles = $createForm->get('removeFile')->getData();
+            foreach ($removeFiles as $documentId) {
+                $documentId = intval($documentId);
+                $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
+            }
+            $em->flush();
+            $this->addFlash('success', 'Toegevoegd');
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
+        } else if ($createForm->isSubmitted() && $request->isXmlHttpRequest()) {
+            return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
+        }
 
         $schuldeiser = new Schuldeiser();
         $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser, [
@@ -699,115 +728,6 @@ class AppDossierController extends Controller
         $this->addFlash('success', 'Dossier hersteld');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', ['dossierId' => $dossier->getId()]);
-    }
-
-    /**
-     * @Route("/detail/{dossierId}/schulden/nieuw")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function addSchuldItemAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
-    {
-        $schuldItem = new SchuldItem();
-        $schuldItem->setAanmaker($this->getUser());
-        $schuldItem->setBewerker($this->getUser());
-        $dossier->addSchuldItem($schuldItem);
-
-        $form = $this->createForm(SchuldItemFormType::class, $schuldItem);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $files = $form->get('file')->getData();
-            foreach ($files as $document) {
-                /** @var $file Document */
-                if ($document !== null) {
-                    $document->setMd5Hash(md5($document->getFile()->getRealPath()));
-                    $document->setMainTag('dossier-' . $dossier->getId());
-                    $document->setGroep('dossier');
-                    $document->setUploader($this->getUser());
-                    $document->setUploadDatumTijd(new \DateTime());
-                    $dossierDocument = new DossierDocument();
-                    $dossierDocument->setDocument($document);
-                    $dossierDocument->setDossier($dossier);
-                    $dossierDocument->setOnderwerp('schuldenoverzicht');
-                    $dossierDocument->setSchuldItem($schuldItem);
-                }
-            }
-
-            $em->persist($schuldItem);
-            $em->flush();
-
-            $newUpdateForm = $this->createForm(SchuldItemFormType::class, $schuldItem, [
-                'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_updateschulditem', ['dossierId' => $dossier->getId(), 'schuldItemId' => $schuldItem->getId()])
-            ]);
-
-            return $this->render('Dossier/updateSchuldItem.html.twig', [
-                'dossier' => $dossier,
-                'schuldItem' => $schuldItem,
-                'form' => $newUpdateForm->createView()
-            ]);
-        } elseif ($form->isSubmitted() && $form->isValid() === false) {
-            //if ($request->isXmlHttpRequest()) {
-                return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-            //}
-        }
-
-        return; // 500
-    }
-
-    /**
-     * @Route("/detail/{dossierId}/schulden/{schuldItemId}/bijwerken")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
-     */
-    public function updateSchuldItemAction(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em)
-    {
-        $schuldItem->setBewerker($this->getUser());
-        $schuldItem->setBewerkDatumTijd(new \DateTime());
-
-        $form = $this->createForm(SchuldItemFormType::class, $schuldItem);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $files = $form->get('file')->getData();
-            foreach ($files as $document) {
-                /** @var $file Document */
-                if ($document !== null) {
-                    $document->setMd5Hash(md5($document->getFile()->getRealPath()));
-                    $document->setMainTag('dossier-' . $dossier->getId());
-                    $document->setGroep('dossier');
-                    $document->setUploader($this->getUser());
-                    $document->setUploadDatumTijd(new \DateTime());
-                    $dossierDocument = new DossierDocument();
-                    $dossierDocument->setDocument($document);
-                    $dossierDocument->setDossier($dossier);
-                    $dossierDocument->setOnderwerp('schuldenoverzicht');
-                    $dossierDocument->setSchuldItem($schuldItem);
-                }
-            }
-            $removeFiles = $child->get('removeFile')->getData();
-            foreach ($removeFiles as $documentId) {
-                $documentId = intval($documentId);
-                $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
-            }
-
-            $em->flush();
-
-            $newUpdateForm = $this->createForm(SchuldItemFormType::class, $schuldItem, [
-                'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appdossier_updateschulditem', ['dossierId' => $dossier->getId(), 'schuldItemId' => $schuldItem->getId()])
-            ]);
-
-            return $this->render('Dossier/updateSchuldItem.html.twig', [
-                'dossier' => $dossier,
-                'schuldItem' => $schuldItem,
-                'form' => $newUpdateForm->createView()
-            ]);
-        } elseif ($form->isSubmitted() && $form->isValid() === false) {
-            if ($request->isXmlHttpRequest()) {
-                return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-            }
-        }
-
-        return; // 500
     }
 
     /**
