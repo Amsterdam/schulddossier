@@ -136,6 +136,13 @@ class SchuldItem
      */
     private $dossierDocumenten;
 
+    /**
+     * @var Aantekening[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="Aantekening", mappedBy="schuldItem")
+     * @ORM\OrderBy({"datumTijd"="DESC", "id"="DESC"})
+     */
+    private $aantekeningen;
+
     public function __construct()
     {
         $this->type = self::TYPE_CONCURRENT;
@@ -326,6 +333,46 @@ class SchuldItem
         if ($this->hasDossierDocument($dossierDocument) === true) {
             $this->dossierDocumenten->removeElement($dossierDocument);
         }
+    }
+
+    public function getAantekeningen()
+    {
+        return $this->aantekeningen;
+    }
+
+    public function hasAantekening(Aantekening $aantekening)
+    {
+        return $this->aantekeningen->contains($aantekening);
+    }
+
+    public function addAantekening(Aantekening $aantekening)
+    {
+        if ($this->hasAantekening($aantekening) === false) {
+            $this->aantekeningen->add($aantekening);
+        }
+        if ($aantekening->getSchuldItem() !== $this) {
+            $aantekening->setSchuldItem($this);
+        }
+    }
+
+    public function removeAantekening(Aantekening $aantekening)
+    {
+        if ($this->hasAantekening($aantekening) === true) {
+            $this->aantekeningen->removeElement($aantekening);
+        }
+        if ($aantekening->getSchuldItem() === $this) {
+            $aantekening->setSchuldItem(null);
+        }
+    }
+
+    public function isVerlopen()
+    {
+        $now = new \DateTime();
+        $diff = $now->diff($this->getVaststelDatum(), true);
+        if ($diff->days > (7 * 3)) {
+            return true;
+        }
+        return false;
     }
 
     public static function getTypes()

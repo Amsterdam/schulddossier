@@ -76,7 +76,7 @@ class AppSchuldeiserController extends Controller
             }
 
             $this->addFlash('succes', 'Schuldeiser aangemaakt');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_detail', ['schuldeiserId' => $schuldeiser->getId()]);
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_update', ['schuldeiserId' => $schuldeiser->getId()]);
         } elseif ($form->isSubmitted() && $form->isValid() === false) {
             if ($request->isXmlHttpRequest()) {
                 return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);

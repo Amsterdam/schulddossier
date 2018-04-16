@@ -1,4 +1,4 @@
-            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="schuldItem-{{ schuldItem.id }}" style="{{ schuldItem.verwijderd ? 'display: none;' }}">
+            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }} {{ schuldItem.isVerlopen ? 'verlopen' }}" id="schuldItem-{{ schuldItem.id }}" style="{{ schuldItem.verwijderd ? 'display: none;' }}">
                 <div class="accordion-header">
                     
                     <div class="schulditem-header">

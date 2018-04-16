@@ -127,6 +127,13 @@ class Dossier
     private $schuldItems;
 
     /**
+     * @var Aantekening[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="Aantekening", mappedBy="dossier")
+     * @ORM\OrderBy({"datumTijd"="DESC", "id"="DESC"})
+     */
+    private $aantekeningen;
+
+    /**
      * @var DossierTimeline[]|ArrayCollection
      * @ORM\OneToMany(targetEntity="DossierTimeline", mappedBy="dossier", cascade={"persist"})
      * @ORM\OrderBy({"datumtijd"="DESC", "id"="DESC"})
@@ -433,5 +440,50 @@ class Dossier
     {
         return $this->timeline->contains($timeline);
     }
+
+    public function getAantekeningen()
+    {
+        return $this->aantekeningen;
+    }
+
+    public function getAantekeningenByOnderwerp($onderwerp)
+    {
+        return $this->aantekeningen->filter(function (Aantekening $aantekening) use ($onderwerp) {
+            return $aantekening->getOnderwerp() === $onderwerp;
+        });
+    }
+
+    public function getAantekeningenBySchuldItem(SchuldItem $schuldItem)
+    {
+        return $this->aantekeningen->filter(function (Aantekening $aantekening) use ($schuldItem) {
+            return $aantekening->getSchuldItem() === $schuldItem;
+        });
+    }
+
+    public function hasAantekening(Aantekening $aantekening)
+    {
+        return $this->aantekeningen->contains($aantekening);
+    }
+
+    public function addAantekening(Aantekening $aantekening)
+    {
+        if ($this->hasAantekening($aantekening) === false) {
+            $this->aantekeningen->add($aantekening);
+        }
+        if ($aantekening->getDossier() !== $this) {
+            $aantekening->setDossier($this);
+        }
+    }
+
+    public function removeAantekening(Aantekening $aantekening)
+    {
+        if ($this->hasAantekening($aantekening) === true) {
+            $this->aantekeningen->removeElement($aantekening);
+        }
+        if ($aantekening->getDossier() === $this) {
+            $aantekening->setDossier(null);
+        }
+    }
+
 
 }
