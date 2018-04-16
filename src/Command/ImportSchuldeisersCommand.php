@@ -29,7 +29,8 @@ class ImportSchuldeisersCommand extends ContainerAwareCommand
         $fieldList = explode(',', $input->getArgument('fieldList'));
         foreach ($expectedFields as $expectedField) {
             if (in_array($expectedField, $fieldList) === false) {
-                $output->writeln('Veld: ' . $expectedField . 'mist in veldenlijst');
+                $output->writeln('Veld: ' . $expectedField . ' mist in veldenlijst');
+                return;
             }
         }
 
@@ -45,7 +46,12 @@ class ImportSchuldeisersCommand extends ContainerAwareCommand
 
             $data = [];
             foreach ($expectedFields as $expectedField) {
-                $data[$expectedField] = $row[array_search($expectedField, $fieldList)];
+                $index = array_search($expectedField, $fieldList);
+                if (isset($row[$index])) {
+                    $data[$expectedField] = $row[$index];
+                } else {
+                    $data[$expectedField] = null;
+                }
             }
             $output->writeln('Line parsed: ' . json_encode($data));
 
