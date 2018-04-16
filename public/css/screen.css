@@ -1746,8 +1746,7 @@ body {
   margin: 0;
   list-style: none;
   padding: 0;
-  display: flex;
-  justify-content: flex-end; }
+  display: flex; }
 .well .document-workflow {
   margin-bottom: 0; }
 .document-workflow .button {
