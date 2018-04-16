@@ -16,7 +16,7 @@
         
         {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'schulden'} only %}
         
-        {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'no-save', 'data-result-selector': '#schulden_form .accordion', 'data-changer': 'no-change'}}) }}
+        {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'save', 'data-result-selector': '#schulden_form .accordion', 'data-changer': 'change'}}) }}
           <fieldset class="form accordion">
             <legend>Status van de schuldenlijst</legend>
             {% do form.schuldenoverzicht.file.setRendered() %}
