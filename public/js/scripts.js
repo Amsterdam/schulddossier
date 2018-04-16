@@ -124,7 +124,7 @@
     },
     
     'bestand': function(e){
-      if (window.schuldhulp && window.schuldhulp.quickViewer && this.classList.contains('bestand-type-pdf')) {
+      if (window.schuldhulp && window.schuldhulp.quickViewer) {
         e && e.preventDefault();
         window.schuldhulp.quickViewer.showDocument(this);
       }
