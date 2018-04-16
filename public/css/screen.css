@@ -5,7 +5,7 @@ html, body, h1, h2, h3, h4, h5, h6, fieldset, figure, blockquote, dl, dt, dd {
   border: none; }
 
 html {
-  background-color: #f8f8f8;
+  background-color: #f0f0f0;
   overflow-x: hidden; }
 
 body {
@@ -51,7 +51,7 @@ button::-moz-focus-inner {
 .well {
   position: relative;
   padding: 3rem;
-  background-color: #f8f8f8;
+  background-color: #f0f0f0;
   margin-bottom: 1.925rem;
   border-bottom: 1px solid #bdbdbd;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2); }
@@ -286,7 +286,7 @@ h6, .tiny {
 hr {
   border: none;
   height: 2px;
-  background-color: #f8f8f8;
+  background-color: #f0f0f0;
   padding: 0;
   margin: 3.85rem 0; }
 
@@ -324,7 +324,7 @@ hr {
   margin-right: 1em; }
 
 .document-header, .document-footer {
-  background-color: #fbfbfb;
+  background-color: #f7f7f7;
   margin-bottom: 1.925rem;
   padding: 3rem; }
 @media (max-width: 900px) {
@@ -585,7 +585,7 @@ legend small {
   line-height: 1.2; }
 
 fieldset {
-  border-bottom: 1px solid #f8f8f8;
+  border-bottom: 1px solid #f0f0f0;
   padding-bottom: 1.925rem;
   margin-bottom: 1.925rem; }
 .well fieldset {
@@ -691,7 +691,7 @@ form label strong, form .label strong {
   width: 240px;
   box-sizing: border-box;
   margin: 0 0 1.925rem 3rem;
-  background-color: #f8f8f8;
+  background-color: #f0f0f0;
   font-size: 1.2rem; }
 .form-aside p, .form-aside ul {
   margin-bottom: 1.5rem; }
@@ -960,7 +960,6 @@ form label strong, form .label strong {
     top: 0; } }
 
 .nav-container .nav, .nav-internal .nav {
-  position: relative;
   z-index: 5;
   display: none; }
 .nav-container .nav.active, .nav-container .nav:target, .nav-internal .nav.active, .nav-internal .nav:target {
@@ -970,7 +969,7 @@ form label strong, form .label strong {
   list-style: none;
   background-color: #fff;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-  border: 1px solid #f8f8f8;
+  border: 1px solid #f0f0f0;
   margin: 0 -1em 0 0;
   padding: 0.75rem 1.5rem;
   text-align: left; }
@@ -983,7 +982,7 @@ form label strong, form .label strong {
   margin-top: 4px; }
 .menu .divider {
   margin-bottom: 4px;
-  border-bottom: 1px solid #f8f8f8; }
+  border-bottom: 1px solid #f0f0f0; }
 
 .nav-open, .nav-close {
   position: relative;
@@ -1005,7 +1004,7 @@ form label strong, form .label strong {
   top: 3px;
   margin: 0; }
 .nav-open:hover, .nav-close:hover {
-  background-color: #f8f8f8; }
+  background-color: #f0f0f0; }
 @media (max-width: 900px) {
   .nav-open, .nav-close {
     padding-right: 35px; }
@@ -1049,7 +1048,7 @@ header.top {
   left: 0;
   top: 0;
   right: 0;
-  border-bottom: 1px solid #c5c5c5;
+  border-bottom: 1px solid #bdbdbd;
   z-index: 99;
   transition: transform .3s; }
 header.top .logo {
@@ -1285,7 +1284,7 @@ body {
   text-align: right; }
 
 .pdf-splitter {
-  background-color: #dfdfdf;
+  background-color: #d6d6d6;
   position: fixed;
   z-index: 101;
   top: 0;
@@ -1468,13 +1467,13 @@ body {
 .table table th, .table table td {
   vertical-align: top;
   padding: .5rem;
-  border-bottom: 1px solid #f8f8f8; }
+  border-bottom: 1px solid #f0f0f0; }
 .table table th:first-child, .table table td:first-child {
   padding-left: 0; }
 .table table th:last-child, .table table td:last-child {
   padding-right: 0; }
 .table table tbody > tr:nth-child(2n+1) {
-  background-color: rgba(248, 248, 248, 0.2); }
+  background-color: rgba(240, 240, 240, 0.2); }
 .table table tbody th {
   position: relative; }
 .table table tbody th a {
@@ -1509,7 +1508,7 @@ body {
   justify-content: space-evenly;
   list-style-type: none;
   padding: 0;
-  border-bottom: 3px solid #f8f8f8; }
+  border-bottom: 3px solid #f0f0f0; }
 .tabs li {
   flex-basis: 100%; }
 .tabs li a {
@@ -1519,11 +1518,11 @@ body {
   font-size: 1.6rem;
   text-decoration: none;
   padding: 1.5rem;
-  border-bottom: 3px solid #f8f8f8;
+  border-bottom: 3px solid #f0f0f0;
   margin-bottom: -3px;
   transition: all .3s; }
 .tabs li a:hover {
-  border-color: #c5c5c5; }
+  border-color: #bdbdbd; }
 .tabs li.active a, .tabs li a.active {
   border-bottom-color: #ec0000; }
 
@@ -1533,7 +1532,7 @@ body {
   margin-bottom: 10px; }
 .accordion-container .accordion {
   margin-bottom: 1.5rem;
-  background-color: #f8f8f8;
+  background-color: #f0f0f0;
   padding: 8px 15px;
   border-radius: 2px;
   box-shadow: 0 0 0 5px transparent; }
@@ -1567,7 +1566,7 @@ body {
 .accordion-container .accordion.active .accordion-header:after {
   transform: rotate(-45deg); }
 .accordion-container .accordion.active {
-  background-color: #f3f3f3; }
+  background-color: #ebebeb; }
 .accordion-container .accordion .accordion-body {
   max-height: 0;
   overflow: hidden;
@@ -1606,8 +1605,8 @@ body {
 .accordion-body .label-widget .status, .form-checks .label-widget .status {
   margin: 0; }
 .accordion-body .form-row, .form-checks .form-row {
-  border-top: 1px solid #f8f8f8;
-  border-bottom: 1px solid #f8f8f8; }
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0; }
 .accordion-body .form-row + .form-row, .form-checks .form-row + .form-row {
   margin-top: calc(-1.925rem - 1px); }
 
@@ -1645,12 +1644,12 @@ body {
   width: 2.4rem;
   height: 2.4rem;
   box-sizing: border-box;
-  border: 4px solid #f8f8f8;
+  border: 4px solid #f0f0f0;
   transform: rotate(45deg);
   border-radius: 50%;
   background-color: #fff; }
 .accordion .status strong:before {
-  border-color: #c5c5c5; }
+  border-color: #bdbdbd; }
 .status strong:after {
   content: '';
   position: absolute;
