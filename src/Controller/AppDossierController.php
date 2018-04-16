@@ -380,7 +380,7 @@ class AppDossierController extends Controller
         $timestamp = intval(time() + 30);
         $path = '/' . $this->getParameter('swift_container_prefix') . $document->getGroep() . '/' . $document->getDirectory() . '/' . $document->getBestandsnaam();
         $sign = hash_hmac('sha1', "GET\n" . $timestamp . "\n" . $path, $this->getParameter('swift_temp_url_key'));
-        $fullUrl = $this->getParameter('swift_public_url') . $path . '?temp_url_sig=' . $sign . '&temp_url_expires=' . $timestamp;
+        $fullUrl = $this->getParameter('swift_public_url') . $path . '?temp_url_sig=' . $sign . '&temp_url_expires=' . $timestamp . '&filename=' . urlencode($document->getOrigineleBestandsnaam()) . ($request->query->has('inline') ? '&inline' : '');
 
         return new RedirectResponse($fullUrl, Response::HTTP_TEMPORARY_REDIRECT);
     }
