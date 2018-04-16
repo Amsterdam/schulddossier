@@ -803,7 +803,9 @@ form label strong, form .label strong {
   font-size: 1.2rem;
   display: block;
   line-height: 1.2;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis; }
 .files-container .file-container input[type="text"] {
   padding: 0;
   border: none;
