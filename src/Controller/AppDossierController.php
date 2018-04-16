@@ -397,7 +397,7 @@ class AppDossierController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             foreach ($form->get('schuldItems') as $child) {
-                if ($child->has('files')) {
+                if ($child->has('file')) {
                     $files = $child->get('file')->getData();
                     foreach ($files as $document) {
                         /** @var $file Document */
@@ -411,6 +411,7 @@ class AppDossierController extends Controller
                             $dossierDocument->setDocument($document);
                             $dossierDocument->setDossier($dossier);
                             $dossierDocument->setOnderwerp('schuldenoverzicht');
+                            $dossierDocument->setSchuldItem($child->getData());
                         }
                     }
                 }
