@@ -21,6 +21,8 @@
                         {{ form_row(form.stabilisatieovereenkomstNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Stabilisatieovereenkomst'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('stabilisatieovereenkomst'), 'removeFile': form.removeFile} only %}
+                        {{ form_row(form.aantekening) }}
+                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('stabilisatieovereenkomst')} only %}
                     </div>
                 </div>
             </div>

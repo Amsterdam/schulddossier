@@ -1,0 +1,6 @@
+                    {% if aantekeningen|length > 0 %}
+                        <hr>
+                        {% for aantekening in aantekeningen %}
+                            {% include 'Dossier/partial.aantekening.html.twig' with {'aantekening': aantekening} only %}
+                        {% endfor %}
+                    {% endif %}

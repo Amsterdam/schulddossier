@@ -1,6 +1,13 @@
 
 {# Custom widgets #}
 
+{%- block create_aantekening_form_widget -%}
+    <div class="aantekening-form">
+        <a href="#" onclick="this.parentNode.querySelector('div').style = 'display: block'; this.parentNode.querySelector('a').style = 'display: none'; return false;">Toevoegen</a>
+        <div style="display: none;">{{ form_widget(form.tekst) }}</div>
+    </div>
+{%- endblock -%}
+
 {%- block madi_status_form_widget -%}
     <div class="status status-madi">
         <ul {{ block('widget_container_attributes') }}>

@@ -17,6 +17,8 @@
                         {{ form_row(form.bewindstellingOfBudgetbeheerNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Onderbewindstelling of Budgetbeheer'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('bewindstellingOfBudgetbeheer'), 'removeFile': form.removeFile} only %}
+                        {{ form_row(form.aantekening) }}
+                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('bewindstellingOfBudgetbeheer')} only %}
                     </div>
                 </div>
             </div>

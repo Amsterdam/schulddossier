@@ -1,0 +1,28 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}{{ dossier.clientNaam }} - {{ parent() }}{% endblock %}
+
+{% block document %}
+    <nav class="nav-internal">
+        <ul>
+            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"><i class="icon-arrow-left"></i>Terug naar overzicht</a></li>
+        </ul>
+    </nav>
+    
+    <div class="document well">
+      
+      {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}
+      
+      {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'aantekeningen'} only %}
+      
+      {{ form_start(form) }}
+      {{ form_row(form.tekst) }}
+      <button type="submit">Aantekenen</button>
+      {{ form_end(form) }}
+      
+      {% for aantekening in dossier.aantekeningen %}
+          {% include 'Dossier/partial.aantekening.html.twig' with {'aantekening': aantekening, 'showContext': true} %}
+      {% endfor %}
+      
+    </div>
+{% endblock %}

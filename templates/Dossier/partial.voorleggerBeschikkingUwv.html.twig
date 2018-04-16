@@ -21,6 +21,8 @@
                         {{ form_row(form.beschikkingUwvOverig) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Beschikking UWV'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('beschikkingUwv'), 'removeFile': form.removeFile} only %}
+                        {{ form_row(form.aantekening) }}
+                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('beschikkingUwv')} only %}
                     </div>
                 </div>
             </div>

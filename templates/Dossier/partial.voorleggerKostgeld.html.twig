@@ -21,6 +21,8 @@
                         {{ form_row(form.kostgeldNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kostgeld'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kostgeld'), 'removeFile': form.removeFile} only %}
+                        {{ form_row(form.aantekening) }}
+                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('kostgeld')} only %}
                     </div>
                 </div>
             </div>

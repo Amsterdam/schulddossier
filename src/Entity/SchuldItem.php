@@ -138,7 +138,7 @@ class SchuldItem
 
     /**
      * @var Aantekening[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="Aantekening", mappedBy="schuldItem")
+     * @ORM\OneToMany(targetEntity="Aantekening", mappedBy="schuldItem", cascade={"persist", "remove"})
      * @ORM\OrderBy({"datumTijd"="DESC", "id"="DESC"})
      */
     private $aantekeningen;

@@ -17,6 +17,8 @@
                         {{ form_row(form.alimentatieNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Alimentatie'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('alimentatie'), 'removeFile': form.removeFile} only %}
+                        {{ form_row(form.aantekening) }}
+                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('alimentatie')} only %}
                     </div>
                 </div>
             </div>

@@ -20,6 +20,8 @@
                         {{ form_row(form.kinderopvangtoeslagNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kinderopvangtoeslag'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kinderopvangtoeslag'), 'removeFile': form.removeFile} only %}
+                        {{ form_row(form.aantekening) }}
+                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('kinderopvangtoeslag')} only %}
                     </div>
                 </div>
             </div>

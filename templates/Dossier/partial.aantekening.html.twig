@@ -1,0 +1,4 @@
+<div class="aantekening">
+    <p><strong>{{ aantekening.gebruiker }}</strong> zei op {{ aantekening.datumTijd|date('d-m-Y H:i') }}{% if showContext|default(false) %} over {{ aantekening.onderwerp|humanize }}{% endif %}:</p>
+    <p>{{ aantekening.tekst|nl2br }}</p>
+</div>

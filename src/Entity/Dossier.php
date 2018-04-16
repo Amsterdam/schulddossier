@@ -128,7 +128,7 @@ class Dossier
 
     /**
      * @var Aantekening[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="Aantekening", mappedBy="dossier")
+     * @ORM\OneToMany(targetEntity="Aantekening", mappedBy="dossier", cascade={"persist", "remove"})
      * @ORM\OrderBy({"datumTijd"="DESC", "id"="DESC"})
      */
     private $aantekeningen;

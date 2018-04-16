@@ -19,29 +19,31 @@
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Schuldenoverzicht'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('schuldenoverzicht'), 'removeFile': form.removeFile} only %}
                         <div class="table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Schuldeiser</th>
-                                    <th>Referentie</th>
-                                    <th>Type</th>
-                                    <th>Contactdatum</th>
-                                    <th>Schuld</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                        {% for schuldItem in dossier.schuldItems if schuldItem.verwijderd == false %}
-                                <tr>
-                                    <td>{{ schuldItem.schuldeiser|default('-') }} {% if schuldItem.incassant %}/{% endif %} {{ schuldItem.incassant }}</td>
-                                    <td>{{ schuldItem.referentie }}</td>
-                                    <td>{{ schuldItem.type }}</td>
-                                    <td>{{ schuldItem.vaststelDatum is not empty ? schuldItem.vaststelDatum|date('d-m-Y') : '-' }}</td>
-                                    <td>&euro; {{ schuldItem.bedrag|number_format(2, ',', '.') }}</td>
-                                </tr>
-                        {% endfor %}
-                            </tbody>
-                        </table>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Schuldeiser</th>
+                                        <th>Referentie</th>
+                                        <th>Type</th>
+                                        <th>Contactdatum</th>
+                                        <th>Schuld</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for schuldItem in dossier.schuldItems if schuldItem.verwijderd == false %}
+                                    <tr>
+                                        <td>{{ schuldItem.schuldeiser|default('-') }} {% if schuldItem.incassant %}/{% endif %} {{ schuldItem.incassant }}</td>
+                                        <td>{{ schuldItem.referentie }}</td>
+                                        <td>{{ schuldItem.type }}</td>
+                                        <td>{{ schuldItem.vaststelDatum is not empty ? schuldItem.vaststelDatum|date('d-m-Y') : '-' }}</td>
+                                        <td>&euro; {{ schuldItem.bedrag|number_format(2, ',', '.') }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
+                        {{ form_row(form.aantekening) }}
+                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('schuldenoverzicht')} only %}
                     </div>
                 </div>
             </div>

@@ -77,6 +77,9 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldenFormType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateAantekeningFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
+use Doctrine\ORM\EntityManager;
 
 /**
  * @Route("/app/dossier")
@@ -205,6 +208,13 @@ class AppDossierController extends Controller
                         $documentId = intval($documentId);
                         $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
                     }
+                }
+                if (empty($child->get('aantekening')->get('tekst')->getData()) === false) {
+                    $aantekening = new Aantekening();
+                    $aantekening->setDossier($dossier);
+                    $aantekening->setGebruiker($this->getUser());
+                    $aantekening->setOnderwerp($key);
+                    $aantekening->setTekst($child->get('aantekening')->get('tekst')->getData());
                 }
             }
             $em->flush();
@@ -421,6 +431,14 @@ class AppDossierController extends Controller
                     $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
                 }
             }
+            if (empty($child->get('aantekening')->get('tekst')->getData()) === false) {
+                $aantekening = new Aantekening();
+                $aantekening->setDossier($dossier);
+                $aantekening->setGebruiker($this->getUser());
+                $aantekening->setOnderwerp('schuldenoverzicht');
+                $aantekening->setSchuldItem($child->getData());
+                $aantekening->setTekst($child->get('aantekening')->get('tekst')->getData());
+            }
             $em->flush();
             if ($request->isXmlHttpRequest()) {
                 return new JsonResponse(['status' => 'OK']);
@@ -476,6 +494,33 @@ class AppDossierController extends Controller
             'form' => $form->createView(),
             'createForm' => $createForm->createView(),
             'createSchuldeiserForm' => $createSchuldeiserForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/aantekeningen")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function detailAantekeningenAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    {
+        $aantekening = new Aantekening();
+
+        $form = $this->createForm(CreateAantekeningFormType::class, $aantekening);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $dossier->addAantekening($aantekening);
+            $aantekening->setOnderwerp('overige');
+            $aantekening->setGebruiker($this->getUser());
+
+            $em->flush();
+
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen', ['dossierId' => $dossier->getId()]);
+        }
+
+        return $this->render('Dossier/detailAantekeningen.html.twig', [
+            'dossier' => $dossier,
+            'form' => $form->createView()
         ]);
     }
 

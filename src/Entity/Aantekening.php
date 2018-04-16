@@ -35,7 +35,7 @@ class Aantekening
     /**
      * @var SchuldItem
      * @ORM\ManyToOne(targetEntity="SchuldItem", inversedBy="aantekeningen")
-     * @ORM\JoinColumn(name="schuld_item_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="schuld_item_id", referencedColumnName="id", nullable=true)
      */
     private $schuldItem;
 
@@ -59,6 +59,11 @@ class Aantekening
      * @Assert\NotBlank
      */
     private $tekst;
+
+    public function __construct()
+    {
+        $this->datumTijd = new \DateTime();
+    }
 
     public function getId()
     {
@@ -109,6 +114,11 @@ class Aantekening
         if ($this->schuldItem->hasAantekening($this) === false) {
             $schuldItem->addAantekening($this);
         }
+    }
+
+    public function setOnderwerp($onderwerp)
+    {
+        $this->onderwerp = $onderwerp;
     }
 
     public function setGebruiker(Gebruiker $gebruiker)

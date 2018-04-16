@@ -56,6 +56,13 @@ class VoorleggerKwijtscheldingGemeenteBelastingFormType extends AbstractType
             'prototype_name' => '__name__',
             'by_reference' => false,
         ]);
+        $builder->add('aantekening', CreateAantekeningFormType::class, [
+            'mapped' => false,
+            'required' => false,
+            'constraints' => [
+                new Valid()
+            ]
+        ]);
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
