@@ -11,7 +11,7 @@
                             </a>
                         </h3>
                         <div class="voortgang">
-                            {{ schuldItem.dossierDocumenten|length }} document(en)
+                            {{ schuldItem.dossierDocumenten|length }} document{% if schuldItem.dossierDocumenten|length != 1 %}en{% endif %}
                         </div>
                         <div class="bedrag">
                             &euro; {{ schuldItem.bedrag|number_format(2, ',', '.') }}
