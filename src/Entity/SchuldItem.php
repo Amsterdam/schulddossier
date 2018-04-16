@@ -328,6 +328,16 @@ class SchuldItem
         }
     }
 
+    public function isVerlopen()
+    {
+        $now = new \DateTime();
+        $diff = $now->diff($this->getVaststelDatum(), true);
+        if ($diff->days > (7 * 3)) {
+            return true;
+        }
+        return false;
+    }
+
     public static function getTypes()
     {
         return [
