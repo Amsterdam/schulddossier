@@ -735,15 +735,7 @@ form label strong, form .label strong {
   margin-top: 1px;
   width: 20px;
   height: 20px; }
-.label-widget > input[type="date"], .label-widget > input[type="text"], .label-widget > input[type="password"], .label-widget > input[type="email"] {
-  width: auto;
-  flex-grow: 1; }
-.label-widget > textarea, .label-widget > select {
-  width: auto;
-  flex-grow: 1; }
 .label-widget > .choices {
-  width: auto;
-  flex-grow: 1;
   padding-right: 20px;
   box-sizing: border-box; }
 .label-widget > .choices .choices__inner {
@@ -774,7 +766,8 @@ form label strong, form .label strong {
   display: inline-block;
   vertical-align: top;
   position: relative;
-  text-align: center; }
+  text-align: center;
+  overflow: hidden; }
 .files-container .file-container.prototype {
   display: none; }
 .files-container .file-container .bestand {
@@ -1348,6 +1341,8 @@ body {
   height: auto; }
 .pdf-splitter .pages .page.dragged {
   opacity: 0.4; }
+.pdf-splitter .pages .page.dragged:hover {
+  opacity: 1; }
 .pdf-splitter .pages .page:hover {
   border-color: #333; }
 .pdf-splitter:hover {
