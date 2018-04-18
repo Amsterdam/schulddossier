@@ -1,4 +1,3 @@
-@charset "UTF-8";
 html, body, h1, h2, h3, h4, h5, h6, fieldset, figure, blockquote, dl, dt, dd {
   margin: 0;
   padding: 0;
@@ -130,6 +129,11 @@ button::-moz-focus-inner {
 
 .footer-well {
   padding: 0 3rem; }
+
+.toggle-hidden {
+  display: none; }
+.toggle-hidden.active {
+  display: block; }
 
 html {
   font-size: 62.5%; }
@@ -284,7 +288,7 @@ h6, .tiny {
   bottom: .5rem;
   overflow: hidden; }
 
-.icon-prullenbak {
+.icon-prullenbak, .bestand-verwijderen:before {
   position: relative;
   display: inline-block;
   width: 12px;
@@ -311,7 +315,7 @@ h6, .tiny {
   background-size: 100% auto;
   background-image: url("../images/ico_split.png"); }
 
-.icon-download {
+.icon-download, a.bestand:before {
   position: relative;
   display: inline-block;
   width: 12px;
@@ -328,6 +332,15 @@ h6, .tiny {
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-image: url("../images/ico_documenten.svg"); }
+
+.icon-undo {
+  position: relative;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url("../images/ico_undo.svg"); }
 
 hr {
   border: none;
@@ -407,13 +420,15 @@ hr {
 .bestand {
   position: relative;
   display: inline-block;
-  padding: 20px 20px 28px 20px;
-  margin: 0 10px 20px 0;
+  padding: 30px 30px 28px 30px;
+  margin: 0 0 20px 0;
   background-color: rgba(109, 181, 214, 0);
   transition: background-color .3s; }
 .bestand i {
   transition: box-shadow .3s;
   box-shadow: 0 0 5px 0 transparent; }
+.bestand i:after {
+  transition: opacity .3s; }
 .bestand .bestand-naam {
   position: absolute;
   font-size: 10px;
@@ -428,10 +443,29 @@ hr {
   overflow: hidden;
   text-overflow: ellipsis; }
 
+a.bestand:before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  width: 24px;
+  height: 24px;
+  top: 4.6rem;
+  left: 50%;
+  margin-left: -12px;
+  opacity: 0;
+  transition: opacity .3s; }
 a.bestand:hover {
   background-color: rgba(109, 181, 214, 0.2); }
+a.bestand:hover:before {
+  opacity: 1; }
 a.bestand:hover i {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4); }
+a.bestand:hover i:after {
+  opacity: 0; }
+a.bestand.add:before {
+  display: none; }
+a.bestand.add:hover .icon-file:after {
+  opacity: 1; }
 
 .bestand-verwijderen-check {
   position: absolute;
@@ -447,16 +481,15 @@ a.bestand:hover i {
   height: 3rem;
   text-align: center;
   opacity: 0;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
   transition: all .3s; }
 .bestand-verwijderen:before {
-  content: '×';
-  font-size: 3rem;
-  line-height: 2.8rem;
-  font-weight: bold; }
+  content: '';
+  margin-top: .5rem;
+  width: 20px;
+  height: 20px; }
 .bestand-verwijderen:hover {
-  background-color: #000;
-  color: #fff; }
+  background-color: white; }
 
 .bestand-zoom {
   position: absolute;
@@ -468,7 +501,7 @@ a.bestand:hover i {
   height: 3rem;
   text-align: center;
   opacity: 0;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
   transition: all .3s;
   text-decoration: none; }
 .bestand-zoom:before {
@@ -497,21 +530,32 @@ a.bestand:hover i {
   border-left: 4px solid #000;
   transform: rotate(-45deg); }
 .bestand-zoom:hover {
-  background-color: #000; }
-.bestand-zoom:hover:before, .bestand-zoom:hover:after {
-  color: #fff;
-  border-color: #fff;
-  background-color: #000; }
+  background-color: white; }
 
+.bestanden li {
+  margin-right: 10px; }
 .bestanden li:hover .bestand-verwijderen, .bestanden li:hover .bestand-zoom {
   opacity: 1; }
 .bestanden .bestand-verwijderen-check:checked ~ label {
   opacity: 1;
   background-color: transparent; }
 .bestanden .bestand-verwijderen-check:checked ~ label:before {
-  color: red; }
-.bestanden .bestand-verwijderen-check:checked ~ .bestand {
+  background-image: url("../images/ico_undo.svg"); }
+.bestanden .bestand-verwijderen-check:checked ~ label:after {
+  content: 'wordt verwijderd';
+  position: absolute;
+  left: 1rem;
+  width: 8rem;
+  top: 4rem;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center; }
+.bestanden .bestand-verwijderen-check:checked ~ .bestand .icon-file {
   opacity: .1; }
+.bestanden .bestand-verwijderen-check:checked ~ .bestand:hover:before {
+  opacity: 0; }
+.bestanden .bestand-verwijderen-check:checked ~ .bestand:hover .icon-file:after {
+  opacity: 1; }
 
 .button, button {
   display: inline-block;
@@ -784,7 +828,8 @@ form label strong, form .label strong {
   height: 20px; }
 .label-widget > .choices {
   padding-right: 20px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  width: 100%; }
 .label-widget > .choices .choices__inner {
   min-height: 25px;
   padding-top: 2px;
@@ -967,6 +1012,9 @@ form label strong, form .label strong {
 .nav-internal .nav .menu li {
   display: block;
   margin: 0; }
+.nav-internal .primary {
+  background-color: #fff;
+  outline: 1px solid rgba(0, 0, 0, 0.2); }
 
 .nav-container {
   position: absolute;
@@ -1076,9 +1124,6 @@ form label strong, form .label strong {
 
 .document-header .nav-internal {
   margin-bottom: 0; }
-.document-header .nav-internal .primary {
-  background-color: #fff;
-  outline: 1px solid rgba(0, 0, 0, 0.2); }
 
 header.top {
   background-color: #FFFFFF;
