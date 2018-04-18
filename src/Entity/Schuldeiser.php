@@ -186,6 +186,6 @@ class Schuldeiser
 
     public function __toString()
     {
-        return $this->bedrijfsnaam;
+        return $this->bedrijfsnaam . (empty($this->allegroCode) === false ? ' (' . $this->allegroCode . ')' : '');
     }
 }
