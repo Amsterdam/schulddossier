@@ -93,7 +93,7 @@
       prototype.addEventListener('filled', function (event) {
           var elm = prototype.querySelector('input[type="text"]');
           if (elm.value === '' || elm.value === null) {
-              elm.value = prototype.parentNode.getAttribute('data-default-document-naam');
+              elm.value = prototype.parentNode.getAttribute('data-default-document-naam') + ' ' + (counter + 1);
               elm.focus();
           }
       });
@@ -198,6 +198,8 @@
               input.parentNode.removeChild(input);
               
               file.classList.add('has-file');
+              
+              
             }
           
           }
@@ -448,6 +450,8 @@
 
               dropZone = lastFile.querySelector('.drop-area');
               
+              e.item.classList.add('dragged');
+              
               var original = e.item.querySelector('canvas');
 
               var canvas = document.createElement('canvas');
@@ -488,6 +492,12 @@
       
     }
     
+  };
+  
+  var keyuppers = {
+    'change': function(e){
+      // changers['change'] && changers['change'].call(this, e);
+    }
   };
   
   var helpers = {
@@ -545,13 +555,15 @@
   
   d.addEventListener('click',function(t){var k,e,a=t&&t.target;if(a=_closest(a,'[data-handler]')){var r=a.getAttribute('data-handler').split(/\s+/);if('A'==a.tagName&&(t.metaKey||t.shiftKey||t.ctrlKey||t.altKey))return;for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);handlers[k[0]]&&handlers[k[0]].call(a,t,k[1])}}});
   
-  d.addEventListener('submit',function(t){var k,e,f=t&&t.target;if(f=_closest(f,'[data-submitter]')){var r=f.getAttribute('data-submitter').split(/\s+/);for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);submitters[k[0]]&&submitters[k[0]].call(f,t,k[1])}}});
-
-  var _change = function(t){var k,e,c=t&&t.target;if(c=_closest(c,'[data-changer]')){var r=c.getAttribute('data-changer').split(/\s+/);for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);changers[k[0]]&&changers[k[0]].call(c,t,k[1])}}};
-
-  d.addEventListener('change', _change);
-  // d.addEventListener('keyup', _change);
-
+  var l = { 
+    submit: 'submitter', 
+    change: 'changer', 
+    keyup: 'keyupper'
+  }
+  for (var i in l){
+    l.hasOwnProperty(i) && d.addEventListener(i,function(t){var s=t.type,o=eval(l[s]+'s'),k,e,f=t&&t.target;if(f=_closest(f,'[data-'+l[s]+']')){var r=f.getAttribute('data-'+l[s]).split(/\s+/);for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);o&&o[k[0]]&&o[k[0]].call(f,t,k[1])}}});
+  }  
+  
   var scrollers=[];w.addEventListener('scroll',function(){requestAnimationFrame(function(){for(var l=0;l<scrollers.length;l++)scrollers[l].el&&scrollers[l].fn.call(scrollers[l].el)})},!1);
   
   var _scrollTo=function(n,o){var e,i=window.pageYOffset,t=window.pageYOffset+n.getBoundingClientRect().top,r=(document.body.scrollHeight-t<window.innerHeight?document.body.scrollHeight-window.innerHeight:t)-i,w=function(n){return n<.5?4*n*n*n:(n-1)*(2*n-2)*(2*n-2)+1},o=o||1e3;r&&window.requestAnimationFrame(function n(t){e||(e=t);var d=t-e,a=Math.min(d/o,1);a=w(a),window.scrollTo(0,i+r*a),d<o&&window.requestAnimationFrame(n)})};
