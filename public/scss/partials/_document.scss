@@ -89,14 +89,17 @@
 .bestand {
   position: relative;
   display: inline-block;
-  padding: 20px 20px 28px 20px;
+  padding: 30px 30px 28px 30px;
   
-  margin: 0 10px 20px 0;
+  margin: 0 0 20px 0;
   background-color: rgba($brandColor2, 0);
   transition: background-color .3s;
   i {
     transition: box-shadow .3s;
     box-shadow: 0 0 5px 0 rgba(#000, 0);
+    &:after {
+      transition: opacity .3s;
+    }
   }
   .bestand-naam {
     position: absolute;
@@ -112,12 +115,42 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  
 }
-a.bestand:hover {
-  background-color: rgba($brandColor2, .2);
-  i {
-    box-shadow: 0 0 5px 0 rgba(#000, .4);
+a.bestand {
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    @extend .icon-download !optional;
+    width: 24px;
+    height: 24px;
+    top: 4.6rem;
+    left: 50%;
+    margin-left: -12px;
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  &:hover {
+    background-color: rgba($brandColor2, .2);
+    &:before {
+      opacity: 1;
+    }
+    i {
+      box-shadow: 0 0 5px 0 rgba(#000, .4);
+      &:after {
+        opacity: 0;
+      }
+    }
+  }
+  &.add {
+    &:before {
+      display: none;
+    }
+    &:hover {
+      .icon-file:after {
+        opacity: 1;
+      }
+    }
   }
 }
 .bestand-verwijderen-check {
@@ -134,17 +167,17 @@ a.bestand:hover {
   height: 3rem;
   text-align: center;
   opacity: 0;
-  background-color: #fff;
+  background-color: rgba(#fff, .8);
   transition: all .3s;
   &:before {
-    content: '×';
-    font-size: 3rem;
-    line-height: 2.8rem;
-    font-weight: bold;
+    content: '';
+    @extend .icon-prullenbak !optional;
+    margin-top: .5rem;
+    width: 20px;
+    height: 20px;
   }
   &:hover {
-    background-color: $textColor;
-    color: #fff;
+    background-color: rgba(#fff, 1);
   }
 }
 
@@ -158,7 +191,7 @@ a.bestand:hover {
   height: 3rem;
   text-align: center;
   opacity: 0;
-  background-color: #fff;
+  background-color: rgba(#fff, .8);
   transition: all .3s;
   text-decoration: none;
   &:before {
@@ -191,17 +224,15 @@ a.bestand:hover {
     
   }
   &:hover {
-    background-color: $textColor;
-    &:before, &:after {
-      color: #fff;
-      border-color: #fff;
-      background-color: $textColor;
-    }
+    background-color: rgba(#fff, 1);
   }
   
 }
 
 .bestanden {
+  li {
+    margin-right: 10px;
+  }
   li:hover {
     .bestand-verwijderen,
     .bestand-zoom {
@@ -212,10 +243,32 @@ a.bestand:hover {
     opacity: 1;
     background-color: transparent;
     &:before {
-      color: red;
+      background-image: url('../images/ico_undo.svg');
+    }
+    &:after {
+      content: 'wordt verwijderd';
+      position: absolute;
+      left: 1rem;
+      width: 8rem;
+      top: 4rem;
+      font-size: 12px;
+      line-height: 1;
+      text-align: center;
     }
   }
   .bestand-verwijderen-check:checked ~ .bestand {
-    opacity: .1;
+    .icon-file {
+      opacity: .1;
+    }
+    
+    &:hover {
+      &:before {
+        opacity: 0;
+      }
+      .icon-file:after {
+        opacity: 1;
+      }
+    }
+    
   }
 }
