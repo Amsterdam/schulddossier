@@ -385,17 +385,9 @@ form {
         height: 20px;
       }
       &[type="date"], &[type="text"], &[type="password"], &[type="email"] {
-        width: auto;
-        flex-grow: 1;
       }
     }
-    textarea, select {
-      width: auto;
-      flex-grow: 1;
-    }
     .choices {
-      width: auto;
-      flex-grow: 1;
       padding-right: 20px;
       box-sizing: border-box;
       .choices__inner {
@@ -435,6 +427,7 @@ form {
     vertical-align: top;
     position: relative;
     text-align: center;
+    overflow: hidden;
     &.prototype {
       display: none;
     }
