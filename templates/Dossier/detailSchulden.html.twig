@@ -17,7 +17,7 @@
         {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'schulden'} only %}
         
         {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'save', 'data-result-selector': '#schulden_form .accordion', 'data-changer': 'change'}}) }}
-          <fieldset class="form accordion">
+          <fieldset class="form accordion hidden">
             <legend>Status van de schuldenlijst</legend>
             {% do form.schuldenoverzicht.file.setRendered() %}
             <div class="form-checks well well-small">
@@ -46,13 +46,14 @@
         
         {{ form_end(form) }}
         
-        <div class="accordion-container" data-decorator="droppable">
-          <div class="accordion" id="schuldItem-nieuw">
+        <div id="nieuwe-schuld-toevoegen" class="toggle-hidden">
+          <div class="accordion-container" data-decorator="droppable">
+          <div class="accordion active" id="schuldItem-nieuw">
             
             <div class="accordion-header">
               <div class="schulditem-header">
                 <h3 class="naam">
-                  <a href="#schuldItem-nieuw" data-handler="toggle">
+                  <a href="#schuldItem-nieuw active">
                     Nieuwe schuld toevoegen
                   </a>
                 </h3>
@@ -119,7 +120,13 @@
               </div>
             </div>
           </div>
-        </div> <!-- accordion-container -->
+        </div>
+        </div>
+        
+        <p class="nav-internal">
+          <a href="#nieuwe-schuld-toevoegen" data-handler="toggle scroll" class="primary">Nieuwe schuld toevoegen</a>
+        </p>
+        
     
     
     <div class="modal-container" id="nieuwe-schuldeiser">

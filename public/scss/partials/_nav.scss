@@ -50,6 +50,10 @@
       }
     }
   }
+  .primary {
+    background-color: #fff;
+    outline: 1px solid rgba($textColor, .2);
+  }
 }
 
 .nav-container {
@@ -204,8 +208,4 @@
 
 .document-header .nav-internal {
   margin-bottom: 0;
-  .primary {
-    background-color: #fff;
-    outline: 1px solid rgba($textColor, .2);
-  }
 }
