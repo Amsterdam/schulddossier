@@ -65,10 +65,10 @@
 
 .columns {
   display: flex;
-  justify-content: space-between;
+  margin-right: -$padding;
   .column {
-    flex-basis: 40%;
     margin-bottom: $lineHeight;
+    padding-right: $padding;
   }
   
 }

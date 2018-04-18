@@ -21,7 +21,7 @@
         <div class="accordion">
           <h3>Overige documenten</h3>
           <p>Plaats hier documenten die niet thuishoren in overige secties</p>
-          {% include 'partial.files-container.html.twig' with {'form_elm': form.file} only %}
+          {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Document'} only %}
           {% do form.removeFile.setRendered() %}
 
           {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('overige'), 'removeFile': form.removeFile} only %}

@@ -87,10 +87,10 @@ button::-moz-focus-inner {
 
 .columns {
   display: flex;
-  justify-content: space-between; }
+  margin-right: -3rem; }
 .columns .column {
-  flex-basis: 40%;
-  margin-bottom: 1.925rem; }
+  margin-bottom: 1.925rem;
+  padding-right: 3rem; }
 
 .help {
   display: block;
@@ -361,7 +361,7 @@ hr {
 .bestand {
   position: relative;
   display: inline-block;
-  padding: 10px 20px 28px 20px;
+  padding: 20px 20px 28px 20px;
   margin: 0 10px 20px 0;
   background-color: rgba(109, 181, 214, 0);
   transition: background-color .3s; }
@@ -1825,7 +1825,10 @@ body {
   outline: none;
   background: none;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  color: #333; }
+.rd-back:hover, .rd-next:hover {
+  color: #333; }
 
 .rd-back[disabled], .rd-next[disabled] {
   cursor: default; }
