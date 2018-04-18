@@ -81,6 +81,9 @@
       }
       &.dragged {
         opacity: 0.4;
+        &:hover {
+          opacity: 1;
+        }
       }
       &:hover {
         border-color: $textColor;
