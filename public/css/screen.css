@@ -281,7 +281,14 @@ h6, .tiny {
   background-color: #000;
   left: 20%;
   right: -.6rem;
-  bottom: .5rem; }
+  bottom: .5rem;
+  overflow: hidden; }
+
+.icon-prullenbak {
+  position: relative;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: 100% auto; }
 
 hr {
   border: none;
