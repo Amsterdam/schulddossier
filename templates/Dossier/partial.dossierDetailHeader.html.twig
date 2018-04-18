@@ -21,9 +21,9 @@
       <nav class="nav" id="acties">
         <ul class="menu">
           <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocumenten', {'dossierId': dossier.id}) }}"><i class="icon-documenten"></i> Toon alle documenten</a></li>
-          <li><a href="#pdfsplitter" data-handler="toggle">Gescand document splitsen</a></li>
+          <li><a href="#pdfsplitter" data-handler="toggle"><i class="icon-splitsen"></i> Gescand document splitsen</a></li>
           <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschuldenexcel', {'dossierId': dossier.id}) }}"><i class="icon-download"></i> Download schuldenlijst als Excel</a></li>
-          <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', {'dossierId': dossier.id}) }}"><i class="icon-uit-prullenbak"></i> Toon prullenbak</a></li>
+          <li class="divider"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', {'dossierId': dossier.id}) }}"><i class="icon-uit-prullenbak"></i> Toon prullenbak</a></li>
           <li>
             <form method='POST' action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', {'dossierId': dossier.id}) }}" data-submitter="zeker-weten">
               <button type="submit" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak') }}" class="link"><i class="icon-prullenbak"></i> Dossier verwijderen</button>

@@ -287,8 +287,47 @@ h6, .tiny {
 .icon-prullenbak {
   position: relative;
   display: inline-block;
+  width: 12px;
+  height: 12px;
   background-repeat: no-repeat;
-  background-size: 100% auto; }
+  background-size: 100% auto;
+  background-image: url("../images/ico_delete.png"); }
+
+.icon-uit-prullenbak {
+  position: relative;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url("../images/ico_trashopen.png"); }
+
+.icon-splitsen {
+  position: relative;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url("../images/ico_split.png"); }
+
+.icon-download {
+  position: relative;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url("../images/ico_download.png"); }
+
+.icon-documenten {
+  position: relative;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url("../images/ico_documenten.svg"); }
 
 hr {
   border: none;
@@ -1296,7 +1335,7 @@ body {
   box-shadow: inset -5px 0px 10px 0px rgba(204, 204, 204, 0.37);
   overflow-x: hidden;
   overflow-y: auto;
-  transform: translate3d(-256px, 0, 0);
+  transform: translate3d(-280px, 0, 0);
   transition: all .3s;
   opacity: 0; }
 .pdf-splitter .file-selector {
@@ -1354,9 +1393,9 @@ body {
   opacity: 1; }
 .pdf-splitter .pages .page:hover {
   border-color: #000; }
-.pdf-splitter:hover {
+.drag-mode .pdf-splitter {
   opacity: 1;
-  transform: translate3d(-212px, 0, 0); }
+  transform: translate3d(-290px, 0, 0); }
 .pdf-splitter.active, .pdf-splitter.drop-over {
   opacity: 1;
   transform: translate3d(0, 0, 0); }
@@ -1364,6 +1403,39 @@ body {
   transform: translate3d(150px, 0, 0); }
 .pdf-splitter.active ~ .document-container, .pdf-splitter.drop-over ~ .document-container {
   padding-left: 300px; }
+
+.pdf-splitter-trigger {
+  position: fixed;
+  z-index: 102;
+  text-align: center;
+  left: 13px;
+  top: 50%;
+  margin-top: -85px;
+  transition: margin .3s; }
+.pdf-splitter-trigger a {
+  position: absolute;
+  transform: rotate(90deg);
+  transform-origin: left;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  width: 170px;
+  height: 17px;
+  font-size: 1.2rem;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  background-color: #fff;
+  padding: 5px 10px;
+  opacity: .7;
+  transition: all .3s; }
+.pdf-splitter-trigger a:hover {
+  opacity: 1; }
+.pdf-splitter-trigger i {
+  top: 2px;
+  margin-right: .5em; }
+
+.pdf-splitter.active ~ .pdf-splitter-trigger, .pdf-splitter.drop-over ~ .pdf-splitter-trigger {
+  margin-left: 300px;
+  z-index: 100; }
 
 .quick-viewer .modal-window {
   width: 90%;

@@ -16,13 +16,17 @@
         <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/0037f97b-b0f6-41de-8f33-75b12c9f76ea.css"/>
     </head>
     <body class="{% block body_classes %}{% endblock %}">
-
+        
         <aside id="pdfsplitter" class="pdf-splitter accordion" data-decorator="droppable" data-changer="pdfsplitter">
             <div class="pages"></div>
             <label class="file-selector">
                 <input type="file" name="file">
             </label>
         </aside>
+
+        <p class="pdf-splitter-trigger">
+          <a href="#pdfsplitter" data-handler="toggle"><i class="icon-splitsen"></i> Gescand document splitsen</a>
+        </p>
 
         <header class="top">
             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class="logo">

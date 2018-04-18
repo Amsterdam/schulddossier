@@ -124,6 +124,59 @@
 .icon-prullenbak {
   position: relative;
   display: inline-block;
+  
+  width: 12px;
+  height: 12px;
+  
   background-repeat: no-repeat;
   background-size: 100% auto;
+  background-image: url('../images/ico_delete.png');
+}
+
+.icon-uit-prullenbak {
+  position: relative;
+  display: inline-block;
+  
+  width: 12px;
+  height: 12px;
+  
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url('../images/ico_trashopen.png');
+}
+
+.icon-splitsen {
+  position: relative;
+  display: inline-block;
+  
+  width: 12px;
+  height: 12px;
+  
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url('../images/ico_split.png');
+}
+
+.icon-download {
+  position: relative;
+  display: inline-block;
+  
+  width: 12px;
+  height: 12px;
+  
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url('../images/ico_download.png');
+}
+
+.icon-documenten {
+  position: relative;
+  display: inline-block;
+  
+  width: 12px;
+  height: 12px;
+  
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url('../images/ico_documenten.svg');
 }

@@ -91,13 +91,13 @@
     }
   }
   
-  transform: translate3d((-$pdfSplitterWidth + 44px), 0, 0);
+  transform: translate3d((-$pdfSplitterWidth + 20px), 0, 0);
   transition: all .3s;
   opacity: 0;
   
-  &:hover {
+  .drag-mode & {
     opacity: 1;
-    transform: translate3d((-$pdfSplitterWidth + 88px), 0, 0);
+    transform: translate3d((-$pdfSplitterWidth + 10px), 0, 0);
   }
   
   &.active, &.drop-over {
@@ -115,4 +115,45 @@
   }
   
   
+}
+.pdf-splitter-trigger {
+  position: fixed;
+  z-index: 102;
+
+  text-align: center;
+  left: 13px;
+  top: 50%;
+  margin-top: -85px;
+  transition: margin .3s;
+  a {
+    position: absolute;
+    transform: rotate(90deg);
+    transform-origin: left;
+    box-shadow: 0 0 5px 0 rgba(#000, .2);
+    width: 170px;
+    height: 17px;
+    
+    font-size: $fontSmallSize;
+    line-height: 1;
+    
+    white-space: nowrap;
+    text-decoration: none;
+  
+    background-color: #fff;
+    padding: 5px 10px;
+    opacity: .7;
+    transition: all .3s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  i {
+    top: 2px;
+    margin-right: .5em;
+  }
+}
+.pdf-splitter.active ~ .pdf-splitter-trigger,
+.pdf-splitter.drop-over ~ .pdf-splitter-trigger {
+  margin-left: $pdfSplitterWidth;
+  z-index: 100;
 }

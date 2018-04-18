@@ -257,6 +257,7 @@
       };
       
       var els = form.querySelectorAll('.file-pdf-pages');
+      
       for (var i = 0; i < els.length; i++) {
         var pages = els[i].querySelectorAll('.page canvas');
         if (pages.length > 0) {
@@ -264,12 +265,15 @@
           for (var j = 0; j < pages.length; j++) {
             if (j>0) {
               pdf.addPage();
-              var img = pages[j].toDataURL("image/jpeg");
-              pdf.addImage(img, 'JPEG', 0, 0, 210, 297);
             }
+  
+            var img = pages[j].toDataURL("image/jpeg");
+            pdf.addImage(img, 'JPEG', 0, 0, 210, 297);
+
           }
           data.append(els[i].dataset.name, pdf.output('blob'), 'document.pdf');
         }
+        
       }
       
       
