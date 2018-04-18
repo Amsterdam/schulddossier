@@ -17,20 +17,20 @@
 
   
   <nav class="nav-internal">
-      <ul>
+      <a href="#acties" class="primary" data-handler="toggle">Alle acties <i class="icon-arrow-bottom"></i></a>
+      <nav class="nav" id="acties">
+        <ul class="menu">
           <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocumenten', {'dossierId': dossier.id}) }}">Alle documenten</a></li>
-          
+          <li><a href="#pdfsplitter" data-handler="toggle">Gescand document splitsen</a></li>
+          <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschuldenexcel', {'dossierId': dossier.id}) }}">Download schuldenlijst als Excel</a></li>
+          <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', {'dossierId': dossier.id}) }}">Prullenbak</a></li>
           <li>
-            <a href="#acties" class="primary" data-handler="toggle">Alle acties <i class="icon-arrow-bottom"></i></a>
-            <nav class="nav" id="acties">
-              <ul class="menu">
-                <li><a href="#pdfsplitter" data-handler="toggle">Gescand document splitsen</a></li>
-                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschuldenexcel', {'dossierId': dossier.id}) }}">Download schuldenlijst als Excel</a></li>
-                <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', {'dossierId': dossier.id}) }}">Prullenbak</a></li>
-              </ul>
-            </nav>
+            <form method='POST' action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', {'dossierId': dossier.id}) }}" data-submitter="zeker-weten">
+              <button type="submit" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak') }}" class="link">Dossier verwijderen</button>
+            </form>
           </li>
-      </ul>
+        </ul>
+      </nav>
   </nav>
   
   

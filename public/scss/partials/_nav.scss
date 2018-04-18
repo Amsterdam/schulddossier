@@ -1,4 +1,5 @@
 .nav-internal {
+  position: relative;
   margin-bottom: $lineHeight;
   ul {
     list-style: none;
@@ -16,7 +17,7 @@
       flex-basis: 100%;
     }
   }
-  a {
+  a, .link {
     font-size: $fontSize;
     display: inline-block;
     text-decoration: none;
@@ -111,7 +112,7 @@
   
   text-align: left;
 
-  a {
+  a, .link {
     display: block;
     min-width: 200px;
     text-decoration: none;
