@@ -25,6 +25,8 @@
                         <th>MaDi</th>
                         <th>Regas</th>
                         <th>Allegro</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +39,18 @@
                         </td>
                         <td class="nummer">
                             {{ dossier.allegroNummer|default('-') }} 
+                        </td>
+                        <td>
+                            <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove', {'dossierId': dossier.id}) }}" method="post" data-submitter="zeker-weten">
+                                <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove') }}">
+                                <button type="submit" class="link danger">Definitief verwijderen</button>
+                            </form>
+                        </td>
+                        <td>
+                          <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore', {'dossierId': dossier.id}) }}" method="post">
+                              <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore') }}">
+                              <button type="submit" class="link">Herstellen</button>
+                          </form>
                         </td>
                     </tr>
 {% endfor %}
