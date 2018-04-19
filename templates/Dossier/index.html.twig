@@ -22,7 +22,7 @@
             {{ form_start(searchForm, {'attr': {'data-submitter': 'save', 'data-result-selector': '#search-results'}}) }}
             <fieldset class="search-basic">
               <div class="group">
-                {{ form_row(searchForm.naam, {attr: {placeholder: 'Naam'}}) }}
+                {{ form_row(searchForm.naam, {attr: {placeholder: 'Zoek dossiers op naam'}}) }}
                 <button type="submit" class="button">Zoeken</button>
               </div>
               <div class="tabs">
@@ -33,9 +33,9 @@
                   <li><a href="#search-extended" data-handler="toggle"><span class="meer">Meer </span><span class="minder">Minder </span>zoekopties</a></li>
                 </ul>
               </div>
-              
+
             </fieldset>
-        
+
             <fieldset id="search-extended" class="search-extended">
                 {{ form_row(searchForm.status) }}
                 {{ form_row(searchForm.schuldhulpbureau) }}
@@ -46,7 +46,7 @@
                     <a href="#search-extended" data-handler="toggle">Annuleren</a>
                 </p>
             </fieldset>
-        
+
             {{ form_end(searchForm) }}
         </div>
         <div class="table" id="search-results">
@@ -80,8 +80,8 @@
 {% endfor %}
                </tbody>
             </table>
-            
-            
+
+
             {% if pagination.numberOfPages > 1 %}
               <div class="pagination">
                   {% if pagination.page <= 0 %}
@@ -97,7 +97,7 @@
                   {% endif %}
               </div>
             {% endif %}
-            
+
         </div>
     </div>
 {% endblock %}
