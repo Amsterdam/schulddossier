@@ -25,6 +25,9 @@ class SchuldhulpbureauFormType extends AbstractType
         $builder->add('naam', TextType::class, [
             'required' => true
         ]);
+        $builder->add('emailAdresControle', TextType::class, [
+            'required' => false
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

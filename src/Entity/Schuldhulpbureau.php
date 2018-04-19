@@ -27,6 +27,14 @@ class Schuldhulpbureau
      */
     private $naam;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Email
+     * @Assert\Length(min=0, max=255)
+     */
+    private $emailAdresControle;
+
     public function getId()
     {
         return $this->id;
@@ -40,6 +48,16 @@ class Schuldhulpbureau
     public function setNaam($naam)
     {
         $this->naam = $naam;
+    }
+
+    public function getEmailAdresControle()
+    {
+        return $this->emailAdresControle;
+    }
+
+    public function setEmailAdresControle($emailAdresControle)
+    {
+        $this->emailAdresControle = $emailAdresControle;
     }
 
     /**
