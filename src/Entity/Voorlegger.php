@@ -374,6 +374,12 @@ class Voorlegger
     // ---
 
     /**
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $kwijtscheldingGemeenteBelastingOntvangenMadi;
+
+    /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
@@ -929,6 +935,7 @@ class Voorlegger
         $this->overeenkomstKinderopvangOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->overeenkomstKinderopvangOntvangenGka = false;
         $this->overeenkomstKinderopvangNvt = false;
+        $this->kwijtscheldingGemeenteBelastingOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->kwijtscheldingGemeenteBelastingNvt = false;
         $this->kwijtscheldingGemeenteBelasting = false;
         $this->corrigerenGemeenteBelastingOntvangenGka = false;
@@ -1250,6 +1257,11 @@ class Voorlegger
     public function isOvereenkomstKinderopvangNvt()
     {
         return $this->overeenkomstKinderopvangNvt;
+    }
+
+    public function getKwijtscheldingGemeenteBelastingOntvangenMadi()
+    {
+        return $this->kwijtscheldingGemeenteBelastingOntvangenMadi;
     }
 
     public function isKwijtscheldingGemeenteBelastingNvt()
@@ -1889,6 +1901,11 @@ class Voorlegger
     public function setOvereenkomstKinderopvangNvt($overeenkomstKinderopvangNvt)
     {
         $this->overeenkomstKinderopvangNvt = $overeenkomstKinderopvangNvt;
+    }
+
+    public function setKwijtscheldingGemeenteBelastingOntvangenMadi($kwijtscheldingGemeenteBelastingOntvangenMadi)
+    {
+        $this->kwijtscheldingGemeenteBelastingOntvangenMadi = $kwijtscheldingGemeenteBelastingOntvangenMadi;
     }
 
     public function setKwijtscheldingGemeenteBelastingNvt($kwijtscheldingGemeenteBelastingNvt)
