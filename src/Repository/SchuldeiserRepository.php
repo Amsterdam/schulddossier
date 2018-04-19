@@ -32,8 +32,10 @@ class SchuldeiserRepository extends EntityRepository
         }
         $qb->andWhere($andX);
 
-        $qb->setFirstResult($page * $pageSize);
-        $qb->setMaxResults($pageSize);
+        if ($pageSize > -1) {
+            $qb->setFirstResult($page * $pageSize);
+            $qb->setMaxResults($pageSize);
+        }
 
         return new Paginator($qb->getQuery());
     }

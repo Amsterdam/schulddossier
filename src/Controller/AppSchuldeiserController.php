@@ -22,6 +22,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldeiserRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
 
 /**
@@ -38,13 +39,15 @@ class AppSchuldeiserController extends Controller
         /** @var $schuldeiserRepository SchuldeiserRepository */
         $schuldeiserRepository = $em->getRepository(Schuldeiser::class);
 
+        if ($request->isXmlHttpRequest()) {
+            $items = $schuldeiserRepository->search($request->query->get('q'), 0, -1);
+            return new JsonResponse($this->get('json_serializer')->normalize($items));
+        }
+
         $maxPageSize = 50;
 
         $items = $schuldeiserRepository->search($request->query->get('q'), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
-        if ($request->isXmlHttpRequest()) {
-            return new JsonResponse($this->get('json_serializer')->normalize($items));
-        }
 
         return $this->render('Schuldeiser/index.html.twig', [
             'schuldeisers' => $items,
