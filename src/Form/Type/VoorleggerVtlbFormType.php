@@ -37,7 +37,8 @@ class VoorleggerVtlbFormType extends AbstractType
             'disabled' => $options['disable_group'] === 'madi'
         ]);
         $builder->add('vtlbBedrag', NumberType::class, [
-            'required' => false
+            'required' => false,
+            'label' => 'Maandelijkse afloscapaciteit'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
