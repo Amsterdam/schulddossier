@@ -153,7 +153,7 @@ window.schuldhulp.quickViewer = {
             self.showPage(self.currentPage + 1);
         } else if (self.accordion !== null) {
             var container = window.schuldhulp._.findParent(self.accordion, '.accordion-container');
-            var files = container.querySelectorAll('.quick-viewer-file');
+            var files = container.querySelectorAll('.bestand-zoom');
             for (var i = 0; i < files.length; i ++) {
                 if (i > 0 && files.item(i - 1) === self.documentLink) {
                     self.showDocument(files.item(i));
@@ -169,7 +169,7 @@ window.schuldhulp.quickViewer = {
             self.showPage(self.currentPage - 1);
         } else if (self.accordion !== null) {
             var container = window.schuldhulp._.findParent(self.accordion, '.accordion-container');
-            var files = container.querySelectorAll('.quick-viewer-file');
+            var files = container.querySelectorAll('.bestand-zoom');
             for (var i = 0; i < files.length; i ++) {
                 if (i > 1 && files.item(i) === self.documentLink) {
                     self.showDocument(files.item(i - 1));
