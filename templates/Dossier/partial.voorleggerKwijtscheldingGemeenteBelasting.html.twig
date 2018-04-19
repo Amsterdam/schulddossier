@@ -6,6 +6,9 @@
                         <h3 class="naam">
                             <a href="#voorlegger-kwijtscheldingGemeenteBelasting" data-handler="toggle">Kwijtschelding gemeente belasting</a>
                         </h3>
+                        <div class="status-container">
+                          {{ form_row(form.corrigerenGemeenteBelastingOntvangenGka) }}
+                        </div>
                         <div class="nvt">
                             <span class="{{ dossier.voorlegger.kwijtscheldingGemeenteBelastingNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.kwijtscheldingGemeenteBelastingNvt ? 'n.v.t.' }}</span>
                         </div>
@@ -16,6 +19,7 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.kwijtscheldingGemeenteBelastingNvt) }}
                         {{ form_row(form.kwijtscheldingGemeenteBelasting) }}
+                        {{ form_row(form.corrigerenGemeenteBelasting) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kwijtschelding gemeente belasting'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('kwijtscheldingGemeenteBelasting'), 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}

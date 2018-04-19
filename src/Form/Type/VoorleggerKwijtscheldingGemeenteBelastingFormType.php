@@ -31,10 +31,17 @@ class VoorleggerKwijtscheldingGemeenteBelastingFormType extends AbstractType
         $builder->add('kwijtscheldingGemeenteBelastingNvt', CheckboxType::class, [
             'required' => false
         ]);
-        $builder->add('kwijtscheldingGemeenteBelasting', ChoiceType::class, [
+        $builder->add('corrigerenGemeenteBelastingOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
+            'disabled' => $options['disable_group'] === 'madi'
+        ]);
+        $builder->add('kwijtscheldingGemeenteBelasting', CheckboxType::class, [
             'required' => false,
-            'choices' => ['ja' => 1, 'nee' => 0],
-            'expanded' => true
+            'label' => 'Kwijtschelding (MaDi)',
+        ]);
+        $builder->add('corrigerenGemeenteBelasting', CheckboxType::class, [
+            'required' => false,
+            'label' => 'Corrigeren (GKA)'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
