@@ -6,6 +6,10 @@
                         <h3 class="naam">
                             <a href="#voorlegger-alimentatie" data-handler="toggle">Alimentatie</a>
                         </h3>
+                        <div class="status-container">
+                            {{ form_row(form.alimentatieOntvangenMadi) }}
+                            {{ form_row(form.alimentatieOntvangenGka) }}
+                        </div>
                         <div class="nvt">
                             <span class="{{ dossier.voorlegger.alimentatieNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.alimentatieNvt ? 'n.v.t.' }}</span>
                         </div>
