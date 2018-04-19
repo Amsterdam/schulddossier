@@ -29,7 +29,6 @@ class SearchDossierFormType extends AbstractType
                 'compleet_madi' => 'compleet_madi',
                 'gecontroleerd_madi' => 'gecontroleerd_madi',
                 'verzonden_madi' => 'verzonden_madi',
-                'bezig_gka' => 'bezig_gka',
                 'compleet_gka' => 'compleet_gka',
                 'dossier_gecontroleerd_gka' => 'dossier_gecontroleerd_gka',
                 'geactualiseerd_gka' => 'geactualiseerd_gka',

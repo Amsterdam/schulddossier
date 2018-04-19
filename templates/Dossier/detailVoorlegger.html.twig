@@ -121,14 +121,6 @@
                     </form>
                 </li>
         {% endif %}
-        {% if workflow_can(dossier, 'opgevoerd_gka') %}
-                <li>
-                    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'opgevoerd_gka'}) }}" method="post">
-                        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                        <button type="submit" class="button primary">GKA dossier intern aangemaakt</button>
-                    </form>
-                </li>
-        {% endif %}
         {% if workflow_can(dossier, 'afkeuren_dossier_gka') %}
                 <li>
                     <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'afkeuren_dossier_gka'}) }}" method="post">
