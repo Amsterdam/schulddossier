@@ -38,7 +38,7 @@ window.schuldhulp.quickViewer = {
         self.dom.header.innerHTML = '';
         
         // indien onderdeel van een accordion?
-        if (window.schuldhulp._.matches(dom, '.accordion a')) {
+        if (window.schuldhulp._.matches(dom, '.accordion a') && window.schuldhulp._.matches(dom, '.accordion.no-header a') === false) {
             self.accordion = window.schuldhulp._.findParent(dom, '.accordion');
             var accordionTitle = self.accordion.querySelector('.accordion-header .naam').textContent;
             var documentTitle = dom.childNodes[0].textContent;
