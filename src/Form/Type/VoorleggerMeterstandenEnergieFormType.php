@@ -51,7 +51,9 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
         ]);
         $builder->add('energieBedrijfDatumOpname', DateType::class, [
             'required' => false,
-            'html5' => true,
+            'html5' => false,
+            'attr' => ['class' => 'rome'],
+            'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => "Datum opname"
         ]);
@@ -77,7 +79,9 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
         ]);
         $builder->add('warmteBedrijfDatumOpname', DateType::class, [
             'required' => false,
-            'html5' => true,
+            'html5' => false,
+            'attr' => ['class' => 'rome'],
+            'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => "Datum opname (warmtebedrijf)"
         ]);

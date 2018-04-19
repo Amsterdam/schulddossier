@@ -46,7 +46,9 @@ class VoorleggerWaternetFormType extends AbstractType
         ]);
         $builder->add('drinkwaterDatumOpname', DateType::class, [
             'required' => false,
-            'html5' => true,
+            'html5' => false,
+            'attr' => ['class' => 'rome'],
+            'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => "Datum opname"
         ]);
