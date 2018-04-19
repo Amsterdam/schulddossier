@@ -39,12 +39,12 @@
         
         <div id="nieuwe-schuld-toevoegen" class="toggle-hidden">
           <div class="accordion-container" data-decorator="droppable">
-          <div class="accordion active" id="schuldItem-nieuw">
+            <div class="accordion active" id="schuldItem-nieuw">
             
             <div class="accordion-header">
               <div class="schulditem-header">
                 <h3 class="naam">
-                  <a href="#schuldItem-nieuw active">
+                  <a href="#schuldItem-nieuw" class="active">
                     Nieuwe schuld toevoegen
                   </a>
                 </h3>
@@ -53,7 +53,7 @@
           
             <div class="accordion-body">
               <div class="schulditem-body">
-                {{ form_start(createForm) }}
+                {{ form_start(createForm, {'attr': {'data-submitter': 'save', 'data-result-selector': '.accordion-container'}}) }}
                   <div class="columns">
                     <div class="column">
                       
@@ -111,7 +111,7 @@
               </div>
             </div>
           </div>
-        </div>
+          </div>
         </div>
         
         <p class="nav-internal">
