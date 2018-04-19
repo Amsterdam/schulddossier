@@ -48,6 +48,23 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $this->urlGenerator = $urlGenerator;
     }
 
+    public function notifyOpgevoerdMadi(Event $event)
+    {
+        /** @var $dossier Dossier */
+        $dossier = $event->getSubject();
+
+        if (empty($dossier->getSchuldhulpbureau()->getEmailAdresControle()) === false) {
+            $message = new \Swift_Message();
+            $message->addFrom($this->fromNotificiatieAdres);
+            $message->addTo($dossier->getSchuldhulpbureau()->getEmailAdresControle());
+            $message->setSubject('Controle schulddossier (' . $dossier->getSchuldhulpbureau()->getNaam() . ')');
+            $message->setBody('Hallo, ' . PHP_EOL . 'Er staat een nieuw dossier ter controle klaar.' . PHP_EOL . PHP_EOL . 'Afzender: ' . $this->tokenStorage->getToken()->getUser()->getNaam() . PHP_EOL . 'Aangeboden op: ' . date('d-m-Y') . PHP_EOL . PHP_EOL . $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()], UrlGeneratorInterface::ABSOLUTE_URL));
+            $this->mailer->send($message);
+        } else {
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen e-mailadres is ingevuld voor controle verzoeken aan dit schuldhulpbureau van dit dossier', ['dossierId' => $dossier->getId()]);
+        }
+    }
+
     public function notifyVerzendenMadi(Event $event)
     {
         /** @var $dossier Dossier */
@@ -102,6 +119,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
+            'workflow.dossier_flow.completed.opgevoerd_madi' => 'notifyOpgevoerdMadi',
             'workflow.dossier_flow.completed.afkeuren_madi' => 'notifyAfkeurenMadi',
             'workflow.dossier_flow.completed.verzenden_madi' => 'notifyVerzendenMadi',
             'workflow.dossier_flow.completed.afkeuren_dossier_gka' => 'notifyAfkeurenDossierGka',
