@@ -6,6 +6,10 @@
                             <h3 class="naam">
                                 <a href="#voorlegger-cjib" data-handler="toggle">CJIB (niet saneerbare vorderingen)</a>
                             </h3>
+                            <div class="status-container">
+                              {{ form_row(form.cjibOntvangenMadi) }}
+                              {{ form_row(form.cjibOntvangenGka) }}
+                            </div>
                             <div class="nvt">
                                 <span class="{{ dossier.voorlegger.cjibNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.cjibNvt ? 'n.v.t.' }}</span>
                             </div>

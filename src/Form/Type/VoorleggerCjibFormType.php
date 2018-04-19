@@ -28,6 +28,14 @@ class VoorleggerCjibFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('cjibOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
+            'disabled' => $options['disable_group'] === 'gka'
+        ]);
+        $builder->add('cjibOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
+            'disabled' => $options['disable_group'] === 'madi'
+        ]);
         $builder->add('cjib', ChoiceType::class, [
             'required' => false,
             'choices' => ['ja' => 1, 'nee' => 0],

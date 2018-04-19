@@ -571,6 +571,18 @@ class Voorlegger
     // ---
 
     /**
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $cjibOntvangenMadi;
+
+    /**
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $cjibOntvangenGka;
+
+    /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
@@ -964,6 +976,8 @@ class Voorlegger
         $this->stabilisatieovereenkomstOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->stabilisatieovereenkomstOntvangenGka = false;
         $this->stabilisatieovereenkomstNvt = false;
+        $this->cjibOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->cjibOntvangenGka = false;
         $this->cjib = false;
         $this->cjibNvt = false;
         $this->meterstandenEnergieOntvangenMadi = self::STATUS_MADI_OPEN;
@@ -1402,6 +1416,16 @@ class Voorlegger
     public function isStabilisatieovereenkomstNvt()
     {
         return $this->stabilisatieovereenkomstNvt;
+    }
+
+    public function getCjibOntvangenMadi()
+    {
+        return $this->cjibOntvangenMadi;
+    }
+
+    public function getCjibOntvangenGka()
+    {
+        return $this->cjibOntvangenGka;
     }
 
     public function isCjib()
@@ -2046,6 +2070,16 @@ class Voorlegger
     public function setStabilisatieovereenkomstNvt($stabilisatieovereenkomstNvt)
     {
         $this->stabilisatieovereenkomstNvt = $stabilisatieovereenkomstNvt;
+    }
+
+    public function setCjibOntvangenMadi($cjibOntvangenMadi)
+    {
+        $this->cjibOntvangenMadi = $cjibOntvangenMadi;
+    }
+
+    public function setCjibOntvangenGka($cjibOntvangenGka)
+    {
+        $this->cjibOntvangenGka = $cjibOntvangenGka;
     }
 
     public function setCjib($cjib)
