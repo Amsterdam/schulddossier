@@ -36,6 +36,9 @@ class VoorleggerAlimentatieEchtscheidingsconvenantFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
+        $builder->add('alimentatieEchtscheidingsconvenantNvt', CheckboxType::class, [
+            'required' => false
+        ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
             'entry_type' => DocumentFormType::class,
