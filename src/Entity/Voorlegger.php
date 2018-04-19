@@ -687,6 +687,18 @@ class Voorlegger
     // ---
 
     /**
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $budgetbeheerOntvangenMadi;
+
+    /**
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $budgetbeheerOntvangenGka;
+
+    /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
@@ -963,6 +975,8 @@ class Voorlegger
         $this->beschikkingOnderBewindstellingOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->beschikkingOnderBewindstellingOntvangenGka = false;
         $this->beschikkingOnderBewindstellingNvt = false;
+        $this->budgetbeheerOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->budgetbeheerOntvangenGka = false;
         $this->budgetbeheerNvt = false;
         $this->budgetbeheerPlangroep = false;
         $this->budgetbeheerCav = false;
@@ -1466,6 +1480,16 @@ class Voorlegger
     public function isBeschikkingOnderBewindstellingNvt()
     {
         return $this->beschikkingOnderBewindstellingNvt;
+    }
+
+    public function getBudgetbeheerOntvangenMadi()
+    {
+        return $this->budgetbeheerOntvangenMadi;
+    }
+
+    public function getBudgetbeheerOntvangenGka()
+    {
+        return $this->budgetbeheerOntvangenGka;
     }
 
     public function isBudgetbeheerNvt()
@@ -2095,6 +2119,16 @@ class Voorlegger
     public function setBeschikkingOnderBewindstellingNvt($beschikkingOnderBewindstellingNvt)
     {
         $this->beschikkingOnderBewindstellingNvt = $beschikkingOnderBewindstellingNvt;
+    }
+
+    public function setBudgetbeheerOntvangenMadi($budgetbeheerOntvangenMadi)
+    {
+        $this->budgetbeheerOntvangenMadi = $budgetbeheerOntvangenMadi;
+    }
+
+    public function setBudgetbeheerOntvangenGka($budgetbeheerOntvangenGka)
+    {
+        $this->budgetbeheerOntvangenGka = $budgetbeheerOntvangenGka;
     }
 
     public function setBudgetbeheerNvt($budgetbeheerNvt)

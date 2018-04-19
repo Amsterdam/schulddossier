@@ -28,6 +28,14 @@ class VoorleggerBudgetbeheerFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('budgetbeheerOntvangenMadi', MadiStatusFormType::class, [
+            'required' => true,
+            'disabled' => $options['disable_group'] === 'gka'
+        ]);
+        $builder->add('budgetbeheerOntvangenGka', GkaStatusFormType::class, [
+            'required' => true,
+            'disabled' => $options['disable_group'] === 'madi'
+        ]);
         $builder->add('budgetbeheerNvt', CheckboxType::class, [
             'required' => false
         ]);

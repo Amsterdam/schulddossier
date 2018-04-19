@@ -6,6 +6,10 @@
                         <h3 class="naam">
                             <a href="#voorlegger-budgetbeheer" data-handler="toggle">Budgetbeheer</a>
                         </h3>
+                        <div class="status-container">
+                            {{ form_row(form.budgetbeheerOntvangenMadi) }}
+                            {{ form_row(form.budgetbeheerOntvangenGka) }}
+                        </div>
                         <div class="nvt">
                             <span class="{{ dossier.voorlegger.budgetbeheerNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.budgetbeheerNvt ? 'n.v.t.' }}</span>
                         </div>
