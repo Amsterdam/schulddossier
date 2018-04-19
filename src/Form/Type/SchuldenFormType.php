@@ -17,13 +17,6 @@ class SchuldenFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('schuldenoverzicht', VoorleggerSchuldenoverzichtFormType::class, [
-            'required' => true,
-            'mapped' => false,
-            'disable_group' => $options['disable_group'],
-            'data' => $options['data']->getVoorlegger()
-        ]);
-
         $builder->add('schuldItems', CollectionType::class, [
             'entry_type' => SchuldItemFormType::class
         ]);

@@ -17,16 +17,7 @@
         {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'schulden'} only %}
         
         {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'save', 'data-result-selector': '#schulden_form .accordion', 'data-changer': 'change'}}) }}
-          <fieldset class="form accordion hidden">
-            <legend>Status van de schuldenlijst</legend>
-            {% do form.schuldenoverzicht.file.setRendered() %}
-            <div class="form-checks well well-small">
-              {{ form_row(form.schuldenoverzicht.schuldenoverzichtOntvangenMadi) }}
-              {{ form_row(form.schuldenoverzicht.schuldenoverzichtOntvangenGka) }}
-            </div>
-            {% do form.schuldenoverzicht.setRendered() %}
-          </fieldset>
-        
+
           <div class="accordion-container team-{{ app.user.type }}" data-decorator="droppable">
   {% for schuldItemForm in form.schuldItems %}
               {% set schuldItem = schuldItemForm.vars.data %}
