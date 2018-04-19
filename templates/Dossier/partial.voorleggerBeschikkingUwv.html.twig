@@ -6,6 +6,10 @@
                         <h3 class="naam">
                             <a href="#voorlegger-beschikkingUwv" data-handler="toggle">Beschikking UWV</a>
                         </h3>
+                        <div class="status-container">
+                          {{ form_row(form.beschikkingUwvOntvangenMadi) }}
+                          {{ form_row(form.beschikkingUwvOntvangenGka) }}
+                        </div>
                         <div class="nvt">
                             <span class="{{ dossier.voorlegger.beschikkingUwvNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.beschikkingUwvNvt ? 'n.v.t.' }}</span>
                         </div>

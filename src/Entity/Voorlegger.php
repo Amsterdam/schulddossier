@@ -109,6 +109,18 @@ class Voorlegger
     // ---
 
     /**
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $beschikkingUwvOntvangenMadi;
+
+    /**
+     * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $beschikkingUwvOntvangenGka;
+
+    /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
@@ -866,6 +878,8 @@ class Voorlegger
         $this->arbeidsovereenkomstOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->arbeidsovereenkomstOntvangenGka = false;
         $this->arbeidsovereenkomstNvt = false;
+        $this->beschikkingUwvOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->beschikkingUwvOntvangenGka = false;
         $this->beschikkingUwvNvt = false;
         $this->beschikkingUwvWw = false;
         $this->beschikkingUwvWia = false;
@@ -1017,6 +1031,16 @@ class Voorlegger
     public function getArbeidsovereenkomstOntvangenGka()
     {
         return $this->arbeidsovereenkomstOntvangenGka;
+    }
+
+    public function getBeschikkingUwvOntvangenMadi()
+    {
+        return $this->beschikkingUwvOntvangenMadi;
+    }
+
+    public function getBeschikkingUwvOntvangenGka()
+    {
+        return $this->beschikkingUwvOntvangenGka;
     }
 
     public function isArbeidsovereenkomstNvt()
@@ -1641,6 +1665,16 @@ class Voorlegger
     public function setArbeidsovereenkomstNvt($arbeidsovereenkomstNvt)
     {
         $this->arbeidsovereenkomstNvt = $arbeidsovereenkomstNvt;
+    }
+
+    public function setBeschikkingUwvOntvangenMadi($beschikkingUwvOntvangenMadi)
+    {
+        $this->beschikkingUwvOntvangenMadi = $beschikkingUwvOntvangenMadi;
+    }
+
+    public function setBeschikkingUwvOntvangenGka($beschikkingUwvOntvangenGka)
+    {
+        $this->beschikkingUwvOntvangenGka = $beschikkingUwvOntvangenGka;
     }
 
     public function setBeschikkingUwvNvt($beschikkingUwvNvt)
