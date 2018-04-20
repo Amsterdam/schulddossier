@@ -34,11 +34,37 @@ class SchuldItemFormType extends AbstractType
         ]);
         $builder->add('schuldeiser', EntityType::class, [
             'required' => false,
-            'class' => Schuldeiser::class
+            'class' => Schuldeiser::class,
+            'choice_attr' => function($val, $key, $index) {
+                /** @var $val Schuldeiser */
+                return [
+                    'data-bedrijfsnaam' => $val->getBedrijfsnaam(),
+                    'data-rekening' => $val->getRekening(),
+                    'data-allegro-code' => $val->getAllegroCode(),
+                    'data-straat' => $val->getStraat(),
+                    'data-huisnummer' => $val->getHuisnummerToevoeging(),
+                    'data-postcode' => $val->getPostcode(),
+                    'data-plaats' => $val->getPlaats(),
+                    'data-opmerkingen' => $val->getOpmerkingen(),
+                ];
+            },
         ]);
         $builder->add('incassant', EntityType::class, [
             'required' => false,
-            'class' => Schuldeiser::class
+            'class' => Schuldeiser::class,
+            'choice_attr' => function($val, $key, $index) {
+                /** @var $val Schuldeiser */
+                return [
+                    'data-bedrijfsnaam' => $val->getBedrijfsnaam(),
+                    'data-rekening' => $val->getRekening(),
+                    'data-allegro-code' => $val->getAllegroCode(),
+                    'data-straat' => $val->getStraat(),
+                    'data-huisnummer' => $val->getHuisnummerToevoeging(),
+                    'data-postcode' => $val->getPostcode(),
+                    'data-plaats' => $val->getPlaats(),
+                    'data-opmerkingen' => $val->getOpmerkingen(),
+                ];
+            },
         ]);
         $builder->add('referentie', TextType::class, [
             'required' => true
