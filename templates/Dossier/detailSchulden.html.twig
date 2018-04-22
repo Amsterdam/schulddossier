@@ -55,7 +55,7 @@
               <div class="schulditem-body">
                 {{ form_start(createForm, {'attr': {'data-submitter': 'save', 'data-result-selector': '.accordion-container'}}) }}
                   <div class="columns">
-                    <div class="column">
+                    <div class="column column-big">
                       
                       <div class="form-row">
                         <div class="label-widget">
@@ -86,6 +86,8 @@
                     
                       {{ form_row(createForm.type) }}
                       {{ form_row(createForm.referentie) }}
+                      
+                      {{ form_row(createForm.opmerkingen) }}
                     
                     </div>
                     
@@ -97,7 +99,7 @@
                     
                   </div>
                   
-                  {{ form_row(createForm.opmerkingen) }}
+                  
                   
                   {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
                   {% do createForm.removeFile.setRendered() %}

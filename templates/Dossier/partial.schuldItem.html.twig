@@ -21,11 +21,13 @@
                 <div class="accordion-body">
                     <div class="schulditem-body">
                         <div class="columns">
-                            <div class="column">
+                            <div class="column column-big">
                                 {{ form_row(form.schuldeiser) }}
                                 {{ form_row(form.incassant) }}
                                 {{ form_row(form.type) }}
                                 {{ form_row(form.referentie) }}
+                                {{ form_row(form.opmerkingen) }}
+                                {{ form_row(form.aantekening) }}
                             </div>
                             <div class="column">
                                 {{ form_row(form.bedrag) }}
@@ -33,8 +35,7 @@
                                 {{ form_row(form.ontstaansDatum) }}
                             </div>
                         </div>
-                        {{ form_row(form.opmerkingen) }}
-                        {{ form_row(form.aantekening) }}
+                        
 
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': (schuldItem.incassant ? schuldItem.incassant.bedrijfsnaam ~ ' - ' : '') ~ schuldItem.schuldeiser.bedrijfsnaam|default('-')} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten, 'removeFile': form.removeFile} only %}
