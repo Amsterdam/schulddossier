@@ -401,6 +401,29 @@ form {
   }
 }
 
+.column {
+  .label-widget {
+    display: block;
+  }
+  label {
+    width: auto;
+    display: block;
+    margin-bottom: .5em;
+  }
+}
+.accordion-body {
+  .column {
+    .form-row {
+      margin: 0;
+      border: none;
+      padding: 0;
+      & + .form-row {
+        margin: 0;
+      }
+    }
+  }
+}
+
 .errors {
   list-style-type: none;
   color: #FF0000;

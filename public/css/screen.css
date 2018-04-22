@@ -85,11 +85,17 @@ button::-moz-focus-inner {
     display: initial; } }
 
 .columns {
-  display: flex;
-  margin-right: -3rem; }
+  display: flex; }
 .columns .column {
   margin-bottom: 1.925rem;
-  padding-right: 3rem; }
+  padding-right: 3rem;
+  flex-basis: 50%; }
+.columns .column:last-child {
+  padding-right: 0; }
+.columns .column.column-big {
+  flex-basis: 80%; }
+.columns .column.column-big + .column {
+  flex-basis: 20%; }
 
 .help {
   display: block;
@@ -835,6 +841,20 @@ form label strong, form .label strong {
   padding-top: 2px;
   padding-bottom: 2px; }
 
+.column .label-widget {
+  display: block; }
+.column label {
+  width: auto;
+  display: block;
+  margin-bottom: .5em; }
+
+.accordion-body .column .form-row {
+  margin: 0;
+  border: none;
+  padding: 0; }
+.accordion-body .column .form-row + .form-row {
+  margin: 0; }
+
 .errors {
   list-style-type: none;
   color: #FF0000;
@@ -1325,12 +1345,13 @@ body {
   height: 100%; }
 .modal-container .modal-window {
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 50%;
   margin-left: -300px;
-  margin-top: -150px;
   width: 600px;
-  height: 300px;
+  min-height: 300px;
+  max-height: 80%;
+  overflow: auto;
   background-color: #FFF;
   border: 1px solid #999;
   border-radius: 2px; }
@@ -1481,6 +1502,9 @@ body {
 .pdf-splitter.active ~ .pdf-splitter-trigger, .pdf-splitter.drop-over ~ .pdf-splitter-trigger {
   margin-left: 300px;
   z-index: 100; }
+
+.hide-pdf-splitter .pdf-splitter-trigger, .hide-pdf-splitter .pdf-splitter {
+  display: none; }
 
 .quick-viewer .modal-window {
   width: 90%;

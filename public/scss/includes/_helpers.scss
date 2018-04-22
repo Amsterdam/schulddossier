@@ -65,12 +65,20 @@
 
 .columns {
   display: flex;
-  margin-right: -$padding;
   .column {
     margin-bottom: $lineHeight;
     padding-right: $padding;
+    flex-basis: 50%;
+    &:last-child {
+      padding-right: 0;
+    }
+    &.column-big {
+      flex-basis: 80%;
+      & + .column {
+        flex-basis: 20%;
+      }
+    }
   }
-  
 }
 
 .help {
