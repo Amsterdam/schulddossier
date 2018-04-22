@@ -130,12 +130,21 @@
             </div>
             <div class="modal-body">
                 {{ form_start(createSchuldeiserForm, {'attr': {'class': 'default-form-style ajax'} }) }}
+                
                 {{ form_row(createSchuldeiserForm.bedrijfsnaam) }}
+                {{ form_row(createSchuldeiserForm.allegroCode) }}
                 {{ form_row(createSchuldeiserForm.rekening) }}
-                <div class="nav">
+                {{ form_row(createSchuldeiserForm.straat) }}
+                {{ form_row(createSchuldeiserForm.huisnummer) }}
+                {{ form_row(createSchuldeiserForm.huisnummerToevoeging) }}
+                {{ form_row(createSchuldeiserForm.postcode) }}
+                {{ form_row(createSchuldeiserForm.plaats) }}
+                {{ form_row(createSchuldeiserForm.opmerkingen) }}
+                
+                <p class="buttons right">
+                    <button type="submit" class="button">Aanmaken</button>
                     <a href="#">Annuleren</a>
-                    <button type="submit">Aanmaken</button>
-                </div>
+                </p>
                 {{ form_end(createSchuldeiserForm) }}
             </div>
         </div>
