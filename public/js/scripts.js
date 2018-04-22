@@ -498,6 +498,37 @@
       }
       
       
+    },
+    
+    'address': function(){
+      var select = this.querySelector('select');
+      var fields = ['bedrijfsnaam', 'rekening', 'allegro-code', 'straat', 'huisnummer', 'postcode', 'plaats', 'opmerkingen'];
+      var template = '<strong>__bedrijfsnaam__ (__allegro-code__)</strong><br>__rekening__<br>__straat__ __huisnummer__<br>__postcode__ __plaats__<br>__opmerkingen__';
+      var widget = _closest(select, '.label-widget');
+      var helper = widget.querySelector('.address-helper');
+      
+      if (!helper) {
+        helper = document.createElement('em');
+        helper.classList.add('address-helper');
+        widget.appendChild(helper);
+      }
+      
+      helper.innerHTML = '';
+      
+      var selected = select.options[select.selectedIndex];
+      
+      if (selected) {
+        for (var i = 0; i < fields.length; i++) {
+          var v = selected.getAttribute('data-' + fields[i]);
+          if (!v) v = '';
+          template = template.replace('__' + fields[i] + '__', v);
+        }
+      }
+      
+      template = template.replace('()','').replace('<br><br>','<br>').replace('<br><br>','<br>').replace('<br><br>','<br>').replace('<br><br>','<br>').replace('<br><br>','<br>').replace('<br><br>','<br>');
+      
+      helper.innerHTML = template;
+      
     }
     
   };
