@@ -9,7 +9,7 @@ sass_dir = "."
 javascripts_dir = "../js"
 
 Encoding.default_external = 'utf-8'
-output_style = :extended
+output_style = :compressed
 sourcemap = :auto
 line_comments = false
 
