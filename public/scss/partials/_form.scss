@@ -644,3 +644,26 @@ form {
     }
   }
 }
+.button-remove-input {
+  position: absolute;
+  left: -100vw;
+}
+.button-remove {
+    &:before {
+      content: '';
+      @extend .icon-prullenbak !optional;
+      vertical-align: top;
+      margin-right: .5em;
+      width: 14px;
+      height: 14px;
+      margin-top: .2em;
+    }
+}
+.button-remove-input:checked ~ * {
+  opacity: .2;
+}
+.button-remove-input:checked ~ .accordion-body .button-remove:before {
+  background-image: url('../images/ico_undo.svg');
+  border-color: red;
+  color: red;
+}

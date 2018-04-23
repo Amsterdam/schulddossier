@@ -52,7 +52,10 @@
   }
   .primary {
     background-color: #fff;
-    outline: 1px solid rgba($textColor, .2);
+    border: 1px solid rgba($textColor, .2);
+    &:hover {
+      border-color: rgba($textColor, 1);
+    }
   }
 }
 

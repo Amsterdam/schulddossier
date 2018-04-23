@@ -1,4 +1,5 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="schuldItem-{{ schuldItem.id }}" style="{{ schuldItem.verwijderd ? 'display: none;' }}">
+                <input class="button-remove-input" id="schulden_form_schuldItems_{{ schuldItem.id }}_verwijderd" name="schulden_form[schuldItems][{{ schuldItem.id }}][verwijderd]" value="1" type="checkbox" {{ schuldItem.verwijderd ? 'checked="checked"' }}>
                 <div class="accordion-header">
                     
                     <div class="schulditem-header">
@@ -49,7 +50,13 @@
                             </div>
                         </div>
                         
-                        {{ form_row(form.verwijderd) }}
+                        {% do form.verwijderd.setRendered() %}
+                        <p class="nav-internal">
+                          <label for="schulden_form_schuldItems_{{ schuldItem.id }}_verwijderd">
+                            <span class="link primary button-remove">Markeren als verwijderd</span>
+                          </label>
+                        </p>
+                        
                         {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': schuldItem.aantekeningen} only %}
 
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': (schuldItem.incassant ? schuldItem.incassant.bedrijfsnaam ~ ' - ' : '') ~ schuldItem.schuldeiser.bedrijfsnaam|default('-')} only %}
