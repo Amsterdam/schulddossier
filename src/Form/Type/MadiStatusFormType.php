@@ -24,7 +24,8 @@ class MadiStatusFormType extends AbstractType
             'opgevoerd' => Voorlegger::STATUS_MADI_OPGEVOERD,
             'gecontroleerd' => Voorlegger::STATUS_MADI_GECONTROLEERD,
         ]);
-        $resolver->setDefault('choice_translation_domain', false);
+        $resolver->setDefault('choice_translation_domain', 'madi_status_form');
+        $resolver->setDefault('translation_domain', 'madi_status_form');
         $resolver->setDefault('multiple', false);
         $resolver->setDefault('expanded', true);
         $resolver->setDefault('required', true);
