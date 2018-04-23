@@ -37,6 +37,10 @@
         
         {{ form_end(form) }}
         
+        <p class="nav-internal">
+          <a href="#nieuwe-schuld-toevoegen" data-handler="toggle scroll" class="primary">Nieuwe schuld toevoegen</a>
+        </p>
+        
         <div id="nieuwe-schuld-toevoegen" class="toggle-hidden">
           <div class="accordion-container" data-decorator="droppable">
             <div class="accordion active" id="schuldItem-nieuw">
@@ -53,7 +57,7 @@
           
             <div class="accordion-body">
               <div class="schulditem-body">
-                {{ form_start(createForm, {'attr': {'data-submitter': 'save', 'data-result-selector': '.accordion-container'}}) }}
+                {{ form_start(createForm, {'attr': {'data-submitter': 'save', 'data-result-selector': 'REFRESH .accordion-container'}}) }}
                   <div class="columns">
                     <div class="column column-big">
                       
@@ -69,13 +73,6 @@
                         <div class="group">
                           <input type="text" id="incassant-helper-{{ createForm.incassant.vars.id }}" placeholder="Zoek een incassant" autocomplete="off">
                           {{ form_row(createForm.incassant) }}
-                        </div>
-                      </div>
-                        
-                      <div class="form-row">
-                        <div class="label-widget">
-                          <label>&nbsp;</label>
-                          <a href="#nieuwe-schuldeiser">Nieuwe schuldeiser of incassant toevoegen</a>
                         </div>
                       </div>
                     
@@ -94,14 +91,15 @@
                     
                   </div>
                   
-                  
+                  {{ form_row(createForm.aantekening) }}
                   
                   {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
                   {% do createForm.removeFile.setRendered() %}
               
                   <p class="buttons right">
                     {% do createForm.verwijderd.setRendered() %}
-                    <button type="submit" class="button secundary">Aanmaken</button>
+                    <button type="submit" class="button primary">Aanmaken</button>
+                    <a href="#nieuwe-schuld-toevoegen" data-handler="toggle">Annuleren</a>
                   </p>
                   
                 {{ form_end(createForm) }}
