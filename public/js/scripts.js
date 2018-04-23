@@ -284,27 +284,42 @@
       }
       form.files = [];
       
+      var _process = function(data, selector) {
+        var div = document.createElement('div');
+        div.innerHTML = data;
+      
+        var 
+          result = div.querySelectorAll(selector),
+          target = d.querySelectorAll(selector);
+
+        if (result && target) {
+          for (var i=0; i< target.length; i++) {
+            target[i].innerHTML = result[i].innerHTML;
+          }
+        }
+      
+        form.classList.remove('in-progress');
+        form.classList.remove('form-changed');
+      };
+      
       form.request = helpers.ajax({
         type: form.method,
         url: url,
         data: data,
         callback: function(data){
-
-          var div = document.createElement('div');
-          div.innerHTML = data;
-        
-          var 
-            result = div.querySelectorAll(form.dataset.resultSelector),
-            target = d.querySelectorAll(form.dataset.resultSelector);
-
-          if (result && target) {
-            for (var i=0; i< target.length; i++) {
-              target[i].innerHTML = result[i].innerHTML;
-            }
+          
+          if (form.dataset.resultSelector && form.dataset.resultSelector.indexOf('REFRESH') === 0) {
+            helpers.ajax({
+              type: 'get',
+              url: document.location.href,
+              callback: function(data){
+                _process(data, form.dataset.resultSelector.substring(8));
+                document.location.hash = '_';
+              }
+            });
+          } else {
+            _process(data, form.dataset.resultSelector);
           }
-        
-          form.classList.remove('in-progress');
-          form.classList.remove('form-changed');
 
         },
         error: function(){

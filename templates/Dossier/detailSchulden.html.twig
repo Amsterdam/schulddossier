@@ -124,7 +124,7 @@
                 <h2>Nieuwe schuldeiser</h2>
             </div>
             <div class="modal-body">
-                {{ form_start(createSchuldeiserForm, {'attr': {'class': 'default-form-style ajax'} }) }}
+                {{ form_start(createSchuldeiserForm, {'attr': {'data-submitter': 'save', 'data-result-selector': 'REFRESH #nieuwe-schuld-toevoegen .select-autocomplete'} }) }}
                 
                 {{ form_row(createSchuldeiserForm.bedrijfsnaam) }}
                 {{ form_row(createSchuldeiserForm.allegroCode) }}
