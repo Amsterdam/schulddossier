@@ -1,4 +1,6 @@
 {% import 'partial.macros.html.twig' as tools %}
+{% set dossierDocumenten = dossier.getDocumentenByOnderwerp('inzageToetsingBkr') %}
+  
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-inzageToetsingBkr">
                 <div class="accordion-header">
                     
@@ -6,6 +8,11 @@
                         <h3 class="naam">
                             <a href="#voorlegger-inzageToetsingBkr" data-handler="toggle">Inzage toetsing BKR</a>
                         </h3>
+                        {% if dossierDocumenten %}
+                          <div class="voortgang">
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
+                          </div>
+                        {% endif %}
                         <div class="status-container">
                           {{ form_row(form.inzageToetsingBkrOntvangenMadi) }}
                           {{ form_row(form.inzageToetsingBkrOntvangenGka) }}
@@ -17,7 +24,7 @@
                 <div class="accordion-body">
                     <div class="voorlegger-body">
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Inzage toetsing BKR'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('inzageToetsingBkr'), 'removeFile': form.removeFile} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}
                         {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('inzageToetsingBkr')} only %}
                     </div>

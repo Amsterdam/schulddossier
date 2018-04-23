@@ -1,4 +1,6 @@
 {% import 'partial.macros.html.twig' as tools %}
+{% set dossierDocumenten = dossier.getDocumentenByOnderwerp('bewindstellingOfBudgetbeheer') %}
+
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-bewindstellingOfBudgetbeheer">
                 <div class="accordion-header">
                     
@@ -6,6 +8,11 @@
                         <h3 class="naam">
                             <a href="#voorlegger-bewindstellingOfBudgetbeheer" data-handler="toggle">Onderbewindstelling of Budgetbeheer</a>
                         </h3>
+                        {% if dossierDocumenten %}
+                          <div class="voortgang">
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
+                          </div>
+                        {% endif %}
                         <div class="nvt">
                             <span class="{{ dossier.voorlegger.bewindstellingOfBudgetbeheerNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.bewindstellingOfBudgetbeheerNvt ? 'n.v.t.' }}</span>
                         </div>
@@ -16,7 +23,7 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.bewindstellingOfBudgetbeheerNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Onderbewindstelling of Budgetbeheer'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('bewindstellingOfBudgetbeheer'), 'removeFile': form.removeFile} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}
                         {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('bewindstellingOfBudgetbeheer')} only %}
                     </div>

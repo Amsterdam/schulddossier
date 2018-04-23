@@ -1,4 +1,6 @@
 {% import 'partial.macros.html.twig' as tools %}
+{% set dossierDocumenten = dossier.getDocumentenByOnderwerp('vtlb') %}
+  
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-vtlb">
                 <div class="accordion-header">
                     
@@ -6,6 +8,11 @@
                         <h3 class="naam">
                             <a href="#voorlegger-vtlb" data-handler="toggle">VTLB (Vrij te laten bedrag)</a>
                         </h3>
+                        {% if dossierDocumenten %}
+                          <div class="voortgang">
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
+                          </div>
+                        {% endif %}
                         <div class="status-container">
                           {{ form_row(form.vtlbOntvangenMadi) }}
                           {{ form_row(form.vtlbOntvangenGka) }}
@@ -19,7 +26,7 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.vtlbBedrag) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'VTLB'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('vtlb'), 'removeFile': form.removeFile} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}
                         {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('vtlb')} only %}
                     </div>

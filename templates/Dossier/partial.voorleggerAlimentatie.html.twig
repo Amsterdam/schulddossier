@@ -1,4 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
+{% set dossierDocumenten = dossier.getDocumentenByOnderwerp('alimentatie') %}
 
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-alimentatie">
                 <div class="accordion-header">
@@ -6,6 +7,11 @@
                         <h3 class="naam">
                             <a href="#voorlegger-alimentatie" data-handler="toggle">Alimentatie</a>
                         </h3>
+                        {% if dossierDocumenten %}
+                          <div class="voortgang">
+                              {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
+                          </div>
+                        {% endif %}
                         <div class="status-container">
                             {{ form_row(form.alimentatieOntvangenMadi) }}
                             {{ form_row(form.alimentatieOntvangenGka) }}
@@ -20,7 +26,7 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.alimentatieNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Alimentatie'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('alimentatie'), 'removeFile': form.removeFile} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}
                         {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('alimentatie')} only %}
                     </div>
