@@ -330,7 +330,7 @@
               url: document.location.href,
               callback: function(data){
                 _process(data, form.dataset.resultSelector.substring(8));
-                document.location.hash = '_';
+                document.location.hash = '';
               }
             });
           } else {

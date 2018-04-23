@@ -552,7 +552,16 @@ form {
 
 
 .in-progress {
-  opacity: 0.6;
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(#ebebeb, .5);
+  }
   &,
   .button[type="submit"] {
     position: relative;
@@ -565,7 +574,7 @@ form {
     top: 0;
     right: 0;
     height: 2px;
-    background-color: rgba(#000, .5);
+    background-color: rgba(#000, .8);
     animation: progress 2s infinite;
   }
 }
