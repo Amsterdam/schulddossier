@@ -7,6 +7,11 @@
   }
 }
 
+.file-container.drop-over {
+  border-color: rgba($textColor, .8);
+  box-shadow: none !important;
+}
+
 .sort-mode {
   .pdf-splitter.drop-over {
     box-shadow: 0 0 0 0 rgba(#000, 0) !important;
