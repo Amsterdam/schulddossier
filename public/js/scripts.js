@@ -587,33 +587,41 @@
       }
 
 
-      container.select.innerHTML = '';
-      val = container.input.value.trim();
-
-      if (val.length === 0) {
-        container.select.innerHTML = container.clone.innerHTML;
+      
+      if (e.keyCode == 38 || e.keyCode == 40) {
+        var index = Math.min(container.select.options.length-1, Math.max(0, container.select.selectedIndex + (e.keyCode == 38 ? -1 : +1)));
+        container.select.options[index].selected = true;
+        e.preventDefault();
       } else {
-        var reg = new RegExp((val.length === 1 ? '^' : '') + val, 'i');
-        for (var i = 0; i < container.options.length; i++) {
-          if (container.options[i].value != '') {
-            var string = container.options[i].textContent;
-            for (var k = 0; k < container.options[i].attributes.length; k++) {
-              if (/^data-/.test(container.options[i].attributes[k].nodeName)) {
-                string += ' ' + container.options[i].attributes[k].nodeValue;
+        
+        container.select.innerHTML = '';
+        val = container.input.value.trim();
+
+        if (val.length === 0) {
+          container.select.innerHTML = container.clone.innerHTML;
+        } else {
+          var reg = new RegExp((val.length === 1 ? '^' : '') + val, 'i');
+          for (var i = 0; i < container.options.length; i++) {
+            if (container.options[i].value != '') {
+              var string = container.options[i].textContent;
+              for (var k = 0; k < container.options[i].attributes.length; k++) {
+                if (/^data-/.test(container.options[i].attributes[k].nodeName)) {
+                  string += ' ' + container.options[i].attributes[k].nodeValue;
+                }
+              }
+            
+              if (string.match(reg)) {
+                container.select.appendChild(container.options[i].cloneNode(true));
               }
             }
-            
-            if (string.match(reg)) {
-              container.select.appendChild(container.options[i].cloneNode(true));
-            }
           }
+        
+          var option = document.createElement('option');
+          option.value = '';
+          container.select.appendChild(option);
+        
         }
-        
-        var option = document.createElement('option');
-        option.value = '';
-        container.select.appendChild(option);
-        
-      }
+      }  
       
       helpers.trigger(container.select, 'change');
     }
