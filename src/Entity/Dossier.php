@@ -338,6 +338,17 @@ class Dossier
     }
 
     /**
+     * @param string $onderwerp
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getNietVerwijderdeDocumentenByOnderwerp($onderwerp)
+    {
+        return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerp) {
+            return $dossierDocument->getOnderwerp() === $onderwerp && $dossierDocument->getDocument()->isInPrullenbak() === false;
+        });
+    }
+
+    /**
      * @param integer $id
      * @return NULL|DossierDocument
      */

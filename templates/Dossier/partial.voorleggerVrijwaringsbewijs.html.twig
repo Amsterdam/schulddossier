@@ -1,5 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
-{% set dossierDocumenten = dossier.getDocumentenByOnderwerp('vrijwaringsbewijs') %}
+{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('vrijwaringsbewijs') %}
 
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-vrijwaringsbewijs">
                 <div class="accordion-header">
@@ -8,11 +8,9 @@
                             <h3 class="naam">
                                 <a href="#voorlegger-vrijwaringsbewijs" data-handler="toggle">Vrijwaringsbewijs</a>
                             </h3>
-                            {% if dossierDocumenten|length > 0 %}
                               <div class="voortgang">
-                                {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
+                                {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
                               </div>
-                            {% endif %}
                             <div class="status-container">
                               {{ form_row(form.vrijwaringsbewijsOntvangenMadi) }}
                               {{ form_row(form.vrijwaringsbewijsOntvangenGka) }}
