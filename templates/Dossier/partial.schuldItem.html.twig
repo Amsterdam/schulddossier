@@ -22,11 +22,19 @@
                     <div class="schulditem-body">
                         <div class="columns">
                             <div class="column column-big">
-                                <div data-changer="address">
-                                  {{ form_row(form.schuldeiser) }}
+                                <div class="select-autocomplete" data-keyupper="select" data-changer="address">
+                                  <label for="schuldeiser-helper-{{ schuldItem.id }}">Schuldeiser</label>
+                                  <div class="group">
+                                    <input type="text" id="schuldeiser-helper-{{ schuldItem.id }}" placeholder="Zoek een schuldeiser">
+                                    {{ form_row(form.schuldeiser) }}
+                                  </div>
                                 </div>
-                                <div data-changer="address">
-                                  {{ form_row(form.incassant) }}
+                                <div class="select-autocomplete" data-keyupper="select" data-changer="address">
+                                  <label for="incassant-helper-{{ schuldItem.id }}">Incassant</label>
+                                  <div class="group">
+                                    <input type="text" id="incassant-helper-{{ schuldItem.id }}" placeholder="Zoek een incassant">
+                                    {{ form_row(form.incassant) }}
+                                  </div>
                                 </div>
                                 {{ form_row(form.type) }}
                                 {{ form_row(form.referentie) }}

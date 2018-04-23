@@ -697,3 +697,38 @@ form {
   font-style: normal;
   padding: 1em;
 }
+.select-autocomplete {
+  padding: 1rem 0;
+  label {
+    line-height: 1;
+  }
+  .group {
+//    display: block;
+    position: relative;
+    align-items: flex-start;
+    input {
+//      position: absolute;
+//      right: 0;
+//      top: 0;
+//      width: 40px;
+//      margin: 0;
+//      background-color: $textColor;
+      flex-basis: 20%;
+      margin-right: $padding;
+//      &:focus {
+//        left: 0;
+//        width: 100%;
+//        background-color: #fff;
+//      }
+    }
+  }
+  .form-row .label-widget {
+    padding: 0;
+  }
+  .form-row {
+    flex-basis: 80%;
+    label {
+      display: none;
+    }
+  }
+}

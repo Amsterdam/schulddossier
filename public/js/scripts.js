@@ -501,11 +501,13 @@
     },
     
     'address': function(){
-      var select = this.querySelector('select');
-      var fields = ['bedrijfsnaam', 'rekening', 'allegro-code', 'straat', 'huisnummer', 'postcode', 'plaats', 'opmerkingen'];
-      var template = '<strong>__bedrijfsnaam__ (__allegro-code__)</strong><br>__rekening__<br>__straat__ __huisnummer__<br>__postcode__ __plaats__<br>__opmerkingen__';
-      var widget = _closest(select, '.label-widget');
-      var helper = widget.querySelector('.address-helper');
+      var 
+        select = this.querySelector('select'),
+        fields = ['bedrijfsnaam', 'rekening', 'allegro-code', 'straat', 'huisnummer', 'postcode', 'plaats', 'opmerkingen'],
+        template = '<strong>__bedrijfsnaam__ (__allegro-code__)</strong><br>__rekening__<br>__straat__ __huisnummer__<br>__postcode__ __plaats__<br>__opmerkingen__',
+        widget = _closest(select, '.label-widget'),
+        helper = widget.querySelector('.address-helper'),
+        form = _closest(this, 'form');
       
       if (!helper) {
         helper = document.createElement('em');
@@ -523,11 +525,14 @@
           if (!v) v = '';
           template = template.replace('__' + fields[i] + '__', v);
         }
+
+        template = template.replace('()','');
+        helper.innerHTML = template;
+        
       }
       
-      template = template.replace('()','').replace('<br><br>','<br>').replace('<br><br>','<br>').replace('<br><br>','<br>').replace('<br><br>','<br>').replace('<br><br>','<br>').replace('<br><br>','<br>');
+      helpers.trigger(form, 'change');
       
-      helper.innerHTML = template;
       
     }
     
@@ -536,7 +541,51 @@
   var keyuppers = {
     'change': function(e){
       // changers['change'] && changers['change'].call(this, e);
+    },
+    
+    'select': function(e){
+      var 
+        container = this;
+        
+
+      if (!container.select) {
+        container.form = _closest(container, 'form');
+        container.select = container.querySelector('select');
+        container.clone = container.select.cloneNode(true);
+        container.options = container.clone.querySelectorAll('option');
+        container.input = container.querySelector('input');
+      }
+
+
+      container.timer && clearTimeout(container.timer);
+      container.timer = setTimeout(function(){
+        container.select.innerHTML = '';
+        val = container.input.value.trim();
+
+        if (val.length === 0) {
+          container.select.innerHTML = container.clone.innerHTML;
+        } else {
+          var reg = new RegExp((val.length === 1 ? '^' : '') + val, 'i');
+          for (var i = 0; i < container.options.length; i++) {
+            if (container.options[i].value != '') {
+              var string = container.options[i].textContent;
+              for (var k = 0; k < container.options[i].attributes.length; k++) {
+                if (/^data-/.test(container.options[i].attributes[k].nodeName)) {
+                  string += ' ' + container.options[i].attributes[k].nodeValue;
+                }
+              }
+              
+              if (string.match(reg)) {
+                container.select.appendChild(container.options[i].cloneNode(true));
+              }
+            }
+          }
+        }
+        
+        helpers.trigger(container.select, 'change');
+      }, 300);
     }
+    
   };
   
   var helpers = {

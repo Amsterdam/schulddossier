@@ -57,24 +57,19 @@
                   <div class="columns">
                     <div class="column column-big">
                       
-                      <div class="form-row">
-                        <div class="label-widget">
-                          {{ form_label(createForm.schuldeiser) }}
-                          <select class="lookup" name="{{ createForm.schuldeiser.vars.full_name }}" id="{{ createForm.schuldeiser.vars.id }}">
-                          </select>
-                          {% do createForm.schuldeiser.setRendered() %}
+                      <div class="select-autocomplete" data-keyupper="select" data-changer="address">
+                        <label for="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}">Schuldeiser</label>
+                        <div class="group">
+                          <input type="text" id="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}" placeholder="Zoek een schuldeiser">
+                          {{ form_row(createForm.schuldeiser) }}
                         </div>
-                        {{ form_errors(createForm.schuldeiser) }}
                       </div>
-                      
-                      <div class="form-row">
-                        <div class="label-widget">
-                          {{ form_label(createForm.incassant) }}
-                          <select class="lookup" name="{{ createForm.incassant.vars.full_name }}" id="{{ createForm.incassant.vars.id }}">
-                          </select>
-                          {% do createForm.incassant.setRendered() %}
+                      <div class="select-autocomplete" data-keyupper="select" data-changer="address">
+                        <label for="incassant-helper-{{ createForm.incassant.vars.id }}">Incassant</label>
+                        <div class="group">
+                          <input type="text" id="incassant-helper-{{ createForm.incassant.vars.id }}" placeholder="Zoek een incassant">
+                          {{ form_row(createForm.incassant) }}
                         </div>
-                        {{ form_errors(createForm.incassant) }}
                       </div>
                         
                       <div class="form-row">
@@ -150,28 +145,7 @@
         </div>
     </div>
     <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function (event) {
-        elms = document.querySelectorAll('.lookup');
-        for (var i = 0; i < elms.length; i ++) {
-            elm = elms.item(i);
-            choices = new Choices(elm, {
-                removeItemButton: true,
-                itemSelectText: ''
-            }).ajax(function(callback) {
-                var request = new XMLHttpRequest();
-                request.open('GET', '/app/schuldeiser/', true);
-                request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-                request.onload = function() {
-                    if (request.status >= 200 && request.status < 400) {
-                        var data = JSON.parse(request.responseText);
-                        callback(data, 'id', 'bedrijfsnaam');
-                    } else {
-                    }
-                };
-                request.send();
-            });
-        }
-
+      document.addEventListener('DOMContentLoaded', function (event) {
         elms = document.querySelectorAll('.rome');
         for (var i = 0; i < elms.length; i ++) {
             window.schuldhulp._.datePicker(elms.item(i));
