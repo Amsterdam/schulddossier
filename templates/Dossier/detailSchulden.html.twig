@@ -111,39 +111,6 @@
           </div>
         </div>
         
-        <p class="nav-internal">
-          <a href="#nieuwe-schuld-toevoegen" data-handler="toggle scroll" class="primary">Nieuwe schuld toevoegen</a>
-        </p>
-        
-    
-    
-    <div class="modal-container" id="nieuwe-schuldeiser">
-        <a href="#" class="esc">&nbsp;</a>
-        <div class="modal-window">
-            <div class="modal-header">
-                <h2>Nieuwe schuldeiser</h2>
-            </div>
-            <div class="modal-body">
-                {{ form_start(createSchuldeiserForm, {'attr': {'data-submitter': 'save', 'data-result-selector': 'REFRESH #nieuwe-schuld-toevoegen .select-autocomplete'} }) }}
-                
-                {{ form_row(createSchuldeiserForm.bedrijfsnaam) }}
-                {{ form_row(createSchuldeiserForm.allegroCode) }}
-                {{ form_row(createSchuldeiserForm.rekening) }}
-                {{ form_row(createSchuldeiserForm.straat) }}
-                {{ form_row(createSchuldeiserForm.huisnummer) }}
-                {{ form_row(createSchuldeiserForm.huisnummerToevoeging) }}
-                {{ form_row(createSchuldeiserForm.postcode) }}
-                {{ form_row(createSchuldeiserForm.plaats) }}
-                {{ form_row(createSchuldeiserForm.opmerkingen) }}
-                
-                <p class="buttons right">
-                    <button type="submit" class="button">Aanmaken</button>
-                    <a href="#">Annuleren</a>
-                </p>
-                {{ form_end(createSchuldeiserForm) }}
-            </div>
-        </div>
-    </div>
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function (event) {
         elms = document.querySelectorAll('.rome');
