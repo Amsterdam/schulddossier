@@ -74,6 +74,8 @@ window.schuldhulp.quickViewer = {
             self.dom.pageCounter.innerHTML = '';
             self.dom.pageCounter.appendChild(document.createTextNode(num + ' / ' + self.currentPDFJS.numPages ));
             
+            self.dom.viewerContainer.scrollTo(0,0);
+            
             page.render({canvasContext: context, viewport: viewport }).then(function () {
                 self.dom.spinner.classList.remove('visible');
             });
