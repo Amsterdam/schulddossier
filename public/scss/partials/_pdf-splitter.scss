@@ -164,3 +164,21 @@
     display: none;
   }
 }
+
+.pages {
+  counter-reset: page;
+  .page {
+    position: relative;
+    counter-increment: page;
+    &:before {
+      content: counter(page);
+      font-size: $fontSmallSize;
+      position: absolute;
+      padding: 0 .5em;
+      left: -1px;
+      top: -1px;
+      color: $textColor;
+      background-color: darken($lightColor, 10);
+    }
+  }
+}
