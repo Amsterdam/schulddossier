@@ -70,6 +70,7 @@ class Dossier
      * @var Team
      * @ORM\ManyToOne(targetEntity="Team")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true)
+     * @Assert\NotBlank(message="Vul hier het GKA team in waarnaar dit dossier verstuurd gaat worden")
      */
     private $teamGka;
 
