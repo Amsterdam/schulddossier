@@ -1,8 +1,9 @@
 .quick-viewer .modal-window {
-  width: 90%;
-  height: 90%;
-  top: 5%;
-  left: 5%;
+  width: calc(100% - #{2 * $padding});
+  height: calc(100% - #{2 * $padding});
+  max-height: none;
+  top: $padding;
+  left: $padding;
   margin: 0;
   .modal-header {}
   .modal-body {
@@ -79,4 +80,21 @@
       }
     }
   }
+}
+
+.quick-viewer > a:before {
+  content: '×';
+  position: fixed;
+  z-index: 3;
+  right: 3.4rem;
+  left: auto;
+  top: 3.6rem;
+  width: 3rem;
+  height: 3rem;
+  color: #fff;
+  font-size: 3rem;
+  background-color: $textColor;
+  font-weight: bold;
+  line-height: 3rem;
+  text-align: center;
 }
