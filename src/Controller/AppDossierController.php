@@ -36,7 +36,6 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBeschikkingOnderBewind
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBeschikkingUwvFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBudgetbeheerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerCjibFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerCorrigerenGemeenteBelastingFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerGereserveerdeGeldenFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerHuurtoeslagFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerHuurspecificatieFormType;
@@ -218,6 +217,7 @@ class AppDossierController extends Controller
                 }
             }
             $em->flush();
+            $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
 
         $workflow = $registry->get($dossier);
@@ -430,14 +430,14 @@ class AppDossierController extends Controller
                     $documentId = intval($documentId);
                     $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
                 }
-            }
-            if (empty($child->get('aantekening')->get('tekst')->getData()) === false) {
-                $aantekening = new Aantekening();
-                $aantekening->setDossier($dossier);
-                $aantekening->setGebruiker($this->getUser());
-                $aantekening->setOnderwerp('schuldenoverzicht');
-                $aantekening->setSchuldItem($child->getData());
-                $aantekening->setTekst($child->get('aantekening')->get('tekst')->getData());
+                if (empty($child->get('aantekening')->get('tekst')->getData()) === false) {
+                    $aantekening = new Aantekening();
+                    $aantekening->setDossier($dossier);
+                    $aantekening->setGebruiker($this->getUser());
+                    $aantekening->setOnderwerp('schuldenoverzicht');
+                    $aantekening->setSchuldItem($child->getData());
+                    $aantekening->setTekst($child->get('aantekening')->get('tekst')->getData());
+                }
             }
             $em->flush();
             if ($request->isXmlHttpRequest()) {

@@ -70,6 +70,7 @@ class Dossier
      * @var Team
      * @ORM\ManyToOne(targetEntity="Team")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true)
+     * @Assert\NotBlank(message="Vul hier het GKA team in waarnaar dit dossier verstuurd gaat worden")
      */
     private $teamGka;
 
@@ -334,6 +335,17 @@ class Dossier
     {
         return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerp) {
             return $dossierDocument->getOnderwerp() === $onderwerp;
+        });
+    }
+
+    /**
+     * @param string $onderwerp
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getNietVerwijderdeDocumentenByOnderwerp($onderwerp)
+    {
+        return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerp) {
+            return $dossierDocument->getOnderwerp() === $onderwerp && $dossierDocument->getDocument()->isInPrullenbak() === false;
         });
     }
 

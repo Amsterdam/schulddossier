@@ -1,5 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
-{% set dossierDocumenten = dossier.getDocumentenByOnderwerp('alimentatieEchtscheidingsconvenant') %}
+{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('alimentatieEchtscheidingsconvenant') %}
   
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-alimentatieEchtscheidingsconvenant">
                 <div class="accordion-header">
@@ -10,7 +10,7 @@
                         </h3>
                         {% if dossierDocumenten %}
                           <div class="voortgang">
-                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
+                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
                           </div>
                         {% endif %}
                         <div class="status-container">
