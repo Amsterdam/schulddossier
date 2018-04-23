@@ -6,6 +6,9 @@
     height: 20px;
     line-height: 20px;
     margin-right: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   a {
     text-decoration: none;
