@@ -9,7 +9,7 @@
 {%- endblock -%}
 
 {%- block madi_status_form_widget -%}
-    <div class="status status-madi">
+    <div class="status status-madi" data-changer="status">
         <ul {{ block('widget_container_attributes') }}>
         {%- for child in form %}
             {%- set label = child.vars.label -%}
@@ -28,7 +28,7 @@
 {%- endblock -%}
 
 {%- block gka_status_form_widget -%}
-    <div class="status status-gka">
+    <div class="status status-gka" data-changer="status">
         <ul {{ block('widget_container_attributes') }}>
         {%- for child in form %}
             {%- set label = child.vars.label -%}

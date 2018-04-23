@@ -325,14 +325,18 @@
         callback: function(data){
           
           if (form.dataset.resultSelector && form.dataset.resultSelector.indexOf('REFRESH') === 0) {
-            helpers.ajax({
-              type: 'get',
-              url: document.location.href,
-              callback: function(data){
-                _process(data, form.dataset.resultSelector.substring(8));
-                document.location.hash = '';
-              }
-            });
+            if (form.dataset.resultSelector == 'REFRESH') {
+              w.location.href = w.location.href.split('#')[0];
+            } else {
+              helpers.ajax({
+                type: 'get',
+                url: w.location.href,
+                callback: function(data){
+                  _process(data, form.dataset.resultSelector.substring(8));
+                  w.location.hash = '';
+                }
+              });
+            }
           } else {
             _process(data, form.dataset.resultSelector);
           }
@@ -370,19 +374,6 @@
           }
         }
       }
-      
-      // if (form.files) {
-      //
-      //   var proto = form.querySelector('.file-container.prototype[data-name]');
-      //
-      //   for (var i = 0; i < form.files.length; i++) {
-      //     data.append(proto.dataset.name.replace('[__name__][file]', '[n' + i + '][file]'), form.files[i]);
-      //     data.append(proto.dataset.name.replace('[__name__][file]', '[n' + i + '][naam]'), proto.parentNode.dataset.defaultDocumentNaam + (i > 0 ? ' ' + i : ''));
-      //
-      //   }
-      //   form.files = false;
-      // }
-      
 
     },
     
@@ -515,16 +506,9 @@
             }
             
             d.classList.remove('sort-mode');
-          },
-
-          onFilter: function (e) {
-            // var item = e.item,
-            // ctrl = e.target;
-            // if (Sortable.utils.is(ctrl, ".video-delete")) {
-            //   if (confirm(copyDelete)) item.parentNode.removeChild(item);
-            //   _setOrder();
-            // }
           }
+
+       
         });
       }
       
@@ -564,6 +548,26 @@
       
       helpers.trigger(form, 'change');
       
+      
+    },
+    
+    'status': function(e){
+      var 
+        active = _closest(this, '.accordion.active'),
+        form = (e && e.target) && _closest(e.target, 'form');
+      
+      if (active) {
+        active.classList.remove('active');
+        var trigger = active.querySelector('.naam a.active');
+        trigger.classList.remove('active');
+        var url = document.location.href.split('#')[0];
+        if (history.replaceState) {
+          w.location.hash = '_';
+          history.replaceState({id: url}, d.title, url);
+        }
+      }
+      
+      form && changers[form.dataset.changer].call(form, e);
       
     }
     
