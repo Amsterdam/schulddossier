@@ -36,7 +36,6 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBeschikkingOnderBewind
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBeschikkingUwvFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBudgetbeheerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerCjibFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerCorrigerenGemeenteBelastingFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerGereserveerdeGeldenFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerHuurtoeslagFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerHuurspecificatieFormType;
@@ -218,6 +217,7 @@ class AppDossierController extends Controller
                 }
             }
             $em->flush();
+            $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
 
         $workflow = $registry->get($dossier);
