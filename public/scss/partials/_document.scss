@@ -124,7 +124,7 @@ a.bestand {
     @extend .icon-download !optional;
     width: 24px;
     height: 24px;
-    top: 4.6rem;
+    top: 5rem;
     left: 50%;
     margin-left: -12px;
     opacity: 0;
@@ -137,9 +137,6 @@ a.bestand {
     }
     i {
       box-shadow: 0 0 5px 0 rgba(#000, .4);
-      &:after {
-        opacity: 0;
-      }
     }
   }
   &.add {
@@ -248,9 +245,9 @@ a.bestand {
     &:after {
       content: 'wordt verwijderd';
       position: absolute;
-      left: 1rem;
+      left: 2rem;
       width: 8rem;
-      top: 4rem;
+      top: 5rem;
       font-size: 12px;
       line-height: 1;
       text-align: center;

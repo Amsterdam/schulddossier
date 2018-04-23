@@ -551,44 +551,8 @@ form {
 }
 
 
-//.primair, .secundair, .tertiair {
-//  -webkit-appearance: none;
-//  border: none;
-//  font-family: inherit;
-//  background: transparent;
-//  font-weight: normal;
-//  cursor: pointer;
-//  padding: 5px 8px;
-//  text-decoration: none;
-//  color: inherit;
-//}
-//
-//input.primair, a.primair, button.primair {
-//  background-color: #ec0000;
-//  color: white;
-//}
-//
-//input.secundair, a.secundair, button.secundair {
-//  border: 1px solid #979797;
-//  background-color: #FFF;
-//}
-//
-//input.tertiair:hover, a.tertiair:hover, button.tertiair:hover {
-//  text-decoration: underline;
-//}
-//
 .in-progress {
   opacity: 0.6;
-//  &:after {
-//    content: '';
-//    position: absolute;
-//    z-index: 10;
-//    left: 0;
-//    right: 0;
-//    top: 0;
-//    bottom: 0;
-//    background-color: rgba(#000, .1);
-//  }
   &,
   .button[type="submit"] {
     position: relative;
@@ -609,7 +573,7 @@ form {
 [data-changer="change"] {
   
   .form-global-buttons {
-    position: fixed;
+    
     z-index: 100;
   
     left: 0;
@@ -617,80 +581,31 @@ form {
     bottom: 0;
   
     background-color: rgba(#fff, .9);
-    padding: $padding / 2 $padding;
-    transition: all .3s;
+    
+    transition: bottom .3s;
     bottom: -100px;
-    opacity: 0;
+    
   }
   
   &.form-changed .form-global-buttons {
+    position: fixed;
     bottom: 0;
-    opacity: 1;
-  }
-  
-  .form-global-buttons .buttons {
-    margin: 0;
-    .document & {
+    padding: $padding / 2 $padding;
+    .buttons {
       margin: 0 $padding;
     }
   }
+  
+  .form-global-buttons .buttons {
+    
+  }
 }
 
-//
-//.form-container {
-//  padding: 20px 20px 20px 20px;
-//  h2 {
-//    font-weight: normal;
-//  }
-//}
 
 @keyframes progress {
   33%   { left: 20%; right: 0; }
   66%   { left: 0; right: 20%; }
 }
-
-
-//[data-changer*="change"] {
-//  .buttons {
-////    max-height: 0;
-////    overflow: hidden;
-////    opacity: 0;
-////    transition: all .3s;
-//    .primary {
-//      background-color: darken($lightColor, 10);
-//      border-color: darken($lightColor, 10);
-//      font-size: 0;
-//      &:before {
-//        font-size: $fontSmallSize;
-//        content: 'Opgeslagen';
-//
-//      }
-//    }
-//  }
-//
-//  &.form-changed {
-//    .buttons {
-//      .primary {
-//        background-color: $brandColor1;
-//        border-color: $brandColor1;
-//        font-size: $fontSmallSize;
-//        &:before {
-//          content: '';
-//        }
-//
-//      }
-//    }
-//    &.in-progress {
-//      .buttons {
-//        .primary {
-//          &:before {
-//            content: 'Bezig met ';
-//          }
-//        }
-//      }
-//    }
-//  }
-//}
 
 .address-helper {
   display: block;
@@ -703,23 +618,11 @@ form {
     line-height: 1;
   }
   .group {
-//    display: block;
     position: relative;
     align-items: flex-start;
     input {
-//      position: absolute;
-//      right: 0;
-//      top: 0;
-//      width: 40px;
-//      margin: 0;
-//      background-color: $textColor;
       flex-basis: 20%;
       margin-right: $padding;
-//      &:focus {
-//        left: 0;
-//        width: 100%;
-//        background-color: #fff;
-//      }
     }
   }
   .form-row .label-widget {

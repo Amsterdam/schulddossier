@@ -83,21 +83,23 @@
   
   display: inline-block;
   vertical-align: top;
-  width: 4rem;
-  height: 5rem;
+  width: 6rem;
+  height: 7.5rem;
   box-sizing: border-box;
   padding-top: .2rem;
   
   border: 3px solid $textColor;
   
   background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
   
   text-transform: uppercase;
   line-height: 1;
   font-style: normal;
   text-align: center;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 4rem;
   font-family: Tahoma;
   
   border-radius: 0 14px 0 0;
