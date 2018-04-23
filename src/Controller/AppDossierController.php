@@ -430,14 +430,14 @@ class AppDossierController extends Controller
                     $documentId = intval($documentId);
                     $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
                 }
-            }
-            if (empty($child->get('aantekening')->get('tekst')->getData()) === false) {
-                $aantekening = new Aantekening();
-                $aantekening->setDossier($dossier);
-                $aantekening->setGebruiker($this->getUser());
-                $aantekening->setOnderwerp('schuldenoverzicht');
-                $aantekening->setSchuldItem($child->getData());
-                $aantekening->setTekst($child->get('aantekening')->get('tekst')->getData());
+                if (empty($child->get('aantekening')->get('tekst')->getData()) === false) {
+                    $aantekening = new Aantekening();
+                    $aantekening->setDossier($dossier);
+                    $aantekening->setGebruiker($this->getUser());
+                    $aantekening->setOnderwerp('schuldenoverzicht');
+                    $aantekening->setSchuldItem($child->getData());
+                    $aantekening->setTekst($child->get('aantekening')->get('tekst')->getData());
+                }
             }
             $em->flush();
             if ($request->isXmlHttpRequest()) {
