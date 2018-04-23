@@ -1,4 +1,4 @@
-            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }} {{ schuldItem.isVerlopen ? 'verlopen' }}" id="schuldItem-{{ schuldItem.id }}" style="{{ schuldItem.verwijderd ? 'display: none;' }}">
+            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="schuldItem-{{ schuldItem.id }}" style="{{ schuldItem.verwijderd ? 'display: none;' }}">
                 <div class="accordion-header">
                     
                     <div class="schulditem-header">
@@ -10,6 +10,7 @@
                                 <span class="referentie">(referentie: {{ schuldItem.referentie }})</span>
                             </a>
                         </h3>
+                        {{ schuldItem.isVerlopen ? '<span class="verlopen">is verlopen</span>' }}
                         <div class="voortgang">
                             {{ schuldItem.dossierDocumenten|length }} document{% if schuldItem.dossierDocumenten|length != 1 %}en{% endif %}
                         </div>
