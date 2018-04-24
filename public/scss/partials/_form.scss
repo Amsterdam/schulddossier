@@ -659,8 +659,14 @@ form {
       margin-top: .2em;
     }
 }
-.button-remove-input:checked ~ * {
-  opacity: .2;
+.button-remove-input:checked ~ .accordion-body,
+.button-remove-input:checked ~ .accordion-header {
+  > * > * {
+    opacity: .5;
+  }
+  > * > .nav-internal {
+    opacity: 1;
+  }
 }
 .button-remove-input:checked ~ .accordion-body .button-remove:before {
   background-image: url('../images/ico_undo.svg');

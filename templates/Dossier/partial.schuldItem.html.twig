@@ -1,10 +1,11 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="schuldItem-{{ schuldItem.id }}" style="{{ schuldItem.verwijderd ? 'display: none;' }}">
                 <input class="button-remove-input" id="schulden_form_schuldItems_{{ schuldItem.id }}_verwijderd" name="schulden_form[schuldItems][{{ schuldItem.id }}][verwijderd]" value="1" type="checkbox" {{ schuldItem.verwijderd ? 'checked="checked"' }}>
+                {% do form.verwijderd.setRendered() %}
                 <div class="accordion-header">
                     
                     <div class="schulditem-header">
                         <h3 class="naam" title="{{ schuldItem.schuldeiser.bedrijfsnaam|default('-') }}{% if schuldItem.incassant %} / {{ schuldItem.incassant.bedrijfsnaam }}{% endif %} (referentie: {{ schuldItem.referentie }})">
-                            <a href="#schuldItem-{{ schuldItem.id }}" data-handler="toggle">
+                            <a href="#schuldItem-{{ schuldItem.id }}" data-handler="toggle">{{ schuldItem.verwijderd }}
                                 <strong>{{ schuldItem.schuldeiser.bedrijfsnaam|default('-') }}
                                 {% if schuldItem.incassant %} / {{ schuldItem.incassant.bedrijfsnaam }}{% endif %}
                                 </strong>
@@ -12,9 +13,11 @@
                             </a>
                         </h3>
                         {{ schuldItem.isVerlopen ? '<span class="verlopen">is verlopen</span>' }}
-                        <div class="voortgang">
-                            {{ schuldItem.dossierDocumenten|length }} document{% if schuldItem.dossierDocumenten|length != 1 %}en{% endif %}
-                        </div>
+                        {% if schuldItem.dossierDocumenten|length > 0 %}
+                          <div class="voortgang">
+                              {{ schuldItem.dossierDocumenten|length }} document{% if schuldItem.dossierDocumenten|length != 1 %}en{% endif %}
+                          </div>
+                        {% endif %}
                         <div class="bedrag">
                             &euro; {{ schuldItem.bedrag|number_format(2, ',', '.') }}
                         </div>
@@ -50,7 +53,7 @@
                             </div>
                         </div>
                         
-                        {% do form.verwijderd.setRendered() %}
+                        
                         <p class="nav-internal">
                           <label for="schulden_form_schuldItems_{{ schuldItem.id }}_verwijderd">
                             <span class="link primary button-remove">Markeren als verwijderd</span>
