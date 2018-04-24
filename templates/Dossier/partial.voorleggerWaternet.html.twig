@@ -4,27 +4,26 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-waternet">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header">
+                    <div class="voorlegger-header{{ dossier.voorlegger.waternetNvt ? ' nvt' }}">
                         <h3 class="naam">
                             <a href="#voorlegger-waternet" data-handler="toggle">Waternet</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
+                        <div class="nvt">
+                            {{ form_row(form.waternetNvt) }}
+                        </div>
                         <div class="status-container">
                           {{ form_row(form.waternetOntvangenMadi) }}
                           {{ form_row(form.waternetOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.waternetNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.waternetNvt ? 'n.v.t.' }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.waternetNvt) }}
                         {{ form_row(form.drinkwaterKlantnummer) }}
                         {{ form_row(form.drinkwaterDatumOpname) }}
                         {{ form_row(form.drinkwaterOpname) }}

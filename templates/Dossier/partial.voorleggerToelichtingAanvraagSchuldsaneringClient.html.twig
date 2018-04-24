@@ -8,16 +8,14 @@
                         <h3 class="naam">
                             <a href="#voorlegger-toelichtingAanvraagSchuldsaneringClient" data-handler="toggle">Toelichting aanvraag schuldsanering client</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
                         <div class="status-container">
                           {{ form_row(form.toelichtingAanvraagSchuldsaneringClientOntvangenMadi) }}
                           {{ form_row(form.toelichtingAanvraagSchuldsaneringClientOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
                         </div>
                     </div>
                     

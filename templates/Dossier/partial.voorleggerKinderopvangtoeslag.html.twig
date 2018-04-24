@@ -4,27 +4,26 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-kinderopvangtoeslag">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header">
+                    <div class="voorlegger-header{{ dossier.voorlegger.kinderopvangtoeslagNvt ? ' nvt' }}">
                         <h3 class="naam">
                             <a href="#voorlegger-kinderopvangtoeslag" data-handler="toggle">Kinderopvangtoeslag</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
+                        <div class="nvt">
+                            {{ form_row(form.kinderopvangtoeslagNvt) }}
+                        </div>
                         <div class="status-container">
                           {{ form_row(form.kinderopvangtoeslagOntvangenMadi) }}
                           {{ form_row(form.kinderopvangtoeslagOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.kinderopvangtoeslagNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.kinderopvangtoeslagNvt ? 'n.v.t.' }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.kinderopvangtoeslagNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kinderopvangtoeslag'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}

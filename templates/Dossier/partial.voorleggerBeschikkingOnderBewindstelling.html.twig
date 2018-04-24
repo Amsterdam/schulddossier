@@ -4,28 +4,27 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-beschikkingOnderBewindstelling">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header">
+                    <div class="voorlegger-header{{ dossier.voorlegger.beschikkingOnderBewindstellingNvt ? ' nvt' }}">
                         <h3 class="naam">
                             <a href="#voorlegger-beschikkingOnderBewindstelling" data-handler="toggle">Beschikking onderbewindstelling</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
+                        <div class="nvt">
+                            {{ form_row(form.beschikkingOnderBewindstellingNvt) }}
+                        </div>
                         <div class="status-container">
                           {{ form_row(form.beschikkingOnderBewindstellingOntvangenMadi) }}
                           {{ form_row(form.beschikkingOnderBewindstellingOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.beschikkingOnderBewindstellingNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.beschikkingOnderBewindstellingNvt ? 'n.v.t.' }}</span>
                         </div>
                     </div>
                     
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.beschikkingOnderBewindstellingNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Beschikking onderbewindstelling'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}

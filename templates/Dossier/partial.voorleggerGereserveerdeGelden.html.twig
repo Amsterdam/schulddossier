@@ -4,27 +4,26 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-gereserveerdeGelden">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header">
+                    <div class="voorlegger-header{{ dossier.voorlegger.gereserveerdeGeldenNvt ? ' nvt' }}">
                         <h3 class="naam">
                             <a href="#voorlegger-gereserveerdeGelden" data-handler="toggle">Gereserveerde gelden</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
+                        <div class="nvt">
+                            {{ form_row(form.gereserveerdeGeldenNvt) }}
+                        </div>
                         <div class="status-container">
                           {{ form_row(form.gereserveerdeGeldenOntvangenMadi) }}
                           {{ form_row(form.gereserveerdeGeldenOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.gereserveerdeGeldenNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.gereserveerdeGeldenNvt ? 'n.v.t.' }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.gereserveerdeGeldenNvt) }}
                         {{ form_row(form.gereserveerdeGelden) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Gereserveerde gelden'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}

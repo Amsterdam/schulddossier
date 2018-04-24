@@ -8,16 +8,14 @@
                         <h3 class="naam">
                             <a href="#voorlegger-inkomstenspecificatie" data-handler="toggle">Inkomstenspecificatie</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
                         <div class="status-container">
                           {{ form_row(form.inkomstenspecificatieOntvangenMadi) }}
                           {{ form_row(form.inkomstenspecificatieOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
                         </div>
                     </div>
                     

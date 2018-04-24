@@ -4,28 +4,27 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-huurtoeslag">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header">
+                    <div class="voorlegger-header{{ dossier.voorlegger.huurtoeslagNvt ? ' nvt' }}">
                         <h3 class="naam">
                             <a href="#voorlegger-huurtoeslag" data-handler="toggle">Huurtoeslag</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
+                        <div class="nvt">
+                            {{ form_row(form.huurtoeslagNvt) }}
+                        </div>
                         <div class="status-container">
                           {{ form_row(form.huurtoeslagOntvangenMadi) }}
                           {{ form_row(form.huurtoeslagOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.huurtoeslagNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.huurtoeslagNvt ? 'n.v.t.' }}</span>
                         </div>
                     </div>
                     
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.huurtoeslagNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Huurtoeslag'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}

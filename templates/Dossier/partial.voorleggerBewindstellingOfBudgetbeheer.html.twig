@@ -4,24 +4,25 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-bewindstellingOfBudgetbeheer">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header">
+                    <div class="voorlegger-header{{ dossier.voorlegger.bewindstellingOfBudgetbeheerNvt ? ' nvt' }}">
                         <h3 class="naam">
                             <a href="#voorlegger-bewindstellingOfBudgetbeheer" data-handler="toggle">Onderbewindstelling of Budgetbeheer</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
                         <div class="nvt">
-                            <span class="{{ dossier.voorlegger.bewindstellingOfBudgetbeheerNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.bewindstellingOfBudgetbeheerNvt ? 'n.v.t.' }}</span>
+                            {{ form_row(form.bewindstellingOfBudgetbeheerNvt) }}
+                        </div>
+                        <div class="status-container">
                         </div>
                     </div>
                     
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.bewindstellingOfBudgetbeheerNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Onderbewindstelling of Budgetbeheer'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}

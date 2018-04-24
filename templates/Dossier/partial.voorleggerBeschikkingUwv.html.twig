@@ -4,28 +4,27 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-beschikkingUwv">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header">
+                    <div class="voorlegger-header{{ dossier.voorlegger.beschikkingUwvNvt ? ' nvt' }}">
                         <h3 class="naam">
                             <a href="#voorlegger-beschikkingUwv" data-handler="toggle">Beschikking UWV</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
+                        <div class="nvt">
+                            {{ form_row(form.beschikkingUwvNvt) }}
+                        </div>
                         <div class="status-container">
                           {{ form_row(form.beschikkingUwvOntvangenMadi) }}
                           {{ form_row(form.beschikkingUwvOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.beschikkingUwvNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.beschikkingUwvNvt ? 'n.v.t.' }}</span>
                         </div>
                     </div>
                     
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.beschikkingUwvNvt) }}
                         {{ form_row(form.beschikkingUwvWw) }}
                         {{ form_row(form.beschikkingUwvWia) }}
                         {{ form_row(form.beschikkingUwvZw) }}

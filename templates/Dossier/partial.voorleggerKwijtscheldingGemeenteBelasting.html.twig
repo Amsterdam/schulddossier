@@ -4,28 +4,27 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-kwijtscheldingGemeenteBelasting">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header">
+                    <div class="voorlegger-header{{ dossier.voorlegger.kwijtscheldingGemeenteBelastingNvt ? ' nvt' }}">
                         <h3 class="naam">
                             <a href="#voorlegger-kwijtscheldingGemeenteBelasting" data-handler="toggle">Kwijtschelding gemeente belasting</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
+                        <div class="nvt">
+                            {{ form_row(form.kwijtscheldingGemeenteBelastingNvt) }}
+                        </div>
                         <div class="status-container">
                           {{ form_row(form.kwijtscheldingGemeenteBelastingOntvangenMadi) }}
                           {{ form_row(form.corrigerenGemeenteBelastingOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.kwijtscheldingGemeenteBelastingNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.kwijtscheldingGemeenteBelastingNvt ? 'n.v.t.' }}</span>
                         </div>
                     </div>
                     
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.kwijtscheldingGemeenteBelastingNvt) }}
                         {{ form_row(form.kwijtscheldingGemeenteBelasting) }}
                         {{ form_row(form.corrigerenGemeenteBelasting) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kwijtschelding gemeente belasting'} only %}

@@ -7,20 +7,47 @@
     line-height: 20px;
     margin-right: auto;
   }
+  &.nvt {
+    .naam {
+      opacity: .3;
+    }
+  }
   a {
     text-decoration: none;
   }
   .voortgang {
-    padding-right: 2rem;
+    padding: 0 1rem;
     height: 20px;
     line-height: 20px;
-    
+    border-right: 1px solid rgba($textColor, .1);
+  }
+  .status-container {
+    padding: 0 1rem;
+    border-right: 1px solid rgba($textColor, .1);
   }
   .nvt {
-    height: 20px;
-    line-height: 20px;
-    width: 50px;
-    text-align: center;
+    position: relative;
+    z-index: 2;
+    
+    padding: 0 1rem;
+    border-right: 1px solid rgba($textColor, .1);
+    
+    .label-widget {
+      width: 60px;
+      display: flex;
+      label {
+        order: 2;
+        padding: 0;
+        font-size: 0;
+        &:before {
+          content: 'n.v.t.';
+          display: inline-block;
+          font-size: $fontSize;
+          line-height: 20px;
+        }
+      }
+      
+    }
   }
   
 }

@@ -4,26 +4,25 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-vrijwaringsbewijs">
                 <div class="accordion-header">
 
-                        <div class="voorlegger-header">
-                            <h3 class="naam">
-                                <a href="#voorlegger-vrijwaringsbewijs" data-handler="toggle">Vrijwaringsbewijs</a>
-                            </h3>
-                              <div class="voortgang">
-                                {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
-                              </div>
-                            <div class="status-container">
-                              {{ form_row(form.vrijwaringsbewijsOntvangenMadi) }}
-                              {{ form_row(form.vrijwaringsbewijsOntvangenGka) }}
-                            </div>
-                            <div class="nvt">
-                                <span class="{{ dossier.voorlegger.vrijwaringsbewijsNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.vrijwaringsbewijsNvt ? 'n.v.t.' }}</span>
-                            </div>
+                    <div class="voorlegger-header{{ dossier.voorlegger.vrijwaringsbewijsNvt ? ' nvt' }}">
+                        <h3 class="naam">
+                            <a href="#voorlegger-vrijwaringsbewijs" data-handler="toggle">Vrijwaringsbewijs</a>
+                        </h3>
+                          <div class="voortgang">
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
+                          </div>
+                        <div class="nvt">
+                            {{ form_row(form.vrijwaringsbewijsNvt) }}
                         </div>
+                        <div class="status-container">
+                          {{ form_row(form.vrijwaringsbewijsOntvangenMadi) }}
+                          {{ form_row(form.vrijwaringsbewijsOntvangenGka) }}
+                        </div>
+                    </div>
 
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.vrijwaringsbewijsNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Vrijwaringsbewijs'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}

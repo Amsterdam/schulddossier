@@ -4,28 +4,27 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-overeenkomstKinderopvang">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header">
+                    <div class="voorlegger-header{{ dossier.voorlegger.overeenkomstKinderopvangNvt ? ' nvt' }}">
                         <h3 class="naam">
                             <a href="#voorlegger-overeenkomstKinderopvang" data-handler="toggle">Overeenkomst kinderopvang</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
+                        <div class="nvt">
+                            {{ form_row(form.overeenkomstKinderopvangNvt) }}
+                        </div>
                         <div class="status-container">
                           {{ form_row(form.overeenkomstKinderopvangOntvangenMadi) }}
                           {{ form_row(form.overeenkomstKinderopvangOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.overeenkomstKinderopvangNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.overeenkomstKinderopvangNvt ? 'n.v.t.' }}</span>
                         </div>
                     </div>
                     
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.overeenkomstKinderopvangNvt) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Overeenkomst kinderopvang'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}

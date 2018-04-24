@@ -1,6 +1,6 @@
 .status {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   margin-bottom: $lineHeight;
   height: $statusSize;
 
@@ -110,7 +110,7 @@
     }
   }
   &:hover {
-    z-index: 2;
+    z-index: 4;
     ul {
       background-color: rgba(#fff, 1);
       box-shadow: 0 0 5px 0 rgba(#000, .2);

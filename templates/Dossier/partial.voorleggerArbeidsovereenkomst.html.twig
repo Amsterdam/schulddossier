@@ -4,27 +4,27 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-arbeidsovereenkomst">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header">
+                    <div class="voorlegger-header{{ dossier.voorlegger.arbeidsovereenkomstNvt ? ' nvt' }}">
                         <h3 class="naam">
                             <a href="#voorlegger-arbeidsovereenkomst" data-handler="toggle">Arbeidsovereenkomst</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
+                        <div class="nvt">
+                            {{ form_row(form.arbeidsovereenkomstNvt) }}
+                        </div>
                         <div class="status-container">
                           {{ form_row(form.arbeidsovereenkomstOntvangenMadi) }}
                           {{ form_row(form.arbeidsovereenkomstOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.arbeidsovereenkomstNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.arbeidsovereenkomstNvt ? 'n.v.t.' }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.arbeidsovereenkomstNvt) }}
+                        
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Arbeidsovereenkomst'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}

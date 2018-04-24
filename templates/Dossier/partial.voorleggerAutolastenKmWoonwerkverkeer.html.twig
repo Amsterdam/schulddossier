@@ -4,27 +4,26 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-autolastenKmWoonwerkverkeer">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header">
+                    <div class="voorlegger-header{{ dossier.voorlegger.autolastenKmWoonwerkverkeerNvt ? ' nvt' }}">
                         <h3 class="naam">
                             <a href="#voorlegger-autolastenKmWoonwerkverkeer" data-handler="toggle">Autolasten km woon-werk-verkeer</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
+                        <div class="nvt">
+                            {{ form_row(form.autolastenKmWoonwerkverkeerNvt) }}
+                        </div>
                         <div class="status-container">
                           {{ form_row(form.autolastenKmWoonwerkverkeerOntvangenMadi) }}
                           {{ form_row(form.autolastenKmWoonwerkverkeerOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.autolastenKmWoonwerkverkeerNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.autolastenKmWoonwerkverkeerNvt ? 'n.v.t.' }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.autolastenKmWoonwerkverkeerNvt) }}
                         {{ form_row(form.autolastenKmWoonwerkverkeer) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Autolasten km woon-werk-verkeer'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}

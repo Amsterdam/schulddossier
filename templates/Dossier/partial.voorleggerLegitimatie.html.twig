@@ -9,16 +9,14 @@
                         <h3 class="naam">
                             <a href="#voorlegger-legitimatie" data-handler="toggle">Legitimatie</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
                         <div class="status-container">
                           {{ form_row(form.legitimatieOntvangenMadi) }}
                           {{ form_row(form.legitimatieOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
                         </div>
                     </div>
                     

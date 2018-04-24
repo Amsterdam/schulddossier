@@ -80,9 +80,14 @@
           right: -15px;
           bottom: -8px;
           background-color: rgba(#000, 0);
+          transition: background-color .3s;
         }
       }
+      &:hover a:before {
+        background-color: rgba(#000, .1);
+      }
     }
+    
     &.active .accordion-header {
       &:before {
         transform: rotate(45deg);

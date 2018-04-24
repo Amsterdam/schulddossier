@@ -4,28 +4,27 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-budgetbeheer">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header">
+                    <div class="voorlegger-header{{ dossier.voorlegger.budgetbeheerNvt ? ' nvt' }}">
                         <h3 class="naam">
                             <a href="#voorlegger-budgetbeheer" data-handler="toggle">Budgetbeheer</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
+                        <div class="nvt">
+                            {{ form_row(form.budgetbeheerNvt) }}
+                        </div>
                         <div class="status-container">
                             {{ form_row(form.budgetbeheerOntvangenMadi) }}
                             {{ form_row(form.budgetbeheerOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
-                            <span class="{{ dossier.voorlegger.budgetbeheerNvt ? 'nvt' : 'open' }}">{{ dossier.voorlegger.budgetbeheerNvt ? 'n.v.t.' }}</span>
                         </div>
                     </div>
                     
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.budgetbeheerNvt) }}
                         {{ form_row(form.budgetbeheerPlangroep) }}
                         {{ form_row(form.budgetbeheerCav) }}
                         {{ form_row(form.budgetbeheerFibu) }}

@@ -8,16 +8,14 @@
                         <h3 class="naam">
                             <a href="#voorlegger-inzageToetsingBkr" data-handler="toggle">Inzage toetsing BKR</a>
                         </h3>
-                        {% if dossierDocumenten %}
+                        {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                            {% if dossierDocumenten|length > 0 %}{{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}{% endif %}
+                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
                         <div class="status-container">
                           {{ form_row(form.inzageToetsingBkrOntvangenMadi) }}
                           {{ form_row(form.inzageToetsingBkrOntvangenGka) }}
-                        </div>
-                        <div class="nvt">
                         </div>
                     </div>
                 </div>
