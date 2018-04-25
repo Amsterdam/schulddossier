@@ -313,9 +313,10 @@
             target[i].innerHTML = result[i].innerHTML;
           }
         }
-      
+
         form.classList.remove('in-progress');
         form.classList.remove('form-changed');
+
       };
       
       form.request = helpers.ajax({
@@ -326,6 +327,10 @@
           
           if (form.dataset.resultSelector && form.dataset.resultSelector.indexOf('REFRESH') === 0) {
             if (form.dataset.resultSelector == 'REFRESH') {
+
+              form.classList.remove('in-progress');
+              form.classList.remove('form-changed');
+
               w.location.href = w.location.href.split('#')[0];
             } else {
               helpers.ajax({
