@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  padding: $padding;
+  padding: 0 $padding;
   @include medium {
     padding: 10px;
   }
