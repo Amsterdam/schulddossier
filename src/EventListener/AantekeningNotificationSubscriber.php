@@ -72,7 +72,7 @@ class AantekeningNotificationSubscriber implements EventSubscriber
     protected function mailUpdate(Aantekening $aantekening)
     {
         $dossier = $aantekening->getDossier();
-        if ( in_array($dossier->getStatus(), ['verzonden_madi', 'compleet_gka', 'dossier_gecontroleerd_gka', 'geactualiseerd_gka']) ) {
+        if ( in_array($dossier->getStatus(), ['verzonden_madi', 'compleet_gka', 'dossier_gecontroleerd_gka', 'afgesloten_gka']) ) {
             $notify = [];
 
             if ($this->tokenStorage->getToken()->getUser()->getType() !== Gebruiker::TYPE_MADI) {

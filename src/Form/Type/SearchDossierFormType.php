@@ -31,7 +31,7 @@ class SearchDossierFormType extends AbstractType
                 'verzonden_madi' => 'verzonden_madi',
                 'compleet_gka' => 'compleet_gka',
                 'dossier_gecontroleerd_gka' => 'dossier_gecontroleerd_gka',
-                'geactualiseerd_gka' => 'geactualiseerd_gka',
+                'afgesloten_gka' => 'afgesloten_gka',
             ]
         ]);
         $builder->add('schuldhulpbureau', EntityType::class, [
