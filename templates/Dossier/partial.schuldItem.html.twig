@@ -1,5 +1,5 @@
             <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="schuldItem-{{ schuldItem.id }}" style="{{ schuldItem.verwijderd ? 'display: none;' }}">
-                <input class="button-remove-input" id="schulden_form_schuldItems_{{ schuldItem.id }}_verwijderd" name="schulden_form[schuldItems][{{ schuldItem.id }}][verwijderd]" value="1" type="checkbox" {{ schuldItem.verwijderd ? 'checked="checked"' }}>
+                <input class="button-remove-input" id="schulden_form_schuldItems_{{ schuldItem.id }}_verwijderd" name="{{ form.verwijderd.vars.full_name }}" value="1" type="checkbox" {{ schuldItem.verwijderd ? 'checked="checked"' }}>
                 {% do form.verwijderd.setRendered() %}
                 <div class="accordion-header">
                     

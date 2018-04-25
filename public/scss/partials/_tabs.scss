@@ -9,6 +9,8 @@
 //    margin: 0 (-$padding/2);
     border-bottom: 3px solid $lightColor;
   }
+  
+  
   li {
     flex-basis: 100%;
     
@@ -53,22 +55,22 @@
 //    transition: all .3s;
     .accordion-header {
       position: relative;
-      padding-right: 36px;
+      padding-left: 36px;
       &:before,
       &:after {
         content: '';
         position: absolute;
-        right: 0;
-        top: 8px;
-        width: 14px;
-        height: 4px;
-        background-color: $textColor;
-        transform: rotate(-45deg);
+        left: 2px;
+        top: 9px;
+        width: 11px;
+        height: 3px;
+        background-color: #666;
+        transform: rotate(45deg);
         transition: all .3s;
       }
       &:after {
-        right: 8px;
-        transform: rotate(45deg);
+        left: 8px;
+        transform: rotate(-45deg);
       }
       a {
         &:before {
@@ -90,10 +92,10 @@
     
     &.active .accordion-header {
       &:before {
-        transform: rotate(45deg);
+        transform: rotate(-45deg);
       }
       &:after {
-        transform: rotate(-45deg);
+        transform: rotate(45deg);
       }
     }
     &.active {

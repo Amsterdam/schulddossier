@@ -569,6 +569,20 @@
       
       form && changers[form.dataset.changer].call(form, e);
       
+    },
+    
+    'nvt': function(e){
+      var 
+        form = (e && e.target) && _closest(e.target, 'form'),
+        input = this.querySelector('input');
+      
+      form && changers[form.dataset.changer].call(form, e);
+      
+      var header = _closest(this, '.voorlegger-header');
+      if (!header) return;
+      
+      header.classList[input.checked ? 'add' : 'remove']('nvt');
+      
     }
     
   };

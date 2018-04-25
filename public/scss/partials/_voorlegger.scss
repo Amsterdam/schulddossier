@@ -11,6 +11,15 @@
     .naam {
       opacity: .3;
     }
+    .nvt {
+      opacity: .3;
+      input {
+        opacity: 0;
+      }
+      &:hover input {
+        opacity: 1;
+      }
+    }
   }
   a {
     text-decoration: none;
@@ -22,8 +31,7 @@
     border-right: 1px solid rgba($textColor, .1);
   }
   .status-container {
-    padding: 0 1rem;
-    border-right: 1px solid rgba($textColor, .1);
+    padding: 0 0 0 1rem;
   }
   .nvt {
     position: relative;
@@ -32,21 +40,51 @@
     padding: 0 1rem;
     border-right: 1px solid rgba($textColor, .1);
     
+    opacity: 0;
+    
+    transition: opacity .3s;
+    
     .label-widget {
-      width: 60px;
-      display: flex;
+      position: relative;
+//      display: inline-block;
+      width: 44px;
+      padding-left: 20px;
+      height: 20px;
+      background-color: rgba(#fff, 0);
+      box-shadow: 0 0 2px 0 rgba(0,0,0,0);
+      text-align: center;
+      border-radius: 3px;
+      transition: all .3s;
       label {
-        order: 2;
         padding: 0;
         font-size: 0;
         &:before {
           content: 'n.v.t.';
           display: inline-block;
+          padding: .2em .5em;
           font-size: $fontSize;
-          line-height: 20px;
+          line-height: 1;
+          transition: all .3s;
         }
       }
       
+      input {
+        position: absolute;
+        left: 0;
+        top: -1px;
+      }
+      
+      
+      &:hover {
+        background-color: rgba(#fff, .5);
+        box-shadow: 0 0 2px 0 rgba(0,0,0,.2);
+      }
+      
+    }
+  }
+  &:hover {
+    .nvt {
+      opacity: 1;
     }
   }
   
