@@ -27,16 +27,17 @@
               </div>
               <div class="tabs">
                 <ul>
-                  <li><a href="#bezig_madi,compleet_madi,gecontroleerd_madi,verzonden_madi" data-handler="multistatus"{{ app.user.type == 'madi' ? ' class="active"' }}>Dossiers bij MaDi</a></li>
-                  <li><a href="#verzonden_madi,bezig_gka,compleet_gka,dossier_gecontroleerd_gka,afgesloten_gka" data-handler="multistatus"{{ app.user.type == 'gka' ? ' class="active"' }}>Dossiers bij GKA</a></li>
-                  {# <li><a href="#" data-handler="multistatus">Afgerond</a></li> #}
-                  <li><a href="#search-extended" data-handler="toggle"><span class="meer">Meer </span><span class="minder">Minder </span>zoekopties</a></li>
+                  <li class="{{ searchQuery.section == 'madi' ? 'active' }}"><a href="?section=madi">Dossiers bij MaDi</a></li>
+                  <li class="{{ searchQuery.section == 'gka' ? 'active' }}"><a href="?section=gka">Dossiers bij GKA</a></li>
+                  <li class="{{ searchQuery.section == 'archief' ? 'active' }}"><a href="?section=archief">Afgerond</a></li>
+                  <li class="{{ searchQuery.section == 'search' ? 'active' }}"><a href="?section=search">Zoeken</a></li>
                 </ul>
               </div>
 
             </fieldset>
 
-            <fieldset id="search-extended" class="search-extended">
+            <fieldset id="search-extended" class="search-extended {{ searchQuery.section == 'search' ? 'active' }}">
+                <input type="hidden" name="section" value="search">
                 {{ form_row(searchForm.status) }}
                 {{ form_row(searchForm.schuldhulpbureau) }}
                 {{ form_row(searchForm.medewerkerSchuldhulpbureau) }}

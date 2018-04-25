@@ -96,17 +96,27 @@ class AppDossierController extends Controller
 
         $maxPageSize = 10;
 
+        $section2status = [
+            'madi' => ['bezig_madi', 'compleet_madi', 'gecontroleerd_madi', 'verzonden_madi'],
+            'gka' => ['verzonden_madi', 'compleet_gka', 'dossier_gecontroleerd_gka'],
+            'archief' => ['afgesloten_gka'],
+            'search' => []
+        ];
+        $section = $request->query->get('section', 'madi');
+
         $seachQuery = [
+            'section' => $section,
             'naam' => '',
-            'status' => $this->getUser()->getType() === Gebruiker::TYPE_MADI ? ['bezig_madi', 'compleet_madi', 'gecontroleerd_madi', 'verzonden_madi'] : ($this->getUser()->getType() === Gebruiker::TYPE_GKA ? ['verzonden_madi', 'compleet_gka', 'dossier_gecontroleerd_gka', 'afgesloten_gka'] : []),
-            'schuldhulpbureau' => $this->getUser()->getSchuldhulpbureau(),
+            'status' => $section2status[$section],
+            'schuldhulpbureau' => null,
             'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
         ];
 
         $searchForm = $this->createForm(SearchDossierFormType::class, $seachQuery, ['method' => 'GET']);
-        $searchForm->handleRequest($request);
-
+        if ($section === 'search') {
+            $searchForm->handleRequest($request);
+        }
         $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
         return $this->render('Dossier/index.html.twig', [
