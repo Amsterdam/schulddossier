@@ -98,7 +98,7 @@ class AppDossierController extends Controller
 
         $seachQuery = [
             'naam' => '',
-            'status' => $this->getUser()->getType() === Gebruiker::TYPE_MADI ? ['bezig_madi', 'compleet_madi', 'gecontroleerd_madi', 'verzonden_madi'] : ($this->getUser()->getType() === Gebruiker::TYPE_GKA ? ['verzonden_madi', 'compleet_gka', 'dossier_gecontroleerd_gka', 'geactualiseerd_gka'] : []),
+            'status' => $this->getUser()->getType() === Gebruiker::TYPE_MADI ? ['bezig_madi', 'compleet_madi', 'gecontroleerd_madi', 'verzonden_madi'] : ($this->getUser()->getType() === Gebruiker::TYPE_GKA ? ['verzonden_madi', 'compleet_gka', 'dossier_gecontroleerd_gka', 'afgesloten_gka'] : []),
             'schuldhulpbureau' => $this->getUser()->getSchuldhulpbureau(),
             'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()

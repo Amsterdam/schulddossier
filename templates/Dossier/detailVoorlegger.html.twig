@@ -136,11 +136,11 @@
                     </form>
                 </li>
         {% endif %}
-        {% if workflow_can(dossier, 'schulden_geactualiseerd_gka') %}
+        {% if workflow_can(dossier, 'afsluiten_gka') %}
                 <li>
-                    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'schulden_geactualiseerd_gka'}) }}" method="post">
+                    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'afsluiten_gka'}) }}" method="post">
                         <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                        <button type="submit" class="button primary">Schuldenlijst geactualiseerd</button>
+                        <button type="submit" class="button primary">Afsluiten GKA</button>
                     </form>
                 </li>
         {% endif %}
