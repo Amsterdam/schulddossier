@@ -162,6 +162,7 @@ class AppDossierController extends Controller
     {
         $dossier = new Dossier();
         $dossier->setAanmaker($this->getUser());
+        $dossier->setMedewerkerSchuldhulpbureau($this->getUser());
         $dossier->setDossierTemplate('v1');
         $dossier->setStatus('bezig_madi');
         $form = $this->createForm(CreateDossierFormType::class, $dossier);
