@@ -57,6 +57,19 @@
   border-top: 1px solid #dfdfdf;
 }
 
+.form-changed + .document-footer {
+  .button,
+  .button.primary,
+  .button.secondary {
+    color: rgba(0,0,0,0.2);
+    border-color: rgba(0,0,0,0.2);
+    background-color: #fff;
+    &:hover {
+      color: rgba(0,0,0,0.2);
+    }
+  }
+}
+
 .document-header {
   border-bottom: 1px solid #dfdfdf;
   &.group {
