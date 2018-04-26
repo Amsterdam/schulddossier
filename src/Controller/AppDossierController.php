@@ -102,7 +102,7 @@ class AppDossierController extends Controller
             'archief' => ['afgesloten_gka'],
             'search' => []
         ];
-        $section = $request->query->get('section', 'madi');
+        $section = $request->query->get('section', $this->getUser()->getType() === Gebruiker::TYPE_GKA ? 'gka' : 'madi');
 
         $seachQuery = [
             'section' => $section,
