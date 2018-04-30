@@ -81,14 +81,16 @@ class SchuldItemFormType extends AbstractType
             'attr' => ['class' => 'rome'],
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
-            'label' => 'Contactdatum'
+            'label' => 'Contactdatum',
+            'required' => true
         ]);
         $builder->add('ontstaansDatum', DateType::class, [
             'html5' => false,
             'attr' => ['class' => 'rome'],
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
-            'label' => 'Ontstaansdatum'
+            'label' => 'Ontstaansdatum',
+            'required' => false
         ]);
         $builder->add('opmerkingen', TextareaType::class, [
             'required' => false,

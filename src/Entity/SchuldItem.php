@@ -124,8 +124,7 @@ class SchuldItem
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="date", nullable=false)
-     * @Assert\NotBlank
+     * @ORM\Column(type="date", nullable=true)
      */
     private $ontstaansDatum;
 
@@ -306,7 +305,7 @@ class SchuldItem
         return $this->ontstaansDatum;
     }
 
-    public function setOntstaansDatum(\DateTime $ontstaansDatum)
+    public function setOntstaansDatum(\DateTime $ontstaansDatum = null)
     {
         $this->ontstaansDatum = $ontstaansDatum;
     }
