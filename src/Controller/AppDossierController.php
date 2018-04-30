@@ -457,6 +457,9 @@ class AppDossierController extends Controller
             $this->addFlash('success', 'Opgeslagen');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
         }
+        else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
+            return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
+        }
 
         $schuldItem = new SchuldItem();
         $createForm = $this->createForm(SchuldItemFormType::class, $schuldItem);
