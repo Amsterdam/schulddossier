@@ -558,7 +558,7 @@ class AppDossierController extends Controller
 
         $sheet->getStyleByColumnAndRow(1, 1, 7, 1)->getFont()->setBold(true);
 
-        foreach ($dossier->getSchuldItems() as $rowIndex => $schuldItem) {
+        foreach (array_values($dossier->getSchuldItemsNotInPrullenbak()->toArray()) as $rowIndex => $schuldItem) {
             $rowIndex = $rowIndex + 2; // one-based instead of zero-based and one for the header
             $sheet->setCellValueByColumnAndRow(1, $rowIndex, $schuldItem->getSchuldeiser() ? $schuldItem->getSchuldeiser()->getBedrijfsnaam() : '');
             $sheet->setCellValueByColumnAndRow(2, $rowIndex, $schuldItem->getIncassant() ? $schuldItem->getIncassant()->getBedrijfsnaam() : '');

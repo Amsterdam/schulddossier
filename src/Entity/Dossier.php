@@ -398,6 +398,13 @@ class Dossier
         return $this->schuldItems;
     }
 
+    public function getSchuldItemsNotInPrullenbak()
+    {
+        return $this->schuldItems->filter(function (SchuldItem $schuldItem) {
+            return $schuldItem->isVerwijderd() === false;
+        });
+    }
+
     public function addSchuldItem(SchuldItem $schuldItem)
     {
         if ($this->hasSchuldItem($schuldItem) === false) {
