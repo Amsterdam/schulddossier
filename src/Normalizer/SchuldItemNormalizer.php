@@ -30,7 +30,6 @@ class SchuldItemNormalizer implements NormalizerInterface, NormalizerAwareInterf
             'schuldeiser' => $this->normalizer->normalize($object->getSchuldeiser(), $format),
             'incassant' => $this->normalizer->normalize($object->getIncassant(), $format),
             'referentie' => $object->getReferentie(),
-            'opmerkingen' => $object->getOpmerkingen(),
             'type' => $object->getType(),
             'bedrag' => $object->getBedrag(),
             'vaststelDatum' => $this->normalizer->normalize($object->getVaststelDatum(), $format),

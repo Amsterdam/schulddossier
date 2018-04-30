@@ -93,13 +93,6 @@ class SchuldItem
 
     /**
      * @var string
-     * @ORM\Column(type="text", nullable=true)
-     * @Assert\Length(max=10000)
-     */
-    private $opmerkingen;
-
-    /**
-     * @var string
      * @ORM\Column(type="string", length=15, nullable=false)
      * @Assert\NotBlank
      * @Assert\Choice(choices={"concurrent", "preferent"})
@@ -258,16 +251,6 @@ class SchuldItem
     public function setReferentie($referentie)
     {
         $this->referentie = $referentie;
-    }
-
-    public function getOpmerkingen()
-    {
-        return $this->opmerkingen;
-    }
-
-    public function setOpmerkingen($opmerkingen)
-    {
-        $this->opmerkingen = $opmerkingen;
     }
 
     public function getType()

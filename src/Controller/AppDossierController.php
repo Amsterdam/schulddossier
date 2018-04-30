@@ -559,6 +559,7 @@ class AppDossierController extends Controller
         $sheet->getStyleByColumnAndRow(1, 1, 7, 1)->getFont()->setBold(true);
 
         foreach (array_values($dossier->getSchuldItemsNotInPrullenbak()->toArray()) as $rowIndex => $schuldItem) {
+            /** @var $schuldItem SchuldItem */
             $rowIndex = $rowIndex + 2; // one-based instead of zero-based and one for the header
             $sheet->setCellValueByColumnAndRow(1, $rowIndex, $schuldItem->getSchuldeiser() ? $schuldItem->getSchuldeiser()->getBedrijfsnaam() : '');
             $sheet->setCellValueByColumnAndRow(2, $rowIndex, $schuldItem->getIncassant() ? $schuldItem->getIncassant()->getBedrijfsnaam() : '');
@@ -568,10 +569,16 @@ class AppDossierController extends Controller
             $sheet->setCellValueByColumnAndRow(6, $rowIndex, $schuldItem->getReferentie());
             $sheet->setCellValueByColumnAndRow(7, $rowIndex, $schuldItem->getType());
 
-            if (empty($schuldItem->getOpmerkingen()) === false) {
-                $sheet->getCommentByColumnAndRow(6, $rowIndex)->getText()->createText($schuldItem->getOpmerkingen());
+            if (count($schuldItem->getAantekeningen()) > 0) {
+                $opmerking = '';
+                foreach ($schuldItem->getAantekeningen() as $aantekening) {
+                    /** @var $aantekening Aantekening */
+                    $opmerking = $opmerking . $aantekening->getGebruiker()->__toString() . ' ' . $aantekening->getDatumTijd()->format('d-m-Y H:i') . ":\r\n" . $aantekening->getTekst() . "\r\n\r\n";
+                }
+                $sheet->getCommentByColumnAndRow(6, $rowIndex)->getText()->createText($opmerking);
+                $sheet->getCommentByColumnAndRow(6, $rowIndex)->setWidth('200pt');
+                $sheet->getCommentByColumnAndRow(6, $rowIndex)->setHeight('100pt');
             }
-
             $sheet->getStyleByColumnAndRow(3, $rowIndex)->getNumberFormat()->setFormatCode('"€"#,##0.00_-');
             $sheet->getStyleByColumnAndRow(4, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
             $sheet->getStyleByColumnAndRow(5, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');

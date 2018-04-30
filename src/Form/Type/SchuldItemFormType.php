@@ -92,9 +92,6 @@ class SchuldItemFormType extends AbstractType
             'label' => 'Ontstaansdatum',
             'required' => false
         ]);
-        $builder->add('opmerkingen', TextareaType::class, [
-            'required' => false,
-        ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
             'entry_type' => DocumentFormType::class,

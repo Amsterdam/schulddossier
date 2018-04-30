@@ -91,13 +91,6 @@ class SchuldItemHistorie
 
     /**
      * @var string
-     * @ORM\Column(type="text", nullable=true)
-     * @Assert\Length(max=10000)
-     */
-    private $opmerkingen;
-
-    /**
-     * @var string
      * @ORM\Column(type="string", length=15, nullable=false)
      * @Assert\NotBlank
      * @Assert\Choice(choices={"concurrent", "preferent"})
