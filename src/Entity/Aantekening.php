@@ -28,7 +28,7 @@ class Aantekening
 
     /**
      * @var string
-     * @ORM\Column(name="string", length=255, nullable=false)
+     * @ORM\Column(length=255, nullable=false)
      */
     private $onderwerp;
 
