@@ -26,10 +26,7 @@
         {% include 'Dossier/partial.voorleggerVoorlopigeTeruggaafBelastingdienst.html.twig' with {'form': voorleggerForm.voorlopigeTeruggaafBelastingdienst, 'dossier': dossier} only %}
         {% include 'Dossier/partial.voorleggerAlimentatie.html.twig' with {'form': voorleggerForm.alimentatie, 'dossier': dossier} only %}
         {% include 'Dossier/partial.voorleggerKostgeld.html.twig' with {'form': voorleggerForm.kostgeld, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerHuurtoeslag.html.twig' with {'form': voorleggerForm.huurtoeslag, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerZorgtoeslag.html.twig' with {'form': voorleggerForm.zorgtoeslag, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerKinderopvangtoeslag.html.twig' with {'form': voorleggerForm.kinderopvangtoeslag, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerKindgebondenBudget.html.twig' with {'form': voorleggerForm.kindgebondenBudget, 'dossier': dossier} only %}
+        {% include 'Dossier/partial.voorleggerToeslagen.html.twig' with {'form': voorleggerForm.toeslagen, 'dossier': dossier} only %}
         <h2>Uitgaven</h2>
         {% include 'Dossier/partial.voorleggerHuurspecificatie.html.twig' with {'form': voorleggerForm.huurspecificatie, 'dossier': dossier} only %}
         {% include 'Dossier/partial.voorleggerAlimentatieEchtscheidingsconvenant.html.twig' with {'form': voorleggerForm.alimentatieEchtscheidingsconvenant, 'dossier': dossier} only %}

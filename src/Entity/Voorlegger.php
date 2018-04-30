@@ -217,79 +217,43 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $huurtoeslagOntvangenMadi;
+    private $toeslagenOntvangenMadi;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $huurtoeslagOntvangenGka;
+    private $toeslagenOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $huurtoeslagNvt;
-
-    // ---
-
-    /**
-     * @var integer
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    private $zorgtoeslagOntvangenMadi;
-
-    /**
-     * @var integer
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    private $zorgtoeslagOntvangenGka;
+    private $toeslagenNvt;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $zorgtoeslagNvt;
-
-    // ---
-
-    /**
-     * @var integer
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    private $kinderopvangtoeslagOntvangenMadi;
-
-    /**
-     * @var integer
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    private $kinderopvangtoeslagOntvangenGka;
+    private $toeslagenHuur;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $kinderopvangtoeslagNvt;
-
-    // ---
-
-    /**
-     * @var integer
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    private $kindgebondenBudgetOntvangenMadi;
-
-    /**
-     * @var integer
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    private $kindgebondenBudgetOntvangenGka;
+    private $toeslagenZorg;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $kindgebondenBudgetNvt;
+    private $toeslagenKinderopvang;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $toeslagenKindgebondenBudget;
 
     // ---
 
@@ -923,18 +887,6 @@ class Voorlegger
         $this->kostgeldOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->kostgeldOntvangenGka = false;
         $this->kostgeldNvt = false;
-        $this->huurtoeslagOntvangenMadi = self::STATUS_MADI_OPEN;
-        $this->huurtoeslagOntvangenGka = false;
-        $this->huurtoeslagNvt = false;
-        $this->zorgtoeslagOntvangenMadi = self::STATUS_MADI_OPEN;
-        $this->zorgtoeslagOntvangenGka = false;
-        $this->zorgtoeslagNvt = false;
-        $this->kinderopvangtoeslagOntvangenMadi = self::STATUS_MADI_OPEN;
-        $this->kinderopvangtoeslagOntvangenGka = false;
-        $this->kinderopvangtoeslagNvt = false;
-        $this->kindgebondenBudgetOntvangenMadi = self::STATUS_MADI_OPEN;
-        $this->kindgebondenBudgetOntvangenGka = false;
-        $this->kindgebondenBudgetNvt = false;
         $this->huurspecificatieOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->huurspecificatieOntvangenGka = false;
         $this->huurspecificatieNvt = false;
@@ -1008,6 +960,13 @@ class Voorlegger
         $this->gereserveerdeGelden = 0.00;
         $this->ondertekendAanvraagFormulierOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->ondertekendAanvraagFormulierOntvangenGka = false;
+        $this->toeslagenOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->toeslagenOntvangenGka = false;
+        $this->toeslagenNvt = false;
+        $this->toeslagenHuur = false;
+        $this->toeslagenZorg = false;
+        $this->toeslagenKinderopvang = false;
+        $this->toeslagenKindgebondenBudget = false;
     }
 
     public function getId()
@@ -1153,65 +1112,7 @@ class Voorlegger
         return $this->kostgeldNvt;
     }
 
-    public function getHuurtoeslagOntvangenMadi()
-    {
-        return $this->huurtoeslagOntvangenMadi;
-    }
 
-    public function getHuurtoeslagOntvangenGka()
-    {
-        return $this->huurtoeslagOntvangenGka;
-    }
-
-    public function isHuurtoeslagNvt()
-    {
-        return $this->huurtoeslagNvt;
-    }
-
-    public function getZorgtoeslagOntvangenMadi()
-    {
-        return $this->zorgtoeslagOntvangenMadi;
-    }
-
-    public function getZorgtoeslagOntvangenGka()
-    {
-        return $this->zorgtoeslagOntvangenGka;
-    }
-
-    public function isZorgtoeslagNvt()
-    {
-        return $this->zorgtoeslagNvt;
-    }
-
-    public function getKinderopvangtoeslagOntvangenMadi()
-    {
-        return $this->kinderopvangtoeslagOntvangenMadi;
-    }
-
-    public function getKinderopvangtoeslagOntvangenGka()
-    {
-        return $this->kinderopvangtoeslagOntvangenGka;
-    }
-
-    public function isKinderopvangtoeslagNvt()
-    {
-        return $this->kinderopvangtoeslagNvt;
-    }
-
-    public function getKindgebondenBudgetOntvangenMadi()
-    {
-        return $this->kindgebondenBudgetOntvangenMadi;
-    }
-
-    public function getKindgebondenBudgetOntvangenGka()
-    {
-        return $this->kindgebondenBudgetOntvangenGka;
-    }
-
-    public function isKindgebondenBudgetNvt()
-    {
-        return $this->kindgebondenBudgetNvt;
-    }
 
     public function getHuurspecificatieOntvangenMadi()
     {
@@ -1807,65 +1708,7 @@ class Voorlegger
         $this->kostgeldNvt = $kostgeldNvt;
     }
 
-    public function setHuurtoeslagOntvangenMadi($huurtoeslagOntvangenMadi)
-    {
-        $this->huurtoeslagOntvangenMadi = $huurtoeslagOntvangenMadi;
-    }
 
-    public function setHuurtoeslagOntvangenGka($huurtoeslagOntvangenGka)
-    {
-        $this->huurtoeslagOntvangenGka = $huurtoeslagOntvangenGka;
-    }
-
-    public function setHuurtoeslagNvt($huurtoeslagNvt)
-    {
-        $this->huurtoeslagNvt = $huurtoeslagNvt;
-    }
-
-    public function setZorgtoeslagOntvangenMadi($zorgtoeslagOntvangenMadi)
-    {
-        $this->zorgtoeslagOntvangenMadi = $zorgtoeslagOntvangenMadi;
-    }
-
-    public function setZorgtoeslagOntvangenGka($zorgtoeslagOntvangenGka)
-    {
-        $this->zorgtoeslagOntvangenGka = $zorgtoeslagOntvangenGka;
-    }
-
-    public function setZorgtoeslagNvt($zorgtoeslagNvt)
-    {
-        $this->zorgtoeslagNvt = $zorgtoeslagNvt;
-    }
-
-    public function setKinderopvangtoeslagOntvangenMadi($kinderopvangtoeslagOntvangenMadi)
-    {
-        $this->kinderopvangtoeslagOntvangenMadi = $kinderopvangtoeslagOntvangenMadi;
-    }
-
-    public function setKinderopvangtoeslagOntvangenGka($kinderopvangtoeslagOntvangenGka)
-    {
-        $this->kinderopvangtoeslagOntvangenGka = $kinderopvangtoeslagOntvangenGka;
-    }
-
-    public function setKinderopvangtoeslagNvt($kinderopvangtoeslagNvt)
-    {
-        $this->kinderopvangtoeslagNvt = $kinderopvangtoeslagNvt;
-    }
-
-    public function setKindgebondenBudgetOntvangenMadi($kindgebondenBudgetOntvangenMadi)
-    {
-        $this->kindgebondenBudgetOntvangenMadi = $kindgebondenBudgetOntvangenMadi;
-    }
-
-    public function setKindgebondenBudgetOntvangenGka($kindgebondenBudgetOntvangenGka)
-    {
-        $this->kindgebondenBudgetOntvangenGka = $kindgebondenBudgetOntvangenGka;
-    }
-
-    public function setKindgebondenBudgetNvt($kindgebondenBudgetNvt)
-    {
-        $this->kindgebondenBudgetNvt = $kindgebondenBudgetNvt;
-    }
 
     public function setHuurspecificatieOntvangenMadi($huurspecificatieOntvangenMadi)
     {
@@ -2315,5 +2158,75 @@ class Voorlegger
     {
         $this->drinkwaterOpname = $drinkwaterOpname;
     }
+    public function getToeslagenOntvangenMadi()
+    {
+        return $this->toeslagenOntvangenMadi;
+    }
+
+    public function setToeslagenOntvangenMadi($toeslagenOntvangenMadi)
+    {
+        $this->toeslagenOntvangenMadi = $toeslagenOntvangenMadi;
+    }
+
+    public function getToeslagenOntvangenGka()
+    {
+        return $this->toeslagenOntvangenGka;
+    }
+
+    public function setToeslagenOntvangenGka($toeslagenOntvangenGka)
+    {
+        $this->toeslagenOntvangenGka = $toeslagenOntvangenGka;
+    }
+
+    public function isToeslagenNvt()
+    {
+        return $this->toeslagenNvt;
+    }
+
+    public function setToeslagenNvt($toeslagenNvt)
+    {
+        $this->toeslagenNvt = $toeslagenNvt;
+    }
+
+    public function isToeslagenHuur()
+    {
+        return $this->toeslagenHuur;
+    }
+
+    public function setToeslagenHuur($toeslagenHuur)
+    {
+        $this->toeslagenHuur = $toeslagenHuur;
+    }
+
+    public function isToeslagenZorg()
+    {
+        return $this->toeslagenZorg;
+    }
+
+    public function setToeslagenZorg($toeslagenZorg)
+    {
+        $this->toeslagenZorg = $toeslagenZorg;
+    }
+
+    public function isToeslagenKinderopvang()
+    {
+        return $this->toeslagenKinderopvang;
+    }
+
+    public function setToeslagenKinderopvang($toeslagenKinderopvang)
+    {
+        $this->toeslagenKinderopvang = $toeslagenKinderopvang;
+    }
+
+    public function isToeslagenKindgebondenBudget()
+    {
+        return $this->toeslagenKindgebondenBudget;
+    }
+
+    public function setToeslagenKindgebondenBudget($toeslagenKindgebondenBudget)
+    {
+        $this->toeslagenKindgebondenBudget = $toeslagenKindgebondenBudget;
+    }
+
 
 }

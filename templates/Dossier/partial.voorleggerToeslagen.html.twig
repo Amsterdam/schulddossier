@@ -1,12 +1,12 @@
 {% import 'partial.macros.html.twig' as tools %}
-{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('huurtoeslag') %}
+{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('toeslagen') %}
   
-            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-huurtoeslag">
+            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-toeslagen">
                 <div class="accordion-header">
                     
-                    <div class="voorlegger-header{{ dossier.voorlegger.huurtoeslagNvt ? ' nvt' }}">
+                    <div class="voorlegger-header{{ dossier.voorlegger.toeslagenNvt ? ' nvt' }}">
                         <h3 class="naam">
-                            <a href="#voorlegger-huurtoeslag" data-handler="toggle">Huurtoeslag</a>
+                            <a href="#voorlegger-toeslagen" data-handler="toggle">Toeslagen</a>
                         </h3>
                         {% if dossierDocumenten|length > 0 %}
                           <div class="voortgang">
@@ -14,17 +14,21 @@
                           </div>
                         {% endif %}
                         <div class="nvt" data-changer="nvt">
-                            {{ form_row(form.huurtoeslagNvt) }}
+                            {{ form_row(form.toeslagenNvt) }}
                         </div>
                         <div class="status-container">
-                          {{ form_row(form.huurtoeslagOntvangenMadi) }}
-                          {{ form_row(form.huurtoeslagOntvangenGka) }}
+                          {{ form_row(form.toeslagenOntvangenMadi) }}
+                          {{ form_row(form.toeslagenOntvangenGka) }}
                         </div>
                     </div>
                     
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
+                        {{ form_row(form.toeslagenHuur) }}
+                        {{ form_row(form.toeslagenZorg) }}
+                        {{ form_row(form.toeslagenKindgebondenBudget) }}
+                        {{ form_row(form.toeslagenKinderopvang) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Huurtoeslag'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}

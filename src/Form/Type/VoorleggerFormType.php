@@ -45,11 +45,9 @@ class VoorleggerFormType extends AbstractType
         $builder->add('cjib', VoorleggerCjibFormType::class, $settings);
         $builder->add('gereserveerdeGelden', VoorleggerGereserveerdeGeldenFormType::class, $settings);
         $builder->add('huurspecificatie', VoorleggerHuurspecificatieFormType::class, $settings);
-        $builder->add('huurtoeslag', VoorleggerHuurtoeslagFormType::class, $settings);
+        $builder->add('toeslagen', VoorleggerToeslagenFormType::class, $settings);
         $builder->add('inkomstenspecificatie', VoorleggerInkomstenspecificatieFormType::class, $settings);
         $builder->add('inzageToetsingBkr', VoorleggerInzageToetsingBkrFormType::class, $settings);
-        $builder->add('kinderopvangtoeslag', VoorleggerKinderopvangtoeslagFormType::class, $settings);
-        $builder->add('kindgebondenBudget', VoorleggerKindgebondenBudgetFormType::class, $settings);
         $builder->add('kostgeld', VoorleggerKostgeldFormType::class, $settings);
         $builder->add('kwijtscheldingGemeenteBelasting', VoorleggerKwijtscheldingGemeenteBelastingFormType::class, $settings);
         $builder->add('legitimatie', VoorleggerLegitimatieFormType::class, $settings);
@@ -67,7 +65,6 @@ class VoorleggerFormType extends AbstractType
         $builder->add('vrijwaringsbewijs', VoorleggerVrijwaringsbewijsFormType::class, $settings);
         $builder->add('vtlb', VoorleggerVtlbFormType::class, $settings);
         $builder->add('waternet', VoorleggerWaternetFormType::class, $settings);
-        $builder->add('zorgtoeslag', VoorleggerZorgtoeslagFormType::class, $settings);
     }
 
     public function configureOptions(OptionsResolver $resolver)

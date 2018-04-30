@@ -24,19 +24,31 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints\Valid;
 
-class VoorleggerKindgebondenBudgetFormType extends AbstractType
+class VoorleggerToeslagenFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('kindgebondenBudgetOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('toeslagenOntvangenMadi', MadiStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('kindgebondenBudgetOntvangenGka', GkaStatusFormType::class, [
+        $builder->add('toeslagenOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
-        $builder->add('kindgebondenBudgetNvt', CheckboxType::class, [
+        $builder->add('toeslagenNvt', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('toeslagenHuur', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('toeslagenZorg', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('toeslagenKindgebondenBudget', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('toeslagenKinderopvang', CheckboxType::class, [
             'required' => false
         ]);
         $builder->add('file', CollectionType::class, [
