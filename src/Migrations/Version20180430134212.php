@@ -25,10 +25,10 @@ class Version20180430134212 extends AbstractMigration
         
         $this->addSql('UPDATE voorlegger SET toeslagen_ontvangen_madi = 1');
         $this->addSql('UPDATE voorlegger SET toeslagen_ontvangen_gka = 0');
-        $this->addSql('UPDATE voorlegger SET toeslagen_huur = (SELECT COUNT(id) > 0 FROM dossier_document AS dd WHERE dd.onderwerp = \'huurtoeslag\' AND dd.dossier_id = dossier_id)');
-        $this->addSql('UPDATE voorlegger SET toeslagen_zorg = (SELECT COUNT(id) > 0 FROM dossier_document AS dd WHERE dd.onderwerp = \'zorgtoeslag\' AND dd.dossier_id = dossier_id)');
-        $this->addSql('UPDATE voorlegger SET toeslagen_kinderopvang = (SELECT COUNT(id) > 0 FROM dossier_document AS dd WHERE dd.onderwerp = \'kinderopvangtoeslag\' AND dd.dossier_id = dossier_id)');
-        $this->addSql('UPDATE voorlegger SET toeslagen_kindgebonden_budget = (SELECT COUNT(id) > 0 FROM dossier_document AS dd WHERE dd.onderwerp = \'kindgebondenBudget\' AND dd.dossier_id = dossier_id)');
+        $this->addSql('UPDATE voorlegger SET toeslagen_huur = (SELECT COUNT(dd.id) FROM dossier_document AS dd WHERE dd.onderwerp = \'huurtoeslag\' AND dd.dossier_id = voorlegger.dossier_id) > 0');
+        $this->addSql('UPDATE voorlegger SET toeslagen_zorg = (SELECT COUNT(dd.id) FROM dossier_document AS dd WHERE dd.onderwerp = \'zorgtoeslag\' AND dd.dossier_id = voorlegger.dossier_id) > 0');
+        $this->addSql('UPDATE voorlegger SET toeslagen_kinderopvang = (SELECT COUNT(dd.id) FROM dossier_document AS dd WHERE dd.onderwerp = \'kinderopvangtoeslag\' AND dd.dossier_id = voorlegger.dossier_id) > 0');
+        $this->addSql('UPDATE voorlegger SET toeslagen_kindgebonden_budget = (SELECT COUNT(dd.id) FROM dossier_document AS dd WHERE dd.onderwerp = \'kindgebondenBudget\' AND dd.dossier_id = voorlegger.dossier_id) > 0');
         $this->addSql('UPDATE voorlegger SET toeslagen_nvt = false');
         $this->addSql('UPDATE voorlegger SET toeslagen_nvt = true WHERE toeslagen_huur = false AND toeslagen_zorg = false AND toeslagen_kinderopvang = false AND toeslagen_kindgebonden_budget = false');
         
@@ -43,7 +43,6 @@ class Version20180430134212 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER TABLE voorlegger DROP toeslagen_ontvangen_madi');
         $this->addSql('ALTER TABLE voorlegger DROP toeslagen_ontvangen_gka');
         $this->addSql('ALTER TABLE voorlegger DROP toeslagen_nvt');
