@@ -22,7 +22,12 @@
             {{ form_start(searchForm, {'attr': {}}) }}
             <fieldset class="search-basic">
               <div class="group">
-                {{ form_row(searchForm.naam, {attr: {placeholder: 'Zoek dossiers op naam'}}) }}
+                <div class="search-input">
+                  <input name="search_dossier_form[naam]" placeholder="Zoek dossiers op naam" type="text" value="{{ searchForm.naam.vars.value }}">
+                  <i class="icon-search"></i>
+                  <a href="#cancel" data-handler="cancel" class="search-cancel" tabindex="-1">&times;</a>
+                  {% do searchForm.naam.setRendered() %}
+                </div>
                 <button type="submit" class="button">Zoeken</button>
               </div>
               <div class="tabs">
