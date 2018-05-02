@@ -39,13 +39,19 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
      */
     private $urlGenerator;
 
-    public function __construct(\Swift_Mailer $mailer, $fromNotificiatieAdres, LoggerInterface $logger, TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator)
+    /**
+     * @var \Twig\Environment
+     */
+    private $twig;
+
+    public function __construct(\Swift_Mailer $mailer, $fromNotificiatieAdres, LoggerInterface $logger, TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator, \Twig\Environment $twig)
     {
         $this->mailer = $mailer;
         $this->fromNotificiatieAdres = $fromNotificiatieAdres;
         $this->logger = $logger;
         $this->tokenStorage = $tokenStorage;
         $this->urlGenerator = $urlGenerator;
+        $this->twig = $twig;
     }
 
     public function notifyOpgevoerdMadi(Event $event)
@@ -54,12 +60,10 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $dossier = $event->getSubject();
 
         if (empty($dossier->getSchuldhulpbureau()->getEmailAdresControle()) === false) {
-            $message = new \Swift_Message();
-            $message->addFrom($this->fromNotificiatieAdres);
-            $message->addTo($dossier->getSchuldhulpbureau()->getEmailAdresControle());
-            $message->setSubject('Controle schulddossier (' . $dossier->getSchuldhulpbureau()->getNaam() . ')');
-            $message->setBody('Hallo, ' . PHP_EOL . 'Er staat een nieuw dossier ter controle klaar.' . PHP_EOL . PHP_EOL . 'Afzender: ' . $this->tokenStorage->getToken()->getUser()->getNaam() . PHP_EOL . 'Aangeboden op: ' . date('d-m-Y') . PHP_EOL . PHP_EOL . $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()], UrlGeneratorInterface::ABSOLUTE_URL));
-            $this->mailer->send($message);
+            $this->mail($this->fromNotificiatieAdres, $dossier->getTeamGka()->getEmail(), 'mails/notifyOpgevoerdMadi.html.twig', [
+                'dossier' => $dossier,
+                'tokenStorage' => $this->tokenStorage
+            ]);
         } else {
             $this->logger->notice('Kan geen notifificatie sturen omdat er geen e-mailadres is ingevuld voor controle verzoeken aan dit schuldhulpbureau van dit dossier', ['dossierId' => $dossier->getId()]);
         }
@@ -71,12 +75,10 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $dossier = $event->getSubject();
 
         if ($dossier->getTeamGka() !== null && empty($dossier->getTeamGka()->getEmail()) === false) {
-            $message = new \Swift_Message();
-            $message->addFrom($this->fromNotificiatieAdres);
-            $message->addTo($dossier->getTeamGka()->getEmail());
-            $message->setSubject('Nieuw schulddossier (' . $dossier->getSchuldhulpbureau()->getNaam() . ')');
-            $message->setBody('Hallo, ' . PHP_EOL . 'Er staat een nieuw dossier klaar voor ' . $dossier->getTeamGka()->getNaam() . '.' . PHP_EOL . PHP_EOL . 'Afzender: ' . $this->tokenStorage->getToken()->getUser()->getNaam() . PHP_EOL . 'Ingezonden op: ' . date('d-m-Y') . PHP_EOL . PHP_EOL . $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()], UrlGeneratorInterface::ABSOLUTE_URL));
-            $this->mailer->send($message);
+            $this->mail($this->fromNotificiatieAdres, $dossier->getTeamGka()->getEmail(), 'mails/notifyVerzendenMadi.html.twig', [
+                'dossier' => $dossier,
+                'tokenStorage' => $this->tokenStorage
+            ]);
         } else {
             $this->logger->notice('Kan geen notifificatie sturen omdat er geen team is toegewezen of er geen e-mailadres is ingevuld voor het team van dit dossier', ['dossierId' => $dossier->getId(), 'teamId' => $dossier->getTeamGka() ? $dossier->getTeamGka()->getId() : 'n/a']);
         }
@@ -88,12 +90,10 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $dossier = $event->getSubject();
 
         if ($dossier->getMedewerkerSchuldhulpbureau() !== null && empty($dossier->getMedewerkerSchuldhulpbureau()->getEmail()) === false) {
-            $message = new \Swift_Message();
-            $message->addFrom($this->fromNotificiatieAdres);
-            $message->addTo($dossier->getMedewerkerSchuldhulpbureau()->getEmail());
-            $message->setSubject('Dossier afgekeurd (' . $dossier->getSchuldhulpbureau()->getNaam() . ')');
-            $message->setBody('Hallo ' . $dossier->getMedewerkerSchuldhulpbureau()->getNaam() . ', ' . PHP_EOL . 'Een door jouw ingezonden dossier is door de controleur afgekeurd.' . PHP_EOL . PHP_EOL . 'Afzender: ' . $this->tokenStorage->getToken()->getUser()->getNaam() . PHP_EOL . 'Controle op: ' . date('d-m-Y') . PHP_EOL . PHP_EOL . $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()], UrlGeneratorInterface::ABSOLUTE_URL));
-            $this->mailer->send($message);
+            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyAfkeurenMadi.html.twig', [
+                'dossier' => $dossier,
+                'tokenStorage' => $this->tokenStorage
+            ]);
         } else {
             $this->logger->notice('Kan geen notifificatie sturen omdat er geen medewerker schuldhulpbureau opgegeven of er is geen e-mailadres voor de medewerker van dit dossier ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerSchuldhulpbureau() ? $dossier->getMedewerkerSchuldhulpbureau()->getId() : 'n/a']);
         }
@@ -105,15 +105,31 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $dossier = $event->getSubject();
 
         if ($dossier->getMedewerkerSchuldhulpbureau() !== null && empty($dossier->getMedewerkerSchuldhulpbureau()->getEmail()) === false) {
-            $message = new \Swift_Message();
-            $message->addFrom($this->fromNotificiatieAdres);
-            $message->addTo($dossier->getMedewerkerSchuldhulpbureau()->getEmail());
-            $message->setSubject('Dossier afgekeurd (GKA)');
-            $message->setBody('Hallo ' . $dossier->getMedewerkerSchuldhulpbureau()->getNaam() . ', ' . PHP_EOL . 'Een door jouw ingezonden dossier is door het GKA afgekeurd en bij deze teruggestuurd.' . PHP_EOL . PHP_EOL . 'Afzender: ' . $this->tokenStorage->getToken()->getUser()->getNaam() . PHP_EOL . 'Controle op: ' . date('d-m-Y') . PHP_EOL . PHP_EOL . $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()], UrlGeneratorInterface::ABSOLUTE_URL));
-            $this->mailer->send($message);
+            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyAfkeurenGka.html.twig', [
+                'dossier' => $dossier,
+                'tokenStorage' => $this->tokenStorage
+            ]);
         } else {
             $this->logger->notice('Kan geen notifificatie sturen omdat er geen medewerker schuldhulpbureau opgegeven of er is geen e-mailadres voor de medewerker van dit dossier ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerSchuldhulpbureau() ? $dossier->getMedewerkerSchuldhulpbureau()->getId() : 'n/a']);
         }
+    }
+
+    protected function mail($from, $to, $template, $data)
+    {
+        $message = new \Swift_Message();
+        $message->getHeaders()->addTextHeader('X-Application', 'Schuldhulp');
+        $message->addFrom($from);
+        $message->addTo($to);
+
+        $subject = $this->twig->load($template)->renderBlock('subject', $data);
+        $html = $this->twig->load($template)->renderBlock('html', $data);
+        $txt = $this->twig->load($template)->renderBlock('txt', $data);
+
+        $message->setSubject($subject);
+        $message->setBody($html, 'text/html');
+        $message->addPart($txt, 'text/plain');
+
+        $this->mailer->send($message);
     }
 
     public static function getSubscribedEvents()
