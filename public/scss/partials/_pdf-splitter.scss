@@ -158,13 +158,6 @@
   z-index: 100;
 }
 
-.hide-pdf-splitter {
-  .pdf-splitter-trigger,
-  .pdf-splitter {
-    display: none;
-  }
-}
-
 .pages {
   counter-reset: page;
   .page {

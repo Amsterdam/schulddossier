@@ -21,8 +21,6 @@
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Schuldenoverzicht'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         <div class="table">
                             <table>
                                 <thead>
@@ -31,22 +29,32 @@
                                         <th>Referentie</th>
                                         <th>Type</th>
                                         <th>Contactdatum</th>
-                                        <th>Schuld</th>
+                                        <th style="text-align: right">Schuld</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for schuldItem in dossier.schuldItems if schuldItem.verwijderd == false %}
                                     <tr>
-                                        <td>{{ schuldItem.schuldeiser|default('-') }} {% if schuldItem.incassant %}/{% endif %} {{ schuldItem.incassant }}</td>
+                                        <th>
+                                          <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}#schuldItem-{{ schuldItem.id }}">{{ schuldItem.schuldeiser|default('-') }} {% if schuldItem.incassant %}/{% endif %} {{ schuldItem.incassant }}</a></th>
                                         <td>{{ schuldItem.referentie }}</td>
                                         <td>{{ schuldItem.type }}</td>
                                         <td>{{ schuldItem.vaststelDatum is not empty ? schuldItem.vaststelDatum|date('d-m-Y') : '-' }}</td>
-                                        <td>&euro; {{ schuldItem.bedrag|number_format(2, ',', '.') }}</td>
+                                        <td align="right">&euro; {{ schuldItem.bedrag|number_format(2, ',', '.') }}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
                             </table>
+                            
+                            <p class="nav-internal">
+                              <a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">Ga naar overzicht</a>
+                            </p>
+                            
                         </div>
+                        
+                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Schuldenoverzicht'} only %}
+                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
+                        
                         {{ form_row(form.aantekening) }}
                         {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('schuldenoverzicht')} only %}
                     </div>

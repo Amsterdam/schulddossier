@@ -93,8 +93,6 @@
       
       files.insertBefore(prototype, this);
     
-      // window.schuldhulp.pdfSplitter.dragula.containers.push(prototype.querySelector('.drop-area'));
-    
       prototype.addEventListener('filled', function (event) {
           var elm = prototype.querySelector('input[type="text"]');
           if (elm.value === '' || elm.value === null) {
@@ -141,6 +139,17 @@
       if (input) {
         input.value = '';
       }
+    },
+
+    'clear': function(e){
+      var pdfsplitter = document.getElementById('pdfsplitter');
+
+      if (!pdfsplitter) return;
+        w.sessionStorage && w.sessionStorage.removeItem('pdfsplitterFile');
+
+        var pages = pdfsplitter.querySelector('.pages');
+        if (pages) pages.innerHTML = '';
+
     }
     
   };
@@ -256,6 +265,18 @@
       this.addEventListener('drop', _drop);
 
     },
+    
+    'restore': function(){
+
+      if (!w.sessionStorage) return;
+      var blob = w.sessionStorage.getItem('pdfsplitterFile');
+      
+      if (!blob) return;
+      
+      this.blob = blob;
+      
+      helpers.trigger(this, 'change');
+    }
     
     
   };
@@ -397,9 +418,24 @@
         file = (e && e.dataTransfer && e.dataTransfer.files[0]) || this.querySelector('[name="file"]').files[0];
         
       
-      container.classList.add('active');
+        container.classList.add('active');
+        
+      if (this.blob) {
+        blob = this.blob;
+        this.blob = false;
+      } else {
+        blob = window.URL.createObjectURL(file);
+        
+        if (!this.fileReader) {
+          this.fileReader = new FileReader();
+          this.fileReader.addEventListener('load', function(e){
+            w.sessionStorage && w.sessionStorage.setItem('pdfsplitterFile', e.target.result);
+          });
+        }
       
-      blob = window.URL.createObjectURL(file);
+        this.fileReader.readAsDataURL(file);
+        
+      }
       
       var _clear = function(){
         var els = pages.querySelectorAll('.page');
@@ -409,6 +445,7 @@
       };
       
       var _load = function(){
+
         PDFJS.getDocument(blob).then(function(pdf) {
           for (var i = 1; i <= pdf.numPages; i += 1) {
             pdf.getPage(i).then(function (pdfPage){ 
