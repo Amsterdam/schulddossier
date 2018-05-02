@@ -38,7 +38,8 @@ class SearchDossierFormType extends AbstractType
             'required' => false,
             'class' => Schuldhulpbureau::class,
             'multiple' => false,
-            'expanded' => false
+            'expanded' => false,
+            'placeholder' => 'Alle schuldhulpbureau\'s'
         ]);
         $builder->add('medewerkerSchuldhulpbureau', EntityType::class, [
             'required' => false,
@@ -51,13 +52,15 @@ class SearchDossierFormType extends AbstractType
                 $qb->setParameter('type', Gebruiker::TYPE_MADI);
                 $qb->addOrderBy('gebruiker.username', 'ASC');
                 return $qb;
-            }
+            },
+            'placeholder' => 'Alle medewerkers'
         ]);
         $builder->add('teamGka', EntityType::class, [
             'required' => false,
             'class' => Team::class,
             'multiple' => false,
-            'expanded' => false
+            'expanded' => false,
+            'placeholder' => 'Alle teams'
         ]);
     }
 
