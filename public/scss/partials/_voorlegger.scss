@@ -29,11 +29,14 @@
     height: 20px;
     line-height: 20px;
     border-right: 1px solid rgba($textColor, .1);
+    order: 5;
   }
   .status-container {
     padding: 0 0 0 1rem;
+    order: 5;
   }
   .nvt {
+    order: 3;
     position: relative;
     z-index: 2;
     
