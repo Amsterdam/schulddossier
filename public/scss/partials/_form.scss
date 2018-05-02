@@ -633,6 +633,17 @@ form {
     input {
       flex-basis: 20%;
       margin-right: $padding;
+      padding-left: 35px;
+    }
+    i {
+      position: absolute;
+      left: 11px;
+      top: 13px;
+      opacity: .5;
+      transition: all .3s;
+    }
+    input:focus + i {
+      opacity: 1;
     }
   }
   .form-row .label-widget {
@@ -644,6 +655,7 @@ form {
       display: none;
     }
   }
+  
 }
 .button-remove-input {
   position: absolute;
