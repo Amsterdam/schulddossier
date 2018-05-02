@@ -82,7 +82,8 @@
       
     }
   }
-  &:hover {
+  &:hover,
+  .active & {
     .nvt {
       opacity: 1;
     }
