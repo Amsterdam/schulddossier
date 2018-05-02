@@ -82,9 +82,13 @@
       
     }
   }
-  &:hover {
+  &:hover,
+  .active & {
     .nvt {
       opacity: 1;
+      input {
+        opacity: 1;
+      }
     }
   }
   

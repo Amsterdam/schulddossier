@@ -133,6 +133,14 @@
         e && e.preventDefault();
         window.schuldhulp.quickViewer.showDocument(this);
       }
+    },
+    
+    'cancel': function(e){
+      e.preventDefault();
+      var input = this.parentNode.querySelector('input');
+      if (input) {
+        input.value = '';
+      }
     }
     
   };

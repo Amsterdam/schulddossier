@@ -194,3 +194,31 @@
   background-size: 100% auto;
   background-image: url('../images/ico_undo.svg');
 }
+
+.icon-search {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 17px ;
+  height: 15px;
+  &:before, &:after {
+    content: '';
+    position: absolute;
+  }
+  &:before {
+    width: 10px;
+    height: 10px;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    border: 2px solid $textColor;
+  }
+  &:after{
+    width: 8px;
+    height: 0;
+    bottom: 0;
+    right: 0;
+    border-top: 2px solid $textColor;
+    transform: rotate(45deg);
+  } 
+}
