@@ -28,13 +28,13 @@
                         {{ form_row(form.energieBedrijf) }}
                         {{ form_row(form.energieBedrijfKlantnummer) }}
                         {{ form_row(form.energieBedrijfDatumOpname) }}
-                        {{ form_row(form.energieBedrijfT1) }}
-                        {{ form_row(form.energieBedrijfT2) }}
-                        {{ form_row(form.energieBedrijfGas) }}
+                        {{ form_row(form.energieBedrijfT1, {'attr': {'data-unit': 'kWh'}}) }}
+                        {{ form_row(form.energieBedrijfT2, {'attr': {'data-unit': 'kWh'}}) }}
+                        {{ form_row(form.energieBedrijfGas, {'attr': {'data-unit': 'm³'}}) }}
                         {{ form_row(form.warmteBedrijf) }}
                         {{ form_row(form.warmteBedrijfKlantnummer) }}
                         {{ form_row(form.warmteBedrijfDatumOpname) }}
-                        {{ form_row(form.warmteBedrijfOpname) }}
+                        {{ form_row(form.warmteBedrijfOpname, {'attr': {'data-unit': 'GJ'}}) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden energie'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}

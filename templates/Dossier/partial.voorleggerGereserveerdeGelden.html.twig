@@ -24,7 +24,7 @@
                 </div>
                 <div class="accordion-body">
                     <div class="voorlegger-body">
-                        {{ form_row(form.gereserveerdeGelden) }}
+                        {{ form_row(form.gereserveerdeGelden, {'attr': {'data-unit': '€'}}) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Gereserveerde gelden'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}

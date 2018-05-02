@@ -195,8 +195,8 @@ form {
       content: attr(data-unit);
       position: absolute;
       right: 1px;
-      top: 50%;
-      margin-top: -1em;
+      bottom: 1px;
+      margin-bottom: 1.5rem;
       line-height: 2;
       padding: 0 1em;
       background-color: rgba(#fff, 1);

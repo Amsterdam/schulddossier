@@ -26,7 +26,7 @@
                     <div class="voorlegger-body">
                         {{ form_row(form.drinkwaterKlantnummer) }}
                         {{ form_row(form.drinkwaterDatumOpname) }}
-                        {{ form_row(form.drinkwaterOpname) }}
+                        {{ form_row(form.drinkwaterOpname, {'attr': {'data-unit': 'm³'}}) }}
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Waternet'} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                         {{ form_row(form.aantekening) }}
