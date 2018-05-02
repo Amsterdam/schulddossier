@@ -343,7 +343,10 @@
 
 {%- block form_row -%}
     <div class="form-row">
-        <div class="label-widget">{{- form_label(form) -}} {{- form_widget(form) -}}</div>
+        <div class="label-widget"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+          {{- form_label(form) -}}
+          {{- form_widget(form) -}}
+        </div>
         {{- form_errors(form) -}}
     </div>
 {%- endblock form_row -%}
