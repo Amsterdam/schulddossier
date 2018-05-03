@@ -126,6 +126,48 @@
       return prototype;
     },
     
+    'remove-file': function(e){
+      e && e.preventDefault();
+      
+      var 
+        container = _closest(this, '.file-container'),
+        files = _closest(this, '.files-container'),
+        counter = files.dataset.counter || -1;
+        
+      counter--;
+      
+      files.dataset.counter = counter;
+      
+      files.removeChild(container);
+    },
+
+    'prepare-pdf': function(e){
+      e && e.preventDefault();
+      
+      var 
+        container = _closest(this, '.file-container'),
+        input = container.querySelector('.bestand-naam input');
+      
+      if (container.classList.contains('file-pdf-pages')) {
+        
+        var pages = container.querySelectorAll('.page canvas');
+        if (pages.length > 0) {
+          var pdf = new jsPDF('portrait', 'mm', 'a4');
+          for (var j = 0; j < pages.length; j++) {
+            if (j>0) {
+              pdf.addPage();
+            }
+
+            var img = pages[j].toDataURL("image/jpeg");
+            pdf.addImage(img, 'JPEG', 0, 0, 210, 297);
+
+          }
+          this.innerHTML = input.value;
+          this.href = pdf.output('datauristring');
+        }
+      }
+    },
+    
     'bestand': function(e){
       if (window.schuldhulp && window.schuldhulp.quickViewer) {
         e && e.preventDefault();

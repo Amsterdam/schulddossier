@@ -462,7 +462,7 @@ form {
     padding: 5px;
     margin: -5px 10px 10px -5px;
     border: 1px dotted rgba($textColor, .2) ;
-    width: 230px;
+    min-width: 230px;
     display: inline-block;
     vertical-align: top;
     position: relative;
@@ -542,6 +542,31 @@ form {
     .errors {
       padding-left: 0;
     }
+    .bestand-zoom {
+      display: none;
+    }
+    &.file-pdf-pages {
+      .bestand-zoom {
+        display: block;
+      }
+      &:hover {
+        .bestand-zoom {
+          opacity: .9;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+    &:hover {
+      .bestand-verwijderen {
+        opacity: .9;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    
   }
 }
 
