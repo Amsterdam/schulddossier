@@ -1,0 +1,31 @@
+{% block subject -%}
+    Dossier afgekeurd (GKA)
+{%- endblock  %}
+
+{% block html -%}
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{{ block('subject') }}</title>
+    </head>
+    <body>
+        <p>Hallo {{ dossier.getMedewerkerSchuldhulpbureau.getNaam }},</p>
+        <p>Een door jouw ingezonden dossier is door het GKA afgekeurd en bij deze teruggestuurd.</p>
+        <p>&nbsp;</p>
+        <p>Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}</p>
+        <p>Controle op: {{ 'now'|date('d-m-Y') }}</p>
+        <p>&nbsp;</p>
+        <p><a href="{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId}) }}">Open dossier</a>
+    </body>
+</html>
+{%- endblock %}
+
+{% block txt -%}
+Hallo {{ dossier.getMedewerkerSchuldhulpbureau.getNaam }},
+Een door jouw ingezonden dossier is door het GKA afgekeurd en bij deze teruggestuurd.
+
+Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}
+Controle op: {{ 'now'|date('d-m-Y') }}
+
+{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId}) }}
+{%- endblock %}
