@@ -266,16 +266,24 @@
 
     },
     
-    'restore': function(){
-
+    'restore-splitter': function(){
+      
       if (!w.sessionStorage) return;
-      var blob = w.sessionStorage.getItem('pdfsplitterFile');
       
-      if (!blob) return;
+      var el = document.getElementById('pdfsplitter');
+
+      if (!el) {
+        w.sessionStorage.removeItem('pdfsplitterFile');
+      } else {
+        var blob = w.sessionStorage.getItem('pdfsplitterFile');
       
-      this.blob = blob;
+        if (!blob) return;
       
-      helpers.trigger(this, 'change');
+        el.blob = blob;
+      
+        helpers.trigger(el, 'change');
+        
+      }
     }
     
     

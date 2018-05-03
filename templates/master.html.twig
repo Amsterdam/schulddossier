@@ -14,10 +14,10 @@
         <!-- TODO: USE FONTS FROM AMSTERDAM -->
         <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/0037f97b-b0f6-41de-8f33-75b12c9f76ea.css"/>
     </head>
-    <body class="{% block body_classes %}{% endblock %}">
+    <body class="{% block body_classes %}{% endblock %}" data-decorator="restore-splitter">
       
         {% block pdfsplitter %}
-          <aside id="pdfsplitter" class="pdf-splitter accordion" data-decorator="droppable restore" data-changer="pdfsplitter">
+          <aside id="pdfsplitter" class="pdf-splitter accordion" data-decorator="droppable" data-changer="pdfsplitter">
               <div class="pages"></div>
               <label class="file-selector">
                   <input type="file" name="file" accept="application/pdf">
