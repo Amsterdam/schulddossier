@@ -1,8 +1,10 @@
 .document-container {
   max-width: $maxContentWidth;
   margin: 2 * $lineHeight auto;
-  
-  transition: padding .3s;
+}
+
+.pdf-splitter.animatable ~ .document-container {
+  transition: padding .3s; 
 }
 
 .document {
