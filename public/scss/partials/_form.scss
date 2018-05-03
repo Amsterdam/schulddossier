@@ -498,10 +498,13 @@ form {
     .bestand-nieuw {
       z-index: 2;
     }
-    .file {
+    .drop-area:empty:before {
+      content: "Kies een bestand\Aof sleep pagina 's hier naartoe";
+      white-space: pre;
       font-size: $fontSmallSize;
       display: block;
       line-height: 1.2;
+      min-height: 3.6em;
       margin-bottom: 5px;
       overflow: hidden;
       text-overflow: ellipsis;

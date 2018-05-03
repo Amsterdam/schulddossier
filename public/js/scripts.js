@@ -469,7 +469,7 @@
         container = this,
         pages = container.querySelector('.pages'),
         file = (e && e.dataTransfer && e.dataTransfer.files[0]) || this.querySelector('[name="file"]').files[0];
-        
+      
       
       container.classList.add('active');
       
@@ -492,7 +492,7 @@
       if (this.blob) {
         blob = _convert(this.blob);
         this.blob = false;
-      } else {
+      } else if (file) {
         blob = window.URL.createObjectURL(file);
         
         if (!this.fileReader) {
@@ -504,6 +504,8 @@
       
         this.fileReader.readAsDataURL(file);
         
+      } else {
+        return;
       }
       
       var _clear = function(){
@@ -571,7 +573,9 @@
             
             if (zone) {
               
-              if (zone.classList.contains('pdf-splitter')) return;
+              if (zone.classList.contains('pdf-splitter')) {
+                return;
+              }
               
               zone.classList.add('active');
               
@@ -618,7 +622,13 @@
               
               if (!dropZone.sortable) {
                 dropZone.sortable = Sortable.create(dropZone, {
-                  group: 'files'
+                  group: 'files',
+                  onEnd: function(e){
+                    var zone = _closest(e.originalEvent.target, '.drop-area');
+                    if (!zone) {
+                      e.item.parentNode.removeChild(e.item);
+                    }
+                  }
                 });
               }
               
