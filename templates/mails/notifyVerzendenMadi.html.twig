@@ -1,0 +1,32 @@
+{% block subject -%}
+    Nieuw schulddossier ({{ dossier.getSchuldhulpbureau().getNaam() }})
+{%- endblock  %}
+
+{% block html -%}
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{{ block('subject') }}</title>
+    </head>
+    <body>
+        <p>Hallo,</p>
+        <p>Er staat een nieuw dossier klaar voor {{ dossier.getTeamGka().getNaam() }}.</p>
+        <p>&nbsp;</p>
+        <p>Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}</p>
+        <p>Ingezonden op: {{ 'now'|date('d-m-Y') }}</p>
+        <p>&nbsp;</p>
+        <p><a href="{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId}) }}">Open dossier</a>
+    </body>
+</html>
+{%- endblock %}
+
+{% block txt -%}
+Hallo,
+
+Er staat een nieuw dossier klaar voor {{ dossier.getTeamGka().getNaam() }}.
+
+Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}
+Ingezonden op: {{ 'now'|date('d-m-Y') }}
+
+{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId()}) }}
+{%- endblock %}
