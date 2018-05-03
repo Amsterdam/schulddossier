@@ -15,8 +15,6 @@ header.top {
   border-bottom: 1px solid darken($lightColor, 20);
   z-index: 99;
   
-  transition: transform .3s;
-  
   
   .logo {
     position: absolute;
@@ -27,7 +25,6 @@ header.top {
     flex-grow: 0;
     height: 35px;
     
-    transition: transform .3s;
     img {
       width: 100%;
     }
@@ -97,6 +94,12 @@ header.top {
     }
   }
 }
+
+.pdf-splitter.animatable ~ header.top,
+.pdf-splitter.animatable ~ header.top .logo {
+  transition: transform .3s;
+}
+
 
 
 //.menu {

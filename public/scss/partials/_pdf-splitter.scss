@@ -92,7 +92,9 @@
   }
   
   transform: translate3d((-$pdfSplitterWidth + 20px), 0, 0);
-  transition: all .3s;
+  &.animatable {
+    transition: all .3s;
+  }
   opacity: 0;
   
   .drag-mode & {
@@ -124,7 +126,6 @@
   left: 13px;
   top: 50%;
   margin-top: -85px;
-  transition: margin .3s;
   a {
     position: absolute;
     transform: rotate(90deg);
@@ -151,6 +152,9 @@
     top: 2px;
     margin-right: .5em;
   }
+}
+.pdf-splitter.animatable ~ .pdf-splitter-trigger {
+  transition: margin .3s;
 }
 .pdf-splitter.active ~ .pdf-splitter-trigger,
 .pdf-splitter.drop-over ~ .pdf-splitter-trigger {

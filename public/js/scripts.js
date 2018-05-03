@@ -266,16 +266,27 @@
 
     },
     
-    'restore': function(){
-
+    'restore-splitter': function(){
+      
       if (!w.sessionStorage) return;
-      var blob = w.sessionStorage.getItem('pdfsplitterFile');
       
-      if (!blob) return;
+      var el = document.getElementById('pdfsplitter');
+
+      if (!el) {
+        w.sessionStorage.removeItem('pdfsplitterFile');
+      } else {
+        setTimeout(function(){
+          el.classList.add('animatable');
+        }, 500);
+        var blob = w.sessionStorage.getItem('pdfsplitterFile');
       
-      this.blob = blob;
+        if (!blob) return;
       
-      helpers.trigger(this, 'change');
+        el.blob = blob;
+      
+        helpers.trigger(el, 'change');
+        
+      }
     }
     
     
@@ -418,10 +429,26 @@
         file = (e && e.dataTransfer && e.dataTransfer.files[0]) || this.querySelector('[name="file"]').files[0];
         
       
-        container.classList.add('active');
+      container.classList.add('active');
+      
+      var _convert = function(dataURI){
+        var
+          marker = ';base64,',
+          base64Index = dataURI.indexOf(marker) + marker.length,
+          base64 = dataURI.substring(base64Index),
+          raw = w.atob(base64),
+          rawLength = raw.length,
+          array = new Uint8Array(new ArrayBuffer(rawLength));
+
+        for (var i = 0; i < rawLength; i++) {
+          array[i] = raw.charCodeAt(i);
+        }
+        
+        return array;
+      };
         
       if (this.blob) {
-        blob = this.blob;
+        blob = _convert(this.blob);
         this.blob = false;
       } else {
         blob = window.URL.createObjectURL(file);
