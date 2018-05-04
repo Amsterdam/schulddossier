@@ -40,8 +40,13 @@
     border: 1px solid #999;
     border-radius: 2px;
     .modal-header {
-      border-bottom: 1px solid #CCC;
-      padding: 10px 20px;
+      border-bottom: 1px solid #dfdfdf;
+      padding: $padding / 2;
+      line-height: 1;
+      background-color: $lightColor;
+      font-size: 1.6rem;
+      height: 1.6rem;
+      @extend .bold !optional;
       h2 {
         font-weight: normal;
       }

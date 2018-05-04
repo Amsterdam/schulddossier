@@ -12,7 +12,8 @@ window.schuldhulp.quickViewer = {
         spinner: null,
         pageCounter: null,
         nextButton: null,
-        prevButton: null
+        prevButton: null,
+        fitButton: null
     },
     
     currentPage: 0,
@@ -141,6 +142,24 @@ window.schuldhulp.quickViewer = {
             self.next();
         });
         self.dom.body.appendChild(self.dom.nextButton);
+
+        self.dom.fitButton = document.createElement('a');
+        self.dom.fitButton.href = '#';
+        self.dom.fitButton.classList.add('button', 'toggle-fit-mode');
+        self.dom.fitButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            self.dom.window.classList[self.dom.window.classList.contains('fit-mode') ? 'remove' : 'add']('fit-mode');
+            window.sessionStorage && window.sessionStorage.setItem('fitMode', self.dom.window.classList.contains('fit-mode'));
+        });
+        self.dom.body.appendChild(self.dom.fitButton);
+        
+        if (window.sessionStorage) {
+          var fitMode = window.sessionStorage.getItem('fitMode');
+          if (fitMode) {
+            self.dom.window.classList.add('fit-mode');
+          }
+        }
+
         
         self.dom.pageCounter = document.createElement('div');
         self.dom.pageCounter.classList.add('page-counter');

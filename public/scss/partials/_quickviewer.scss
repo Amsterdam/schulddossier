@@ -1,14 +1,14 @@
 .quick-viewer .modal-window {
-  width: calc(100% - #{2 * $padding});
-  height: calc(100% - #{2 * $padding});
+  width: calc(100% - #{1 * $padding});
+  height: calc(100% - #{1 * $padding});
   max-height: none;
-  top: $padding;
-  left: $padding;
+  top: $padding / 2;
+  left: $padding / 2;
   margin: 0;
   .modal-header {}
   .modal-body {
     position: absolute;
-    top: 40px;
+    top: 4.7rem;
     bottom: 0;
     left: 0;
     right: 0;
@@ -17,8 +17,10 @@
       top: 50%;
       left: 50%;
       display: none;
-      margin-left: -100px;
-      margin-top: -100px;
+      width: 100px;
+      height: 100px;
+      margin-left: -50px;
+      margin-top: -50px;
       &.visible {
         display: block;
       }
@@ -26,57 +28,109 @@
     canvas {
       width: 100%;
     }
+    
     .viewer-container {
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      overflow: scroll;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
     .page-counter {
       position: absolute;
-      bottom: 50px;
+      bottom: 0;
       left: 50%;
-      margin-left: -80px;
-      width: 160px;
+      width: 8rem;
+      transform: translate3d(-50%, 0, 0);
+      
       text-align: center;
-      background-color: #333;
-      color: #999;
-      padding: 10px 15px;
-      border-radius: 5px;
+      background-color: #000;
+      color: #fff;
+      padding: 0 1rem;
+      line-height: 3rem;
+      
+      opacity: .1;
+      transition: all .3s;
+      
     }
     .button {
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 3rem;
+      height: 3rem;
       text-align: center;
-      background-color: #333;
-      color: #999;
-      padding: 10px 15px;
+      background-color: #000;
+      padding: 0;
       border: none;
-      top: 50%;
-      margin-top: -10px;
+      bottom: 0;
+      margin: 0;
       &:before {
-        width: 16px;
-        height: 16px;
+        content: '';
+        width: 8px;
+        height: 8px;
         position: absolute;
-        left: 50%;
-        top: 50%;
-        margin-left: -8px;
-        margin-top: -8px;
+        border-left: 3px solid #fff;
+        border-top: 3px solid #fff;
+        transform: rotate(-45deg);
+        left: 12px;
+        top: 9px;
       }
+      opacity: .1;
+      transition: all .3s;
+      
       &.prev {
-        left: 30px;
-        &:before {
-          content: url("/pix/chevron-left.svg");
-        }
+        left: calc(50% - 8.5rem);
       }
       &.next {
-        right: 30px;
-        &:before {
-          content: url("/pix/chevron-right.svg");
-        }
+        left: calc(50% + 5.5rem);
+        transform: rotate(180deg);
+      }
+    }
+    &:hover {
+      .page-counter, .button {
+        opacity: 1;
+      }
+    }
+    
+    .toggle-fit-mode {
+      top: 0;
+      bottom: auto;
+      left: calc(50%);
+      margin-left: -1.5rem;
+      &:before {
+        font-family: monospace;
+        content: '-';
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        bottom: 6px;
+        right: 6px;
+        font-size: 2rem;
+        font-weight: bold;
+        line-height: 12px;
+        width: auto;
+        height: auto;
+        transform: none;
+        text-align: center;
+        border-radius: 50%;
+        border: 2px solid #fff;
+      }
+    }
+  }
+  &.fit-mode {
+    .modal-body {
+      canvas {
+        display: block;
+        max-height: 100%;
+        width: auto;
+        margin: 0 auto;
+      }
+    }
+    .toggle-fit-mode {
+      &:before {
+        content: '+';
+        line-height: 14px;
       }
     }
   }
@@ -88,14 +142,15 @@
   z-index: 3;
   right: 3.4rem;
   left: auto;
-  top: 3.6rem;
+  top: 2.5rem;
+  right: 2.5rem;
   width: 3rem;
   height: 3rem;
   color: #fff;
   font-size: 3rem;
   background-color: $textColor;
   font-weight: bold;
-  line-height: 3rem;
+  line-height: 2.8rem;
   text-align: center;
   cursor: pointer;
 }
