@@ -1,4 +1,19 @@
-<div class="aantekening">
-    <p><strong>{{ aantekening.gebruiker }}</strong> zei op {{ aantekening.datumTijd|date('d-m-Y H:i') }}{% if showContext|default(false) %} over {{ aantekening.onderwerp|humanize }}{% endif %}:</p>
-    <p>{{ aantekening.tekst|nl2br }}</p>
+<div class="aantekening{% if aantekening.gebruiker.userName == app.user.userName %} aantekening-mijn{% endif %}">
+    <p class="aantekening-meta">
+      <strong>{{ aantekening.gebruiker.naam }}</strong>
+      <time>{{ aantekening.datumTijd|date('d-m-Y H:i') }}</time>
+    </p>
+    <p class="aantekening-bericht">
+      {{ aantekening.tekst|nl2br }}
+      {% if showContext|default(false) %}
+        <span class="aantekening-context">
+          {% if aantekening.schuldItem %}
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': aantekening.dossier.id}) }}#schuldItem-{{ aantekening.schuldItem.id }}">{{ aantekening.onderwerp|humanize }}</a>
+          {% else %}
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': aantekening.dossier.id}) }}#voorlegger-{{ aantekening.onderwerp }}">{{ aantekening.onderwerp|humanize }}</a>
+          {% endif %}
+        </span>
+      {% endif %}
+      
+    </p>
 </div>

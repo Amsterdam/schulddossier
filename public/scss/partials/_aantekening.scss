@@ -1,0 +1,87 @@
+.aantekening-form {
+  label {
+    display: none;
+  }
+}
+
+.aantekeningen {
+  position: relative;
+  
+  padding: $padding 0;
+  
+  background-color: $lightColor;
+  > *:last-child {
+    margin-bottom: 0;
+  }
+  
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: $padding;
+    bottom: $padding;
+    width: 4px;
+    background-color: #fff;
+    margin-left: -2px;
+  }
+  
+  
+}
+.aantekening {
+  width: 50%;
+  box-sizing: border-box;
+  text-align: right;
+  padding: $padding/2 $padding;
+}
+.aantekening-bericht {
+  padding: .4em 1em .3em 1em;
+  margin: 0;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(#000, .1);
+}
+.aantekening-meta {
+  margin: 0 0 .5em 0;
+  line-height: 1.2;
+  padding-top: 2em;
+  time {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    margin-top: -2em;
+    transform: translate3d(-50%, 0, 0);
+    text-align: center;
+    padding: .2em 1em;
+    background-color: $lightColor;
+  }
+}
+.aantekening-context {
+  font-size: 1.2rem;
+  color: rgba($textColor, .8);
+  display: block;
+  &:before {
+    content: 'in ';
+  }
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+.aantekening-mijn {
+  margin-left: auto;
+  text-align: left;
+  .aantekening-bericht {
+    
+    //background-color: $textColor;
+//    color: #fff;
+  }
+//  .aantekening-context {
+//    &, a {
+//      color: rgba(#fff, .8);
+//    }
+//  }
+}

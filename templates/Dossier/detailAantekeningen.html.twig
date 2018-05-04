@@ -15,14 +15,20 @@
       
       {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'aantekeningen'} only %}
       
-      {{ form_start(form) }}
-      {{ form_row(form.tekst) }}
-      <button type="submit">Aantekenen</button>
-      {{ form_end(form) }}
-      
-      {% for aantekening in dossier.aantekeningen %}
-          {% include 'Dossier/partial.aantekening.html.twig' with {'aantekening': aantekening, 'showContext': true} %}
-      {% endfor %}
+      <div class="aantekening-form">
+        {{ form_start(form) }}
+        <h2>Aantekeningen</h2>
+        {{ form_row(form.tekst) }}
+        <p class="buttons right">
+          <button type="submit" class="button">Aantekening toevoegen</button>
+        </p>
+        {{ form_end(form) }}
+      </div>
+      <div class="aantekeningen">
+          {% for aantekening in dossier.aantekeningen %}
+              {% include 'Dossier/partial.aantekening.html.twig' with {'aantekening': aantekening, 'showContext': true} %}
+          {% endfor %}
+      </div>
       
     </div>
 {% endblock %}
