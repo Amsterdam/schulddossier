@@ -4,12 +4,60 @@
   }
 }
 
+.aantekening-form-row {
+  position: static;
+  padding: $padding / 2;
+  background-color: $lightColor;
+  margin-bottom: $padding / 2;
+  &:before {
+    content: '';
+    position: absolute;
+    background-color: $lightColor;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+  div.active {
+    height: 6rem;
+  }
+  textarea {
+    position: absolute;
+    z-index: 2;
+    left: $padding / 2;
+    top: $padding / 2;
+    width: calc(100% - #{$padding});
+    height: calc(100% - #{$padding});
+    display: none;
+  }
+  .active {
+    textarea {
+      display: block;
+      z-index: 5;
+    }
+  }
+  .aantekening-toevoegen {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    top: $padding / 2;
+    white-space: nowrap;
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.aantekening-toevoegen.active {
+  display: none;
+}
+
 .aantekeningen {
   position: relative;
   
   padding: $padding 0;
   
   background-color: $lightColor;
+  margin-bottom: $lineHeight;
   > *:last-child {
     margin-bottom: 0;
   }
@@ -93,4 +141,7 @@
 //      color: rgba(#fff, .8);
 //    }
 //  }
+}
+.form-row + .aantekeningen {
+  margin-top: -2 * $lineHeight;
 }
