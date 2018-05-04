@@ -479,6 +479,7 @@ form {
       right: -70px;
       padding: 0;
       max-height: none;
+      pointer-events: auto;
     }
     label {
       position: static;
@@ -497,6 +498,7 @@ form {
     }
     .bestand-nieuw {
       z-index: 2;
+      pointer-events: none;
     }
     .drop-area:empty:before {
       content: "Kies een bestand\Aof sleep pagina 's hier naartoe";
