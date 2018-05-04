@@ -26,26 +26,52 @@
     &:before {
       position: absolute;
       content: 'Kies een ander bestand';
-      text-transform: uppercase;
       
       font-size: $fontSize;
-      color: #fff;
-      padding: 1em;
-      background-color: #000;
-      left: $padding / 2;
+      color: $textColor;
+      padding: .5em 1em;
+      background-color: #fff;
+      border: 1px solid rgba($textColor, .2);
+      left: $padding + 3.3rem;
       right: $padding / 2;
       top: $padding / 2;
+      @extend .bold !optional;
+      transition: all .3s;
+      
     }
+    &:hover:before {
+      border-color: rgba($textColor, 1);
+    }
+    
 
     input[type="file"] {
       position: absolute;
       opacity: 0;
     }
   }
+  .bestand-zoom {
+    position: fixed;
+    opacity: 1;
+    z-index: 10;
+    top: $padding / 2;
+    left: $padding /2;
+    right: auto;
+    height: 3.3rem;
+    width: 3.3rem;
+    border: 1px solid rgba($textColor, .2);
+    &:before, &:after {
+      margin-top: 2px;
+      margin-left: 2px;
+    }
+    &:hover {
+      border-color: rgba($textColor, 1);
+    }
+    
+  }
   .pages {
     position: relative;
     padding: $padding / 2;
-    margin-top: 4.8rem;
+    margin-top: 7rem;
     z-index: 4;
     &:empty {
       display: flex;
@@ -53,12 +79,18 @@
       z-index: 2;
       ~ .file-selector {
         &:before {
+          left: $padding / 2;
           content: 'Kies een bestand';
         }
+      }
+      ~ .bestand-zoom {
+        display: none;
       }
     }
     &:empty:after {
       content: "Voeg pagina's toe door een document te uploaden.";
+      display: block;
+      text-align: center;
       margin-top: $padding / 2;
       line-height: 1.2;
       color: $textColor;
@@ -91,7 +123,7 @@
     }
   }
   
-  transform: translate3d((-$pdfSplitterWidth + 20px), 0, 0);
+  left: -$pdfSplitterWidth + 20px;
   &.animatable {
     transition: all .3s;
   }
@@ -104,7 +136,7 @@
   
   &.active, &.drop-over {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    left: 0;
     & ~ header.top,
     & ~ header.top .logo,
     & ~ .document-container .form-global-buttons {

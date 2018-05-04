@@ -145,7 +145,7 @@
       e && e.preventDefault();
       
       var 
-        container = _closest(this, '.file-container'),
+        container = this.parentNode,
         input = container.querySelector('.bestand-naam input');
       
       if (container.classList.contains('file-pdf-pages')) {
@@ -162,7 +162,7 @@
             pdf.addImage(img, 'JPEG', 0, 0, 210, 297);
 
           }
-          this.innerHTML = input.value;
+          if (input) this.innerHTML = input.value;
           this.href = pdf.output('datauristring');
         }
       }
