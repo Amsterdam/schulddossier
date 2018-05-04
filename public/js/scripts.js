@@ -108,7 +108,9 @@
               }
               prototype.classList.add('files-only');
               var button = prototype.querySelector('.file');
-              button.textContent = event.target.value.replace('/', '\\').split('\\').pop();
+              if (button) {
+                button.textContent = event.target.value.replace('/', '\\').split('\\').pop();
+              }
             
               var event = new Event('filled');
               prototype.dispatchEvent(event);
