@@ -5,7 +5,9 @@
   top: $padding / 2;
   left: $padding / 2;
   margin: 0;
-  .modal-header {}
+  .modal-header {
+    text-align: center;
+  }
   .modal-body {
     position: absolute;
     top: 4.7rem;
@@ -28,7 +30,7 @@
     canvas {
       width: 100%;
     }
-    
+
     .viewer-container {
       position: absolute;
       left: 0;
@@ -44,16 +46,16 @@
       left: 50%;
       width: 8rem;
       transform: translate3d(-50%, 0, 0);
-      
+
       text-align: center;
       background-color: #000;
       color: #fff;
       padding: 0 1rem;
       line-height: 3rem;
-      
+
       opacity: .1;
       transition: all .3s;
-      
+
     }
     .button {
       position: absolute;
@@ -78,7 +80,7 @@
       }
       opacity: .1;
       transition: all .3s;
-      
+
       &.prev {
         left: calc(50% - 8.2rem);
       }
@@ -92,7 +94,7 @@
         opacity: 1;
       }
     }
-    
+
     .toggle-fit-mode {
       left: calc(50% + 9rem);
       width: auto;
