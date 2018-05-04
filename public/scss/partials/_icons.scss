@@ -223,3 +223,18 @@
   } 
 }
 
+.icon-zoomin, .icon-zoomuit {
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+.icon-zoomin {
+  background-image: url('../images/ico_zoomin.png');
+}
+.icon-zoomuit {
+  background-image: url('../images/ico_zoomout.png');
+}
+

@@ -146,7 +146,6 @@ window.schuldhulp.quickViewer = {
         self.dom.fitButton = document.createElement('a');
         self.dom.fitButton.href = '#';
         self.dom.fitButton.classList.add('button', 'toggle-fit-mode');
-        self.dom.fitButton.innerHTML = '<i class="icon-fit"></i> Zoom pagina';
         
         self.dom.fitButton.addEventListener('click', function (event) {
             event.preventDefault();

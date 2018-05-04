@@ -96,6 +96,24 @@
     .toggle-fit-mode {
       left: calc(50% + 9rem);
       width: auto;
+      font-size: 1.2rem;
+      padding: 0 1em;
+      line-height: 2.8rem;
+      &:before {
+        position: relative;
+        left: 0;
+        top: 6px;
+        transform: none;
+        content: '';
+        border: none;
+        margin-right: .5em;
+        @extend .icon-zoomuit !optional;
+        width: 17px;
+        height: 17px;
+      }
+      &:after {
+        content: 'Zoom uit';
+      }
     }
   }
   &.fit-mode {
@@ -109,8 +127,12 @@
     }
     .toggle-fit-mode {
       &:before {
-        content: '+';
-        line-height: 14px;
+        content: '';
+        transform: none;
+        background-image: url('../images/ico_zoomin.png');
+      }
+      &:after {
+        content: 'Zoom in';
       }
     }
   }
