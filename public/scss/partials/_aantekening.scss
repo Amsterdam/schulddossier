@@ -30,12 +30,13 @@
 }
 .aantekening {
   width: 50%;
+  position: relative;
   box-sizing: border-box;
   text-align: right;
-  padding: $padding/2 $padding;
+  padding: $padding/2 4rem;
 }
 .aantekening-bericht {
-  padding: .4em 1em .3em 1em;
+  padding: .2em 1em .3em 1em;
   margin: 0;
   display: inline-block;
   background-color: #fff;
@@ -45,16 +46,18 @@
 .aantekening-meta {
   margin: 0 0 .5em 0;
   line-height: 1.2;
-  padding-top: 2em;
   time {
     position: absolute;
     z-index: 2;
-    left: 50%;
-    margin-top: -2em;
-    transform: translate3d(-50%, 0, 0);
+    top: $padding / 2;
+    left: calc(100% - 3.5rem);
+    font-size: 1.2rem;
+    width: 7rem;
+    
     text-align: center;
-    padding: .2em 1em;
+    padding: .2em 0;
     background-color: $lightColor;
+    font-family: sans-serif;
   }
 }
 .aantekening-context {
@@ -74,6 +77,12 @@
 .aantekening-mijn {
   margin-left: auto;
   text-align: left;
+  .aantekening-meta {
+    time {
+      left: auto;
+      right: calc(100% - 3.5rem);;
+    }
+  }
   .aantekening-bericht {
     
     //background-color: $textColor;

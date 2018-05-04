@@ -1,7 +1,7 @@
 <div class="aantekening{% if aantekening.gebruiker.userName == app.user.userName %} aantekening-mijn{% endif %}">
     <p class="aantekening-meta">
-      <strong>{{ aantekening.gebruiker.naam }}</strong>
       <time>{{ aantekening.datumTijd|date('d-m-Y H:i') }}</time>
+      <strong>{{ aantekening.gebruiker.naam }}</strong>
     </p>
     <p class="aantekening-bericht">
       {{ aantekening.tekst|nl2br }}
