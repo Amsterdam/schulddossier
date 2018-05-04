@@ -7,20 +7,11 @@
 {% block document %}
 
     <div class="document well">
-        <div class="document-header group">
-          <div>
+        {{ form_start(searchForm, {'attr': {}}) }}
+        <div class="document-header">
             <h1 class="document-title">Dossiers</h1>
-          </div>
-          <nav class="nav-internal">
-              <ul>
-                  <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak') }}">Prullenbak</a></li>
-                  <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}" class="primary">Nieuw dossier</a></li>
-              </ul>
-          </nav>
-        </div>
-        <div class="search">
-            {{ form_start(searchForm, {'attr': {}}) }}
-            <fieldset class="search-basic">
+            
+            <div class="group search-control">
               <div class="group">
                 <div class="search-input">
                   <input name="search_dossier_form[naam]" placeholder="Zoek dossiers op naam" type="text" value="{{ searchForm.naam.vars.value }}">
@@ -30,6 +21,18 @@
                 </div>
                 <button type="submit" class="button">Zoeken</button>
               </div>
+          
+              <nav class="nav-internal">
+                  <ul>
+                      <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak') }}">Prullenbak</a></li>
+                      <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}" class="primary">Nieuw dossier</a></li>
+                  </ul>
+              </nav>
+            </div>
+        </div>
+        <div class="search">
+            
+            <fieldset class="search-basic naked">
               <div class="tabs">
                 <ul>
                   <li class="{{ searchQuery.section == 'madi' ? 'active' }}"><a href="?section=madi">Dossiers bij MaDi</a></li>
@@ -43,18 +46,30 @@
 
             <fieldset id="search-extended" class="search-extended {{ searchQuery.section == 'search' ? 'active' }}">
                 <input type="hidden" name="section" value="search">
-                {{ form_row(searchForm.status) }}
-                {{ form_row(searchForm.schuldhulpbureau) }}
-                {{ form_row(searchForm.medewerkerSchuldhulpbureau) }}
-                {{ form_row(searchForm.teamGka) }}
+                <div class="search-status">
+                  {{ form_row(searchForm.status) }}
+                </div>
+                <div class="columns">
+                  <div class="column">
+                    {{ form_row(searchForm.schuldhulpbureau) }}
+                    {{ form_row(searchForm.medewerkerSchuldhulpbureau) }}
+                  </div>
+                  <div class="column">
+                    {{ form_row(searchForm.teamGka) }}
+                  </div>
+                </div>
+                
+                
+                
                 <p class="buttons right">
                     <button type="submit" class="button">Zoeken</button>
                     <a href="#search-extended" data-handler="toggle">Annuleren</a>
                 </p>
             </fieldset>
 
-            {{ form_end(searchForm) }}
+
         </div>
+        {{ form_end(searchForm) }}
         <div class="table" id="search-results">
             <table>
                 <thead>

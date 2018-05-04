@@ -80,10 +80,10 @@
       transition: all .3s;
       
       &.prev {
-        left: calc(50% - 8.5rem);
+        left: calc(50% - 8.2rem);
       }
       &.next {
-        left: calc(50% + 5.5rem);
+        left: calc(50% + 5.2rem);
         transform: rotate(180deg);
       }
     }
@@ -94,28 +94,8 @@
     }
     
     .toggle-fit-mode {
-      top: 0;
-      bottom: auto;
-      left: calc(50%);
-      margin-left: -1.5rem;
-      &:before {
-        font-family: monospace;
-        content: '-';
-        position: absolute;
-        left: 6px;
-        top: 6px;
-        bottom: 6px;
-        right: 6px;
-        font-size: 2rem;
-        font-weight: bold;
-        line-height: 12px;
-        width: auto;
-        height: auto;
-        transform: none;
-        text-align: center;
-        border-radius: 50%;
-        border: 2px solid #fff;
-      }
+      left: calc(50% + 9rem);
+      width: auto;
     }
   }
   &.fit-mode {

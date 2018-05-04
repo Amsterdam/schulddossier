@@ -89,10 +89,10 @@
                     
                   </div>
                   
-                  {{ form_row(createForm.aantekening) }}
-                  
                   {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
                   {% do createForm.removeFile.setRendered() %}
+                  
+                  {{ form_row(createForm.aantekening) }}
               
                   <p class="buttons right">
                     {% do createForm.verwijderd.setRendered() %}

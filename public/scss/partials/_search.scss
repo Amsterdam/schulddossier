@@ -1,6 +1,8 @@
 .search {
 }
 .search-basic {
+  margin: 0;
+  padding: 0;
   .form-row {
     margin: 0;
     width: 100%;
@@ -48,7 +50,7 @@
     position: absolute;
     z-index: 2;
     left: 11px;
-    top: 12px;
+    top: 10px;
     opacity: 0.5;
     transition: all .3s;
   }
@@ -65,11 +67,14 @@
     top: 0;
     bottom: 0;
     width: 4rem;
-    line-height: 4rem;
+    line-height: 3.6rem;
     text-decoration: none;
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 .search-more {
@@ -139,4 +144,35 @@
     }
   }
   
+}
+
+.search-status {
+  .label-widget {
+    display: block;
+    > label {
+      display: block;
+      margin-bottom: .5em;
+    }
+  }
+}
+
+.document-header {
+  .search-control {
+    margin-top: $padding;
+    .group {
+      flex-basis: 100%;
+    }
+    .search-input {
+      width: 50%;
+    }
+    input {
+      min-height: 3.6rem;
+      width: 100%;
+    }
+    .button  {
+      margin: 0;
+      padding: 0 $padding;
+    }
+;
+  }
 }

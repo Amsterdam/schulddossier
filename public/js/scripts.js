@@ -180,6 +180,11 @@
       var input = this.parentNode.querySelector('input');
       if (input) {
         input.value = '';
+        var form = _closest(this, 'form');
+        if (form) {
+          form.reset();
+          form.submit();
+        }
       }
     },
 
