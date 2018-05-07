@@ -37,43 +37,6 @@
       _scrollTo(target);
     },
     
-    'multistatus': function(e){
-      e.preventDefault();
-      var 
-        values = this.hash.substr(1).split(','),
-        form = _closest(this, 'form');
-      
-      
-      var els = form.querySelectorAll('.active');
-      for (var i = 0; i < els.length; i++) {
-        els[i].classList.remove('active');
-      }
-      
-      if (history.replaceState) {
-        w.location.hash = '_';
-        var url = document.location.href.split('#')[0];
-        history.replaceState({id: url}, d.title, url);
-      }
-      
-      this.classList.add('active');
-      
-      var els = form.querySelectorAll('#search_dossier_form_status input');
-      for (var i = 0; i < els.length; i++) {
-        els[i].checked = false;
-      }
-      
-      
-      for (var i = 0; i < values.length; i++) {
-        var el = form.querySelector('input[value="' + values[i] + '"]');
-        if (el) {
-          el.checked = true;
-        }
-      }
-      
-      helpers.trigger(form, 'submit');
-      
-    },
-    
     'add-file': function(e){
       e && e.preventDefault();
       
@@ -112,8 +75,10 @@
                 button.textContent = event.target.value.replace('/', '\\').split('\\').pop();
               }
             
-              var event = new Event('filled');
-              prototype.dispatchEvent(event);
+              // var event = new Event('filled');
+              // prototype.dispatchEvent(event);
+              
+              helpers.trigger(prototype, 'filled')
           }
       });
       
@@ -261,8 +226,10 @@
               button.textContent = files[i].name.replace('/', '\\').split('\\').pop();
               // icon.dataset.extension = files[i].type.split('/').pop();
             
-              var event = new Event('filled');
-              file.dispatchEvent(event);
+              // var event = new Event('filled');
+              // file.dispatchEvent(event);
+              
+              helpers.trigger(file, 'filled')
             
               form.files = form.files || [];
               form.files.push({
@@ -324,7 +291,6 @@
         
       }
     }
-    
     
   };
   
@@ -440,6 +406,7 @@
   };
   
   var changers = {
+    
     'change': function(){
       var 
         form = this;
@@ -592,8 +559,10 @@
               
               lastFile.classList.add('file-pdf-pages');
               
-              var event = new Event('filled');
-              lastFile.dispatchEvent(event);
+              // var event = new Event('filled');
+              // lastFile.dispatchEvent(event);
+              
+              helpers.trigger(lastFile, 'filled');
               
 
               dropZone = lastFile.querySelector('.drop-area');
