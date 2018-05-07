@@ -683,6 +683,9 @@ form {
   display: block;
   font-style: normal;
   padding: 1em;
+  &:empty {
+    display: none;
+  }
 }
 .select-autocomplete {
   padding: 1rem 0;

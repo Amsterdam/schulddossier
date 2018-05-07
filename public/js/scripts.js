@@ -152,6 +152,25 @@
         var pages = pdfsplitter.querySelector('.pages');
         if (pages) pages.innerHTML = '';
 
+    },
+    
+    'reset': function(e){
+      e && e.preventDefault();
+      var form = _closest(this, 'form');
+      form && form.reset();
+      
+      var keyuppers = form.querySelectorAll('[data-keyupper]');
+      for (var i = 0; i < keyuppers.length; i++) {
+        helpers.trigger(keyuppers[i], 'keyup');
+      }
+      
+      var changers = form.querySelectorAll('[data-changer]');
+      for (var i = 0; i < changers.length; i++) {
+        helpers.trigger(changers[i], 'keyup');
+      }
+      
+      helpers.trigger(form, 'change');
+      
     }
     
   };
@@ -621,7 +640,7 @@
       
       var selected = select.options[select.selectedIndex];
       
-      if (selected) {
+      if (selected && selected.value != '') {
         for (var i = 0; i < fields.length; i++) {
           var v = selected.getAttribute('data-' + fields[i]);
           if (!v) v = '';
@@ -629,6 +648,7 @@
         }
 
         template = template.replace('()','');
+        
         helper.innerHTML = template;
         
       }
@@ -645,7 +665,7 @@
       
       if (active) {
         active.classList.remove('active');
-        var trigger = active.querySelector('.naam a.active');
+        var trigger = active.querySelector('.accordion-header .naam a');
         trigger.classList.remove('active');
         var url = document.location.href.split('#')[0];
         if (history.replaceState) {
