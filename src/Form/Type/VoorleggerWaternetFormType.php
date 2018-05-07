@@ -54,7 +54,7 @@ class VoorleggerWaternetFormType extends AbstractType
         ]);
         $builder->add('drinkwaterOpname', NumberType::class, [
             'required' => false,
-            'label' => "Meterstand water"
+            'label' => "Meterstand Water"
         ]);
 
         $builder->add('file', CollectionType::class, [
