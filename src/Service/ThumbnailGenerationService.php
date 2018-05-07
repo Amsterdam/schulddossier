@@ -63,13 +63,17 @@ class ThumbnailGenerationService implements EventSubscriberInterface
         $sign = hash_hmac('sha1', "GET\n" . $timestamp . "\n" . $path, $this->swiftTempUrlKey);
         $fullUrl = $this->swiftPublicUrl . $path . '?temp_url_sig=' . $sign . '&temp_url_expires=' . $timestamp;
 
+        if (in_array($document->getOrigineleExtensie(), ['pdf', 'doc', 'docx']) === false) {
+            return;
+        }
+
         $client = new Client();
         $response = $client->post($this->serviceUrl . '1/generate', [
             'form_params' => [
                 'url' => $fullUrl,
                 'width' => 300,
                 'height' => 200,
-                'inputType' => 'pdf',
+                'inputType' => in_array($document->getOrigineleExtensie(), ['doc', 'docx']) ? 'docx' : 'pdf',
                 'outputType' => 'png',
             ]
         ]);
