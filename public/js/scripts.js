@@ -130,7 +130,8 @@
 
           }
           if (input) this.innerHTML = input.value;
-          this.href = pdf.output('datauristring');
+          
+          this.datauristring = helpers.convertDataURI(pdf.output('datauristring'));
         }
       }
     },
@@ -434,24 +435,8 @@
       
       container.classList.add('active');
       
-      var _convert = function(dataURI){
-        var
-          marker = ';base64,',
-          base64Index = dataURI.indexOf(marker) + marker.length,
-          base64 = dataURI.substring(base64Index),
-          raw = w.atob(base64),
-          rawLength = raw.length,
-          array = new Uint8Array(new ArrayBuffer(rawLength));
-
-        for (var i = 0; i < rawLength; i++) {
-          array[i] = raw.charCodeAt(i);
-        }
-        
-        return array;
-      };
-        
       if (this.blob) {
-        blob = _convert(this.blob);
+        blob = helpers.convertDataURI(this.blob);
         this.blob = false;
       } else if (file) {
         blob = window.URL.createObjectURL(file);
@@ -766,7 +751,24 @@
       var e = document.createEvent('MouseEvents');
       e.initMouseEvent(eventType, true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
       el.dispatchEvent(e);
+    },
+    
+    'convertDataURI': function(dataURI){
+      var
+        marker = ';base64,',
+        base64Index = dataURI.indexOf(marker) + marker.length,
+        base64 = dataURI.substring(base64Index),
+        raw = w.atob(base64),
+        rawLength = raw.length,
+        array = new Uint8Array(new ArrayBuffer(rawLength));
+
+      for (var i = 0; i < rawLength; i++) {
+        array[i] = raw.charCodeAt(i);
+      }
+      
+      return array;
     }
+    
     
   };
   

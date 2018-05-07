@@ -49,7 +49,7 @@ window.schuldhulp.quickViewer = {
             self.accordion = null;
         }
         
-        PDFJS.getDocument(self.documentLink.getAttribute('href')).then(function (pdf) {
+        PDFJS.getDocument(self.documentLink.datauristring || self.documentLink.getAttribute('href')).then(function (pdf) {
             self.currentPDFJS = pdf;
             self.showPage(1);
         });
