@@ -47,4 +47,6 @@ services:
       - SWIFT_CONTAINER_PREFIX=
       - SWIFT_TEMP_URL_KEY=
       - SWIFT_EXTERNAL_DOMAIN=
+      - APP_NOTIFICATIE_FROM=tester@test.com
+      - THUMBNAILSERVICE_URL=https://thumbnail.service/
 

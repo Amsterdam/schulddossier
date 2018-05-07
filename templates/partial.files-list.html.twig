@@ -13,7 +13,15 @@
           <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}" class="bestand-zoom" title="Bekijk deze PDF" data-handler="bestand">{{ dossierDocument.document.naam }}</a>
         {% endif %}
         
-        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}" title="{{ dossierDocument.document.naam }}" class="bestand bestand-type-{{ dossierDocument.document.origineleExtensie|lower }}"><i class="icon-file" data-extension="{{ dossierDocument.document.origineleExtensie|lower }}"></i><span class="bestand-naam">{{ dossierDocument.document.naam }}</span></a>
+        {% set documentThumbnail = '' %}
+        {% for thumbnail in dossierDocument.document|app_document_thumbnails %}
+          {% set documentThumbnail = thumbnail %}
+        {% endfor %}
+        
+        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}" title="{{ dossierDocument.document.naam }}" class="bestand bestand-type-{{ dossierDocument.document.origineleExtensie|lower }}">
+          <i class="icon-file" data-extension="{{ dossierDocument.document.origineleExtensie|lower }}"{% if documentThumbnail is not empty %} style="background-image: url({{ documentThumbnail }})"{% endif %}></i>
+          <span class="bestand-naam">{{ dossierDocument.document.naam }}</span>
+        </a>
       </li>
     {% endfor %}
   </ul>

@@ -10,6 +10,7 @@ parameters:
     swift_temp_url_key: '%env(SWIFT_TEMP_URL_KEY)%'
     swift_external_domain: '%env(SWIFT_EXTERNAL_DOMAIN)%'
     swift_public_url: 'https://%swift_project_id%.%swift_external_domain%'
+    thumbnail_service_url: '%env(THUMBNAILSERVICE_URL)%'
 
 services:
     _defaults:
@@ -35,6 +36,9 @@ services:
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\DocumentUploadSubscriber:
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\ThumbnailUploadSubscriber:
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\AantekeningNotificationSubscriber:
         arguments:
             - '@mailer'
@@ -55,11 +59,32 @@ services:
         #lazy: true
         arguments:
             - '@flysystem_dossier'
+            - '@flysystem_thumbnail'
     GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion:
         arguments:
             - '%kernel.environment%'
             - '%kernel.project_dir%'
-            
+    GemeenteAmsterdam\FixxxSchuldhulp\Service\ThumbnailGenerationService:
+        arguments:
+            - '%swift_container_prefix%'
+            - '%swift_temp_url_key%'
+            - '%swift_public_url%'
+            - '@doctrine.orm.entity_manager'
+            - '%thumbnail_service_url%'
+        tags:
+            - { name: kernel.event_subscriber }
+    
+    # Twig
+    GemeenteAmsterdam\FixxxSchuldhulp\Twig\DocumentThumbnailExtension:
+        public: false
+        arguments:
+            - '@GemeenteAmsterdam\FixxxSchuldhulp\Service\ThumbnailGenerationService'
+            - '%swift_container_prefix%'
+            - '%swift_temp_url_key%'
+            - '%swift_public_url%'
+        tags:
+            - { name: twig.runtime }
+    
     # Serializer
     json_serializer:
         class: Symfony\Component\Serializer\Serializer
@@ -94,6 +119,12 @@ services:
         factory: ['@openstack_objectstore', 'getContainer']
         arguments:
             - '%swift_container_prefix%dossier'
+    openstack_objectstore_container_thumbnail:
+        class: OpenStack\ObjectStore\v1\Models\Container
+        lazy: true
+        factory: ['@openstack_objectstore', 'getContainer']
+        arguments:
+            - '%swift_container_prefix%thumbnail'
             
     # Flysystem
     flysystem_openstack_adapter_dossier:
@@ -106,5 +137,15 @@ services:
         lazy: true
         arguments:
             - '@flysystem_openstack_adapter_dossier'
+    flysystem_openstack_adapter_thumbnail:
+        class: Nimbusoft\Flysystem\OpenStack\SwiftAdapter
+        lazy: true
+        arguments:
+            - '@openstack_objectstore_container_thumbnail'
+    flysystem_thumbnail:
+        class: League\Flysystem\Filesystem
+        lazy: true
+        arguments:
+            - '@flysystem_openstack_adapter_thumbnail'
             
 
