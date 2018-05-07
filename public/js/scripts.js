@@ -389,13 +389,14 @@
                 url: w.location.href,
                 callback: function(data){
                   _process(data, form.dataset.resultSelector.substring(8));
-                  w.location.hash = '';
                 }
               });
             }
           } else {
             _process(data, form.dataset.resultSelector);
           }
+          
+          w.location.hash = '_';
 
         },
         error: function(){
