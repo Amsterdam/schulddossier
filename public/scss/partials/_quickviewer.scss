@@ -140,21 +140,23 @@
   }
 }
 
-.quick-viewer > a:before {
-  content: '×';
-  position: fixed;
-  z-index: 3;
-  right: 3.4rem;
-  left: auto;
-  top: 2.5rem;
-  right: 2.5rem;
-  width: 3rem;
-  height: 3rem;
-  color: #fff;
-  font-size: 3rem;
-  background-color: $textColor;
-  font-weight: bold;
-  line-height: 2.8rem;
-  text-align: center;
-  cursor: pointer;
+.quick-viewer > a {
+  &:before {
+    content: '×';
+    position: fixed;
+    z-index: 3;
+    right: 3.4rem;
+    left: auto;
+    top: 2.5rem;
+    right: 2.5rem;
+    width: 3rem;
+    height: 3rem;
+    color: #fff;
+    font-size: 3rem;
+    line-height: .95;
+    background-color: $textColor;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+  }
 }

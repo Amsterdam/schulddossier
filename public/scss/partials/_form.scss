@@ -75,6 +75,9 @@ textarea {
     border: 1px solid rgba(#000, .8);
   }
 }
+select {
+  padding-right: 0;
+}
 input[readonly],
 input[disabled] {
   opacity: .8;
@@ -511,6 +514,11 @@ form {
       overflow: hidden;
       text-overflow: ellipsis;
     }
+    &.has-file {
+      .drop-area:before {
+        display: none;
+      }
+    }
     input[type="text"] {
       padding: 0;
       border: none;
@@ -528,6 +536,15 @@ form {
         left: 0;
         top: 0;
         opacity: 0;
+      }
+      .file {
+        display: inline-block;
+        word-break: break-all;
+        max-width: 200px;
+        overflow: hidden;
+        padding: 0 1em;
+        font-size: 1.2rem;
+        line-height: 1.2;
       }
     }
     &.files-only .file-selector button {
@@ -676,7 +693,7 @@ form {
     position: relative;
     align-items: flex-start;
     input {
-      flex-basis: 20%;
+      flex-basis: 30%;
       margin-right: $padding;
       padding-left: 35px;
     }
@@ -695,7 +712,7 @@ form {
     padding: 0;
   }
   .form-row {
-    flex-basis: 80%;
+    flex-basis: 70%;
     label {
       display: none;
     }
@@ -703,7 +720,8 @@ form {
   
 }
 .button-remove-input {
-  position: absolute;
+  position: fixed;
+  top: 0;
   left: -100vw;
 }
 .button-remove {

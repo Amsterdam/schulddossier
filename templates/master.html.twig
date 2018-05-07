@@ -17,11 +17,12 @@
     <body class="{% block body_classes %}{% endblock %}" data-decorator="restore-splitter">
       
         {% block pdfsplitter %}
-          <aside id="pdfsplitter" class="pdf-splitter accordion" data-decorator="droppable" data-changer="pdfsplitter">
+          <aside id="pdfsplitter" class="pdf-splitter accordion no-header file-pdf-pages" data-decorator="droppable" data-changer="pdfsplitter">
               <div class="pages"></div>
               <label class="file-selector">
                   <input type="file" name="file" accept="application/pdf">
               </label>
+              <a class="bestand-zoom" href="#" data-handler="prepare-pdf bestand">Gescand document</a>
           </aside>
 
           <p class="pdf-splitter-trigger">
@@ -77,7 +78,6 @@
         <script type="text/javascript" src="{{ asset('/vendor/moment/moment/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/vendor/moment/moment/locale/nl.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/vendor/bevacqua/rome/dist/rome.standalone.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/js/polyfill.formData.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/js/common.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/js/quickViewer.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/js/flashMessage.js') }}"></script>

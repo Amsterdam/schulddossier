@@ -75,7 +75,7 @@ window.schuldhulp.quickViewer = {
             self.dom.pageCounter.innerHTML = '';
             self.dom.pageCounter.appendChild(document.createTextNode(num + ' / ' + self.currentPDFJS.numPages ));
             
-            self.dom.viewerContainer.scrollTo(0,0);
+            self.dom.viewerContainer.scrollTop = 0;
             
             page.render({canvasContext: context, viewport: viewport }).then(function () {
                 self.dom.spinner.classList.remove('visible');
@@ -96,11 +96,14 @@ window.schuldhulp.quickViewer = {
         var self = this;
         
         self.dom.container = document.createElement('div');
-        self.dom.container.classList.add('quick-viewer', 'modal-container');
+        self.dom.container.classList.add('quick-viewer');
+        self.dom.container.classList.add('modal-container');
         
         self.dom.close = document.createElement('a');
+        self.dom.close.href = '#';
         self.dom.close.addEventListener('click', function (event) {
-            self.dom.container.classList.remove('open');
+            self.dom.container.parentNode.removeChild(self.dom.container);
+            self.dom.container = null;
             event.preventDefault();
         });
         self.dom.container.appendChild(self.dom.close);
@@ -122,12 +125,14 @@ window.schuldhulp.quickViewer = {
         self.dom.body.appendChild(self.dom.viewerContainer);
 
         self.dom.spinner = document.createElement('img');
-        self.dom.spinner.src = '/pix/spinner.gif';
+        self.dom.spinner.src = '/images/ico_spinner.gif';
         self.dom.body.appendChild(self.dom.spinner);
         
         self.dom.prevButton = document.createElement('a');
         self.dom.prevButton.href = '#';
-        self.dom.prevButton.classList.add('button', 'nav', 'prev');
+        self.dom.prevButton.classList.add('button');
+        self.dom.prevButton.classList.add('prev');
+        
         self.dom.prevButton.addEventListener('click', function (event) {
             event.preventDefault();
             self.prev();
@@ -136,7 +141,8 @@ window.schuldhulp.quickViewer = {
         
         self.dom.nextButton = document.createElement('a');
         self.dom.nextButton.href = '#';
-        self.dom.nextButton.classList.add('button', 'nav', 'next');
+        self.dom.nextButton.classList.add('button');
+        self.dom.nextButton.classList.add('next');
         self.dom.nextButton.addEventListener('click', function (event) {
             event.preventDefault();
             self.next();
@@ -145,7 +151,8 @@ window.schuldhulp.quickViewer = {
 
         self.dom.fitButton = document.createElement('a');
         self.dom.fitButton.href = '#';
-        self.dom.fitButton.classList.add('button', 'toggle-fit-mode');
+        self.dom.fitButton.classList.add('button');
+        self.dom.fitButton.classList.add('toggle-fit-mode');
         
         self.dom.fitButton.addEventListener('click', function (event) {
             event.preventDefault();
