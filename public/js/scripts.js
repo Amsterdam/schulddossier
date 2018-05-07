@@ -354,9 +354,17 @@
         if (result && target) {
           for (var i=0; i< target.length; i++) {
             target[i].innerHTML = result[i].innerHTML;
+            
+            // IE11 placeholder bug FIX
+            var els = target[i].querySelectorAll('[placeholder]');
+            for (var l=0; l< els.length; l++) {
+              if (els[l].getAttribute('placeholder') == els[l].value) els[l].value = '';
+            }
+            
+            
           }
         }
-
+        
         form.classList.remove('in-progress');
         form.classList.remove('form-changed');
 
