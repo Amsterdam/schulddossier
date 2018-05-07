@@ -573,7 +573,7 @@
               
               zone.classList.add('active');
               
-              var lastFile = file ? [file] : zone.querySelectorAll('.file-container.active:not(.has-file)')
+              var lastFile = file ? [file] : zone.querySelectorAll('.file-container.active:not(.has-file) .drop-area')
               
               if (!lastFile.length) {
                 var addButton = zone.querySelector('.files-container .add.bestand');
@@ -581,6 +581,7 @@
 
               } else {
                 lastFile = lastFile[(lastFile.length - 1)];
+                lastFile = _closest(lastFile, '.file-container');
               }
               
               var label = lastFile.querySelector('label');
