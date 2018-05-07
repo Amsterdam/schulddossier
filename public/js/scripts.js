@@ -171,6 +171,18 @@
       
       helpers.trigger(form, 'change');
       
+    },
+    
+    'focus': function(e){
+      e && e.preventDefault();
+      var el = document.getElementById(this.hash.substr(1));
+      if (!el) return;
+      
+      var input = el.querySelectorAll('input, textarea');
+      if (input.length) {
+        input[0].focus();
+      }
+      
     }
     
   };
