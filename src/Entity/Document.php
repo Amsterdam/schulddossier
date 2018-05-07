@@ -5,6 +5,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -100,9 +101,17 @@ class Document
      */
     private $inPrullenbak;
 
+    /**
+     * @var Thumbnail[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="Thumbnail", mappedBy="document", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"sort"="ASC", "id"="ASC"})
+     */
+    private $thumbnails;
+
     public function __construct()
     {
         $this->inPrullenbak = false;
+        $this->thumbnails = new ArrayCollection();
     }
 
     public function getId()
@@ -234,5 +243,30 @@ class Document
     public function setInPrullenbak($inPrullenbak)
     {
         $this->inPrullenbak = $inPrullenbak;
+    }
+
+    public function getThumbnails()
+    {
+        return $this->thumbnails;
+    }
+
+    public function addThumbnail(Thumbnail $thumbnail)
+    {
+        if ($this->thumbnails->contains($thumbnail) === false) {
+            $this->thumbnails->add($thumbnail);
+        }
+        if ($thumbnail->getDocument() !== $this) {
+            $thumbnail->setDocument($this);
+        }
+    }
+
+    public function removeThumbnail(Thumbnail $thumbnail)
+    {
+        if ($this->thumbnails->contains($thumbnail) === true) {
+            $this->thumbnails->removeElement($thumbnail);
+        }
+        if ($thumbnail->getDocument() === $this) {
+            $thumbnail->setDocument(null);
+        }
     }
 }

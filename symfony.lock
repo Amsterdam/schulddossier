@@ -272,15 +272,6 @@
     "symfony/orm-pack": {
         "version": "v1.0.5"
     },
-    "symfony/phpunit-bridge": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "41416370e732d1c8e7a0953a5ce815b641cfba0f"
-        }
-    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.7.0"
     },
