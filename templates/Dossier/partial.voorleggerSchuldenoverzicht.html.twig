@@ -34,7 +34,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% set empty = true %}
                                     {% for schuldItem in dossier.schuldItems if schuldItem.verwijderd == false %}
+                                    {% set empty = false %}
                                     <tr>
                                         <th>
                                           <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}#schuldItem-{{ schuldItem.id }}">{{ schuldItem.schuldeiser|default('-') }} {% if schuldItem.incassant %}/{% endif %} {{ schuldItem.incassant }}</a></th>
@@ -46,6 +48,11 @@
                                     {% endfor %}
                                 </tbody>
                             </table>
+                            
+                            {% if empty %}
+                                    <p class="empty-table">Er zijn nog geen schulden ingevoerd. Ga naar <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">schuldenoverzicht</a> om een schuld in te voeren.</p>
+                            {% endif %}
+                            
                             
                             <p class="nav-internal">
                               <a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">Ga naar overzicht</a>
