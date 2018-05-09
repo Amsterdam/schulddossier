@@ -115,6 +115,14 @@ class AppDossierController extends Controller
         }
         $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
+        if ($seachQuery['section'] === 'madi' || $seachQuery['section'] === 'gka') {
+            $seachQuery['status'] = [];
+            $seachQuery['schuldhulpbureau'] = null;
+            $seachQuery['medewerkerSchuldhulpbureau'] = null;
+            $seachQuery['teamGka'] = null;
+            $searchForm = $this->createForm(SearchDossierFormType::class, $seachQuery, ['method' => 'GET']);
+        }
+
         return $this->render('Dossier/index.html.twig', [
             'dossiers' => $dossiers,
             'searchQuery' => $seachQuery,
