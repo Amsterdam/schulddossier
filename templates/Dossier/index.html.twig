@@ -83,7 +83,9 @@
                     </tr>
                 </thead>
                 <tbody>
+{% set empty = true %}
 {% for dossier in dossiers %}
+    {% set empty = false %}
                     <tr>
                         <th><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a></th>
                         <td>{{ dossier.schuldhulpbureau }}</td>
@@ -101,6 +103,10 @@
 {% endfor %}
                </tbody>
             </table>
+            
+            {% if empty %}
+              <p class="empty-table">Er zijn geen dossiers om weer te geven.</p>
+            {% endif %}
 
 
             {% if pagination.numberOfPages > 1 %}

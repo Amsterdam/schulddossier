@@ -18,11 +18,21 @@
         {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'save', 'data-result-selector': 'REFRESH', 'data-changer': 'change'}}) }}
 
           <div class="accordion-container team-{{ app.user.type }}" data-decorator="droppable">
+  {% set empty = true %}
+  {% do form.schuldItems.setRendered %}
   {% for schuldItemForm in form.schuldItems %}
-              {% set schuldItem = schuldItemForm.vars.data %}
-              {% include 'Dossier/partial.schuldItem.html.twig' with {'schuldItem': schuldItem, 'form': schuldItemForm, 'dossier': dossier} only %}
+      {% set schuldItem = schuldItemForm.vars.data %}
+      {% if not schuldItem.verwijderd %}
+        {% set empty = false %}
+      {% endif %}
+      {% include 'Dossier/partial.schuldItem.html.twig' with {'schuldItem': schuldItem, 'form': schuldItemForm, 'dossier': dossier} only %}
   {% endfor %}
           </div>
+
+          {% if empty %}
+            <p class="empty-table">Er zijn nog geen schulden ingevoerd.</p>
+          {% endif %}
+          
         
           <div class="form-global-buttons">
               <div class="container">
@@ -37,7 +47,7 @@
         {{ form_end(form) }}
         
         <p class="nav-internal">
-          <a href="#nieuwe-schuld-toevoegen" data-handler="toggle scroll" class="primary">Nieuwe schuld toevoegen</a>
+          <a href="#nieuwe-schuld-toevoegen" data-handler="toggle scroll" class="primary schulditem-nieuw">Nieuwe schuld toevoegen</a>
         </p>
         
         <div id="nieuwe-schuld-toevoegen" class="toggle-hidden">
@@ -47,7 +57,7 @@
             <div class="accordion-header">
               <div class="schulditem-header">
                 <h3 class="naam">
-                  <a href="#schuldItem-nieuw" class="active">
+                  <a href="#nieuwe-schuld-toevoegen" class="active" data-handler="toggle">
                     Nieuwe schuld toevoegen
                   </a>
                 </h3>

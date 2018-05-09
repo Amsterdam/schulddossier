@@ -25,6 +25,7 @@
       }
     }
     
+    
     tbody > tr:nth-child(2n+1) {
       background-color: rgba($lightColor, .2);
     }
@@ -54,11 +55,12 @@
 
     }
   }
-  .empty-table {
-    text-align: center;
-    padding: $padding / 2;
-  }
 }
+.empty-table {
+  text-align: center;
+  padding: $padding / 2;
+}
+
 .table-actions {
   .link {
     opacity: .4;

@@ -19,8 +19,14 @@
           
         }
         
+        var els = d.querySelectorAll('[href="' + this.hash + '"]');
+        
+        for (var i = 0; i < els.length; i++) {
+          els[i].classList[addRemove]('active');
+        }
+        
         el.classList[addRemove]('active');
-        this.classList[addRemove]('active');
+        
         var url = document.location.href.split('#')[0];
         if (history.replaceState) {
           w.location.hash = '_';
