@@ -8,7 +8,7 @@
     <nav class="nav-internal">
         <ul>
             <li>Schuldeisers</li>
-            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create') }}">Nieuwe schuldeiser</a></li>
+            {% if is_granted('ROLE_GKA') or is_granted('ROLE_ADMIN') %}<li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create') }}">Nieuwe schuldeiser</a></li>{% endif %}
         </ul>
     </nav>
 
@@ -16,6 +16,9 @@
         <div class="document-header">
             <h1 class="document-title">Schuldeiser</h1>
         </div>
+        {% if is_granted('ROLE_GKA') == false and is_granted('ROLE_ADMIN') == false %}
+            <p>Alleen medewerkers van het GKA kunnen schuldeisers toevoegen of wijzigen.</p>
+        {% endif %}
         <div class="table">
             <table>
                 <thead>
@@ -27,7 +30,13 @@
                 <tbody>
 {% for schuldeiser in schuldeisers %}
                     <tr>
-                        <th><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_update', {'schuldeiserId': schuldeiser.id}) }}">{{ schuldeiser.bedrijfsnaam }}</a></th>
+                        <th>
+                            {% if is_granted('ROLE_GKA') or is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_update', {'schuldeiserId': schuldeiser.id}) }}">{{ schuldeiser.bedrijfsnaam }}</a>
+                            {% else %}
+                                {{ schuldeiser.bedrijfsnaam }}
+                            {% endif %}
+                        </th>
                         <td>{{ schuldeiser.allegroCode }}</td>
                     </tr>
 {% endfor %}

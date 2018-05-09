@@ -62,6 +62,7 @@ class AppSchuldeiserController extends Controller
 
     /**
      * @Route("/nieuw")
+     * @Security("has_role('ROLE_GKA') || has_role('ROLE_ADMIN')")
      */
     public function createAction(Request $request, EntityManagerInterface $em)
     {
@@ -93,6 +94,7 @@ class AppSchuldeiserController extends Controller
 
     /**
      * @Route("/detail/{schuldeiserId}/bewerken")
+     * @Security("has_role('ROLE_GKA') || has_role('ROLE_ADMIN')")
      * @ParamConverter("schuldeiser", options={"id"="schuldeiserId"})
      */
     public function updateAction(Request $request, EntityManagerInterface $em, Schuldeiser $schuldeiser)

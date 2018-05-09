@@ -95,11 +95,17 @@
     "justinrainbow/json-schema": {
         "version": "5.2.7"
     },
+    "kriswallsmith/assetic": {
+        "version": "v1.4.0"
+    },
     "league/flysystem": {
         "version": "1.0.43"
     },
     "markei/filesystemoperations": {
         "version": "v1.0.0"
+    },
+    "moment/moment": {
+        "version": "2.21.0"
     },
     "monolog/monolog": {
         "version": "1.23.0"
@@ -142,6 +148,9 @@
     },
     "psr/simple-cache": {
         "version": "1.0.0"
+    },
+    "robloach/component-installer": {
+        "version": "0.2.3"
     },
     "sensio/framework-extra-bundle": {
         "version": "4.0",
