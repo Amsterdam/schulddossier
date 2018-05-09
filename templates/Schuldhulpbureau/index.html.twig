@@ -8,7 +8,7 @@
     <nav class="nav-internal">
         <ul>
             <li>Schuldhulpbureaus</li>
-            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_create') }}">Nieuw schuldhulpbureau</a></li>
+            {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}<li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_create') }}">Nieuw schuldhulpbureau</a></li>{% endif %}
         </ul>
     </nav>
 
@@ -16,6 +16,9 @@
         <div class="document-header">
             <h1 class="document-title">Schuldhulpbureau</h1>
         </div>
+        {% if is_granted('ROLE_APPBEHEER') == false and is_granted('ROLE_ADMIN') == false %}
+            <p>Alleen applicatie beheerders kunnen nieuwe schuldhulpbureaus toevoegen en bestaande schuldhulpbureaus wijzigen</p>
+        {% endif %}
         <div class="table">
             <table>
                 <thead>
@@ -26,7 +29,13 @@
                 <tbody>
 {% for schuldhulpbureau in schuldhulpbureaus %}
                     <tr>
-                        <th><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_update', {'schuldhulpbureauId': schuldhulpbureau.id}) }}">{{ schuldhulpbureau.naam }}</a></th>
+                        <th>
+                            {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_update', {'schuldhulpbureauId': schuldhulpbureau.id}) }}">{{ schuldhulpbureau.naam }}</a>
+                            {% else %}
+                                {{ schuldhulpbureau.naam }}
+                            {% endif %}
+                        </th>
                     </tr>
 {% endfor %}
                </tbody>

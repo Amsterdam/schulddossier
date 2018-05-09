@@ -27,7 +27,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
 
 /**
  * @Route("/app/schuldeiser")
- * @Security("has_role('ROLE_USER')")
+ * @Security("has_role('ROLE_MADI') || has_role('ROLE_GKA') || has_role('ROLE_ADMIN')")
  */
 class AppSchuldeiserController extends Controller
 {

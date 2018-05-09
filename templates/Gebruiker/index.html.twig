@@ -8,7 +8,7 @@
     <nav class="nav-internal">
         <ul>
             <li>Gebruikers</li>
-            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_create') }}">Nieuwe gebruiker</a></li>
+            {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}<li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_create') }}">Nieuwe gebruiker</a></li>{% endif %}
         </ul>
     </nav>
 
@@ -16,6 +16,9 @@
         <div class="document-header">
             <h1 class="document-title">Gebruikers</h1>
         </div>
+        {% if is_granted('ROLE_APPBEHEER') == false and is_granted('ROLE_ADMIN') == false %}
+            <p>Alleen applicatie beheerders kunnen nieuwe gebruikers toevoegen en bestaande gebruikers wijzigen</p>
+        {% endif %}
         <div class="table">
             <table>
                 <thead>
@@ -28,7 +31,13 @@
                 <tbody>
 {% for gebruiker in gebruikers %}
                     <tr>
-                        <th><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', {'gebruikerId': gebruiker.id}) }}">{{ gebruiker.username }}</a></th>
+                        <th>
+                            {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', {'gebruikerId': gebruiker.id}) }}">{{ gebruiker.username }}</a>
+                            {% else %}
+                                {{ gebruiker.username }}
+                            {% endif %}
+                        </th>
                         <td>{{ gebruiker.naam }}</td>
                         <td>{{ gebruiker.type }}</td>
                     </tr>
