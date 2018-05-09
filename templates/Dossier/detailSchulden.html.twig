@@ -18,22 +18,21 @@
         {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'save', 'data-result-selector': 'REFRESH', 'data-changer': 'change'}}) }}
 
           <div class="accordion-container team-{{ app.user.type }}" data-decorator="droppable">
-  {% set empty = true %}
-  {% do form.schuldItems.setRendered %}
-  {% for schuldItemForm in form.schuldItems %}
-      {% set schuldItem = schuldItemForm.vars.data %}
-      {% if not schuldItem.verwijderd %}
-        {% set empty = false %}
-      {% endif %}
-      {% include 'Dossier/partial.schuldItem.html.twig' with {'schuldItem': schuldItem, 'form': schuldItemForm, 'dossier': dossier} only %}
-  {% endfor %}
+            {% set empty = true %}
+            {% do form.schuldItems.setRendered %}
+            {% for schuldItemForm in form.schuldItems %}
+                {% set schuldItem = schuldItemForm.vars.data %}
+                {% if not schuldItem.verwijderd %}
+                  {% set empty = false %}
+                {% endif %}
+                {% include 'Dossier/partial.schuldItem.html.twig' with {'schuldItem': schuldItem, 'form': schuldItemForm, 'dossier': dossier} only %}
+            {% endfor %}
+  
+            {% if empty %}
+              <p class="empty-table">Er zijn nog geen schulden ingevoerd.</p>
+            {% endif %}
           </div>
 
-          {% if empty %}
-            <p class="empty-table">Er zijn nog geen schulden ingevoerd.</p>
-          {% endif %}
-          
-        
           <div class="form-global-buttons">
               <div class="container">
                   <p class="buttons right">
