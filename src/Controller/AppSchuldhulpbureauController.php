@@ -42,6 +42,7 @@ class AppSchuldhulpbureauController extends Controller
 
     /**
      * @Route("/nieuw")
+     * @Security("has_role('ROLE_APPBEHEER') || has_role('ROLE_ADMIN')")
      */
     public function createAction(Request $request, EntityManagerInterface $em)
     {
@@ -64,6 +65,7 @@ class AppSchuldhulpbureauController extends Controller
 
     /**
      * @Route("/detail/{schuldhulpbureauId}/bewerken")
+     * @Security("has_role('ROLE_APPBEHEER') || has_role('ROLE_ADMIN')")
      * @ParamConverter("schuldhulpbureau", options={"id"="schuldhulpbureauId"})
      */
     public function updateAction(Request $request, EntityManagerInterface $em, Schuldhulpbureau $schuldhulpbureau)

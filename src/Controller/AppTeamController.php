@@ -45,6 +45,7 @@ class AppTeamController extends Controller
 
     /**
      * @Route("/nieuw")
+     * @Security("has_role('ROLE_APPBEHEER') || has_role('ROLE_ADMIN')")
      */
     public function createAction(Request $request, EntityManagerInterface $em)
     {
@@ -67,6 +68,7 @@ class AppTeamController extends Controller
 
     /**
      * @Route("/detail/{teamId}/bewerken")
+     * @Security("has_role('ROLE_APPBEHEER') || has_role('ROLE_ADMIN')")
      * @ParamConverter("team", options={"id"="teamId"})
      */
     public function updateAction(Request $request, EntityManagerInterface $em, Team $team)

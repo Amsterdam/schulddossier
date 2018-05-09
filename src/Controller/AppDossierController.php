@@ -78,7 +78,7 @@ use Doctrine\ORM\EntityManager;
 
 /**
  * @Route("/app/dossier")
- * @Security("has_role('ROLE_USER')")
+ * @Security("has_role('ROLE_MADI') || has_role('ROLE_GKA') || has_role('ROLE_ADMIN')")
  */
 class AppDossierController extends Controller
 {
@@ -114,6 +114,14 @@ class AppDossierController extends Controller
             $searchForm->handleRequest($request);
         }
         $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+
+        if ($seachQuery['section'] === 'madi' || $seachQuery['section'] === 'gka') {
+            $seachQuery['status'] = [];
+            $seachQuery['schuldhulpbureau'] = null;
+            $seachQuery['medewerkerSchuldhulpbureau'] = null;
+            $seachQuery['teamGka'] = null;
+            $searchForm = $this->createForm(SearchDossierFormType::class, $seachQuery, ['method' => 'GET']);
+        }
 
         return $this->render('Dossier/index.html.twig', [
             'dossiers' => $dossiers,

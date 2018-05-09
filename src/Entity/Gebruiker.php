@@ -22,6 +22,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface
     const TYPE_GKA = 'gka';
     const TYPE_MADI = 'madi';
     const TYPE_ADMIN = 'admin';
+    const TYPE_APPBEHEERDER = 'appbeheer';
 
     /**
      * @var integer
@@ -314,6 +315,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface
             self::TYPE_MADI => self::TYPE_MADI,
             self::TYPE_GKA => self::TYPE_GKA,
             self::TYPE_ADMIN => self::TYPE_ADMIN,
+            self::TYPE_APPBEHEERDER => self::TYPE_APPBEHEERDER
         ];
     }
 

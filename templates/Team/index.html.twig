@@ -8,7 +8,7 @@
     <nav class="nav-internal">
         <ul>
             <li>Teams</li>
-            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_create') }}">Nieuw team</a></li>
+            {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}<li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_create') }}">Nieuw team</a></li>{% endif %}
         </ul>
     </nav>
 
@@ -16,6 +16,9 @@
         <div class="document-header">
             <h1 class="document-title">Teams</h1>
         </div>
+        {% if is_granted('ROLE_APPBEHEER') == false and is_granted('ROLE_ADMIN') == false %}
+            <p>Alleen applicatie beheerders kunnen nieuwe teams toevoegen en bestaande teams wijzigen</p>
+        {% endif %}
         <div class="table">
             <table>
                 <thead>
@@ -27,7 +30,13 @@
                 <tbody>
 {% for team in teams %}
                     <tr>
-                        <th><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_update', {'teamId': team.id}) }}">{{ team.naam }}</a></th>
+                        <th>
+                            {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_update', {'teamId': team.id}) }}">{{ team.naam }}</a>
+                            {% else %}
+                                {{ team.naam }}
+                            {% endif %}
+                        </th>
                         <td>{{ team.email }}</td>
                     </tr>
 {% endfor %}
