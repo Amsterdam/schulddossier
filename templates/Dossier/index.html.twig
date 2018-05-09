@@ -108,13 +108,13 @@
                   {% if pagination.page <= 0 %}
                   <span class="prev">vorige</span>
                   {% else %}
-                  <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', {'page': pagination.page - 1, 'search_dossier_form': app.request.query.get('search_dossier_form') }) }}">vorige</a>
+                  <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', {'page': pagination.page - 1, 'section': searchQuery.section, 'search_dossier_form': app.request.query.get('search_dossier_form') }) }}">vorige</a>
                   {% endif %}
                   <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
                   {% if (pagination.page + 1) >= pagination.numberOfPages %}
                   <span class="next">volgende</span>
                   {% else %}
-                  <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', {'page': pagination.page + 1, 'search_dossier_form': app.request.query.get('search_dossier_form')}) }}">volgende</a>
+                  <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', {'page': pagination.page + 1, 'section': searchQuery.section, 'search_dossier_form': app.request.query.get('search_dossier_form')}) }}">volgende</a>
                   {% endif %}
               </div>
             {% endif %}
