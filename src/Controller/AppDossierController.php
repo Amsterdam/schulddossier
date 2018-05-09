@@ -455,15 +455,15 @@ class AppDossierController extends Controller
                 }
             }
             $em->flush();
-            if ($request->isXmlHttpRequest()) {
-                return new JsonResponse(['status' => 'OK']);
-            }
-            $this->addFlash('success', 'Opgeslagen');
+            //if ($request->isXmlHttpRequest()) {
+            //    return new JsonResponse(['status' => 'OK']);
+            //}
+            //$this->addFlash('success', 'Opgeslagen');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
         }
-        else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
-            return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-        }
+        //else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
+        //    return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
+        //}
 
         $schuldItem = new SchuldItem();
         $createForm = $this->createForm(SchuldItemFormType::class, $schuldItem);
@@ -495,11 +495,11 @@ class AppDossierController extends Controller
                 $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
             }
             $em->flush();
-            $this->addFlash('success', 'Toegevoegd');
+            //$this->addFlash('success', 'Toegevoegd');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
-        } else if ($createForm->isSubmitted() && $request->isXmlHttpRequest()) {
-            return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-        }
+        } //else if ($createForm->isSubmitted() && $request->isXmlHttpRequest()) {
+        //    return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
+        //}
 
         $schuldeiser = new Schuldeiser();
         $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser, [

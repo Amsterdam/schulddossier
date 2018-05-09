@@ -5,16 +5,16 @@
 {% block pdfsplitter %}{% endblock %}
 
 {% block document %}
-    <nav class="nav-internal">
-        <ul>
-            <li>Teams</li>
-            {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}<li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_create') }}">Nieuw team</a></li>{% endif %}
-        </ul>
-    </nav>
 
     <div class="document well">
-        <div class="document-header">
+        <div class="document-header group">
             <h1 class="document-title">Teams</h1>
+            <nav class="nav-internal">
+                <ul>
+                    <li>Teams</li>
+                    {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_create') }}">Nieuw team</a></li>{% endif %}
+                </ul>
+            </nav>
         </div>
         {% if is_granted('ROLE_APPBEHEER') == false and is_granted('ROLE_ADMIN') == false %}
             <p>Alleen applicatie beheerders kunnen nieuwe teams toevoegen en bestaande teams wijzigen</p>
