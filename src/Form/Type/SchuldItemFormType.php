@@ -33,7 +33,7 @@ class SchuldItemFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('schuldeiser', EntityType::class, [
-            'required' => false,
+            'required' => true,
             'class' => Schuldeiser::class,
             'choice_attr' => function($val, $key, $index) {
                 /** @var $val Schuldeiser */
