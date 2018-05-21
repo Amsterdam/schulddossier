@@ -5,7 +5,7 @@
     'toggle': function(e) {
       var el = document.getElementById(this.hash.substr(1));
       if (el) {
-        e.preventDefault();
+        e && e.preventDefault();
         var 
           wasActive = this.hash == w.location.hash || el.classList.contains('active'),
           addRemove = wasActive ? 'remove' : 'add',
@@ -177,6 +177,8 @@
       
       helpers.trigger(form, 'change');
       
+      form.classList.remove('form-changed');
+      
     },
     
     'focus': function(e){
@@ -245,9 +247,9 @@
         var form = (e && e.target) && _closest(e.target, 'form');
         var changer = (e && e.target) && _closest(e.target, '[data-changer]');
         
-        if (!files) return;
+        if (!files || !files.length) return;
         
-        zone.classList.add('active');
+        if (zone) zone.classList.add('active');
         
         if (form) {
           
@@ -328,8 +330,23 @@
         helpers.trigger(el, 'change');
         
       }
-    }
+    },
     
+    'rome': function(){
+      if (typeof rome != 'function' || this.tagName != 'INPUT') return;
+      var datepicker = rome(this, {
+        'inputFormat': 'DD-MM-YYYY',
+        'time': false,
+        'moment': {
+          'locale': 'nl'
+        }
+      });
+      datepicker.on('data', (newDate) => {
+        var changer = _closest(this, '[data-changer]');
+        changer && changers[changer.dataset.changer].call(changer);
+      });
+      
+    }
   };
   
   var submitters = {
@@ -412,29 +429,13 @@
         url: url,
         data: data,
         callback: function(data){
+          _process(data, form.dataset.resultSelector || 'body');
+          w.location.hash = '_';
           
-          if (form.dataset.resultSelector && form.dataset.resultSelector.indexOf('REFRESH') === 0) {
-            if (form.dataset.resultSelector == 'REFRESH') {
-
-              form.classList.remove('in-progress');
-              form.classList.remove('form-changed');
-
-              w.location.href = w.location.href.split('#')[0];
-            } else {
-              helpers.ajax({
-                type: 'get',
-                url: w.location.href,
-                callback: function(data){
-                  _process(data, form.dataset.resultSelector.substring(8));
-                }
-              });
-            }
-          } else {
-            _process(data, form.dataset.resultSelector);
+          if (form.dataset.submitterCallback && typeof callbackers[form.dataset.submitterCallback] == 'function') {
+            callbackers[form.dataset.submitterCallback].call(form);
           }
           
-          w.location.hash = '_';
-
         },
         error: function(){
           form.classList.remove('in-progress');
@@ -772,7 +773,7 @@
   };
   
   var helpers = {
-    ajax: function(options) {
+    'ajax': function(options) {
       var request = new XMLHttpRequest();
       request.open(options.type, options.url, true);
       request.onreadystatechange = function () {
@@ -786,6 +787,7 @@
               options.error.call(request, request.responseText);
             }
           }
+          _decorate();
         }
       };
 
@@ -817,6 +819,18 @@
     }
     
     
+  };
+  
+  var callbackers = {
+    'schulditem-nieuw': function(){
+      var el = document.getElementById('nieuwe-schuld-toevoegen-trigger');
+      if (el && d.querySelector('#schuldItem-nieuw .errors')) {
+        handlers.toggle.call(el);
+        _scrollTo(document.getElementById('schuldItem-nieuw'))
+      } else {
+        w.scrollTo(0,0);
+      }
+    }
   };
   
   

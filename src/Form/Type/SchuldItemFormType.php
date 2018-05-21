@@ -78,7 +78,7 @@ class SchuldItemFormType extends AbstractType
         ]);
         $builder->add('vastStelDatum', DateType::class, [
             'html5' => false,
-            'attr' => ['class' => 'rome'],
+            'attr' => ['data-decorator' => 'rome'],
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => 'Contactdatum',
@@ -86,7 +86,7 @@ class SchuldItemFormType extends AbstractType
         ]);
         $builder->add('ontstaansDatum', DateType::class, [
             'html5' => false,
-            'attr' => ['class' => 'rome'],
+            'attr' => ['data-decorator' => 'rome'],
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => 'Ontstaansdatum',
