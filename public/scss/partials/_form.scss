@@ -570,6 +570,16 @@ form {
     }
     .bestand-zoom {
       display: none;
+      height: 3.3rem;
+      width: 3.3rem;
+      bottom: auto;
+      right: 0;
+      left: auto;
+      top: 0;
+      &:before, &:after {
+        margin-top: 2px;
+        margin-left: 2px;
+      }
     }
     &.file-pdf-pages {
       .bestand-zoom {
