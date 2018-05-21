@@ -207,6 +207,8 @@ a.bestand {
   font-size: 0;
 
   opacity: 0;
+  
+  background-color: #fff;
 
   transition: all .3s;
   text-decoration: none;
@@ -214,8 +216,8 @@ a.bestand {
     content: '';
     position: absolute;
     z-index: 2;
-    left: 4.1rem;
-    top: 4rem;
+    left: .3rem;
+    top: .3rem;
     width: 1.2rem;
     height: 1.2rem;
     border-radius: 50%;
@@ -231,8 +233,8 @@ a.bestand {
     content: '';
     position: absolute;
     z-index: 1;
-    left: 5.4rem;
-    top: 5.1rem;
+    left: 1.7rem;
+    top: 1.4rem;
     width: 0;
     height: 1rem;
     border-left: 4px solid $textColor;
@@ -251,6 +253,17 @@ a.bestand {
     .bestand:before,
     .bestand-zoom {
       opacity: 1;
+    }
+  }
+  .bestand-zoom {
+    background-color: transparent;
+    &:before {
+      left: 4.1rem;
+      top: 4rem;
+    }
+    &:after {
+      left: 5.4rem;
+      top: 5.1rem;
     }
   }
   .bestand-verwijderen-check:checked ~ label {
