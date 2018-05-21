@@ -28,7 +28,7 @@
                 </thead>
                 <tbody>
 {% for schuldhulpbureau in schuldhulpbureaus %}
-                    <tr>
+                    <tr{% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
                         <th>
                             {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}
                                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_update', {'schuldhulpbureauId': schuldhulpbureau.id}) }}">{{ schuldhulpbureau.naam }}</a>

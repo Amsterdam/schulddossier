@@ -86,7 +86,7 @@
 {% set empty = true %}
 {% for dossier in dossiers %}
     {% set empty = false %}
-                    <tr>
+                    <tr class="row-link">
                         <th><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a></th>
                         <td>{{ dossier.schuldhulpbureau }}</td>
                         <td class="nummer">

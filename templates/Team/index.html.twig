@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
 {% for team in teams %}
-                    <tr>
+                    <tr{% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
                         <th>
                             {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}
                                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_update', {'teamId': team.id}) }}">{{ team.naam }}</a>

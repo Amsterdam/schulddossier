@@ -5,9 +5,8 @@
     border-spacing: 0;
     text-align: left;
     margin-bottom: $lineHeight;
-    
+
     overflow: hidden;
-    
     th {
       text-align: left;
     }
@@ -36,29 +35,35 @@
       background-color: rgba($lightColor, .2);
     }
     
-    tbody th {
-      position: relative;
-      a {
-        text-decoration: none;
-        display: block;
+    .row-link {
+      overflow: hidden;
+      th {
+        position: relative;
+      }
+      td, th {
+        transition: border .3s;
+      }
+      &:hover {
+        td, th {
+          border-color: $textColor;
+        }
+      }
+      th a {
         &:before {
           content: '';
           position: absolute;
           left: 0;
           top: 0;
           bottom: 0;
+          height: 10em;
           width: 100vw;
           background-color: rgba(#000, 0);
-          border-bottom: 1px solid rgba(#000, 0);
-          transition: all .3s;
         }
         &:hover {
           text-decoration: none;
-          &:before {
-            border-color: $textColor;
-          }
         }
       }
+      
     }
   }
 }

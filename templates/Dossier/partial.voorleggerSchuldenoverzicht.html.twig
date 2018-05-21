@@ -37,7 +37,7 @@
                                     {% set empty = true %}
                                     {% for schuldItem in dossier.schuldItems if schuldItem.verwijderd == false %}
                                     {% set empty = false %}
-                                    <tr>
+                                    <tr class="row-link">
                                         <th>
                                           <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}#schuldItem-{{ schuldItem.id }}">{{ schuldItem.schuldeiser|default('-') }} {% if schuldItem.incassant %}/{% endif %} {{ schuldItem.incassant }}</a></th>
                                         <td>{{ schuldItem.referentie }}</td>

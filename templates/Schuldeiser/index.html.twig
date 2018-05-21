@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
 {% for schuldeiser in schuldeisers %}
-                    <tr>
+                    <tr{% if is_granted('ROLE_GKA') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
                         <th>
                             {% if is_granted('ROLE_GKA') or is_granted('ROLE_ADMIN') %}
                                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_update', {'schuldeiserId': schuldeiser.id}) }}">{{ schuldeiser.bedrijfsnaam }}</a>
