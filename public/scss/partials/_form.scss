@@ -190,6 +190,7 @@ fieldset {
 form {
   .form-row {
     position: relative;
+    z-index: 1;
     margin-bottom: $lineHeight;
   }
   [data-unit] {
@@ -650,13 +651,17 @@ form {
   .form-global-buttons {
     
     z-index: 100;
+    &.important {
+      z-index: 101;
+    }
   
     left: 0;
     right: 0;
   
-    background-color: rgba(#fff, .9);
+    background-color: rgba(#fff, 1);
+    box-shadow: 0 0 5px 0 rgba(#000, .2);
     
-    transition: bottom .3s;
+    transition: all .3s;
     bottom: -100px;
     
     .js & {
