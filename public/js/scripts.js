@@ -341,8 +341,9 @@
           'locale': 'nl'
         }
       });
-      datepicker.on('data', (newDate) => {
-        var changer = _closest(this, '[data-changer]');
+      datepicker.on('data', function(){
+        if (!this.associated) return;
+        var changer = _closest(this.associated, '[data-changer]');
         changer && changers[changer.dataset.changer].call(changer);
       });
       
