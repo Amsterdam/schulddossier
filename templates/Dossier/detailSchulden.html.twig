@@ -15,7 +15,7 @@
         {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}
         
         {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'schulden'} only %}
-        {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'save', 'data-result-selector': 'REFRESH', 'data-changer': 'change'}}) }}
+        {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'save', 'data-result-selector': '#schulden_form .accordion-container .accordion', 'data-changer': 'change'}}) }}
 
           <div class="accordion-container team-{{ app.user.type }}" data-decorator="droppable">
             {% set empty = true %}
@@ -33,7 +33,7 @@
             {% endif %}
           </div>
 
-          <div class="form-global-buttons">
+          <div class="form-global-buttons important">
               <div class="container">
                   <p class="buttons right">
                       <button type="submit" class="button primary">Opslaan</button>
@@ -46,7 +46,7 @@
         {{ form_end(form) }}
         
         <p class="nav-internal">
-          <a href="#nieuwe-schuld-toevoegen" data-handler="toggle scroll" class="primary schulditem-nieuw">Nieuwe schuld toevoegen</a>
+          <a href="#nieuwe-schuld-toevoegen" id="nieuwe-schuld-toevoegen-trigger" data-handler="toggle scroll" class="primary schulditem-nieuw">Nieuwe schuld toevoegen</a>
         </p>
         
         <div id="nieuwe-schuld-toevoegen" class="toggle-hidden">
@@ -65,7 +65,7 @@
           
             <div class="accordion-body">
               <div class="schulditem-body">
-                {{ form_start(createForm, {'attr': {'data-submitter': 'save', 'data-result-selector': 'REFRESH'}}) }}
+                {{ form_start(createForm, {'attr': {'data-submitter': 'save', 'data-result-selector': '.document', 'data-submitter-callback': 'schulditem-nieuw', 'data-changer': 'change'}}) }}
                   <div class="columns">
                     <div class="column column-big">
                       
@@ -103,11 +103,17 @@
                   
                   {{ form_row(createForm.aantekening) }}
               
-                  <p class="buttons right">
-                    {% do createForm.verwijderd.setRendered() %}
-                    <button type="submit" class="button primary">Aanmaken</button>
-                    <a href="#nieuwe-schuld-toevoegen" data-handler="toggle reset">Annuleren</a>
-                  </p>
+                  <div class="form-global-buttons">
+                      <div class="container">
+                          <p class="buttons right">
+                  
+                            {% do createForm.verwijderd.setRendered() %}
+                            <button type="submit" class="button primary">Nieuwe schuld opslaan</button>
+                            <a href="#nieuwe-schuld-toevoegen" data-handler="toggle reset">Annuleren</a>
+                          
+                          </p>
+                      </div>
+                  </div>
                   
                 {{ form_end(createForm) }}
               </div>
@@ -116,14 +122,5 @@
           </div>
         </div>
         
-    <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function (event) {
-        elms = document.querySelectorAll('.rome');
-        for (var i = 0; i < elms.length; i ++) {
-            window.schuldhulp._.datePicker(elms.item(i));
-        }
-     });
-    </script>
-     
      
 {% endblock %}
