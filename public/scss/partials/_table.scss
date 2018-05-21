@@ -25,6 +25,12 @@
       }
     }
     
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
     
     tbody > tr:nth-child(2n+1) {
       background-color: rgba($lightColor, .2);
@@ -47,6 +53,7 @@
           transition: all .3s;
         }
         &:hover {
+          text-decoration: none;
           &:before {
             border-color: $textColor;
           }
