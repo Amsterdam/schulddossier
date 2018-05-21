@@ -46,6 +46,9 @@
                                 {{ form_row(form.type) }}
                                 {{ form_row(form.referentie) }}
                                 {{ form_row(form.aantekening) }}
+                                
+                                {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': schuldItem.aantekeningen} only %}
+                                
                             </div>
                             <div class="column">
                                 {{ form_row(form.bedrag, {'attr': {'data-unit': '€'}}) }}
@@ -57,8 +60,6 @@
                         
                         {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': (schuldItem.incassant ? schuldItem.incassant.bedrijfsnaam ~ ' - ' : '') ~ schuldItem.schuldeiser.bedrijfsnaam|default('-')} only %}
                         {% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten, 'removeFile': form.removeFile} only %}
-                        
-                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': schuldItem.aantekeningen} only %}
                         
                         <p class="nav-internal">
                           <label for="schulden_form_schuldItems_{{ schuldItem.id }}_verwijderd">
