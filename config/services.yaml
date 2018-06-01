@@ -11,6 +11,7 @@ parameters:
     swift_external_domain: '%env(SWIFT_EXTERNAL_DOMAIN)%'
     swift_public_url: 'https://%swift_project_id%.%swift_external_domain%'
     thumbnail_service_url: '%env(THUMBNAILSERVICE_URL)%'
+    app_mail_from: '%env(APP_NOTIFICATIE_FROM)%'
 
 services:
     _defaults:
