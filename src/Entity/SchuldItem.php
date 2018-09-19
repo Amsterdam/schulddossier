@@ -101,10 +101,10 @@ class SchuldItem
 
     /**
      * @var float
-     * @ORM\Column(type="decimal", precision=8, scale=2, nullable=true)
+     * @ORM\Column(type="decimal", precision=9, scale=2, nullable=true)
      * @Assert\NotBlank
      * @Assert\Type("numeric")
-     * @Assert\Range(min=-100000, max=100000)
+     * @Assert\Range(min=-1, max=1000000)
      */
     private $bedrag;
 
