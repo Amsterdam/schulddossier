@@ -5,6 +5,8 @@ components/
 .buildpath
 .project
 .settings/
+.idea
+.idea/*
 
 # OS
 .DS_Store

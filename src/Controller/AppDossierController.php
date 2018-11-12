@@ -167,6 +167,8 @@ class AppDossierController extends Controller
         $dossier = new Dossier();
         $dossier->setAanmaker($this->getUser());
         $dossier->setMedewerkerSchuldhulpbureau($this->getUser());
+        $dossier->setSchuldhulpbureau($this->getUser()->getSchuldhulpbureau());
+        $dossier->setTeamGka($this->getUser()->getTeamGka());
         $dossier->setDossierTemplate('v1');
         $dossier->setStatus('bezig_madi');
         $form = $this->createForm(CreateDossierFormType::class, $dossier);

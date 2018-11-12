@@ -23,6 +23,7 @@ class CreateDossierFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('schuldhulpbureau', EntityType::class, [
+            'placeholder' => '- Kies een schuldhulpbureau -',
             'required' => true,
             'class' => Schuldhulpbureau::class,
             'multiple' => false,
@@ -42,6 +43,7 @@ class CreateDossierFormType extends AbstractType
             }
         ]);
         $builder->add('teamGka', EntityType::class, [
+            'placeholder' => '- Kies een GKA Team -',
             'required' => false,
             'class' => Team::class,
             'multiple' => false,

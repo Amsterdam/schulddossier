@@ -252,7 +252,7 @@ class Dossier
     /**
      * @param Schuldhulpbureau $schuldhulpbureau
      */
-    public function setSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau)
+    public function setSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau = null)
     {
         $this->schuldhulpbureau = $schuldhulpbureau;
     }
