@@ -17,9 +17,17 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Security\Core\Security;
+use Psr\Log\LoggerInterface;
 
 class GebruikerFormType extends AbstractType
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('naam', TextType::class, [
@@ -37,10 +45,6 @@ class GebruikerFormType extends AbstractType
             'first_options' => ['label' => 'Wachtwoord'],
             'second_options' => ['label' => 'Wachtwoord (herhaal)'],
         ]);
-        $builder->add('type', ChoiceType::class, [
-            'required' => true,
-            'choices' => Gebruiker::getTypes()
-        ]);
         $builder->add('teamGka', EntityType::class, [
             'required' => false,
             'expanded' => false,
@@ -57,10 +61,28 @@ class GebruikerFormType extends AbstractType
             'required' => false
         ]);
 
+        $user = $this->security->getUser();
+
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
             if ($event->getForm()->get('clearPassword')->getData() !== null && $event->getForm()->get('clearPassword')->getData() !== '') {
                 $event->getData()->setPasswordChangedDateTime(new \DateTime());
             }
+        });
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($user) {
+            $gebruiker = $event->getData();
+            $form = $event->getForm();
+            $form->add('type', ChoiceType::class, [
+                'required' => true,
+                'choices' => Gebruiker::getTypes($user->getType()),
+            ]);
+        });
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($user) {
+            $gebruiker = $event->getData();
+            $form = $event->getForm();
+            $form->add('type', ChoiceType::class, [
+                'required' => true,
+                'choices' => Gebruiker::getTypes($user->getType()),
+            ]);
         });
     }
 

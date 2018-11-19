@@ -307,16 +307,20 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface
     }
 
     /**
+     * @param string $type
      * @return string[]
      */
-    public static function getTypes()
+    public static function getTypes(string $type = null)
     {
-        return [
+        $defaultTypes = [
             self::TYPE_MADI => self::TYPE_MADI,
             self::TYPE_GKA => self::TYPE_GKA,
-            self::TYPE_ADMIN => self::TYPE_ADMIN,
             self::TYPE_APPBEHEERDER => self::TYPE_APPBEHEERDER
         ];
+        if ($type === self::TYPE_ADMIN) {
+            $defaultTypes[self::TYPE_ADMIN] = self::TYPE_ADMIN;
+        }
+        return $defaultTypes;
     }
 
     /**
