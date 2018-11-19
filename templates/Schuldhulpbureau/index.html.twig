@@ -24,6 +24,7 @@
                 <thead>
                     <tr>
                         <th>Naam</th>
+                        <th>Standaard team bij GKA</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +37,9 @@
                                 {{ schuldhulpbureau.naam }}
                             {% endif %}
                         </th>
+                        <td>
+                            {{ schuldhulpbureau.standaardGkaTeam }}
+                        </td>
                     </tr>
 {% endfor %}
                </tbody>

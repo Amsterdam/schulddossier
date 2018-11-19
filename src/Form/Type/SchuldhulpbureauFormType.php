@@ -28,6 +28,11 @@ class SchuldhulpbureauFormType extends AbstractType
         $builder->add('emailAdresControle', TextType::class, [
             'required' => false
         ]);
+        $builder->add('standaardGkaTeam', EntityType::class, [
+            'required' => false,
+            'label' => 'Standaard team bij het GKA',
+            'class' => Team::class
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

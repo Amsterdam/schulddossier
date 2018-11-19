@@ -35,6 +35,13 @@ class Schuldhulpbureau
      */
     private $emailAdresControle;
 
+    /**
+     * @var Team
+     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    private $standaardGkaTeam;
+
     public function getId()
     {
         return $this->id;
@@ -66,5 +73,17 @@ class Schuldhulpbureau
     public function __toString()
     {
         return $this->naam;
+    }
+
+    public function getStandaardGkaTeam(): ?Team
+    {
+        return $this->standaardGkaTeam;
+    }
+
+    public function setStandaardGkaTeam(?Team $standaardGkaTeam): self
+    {
+        $this->standaardGkaTeam = $standaardGkaTeam;
+
+        return $this;
     }
 }
