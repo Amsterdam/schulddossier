@@ -46,7 +46,13 @@ class CreateDossierFormType extends AbstractType
                 $qb->setParameter('type', Gebruiker::TYPE_MADI);
                 $qb->addOrderBy('gebruiker.username', 'ASC');
                 return $qb;
-            }
+            },
+            'group_by' => function (Gebruiker $gebruiker) {
+                if ($gebruiker->getSchuldhulpbureau() !== null) {
+                    return $gebruiker->getSchuldhulpbureau()->__toString();
+                }
+                return null;
+            },
         ]);
         $builder->add('teamGka', EntityType::class, [
             'placeholder' => '- Kies een GKA Team -',
