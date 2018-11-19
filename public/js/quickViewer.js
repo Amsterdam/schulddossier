@@ -91,10 +91,10 @@ window.schuldhulp.quickViewer = {
             canvasElements.item(i).parentNode.removeChild(canvasElements.item(i));
         }
     },
-    
+
     init: function () {
         var self = this;
-        
+
         self.dom.container = document.createElement('div');
         self.dom.container.classList.add('quick-viewer');
         self.dom.container.classList.add('modal-container');
@@ -127,20 +127,38 @@ window.schuldhulp.quickViewer = {
         self.dom.spinner = document.createElement('img');
         self.dom.spinner.src = '/images/ico_spinner.gif';
         self.dom.body.appendChild(self.dom.spinner);
-        
+
         self.dom.prevButton = document.createElement('a');
         self.dom.prevButton.href = '#';
+        self.dom.prevButton.title = 'Vorige pagina';
         self.dom.prevButton.classList.add('button');
         self.dom.prevButton.classList.add('prev');
-        
+
         self.dom.prevButton.addEventListener('click', function (event) {
             event.preventDefault();
             self.prev();
         });
         self.dom.body.appendChild(self.dom.prevButton);
-        
+
+        self.dom.prevDocButton = document.createElement('a');
+        self.dom.prevDocButtonIcon = document.createElement('span');
+        self.dom.prevDocButtonIcon.classList.add('icon-file');
+        self.dom.prevDocButtonIcon.dataset.extension = 'pdf';
+        self.dom.prevDocButton.href = '#';
+        self.dom.prevDocButton.title = 'Vorige document';
+        self.dom.prevDocButton.classList.add('button');
+        self.dom.prevDocButton.classList.add('prev');
+        self.dom.prevDocButton.classList.add('prev-document');
+        self.dom.prevDocButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            self.prevDocument();
+        });
+        self.dom.prevDocButton.appendChild(self.dom.prevDocButtonIcon);
+        self.dom.body.appendChild(self.dom.prevDocButton);
+
         self.dom.nextButton = document.createElement('a');
         self.dom.nextButton.href = '#';
+        self.dom.nextButton.title = 'Volgende pagina';
         self.dom.nextButton.classList.add('button');
         self.dom.nextButton.classList.add('next');
         self.dom.nextButton.addEventListener('click', function (event) {
@@ -148,6 +166,22 @@ window.schuldhulp.quickViewer = {
             self.next();
         });
         self.dom.body.appendChild(self.dom.nextButton);
+
+        self.dom.nextDocButton = document.createElement('a');
+        self.dom.nextDocButtonIcon = document.createElement('span');
+        self.dom.nextDocButtonIcon.classList.add('icon-file');
+        self.dom.nextDocButtonIcon.dataset.extension = 'pdf';
+        self.dom.nextDocButton.href = '#';
+        self.dom.nextDocButton.title = 'Volgende document';
+        self.dom.nextDocButton.classList.add('button');
+        self.dom.nextDocButton.classList.add('next');
+        self.dom.nextDocButton.classList.add('next-document');
+        self.dom.nextDocButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            self.nextDocument();
+        });
+        self.dom.nextDocButton.appendChild(self.dom.nextDocButtonIcon);
+        self.dom.body.appendChild(self.dom.nextDocButton);
 
         self.dom.fitButton = document.createElement('a');
         self.dom.fitButton.href = '#';
@@ -180,9 +214,13 @@ window.schuldhulp.quickViewer = {
         var self = this;
         if (self.currentPage < self.currentPDFJS.numPages) {
             self.showPage(self.currentPage + 1);
-        } else if (self.accordion !== null) {
+        }
+    },
+    nextDocument: function () {
+        var self = this;
+        if (self.accordion !== null) {
             var container = window.schuldhulp._.findParent(self.accordion, '.accordion-container');
-            var files = container.querySelectorAll('.bestand-zoom');
+            var files = container.querySelectorAll('li .bestand-zoom');
             for (var i = 0; i < files.length; i ++) {
                 if (i > 0 && files.item(i - 1) === self.documentLink) {
                     self.showDocument(files.item(i));
@@ -196,9 +234,13 @@ window.schuldhulp.quickViewer = {
         var self = this;
         if (self.currentPage > 1) {
             self.showPage(self.currentPage - 1);
-        } else if (self.accordion !== null) {
+        }
+    },
+    prevDocument: function () {
+        var self = this;
+        if (self.accordion !== null) {
             var container = window.schuldhulp._.findParent(self.accordion, '.accordion-container');
-            var files = container.querySelectorAll('.bestand-zoom');
+            var files = container.querySelectorAll('li .bestand-zoom');
             for (var i = 0; i < files.length; i ++) {
                 if (i > 1 && files.item(i) === self.documentLink) {
                     self.showDocument(files.item(i - 1));

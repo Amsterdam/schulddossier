@@ -356,7 +356,6 @@
       var 
         form = this,
         submitButton = form.querySelector('button[type="submit"]');
-      console.log(submitButton);
 
       submitButton.setAttribute('disabled', 'disabled');
 

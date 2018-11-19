@@ -88,6 +88,35 @@
         left: calc(50% + 5.2rem);
         transform: rotate(180deg);
       }
+      &.prev-document {
+        width: 6rem;
+        left: calc(50% - 14.4rem);
+        .icon-file {
+          right: -11px;
+          position: absolute;
+          top: -23px;
+          transform: scale(.3);
+
+        }
+      }
+      &.next-document {
+        width: 6rem;
+        transform: rotate(0);
+        left: calc(50% + 8.4rem);
+        .icon-file {
+          left: -11px;
+          position: absolute;
+          top: -23px;
+          transform: scale(.3);
+
+        }
+        &:before {
+          right: 12px;
+          left: auto;
+          transform: rotate(135deg);
+        }
+      }
+
     }
     &:hover {
       .page-counter, .button {
@@ -96,7 +125,7 @@
     }
 
     .toggle-fit-mode {
-      left: calc(50% + 9rem);
+      left: calc(50% + 14.6rem);
       width: auto;
       font-size: 1.2rem;
       padding: 0 1em;
