@@ -58,7 +58,8 @@ class GebruikerFormType extends AbstractType
             'class' => Schuldhulpbureau::class
         ]);
         $builder->add('enabled', CheckboxType::class, [
-            'required' => false
+            'required' => false,
+            'label' => 'Account actief?'
         ]);
 
         $user = $this->security->getUser();
