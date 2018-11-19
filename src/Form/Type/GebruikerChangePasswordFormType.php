@@ -54,5 +54,6 @@ class GebruikerChangePasswordFormType extends AbstractType
     {
         $resolver->setDefault('data_class', Gebruiker::class);
         $resolver->setDefault('choice_translation_domain', false);
+        $resolver->setDefault('validation_groups', ['password']);
     }
 }
