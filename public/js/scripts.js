@@ -354,8 +354,12 @@
     
     'save': function(e){
       var 
-        form = this;
-        
+        form = this,
+        submitButton = form.querySelector('button[type="submit"]');
+      console.log(submitButton);
+
+      submitButton.setAttribute('disabled', 'disabled');
+
       e && e.preventDefault();
       if (form.request) form.request.abort();
       
@@ -399,6 +403,7 @@
       form.files = [];
       
       var _process = function(data, selector) {
+        submitButton.removeAttribute("disabled");
         var div = document.createElement('div');
         div.innerHTML = data;
       
