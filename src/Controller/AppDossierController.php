@@ -168,7 +168,7 @@ class AppDossierController extends Controller
         $dossier->setAanmaker($this->getUser());
         $dossier->setMedewerkerSchuldhulpbureau($this->getUser());
         $dossier->setSchuldhulpbureau($this->getUser()->getSchuldhulpbureau());
-        $dossier->setTeamGka($this->getUser()->getTeamGka());
+        $dossier->setTeamGka($this->getUser()->getSchuldhulpbureau() !== null ? $this->getUser()->getSchuldhulpbureau()->getStandaardGkaTeam() : null);
         $dossier->setDossierTemplate('v1');
         $dossier->setStatus('bezig_madi');
         $form = $this->createForm(CreateDossierFormType::class, $dossier);

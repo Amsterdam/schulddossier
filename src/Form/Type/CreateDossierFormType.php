@@ -27,7 +27,13 @@ class CreateDossierFormType extends AbstractType
             'required' => true,
             'class' => Schuldhulpbureau::class,
             'multiple' => false,
-            'expanded' => false
+            'expanded' => false,
+            'choice_attr' => function (Schuldhulpbureau $schuldhulpbureau) {
+                if ($schuldhulpbureau->getStandaardGkaTeam() !== null) {
+                    return ['data-gka-team' => $schuldhulpbureau->getId()];
+                }
+                return [];
+            }
         ]);
         $builder->add('medewerkerSchuldhulpbureau', EntityType::class, [
             'required' => true,
