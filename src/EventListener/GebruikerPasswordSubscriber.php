@@ -15,7 +15,7 @@ class GebruikerPasswordSubscriber implements EventSubscriber
     private $encoder;
 
     /**
-     * @param PasswordEncoderInterface $encoder
+     * @param UserPasswordEncoderInterface $encoder
      */
     public function __construct(UserPasswordEncoderInterface $encoder)
     {

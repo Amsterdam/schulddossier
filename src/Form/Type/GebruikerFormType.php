@@ -28,6 +28,7 @@ class GebruikerFormType extends AbstractType
     {
         $this->security = $security;
     }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('naam', TextType::class, [
