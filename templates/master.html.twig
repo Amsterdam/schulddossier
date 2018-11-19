@@ -51,6 +51,7 @@
 
                     {% if app.user %}
                       <li>
+                        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_changepassword') }}">Wachtwoord aanpassen</a>
                         <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Afmelden <strong>({{ app.user.userName }})</strong></a>
                       </li>
                     {% endif %}
