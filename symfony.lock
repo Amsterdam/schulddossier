@@ -152,6 +152,9 @@
     "robloach/component-installer": {
         "version": "0.2.3"
     },
+    "rollerworks/password-strength-validator": {
+        "version": "v1.1.4"
+    },
     "sensio/framework-extra-bundle": {
         "version": "4.0",
         "recipe": {
