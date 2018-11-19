@@ -90,7 +90,7 @@ class AppDossierController extends Controller
         /** @var $repository DossierRepository */
         $repository = $em->getRepository(Dossier::class);
 
-        $maxPageSize = 10;
+        $maxPageSize = 20;
 
         $section2status = [
             'madi' => ['bezig_madi', 'compleet_madi', 'gecontroleerd_madi', 'verzonden_madi'],
