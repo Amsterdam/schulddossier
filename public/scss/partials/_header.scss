@@ -76,6 +76,13 @@ header.top {
     color: #000;
     font-weight: normal;
   }
+  span {
+    display: block;
+    width: 500px;
+    position: absolute;
+    top: 2.8rem;
+    left: 14rem;
+  }
   &:hover {
     color: $accentColor;
   }

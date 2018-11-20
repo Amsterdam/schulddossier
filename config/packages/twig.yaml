@@ -4,3 +4,5 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes:
         - 'forms.html.twig'
+    globals:
+        app_version: '@GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion'

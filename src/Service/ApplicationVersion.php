@@ -24,6 +24,11 @@ class ApplicationVersion
         $this->path = $path;
     }
 
+    public function getEnv()
+    {
+        return $this->env;
+    }
+
     public function getEnvVersion()
     {
         if ($this->env === 'dev') {
@@ -33,6 +38,10 @@ class ApplicationVersion
         }
     }
 
+    public function getVersionPath()
+    {
+        return $this->path . DIRECTORY_SEPARATOR . 'version_file';
+    }
     public function getVersionId()
     {
         $versionFile = $this->path . DIRECTORY_SEPARATOR . 'version_file';

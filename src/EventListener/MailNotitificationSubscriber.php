@@ -60,7 +60,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $dossier = $event->getSubject();
 
         if (empty($dossier->getSchuldhulpbureau()->getEmailAdresControle()) === false) {
-            $this->mail($this->fromNotificiatieAdres, $dossier->getTeamGka()->getEmail(), 'mails/notifyOpgevoerdMadi.html.twig', [
+            $this->mail($this->fromNotificiatieAdres, $dossier->getSchuldhulpbureau()->getEmailAdresControle(), 'mails/notifyOpgevoerdMadi.html.twig', [
                 'dossier' => $dossier,
                 'tokenStorage' => $this->tokenStorage
             ]);
@@ -83,7 +83,20 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             $this->logger->notice('Kan geen notifificatie sturen omdat er geen team is toegewezen of er geen e-mailadres is ingevuld voor het team van dit dossier', ['dossierId' => $dossier->getId(), 'teamId' => $dossier->getTeamGka() ? $dossier->getTeamGka()->getId() : 'n/a']);
         }
     }
+    public function notifyGoedkeurenMadi(Event $event)
+    {
+        /** @var $dossier Dossier */
+        $dossier = $event->getSubject();
 
+        if ($dossier->getMedewerkerSchuldhulpbureau() !== null && empty($dossier->getMedewerkerSchuldhulpbureau()->getEmail()) === false) {
+            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyGoedkeurenMadi.html.twig', [
+                'dossier' => $dossier,
+                'tokenStorage' => $this->tokenStorage
+            ]);
+        } else {
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen medewerker schuldhulpbureau opgegeven of er is geen e-mailadres voor de medewerker van dit dossier ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerSchuldhulpbureau() ? $dossier->getMedewerkerSchuldhulpbureau()->getId() : 'n/a']);
+        }
+    }
     public function notifyAfkeurenMadi(Event $event)
     {
         /** @var $dossier Dossier */
@@ -137,6 +150,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         return [
             'workflow.dossier_flow.completed.opgevoerd_madi' => 'notifyOpgevoerdMadi',
             'workflow.dossier_flow.completed.afkeuren_madi' => 'notifyAfkeurenMadi',
+            'workflow.dossier_flow.completed.goedkeuren_madi' => 'notifyGoedkeurenMadi',
             'workflow.dossier_flow.completed.verzenden_madi' => 'notifyVerzendenMadi',
             'workflow.dossier_flow.completed.afkeuren_dossier_gka' => 'notifyAfkeurenDossierGka',
         ];
