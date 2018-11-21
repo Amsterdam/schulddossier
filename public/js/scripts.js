@@ -867,7 +867,6 @@
 
 
     },
-
     'status': function (e) {
       var
         active = _closest(this, '.accordion.active'),
