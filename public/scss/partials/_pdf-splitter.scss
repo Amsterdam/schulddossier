@@ -138,8 +138,8 @@
     opacity: 1;
     left: 0;
     & ~ header.top,
-    & ~ header.top .logo,
-    & ~ .document-container .form-global-buttons {
+    & ~ header.top .logo {
+    //& ~ .document-container .form-global-buttons {
       transform: translate3d($pdfSplitterWidth/2, 0, 0);
       
     }

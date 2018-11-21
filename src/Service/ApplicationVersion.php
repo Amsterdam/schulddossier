@@ -38,15 +38,11 @@ class ApplicationVersion
         }
     }
 
-    public function getVersionPath()
-    {
-        return $this->path . DIRECTORY_SEPARATOR . 'version_file';
-    }
     public function getVersionId()
     {
-        $versionFile = $this->path . DIRECTORY_SEPARATOR . 'version_file';
+        $versionFile = $this->path . DIRECTORY_SEPARATOR . '.git/refs/heads/master';
         if (file_exists($versionFile)) {
-            return trim(file_get_contents($versionFile));
+            return substr(trim(file_get_contents($versionFile)), 0, 7);
         } else {
             return '0000';
         }
