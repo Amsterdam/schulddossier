@@ -34,7 +34,7 @@
             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class="logo">
               <i class="icon-andreas"></i>Gemeente Amsterdam
               <strong>{% block page_title %}Schulddossier{% endblock %}</strong>
-              {% if app_version.getEnv == 'dev' %}<span>{{ app_version.getEnv }}: {% if app.user %}{{ app.user.userName }} / {{ app.user.getType }} / {% endif %}{{ app_version.getVersionId }}</span>{% endif %}
+              {% if app_version.getEnv == 'dev' or app_version.getEnv == 'acceptance' %}<span>{{ app_version.getEnv }}: {% if app.user %}{{ app.user.userName }} / {{ app.user.getType }} / {% endif %}{{ app_version.getVersionId }}</span>{% endif %}
             </a>
             <div class="container">
               <div class="nav-container">
