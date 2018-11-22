@@ -40,7 +40,10 @@ class ApplicationVersion
 
     public function getVersionId()
     {
-        $versionFile = $this->path . DIRECTORY_SEPARATOR . '.git/refs/heads/master';
+        $versionFile = $this->path . DIRECTORY_SEPARATOR . 'version_file';
+        if ($this->env === 'dev') {
+            $versionFile = $this->path . DIRECTORY_SEPARATOR . '.git/refs/heads/master';
+        }
         if (file_exists($versionFile)) {
             return substr(trim(file_get_contents($versionFile)), 0, 7);
         } else {
