@@ -41,8 +41,6 @@ class SchuldItemFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $factory = $builder->getFormFactory();
-
         $builder->add('verwijderd', CheckboxType::class, [
             'required' => false
         ]);
