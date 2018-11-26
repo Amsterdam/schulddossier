@@ -368,6 +368,121 @@
 
       this.addEventListener('change', _onChange);
       otherSelect.addEventListener('change', _onChangeOtherSelect);
+    },
+    'remote-options': function () {
+      if (this.tagName !== 'SELECT') return;
+
+
+    },
+    'select2': function(){
+      var
+        container = this,
+        q = '',
+        resultItemClickEvent = function (e) {
+          console.log('resultItemClickEvent');
+        },
+        resultContainerClick = function (e) {
+          var itemElem = _closest(e.target, '.result-item');
+          console.log('resultContainerClick');
+          console.log(container.select);
+          console.log(itemElem.dataset.id);
+          container.select.innerHTML = '';
+          var option = document.createElement('option');
+          option.value = itemElem.dataset.id;
+          container.select.appendChild(option);
+          container.select.value = parseInt(itemElem.dataset.id);
+          container.select[container.select.selectedIndex].text = 'Label';
+
+          helpers.trigger(container.select, 'change');
+          container.resultContainer.classList.remove('show');
+          e.preventDefault();
+        },
+        inputFocus = function(e){
+          console.log('focus');
+
+          search();
+        },
+        inputBlur = function (e) {
+          container.resultContainer.classList.remove('show');
+          console.log('blur');
+          e.preventDefault();
+        },
+        search = function(){
+            container.resultContainer.classList.add('loading');
+            helpers.ajax({
+              type: 'get',
+              url: '/app/schuldeiser/?q=' + q,
+              data: {},
+              headers: [['X-Requested-With', 'XMLHttpRequest']],
+              callback: function (data, t) {
+                container.resultContainer.classList.remove('loading');
+                if (helpers.isJson(data)) {
+                  render(JSON.parse(data));
+                  container.resultContainer.classList.add('show');
+                } else {
+                  container.resultContainer.classList.add('error');
+                  setTimeout(function(){
+                    location.reload(true);
+                  }, 2000);
+                }
+              },
+              error: function (e) {
+                console.log('error');
+                console.log(e);
+                console.error(error);
+              }
+            });
+        },
+        render = function (data) {
+            container.resultContainer.innerHTML = '';
+            var all = document.createElement('ul');
+            all.classList.add('result-item-list');
+
+            for (var i = 0; i < data.length; i++){
+              var el = template(data[i]);
+              all.appendChild(el);
+            }
+            container.resultContainer.appendChild(all);
+        },
+        inputKeyup = function (e) {
+          if (e.keyCode === 38 || e.keyCode === 40) {
+            var index = Math.min(container.select.options.length - 1, Math.max(0, container.select.selectedIndex + (e.keyCode === 38 ? -1 : +1)));
+            container.select.options[index].selected = true;
+            console.log('no search');
+            container.resultContainer.innerHTML = '';
+            e.preventDefault();
+          } else {
+            q = container.input.value.trim();
+            search();
+          }
+        },
+        template = function(data){
+          var div = document.createElement('div'),
+            s = '<li class="result-item" data-id="' + data.id + '">\
+            <a href="javascript:void(0);">\
+            <span>'+data.bedrijfsnaam+'</span>\
+            <span>'+data.rekening+'</span>\
+            <span>'+data.straat+' ' + data.huisnummer + '</span>\
+            <span>'+data.postcode+' ' + data.plaats + '</span>\
+            </a>\
+            </li>';
+          div.innerHTML = s;
+          return div.firstChild;
+        };
+
+      container.form = _closest(container, 'form');
+      container.select = container.querySelector('select');
+      container.resultContainer = container.querySelector('.result-container');
+      container.clone = container.select.cloneNode(true);
+      container.options = container.clone.querySelectorAll('option');
+      container.input = container.querySelector('input');
+
+
+      container.resultContainer.addEventListener('click', resultContainerClick);
+      container.input.addEventListener('focus', inputFocus);
+      //container.input.addEventListener('blur', inputBlur);
+      container.input.addEventListener('keyup', inputKeyup);
+
     }
   };
 
@@ -800,8 +915,13 @@
 
   var helpers = {
     'ajax': function (options) {
-      var request = new XMLHttpRequest();
+      var request = new XMLHttpRequest(),
+        headers = options.headers || [],
+        i;
       request.open(options.type, options.url, true);
+      for (i = 0; i < headers.length; i++){
+        request.setRequestHeader(headers[i][0], headers[i][1]);
+      }
       request.onreadystatechange = function () {
         if (request.readyState == 4) {
           if (request.status >= 200 && request.status < 400) {
@@ -821,7 +941,14 @@
 
       return request;
     },
-
+    'isJson': function(str){
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    },
     'trigger': function (el, eventType) {
       var e = document.createEvent('MouseEvents');
       e.initMouseEvent(eventType, true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);

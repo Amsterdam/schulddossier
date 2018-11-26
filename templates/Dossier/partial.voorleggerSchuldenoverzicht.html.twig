@@ -43,7 +43,7 @@
                                         <td>{{ schuldItem.referentie }}</td>
                                         <td>{{ schuldItem.type }}</td>
                                         <td>{{ schuldItem.vaststelDatum is not empty ? schuldItem.vaststelDatum|date('d-m-Y') : '-' }}</td>
-                                        <td align="right">&euro; {{ schuldItem.bedrag|number_format(2, ',', '.') }}</td>
+                                        <td align="right">&euro;&nbsp;{{ schuldItem.bedrag|number_format(2, ',', '.') }}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
