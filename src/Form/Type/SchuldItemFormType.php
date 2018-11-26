@@ -1,42 +1,42 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
-use Doctrine\ORM\EntityRepository;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\DataTransformer\IdToSchuldeiserTransformer;
+use Psr\Log\LoggerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Validator\Constraints\Valid;
-use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Psr\Log\LoggerInterface;
-use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class SchuldItemFormType extends AbstractType
 {
 
     private $logger;
     protected $em;
+    /**
+     * @var IdToSchuldeiserTransformer
+     */
+    private $idToSchuldeiserTransformer;
 
-    public function __construct(EntityManagerInterface $em, LoggerInterface $logger)
+    public function __construct(EntityManagerInterface $em, LoggerInterface $logger, IdToSchuldeiserTransformer $idToSchuldeiserTransformer)
     {
         $this->em = $em;
         $this->logger = $logger;
+        $this->idToSchuldeiserTransformer = $idToSchuldeiserTransformer;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -51,10 +51,15 @@ class SchuldItemFormType extends AbstractType
             'class' => Schuldeiser::class,
             'choices' => [],
         ]);
+
+        $builder->add('schuldeiser', HiddenType::class, [
+            'invalid_message' => 'The selected schuldeiser cannot be found.',
+        ])->addModelTransformer($this->idToSchuldeiserTransformer);
+
         $builder->add('incassant', EntityType::class, [
             'required' => false,
             'class' => Schuldeiser::class,
-            'choice_attr' => function($val, $key, $index) {
+            'choice_attr' => function ($val, $key, $index) {
                 /** @var $val Schuldeiser */
                 return [
                     'data-bedrijfsnaam' => $val->getBedrijfsnaam(),
@@ -129,17 +134,16 @@ class SchuldItemFormType extends AbstractType
             $form = $event->getForm();
             $em = $this->em;
             $form->add('schuldeiser', EntityType::class, [
-                    'required' => true,
-                    'class' => Schuldeiser::class,
-                    'query_builder' => function () use($em) {
-                        $repository = $em->getRepository(Schuldeiser::class);
-                        $qb = $repository->createQueryBuilder('schuldeiser');
-                        return $qb;
-                    },
+                'required' => true,
+                'class' => Schuldeiser::class,
+                'query_builder' => function () use ($em) {
+                    $repository = $em->getRepository(Schuldeiser::class);
+                    $qb = $repository->createQueryBuilder('schuldeiser');
+                    return $qb;
+                },
             ]);
 
             $event->setData($data);
-
 
 
         });
