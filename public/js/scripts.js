@@ -455,10 +455,10 @@
           }
         },
         highlightQ = function(str){
-          var searchMask = "is";
-          var regEx = new RegExp(q, "ig");
-          var replaceMask = "as";
-          str = str.replace(q, '<mark>' + q + '</mark>');
+          var searchMask = q;
+          var regEx = new RegExp(searchMask, "ig");
+          var replaceMask = '<mark>' + q + '</mark>';
+          str = str.replace(regEx, replaceMask);
           return str;
         },
         template = function(data){
