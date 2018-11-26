@@ -113,7 +113,11 @@ class AppDossierController extends Controller
         if ($section === 'search') {
             $searchForm->handleRequest($request);
         }
-        $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+        $orderBy = 'default';
+        if ($section === 'gka') {
+            $orderBy = 'gka-verzenddatum';
+        }
+        $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize), $orderBy);
 
         if ($seachQuery['section'] === 'madi' || $seachQuery['section'] === 'gka') {
             $seachQuery['status'] = [];

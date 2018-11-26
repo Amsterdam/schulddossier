@@ -6,7 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table
+ * @ORM\Table(
+ *  indexes={@ORM\Index(name="idx_dossier_timeline", columns={"dossier_id", "type", "subtype"})}
+ * )
  */
 class DossierTimeline
 {
@@ -46,6 +48,12 @@ class DossierTimeline
      * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $type;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=125, nullable=true)
+     */
+    private $subtype;
 
     /**
      * @var string
@@ -105,6 +113,16 @@ class DossierTimeline
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    public function getSubtype()
+    {
+        return $this->subtype;
+    }
+
+    public function setSubtype($subtype)
+    {
+        $this->subtype = $subtype;
     }
 
     public function getOmschrijving()
