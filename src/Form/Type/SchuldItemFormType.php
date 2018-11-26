@@ -46,15 +46,12 @@ class SchuldItemFormType extends AbstractType
         $builder->add('verwijderd', CheckboxType::class, [
             'required' => false
         ]);
-        $builder->add('schuldeiser', EntityType::class, [
-            'required' => true,
-            'class' => Schuldeiser::class,
-            'choices' => [],
-        ]);
 
         $builder->add('schuldeiser', HiddenType::class, [
             'invalid_message' => 'The selected schuldeiser cannot be found.',
-        ])->addModelTransformer($this->idToSchuldeiserTransformer);
+        ]);
+
+        $builder->get('schuldeiser')->addModelTransformer($this->idToSchuldeiserTransformer);
 
         $builder->add('incassant', EntityType::class, [
             'required' => false,
