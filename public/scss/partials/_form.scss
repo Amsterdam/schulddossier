@@ -739,7 +739,7 @@ form {
     }
   }
   .search-result-container {
-    width: 180px;
+
     opacity: 0;
     pointer-events: none;
     z-index: 1000;
@@ -786,11 +786,12 @@ form {
     }
   }
   .search-result-item-list {
+    padding: 1rem 0;
     list-style: none;
     margin: 0 auto;
     display: block;
 
-    padding: 0;
+    
     transition: opacity .5s 1s;
     .show & {
       opacity: 1;
@@ -798,10 +799,9 @@ form {
   }
 
   .search-result-item {
-    width: 150px;
 
     a {
-      width: 100%;
+      width: 180px;
       display: inline-block;
       text-decoration: none;
       margin: 0 1rem;
