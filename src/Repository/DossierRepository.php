@@ -3,6 +3,8 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
+use Doctrine\ORM\Query\Expr\Join;
 
 class DossierRepository extends EntityRepository
 {
@@ -40,7 +42,7 @@ class DossierRepository extends EntityRepository
         return new Paginator($qb->getQuery());
     }
 
-    public function search($query, $page = 0, $pageSize = 100)
+    public function search($query, $page = 0, $pageSize = 100, $orderBy = 'default')
     {
         $query = array_merge([
             'naam' => null,
@@ -53,11 +55,19 @@ class DossierRepository extends EntityRepository
         $query['naam'] = trim($query['naam']) === '' ? null : trim($query['naam']);
 
         $qb = $this->createQueryBuilder('dossier');
-        $qb->orderBy('dossier.aanmaakDatumTijd', 'DESC');
         $qb->andWhere('dossier.inPrullenbak = :inPrullenbak');
         $qb->setParameter('inPrullenbak', false);
         $qb->setFirstResult($page * $pageSize);
         $qb->setMaxResults($pageSize);
+
+        if ($orderBy === 'default') {
+            $qb->orderBy('dossier.aanmaakDatumTijd', 'DESC');
+        } elseif ($orderBy === 'gka-verzenddatum') {
+            $qb->leftJoin('dossier.timeline', 'timeline_verzenden_madi', Join::WITH, 'timeline_verzenden_madi.type = :timeline_verzenden_madi_type AND timeline_verzenden_madi.subtype = :timeline_verzenden_madi_subtype');
+            $qb->setParameter('timeline_verzenden_madi_type', DossierTimeline::TYPE_WORKFLOW);
+            $qb->setParameter('timeline_verzenden_madi_subtype', 'verzenden_madi');
+            $qb->orderBy('timeline_verzenden_madi.datumtijd', 'DESC');
+        }
 
         if ($query['naam'] !== null) {
             $qb->andWhere('LOWER(dossier.clientNaam) LIKE :naam');

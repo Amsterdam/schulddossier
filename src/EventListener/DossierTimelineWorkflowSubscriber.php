@@ -32,6 +32,7 @@ class DossierTimelineWorkflowSubscriber implements EventSubscriberInterface
         $timeline = new DossierTimeline();
         $timeline->setDatumtijd(new \DateTime());
         $timeline->setType(DossierTimeline::TYPE_WORKFLOW);
+        $timeline->setSubtype($event->getTransition()->getName());
         $timeline->setOmschrijving('Status veranderd');
         $timeline->setGebruiker($this->tokenStorage->getToken() ? $this->tokenStorage->getToken()->getUser() : null);
         $timeline->setData([
