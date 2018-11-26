@@ -427,8 +427,6 @@
                 }
               },
               error: function (e) {
-                console.log('error');
-                console.log(e);
                 console.error(error);
               }
             });
@@ -436,7 +434,7 @@
         render = function (data) {
             container.resultContainer.innerHTML = '';
             var all = document.createElement('ul');
-            all.classList.add('result-item-list');
+            all.classList.add('search-result-item-list');
 
             for (var i = 0; i < data.length; i++){
               var el = template(data[i]);
@@ -456,14 +454,21 @@
             search();
           }
         },
+        highlightQ = function(str){
+          var searchMask = "is";
+          var regEx = new RegExp(q, "ig");
+          var replaceMask = "as";
+          str = str.replace(q, '<mark>' + q + '</mark>');
+          return str;
+        },
         template = function(data){
           var div = document.createElement('div'),
-            s = '<li class="result-item" data-id="' + data.id + '">\
+            s = '<li class="search-result-item" data-id="' + data.id + '">\
             <a href="javascript:void(0);">\
-            <span>'+data.bedrijfsnaam+'</span>\
-            <span>'+data.rekening+'</span>\
-            <span>'+data.straat+' ' + data.huisnummer + '</span>\
-            <span>'+data.postcode+' ' + data.plaats + '</span>\
+            <span>'+ highlightQ(data.bedrijfsnaam)+'</span>\
+            <span>'+ highlightQ(data.rekening)+'</span>\
+            <span>'+ highlightQ(data.straat)+' ' + highlightQ(data.huisnummer) + '</span>\
+            <span>'+ highlightQ(data.postcode) +' ' + highlightQ(data.plaats) + '</span>\
             </a>\
             </li>';
           div.innerHTML = s;
@@ -472,7 +477,7 @@
 
       container.form = _closest(container, 'form');
       container.select = container.querySelector('select');
-      container.resultContainer = container.querySelector('.result-container');
+      container.resultContainer = container.querySelector('.search-result-container');
       container.clone = container.select.cloneNode(true);
       container.options = container.clone.querySelectorAll('option');
       container.input = container.querySelector('input');

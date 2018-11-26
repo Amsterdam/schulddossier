@@ -738,8 +738,9 @@ form {
       display: none;
     }
   }
-  .result-container {
-    padding: 1rem;
+  .search-result-container {
+    width: 180px;
+    padding-top: 40px;
     opacity: 0;
     pointer-events: none;
     z-index: 1000;
@@ -747,12 +748,12 @@ form {
     top: 42px;
     left: 0;
     background-color: white;
-    height: 40px;
-    width: 300px;
+    min-height: 40px;
     overflow-y: scroll;
     overflow-x: hidden;
     transition: height .5s;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2);
+    scroll-behavior: smooth;
     &.error {
       opacity: 1;
       background: white;
@@ -778,33 +779,39 @@ form {
     }
     &.show {
       opacity: 1;
-      height: 350px;
+      max-height: 300px;
       pointer-events: auto;
       .result-item-list {
         opacity: 1;
       }
     }
   }
-  .result-item-list {
-    width: 100%;
-    position: absolute;
+  .search-result-item-list {
+    list-style: none;
+    margin: 0 auto;
     display: block;
-    margin: 0;
+
     padding: 0;
-    opacity: 0;
     transition: opacity .5s 1s;
     .show & {
       opacity: 1;
     }
   }
 
-  .result-item {
-    padding: 1rem;
-    width: 100%;
-    height: 80px;
-    border-bottom: 1px solid $borderColor;
+  .search-result-item {
+    width: 150px;
+
     a {
+      width: 100%;
+      display: inline-block;
       text-decoration: none;
+      margin: 0 1rem;
+      padding: 1rem;
+      transition: all .3s;
+      border-bottom: 1px solid $borderColor;
+      &:hover {
+        background: $lightColor;
+      }
     }
     span {
       display: block;
