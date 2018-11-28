@@ -23,6 +23,11 @@ class SchuldeiserNormalizer implements NormalizerInterface, NormalizerAwareInter
             'id' => $object->getId(),
             'bedrijfsnaam' => $object->getBedrijfsnaam(),
             'rekening' => $object->getRekening(),
+            'straat' => $object->getStraat(),
+            'huisnummer' => $object->getHuisnummer(),
+            'huisnummerToevoeging' => $object->getHuisnummerToevoeging(),
+            'postcode' => $object->getPostcode(),
+            'plaats' => $object->getPlaats(),
         ];
     }
 
