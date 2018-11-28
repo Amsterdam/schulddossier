@@ -780,10 +780,10 @@ form {
       text-align: center;
       width: calc(200px + 2rem);
       padding: 1rem;
-      &:before {
-        content: 'Je moet weer even opnieuw inloggen;). De pagina wordt zometeen opnieuw geladen.';
-        display: inline;
-      }
+      //&:before {
+      //  content: 'Je moet weer even opnieuw inloggen;). De pagina wordt zometeen opnieuw geladen.';
+      //  display: inline;
+      //}
     }
     &.no-results:before {
       content: 'Er zijn geen resultaten gevonden.';
@@ -802,6 +802,14 @@ form {
       .search-result-item-list {
         opacity: .2;
       }
+    }
+    .error-counter,
+    .error {
+      display: inline-block;
+      text-align: center;
+    }
+    .error {
+      //margin: 1rem auto 0;
     }
   }
   .search-result-item-static {

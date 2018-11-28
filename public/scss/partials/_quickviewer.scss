@@ -39,6 +39,14 @@
       height: 100%;
       overflow-x: hidden;
       overflow-y: auto;
+      .error-counter,
+      .error {
+        display: block;
+        text-align: center;
+      }
+      .error {
+        margin: 4rem auto 0;
+      }
     }
     .page-counter {
       position: absolute;

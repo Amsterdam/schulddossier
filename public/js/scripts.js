@@ -419,9 +419,25 @@
                     } else {
                       cleanupResultContainer();
                       container.resultContainer.classList.add('error');
-                      setTimeout(function () {
-                        location.reload(true);
-                      }, 2000);
+                      var counter = 3,
+                        interval,
+                        reloadMessage = document.createElement('span'),
+                        counterElem = document.createElement('span');
+                      counterElem.classList.add('error-counter');
+                      counterElem.textContent = counter;
+                      reloadMessage.classList.add('error');
+                      reloadMessage.textContent = 'Je moet even opnieuw inloggen.';
+                      container.resultContainer.appendChild(reloadMessage);
+                      container.resultContainer.appendChild(counterElem);
+                      interval = setInterval(function(){
+                          if (counter <= 0){
+                              window.clearInterval(interval);
+                              location.reload(true);
+                          }else {
+                              counter -= 1;
+                              counterElem.textContent = counter;
+                          }
+                      }, 1000);
                     }
                   },
                   error: function (e) {

@@ -52,6 +52,28 @@ window.schuldhulp.quickViewer = {
         PDFJS.getDocument(self.documentLink.datauristring || self.documentLink.getAttribute('href')).then(function (pdf) {
             self.currentPDFJS = pdf;
             self.showPage(1);
+        }).catch(function(error){
+            var counter = 3,
+              interval,
+              reloadMessage = document.createElement('span'),
+              counterElem = document.createElement('span');
+            counterElem.classList.add('error-counter');
+            counterElem.textContent = counter;
+            reloadMessage.classList.add('error');
+            reloadMessage.textContent = 'Je moet even opnieuw inloggen.';
+            self.dom.spinner.classList.remove('visible');
+            self.dom.viewerContainer.appendChild(reloadMessage);
+            self.dom.viewerContainer.appendChild(counterElem);
+            interval = setInterval(function(){
+                if (counter <= 0){
+                    window.clearInterval(interval);
+                    location.reload(true);
+                }else {
+                    counter -= 1;
+                    counterElem.textContent = counter;
+                }
+            }, 1000);
+
         });
     },
     
