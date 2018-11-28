@@ -369,85 +369,87 @@
       this.addEventListener('change', _onChange);
       otherSelect.addEventListener('change', _onChangeOtherSelect);
     },
-    'remote-options': function () {
-      if (this.tagName !== 'SELECT') return;
-
-
-    },
-    'select2': function(){
+    'schuldeiser-autocomplete': function(){
       var
         container = this,
         q = '',
-        resultItemClickEvent = function (e) {
-          console.log('resultItemClickEvent');
-        },
+        blurTimeout,
+        searchTimeout,
         resultContainerClick = function (e) {
-          var itemElem = _closest(e.target, '.result-item');
-          console.log('resultContainerClick');
-          console.log(container.select);
-          console.log(itemElem.dataset.id);
-          container.select.innerHTML = '';
-          var option = document.createElement('option');
-          option.value = itemElem.dataset.id;
-          container.select.appendChild(option);
-          container.select.value = parseInt(itemElem.dataset.id);
-          container.select[container.select.selectedIndex].text = 'Label';
-
-          helpers.trigger(container.select, 'change');
-          container.resultContainer.classList.remove('show');
+          var itemElem = _closest(e.target, '.search-result-item'),
+            innerItemElem = itemElem.querySelector('.search-result-item-static'),
+            itemElemClone = innerItemElem.cloneNode(true);
+          container.resultCard.innerHTML = '';
+          container.resultInput.value = parseInt(itemElem.dataset.id);
+          container.resultCard.appendChild(itemElemClone);
+          helpers.trigger(container.resultInput, 'change');
+          cleanupResultContainer();
           e.preventDefault();
         },
         inputFocus = function(e){
-          console.log('focus');
-
           search();
         },
+        cleanupResultContainer = function(){
+            container.resultContainer.classList.remove('show');
+            container.resultContainer.classList.remove('no-results');
+            container.resultContainer.innerHTML = '';
+        },
         inputBlur = function (e) {
-          container.resultContainer.classList.remove('show');
-          console.log('blur');
+          window.clearTimeout(blurTimeout);
+          blurTimeout = setTimeout(function(){
+            cleanupResultContainer();
+          }, 200);
           e.preventDefault();
         },
         search = function(){
-            container.resultContainer.classList.add('loading');
-            helpers.ajax({
-              type: 'get',
-              url: '/app/schuldeiser/?q=' + q,
-              data: {},
-              headers: [['X-Requested-With', 'XMLHttpRequest']],
-              callback: function (data, t) {
-                container.resultContainer.classList.remove('loading');
-                if (helpers.isJson(data)) {
-                  render(JSON.parse(data));
-                  container.resultContainer.classList.add('show');
-                } else {
-                  container.resultContainer.classList.add('error');
-                  setTimeout(function(){
-                    location.reload(true);
-                  }, 2000);
-                }
-              },
-              error: function (e) {
-                console.error(error);
-              }
-            });
+            if (q !== '') {
+              window.clearTimeout(searchTimeout);
+              searchTimeout = setTimeout(function () {
+                container.resultContainer.classList.add('loading');
+                helpers.ajax({
+                  type: 'get',
+                  url: '/app/schuldeiser/?q=' + q,
+                  data: {},
+                  headers: [['X-Requested-With', 'XMLHttpRequest']],
+                  callback: function (data, t) {
+                    container.resultContainer.classList.remove('loading');
+                    if (helpers.isJson(data)) {
+                      render(JSON.parse(data));
+                      container.resultContainer.classList.add('show');
+                    } else {
+                      cleanupResultContainer();
+                      container.resultContainer.classList.add('error');
+                      setTimeout(function () {
+                        location.reload(true);
+                      }, 2000);
+                    }
+                  },
+                  error: function (e) {
+                    console.error(error);
+                  }
+                });
+              }, 400);
+            } else {
+              cleanupResultContainer();
+            }
         },
         render = function (data) {
-            container.resultContainer.innerHTML = '';
-            var all = document.createElement('ul');
-            all.classList.add('search-result-item-list');
-
-            for (var i = 0; i < data.length; i++){
-              var el = template(data[i]);
-              all.appendChild(el);
+            cleanupResultContainer();
+            if (data.length > 0) {
+              container.resultContainer.innerHTML = '';
+              var all = document.createElement('ul');
+              all.classList.add('search-result-item-list');
+              for (var i = 0; i < data.length; i++) {
+                var el = template(data[i]);
+                all.appendChild(el);
+              }
+              container.resultContainer.appendChild(all);
+            } else {
+              container.resultContainer.classList.add('no-results');
             }
-            container.resultContainer.appendChild(all);
         },
         inputKeyup = function (e) {
           if (e.keyCode === 38 || e.keyCode === 40) {
-            var index = Math.min(container.select.options.length - 1, Math.max(0, container.select.selectedIndex + (e.keyCode === 38 ? -1 : +1)));
-            container.select.options[index].selected = true;
-            console.log('no search');
-            container.resultContainer.innerHTML = '';
             e.preventDefault();
           } else {
             q = container.input.value.trim();
@@ -455,19 +457,47 @@
           }
         },
         highlightQ = function(str){
-          var searchMask = q;
-          var regEx = new RegExp(searchMask, "ig");
-          var replaceMask = '<mark>' + q + '</mark>';
-          str = str.replace(regEx, replaceMask);
+
+          var _q = (q.split(' ').length > 0) ? q.split(' ') : [q];
+          for (i = 0; i < _q.length; i++){
+            _q[i] = _q[i].trim();
+          }
+          for (var i = 0; i < _q.length; i++) {
+            if (q !== '') {
+
+              var qq = _q[i].replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'),
+                r = RegExp(qq + '(?![^<]*>|[^<>]*</)', 'gi'),
+                match,
+                l = _q[i].length;
+              while (match = r.exec(str)) {
+                var m = str.substr(match.index, l);
+                str = str.substr(0, match.index) + '<mark>' + m + '</mark>' + str.substr(match.index + l);
+              }
+            }
+          }
           return str;
         },
         template = function(data){
           var div = document.createElement('div'),
             s = '<li class="search-result-item" data-id="' + data.id + '">\
-            <a href="javascript:void(0);">\
+            <span class="search-result-item-static">\
+              <span>'+ data.bedrijfsnaam+'</span>\
+              <span>'+ data.rekening+'</span>\
+              <span>'+ data.straat+' ';
+          if (data.huisnummerToevoeging) {
+            s += data.huisnummerToevoeging + ' ';
+          }
+          s += data.huisnummer + '</span>\
+              <span>'+ data.postcode +' ' + data.plaats + '</span>\
+            </span>\
+            <a class="search-result-item-selectable" href="javascript:void(0);">\
             <span>'+ highlightQ(data.bedrijfsnaam)+'</span>\
             <span>'+ highlightQ(data.rekening)+'</span>\
-            <span>'+ highlightQ(data.straat)+' ' + highlightQ(data.huisnummer) + '</span>\
+            <span>'+ highlightQ(data.straat)+' ';
+          if (data.huisnummerToevoeging) {
+            s += highlightQ(data.huisnummerToevoeging) + ' ';
+          }
+          s += highlightQ(data.huisnummer) + '</span>\
             <span>'+ highlightQ(data.postcode) +' ' + highlightQ(data.plaats) + '</span>\
             </a>\
             </li>';
@@ -476,16 +506,14 @@
         };
 
       container.form = _closest(container, 'form');
-      container.select = container.querySelector('select');
+      container.resultInput = container.querySelector('input[type="hidden"]');
+      container.resultCard = container.querySelector('.result-container');
       container.resultContainer = container.querySelector('.search-result-container');
-      container.clone = container.select.cloneNode(true);
-      container.options = container.clone.querySelectorAll('option');
       container.input = container.querySelector('input');
-
 
       container.resultContainer.addEventListener('click', resultContainerClick);
       container.input.addEventListener('focus', inputFocus);
-      //container.input.addEventListener('blur', inputBlur);
+      container.input.addEventListener('blur', inputBlur);
       container.input.addEventListener('keyup', inputKeyup);
 
     }

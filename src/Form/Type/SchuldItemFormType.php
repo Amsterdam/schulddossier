@@ -51,23 +51,12 @@ class SchuldItemFormType extends AbstractType
 
         $builder->get('schuldeiser')->addModelTransformer($this->idToSchuldeiserTransformer);
 
-        $builder->add('incassant', EntityType::class, [
-            'required' => false,
-            'class' => Schuldeiser::class,
-            'choice_attr' => function ($val, $key, $index) {
-                /** @var $val Schuldeiser */
-                return [
-                    'data-bedrijfsnaam' => $val->getBedrijfsnaam(),
-                    'data-rekening' => $val->getRekening(),
-                    'data-allegro-code' => $val->getAllegroCode(),
-                    'data-straat' => $val->getStraat(),
-                    'data-huisnummer' => $val->getHuisnummer() . ' ' . $val->getHuisnummerToevoeging(),
-                    'data-postcode' => $val->getPostcode(),
-                    'data-plaats' => $val->getPlaats(),
-                    'data-opmerkingen' => $val->getOpmerkingen(),
-                ];
-            },
+        $builder->add('incassant', HiddenType::class, [
+            'invalid_message' => 'The selected incassant cannot be found.',
         ]);
+
+        $builder->get('incassant')->addModelTransformer($this->idToSchuldeiserTransformer);
+
         $builder->add('referentie', TextType::class, [
             'required' => true
         ]);
@@ -126,21 +115,7 @@ class SchuldItemFormType extends AbstractType
             $data = $event->getData();
             unset($data['file']['__name__']);
             unset($data['removeFile']['__name__']);
-            $form = $event->getForm();
-            $em = $this->em;
-            $form->add('schuldeiser', EntityType::class, [
-                'required' => true,
-                'class' => Schuldeiser::class,
-                'query_builder' => function () use ($em) {
-                    $repository = $em->getRepository(Schuldeiser::class);
-                    $qb = $repository->createQueryBuilder('schuldeiser');
-                    return $qb;
-                },
-            ]);
-
             $event->setData($data);
-
-
         });
     }
 

@@ -27,18 +27,40 @@
                     <div class="schulditem-body">
                         <div class="columns">
                             <div class="column column-big">
-                                <div class="select-autocomplete" data-keyupper="select" data-changer="address">
+                                <div class="select-autocomplete" data-decorator="schuldeiser-autocomplete">
                                   <label for="schuldeiser-helper-{{ schuldItem.id }}">Schuldeiser</label>
                                   <div class="group">
                                     <input type="text" id="schuldeiser-helper-{{ schuldItem.id }}" placeholder="Zoek een schuldeiser" autocomplete="off">
+                                      <div class="search-result-container"></div>
+                                      <div class="result-container">
+                                        {% if schuldItem.schuldeiser %}
+                                        <span class="search-result-item-static">
+                                            <span>{{ schuldItem.schuldeiser.bedrijfsnaam }}</span>
+                                            <span>{{ schuldItem.schuldeiser.rekening }}</span>
+                                            <span>{{ schuldItem.schuldeiser.straat }}{% if schuldItem.schuldeiser.huisnummerToevoeging %} {{ schuldItem.schuldeiser.huisnummerToevoeging }}{% endif %} {{ schuldItem.schuldeiser.huisnummer }}</span>
+                                            <span>{{ schuldItem.schuldeiser.postcode }} {{ schuldItem.schuldeiser.plaats }}</span>
+                                        </span>
+                                        {% endif %}
+                                      </div>
                                     <i class="icon-search"></i>
                                     {{ form_row(form.schuldeiser) }}
                                   </div>
                                 </div>
-                                <div class="select-autocomplete" data-keyupper="select" data-changer="address">
+                                <div class="select-autocomplete" data-decorator="schuldeiser-autocomplete">
                                   <label for="incassant-helper-{{ schuldItem.id }}">Incassant</label>
                                   <div class="group">
                                     <input type="text" id="incassant-helper-{{ schuldItem.id }}" placeholder="Zoek een incassant" autocomplete="off">
+                                      <div class="search-result-container"></div>
+                                      <div class="result-container">
+                                        {% if schuldItem.incassant %}
+                                        <span class="search-result-item-static">
+                                            <span>{{ schuldItem.incassant.bedrijfsnaam }}</span>
+                                            <span>{{ schuldItem.incassant.rekening }}</span>
+                                            <span>{{ schuldItem.incassant.straat }}{% if schuldItem.incassant.huisnummerToevoeging %} {{ schuldItem.incassant.huisnummerToevoeging }}{% endif %} {{ schuldItem.incassant.huisnummer }}</span>
+                                            <span>{{ schuldItem.incassant.postcode }} {{ schuldItem.incassant.plaats }}</span>
+                                        </span>
+                                        {% endif %}
+                                      </div>
                                     <i class="icon-search"></i>
                                     {{ form_row(form.incassant) }}
                                   </div>

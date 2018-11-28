@@ -69,20 +69,23 @@
                   <div class="columns">
                     <div class="column column-big">
                       
-                      <div class="select-autocomplete" data-keyupper="select2" data-keyupper="select3" data-decorator="select2">
+                      <div class="select-autocomplete" data-decorator="schuldeiser-autocomplete">
                         <label for="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}">Schuldeiser</label>
                         <div class="group">
-                          <input type="text"   data-changer="address2" id="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}" placeholder="Zoek een schuldeiser" autocomplete="off">
+                          <input type="text" id="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}" placeholder="Zoek een schuldeiser" autocomplete="off">
                           <div class="search-result-container"></div>
                           <div class="result-container"></div>
                           <i class="icon-search"></i>
+                          <div class="result-container"></div>
                           {{ form_row(createForm.schuldeiser) }}
                         </div>
                       </div>
-                      <div class="select-autocomplete" data-keyupper="select" data-changer="address">
+                      <div class="select-autocomplete" data-decorator="schuldeiser-autocomplete">
                         <label for="incassant-helper-{{ createForm.incassant.vars.id }}">Incassant</label>
                         <div class="group">
                           <input type="text" id="incassant-helper-{{ createForm.incassant.vars.id }}" placeholder="Zoek een incassant" autocomplete="off">
+                          <div class="search-result-container"></div>
+                          <div class="result-container"></div>
                           <i class="icon-search"></i>
                           {{ form_row(createForm.incassant) }}
                         </div>
