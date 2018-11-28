@@ -369,6 +369,18 @@
       this.addEventListener('change', _onChange);
       otherSelect.addEventListener('change', _onChangeOtherSelect);
     },
+    'save-overview-state': function() {
+      var label = this.dataset.label || 'Terug naar overzicht',
+        qs = window.location.search,
+        context = this.dataset.context || 'dossier';
+        w.sessionStorage && w.sessionStorage.setItem('overview-state-' + context, JSON.stringify({ "qs": qs, "label": label }));
+    },
+    'get-overview-state': function() {
+      var context = this.dataset.context || 'dossier',
+        stored = w.sessionStorage && JSON.parse(w.sessionStorage.getItem('overview-state-' + context));
+      this.setAttribute('href', this.getAttribute('href') + stored.qs);
+      this.querySelector('span').textContent = stored.label;
+    },
     'schuldeiser-autocomplete': function(){
       var
         container = this,
