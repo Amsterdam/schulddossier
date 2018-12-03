@@ -500,6 +500,14 @@ class AppDossierController extends Controller
                 $documentId = intval($documentId);
                 $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
             }
+            if (empty($createForm->get('aantekening')->get('tekst')->getData()) === false) {
+                $aantekening = new Aantekening();
+                $aantekening->setDossier($dossier);
+                $aantekening->setGebruiker($this->getUser());
+                $aantekening->setOnderwerp('schuldenoverzicht');
+                $aantekening->setSchuldItem($schuldItem);
+                $aantekening->setTekst($createForm->get('aantekening')->get('tekst')->getData());
+            }
             $em->flush();
             //$this->addFlash('success', 'Toegevoegd');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
