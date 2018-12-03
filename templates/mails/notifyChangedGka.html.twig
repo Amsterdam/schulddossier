@@ -1,0 +1,48 @@
+{% block subject -%}
+    Schulddossier aangepast ({{ dossier.getSchuldhulpbureau().getNaam() }})
+{%- endblock  %}
+
+{% block html -%}
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{{ block('subject') }}</title>
+    </head>
+    <body>
+        <p>Hallo,</p>
+        <p>Een schulddossier in beheer van {{ dossier.getTeamGka().getNaam() }} is gewijzigd door {{ tokenStorage.getToken().getUser().getNaam() }}.</p>
+        <p>&nbsp;</p>
+        <p>Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}</p>
+        <p>Aangepast op: {{ 'now'|date('d-m-Y') }}</p>
+        <p>&nbsp;</p>
+        {% if dossier.regasNummer is not empty %}
+        <p>Regas nummer: {{ dossier.regasNummer }}</p>
+        {% endif %}
+        {% if dossier.allegroNummer is not empty %}
+        <p>Allegro nummer: {{ dossier.allegroNummer }}</p>
+        {% endif %}
+        <p>&nbsp;</p>
+        <p><a href="{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId}) }}">Open dossier</a>
+    </body>
+</html>
+{%- endblock %}
+
+{% block txt -%}
+Hallo,
+
+Een schulddossier in beheer van {{ dossier.getTeamGka().getNaam() }} is gewijzigd door {{ tokenStorage.getToken().getUser().getNaam() }}.
+
+Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}
+Aangepast op: {{ 'now'|date('d-m-Y') }}
+
+{% if dossier.regasNummer is not empty %}
+Regas nummer: {{ dossier.regasNummer }}
+
+{% endif %}
+{% if dossier.allegroNummer is not empty %}
+Allegro nummer: {{ dossier.allegroNummer }}
+
+{% endif %}
+
+{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId()}) }}
+{%- endblock %}

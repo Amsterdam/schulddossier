@@ -75,6 +75,8 @@ use Symfony\Component\Form\FormEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateAantekeningFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
 
 /**
  * @Route("/app/dossier")
@@ -195,7 +197,7 @@ class AppDossierController extends Controller
      * @Route("/detail/{dossierId}/voorlegger")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailVoorleggerAction(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier)
+    public function detailVoorleggerAction(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier, EventDispatcherInterface $eventDispatcher)
     {
         if ($dossier->getVoorlegger() === null) {
             $dossier->setVoorlegger(new Voorlegger());
@@ -238,6 +240,7 @@ class AppDossierController extends Controller
                 }
             }
             $em->flush();
+            $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
 
@@ -253,7 +256,7 @@ class AppDossierController extends Controller
      * @Route("/detail/{dossierId}")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailAlgemeenAction(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier)
+    public function detailAlgemeenAction(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier, EventDispatcherInterface $eventDispatcher)
     {
         $form = $this->createForm(DetailDossierFormType::class, $dossier, [
             'disabled' => $dossier->isInPrullenbak() === true,
@@ -263,6 +266,7 @@ class AppDossierController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
+            $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
 
             if ($request->isXmlHttpRequest()) {
                 return new JsonResponse(['msg' => 'OK']);
@@ -307,7 +311,7 @@ class AppDossierController extends Controller
      * @Route("/detail/{dossierId}/documenten/overige-documenten")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailOverigeDocumentenAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    public function detailOverigeDocumentenAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $formBuilder = $this->createFormBuilder(['file' => []]);
         $formBuilder->add('file', CollectionType::class, [
@@ -361,6 +365,7 @@ class AppDossierController extends Controller
                 $documentId = intval($documentId);
                 $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
             }
+            $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
             $em->flush();
 
             if ($request->isXmlHttpRequest()) {
@@ -420,7 +425,7 @@ class AppDossierController extends Controller
      * @Route("/detail/{dossierId}/schulden")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailSchuldenAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    public function detailSchuldenAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $schuldItems = $dossier->getSchuldItems();
 
@@ -461,6 +466,7 @@ class AppDossierController extends Controller
                 }
             }
             $em->flush();
+            $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
             //if ($request->isXmlHttpRequest()) {
             //    return new JsonResponse(['status' => 'OK']);
             //}
@@ -509,6 +515,7 @@ class AppDossierController extends Controller
                 $aantekening->setTekst($createForm->get('aantekening')->get('tekst')->getData());
             }
             $em->flush();
+            $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
             //$this->addFlash('success', 'Toegevoegd');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
         } //else if ($createForm->isSubmitted() && $request->isXmlHttpRequest()) {
@@ -533,7 +540,7 @@ class AppDossierController extends Controller
      * @Route("/detail/{dossierId}/aantekeningen")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailAantekeningenAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    public function detailAantekeningenAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $aantekening = new Aantekening();
 
@@ -546,6 +553,7 @@ class AppDossierController extends Controller
             $aantekening->setGebruiker($this->getUser());
 
             $em->flush();
+            $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen', ['dossierId' => $dossier->getId()]);
         }
@@ -667,7 +675,7 @@ class AppDossierController extends Controller
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
-    public function moveDocumentToPrullenbakAction(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em)
+    public function moveDocumentToPrullenbakAction(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
             return $dossierDocument->getDocument() === $document;
@@ -684,6 +692,7 @@ class AppDossierController extends Controller
         $this->addFlash('success', 'Document in prullenbak geplaatst');
 
         $em->flush();
+        $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()]);
     }
@@ -694,7 +703,7 @@ class AppDossierController extends Controller
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
-    public function removeDocumentAction(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em)
+    public function removeDocumentAction(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
             return $dossierDocument->getDocument() === $document;
@@ -713,6 +722,7 @@ class AppDossierController extends Controller
 
         $em->remove($document);
 
+        $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
         $em->flush();
         $this->addFlash('success', 'Document definitief verwijderd');
 
@@ -725,7 +735,7 @@ class AppDossierController extends Controller
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
-    public function restoreDocumentAction(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em)
+    public function restoreDocumentAction(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
             return $dossierDocument->getDocument() === $document;
@@ -745,6 +755,7 @@ class AppDossierController extends Controller
         $document->setInPrullenbak(false);
 
         $em->flush();
+        $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
         $this->addFlash('success', 'Document hersteld');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
@@ -820,7 +831,7 @@ class AppDossierController extends Controller
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
      */
-    public function removeSchuldItemAction(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em)
+    public function removeSchuldItemAction(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         if ($schuldItem->getDossier() !== $dossier) {
             throw new NotFoundHttpException('SchuldItem does not match with dossier');
@@ -837,6 +848,7 @@ class AppDossierController extends Controller
         $em->remove($schuldItem);
 
         $em->flush();
+        $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
         $this->addFlash('success', 'Schuld definitief verwijderd');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
@@ -848,7 +860,7 @@ class AppDossierController extends Controller
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
      */
-    public function restoreSchuldItemAction(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em)
+    public function restoreSchuldItemAction(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         if ($schuldItem->getDossier() !== $dossier) {
             throw new NotFoundHttpException('SchuldItem does not match with dossier');
@@ -865,6 +877,7 @@ class AppDossierController extends Controller
         $schuldItem->setVerwijderd(false);
 
         $em->flush();
+        $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
         $this->addFlash('success', 'Schuld hersteld');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);

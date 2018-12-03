@@ -11,6 +11,8 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 
 class MailNotitificationSubscriber implements EventSubscriberInterface
 {
@@ -83,6 +85,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             $this->logger->notice('Kan geen notifificatie sturen omdat er geen team is toegewezen of er geen e-mailadres is ingevuld voor het team van dit dossier', ['dossierId' => $dossier->getId(), 'teamId' => $dossier->getTeamGka() ? $dossier->getTeamGka()->getId() : 'n/a']);
         }
     }
+
     public function notifyGoedkeurenMadi(Event $event)
     {
         /** @var $dossier Dossier */
@@ -97,6 +100,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             $this->logger->notice('Kan geen notifificatie sturen omdat er geen medewerker schuldhulpbureau opgegeven of er is geen e-mailadres voor de medewerker van dit dossier ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerSchuldhulpbureau() ? $dossier->getMedewerkerSchuldhulpbureau()->getId() : 'n/a']);
         }
     }
+
     public function notifyAfkeurenMadi(Event $event)
     {
         /** @var $dossier Dossier */
@@ -127,6 +131,26 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         }
     }
 
+    public function notifyChangedGka(DossierChangedEvent $event)
+    {
+        if ($event->getGebruiker()->getType() !== Gebruiker::TYPE_MADI) {
+            return;
+        }
+
+        if (in_array($event->getDossier()->getStatus(), ['verzonden_madi', 'compleet_gka', 'dossier_gecontroleerd_gka', 'afgesloten_gka']) === false) {
+            return;
+        }
+
+        if ($event->getDossier()->getTeamGka() !== null && empty($event->getDossier()->getTeamGka()->getEmail()) === false) {
+            $this->mail($this->fromNotificiatieAdres, $event->getDossier()->getTeamGka()->getEmail(), 'mails/notifyChangedGka.html.twig', [
+                'dossier' => $event->getDossier(),
+                'tokenStorage' => $this->tokenStorage
+            ]);
+        } else {
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen team is toegewezen of er geen e-mailadres is ingevuld voor het team van dit dossier', ['dossierId' => $event->getDossier()->getId(), 'teamId' => $event->getDossier()->getTeamGka() ? $event->getDossier()->getTeamGka()->getId() : 'n/a']);
+        }
+    }
+
     protected function mail($from, $to, $template, $data)
     {
         $message = new \Swift_Message();
@@ -153,6 +177,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             'workflow.dossier_flow.completed.goedkeuren_madi' => 'notifyGoedkeurenMadi',
             'workflow.dossier_flow.completed.verzenden_madi' => 'notifyVerzendenMadi',
             'workflow.dossier_flow.completed.afkeuren_dossier_gka' => 'notifyAfkeurenDossierGka',
+            DossierChangedEvent::NAME => 'notifyChangedGka'
         ];
     }
 }
