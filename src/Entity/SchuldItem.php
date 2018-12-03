@@ -140,6 +140,7 @@ class SchuldItem
         $this->type = self::TYPE_CONCURRENT;
         $this->historie = new ArrayCollection();
         $this->dossierDocumenten = new ArrayCollection();
+        $this->aantekeningen = new ArrayCollection();
         $this->aanmaakDatumTijd = new \DateTime();
         $this->bewerkDatumTijd = new \DateTime();
         $this->vaststelDatum = new \DateTime();
