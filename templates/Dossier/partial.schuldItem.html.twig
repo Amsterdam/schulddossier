@@ -13,9 +13,9 @@
                             </a>
                         </h3>
                         {{ schuldItem.isVerlopen ? '<span class="verlopen">is verlopen</span>' }}
-                        {% if schuldItem.dossierDocumenten|length > 0 %}
+                        {% if schuldItem.getNietVerwijderdeDossierDocumenten|length > 0 %}
                           <div class="voortgang">
-                              {{ schuldItem.dossierDocumenten|length }} document{% if schuldItem.dossierDocumenten|length != 1 %}en{% endif %}
+                              {{ schuldItem.getNietVerwijderdeDossierDocumenten|length }} document{% if schuldItem.getNietVerwijderdeDossierDocumenten|length != 1 %}en{% endif %}
                           </div>
                         {% endif %}
                         <div class="bedrag">

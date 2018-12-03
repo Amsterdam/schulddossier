@@ -299,6 +299,13 @@ class SchuldItem
         return  $this->dossierDocumenten;
     }
 
+    public function getNietVerwijderdeDossierDocumenten()
+    {
+        return $this->dossierDocumenten->filter(function (DossierDocument $dossierDocument) {
+            return $dossierDocument->getDocument()->isInPrullenbak() === false;
+        });
+    }
+
     public function hasDossierDocument(DossierDocument $dossierDocument)
     {
         return $this->dossierDocumenten->contains($dossierDocument);
