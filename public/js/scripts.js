@@ -378,6 +378,7 @@
     'get-overview-state': function() {
       var context = this.dataset.context || 'dossier',
         stored = w.sessionStorage && JSON.parse(w.sessionStorage.getItem('overview-state-' + context));
+      if (!stored) return;
       this.setAttribute('href', this.getAttribute('href') + stored.qs);
       this.querySelector('span').textContent = stored.label;
     },
