@@ -1,10 +1,11 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
-use Doctrine\ORM\Query\Expr\Join;
 
 class DossierRepository extends EntityRepository
 {
@@ -70,8 +71,8 @@ class DossierRepository extends EntityRepository
         }
 
         if ($query['naam'] !== null) {
-            $qb->andWhere('LOWER(dossier.clientNaam) LIKE :naam');
-            $qb->setParameter('naam', '%' . strtolower($query['naam']) . '%');
+            $qb->andWhere('FULLTEXTSEARCH(dossier.clientNaam, :naam) = TRUE');
+            $qb->setParameter('naam', $query['naam']);
         }
 
         if (count($query['status']) > 0) {
