@@ -15,7 +15,11 @@ window.schuldhulp.quickViewer = {
         prevButton: null,
         fitButton: null
     },
-    
+
+    domBody: null,
+
+    domHTML: null,
+
     currentPage: 0,
     
     currentPDFJS: null,
@@ -23,6 +27,8 @@ window.schuldhulp.quickViewer = {
     accordion: null,
     
     documentLink: null,
+
+    bodyViewerOpenClass: 'modal-container-open',
     
     showDocument: function (dom) {
         var self = this;
@@ -117,6 +123,9 @@ window.schuldhulp.quickViewer = {
     init: function () {
         var self = this;
 
+        self.domBody = window.document.getElementsByTagName('body')[0];
+        self.domHTML = window.document.getElementsByTagName('html')[0];
+
         self.dom.container = document.createElement('div');
         self.dom.container.classList.add('quick-viewer');
         self.dom.container.classList.add('modal-container');
@@ -125,6 +134,7 @@ window.schuldhulp.quickViewer = {
         self.dom.close.href = '#';
         self.dom.close.addEventListener('click', function (event) {
             self.dom.container.parentNode.removeChild(self.dom.container);
+            self.domHTML.classList.remove(self.bodyViewerOpenClass);
             self.dom.container = null;
             event.preventDefault();
         });
@@ -228,8 +238,9 @@ window.schuldhulp.quickViewer = {
         self.dom.pageCounter = document.createElement('div');
         self.dom.pageCounter.classList.add('page-counter');
         self.dom.body.appendChild(self.dom.pageCounter);
-        
-        window.document.getElementsByTagName('body')[0].appendChild(self.dom.container);
+
+        self.domHTML.classList.add(self.bodyViewerOpenClass);
+        self.domBody.appendChild(self.dom.container);
     },
     
     next: function () {

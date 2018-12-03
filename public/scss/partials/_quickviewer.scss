@@ -5,6 +5,7 @@
   top: $padding / 2;
   left: $padding / 2;
   margin: 0;
+  overflow-y: hidden;
   .modal-header {
     text-align: center;
   }
@@ -196,4 +197,8 @@
     text-align: center;
     cursor: pointer;
   }
+}
+html.modal-container-open body {
+  position:fixed;
+  overflow-y: hidden;
 }
