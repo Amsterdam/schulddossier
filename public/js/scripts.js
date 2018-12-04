@@ -511,6 +511,7 @@
             s = '<li class="search-result-item" data-id="' + data.id + '">\
             <span class="search-result-item-static">\
               <span>'+ data.bedrijfsnaam+'</span>\
+              <span class="small">Allegro code: '+ data.allegroCode+'</span>\
               <span>'+ data.rekening+'</span>\
               <span>'+ data.straat+' ';
           if (data.huisnummerToevoeging) {
@@ -521,6 +522,7 @@
             </span>\
             <a class="search-result-item-selectable" href="javascript:void(0);">\
             <span>'+ highlightQ(data.bedrijfsnaam)+'</span>\
+            <span class="small">Allegro code: '+ highlightQ(data.allegroCode)+'</span>\
             <span>'+ highlightQ(data.rekening)+'</span>\
             <span>'+ highlightQ(data.straat)+' ';
           if (data.huisnummerToevoeging) {

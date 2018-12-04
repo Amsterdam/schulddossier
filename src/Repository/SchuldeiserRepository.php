@@ -26,6 +26,8 @@ class SchuldeiserRepository extends EntityRepository
             $orX = $qb->expr()->orX();
             $orX->add('LOWER(schuldeiser.bedrijfsnaam) LIKE :bedrijfsnaam_' . $i);
             $qb->setParameter('bedrijfsnaam_' . $i, '%' . $item . '%');
+            $orX->add('LOWER(schuldeiser.allegroCode) LIKE :allegroCode_' . $i);
+            $qb->setParameter('allegroCode_' . $i, '%' . $item . '%');
             $orX->add('LOWER(schuldeiser.straat) LIKE :straat_' . $i);
             $qb->setParameter('straat_' . $i, '%' . $item . '%');
             $orX->add('LOWER(schuldeiser.huisnummer) LIKE :huisnummer_' . $i);
