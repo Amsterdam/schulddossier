@@ -2,9 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -212,8 +212,6 @@ class SchuldItem
         return $this->historie;
     }
 
-    ///////
-
     public function isVerwijderd()
     {
         return $this->verwijderd;
@@ -296,7 +294,7 @@ class SchuldItem
 
     public function getDossierDocumenten()
     {
-        return  $this->dossierDocumenten;
+        return $this->dossierDocumenten;
     }
 
     public function getNietVerwijderdeDossierDocumenten()
@@ -355,12 +353,11 @@ class SchuldItem
         }
     }
 
-    public function isVerlopen()
+    public function isVerlopen(): bool
     {
-        $now = new \DateTime();
-        $diff = $now->diff($this->getVaststelDatum(), true);
-        if ($diff->days > (7 * 3)) {
-            return true;
+        if ($this->getVaststelDatum() instanceof \DateTime){
+            $gracePeriod = (new \DateTime())->modify('-6 months');
+            return $this->getVaststelDatum() < $gracePeriod;
         }
         return false;
     }
