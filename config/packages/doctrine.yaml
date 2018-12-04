@@ -21,3 +21,4 @@ doctrine:
         dql:
             string_functions:
               FULLTEXTSEARCH: GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions\FullTextSearch
+              LEVENSHTEIN: GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions\Levenshtein
