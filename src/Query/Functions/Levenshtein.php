@@ -47,4 +47,22 @@ class Levenshtein extends FunctionNode
         $this->searchPhrase = $parser->ArithmeticPrimary();
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
+
+    /**
+     * @param string $searchPhrase
+     *
+     * @return int
+     */
+    public static function determineTolerance(string $searchPhrase): int
+    {
+        $searchPhraseLength = strlen($searchPhrase);
+
+        if ($searchPhraseLength <= 3) {
+            return 1;
+        } else if ($searchPhraseLength === 4) {
+            return 2;
+        }
+
+        return 3;
+    }
 }

@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
+use GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions\Levenshtein;
 
 class DossierRepository extends EntityRepository
 {
@@ -75,7 +76,7 @@ class DossierRepository extends EntityRepository
             $qb->orWhere('LEVENSHTEIN(LOWER(dossier.clientNaam), :naam) <= :tolerance');
 
             $qb->setParameter('naam', $query['naam']);
-            $qb->setParameter('tolerance', 3);
+            $qb->setParameter('tolerance', Levenshtein::determineTolerance($query['naam']));
         }
 
         if (count($query['status']) > 0) {
