@@ -1,0 +1,60 @@
+<div class="status-result__container">
+    <span class="status-result__label">Status: </span>
+    {% if app.user.type == 'madi' %}
+        <div class="status-result status text-right">
+            <ul>
+                {% if show_nvt %}
+                    <li>
+                        <a href="#" class="status-nvt" data-id="-1" data-handler="status-changer" data-type="madi">
+                            <strong>niet van toepassing</strong>
+                        </a>
+                    </li>
+                {% endif %}
+
+                <li>
+                    <a href="#" class="status-madi-0 status-0" data-id="0" data-handler="status-changer" data-type="madi">
+                        <strong>open</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="status-madi-1 status-1" data-id="1" data-handler="status-changer" data-type="madi">
+                        <strong>bezig/incompleet</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="status-madi-2 status-2" data-id="2" data-handler="status-changer" data-type="madi">
+                        <strong>opgevoerd</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="status-madi-3 status-3" data-status="" data-handler="status-changer" data-id="3"  data-type="madi"><strong>gecontroleerd</strong></a>
+                </li>
+            </ul>
+        </div>
+    {% elseif app.user.type == 'gka' %}
+        <div class="status-result status text-right">
+            <ul>
+                {% if show_nvt %}
+                    <li>
+                        <a href="#" class="status-nvt" data-id="-1" data-handler="status-changer" data-type="gka">
+                            <strong>niet van toepassing</strong>
+                        </a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a href="#" class="status-gka-0 status-0" data-id="0" data-handler="status-changer" data-type="gka">
+                        <strong>open</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="status-gka-2 status-2" data-id="2" data-handler="status-changer" data-type="gka">
+                        <strong>opgevoerd</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="status-gka-3 status-3" data-handler="status-changer" data-id="3"  data-type="gka"><strong>gecontroleerd</strong></a>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
+</div>

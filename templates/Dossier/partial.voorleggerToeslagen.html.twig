@@ -1,38 +1,49 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('toeslagen') %}
-  
-            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-toeslagen">
-                <div class="accordion-header">
-                    
-                    <div class="voorlegger-header{{ dossier.voorlegger.toeslagenNvt ? ' nvt' }}">
-                        <h3 class="naam">
-                            <a href="#voorlegger-toeslagen" data-handler="toggle">Toeslagen</a>
-                        </h3>
-                        {% if dossierDocumenten|length > 0 %}
-                          <div class="voortgang">
-                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
-                          </div>
-                        {% endif %}
-                        <div class="nvt" data-changer="nvt">
-                            {{ form_row(form.toeslagenNvt) }}
-                        </div>
-                        <div class="status-container">
-                          {{ form_row(form.toeslagenOntvangenMadi) }}
-                          {{ form_row(form.toeslagenOntvangenGka) }}
-                        </div>
-                    </div>
-                    
+
+<div class="dossier__item {{ dossier.voorlegger.toeslagenNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.toeslagenOntvangenMadi }} status-gka-{{ dossier.voorlegger.toeslagenOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-toeslagen"
+     data-hashevent="activate-section" data-keyupper="section-document-nav">
+    <div class="dossier__voorlegger__header">
+
+        <div class="voorlegger-header">
+            <h3 class="naam">
+                <a href="#voorlegger-toeslagen">{{ title }}</a>
+            </h3>
+            {% if dossierDocumenten|length > 0 %}
+                <div class="voortgang">
+                    <span>{{ dossierDocumenten|length }}</span>
                 </div>
-                <div class="accordion-body">
-                    <div class="voorlegger-body">
-                        {{ form_row(form.toeslagenHuur) }}
-                        {{ form_row(form.toeslagenZorg) }}
-                        {{ form_row(form.toeslagenKindgebondenBudget) }}
-                        {{ form_row(form.toeslagenKinderopvang) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Huurtoeslag'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
-                        {{ form_row(form.aantekening) }}
-                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('huurtoeslag')} only %}
-                    </div>
+            {% endif %}
+            {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': true} %}
+        </div>
+
+    </div>
+    <div class="dossier__voorlegger__body">
+        <div class="dossier__voorlegger__sectie">
+            <div class="dossier__voorlegger__sectie__header">
+                <a class="dossier__voorlegger__sectie__close" href="#_"></a>
+                <div class="status-container hide"><span>Status:</span>
+                    {{ form_row(form.toeslagenOntvangenMadi) }}
+                    {{ form_row(form.toeslagenOntvangenGka) }}
                 </div>
+                <div class="nvt-input hide">
+                    {{ form_row(form.toeslagenNvt) }}
+                </div>
+                {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': true} %}
+                <h3>{{ title }}</h3>
+                <hr>
             </div>
+            <div class="dossier__voorlegger__sectie__body">
+                {{ form_row(form.toeslagenHuur) }}
+                {{ form_row(form.toeslagenZorg) }}
+                {{ form_row(form.toeslagenKindgebondenBudget) }}
+                {{ form_row(form.toeslagenKinderopvang) }}
+                {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Toeslag'} only %}
+                {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
+                {{ form_row(form.aantekening) }}
+                {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('toeslagen')} only %}
+            </div>
+            {% include 'Dossier/partial.documentViewer.html.twig' %}
+        </div>
+    </div>
+</div>

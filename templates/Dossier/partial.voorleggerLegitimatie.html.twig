@@ -1,32 +1,43 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('legitimatie') %}
-  
-  
-            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-legitimatie">
-                <div class="accordion-header">
-                    
-                    <div class="voorlegger-header">
-                        <h3 class="naam">
-                            <a href="#voorlegger-legitimatie" data-handler="toggle">Legitimatie</a>
-                        </h3>
-                        {% if dossierDocumenten|length > 0 %}
-                          <div class="voortgang">
-                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
-                          </div>
-                        {% endif %}
-                        <div class="status-container">
-                          {{ form_row(form.legitimatieOntvangenMadi) }}
-                          {{ form_row(form.legitimatieOntvangenGka) }}
-                        </div>
-                    </div>
-                    
+
+
+<div class="dossier__item status-madi-{{ dossier.voorlegger.legitimatieOntvangenMadi }} status-gka-{{ dossier.voorlegger.legitimatieOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" data-keyupper="section-document-nav"
+     id="voorlegger-legitimatie" data-hashevent="activate-section">
+    <div class="dossier__voorlegger__header">
+
+        <div class="voorlegger-header">
+            <h3 class="naam">
+                <a href="#voorlegger-legitimatie">{{ title }}</a>
+            </h3>
+            {% if dossierDocumenten|length > 0 %}
+                <div class="voortgang">
+                    <span>{{ dossierDocumenten|length }}</span>
                 </div>
-                <div class="accordion-body">
-                    <div class="voorlegger-body">
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Legitimatie'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
-                        {{ form_row(form.aantekening) }}
-                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('legitimatie')} only %}
-                    </div>
+            {% endif %}
+            {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
+        </div>
+
+    </div>
+    <div class="dossier__voorlegger__body">
+        <div class="dossier__voorlegger__sectie">
+            <div class="dossier__voorlegger__sectie__header">
+                <a class="dossier__voorlegger__sectie__close" href="#_"></a>
+                <div class="status-container hide">
+                    {{ form_row(form.legitimatieOntvangenMadi) }}
+                    {{ form_row(form.legitimatieOntvangenGka) }}
                 </div>
+                {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
+                <h3>{{ title }}</h3>
+                <hr>
             </div>
+            <div class="dossier__voorlegger__sectie__body">
+                {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Legitimatie'} only %}
+                {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
+                {{ form_row(form.aantekening) }}
+                {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('legitimatie')} only %}
+            </div>
+            {% include 'Dossier/partial.documentViewer.html.twig' %}
+        </div>
+    </div>
+</div>

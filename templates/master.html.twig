@@ -22,12 +22,12 @@
         <script type="text/javascript">!function(a){a.className=a.className.replace(/\bno-js\b/g,'js'),'ontouchstart'in window&&(a.className=a.className.replace(/\bno-touch\b/g,'touch'))}(document.documentElement)</script>
 
         <!-- TODO: USE FONTS FROM AMSTERDAM -->
-        <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/0037f97b-b0f6-41de-8f33-75b12c9f76ea.css"/>
+        {#<link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/0037f97b-b0f6-41de-8f33-75b12c9f76ea.css"/>#}
     </head>
     <body class="{% block body_classes %}{% endblock %}" data-decorator="restore-splitter">
       
         {% block pdfsplitter %}
-          <aside id="pdfsplitter" class="pdf-splitter accordion no-header file-pdf-pages" data-decorator="droppable" data-changer="pdfsplitter">
+          <aside id="pdfsplitter" class="pdf-splitter no-header file-pdf-pages" data-decorator="droppable" data-changer="pdfsplitter">
               <div class="pages"></div>
               <label class="file-selector">
                   <input type="file" name="file" accept="application/pdf">
@@ -36,20 +36,22 @@
           </aside>
 
           <p class="pdf-splitter-trigger">
-            <a href="#pdfsplitter" data-handler="toggle clear"><i class="icon-splitsen"></i> Gescand document splitsen</a>
+            <a href="#pdfsplitter" data-handler="global-toggle" data-toggle-class="splitter-active"><i class="icon-splitsen"></i>pdf splitsen</a>
           </p>
         {% endblock %}
 
         <header class="top">
             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class="logo">
               <i class="icon-andreas"></i>Gemeente Amsterdam
+            </a>
+            <div class="header__title">
               <strong>{% block page_title %}Schulddossier{% endblock %}</strong>
               {% if app_version.getEnv == 'dev' or app_version.getEnv == 'acceptance' %}<span>{{ app_version.getEnv }}: {% if app.user %}{{ app.user.userName }} / {{ app.user.getType }} / {% endif %}{{ app_version.getVersionId }}</span>{% endif %}
-            </a>
-            <div class="container">
+            </div>
+
               <div class="nav-container">
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a href="#MENU" class="nav-open" data-handler="toggle"><i class="icon-menu"></i>Menu</a>
+                <a href="#MENU" class="nav-open" data-handler="toggle"><i class="icon-menu"></i><span>Menu</span></a>
                 <nav class="nav" id="MENU">
                   <ul class="menu">
                     {% if is_granted('ROLE_MADI') or is_granted('ROLE_GKA') or is_granted('ROLE_ADMIN') %}
@@ -72,7 +74,6 @@
                 </nav>
 {% endif %}
               </div>
-            </div>
         </header>
         
         <div class="document-container">

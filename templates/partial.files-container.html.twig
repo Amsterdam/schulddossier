@@ -1,3 +1,4 @@
+<h4>Documenten</h4>
 <div class="files-container" data-default-document-naam="{{ defaultDocumentNaam|default('') }}">
     <div class="file-container prototype" data-name="{{ form_elm.vars.prototype.file.vars.full_name }}">
         
@@ -6,7 +7,7 @@
         <a href="#bestand-bekijken" class="bestand-zoom" title="Bekijk deze PDF" data-handler="prepare-pdf bestand">Zoom</a>
       
         <span class="bestand bestand-nieuw">
-          <i class="icon-file" data-extension="nieuw">+</i>
+          <i class="icon-document" data-extension="nieuw">+</i>
           <span class="bestand-naam">
             {{ form_widget(form_elm.vars.prototype.naam, {'attr': {'placeholder': 'Naam document'} }) }}
           </span>
@@ -22,7 +23,7 @@
         <div class="drop-area"></div>
     </div>
     <a class="add secundair bestand" href="#add" data-handler="add-file">
-      <i class="icon-file" data-extension="nieuw">+</i>
+      <i class="icon-document" data-extension="nieuw">+</i>
       <span class="bestand-naam">Nieuw document toevoegen</span>
       
     </a>

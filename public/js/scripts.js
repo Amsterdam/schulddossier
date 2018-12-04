@@ -2,6 +2,49 @@
 
   var handlers = {
 
+    'status-changer': function(e){
+      console.log('status-changer');
+      var self = this,
+        val = self.dataset.id,
+        t = self.dataset.type,
+        form = (e && e.target) && _closest(e.target, 'form'),
+        container = _closest(self, '.dossier__item'),
+        statusRadio = container.querySelector('.status-' + self.dataset.type + ' input[type="radio"][value="'+ val +'"]'),
+        nvtCheckbox = container.querySelector('.nvt-input .form-row input[type="checkbox"]');
+
+      e && e.preventDefault();
+
+      if (val === '-1'){
+        if (nvtCheckbox) {
+          nvtCheckbox.checked = true;
+        }
+        container.classList.add('status-nvt');
+      }else {
+        container.classList.remove('status-nvt');
+        for (var i = 0; i < 5; i++){
+          container.classList.remove('status-' + t + '-' + i);
+        }
+        container.classList.add('status-' + t + '-' + val);
+        if (nvtCheckbox){
+          nvtCheckbox.checked = false;
+        }
+        statusRadio.checked = true;
+      }
+      form && changers[form.dataset.changer].call(form, e);
+    },
+    'global-toggle': function(e){
+      var self = this,
+        toggleClass = self.dataset.toggleClass,
+        body = d.querySelector('body');
+
+      if(toggleClass){
+        e && e.preventDefault();
+        console.log(body.classList.contains(toggleClass));
+        body.classList[(body.classList.contains(toggleClass)) ? 'remove' : 'add'](toggleClass);
+      }else {
+
+      }
+    },
     'toggle': function (e) {
       var el = document.getElementById(this.hash.substr(1));
       if (el) {
@@ -34,6 +77,35 @@
         }
 
       }
+    },
+    'activate': function (e) {
+      // var el = document.getElementById(this.hash.substr(1)),
+      //   containers = document.querySelectorAll(this.dataset.containers || '.dossier__item');
+      // if (el) {
+      //   e && e.preventDefault();
+      //   var
+      //     wasActive = this.hash == w.location.hash || el.classList.contains('active'),
+      //     addRemove = wasActive ? 'remove' : 'add';
+      //
+      //   for (var i = 0; i < containers.length; i++){
+      //     containers[i].classList.remove('active');
+      //   }
+      //
+      //   var els = d.querySelectorAll('[href="' + this.hash + '"]');
+      //
+      //   for (var i = 0; i < els.length; i++) {
+      //     els[i].classList[addRemove]('active');
+      //   }
+      //
+      //   el.classList[addRemove]('active');
+      //
+      //   var url = document.location.href.split('#')[0];
+      //   if (history.replaceState) {
+      //     w.location.hash = '_';
+      //     history.replaceState({id: url}, d.title, wasActive ? url : url + this.hash);
+      //   }
+      //
+      // }
     },
 
     'scroll': function (e) {
@@ -71,6 +143,7 @@
       });
 
       prototype.querySelector('input[type="file"]').addEventListener('change', function (event) {
+        console.log(event)
         if (event.target.value) {
           if (prototype.querySelector('.drop-area')) {
             prototype.removeChild(prototype.querySelector('.drop-area'));
@@ -120,7 +193,8 @@
       var
         container = this.parentNode,
         input = container.querySelector('.bestand-naam input');
-
+      console.log(input);
+      console.log(container);
       if (container.classList.contains('file-pdf-pages')) {
 
         var pages = container.querySelectorAll('.page canvas');
@@ -141,11 +215,14 @@
         }
       }
     },
-
     'bestand': function (e) {
-      if (window.schuldhulp && window.schuldhulp.quickViewer) {
-        e && e.preventDefault();
-        window.schuldhulp.quickViewer.showDocument(this);
+      e && e.preventDefault();
+      var self = this,
+        container = _closest(self, '.dossier__item'),
+        viewer = container.querySelector('.document__viewer');
+      viewer.showDocument(self, 1);
+      self.open = function(){
+        viewer.showDocument(self, 1);
       }
     },
 
@@ -177,7 +254,7 @@
 
       helpers.trigger(form, 'change');
 
-      form.classList.remove('form-changed');
+      d.classList.remove('form-changed');
 
     },
 
@@ -195,7 +272,140 @@
   };
 
   var decorators = {
+    'bestand-viewer': function () {
+      var self = this,
+        container = _closest(this, '.dossier__voorlegger__body'),
+        viewerContainer = self.querySelector('.viewer-container'),
+        header = self.querySelector('.document__viewer__header'),
+        title = self.querySelector('.document__viewer__header__title'),
+        counter = self.querySelector('.document__viewer__header__counter'),
+        btnNext = self.querySelector('.next'),
+        btnPrev = self.querySelector('.prev'),
+        btnZoom = self.querySelector('.zoom'),
+        statusElem = self.querySelector('.status'),
+        documents = container.querySelectorAll('[data-handler="bestand"]'),
+        currentPDFJS,
+        currentPage,
+        loadingTask,
+        loadTimeout,
+        _clear = function () {
+            var canvasElements = viewerContainer.querySelectorAll('canvas');
+            for (var i = 0; i < canvasElements.length; i ++) {
+                canvasElements.item(i).parentNode.removeChild(canvasElements.item(i));
+            }
+            viewerContainer.style.backgroundImage = '';
+        },
+        _deselectDocument = function(){
+          this.classList.remove('selected');
+        },
+        _selectDocument = function(pageNum){
+          this.classList.add('selected');
+        },
+        _reset = function(){
+          _clear();
+          window.clearTimeout(loadTimeout);
+          if (loadingTask){
+            loadingTask.destroy();
+            loadingTask = null;
+          }
+        },
+        _nextPage = function(e) {
+          e && e.preventDefault();
+          console.log('next');
+          console.log(currentPage);
+          console.log(currentPDFJS.numPages);
+          if (currentPage < currentPDFJS.numPages) {
+              _showPage(currentPage + 1);
+          }
+        },
+        _prevPage = function(e) {
+          e && e.preventDefault();
+          if (currentPage > 1) {
+              _showPage(currentPage - 1);
+          }
+        },
+        _zoom = function(e){
+          e && e.preventDefault();
+          self.classList[self.classList.contains('fit-mode') ? 'remove' : 'add']('fit-mode');
 
+          window.sessionStorage && window.sessionStorage.setItem('fitMode', self.classList.contains('fit-mode'));
+
+        },
+        _showDocument = function(docElem, pageNum){
+          statusElem.textContent = 'Document wordt geladen';
+          self.classList.add('loading');
+          for(var i = 0; i < documents.length; i++){
+            documents[i].deselect();
+          }
+          docElem.select(pageNum);
+          _reset();
+          loadTimeout = setTimeout(function(){
+            loadingTask = PDFJS.getDocument(docElem.datauristring || docElem.getAttribute('href'));
+            loadingTask.promise.then(function (pdf) {
+                currentPDFJS = pdf;
+                title.textContent = docElem.textContent;
+                counter.textContent = ' (' + pageNum + ' / ' + currentPDFJS.numPages + ')';
+                console.log('getdoc');
+
+                _showPage(pageNum);
+            }).catch(function(error){
+              console.log(error);
+            });
+          }, 200)
+
+        },
+        _showPage = function(num){
+
+          _clear();
+
+          currentPage = num;
+
+          currentPDFJS.getPage(num)
+            .then(function (page) {
+              var canvasDom = document.createElement('canvas');
+              var context = canvasDom.getContext('2d');
+              var viewport = page.getViewport(2.0);
+
+              canvasDom.height = viewport.height;
+              canvasDom.width = viewport.width;
+
+              viewerContainer.appendChild(canvasDom);
+
+              counter.textContent = ' (' + num + ' / ' + currentPDFJS.numPages + ')';
+
+              viewerContainer.scrollTop = 0;
+
+              page.render({canvasContext: context, viewport: viewport }).then(function () {
+                  viewerContainer.style.backgroundSize ='contain';
+                  viewerContainer.style.backgroundImage = 'url(' + canvasDom.toDataURL("image/jpeg") + ')';
+                  canvasDom.setAttribute('style', 'width: ' + viewport.width + 'px; height: ' + viewport.height + 'px;');
+                  self.classList.remove('loading');
+              });
+          });
+
+        };
+      //this.showPage = _showPage;
+      this.showDocument = _showDocument;
+      this.reset = _reset;
+
+
+      btnNext.addEventListener('click', _nextPage);
+      btnPrev.addEventListener('click', _prevPage);
+      btnZoom.addEventListener('click', _zoom);
+
+      for (var i = 0; i < documents.length; i++){
+        documents[i].select = _selectDocument;
+        documents[i].deselect = _deselectDocument;
+      }
+
+      if (window.sessionStorage) {
+        var fitMode = window.sessionStorage.getItem('fitMode');
+        if (fitMode === 'true') {
+          self.classList.add('fit-mode');
+        }
+      }
+
+    },
     'droppable': function () {
       var
         container = this;
@@ -207,7 +417,7 @@
       }
       var _over = function (e) {
 
-        var zone = (e && e.target) && _closest(e.target, '.accordion');
+        var zone = (e && e.target) && _closest(e.target, '.dossier__item');
         var fileContainer = (e && e.target) && _closest(e.target, '.file-container');
 
         if (fileContainer) {
@@ -229,6 +439,7 @@
       var _out = function (e) {
       };
       var _drop = function (e) {
+
         if (currentZone) {
           currentZone.classList.remove('drop-over');
           currentZone = false;
@@ -242,16 +453,17 @@
         if (d.classList.contains('sort-mode')) return;
 
         var files = e.dataTransfer.files;
-        var zone = (e && e.target) && _closest(e.target, '.accordion');
+        var zone = (e && e.target) && _closest(e.target, '.dossier__item');
         var form = (e && e.target) && _closest(e.target, 'form');
         var changer = (e && e.target) && _closest(e.target, '[data-changer]');
 
+
         if (!files || !files.length) return;
 
-        if (zone) zone.classList.add('active');
+        if (zone) location.hash = zone.getAttribute('id');
+        // if (zone) zone.classList.add('active');
 
         if (form) {
-
           // create new file zone
           for (var i = 0; i < files.length; i++) {
             var addButton = zone.querySelector('.files-container .add.bestand');
@@ -553,6 +765,7 @@
   var submitters = {
 
     'save': function (e) {
+      console.log('save')
       var
         form = this,
         submitButton = form.querySelector('button[type="submit"]');
@@ -566,13 +779,13 @@
 
       var data = new FormData(form);
 
+
       var url = form.action + '?v' + (new Date()).getTime();
 
       if (form.method.toLowerCase() == 'get') {
         url += '&' + _serialize(form);
         data = {};
-      }
-      ;
+      };
 
       var els = form.querySelectorAll('.file-pdf-pages');
 
@@ -593,8 +806,6 @@
         }
 
       }
-
-
       if (form.files) {
         for (var i = 0; i < form.files.length; i++) {
           data.append(form.files[i].name, form.files[i].file);
@@ -602,6 +813,7 @@
       }
       form.files = [];
 
+      console.log(data);
       var _process = function (data, selector) {
         submitButton.removeAttribute("disabled");
         var div = document.createElement('div');
@@ -611,8 +823,11 @@
           result = div.querySelectorAll(selector),
           target = d.querySelectorAll(selector);
 
+        console.log(result);
+        console.log(target);
         if (result && target) {
           for (var i = 0; i < target.length; i++) {
+
             target[i].innerHTML = result[i].innerHTML;
 
             // IE11 placeholder bug FIX
@@ -624,19 +839,21 @@
 
           }
         }
+        _decorate();
+        _setHashEvents();
+        _checkHash();
 
         form.classList.remove('in-progress');
-        form.classList.remove('form-changed');
+        d.classList.remove('form-changed');
 
       };
-
       form.request = helpers.ajax({
         type: form.method,
         url: url,
         data: data,
         callback: function (data) {
           _process(data, form.dataset.resultSelector || 'body');
-          w.location.hash = '_';
+          //w.location.hash = '_';
 
           if (form.dataset.submitterCallback && typeof callbackers[form.dataset.submitterCallback] == 'function') {
             callbackers[form.dataset.submitterCallback].call(form);
@@ -660,13 +877,30 @@
   };
 
   var changers = {
+    'status-changer': function(e){
+      console.log('status-changer');
+      var self = this,
+        val = self.dataset.id,
+        container = _closest(self, '.dossier__item'),
+        statusRadio = container.querySelector('.status-' + self.dataset.type + ' input[type="radio"][value="'+ val +'"]'),
+        nvtCheckbox = container.querySelector('.nvt > .form-row input[type="checkbox"]');
 
+
+      console.log(statusRadio);
+      e && e.preventDefault();
+      if (val === -1){
+        nvtCheckbox.checked = true;
+      }else {
+        nvtCheckbox.checked = false;
+        statusRadio.checked = true;
+      }
+    },
     'change': function () {
       var
         form = this;
 
 
-      form.classList.add('form-changed');
+      d.classList.add('form-changed');
 
       if (!form.changed) {
         form.changed = true;
@@ -765,7 +999,7 @@
           onEnd: function (e) {
 
             var
-              zone = _closest(e.originalEvent.target, '.accordion'),
+              zone = _closest(e.originalEvent.target, '.dossier__item'),
               changer = _closest(e.originalEvent.target, '[data-changer]'),
               file = _closest(e.originalEvent.target, '.file-container.active:not(.has-file)'),
               dropZone = false;
@@ -901,8 +1135,21 @@
       form && changers[form.dataset.changer].call(form, e);
 
     },
+    'nvt-toggle': function (e) {
+      console.log('toggle');
+      console.log(e.target);
+      console.log(e.target.checked);
+      var nvtElements = document.querySelectorAll('.voorlegger-header.nvt'),
+        addOrRemove = (e.target.checked) ? 'add' : 'remove';
 
+      for (var i = 0; i < nvtElements.length; i++){
+        console.log(nvtElements[i]);
+        _closest(nvtElements[i], '.dossier__item').classList[e.target.checked ? 'add' : 'remove']('hide');
+      }
+      console.log(nvtElements);
+    },
     'nvt': function (e) {
+      console.log(e);
       var
         form = (e && e.target) && _closest(e.target, 'form'),
         input = this.querySelector('input');
@@ -910,69 +1157,131 @@
       form && changers[form.dataset.changer].call(form, e);
 
       var header = _closest(this, '.voorlegger-header');
-      if (!header) return;
+      var container = _closest(this, '.dossier__item');
+      // if (!header) return;
+      console.log('nvt');
+      // header.classList[input.checked ? 'add' : 'remove']('nvt');
+      container.classList[input.checked ? 'add' : 'remove']('nvt');
 
-      header.classList[input.checked ? 'add' : 'remove']('nvt');
+    },
+    'nvt-input': function (e) {
+      var
+        form = (e && e.target) && _closest(e.target, 'form'),
+        input = this.querySelector('input');
+
+      form && changers[form.dataset.changer].call(form, e);
+
+      var container = _closest(this, '.dossier__item');
+      if (!container) return;
+
+      container.classList[input.checked ? 'add' : 'remove']('nvt');
 
     }
 
   };
-
+  var mouseovers = {
+    'overflow-hidden-fix': function (e) {
+        //console.log(e);
+    }
+  };
   var keyuppers = {
+    'vertical-list-nav': function(e){
+      if (e.keyCode === 38 || e.keyCode === 40) {
+        var cls = this.dataset.activeClass || 'active',
+          direction = (e.keyCode === 38) ? -1 : 1,
+          qs = this.querySelectorAll(':scope > .dossier__item'),
+          all = Array.prototype.slice.call(qs),
+          selected = this.querySelector(':scope > .dossier__item.active'),
+          index = Array.prototype.indexOf.call(qs, selected),
+          n = index + direction;
+
+        if (n > -1 && n < qs.length) {
+          if (typeof qs[n].hashEvent === 'function'){
+            location.hash = qs[n].getAttribute('id');
+          }else {
+            for (var i = 0; i < all.length; i++) {
+              all[i].classList.remove(cls);
+            }
+            qs[n].classList.add(cls)
+          }
+        }
+      }
+    },
+    'section-document-nav': function(e){
+      var self = this;
+      e && e.preventDefault();
+      if ((e.keyCode === 37 || e.keyCode === 39) && self.classList.contains('active')) {
+        var documents = self.querySelectorAll('[data-handler="bestand"]'),
+          viewer = self.querySelector('.document__viewer'),
+          direction = (e.keyCode === 37) ? -1 : 1,
+          selectedDoc = self.querySelector('[data-handler="bestand"].selected') || documents[0];
+        if (self.classList.contains('active') && documents.length > 0){
+          var index = 0;
+          for (var i = 0; i < documents.length; i++){
+            if (documents[i] === selectedDoc){
+              index = i;
+            }
+          }
+          index = ((index + direction) < 0) ? 0 : ((index + direction) >= documents.length) ? documents.length - 1 : index + direction;
+          if (documents[index] !== selectedDoc){
+            viewer.showDocument(documents[index], 1);
+          }
+        }
+      }
+    },
     'change': function (e) {
       // changers['change'] && changers['change'].call(this, e);
     },
-
-    'select': function (e) {
-      var
-        container = this;
-
-      if (!container.select) {
-        container.form = _closest(container, 'form');
-        container.select = container.querySelector('select');
-        container.clone = container.select.cloneNode(true);
-        container.options = container.clone.querySelectorAll('option');
-        container.input = container.querySelector('input');
-      }
-
-
-      if (e.keyCode == 38 || e.keyCode == 40) {
-        var index = Math.min(container.select.options.length - 1, Math.max(0, container.select.selectedIndex + (e.keyCode == 38 ? -1 : +1)));
-        container.select.options[index].selected = true;
-        e.preventDefault();
-      } else {
-
-        container.select.innerHTML = '';
-        val = container.input.value.trim();
-
-        if (val.length === 0) {
-          container.select.innerHTML = container.clone.innerHTML;
-        } else {
-          var reg = new RegExp((val.length === 1 ? '^' : '') + val, 'i');
-          for (var i = 0; i < container.options.length; i++) {
-            if (container.options[i].value != '') {
-              var string = container.options[i].textContent;
-              for (var k = 0; k < container.options[i].attributes.length; k++) {
-                if (/^data-/.test(container.options[i].attributes[k].nodeName)) {
-                  string += ' ' + container.options[i].attributes[k].nodeValue;
-                }
-              }
-
-              if (string.match(reg)) {
-                container.select.appendChild(container.options[i].cloneNode(true));
-              }
-            }
-          }
-
-          var option = document.createElement('option');
-          option.value = '';
-          container.select.appendChild(option);
-
-        }
-      }
-
-      helpers.trigger(container.select, 'change');
-    }
+    // 'select': function (e) {
+    //   var
+    //     container = this;
+    //
+    //   if (!container.select) {
+    //     container.form = _closest(container, 'form');
+    //     container.select = container.querySelector('select');
+    //     container.clone = container.select.cloneNode(true);
+    //     container.options = container.clone.querySelectorAll('option');
+    //     container.input = container.querySelector('input');
+    //   }
+    //
+    //
+    //   if (e.keyCode == 38 || e.keyCode == 40) {
+    //     var index = Math.min(container.select.options.length - 1, Math.max(0, container.select.selectedIndex + (e.keyCode == 38 ? -1 : +1)));
+    //     container.select.options[index].selected = true;
+    //     e.preventDefault();
+    //   } else {
+    //
+    //     container.select.innerHTML = '';
+    //     var val = container.input.value.trim();
+    //
+    //     if (val.length === 0) {
+    //       container.select.innerHTML = container.clone.innerHTML;
+    //     } else {
+    //       var reg = new RegExp((val.length === 1 ? '^' : '') + val, 'i');
+    //       for (var i = 0; i < container.options.length; i++) {
+    //         if (container.options[i].value != '') {
+    //           var string = container.options[i].textContent;
+    //           for (var k = 0; k < container.options[i].attributes.length; k++) {
+    //             if (/^data-/.test(container.options[i].attributes[k].nodeName)) {
+    //               string += ' ' + container.options[i].attributes[k].nodeValue;
+    //             }
+    //           }
+    //
+    //           if (string.match(reg)) {
+    //             container.select.appendChild(container.options[i].cloneNode(true));
+    //           }
+    //         }
+    //       }
+    //
+    //       var option = document.createElement('option');
+    //       option.value = '';
+    //       container.select.appendChild(option);
+    //
+    //     }
+    //   }
+    //
+    //   helpers.trigger(container.select, 'change');
+    // }
 
   };
 
@@ -1036,30 +1345,71 @@
 
 
   };
+  var hashEvents = {
+    'activate-section': function(hash){
+      var el = this,
+        activate = el.getAttribute('id') === hash,
+        viewer = el.querySelector('.document__viewer'),
+        doc = el.querySelector('[data-handler="bestand"]'),
+        containers = d.querySelectorAll(this.dataset.containers || '.dossier__item'),
+
+        _deactivate = function(el){
+          el.classList['remove']('active');
+          viewer.reset();
+        },
+        _activate = function(el){
+          el.classList['add']('active');
+          doc && viewer.showDocument(doc, 1);
+
+        };
+
+      if (activate){
+        _activate(el);
+        el.scrollIntoView({ behavior: 'smooth', block: 'start'});
+      }else {
+        _deactivate(el);
+      }
+
+
+    }
+  };
 
   var callbackers = {
     'schulditem-nieuw': function () {
       var el = document.getElementById('nieuwe-schuld-toevoegen-trigger');
+      console.log(el);
+      console.log(d.querySelector('#schuldItem-nieuw .errors'));
       if (el && d.querySelector('#schuldItem-nieuw .errors')) {
         handlers.toggle.call(el);
-        _scrollTo(document.getElementById('schuldItem-nieuw'))
+        _scrollTo(document.getElementById('schuldItem-nieuw'));
       } else {
         w.scrollTo(0, 0);
       }
-    }
+    },
   };
   
   
   d.addEventListener('click',function(t){var k,e,a=t&&t.target;if(a=_closest(a,'[data-handler]')){var r=a.getAttribute('data-handler').split(/\s+/);if('A'==a.tagName&&(t.metaKey||t.shiftKey||t.ctrlKey||t.altKey))return;for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);handlers[k[0]]&&handlers[k[0]].call(a,t,k[1])}}});
-  
   var l = { 
     submit: 'submitter', 
-    change: 'changer', 
+    change: 'changer',
     keyup: 'keyupper'
   }
   for (var i in l){
     l.hasOwnProperty(i) && d.addEventListener(i,function(t){var s=t.type,o=eval(l[s]+'s'),k,e,f=t&&t.target;if(f=_closest(f,'[data-'+l[s]+']')){var r=f.getAttribute('data-'+l[s]).split(/\s+/);for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);o&&o[k[0]]&&o[k[0]].call(f,t,k[1])}}});
-  }  
+  }
+
+  d.addEventListener('keyup', function (e) {
+    for (var i in keyuppers){
+      if (keyuppers.hasOwnProperty(i)) {
+        var els = document.querySelectorAll('[data-keyupper="' + i + '"]');
+        for (var j = 0; j < els.length; j++){
+          keyuppers[i].call(els[j], e)
+        }
+      }
+    }
+  });
+
   
   var scrollers=[];w.addEventListener('scroll',function(){requestAnimationFrame(function(){for(var l=0;l<scrollers.length;l++)scrollers[l].el&&scrollers[l].fn.call(scrollers[l].el)})},!1);
   
@@ -1070,40 +1420,98 @@
   var _closest=function(e,t){var ms='MatchesSelector',c;['matches','webkit'+ms,'moz'+ms,'ms'+ms,'o'+ms].some(function(e){return'function'==typeof document.body[e]&&(c=e,!0)});var r=e;try{for(;e;){if(r&&r[c](t))return r;e=r=e.parentElement}}catch(e){}return null};
   
   function _serialize(form){if(!form||form.nodeName!=="FORM"){return }var i,j,q=[];for(i=form.elements.length-1;i>=0;i=i-1){if(form.elements[i].name===""){continue}switch(form.elements[i].nodeName){case"INPUT":switch(form.elements[i].type){case"text":case"hidden":case"password":case"button":case"reset":case"submit":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"checkbox":case"radio":if(form.elements[i].checked){q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value))}break;case"file":break}break;case"TEXTAREA":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"SELECT":switch(form.elements[i].type){case"select-one":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"select-multiple":for(j=form.elements[i].options.length-1;j>=0;j=j-1){if(form.elements[i].options[j].selected){q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].options[j].value))}}break}break;case"BUTTON":switch(form.elements[i].type){case"reset":case"submit":case"button":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break}break}}return q.join("&")};
-  
-  if (w.location.hash) {
-    var
-      el = document.querySelector('.document ' + w.location.hash),
-      trigger = document.querySelector('[data-handler*="toggle"][href^="' + w.location.hash + '"]');
 
-    if (el) {
-
-      if (trigger) {
-
-        var tabs = _closest(trigger, '.tabs');
-
-        if (tabs) {
-          var els = tabs.querySelectorAll('.active');
-          for (var i = 0; i < els.length; i++) {
-            els[i].classList.remove('active');
-          }
-
+  var _setHashEvents = function(){
+    for (var i in hashEvents){
+      var els = document.querySelectorAll('[data-hashevent="' + i + '"]');
+      for (var j = 0; j < els.length; j++){
+        if (hashEvents.hasOwnProperty(i) && els[j]){
+          els[j].hashEvent = hashEvents[i];
         }
-
-        trigger.classList.add('active');
-        el.classList.add('active');
-
       }
 
-      setTimeout(function () {
-        w.scrollTo(0, 0);
-        setTimeout(function () {
-          _scrollTo(el);
-        }, 800);
-      }, 1);
+    }
+  };
+  var _checkHash = function (e) {
+    var h = w.location.hash.substr(1);
+    if (h){
+      var hashEls = document.querySelectorAll('[data-hashevent]');
+      for (var i = 0; i < hashEls.length; i++){
+        hashEls[i].hashEvent(h);
+      }
     }
   }
+  w.addEventListener('hashchange', _checkHash);
 
   _decorate();
+  _setHashEvents();
+  _checkHash();
+
+
+
+  // if (w.location.hash) {
+  //
+  //   var
+  //     el = document.querySelector('.document ' + w.location.hash),
+  //     trigger = document.querySelector('[data-handler*="toggle"][href^="' + w.location.hash + '"]');
+  //
+  //
+  //   if (el) {
+  //
+  //     if (trigger) {
+  //
+  //       var tabs = _closest(trigger, '.tabs');
+  //
+  //       if (tabs) {
+  //         var els = tabs.querySelectorAll('.active');
+  //         for (var i = 0; i < els.length; i++) {
+  //           els[i].classList.remove('active');
+  //         }
+  //
+  //       }
+  //
+  //       trigger.classList.add('active');
+  //       el.classList.add('active');
+  //
+  //     }
+  //
+  //     setTimeout(function () {
+  //       w.scrollTo(0, 0);
+  //       setTimeout(function () {
+  //         _scrollTo(el);
+  //       }, 800);
+  //     }, 1);
+  //   }
+  // }
+
 
 }(window, document.documentElement);
+
+(function(doc, proto) {
+  try { // check if browser supports :scope natively
+    doc.querySelector(':scope body');
+  } catch (err) { // polyfill native methods if it doesn't
+    ['querySelector', 'querySelectorAll'].forEach(function(method) {
+      var nativ = proto[method];
+      proto[method] = function(selectors) {
+        if (/(^|,)\s*:scope/.test(selectors)) { // only if selectors contains :scope
+          var id = this.id; // remember current element id
+          this.id = 'ID_' + Date.now(); // assign new unique id
+          selectors = selectors.replace(/((^|,)\s*):scope/g, '$1#' + this.id); // replace :scope with #ID
+          var result = doc[method](selectors);
+          this.id = id; // restore previous id
+          return result;
+        } else {
+          return nativ.call(this, selectors); // use native code for other selectors
+        }
+      }
+    });
+  }
+})(window.document, Element.prototype);
+function getElementIndex(node) {
+    var index = 0;
+    while ( (node = node.previousElementSibling) ) {
+        index++;
+    }
+    return index;
+}

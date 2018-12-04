@@ -1,31 +1,42 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('ondertekendAanvraagFormulier') %}
-  
-            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-ondertekendAanvraagFormulier">
-                <div class="accordion-header">
-                    
-                <div class="voorlegger-header">
-                    <h3 class="naam">
-                        <a href="#voorlegger-ondertekendAanvraagFormulier" data-handler="toggle">Ondertekend aanvraag formulier</a>
-                    </h3>
-                    {% if dossierDocumenten|length > 0 %}
-                      <div class="voortgang">
-                        {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
-                      </div>
-                    {% endif %}
-                    <div class="status-container">
-                      {{ form_row(form.ondertekendAanvraagFormulierOntvangenMadi) }}
-                      {{ form_row(form.ondertekendAanvraagFormulierOntvangenGka) }}
-                    </div>
+
+<div class="dossier__item status-madi-{{ dossier.voorlegger.ondertekendAanvraagFormulierOntvangenMadi }} status-gka-{{ dossier.voorlegger.ondertekendAanvraagFormulierOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-ondertekendAanvraagFormulier"
+     data-hashevent="activate-section" data-keyupper="section-document-nav">
+    <div class="dossier__voorlegger__header">
+
+        <div class="voorlegger-header">
+            <h3 class="naam">
+                <a href="#voorlegger-ondertekendAanvraagFormulier">{{ title }}</a>
+            </h3>
+            {% if dossierDocumenten|length > 0 %}
+                <div class="voortgang">
+                    <span>{{ dossierDocumenten|length }}</span>
                 </div>
+            {% endif %}
+            {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
+        </div>
+    </div>
+    <div class="dossier__voorlegger__body">
+        <div class="dossier__voorlegger__sectie">
+            <div class="dossier__voorlegger__sectie__header">
+                <a class="dossier__voorlegger__sectie__close" href="#_"></a>
+                <div class="status-container hide"><span>Status:</span>
+                    {{ form_row(form.ondertekendAanvraagFormulierOntvangenMadi) }}
+                    {{ form_row(form.ondertekendAanvraagFormulierOntvangenGka) }}
                 </div>
-                <div class="accordion-body">
-                    <div class="voorlegger-body">
-                        {{ form_row(form.aanvullendeInformatie) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Ondertekend aanvraag formulier'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
-                        {{ form_row(form.aantekening) }}
-                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('ondertekendAanvraagFormulier')} only %}
-                    </div>
-                </div>
+                {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
+                <h3>{{ title }}</h3>
+                <hr>
             </div>
+            <div class="dossier__voorlegger__sectie__body">
+                {{ form_row(form.aanvullendeInformatie) }}
+                {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Ondertekend aanvraag formulier'} only %}
+                {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
+                {{ form_row(form.aantekening) }}
+                {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('ondertekendAanvraagFormulier')} only %}
+            </div>
+            {% include 'Dossier/partial.documentViewer.html.twig' %}
+        </div>
+    </div>
+</div>

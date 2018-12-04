@@ -1,14 +1,15 @@
 .drop-over {
-//  outline: 5px solid rgba($textColor, .4);
-  box-shadow: 0 0 0 5px rgba(#000, .5) !important;
+  //outline: 5px solid rgba($textColor, .4);
+  //box-shadow: 0 0 0 5px rgba(#000, .5) !important;
+
   .files-container {
-    border-color: rgba($textColor, .4);
-    background-color: rgba(#fff, .8);
+    border-color: #000;
+    background-color: $lightColor3;
   }
 }
 
 .file-container.drop-over {
-  border-color: rgba($textColor, .8);
+  border-color: #000;
   box-shadow: none !important;
 }
 

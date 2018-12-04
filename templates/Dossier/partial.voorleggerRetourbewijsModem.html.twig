@@ -1,34 +1,45 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('retourbewijsModem') %}
-  
-            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-retourbewijsModem">
-                <div class="accordion-header">
-                    
-                    <div class="voorlegger-header{{ dossier.voorlegger.retourbewijsModemNvt ? ' nvt' }}">
-                        <h3 class="naam">
-                            <a href="#voorlegger-retourbewijsModem" data-handler="toggle">Retourbewijs modem</a>
-                        </h3>
-                        {% if dossierDocumenten|length > 0 %}
-                          <div class="voortgang">
-                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
-                          </div>
-                        {% endif %}
-                        <div class="nvt" data-changer="nvt">
-                            {{ form_row(form.retourbewijsModemNvt) }}
-                        </div>
-                        <div class="status-container">
-                          {{ form_row(form.retourbewijsModemOntvangenMadi) }}
-                          {{ form_row(form.retourbewijsModemOntvangenGka) }}
-                        </div>
-                    </div>
-                    
+
+<div class="dossier__item {{ dossier.voorlegger.retourbewijsModemNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.retourbewijsModemOntvangenMadi }} status-gka-{{ dossier.voorlegger.retourbewijsModemOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-retourbewijsModem"
+     data-hashevent="activate-section" data-keyupper="section-document-nav">
+    <div class="dossier__voorlegger__header">
+
+        <div class="voorlegger-header">
+            <h3 class="naam">
+                <a href="#voorlegger-retourbewijsModem">{{ title }}</a>
+            </h3>
+            {% if dossierDocumenten|length > 0 %}
+                <div class="voortgang">
+                    <span>{{ dossierDocumenten|length }}</span>
                 </div>
-                <div class="accordion-body">
-                    <div class="voorlegger-body">
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Retourbewijs modem'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
-                        {{ form_row(form.aantekening) }}
-                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('retourbewijsModem')} only %}
-                    </div>
+            {% endif %}
+            {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': true} %}
+        </div>
+
+    </div>
+    <div class="dossier__voorlegger__body">
+        <div class="dossier__voorlegger__sectie">
+            <div class="dossier__voorlegger__sectie__header">
+                <a class="dossier__voorlegger__sectie__close" href="#_"></a>
+                <div class="status-container hide"><span>Status:</span>
+                    {{ form_row(form.retourbewijsModemOntvangenMadi) }}
+                    {{ form_row(form.retourbewijsModemOntvangenGka) }}
                 </div>
+                <div class="nvt-input hide">
+                    {{ form_row(form.retourbewijsModemNvt) }}
+                </div>
+                {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': true} %}
+                <h3>{{ title }}</h3>
+                <hr>
             </div>
+            <div class="dossier__voorlegger__sectie__body">
+                {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Retourbewijs modem'} only %}
+                {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
+                {{ form_row(form.aantekening) }}
+                {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('retourbewijsModem')} only %}
+            </div>
+            {% include 'Dossier/partial.documentViewer.html.twig' %}
+        </div>
+    </div>
+</div>

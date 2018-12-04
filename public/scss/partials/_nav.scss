@@ -66,20 +66,20 @@
 
 .nav-container {
   position: absolute;
+  height: 50px;
   z-index: 200;
   right: 0;
-  top: -10px;
+  top: 0;
   text-align: right;
-  margin-left: 20rem;
   .nav {
     position: relative;
   }
-  .nav-open {
-    &:after {
-      content: 'Menu';
-      padding: 1em;
-    }
-  }
+  //.nav-open {
+  //  &:after {
+  //    content: 'Menu';
+  //    padding: 1em;
+  //  }
+  //}
   @include small {
     margin-left: 200px;
   }
@@ -155,19 +155,12 @@
   position: relative;
   display: inline-block;
   vertical-align: middle;
-
   overflow: hidden;
-
+  height: 30px;
   text-decoration: none;
-  margin-bottom: 10px;
-  
   font-weight: 700;
-  
-  padding: 1em 1em;
-  margin: 0 -1em 0 1em;
-  
+  padding: 10px;
   padding-left: 40px;
-  
   transition: all .3s;
   
   .icon-menu {
@@ -197,8 +190,18 @@
     background-color: rgba(#000, .2);
   }
   
+  & > span {
+    display: inline-block;
+    position: relative;
+    z-index: 102;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    line-height: 30px;
+  }
   &:after {
-    content: attr(data-label);
+    content: '';
     display: none;
     position: absolute;
     z-index: 101;
@@ -206,8 +209,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    padding: .5em 1em;
-    background-color: #fff;
+    background-color: white;
   }
   
   &:hover {
@@ -215,8 +217,13 @@
   }
   
   &.active {
-    &:before, &:after {
-      display: block;
+    &:after,
+    & > span,
+    &:before {
+      display: inline-block;
+    }
+    & > span {
+      background-color: #fff;
     }
     i {
       z-index: 105;
@@ -237,4 +244,30 @@
 
 .document-header .nav-internal {
   margin-bottom: 0;
+}
+.page-toggle {
+  padding: 5px;
+  line-height: 30px;
+  font-size: $fs-default;
+  display: flex;
+
+  //justify-content: space-around;
+  a,
+  span {
+    width: calc(50% - 10px);
+    padding: 0;
+    margin: 0 5px;
+    display: inline-block;
+    text-align: center;
+  }
+  a {
+    //box-shadow: $boxShadowDefault;
+    text-decoration: none;
+    border-bottom: 1px solid #000;
+  }
+  span {
+    box-shadow: none;
+    font-weight: bold;
+    border-bottom: 1px solid red;
+  }
 }

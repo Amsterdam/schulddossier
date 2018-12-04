@@ -1,18 +1,23 @@
 .pdf-splitter {
-  background-color: darken($lightColor, 10);
+  background-color: $lightColor3;
   position: fixed;
   z-index: 102;
   top: 0;
-  left: 0;
+  left: -$pdfSplitterWidth - 2;
   bottom: 0;
-  width: $pdfSplitterWidth;
-  
+  width: $pdfSplitterWidth - 2;
+  border: 1px solid #000;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  transition: transform .4s $transitionEaseDefault;
 
-  border-right: 1px solid #CCC;
-  box-shadow: inset -5px 0px 10px 0px rgba(204, 204, 204, 0.37);
+
+  //border-right: 1px solid #CCC;
+  //box-shadow: inset -5px 0px 10px 0px rgba(204, 204, 204, 0.37);
   overflow-x: hidden;
   overflow-y: auto;
-  
+
   .file-selector {
     position: absolute;
     z-index: 3;
@@ -20,13 +25,13 @@
     top: 0;
     right: 0;
     bottom: 0;
-    
+
     text-align: center;
-    
+
     &:before {
       position: absolute;
       content: 'Kies een ander bestand';
-      
+
       font-size: $fontSize;
       color: $textColor;
       padding: .5em 1em;
@@ -37,12 +42,12 @@
       top: $padding / 2;
       @extend .bold !optional;
       transition: all .3s;
-      
+
     }
     &:hover:before {
       border-color: rgba($textColor, 1);
     }
-    
+
 
     input[type="file"] {
       position: absolute;
@@ -50,12 +55,12 @@
     }
   }
   .bestand-zoom {
-    position: fixed;
+    position: absolute;
     opacity: 1;
     z-index: 10;
     top: $padding / 2;
-    left: $padding /2;
-    right: auto;
+    right: $padding /2;
+    left: auto;
     height: 3.3rem;
     width: 3.3rem;
     border: 1px solid rgba($textColor, .2);
@@ -66,7 +71,7 @@
     &:hover {
       border-color: rgba($textColor, 1);
     }
-    
+
   }
   .pages {
     position: relative;
@@ -96,17 +101,17 @@
       color: $textColor;
       padding: $padding / 2;
       background-color: rgba($textColor, .1);
-      
+
 
       display: block;
     }
     .page {
       background-color: #FFFFFF;
-      
+
       margin: $padding / 2 0;
       border: 1px solid #CCC;
       cursor: move;
-    
+
       canvas {
         width: 100%;
         height: auto;
@@ -122,59 +127,76 @@
       }
     }
   }
-  
-  left: -$pdfSplitterWidth + 20px;
-  &.animatable {
-    transition: all .3s;
-  }
-  opacity: 0;
+
+  //&.animatable {
+  //  transition: all .3s;
+  //}
+  //opacity: 0;
   
   .drag-mode & {
     opacity: 1;
     transform: translate3d((-$pdfSplitterWidth + 10px), 0, 0);
   }
   
-  &.active, &.drop-over {
+  //&.splitter-active, &.drop-over {
+  //  opacity: 1;
+  //  left: 0;
+  //  & ~ header.top,
+  //  & ~ header.top .logo {
+  //  //& ~ .document-container .form-global-buttons {
+  //    //transform: translate3d($pdfSplitterWidth/2, 0, 0);
+  //
+  //  }
+  //  & ~ .document-container {
+  //    //padding-left: $pdfSplitterWidth;
+  //  }
+  //}
+  .splitter-active &, &.drop-over {
     opacity: 1;
-    left: 0;
+    //left: 0;
     & ~ header.top,
     & ~ header.top .logo {
     //& ~ .document-container .form-global-buttons {
-      transform: translate3d($pdfSplitterWidth/2, 0, 0);
-      
+      //transform: translate3d($pdfSplitterWidth/2, 0, 0);
+
     }
     & ~ .document-container {
-      padding-left: $pdfSplitterWidth;
+      //padding-left: $pdfSplitterWidth;
     }
   }
-  
+  .splitter-active & {
+    transform: translate3d($pdfSplitterWidth, 0, 0);
+  }
   
 }
 .pdf-splitter-trigger {
+  background: $lightColor3;
   position: fixed;
   z-index: 102;
 
   text-align: center;
-  left: 13px;
-  top: 50%;
-  margin-top: -95px;
+  left: 0;
+  top: 55px;
+  //margin-top: -95px;
+  transition: transform .4s $transitionEaseDefault;
   a {
+
     position: absolute;
     transform: rotate(90deg);
-    transform-origin: left;
-    box-shadow: 0 0 5px 0 rgba(#000, .2);
-    width: 190px;
-    height: 17px;
-    
-    font-size: $fontSmallSize;
-    line-height: 1;
+    transform-origin: left bottom;
+    width: 188px;
+    border: 1px solid black;
+    border-bottom-color: $lightColor3;
+    line-height: 28px;
+    font-size: $fs-default;
+    top: -30px;
+    left: -3px;
     
     white-space: nowrap;
     text-decoration: none;
   
-    background-color: #fff;
-    padding: 5px 10px;
-    opacity: .7;
+    background-color: $lightColor3;
+    //opacity: .7;
     transition: all .3s;
     &:hover {
       opacity: 1;
@@ -184,14 +206,17 @@
     top: 2px;
     margin-right: .5em;
   }
+  .splitter-active & {
+    transform: translateX($pdfSplitterWidth);
+  }
 }
 .pdf-splitter.animatable ~ .pdf-splitter-trigger {
-  transition: margin .3s;
+  //transition: margin .3s;
 }
-.pdf-splitter.active ~ .pdf-splitter-trigger,
+.splitter-active .pdf-splitter ~ .pdf-splitter-trigger,
 .pdf-splitter.drop-over ~ .pdf-splitter-trigger {
-  margin-left: $pdfSplitterWidth;
-  z-index: 100;
+  //margin-left: $pdfSplitterWidth;
+  //z-index: 100;
 }
 
 .pages {
