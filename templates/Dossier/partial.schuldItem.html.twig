@@ -36,6 +36,7 @@
                                         {% if schuldItem.schuldeiser %}
                                         <span class="search-result-item-static">
                                             <span>{{ schuldItem.schuldeiser.bedrijfsnaam }}</span>
+                                            <span class="small">Allegro code: {{ schuldItem.schuldeiser.allegroCode }}</span>
                                             <span>{{ schuldItem.schuldeiser.rekening }}</span>
                                             <span>{{ schuldItem.schuldeiser.straat }}{% if schuldItem.schuldeiser.huisnummerToevoeging %} {{ schuldItem.schuldeiser.huisnummerToevoeging }}{% endif %} {{ schuldItem.schuldeiser.huisnummer }}</span>
                                             <span>{{ schuldItem.schuldeiser.postcode }} {{ schuldItem.schuldeiser.plaats }}</span>
@@ -55,6 +56,7 @@
                                         {% if schuldItem.incassant %}
                                         <span class="search-result-item-static">
                                             <span>{{ schuldItem.incassant.bedrijfsnaam }}</span>
+                                            <span class="small">Allegro code: {{ schuldItem.schuldeiser.allegroCode }}</span>
                                             <span>{{ schuldItem.incassant.rekening }}</span>
                                             <span>{{ schuldItem.incassant.straat }}{% if schuldItem.incassant.huisnummerToevoeging %} {{ schuldItem.incassant.huisnummerToevoeging }}{% endif %} {{ schuldItem.incassant.huisnummer }}</span>
                                             <span>{{ schuldItem.incassant.postcode }} {{ schuldItem.incassant.plaats }}</span>
