@@ -3,13 +3,12 @@ declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions;
 
-
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
 use Doctrine\ORM\Query\AST\Node;
 use Doctrine\ORM\Query\Lexer;
 
 /**
- * FullTextSearchFunction ::= "FULLTEXTSEARCH" "(" ArithmeticPrimary "," ArithmeticPrimary ")"
+ * FullTextSearchFunction ::= "FULLTEXTSEARCH" "(" ArithmeticPrimary "," ArithmeticPrimary "," ArithmeticPrimary "," ArithmeticPrimary ")"
  */
 class FullTextSearch extends FunctionNode
 {
@@ -21,7 +20,12 @@ class FullTextSearch extends FunctionNode
     /**
      * @var Node
      */
-    protected $searchPhrase;
+    protected $fullTextSearchPhrase;
+
+    /**
+     * @var Node
+     */
+    protected $partialSearchPhrase;
 
     /**
      * @param \Doctrine\ORM\Query\SqlWalker $sqlWalker
@@ -31,7 +35,11 @@ class FullTextSearch extends FunctionNode
      */
     public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker): string
     {
-        return 'to_tsvector(\'dutch\', ' . $this->field->dispatch($sqlWalker) . ') @@ to_tsquery(\'dutch\', array_to_string(regexp_split_to_array(' . $this->searchPhrase->dispatch($sqlWalker) . ', \' \'), \'+\'))';
+        $field = $this->field->dispatch($sqlWalker);
+        $searchPhrase = $this->fullTextSearchPhrase->dispatch($sqlWalker);
+        $partialSearchPhrase = $this->partialSearchPhrase->dispatch($sqlWalker);
+
+        return "to_tsvector('dutch', " . $field . ") @@ to_tsquery('dutch', array_to_string(regexp_split_to_array(" . $searchPhrase . ", ' '), '+')) OR " . $field . " LIKE '%' || " . $partialSearchPhrase . " || '%'";
     }
 
     /**
@@ -46,7 +54,9 @@ class FullTextSearch extends FunctionNode
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
         $this->field = $parser->ArithmeticPrimary();
         $parser->match(Lexer::T_COMMA);
-        $this->searchPhrase = $parser->ArithmeticPrimary();
+        $this->fullTextSearchPhrase = $parser->ArithmeticPrimary();
+        $parser->match(Lexer::T_COMMA);
+        $this->partialSearchPhrase = $parser->ArithmeticPrimary();
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
 }

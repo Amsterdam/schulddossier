@@ -71,8 +71,11 @@ class DossierRepository extends EntityRepository
         }
 
         if ($query['naam'] !== null) {
-            $qb->andWhere('FULLTEXTSEARCH(dossier.clientNaam, :naam) = TRUE');
+            $qb->andWhere('FULLTEXTSEARCH(dossier.clientNaam, :naam, :naam) = TRUE');
+            $qb->orWhere('LEVENSHTEIN(LOWER(dossier.clientNaam), :naam) <= :tolerance');
+
             $qb->setParameter('naam', $query['naam']);
+            $qb->setParameter('tolerance', 3);
         }
 
         if (count($query['status']) > 0) {
