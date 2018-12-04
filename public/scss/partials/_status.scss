@@ -1,8 +1,126 @@
-.status {
-  position: relative;
-  z-index: 3;
-  margin-bottom: $lineHeight;
-  height: $statusSize;
+.status-result {
+  a {
+    text-decoration: none;
+  }
+  strong {
+    position: relative;
+    display: block;
+    padding-left: 40px;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+
+    font-size: $fontSmallSize;
+    line-height: $statusSize;
+    color: lighten($textColor, 20);
+
+    font-weight: normal;
+    white-space: nowrap;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 8px;
+      width: 24px;
+      height: 24px;
+      box-sizing: border-box;
+      border: 4px solid $lightColor;
+      //transform: rotate(45deg);
+      border-radius: 50%;
+      background-color: #fff;
+    }
+
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+    border: 4px solid $lightColor;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  .status-gka-1 strong:before,
+  .status-gka-1 &:before,
+  .status-madi-1 strong:before,
+  .status-madi-1 &:before {
+    border-top-color: red;
+    border-right-color: red;
+    transform: rotate(45deg);
+  }
+  .status-gka-2 strong:before,
+  .status-gka-2 &:before,
+  .status-madi-2 strong:before,
+  .status-madi-2 &:before {
+    border-color: green;
+  }
+  .status-gka-3 strong:before,
+  .status-gka-3 &:before,
+  .status-madi-3 strong:before,
+  .status-madi-3 &:before {
+    border-color: green;
+    background-color: green;
+  }
+  .status-gka-3 strong:after,
+  .status-gka-3 &:after,
+  .status-madi-3 strong:after,
+  .status-madi-3 &:after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    width: 12px;
+    height: 6px;
+    border: 4px solid #fff;
+    border-right: none;
+    border-top: none;
+    transform: rotate(-45deg);
+    opacity: 1 !important;
+    border-radius: 0;
+    background-color: transparent;
+  }
+  .status-nvt strong:before,
+  .status-nvt &:before {
+    content: 'nvt';
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 12px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background-color: $lightColor;
+    opacity: 1;
+    font-weight: normal !important;
+    border: none;
+    transform: none;
+  }
+
+  .status-nvt & .status-nvt strong,
+  .status-madi-0 & .status-madi-0 strong,
+  .status-madi-1 & .status-madi-1 strong,
+  .status-madi-2 & .status-madi-2 strong,
+  .status-madi-3 & .status-madi-3 strong {
+    font-weight: bold;
+  }
+  .status-nvt & .status-madi-0 strong,
+  .status-nvt & .status-madi-1 strong,
+  .status-nvt & .status-madi-2 strong,
+  .status-nvt & .status-madi-3 strong {
+    font-weight: normal;
+  }
+  .status-nvt.status-gka-0 &:after,
+  .status-nvt.status-madi-0 &:after {
+    display: none;
+  }
 
   ul {
     list-style: none;
@@ -11,196 +129,95 @@
     border-radius: 5px;
     background-color: rgba(#fff, 0);
     margin-top: -.5rem;
-    
+
     overflow: hidden;
-    
+
   }
-  input {
-    position: absolute;
-    opacity: 0;
+  li a:hover strong {
+    background: $lightColor3;
   }
-  
-  strong {
-    
-    position: relative;
-    
-    display: block;
 
-    padding-left: $statusSize + 1rem;
-    max-height: 0;
-    overflow: hidden;
-    margin: 0;
-
-    transition: max-height 0;
-//    transition-delay: .3s;
-    
-    font-size: $fontSmallSize;
-    line-height: $statusSize;
-    color: lighten($textColor, 20);
-
-    
-    &:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: $statusSize;
-      height: $statusSize;
-      box-sizing: border-box;
-      border: 4px solid $lightColor;
-      transform: rotate(45deg);
-      border-radius: 50%;
-
-      background-color: #fff;
-      .accordion & {
-        border-color: darken($lightColor, 20);
+  &.text-right {
+    strong {
+      padding-right: 40px;
+      text-align: right;
+      &:before {
+        right: 10px;
+        left: auto;
+      }
+      &:after {
+        right: 10px;
+        left: auto;
       }
     }
-    
-    &:after {
-      content: '';
-      position: absolute;
-      width: 1rem;
-      height: 1rem;
-      border-radius: 50%;
-      left: ($statusSize - 1rem) / 2;
-      top: ($statusSize - 1rem) / 2;
-      background-color: $textColor;
-      opacity: 0;
-      transition: opacity .3s;
-    }
-    
-  }
-  [disabled] + strong {
-    opacity: .5;
-    cursor: not-allowed;
-  }
-  .status-bezig strong:before {
-    border-top-color: red;
-    border-right-color: red;
-  }
-  .status-opgevoerd strong:before {
-    border-color: green;
-  }
-  
-  .status-gecontroleerd strong {
-    &:after {
-      content: '';
-      position: absolute;
-      left: $statusSize / 4;
-      top: $statusSize / 5;
-      width: $statusSize / 2;
-      height: $statusSize / 4;
-      border: 4px solid #fff;
-      border-right: none;
-      border-top: none;
-      transform: rotate(-45deg);
-      opacity: 1 !important;
-      border-radius: 0;
-      background-color: transparent;
-      
-    }
-  }
-  
-  
-  .status-gecontroleerd strong {
     &:before {
-      border-color: green;
-      background-color: green;
+      right: 0;
+      left: auto;
     }
+    &:after {
+      right: -4px;
+      left: auto;
+
+    }
+    .status-gka-3 &:after,
+    .status-madi-3 &:after {
+      right: 3px;
+      top: 6px;
+    }
+    .status-gka-3 strong:after,
+    .status-madi-3 strong:after {
+      right: 13px;
+      top: 14px;
+
+    }
+    .status-nvt &:before {
+      right: -2px;
+      top: -2px;
+      left: auto;
+    }
+    .status-nvt strong:before {
+      right: 8px;
+      top: 6px;
+      left: auto;
+
+     }
+    ul {
+      position: absolute;
+      right: -20px;
+      top: -9px;
+    }
+  }
+  &__label {
+    display: none;
+    padding-right: 28px;
+    font-size: $fs-x-small;
+  }
+}
+
+.status-result__container {
+  position: absolute;
+  left: 385px;
+  top: 8px;
+  z-index: 3;
+  .status-result {
+    display: inline-block;
+    top: 0;
   }
   &:hover {
     z-index: 4;
+    .status-result {
+      max-width: unset;
+      max-height: unset;
+    }
     ul {
-      background-color: rgba(#fff, 1);
-      box-shadow: 0 0 5px 0 rgba(#000, .2);
+      z-index: 1;
+      background-color: #fff;
+      box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
     }
-    
     strong {
-      max-height: $statusSize;
-      margin-bottom: .5rem;
+      max-height: unset;
+      line-height: 40px;
+      padding: 0 40px 0 10px;
     }
-    label:hover strong {
-      color: $textColor;
-      &:after {
-        opacity: .2;
-      }
-    }
-    :checked + strong,
-    label :checked + strong {
-      
-      &:after {
-        opacity: 1;
-      }
-    }
-  }
-  :checked + strong {
-    color: $textColor;
-    max-height: $statusSize;
-    
-  }
-  
-  [disabled] + strong {
-    max-height: 0;
-    margin-bottom: 0;
-  }
-  [disabled]:checked + strong {
-    max-height: $statusSize;
-  }
-  label [disabled]:checked + strong {
-    &:after {
-      opacity: 0;
-    }
-  }
-  
-}
-
-.status-container {
-  display: flex;
-  
-  .form-row {
-    z-index: auto;
-  }
-  .label-widget {
-    > label {
-      display: none;
-    }
-  }
-  .status {
-    position: relative;
-    width: $statusSize + 1rem;
-    display: none;
-  }
-  strong {
-    max-width: 0;
-  }
-  ul {
-    position: absolute;
-    left: 0;
-    top: -2px;
-    &:hover {
-      strong {
-        max-width: 150px;
-      }
-    }
-  }
-  
-}
-.team-gka {
-  .status-gka {
-    display: block;
-  }
-}
-.team-madi {
-  .status-madi {
-    display: block;
-  }  
-}
-.team-admin {
-  .status-madi {
-    display: block;
-  }
-  .status-gka {
-    display: block;
   }
 }

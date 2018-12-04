@@ -2,130 +2,50 @@
 
 {% block title %}{{ dossier.clientNaam }} - {{ parent() }}{% endblock %}
 
+{% block body_classes %}{{ parent() }} voorlegger{% endblock %}
+
 {% block document %}
-    
-    <nav class="nav-internal">
-        <ul>
-            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" data-decorator="get-overview-state" data-context="dossier"><i class="icon-arrow-left"></i><span>Terug naar overzicht</span></a></li>
-        </ul>
-    </nav>
-    
-    <div class="document well">
-        
-        {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}
-        
-        {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'schulden'} only %}
-        {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'save', 'data-result-selector': '#schulden_form .accordion-container .accordion', 'data-changer': 'change'}}) }}
+    <div class="dossier">
+        {% include 'Dossier/partial.nieuwSchuldItem.html.twig' %}
+        {#{% include 'Dossier/partial.dossierWorkflow.html.twig' with {'dossier': dossier} only %}#}
 
-          <div class="accordion-container team-{{ app.user.type }}" data-decorator="droppable">
-            {% set empty = true %}
-            {% do form.schuldItems.setRendered %}
-            {% for schuldItemForm in form.schuldItems %}
-                {% set schuldItem = schuldItemForm.vars.data %}
-                {% if not schuldItem.verwijderd %}
-                  {% set empty = false %}
-                {% endif %}
-                {% include 'Dossier/partial.schuldItem.html.twig' with {'schuldItem': schuldItem, 'form': schuldItemForm, 'dossier': dossier} only %}
-            {% endfor %}
-  
-            {% if empty %}
-              <p class="empty-table">Er zijn nog geen schulden ingevoerd.</p>
-            {% endif %}
-          </div>
+        {% include 'Dossier/partial.dossierHeader.html.twig' with {'dossier': dossier, 'active': 'schulden'} only %}
+        {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'save', 'data-result-selector': '.dossier', 'data-changer': 'change'}}) }}
+        <button type="submit" class="dossier__save button primary">Opslaan</button>
+        {#<input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_schulden') }}">#}
+        {#{{ form_errors(form) }}#}
 
-          <div class="form-global-buttons important">
-              <div class="container">
-                  <p class="buttons right">
-                      <button type="submit" class="button primary">Opslaan</button>
-                      <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">Annuleren</a>
-                  </p>
-              </div>
-          </div>
-        
-        
-        {{ form_end(form) }}
-        
-        <p class="nav-internal">
-          <a href="#nieuwe-schuld-toevoegen" id="nieuwe-schuld-toevoegen-trigger" data-handler="toggle scroll" class="primary schulditem-nieuw">Nieuwe schuld toevoegen</a>
-        </p>
-        
-        <div id="nieuwe-schuld-toevoegen" class="toggle-hidden">
-          <div class="accordion-container" data-decorator="droppable">
-            <div class="accordion active" id="schuldItem-nieuw">
-            
-            <div class="accordion-header">
-              <div class="schulditem-header">
-                <h3 class="naam">
-                  <a href="#nieuwe-schuld-toevoegen" class="active" data-handler="toggle">
-                    Nieuwe schuld toevoegen
-                  </a>
-                </h3>
-              </div>
-            </div>
-          
-            <div class="accordion-body">
-              <div class="schulditem-body">
-                {{ form_start(createForm, {'attr': {'data-submitter': 'save', 'data-result-selector': '.document', 'data-submitter-callback': 'schulditem-nieuw', 'data-changer': 'change'}}) }}
-                  <div class="columns">
-                    <div class="column column-big">
-                      
-                      <div class="select-autocomplete" data-decorator="schuldeiser-autocomplete">
-                        <label for="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}">Schuldeiser</label>
-                        <div class="group">
-                          <input type="text" id="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}" placeholder="Zoek een schuldeiser" autocomplete="off">
-                          <div class="search-result-container"></div>
-                          <div class="result-container"></div>
-                          <i class="icon-search"></i>
-                          <div class="result-container"></div>
-                          {{ form_row(createForm.schuldeiser) }}
-                        </div>
-                      </div>
-                      <div class="select-autocomplete" data-decorator="schuldeiser-autocomplete">
-                        <label for="incassant-helper-{{ createForm.incassant.vars.id }}">Incassant</label>
-                        <div class="group">
-                          <input type="text" id="incassant-helper-{{ createForm.incassant.vars.id }}" placeholder="Zoek een incassant" autocomplete="off">
-                          <div class="search-result-container"></div>
-                          <div class="result-container"></div>
-                          <i class="icon-search"></i>
-                          {{ form_row(createForm.incassant) }}
-                        </div>
-                      </div>
-                    
-                      {{ form_row(createForm.type) }}
-                      {{ form_row(createForm.referentie) }}
+        <div class="dossier__list-container">
+
+            <div class="dossier__scroll-container">
+                <div class="dossier__scroll-content">
+
+                    <div class="dossier__container team-{{ app.user.type }}" data-decorator="droppable" data-keyupper="vertical-list-nav">
+                        {% set empty = true %}
+                        {% do form.schuldItems.setRendered %}
+                        {% for schuldItemForm in form.schuldItems %}
+                            {% set schuldItem = schuldItemForm.vars.data %}
+                            {% if not schuldItem.verwijderd %}
+                                {% set empty = false %}
+                            {% endif %}
+                            {% include 'Dossier/partial.schuldItem.html.twig' with {'schuldItem': schuldItem, 'form': schuldItemForm, 'dossier': dossier} only %}
+                        {% endfor %}
+
+                        {% if empty %}
+                            <p class="empty-table">Er zijn nog geen schulden ingevoerd.</p>
+                        {% endif %}
                     </div>
-                    
-                    <div class="column">
-                      {{ form_row(createForm.bedrag, {'attr': {'data-unit': '€'}}) }}
-                      {{ form_row(createForm.vastStelDatum) }}
-                      {{ form_row(createForm.ontstaansDatum) }}
-                    </div>
-                    
-                  </div>
-                  
-                  {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
-                  {% do createForm.removeFile.setRendered() %}
-                  
-                  {{ form_row(createForm.aantekening) }}
-              
-                  <div class="form-global-buttons">
-                      <div class="container">
-                          <p class="buttons right">
-                  
-                            {% do createForm.verwijderd.setRendered() %}
-                            <button type="submit" class="button primary">Nieuwe schuld opslaan</button>
-                            <a href="#nieuwe-schuld-toevoegen" data-handler="toggle reset">Annuleren</a>
-                          
-                          </p>
-                      </div>
-                  </div>
-                  
-                {{ form_end(createForm) }}
-              </div>
+                </div>
             </div>
-          </div>
-          </div>
         </div>
-        
-     
+        {{ form_end(form) }}
+    </div>
+
+
+
+
+
+
+
+
 {% endblock %}

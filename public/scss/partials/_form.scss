@@ -16,6 +16,7 @@
   border: 1px solid $accentColor;
 
   cursor: pointer;
+  transition: background-color .3s, border-color .3s;
 
   &.full {
     text-align: center;
@@ -23,8 +24,14 @@
   }
 
   &.secondary {
-    background-color: #000;
+    background-color: #fff;
     border-color: #000;
+    color: #000;
+    &:hover {
+      background-color: #000;
+      color: #fff;
+
+    }
   }
   &.link {
     white-space: nowrap;
@@ -46,6 +53,8 @@
   }
   &:hover {
     color: #fff;
+    background-color: #000;
+    border-color: #000;
   }
 
 }
@@ -469,19 +478,22 @@ form {
 }
 
 .files-container {
-  padding: $padding / 2 $padding / 2 0 $padding / 2;
-  background-color: rgba(#fff, .5);
+  //padding: $padding / 2 $padding / 2 0 $padding / 2;
+  background-color: transparent;
   margin-bottom: $padding / 2;
-  border: 2px dashed rgba(#fff, .5);
+  border: 2px dashed #000;
   border-radius: 5px;
 
   transition: all .3s;
 
   .file-container {
-    background-color: #FFFFFF;
-    padding: 5px;
-    margin: -5px 10px 10px -5px;
-    border: 1px dotted rgba($textColor, .2);
+    background-color: $lightColor3;
+    width: calc(100% - 10px);
+    border-radius: 5px;
+    margin: 5px 5px 0 5px;
+    //padding: 5px;
+    //margin: -5px 10px 10px -5px;
+    //border: 1px dotted rgba($textColor, .2);
     min-width: 230px;
     display: inline-block;
     vertical-align: top;
@@ -519,6 +531,10 @@ form {
     .bestand-nieuw {
       z-index: 2;
       pointer-events: none;
+      i {
+        display: none;
+      }
+      height: 60px;
     }
     .drop-area:empty:before {
       content: "Kies een bestand\Aof sleep pagina 's hier naartoe";
@@ -537,14 +553,14 @@ form {
       }
     }
     input[type="text"] {
-      padding: 0;
-      border: none;
-      border-bottom: 1px dashed $textColor;
-      font-family: Tahoma;
-      font-size: 10px;
+
+      padding: 5px 10px;
+      border: 1px solid black;
+      font-size: $fs-default;
+      border-radius: 5px;
       text-align: center;
-      min-height: 2.4em;
-      background-color: #f3f3f3;
+      min-height: 40px;
+      background-color: #fff;
     }
     .file-selector {
       input[type=file] {
@@ -653,7 +669,7 @@ form {
   }
   &,
   .button[type="submit"] {
-    position: relative;
+    //position: relative;
   }
   .form-global-buttons:after,
   &:after {

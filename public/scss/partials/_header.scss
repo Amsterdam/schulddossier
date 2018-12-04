@@ -4,11 +4,11 @@ header.top {
 //  display: flex;
 //  justify-content: space-evenly;
 //  align-items: center;
-  padding: $padding / 2 $padding;
+  padding: 0 10px;
   
-  min-height: 68px;
+  height: $headerHeight;
 
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   right: 0;
@@ -17,13 +17,15 @@ header.top {
   
   
   .logo {
+
     position: absolute;
-    left: $padding;
-    top: $padding / 2;
-    width: 65px;
+    top: 10px;
+    //left: $padding;
+    //top: $padding / 2;
+    //width: 65px;
 
     flex-grow: 0;
-    height: 35px;
+    //height: 30px;
     
     img {
       width: 100%;
@@ -33,27 +35,39 @@ header.top {
   .container {
     position: relative;
   }
+
   
-  
-  @include medium {
-    padding: 10px;
+}
+.header__title {
+  position: absolute;
+  top: 10px;
+  left: 100px;
+  strong {
+    font-family: $ff-headings;
+    font-size: 18px;
+    line-height: 18px;
   }
-  
+  span {
+    display: block;
+    color: $accentColor;
+    font-size: 9px;
+    font-family: $ff-headings;
+  }
 }
 
 .logo {
   position: relative;
   display: inline-block;
 
-  font-size: 1.3rem;
-  width: 6em;
-  
-  line-height: 1;
+  font-size: 9px;
+  line-height: 10px;
+  font-family: $ff-headings;
+
   color: $accentColor;
 
   text-decoration: none;
-  padding-left: 3rem;
-  min-height: 7rem;
+  padding-left: 12px;
+  width: 65px;
 
   i {
     position: absolute;
@@ -62,15 +76,15 @@ header.top {
     padding-right: 1rem;
   }
   .icon-andreas {
-    width: 2rem;
-    height: 6.8rem;
+    //width: 2rem;
+    //height: 6.8rem;
   }
 
   strong {
     position: absolute;
     top: 0;
     left: 14rem;
-    font-size: 2.8rem;
+    font-size: 18px;
     line-height: 1;
     white-space: nowrap;
     color: #000;
@@ -86,28 +100,11 @@ header.top {
   &:hover {
     color: $accentColor;
   }
-  
-  @include medium {
-    font-size: 14px;
-    padding-left: 22px;
-    min-height: 41px;
-    strong {
-      font-size: 18px;
-      left: 120px;
-      top: -1px;
-    }
-    span {
-      left: 120px;
-    }
-    .icon-andreas {
-      height: 41px;
-    }
-  }
 }
 
 .pdf-splitter.animatable ~ header.top,
 .pdf-splitter.animatable ~ header.top .logo {
-  transition: transform .3s;
+  //transition: transform .3s;
 }
 
 

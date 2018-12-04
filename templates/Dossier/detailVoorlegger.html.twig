@@ -2,157 +2,85 @@
 
 {% block title %}{{ dossier.clientNaam }} - {{ parent() }}{% endblock %}
 
-{% block document %}
-    <p class="nav-internal">
-      <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" data-decorator="get-overview-state" data-context="dossier"><i class="icon-arrow-left"></i><span>Terug naar overzicht<span></a>
-    </p>
-    
-    <div class="document well">
-      
-      {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}
-      
-      {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'voorlegger'} only %}
-      
+{% block body_classes %}{{ parent() }} voorlegger{% endblock %}
 
-      {{ form_start(voorleggerForm, {'attr': {'id': 'voorlegger_form', 'data-submitter': 'save', 'data-result-selector': '#voorlegger_form .accordion', 'data-changer': 'change'}}) }}
-      
-      <div class="accordion-container team-{{ app.user.type }}" data-decorator="droppable">
-        {% include 'Dossier/partial.voorleggerLegitimatie.html.twig' with {'form': voorleggerForm.legitimatie, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerVtlb.html.twig' with {'form': voorleggerForm.vtlb, 'dossier': dossier} only %}
-        <h2>Inkomen</h2>
-        {% include 'Dossier/partial.voorleggerInkomstenspecificatie.html.twig' with {'form': voorleggerForm.inkomstenspecificatie, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerArbeidsovereenkomst.html.twig' with {'form': voorleggerForm.arbeidsovereenkomst, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerBeschikkingUwv.html.twig' with {'form': voorleggerForm.beschikkingUwv, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerVoorlopigeTeruggaafBelastingdienst.html.twig' with {'form': voorleggerForm.voorlopigeTeruggaafBelastingdienst, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerAlimentatie.html.twig' with {'form': voorleggerForm.alimentatie, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerKostgeld.html.twig' with {'form': voorleggerForm.kostgeld, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerToeslagen.html.twig' with {'form': voorleggerForm.toeslagen, 'dossier': dossier} only %}
-        <h2>Uitgaven</h2>
-        {% include 'Dossier/partial.voorleggerHuurspecificatie.html.twig' with {'form': voorleggerForm.huurspecificatie, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerAlimentatieEchtscheidingsconvenant.html.twig' with {'form': voorleggerForm.alimentatieEchtscheidingsconvenant, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerPolisbladZorgverzekering.html.twig' with {'form': voorleggerForm.polisbladZorgverzekering, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerOvereenkomstKinderopvang.html.twig' with {'form': voorleggerForm.overeenkomstKinderopvang, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerKwijtscheldingGemeenteBelasting.html.twig' with {'form': voorleggerForm.kwijtscheldingGemeenteBelasting, 'dossier': dossier} only %}
-        <h2>Auto</h2>
-        {% include 'Dossier/partial.voorleggerAutoTaxatie.html.twig' with {'form': voorleggerForm.autoTaxatie, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerAutolastenKmWoonwerkverkeer.html.twig' with {'form': voorleggerForm.autolastenKmWoonwerkverkeer, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerVerklaringWerkgever.html.twig' with {'form': voorleggerForm.verklaringWerkgever, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerVrijwaringsbewijs.html.twig' with {'form': voorleggerForm.vrijwaringsbewijs, 'dossier': dossier} only %}
-        <h2>Schulden</h2>
-        {% include 'Dossier/partial.voorleggerSchuldenoverzicht.html.twig' with {'form': voorleggerForm.schuldenoverzicht, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerInzageToetsingBkr.html.twig' with {'form': voorleggerForm.inzageToetsingBkr, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerStabilisatieovereenkomst.html.twig' with {'form': voorleggerForm.stabilisatieovereenkomst, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerCjib.html.twig' with {'form': voorleggerForm.cjib, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerMeterstandenEnergie.html.twig' with {'form': voorleggerForm.meterstandenEnergie, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerWaternet.html.twig' with {'form': voorleggerForm.waternet, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerRetourbewijsModem.html.twig' with {'form': voorleggerForm.retourbewijsModem, 'dossier': dossier} only %}
-        <h2>Aanvraag schuldsanering</h2>
-        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringClient.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringClient, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringMadi.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringMadi, 'dossier': dossier} only %}
-        <h2>Onderbewindstelling of budgetbeheer</h2>
-        {% include 'Dossier/partial.voorleggerBeschikkingOnderBewindstelling.html.twig' with {'form': voorleggerForm.beschikkingOnderBewindstelling, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerBudgetbeheer.html.twig' with {'form': voorleggerForm.budgetbeheer, 'dossier': dossier} only %}
-        {% include 'Dossier/partial.voorleggerGereserveerdeGelden.html.twig' with {'form': voorleggerForm.gereserveerdeGelden, 'dossier': dossier} only %}
-        <h2>Overige</h2>
-        {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForm.ondertekendAanvraagFormulier, 'dossier': dossier} only %}
-        
-        
-        <div class="form-global-buttons">
-            <div class="container">
-                <p class="buttons right">
-                    <button type="submit" class="button primary">Opslaan</button>
-                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}">Annuleren</a>
-                </p>
+{% block document %}
+    <div class="dossier">
+
+        {% include 'Dossier/partial.dossierWorkflow.html.twig' with {'dossier': dossier} only %}
+
+
+        {% include 'Dossier/partial.dossierHeader.html.twig' with {'dossier': dossier, 'active': 'aanvraag'} only %}
+        {{ form_start(voorleggerForm, {'attr': {'id': 'voorlegger_form', 'data-submitter': 'save', 'data-result-selector': '.dossier__list-container', 'data-changer': 'change'}}) }}
+        <button type="submit" class="dossier__save button primary">Opslaan</button>
+        {{ form_errors(voorleggerForm) }}
+        <div class="dossier__list-container">
+            {% include 'Dossier/partial.dossierDashboard.html.twig' with {'dossier': dossier} only %}
+
+            <div class="dossier__scroll-container">
+                <div class="dossier__scroll-content">
+
+
+                    <div class="dossier__container team-{{ app.user.type }}" data-keyupper="vertical-list-nav"
+                         data-decorator="droppable">
+                        {% include 'Dossier/partial.voorleggerLegitimatie.html.twig' with {'form': voorleggerForm.legitimatie, 'dossier': dossier, 'title': 'Legitimatie'} only %}
+                        {% include 'Dossier/partial.voorleggerVtlb.html.twig' with {'form': voorleggerForm.vtlb, 'dossier': dossier, 'title': 'VTLB (Vrij te laten bedrag)'} only %}
+                        <h2>Inkomen</h2>
+                        {% include 'Dossier/partial.voorleggerInkomstenspecificatie.html.twig' with {'form': voorleggerForm.inkomstenspecificatie, 'dossier': dossier, 'title': 'Inkomstenspecificatie'} only %}
+                        {% include 'Dossier/partial.voorleggerArbeidsovereenkomst.html.twig' with {'form': voorleggerForm.arbeidsovereenkomst, 'dossier': dossier, 'title': 'Arbeidsovereenkomst'} only %}
+                        {% include 'Dossier/partial.voorleggerBeschikkingUwv.html.twig' with {'form': voorleggerForm.beschikkingUwv, 'dossier': dossier, 'title': 'Beschikking UWV'} only %}
+                        {% include 'Dossier/partial.voorleggerVoorlopigeTeruggaafBelastingdienst.html.twig' with {'form': voorleggerForm.voorlopigeTeruggaafBelastingdienst, 'dossier': dossier, 'title': 'Voorlopige teruggaaf Belastingdienst'} only %}
+                        {% include 'Dossier/partial.voorleggerAlimentatie.html.twig' with {'form': voorleggerForm.alimentatie, 'dossier': dossier, 'title': 'Alimentatie'} only %}
+                        {% include 'Dossier/partial.voorleggerKostgeld.html.twig' with {'form': voorleggerForm.kostgeld, 'dossier': dossier, 'title': 'Kostgeld'} only %}
+                        {% include 'Dossier/partial.voorleggerToeslagen.html.twig' with {'form': voorleggerForm.toeslagen, 'dossier': dossier, 'title': 'Toeslagen'} only %}
+                        <h2>Uitgaven</h2>
+                        {% include 'Dossier/partial.voorleggerHuurspecificatie.html.twig' with {'form': voorleggerForm.huurspecificatie, 'dossier': dossier, 'title': 'Huurspecificatie'} only %}
+                        {% include 'Dossier/partial.voorleggerAlimentatieEchtscheidingsconvenant.html.twig' with {'form': voorleggerForm.alimentatieEchtscheidingsconvenant, 'dossier': dossier, 'title': 'Alimentatie Echtscheidingsconvenant'} only %}
+                        {% include 'Dossier/partial.voorleggerPolisbladZorgverzekering.html.twig' with {'form': voorleggerForm.polisbladZorgverzekering, 'dossier': dossier, 'title': 'Polisblad zorgverzekering'} only %}
+                        {% include 'Dossier/partial.voorleggerOvereenkomstKinderopvang.html.twig' with {'form': voorleggerForm.overeenkomstKinderopvang, 'dossier': dossier, 'title': 'Overeenkomst kinderopvang'} only %}
+                        {% include 'Dossier/partial.voorleggerKwijtscheldingGemeenteBelasting.html.twig' with {'form': voorleggerForm.kwijtscheldingGemeenteBelasting, 'dossier': dossier, 'title': 'Kwijtschelding gemeente belasting'} only %}
+                        <h2>Auto</h2>
+                        {% include 'Dossier/partial.voorleggerAutoTaxatie.html.twig' with {'form': voorleggerForm.autoTaxatie, 'dossier': dossier, 'title': 'Auto taxatie'} only %}
+                        {% include 'Dossier/partial.voorleggerAutolastenKmWoonwerkverkeer.html.twig' with {'form': voorleggerForm.autolastenKmWoonwerkverkeer, 'dossier': dossier, 'title': 'Autolasten km woon-werk-verkeer'} only %}
+                        {% include 'Dossier/partial.voorleggerVerklaringWerkgever.html.twig' with {'form': voorleggerForm.verklaringWerkgever, 'dossier': dossier, 'title': 'Verklaring werkgever'} only %}
+                        {% include 'Dossier/partial.voorleggerVrijwaringsbewijs.html.twig' with {'form': voorleggerForm.vrijwaringsbewijs, 'dossier': dossier, 'title': 'Vrijwaringsbewijs'} only %}
+                        <h2>Schulden</h2>
+                        {% include 'Dossier/partial.voorleggerSchuldenoverzicht.html.twig' with {'form': voorleggerForm.schuldenoverzicht, 'dossier': dossier, 'title': 'Schuldenoverzicht'} only %}
+                        {% include 'Dossier/partial.voorleggerInzageToetsingBkr.html.twig' with {'form': voorleggerForm.inzageToetsingBkr, 'dossier': dossier, 'title': 'Inzage toetsing BKR'} only %}
+                        {% include 'Dossier/partial.voorleggerStabilisatieovereenkomst.html.twig' with {'form': voorleggerForm.stabilisatieovereenkomst, 'dossier': dossier, 'title': 'Stabilisatieovereenkomst'} only %}
+                        {% include 'Dossier/partial.voorleggerCjib.html.twig' with {'form': voorleggerForm.cjib, 'dossier': dossier, 'title': 'CJIB (niet saneerbare vorderingen)'} only %}
+                        {% include 'Dossier/partial.voorleggerMeterstandenEnergie.html.twig' with {'form': voorleggerForm.meterstandenEnergie, 'dossier': dossier, 'title': 'Meterstanden energie'} only %}
+                        {% include 'Dossier/partial.voorleggerWaternet.html.twig' with {'form': voorleggerForm.waternet, 'dossier': dossier, 'title': 'Waternet'} only %}
+                        {% include 'Dossier/partial.voorleggerRetourbewijsModem.html.twig' with {'form': voorleggerForm.retourbewijsModem, 'dossier': dossier, 'title': 'Retourbewijs modem'} only %}
+                        <h2>Aanvraag schuldsanering</h2>
+                        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringClient.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringClient, 'dossier': dossier, 'title': 'Toelichting aanvraag schuldsanering client'} only %}
+                        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringMadi.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringMadi, 'dossier': dossier, 'title': 'Toelichting aanvraag schuldsanering MaDi'} only %}
+                        <h2>Onderbewindstelling of budgetbeheer</h2>
+                        {% include 'Dossier/partial.voorleggerBeschikkingOnderBewindstelling.html.twig' with {'form': voorleggerForm.beschikkingOnderBewindstelling, 'dossier': dossier, 'title': 'Beschikking onderbewindstelling'} only %}
+                        {% include 'Dossier/partial.voorleggerBudgetbeheer.html.twig' with {'form': voorleggerForm.budgetbeheer, 'dossier': dossier, 'title': 'Budgetbeheer'} only %}
+                        {% include 'Dossier/partial.voorleggerGereserveerdeGelden.html.twig' with {'form': voorleggerForm.gereserveerdeGelden, 'dossier': dossier, 'title': 'Gereserveerde gelden'} only %}
+                        <h2>Overige</h2>
+                        {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForm.ondertekendAanvraagFormulier, 'dossier': dossier, 'title': 'Ondertekend aanvraag formulier'} only %}
+
+
+                    </div>
+                </div>
             </div>
         </div>
-
-      </div>
-      {{ form_end(voorleggerForm) }}
-    
-      <div class="document-footer">
-        <div class="document-workflow" id="document-workflow">
-          <a href="#document-timeline" data-handler="toggle" class="document-workflow-timeline hidden">Timeline</a>
-          <h3 class="hidden">Workflow</h3>
-            <ul>
-                <li class="document-workflow-current">
-                    Huidige status: <strong>{{ dossier.status|trans }}</strong>
-                </li>
-        {% if workflow_can(dossier, 'opgevoerd_madi') %}
-                <li>
-                    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'opgevoerd_madi'}) }}" method="post">
-                        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                        <button type="submit" class="button primary">Ter controle aanbieden</button>
-                    </form>
-                </li>
-        {% endif %}
-        {% if workflow_can(dossier, 'goedkeuren_madi') %}
-                <li>
-                    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'goedkeuren_madi'}) }}" method="post">
-                        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                        <button type="submit" class="button primary">Goedkeuren</button>
-                    </form>
-                </li>
-        {% endif %}
-        {% if workflow_can(dossier, 'afkeuren_madi') %}
-                <li>
-                    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'afkeuren_madi'}) }}" method="post">
-                        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                        <button type="submit" class="button secondary">Afkeuren</button>
-                    </form>
-                </li>
-        {% endif %}
-        {% if workflow_can(dossier, 'verzenden_madi') %}
-                <li>
-                    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'verzenden_madi'}) }}" method="post">
-                        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                        <button type="submit" class="button primary">Verzenden naar GKA</button>
-                    </form>
-                </li>
-        {% endif %}
-        {% if workflow_can(dossier, 'gestart_gka') %}
-                <li>
-                    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'gestart_gka'}) }}" method="post">
-                        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                        <button type="submit" class="button primary">Start proces GKA</button>
-                    </form>
-                </li>
-        {% endif %}
-        {% if workflow_can(dossier, 'afkeuren_dossier_gka') %}
-                <li>
-                    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'afkeuren_dossier_gka'}) }}" method="post">
-                        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                        <button type="submit" class="button secondary">Dossier afwijzen (terug naar MaDi)</button>
-                    </form>
-                </li>
-        {% endif %}
-        {% if workflow_can(dossier, 'goedkeuren_dossier_gka') %}
-                <li>
-                    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'goedkeuren_dossier_gka'}) }}" method="post">
-                        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                        <button type="submit" class="button primary">Dossier akkoord</button>
-                    </form>
-                </li>
-        {% endif %}
-        {% if workflow_can(dossier, 'afsluiten_gka') %}
-                <li>
-                    <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', {'dossierId': dossier.id, 'transition': 'afsluiten_gka'}) }}" method="post">
-                        <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus') }}">
-                        <button type="submit" class="button primary">Afsluiten GKA</button>
-                    </form>
-                </li>
-        {% endif %}
-            </ul>
-        </div>
-  
-        <div class="document-timeline hidden" id="document-timeline">
-            <h3>Timeline</h3>
-            <ul>
-        {% for timeline in dossier.timeline %}
-                <li>{{ timeline.type|upper }}: {{ timeline.omschrijving }} ({{ timeline.datumtijd|date('d-m-Y H:i:s') }} / {{ timeline.gebruiker|default('-systeem-') }}) {{ timeline.data|json_encode }}</li>
-        {% endfor %}
-            </ul>
-        </div>
-      </div>
     </div>
-    
+    {{ form_end(voorleggerForm) }}
+
+
+    <div class="document-timeline hidden" id="document-timeline">
+        <h3>Timeline</h3>
+        <ul>
+            {% for timeline in dossier.timeline %}
+                <li>{{ timeline.type|upper }}: {{ timeline.omschrijving }}
+                    ({{ timeline.datumtijd|date('d-m-Y H:i:s') }} / {{ timeline.gebruiker|default('-systeem-') }}
+                    ) {{ timeline.data|json_encode }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
 {% endblock %}

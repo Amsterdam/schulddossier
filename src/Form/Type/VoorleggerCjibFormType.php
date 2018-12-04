@@ -36,11 +36,11 @@ class VoorleggerCjibFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
-        $builder->add('cjib', ChoiceType::class, [
-            'required' => false,
-            'choices' => ['ja' => 1, 'nee' => 0],
-            'expanded' => true
-        ]);
+//        $builder->add('cjib', ChoiceType::class, [
+//            'required' => false,
+//            'choices' => ['ja' => 1, 'nee' => 0],
+//            'expanded' => true
+//        ]);
         $builder->add('cjibNvt', CheckboxType::class, [
             'required' => false
         ]);

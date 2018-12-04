@@ -1,44 +1,55 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('meterstandenEnergie') %}
-  
-            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-meterstandenEnergie">
-                <div class="accordion-header">
-                    
-                    <div class="voorlegger-header{{ dossier.voorlegger.meterstandenEnergieNvt ? ' nvt' }}">
-                        <h3 class="naam">
-                            <a href="#voorlegger-meterstandenEnergie" data-handler="toggle">Meterstanden energie</a>
-                        </h3>
-                        {% if dossierDocumenten|length > 0 %}
-                          <div class="voortgang">
-                            {{ dossierDocumenten|length }} document{% if dossierDocumenten|length != 1 %}en{% endif %}
-                          </div>
-                        {% endif %}
-                        <div class="nvt" data-changer="nvt">
-                            {{ form_row(form.meterstandenEnergieNvt) }}
-                        </div>
-                        <div class="status-container">
-                          {{ form_row(form.meterstandenEnergieOntvangenMadi) }}
-                          {{ form_row(form.meterstandenEnergieOntvangenGka) }}
-                        </div>
-                    </div>
-                    
+
+<div class="dossier__item {{ dossier.voorlegger.meterstandenEnergieNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.meterstandenEnergieOntvangenMadi }} status-gka-{{ dossier.voorlegger.meterstandenEnergieOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-meterstandenEnergie"
+     data-hashevent="activate-section" data-keyupper="section-document-nav">
+    <div class="dossier__voorlegger__header">
+
+        <div class="voorlegger-header">
+            <h3 class="naam">
+                <a href="#voorlegger-meterstandenEnergie">{{ title }}</a>
+            </h3>
+            {% if dossierDocumenten|length > 0 %}
+                <div class="voortgang">
+                    <span>{{ dossierDocumenten|length }}</span>
                 </div>
-                <div class="accordion-body">
-                    <div class="voorlegger-body">
-                        {{ form_row(form.energieBedrijf) }}
-                        {{ form_row(form.energieBedrijfKlantnummer) }}
-                        {{ form_row(form.energieBedrijfDatumOpname) }}
-                        {{ form_row(form.energieBedrijfT1, {'attr': {'data-unit': 'kWh'}}) }}
-                        {{ form_row(form.energieBedrijfT2, {'attr': {'data-unit': 'kWh'}}) }}
-                        {{ form_row(form.energieBedrijfGas, {'attr': {'data-unit': 'm³'}}) }}
-                        {{ form_row(form.warmteBedrijf) }}
-                        {{ form_row(form.warmteBedrijfKlantnummer) }}
-                        {{ form_row(form.warmteBedrijfDatumOpname) }}
-                        {{ form_row(form.warmteBedrijfOpname, {'attr': {'data-unit': 'GJ'}}) }}
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden energie'} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
-                        {{ form_row(form.aantekening) }}
-                        {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('meterstandenEnergie')} only %}
-                    </div>
+            {% endif %}
+            {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': true} %}
+        </div>
+
+    </div>
+    <div class="dossier__voorlegger__body">
+        <div class="dossier__voorlegger__sectie">
+            <div class="dossier__voorlegger__sectie__header">
+                <a class="dossier__voorlegger__sectie__close" href="#_"></a>
+                <div class="status-container hide"><span>Status:</span>
+                    {{ form_row(form.meterstandenEnergieOntvangenMadi) }}
+                    {{ form_row(form.meterstandenEnergieOntvangenGka) }}
                 </div>
+                <div class="nvt-input hide">
+                    {{ form_row(form.meterstandenEnergieNvt) }}
+                </div>
+                {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': true} %}
+                <h3>{{ title }}</h3>
+                <hr>
             </div>
+            <div class="dossier__voorlegger__sectie__body">
+                {{ form_row(form.energieBedrijf) }}
+                {{ form_row(form.energieBedrijfKlantnummer) }}
+                {{ form_row(form.energieBedrijfDatumOpname) }}
+                {{ form_row(form.energieBedrijfT1, {'attr': {'data-unit': 'kWh'}}) }}
+                {{ form_row(form.energieBedrijfT2, {'attr': {'data-unit': 'kWh'}}) }}
+                {{ form_row(form.energieBedrijfGas, {'attr': {'data-unit': 'm³'}}) }}
+                {{ form_row(form.warmteBedrijf) }}
+                {{ form_row(form.warmteBedrijfKlantnummer) }}
+                {{ form_row(form.warmteBedrijfDatumOpname) }}
+                {{ form_row(form.warmteBedrijfOpname, {'attr': {'data-unit': 'GJ'}}) }}
+                {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden energie'} only %}
+                {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
+                {{ form_row(form.aantekening) }}
+                {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('meterstandenEnergie')} only %}
+            </div>
+            {% include 'Dossier/partial.documentViewer.html.twig' %}
+        </div>
+    </div>
+</div>

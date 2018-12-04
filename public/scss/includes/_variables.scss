@@ -3,6 +3,12 @@ $fontSmallSize: 1.2rem;
 $lineHeightRelative: 1.375;
 $lineHeight: $fontSize * $lineHeightRelative;
 
+$fs-x-small: 12px;
+$fs-small: 14px;
+$fs-default: 16px;
+$fs-large: 18px;
+$fs-x-large: 22px;
+
 // breakpoints
 $large: 1290px;
 $medium: 900px;
@@ -15,20 +21,32 @@ $brandColor2: #6db5d6;
 $textColor: #000;
 $accentColor: $brandColor1;
 $lightColor: #f0f0f0;
-$lightColor2: #f2f2f2;
+$lightColor2: #f8f8f8;
 $lightColor2-5: #ededed;
 $lightColor3: #dddddd;
 $borderColor: #e2e2e2;
 $borderColor2: #979797;
+$selectedColor: #0000ff;
+
+$colorBgDark: #4a4a4a;
 
 $padding: 3rem;
 $unit: 80px;
 
 $maxContentWidth: 900px;
 $maxWidth: 1400px;
+$voorleggerMaxWidth: 415px;
+
+$headerHeight: 50px;
 
 $transition-ease-default: cubic-bezier(0.165, 0.84, 0.44, 1);
 
-$pdfSplitterWidth: 300px;
+$pdfSplitterWidth: 500px;
 
 $statusSize: 2.4rem;
+
+$ff-headings: "Avenir Next LT W01 Demi", verdana, sans-serif;
+
+$boxShadowDefault: 1px 2px 3px 0 rgba(0,0,0,0.2);
+
+$transitionEaseDefault: cubic-bezier(0.165, 0.84, 0.44, 1);

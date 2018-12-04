@@ -47,6 +47,8 @@ class SchuldItemFormType extends AbstractType
 
         $builder->add('schuldeiser', HiddenType::class, [
             'invalid_message' => 'The selected schuldeiser cannot be found.',
+//            'required' => true,
+//            'error_bubbling'=>false,
         ]);
 
         $builder->get('schuldeiser')->addModelTransformer($this->idToSchuldeiserTransformer);

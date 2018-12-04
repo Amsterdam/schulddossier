@@ -4,7 +4,7 @@
 }
 
 .pdf-splitter.animatable ~ .document-container {
-  transition: padding .3s; 
+  //transition: padding .3s;
 }
 
 .document {
@@ -14,21 +14,21 @@
     padding: 0 0 1rem 0;
     margin: 0 0 $lineHeight 0;
   }
-  
+
   .document-header {
     margin: (-$padding) (-$padding) $padding (-$padding);
     @include medium {
       margin: (-10px) (-10px) 10px (-10px);
     }
   }
-  
+
   .document-footer {
     margin: $padding (-$padding) (-$padding) (-$padding);
     @include medium {
       margin: 10px (-10px) (-10px) (-10px);
     }
   }
-  
+
   .document-meta {
     margin: 0;
     padding: 0;
@@ -37,10 +37,9 @@
       display: inline-block;
       margin-right: 1em;
     }
-    
+
   }
-  
-  
+
 }
 
 .document-header,
@@ -55,6 +54,7 @@
     margin: 0;
   }
 }
+
 .document-footer {
   border-top: 1px solid #dfdfdf;
 }
@@ -63,11 +63,11 @@
   .button,
   .button.primary,
   .button.secondary {
-    color: rgba(0,0,0,0.2);
-    border-color: rgba(0,0,0,0.2);
+    color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(0, 0, 0, 0.2);
     background-color: #fff;
     &:hover {
-      color: rgba(0,0,0,0.2);
+      color: rgba(0, 0, 0, 0.2);
     }
   }
 }
@@ -78,7 +78,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+
   }
   .document-title {
     margin-bottom: .2em;
@@ -90,11 +90,13 @@
     }
   }
 }
+
 .bestanden {
   font-size: 0;
   list-style: none;
   padding: 0;
   margin: 0;
+  margin-bottom: 20px;
   li {
     display: inline-block;
     position: relative;
@@ -104,16 +106,73 @@
 .bestand {
   position: relative;
   display: inline-block;
-  padding: 30px 30px 28px 30px;
-  
-  margin: 0 0 20px 0;
+  width: 100px;
+  height: 150px;
+  margin: 5px;
+
+  //padding: 30px 30px 28px 30px;
+
+  //margin: 0 0 20px 0;
   background-color: rgba($brandColor2, 0);
   transition: background-color .3s;
   i {
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
     transition: box-shadow .3s;
     box-shadow: 0 0 5px 0 rgba(#000, 0);
+    text-align: center;
+    font-size: 18px;
+    line-height: 150px;
+    padding-right: 2px;
     &:after {
       transition: opacity .3s;
+    }
+  }
+
+}
+
+a.bestand {
+  pointer-events: none;
+  &:before {
+    content: '';
+    pointer-events: auto;
+    position: absolute;
+    z-index: 2;
+    @extend .icon-download !optional;
+    background-position: 50% 50%;
+    background-size: 20px auto;
+    width: 3rem;
+    height: 3rem;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity .3s;
+
+    background-color: #fff;
+  }
+  //&:hover {
+  //  background-color: rgba($brandColor2, .2);
+  //  &:before {
+  //    opacity: 1;
+  //  }
+  //  i {
+  //    box-shadow: 0 0 5px 0 rgba(#000, .4);
+  //  }
+  //}
+  &.add {
+    &:before {
+      display: none;
+    }
+    &:hover {
+      .icon-file:after {
+        opacity: 1;
+      }
     }
   }
   .bestand-naam {
@@ -131,52 +190,19 @@
     text-overflow: ellipsis;
   }
 }
-a.bestand {
-  &:before {
-    content: '';
-    position: absolute;
-    z-index: 2;
-    @extend .icon-download !optional;
-    background-position: 50% 50%;
-    background-size: 20px auto;
-    width: 3rem;
-    height: 3rem;
-    right: 0;
-    top: 0;
-    opacity: 0;
-    transition: opacity .3s;
-    
-    background-color: #fff;
-  }
-  &:hover {
-    background-color: rgba($brandColor2, .2);
-    &:before {
-      opacity: 1;
-    }
-    i {
-      box-shadow: 0 0 5px 0 rgba(#000, .4);
-    }
-  }
-  &.add {
-    &:before {
-      display: none;
-    }
-    &:hover {
-      .icon-file:after {
-        opacity: 1;
-      }
-    }
-  }
-}
+
 .bestand-verwijderen-check {
+  pointer-events: none;
   position: absolute;
   opacity: 0;
+  left: 0;
 }
+
 .bestand-verwijderen {
   position: absolute;
   z-index: 2;
-  left: 0;
-  top: 0;
+  left: 5px;
+  top: 5px;
   font-size: 0;
   width: 3rem;
   height: 3rem;
@@ -198,55 +224,101 @@ a.bestand {
 
 .bestand-zoom {
   position: absolute;
-  z-index: 1;
-  top: 1rem;
-  left: 1rem;
-  right: 1rem;
-  bottom: 1rem;
-  
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
   font-size: 0;
 
   opacity: 0;
-  
+
   background-color: #fff;
 
   transition: all .3s;
   text-decoration: none;
-  &:before {
-    content: '';
+  border: 2px solid transparent;
+
+  @extend .icon-zoom_black;
+  background-color: transparent;
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position: center;
+  i {
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
     position: absolute;
-    z-index: 2;
-    left: .3rem;
-    top: .3rem;
-    width: 1.2rem;
-    height: 1.2rem;
-    border-radius: 50%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: box-shadow .3s;
+    box-shadow: 0 0 5px 0 rgba(#000, 0);
     text-align: center;
-    font-size: 1.4rem;
-    line-height: 1rem;
-    border: 2px solid $textColor;
-    background-color: #fff;
-    
+    font-size: 18px;
+    line-height: 150px;
+    padding-right: 2px;
+    &:after {
+      transition: opacity .3s;
+    }
+  }
+  .bestand-naam {
+    position: absolute;
+    font-size: 10px;
+    line-height: 1.2;
+    font-family: Tahoma;
+    text-align: center;
+    padding: 4px 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  //&:before {
+  //  content: '';
+  //  position: absolute;
+  //  z-index: 2;
+  //  left: .3rem;
+  //  top: .3rem;
+  //  width: 1.2rem;
+  //  height: 1.2rem;
+  //  border-radius: 50%;
+  //  text-align: center;
+  //  font-size: 1.4rem;
+  //  line-height: 1rem;
+  //  border: 2px solid $textColor;
+  //  background-color: #fff;
+  //
+  //
+  //}
+  //&:after {
+  //  content: '';
+  //  position: absolute;
+  //  z-index: 1;
+  //  left: 1.7rem;
+  //  top: 1.4rem;
+  //  width: 0;
+  //  height: 1rem;
+  //  border-left: 4px solid $textColor;
+  //  transform: rotate(-45deg);
+  //
+  //}
+
+  &.selected {
+
+    background-color: $lightColor3;
 
   }
-  &:after {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    left: 1.7rem;
-    top: 1.4rem;
-    width: 0;
-    height: 1rem;
-    border-left: 4px solid $textColor;
-    transform: rotate(-45deg);
-    
-  }
-  
+
 }
 
 .bestanden {
   li {
     margin-right: 10px;
+    margin-bottom: 10px;
   }
   li:hover {
     .bestand-verwijderen,
@@ -254,9 +326,14 @@ a.bestand {
     .bestand-zoom {
       opacity: 1;
     }
+    .bestand-zoom{
+      background-color: $lightColor3;
+    }
   }
   .bestand-zoom {
-    background-color: transparent;
+
+    //background-color: transparent;
+    opacity: 1;
     &:before {
       left: 4.1rem;
       top: 4rem;
@@ -287,7 +364,7 @@ a.bestand {
     .icon-file {
       opacity: .1;
     }
-    
+
     &:hover {
       &:before {
         opacity: 0;
@@ -296,6 +373,11 @@ a.bestand {
         opacity: 1;
       }
     }
-    
+
   }
+}
+
+.bestand-zoom.selected + .bestand + input + label,
+.bestand-zoom.selected + .bestand:before {
+  opacity: 1;
 }

@@ -1,0 +1,71 @@
+<div class="dossier__dashboard">
+    <div class="dossier__dashboard__default">
+        <div class="row">
+            <div class="col-1-1">
+                <h2>Algemene dossier informatie</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1-2">
+                <dl>
+                    <dt>Client naam</dt>
+                    <dd>{{ dossier.clientNaam }}</dd>
+                </dl>
+            </div>
+            <div class="col-1-2">
+                <dl>
+                    <dt>Partner naam</dt>
+                    <dd>{{ dossier.partnerNaam }}</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1-2">
+                <h4>MaDi</h4>
+                <dl>
+                    <dt>Schuldhulpbureau</dt>
+                    <dd>{{ dossier.schuldhulpbureau }}</dd>
+                    <dt>Medewerker schuldhulpbureau</dt>
+                    <dd>{{ dossier.medewerkerSchuldhulpbureau }}</dd>
+                    <dt>Regas dossiernr.</dt>
+                    <dd>{{ dossier.regasNummer }}</dd>
+                </dl>
+            </div>
+            <div class="col-1-2">
+                <h4>GKA</h4>
+                <dl>
+                    <dt>Team GKA</dt>
+                    <dd>{{ dossier.teamGka }}</dd>
+                    <dt>Allegro dossiernr.</dt>
+                    <dd>{{ dossier.allegroNummer }}</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1-1">
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', {'dossierId': dossier.id}) }}" class="button secondary">Wijzig algemene informatie</a>
+            </div>
+        </div>
+    </div>
+    <div class="dossier__dashboard__messages">
+        <div class="row">
+            <div class="col-1-1">
+                <h2>Overleg</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1-1">
+                <div class="aantekeningen">
+                    {% for aantekening in dossier.aantekeningen %}
+                        {% include 'Dossier/partial.aantekening.html.twig' with {'aantekening': aantekening, 'showContext': true} %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1-1">
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen', {'dossierId': dossier.id}) }}" class="button secondary">Aantekening toevoegen</a>
+            </div>
+        </div>
+    </div>
+</div>

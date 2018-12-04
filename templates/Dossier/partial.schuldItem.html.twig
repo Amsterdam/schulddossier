@@ -1,40 +1,57 @@
-            <div class="accordion {{ app.request.isXmlHttpRequest ? 'active' }}" id="schuldItem-{{ schuldItem.id }}" style="{{ schuldItem.verwijderd ? 'display: none;' }}">
-                <input class="button-remove-input" id="schulden_form_schuldItems_{{ schuldItem.id }}_verwijderd" name="{{ form.verwijderd.vars.full_name }}" value="1" type="checkbox" {{ schuldItem.verwijderd ? 'checked="checked"' }}>
-                {% do form.verwijderd.setRendered() %}
-                <div class="accordion-header">
-                    
-                    <div class="schulditem-header">
-                        <h3 class="naam" title="{{ schuldItem.schuldeiser.bedrijfsnaam|default('-') }}{% if schuldItem.incassant %} / {{ schuldItem.incassant.bedrijfsnaam }}{% endif %} (referentie: {{ schuldItem.referentie }})">
-                            <a href="#schuldItem-{{ schuldItem.id }}" data-handler="toggle">
-                                <strong>{{ schuldItem.schuldeiser.bedrijfsnaam|default('-') }}
-                                {% if schuldItem.incassant %} / {{ schuldItem.incassant.bedrijfsnaam }}{% endif %}
-                                </strong>
-                                <span class="referentie">(referentie: {{ schuldItem.referentie }})</span>
-                            </a>
-                        </h3>
-                        {{ schuldItem.isVerlopen ? '<span class="verlopen">is verlopen</span>' }}
-                        {% if schuldItem.getNietVerwijderdeDossierDocumenten|length > 0 %}
-                          <div class="voortgang">
-                              {{ schuldItem.getNietVerwijderdeDossierDocumenten|length }} document{% if schuldItem.getNietVerwijderdeDossierDocumenten|length != 1 %}en{% endif %}
-                          </div>
-                        {% endif %}
-                        <div class="bedrag">
-                            &euro; {{ schuldItem.bedrag|number_format(2, ',', '.') }}
-                        </div>
-                    </div>
+<div class="dossier__item {{ app.request.isXmlHttpRequest ? 'active' }}" id="schuldItem-{{ schuldItem.id }}"
+     style="{{ schuldItem.verwijderd ? 'display: none;' }}" data-hashevent="activate-section"
+     data-decorator="set-callback" data-keyupper="section-document-nav">
+    <input class="button-remove-input" id="schulden_form_schuldItems_{{ schuldItem.id }}_verwijderd"
+           name="{{ form.verwijderd.vars.full_name }}" value="1"
+           type="checkbox" {{ schuldItem.verwijderd ? 'checked="checked"' }}>
+    {% do form.verwijderd.setRendered() %}
+    <div class="dossier__voorlegger__header">
+
+        <div class="voorlegger-header">
+            <h3 class="naam"
+                title="{{ schuldItem.schuldeiser.bedrijfsnaam|default('-') }}{% if schuldItem.incassant %} / {{ schuldItem.incassant.bedrijfsnaam }}{% endif %} (referentie: {{ schuldItem.referentie }})">
+                <a href="#schuldItem-{{ schuldItem.id }}" data-handler="toggle">
+                    <strong>{{ schuldItem.schuldeiser.bedrijfsnaam|default('-') }}
+                        {% if schuldItem.incassant %} / {{ schuldItem.incassant.bedrijfsnaam }}{% endif %}
+                    </strong>
+                    {#<span class="referentie">(referentie: {{ schuldItem.referentie }})</span>#}
+                </a>
+            </h3>
+            {{ schuldItem.isVerlopen ? '<span class="verlopen">is verlopen</span>' }}
+
+            <div class="bedrag">
+                &euro; {{ schuldItem.bedrag|number_format(2, ',', '.') }}
+            </div>
+            {% if schuldItem.getNietVerwijderdeDossierDocumenten|length > 0 %}
+                <div class="voortgang">
+                    <span>{{ schuldItem.getNietVerwijderdeDossierDocumenten|length }}</span>
                 </div>
-                <div class="accordion-body">
-                    <div class="schulditem-body">
-                        <div class="columns">
-                            <div class="column column-big">
-                                <div class="select-autocomplete" data-decorator="schuldeiser-autocomplete">
-                                  <label for="schuldeiser-helper-{{ schuldItem.id }}">Schuldeiser</label>
-                                  <div class="group">
-                                    <input type="text" id="schuldeiser-helper-{{ schuldItem.id }}" placeholder="Zoek een schuldeiser" autocomplete="off">
-                                      <div class="search-result-container"></div>
-                                      <div class="result-container">
+            {% endif %}
+        </div>
+    </div>
+    <div class="dossier__voorlegger__body">
+        <div class="dossier__voorlegger__sectie">
+            <div class="dossier__voorlegger__sectie__header">
+                <a class="dossier__voorlegger__sectie__close" href="#_"></a>
+                <p class="nav-internal">
+                    <label for="schulden_form_schuldItems_{{ schuldItem.id }}_verwijderd">
+                        <span class="link primary button-remove">Markeren als verwijderd</span>
+                    </label>
+                </p>
+            </div>
+            <div class="dossier__voorlegger__sectie__body">
+                <div class="schulditem-body">
+                    <div class="columns">
+                        <div class="column column-big">
+                            <div class="select-autocomplete" data-decorator="schuldeiser-autocomplete">
+                                <label for="schuldeiser-helper-{{ schuldItem.id }}">Schuldeiser</label>
+                                <div class="group">
+                                    <input type="text" id="schuldeiser-helper-{{ schuldItem.id }}"
+                                           placeholder="Zoek een schuldeiser" autocomplete="off">
+                                    <div class="search-result-container"></div>
+                                    <div class="result-container">
                                         {% if schuldItem.schuldeiser %}
-                                        <span class="search-result-item-static">
+                                            <span class="search-result-item-static">
                                             <span>{{ schuldItem.schuldeiser.bedrijfsnaam }}</span>
                                             <span class="small">Allegro code: {{ schuldItem.schuldeiser.allegroCode }}</span>
                                             <span>{{ schuldItem.schuldeiser.rekening }}</span>
@@ -42,19 +59,20 @@
                                             <span>{{ schuldItem.schuldeiser.postcode }} {{ schuldItem.schuldeiser.plaats }}</span>
                                         </span>
                                         {% endif %}
-                                      </div>
+                                    </div>
                                     <i class="icon-search"></i>
                                     {{ form_row(form.schuldeiser) }}
-                                  </div>
                                 </div>
-                                <div class="select-autocomplete" data-decorator="schuldeiser-autocomplete">
-                                  <label for="incassant-helper-{{ schuldItem.id }}">Incassant</label>
-                                  <div class="group">
-                                    <input type="text" id="incassant-helper-{{ schuldItem.id }}" placeholder="Zoek een incassant" autocomplete="off">
-                                      <div class="search-result-container"></div>
-                                      <div class="result-container">
+                            </div>
+                            <div class="select-autocomplete" data-decorator="schuldeiser-autocomplete">
+                                <label for="incassant-helper-{{ schuldItem.id }}">Incassant</label>
+                                <div class="group">
+                                    <input type="text" id="incassant-helper-{{ schuldItem.id }}"
+                                           placeholder="Zoek een incassant" autocomplete="off">
+                                    <div class="search-result-container"></div>
+                                    <div class="result-container">
                                         {% if schuldItem.incassant %}
-                                        <span class="search-result-item-static">
+                                            <span class="search-result-item-static">
                                             <span>{{ schuldItem.incassant.bedrijfsnaam }}</span>
                                             <span class="small">Allegro code: {{ schuldItem.schuldeiser.allegroCode }}</span>
                                             <span>{{ schuldItem.incassant.rekening }}</span>
@@ -62,35 +80,33 @@
                                             <span>{{ schuldItem.incassant.postcode }} {{ schuldItem.incassant.plaats }}</span>
                                         </span>
                                         {% endif %}
-                                      </div>
+                                    </div>
                                     <i class="icon-search"></i>
                                     {{ form_row(form.incassant) }}
-                                  </div>
                                 </div>
-                                {{ form_row(form.type) }}
-                                {{ form_row(form.referentie) }}
-                                {{ form_row(form.aantekening) }}
-                                
-                                {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': schuldItem.aantekeningen} only %}
-                                
                             </div>
-                            <div class="column">
-                                {{ form_row(form.bedrag, {'attr': {'data-unit': '€'}}) }}
-                                {{ form_row(form.vastStelDatum) }}
-                                {{ form_row(form.ontstaansDatum) }}
-                            </div>
+                            {{ form_row(form.type) }}
+                            {{ form_row(form.referentie) }}
+
+
                         </div>
-                        
-                        
-                        {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': (schuldItem.incassant ? schuldItem.incassant.bedrijfsnaam ~ ' - ' : '') ~ schuldItem.schuldeiser.bedrijfsnaam|default('-')} only %}
-                        {% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten, 'removeFile': form.removeFile} only %}
-                        
-                        <p class="nav-internal">
-                          <label for="schulden_form_schuldItems_{{ schuldItem.id }}_verwijderd">
-                            <span class="link primary button-remove">Markeren als verwijderd</span>
-                          </label>
-                        </p>
-                        
+                        <div class="column">
+                            {{ form_row(form.bedrag, {'attr': {'data-unit': '€'}}) }}
+                            {{ form_row(form.vastStelDatum) }}
+                            {{ form_row(form.ontstaansDatum) }}
+                        </div>
                     </div>
+
+
+                    {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': (schuldItem.incassant ? schuldItem.incassant.bedrijfsnaam ~ ' - ' : '') ~ schuldItem.schuldeiser.bedrijfsnaam|default('-')} only %}
+                    {% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten, 'removeFile': form.removeFile} only %}
+                    {{ form_row(form.aantekening) }}
+                    {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': schuldItem.aantekeningen} only %}
+
+
                 </div>
             </div>
+            {% include 'Dossier/partial.documentViewer.html.twig' %}
+        </div>
+    </div>
+</div>

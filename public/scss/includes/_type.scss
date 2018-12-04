@@ -63,7 +63,7 @@ a {
   color: $textColor;
 }
 h1, h2, h3 {
-  font-family: "Avenir Next LT W01 Demi", verdana, sans-serif;
+  font-family: $ff-headings;
   font-weight: 400;
 }
 h4, .normal {
@@ -80,4 +80,10 @@ h6, .tiny {
 }
 mark {
   background-color: yellow;
+}
+dl dt {
+  font-weight: bold;
+}
+dl dd {
+  margin: 1em 0 1em 1em;
 }
