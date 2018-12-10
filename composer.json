@@ -8,6 +8,7 @@
         "bevacqua/horsey": "4.2.2",
         "bevacqua/rome": "2.1.22",
         "jshjohnson/choices": "3.0.3",
+        "lcobucci/jwt": "^3.2",
         "league/flysystem": "^1.0",
         "markei/filesystemoperations": "^1",
         "moment/moment": "2.21.0",
