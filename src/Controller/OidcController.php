@@ -88,7 +88,7 @@ class OidcController extends Controller
      */
     public function index(Request $request)
     {
-        return new Response('OK!');
+        return new Response('<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]) . '</body></html>');
     }
 
     /**
@@ -96,6 +96,6 @@ class OidcController extends Controller
      */
     public function return(Request $request)
     {
-        //
+        return new Response('<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]) . '</body></html>');
     }
 }

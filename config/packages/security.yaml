@@ -27,9 +27,11 @@ security:
             pattern: ^/oidc
             security: true
             anonymous: false
+            stateless: false
             guard:
                 authenticators:
                     - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
+                entry_point: GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
         main:
             anonymous: true
     access_control:
