@@ -23,6 +23,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface
     const TYPE_MADI = 'madi';
     const TYPE_ADMIN = 'admin';
     const TYPE_APPBEHEERDER = 'appbeheer';
+    const TYPE_ONBEKEND = 'onbekend';
 
     /**
      * @var integer
@@ -316,7 +317,8 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface
         $defaultTypes = [
             self::TYPE_MADI => self::TYPE_MADI,
             self::TYPE_GKA => self::TYPE_GKA,
-            self::TYPE_APPBEHEERDER => self::TYPE_APPBEHEERDER
+            self::TYPE_APPBEHEERDER => self::TYPE_APPBEHEERDER,
+            self::TYPE_ONBEKEND => self::TYPE_ONBEKEND
         ];
         if ($type === self::TYPE_ADMIN) {
             $defaultTypes[self::TYPE_ADMIN] = self::TYPE_ADMIN;

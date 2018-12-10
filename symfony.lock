@@ -98,6 +98,9 @@
     "kriswallsmith/assetic": {
         "version": "v1.4.0"
     },
+    "lcobucci/jwt": {
+        "version": "3.2.5"
+    },
     "league/flysystem": {
         "version": "1.0.43"
     },
