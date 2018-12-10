@@ -29,3 +29,6 @@ services:
       - SWIFT_EXTERNAL_DOMAIN=
       - APP_NOTIFICATIE_FROM=tester@test.com
       - THUMBNAILSERVICE_URL=https://thumbnail.service/
+      - IAM_CLIENT_ID=schulddossier
+      - IAM_CLIENT_SECRET=xxxx
+      - IAM_URL=https://acc.iam.amsterdam.nl/auth/realms/schulddossier

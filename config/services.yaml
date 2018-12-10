@@ -149,4 +149,10 @@ services:
         arguments:
             - '@flysystem_openstack_adapter_thumbnail'
             
+    # Security
+    GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator:
+        bind:
+            $clientId: '%env(IAM_CLIENT_ID)%'
+            $clientSecret: '%env(IAM_CLIENT_SECRET)%'
+            $baseUrl: '%env(IAM_URL)%'
 
