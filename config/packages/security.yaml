@@ -23,6 +23,13 @@ security:
             logout:
                 path: /app/logout
                 target: /
+        oidc:
+            pattern: ^/oidc
+            security: true
+            anonymous: false
+            guard:
+                authenticators:
+                    - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
         main:
             anonymous: true
     access_control:
