@@ -14,8 +14,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
 use Lcobucci\JWT\Parser;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Security\Csrf\CsrfToken;
 
 class OidcAuthenticator extends AbstractGuardAuthenticator
 {
@@ -29,11 +31,6 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
      */
     private $entityManager;
 
-    /**
-     * @var RequestStack
-     */
-    private $stack;
-
     private $clientId;
 
     private $clientSecret;
@@ -45,115 +42,138 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
      */
     private $urlGenerator;
 
-    public function __construct(EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, RequestStack $stack, $clientId, $clientSecret, $baseUrl)
+    /**
+     * @var CsrfTokenManagerInterface
+     */
+    private $csrfTokenManager;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    public function __construct(EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrf, LoggerInterface $logger, $clientId, $clientSecret, $baseUrl)
     {
         $this->gebruikerRepository = $em->getRepository(Gebruiker::class);
         $this->entityManager = $em;
-        $this->stack = $stack;
 
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
         $this->baseUrl = $baseUrl;
 
         $this->urlGenerator = $urlGenerator;
+        $this->csrfTokenManager = $csrf;
+        $this->logger = $logger;
     }
 
-    public function supportsRememberMe()
+    public function supports(Request $request)
     {
-        return false;
+        if ($request->query->get('state') !== $request->getSession()->getId()) {
+            $this->logger->warning('OIDC login, state does not match session');
+            return;
+        }
+
+        return $request->attributes->get('_route') === 'gemeenteamsterdam_fixxxschuldhulp_oidc_return';
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
+    public function getCredentials(Request $request)
     {
-        //
-    }
-
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
-    {
+        return [
+            'code' => $request->query->get('code'),
+        ];
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        if (isset($credentials['user-id'])) {
-            return $this->gebruikerRepository->find($credentials['user-id']);
+        if (empty($credentials['code']) === true) {
+            return;
         }
 
-        if (isset($credentials['auth-code'])) {
-            //var_dump($credentials);
+        $guzzle = new Client();
+        // TODO remove auth of client_id/secret
+        $response = $guzzle->post($this->baseUrl . '/protocol/openid-connect/token', [
+            'auth' => [$this->clientId, $this->clientSecret],
+            'form_params' => [
+                'grant_type' => 'authorization_code',
+                'code' => $credentials['code'],
+                'redirect_uri' => $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_oidc_return', [], UrlGeneratorInterface::ABSOLUTE_URL),
+                'client_id' => $this->clientId,
+                'client_secret' => $this->clientSecret,
+            ]]);
 
-            $guzzle = new Client();
-            // TODO remove auth of client_id/secret
-            $response = $guzzle->post($this->baseUrl . '/protocol/openid-connect/token', [
-                'auth' => [$this->clientId, $this->clientSecret],
-                'form_params' => [
-                    'grant_type' => 'authorization_code',
-                    'code' => $credentials['auth-code'],
-                    'redirect_uri' => $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_oidc_return', [], UrlGeneratorInterface::ABSOLUTE_URL),
-                    'client_id' => $this->clientId,
-                    'client_secret' => $this->clientSecret,
-                ]]);
+        $output = json_decode($response->getBody()->__toString(), true);
 
-            $output = json_decode($response->getBody()->__toString(), true);
+        // TODO check if id_token is available
 
-            // TODO check if id_token is available
+        $token = (new Parser())->parse((string) $output['id_token']);
 
-            $token = (new Parser())->parse((string) $output['id_token']);
-            // TODO validate token
+        // TODO validate token
+        // https://acc.iam.amsterdam.nl/auth/realms/schulddossier/.well-known/openid-configuration
+        // https://acc.iam.amsterdam.nl/auth/realms/schulddossier/protocol/openid-connect/certs
 
-            // TODO check if email is filled
+        // TODO check nonce (it looks keycloak is not sending back the nonce!)
+        // https://issues.jboss.org/browse/KEYCLOAK-1272
+        // https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes
 
-            $user = $this->gebruikerRepository->findOneBy(['email' => $token->getClaim('email')]);
-            if ($user === null) {
-                $user = new Gebruiker();
-                $user->setEmail($token->getClaim('email'));
-                $user->setUsername($token->getClaim('email'));
-                $user->setEnabled(true);
-                $user->setClearPassword(uniqid() . sha1($token->getClaim('email') . time())); // TODO remove this when password is no longer needed
-                $user->setNaam($token->getClaim('name'));
-                $user->setPasswordChangedDateTime(new \DateTime());
-                $user->setType(Gebruiker::TYPE_ONBEKEND);
-                $this->entityManager->persist($user);
-                $this->entityManager->flush($user);
-            }
+        // TODO validate token
 
-            $this->stack->getMasterRequest()->getSession()->set('user-id', $user->getId());
+        // TODO check if email is filled
 
-            return $user;
+        $user = $this->gebruikerRepository->findOneBy(['email' => $token->getClaim('email')]);
+        if ($user === null) {
+            $user = new Gebruiker();
+            $user->setEmail($token->getClaim('email'));
+            $user->setUsername($token->getClaim('email'));
+            $user->setEnabled(true);
+            $user->setClearPassword(uniqid() . sha1($token->getClaim('email') . time())); // TODO remove this when password is no longer needed
+            $user->setNaam($token->getClaim('name'));
+            $user->setPasswordChangedDateTime(new \DateTime());
+            $user->setType(Gebruiker::TYPE_ONBEKEND);
+            $this->entityManager->persist($user);
+            $this->entityManager->flush($user);
         }
+
+        return $user;
+    }
+
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    {
+        if ($request->getSession()->has('loginReturnUrl')) {
+            $response = new RedirectResponse($request->getSession()->get('loginReturnUrl'));
+            $request->getSession()->remove('loginReturnUrl');
+            return $response;
+        }
+    }
+
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
+    {
+        // TODO fix the handle of the exception
+        echo $exception;
+        exit('stop!');
     }
 
     public function start(Request $request, AuthenticationException $authException = null)
     {
+        $request->getSession()->set('loginReturnUrl', $request->getUri());
+
         $params = [];
         $params['client_id'] = $this->clientId;
         $params['redirect_uri'] = $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_oidc_return', [], UrlGeneratorInterface::ABSOLUTE_URL);
         $params['response_type'] = 'code';
         $params['scope'] = 'profile email openid';
-        //$params['state'] = 'AAA';
+        $params['state'] = $request->getSession()->getId();
+        $params['nonce'] = $this->csrfTokenManager->getToken('oidc-login');
         return new RedirectResponse($this->baseUrl . '/protocol/openid-connect/auth?' . http_build_query($params));
-    }
-
-    public function supports(Request $request)
-    {
-        return true;
-    }
-
-    public function getCredentials(Request $request)
-    {
-        if ($request->getSession()->has('user-id')) {
-            return ['user-id' => $request->getSession()->get('user-id')];
-        }
-
-        if ($request->query->has('code')) {
-            return ['auth-code' => $request->query->get('code')];
-        }
-
-        return [];
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        //
+        return true;
+    }
+
+    public function supportsRememberMe()
+    {
+        return false;
     }
 
 }
