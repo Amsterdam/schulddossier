@@ -95,3 +95,9 @@ De volgende accounts worden tijdens de installatie aangemaakt. Wijzig de gegeven
     gebruikersnaam: gka1 / wachtwoord: test12345
     gebruikersnaam: madi1 / wachtwoord: test12345
     gebruikersnaam: admin1 / wachtwoord: test12345
+
+### SSL
+
+Middels een self-signed SSL certificaat is de omgeving via HTTPS te bereiken via:
+
+https://dev-fixxx8.amsterdam.nl/
