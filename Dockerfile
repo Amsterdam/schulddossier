@@ -29,8 +29,6 @@ RUN mkdir /srv/app
 COPY . /srv/app
 WORKDIR /srv/app
 
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /srv/localhost.key -out /srv/localhost.crt -subj "/C=NL/ST=South-Holland/L=Amsterdam/O=Global Security/OU=IT Department/CN=dev-fixxx8.amsterdam.nl"
-
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
 RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
