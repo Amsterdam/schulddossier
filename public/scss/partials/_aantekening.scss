@@ -62,17 +62,17 @@
     margin-bottom: 0;
   }
   
-  &:before {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    left: 50%;
-    top: $padding;
-    bottom: $padding;
-    width: 4px;
-    background-color: #fff;
-    margin-left: -2px;
-  }
+  //&:before {
+  //  content: '';
+  //  position: absolute;
+  //  z-index: 1;
+  //  left: 50%;
+  //  top: $padding;
+  //  bottom: $padding;
+  //  width: 4px;
+  //  background-color: #fff;
+  //  margin-left: -2px;
+  //}
   
   
 }
@@ -132,17 +132,23 @@
       right: calc(100% - 3.5rem);;
     }
   }
-  .aantekening-bericht {
-    
-    //background-color: $textColor;
-//    color: #fff;
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #fff;
+    margin-left: -2px;
   }
-//  .aantekening-context {
-//    &, a {
-//      color: rgba(#fff, .8);
-//    }
-//  }
+  .aantekening-bericht {
+
+  }
 }
 .form-row + .aantekeningen {
-  margin-top: -2 * $lineHeight;
+  padding-top: 0;
+  max-height: 500px;
+  overflow-x: auto;
 }
