@@ -101,3 +101,9 @@ De volgende accounts worden tijdens de installatie aangemaakt. Wijzig de gegeven
 Middels een self-signed SSL certificaat is de omgeving via HTTPS te bereiken via:
 
 https://dev-fixxx8.amsterdam.nl/
+
+### 2FA setup
+
+Make sure your containers are not running. **Connect to the VPN** and make sure you are able to resolve the auth server on [https://acc.iam.amsterdam.nl](https://acc.iam.amsterdam.nl).
+If you had Docker running before connecting to the VPN than **reboot Docker** in order for it to allow access to the VPN network.
+Start your containers like usual.
