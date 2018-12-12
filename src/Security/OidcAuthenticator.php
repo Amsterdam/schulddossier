@@ -90,9 +90,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         }
 
         $guzzle = new Client();
-        // TODO remove auth of client_id/secret
         $response = $guzzle->post($this->baseUrl . '/protocol/openid-connect/token', [
-            'auth' => [$this->clientId, $this->clientSecret],
             'form_params' => [
                 'grant_type' => 'authorization_code',
                 'code' => $credentials['code'],
