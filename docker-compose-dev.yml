@@ -50,4 +50,8 @@ services:
       - SWIFT_EXTERNAL_DOMAIN=
       - APP_NOTIFICATIE_FROM=tester@test.com
       - THUMBNAILSERVICE_URL=https://thumbnail.service/
-
+  mailhog_dev:
+    image: mailhog/mailhog:latest
+    ports:
+    - "1025:1025"
+    - "8025:8025"
