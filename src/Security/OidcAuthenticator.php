@@ -126,7 +126,9 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
 
         // TODO validate token
 
-        // TODO check if email is filled
+        if (empty($token->getClaim('email'))) {
+            throw new AuthenticationException('Auth server did not supply a e-mail');
+        }
 
         $user = $this->gebruikerRepository->findOneBy(['email' => $token->getClaim('email')]);
         if ($user === null) {
