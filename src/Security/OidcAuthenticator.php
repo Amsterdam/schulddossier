@@ -2,22 +2,23 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Security;
 
+use Doctrine\ORM\EntityManagerInterface;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
+use GuzzleHttp\Client;
+use Lcobucci\JWT\Parser;
+use Lcobucci\JWT\Token;
+use Lcobucci\JWT\ValidationData;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use GuzzleHttp\Client;
-use Doctrine\ORM\EntityManagerInterface;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
-use Lcobucci\JWT\Parser;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
-use Psr\Log\LoggerInterface;
-use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 class OidcAuthenticator extends AbstractGuardAuthenticator
 {
@@ -83,6 +84,13 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         ];
     }
 
+    /**
+     * @param mixed                 $credentials
+     * @param UserProviderInterface $userProvider
+     *
+     * @return Gebruiker|null|object|UserInterface|void
+     * @throws \Exception
+     */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         if (empty($credentials['code']) === true) {
@@ -101,13 +109,16 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
 
         $output = json_decode($response->getBody()->__toString(), true);
 
-        // TODO check if id_token is available
+        if (empty($output['id_token'])) {
+            throw new AuthenticationException('id_token is empty');
+        }
 
-        $token = (new Parser())->parse((string) $output['id_token']);
+        /** @var Token $token */
+        $token = (new Parser())->parse((string)$output['id_token']);
 
-        // TODO validate token
-        // https://acc.iam.amsterdam.nl/auth/realms/schulddossier/.well-known/openid-configuration
-        // https://acc.iam.amsterdam.nl/auth/realms/schulddossier/protocol/openid-connect/certs
+        if (!$this->tokenIsValid($token)) {
+            throw new AuthenticationException('token is invalid');
+        }
 
         // TODO check nonce (it looks keycloak is not sending back the nonce!)
         // https://issues.jboss.org/browse/KEYCLOAK-1272
@@ -174,4 +185,19 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         return false;
     }
 
+    /**
+     * @param $token
+     *
+     * @return bool
+     * @throws \Exception
+     */
+    private function tokenIsValid(Token $token): bool
+    {
+        $validationData = new ValidationData();
+
+        $validationData->setIssuer($this->baseUrl);
+        $validationData->setAudience($this->clientId);
+
+        return $token->validate($validationData);
+    }
 }
