@@ -15,11 +15,11 @@
         <table style="text-align: left;">
           <tr>
             <th style="font-weight: normal;">Afzender:</th>
-            <th style="font-weight: 500;>{{ tokenStorage.getToken().getUser().getNaam() }}</th>
+            <th style="font-weight: 600;">{{ tokenStorage.getToken().getUser().getNaam() }}</th>
           </tr>
           <tr>
             <th style="font-weight: normal;">Aangepast op:</th>
-            <th style="font-weight: 500;">{{ 'now'|date('d-m-Y') }}</th>
+            <th style="font-weight: 600;">{{ 'now'|date('d-m-Y') }}</th>
           </tr>
         </table>
         <p>&nbsp;</p>
@@ -27,13 +27,13 @@
           {% if dossier.regasNummer is not empty %}
           <tr>
             <th style="font-weight: normal;">Regas nummer:</th>
-            <th style="font-weight: 500;">{{ dossier.regasNummer }}</th>
+            <th style="font-weight: 600;">{{ dossier.regasNummer }}</th>
           </tr>
           {% endif %}
           {% if dossier.allegroNummer is not empty %}
           <tr>
-            <th style="font-weight: normal;>Allegro nummer: </th>
-            <th style="font-weight: 500;">{{ dossier.allegroNummer }}</th>
+            <th style="font-weight: normal;">Allegro nummer: </th>
+            <th style="font-weight: 600;">{{ dossier.allegroNummer }}</th>
           </tr>
           {% endif %}
         </table>
