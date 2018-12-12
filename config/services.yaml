@@ -40,14 +40,7 @@ services:
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\ThumbnailUploadSubscriber:
         tags:
             - { name: doctrine.event_subscriber, connection: default }
-    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\AantekeningNotificationSubscriber:
-        arguments:
-            - '@mailer'
-            - '%env(APP_NOTIFICATIE_FROM)%'
-            - '@logger'
-        tags:
-            - { name: doctrine.event_subscriber, connection: default }
-            
+
     # Symfony EventListeners
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\MailNotitificationSubscriber:
         arguments:
