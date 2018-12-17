@@ -24,6 +24,7 @@ use Lcobucci\JWT\Signer\Key;
 use Lcobucci\JWT\Signer\Rsa\Sha256;
 use Lcobucci\JWT\Signer\Ecdsa\Sha384;
 use Lcobucci\JWT\Signer\Rsa\Sha512;
+use Twig\Environment;
 
 class OidcAuthenticator extends AbstractGuardAuthenticator
 {
@@ -58,7 +59,12 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
      */
     private $logger;
 
-    public function __construct(EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrf, LoggerInterface $logger, $clientId, $clientSecret, $baseUrl)
+    /**
+     * @var Environment
+     */
+    private $twig;
+
+    public function __construct(EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrf, LoggerInterface $logger, Environment $twig, $clientId, $clientSecret, $baseUrl)
     {
         $this->gebruikerRepository = $em->getRepository(Gebruiker::class);
         $this->entityManager = $em;
@@ -70,6 +76,8 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrf;
         $this->logger = $logger;
+
+        $this->twig = $twig;
     }
 
     public function supports(Request $request)
@@ -102,17 +110,21 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
             return;
         }
 
-        $guzzle = new Client();
-        $response = $guzzle->post($this->baseUrl . '/protocol/openid-connect/token', [
-            'form_params' => [
-                'grant_type' => 'authorization_code',
-                'code' => $credentials['code'],
-                'redirect_uri' => $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_oidc_return', [], UrlGeneratorInterface::ABSOLUTE_URL),
-                'client_id' => $this->clientId,
-                'client_secret' => $this->clientSecret,
-            ]]);
+        try {
+            $guzzle = new Client();
+            $response = $guzzle->post($this->baseUrl . '/protocol/openid-connect/token', [
+                'form_params' => [
+                    'grant_type' => 'authorization_code',
+                    'code' => $credentials['code'],
+                    'redirect_uri' => $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_oidc_return', [], UrlGeneratorInterface::ABSOLUTE_URL),
+                    'client_id' => $this->clientId,
+                    'client_secret' => $this->clientSecret,
+                ]]);
 
-        $output = json_decode($response->getBody()->__toString(), true);
+            $output = json_decode($response->getBody()->__toString(), true);
+        } catch (TransferException $e) {
+            throw new AuthenticationException('Can not set up request to token endpoint ' . $e->getMessage());
+        }
 
         if (empty($output['id_token'])) {
             throw new AuthenticationException('id_token is empty');
@@ -161,9 +173,9 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        // TODO fix the handle of the exception
-        echo $exception;
-        exit('stop!');
+        return $this->twig->render('OidcAuthenticator/failure.html.twig', [
+            'e' => $exception
+        ]);
     }
 
     public function start(Request $request, AuthenticationException $authException = null)
@@ -191,9 +203,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * @param $token
-     *
      * @return bool
-     * @throws \Exception
      */
     private function tokenIsValid(Token $token): bool
     {
@@ -205,6 +215,11 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         return $token->validate($validationData);
     }
 
+    /**
+     * @param Token $token
+     * @throws AuthenticationException
+     * @return bool
+     */
     private function tokenIsVerified(Token $token): bool
     {
         $signers = [
