@@ -120,10 +120,6 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
             throw new AuthenticationException('token is invalid');
         }
 
-        // TODO check nonce (it looks keycloak is not sending back the nonce!)
-        // https://issues.jboss.org/browse/KEYCLOAK-1272
-        // https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes
-
         // TODO validate token
 
         if (empty($token->getClaim('email'))) {
@@ -173,7 +169,6 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         $params['response_type'] = 'code';
         $params['scope'] = 'profile email openid';
         $params['state'] = $request->getSession()->getId();
-        $params['nonce'] = $this->csrfTokenManager->getToken('oidc-login');
         return new RedirectResponse($this->baseUrl . '/protocol/openid-connect/auth?' . http_build_query($params));
     }
 
