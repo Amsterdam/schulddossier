@@ -59,4 +59,19 @@ class DefaultController extends Controller
         }
         return new Response('Geen to parameter aangetroffen');
     }
+
+    /**
+     * @Route("/app/info-test")
+     */
+    public function infoAction(Request $request)
+    {
+        return new JsonResponse([
+            'get' => $_GET,
+            'query' => $request->query->all(),
+            'server' => $_SERVER,
+            'headers' => $request->headers->all(),
+            'clientIps' => $request->getClientIps(),
+            'trustedProxies' => $request->getTrustedProxies()
+        ]);
+    }
 }
