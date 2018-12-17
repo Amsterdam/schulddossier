@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
 use Doctrine\ORM\EntityManagerInterface;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent;
-use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent as Event;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent as ActionEventEntity;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class ActionEventSubscriber implements EventSubscriberInterface
 {
@@ -21,26 +24,31 @@ class ActionEventSubscriber implements EventSubscriberInterface
      * @var RequestStack
      */
     private $requestStack;
+    /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
 
     /**
      * ActionEventSubscriber constructor.
      *
      * @param EntityManagerInterface $entityManager
      * @param RequestStack           $requestStack
+     * @param TokenStorageInterface  $tokenStorage
      */
-    public function __construct(EntityManagerInterface $entityManager, RequestStack $requestStack)
+    public function __construct(EntityManagerInterface $entityManager, RequestStack $requestStack, TokenStorageInterface $tokenStorage)
     {
         $this->entityManager = $entityManager;
         $this->requestStack = $requestStack;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
-     * @param Event        $event
-     * @param RequestStack $requestStack
+     * @param ActionEvent $event
      */
-    public function registerAction(Event $event): void
+    public function registerAction(ActionEvent $event): void
     {
-        $action = new ActionEvent();
+        $action = new ActionEventEntity();
 
         $action->setDatumTijd($event->getDateTimeOfEvent());
 
@@ -63,13 +71,30 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $this->entityManager->flush();
     }
 
+    public function registerLoginAction(InteractiveLoginEvent $event)
+    {
+        /** @var Gebruiker $gebruiker */
+        $gebruiker = $this->tokenStorage->getToken()->getUser();
+        $action = new ActionEventEntity();
+        $dateTime = new \DateTime();
+
+        $action->setName(ActionEvent::GEBRUIKER_INGELOGD);
+        $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
+        $action->setGebruiker($gebruiker);
+        $action->setDatumTijd($dateTime);
+
+        $this->entityManager->persist($action);
+        $this->entityManager->flush();
+    }
+
     /**
      * @return array
      */
     public static function getSubscribedEvents(): array
     {
         return [
-            'app.action.register' => 'registerAction'
+            'app.action.register' => 'registerAction',
+            'security.interactive_login' => 'registerLoginAction',
         ];
     }
 }
