@@ -1,16 +1,19 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * @Route("/app/gebruiker")
@@ -70,13 +73,16 @@ class AppGebruikerController extends Controller
      * @Security("has_role('ROLE_APPBEHEER') || has_role('ROLE_ADMIN')")
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
-    public function updateAction(Request $request, EntityManagerInterface $em, Gebruiker $gebruiker)
+    public function updateAction(Request $request, EntityManagerInterface $em, Gebruiker $gebruiker, EventDispatcherInterface $eventDispatcher, TokenStorageInterface $tokenStorage)
     {
         $form = $this->createForm(GebruikerFormType::class, $gebruiker, []);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             $this->addFlash('success', 'Opgeslagen');
+            /** @var Gebruiker $currentGebruiker */
+            $currentGebruiker = $tokenStorage->getToken()->getUser();
+            $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerGebruikerGewijzigd($currentGebruiker, $gebruiker));
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', [
                 'gebruikerId' => $gebruiker->getId()
             ]);

@@ -36,7 +36,6 @@ class ActionEvent extends Event
     const DOSSIER_GEWIJZIGD = 'dossier_gewijzigd';
     const GEBRUIKER_GEWIJZIGD = 'gebruiker_gewijzigd';
     const DOSSIER_GEOPENED = 'dossier_geopened';
-    const GEBRUIKER_WACHTWOORD_GEWIJZIGD = 'gebruiker_wachtwoord_gewijzigd';
 
     /**
      * @var string
@@ -98,7 +97,7 @@ class ActionEvent extends Event
      *
      * @return ActionEvent
      */
-    public function registerGebruikerGewijzigd(Gebruiker $gebruiker, Gebruiker $changedGebruiker): self
+    public static function registerGebruikerGewijzigd(Gebruiker $gebruiker, Gebruiker $changedGebruiker): self
     {
         return new self(self::GEBRUIKER_GEWIJZIGD, $gebruiker, $changedGebruiker);
     }
@@ -112,15 +111,5 @@ class ActionEvent extends Event
     public static function registerDossierGeopened(Gebruiker $gebruiker, Dossier $dossier): self
     {
         return new self(self::DOSSIER_GEOPENED, $gebruiker, null, $dossier);
-    }
-
-    /**
-     * @param Gebruiker $gebruiker
-     *
-     * @return ActionEvent
-     */
-    public static function registerGebruikerWijzigdWachtwoord(Gebruiker $gebruiker): self
-    {
-        return new self(self::GEBRUIKER_WACHTWOORD_GEWIJZIGD, $gebruiker);
     }
 }
