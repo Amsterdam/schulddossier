@@ -94,27 +94,6 @@ class ActionEvent extends Event
 
     /**
      * @param Gebruiker $gebruiker
-     *
-     * @return ActionEvent
-     */
-    public static function registerGebruikerIngelogd(Gebruiker $gebruiker): self
-    {
-        return new self(self::GEBRUIKER_INGELOGD, $gebruiker);
-    }
-
-    /**
-     * @param Gebruiker $gebruiker
-     * @param Dossier   $dossier
-     *
-     * @return ActionEvent
-     */
-    public static function registerDossierGewijzigd(Gebruiker $gebruiker, Dossier $dossier): self
-    {
-        return new self(self::DOSSIER_GEWIJZIGD, $gebruiker, null, $dossier);
-    }
-
-    /**
-     * @param Gebruiker $gebruiker
      * @param Gebruiker $changedGebruiker
      *
      * @return ActionEvent

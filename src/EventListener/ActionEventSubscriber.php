@@ -6,11 +6,12 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent as ActionEventEntity;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class ActionEventSubscriber implements EventSubscriberInterface
@@ -24,23 +25,17 @@ class ActionEventSubscriber implements EventSubscriberInterface
      * @var RequestStack
      */
     private $requestStack;
-    /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
 
     /**
      * ActionEventSubscriber constructor.
      *
      * @param EntityManagerInterface $entityManager
      * @param RequestStack           $requestStack
-     * @param TokenStorageInterface  $tokenStorage
      */
-    public function __construct(EntityManagerInterface $entityManager, RequestStack $requestStack, TokenStorageInterface $tokenStorage)
+    public function __construct(EntityManagerInterface $entityManager, RequestStack $requestStack)
     {
         $this->entityManager = $entityManager;
         $this->requestStack = $requestStack;
-        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -71,16 +66,38 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $this->entityManager->flush();
     }
 
-    public function registerLoginAction(InteractiveLoginEvent $event)
+    public function registerLoginAction(InteractiveLoginEvent $event): void
     {
         /** @var Gebruiker $gebruiker */
-        $gebruiker = $this->tokenStorage->getToken()->getUser();
+        $gebruiker = $event->getAuthenticationToken()->getUser();
         $action = new ActionEventEntity();
         $dateTime = new \DateTime();
 
         $action->setName(ActionEvent::GEBRUIKER_INGELOGD);
         $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
         $action->setGebruiker($gebruiker);
+        $action->setDatumTijd($dateTime);
+
+        $this->entityManager->persist($action);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @param DossierChangedEvent $event
+     */
+    public function registerDossierChange(DossierChangedEvent $event): void
+    {
+        /** @var Gebruiker $gebruiker */
+        $gebruiker = $event->getGebruiker();
+        /** @var Dossier $dossier */
+        $dossier = $event->getDossier();
+        $action = new ActionEventEntity();
+        $dateTime = new \DateTime();
+
+        $action->setName(ActionEvent::DOSSIER_GEWIJZIGD);
+        $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
+        $action->setGebruiker($gebruiker);
+        $action->setDossier($dossier);
         $action->setDatumTijd($dateTime);
 
         $this->entityManager->persist($action);
@@ -95,6 +112,7 @@ class ActionEventSubscriber implements EventSubscriberInterface
         return [
             'app.action.register' => 'registerAction',
             'security.interactive_login' => 'registerLoginAction',
+            DossierChangedEvent::NAME => 'registerDossierChange',
         ];
     }
 }
