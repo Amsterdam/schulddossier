@@ -8,49 +8,67 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{{ block('subject') }}</title>
     </head>
-    <body style="font-family: Avenir, verdana, Helvetica, Arial, sans-serif">
-    <p>Hallo {{ dossier.getMedewerkerSchuldhulpbureau.getNaam }},</p>
-    <p>Een door jouw ingezonden dossier is door de controleur goedgekeurd.</p>
-    <p>&nbsp;</p>
-    <table style="text-align: left;">
+    <body>
+    <table bgcolor="#FFFFFF" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <th style="font-weight: normal;">Afzender:</th>
-        <th style="font-weight: 600;">{{ tokenStorage.getToken().getUser().getNaam() }}</th>
-      </tr>
-      <tr>
-        <th style="font-weight: normal;">Controle op:</th>
-        <th style="font-weight: 600;">{{ 'now'|date('d-m-Y') }}</th>
-      </tr>
-    </table>
-    <p>&nbsp;</p>
-    <table style="text-align: left;">
-      {% if dossier.regasNummer is not empty %}
-      <tr>
-        <th style="font-weight: normal;">Regas nummer:</th>
-        <th style="font-weight: 600;">{{ dossier.regasNummer }}</th>
-      </tr>
-      {% endif %}
-      {% if dossier.allegroNummer is not empty %}
-      <tr>
-        <th style="font-weight: normal;">Allegro nummer: </th>
-        <th style="font-weight: 600;">{{ dossier.allegroNummer }}</th>
-      </tr>
-      {% endif %}
-    </table>
-    <p>&nbsp;</p>
-    <p>
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td>
-          <table border="0" cellspacing="0" cellpadding="0">
+        <td style="width: 100%; max-width: 500px;">
+          <table>
+            <tr bgcolor="#F1F1F1">
+              <td style="padding: 20px; background-color: #F1F1F1; max-width: 550px; width: 100%; font-family: Avenir, verdana, Helvetica, Arial, sans-serif; font-size: 20px; font-weight: 600;">
+                <p>Dossier goedgekeurd</p>
+              </td>
+            </tr>
             <tr>
-              <td align="center" bgcolor="#EC0000"><a href="{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId}) }}" target="_blank" style="font-size: 16px; font-family: Avenir, verdana, Helvetica, Arial, sans-serif; font-weight: 600; color: #ffffff; text-decoration: none; text-decoration: none; padding: 7px 8px; border: 1px solid #EC0000; display: inline-block;">Open dossier</a></td>
+              <td style="background-color: #FFFFFF; padding: 20px; border: 2px solid #F1F1F1; max-width: 550px; width: 100%; font-family: Avenir, verdana, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px;">
+                <p style="margin-top: 15px;">Een door jouw ingezonden dossier is door de controleur goedgekeurd.</p>
+                <p style="margin-top: 15px; font-family: Avenir, verdana, Helvetica, Arial, sans-serif; line-height: 16px;">
+                  <table border="0" cellspacing="0" cellpadding="0" style="font-size: 14px;">
+                    <tr align="left">
+                      <td style="font-weight: normal;">Afzender:</td>
+                      <td style="font-weight: 600;">[{{ tokenStorage.getToken().getUser().getNaam() }}</td>
+                    </tr>
+                    <tr align="left">
+                      <td style="font-weight: normal;">Controle op:</td>
+                      <td style="font-weight: 600;">{{ 'now'|date('d-m-Y') }}</td>
+                    </tr>
+                  </table>
+                </p>
+                <p style="margin-top: 15px; font-family: Avenir, verdana, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 16px;">
+                  <table border="0" cellspacing="0" cellpadding="0" style="font-size: 14px;">
+                    {% if dossier.regasNummer is not empty %}
+                    <tr align="left">
+                      <td style="font-weight: normal;">Regas nummer:</td>
+                      <td style="font-weight: 600;">{{ dossier.regasNummer }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if dossier.allegroNummer is not empty %}
+                    <tr align="left">
+                      <td style="font-weight: normal;">Allegro nummer: </td>
+                      <td style="font-weight: 600;">{{ dossier.allegroNummer }}</td>
+                    </tr>
+                    {% endif %}
+                  </table>
+                </p>
+                <p style="margin-top: 15px;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td>
+                        <table border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td align="center" bgcolor="#EC0000"><a href="{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId}) }}" target="_blank" style="font-size: 16px; font-family: Avenir, verdana, Helvetica, Arial, sans-serif; font-weight: 600; color: #ffffff; text-decoration: none; text-decoration: none; padding: 7px 8px; border: 1px solid #EC0000; display: inline-block;">Open
+                                dossier</a></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </p>
+              </td>
             </tr>
           </table>
         </td>
       </tr>
     </table>
-    </p>
     </body>
 </html>
 {%- endblock %}
