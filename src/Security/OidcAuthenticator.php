@@ -19,6 +19,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+use GuzzleHttp\Exception\TransferException;
+use Lcobucci\JWT\Signer\Key;
+use Lcobucci\JWT\Signer\Rsa\Sha256;
+use Lcobucci\JWT\Signer\Ecdsa\Sha384;
+use Lcobucci\JWT\Signer\Rsa\Sha512;
 
 class OidcAuthenticator extends AbstractGuardAuthenticator
 {
@@ -120,7 +125,9 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
             throw new AuthenticationException('token is invalid');
         }
 
-        // TODO validate token
+        if (!$this->tokenIsVerified($token)) {
+            throw new AuthenticationException('token can not be verified');
+        }
 
         if (empty($token->getClaim('email'))) {
             throw new AuthenticationException('Auth server did not supply a e-mail');
@@ -196,6 +203,52 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         $validationData->setAudience($this->clientId);
 
         return $token->validate($validationData);
+    }
+
+    private function tokenIsVerified(Token $token): bool
+    {
+        $signers = [
+            'RS256' => Sha256::class,
+            'RS384' => Sha384::class,
+            'RS512' => Sha512::class
+        ];
+
+        if (isset($signers[$token->getHeader('alg')]) === false) {
+            throw new AuthenticationException('Algorithme not supported. Requested algorithmes ' . $token->getHeader('alg'));
+        }
+
+        try {
+            $guzzle = new Client();
+            $response = $guzzle->get($this->baseUrl . '/protocol/openid-connect/certs', []);
+            $data = json_decode($response->getBody()->__toString(), true);
+
+            $keyData = null;
+            foreach ($data['keys'] as $key) {
+                if ($key['kid'] === $token->getHeader('kid')) {
+                    $keyData = $key;
+                    break;
+                }
+            }
+            if ($keyData === null) {
+                throw new AuthenticationException('No matching OIDC key found, kid=' . $token->getHeader('kid'));
+            }
+
+            $rsa = new \phpseclib\Crypt\RSA();
+            $rsa->loadKey([
+                'n' => new \phpseclib\Math\BigInteger(base64_decode(str_replace(['-','_'], ['+','/'], $keyData['n'])), 256),
+                'e' => new \phpseclib\Math\BigInteger(base64_decode($keyData['e']), 256)
+            ]);
+            $publicKey = $rsa->getPublicKey(\phpseclib\Crypt\RSA::PRIVATE_FORMAT_PKCS1);
+
+            // create the key instance
+            $signerKey = new Key($publicKey);
+            $signer = new $signers[$token->getHeader('alg')];
+
+            return $token->verify($signer, $signerKey);
+        }
+        catch (TransferException $e) {
+            throw new AuthenticationException('Can not connect to OIDC certs URL. Error ' . $e->getMessage());
+        }
     }
 }
 
