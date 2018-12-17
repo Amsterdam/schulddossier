@@ -1,7 +1,7 @@
 FROM composer:1.5
 FROM php:7.1.14-fpm-alpine
 
-EXPOSE 80
+EXPOSE 80 443
 
 RUN apk update \
  && apk upgrade
