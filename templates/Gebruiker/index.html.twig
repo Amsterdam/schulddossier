@@ -25,7 +25,10 @@
                     <tr>
                         <th>Username</th>
                         <th>Naam</th>
+                        <th>E-mailadres</th>
                         <th>Type</th>
+                        <th>Team GKA</th>
+                        <th>Team schuldhulpbureau</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +42,10 @@
                             {% endif %}
                         </th>
                         <td>{{ gebruiker.naam }}</td>
+                        <td>{{ gebruiker.email }}</td>
                         <td>{{ gebruiker.type }}</td>
+                        <td>{{ gebruiker.teamGka }}</td>
+                        <td>{{ gebruiker.schuldhulpbureau }}</td>
                     </tr>
 {% endfor %}
                </tbody>

@@ -27,6 +27,10 @@ chown -R www-data:www-data var
 
 cp docker/nginx/nginx.conf /etc/nginx/nginx.conf
 cp docker/nginx/vhost.conf /etc/nginx/conf.d/vhost.conf
+
+cp docker/nginx/localhost.crt /srv/localhost.crt
+cp docker/nginx/localhost.key /srv/localhost.key
+
 cp docker/php/extra-$APP_ENV.ini /usr/local/etc/php/conf.d/99-extra.ini
 
 tail -f var/log/dev.log &
