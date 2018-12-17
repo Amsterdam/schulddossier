@@ -110,7 +110,7 @@ class ActionEventSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            'app.action.register' => 'registerAction',
+            ActionEvent::NAME => 'registerAction',
             'security.interactive_login' => 'registerLoginAction',
             DossierChangedEvent::NAME => 'registerDossierChange',
         ];
