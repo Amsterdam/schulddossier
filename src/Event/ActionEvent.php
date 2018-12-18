@@ -36,6 +36,10 @@ class ActionEvent extends Event
     const DOSSIER_GEWIJZIGD = 'dossier_gewijzigd';
     const GEBRUIKER_GEWIJZIGD = 'gebruiker_gewijzigd';
     const DOSSIER_GEOPENED = 'dossier_geopened';
+    const DOSSIER_VERPLAATST_NAAR_PRULLENBAK = 'dossier_verplaatst_naar_prullenbak';
+    const DOSSIER_VERWIJDERD = 'dossier_verwijderd';
+    const DOSSIER_HERSTELD = 'dossier_hersteld';
+
 
     /**
      * @var string
@@ -111,5 +115,38 @@ class ActionEvent extends Event
     public static function registerDossierGeopened(Gebruiker $gebruiker, Dossier $dossier): self
     {
         return new self(self::DOSSIER_GEOPENED, $gebruiker, null, $dossier);
+    }
+
+    /**
+     * @param Gebruiker $gebruiker
+     * @param Dossier   $dossier
+     *
+     * @return ActionEvent
+     */
+    public static function registerDossierVerplaatstNaarPrullenbak(Gebruiker $gebruiker, Dossier $dossier): self
+    {
+        return new self(self::DOSSIER_VERPLAATST_NAAR_PRULLENBAK, $gebruiker, null, $dossier);
+    }
+
+    /**
+     * @param Gebruiker $gebruiker
+     * @param Dossier   $dossier
+     *
+     * @return ActionEvent
+     */
+    public static function registerDossierVerwijderd(Gebruiker $gebruiker, Dossier $dossier): self
+    {
+        return new self(self::DOSSIER_VERWIJDERD, $gebruiker, null, $dossier);
+    }
+
+    /**
+     * @param Gebruiker $gebruiker
+     * @param Dossier   $dossier
+     *
+     * @return ActionEvent
+     */
+    public static function registerDossierHersteld(Gebruiker $gebruiker, Dossier $dossier)
+    {
+        return new self(self::DOSSIER_HERSTELD, $gebruiker, null, $dossier);
     }
 }

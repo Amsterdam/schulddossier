@@ -743,7 +743,7 @@ class AppDossierController extends Controller
      * @Method("POST")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function moveToPrullenbakAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    public function moveToPrullenbakAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', $request->request->get('token')) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
@@ -753,6 +753,8 @@ class AppDossierController extends Controller
         $em->flush();
         $this->addFlash('success', 'Dossier in prullenbak geplaatst');
 
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierVerplaatstNaarPrullenbak($this->getUser(), $dossier));
+
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
@@ -761,7 +763,7 @@ class AppDossierController extends Controller
      * @Method("POST")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function removeAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    public function removeAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         if ($dossier->isInPrullenbak() === false) {
             throw $this->createNotFoundException('Dossier not in prullenbak, dossierId=' . $dossier->getId());
@@ -780,6 +782,8 @@ class AppDossierController extends Controller
         $em->flush();
         $this->addFlash('success', 'Dossier definitief verwijderd');
 
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierVerwijderd($this->getUser(), $dossier));
+
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
@@ -788,7 +792,7 @@ class AppDossierController extends Controller
      * @Method("POST")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function restoreAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    public function restoreAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore', $request->request->get('token')) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
@@ -798,6 +802,8 @@ class AppDossierController extends Controller
 
         $em->flush();
         $this->addFlash('success', 'Dossier hersteld');
+
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierHersteld($this->getUser(), $dossier));
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', ['dossierId' => $dossier->getId()]);
     }
