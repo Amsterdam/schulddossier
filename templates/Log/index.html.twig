@@ -18,6 +18,14 @@
         {% if is_granted('ROLE_APPBEHEER') == false and is_granted('ROLE_ADMIN') == false %}
             <p>Alleen applicatie beheerders kunnen nieuwe gebruikers toevoegen en bestaande gebruikers wijzigen</p>
         {% endif %}
-        {{ dump(logs) }}
+
+        {%- for log in logs %}
+            <p>
+            <blockquote>
+                <b>[{{ log.datumTijd|date('d-m-Y') }}] - {{ log.name|upper }}</b><br>
+                {{ log.ip }} - {{ log.data|json_encode() }}
+            </blockquote>
+            </p>
+        {% endfor %}
     </div>
 {% endblock %}
