@@ -249,6 +249,8 @@ class AppDossierController extends Controller
             return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         }
 
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
+
         return $this->render('Dossier/detailAlgemeen.html.twig', [
             'dossier' => $dossier,
             'form' => $form->createView(),
@@ -346,6 +348,8 @@ class AppDossierController extends Controller
         } else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
             return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         }
+
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
 
         return $this->render('Dossier/detailOverigeDocumenten.html.twig', [
             'dossier' => $dossier,
@@ -496,6 +500,8 @@ class AppDossierController extends Controller
             'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create', [])
         ]);
 
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
+
         return $this->render('Dossier/detailSchulden.html.twig', [
             'dossier' => $dossier,
             'schuldItems' => $schuldItems,
@@ -526,6 +532,8 @@ class AppDossierController extends Controller
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen', ['dossierId' => $dossier->getId()]);
         }
+
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
 
         return $this->render('Dossier/detailAantekeningen.html.twig', [
             'dossier' => $dossier,
