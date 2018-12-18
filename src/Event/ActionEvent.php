@@ -35,6 +35,7 @@ class ActionEvent extends Event
     const GEBRUIKER_INGELOGD = 'gebruiker_ingelogd';
     const DOSSIER_GEWIJZIGD = 'dossier_gewijzigd';
     const GEBRUIKER_GEWIJZIGD = 'gebruiker_gewijzigd';
+    const DOSSIER_AANGEMAAKT = 'dossier_aangemaakt';
     const DOSSIER_GEOPENED = 'dossier_geopened';
     const DOSSIER_VERPLAATST_NAAR_PRULLENBAK = 'dossier_verplaatst_naar_prullenbak';
     const DOSSIER_VERWIJDERD = 'dossier_verwijderd';
@@ -104,6 +105,17 @@ class ActionEvent extends Event
     public static function registerGebruikerGewijzigd(Gebruiker $gebruiker, Gebruiker $changedGebruiker): self
     {
         return new self(self::GEBRUIKER_GEWIJZIGD, $gebruiker, $changedGebruiker);
+    }
+
+    /**
+     * @param Gebruiker $gebruiker
+     * @param Dossier   $dossier
+     *
+     * @return ActionEvent
+     */
+    public static function registerDossierAangemaakt(Gebruiker $gebruiker, Dossier $dossier): self
+    {
+        return new self(self::DOSSIER_AANGEMAAKT, $gebruiker, null, $dossier);
     }
 
     /**

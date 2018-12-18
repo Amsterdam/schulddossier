@@ -135,7 +135,7 @@ class AppDossierController extends Controller
     /**
      * @Route("/nieuw")
      */
-    public function createAction(Request $request, EntityManagerInterface $em)
+    public function createAction(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $dossier = new Dossier();
         $dossier->setAanmaker($this->getUser());
@@ -150,6 +150,9 @@ class AppDossierController extends Controller
             $em->persist($dossier);
             $em->flush();
             $this->addFlash('success', 'Dossier aangemaakt');
+
+            $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier));
+
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
                 'dossierId' => $dossier->getId()
             ]);
