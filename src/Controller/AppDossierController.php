@@ -1,82 +1,49 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
-use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateAantekeningFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DossierDocumentFormType;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Form\FormError;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldItemFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
-use Symfony\Component\HttpFoundation\File\File;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerLegitimatieFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerAlimentatieEchtscheidingsconvenantFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerAlimentatieFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerArbeidsovereenkomstFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerAutolastenKmWoonwerkverkeerFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerAutoTaxatieFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBeschikkingOnderBewindstellingFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBeschikkingUwvFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerBudgetbeheerFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerCjibFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerGereserveerdeGeldenFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerHuurspecificatieFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerInkomstenspecificatieFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerInzageToetsingBkrFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerKostgeldFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerKwijtscheldingGemeenteBelastingFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerMeterstandenEnergieFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerOndertekendAanvraagFormulierFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerOvereenkomstKinderopvangFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerPolisbladZorgverzekeringFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerRetourbewijsModemFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerStabilisatieovereenkomstFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerToelichtingAanvraagSchuldsaneringClientFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerToelichtingAanvraagSchuldsaneringMadiFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerVerklaringWerkgeverFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerVoorlopigeTeruggaafBelastingdienstFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerVrijwaringsbewijsFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerVtlbFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerWaternetFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerSchuldenoverzichtFormType;
-use Symfony\Component\Workflow\Registry as WorkflowRegistry;
-use Symfony\Component\Workflow\Dumper\GraphvizDumper;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DocumentFormType;
-use Symfony\Component\Validator\Constraints\Valid;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldenFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldItemFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldenFormType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormEvent;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateAantekeningFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
-use Doctrine\ORM\EntityManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Validator\Constraints\Valid;
+use Symfony\Component\Workflow\Registry as WorkflowRegistry;
 
 /**
  * @Route("/app/dossier")
@@ -168,7 +135,7 @@ class AppDossierController extends Controller
     /**
      * @Route("/nieuw")
      */
-    public function createAction(Request $request, EntityManagerInterface $em)
+    public function createAction(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $dossier = new Dossier();
         $dossier->setAanmaker($this->getUser());
@@ -183,6 +150,9 @@ class AppDossierController extends Controller
             $em->persist($dossier);
             $em->flush();
             $this->addFlash('success', 'Dossier aangemaakt');
+
+            $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier));
+
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
                 'dossierId' => $dossier->getId()
             ]);
@@ -246,6 +216,8 @@ class AppDossierController extends Controller
 
         $workflow = $registry->get($dossier);
 
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
+
         return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
             'voorleggerForm' => $voorleggerForm->createView(),
@@ -279,6 +251,8 @@ class AppDossierController extends Controller
         } elseif ($form->isSubmitted() && $request->isXmlHttpRequest()) {
             return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         }
+
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
 
         return $this->render('Dossier/detailAlgemeen.html.twig', [
             'dossier' => $dossier,
@@ -377,6 +351,8 @@ class AppDossierController extends Controller
         } else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
             return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         }
+
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
 
         return $this->render('Dossier/detailOverigeDocumenten.html.twig', [
             'dossier' => $dossier,
@@ -527,6 +503,8 @@ class AppDossierController extends Controller
             'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create', [])
         ]);
 
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
+
         return $this->render('Dossier/detailSchulden.html.twig', [
             'dossier' => $dossier,
             'schuldItems' => $schuldItems,
@@ -557,6 +535,8 @@ class AppDossierController extends Controller
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen', ['dossierId' => $dossier->getId()]);
         }
+
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
 
         return $this->render('Dossier/detailAantekeningen.html.twig', [
             'dossier' => $dossier,
@@ -766,7 +746,7 @@ class AppDossierController extends Controller
      * @Method("POST")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function moveToPrullenbakAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    public function moveToPrullenbakAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', $request->request->get('token')) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
@@ -776,6 +756,8 @@ class AppDossierController extends Controller
         $em->flush();
         $this->addFlash('success', 'Dossier in prullenbak geplaatst');
 
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierVerplaatstNaarPrullenbak($this->getUser(), $dossier));
+
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
@@ -784,7 +766,7 @@ class AppDossierController extends Controller
      * @Method("POST")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function removeAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    public function removeAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         if ($dossier->isInPrullenbak() === false) {
             throw $this->createNotFoundException('Dossier not in prullenbak, dossierId=' . $dossier->getId());
@@ -803,6 +785,8 @@ class AppDossierController extends Controller
         $em->flush();
         $this->addFlash('success', 'Dossier definitief verwijderd');
 
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierVerwijderd($this->getUser(), $dossier));
+
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
@@ -811,7 +795,7 @@ class AppDossierController extends Controller
      * @Method("POST")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function restoreAction(Request $request, Dossier $dossier, EntityManagerInterface $em)
+    public function restoreAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore', $request->request->get('token')) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
@@ -821,6 +805,8 @@ class AppDossierController extends Controller
 
         $em->flush();
         $this->addFlash('success', 'Dossier hersteld');
+
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierHersteld($this->getUser(), $dossier));
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', ['dossierId' => $dossier->getId()]);
     }

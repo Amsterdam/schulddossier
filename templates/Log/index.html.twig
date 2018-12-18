@@ -1,0 +1,23 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Logs - {{ parent() }}{% endblock %}
+
+{% block pdfsplitter %}{% endblock %}
+
+{% block document %}
+
+    <div class="document well">
+        <div class="document-header group">
+            <h1 class="document-title">Logs</h1>
+            <nav class="nav-internal">
+                <ul>
+                    <li>Logs</li>
+                </ul>
+            </nav>
+        </div>
+        {% if is_granted('ROLE_APPBEHEER') == false and is_granted('ROLE_ADMIN') == false %}
+            <p>Alleen applicatie beheerders kunnen nieuwe gebruikers toevoegen en bestaande gebruikers wijzigen</p>
+        {% endif %}
+        {{ dump(logs) }}
+    </div>
+{% endblock %}
