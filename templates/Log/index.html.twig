@@ -22,7 +22,7 @@
         {%- for log in logs|reverse %}
             <p>
             <blockquote>
-                <b>[{{ log.datumTijd|date('d-m-Y H:m:s') }}] - {{ log.name|upper }}</b><br>
+                <b>[{{ log.datumTijd|date('d-m-Y H:i:s') }}] - {{ log.name|upper }}</b><br>
                 {{ log.ip }} - {{ log.data|json_encode() }}
             </blockquote>
             </p>
