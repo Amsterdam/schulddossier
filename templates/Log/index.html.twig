@@ -19,10 +19,10 @@
             <p>Alleen applicatie beheerders kunnen nieuwe gebruikers toevoegen en bestaande gebruikers wijzigen</p>
         {% endif %}
 
-        {%- for log in logs %}
+        {%- for log in logs|reverse %}
             <p>
             <blockquote>
-                <b>[{{ log.datumTijd|date('d-m-Y') }}] - {{ log.name|upper }}</b><br>
+                <b>[{{ log.datumTijd|date('d-m-Y H:m:s') }}] - {{ log.name|upper }}</b><br>
                 {{ log.ip }} - {{ log.data|json_encode() }}
             </blockquote>
             </p>
