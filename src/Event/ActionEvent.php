@@ -13,19 +13,14 @@ class ActionEvent extends Event
     const NAME = 'app.action.register';
 
     /**
-     * @var Gebruiker
+     * @var string
      */
-    private $gebruiker;
+    private $action;
 
     /**
-     * @var Gebruiker
+     * @var array
      */
-    private $gewijzigdeGebruiker;
-
-    /**
-     * @var Dossier
-     */
-    private $dossier;
+    private $data;
 
     /**
      * @var \DateTime
@@ -41,19 +36,11 @@ class ActionEvent extends Event
     const DOSSIER_VERWIJDERD = 'dossier_verwijderd';
     const DOSSIER_HERSTELD = 'dossier_hersteld';
 
-
-    /**
-     * @var string
-     */
-    private $action;
-
-    public function __construct(string $actionName, Gebruiker $gebruiker, Gebruiker $gewijzigdeGebruiker = null, Dossier $dossier = null)
+    public function __construct(string $actionName, array $data = [])
     {
-        $this->gebruiker = $gebruiker;
-        $this->gewijzigdeGebruiker = $gewijzigdeGebruiker;
-        $this->dossier = $dossier;
-        $this->dateTimeOfEvent = new \DateTime();
         $this->action = $actionName;
+        $this->data = $data;
+        $this->dateTimeOfEvent = new \DateTime();
     }
 
     /**
@@ -65,35 +52,19 @@ class ActionEvent extends Event
     }
 
     /**
-     * @return Gebruiker
-     */
-    public function getGebruiker(): Gebruiker
-    {
-        return $this->gebruiker;
-    }
-
-    /**
-     * @return Gebruiker
-     */
-    public function getGewijzigdeGebruiker(): ?Gebruiker
-    {
-        return $this->gewijzigdeGebruiker;
-    }
-
-    /**
-     * @return Dossier
-     */
-    public function getDossier(): ?Dossier
-    {
-        return $this->dossier;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getDateTimeOfEvent(): \DateTime
     {
         return $this->dateTimeOfEvent;
+    }
+
+    /**
+     * @return array
+     */
+    public function getData(): array
+    {
+        return $this->data;
     }
 
     /**
@@ -104,7 +75,11 @@ class ActionEvent extends Event
      */
     public static function registerGebruikerGewijzigd(Gebruiker $gebruiker, Gebruiker $changedGebruiker): self
     {
-        return new self(self::GEBRUIKER_GEWIJZIGD, $gebruiker, $changedGebruiker);
+        $data = array_merge(
+            self::getGebruikerData($gebruiker),
+            ["gewijzigd" => self::getGebruikerData($changedGebruiker)]
+        );
+        return new self(self::GEBRUIKER_GEWIJZIGD, $data);
     }
 
     /**
@@ -115,7 +90,12 @@ class ActionEvent extends Event
      */
     public static function registerDossierAangemaakt(Gebruiker $gebruiker, Dossier $dossier): self
     {
-        return new self(self::DOSSIER_AANGEMAAKT, $gebruiker, null, $dossier);
+        $data = array_merge(
+            self::getGebruikerData($gebruiker),
+            self::getDossierData($dossier)
+        );
+
+        return new self(self::DOSSIER_AANGEMAAKT, $data);
     }
 
     /**
@@ -126,7 +106,12 @@ class ActionEvent extends Event
      */
     public static function registerDossierGeopened(Gebruiker $gebruiker, Dossier $dossier): self
     {
-        return new self(self::DOSSIER_GEOPENED, $gebruiker, null, $dossier);
+        $data = array_merge(
+            self::getGebruikerData($gebruiker),
+            self::getDossierData($dossier)
+        );
+
+        return new self(self::DOSSIER_GEOPENED, $data);
     }
 
     /**
@@ -137,7 +122,12 @@ class ActionEvent extends Event
      */
     public static function registerDossierVerplaatstNaarPrullenbak(Gebruiker $gebruiker, Dossier $dossier): self
     {
-        return new self(self::DOSSIER_VERPLAATST_NAAR_PRULLENBAK, $gebruiker, null, $dossier);
+        $data = array_merge(
+            self::getGebruikerData($gebruiker),
+            self::getDossierData($dossier)
+        );
+
+        return new self(self::DOSSIER_VERPLAATST_NAAR_PRULLENBAK, $data);
     }
 
     /**
@@ -148,7 +138,12 @@ class ActionEvent extends Event
      */
     public static function registerDossierVerwijderd(Gebruiker $gebruiker, Dossier $dossier): self
     {
-        return new self(self::DOSSIER_VERWIJDERD, $gebruiker, null, $dossier);
+        $data = array_merge(
+            self::getGebruikerData($gebruiker),
+            self::getDossierData($dossier)
+        );
+
+        return new self(self::DOSSIER_VERWIJDERD, $data);
     }
 
     /**
@@ -159,6 +154,31 @@ class ActionEvent extends Event
      */
     public static function registerDossierHersteld(Gebruiker $gebruiker, Dossier $dossier)
     {
-        return new self(self::DOSSIER_HERSTELD, $gebruiker, null, $dossier);
+        $data = array_merge(
+            self::getGebruikerData($gebruiker),
+            self::getDossierData($dossier)
+        );
+
+        return new self(self::DOSSIER_HERSTELD, $data);
+    }
+
+    public static function getGebruikerData(Gebruiker $gebruiker): array
+    {
+        return [
+            "gebruiker" => [
+                "naam" => sprintf("%s <%s>", $gebruiker->getNaam(), $gebruiker->getEmail())
+            ],
+        ];
+    }
+
+    public static function getDossierData(Dossier $dossier): array
+    {
+        return [
+            "dossier" => [
+                "name" => $dossier->getClientNaam(),
+                "allegro_nummer" => $dossier->getAllegroNummer(),
+                "regas_nummer" => $dossier->getRegasNummer(),
+            ],
+        ];
     }
 }

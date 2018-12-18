@@ -50,16 +50,8 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $action->setName($event->getActionName());
         $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
 
-        if (!empty($event->getDossier())) {
-            $action->setDossier($event->getDossier());
-        }
-
-        if (!empty($event->getGebruiker())) {
-            $action->setGebruiker($event->getGebruiker());
-        }
-
-        if (!empty($event->getGewijzigdeGebruiker())) {
-            $action->setGewijzigdeGebruiker($event->getGewijzigdeGebruiker());
+        if (!empty($event->getData())) {
+            $action->setData($event->getData());
         }
 
         $this->entityManager->persist($action);
@@ -75,8 +67,11 @@ class ActionEventSubscriber implements EventSubscriberInterface
 
         $action->setName(ActionEvent::GEBRUIKER_INGELOGD);
         $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
-        $action->setGebruiker($gebruiker);
         $action->setDatumTijd($dateTime);
+        $action->setData([
+                ActionEvent::getGebruikerData($gebruiker)
+            ]
+        );
 
         $this->entityManager->persist($action);
         $this->entityManager->flush();
@@ -96,9 +91,12 @@ class ActionEventSubscriber implements EventSubscriberInterface
 
         $action->setName(ActionEvent::DOSSIER_GEWIJZIGD);
         $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
-        $action->setGebruiker($gebruiker);
-        $action->setDossier($dossier);
         $action->setDatumTijd($dateTime);
+        $action->setData(array_merge(
+                ActionEvent::getGebruikerData($gebruiker),
+                ActionEvent::getDossierData($dossier)
+            )
+        );
 
         $this->entityManager->persist($action);
         $this->entityManager->flush();

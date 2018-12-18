@@ -33,25 +33,10 @@ class ActionEvent
     private $ip;
 
     /**
-     * @var Gebruiker
-     * @ORM\ManyToOne(targetEntity="Gebruiker")
-     * @ORM\JoinColumn(name="gebruiker_id", referencedColumnName="id", nullable=false)
+     * @var array
+     * @ORM\Column(type="json", nullable=true)
      */
-    private $gebruiker;
-
-    /**
-     * @var Dossier
-     * @ORM\ManyToOne(targetEntity="Dossier", inversedBy="aantekeningen")
-     * @ORM\JoinColumn(name="dossier_id", referencedColumnName="id", nullable=true)
-     */
-    private $dossier;
-
-    /**
-     * @var Gebruiker
-     * @ORM\ManyToOne(targetEntity="Gebruiker")
-     * @ORM\JoinColumn(name="gewijzigde_gebruiker_id", referencedColumnName="id", nullable=true)
-     */
-    private $gewijzigdeGebruiker;
+    private $data;
 
     /**
      * @var \DateTime
@@ -84,35 +69,27 @@ class ActionEvent
     }
 
     /**
-     * @return Gebruiker
-     */
-    public function getGebruiker(): Gebruiker
-    {
-        return $this->gebruiker;
-    }
-
-    /**
-     * @return Dossier
-     */
-    public function getDossier(): Dossier
-    {
-        return $this->dossier;
-    }
-
-    /**
-     * @return Gebruiker
-     */
-    public function getGewijzigdeGebruiker(): Gebruiker
-    {
-        return $this->gewijzigdeGebruiker;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getDatumTijd(): \DateTime
     {
         return $this->datumTijd;
+    }
+
+    /**
+     * @return array
+     */
+    public function getData(): array
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param array $data
+     */
+    public function setData(array $data): void
+    {
+        $this->data = $data;
     }
 
     /**
@@ -129,30 +106,6 @@ class ActionEvent
     public function setIp(string $ip): void
     {
         $this->ip = $ip;
-    }
-
-    /**
-     * @param Gebruiker $gebruiker
-     */
-    public function setGebruiker(Gebruiker $gebruiker): void
-    {
-        $this->gebruiker = $gebruiker;
-    }
-
-    /**
-     * @param Dossier $dossier
-     */
-    public function setDossier(Dossier $dossier): void
-    {
-        $this->dossier = $dossier;
-    }
-
-    /**
-     * @param Gebruiker $gewijzigdeGebruiker
-     */
-    public function setGewijzigdeGebruiker(Gebruiker $gewijzigdeGebruiker): void
-    {
-        $this->gewijzigdeGebruiker = $gewijzigdeGebruiker;
     }
 
     /**
