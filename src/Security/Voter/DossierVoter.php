@@ -9,6 +9,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
+use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
 class DossierVoter extends Voter
 {
@@ -50,7 +51,7 @@ class DossierVoter extends Voter
      * It is safe to assume that $attribute and $subject already passed the "supports()" method check.
      *
      * @param string         $attribute
-     * @param  Dossier       $dossier
+     * @param mixed          $dossier
      * @param TokenInterface $token
      *
      * @return bool
