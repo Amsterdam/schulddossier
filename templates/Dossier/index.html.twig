@@ -10,61 +10,70 @@
         {{ form_start(searchForm, {'attr': {}}) }}
         <div class="document-header">
             <h1 class="document-title">Dossiers</h1>
-            
+
             <div class="group search-control">
-              <div class="group">
-                <div class="search-input">
-                  <input name="search_dossier_form[naam]" placeholder="Zoek dossiers op naam" type="text" value="{{ searchForm.naam.vars.value }}">
-                  <i class="icon-search"></i>
-                  <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class="search-cancel" tabindex="-1">&times;</a>
-                  {% do searchForm.naam.setRendered() %}
+                <div class="group">
+                    <div class="search-input">
+                        <input name="search_dossier_form[naam]" placeholder="Zoek dossiers op naam" type="text"
+                               value="{{ searchForm.naam.vars.value }}">
+                        <i class="icon-search"></i>
+                        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class="search-cancel"
+                           tabindex="-1">&times;</a>
+                        {% do searchForm.naam.setRendered() %}
+                    </div>
+                    <button type="submit" class="button">Zoeken</button>
                 </div>
-                <button type="submit" class="button">Zoeken</button>
-              </div>
-          
-              <nav class="nav-internal">
-                  <ul>
-                      <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak') }}">Prullenbak</a></li>
-                      <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}" class="primary">Nieuw dossier</a></li>
-                  </ul>
-              </nav>
+
+                <nav class="nav-internal">
+                    <ul>
+                        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak') }}">Prullenbak</a>
+                        </li>
+                        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}" class="primary">Nieuw
+                                dossier</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
         <div class="search"
-            data-decorator="save-overview-state"
-            data-context="dossier"
-            data-label="{% if searchQuery.section == 'madi' %}Terug naar dossiers bij MaDi{% elseif searchQuery.section == 'gka' %}Terug naar dossiers bij GKA{% elseif searchQuery.section == 'archief' %}Terug naar afgerond{% elseif searchQuery.section == 'search' %}Terug naar zoekresultaten{% endif %}"
-            >
-            
+             data-decorator="save-overview-state"
+             data-context="dossier"
+             data-label="{% if searchQuery.section == 'madi' %}Terug naar dossiers bij MaDi{% elseif searchQuery.section == 'gka' %}Terug naar dossiers bij GKA{% elseif searchQuery.section == 'archief' %}Terug naar afgerond{% elseif searchQuery.section == 'search' %}Terug naar zoekresultaten{% endif %}"
+        >
+
             <fieldset class="search-basic naked">
-              <div class="tabs">
-                <ul>
-                  <li class="{{ searchQuery.section == 'madi' ? 'active' }}"><a href="?section=madi">Dossiers bij MaDi</a></li>
-                  <li class="{{ searchQuery.section == 'gka' ? 'active' }}"><a href="?section=gka">Dossiers bij GKA</a></li>
-                  <li class="{{ searchQuery.section == 'archief' ? 'active' }}"><a href="?section=archief">Afgerond</a></li>
-                  <li class="{{ searchQuery.section == 'search' ? 'active' }}"><a href="?section=search">Zoeken</a></li>
-                </ul>
-              </div>
+                <div class="tabs">
+                    <ul>
+                        <li class="{{ searchQuery.section == 'madi' ? 'active' }}"><a href="?section=madi">Dossiers bij
+                                MaDi</a></li>
+                        <li class="{{ searchQuery.section == 'gka' ? 'active' }}"><a href="?section=gka">Dossiers bij
+                                GKA</a></li>
+                        <li class="{{ searchQuery.section == 'archief' ? 'active' }}"><a href="?section=archief">Afgerond</a>
+                        </li>
+                        <li class="{{ searchQuery.section == 'search' ? 'active' }}"><a
+                                    href="?section=search">Zoeken</a></li>
+                    </ul>
+                </div>
 
             </fieldset>
 
             <fieldset id="search-extended" class="search-extended {{ searchQuery.section == 'search' ? 'active' }}">
                 <input type="hidden" name="section" value="search">
                 <div class="search-status">
-                  {{ form_row(searchForm.status) }}
+                    {{ form_row(searchForm.status) }}
                 </div>
                 <div class="columns">
-                  <div class="column">
-                    {{ form_row(searchForm.schuldhulpbureau) }}
-                    {{ form_row(searchForm.medewerkerSchuldhulpbureau) }}
-                  </div>
-                  <div class="column">
-                    {{ form_row(searchForm.teamGka) }}
-                  </div>
+                    <div class="column">
+                        {% if is_granted('ROLE_MADI') is same as(FALSE) %}
+                            {{ form_row(searchForm.schuldhulpbureau) }}
+                        {% endif %}
+                        {{ form_row(searchForm.medewerkerSchuldhulpbureau) }}
+                    </div>
+                    <div class="column">
+                        {{ form_row(searchForm.teamGka) }}
+                    </div>
                 </div>
-                
-                
-                
+
+
                 <p class="buttons right">
                     <button type="submit" class="button">Zoeken</button>
                     <a href="#search-extended" data-handler="toggle">Annuleren</a>
@@ -77,21 +86,23 @@
         <div class="table" id="search-results">
             <table>
                 <thead>
-                    <tr>
-                        <th>Naam</th>
-                        <th>MaDi</th>
-                        <th style="width: 75px;">Regas</th>
-                        <th style="width: 75px;">Allegro</th>
-                        <th>Aangemaakt</th>
-                        <th style="width: 150px;">Status</th>
-                    </tr>
+                <tr>
+                    <th>Naam</th>
+                    <th>MaDi</th>
+                    <th style="width: 75px;">Regas</th>
+                    <th style="width: 75px;">Allegro</th>
+                    <th>Aangemaakt</th>
+                    <th style="width: 150px;">Status</th>
+                </tr>
                 </thead>
                 <tbody>
-{% set empty = true %}
-{% for dossier in dossiers %}
-    {% set empty = false %}
+                {% set empty = true %}
+                {% for dossier in dossiers %}
+                    {% set empty = false %}
                     <tr class="row-link">
-                        <th><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a></th>
+                        <th>
+                            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a>
+                        </th>
                         <td>{{ dossier.schuldhulpbureau }}</td>
                         <td class="nummer">
                             {{ dossier.regasNummer|default('-') }}
@@ -104,29 +115,31 @@
                         </td>
                         <td>{{ dossier.status|trans }}</td>
                     </tr>
-{% endfor %}
-               </tbody>
+                {% endfor %}
+                </tbody>
             </table>
-            
+
             {% if empty %}
-              <p class="empty-table">Er zijn geen dossiers om weer te geven.</p>
+                <p class="empty-table">Er zijn geen dossiers om weer te geven.</p>
             {% endif %}
 
 
             {% if pagination.numberOfPages > 1 %}
-              <div class="pagination">
-                  {% if pagination.page <= 0 %}
-                  <span class="prev">vorige</span>
-                  {% else %}
-                  <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', {'page': pagination.page - 1, 'section': searchQuery.section, 'search_dossier_form': app.request.query.get('search_dossier_form') }) }}">vorige</a>
-                  {% endif %}
-                  <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
-                  {% if (pagination.page + 1) >= pagination.numberOfPages %}
-                  <span class="next">volgende</span>
-                  {% else %}
-                  <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', {'page': pagination.page + 1, 'section': searchQuery.section, 'search_dossier_form': app.request.query.get('search_dossier_form')}) }}">volgende</a>
-                  {% endif %}
-              </div>
+                <div class="pagination">
+                    {% if pagination.page <= 0 %}
+                        <span class="prev">vorige</span>
+                    {% else %}
+                        <a class="prev"
+                           href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', {'page': pagination.page - 1, 'section': searchQuery.section, 'search_dossier_form': app.request.query.get('search_dossier_form') }) }}">vorige</a>
+                    {% endif %}
+                    <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
+                    {% if (pagination.page + 1) >= pagination.numberOfPages %}
+                        <span class="next">volgende</span>
+                    {% else %}
+                        <a class="next"
+                           href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', {'page': pagination.page + 1, 'section': searchQuery.section, 'search_dossier_form': app.request.query.get('search_dossier_form')}) }}">volgende</a>
+                    {% endif %}
+                </div>
             {% endif %}
 
         </div>

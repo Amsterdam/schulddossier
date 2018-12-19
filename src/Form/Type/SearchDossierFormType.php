@@ -1,20 +1,32 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 use Doctrine\ORM\EntityRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class SearchDossierFormType extends AbstractType
 {
+    /**
+     * @var AuthorizationCheckerInterface
+     */
+    private $authorizationChecker;
+
+    public function __construct(AuthorizationCheckerInterface $authorizationChecker)
+    {
+
+        $this->authorizationChecker = $authorizationChecker;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('naam', TextType::class, [
@@ -34,13 +46,18 @@ class SearchDossierFormType extends AbstractType
                 'afgesloten_gka' => 'afgesloten_gka',
             ]
         ]);
-        $builder->add('schuldhulpbureau', EntityType::class, [
-            'required' => false,
-            'class' => Schuldhulpbureau::class,
-            'multiple' => false,
-            'expanded' => false,
-            'placeholder' => 'Alle schuldhulpbureau\'s'
-        ]);
+
+        if (!$this->authorizationChecker->isGranted('ROLE_MADI')) {
+            $builder->add('schuldhulpbureau', EntityType::class, [
+                'required' => false,
+                'class' => Schuldhulpbureau::class,
+                'multiple' => false,
+                'expanded' => false,
+                'placeholder' => 'Alle schuldhulpbureau\'s'
+            ]);
+        }
+
+
         $builder->add('medewerkerSchuldhulpbureau', EntityType::class, [
             'required' => false,
             'class' => Gebruiker::class,
