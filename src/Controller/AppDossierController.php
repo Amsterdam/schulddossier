@@ -9,6 +9,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
@@ -42,6 +43,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
 
@@ -53,13 +55,15 @@ class AppDossierController extends Controller
 {
     /**
      * @Route("/")
+     * @throws \Exception
      */
-    public function indexAction(Request $request, EntityManagerInterface $em)
+    public function indexAction(Request $request, EntityManagerInterface $em, AuthorizationCheckerInterface $authChecker)
     {
         /** @var $repository DossierRepository */
         $repository = $em->getRepository(Dossier::class);
 
         $maxPageSize = 20;
+        $schuldhulpbureau = null;
 
         $section2status = [
             'madi' => ['bezig_madi', 'compleet_madi', 'gecontroleerd_madi', 'verzonden_madi'],
@@ -69,11 +73,19 @@ class AppDossierController extends Controller
         ];
         $section = $request->query->get('section', $this->getUser()->getType() === Gebruiker::TYPE_GKA ? 'gka' : 'madi');
 
+        if ($authChecker->isGranted('ROLE_MADI')) {
+            if (empty($this->getUser()->getSchuldhulpbureau())) {
+                throw new \Exception('Gebruiker is niet gekoppeld aan een schuldhulpbureau.');
+            }
+            /** @var Schuldhulpbureau $schuldhulpbureau */
+            $schuldhulpbureau = $this->getUser()->getSchuldhulpbureau();
+        }
+
         $seachQuery = [
             'section' => $section,
             'naam' => '',
             'status' => $section2status[$section],
-            'schuldhulpbureau' => null,
+            'schuldhulpbureau' => $schuldhulpbureau,
             'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
         ];
@@ -165,6 +177,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/detail/{dossierId}/voorlegger")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function detailVoorleggerAction(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier, EventDispatcherInterface $eventDispatcher)
@@ -226,6 +239,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/detail/{dossierId}")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function detailAlgemeenAction(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier, EventDispatcherInterface $eventDispatcher)
@@ -262,6 +276,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/detail/{dossierId}/documenten/prullenbak")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function detailPrullenbakAction(Request $request, Dossier $dossier)
@@ -283,6 +298,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/detail/{dossierId}/documenten/overige-documenten")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function detailOverigeDocumentenAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
@@ -362,6 +378,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/detail/{dossierId}/documenten")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function detailDocumentenAction(Request $request, Dossier $dossier)
@@ -373,6 +390,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/detail/{dossierId}/documenten/detail/{documentId}")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
@@ -399,6 +417,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/detail/{dossierId}/schulden")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function detailSchuldenAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
@@ -516,6 +535,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/detail/{dossierId}/aantekeningen")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function detailAantekeningenAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
@@ -546,6 +566,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/detail/{dossierId}/schulden/excel")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function detailSchuldenExcel(Request $request, Dossier $dossier)
@@ -625,6 +646,7 @@ class AppDossierController extends Controller
     /**
      * @Method("POST")
      * @Route("/detail/{dossierId}/status")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function changeStatusAction(Request $request, Dossier $dossier, WorkflowRegistry $registry, EntityManagerInterface $em)
@@ -652,6 +674,7 @@ class AppDossierController extends Controller
     /**
      * @Route("/detail/{dossierId}/documenten/detail/{documentId}/naar-prullenbak")
      * @Method("POST")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
@@ -680,6 +703,7 @@ class AppDossierController extends Controller
     /**
      * @Route("/detail/{dossierId}/documenten/detail/{documentId}/verwijderen")
      * @Method("POST")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
@@ -712,6 +736,7 @@ class AppDossierController extends Controller
     /**
      * @Route("/detail/{dossierId}/documenten/detail/{documentId}/herstellen")
      * @Method("POST")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
@@ -744,6 +769,7 @@ class AppDossierController extends Controller
     /**
      * @Route("/detail/{dossierId}/naar-prullenbak")
      * @Method("POST")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function moveToPrullenbakAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
@@ -764,6 +790,7 @@ class AppDossierController extends Controller
     /**
      * @Route("/detail/{dossierId}/verwijderen")
      * @Method("POST")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function removeAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
@@ -793,6 +820,7 @@ class AppDossierController extends Controller
     /**
      * @Route("/detail/{dossierId}/herstellen")
      * @Method("POST")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function restoreAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
@@ -814,6 +842,7 @@ class AppDossierController extends Controller
     /**
      * @Route("/detail/{dossierId}/schulden/detail/{schuldItemId}/verwijderen")
      * @Method("POST")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
      */
@@ -843,6 +872,7 @@ class AppDossierController extends Controller
     /**
      * @Route("/detail/{dossierId}/schulden/detail/{schuldItemId}/herstellen")
      * @Method("POST")
+     * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
      */
