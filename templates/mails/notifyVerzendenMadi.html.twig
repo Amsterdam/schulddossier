@@ -8,48 +8,75 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{{ block('subject') }}</title>
     </head>
-    <body style="font-family: Avenir, verdana, Helvetica, Arial, sans-serif">
-        <p>Hallo,</p>
-        <p>Er staat een nieuw dossier klaar voor {{ dossier.getTeamGka().getNaam() }}.</p>
-        <p>&nbsp;</p>
-        <table style="text-align: left;">
-          <tr>
-            <th style="font-weight: normal;">Afzender:</th>
-            <th style="font-weight: 600;">{{ tokenStorage.getToken().getUser().getNaam() }}</th>
-          </tr>
-          <tr>
-            <th style="font-weight: normal;">Ingezonden op:</th>
-            <th style="font-weight: 600;">{{ 'now'|date('d-m-Y') }}</th>
-          </tr>
-        </table>
-        <p>&nbsp;</p>
-        <table style="text-align: left;">
-          {% if dossier.regasNummer is not empty %}
-          <tr>
-            <th style="font-weight: normal;">Regas nummer:</th>
-            <th style="font-weight: 600;">{{ dossier.regasNummer }}</th>
-          </tr>
-          {% endif %}
-          {% if dossier.allegroNummer is not empty %}
-          <tr>
-            <th style="font-weight: normal;">Allegro nummer: </th>
-            <th style="font-weight: 600;">{{ dossier.allegroNummer }}</th>
-          </tr>
-          {% endif %}
-        </table>
-        <p>&nbsp;</p>
-        <p>
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td>
-              <table border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td align="center" bgcolor="#EC0000"><a href="{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId}) }}" target="_blank" style="font-size: 16px; font-family: Avenir, verdana, Helvetica, Arial, sans-serif; font-weight: 600; color: #ffffff; text-decoration: none; text-decoration: none; padding: 7px 8px; border: 1px solid #EC0000; display: inline-block;">Open dossier</a></td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
+    <body>
+    <table bgcolor="#FFFFFF" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td style="width: 100%; max-width: 600px;">
+          <table cellspacing="0" cellpadding="0px">
+            <tr bgcolor="#F1F1F1">
+              <td style="padding: 20px 30px; background-color: #F1F1F1; font-family: Avenir, Helvetica, Arial, sans-serif; font-size: 20px; font-weight: bold;">
+                Nieuw dossier
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #FFFFFF; padding: 20px 30px; border: 2px solid #F1F1F1;">
+                <table border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td style="padding: 10px 0px; font-family: Avenir, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                      Er staat een nieuw dossier klaar voor {{ dossier.getTeamGka().getNaam() }}.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 10px 0px;">
+                      <table border="0" cellspacing="0" cellpadding="0">
+                        <tr align="left">
+                          <td style="padding-right: 10px;font-family: Avenir, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 20px;">Afzender:</td>
+                          <td style="font-family: Avenir, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 20px; font-weight: bold;">{{ tokenStorage.getToken().getUser().getNaam() }}</td>
+                        </tr>
+                        <tr align="left">
+                          <td style="padding-right: 10px;font-family: Avenir, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 20px;">Ingezonden op:</td>
+                          <td style="font-family: Avenir, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 20px; font-weight: bold;">{{ 'now'|date('d-m-Y') }}</td>
+                        </tr>
+                        {% if dossier.regasNummer is not empty %}
+                        <tr align="left">
+                          <td style="padding-right: 10px;font-family: Avenir, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 20px;">Regas nummer:</td>
+                          <td style="font-family: Avenir, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 20px; font-weight: bold;">{{ dossier.regasNummer }}</td>
+                        </tr>
+                        {% endif %}
+                        {% if dossier.allegroNummer is not empty %}
+                        <tr align="left">
+                          <td style="padding-right: 10px;font-family: Avenir, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 20px;">Allegro nummer: </td>
+                          <td style="font-family: Avenir, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 20px; font-weight: bold;">{{ dossier.allegroNummer }}</td>
+                        </tr>
+                        {% endif %}
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-top: 30px;">
+                      <table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td style="margin-top: 20px;">
+                            <table border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td align="center" bgcolor="#EC0000">
+                                  <a href="{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId}) }}" target="_blank" style="font-size: 16px; font-family: Avenir, Helvetica, Arial, sans-serif; font-weight: bold; color: #ffffff; text-decoration: none; text-decoration: none; padding: 7px 8px; border: 1px solid #EC0000; display: inline-block;">Open
+                                      dossier</a>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
     </body>
 </html>
 {%- endblock %}
