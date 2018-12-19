@@ -50,7 +50,7 @@ class DossierVoter extends Voter
      * It is safe to assume that $attribute and $subject already passed the "supports()" method check.
      *
      * @param string         $attribute
-     * @param  Dossier       $dossier
+     * @param mixed          $dossier
      * @param TokenInterface $token
      *
      * @return bool
