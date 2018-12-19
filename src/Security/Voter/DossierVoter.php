@@ -9,7 +9,6 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
 class DossierVoter extends Voter
 {
@@ -55,13 +54,14 @@ class DossierVoter extends Voter
      * @param TokenInterface $token
      *
      * @return bool
+     * @throws \Exception
      */
     protected function voteOnAttribute($attribute, $dossier, TokenInterface $token): bool
     {
         $user = $token->getUser();
 
         if (!$user instanceof Gebruiker) {
-            throw new UnsupportedUserException('Cannot authorize this user');
+            throw new \Exception('Cannot authorize this user');
         }
 
         if ($this->decisionManager->decide($token, ['ROLE_MADI'])) {
