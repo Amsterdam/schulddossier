@@ -75,7 +75,9 @@ class AppDossierController extends Controller
 
         if ($authChecker->isGranted('ROLE_MADI')) {
             if (empty($this->getUser()->getSchuldhulpbureau())) {
-                throw new \Exception('Gebruiker is niet gekoppeld aan een schuldhulpbureau.');
+                return $this->render('Security/accessDenied.html.twig', [
+                    'message' => 'Gebruiker is niet gekoppeld aan een schuldhulpbureau.',
+                ]);
             }
             /** @var Schuldhulpbureau $schuldhulpbureau */
             $schuldhulpbureau = $this->getUser()->getSchuldhulpbureau();
