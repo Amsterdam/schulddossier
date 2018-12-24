@@ -485,16 +485,19 @@ form {
   border-radius: 5px;
 
   transition: all .3s;
-
+  a.bestand {
+    pointer-events: auto;
+  }
   .file-container {
     background-color: $lightColor3;
     width: calc(100% - 10px);
     border-radius: 5px;
     margin: 5px 5px 0 5px;
+    padding: 10px 0;
     //padding: 5px;
     //margin: -5px 10px 10px -5px;
     //border: 1px dotted rgba($textColor, .2);
-    min-width: 230px;
+    min-width: 200px;
     display: inline-block;
     vertical-align: top;
     position: relative;
@@ -531,10 +534,11 @@ form {
     .bestand-nieuw {
       z-index: 2;
       pointer-events: none;
+      width: auto;
       i {
         display: none;
       }
-      height: 60px;
+      height: 50px;
     }
     .drop-area:empty:before {
       content: "Kies een bestand\Aof sleep pagina 's hier naartoe";

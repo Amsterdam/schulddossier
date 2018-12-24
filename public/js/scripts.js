@@ -332,12 +332,15 @@
 
         },
         _showDocument = function(docElem, pageNum){
-          statusElem.textContent = 'Document wordt geladen';
+          statusElem.innerHTML = '<span>Het document</span><br><strong>'+ docElem.textContent + '</strong><br><span>wordt geladen</span>';
           self.classList.add('loading');
           for(var i = 0; i < documents.length; i++){
             documents[i].deselect();
           }
           docElem.select(pageNum);
+          console.log(docElem);
+          title.textContent = '';
+          counter.textContent = '';
           _reset();
           loadTimeout = setTimeout(function(){
             loadingTask = PDFJS.getDocument(docElem.datauristring || docElem.getAttribute('href'));
