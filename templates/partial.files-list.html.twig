@@ -14,7 +14,7 @@
                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
                    class="bestand-zoom" title="Bekijk deze {{ dossierDocument.document.origineleExtensie|lower }}"
                    data-handler="bestand">
-                    {{ dossierDocument.document.naam }}
+                    {#{{ dossierDocument.document.naam }}#}
                     <i class="icon-document"
                        data-extension="{{ dossierDocument.document.origineleExtensie|lower }}"{% if documentThumbnail is not empty %} style="background-image: url({{ documentThumbnail }})"{% endif %}></i>
                     <span class="bestand-naam">{{ dossierDocument.document.naam }}</span>
