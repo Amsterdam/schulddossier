@@ -239,7 +239,8 @@
 
     'reset': function (e) {
       e && e.preventDefault();
-      var form = _closest(this, 'form');
+      var form = _closest(this, 'form'),
+        formChangedClass = this.dataset.formChangedSelector || 'form-changed';
       form && form.reset();
 
       var keyuppers = form.querySelectorAll('[data-keyupper]');
@@ -254,7 +255,7 @@
 
       helpers.trigger(form, 'change');
 
-      d.classList.remove('form-changed');
+      d.classList.remove(formChangedClass);
 
     },
 
@@ -771,6 +772,7 @@
       console.log('save')
       var
         form = this,
+        formChangedClass = this.dataset.formChangedSelector || 'form-changed',
         submitButton = form.querySelector('button[type="submit"]');
 
       submitButton.setAttribute('disabled', 'disabled');
@@ -826,11 +828,12 @@
           result = div.querySelectorAll(selector),
           target = d.querySelectorAll(selector);
 
+        console.log(data);
         console.log(result);
         console.log(target);
         if (result && target) {
           for (var i = 0; i < target.length; i++) {
-
+            console.log(result[i]);
             target[i].innerHTML = result[i].innerHTML;
 
             // IE11 placeholder bug FIX
@@ -847,7 +850,7 @@
         _checkHash();
 
         form.classList.remove('in-progress');
-        d.classList.remove('form-changed');
+        d.classList.remove(formChangedClass);
 
       };
       form.request = helpers.ajax({
@@ -900,15 +903,16 @@
     },
     'change': function () {
       var
-        form = this;
+        form = this,
+        formChangedClass = this.dataset.formChangedSelector || 'form-changed';
 
 
-      d.classList.add('form-changed');
+      d.classList.add(formChangedClass);
 
       if (!form.changed) {
         form.changed = true;
         w.onbeforeunload = function () {
-          if (d.querySelectorAll('.form-changed').length) {
+          if (d.querySelectorAll('.' + formChangedClass).length) {
             return 'Je hebt nog niet opgeslagen wijzigingen. Deze zullen verloren gaan als je niet eerst je wijzigingen opslaat';
           }
         }

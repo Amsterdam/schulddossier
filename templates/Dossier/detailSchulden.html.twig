@@ -10,7 +10,7 @@
         {#{% include 'Dossier/partial.dossierWorkflow.html.twig' with {'dossier': dossier} only %}#}
 
         {% include 'Dossier/partial.dossierHeader.html.twig' with {'dossier': dossier, 'active': 'schulden'} only %}
-        {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'save', 'data-result-selector': '.dossier', 'data-changer': 'change'}}) }}
+        {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'save', 'data-result-selector': '#schulden_form', 'data-changer': 'change'}}) }}
         <button type="submit" class="dossier__save button primary">Opslaan</button>
         {#<input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_schulden') }}">#}
         {#{{ form_errors(form) }}#}
