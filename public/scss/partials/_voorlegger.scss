@@ -378,7 +378,7 @@
   height: 40px;
   line-height: 40px;
   margin: 0;
-  z-index: 4;
+  //z-index: 4;
   //padding-left: 20px;
   //margin: 1px;
   padding: 1px 1px 1px 15px;
@@ -435,7 +435,6 @@
     pointer-events: auto;
     opacity: 1;
     transform: scale(1, 1);
-    z-index: 1;
   }
   .dossier > & {
     border-color: transparent;
@@ -526,7 +525,7 @@
 
 .dossier__item.active {
   position: relative;
-  &:after {
+  &:before {
     content: '';
     background: white;
     position: absolute;
@@ -534,7 +533,7 @@
     top: 0;
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
-    width: 100%;
+    width: 15px;
     height: 42px;
     z-index: 3;
   }
