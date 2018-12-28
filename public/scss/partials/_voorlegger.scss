@@ -13,6 +13,10 @@
       width: 45%;
       padding: 0 2.5%;
     }
+    &.row-max-height {
+      overflow-y: auto;
+      max-height: 400px;
+    }
   }
   .button, button {
     line-height: 38px;
@@ -374,6 +378,7 @@
   height: 40px;
   line-height: 40px;
   margin: 0;
+  z-index: 4;
   //padding-left: 20px;
   //margin: 1px;
   padding: 1px 1px 1px 15px;
@@ -386,6 +391,7 @@
   &:hover {
     border-top: 1px solid black;
     background: $lightColor3;
+    z-index: 5;
   }
   .drop-over & {
     border: 2px dashed black !important;
@@ -437,6 +443,14 @@
       background-color: transparent;
     }
   }
+  .create-form-changed & {
+    button[type="submit"] {
+      background-color: $brandColor1;
+      pointer-events: auto;
+      border-color: $brandColor1;
+      color: #fff;
+    }
+  }
   .drop-over & {
     border: 2px dashed #000;
     padding: 0;
@@ -454,34 +468,36 @@
   bottom: 5px;
   z-index: 2;
 
-  &:after {
-    content: '';
-    width: $voorleggerMaxWidth;
-    height: 10px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    z-index: 1;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.3+0,0+100 */
-    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#4d000000', GradientType=0); /* IE6-9 */
-  }
+  //&:after {
+  //  content: '';
+  //  width: $voorleggerMaxWidth;
+  //  height: 10px;
+  //  position: absolute;
+  //  left: 0;
+  //  bottom: 0;
+  //  z-index: 1;
+  //  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.3+0,0+100 */
+  //  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* FF3.6-15 */
+  //  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* Chrome10-25,Safari5.1-6 */
+  //  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  //  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#4d000000', GradientType=0); /* IE6-9 */
+  //}
   &:before {
     content: '';
     width: $voorleggerMaxWidth;
-    height: 10px;
+    height: 100%;
+    pointer-events: none;
     position: absolute;
     left: 0;
-    tpo: 0;
+    top: 0;
     //bottom: -10px;
     z-index: 1;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.3+0,0+100 */
-    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4d000000', endColorstr='#00000000', GradientType=0); /* IE6-9 */
+    box-shadow: $boxShadowDefault inset;
+    ///* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.3+0,0+100 */
+    //background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%); /* FF3.6-15 */
+    //background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%); /* Chrome10-25,Safari5.1-6 */
+    //background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    //filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4d000000', endColorstr='#00000000', GradientType=0); /* IE6-9 */
   }
   & > .nav-internal {
     position: absolute;
@@ -518,7 +534,7 @@
     top: 0;
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
-    width: 10px;
+    width: 100%;
     height: 42px;
     z-index: 3;
   }
@@ -532,6 +548,7 @@
     border-style: solid;
     border-right: none;
     background: white;
+
   }
 }
 
@@ -608,11 +625,16 @@
 .dossier__voorlegger__sectie__body {
   //position: absolute;
   bottom: 0;
-  padding: 0 10%;
+  padding: 20px 10% 40px;
   overflow-y: auto;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 260px);
   & > .form-row {
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    min-height: 80px;
+  }
+  h4 {
+    margin-top: 40px;
+    margin-bottom: 20px;
   }
 }
 
@@ -675,7 +697,7 @@
     width: 425px;
     position: absolute;
     bottom: 5px;
-    left: -10px;
+    left: -5px;
   }
 }
 
@@ -694,7 +716,7 @@
     //text-align: center;
   }
   .button {
-    margin-top: 30px;
+    //margin-top: 30px;
   }
   h4 {
     font-size: $fs-large;
@@ -706,8 +728,8 @@
 .dossier__dashboard__messages {
   padding-top: 50px;
   width: 40%;
-  max-height: 600px;
-  overflow-y: auto;
+  //max-height: 600px;
+  //overflow-y: auto;
   h2 {
     margin-bottom: 20px;
   }

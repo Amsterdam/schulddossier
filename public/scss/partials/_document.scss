@@ -263,6 +263,22 @@ a.bestand {
       transition: opacity .3s;
     }
   }
+  [data-extension] {
+    &:after {
+      content: attr(data-extension);
+      position: absolute;
+      font-size: 8px;
+      color: #fff;
+      padding: .3em;
+      background-color: $textColor;
+      left: 28%;
+      right: 29%;
+      bottom: 31%;
+      //top: 50%;
+      line-height: 12px;
+      overflow: hidden;
+    }
+  }
   .bestand-naam {
     position: absolute;
     font-size: 10px;
