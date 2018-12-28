@@ -205,17 +205,14 @@
   }
   &:hover {
     z-index: 4;
-    .status-result {
-      max-width: unset;
-      max-height: unset;
-    }
+
     ul {
-      z-index: 1;
       background-color: #fff;
       box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+
     }
     strong {
-      max-height: unset;
+      max-height: none;
       line-height: 40px;
       padding: 0 40px 0 10px;
     }

@@ -186,14 +186,14 @@
       content: '';
       border: none;
       margin-right: .5em;
-      @extend .icon-zoomuit !optional;
+      @extend .icon-zoomin !optional;
       width: 17px;
       height: 17px;
     }
     &:after {
       position: static;
       background: transparent;
-      content: 'Zoom uit';
+      content: 'Zoom in';
     }
   }
   .status {
@@ -220,13 +220,21 @@
     canvas {
       display: block;
     }
+    .zoom:before {
+      @extend .icon-zoomuit !optional;
+    }
+    .zoom:after {
+      content: 'Zoom uit';
+    }
   }
-
+  &.disabled .status {
+      top: calc(50%);
+  }
+  &.disabled,
   &.loading {
     .status,
     &:before {
       display: block;
-
     }
     .next,
     .prev,
@@ -235,7 +243,17 @@
       pointer-events: none;
       opacity: 0;
     }
-
+  }
+  &.disabled {
+    .status {
+      display: block;
+    }
+    &:before {
+      display: none;
+    }
+  }
+  &.disabled.loading .status {
+      top: calc(50% + 50px);
   }
 }
 .document__viewer__header {

@@ -285,6 +285,7 @@
         btnZoom = self.querySelector('.zoom'),
         statusElem = self.querySelector('.status'),
         documents = container.querySelectorAll('[data-handler="bestand"]'),
+        currentDocElem,
         currentPDFJS,
         currentPage,
         loadingTask,
@@ -312,9 +313,6 @@
         },
         _nextPage = function(e) {
           e && e.preventDefault();
-          console.log('next');
-          console.log(currentPage);
-          console.log(currentPDFJS.numPages);
           if (currentPage < currentPDFJS.numPages) {
               _showPage(currentPage + 1);
           }
@@ -333,23 +331,32 @@
 
         },
         _showDocument = function(docElem, pageNum){
-          statusElem.innerHTML = '<span>Het document</span><br><strong>'+ docElem.textContent + '</strong><br><span>wordt geladen</span>';
+          currentDocElem = docElem
+          var extension = currentDocElem.querySelector('[data-extension]').dataset.extension;
           self.classList.add('loading');
+          self.classList.remove('disabled');
           for(var i = 0; i < documents.length; i++){
             documents[i].deselect();
           }
           docElem.select(pageNum);
-          console.log(docElem);
           title.textContent = '';
           counter.textContent = '';
           _reset();
+          if (extension !== 'pdf') {
+            self.classList.remove('loading');
+            self.classList.add('disabled');
+            statusElem.innerHTML = '<span>Het <strong>'+extension+'</strong> bestand kan hier niet worden getoond.</span><br><span>Download het bestand om deze weer te geven.</span>';
+            return;
+          };
+
+          statusElem.innerHTML = '<span>Het document</span><br><strong>'+ docElem.textContent + '</strong><br><span>wordt geladen</span>';
+
           loadTimeout = setTimeout(function(){
             loadingTask = PDFJS.getDocument(docElem.datauristring || docElem.getAttribute('href'));
             loadingTask.promise.then(function (pdf) {
                 currentPDFJS = pdf;
                 title.textContent = docElem.textContent;
                 counter.textContent = ' (' + pageNum + ' / ' + currentPDFJS.numPages + ')';
-                console.log('getdoc');
 
                 _showPage(pageNum);
             }).catch(function(error){
@@ -818,7 +825,6 @@
       }
       form.files = [];
 
-      console.log(data);
       var _process = function (data, selector) {
         submitButton.removeAttribute("disabled");
         var div = document.createElement('div');
@@ -828,12 +834,8 @@
           result = div.querySelectorAll(selector),
           target = d.querySelectorAll(selector);
 
-        console.log(data);
-        console.log(result);
-        console.log(target);
         if (result && target) {
           for (var i = 0; i < target.length; i++) {
-            console.log(result[i]);
             target[i].innerHTML = result[i].innerHTML;
 
             // IE11 placeholder bug FIX
