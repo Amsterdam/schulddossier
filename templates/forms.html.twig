@@ -4,7 +4,7 @@
 {%- block create_aantekening_form_widget -%}
     <div class="aantekening-form-row nav-internal">
           <div id="form-{{ form.tekst.vars.id }}">
-          {{ form_widget(form.tekst, {attr: {placeholder: 'Type hier je aantekening'}}) }}
+          {{ form_widget(form.tekst, {attr: {placeholder: 'Type hier je aantekening', rows: '3'}}) }}
         </div>
     </div>
 {%- endblock -%}
