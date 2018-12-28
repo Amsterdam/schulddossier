@@ -280,7 +280,9 @@
     margin-left: 10px;
   }
 }
-
+.dossier__item__verwijderd {
+  display: none;
+}
 .dossier__item {
   //padding: 8px 15px;
   //border-bottom: 1px solid $borderColor2;
@@ -602,11 +604,24 @@
   height: calc(100vh - 260px);
   & > .form-row {
     margin-bottom: 0;
-    min-height: 80px;
   }
   h4 {
     margin-top: 40px;
     margin-bottom: 20px;
+  }
+  & > *:nth-last-child(1),
+  & > *:nth-last-child(2) {
+    label {
+      display: none;
+    }
+    .label-widget {
+      display: block;
+      //width: 100%;
+    }
+    .aantekening-form-row {
+      margin: 0;
+      //width: 100%;
+    }
   }
 }
 
@@ -725,13 +740,21 @@
   li {
     display: inline-block;
   }
-  button[type="submit"] {
-
-    background: $brandColor1;
-    border-color: $brandColor1;
-    cursor: pointer;
+  .button,
+  button {
     pointer-events: auto;
-    color: #fff;
+    cursor: pointer;
+    &.primary {
+      background: $brandColor1;
+      border-color: $brandColor1;
+      color: #fff;
+
+    }
+    &.secondary {
+      background: #fff;
+      border-color: #000;
+      color: #000;
+    }
   }
   .form-changed & button[type="submit"] {
     background: #fff;
@@ -750,4 +773,5 @@
   top: 55px;
   left: 425px;
   z-index: 1;
+
 }
