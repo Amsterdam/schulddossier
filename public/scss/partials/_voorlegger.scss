@@ -457,27 +457,10 @@
 .dossier__list-container {
   position: fixed;
   background-color: $lightColor2;
-  //height: calc(100vh - 55px);
   height: calc(100vh - 305px);
-  //padding-top: 50px;
   left: 5px;
   bottom: 5px;
   z-index: 2;
-
-  //&:after {
-  //  content: '';
-  //  width: $voorleggerMaxWidth;
-  //  height: 10px;
-  //  position: absolute;
-  //  left: 0;
-  //  bottom: 0;
-  //  z-index: 1;
-  //  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.3+0,0+100 */
-  //  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* FF3.6-15 */
-  //  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* Chrome10-25,Safari5.1-6 */
-  //  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  //  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#4d000000', GradientType=0); /* IE6-9 */
-  //}
   &:before {
     content: '';
     width: $voorleggerMaxWidth;
@@ -486,14 +469,8 @@
     position: absolute;
     left: 0;
     top: 0;
-    //bottom: -10px;
     z-index: 1;
     box-shadow: $boxShadowDefault inset;
-    ///* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.3+0,0+100 */
-    //background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%); /* FF3.6-15 */
-    //background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%); /* Chrome10-25,Safari5.1-6 */
-    //background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    //filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4d000000', endColorstr='#00000000', GradientType=0); /* IE6-9 */
   }
   & > .nav-internal {
     position: absolute;
@@ -707,7 +684,6 @@
   width: calc(100vw - 435px);
   height: calc(100vh - 100px);
   display: flex;
-  justify-content: space-evenly;
   .col-1-1 {
     //border-top: 1px solid #000;
     //text-align: center;
@@ -725,12 +701,16 @@
 .dossier__dashboard__messages {
   padding-top: 50px;
   width: 40%;
+  padding: 50px 6.666% 0;
   //max-height: 600px;
   //overflow-y: auto;
   h2 {
     margin-bottom: 20px;
   }
 
+}
+.dossier__dashboard__messages {
+  padding-left: 0;
 }
 
 .dossier__workflow {
