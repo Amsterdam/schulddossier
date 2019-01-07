@@ -237,7 +237,7 @@
     width: 100%;
     max-width: none;
     //max-width: 1800px;
-    position: fixed;
+    position: relative;
     //transform-origin: -50px left;
     transform: translate(0, 0);
     transition: transform .4s $transitionEaseDefault;
@@ -261,8 +261,8 @@
 }
 
 .dossier {
-  position: relative;
-  height: 100%;
+  //position: relative;
+  //height: 100%;
 }
 
 .dossier__aside {
@@ -398,7 +398,9 @@
     padding: 0 0 0 14px;
   }
   .activate & {
+    &:before {
 
+    }
   }
   .bedrag {
     position: absolute;
@@ -417,10 +419,10 @@
   overflow-y: hidden;
   opacity: 0;
   pointer-events: none;
-  position: fixed;
-  left: $voorleggerMaxWidth + 10px;
+  position: absolute;
+  left: $voorleggerMaxWidth + 5px;
   right: 0;
-  top: 100px;
+  top: 50px;
   bottom: 0;
   transition: all .5s $transitionEaseDefault;
   width: calc(100vw - 429px);
@@ -438,6 +440,7 @@
     z-index: 3;
   }
   .dossier > & {
+    z-index: 2;
     border-color: transparent;
     .dossier__voorlegger__sectie {
       background-color: transparent;
@@ -459,20 +462,20 @@
 }
 
 .dossier__list-container {
-  position: fixed;
-  background-color: $lightColor2;
-  height: calc(100vh - 305px);
+  position: absolute;
+
+  height: calc(100% - 300px);
   left: 5px;
-  bottom: 5px;
-  z-index: 2;
+  top: 0;
+  padding-top: 245px;
   &:before {
     content: '';
     width: $voorleggerMaxWidth;
-    height: 100%;
+    height: calc(100% - 245px);
     pointer-events: none;
     position: absolute;
     left: 0;
-    top: 0;
+    top: 245px;
     z-index: 1;
     box-shadow: $boxShadowDefault inset;
   }
@@ -486,35 +489,25 @@
 .dossier__scroll-container {
   direction: rtl;
   overflow-y: auto;
+  background-color: $lightColor2;
   height: 100%;
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: visible;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 }
 
 .dossier__scroll-content {
   direction: ltr;
-  position: relative;
+  //position: relative;
   width: $voorleggerMaxWidth;
   padding-right: 7px;
   padding-bottom: 150px;
 }
 
 .dossier__item.active {
-  position: relative;
-  &:before {
-    content: '';
-    background: white;
-    position: absolute;
-    right: -6px;
-    top: 0;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
-    width: calc(100% - 7px);
-    height: 42px;
-    z-index: 4;
-  }
+  //position: relative;
+
   &.drop-over:after {
     top: 2px;
     height: 40px;
@@ -525,6 +518,17 @@
     border-style: solid;
     border-right: none;
     background-color: white;
+    &:before {
+      content: '';
+      background: white;
+      position: absolute;
+      right: -6px;
+      top: -1px;
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
+      width: 7px;
+      height: 42px;
+    }
   }
 }
 
@@ -650,12 +654,13 @@
   height: 200px;
   position: relative;
   padding-left: 50px;
-  padding-top: 100px;
+  padding-top: 50px;
   max-width: 375px;
+  z-index: 1;
 
   .nav-internal {
     position: absolute;
-    top: 55px;
+    top: 5px;
     left: 35px;
     margin: 0;
     background: transparent;
@@ -733,7 +738,7 @@
 .dossier__workflow {
   position: absolute;
   right: 5px;
-  top: 55px;
+  top: 5px;
   ul {
     list-style: none;
     margin: 0;
@@ -750,12 +755,16 @@
       background: $brandColor1;
       border-color: $brandColor1;
       color: #fff;
+      pointer-events: auto;
+      cursor: pointer;
 
     }
     &.secondary {
       background: #fff;
       border-color: #000;
       color: #000;
+      pointer-events: auto;
+      cursor: pointer;
     }
   }
   .form-changed & button[type="submit"] {
@@ -772,7 +781,7 @@
 
 .dossier__save {
   position: absolute;
-  top: 55px;
+  top: 5px;
   left: 425px;
   z-index: 1;
   .in-progress &:before {
