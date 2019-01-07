@@ -14,7 +14,7 @@
             <div class="group search-control">
                 <div class="group">
                     <div class="search-input">
-                        <input name="search_dossier_form[naam]" placeholder="Zoek dossiers op naam" type="text"
+                        <input name="search_dossier_form[naam]" placeholder="Zoek in alle dossiers" type="text"
                                value="{{ searchForm.naam.vars.value }}">
                         <i class="icon-search"></i>
                         <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class="search-cancel"
@@ -50,7 +50,7 @@
                         <li class="{{ searchQuery.section == 'archief' ? 'active' }}"><a href="?section=archief">Afgerond</a>
                         </li>
                         <li class="{{ searchQuery.section == 'search' ? 'active' }}"><a
-                                    href="?section=search">Zoeken</a></li>
+                                    href="?section=search">Alle dossiers</a></li>
                     </ul>
                 </div>
 
