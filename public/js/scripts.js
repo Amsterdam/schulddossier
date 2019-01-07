@@ -3,7 +3,6 @@
   var handlers = {
 
     'status-changer': function(e){
-      console.log('status-changer');
       var self = this,
         val = self.dataset.id,
         t = self.dataset.type,
@@ -39,7 +38,6 @@
 
       if(toggleClass){
         e && e.preventDefault();
-        console.log(body.classList.contains(toggleClass));
         body.classList[(body.classList.contains(toggleClass)) ? 'remove' : 'add'](toggleClass);
       }else {
 
@@ -143,7 +141,6 @@
       });
 
       prototype.querySelector('input[type="file"]').addEventListener('change', function (event) {
-        console.log(event)
         if (event.target.value) {
           if (prototype.querySelector('.drop-area')) {
             prototype.removeChild(prototype.querySelector('.drop-area'));
@@ -193,8 +190,6 @@
       var
         container = this.parentNode,
         input = container.querySelector('.bestand-naam input');
-      console.log(input);
-      console.log(container);
       if (container.classList.contains('file-pdf-pages')) {
 
         var pages = container.querySelectorAll('.page canvas');
@@ -221,9 +216,6 @@
         container = _closest(self, '.dossier__item'),
         viewer = container.querySelector('.document__viewer');
       viewer.showDocument(self, 1);
-      self.open = function(){
-        viewer.showDocument(self, 1);
-      }
     },
 
     'clear': function (e) {
@@ -395,7 +387,6 @@
           });
 
         };
-      //this.showPage = _showPage;
       this.showDocument = _showDocument;
       this.reset = _reset;
 
@@ -776,7 +767,6 @@
   var submitters = {
 
     'save': function (e) {
-      console.log('save')
       var
         form = this,
         formChangedClass = this.dataset.formChangedSelector || 'form-changed',
@@ -886,15 +876,12 @@
 
   var changers = {
     'status-changer': function(e){
-      console.log('status-changer');
       var self = this,
         val = self.dataset.id,
         container = _closest(self, '.dossier__item'),
         statusRadio = container.querySelector('.status-' + self.dataset.type + ' input[type="radio"][value="'+ val +'"]'),
         nvtCheckbox = container.querySelector('.nvt > .form-row input[type="checkbox"]');
 
-
-      console.log(statusRadio);
       e && e.preventDefault();
       if (val === -1){
         nvtCheckbox.checked = true;
@@ -1144,35 +1131,6 @@
       form && changers[form.dataset.changer].call(form, e);
 
     },
-    'nvt-toggle': function (e) {
-      console.log('toggle');
-      console.log(e.target);
-      console.log(e.target.checked);
-      var nvtElements = document.querySelectorAll('.voorlegger-header.nvt'),
-        addOrRemove = (e.target.checked) ? 'add' : 'remove';
-
-      for (var i = 0; i < nvtElements.length; i++){
-        console.log(nvtElements[i]);
-        _closest(nvtElements[i], '.dossier__item').classList[e.target.checked ? 'add' : 'remove']('hide');
-      }
-      console.log(nvtElements);
-    },
-    'nvt': function (e) {
-      console.log(e);
-      var
-        form = (e && e.target) && _closest(e.target, 'form'),
-        input = this.querySelector('input');
-
-      form && changers[form.dataset.changer].call(form, e);
-
-      var header = _closest(this, '.voorlegger-header');
-      var container = _closest(this, '.dossier__item');
-      // if (!header) return;
-      console.log('nvt');
-      // header.classList[input.checked ? 'add' : 'remove']('nvt');
-      container.classList[input.checked ? 'add' : 'remove']('nvt');
-
-    },
     'nvt-input': function (e) {
       var
         form = (e && e.target) && _closest(e.target, 'form'),
@@ -1185,12 +1143,6 @@
 
       container.classList[input.checked ? 'add' : 'remove']('nvt');
 
-    }
-
-  };
-  var mouseovers = {
-    'overflow-hidden-fix': function (e) {
-        //console.log(e);
     }
   };
   var keyuppers = {
@@ -1237,61 +1189,7 @@
           }
         }
       }
-    },
-    'change': function (e) {
-      // changers['change'] && changers['change'].call(this, e);
-    },
-    // 'select': function (e) {
-    //   var
-    //     container = this;
-    //
-    //   if (!container.select) {
-    //     container.form = _closest(container, 'form');
-    //     container.select = container.querySelector('select');
-    //     container.clone = container.select.cloneNode(true);
-    //     container.options = container.clone.querySelectorAll('option');
-    //     container.input = container.querySelector('input');
-    //   }
-    //
-    //
-    //   if (e.keyCode == 38 || e.keyCode == 40) {
-    //     var index = Math.min(container.select.options.length - 1, Math.max(0, container.select.selectedIndex + (e.keyCode == 38 ? -1 : +1)));
-    //     container.select.options[index].selected = true;
-    //     e.preventDefault();
-    //   } else {
-    //
-    //     container.select.innerHTML = '';
-    //     var val = container.input.value.trim();
-    //
-    //     if (val.length === 0) {
-    //       container.select.innerHTML = container.clone.innerHTML;
-    //     } else {
-    //       var reg = new RegExp((val.length === 1 ? '^' : '') + val, 'i');
-    //       for (var i = 0; i < container.options.length; i++) {
-    //         if (container.options[i].value != '') {
-    //           var string = container.options[i].textContent;
-    //           for (var k = 0; k < container.options[i].attributes.length; k++) {
-    //             if (/^data-/.test(container.options[i].attributes[k].nodeName)) {
-    //               string += ' ' + container.options[i].attributes[k].nodeValue;
-    //             }
-    //           }
-    //
-    //           if (string.match(reg)) {
-    //             container.select.appendChild(container.options[i].cloneNode(true));
-    //           }
-    //         }
-    //       }
-    //
-    //       var option = document.createElement('option');
-    //       option.value = '';
-    //       container.select.appendChild(option);
-    //
-    //     }
-    //   }
-    //
-    //   helpers.trigger(container.select, 'change');
-    // }
-
+    }
   };
 
   var helpers = {
@@ -1386,8 +1284,6 @@
   var callbackers = {
     'schulditem-nieuw': function () {
       var el = document.getElementById('nieuwe-schuld-toevoegen-trigger');
-      console.log(el);
-      console.log(d.querySelector('#schuldItem-nieuw .errors'));
       if (el && d.querySelector('#schuldItem-nieuw .errors')) {
         handlers.toggle.call(el);
         _scrollTo(document.getElementById('schuldItem-nieuw'));
@@ -1401,8 +1297,7 @@
   d.addEventListener('click',function(t){var k,e,a=t&&t.target;if(a=_closest(a,'[data-handler]')){var r=a.getAttribute('data-handler').split(/\s+/);if('A'==a.tagName&&(t.metaKey||t.shiftKey||t.ctrlKey||t.altKey))return;for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);handlers[k[0]]&&handlers[k[0]].call(a,t,k[1])}}});
   var l = { 
     submit: 'submitter', 
-    change: 'changer',
-    keyup: 'keyupper'
+    change: 'changer'
   }
   for (var i in l){
     l.hasOwnProperty(i) && d.addEventListener(i,function(t){var s=t.type,o=eval(l[s]+'s'),k,e,f=t&&t.target;if(f=_closest(f,'[data-'+l[s]+']')){var r=f.getAttribute('data-'+l[s]).split(/\s+/);for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);o&&o[k[0]]&&o[k[0]].call(f,t,k[1])}}});
@@ -1455,43 +1350,6 @@
   _decorate();
   _setHashEvents();
   _checkHash();
-
-
-
-  // if (w.location.hash) {
-  //
-  //   var
-  //     el = document.querySelector('.document ' + w.location.hash),
-  //     trigger = document.querySelector('[data-handler*="toggle"][href^="' + w.location.hash + '"]');
-  //
-  //
-  //   if (el) {
-  //
-  //     if (trigger) {
-  //
-  //       var tabs = _closest(trigger, '.tabs');
-  //
-  //       if (tabs) {
-  //         var els = tabs.querySelectorAll('.active');
-  //         for (var i = 0; i < els.length; i++) {
-  //           els[i].classList.remove('active');
-  //         }
-  //
-  //       }
-  //
-  //       trigger.classList.add('active');
-  //       el.classList.add('active');
-  //
-  //     }
-  //
-  //     setTimeout(function () {
-  //       w.scrollTo(0, 0);
-  //       setTimeout(function () {
-  //         _scrollTo(el);
-  //       }, 800);
-  //     }, 1);
-  //   }
-  // }
 
 
 }(window, document.documentElement);

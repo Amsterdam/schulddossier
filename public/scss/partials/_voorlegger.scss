@@ -23,6 +23,7 @@
     font-size: $fs-default;
     padding: 0 25px;
   }
+  .form-changed & .in-progress button[type="submit"],
   button[type="submit"] {
 
     background: #fff;
@@ -434,6 +435,7 @@
     pointer-events: auto;
     opacity: 1;
     transform: scale(1, 1);
+    z-index: 3;
   }
   .dossier > & {
     border-color: transparent;
@@ -505,13 +507,13 @@
     content: '';
     background: white;
     position: absolute;
-    right: -7px;
+    right: -6px;
     top: 0;
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     width: calc(100% - 7px);
     height: 42px;
-    z-index: 3;
+    z-index: 4;
   }
   &.drop-over:after {
     top: 2px;
@@ -773,5 +775,19 @@
   top: 55px;
   left: 425px;
   z-index: 1;
+  .in-progress &:before {
+    content: '';
+    @extend .icon-spinner-transparent;
+    background-color: white;
+    background-position: center;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+  }
 
 }
