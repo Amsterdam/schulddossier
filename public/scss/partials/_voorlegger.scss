@@ -463,7 +463,6 @@
 
 .dossier__list-container {
   position: absolute;
-
   height: calc(100% - 300px);
   left: 5px;
   top: 0;
@@ -698,13 +697,12 @@
 }
 
 .dossier__dashboard {
-  padding-top: 10px;
-  top: 100px;
-  left: 425px;
+  top: 60px;
+  left: 420px;
   //background: lightgrey;
-  position: fixed;
+  position: absolute;
   width: calc(100vw - 435px);
-  height: calc(100vh - 100px);
+  height: calc(100vh - 110px);
   display: flex;
   .col-1-1 {
     //border-top: 1px solid #000;
