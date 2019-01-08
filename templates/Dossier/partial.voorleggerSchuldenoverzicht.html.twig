@@ -38,7 +38,6 @@
                             <th>Schuldeiser</th>
                             <th>Referentie</th>
                             <th>Type</th>
-                            <th>Contactdatum</th>
                             <th style="text-align: right">Schuld</th>
                         </tr>
                         </thead>
@@ -52,7 +51,6 @@
                                 </th>
                                 <td>{{ schuldItem.referentie }}</td>
                                 <td>{{ schuldItem.type }}</td>
-                                <td>{{ schuldItem.vaststelDatum is not empty ? schuldItem.vaststelDatum|date('d-m-Y') : '-' }}</td>
                                 <td align="right">&euro;&nbsp;{{ schuldItem.bedrag|number_format(2, ',', '.') }}</td>
                             </tr>
                         {% endfor %}
