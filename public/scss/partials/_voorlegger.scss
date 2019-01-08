@@ -651,6 +651,9 @@
       margin: 0;
     }
   }
+  h4 + .form-row label {
+    display: none;
+  }
 }
 
 .dossier__voorlegger__sectie__close {

@@ -119,7 +119,7 @@
 
                     {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': (schuldItem.incassant ? schuldItem.incassant.bedrijfsnaam ~ ' - ' : '') ~ schuldItem.schuldeiser.bedrijfsnaam|default('-')} only %}
                     {% include 'partial.files-list.html.twig' with {'dossierDocumenten': schuldItem.dossierDocumenten, 'removeFile': form.removeFile} only %}
-                    {{ form_row(form.aantekening) }}
+                    <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}
                     {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': schuldItem.aantekeningen} only %}
 
 

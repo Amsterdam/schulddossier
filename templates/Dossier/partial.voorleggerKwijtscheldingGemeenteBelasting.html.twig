@@ -38,7 +38,7 @@
                 {{ form_row(form.corrigerenGemeenteBelasting) }}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kwijtschelding gemeente belasting'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
-                {{ form_row(form.aantekening) }}
+                <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}
                 {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('kwijtscheldingGemeenteBelasting')} only %}
             </div>
             {% include 'Dossier/partial.documentViewer.html.twig' %}
