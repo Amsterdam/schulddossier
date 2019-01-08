@@ -23,8 +23,8 @@
     font-size: $fs-default;
     padding: 0 25px;
   }
-  .form-changed & .in-progress button[type="submit"],
-  button[type="submit"] {
+  .form-changed & .in-progress .dossier__save,
+  .dossier__save {
 
     background: #fff;
     color: grey;
@@ -40,6 +40,24 @@
     cursor: pointer;
     pointer-events: auto;
     color: #fff;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    width: calc(100% - 425px);
+    height: 1px;
+    right: 0;
+    background-color: $borderColor2;
+    top: 50px;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    width: 370px;
+    height: 1px;
+    left: 50px;
+    background-color: $borderColor2;
+    top: 50px;
   }
 }
 
@@ -333,7 +351,7 @@
       opacity: 0;
       pointer-events: none;
     }
-    .naam {
+    .naam a {
       opacity: .3;
     }
     .nvt-toggle {
@@ -380,8 +398,9 @@
   line-height: 40px;
   margin: 0;
   z-index: 4;
-  margin-left: 10px;
+  margin-left: 2px;
   padding: 1px 1px 1px 15px;
+  width: 381px;
   a {
 
   }
@@ -467,6 +486,7 @@
   left: 5px;
   top: 0;
   padding-top: 245px;
+  pointer-events: none;
   &:before {
     content: '';
     width: $voorleggerMaxWidth;
@@ -483,6 +503,9 @@
     top: 208px;
     left: 50px;
   }
+  & > * {
+    pointer-events: auto;
+  }
 }
 
 .dossier__scroll-container {
@@ -490,8 +513,7 @@
   overflow-y: auto;
   background-color: $lightColor2;
   height: 100%;
-  width: 100%;
-  overflow-x: visible;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 }
@@ -500,7 +522,8 @@
   direction: ltr;
   //position: relative;
   width: $voorleggerMaxWidth;
-  padding-right: 7px;
+  width: 408px;
+  padding-right: 14px;
   padding-bottom: 150px;
 }
 
@@ -517,17 +540,21 @@
     border-style: solid;
     border-right: none;
     background-color: white;
-    &:before {
-      content: '';
-      background: white;
-      position: absolute;
-      right: -6px;
-      top: -1px;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #000;
-      width: 7px;
-      height: 42px;
-    }
+    width: 402px;
+    //&:before {
+    //  content: '';
+    //  background: white;
+    //  position: absolute;
+    //  right: -31px;
+    //  top: -1px;
+    //  border-top: 1px solid #000;
+    //  border-bottom: 1px solid #000;
+    //  width: 25px;
+    //  height: 42px;
+    //}
+  }
+  .voorlegger-header {
+    margin-right: 21px;
   }
 }
 
@@ -607,9 +634,6 @@
   padding: 20px 10% 40px;
   overflow-y: auto;
   height: calc(100vh - 260px);
-  & > .form-row {
-    margin-bottom: 0;
-  }
   h4 {
     margin-top: 40px;
     margin-bottom: 20px;
@@ -617,7 +641,7 @@
   & > *:nth-last-child(1),
   & > *:nth-last-child(2) {
     label {
-      display: none;
+      //display: none;
     }
     .label-widget {
       display: block;
@@ -625,7 +649,6 @@
     }
     .aantekening-form-row {
       margin: 0;
-      //width: 100%;
     }
   }
 }
@@ -650,17 +673,18 @@
 }
 
 .dossier__header {
-  height: 200px;
+  height: 180px;
   position: relative;
   padding-left: 50px;
-  padding-top: 50px;
+  padding-top: 70px;
   max-width: 375px;
-  z-index: 1;
-
+  p {
+    margin: 0;
+  }
   .nav-internal {
     position: absolute;
     top: 5px;
-    left: 35px;
+    left: 40px;
     margin: 0;
     background: transparent;
     a {
@@ -669,6 +693,7 @@
 
   }
   .nav-internal.actions {
+    margin: 10px 0 0;
     position: relative;
     left: 0;
     top: 0;
