@@ -219,8 +219,7 @@ form {
       position: absolute;
       right: 1px;
       bottom: 1px;
-      margin-bottom: 1.5rem;
-      line-height: 2;
+      line-height: 2.9em;
       padding: 0 1em;
       background-color: rgba(#fff, 1);
       border-left: 1px solid rgba(#000, .1);
@@ -424,7 +423,7 @@ form {
         border: 3px solid #F00;
         margin-top: 1px;
         width: 20px;
-        height: 20px;
+        height: 42px;
       }
       &[type="date"], &[type="text"], &[type="password"], &[type="email"] {
       }
@@ -702,26 +701,26 @@ form {
     right: 0;
 
     background-color: rgba(#fff, 1);
-    box-shadow: 0 0 5px 0 rgba(#000, .2);
+    //box-shadow: 0 0 5px 0 rgba(#000, .2);
 
     transition: all .3s;
     bottom: -100px;
+    pointer-events: none;
+    filter: grayscale(1);
+    opacity: .5;
 
     .js & {
-      position: fixed;
+      //position: fixed;
     }
 
   }
 
-  &.form-changed .form-global-buttons {
-    position: fixed;
-    bottom: 0;
-    padding: $padding / 2 $padding;
-    .buttons {
-      margin: 0 $padding;
-    }
-  }
 
+}
+.form-changed .form-global-buttons {
+  pointer-events: auto;
+  filter: none;
+  opacity: 1;
 }
 
 @keyframes progress {
