@@ -430,7 +430,6 @@
           fileContainer.classList.add('drop-over');
         }
 
-
         if (!zone) return;
         if (currentZone != zone) {
           if (currentZone) currentZone.classList.remove('drop-over');
@@ -441,7 +440,6 @@
       var _out = function (e) {
       };
       var _drop = function (e) {
-
         if (currentZone) {
           currentZone.classList.remove('drop-over');
           currentZone = false;
@@ -453,6 +451,7 @@
         }
 
         if (d.classList.contains('sort-mode')) return;
+        console.log('drop');
 
         var files = e.dataTransfer.files;
         var zone = (e && e.target) && _closest(e.target, '.dossier__item');
@@ -898,10 +897,10 @@
 
       d.classList.add(formChangedClass);
 
-      if (!form.changed) {
+      if (form.changed === undefined) {
         form.changed = true;
         w.onbeforeunload = function () {
-          if (d.querySelectorAll('.' + formChangedClass).length) {
+          if (document.querySelectorAll('.' + formChangedClass).length) {
             return 'Je hebt nog niet opgeslagen wijzigingen. Deze zullen verloren gaan als je niet eerst je wijzigingen opslaat';
           }
         }
@@ -1006,7 +1005,7 @@
                 return;
               }
 
-              zone.classList.add('active');
+              location.hash = zone.getAttribute('id');
 
               var lastFile = file ? [file] : zone.querySelectorAll('.file-container.active:not(.has-file) .drop-area')
 
