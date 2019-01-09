@@ -646,6 +646,9 @@
           container.resultCard.innerHTML = '';
           container.resultInput.value = parseInt(itemElem.dataset.id);
           container.resultCard.appendChild(itemElemClone);
+          if (container.querySelector('.errors')){
+            container.querySelector('.errors').style.display = 'none';
+          }
           helpers.trigger(container.resultInput, 'change');
           cleanupResultContainer();
           e.preventDefault();
