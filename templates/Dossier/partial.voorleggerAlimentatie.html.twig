@@ -2,7 +2,7 @@
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('alimentatie') %}
 
 <div class="dossier__item {{ dossier.voorlegger.alimentatieNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.alimentatieOntvangenMadi }} status-gka-{{ dossier.voorlegger.alimentatieOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-alimentatie"
-     data-hashevent="activate-section" data-decorator="set-callback" data-keyupper="section-document-nav">
+     data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
         <div class="voorlegger-header">
             <h3 class="naam">
