@@ -1,73 +1,75 @@
-<div class="dossier__voorlegger__body" id="schuldItem-nieuw">
-    {{ form_start(createForm, {'attr': {'data-submitter': 'save', 'data-form-changed-selector': 'create-form-changed', 'data-result-selector': '.dossier', 'data-submitter-callback': '#schulditem-nieuw', 'data-changer': 'change', 'autocomplete': 'off'}}) }}
-    <div class="dossier__voorlegger__sectie">
-        <div class="dossier__voorlegger__sectie__header">
-            <h3>Nieuwe schuld</h3>
-            <button type="submit" class="button primary">Nieuwe schuld opslaan</button>
-        </div>
-        <div class="dossier__voorlegger__sectie__body">
+<div class="dossier__item">
+    <div class="dossier__voorlegger__body" id="schuldItem-nieuw" data-decorator="droppable">
+        {{ form_start(createForm, {'attr': {'data-submitter': 'save', 'data-form-changed-selector': 'create-form-changed', 'data-result-selector': '.dossier', 'data-submitter-callback': '#schulditem-nieuw', 'data-changer': 'change', 'autocomplete': 'off'}}) }}
+        <div class="dossier__voorlegger__sectie">
+            <div class="dossier__voorlegger__sectie__header">
+                <h3>Nieuwe schuld</h3>
+                <button type="submit" class="button primary">Nieuwe schuld opslaan</button>
+            </div>
+            <div class="dossier__voorlegger__sectie__body">
 
-            <div id="nieuwe-schuld-toevoegen" class="">
-                <div class="schulditem-body">
-                    <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete">
-                        <div class="column">
-                            <label for="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}">Schuldeiser</label>
-                            <div class="group">
-                                <input type="text"
-                                       id="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}"
-                                       placeholder="Zoek een schuldeiser" autocomplete="off">
-                                <div class="search-result-container"></div>
-                                <i class="icon-search"></i>
-                                {{ form_row(createForm.schuldeiser) }}
+                <div id="nieuwe-schuld-toevoegen" class="">
+                    <div class="schulditem-body">
+                        <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete">
+                            <div class="column">
+                                <label for="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}">Schuldeiser</label>
+                                <div class="group">
+                                    <input type="text"
+                                           id="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}"
+                                           placeholder="Zoek een schuldeiser" autocomplete="off">
+                                    <div class="search-result-container"></div>
+                                    <i class="icon-search"></i>
+                                    {{ form_row(createForm.schuldeiser) }}
+                                </div>
+
                             </div>
-
-                        </div>
-                        <div class="column">
+                            <div class="column">
                                 <div class="result-container"></div>
+                            </div>
+
+
                         </div>
-
-
-                    </div>
-                    <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete">
-                        <div class="column">
-                            <label for="incassant-helper-{{ createForm.incassant.vars.id }}">Incassant</label>
-                            <div class="group">
-                                <input type="text"
-                                       id="incassant-helper-{{ createForm.incassant.vars.id }}"
-                                       placeholder="Zoek een incassant" autocomplete="off">
-                                <div class="search-result-container"></div>
-                                <i class="icon-search"></i>
-                                {{ form_row(createForm.incassant) }}
+                        <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete">
+                            <div class="column">
+                                <label for="incassant-helper-{{ createForm.incassant.vars.id }}">Incassant</label>
+                                <div class="group">
+                                    <input type="text"
+                                           id="incassant-helper-{{ createForm.incassant.vars.id }}"
+                                           placeholder="Zoek een incassant" autocomplete="off">
+                                    <div class="search-result-container"></div>
+                                    <i class="icon-search"></i>
+                                    {{ form_row(createForm.incassant) }}
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="result-container"></div>
                             </div>
                         </div>
-                        <div class="column">
-                            <div class="result-container"></div>
+                        <div class="columns">
+                            <div class="column">
+                                {{ form_row(createForm.bedrag, {'attr': {'data-unit': '€'}}) }}
+                                {{ form_row(createForm.type) }}
+                                {{ form_row(createForm.referentie) }}
+                            </div>
+                            <div class="column">
+                                {{ form_row(createForm.vastStelDatum) }}
+                                {{ form_row(createForm.ontstaansDatum) }}
+                            </div>
                         </div>
+
+                        {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
+                        {% do createForm.removeFile.setRendered() %}
+
+                        {{ form_row(createForm.aantekening) }}
+
+                        {% do createForm.verwijderd.setRendered() %}
+
                     </div>
-                    <div class="columns">
-                        <div class="column">
-                            {{ form_row(createForm.bedrag, {'attr': {'data-unit': '€'}}) }}
-                            {{ form_row(createForm.type) }}
-                            {{ form_row(createForm.referentie) }}
-                        </div>
-                        <div class="column">
-                            {{ form_row(createForm.vastStelDatum) }}
-                            {{ form_row(createForm.ontstaansDatum) }}
-                        </div>
-                    </div>
-
-                    {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
-                    {% do createForm.removeFile.setRendered() %}
-
-                    {{ form_row(createForm.aantekening) }}
-
-                    {% do createForm.verwijderd.setRendered() %}
 
                 </div>
-
             </div>
+            {% include 'Dossier/partial.documentViewer.html.twig' %}
         </div>
-        {% include 'Dossier/partial.documentViewer.html.twig' %}
+        {{ form_end(createForm) }}
     </div>
-    {{ form_end(createForm) }}
 </div>
