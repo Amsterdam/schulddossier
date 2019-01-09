@@ -45,7 +45,9 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
         $user = $this->tokenStorage->getToken()->getUser();
 
         if ($user->getType() === Gebruiker::TYPE_ONBEKEND) {
-            return new Response($this->templateEngine->render('AccessDenied/account-not-ready.twig'), Response::HTTP_FORBIDDEN);
+            return new Response($this->templateEngine->render('Security/accessDenied.html.twig', [
+                'message' => 'Gebruikerstype is onbekend.',
+            ]), Response::HTTP_FORBIDDEN);
         }
     }
 }
