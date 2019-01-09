@@ -71,7 +71,7 @@ class SchuldItemFormType extends AbstractType
         ]);
         $builder->add('vastStelDatum', DateType::class, [
             'html5' => false,
-            'attr' => ['data-decorator' => 'rome'],
+            'attr' => ['data-decorator' => 'rome', 'data-max' => (new \DateTime('now'))->format("d-m-Y")],
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => 'Contactdatum',

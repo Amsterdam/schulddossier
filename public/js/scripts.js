@@ -586,6 +586,7 @@
       var datepicker = rome(this, {
         'inputFormat': 'DD-MM-YYYY',
         'time': false,
+        'max': this.getAttribute('data-max'),
         'moment': {
           'locale': 'nl'
         }
