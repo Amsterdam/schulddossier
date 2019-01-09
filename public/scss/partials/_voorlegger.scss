@@ -309,7 +309,16 @@
 
   //border: none !important;
   margin-bottom: -1px;
-
+  .dossier > & .dossier__voorlegger__body {
+    pointer-events: auto;
+    opacity: 1;
+    transform: scale(1, 1);
+    z-index: 2;
+    border-color: transparent;
+    .dossier__voorlegger__sectie {
+      background-color: transparent;
+    }
+  }
   .nvt-toggle {
     opacity: .3;
     cursor: pointer;
@@ -474,7 +483,7 @@
     }
   }
   .drop-over & {
-    border: 2px dashed #000;
+    border: 2px dashed #000 !important;
     padding: 0;
   }
 
