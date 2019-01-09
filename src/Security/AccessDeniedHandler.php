@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Security;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Authorization\AccessDeniedHandlerInterface;
-use Twig\Environment;
 
 class AccessDeniedHandler implements AccessDeniedHandlerInterface
 {
@@ -20,15 +20,14 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
     private $tokenStorage;
 
     /**
-     * @var Environment
+     * @var EngineInterface
      */
-    private $twigEnvironment;
+    private $templateEngine;
 
-    public function __construct(TokenStorageInterface $tokenStorage, Environment $twigEnvironment)
+    public function __construct(TokenStorageInterface $tokenStorage, EngineInterface $templateEngine)
     {
-
         $this->tokenStorage = $tokenStorage;
-        $this->twigEnvironment = $twigEnvironment;
+        $this->templateEngine = $templateEngine;
     }
 
     /**
@@ -46,7 +45,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
         $user = $this->tokenStorage->getToken()->getUser();
 
         if ($user->getType() === Gebruiker::TYPE_ONBEKEND) {
-            return new Response($this->twigEnvironment->render('AccessDenied/account-not-ready.twig'), Response::HTTP_FORBIDDEN);
+            return new Response($this->templateEngine->render('AccessDenied/account-not-ready.twig'), Response::HTTP_FORBIDDEN);
         }
     }
 }
