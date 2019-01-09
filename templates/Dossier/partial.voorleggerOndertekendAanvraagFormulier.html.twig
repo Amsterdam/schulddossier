@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('ondertekendAanvraagFormulier') %}
 
-<div class="dossier__item status-madi-{{ dossier.voorlegger.ondertekendAanvraagFormulierOntvangenMadi }} status-gka-{{ dossier.voorlegger.ondertekendAanvraagFormulierOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-ondertekendAanvraagFormulier"
+<div class="dossier__item
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.ondertekendAanvraagFormulierOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.ondertekendAanvraagFormulierOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-ondertekendAanvraagFormulier"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 

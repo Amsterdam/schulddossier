@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('stabilisatieovereenkomst') %}
 
-<div class="dossier__item {{ dossier.voorlegger.stabilisatieovereenkomstNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.stabilisatieovereenkomstOntvangenMadi }} status-gka-{{ dossier.voorlegger.stabilisatieovereenkomstOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-stabilisatieovereenkomst"
+<div class="dossier__item {{ dossier.voorlegger.stabilisatieovereenkomstNvt ? ' status-nvt' }}
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.stabilisatieovereenkomstOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.stabilisatieovereenkomstOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-stabilisatieovereenkomst"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 

@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('meterstandenEnergie') %}
 
-<div class="dossier__item {{ dossier.voorlegger.meterstandenEnergieNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.meterstandenEnergieOntvangenMadi }} status-gka-{{ dossier.voorlegger.meterstandenEnergieOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-meterstandenEnergie"
+<div class="dossier__item {{ dossier.voorlegger.meterstandenEnergieNvt ? ' status-nvt' }}
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.meterstandenEnergieOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.meterstandenEnergieOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-meterstandenEnergie"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 

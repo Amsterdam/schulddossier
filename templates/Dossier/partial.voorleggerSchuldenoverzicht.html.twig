@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('schuldenoverzicht') %}
 
-<div class="dossier__item status-madi-{{ dossier.voorlegger.schuldenoverzichtOntvangenMadi }} status-gka-{{ dossier.voorlegger.schuldenoverzichtOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-schuldenoverzicht"
+<div class="dossier__item
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.schuldenoverzichtOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.schuldenoverzichtOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-schuldenoverzicht"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 

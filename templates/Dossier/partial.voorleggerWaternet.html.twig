@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('waternet') %}
 
-<div class="dossier__item {{ dossier.voorlegger.waternetNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.waternetOntvangenMadi }} status-gka-{{ dossier.voorlegger.waternetOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-waternet"
+<div class="dossier__item {{ dossier.voorlegger.waternetNvt ? ' status-nvt' }}
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.waternetOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.waternetOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-waternet"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 

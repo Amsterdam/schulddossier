@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('retourbewijsModem') %}
 
-<div class="dossier__item {{ dossier.voorlegger.retourbewijsModemNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.retourbewijsModemOntvangenMadi }} status-gka-{{ dossier.voorlegger.retourbewijsModemOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-retourbewijsModem"
+<div class="dossier__item {{ dossier.voorlegger.retourbewijsModemNvt ? ' status-nvt' }}
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.retourbewijsModemOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.retourbewijsModemOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-retourbewijsModem"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 

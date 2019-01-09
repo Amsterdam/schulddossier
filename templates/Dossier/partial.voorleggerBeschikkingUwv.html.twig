@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('beschikkingUwv') %}
 
-<div class="dossier__item {{ dossier.voorlegger.beschikkingUwvNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.beschikkingUwvOntvangenMadi }} status-gka-{{ dossier.voorlegger.beschikkingUwvOntvangenGka }} {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-beschikkingUwv"
+<div class="dossier__item {{ dossier.voorlegger.beschikkingUwvNvt ? ' status-nvt' }}
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.beschikkingUwvOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.beschikkingUwvOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-beschikkingUwv"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 
