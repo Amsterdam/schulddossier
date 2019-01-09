@@ -265,6 +265,43 @@
   };
 
   var decorators = {
+    'track-changes': function () {
+      var self = this,
+        form = _closest(self, 'form'),
+        q = 'input[type="text"], input[type="checkbox"], input[type="file"], input[type="radio"]:checked, textarea',
+        formElements = self.querySelectorAll(q),
+        eventElem = self.querySelectorAll('input, textarea'),
+        radio = self.querySelector('input[type="radio"][name="voorlegger_form[alimentatie][alimentatieOntvangenMadi]"]:checked'),
+        _formChange = function(e){
+          console.log(e);
+          console.log(self.dataset.initialData);
+          console.log(_getData());
+          console.log(self.dataset.initialData === _getData());
+        },
+        _getData = function(){
+          // console.log(self.querySelector('input[type="radio"][name="voorlegger_form[alimentatie][alimentatieOntvangenMadi]"]:checked').value);
+          formElements = self.querySelectorAll(q);
+          return [].map.call(formElements, function( input ) {
+              // console.log(input.type);
+              if (input.type === 'radio'){
+                // console.log(input.value);
+                // console.log(input.name);
+
+                // console.log(input.parentNode.querySelector('input[name="' + input.getAttribute('name') + '"]:checked').value);
+              }else {
+              }
+                return input.value;
+          }).join( '|' );
+        };
+      for(var i = 0; i < eventElem.length; i++){
+        console.log(eventElem[i]);
+        eventElem[i].addEventListener('change', _formChange)
+      }
+      console.log(radio.value);
+      self.dataset.initialData = _getData();
+      self.addEventListener('change', _formChange);
+
+    },
     'bestand-viewer': function () {
       var self = this,
         container = _closest(this, '.dossier__voorlegger__body'),
@@ -1303,11 +1340,14 @@
   }
 
   d.addEventListener('keyup', function (e) {
-    for (var i in keyuppers){
-      if (keyuppers.hasOwnProperty(i)) {
-        var els = document.querySelectorAll('[data-keyupper="' + i + '"]');
-        for (var j = 0; j < els.length; j++){
-          keyuppers[i].call(els[j], e)
+    if (e.target.type === 'textarea' || e.target.type === 'text' || e.target.type === 'number' || e.target.type === 'email'){
+    }else {
+      for (var i in keyuppers){
+        if (keyuppers.hasOwnProperty(i)) {
+          var els = document.querySelectorAll('[data-keyupper="' + i + '"]');
+          for (var j = 0; j < els.length; j++){
+            keyuppers[i].call(els[j], e)
+          }
         }
       }
     }

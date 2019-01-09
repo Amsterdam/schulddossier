@@ -119,6 +119,10 @@
 
     }
 
+    &.prev,
+    &.next {
+      padding: 0;
+    }
     &.prev {
       left: 0;
     }
@@ -155,7 +159,7 @@
       }
     }
     &:hover {
-      background-color: rgba(0, 0, 0, 1);
+      background-color: rgba(0, 0, 0, .3);
     }
   }
   &:hover {

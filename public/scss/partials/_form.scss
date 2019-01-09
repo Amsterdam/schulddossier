@@ -503,6 +503,11 @@ form {
     position: relative;
     text-align: center;
     overflow: hidden;
+    &.activate {
+      .bestand-zoom {
+        display: none;
+      }
+    }
     &.prototype {
       display: none;
     }
