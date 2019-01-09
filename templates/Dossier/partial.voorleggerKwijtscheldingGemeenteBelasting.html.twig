@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('kwijtscheldingGemeenteBelasting') %}
 
-<div class="dossier__item {{ dossier.voorlegger.kwijtscheldingGemeenteBelastingNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.kwijtscheldingGemeenteBelastingOntvangenMadi }} status-gka-{{ dossier.voorlegger.corrigerenGemeenteBelastingOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-kwijtscheldingGemeenteBelasting"
+<div class="dossier__item {{ dossier.voorlegger.kwijtscheldingGemeenteBelastingNvt ? ' status-nvt' }}
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.kwijtscheldingGemeenteBelastingOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.corrigerenGemeenteBelastingOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-kwijtscheldingGemeenteBelasting"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 

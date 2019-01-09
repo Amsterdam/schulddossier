@@ -2,7 +2,13 @@
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('legitimatie') %}
 
 
-<div class="dossier__item status-madi-{{ dossier.voorlegger.legitimatieOntvangenMadi }} status-gka-{{ dossier.voorlegger.legitimatieOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" data-keyupper="section-document-nav"
+<div class="dossier__item
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.legitimatieOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.legitimatieOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" data-keyupper="section-document-nav"
      id="voorlegger-legitimatie" data-hashevent="activate-section">
     <div class="dossier__voorlegger__header">
 

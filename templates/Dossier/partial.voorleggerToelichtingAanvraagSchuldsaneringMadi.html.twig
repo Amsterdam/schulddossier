@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('toelichtingAanvraagSchuldsaneringMadi') %}
 
-<div class="dossier__item status-madi-{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringMadiOntvangenMadi }} status-gka-{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringMadiOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}"
+<div class="dossier__item
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringMadiOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringMadiOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}"
      id="voorlegger-toelichtingAanvraagSchuldsaneringMadi" data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 

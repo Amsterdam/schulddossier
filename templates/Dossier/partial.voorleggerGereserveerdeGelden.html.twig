@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('gereserveerdeGelden') %}
 
-<div class="dossier__item {{ dossier.voorlegger.gereserveerdeGeldenNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.gereserveerdeGeldenOntvangenMadi }} status-gka-{{ dossier.voorlegger.gereserveerdeGeldenOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-gereserveerdeGelden"
+<div class="dossier__item {{ dossier.voorlegger.gereserveerdeGeldenNvt ? ' status-nvt' }}
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.gereserveerdeGeldenOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.gereserveerdeGeldenOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-gereserveerdeGelden"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 

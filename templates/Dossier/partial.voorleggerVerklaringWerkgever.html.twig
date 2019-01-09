@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('verklaringWerkgever') %}
 
-<div class="dossier__item {{ dossier.voorlegger.verklaringWerkgeverNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.verklaringWerkgeverOntvangenMadi }} status-gka-{{ dossier.voorlegger.verklaringWerkgeverOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-verklaringWerkgever"
+<div class="dossier__item {{ dossier.voorlegger.verklaringWerkgeverNvt ? ' status-nvt' }}
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.verklaringWerkgeverOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.verklaringWerkgeverOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-verklaringWerkgever"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 

@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('cjib') %}
 
-<div class="dossier__item {{ dossier.voorlegger.cjibNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.cjibOntvangenMadi }} status-gka-{{ dossier.voorlegger.cjibOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-cjib"
+<div class="dossier__item {{ dossier.voorlegger.cjibNvt ? ' status-nvt' }}
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.cjibOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.cjibOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-cjib"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 

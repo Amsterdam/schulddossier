@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('voorlopigeTeruggaafBelastingdienst') %}
 
-<div class="dossier__item {{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstOntvangenMadi }} status-gka-{{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}"
+<div class="dossier__item {{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstNvt ? ' status-nvt' }}
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.voorlopigeTeruggaafBelastingdienstOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}"
      id="voorlegger-voorlopigeTeruggaafBelastingdienst" data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 

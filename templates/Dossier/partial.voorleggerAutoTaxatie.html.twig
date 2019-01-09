@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('autoTaxatie') %}
 
-<div class="dossier__item {{ dossier.voorlegger.autoTaxatieNvt ? ' status-nvt' }} status-madi-{{ dossier.voorlegger.autoTaxatieOntvangenMadi }} status-gka-{{ dossier.voorlegger.autoTaxatieOntvangenGka }}  {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-autoTaxatie"
+<div class="dossier__item {{ dossier.voorlegger.autoTaxatieNvt ? ' status-nvt' }}
+    {% if app.user.type == 'madi' %}
+    status-madi-{{ dossier.voorlegger.autoTaxatieOntvangenMadi }}
+    {% elseif app.user.type == 'gka' %}
+    status-gka-{{ dossier.voorlegger.autoTaxatieOntvangenGka }}
+    {% endif %}
+    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-autoTaxatie"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 
