@@ -32,3 +32,4 @@ services:
       - IAM_CLIENT_ID=schulddossier
       - IAM_CLIENT_SECRET=xxxx
       - IAM_URL=https://acc.iam.amsterdam.nl/auth/realms/schulddossier
+      - IAM_LOGOUT_URL=https://acc.iam.amsterdam.nl/auth/realms/schulddossier/protocol/openid-connect/logout
