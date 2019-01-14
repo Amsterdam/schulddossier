@@ -74,6 +74,8 @@
     padding: $padding / 2;
     margin-top: 7rem;
     z-index: 4;
+    height: calc(100% - 7.75rem);
+    overflow-y: scroll;
     &:empty {
       display: flex;
       align-items: center;
