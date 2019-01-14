@@ -32,12 +32,10 @@
               <label class="file-selector">
                   <input type="file" name="file" accept="application/pdf">
               </label>
-              <a class="bestand-zoom" href="#" data-handler="prepare-pdf bestand">Gescand document</a>
+              <div class="pdfsplitter__label">
+                <a href="#pdfsplitter" data-handler="global-toggle" data-toggle-class="splitter-active" data-decorator="droppable"><i class="icon-splitsen"></i>pdf splitsen</a>
+              </div>
           </aside>
-
-          <p class="pdf-splitter-trigger">
-            <a href="#pdfsplitter" data-handler="global-toggle" data-toggle-class="splitter-active"><i class="icon-splitsen"></i>pdf splitsen</a>
-          </p>
         {% endblock %}
 
         <header class="top">
