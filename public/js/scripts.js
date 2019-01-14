@@ -455,10 +455,17 @@
         e.stopPropagation();
       }
       var _over = function (e) {
-
         var zone = (e && e.target) && _closest(e.target, '.dossier__item');
         var fileContainer = (e && e.target) && _closest(e.target, '.file-container');
+        var splitter = (e && e.target) && _closest(e.target, '.pdf-splitter');
+        var dropOver = document.querySelectorAll('.drop-over');
 
+
+        if(splitter){
+          splitter.classList.add('drop-over');
+        }else {
+          d.querySelector('.pdf-splitter').classList.remove('drop-over');
+        }
         if (fileContainer) {
           var els = d.querySelectorAll('.file-container.drop-over');
           for (var i = 0; i < els.length; i++) {
@@ -494,12 +501,16 @@
         var zone = (e && e.target) && _closest(e.target, '.dossier__item');
         var form = (e && e.target) && _closest(e.target, 'form');
         var changer = (e && e.target) && _closest(e.target, '[data-changer]');
+        var splitter = (e && e.target) && _closest(e.target, '.pdf-splitter'),
+          body = d.querySelector('body');
 
+        if(splitter){
+          body.classList.add('splitter-active');
+        }
 
         if (!files || !files.length) return;
 
         if (zone) location.hash = zone.getAttribute('id');
-        // if (zone) zone.classList.add('active');
 
         if (form) {
           // create new file zone
