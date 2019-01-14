@@ -46,7 +46,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
 
         if ($user->getType() === Gebruiker::TYPE_ONBEKEND) {
             return new Response($this->templateEngine->render('Security/accessDenied.html.twig', [
-                'message' => 'Gebruikerstype is onbekend.',
+                'message' => 'Gebruikerstype is onbekend. [' . $user->getEmail() . ']',
             ]), Response::HTTP_FORBIDDEN);
         }
     }
