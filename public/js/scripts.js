@@ -1,7 +1,35 @@
 !function (w, d) {
 
   var handlers = {
+      'accordion': function (e) {
+          e && e.preventDefault();
+          var self = this,
+            container = _closest(self, self.dataset.container),
+            transition = 'max-height 0.5s cubic-bezier(0.900, 0.000, 0.100, 1.000)',
+            stateClass = this.dataset.stateClass || 'accordion-active',
+            active = container.classList.contains(stateClass);
 
+          container.body = container.querySelector('.accordion__body');
+          container.body.style.transition = 'none';
+          container.body.style.maxHeight = 200000 + 'px';
+          var h = container.body.offsetHeight;
+          if (active){
+            container.body.style.maxHeight = h + 'px';
+          }else {
+            container.body.style.maxHeight = '0';
+          }
+          container.classList[active ? 'remove' : 'add'](stateClass);
+          window.clearTimeout(container.timeout);
+          container.timeout = setTimeout(function() {
+            container.body.style.transition = transition;
+            if (active){
+              container.body.style.maxHeight = '0';
+            }else {
+              container.body.style.maxHeight = h + 'px';
+            }
+           }, 10);
+          helpers.trigger(self, 'change');
+      },
     'status-changer': function(e){
       var self = this,
         val = self.dataset.id,
@@ -265,6 +293,84 @@
   };
 
   var decorators = {
+    'img-cover-batch': function(){
+        var self = this,
+          fitType = 'cover',
+          imgElements = self.querySelectorAll('img');
+        if (!('remove' in Element.prototype)) {
+            Element.prototype.remove = function () {
+                if (this.parentNode) {
+                    this.parentNode.removeChild(this);
+                }
+            };
+        }
+        for (var i = 0; i < imgElements.length; i++){
+          var img = imgElements[i],
+            parent = img.parentNode;
+          parent.style.backgroundImage = 'url("' + img.getAttribute('src') + '")';
+          parent.style.backgroundSize = fitType;
+          parent.style.backgroundPosition = 'center center';
+          parent.style.backgroundRepeat = 'no-repeat';
+          parent.style.display = 'block';
+          parent.removeChild(img);
+        }
+    },
+    'release-notes': function(){
+      var storageKey = 'release-notes-seen',
+        allNotSeenClass = 'release-notes-not-seen',
+        notseenClass = 'release-note-not-seen',
+        notes = document.querySelectorAll('.release-note'),
+        _checkSeenAll = function(){
+          var allDone = _getStorage()['all'];
+          document.body.classList[!allDone ? 'add' : 'remove'](allNotSeenClass);
+        },
+        _getStorage = function(){
+          if (window.localStorage) {
+            return JSON.parse(window.localStorage.getItem(storageKey) || '{}');
+          }
+        },
+        _addNote = function(note, noteId){
+          if (window.localStorage){
+            var releaseNotesSeen = _getStorage();
+            releaseNotesSeen[noteId] = true;
+            if (Object.keys(releaseNotesSeen).length >= notes.length){
+              releaseNotesSeen['all'] = true;
+            }
+            window.localStorage.setItem('release-notes-seen', JSON.stringify(releaseNotesSeen));
+          }else {
+            console.error('Je browser ondersteunt geen localstorage!');
+          }
+          note && note.classList.remove(notseenClass);
+          _checkSeenAll();
+        },
+        _hasNote = function(noteId){
+          if (window.localStorage){
+            var releaseNotesSeen = JSON.parse(window.localStorage.getItem(storageKey) || '{}');
+            return releaseNotesSeen[noteId];
+          }
+          return false;
+        },
+        _onChange = function(e){
+          var self = this;
+          if (_closest(e.target, '.accordion').classList.contains(self.dataset.listenClass)){
+            helpers.ajax({
+              'type': 'get',
+              'url': self.dataset.url
+            });
+            window.clearTimeout(self.rnTimeout);
+            self.rnTimeout = setTimeout(function(){
+              _addNote(self, self.dataset.releaseNoteId);
+            }, 4000);
+          }else {
+            window.clearTimeout(self.rnTimeout);
+          }
+        };
+      for (var i = 0; i < notes.length; i++){
+        notes[i].classList[_hasNote(notes[i].dataset.releaseNoteId) ? 'remove' : 'add'](notseenClass);
+        notes[i].addEventListener('change', _onChange);
+      }
+      _checkSeenAll();
+    },
     'track-changes': function () {
       var self = this,
         form = _closest(self, 'form'),
@@ -300,6 +406,11 @@
       console.log(radio.value);
       self.dataset.initialData = _getData();
       self.addEventListener('change', _formChange);
+
+    },
+    'accordion': function(){
+      var self = this;
+
 
     },
     'bestand-viewer': function () {
