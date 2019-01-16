@@ -7,6 +7,7 @@ html, body, h1, h2, h3, h4, h5, h6, fieldset, figure, blockquote, dl, dt, dd {
 html {
 	background-color: $lightColor;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {

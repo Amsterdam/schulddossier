@@ -1,0 +1,24 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Help / Handleiding{% endblock %}
+
+{% block pdfsplitter %}{% endblock %}
+
+{% block document %}
+
+    <div class="document well">
+      <div class="document-header">
+        <h1 class="document-title">Handleiding Schulddossier</h1>
+        <p>Om bekend te raken met Schulddossier kan je hier meer informatie vinden.</p>
+      </div>
+        <ul class="image-list image-list--coll-4"  data-decorator="img-cover-batch">
+            <li>
+                <a href="/pdf/Schulddossier Handleiding - Algemeen.pdf" target="_blank" title="Download Handleiding"><img src="/images/release-notes/handleiding.jpg"></a>
+            </li>
+            <li>
+                <a href="/pdf/Schulddossier Quick Guide.pdf" target="_blank" title="Download Schulddossier Quick Guide"><img
+                            src="/images/release-notes/quickguide.jpg"></a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

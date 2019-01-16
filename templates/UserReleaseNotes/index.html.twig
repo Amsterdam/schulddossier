@@ -1,0 +1,28 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Release notes{% endblock %}
+
+{% block pdfsplitter %}{% endblock %}
+
+{% block document %}
+
+    <div class="document well">
+        <h1>Versies Schulddossier</h1>
+        <p>Het programma Schulddossier wordt vrijwel voortdurend aangepast en verbeterd. Bij de ‘uitrol’ van elke nieuwe versie zijn deze veranderingen voor jou zichtbaar. Hieronder een overzicht met versies en welke veranderingen daarbij horen.</p>
+        <div class="accordion__list release-notes">
+        {% for tmpl in templates %}
+            <div class="accordion release-note" data-release-note-id="{{ tmpl.id }}" data-listen-class="accordion-active" data-url="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_releasenoteseen', {'ts': tmpl.id }) }}">
+                <a href="#" class="accordion__header" data-handler="accordion" data-container=".accordion">
+                    <h2>{% include 'UserReleaseNotes/' ~ tmpl.title %}</h2>
+                    <span class="release-notes__nieuw__icon"></span>
+                </a>
+                <div class="accordion__body">
+                    <div class="accordion__content">
+                    {% include 'UserReleaseNotes/' ~ tmpl.content %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
