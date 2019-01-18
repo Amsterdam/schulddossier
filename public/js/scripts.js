@@ -463,6 +463,10 @@
 
         if(splitter){
           splitter.classList.add('drop-over');
+          window.clearTimeout(splitter.dropOverTO);
+          splitter.dropOverTO = setTimeout(function () {
+            splitter.classList.remove('drop-over');
+          }, 2000);
         }else {
           d.querySelector('.pdf-splitter').classList.remove('drop-over');
         }
