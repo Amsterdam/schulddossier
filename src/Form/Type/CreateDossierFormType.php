@@ -48,8 +48,8 @@ class CreateDossierFormType extends AbstractType
                 return $qb;
             },
             'group_by' => function (Gebruiker $gebruiker) {
-                if ($gebruiker->getSchuldhulpbureau() !== null) {
-                    return $gebruiker->getSchuldhulpbureau()->__toString();
+                if ($gebruiker->getSchuldhulpbureaus()->count() > 0) {
+                    return $gebruiker->getSchuldhulpbureaus()->first()->__toString();
                 }
                 return null;
             },

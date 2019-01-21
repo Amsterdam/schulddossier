@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Serializable;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
@@ -93,11 +94,14 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     private $teamGka;
 
     /**
-     * @var Schuldhulpbureau
-     * @ORM\ManyToOne(targetEntity="Schuldhulpbureau")
-     * @ORM\JoinColumn(name="schuldhulpbureau_id", referencedColumnName="id", nullable=true)
+     * @var Schuldhulpbureau[]|ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Schuldhulpbureau")
+     * @ORM\JoinTable(
+     *  joinColumns={@ORM\JoinColumn(name="gebruiker_id", referencedColumnName="id")},
+     *  inverseJoinColumns={@ORM\JoinColumn(name="schuldhulpbureau_id", referencedColumnName="id")}
+     * )
      */
-    private $schuldhulpbureau;
+    private $schuldhulpbureaus;
 
     /**
      * @var boolean
@@ -108,6 +112,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     public function __construct()
     {
         $this->enabled = true;
+        $this->schuldhulpbureaus = new ArrayCollection();
     }
 
     /**
@@ -239,14 +244,28 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
         $this->teamGka = $teamGka;
     }
 
-    public function getSchuldhulpbureau()
+    public function getSchuldhulpbureaus()
     {
-        return $this->schuldhulpbureau;
+        return $this->schuldhulpbureaus;
     }
 
-    public function setSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau = null)
+    public function addSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau)
     {
-        $this->schuldhulpbureau = $schuldhulpbureau;
+        if ($this->hasSchuldhulpbureau($schuldhulpbureau) === false) {
+            $this->schuldhulpbureaus->add($schuldhulpbureau);
+        }
+    }
+
+    public function hasSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau)
+    {
+        return $this->schuldhulpbureaus->contains($schuldhulpbureau);
+    }
+
+    public function removeSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau)
+    {
+        if ($this->hasSchuldhulpbureau($schuldhulpbureau) === true) {
+            $this->schuldhulpbureaus->removeElement($schuldhulpbureau);
+        }
     }
 
     public function isAccountNonExpired()

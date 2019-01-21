@@ -63,7 +63,7 @@ class AppDossierController extends Controller
         $repository = $em->getRepository(Dossier::class);
 
         $maxPageSize = 20;
-        $schuldhulpbureau = null;
+        $schuldhulpbureaus = null;
 
         $section2status = [
             'madi' => ['bezig_madi', 'compleet_madi', 'gecontroleerd_madi', 'verzonden_madi'],
@@ -74,20 +74,19 @@ class AppDossierController extends Controller
         $section = $request->query->get('section', $this->getUser()->getType() === Gebruiker::TYPE_GKA ? 'gka' : 'madi');
 
         if ($authChecker->isGranted('ROLE_MADI')) {
-            if (empty($this->getUser()->getSchuldhulpbureau())) {
+            if ($this->getUser()->getSchuldhulpbureaus()->count() === 0) {
                 return $this->render('Security/accessDenied.html.twig', [
                     'message' => 'Gebruiker is niet gekoppeld aan een schuldhulpbureau.',
                 ]);
             }
-            /** @var Schuldhulpbureau $schuldhulpbureau */
-            $schuldhulpbureau = $this->getUser()->getSchuldhulpbureau();
+            $schuldhulpbureaus = $this->getUser()->getSchuldhulpbureaus();
         }
 
         $seachQuery = [
             'section' => $section,
             'naam' => '',
             'status' => $section2status[$section],
-            'schuldhulpbureau' => $schuldhulpbureau,
+            'schuldhulpbureau' => $schuldhulpbureaus,
             'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
         ];
@@ -154,8 +153,8 @@ class AppDossierController extends Controller
         $dossier = new Dossier();
         $dossier->setAanmaker($this->getUser());
         $dossier->setMedewerkerSchuldhulpbureau($this->getUser());
-        $dossier->setSchuldhulpbureau($this->getUser()->getSchuldhulpbureau());
-        $dossier->setTeamGka($this->getUser()->getSchuldhulpbureau() !== null ? $this->getUser()->getSchuldhulpbureau()->getStandaardGkaTeam() : null);
+        $dossier->setSchuldhulpbureau($this->getUser()->getSchuldhulpbureaus()->count() > 0 ? $this->getUser()->getSchuldhulpbureaus()->first() : null);
+        $dossier->setTeamGka($this->getUser()->getSchuldhulpbureaus()->count() > 0 ? $this->getUser()->getSchuldhulpbureaus()->first()->getStandaardGkaTeam() : null);
         $dossier->setDossierTemplate('v1');
         $dossier->setStatus('bezig_madi');
         $form = $this->createForm(CreateDossierFormType::class, $dossier);

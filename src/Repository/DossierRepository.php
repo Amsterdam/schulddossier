@@ -7,6 +7,7 @@ use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
 use GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions\Levenshtein;
+use Doctrine\Common\Collections\Collection;
 
 class DossierRepository extends EntityRepository
 {
@@ -49,7 +50,7 @@ class DossierRepository extends EntityRepository
         $query = array_merge([
             'naam' => null,
             'status' => [],
-            'schuldhulpbureau' => null,
+            'schuldhulpbureaus' => null,
             'medewerkerSchuldhulpbureau' => null,
             'teamGka' => null,
         ], $query);
@@ -89,9 +90,17 @@ class DossierRepository extends EntityRepository
             $qb->andWhere($orX);
         }
 
+        if ($query['schuldhulpbureaus'] !== null && count($query['schuldhulpbureaus']) > 0) {
+            $expr = $qb->expr()->orX();
+            foreach (array_values($query['schuldhulpbureaus'] instanceof Collection ? $query['schuldhulpbureaus']->toArray() : []) as $i => $schuldhulpbureau) {
+                $expr->add('dossier.schuldhulpbureau = :schuldhulpbureau_' . $i);
+                $qb->setParameter('schuldhulpbureau_' . $i, $schuldhulpbureau);
+            }
+            $qb->andWhere($expr);
+        }
+
         if ($query['schuldhulpbureau'] !== null) {
-            $qb->andWhere('dossier.schuldhulpbureau = :schuldhulpbureau');
-            $qb->setParameter('schuldhulpbureau', $query['schuldhulpbureau']);
+            @trigger_error('Query for schuldhulpbureau is no longer supported', E_USER_DEPRECATED);
         }
 
         if ($query['medewerkerSchuldhulpbureau'] !== null) {
