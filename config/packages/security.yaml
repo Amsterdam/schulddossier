@@ -11,20 +11,20 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        #app:
+        #    pattern: ^/app
+        #    security: true
+        #    provider: database
+        #    anonymous: true
+        #    form_login:
+        #        login_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
+        #        check_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
+        #        csrf_token_generator: security.csrf.token_manager
+        #    logout:
+        #        path: /app/logout
+        #        target: /
         app:
             pattern: ^/app
-            security: true
-            provider: database
-            anonymous: true
-            form_login:
-                login_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
-                check_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
-                csrf_token_generator: security.csrf.token_manager
-            logout:
-                path: /app/logout
-                target: /
-        oidc:
-            pattern: ^/oidc
             security: true
             anonymous: false
             stateless: false
