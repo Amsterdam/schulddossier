@@ -24,7 +24,7 @@ security:
         #        path: /app/logout
         #        target: /
         app:
-            pattern: ^/app
+            pattern: ^/
             security: true
             anonymous: false
             stateless: false
