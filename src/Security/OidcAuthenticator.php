@@ -153,7 +153,9 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
             $user->setUsername($token->getClaim('email'));
             $user->setEnabled(true);
             $user->setClearPassword(uniqid() . sha1($token->getClaim('email') . time())); // TODO remove this when password is no longer needed
-            $user->setNaam($token->getClaim('name'));
+            if ($token->hasClaim('name')) {
+                $user->setNaam($token->getClaim('name'));
+            }
             $user->setPasswordChangedDateTime(new \DateTime());
             $user->setType(Gebruiker::TYPE_ONBEKEND);
             $this->entityManager->persist($user);
