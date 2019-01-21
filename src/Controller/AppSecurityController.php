@@ -17,13 +17,7 @@ class AppSecurityController extends Controller
      */
     public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
     {
-        $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('Security/login.html.twig', array(
-            'last_username' => $lastUsername,
-            'error' => $error,
-        ));
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
     /**
