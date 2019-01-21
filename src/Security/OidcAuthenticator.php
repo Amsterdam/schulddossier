@@ -78,6 +78,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         $this->logger = $logger;
 
         $this->twig = $twig;
+
     }
 
     public function supports(Request $request)
@@ -87,7 +88,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
             return;
         }
 
-        return $request->attributes->get('_route') === 'gemeenteamsterdam_fixxxschuldhulp_oidc_return';
+        return $request->attributes->get('_route') === 'gemeenteamsterdam_fixxxschuldhulp_appdossier_index';
     }
 
     public function getCredentials(Request $request)
@@ -116,7 +117,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
                 'form_params' => [
                     'grant_type' => 'authorization_code',
                     'code' => $credentials['code'],
-                    'redirect_uri' => $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_oidc_return', [], UrlGeneratorInterface::ABSOLUTE_URL),
+                    'redirect_uri' => $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', [], UrlGeneratorInterface::ABSOLUTE_URL),
                     'client_id' => $this->clientId,
                     'client_secret' => $this->clientSecret,
                 ]]);
@@ -184,7 +185,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
 
         $params = [];
         $params['client_id'] = $this->clientId;
-        $params['redirect_uri'] = $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_oidc_return', [], UrlGeneratorInterface::ABSOLUTE_URL);
+        $params['redirect_uri'] = $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', [], UrlGeneratorInterface::ABSOLUTE_URL);
         $params['response_type'] = 'code';
         $params['scope'] = 'profile email openid';
         $params['state'] = $request->getSession()->getId();

@@ -25,6 +25,7 @@ security:
         #        target: /
         app:
             pattern: ^/
+            access_denied_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\AccessDeniedHandler
             security: true
             anonymous: false
             stateless: false
@@ -32,6 +33,9 @@ security:
                 authenticators:
                     - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
                 entry_point: GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
+            logout:
+                path: /app/logout
+                success_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\LogoutSuccessHandler
         main:
             anonymous: true
     access_control:

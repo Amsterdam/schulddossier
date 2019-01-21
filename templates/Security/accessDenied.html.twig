@@ -1,19 +1,23 @@
 {% extends 'master.html.twig' %}
 
-{% block title %}Logs - {{ parent() }}{% endblock %}
+{% block title %}{{ parent() }}{% endblock %}
 
 {% block pdfsplitter %}{% endblock %}
 
-{% block document %}
+{% block navigation_menu %}
+    {% if app.user %}
+        <li>
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Afmelden
+                <strong>({{ app.user.userName }})</strong></a>
+        </li>
+    {% endif %}
 
+{% endblock %}
+
+{% block document %}
     <div class="document well">
         <div class="document-header group">
             <h1 class="document-title">Beperkt toegang</h1>
-            <nav class="nav-internal">
-                <ul>
-                    <li>Logs</li>
-                </ul>
-            </nav>
         </div>
         <p>Jouw account heeft beperkt toegang tot het Schulddossier. Neem contact op met de applicatiebeheerder.</p>
         <blockquote style="font-style: italic">

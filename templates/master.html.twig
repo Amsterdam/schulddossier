@@ -18,14 +18,14 @@
         <meta name=“theme-color” content=“#ffffff”>
 
         <link type="text/css" rel="stylesheet" href="{{ asset('/css/screen.css') }}">
-    
+
         <script type="text/javascript">!function(a){a.className=a.className.replace(/\bno-js\b/g,'js'),'ontouchstart'in window&&(a.className=a.className.replace(/\bno-touch\b/g,'touch'))}(document.documentElement)</script>
 
         <!-- TODO: USE FONTS FROM AMSTERDAM -->
         <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/0037f97b-b0f6-41de-8f33-75b12c9f76ea.css"/>
     </head>
     <body class="{% block body_classes %}{% endblock %}" data-decorator="restore-splitter">
-      
+
         {% block pdfsplitter %}
           <aside id="pdfsplitter" class="pdf-splitter no-header file-pdf-pages" data-decorator="droppable" data-changer="pdfsplitter">
               <div class="pages"></div>
@@ -52,6 +52,7 @@
                 <a href="#MENU" class="nav-open" data-handler="toggle"><i class="icon-menu"></i><span>Menu</span></a>
                 <nav class="nav" id="MENU">
                   <ul class="menu">
+                      {% block navigation_menu %}
                     {% if is_granted('ROLE_MADI') or is_granted('ROLE_GKA') or is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appdossier_') %} class="active"{% endif %}>Dossiers</a></li>
                         <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_') %} class="active"{% endif %}>Schuldeisers</a></li>
@@ -68,12 +69,13 @@
                         <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Afmelden <strong>({{ app.user.userName }})</strong></a>
                       </li>
                     {% endif %}
+                      {% endblock %}
                   </ul>
                 </nav>
 {% endif %}
               </div>
         </header>
-        
+
         <div class="document-container">
 
 {% for type, messages in app.flashes %}
@@ -96,7 +98,7 @@
         <script type="text/javascript" src="{{ asset('/js/common.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/js/quickViewer.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/js/flashMessage.js') }}"></script>
-        
+
         <script type="text/javascript" src="{{ asset('/js/scripts.js') }}"></script>
     </body>
 </html>

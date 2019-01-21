@@ -149,3 +149,6 @@ services:
             $clientSecret: '%env(IAM_CLIENT_SECRET)%'
             $baseUrl: '%env(IAM_URL)%'
 
+    GemeenteAmsterdam\FixxxSchuldhulp\Security\LogoutSuccessHandler:
+        bind:
+            $url: '%env(IAM_LOGOUT_URL)%'
