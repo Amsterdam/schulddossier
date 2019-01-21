@@ -16,7 +16,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_default_appredirect');
+        return $this->render('Default/index.html.twig');
     }
 
     /**
@@ -29,49 +29,5 @@ class DefaultController extends Controller
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index');
         }
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
-    }
-
-    /**
-     * @Route("/app/mail-test")
-     * @Security("has_role('ROLE_USER')")
-     */
-    public function testAction(Request $request)
-    {
-        $mailer = $this->get('mailer');
-        $from = $this->getParameter('app_mail_from');
-
-        if ($request->query->get('to') !== null) {
-
-            $message = new \Swift_Message();
-            $message->getHeaders()->addTextHeader('X-Application', 'Schuldhulp');
-            $message->addFrom($from);
-            $message->addTo($request->query->get('to'));
-
-            $subject = 'test bericht via schuldhulp ' . date('YmdHis');
-            $txt = 'test bericht via schuldhulp ' . date('YmdHis');
-
-            $message->setSubject($subject);
-            $message->setBody($txt, 'text/plain');
-
-            $mailer->send($message);
-
-            return new Response('Bericht verstuurd');
-        }
-        return new Response('Geen to parameter aangetroffen');
-    }
-
-    /**
-     * @Route("/app/info-test")
-     */
-    public function infoAction(Request $request)
-    {
-        return new JsonResponse([
-            'get' => $_GET,
-            'query' => $request->query->all(),
-            'server' => $_SERVER,
-            'headers' => $request->headers->all(),
-            'clientIps' => $request->getClientIps(),
-            'trustedProxies' => $request->getTrustedProxies()
-        ]);
     }
 }

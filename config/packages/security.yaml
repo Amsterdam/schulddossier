@@ -24,7 +24,7 @@ security:
         #        path: /app/logout
         #        target: /
         app:
-            pattern: ^/
+            pattern: ^/app
             access_denied_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\AccessDeniedHandler
             security: true
             anonymous: false
