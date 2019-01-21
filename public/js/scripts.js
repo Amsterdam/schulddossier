@@ -163,8 +163,8 @@
 
       prototype.addEventListener('filled', function (event) {
         var elm = prototype.querySelector('input[type="text"]');
-        if (elm.value === '' || elm.value === null) {
-          elm.value = prototype.parentNode.getAttribute('data-default-document-naam') + ' ' + (counter + 1 + files.parentNode.querySelectorAll('.bestanden .bestand').length);
+        if ((elm.value === '' || elm.value === null) && (prototype.parentNode.getAttribute('data-default-document-naam'))) {
+          elm.value = (prototype.parentNode.getAttribute('data-default-document-naam')) + ' ' + (counter + 1 + files.parentNode.querySelectorAll('.bestanden .bestand').length);
           elm.focus();
         }
       });
@@ -1025,7 +1025,8 @@
       var
         form = this,
         formChangedClass = this.dataset.formChangedSelector || 'form-changed',
-        submitButton = form.querySelector('button[type="submit"]');
+        submitButton = form.querySelector('button[type="submit"]'),
+        i;
 
       submitButton.setAttribute('disabled', 'disabled');
 
@@ -1033,6 +1034,17 @@
       if (form.request) form.request.abort();
 
       form.classList.add('in-progress');
+
+      // fix: new schuld new document name
+      var bestandInputList = form.querySelectorAll('#nieuwe-schuld-toevoegen .file-container.has-file .bestand-naam input'),
+        defaultDocumentNaam = form.querySelector('[data-default-document-naam]').dataset.defaultDocumentNaam,
+        newDocCounter = 1;
+      for(i = 0; i < bestandInputList.length; i++){
+        if (bestandInputList[i].value.trim() === ''){
+          bestandInputList[i].value = defaultDocumentNaam + ' ' + newDocCounter;
+          newDocCounter++;
+        }
+      }
 
       var data = new FormData(form);
 
@@ -1046,7 +1058,7 @@
 
       var els = form.querySelectorAll('.file-pdf-pages');
 
-      for (var i = 0; i < els.length; i++) {
+      for (i = 0; i < els.length; i++) {
         var pages = els[i].querySelectorAll('.page canvas');
         if (pages.length > 0) {
           var pdf = new jsPDF('portrait', 'mm', 'a4');
@@ -1064,7 +1076,7 @@
 
       }
       if (form.files) {
-        for (var i = 0; i < form.files.length; i++) {
+        for (i = 0; i < form.files.length; i++) {
           data.append(form.files[i].name, form.files[i].file);
         }
       }
@@ -1149,10 +1161,14 @@
     'change': function () {
       var
         form = this,
-        formChangedClass = this.dataset.formChangedSelector || 'form-changed';
-
+        formChangedClass = this.dataset.formChangedSelector || 'form-changed',
+        defaultDocumentNaam = form.querySelector('#nieuwe-schuld-toevoegen .result-container .search-result-item-static span');
 
       d.classList.add(formChangedClass);
+
+      if (defaultDocumentNaam){
+        form.querySelector('#nieuwe-schuld-toevoegen [data-default-document-naam]').dataset.defaultDocumentNaam = defaultDocumentNaam.textContent;
+      }
 
       if (form.changed === undefined) {
         form.changed = true;
@@ -1654,7 +1670,9 @@
   var _decorate = function(){var k,i,j,decoratorString,el,els=d.querySelectorAll('[data-decorator]');for(i=0;i<els.length;i++){for(decoratorString=(el=els[i]).getAttribute('data-decorator').split(/\s+/),j=0;j<decoratorString.length;j++){k=decoratorString[j].split(/[\(\)]/);decorators[k[0]]&&decorators[k[0]].call(el,k[1]);el.removeAttribute('data-decorator')}}};
 
   var _closest=function(e,t){var ms='MatchesSelector',c;['matches','webkit'+ms,'moz'+ms,'ms'+ms,'o'+ms].some(function(e){return'function'==typeof document.body[e]&&(c=e,!0)});var r=e;try{for(;e;){if(r&&r[c](t))return r;e=r=e.parentElement}}catch(e){}return null};
-  
+
+  var _isInt=function(value){return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value));};
+
   function _serialize(form){if(!form||form.nodeName!=="FORM"){return }var i,j,q=[];for(i=form.elements.length-1;i>=0;i=i-1){if(form.elements[i].name===""){continue}switch(form.elements[i].nodeName){case"INPUT":switch(form.elements[i].type){case"text":case"hidden":case"password":case"button":case"reset":case"submit":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"checkbox":case"radio":if(form.elements[i].checked){q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value))}break;case"file":break}break;case"TEXTAREA":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"SELECT":switch(form.elements[i].type){case"select-one":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"select-multiple":for(j=form.elements[i].options.length-1;j>=0;j=j-1){if(form.elements[i].options[j].selected){q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].options[j].value))}}break}break;case"BUTTON":switch(form.elements[i].type){case"reset":case"submit":case"button":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break}break}}return q.join("&")};
 
   var _byteCount = function (s) {return encodeURI(s).split(/%..|./).length - 1;};
