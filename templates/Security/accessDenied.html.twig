@@ -19,7 +19,11 @@
         <div class="document-header group">
             <h1 class="document-title">Beperkt toegang</h1>
         </div>
-        <p>Jouw account heeft geen toegang tot het Schulddossier. Neem contact op met de applicatiebeheerder.</p>
+        <p>Je hebt bijna toegang tot Schulddossier.</p>
+        <p>Het is gelukt om in te loggen, alleen heb je nog geen rol in het schulddossier.<br>
+        Vraag aan de applicatiebeheerder of aan een key-user om je toe te voegen als gebruiker aan het SchuldDossier.</p>
+        <p>Hij/zij heeft hier je e-mailadres voor nodig, dus houd deze bij de hand: {{ app.user.username }}</p>
+        <p>Zodra de applicatiebeheerder of key-user aangeeft dat je als gebruiker bent toegevoegd aan het SchuldDossier kun je via onderstaande knop opnieuw inloggen</p>
         <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Opnieuw inloggen</a></p>
         <blockquote style="font-style: italic">
             {{ message }}

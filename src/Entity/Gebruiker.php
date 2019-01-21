@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Serializable;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 
 /**
  * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
@@ -17,7 +18,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  *  }
  * )
  */
-class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface
+class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, EquatableInterface
 {
     const TYPE_GKA = 'gka';
     const TYPE_MADI = 'madi';
@@ -290,7 +291,9 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface
         return serialize([
             'id' => $this->id,
             'username' => $this->username,
+            'email' => $this->email,
             'password' => $this->password,
+            'type' => $this->type,
             'enabled' => $this->enabled
         ]);
     }
@@ -304,7 +307,9 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface
         $data = unserialize($serialized);
         $this->id = $data['id'];
         $this->username = $data['username'];
+        $this->email = $data['email'];
         $this->password = $data['password'];
+        $this->type = $data['type'];
         $this->enabled = $data['enabled'];
     }
 
@@ -339,5 +344,26 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface
                     ->addViolation();
             }
         }
+    }
+
+    public function isEqualTo(UserInterface $user)
+    {
+        /* @var $user Gebruiker */
+        if ($user->getId() !== $this->getId()) {
+            return false;
+        }
+        if ($user->getEmail() !== $this->getEmail()) {
+            return false;
+        }
+        if ($user->getUsername() !== $this->getUsername()) {
+            return false;
+        }
+        if ($user->getType() !== $this->getType()) {
+            return false;
+        }
+        if ($user->isEnabled() !== $this->isEnabled()) {
+            return false;
+        }
+        return true;
     }
 }
