@@ -45,7 +45,7 @@
                         <td>{{ gebruiker.email }}</td>
                         <td>{{ gebruiker.type }}</td>
                         <td>{{ gebruiker.teamGka }}</td>
-                        <td>{{ gebruiker.schuldhulpbureau }}</td>
+                        <td>{{ gebruiker.schuldhulpbureaus|join(', ') }}</td>
                     </tr>
 {% endfor %}
                </tbody>

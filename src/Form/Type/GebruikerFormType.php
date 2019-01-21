@@ -52,10 +52,10 @@ class GebruikerFormType extends AbstractType
             'multiple' => false,
             'class' => Team::class
         ]);
-        $builder->add('schuldhulpbureau', EntityType::class, [
+        $builder->add('schuldhulpbureaus', EntityType::class, [
             'required' => false,
-            'expanded' => false,
-            'multiple' => false,
+            'expanded' => true,
+            'multiple' => true,
             'class' => Schuldhulpbureau::class
         ]);
         $builder->add('enabled', CheckboxType::class, [

@@ -48,11 +48,11 @@ class SearchDossierFormType extends AbstractType
         ]);
 
         if (!$this->authorizationChecker->isGranted('ROLE_MADI')) {
-            $builder->add('schuldhulpbureau', EntityType::class, [
+            $builder->add('schuldhulpbureaus', EntityType::class, [
                 'required' => false,
                 'class' => Schuldhulpbureau::class,
-                'multiple' => false,
-                'expanded' => false,
+                'multiple' => true,
+                'expanded' => true,
                 'placeholder' => 'Alle schuldhulpbureau\'s'
             ]);
         }
