@@ -69,7 +69,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank
      * @Assert\Length(min=1, max=255)
      */
