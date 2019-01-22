@@ -1549,28 +1549,32 @@
       prevWidth = window.innerWidth,
       interval = 100,
       timer = 0,
-      _checkSize = function () {
-        requestAnimationFrame(_checkSize);
-        if (timer >= interval) {
-          var w = window.innerWidth,
-            h = window.innerHeight;
-          if (w !== prevWidth || h !== prevHeight) {
-            for (var k in sizeChanges) {
-              if (sizeChanges.hasOwnProperty(k)) {
-                var els = document.querySelectorAll('[data-size-change="' + k + '"]');
-                for (var i = 0; i < els.length; i++) {
-                  sizeChanges[k].call(els[i], {'w': w, 'h': h});
+      _onResize = function(e){
+        timer = 0;
+        _checkSize = function () {
+          if (timer >= interval) {
+            var w = window.innerWidth,
+              h = window.innerHeight;
+            if (w !== prevWidth || h !== prevHeight) {
+              for (var k in sizeChanges) {
+                if (sizeChanges.hasOwnProperty(k)) {
+                  var els = document.querySelectorAll('[data-size-change="' + k + '"]');
+                  for (var i = 0; i < els.length; i++) {
+                    sizeChanges[k].call(els[i], {'w': w, 'h': h});
+                  }
                 }
               }
             }
+            prevWidth = w;
+            prevHeight = h;
+          } else {
+            requestAnimationFrame(_checkSize);
+            timer++;
           }
-          prevWidth = w;
-          prevHeight = h;
-          timer = 0;
-        }
-        timer++;
+        };
+        _checkSize();
       };
-    _checkSize();
+    w.addEventListener('resize', _onResize);
   }());
   var _checkHash = function (e) {
     var h = w.location.hash.substr(1);
