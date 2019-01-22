@@ -543,6 +543,10 @@
       btnPrev.addEventListener('click', _prevPage);
       btnZoom.addEventListener('click', _zoom);
 
+      self.addEventListener('height-change', function(e){
+        console.log(e.detail.h);
+      })
+
       for (var i = 0; i < documents.length; i++){
         documents[i].select = _selectDocument;
         documents[i].deselect = _deselectDocument;
@@ -1311,6 +1315,20 @@
 
     }
   };
+  var sizeChanges = {
+    'width': function (data) {
+      if (data.w !== this.prevWidth && this.prevWidth){
+        this.dispatchEvent(new CustomEvent('height-change', { bubbles: true, detail: data }));
+      }
+      this.prevWidth = data.w;
+    },
+    'height': function (data) {
+      if (data.h !== this.prevHeight || !this.prevHeight){
+        this.dispatchEvent(new CustomEvent('height-change', { bubbles: true, detail: data }));
+      }
+      this.prevHeight = data.h;
+    }
+  };
   var keyuppers = {
     'vertical-list-nav': function(e){
       if (e.keyCode === 38 || e.keyCode === 40) {
@@ -1526,6 +1544,34 @@
 
     }
   };
+  (function () {
+    var prevHeight = window.innerHeight,
+      prevWidth = window.innerWidth,
+      interval = 100,
+      timer = 0,
+      _checkSize = function () {
+        requestAnimationFrame(_checkSize);
+        if (timer >= interval) {
+          var w = window.innerWidth,
+            h = window.innerHeight;
+          if (w !== prevWidth || h !== prevHeight) {
+            for (var k in sizeChanges) {
+              if (sizeChanges.hasOwnProperty(k)) {
+                var els = document.querySelectorAll('[data-size-change="' + k + '"]');
+                for (var i = 0; i < els.length; i++) {
+                  sizeChanges[k].call(els[i], {'w': w, 'h': h});
+                }
+              }
+            }
+          }
+          prevWidth = w;
+          prevHeight = h;
+          timer = 0;
+        }
+        timer++;
+      };
+    _checkSize();
+  }());
   var _checkHash = function (e) {
     var h = w.location.hash.substr(1);
     if (h){
@@ -1534,8 +1580,11 @@
         hashEls[i].hashEvent(h);
       }
     }
-  }
+  };
+
   w.addEventListener('hashchange', _checkHash);
+  //w.addEventListener('resize', _checkSize);
+
 
   var scrollbarWidth = _getScrollbarWidth();
   document.documentElement.style.setProperty('--scrollbar', scrollbarWidth+'px');
