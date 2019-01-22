@@ -2,6 +2,9 @@
   max-width: $maxContentWidth;
   margin: 2 * $lineHeight auto;
 }
+.document-container__narrow {
+  max-width: $maxContentNarrowWidth;
+}
 
 .pdf-splitter.animatable ~ .document-container {
   //transition: padding .3s;
@@ -127,9 +130,10 @@
     transition: box-shadow .3s;
     box-shadow: 0 0 5px 0 rgba(#000, 0);
     text-align: center;
-    font-size: 18px;
+    font-size: 24px;
     line-height: 150px;
     padding-right: 2px;
+    font-style: normal;
     &:after {
       transition: opacity .3s;
     }
