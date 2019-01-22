@@ -23,12 +23,18 @@ class ActionEvent extends Event
     private $data;
 
     /**
+     * @var Dossier
+     */
+    private $dossier;
+
+    /**
      * @var \DateTime
      */
     private $dateTimeOfEvent;
 
     const GEBRUIKER_INGELOGD = 'gebruiker_ingelogd';
     const DOSSIER_GEWIJZIGD = 'dossier_gewijzigd';
+    const DOSSIER_STATUS_GEWIJZIGD = 'dossier_status_gewijzigd';
     const GEBRUIKER_GEWIJZIGD = 'gebruiker_gewijzigd';
     const DOSSIER_AANGEMAAKT = 'dossier_aangemaakt';
     const DOSSIER_GEOPENED = 'dossier_geopened';
@@ -36,10 +42,12 @@ class ActionEvent extends Event
     const DOSSIER_VERWIJDERD = 'dossier_verwijderd';
     const DOSSIER_HERSTELD = 'dossier_hersteld';
 
-    public function __construct(string $actionName, array $data = [])
+//    public function __construct(string $actionName, array $data = [])
+    public function __construct(string $actionName, array $data = [], Dossier $dossier = null)
     {
         $this->action = $actionName;
         $this->data = $data;
+        $this->dossier = $dossier;
         $this->dateTimeOfEvent = new \DateTime();
     }
 
@@ -65,6 +73,14 @@ class ActionEvent extends Event
     public function getData(): array
     {
         return $this->data;
+    }
+
+    /**
+     * @return Dossier
+     */
+    public function getDossier(): ?Dossier
+    {
+        return $this->dossier;
     }
 
     /**
@@ -95,7 +111,7 @@ class ActionEvent extends Event
             self::getDossierData($dossier)
         );
 
-        return new self(self::DOSSIER_AANGEMAAKT, $data);
+        return new self(self::DOSSIER_AANGEMAAKT, $data, $dossier);
     }
 
     /**
@@ -111,7 +127,7 @@ class ActionEvent extends Event
             self::getDossierData($dossier)
         );
 
-        return new self(self::DOSSIER_GEOPENED, $data);
+        return new self(self::DOSSIER_GEOPENED, $data, $dossier);
     }
 
     /**
@@ -127,7 +143,7 @@ class ActionEvent extends Event
             self::getDossierData($dossier)
         );
 
-        return new self(self::DOSSIER_VERPLAATST_NAAR_PRULLENBAK, $data);
+        return new self(self::DOSSIER_VERPLAATST_NAAR_PRULLENBAK, $data, $dossier);
     }
 
     /**
@@ -143,7 +159,7 @@ class ActionEvent extends Event
             self::getDossierData($dossier)
         );
 
-        return new self(self::DOSSIER_VERWIJDERD, $data);
+        return new self(self::DOSSIER_VERWIJDERD, $data, $dossier);
     }
 
     /**
@@ -159,14 +175,44 @@ class ActionEvent extends Event
             self::getDossierData($dossier)
         );
 
-        return new self(self::DOSSIER_HERSTELD, $data);
+        return new self(self::DOSSIER_HERSTELD, $data, $dossier);
+    }
+
+    /**
+     * @param Gebruiker    $gebruiker
+     * @param Dossier      $dossier
+     * @param string       $fromTransition
+     * @param string       $toTransition
+     *
+     * @return ActionEvent
+     */
+    public static function registerDossierStatusGewijzigd(Gebruiker $gebruiker, Dossier $dossier, string $fromTransition, string $toTransition)
+    {
+        $data = array_merge(
+            self::getGebruikerData($gebruiker),
+            self::getDossierData($dossier),
+            self::getTransitionData($fromTransition, $toTransition)
+        );
+
+        return new self(self::DOSSIER_STATUS_GEWIJZIGD, $data, $dossier);
+    }
+
+    public static function getTransitionData(string $fromTransition, string $toTransition): array
+    {
+        return [
+            "status" => [
+                "van" => $fromTransition,
+                "naar" => $toTransition,
+            ],
+        ];
     }
 
     public static function getGebruikerData(Gebruiker $gebruiker): array
     {
         return [
             "gebruiker" => [
-                "naam" => sprintf("%s <%s>", $gebruiker->getNaam(), $gebruiker->getEmail())
+                "naam" => $gebruiker->getNaam(),
+                "email" =>  $gebruiker->getEmail(),
             ],
         ];
     }
