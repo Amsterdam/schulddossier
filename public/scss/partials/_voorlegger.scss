@@ -23,24 +23,17 @@
     font-size: $fs-default;
     padding: 0 25px;
   }
-  .form-changed & .in-progress .dossier__save,
-  .dossier__save {
-
-    background: #fff;
-    color: grey;
-    border: 1px solid grey;
-    cursor: initial;
-    pointer-events: none;
-    transition: all .3s;
-    margin: 0;
-  }
-  .form-changed & button[type="submit"] {
-    background: $brandColor1;
-    border-color: $brandColor1;
-    cursor: pointer;
-    pointer-events: auto;
-    color: #fff;
-  }
+  //.form-changed & .in-progress .dossier__save,
+  //.dossier__save {
+  //
+  //  background: #fff;
+  //  color: grey;
+  //  border: 1px solid grey;
+  //  cursor: initial;
+  //  pointer-events: none;
+  //  transition: all .3s;
+  //  margin: 0;
+  //}
   &:before {
     content: '';
     position: absolute;
@@ -299,9 +292,11 @@
     margin-left: 10px;
   }
 }
+
 .dossier__item__verwijderd {
   display: none;
 }
+
 .dossier__item {
   //padding: 8px 15px;
   //border-bottom: 1px solid $borderColor2;
@@ -474,14 +469,7 @@
       background-color: transparent;
     }
   }
-  .create-form-changed & {
-    button[type="submit"] {
-      background-color: $brandColor1;
-      pointer-events: auto;
-      border-color: $brandColor1;
-      color: #fff;
-    }
-  }
+
   .drop-over & {
     border: 2px dashed #000 !important;
     padding: 0;
@@ -617,23 +605,6 @@
     left: auto;
     top: 42px;
   }
-  button[type="submit"] {
-    position: absolute;
-    right: 10%;
-    top: 27px;
-    background: #fff;
-    border-color: gray;
-    cursor: initial;
-    pointer-events: none;
-    color: grey;
-    transition: background-color .3s, border-color .3s;
-  }
-  .form-changed & button[type="submit"] {
-    background-color: $accentColor;
-    color: #fff;
-    pointer-events: auto;
-    border-color: $accentColor;
-  }
 
 }
 
@@ -664,6 +635,7 @@
     display: none;
   }
 }
+
 .dossier__voorlegger__sectie__close {
   text-decoration: none;
   &:before {
@@ -765,6 +737,7 @@
   }
 
 }
+
 .dossier__dashboard__messages {
   padding-left: 0;
 }
@@ -781,43 +754,19 @@
   li {
     display: inline-block;
   }
-  .button,
-  button {
-    pointer-events: auto;
-    cursor: pointer;
-    &.primary {
-      background: $brandColor1;
-      border-color: $brandColor1;
-      color: #fff;
-      pointer-events: auto;
-      cursor: pointer;
-
-    }
-    &.secondary {
-      background: #fff;
-      border-color: #000;
-      color: #000;
-      pointer-events: auto;
-      cursor: pointer;
-    }
-  }
-  .form-changed & button[type="submit"] {
-    background: #fff;
-    color: grey;
-    border: 1px solid grey;
-    cursor: initial;
-    pointer-events: none;
-    transition: all .3s;
-    margin: 0;
-  }
 
 }
 
-.dossier__save {
-  position: absolute;
-  top: 5px;
-  left: 425px;
-  z-index: 1;
+.dossier__save,
+.dossier__nieuwe-schuld-save {
+  background-color: #fff;
+  border-color: #000;
+  color: #000;
+  pointer-events: auto;
+  .in-progress & {
+    pointer-events: none;
+    border-color: grey !important;
+  }
   .in-progress &:before {
     content: '';
     @extend .icon-spinner-transparent;
@@ -832,5 +781,74 @@
     bottom: 0;
 
   }
+  &:hover {
+    border-color: #000;
+    background-color: #000;
+    color: #fff;
+  }
+}
 
+.dossier__nieuwe-schuld-save {
+  position: absolute;
+  right: 10%;
+  top: 27px;
+  background: #fff;
+  border-color: gray;
+  cursor: initial;
+  pointer-events: none;
+  color: grey;
+  transition: background-color .3s, border-color .3s;
+  .create-form-changed & {
+    background-color: $brandColor1;
+    pointer-events: auto;
+    border-color: $brandColor1;
+    color: #fff;
+  }
+}
+
+.dossier__save {
+  position: absolute;
+  top: 5px;
+  left: 425px;
+  z-index: 1;
+
+  .form-changed & {
+    pointer-events: auto;
+    background-color: $brandColor1;
+    border-color: $brandColor1;
+    color: #fff;
+  }
+
+}
+
+.dossier__workflow-save {
+  &.primary {
+    background: $brandColor1;
+    border-color: $brandColor1;
+    color: #fff;
+    pointer-events: auto;
+    cursor: pointer;
+
+  }
+  &.secondary {
+    background: #fff;
+    border-color: #000;
+    color: #000;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  .form-changed & {
+    background: #fff;
+    color: grey;
+    border: 1px solid grey;
+    cursor: initial;
+    pointer-events: none;
+    transition: all .3s;
+    margin: 0;
+  }
+  &:hover {
+    border-color: #000;
+    background-color: #000;
+    color: #fff;
+  }
 }
