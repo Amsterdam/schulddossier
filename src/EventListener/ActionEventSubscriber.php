@@ -44,7 +44,9 @@ class ActionEventSubscriber implements EventSubscriberInterface
     public function registerAction(ActionEvent $event): void
     {
         $action = new ActionEventEntity();
+        $dossier = $event->getDossier();
 
+        $action->setDossier($dossier);
         $action->setDatumTijd($event->getDateTimeOfEvent());
 
         $action->setName($event->getActionName());
@@ -87,11 +89,13 @@ class ActionEventSubscriber implements EventSubscriberInterface
         /** @var Dossier $dossier */
         $dossier = $event->getDossier();
         $action = new ActionEventEntity();
+
         $dateTime = new \DateTime();
 
         $action->setName(ActionEvent::DOSSIER_GEWIJZIGD);
-        $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
         $action->setDatumTijd($dateTime);
+        $action->setDossier($dossier);
+        $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
         $action->setData(array_merge(
                 ActionEvent::getGebruikerData($gebruiker),
                 ActionEvent::getDossierData($dossier)

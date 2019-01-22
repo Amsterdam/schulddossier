@@ -21,6 +21,13 @@ class ActionEvent
     private $id;
 
     /**
+     * @var Dossier
+     * @ORM\ManyToOne(targetEntity="Dossier")
+     * @ORM\JoinColumn(name="dossier_id", referencedColumnName="id", nullable=true)
+     */
+    private $dossier;
+
+    /**
      * @var string
      * @ORM\Column(length=255, nullable=false)
      */
@@ -53,6 +60,14 @@ class ActionEvent
     }
 
     /**
+     * @return Dossier
+     */
+    public function getDossier()
+    {
+        return $this->dossier;
+    }
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -82,6 +97,14 @@ class ActionEvent
     public function getData(): ?array
     {
         return $this->data;
+    }
+
+    /**
+     * @param Dossier $dossierId
+     */
+    public function setDossier(?Dossier $dossier)
+    {
+        $this->dossier = $dossier;
     }
 
     /**

@@ -46,6 +46,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent as ActionEventEntity;
 
 /**
  * @Route("/app/dossier")
@@ -421,6 +422,20 @@ class AppDossierController extends Controller
     }
 
     /**
+     * @Route("/detail/{dossierId}/log")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function logAction(Request $request, Dossier $dossier)
+    {
+        $logs = $this->getDoctrine()
+            ->getRepository(ActionEventEntity::class)
+            ->findBy(['dossier' => $dossier], ['datumTijd' => 'DESC'], 30);
+
+        return $this->render('Log/index.html.twig', ['logs' => $logs]);
+    }
+
+    /**
      * @Route("/detail/{dossierId}/schulden")
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
@@ -654,7 +669,7 @@ class AppDossierController extends Controller
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function changeStatusAction(Request $request, Dossier $dossier, WorkflowRegistry $registry, EntityManagerInterface $em)
+    public function changeStatusAction(Request $request, Dossier $dossier, WorkflowRegistry $registry, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', $request->request->get('token')) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
@@ -662,12 +677,17 @@ class AppDossierController extends Controller
 
         $workflow = $registry->get($dossier);
 
+        $currentStatus = $dossier->getStatus();
+
         if ($workflow->can($dossier, $request->get('transition')) === false) {
             throw $this->createNotFoundException('Transition not available');
         }
 
+        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $request->get('transition')));
+
         $workflow->apply($dossier, $request->get('transition'));
         $em->flush();
+
 
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse(['status' => 'OK', 'status' => $workflow->getMarking($dossier)->getPlaces()]);

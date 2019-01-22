@@ -15,17 +15,28 @@
                 </ul>
             </nav>
         </div>
-        {% if is_granted('ROLE_APPBEHEER') == false and is_granted('ROLE_ADMIN') == false %}
-            <p>Alleen applicatie beheerders kunnen nieuwe gebruikers toevoegen en bestaande gebruikers wijzigen</p>
-        {% endif %}
+        <ul class="log-list">
 
-        {%- for log in logs|reverse %}
-            <p>
-            <blockquote>
-                <b>[{{ log.datumTijd|date('d-m-Y H:i:s') }}] - {{ log.name|upper }}</b><br>
-                {{ log.ip }} - {{ log.data|json_encode() }}
-            </blockquote>
-            </p>
+        {% for log in logs %}
+            <li class="log-list__item">
+                <h4>[{{ log.datumTijd|date('d-m-Y H:i:s') }}] - {{ log.name|upper }}</h4>
+                {% if log.name == 'dossier_status_gewijzigd' %}
+                    <dl>
+                        <dt><strong>Door</strong></dt>
+                        <dd>{% if log.data.gebruiker.email  is defined %}<a href="mailto:{{ log.data.gebruiker.email }}">{% endif %}{{ log.data.gebruiker.naam }} {% if log.data.gebruiker.email is defined %}</a>{% endif %}</dd>
+                        <dt><strong>Van</strong></dt>
+                        <dd>{{ log.data.status.van }}</dd>
+                        <dt><strong>Naar</strong></dt>
+                        <dd>{{ log.data.status.naar }}</dd>
+                    </dl>
+                {% else %}
+                    <dl>
+                        <dt><strong>Door</strong></dt>
+                        <dd>{% if log.data.gebruiker.email  is defined %}<a href="mailto:{{ log.data.gebruiker.email }}">{% endif %}{{ log.data.gebruiker.naam }} {% if log.data.gebruiker.email is defined %}</a>{% endif %}</dd>
+                    </dl>
+                {% endif %}
+            </li>
         {% endfor %}
+        </ul>
     </div>
 {% endblock %}
