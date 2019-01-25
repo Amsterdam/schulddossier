@@ -63,7 +63,7 @@ class AppDossierController extends Controller
         $repository = $em->getRepository(Dossier::class);
 
         $maxPageSize = 20;
-        $schuldhulpbureaus = null;
+        $forcedSchuldhulpbureaus = [];
 
         $section2status = [
             'madi' => ['bezig_madi', 'compleet_madi', 'gecontroleerd_madi', 'verzonden_madi'],
@@ -79,14 +79,14 @@ class AppDossierController extends Controller
                     'message' => 'Gebruiker is niet gekoppeld aan een schuldhulpbureau.',
                 ]);
             }
-            $schuldhulpbureaus = $this->getUser()->getSchuldhulpbureaus();
+            $forcedSchuldhulpbureaus = $this->getUser()->getSchuldhulpbureaus();
         }
 
         $seachQuery = [
             'section' => $section,
             'naam' => '',
             'status' => $section2status[$section],
-            'schuldhulpbureau' => $schuldhulpbureaus,
+            'schuldhulpbureaus' => $schuldhulpbureaus,
             'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
         ];
@@ -98,6 +98,10 @@ class AppDossierController extends Controller
         $orderBy = 'default';
         if ($section === 'gka') {
             $orderBy = 'gka-verzenddatum';
+        }
+        // if user is from a madi limit his search results on the user schuldhulpbureaus
+        if ($authChecker->isGranted('ROLE_MADI')) {
+            $seachQuery['schuldhulpbureaus'] = $forcedSchuldhulpbureaus;
         }
         $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize), $orderBy);
 
