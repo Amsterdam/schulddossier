@@ -99,7 +99,7 @@ class DossierRepository extends EntityRepository
             $qb->andWhere($expr);
         }
 
-        if ($query['schuldhulpbureau'] !== null) {
+        if (isset($query['schuldhulpbureau']) && $query['schuldhulpbureau'] !== null) {
             @trigger_error('Query for schuldhulpbureau is no longer supported', E_USER_DEPRECATED);
         }
 

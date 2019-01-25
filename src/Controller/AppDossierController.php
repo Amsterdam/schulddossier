@@ -86,7 +86,7 @@ class AppDossierController extends Controller
             'section' => $section,
             'naam' => '',
             'status' => $section2status[$section],
-            'schuldhulpbureaus' => $schuldhulpbureaus,
+            'schuldhulpbureaus' => $em->getRepository(Schuldhulpbureau::class)->findAll(),
             'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
         ];
