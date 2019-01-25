@@ -65,7 +65,7 @@ class DossierVoter extends Voter
         }
 
         if ($this->decisionManager->decide($token, ['ROLE_MADI'])) {
-            if ($dossier->getSchuldhulpbureau() !== $user->getSchuldhulpbureau()) {
+            if ($user->getSchuldhulpbureaus()->contains($dossier->getSchuldhulpbureau()) === false) {
                 return false;
             }
         }
