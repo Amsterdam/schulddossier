@@ -24,9 +24,9 @@ class RequiredFieldsWhenAddingNewMadiUserValidator extends ConstraintValidator
     public function validate($protocol, Constraint $constraint): void
     {
         if (strtolower($protocol->getType()) === 'madi') {
-            if (is_null($protocol->getSchuldhulpbureau())) {
+            if (count($protocol->getSchuldhulpbureaus()) === 0) {
                 $this->context->buildViolation($constraint->message)
-                    ->atPath('schuldhulpbureau')
+                    ->atPath('schuldhulpbureaus')
                     ->addViolation();
             }
         }
