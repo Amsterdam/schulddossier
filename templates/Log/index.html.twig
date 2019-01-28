@@ -8,33 +8,64 @@
 
     <div class="document well">
         <div class="document-header group">
-            <h1 class="document-title">Logs</h1>
+            <h1 class="document-title">{% if dossier is defined %}{{ dossier.clientNaam }} logs{% else %}Logs{% endif %}</h1>
             <nav class="nav-internal">
                 <ul>
                     <li>Logs</li>
                 </ul>
             </nav>
         </div>
-        <ul class="log-list">
+        <ul class="aantekeningen log-list">
 
         {% for log in logs %}
-            <li class="log-list__item">
-                <h4>[{{ log.datumTijd|date('d-m-Y H:i:s') }}] - {{ log.name|upper }}</h4>
-                {% if log.name == 'dossier_status_gewijzigd' %}
-                    <dl>
-                        <dt><strong>Door</strong></dt>
-                        <dd>{% if log.data.gebruiker.email  is defined %}<a href="mailto:{{ log.data.gebruiker.email }}">{% endif %}{{ log.data.gebruiker.naam }} {% if log.data.gebruiker.email is defined %}</a>{% endif %}</dd>
-                        <dt><strong>Van</strong></dt>
-                        <dd>{{ log.data.status.van }}</dd>
-                        <dt><strong>Naar</strong></dt>
-                        <dd>{{ log.data.status.naar }}</dd>
-                    </dl>
-                {% else %}
-                    <dl>
-                        <dt><strong>Door</strong></dt>
-                        <dd>{% if log.data.gebruiker.email  is defined %}<a href="mailto:{{ log.data.gebruiker.email }}">{% endif %}{{ log.data.gebruiker.naam }} {% if log.data.gebruiker.email is defined %}</a>{% endif %}</dd>
-                    </dl>
+            <li class="aantekening
+                {% if log.data.gebruiker is defined %}
+                {% if log.data.gebruiker.email is defined %}
+                {% if log.data.gebruiker.email == app.user.email %} aantekening-mijn {% endif %}
                 {% endif %}
+                {% endif %}
+                {% if log.data.gebruiker.type is defined %} {{ log.data.gebruiker.type|lower }}{% endif %}">
+                <p class="aantekening-meta">
+                  <time>
+                      {% if log.datumTijd|date('d-m-Y') == date()|date('d-m-Y') %}
+                      Vandaag {{ log.datumTijd|date('H:i') }}
+                      {% else %}
+                      {{ log.datumTijd|date('d-m-Y H:i') }}
+                      {% endif %}
+                  </time>
+                  {% if log.data.gebruiker is defined %}
+                  {% if log.data.gebruiker.email is defined and log.data.gebruiker.email == app.user.email %}
+                      <strong>Jij</strong>
+                  {% else %}
+                  <strong>{% if log.data.gebruiker.email is defined %}<a href="mailto:{{ log.data.gebruiker.email }}">{% endif %}{{ log.data.gebruiker.naam }} {% if log.data.gebruiker.email is defined %}</a>{% endif %}</strong>
+                  {% endif %}
+                  {% endif %}
+
+                </p>
+                <div class="aantekening-bericht">
+                            {% if log.name == 'dossier_status_gewijzigd' %}
+                                Dossier status gewijzigd naar: <strong>{{ log.data.status.naar }}</strong>
+                            {% endif %}
+                            {% if log.name == 'dossier_gewijzigd' %}
+                                Dossier gewijzigd
+                            {% endif %}
+                            {% if log.name == 'gebruiker_ingelogd' %}
+                                Gebruiker inglogd
+                            {% endif %}
+                            {% if log.name == 'gebruiker_gewijzigd' %}
+                                Gebruiker gewijzigd
+                            {% endif %}
+                            {% if log.name == 'dossier_aangemaakt' %}
+                                Dossier aangemaakt
+                            {% endif %}
+                            {% if log.name == 'dossier_geopened' %}
+                                Dossier geopend: {% if log.dossier is defined %}
+                                {% if log.dossier.clientNaam is defined %}
+                                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+                                {% endif %}
+                            {% endif %}
+                            {% endif %}
+                </div>
             </li>
         {% endfor %}
         </ul>

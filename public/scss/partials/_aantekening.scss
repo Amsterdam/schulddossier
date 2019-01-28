@@ -53,6 +53,7 @@
 }
 
 .aantekeningen {
+  font-size: $fs-default;
   position: relative;
   
   padding: $padding 0;
@@ -63,22 +64,9 @@
     margin-bottom: 0;
   }
   
-  //&:before {
-  //  content: '';
-  //  position: absolute;
-  //  z-index: 1;
-  //  left: 50%;
-  //  top: $padding;
-  //  bottom: $padding;
-  //  width: 4px;
-  //  background-color: #fff;
-  //  margin-left: -2px;
-  //}
-  
-  
 }
 .aantekening {
-  width: 50%;
+  width:65%;
   position: relative;
   box-sizing: border-box;
   text-align: right;
@@ -87,6 +75,7 @@
 .aantekening-bericht {
   padding: .2em 1em .3em 1em;
   margin: 0;
+  min-width: 60%;
   display: inline-block;
   background-color: #fff;
   border-radius: 5px;
@@ -95,19 +84,40 @@
 .aantekening-meta {
   margin: 0 0 .5em 0;
   line-height: 1.2;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  .admin &,
+  .gka & {
+    flex-direction: row;
+  }
   time {
-    position: absolute;
+    order: 1;
+    .admin &,
+    .gka & {
+      order: 2;
+      padding-left: 0;
+      padding-right: 10px;
+    }
+    //position: absolute;
+    white-space: nowrap;
     z-index: 2;
     top: $padding / 2;
     left: calc(100% - 3.5rem);
     font-size: 1.2rem;
-    width: 7rem;
     margin-top: -1px;
     
     text-align: center;
-    padding: 5px 0 3px 0;
+    padding: 5px 0 3px 10px;
     background-color: $lightColor;
     font-family: sans-serif;
+  }
+  strong {
+    order: 1;
+    .admin &,
+    .gka & {
+      order: 2;
+    }
   }
 }
 .aantekening-context {
@@ -124,7 +134,8 @@
     text-decoration: underline;
   }
 }
-.aantekening-mijn {
+.gka,
+.admin {
   margin-left: auto;
   text-align: left;
   .aantekening-meta {
@@ -133,17 +144,17 @@
       right: calc(100% - 3.5rem);;
     }
   }
-  &:before {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background-color: #fff;
-    margin-left: -2px;
-  }
+  //&:before {
+  //  content: '';
+  //  position: absolute;
+  //  z-index: 1;
+  //  left: 0;
+  //  top: 0;
+  //  bottom: 0;
+  //  width: 4px;
+  //  background-color: #fff;
+  //  margin-left: -2px;
+  //}
   .aantekening-bericht {
 
   }
