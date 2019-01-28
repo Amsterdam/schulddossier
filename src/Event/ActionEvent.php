@@ -213,6 +213,8 @@ class ActionEvent extends Event
             "gebruiker" => [
                 "naam" => $gebruiker->getNaam(),
                 "email" =>  $gebruiker->getEmail(),
+                "username" =>  $gebruiker->getUserName(),
+                "type" =>  $gebruiker->getType(),
             ],
         ];
     }

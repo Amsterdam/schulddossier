@@ -430,9 +430,15 @@ class AppDossierController extends Controller
     {
         $logs = $this->getDoctrine()
             ->getRepository(ActionEventEntity::class)
-            ->findBy(['dossier' => $dossier], ['datumTijd' => 'DESC'], 30);
+            ->findBy([
+                'name' => [
+                    'dossier_status_gewijzigd',
+                    'dossier_gewijzigd',
+                ],
+                'dossier' => $dossier
+            ], ['datumTijd' => 'DESC'], 30);
 
-        return $this->render('Log/index.html.twig', ['logs' => $logs]);
+        return $this->render('Log/index.html.twig', ['logs' => $logs, 'dossier' => $dossier]);
     }
 
     /**
