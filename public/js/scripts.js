@@ -417,6 +417,7 @@
       var self = this,
         container = _closest(this, '.dossier__voorlegger__body'),
         viewerContainer = self.querySelector('.viewer-container'),
+        viewerWrapper = self.querySelector('.document__viewer__wrapper'),
         header = self.querySelector('.document__viewer__header'),
         title = self.querySelector('.document__viewer__header__title'),
         counter = self.querySelector('.document__viewer__header__counter'),
@@ -428,8 +429,11 @@
         currentDocElem,
         currentPDFJS,
         currentPage,
+        currentOffset = {'x': .5, 'y': 0},
         loadingTask,
         loadTimeout,
+        viewerMouseDownTimeout,
+        maxScale = 5,
         _clear = function () {
             var canvasElements = viewerContainer.querySelectorAll('canvas');
             for (var i = 0; i < canvasElements.length; i ++) {
@@ -463,12 +467,9 @@
               _showPage(currentPage - 1);
           }
         },
-        _zoom = function(e){
-          e && e.preventDefault();
+        _zoom = function(){
           self.classList[self.classList.contains('fit-mode') ? 'remove' : 'add']('fit-mode');
-
-          window.sessionStorage && window.sessionStorage.setItem('fitMode', self.classList.contains('fit-mode'));
-
+          _setZoom();
         },
         _showDocument = function(docElem, pageNum){
           currentDocElem = docElem
@@ -505,6 +506,76 @@
           }, 200)
 
         },
+        _viewerMouseDown = function(e) {
+
+          var c = viewerContainer.querySelector('canvas');
+          if (e.target === c) {
+            console.log('down');
+            if (!self.classList.contains('fit-mode')) {
+              // e && e.preventDefault();
+              //window.clearTimeout(viewerMouseDownTimeout);
+              //window.removeEventListener('mouseup', _viewerMouseUp, true);
+              //viewerMouseDownTimeout = setTimeout(function () {
+              //window.addEventListener('mousemove', _viewerMouseMove, true);
+              //}, 100);
+            } else {
+              //_zoom();
+            }
+            window.addEventListener('mouseup', _viewerMouseUp, false);
+          }
+        },
+        _viewerMouseUp = function(e){
+          var c = viewerContainer.querySelector('canvas');
+          if (e.target === c) {
+            console.log('up');
+            var rect = e.target.getBoundingClientRect(),
+              w = rect.width,
+              h = rect.height,
+              x = (e.clientX - rect.left),
+              y = (e.clientY - rect.top);
+
+            c.style.transformOrigin = ((x / w)*100) + '% ' + ((y / h) * 100) + '% 0';
+
+            window.removeEventListener('mouseup', _viewerMouseUp, true);
+            window.removeEventListener('mousemove', _viewerMouseMove, true);
+            if (!self.classList.contains('fit-mode')) {
+
+            } else {
+
+            }
+            _zoom();
+          }
+
+        },
+        _viewerMouseMove = function(e){
+          console.log('move');
+        },
+        _currentCanvasAspect = function(){
+          var c = viewerContainer.querySelector('canvas');
+          return c.width / c.height;
+        },
+        _currentViewerAspect = function(){
+          return viewerContainer.offsetWidth / viewerContainer.offsetHeight;
+        },
+        _setZoom = function () {
+
+          var c = viewerContainer.querySelector('canvas');
+
+          if(c) {
+            if (!self.classList.contains('fit-mode')) {
+              c.style.transform = 'scale('+maxScale+')';
+            } else {
+              c.style.transform = 'scale(1)';
+              if (_currentCanvasAspect() > _currentViewerAspect()){
+                c.style.height = 'auto';
+                c.style.width = '100%';
+              }else {
+                c.style.width = 'auto';
+                c.style.height = '100%';
+              }
+            }
+          }
+        },
         _showPage = function(num){
 
           _clear();
@@ -518,7 +589,9 @@
               var viewport = page.getViewport(2.0);
 
               canvasDom.height = viewport.height;
+
               canvasDom.width = viewport.width;
+
 
               viewerContainer.appendChild(canvasDom);
 
@@ -527,9 +600,11 @@
               viewerContainer.scrollTop = 0;
 
               page.render({canvasContext: context, viewport: viewport }).then(function () {
-                  viewerContainer.style.backgroundSize ='contain';
-                  viewerContainer.style.backgroundImage = 'url(' + canvasDom.toDataURL("image/jpeg") + ')';
-                  canvasDom.setAttribute('style', 'width: ' + viewport.width + 'px; height: ' + viewport.height + 'px;');
+                  //viewerContainer.style.backgroundSize ='contain';
+                  //viewerContainer.style.backgroundImage = 'url(' + canvasDom.toDataURL("image/jpeg") + ')';
+                  //canvasDom.setAttribute('style', 'width: ' + viewport.width + 'px; height: ' + viewport.height + 'px;');
+                  self.classList.add('fit-mode');
+                  _setZoom();
                   self.classList.remove('loading');
               });
           });
@@ -541,7 +616,8 @@
 
       btnNext.addEventListener('click', _nextPage);
       btnPrev.addEventListener('click', _prevPage);
-      btnZoom.addEventListener('click', _zoom);
+      viewerContainer.addEventListener('mousedown', _viewerMouseDown, false);
+      window.addEventListener('mouseup', _viewerMouseUp, false);
 
       self.addEventListener('height-change', function(e){
         console.log(e.detail.h);
@@ -1456,7 +1532,7 @@
 
       if (activate){
         _activate(el);
-        el.scrollIntoView({ behavior: 'smooth', block: 'start'});
+        //el.scrollIntoView({ behavior: 'smooth', block: 'start'});
       }else {
         _deactivate(el);
       }

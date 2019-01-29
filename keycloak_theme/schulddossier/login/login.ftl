@@ -13,7 +13,7 @@
                 </ul>
             </div>
         </#if>
-      </div>
+      </div>x§
     <#elseif section = "info" >
         <#if realm.password && realm.registrationAllowed && !usernameEditDisabled??>
             <div id="kc-registration">
