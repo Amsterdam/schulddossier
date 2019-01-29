@@ -31,30 +31,33 @@
     }
   }
   canvas {
-    display: none;
-    width: 100%;
+    //flex-grow: 0;
+    //flex-shrink: 0;
+    //object-fit: contain;
+    transition: transform .4s $transitionEaseDefault;
+    display:inline-block;
+    //position: absolute;
+    //width: 100%;
+    cursor: zoom-out;
     background-color: white;
-    box-shadow: rgba(0,0,0,0.5) 2px 2px 6px 1px
+    box-shadow: rgba(0,0,0,0.5) 2px 2px 6px 1px;
   }
 
-  .viewer-container {
-    //transform: translateY(-50%);
-    //position: absolute;
-    //left: 0;
-    //top: 50%;
-    //width: calc(100% - 20px);
-    //margin: 10px;
-    //overflow-x: hidden;
-    //overflow-y: auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
-    background-position-x: center;
-    background-size: contain;
-    margin: 60px 10px 10px;
-    overflow-x: auto;
-    overflow-y: auto;
+  .document__viewer__wrapper {
     height: calc(100% - 70px);
-
+    //background-color: green;
+    margin: 60px 10px 10px;
+  }
+  .viewer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100%;
+    width: 100%;
+    position: relative;
 
     .error-counter,
     .error {
@@ -222,7 +225,9 @@
   }
   &.fit-mode {
     canvas {
-      display: block;
+      cursor: zoom-in;
+      position: static;
+      width: 100%;
     }
     .zoom:before {
       @extend .icon-zoomuit !optional;
