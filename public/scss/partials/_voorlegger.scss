@@ -804,6 +804,12 @@
     border-color: $brandColor1;
     color: #fff;
   }
+  &:hover {
+    cursor: pointer;
+    border-color: #000;
+    background-color: #000;
+    color: #fff;
+  }
 }
 
 .dossier__save {
@@ -847,6 +853,7 @@
     margin: 0;
   }
   &:hover {
+    cursor: pointer;
     border-color: #000;
     background-color: #000;
     color: #fff;
