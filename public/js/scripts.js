@@ -423,17 +423,20 @@
         counter = self.querySelector('.document__viewer__header__counter'),
         btnNext = self.querySelector('.next'),
         btnPrev = self.querySelector('.prev'),
-        btnZoom = self.querySelector('.zoom'),
         statusElem = self.querySelector('.status'),
         documents = container.querySelectorAll('[data-handler="bestand"]'),
         currentDocElem,
         currentPDFJS,
         currentPage,
-        currentOffset = {'x': .5, 'y': 0},
+        currentPageScale,
+        currentPageTranslate = 'translate(0, 0)',
+        dragOffset = {'x': 0, 'y': 0},
+        currentX = 0,
+        currentY = 0,
         loadingTask,
         loadTimeout,
-        viewerMouseDownTimeout,
         maxScale = 5,
+        canvas,
         _clear = function () {
             var canvasElements = viewerContainer.querySelectorAll('canvas');
             for (var i = 0; i < canvasElements.length; i ++) {
@@ -507,48 +510,51 @@
 
         },
         _viewerMouseDown = function(e) {
-
-          var c = viewerContainer.querySelector('canvas');
-          if (e.target === c) {
+          canvas.style.transition = 'transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)';
+          if (e.target === canvas) {
             console.log('down');
             if (!self.classList.contains('fit-mode')) {
-              // e && e.preventDefault();
-              //window.clearTimeout(viewerMouseDownTimeout);
-              //window.removeEventListener('mouseup', _viewerMouseUp, true);
-              //viewerMouseDownTimeout = setTimeout(function () {
-              //window.addEventListener('mousemove', _viewerMouseMove, true);
-              //}, 100);
-            } else {
-              //_zoom();
+              console.log('uitgezoemd');
+              dragOffset = {'x': e.clientX - currentX, 'y': e.clientY - currentY};
+              window.addEventListener('mousemove', _viewerMouseMove, true);
             }
-            window.addEventListener('mouseup', _viewerMouseUp, false);
           }
+          window.addEventListener('mouseup', _viewerMouseUp, true);
         },
         _viewerMouseUp = function(e){
-          var c = viewerContainer.querySelector('canvas');
-          if (e.target === c) {
-            console.log('up');
-            var rect = e.target.getBoundingClientRect(),
-              w = rect.width,
-              h = rect.height,
-              x = (e.clientX - rect.left),
-              y = (e.clientY - rect.top);
+          window.removeEventListener('mouseup', _viewerMouseUp, true);
+          window.removeEventListener('mousemove', _viewerMouseMove, true);
+          console.log('up');
+          if (e.target === canvas) {
+            if (self.classList.contains('dragging')) {
 
-            c.style.transformOrigin = ((x / w)*100) + '% ' + ((y / h) * 100) + '% 0';
+              self.classList.remove('dragging');
+            }else {
 
-            window.removeEventListener('mouseup', _viewerMouseUp, true);
-            window.removeEventListener('mousemove', _viewerMouseMove, true);
-            if (!self.classList.contains('fit-mode')) {
+            if (self.classList.contains('fit-mode')) {
+              currentX = 0;
+              currentY = 0;
+              var rect = e.target.getBoundingClientRect(),
+                w = rect.width,
+                h = rect.height,
+                x = (e.clientX - rect.left),
+                y = (e.clientY - rect.top);
 
-            } else {
-
+              canvas.style.transformOrigin = ((x / w) * 100) + '% ' + ((y / h) * 100) + '% 0';
             }
             _zoom();
+            }
           }
 
         },
         _viewerMouseMove = function(e){
           console.log('move');
+          self.classList.add('dragging');
+          canvas.style.transition = 'none';
+          currentX = (e.clientX - dragOffset.x);
+          currentY = (e.clientY - dragOffset.y);
+          currentPageTranslate = 'translate('+(currentX / maxScale)+'px, '+(currentY / maxScale)+'px)';
+          _setZoom();
         },
         _currentCanvasAspect = function(){
           var c = viewerContainer.querySelector('canvas');
@@ -561,11 +567,12 @@
 
           var c = viewerContainer.querySelector('canvas');
 
-          if(c) {
+          if(canvas) {
             if (!self.classList.contains('fit-mode')) {
-              c.style.transform = 'scale('+maxScale+')';
+              currentPageScale = 'scale('+maxScale+')';
             } else {
-              c.style.transform = 'scale(1)';
+              currentPageTranslate = 'translate(0, 0)';
+              currentPageScale = 'scale(1)';
               if (_currentCanvasAspect() > _currentViewerAspect()){
                 c.style.height = 'auto';
                 c.style.width = '100%';
@@ -574,6 +581,7 @@
                 c.style.height = '100%';
               }
             }
+            c.style.transform = currentPageScale + ' ' + currentPageTranslate;
           }
         },
         _showPage = function(num){
@@ -600,9 +608,7 @@
               viewerContainer.scrollTop = 0;
 
               page.render({canvasContext: context, viewport: viewport }).then(function () {
-                  //viewerContainer.style.backgroundSize ='contain';
-                  //viewerContainer.style.backgroundImage = 'url(' + canvasDom.toDataURL("image/jpeg") + ')';
-                  //canvasDom.setAttribute('style', 'width: ' + viewport.width + 'px; height: ' + viewport.height + 'px;');
+                  canvas = viewerContainer.querySelector('canvas');
                   self.classList.add('fit-mode');
                   _setZoom();
                   self.classList.remove('loading');
@@ -617,7 +623,7 @@
       btnNext.addEventListener('click', _nextPage);
       btnPrev.addEventListener('click', _prevPage);
       viewerContainer.addEventListener('mousedown', _viewerMouseDown, false);
-      window.addEventListener('mouseup', _viewerMouseUp, false);
+      //window.addEventListener('mouseup', _viewerMouseUp, false);
 
       self.addEventListener('height-change', function(e){
         console.log(e.detail.h);
