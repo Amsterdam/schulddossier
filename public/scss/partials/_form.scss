@@ -491,7 +491,7 @@ form {
 
   transition: all .3s;
   a.bestand {
-    pointer-events: auto;
+    pointer-events: inherit;
   }
   .file-container {
     background-color: $lightColor3;
@@ -632,7 +632,7 @@ form {
     }
     &.file-pdf-pages {
       .bestand-zoom {
-        display: block;
+        display: none;
       }
       &:hover {
         .bestand-zoom {
