@@ -1,14 +1,5 @@
 
 .document__viewer {
-  //border-radius: 10px;
-  //width: 800px;
-  //background-color: #d8d8d8;
-  //position: absolute;
-  //right: 10px;
-  //top: 10px;
-  //bottom: 10px;
-  //padding-top: 50px;
-  //right: 0;
   box-shadow: $boxShadowDefault inset;
   border-radius: 10px;
   width: 780px;
@@ -31,21 +22,18 @@
     }
   }
   canvas {
-    //flex-grow: 0;
-    //flex-shrink: 0;
-    //object-fit: contain;
-    transition: transform .4s $transitionEaseDefault;
+    transition: transform .3s $transitionEaseDefault;
     display:inline-block;
-    //position: absolute;
-    //width: 100%;
     cursor: zoom-out;
     background-color: white;
     box-shadow: rgba(0,0,0,0.5) 2px 2px 6px 1px;
   }
+  &.dragging canvas {
+    cursor: grab;
+  }
 
   .document__viewer__wrapper {
     height: calc(100% - 70px);
-    //background-color: green;
     margin: 60px 10px 10px;
   }
   .viewer-container {
