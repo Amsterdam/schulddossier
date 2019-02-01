@@ -32,7 +32,8 @@ class UserReleaseNotesController extends Controller
     {
         $finder = new Finder();
         $finder->directories()->in($this->get('kernel')->getRootDir() . '/../templates/UserReleaseNotes/');
-
+        $finder->sort(function ($a, $b) { return strcmp($b->getRelativePathname(), $a->getRelativePathname()); });
+        
         $templates = [];
 
         foreach ($finder as $dir) {
