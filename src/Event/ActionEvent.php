@@ -223,7 +223,6 @@ class ActionEvent extends Event
     {
         return [
             "dossier" => [
-                "name" => $dossier->getClientNaam(),
                 "allegro_nummer" => $dossier->getAllegroNummer(),
                 "regas_nummer" => $dossier->getRegasNummer(),
             ],
