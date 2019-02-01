@@ -12,6 +12,9 @@
 
 .document {
   background-color: #fff;
+  > p {
+    max-width: 700px;
+  }
   .document-team {
     border-bottom: 1px solid #CCCCCC;
     padding: 0 0 1rem 0;

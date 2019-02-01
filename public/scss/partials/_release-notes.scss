@@ -152,6 +152,12 @@
     }
 }
 
+.release-note {
+  p, ul {
+      max-width: 600px;
+  }
+}
+
 .release-note-not-seen .release-notes__nieuw__icon {
   opacity: 1;
   transition: opacity .3s linear 0s;
