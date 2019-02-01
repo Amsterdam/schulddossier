@@ -1494,6 +1494,27 @@
   
   function _serialize(form){if(!form||form.nodeName!=="FORM"){return }var i,j,q=[];for(i=form.elements.length-1;i>=0;i=i-1){if(form.elements[i].name===""){continue}switch(form.elements[i].nodeName){case"INPUT":switch(form.elements[i].type){case"text":case"hidden":case"password":case"button":case"reset":case"submit":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"checkbox":case"radio":if(form.elements[i].checked){q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value))}break;case"file":break}break;case"TEXTAREA":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"SELECT":switch(form.elements[i].type){case"select-one":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"select-multiple":for(j=form.elements[i].options.length-1;j>=0;j=j-1){if(form.elements[i].options[j].selected){q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].options[j].value))}}break}break;case"BUTTON":switch(form.elements[i].type){case"reset":case"submit":case"button":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break}break}}return q.join("&")};
 
+  var _byteCount = function (s) {return encodeURI(s).split(/%..|./).length - 1;};
+  var _getScrollbarWidth = function() {
+    // Create a temporary div container and append it into the body
+    var container = document.createElement('div');
+    // Append the container in the body
+    document.body.appendChild(container);
+    // Force scrollbar on the container
+    container.style.overflow = 'scroll';
+
+    // Add ad fake div inside the container
+    var inner = document.createElement('div');
+    container.appendChild(inner);
+
+    // Calculate the width based on the container width minus its child width
+    var width = container.offsetWidth - inner.offsetWidth;
+    // Remove the container from the body
+    document.body.removeChild(container);
+
+    return width;
+  };
+
   var _setHashEvents = function(){
     for (var i in hashEvents){
       var els = document.querySelectorAll('[data-hashevent="' + i + '"]');
@@ -1515,6 +1536,9 @@
     }
   }
   w.addEventListener('hashchange', _checkHash);
+
+  var scrollbarWidth = _getScrollbarWidth();
+  document.documentElement.style.setProperty('--scrollbar', scrollbarWidth+'px');
 
   _decorate();
   _setHashEvents();

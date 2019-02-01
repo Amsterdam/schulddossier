@@ -37,7 +37,7 @@
   &:before {
     content: '';
     position: absolute;
-    width: calc(100% - 425px);
+    width: calc(100% - 442px);
     height: 1px;
     right: 0;
     background-color: $borderColor2;
@@ -46,7 +46,7 @@
   &:after {
     content: '';
     position: absolute;
-    width: 370px;
+    width: 387px;
     height: 1px;
     left: 50px;
     background-color: $borderColor2;
@@ -290,6 +290,7 @@
     font-weight: bold;
     border-bottom: 1px solid #000;
     margin-left: 10px;
+    margin-right: 20px;
   }
 }
 
@@ -402,9 +403,10 @@
   line-height: 40px;
   margin: 0;
   z-index: 4;
-  margin-left: 2px;
+  margin-left: 10px;
   padding: 1px 1px 1px 15px;
-  width: 381px;
+  //width: 381px;
+  margin-right: 20px;
   a {
 
   }
@@ -443,7 +445,7 @@
   opacity: 0;
   pointer-events: none;
   position: absolute;
-  left: $voorleggerMaxWidth + 5px;
+  left: 437px;
   right: 0;
   top: 50px;
   bottom: 0;
@@ -486,7 +488,7 @@
   pointer-events: none;
   &:before {
     content: '';
-    width: $voorleggerMaxWidth;
+    width: 432px;
     height: calc(100% - 245px);
     pointer-events: none;
     position: absolute;
@@ -513,14 +515,11 @@
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
+  width: 439px;
 }
 
 .dossier__scroll-content {
   direction: ltr;
-  //position: relative;
-  width: $voorleggerMaxWidth;
-  width: 408px;
-  padding-right: 14px;
   padding-bottom: 150px;
 }
 
@@ -537,18 +536,7 @@
     border-style: solid;
     border-right: none;
     background-color: white;
-    width: 402px;
-    //&:before {
-    //  content: '';
-    //  background: white;
-    //  position: absolute;
-    //  right: -31px;
-    //  top: -1px;
-    //  border-top: 1px solid #000;
-    //  border-bottom: 1px solid #000;
-    //  width: 25px;
-    //  height: 42px;
-    //}
+    margin-right: 0;
   }
   .voorlegger-header {
     margin-right: 21px;
@@ -558,7 +546,6 @@
 .dossier__voorlegger__sectie__content {
   position: relative;
   padding: 40px 10%;
-  //overflow-y: auto;
   height: 100%;
 
 }
@@ -697,7 +684,7 @@
     margin-bottom: 0;
   }
   .page-toggle {
-    width: 425px;
+    width: 442px;
     position: absolute;
     bottom: 5px;
     left: -5px;
@@ -706,7 +693,7 @@
 
 .dossier__dashboard {
   top: 60px;
-  left: 420px;
+  left: 437px;
   //background: lightgrey;
   position: absolute;
   width: calc(100vw - 435px);
@@ -730,8 +717,6 @@
   padding-top: 50px;
   width: 40%;
   padding: 50px 6.666% 0;
-  //max-height: 600px;
-  //overflow-y: auto;
   h2 {
     margin-bottom: 20px;
   }
@@ -815,7 +800,7 @@
 .dossier__save {
   position: absolute;
   top: 5px;
-  left: 425px;
+  left: 442px;
   z-index: 1;
 
   .form-changed & {
