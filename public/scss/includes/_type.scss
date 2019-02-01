@@ -44,6 +44,25 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 17px;
+}
+
+::-webkit-scrollbar-button {
+  width: 17px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 4px solid white;
+  background-color: rgba(0,0,0,.2);
+}
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #fff;
+}
+
 
 h1, .huge {
   font-size: 3rem;
