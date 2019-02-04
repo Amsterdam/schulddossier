@@ -5,16 +5,16 @@
 {% block document %}
     <nav class="nav-internal">
         <ul>
-            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" data-decorator="get-overview-state" data-context="dossier"><i class="icon-arrow-left"></i><span>Terug naar overzicht<span></a></li>
+            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}"><i class="icon-arrow-left"></i><span>Terug naar dossier<span></a></li>
         </ul>
     </nav>
-    
+
     <div class="document well">
-      
+
       {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}
-      
+
       {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'aantekeningen'} only %}
-      
+
       <div class="aantekening-form">
         {{ form_start(form) }}
         <h2>Aantekeningen</h2>
@@ -29,6 +29,6 @@
               {% include 'Dossier/partial.aantekening.html.twig' with {'aantekening': aantekening, 'showContext': true} %}
           {% endfor %}
       </div>
-      
+
     </div>
 {% endblock %}
