@@ -4,6 +4,19 @@
 
 {% block pdfsplitter %}{% endblock %}
 
+{% block navigation_menu %}
+    {% if app.user %}
+        {% if is_granted('ROLE_ONBEKEND') %}
+            <li>
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Afmelden
+                    <strong>({{ app.user.userName }})</strong></a>
+            </li>
+        {% else %}
+            {{ parent() }}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
 {% block document %}
 
     <div class="document well">
