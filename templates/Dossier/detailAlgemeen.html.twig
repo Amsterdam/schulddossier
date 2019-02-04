@@ -5,16 +5,16 @@
 {% block document %}
     <nav class="nav-internal">
         <ul>
-            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" data-decorator="get-overview-state" data-context="dossier"><i class="icon-arrow-left"></i><span>Terug naar overzicht</span></a></li>
+            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}"><i class="icon-arrow-left"></i><span>Terug naar dossier</span></a></li>
         </ul>
     </nav>
-    
+
     <div class="document well">
-      
+
       {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}
-      
+
       {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'algemeen'} only %}
-      
+
       {{ form_start(form, {'attr': {'data-submitter': 'save', 'data-result-selector': '.form-content', 'data-changer': 'change'}}) }}
         <div class="form-content">
             {{ form_row(form.clientNaam) }}
@@ -42,8 +42,8 @@
                 </p>
             </div>
         </div>
-        
+
       {{ form_end(form) }}
-      
+
     </div>
 {% endblock %}
