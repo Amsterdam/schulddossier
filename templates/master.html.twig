@@ -83,7 +83,6 @@
                     <li class="divider"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_help_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_help_') %} class="active"{% endif %}>Help</a></li>
                     {% if app.user %}
                       <li>
-                        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_changepassword') }}">Wachtwoord aanpassen</a>
                         <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Afmelden <strong>({{ app.user.userName }})</strong></a>
                       </li>
                     {% endif %}
