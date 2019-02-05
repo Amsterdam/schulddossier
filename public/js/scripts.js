@@ -1673,7 +1673,9 @@
 
 
   var scrollbarWidth = _getScrollbarWidth();
+  var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
   document.documentElement.style.setProperty('--scrollbar', scrollbarWidth+'px');
+  document.documentElement.classList[isIE11 ? 'add' : 'remove']('ie11');
 
   _decorate();
   _setHashEvents();

@@ -28,8 +28,14 @@
     background-color: white;
     box-shadow: rgba(0,0,0,0.5) 2px 2px 6px 1px;
   }
+  .ie11 & canvas {
+    cursor: url('/images/zoomout.cur'), e-resize;
+  }
   &.dragging canvas {
     cursor: grab;
+  }
+  .ie11 &.dragging canvas {
+    cursor: url('/images/drag.cur'), e-resize;
   }
 
   .document__viewer__wrapper {
@@ -223,6 +229,9 @@
     .zoom:after {
       content: 'Zoom uit';
     }
+  }
+  .ie11 &.fit-mode canvas {
+    cursor: url('/images/zoomin.cur'), e-resize;
   }
   &.disabled .status {
       top: calc(50%);
