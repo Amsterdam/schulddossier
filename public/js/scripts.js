@@ -512,9 +512,7 @@
         _viewerMouseDown = function(e) {
           canvas.style.transition = 'transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)';
           if (e.target === canvas) {
-            console.log('down');
             if (!self.classList.contains('fit-mode')) {
-              console.log('uitgezoemd');
               dragOffset = {'x': e.clientX - currentX, 'y': e.clientY - currentY};
               window.addEventListener('mousemove', _viewerMouseMove, true);
             }
@@ -524,7 +522,6 @@
         _viewerMouseUp = function(e){
           window.removeEventListener('mouseup', _viewerMouseUp, true);
           window.removeEventListener('mousemove', _viewerMouseMove, true);
-          console.log('up');
           if (e.target === canvas) {
             if (self.classList.contains('dragging')) {
 
@@ -548,7 +545,6 @@
 
         },
         _viewerMouseMove = function(e){
-          console.log('move');
           self.classList.add('dragging');
           canvas.style.transition = 'none';
           currentX = (e.clientX - dragOffset.x);
@@ -626,7 +622,6 @@
       //window.addEventListener('mouseup', _viewerMouseUp, false);
 
       self.addEventListener('height-change', function(e){
-        console.log(e.detail.h);
       })
 
       for (var i = 0; i < documents.length; i++){
