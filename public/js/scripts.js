@@ -706,7 +706,7 @@
 
         if (!files || !files.length) return;
 
-        if (zone) location.hash = zone.getAttribute('id');
+        if (zone) location.hash = 'id_' + zone.getAttribute('id');
 
         if (form) {
           // create new file zone
@@ -1253,7 +1253,7 @@
                 return;
               }
 
-              location.hash = zone.getAttribute('id');
+              location.hash = 'id_' + zone.getAttribute('id');
 
               var lastFile = file ? [file] : zone.querySelectorAll('.file-container.active:not(.has-file) .drop-area')
 
@@ -1419,7 +1419,7 @@
 
         if (n > -1 && n < qs.length) {
           if (typeof qs[n].hashEvent === 'function'){
-            location.hash = qs[n].getAttribute('id');
+            location.hash = 'id_' + qs[n].getAttribute('id');
           }else {
             for (var i = 0; i < all.length; i++) {
               all[i].classList.remove(cls);
@@ -1516,7 +1516,7 @@
   var hashEvents = {
     'activate-section': function(hash){
       var el = this,
-        activate = el.getAttribute('id') === hash,
+        activate = el.getAttribute('id') === hash.substr(3),
         viewer = el.querySelector('.document__viewer'),
         doc = el.querySelector('[data-handler="bestand"]'),
         containers = d.querySelectorAll(this.dataset.containers || '.dossier__item'),
@@ -1553,7 +1553,16 @@
       }
     },
   };
-  
+  window.addEventListener("keydown", function(e) {
+      // space and arrow keys
+    var body = document.querySelector('body')
+    if(document.querySelector('body').classList.contains('voorlegger') && e.target === body) {
+      if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+      }
+    }
+  }, false);
+
   
   d.addEventListener('click',function(t){var k,e,a=t&&t.target;if(a=_closest(a,'[data-handler]')){var r=a.getAttribute('data-handler').split(/\s+/);if('A'==a.tagName&&(t.metaKey||t.shiftKey||t.ctrlKey||t.altKey))return;for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);handlers[k[0]]&&handlers[k[0]].call(a,t,k[1])}}});
   var l = { 

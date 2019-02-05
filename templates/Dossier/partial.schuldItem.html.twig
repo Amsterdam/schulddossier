@@ -15,7 +15,7 @@
         <div class="voorlegger-header">
             <h3 class="naam"
                 title="{{ schuldItem.schuldeiser.bedrijfsnaam|default('-') }}{% if schuldItem.incassant %} / {{ schuldItem.incassant.bedrijfsnaam }}{% endif %} (referentie: {{ schuldItem.referentie }})">
-                <a href="#schuldItem-{{ schuldItem.id }}" data-handler="toggle">
+                <a href="#id_schuldItem-{{ schuldItem.id }}" data-handler="toggle">
                     <strong>{{ schuldItem.schuldeiser.bedrijfsnaam|default('-') }}
                         {% if schuldItem.incassant %} / {{ schuldItem.incassant.bedrijfsnaam }}{% endif %}
                     </strong>
