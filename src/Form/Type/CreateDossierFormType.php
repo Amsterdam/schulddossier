@@ -1,21 +1,36 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
-use Doctrine\ORM\EntityRepository;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class CreateDossierFormType extends AbstractType
 {
+
+    private $limitSchuldhulpBureausTo;
+
+    public function __construct(TokenStorageInterface $tokenStorage)
+    {
+        $this->limitSchuldhulpBureausTo = $tokenStorage->getToken()->getUser()->getSchuldhulpbureaus()
+            ->map(function (SchuldhulpBureau $sschuldhulpbureau) {
+                return $sschuldhulpbureau->getId();
+            });
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $filterSchuldhulpBureaus = $this->limitSchuldhulpBureausTo;
+
         $builder->add('clientNaam', TextType::class, [
             'label' => 'Cliëntnaam',
             'required' => true
@@ -42,11 +57,15 @@ class CreateDossierFormType extends AbstractType
             'class' => Gebruiker::class,
             'multiple' => false,
             'expanded' => false,
-            'query_builder' => function (EntityRepository $repository) {
+            'query_builder' => function (EntityRepository $repository) use ($filterSchuldhulpBureaus) {
                 $qb = $repository->createQueryBuilder('gebruiker');
+                $qb->innerJoin('gebruiker.schuldhulpbureaus', 'shb');
+                $qb->andWhere('shb.id IN (:shb_ids)');
+                $qb->setParameter('shb_ids', $filterSchuldhulpBureaus);
                 $qb->andWhere('gebruiker.type = :type');
                 $qb->setParameter('type', Gebruiker::TYPE_MADI);
                 $qb->addOrderBy('gebruiker.username', 'ASC');
+
                 return $qb;
             },
             'group_by' => function (Gebruiker $gebruiker) {
