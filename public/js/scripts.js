@@ -64,11 +64,12 @@
         toggleClass = self.dataset.toggleClass,
         body = d.querySelector('body');
 
+
+      console.log(e.target);
+      console.log(self);
       if(toggleClass){
         e && e.preventDefault();
         body.classList[(body.classList.contains(toggleClass)) ? 'remove' : 'add'](toggleClass);
-      }else {
-
       }
     },
     'toggle': function (e) {

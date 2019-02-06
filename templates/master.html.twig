@@ -63,10 +63,14 @@
                         Nieuwe versie
                     </span>
                 </div>
-              <div class="nav-container">
+              <div class="nav-container nav-container__main-menu">
 
-                <a href="#MENU" class="nav-open" data-handler="toggle"><i class="icon-menu"></i><span>Menu</span></a>
-                <nav class="nav" id="MENU">
+                <a href="#" class="nav-toggle nav-toggle__main-menu" data-handler="global-toggle" data-toggle-class="main-menu-active">
+                    <span class="nav-open nav-open__main-menu">
+                        <i class="icon-menu"></i><span>Menu</span>
+                    </span>
+                </a>
+                <nav class="nav">
                   <ul class="menu">
                       {% block navigation_menu %}
                     {% if is_granted('ROLE_MADI') or is_granted('ROLE_GKA') or is_granted('ROLE_ADMIN') %}

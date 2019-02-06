@@ -25,9 +25,9 @@
     @extend .bold !optional;
     background-color: rgba(#fff, .6);
     padding: .5em 1em;
-    
+
     transition: all .3s;
-    
+
     &:hover {
       background-color: rgba(#fff, 1);
       text-decoration: none;
@@ -35,6 +35,9 @@
     i {
       margin-right: .5em;
     }
+  }
+  .nav-toggle {
+    padding: 0;
   }
   .icon-arrow-bottom {
     margin-left: .5em;
@@ -115,14 +118,24 @@
 .nav-internal {
   .nav {
     z-index: 101;
-    display: none;
+    //display: none;
+    pointer-events: none;
+    position: absolute;
+    opacity: 0;
+    transform-origin: top center;
+    transform: scale(.5, .5);
+    transition: transform .3s $transitionEaseDefault, opacity .2s $transitionEaseDefault;
     &.active,
     &:target {
       display: block;
     }
-  
+
+  }
+  &.nav-container__main-menu .nav {
+    right: 0;
   }
 }
+
 .menu {
   list-style: none;
   background-color: #fff;
@@ -130,7 +143,7 @@
   border: 1px solid $lightColor;
   margin: 0 -1em 0 0;
   padding: $padding / 4 $padding / 2;
-  
+
   text-align: left;
 
   a, .link {
@@ -138,9 +151,7 @@
     min-width: 200px;
     text-decoration: none;
     padding: $padding / 4 0;
-    
-    
-    
+
   }
   li:first-child a {
     margin-top: 4px;
@@ -156,13 +167,11 @@
   display: inline-block;
   vertical-align: middle;
   overflow: hidden;
-  height: 30px;
   text-decoration: none;
   font-weight: 700;
-  padding: 10px;
-  padding-left: 40px;
+  padding: 10px 10px 10px 20px;
   transition: all .3s;
-  
+
   .icon-menu {
     position: absolute;
     z-index: 104;
@@ -171,13 +180,16 @@
     left: 0;
     top: 3px;
     margin: 0;
-    
+
     &:before {
       transition: all .3s;
     }
 
   }
-  
+  &.nav-open__main-menu {
+    padding-left: 40px;
+
+  }
   &:before {
     content: '';
     position: fixed;
@@ -189,7 +201,7 @@
     height: 100vh;
     background-color: rgba(#000, .2);
   }
-  
+
   & > span {
     display: inline-block;
     position: relative;
@@ -211,11 +223,11 @@
     bottom: 0;
     background-color: white;
   }
-  
+
   &:hover {
     background-color: $lightColor
   }
-  
+
   &.active {
     &:after,
     & > span,
@@ -239,12 +251,26 @@
       }
     }
   }
-  
+
+}
+.nav-toggle__main-menu:after {
+  content: '';
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 4;
+  transition: background-color .3s;
+
 }
 
 .document-header .nav-internal {
   margin-bottom: 0;
 }
+
 .page-toggle {
   padding: 5px;
   line-height: 30px;
@@ -270,4 +296,79 @@
     font-weight: bold;
     border-bottom: 1px solid red;
   }
+}
+
+.main-menu-active .nav-container__main-menu .nav-open__main-menu {
+  background-color: #fff;
+  position: relative;
+  z-index: 5;
+
+    &:after,
+    & > span,
+    &:before {
+      display: inline-block;
+    }
+    & > span {
+      background-color: #fff;
+    }
+    i {
+      z-index: 105;
+    }
+    .icon-arrow-bottom {
+      top: .5em;
+      transform: rotate(-45deg);
+    }
+    .icon-menu {
+      &:before {
+        height: 0px;
+        top: 19px;
+      }
+    }
+}
+.main-menu-active header.top {
+  z-index: 200;
+}
+.main-menu-active .nav-container__main-menu .nav-toggle__main-menu:after {
+  content: '';
+  pointer-events: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 4;
+}
+
+.main-menu-active .nav-container__main-menu nav {
+  pointer-events: inherit;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.acties-active .nav-internal.actions .nav-open {
+  background-color: #fff;
+  z-index: 5;
+  .icon-arrow-bottom {
+    top: .5em;
+    transform: rotate(-45deg);
+  }
+}
+
+.acties-active .nav-internal.actions .nav {
+  pointer-events: inherit;
+  opacity: 1;
+  transform: scale(1);
+  //display: block;
+}
+
+.acties-active .nav-internal.actions .nav-toggle:after {
+  content: '';
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 4;
 }
