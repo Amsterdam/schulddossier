@@ -41,7 +41,7 @@
     height: 1px;
     right: 0;
     background-color: $borderColor2;
-    top: 50px;
+    top: 100px;
   }
   &:after {
     content: '';
@@ -50,7 +50,7 @@
     height: 1px;
     left: 50px;
     background-color: $borderColor2;
-    top: 50px;
+    top: 100px;
   }
 }
 
@@ -248,7 +248,7 @@
     width: 100%;
     max-width: none;
     //max-width: 1800px;
-    position: relative;
+    position: fixed;
     //transform-origin: -50px left;
     transform: translate(0, 0);
     transition: transform .4s $transitionEaseDefault;
@@ -447,7 +447,7 @@
   position: absolute;
   left: 437px;
   right: 0;
-  top: 50px;
+  top: 100px;
   bottom: 0;
   transition: all .5s $transitionEaseDefault;
   width: calc(100vw - 429px);
@@ -484,22 +484,22 @@
   height: calc(100% - 300px);
   left: 5px;
   top: 0;
-  padding-top: 245px;
+  padding-top: 295px;
   pointer-events: none;
   &:before {
     content: '';
     width: 432px;
-    height: calc(100% - 245px);
+    height: calc(100% - 295px);
     pointer-events: none;
     position: absolute;
     left: 0;
-    top: 245px;
+    top: 295px;
     z-index: 1;
     box-shadow: $boxShadowDefault inset;
   }
   & > .nav-internal {
     position: absolute;
-    top: 208px;
+    top: 258px;
     left: 50px;
   }
   & > * {
@@ -522,6 +522,7 @@
   direction: ltr;
   padding-bottom: 150px;
 }
+
 .dossier__item.active {
   //position: relative;
 
@@ -645,14 +646,14 @@
   height: 180px;
   position: relative;
   padding-left: 50px;
-  padding-top: 70px;
+  padding-top: 120px;
   max-width: 375px;
   p {
     margin: 0;
   }
   .nav-internal {
     position: absolute;
-    top: 5px;
+    top: 55px;
     left: 40px;
     margin: 0;
     background: transparent;
@@ -671,12 +672,19 @@
       right: auto;
       left: 0;
     }
-    .nav-open {
-      height: auto;
+    .nav-toggle {
+      position: relative;
+      z-index: 101;
+      padding: 0;
     }
-  }
-  .acties-active & .nav-internal .nav {
-    display: block;
+    .nav-open {
+      z-index: 102;
+      position: relative;
+      background-color: $lightColor2;
+      height: auto;
+      padding-left: 15px;
+
+    }
   }
 
   h1 {
@@ -690,8 +698,13 @@
   }
 }
 
+.acties-active .document-container {
+  //position: relative;
+  z-index: 200;
+}
+
 .dossier__dashboard {
-  top: 60px;
+  top: 110px;
   left: 437px;
   //background: lightgrey;
   position: absolute;
@@ -713,7 +726,7 @@
 
 .dossier__dashboard__default,
 .dossier__dashboard__messages {
-  padding-top: 50px;
+  padding-top: 100px;
   width: 40%;
   padding: 50px 6.666% 0;
   h2 {
@@ -729,7 +742,7 @@
 .dossier__workflow {
   position: absolute;
   right: 5px;
-  top: 5px;
+  top: 55px;
   ul {
     list-style: none;
     margin: 0;
@@ -798,7 +811,7 @@
 
 .dossier__save {
   position: absolute;
-  top: 5px;
+  top: 55px;
   left: 442px;
   z-index: 1;
 
