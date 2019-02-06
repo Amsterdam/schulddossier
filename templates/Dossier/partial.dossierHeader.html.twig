@@ -4,14 +4,17 @@
     {#{% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}#}
 
     <nav class="nav-internal actions">
-        <a href="#acties" class="nav-open primary" data-handler="global-toggle" data-toggle-class="acties-active"
-           data-label="Alle acties">Alle
-            acties <i class="icon-arrow-bottom"></i></a>
+        {#<span class="nav-open primary">Alle acties <i class="icon-arrow-bottom"></i></span>#}
+        <a href="#acties" class="nav-toggle" data-handler="global-toggle" data-toggle-class="acties-active"
+           data-label="Alle acties"><span class="nav-open primary">Alle acties <i class="icon-arrow-bottom"></i></span></a>
         <nav class="nav" id="acties">
             <ul class="menu">
                 <li>
                     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocumenten', {'dossierId': dossier.id}) }}"><i
                                 class="icon-documenten"></i> Toon alle documenten</a></li>
+                <li>
+                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', {'dossierId': dossier.id}) }}"><i
+                                class="icon-documenten"></i> Toon overige documenten</a></li>
                 <li><a href="#pdfsplitter" data-handler="global-toggle" data-toggle-class="splitter-active"><i
                                 class="icon-splitsen"></i> pdf splitsen</a></li>
                 <li>

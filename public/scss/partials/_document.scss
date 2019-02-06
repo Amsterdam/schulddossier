@@ -1,6 +1,7 @@
 .document-container {
   max-width: $maxContentWidth;
   margin: 2 * $lineHeight auto;
+  position: relative;
 }
 .document-container__narrow {
   max-width: $maxContentNarrowWidth;
