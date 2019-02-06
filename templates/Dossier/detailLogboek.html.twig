@@ -1,0 +1,76 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}{{ dossier.clientNaam }} - {{ parent() }}{% endblock %}
+
+{% block pdfsplitter %}{% endblock %}
+
+{% block document %}
+    <nav class="nav-internal">
+        <ul>
+            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}"><i class="icon-arrow-left"></i><span>Terug naar dossier</span></a></li>
+        </ul>
+    </nav>
+
+    <div class="document well">
+
+      {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier, 'title': 'Logboek'} only %}
+
+        <ul class="aantekeningen log-list">
+
+        {% for log in logs %}
+            <li class="aantekening
+                {% if log.data.gebruiker is defined %}
+                {% if log.data.gebruiker.email is defined %}
+                {% if log.data.gebruiker.email == app.user.email %} aantekening-mijn {% endif %}
+                {% endif %}
+                {% endif %}
+                {% if log.data.gebruiker.type is defined %} {{ log.data.gebruiker.type|lower }}{% endif %}">
+                <p class="aantekening-meta">
+                  <time>
+                      {% if log.datumTijd|date('d-m-Y') == date()|date('d-m-Y') %}
+                      Vandaag {{ log.datumTijd|date('H:i') }}
+                      {% else %}
+                      {{ log.datumTijd|date('d-m-Y H:i') }}
+                      {% endif %}
+                  </time>
+                  {% if log.data.gebruiker is defined %}
+                  {% if log.data.gebruiker.email is defined and log.data.gebruiker.email == app.user.email %}
+                      <strong>Jij</strong>
+                  {% else %}
+                  <strong>{% if log.data.gebruiker.email is defined %}<a href="mailto:{{ log.data.gebruiker.email }}">{% endif %}{{ log.data.gebruiker.naam }} {% if log.data.gebruiker.email is defined %}</a>{% endif %}</strong>
+                  {% endif %}
+                  {% endif %}
+
+                </p>
+                <div class="aantekening-bericht">
+                            {% if log.name == 'dossier_status_gewijzigd' %}
+                                Dossier status gewijzigd naar: <strong>{{ log.data.status.naar }}</strong>
+                            {% endif %}
+                            {% if log.name == 'dossier_gewijzigd' %}
+                                Dossier gewijzigd
+                            {% endif %}
+                            {% if log.name == 'gebruiker_ingelogd' %}
+                                Gebruiker inglogd
+                            {% endif %}
+                            {% if log.name == 'gebruiker_gewijzigd' %}
+                                Gebruiker gewijzigd
+                            {% endif %}
+                            {% if log.name == 'dossier_aangemaakt' %}
+                                Dossier aangemaakt
+                            {% endif %}
+                            {% if log.name == 'dossier_geopened' %}
+                                Dossier geopend: {% if log.dossier is defined %}
+                                {% if log.dossier.clientNaam is defined %}
+                                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+                                {% else %}
+                                    <i>Verwijderd</i>
+                                {% endif %}
+                            {% endif %}
+                            {% endif %}
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}
