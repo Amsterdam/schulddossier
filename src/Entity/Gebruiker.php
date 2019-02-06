@@ -226,12 +226,12 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
 
     public function getEmail()
     {
-        return $this->email;
+        return strtolower($this->email);
     }
 
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = strtolower($email);
     }
 
     public function getTeamGka()

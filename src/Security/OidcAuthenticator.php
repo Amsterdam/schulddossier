@@ -146,7 +146,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
             throw new AuthenticationException('Auth server did not supply a e-mail');
         }
 
-        $user = $this->gebruikerRepository->findOneBy(['email' => $token->getClaim('email')]);
+        $user = $this->gebruikerRepository->findOneBy(['email' => strtolower($token->getClaim('email'))]);
         if ($user === null) {
             $user = new Gebruiker();
             $user->setEmail($token->getClaim('email'));
