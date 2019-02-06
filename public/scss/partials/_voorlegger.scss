@@ -653,14 +653,17 @@
   }
   .nav-internal {
     position: absolute;
-    top: 55px;
+    top: 58px;
     left: 40px;
     margin: 0;
     background: transparent;
     a {
       background: none;
     }
-
+    .icon-arrow-right{
+      top: 1.2em;
+      font-size: 12px
+    }
   }
   .nav-internal.actions {
     margin: 10px 0 0;
