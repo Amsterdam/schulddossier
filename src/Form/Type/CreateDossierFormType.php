@@ -22,8 +22,8 @@ class CreateDossierFormType extends AbstractType
     public function __construct(TokenStorageInterface $tokenStorage)
     {
         $this->limitSchuldhulpBureausTo = $tokenStorage->getToken()->getUser()->getSchuldhulpbureaus()
-            ->map(function (SchuldhulpBureau $sschuldhulpbureau) {
-                return $sschuldhulpbureau->getId();
+            ->map(function (SchuldhulpBureau $schuldhulpbureau) {
+                return $schuldhulpbureau->getId();
             });
     }
 
