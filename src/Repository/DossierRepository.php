@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -90,8 +91,23 @@ class DossierRepository extends EntityRepository
         }
 
         if ($query['schuldhulpbureaus'] !== null && count($query['schuldhulpbureaus']) > 0) {
-            $qb->andWhere('dossier.schuldhulpbureau = :schuldhulpbureau');
-            $qb->setParameter('schuldhulpbureau', $query['schuldhulpbureaus']);
+            $expr = $qb->expr()->orX();
+
+            $schuldhulpbureaus = [];
+
+            if ($query['schuldhulpbureaus'] instanceof Collection) {
+                $schuldhulpbureaus = $query['schuldhulpbureaus']->toArray();
+            } else if (is_array($query['schuldhulpbureaus'])) {
+                $schuldhulpbureaus = $query['schuldhulpbureaus'];
+            } else {
+                $schuldhulpbureaus = [$query['schuldhulpbureaus']];
+            }
+
+            foreach ($schuldhulpbureaus as $i => $schuldhulpbureau) {
+                $expr->add('dossier.schuldhulpbureau = :schuldhulpbureau_' . $i);
+                $qb->setParameter('schuldhulpbureau_' . $i, $schuldhulpbureau);
+            }
+            $qb->andWhere($expr);
         }
 
         if (isset($query['schuldhulpbureau']) && $query['schuldhulpbureau'] !== null) {
