@@ -436,7 +436,7 @@
         currentY = 0,
         loadingTask,
         loadTimeout,
-        maxScale = 5,
+        maxScale = 3,
         canvas,
         _clear = function () {
             var canvasElements = viewerContainer.querySelectorAll('canvas');
