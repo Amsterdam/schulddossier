@@ -438,7 +438,7 @@ class AppDossierController extends Controller
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30);
 
-        return $this->render('Log/index.html.twig', ['logs' => $logs, 'dossier' => $dossier]);
+        return $this->render('Dossier/detailLogboek.html.twig', ['logs' => $logs, 'dossier' => $dossier]);
     }
 
     /**

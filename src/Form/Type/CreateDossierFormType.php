@@ -17,9 +17,11 @@ class CreateDossierFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('clientNaam', TextType::class, [
+            'label' => 'Cliëntnaam',
             'required' => true
         ]);
         $builder->add('partnerNaam', TextType::class, [
+            'label' => 'Partnernaam',
             'required' => false
         ]);
         $builder->add('schuldhulpbureau', EntityType::class, [

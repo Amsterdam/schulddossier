@@ -1,58 +1,9 @@
 <div class="document-header group">
     
   <div>
-    <h1 class="document-title">{{ dossier.clientNaam }}</h1>
-    {% if dossier.regasNummer or dossier.allegroNummer %}
+    <h1 class="document-title">{{ title }}</h1>
       <ul class="document-meta">
-        {% if dossier.regasNummer %}
-          <li>Regas: <strong>{{ dossier.regasNummer }}</strong></li>
-        {% endif %}
-        {% if dossier.allegroNummer %}
-          <li>Allegro: <strong>{{ dossier.allegroNummer }}</strong></li>
-        {% endif %}
+          <li>Cliëntnaam: <strong>{{ dossier.clientnaam }}</strong></li>
       </ul>
-    {% endif %}
-    <p>Huidige status: <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.Id}) }}#document-workflow" data-handler="scroll"><strong>{{ dossier.status|trans }}</strong></a></p>
   </div>
-
-  
-  <nav class="nav-internal actions">
-        <a href="#acties" class="nav-toggle" data-handler="global-toggle" data-toggle-class="acties-active"
-           data-label="Alle acties"><span class="nav-open primary">Alle acties <i class="icon-arrow-bottom"></i></span></a>
-      <nav class="nav" id="acties">
-        <ul class="menu">
-                <li>
-                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocumenten', {'dossierId': dossier.id}) }}"><i
-                                class="icon-documenten"></i> Toon alle documenten</a></li>
-                <li>
-                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', {'dossierId': dossier.id}) }}"><i
-                                class="icon-documenten"></i> Toon overige documenten</a></li>
-                <li><a href="#pdfsplitter" data-handler="global-toggle" data-toggle-class="splitter-active"><i
-                                class="icon-splitsen"></i> pdf splitsen</a></li>
-                <li>
-                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschuldenexcel', {'dossierId': dossier.id}) }}"><i
-                                class="icon-download"></i> Download schuldenlijst als Excel</a></li>
-                <li><a
-                            href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_log', {'dossierId': dossier.id}) }}"><i
-                                class="icon-documenten"></i> Toon logboek</a></li>
-                <li>
-                <li class="divider"><a
-                            href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', {'dossierId': dossier.id}) }}"><i
-                                class="icon-uit-prullenbak"></i> Toon prullenbak</a></li>
-                <li>
-                    <form method='POST'
-                          action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', {'dossierId': dossier.id}) }}"
-                          data-submitter="zeker-weten">
-                        <button type="submit" name="token"
-                                value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak') }}"
-                                class="link"><i class="icon-prullenbak"></i> Dossier verwijderen
-                        </button>
-                    </form>
-                </li>
-        </ul>
-      </nav>
-  </nav>
-  
-  
-
 </div>
