@@ -2,6 +2,8 @@
 
 {% block title %}{{ dossier.clientNaam }} - {{ parent() }}{% endblock %}
 
+{% block pdfsplitter %}{% endblock %}
+
 {% block document %}
     <nav class="nav-internal">
         <ul>
@@ -11,9 +13,7 @@
 
     <div class="document well">
 
-      {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}
-
-      {% include 'Dossier/partial.dossierDetailNav.html.twig' with {'dossier': dossier, 'active': 'algemeen'} only %}
+      {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier, 'title': 'Wijzig algemene informatie'} only %}
 
       {{ form_start(form, {'attr': {'data-submitter': 'save', 'data-result-selector': '.form-content', 'data-changer': 'change'}}) }}
         <div class="form-content">

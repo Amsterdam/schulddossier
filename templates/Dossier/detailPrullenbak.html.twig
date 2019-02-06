@@ -4,6 +4,8 @@
 
 {% block document %}
 
+{% block pdfsplitter %}{% endblock %}
+
 <nav class="nav-internal">
     <ul>
         <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}"><i class="icon-arrow-left"></i> Terug naar dossier</a></li>
@@ -12,9 +14,7 @@
 </nav>
 
 <div class="document well">
-    <div class="document-header">
-        <h1 class="document-title">Prullenbak: {{ dossier.clientNaam }}</h1>
-    </div>
+    {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier, 'title': 'Prullenbak'} only %}
 
     <h2>Documenten</h2>
     <div class="table table-actions">
