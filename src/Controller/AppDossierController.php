@@ -220,7 +220,7 @@ class AppDossierController extends Controller
                         $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
                     }
                 }
-                if (empty($child->get('aantekening')->get('tekst')->getData()) === false) {
+                if ($child->has('aantekening') && empty($child->get('aantekening')->get('tekst')->getData()) === false) {
                     $aantekening = new Aantekening();
                     $aantekening->setDossier($dossier);
                     $aantekening->setGebruiker($this->getUser());
