@@ -7,7 +7,7 @@
 {% block document %}
 <nav class="nav-internal">
     <ul>
-        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}"><i class="icon-arrow-left"></i><span>Terug naar dossier<span></a></li>
+        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" data-decorator="get-overview-state" data-context="dossier"><i class="icon-arrow-left"></i><span>Terug naar overzicht<span></a></li> 
     </ul>
 </nav>
     <div class="document well">
