@@ -23,6 +23,10 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
 {
     const TYPE_GKA = 'gka';
     const TYPE_MADI = 'madi';
+
+    const TYPE_GKA_APPBEHEERDER = 'gka_appbeheerder';
+    const TYPE_MADI_KEYUSER = 'madi_keyuser';
+
     const TYPE_ADMIN = 'admin';
     const TYPE_APPBEHEERDER = 'appbeheer';
     const TYPE_ONBEKEND = 'onbekend';
@@ -339,8 +343,10 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     public static function getTypes(string $type = null)
     {
         $defaultTypes = [
-            'Dossierbehandelaar MADI' => self::TYPE_MADI,
-            'Dossierbehandelaar GKA' => self::TYPE_GKA,
+            'MADI - Dossierbehandelaar' => self::TYPE_MADI,
+            'GKA - Dossierbehandelaar' => self::TYPE_GKA,
+            'GKA - App Beheerder' => self::TYPE_GKA_APPBEHEERDER,
+            'Madi - Key user' => self::TYPE_MADI_KEYUSER,
             ucfirst(self::TYPE_APPBEHEERDER) => self::TYPE_APPBEHEERDER,
             ucfirst(self::TYPE_ONBEKEND) => self::TYPE_ONBEKEND
         ];
