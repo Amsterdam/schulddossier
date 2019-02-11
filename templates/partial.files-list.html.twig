@@ -16,7 +16,7 @@
                    data-handler="bestand">
                     {#{{ dossierDocument.document.naam }}#}
                     <i class="icon-document"
-                       data-extension="{{ dossierDocument.document.origineleExtensie|lower }}"{% if documentThumbnail is not empty %} style="background-image: url({{ documentThumbnail }})"{% endif %}></i>
+                       data-extension="{{ dossierDocument.document.origineleExtensie|lower }}" {% if documentThumbnail is not empty %} data-decorator="lazy-load-document-thumb" data-background-image="{{ documentThumbnail }}" {% endif %}></i>
                     <span class="bestand-naam">{{ dossierDocument.document.naam }}</span>
                 </a>
                 {#{% endif %}#}

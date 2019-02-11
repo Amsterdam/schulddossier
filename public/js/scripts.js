@@ -294,6 +294,11 @@
   };
 
   var decorators = {
+    'lazy-load-document-thumb': function () {
+      var self = this,
+        bgUrl = self.dataset.backgroundImage;
+      self.style.backgroundImage = 'url(' + bgUrl + ')';
+    },
     'img-cover-batch': function(){
         var self = this,
           fitType = 'cover',
