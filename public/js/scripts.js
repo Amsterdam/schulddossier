@@ -296,8 +296,18 @@
   var decorators = {
     'lazy-load-document-thumb': function () {
       var self = this,
-        bgUrl = self.dataset.backgroundImage;
-      self.style.backgroundImage = 'url(' + bgUrl + ')';
+        bgUrl = self.dataset.backgroundImage,
+        img = new Image(),
+        _onLoad = function(){
+          self.style.backgroundImage = bgUrl;
+        };
+
+      // img.src = bgUrl;
+      // img.onload = _onLoad();
+      document.addEventListener("DOMContentLoaded", function(){
+        self.style.backgroundImage = 'url(' + bgUrl + ')';
+      });
+
     },
     'img-cover-batch': function(){
         var self = this,
