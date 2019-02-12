@@ -297,7 +297,9 @@
     'lazy-load-document-thumb': function () {
       var self = this,
         bgUrl = self.dataset.backgroundImage;
-      self.style.backgroundImage = 'url(' + bgUrl + ')';
+      if (!isIE11){
+        self.style.backgroundImage = 'url(' + bgUrl + ')';
+      }
     },
     'img-cover-batch': function(){
         var self = this,
