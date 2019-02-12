@@ -1,17 +1,17 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
-use Doctrine\ORM\EntityRepository;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DetailDossierFormType extends AbstractType
 {
@@ -31,9 +31,9 @@ class DetailDossierFormType extends AbstractType
             'multiple' => false,
             'expanded' => false
         ]);
-        $builder->add('medewerkerSchuldhulpbureau', EntityType::class, [
+
+        $builder->add('medewerkerSchuldhulpbureau', SchuldeiserType::class, [
             'required' => true,
-            'class' => Gebruiker::class,
             'multiple' => false,
             'expanded' => false,
             'query_builder' => function (EntityRepository $repository) {
