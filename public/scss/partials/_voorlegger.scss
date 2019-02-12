@@ -69,7 +69,7 @@
     }
     strong {
       display: inline-block;
-      max-width: 245px;
+      max-width: 222px;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
@@ -661,7 +661,7 @@
     a {
       background: none;
     }
-    .icon-arrow-right{
+    .icon-arrow-right {
       font-size: 12px
     }
   }
@@ -860,6 +860,7 @@
     color: #fff;
   }
 }
+
 .dossier__item__dummy {
   position: absolute;
   z-index: 100;
@@ -871,9 +872,49 @@
     opacity: 1;
   }
 }
+
 .dossier__item__dummy__top {
   top: 295px;
 }
+
 .dossier__item__dummy__bottom {
   bottom: 0;
+}
+
+.dossier__voorlegger__header__message {
+  position: absolute;
+  z-index: 100;
+  white-space: nowrap;
+  color: rgba($textColor, .5);
+  right: 125px;
+  cursor: pointer;
+  &:before {
+    content: '!';
+    display: inline-block;
+    font-size: 12px;
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: .5em;
+    line-height: 1.2em;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgba($textColor, .5);
+  }
+  &:hover:after {
+    content: attr(data-message);
+    position: absolute;
+    pointer-events: none;
+    top: 30px;
+    background-color: #fff;
+    color: #000;
+    line-height: 1.2em;
+    font-size: 14px;
+    z-index: 100;
+    padding: 5px 10px;
+    box-shadow: $boxShadowDefault;
+    max-width: 300px;
+    min-width: 100px;
+  }
 }
