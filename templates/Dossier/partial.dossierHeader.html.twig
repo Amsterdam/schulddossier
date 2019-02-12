@@ -42,14 +42,18 @@
     </nav>
 
 
-    <p class="nav-internal">
-        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" data-context="dossier">
+    <p class="nav-internal--breadcrumb">
+        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class=" nav-internal--breadcrumb__home">
             <span>Start</span>
         </a>
-        <i class="icon-arrow-right"></i>
-        <a href="#_">
+        <a href="#dossier" class=" nav-internal--breadcrumb__dossier">
+            <i class="nav-internal--breadcrumb__icon-arrow-right"></i>
             <span>Dossier</span>
         </a>
+        <span class="nav-internal--breadcrumb__section hide">
+            <i class="nav-internal--breadcrumb__icon-arrow-right"></i>
+            <span></span>
+        </span>
     </p>
     <div class="page-toggle">
         {% if active == 'schulden' %}
