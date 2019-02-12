@@ -16,15 +16,17 @@
         {{ form_errors(voorleggerForm) }}
         <div class="dossier__list-container">
             {% include 'Dossier/partial.dossierDashboard.html.twig' with {'dossier': dossier} only %}
+            <div class="dossier__item__dummy dossier__item__dummy__top active"><div class="dossier__voorlegger__header"><h3>Top</h3></div></div>
+            <div class="dossier__item__dummy dossier__item__dummy__bottom active"><div class="dossier__voorlegger__header"><h3>Bottom</h3></div></div>
+            <div class="dossier__scroll-container"  data-scroller="sticky-section">
 
-            <div class="dossier__scroll-container">
+
                 <div class="dossier__scroll-content">
 
 
                     <div class="dossier__container team-{{ app.user.type }}" data-keyupper="vertical-list-nav"
                          data-decorator="droppable">
-                        <div class="dossier__item__dummy dossier__item__dummy__top"><div class="dossier__header">Top</div></div>
-                        <div class="dossier__item__dummy dossier__item__dummy__bottom"><div class="dossier__header">Bottom</div></div>
+
                         {% include 'Dossier/partial.voorleggerLegitimatie.html.twig' with {'form': voorleggerForm.legitimatie, 'dossier': dossier, 'title': 'Legitimatie'} only %}
                         {% include 'Dossier/partial.voorleggerVtlb.html.twig' with {'form': voorleggerForm.vtlb, 'dossier': dossier, 'title': 'VTLB (Vrij te laten bedrag)'} only %}
                         <h2>Inkomen</h2>

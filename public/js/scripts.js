@@ -1090,6 +1090,7 @@
 
           }
         }
+        _addScrollHandlers();
         _decorate();
         _setHashEvents();
         _checkHash();
@@ -1458,7 +1459,18 @@
       }
     }
   };
-
+  var scrollerElements = {
+    'sticky-section': function () {
+      var self = this;
+      var activeSection = document.querySelector('.dossier__item.active');
+      var top = document.querySelector('.dossier__item__dummy__top');
+      var bottom = document.querySelector('.dossier__item__dummy__bottom');
+      if (activeSection){
+        bottom.classList[(activeSection.dataset.offsetBottom > (self.scrollTop + self.offsetHeight)) ? 'add' : 'remove']('show');
+        top.classList[(activeSection.dataset.offsetTop < self.scrollTop) ? 'add' : 'remove']('show');
+      }
+    }
+  }
   var helpers = {
     'ajax': function (options) {
       var request = new XMLHttpRequest(),
@@ -1524,6 +1536,8 @@
       var el = this,
         activate = el.getAttribute('id') === hash.substr(3),
         viewer = el.querySelector('.document__viewer'),
+        scrollParent = _closest(el, '.dossier__scroll-content'),
+        scrollContainer = _closest(el, '.dossier__scroll-container'),
         doc = el.querySelector('[data-handler="bestand"]'),
         timeout,
         breadcrumb = document.querySelector('.nav-internal--breadcrumb__section'),
@@ -1534,8 +1548,25 @@
           viewer.reset();
         },
         _activate = function(el){
+          var dummyElements = document.querySelectorAll('.dossier__item__dummy');
           el.classList['add']('active');
+          el.dataset.offsetTop = el.getBoundingClientRect().top - scrollParent.getBoundingClientRect().top;
+          el.dataset.offsetBottom = el.getBoundingClientRect().bottom - scrollParent.getBoundingClientRect().top;
+          for (var i = 0; i < dummyElements.length; i++) {
+            while (dummyElements[i].firstChild) {
+              dummyElements[i].removeChild(dummyElements[i].firstChild);
+            }
+            dummyElements[i].appendChild(el.querySelector('.dossier__voorlegger__header').cloneNode(true));
+            dummyElements[i].classList.remove('show');
+          }
           doc && viewer.showDocument(doc, 1);
+          scrollContainer.fn.call(scrollContainer, scrollContainer);
+          var outsideTop = !(el.dataset.offsetBottom < (scrollContainer.scrollTop + scrollContainer.offsetHeight)),
+            outsideBottom = !(el.dataset.offsetTop > scrollContainer.scrollTop);
+
+          if (outsideTop || outsideBottom){
+            el.scrollIntoView(!outsideTop);
+          }
 
 
 
@@ -1561,13 +1592,10 @@
         };
       if (activate){
         _activate(el);
-        //el.scrollIntoView({ behavior: 'smooth', block: 'start'});
       }else {
         breadcrumb.classList.add('hide');
         _deactivate(el);
       }
-
-
     }
   };
 
@@ -1700,6 +1728,21 @@
       }
     }
   };
+  var _addScrollHandlers = function(){
+    for (var k in scrollerElements) {
+      if (scrollerElements.hasOwnProperty(k)) {
+        var els = document.querySelectorAll('[data-scroller="' + k + '"]');
+          for (var i = 0; i < els.length; i++) {
+            els[i].fn = scrollerElements[k];
+            els[i].addEventListener('scroll', function(e){
+              requestAnimationFrame(function(){
+                e.target.fn.call(e.target);
+              })
+            });
+          }
+      }
+    }
+  };
 
   w.addEventListener('hashchange', _checkHash);
   //w.addEventListener('resize', _checkSize);
@@ -1710,6 +1753,7 @@
   document.documentElement.style.setProperty('--scrollbar', scrollbarWidth+'px');
   document.documentElement.classList[isIE11 ? 'add' : 'remove']('ie11');
 
+  _addScrollHandlers();
   _decorate();
   _setHashEvents();
   _checkHash();
