@@ -523,6 +523,7 @@
   padding-bottom: 150px;
 }
 
+.dossier__item__dummy.active,
 .dossier__item.active {
   //position: relative;
 
@@ -858,4 +859,21 @@
     background-color: #000;
     color: #fff;
   }
+}
+.dossier__item__dummy {
+  position: absolute;
+  z-index: 100;
+  opacity: 0;
+  left: 17px;
+  right: 0;
+  pointer-events: none;
+  &.show {
+    opacity: 1;
+  }
+}
+.dossier__item__dummy__top {
+  top: 295px;
+}
+.dossier__item__dummy__bottom {
+  bottom: 0;
 }
