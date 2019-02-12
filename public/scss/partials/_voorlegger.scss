@@ -651,19 +651,21 @@
   p {
     margin: 0;
   }
-  .nav-internal {
+  .nav-internal--breadcrumb {
     position: absolute;
-    top: 55px;
+    top: 67px;
     left: 40px;
     margin: 0;
     background: transparent;
     a {
       background: none;
     }
-
+    .icon-arrow-right{
+      font-size: 12px
+    }
   }
   .nav-internal.actions {
-    margin: 10px 0 0;
+    margin: 20px 0 0;
     position: relative;
     left: 0;
     top: 0;
@@ -691,10 +693,10 @@
     margin-bottom: 0;
   }
   .page-toggle {
-    width: 402px;
+    width: 397px;
     position: absolute;
     bottom: 5px;
-    left: 22px;
+    left: 40px;
   }
 }
 
@@ -750,6 +752,7 @@
   }
   li {
     display: inline-block;
+    margin-left: 10px;
   }
 
 }

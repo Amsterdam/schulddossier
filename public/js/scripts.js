@@ -1525,6 +1525,8 @@
         activate = el.getAttribute('id') === hash.substr(3),
         viewer = el.querySelector('.document__viewer'),
         doc = el.querySelector('[data-handler="bestand"]'),
+        timeout,
+        breadcrumb = document.querySelector('.nav-internal--breadcrumb__section'),
         containers = d.querySelectorAll(this.dataset.containers || '.dossier__item'),
 
         _deactivate = function(el){
@@ -1535,12 +1537,33 @@
           el.classList['add']('active');
           doc && viewer.showDocument(doc, 1);
 
-        };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+          if (breadcrumb) {
+            window.clearTimeout(timeout);
+            timeout = setTimeout(function(){
+              breadcrumb.classList.remove('hide');
+              breadcrumb.querySelector('span').textContent = el.querySelector('.dossier__voorlegger__header h3').textContent;
+            }, 600);
+          }
+        };
       if (activate){
         _activate(el);
         //el.scrollIntoView({ behavior: 'smooth', block: 'start'});
       }else {
+        breadcrumb.classList.add('hide');
         _deactivate(el);
       }
 
