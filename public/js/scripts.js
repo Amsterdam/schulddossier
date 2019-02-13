@@ -1557,6 +1557,7 @@
         scrollParent = _closest(el, '.dossier__scroll-content'),
         scrollContainer = _closest(el, '.dossier__scroll-container'),
         doc = el.querySelector('[data-handler="bestand"]'),
+        dummyElements = document.querySelectorAll('.dossier__item__dummy'),
         timeout,
         breadcrumb = document.querySelector('.nav-internal--breadcrumb__section'),
         containers = d.querySelectorAll(this.dataset.containers || '.dossier__item'),
@@ -1566,7 +1567,6 @@
           viewer.reset();
         },
         _activate = function(el){
-          var dummyElements = document.querySelectorAll('.dossier__item__dummy');
           el.classList['add']('active');
           el.dataset.offsetTop = el.getBoundingClientRect().top - scrollParent.getBoundingClientRect().top;
           el.dataset.offsetBottom = el.getBoundingClientRect().bottom - scrollParent.getBoundingClientRect().top;
@@ -1575,7 +1575,6 @@
               dummyElements[i].removeChild(dummyElements[i].firstChild);
             }
             dummyElements[i].appendChild(el.querySelector('.dossier__voorlegger__header').cloneNode(true));
-            dummyElements[i].classList.remove('show');
           }
           doc && viewer.showDocument(doc, 1);
           scrollContainer.fn.call(scrollContainer, scrollContainer);
@@ -1612,6 +1611,9 @@
         _activate(el);
       }else {
         breadcrumb.classList.add('hide');
+        for (var i = 0; i < dummyElements.length; i++) {
+          dummyElements[i].classList.remove('show');
+        }
         _deactivate(el);
       }
     }
