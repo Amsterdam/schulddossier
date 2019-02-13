@@ -43,7 +43,7 @@ class IdToSchuldeiserTransformer implements DataTransformerInterface
      */
     public function reverseTransform($id): ?Schuldeiser
     {
-        if (!$id) {
+        if (empty($id)) {
             return null;
         }
 

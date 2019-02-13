@@ -237,7 +237,7 @@ class SchuldItem
         return $this->incassant;
     }
 
-    public function setIncassant(Schuldeiser $incassant)
+    public function setIncassant(Schuldeiser $incassant = null)
     {
         $this->incassant = $incassant;
     }

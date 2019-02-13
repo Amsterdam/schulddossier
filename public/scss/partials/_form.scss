@@ -881,9 +881,10 @@ form {
   .search-result-item-static,
   .search-result-item-selectable {
     //width: 200px;
+    position: relative;
     text-decoration: none;
     margin: 0 1rem;
-    padding: 1rem;
+    padding: 10px;
     transition: all .3s;
     border-bottom: 1px solid $borderColor;
     span {
@@ -892,6 +893,23 @@ form {
         font-weight: bold;
       }
     }
+  }
+  .search-result-item-static {
+    padding: 10px 30px 10px 10px;
+  }
+  .search-result-item-selectable {
+
+  }
+  .search-result-item__close {
+    top: 12px;
+    right: 10px;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    @extend .icon-prullenbak;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
   .result-container {
     list-style: none;
