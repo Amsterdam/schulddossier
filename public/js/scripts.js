@@ -1036,7 +1036,7 @@
       form.classList.add('in-progress');
 
       // fix: new schuld new document name
-      var bestandInputList = form.querySelectorAll('#nieuwe-schuld-toevoegen .file-container.has-file .bestand-naam input'),
+      var bestandInputList = form.querySelectorAll('#nieuwe-schuld-toevoegen .file-container.active .bestand-naam input'),
         defaultDocumentNaam = form.querySelector('[data-default-document-naam]').dataset.defaultDocumentNaam,
         newDocCounter = 1;
       for(i = 0; i < bestandInputList.length; i++){
