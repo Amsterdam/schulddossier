@@ -19,10 +19,10 @@
                     <strong>{{ schuldItem.schuldeiser.bedrijfsnaam|default('-') }}
                         {% if schuldItem.incassant %} / {{ schuldItem.incassant.bedrijfsnaam }}{% endif %}
                     </strong>
-                    {#<span class="referentie">(referentie: {{ schuldItem.referentie }})</span>#}
+                    {{ schuldItem.isVerlopen ? '<span class="dossier__voorlegger__header__message" data-message="Is verlopen"></span>' }}
                 </a>
             </h3>
-            {{ schuldItem.isVerlopen ? '<span class="dossier__voorlegger__header__message" data-message="Is verlopen"></span>' }}
+
 
             <div class="bedrag">
                 &euro; {{ schuldItem.bedrag|number_format(2, ',', '.') }}
