@@ -51,6 +51,7 @@ class DossierDocumentFormType extends AbstractType
                 'gereserveerdeGelden' => 'gereserveerdeGelden',
                 'ondertekendAanvraagFormulier' => 'ondertekendAanvraagFormulier',
                 'aanvullendeInformatie' => 'aanvullendeInformatie',
+                'overigeDocumenten' => 'overigeDocumenten',
             ],
             'multiple' => false,
             'expanded' => false

@@ -53,6 +53,7 @@ class VoorleggerFormType extends AbstractType
         $builder->add('legitimatie', VoorleggerLegitimatieFormType::class, $settings);
         $builder->add('meterstandenEnergie', VoorleggerMeterstandenEnergieFormType::class, $settings);
         $builder->add('ondertekendAanvraagFormulier', VoorleggerOndertekendAanvraagFormulierFormType::class, $settings);
+        $builder->add('overigeDocumenten', VoorleggerOverigeDocumentenFormType::class, $settings);
         $builder->add('overeenkomstKinderopvang', VoorleggerOvereenkomstKinderopvangFormType::class, $settings);
         $builder->add('polisbladZorgverzekering', VoorleggerPolisbladZorgverzekeringFormType::class, $settings);
         $builder->add('retourbewijsModem', VoorleggerRetourbewijsModemFormType::class, $settings);
