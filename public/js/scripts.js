@@ -1572,6 +1572,7 @@
         dummyElements = document.querySelectorAll('.dossier__item__dummy'),
         timeout,
         breadcrumb = document.querySelector('.nav-internal--breadcrumb__section'),
+        breadcrumbDossier = document.querySelector('.nav-internal--breadcrumb__dossier'),
         containers = d.querySelectorAll(this.dataset.containers || '.dossier__item'),
 
         _deactivate = function(el){
@@ -1615,6 +1616,7 @@
             window.clearTimeout(timeout);
             timeout = setTimeout(function(){
               breadcrumb.classList.remove('hide');
+              breadcrumbDossier.classList.remove('in-active');
               breadcrumb.querySelector('span').textContent = el.querySelector('.dossier__voorlegger__header h3').textContent;
             }, 600);
           }
@@ -1623,6 +1625,7 @@
         _activate(el);
       }else {
         breadcrumb.classList.add('hide');
+        breadcrumbDossier.classList.add('in-active');
         for (var i = 0; i < dummyElements.length; i++) {
           dummyElements[i].classList.remove('show');
         }

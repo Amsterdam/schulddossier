@@ -148,6 +148,7 @@
   position: relative;
   margin: 0;
   padding: 0;
+  font-family: $ff-bold;
   span {
     overflow: hidden;
     position: relative;
@@ -158,6 +159,10 @@
   }
   &.hide {
     opacity: 0;
+  }
+  &.in-active {
+    font-family: $ff-regular;
+    pointer-events: none;
   }
 }
 .nav-internal--breadcrumb__home,
@@ -187,7 +192,7 @@
 }
 .nav-internal--breadcrumb__icon-arrow-right {
   @extend .icon-arrow-right;
-  top: 5px;
+  top: 4px;
 }
 .nav-internal--breadcrumb__section span {
   display: inline-block;
