@@ -69,7 +69,7 @@
     }
     strong {
       display: inline-block;
-      max-width: 222px;
+      max-width: 210px;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
@@ -151,6 +151,7 @@
   }
   .voortgang {
     position: absolute;
+    pointer-events: none;
     right: 10px;
     top: 10px;
     padding: 0 1rem;
@@ -430,6 +431,8 @@
   .bedrag {
     position: absolute;
     right: 50px;
+    pointer-events: none;
+
   }
   .voortgang {
     right: 50px;
@@ -882,25 +885,30 @@
 }
 
 .dossier__voorlegger__header__message {
-  position: absolute;
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 100%;
   z-index: 100;
   white-space: nowrap;
-  color: rgba($textColor, .5);
-  right: 125px;
   cursor: pointer;
   &:before {
     content: '!';
     display: inline-block;
+    position: absolute;
+    top: 12px;
+    left: 5px;
     font-size: 12px;
-    width: 1.2em;
-    height: 1.2em;
-    margin-right: .5em;
-    line-height: 1.2em;
+    width: 14px;
+    height: 14px;
+    padding-left: 1px;
+    padding-top: 1px;
+    line-height: 15px;
     border-radius: 50%;
     color: #fff;
     text-align: center;
     font-weight: bold;
-    background-color: rgba($textColor, .5);
+    background-color: $colorBgDark;
   }
   &:hover:after {
     content: attr(data-message);
