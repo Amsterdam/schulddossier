@@ -854,6 +854,7 @@
         q = '',
         blurTimeout,
         searchTimeout,
+        required = (container.dataset['required'] === 'true'),
         resultContainerClick = function (e) {
           var itemElem = _closest(e.target, '.search-result-item'),
             innerItemElem = itemElem.querySelector('.search-result-item-static'),
@@ -864,9 +865,18 @@
           if (container.querySelector('.errors')){
             container.querySelector('.errors').style.display = 'none';
           }
-          helpers.trigger(container.resultInput, 'change');
           cleanupResultContainer();
           e.preventDefault();
+        },
+        containerClick = function(e){
+          if (_closest(e.target, '.search-result-item__close') && _closest(e.target, '.search-result-item__close').classList.contains('search-result-item__close')){
+            container.resultCard.innerHTML = '';
+            container.resultInput.value = '';
+            if (container.querySelector('.errors')){
+              container.querySelector('.errors').style.display = 'none';
+            }
+            helpers.trigger(container.resultInput, 'change');
+          }
         },
         inputFocus = function(e){
           search();
@@ -987,8 +997,9 @@
             s += data.huisnummerToevoeging + ' ';
           }
           s += data.huisnummer + '</span>\
-              <span>'+ data.postcode +' ' + data.plaats + '</span>\
-            </span>\
+              <span>'+ data.postcode +' ' + data.plaats + '</span>'
+          s += (!required) ? '<a href="javascript:void(0);" class="search-result-item__close"></a>' : '';
+          s += '</span>\
             <a class="search-result-item-selectable" href="javascript:void(0);">\
             <span>'+ highlightQ(data.bedrijfsnaam)+'</span>\
             <span class="small">Allegro code: '+ highlightQ(data.allegroCode)+'</span>\
@@ -1011,6 +1022,7 @@
       container.resultContainer = container.querySelector('.search-result-container');
       container.input = container.querySelector('input');
 
+      container.addEventListener('click', containerClick);
       container.resultContainer.addEventListener('click', resultContainerClick);
       container.input.addEventListener('focus', inputFocus);
       container.input.addEventListener('blur', inputBlur);

@@ -48,7 +48,7 @@
                 <div class="schulditem-body">
 
 
-                    <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete">
+                    <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete" data-required="true">
                         <div class="column">
                             <label for="schuldeiser-helper-{{ schuldItem.id }}">Schuldeiser</label>
                             <div class="group">
@@ -75,7 +75,7 @@
                         </div>
 
                     </div>
-                    <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete">
+                    <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete" data-required="false">
                         <div class="column">
                             <div class="">
                                 <label for="incassant-helper-{{ schuldItem.id }}">Incassant</label>
@@ -98,6 +98,7 @@
                                             <span>{{ schuldItem.incassant.rekening }}</span>
                                             <span>{{ schuldItem.incassant.straat }}{% if schuldItem.incassant.huisnummerToevoeging %} {{ schuldItem.incassant.huisnummerToevoeging }}{% endif %} {{ schuldItem.incassant.huisnummer }}</span>
                                             <span>{{ schuldItem.incassant.postcode }} {{ schuldItem.incassant.plaats }}</span>
+                                            <a href="javascript:void(0);" class="search-result-item__close"></a>
                                         </span>
                                 {% endif %}
                             </div>

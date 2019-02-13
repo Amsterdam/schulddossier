@@ -10,7 +10,7 @@
 
                 <div id="nieuwe-schuld-toevoegen" class="">
                     <div class="schulditem-body">
-                        <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete">
+                        <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete" data-required="true">
                             <div class="column">
                                 <label for="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}">Schuldeiser</label>
                                 <div class="group">
@@ -29,7 +29,7 @@
 
 
                         </div>
-                        <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete">
+                        <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete" data-required="false">
                             <div class="column">
                                 <label for="incassant-helper-{{ createForm.incassant.vars.id }}">Incassant</label>
                                 <div class="group">
