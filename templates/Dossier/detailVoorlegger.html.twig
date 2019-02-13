@@ -26,8 +26,10 @@
 
                     <div class="dossier__container team-{{ app.user.type }}" data-keyupper="vertical-list-nav"
                          data-decorator="droppable">
+                         <h2></h2>
                         {% include 'Dossier/partial.voorleggerLegitimatie.html.twig' with {'form': voorleggerForm.legitimatie, 'dossier': dossier, 'title': 'Legitimatie'} only %}
                         {% include 'Dossier/partial.voorleggerVtlb.html.twig' with {'form': voorleggerForm.vtlb, 'dossier': dossier, 'title': 'VTLB (Vrij te laten bedrag)'} only %}
+                        {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForm.ondertekendAanvraagFormulier, 'dossier': dossier, 'title': 'Ondertekend aanvraag formulier'} only %}
                         <h2>Inkomen</h2>
                         {% include 'Dossier/partial.voorleggerInkomstenspecificatie.html.twig' with {'form': voorleggerForm.inkomstenspecificatie, 'dossier': dossier, 'title': 'Inkomstenspecificatie'} only %}
                         {% include 'Dossier/partial.voorleggerArbeidsovereenkomst.html.twig' with {'form': voorleggerForm.arbeidsovereenkomst, 'dossier': dossier, 'title': 'Arbeidsovereenkomst'} only %}
@@ -63,7 +65,6 @@
                         {% include 'Dossier/partial.voorleggerBudgetbeheer.html.twig' with {'form': voorleggerForm.budgetbeheer, 'dossier': dossier, 'title': 'Budgetbeheer'} only %}
                         {% include 'Dossier/partial.voorleggerGereserveerdeGelden.html.twig' with {'form': voorleggerForm.gereserveerdeGelden, 'dossier': dossier, 'title': 'Gereserveerde gelden'} only %}
                         <h2>Overige</h2>
-                        {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForm.ondertekendAanvraagFormulier, 'dossier': dossier, 'title': 'Ondertekend aanvraag formulier'} only %}
                         {% include 'Dossier/partial.voorleggerOverigeDocumenten.html.twig' with {'form': voorleggerForm.overigeDocumenten, 'dossier': dossier, 'title': 'Overige documenten'} only %}
 
 
