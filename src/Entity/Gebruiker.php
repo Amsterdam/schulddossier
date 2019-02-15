@@ -203,7 +203,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
 
     public function setType($type)
     {
-        $this->type = strtolower(str_replace(' ','_', $type));
+        $this->type = $type;
     }
 
     public function setNaam($naam)
@@ -339,13 +339,13 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     public static function getTypes(string $type = null)
     {
         $defaultTypes = [
-            'Dossierbehandelaar MADI' => self::TYPE_MADI,
-            'Dossierbehandelaar GKA' => self::TYPE_GKA,
-            ucfirst(self::TYPE_APPBEHEERDER) => self::TYPE_APPBEHEERDER,
-            ucfirst(self::TYPE_ONBEKEND) => self::TYPE_ONBEKEND
+            self::TYPE_MADI => self::TYPE_MADI,
+            self::TYPE_GKA => self::TYPE_GKA,
+            self::TYPE_APPBEHEERDER => self::TYPE_APPBEHEERDER,
+            self::TYPE_ONBEKEND => self::TYPE_ONBEKEND
         ];
         if ($type === self::TYPE_ADMIN) {
-            $defaultTypes[ucfirst(self::TYPE_ADMIN)] = self::TYPE_ADMIN;
+            $defaultTypes[self::TYPE_ADMIN] = self::TYPE_ADMIN;
         }
         return $defaultTypes;
     }
