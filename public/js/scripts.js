@@ -1038,6 +1038,10 @@
         form = this,
         formChangedClass = this.dataset.formChangedSelector || 'form-changed',
         submitButton = form.querySelector('button[type="submit"]'),
+        bestandInputList = form.querySelectorAll('#nieuwe-schuld-toevoegen .file-container.active .bestand-naam input'),
+        defaultDocumentNaamElem = form.querySelector('[data-default-document-naam]'),
+        defaultDocumentNaam = defaultDocumentNaamElem ? defaultDocumentNaamElem.dataset.defaultDocumentNaam : '',
+        newDocCounter = 1,
         i;
 
       submitButton.setAttribute('disabled', 'disabled');
@@ -1048,9 +1052,6 @@
       form.classList.add('in-progress');
 
       // fix: new schuld new document name
-      var bestandInputList = form.querySelectorAll('#nieuwe-schuld-toevoegen .file-container.active .bestand-naam input'),
-        defaultDocumentNaam = form.querySelector('[data-default-document-naam]').dataset.defaultDocumentNaam,
-        newDocCounter = 1;
       for(i = 0; i < bestandInputList.length; i++){
         if (bestandInputList[i].value.trim() === ''){
           bestandInputList[i].value = defaultDocumentNaam + ' ' + newDocCounter;
