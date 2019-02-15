@@ -192,7 +192,10 @@ class AppDossierController extends Controller
             $dossier->setVoorlegger(new Voorlegger());
         }
 
-        $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
+        $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger(), [
+            'disabled' => $dossier->isInPrullenbak() === true,
+            'disable_group' => $this->getUser()->getType()
+        ]);
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
             foreach ($voorleggerForm->all() as $key => $child) {
@@ -450,7 +453,10 @@ class AppDossierController extends Controller
     {
         $schuldItems = $dossier->getSchuldItems();
 
-        $form = $this->createForm(SchuldenFormType::class, $dossier);
+        $form = $this->createForm(SchuldenFormType::class, $dossier, [
+            'disabled' => $dossier->isInPrullenbak() === true,
+            'disable_group' => $this->getUser()->getType()
+        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             foreach ($form->get('schuldItems') as $child) {
