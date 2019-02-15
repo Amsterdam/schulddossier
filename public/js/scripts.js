@@ -865,6 +865,7 @@
           if (container.querySelector('.errors')){
             container.querySelector('.errors').style.display = 'none';
           }
+          helpers.trigger(container.resultInput, 'change');
           cleanupResultContainer();
           e.preventDefault();
         },
