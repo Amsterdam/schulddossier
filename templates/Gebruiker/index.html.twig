@@ -44,10 +44,7 @@
                         <td>{{ gebruiker.naam }}</td>
                         <td>{{ gebruiker.email }}</td>
                         <td>
-                            {% if gebruiker.type in ['madi', 'gka'] %}
-                                Dossierbehandelaar
-                            {% endif %}
-                            {{ gebruiker.type|capitalize }}
+                            {{ gebruiker.type|transform_type_in_title }}
                         </td>
                         <td>{{ gebruiker.teamGka }}</td>
                         <td>{{ gebruiker.schuldhulpbureaus|join(', ') }}</td>

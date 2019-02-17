@@ -356,6 +356,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
                 break;
 
             case self::TYPE_ADMIN:
+            case 'ALL_TYPES':
                 $defaultTypes['Applicatie'][ucfirst(self::TYPE_ADMIN)] = self::TYPE_ADMIN;
                 $defaultTypes['Applicatie'][ucfirst(self::TYPE_ONBEKEND)] = self::TYPE_ONBEKEND;
                 $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
@@ -366,6 +367,18 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
                 break;
         }
         return $defaultTypes;
+    }
+
+    /**
+     * Return the human readable title matching giving Gebruiker::TYPE.
+     *
+     * @param string $type
+     *
+     * @return string
+     */
+    public static function getTitleFromType(string $type): string
+    {
+        return array_search($type, array_merge(...array_values(self::getTypes('ALL_TYPES'))));
     }
 
     /**
