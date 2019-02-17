@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use Doctrine\ORM\EntityRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
@@ -31,6 +32,9 @@ class GebruikerFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        /** @var Gebruiker $user */
+        $user = $this->security->getUser();
+
         $builder->add('naam', TextType::class, [
             'required' => true
         ]);
@@ -56,14 +60,21 @@ class GebruikerFormType extends AbstractType
             'required' => false,
             'expanded' => true,
             'multiple' => true,
-            'class' => Schuldhulpbureau::class
+            'class' => Schuldhulpbureau::class,
+            'query_builder' => function (EntityRepository $repository) use ($user) {
+                $qb = $repository->createQueryBuilder('schuldhulpbureau');
+                if($user->getType() === Gebruiker::TYPE_MADI_KEYUSER){
+                    $qb->andWhere('schuldhulpbureau IN (:bureaus)');
+                    $qb->setParameter('bureaus', $user->getSchuldhulpbureaus());
+                }
+
+                return $qb;
+            },
         ]);
         $builder->add('enabled', CheckboxType::class, [
             'required' => false,
             'label' => 'Account actief?'
         ]);
-
-        $user = $this->security->getUser();
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
             if ($event->getForm()->get('clearPassword')->getData() !== null && $event->getForm()->get('clearPassword')->getData() !== '') {
