@@ -30,8 +30,25 @@ class AppGebruikerController extends Controller
         $repository = $em->getRepository(Gebruiker::class);
 
         $maxPageSize = 20;
+        /** @var Gebruiker $user */
+        $user = $this->getUser();
+        $gebruikers = '';
+        switch ($user->getType()) {
+            case Gebruiker::TYPE_MADI_KEYUSER:
+                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
-        $gebruikers = $repository->findAll($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+                break;
+            case Gebruiker::TYPE_GKA_APPBEHEERDER:
+                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+
+                break;
+
+            case Gebruiker::TYPE_ADMIN:
+                $gebruikers = $repository->findAll($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+
+                break;
+        }
+
 
         return $this->render('Gebruiker/index.html.twig', [
             'gebruikers' => $gebruikers,
