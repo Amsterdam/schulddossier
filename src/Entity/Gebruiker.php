@@ -29,7 +29,6 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     const TYPE_MADI = 'madi';
     const TYPE_MADI_KEYUSER = 'madi_keyuser';
 
-    const TYPE_APPBEHEERDER = 'appbeheer';
     const TYPE_ONBEKEND = 'onbekend';
 
     /**
@@ -349,7 +348,6 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
             'GKA - Dossierbehandelaar' => self::TYPE_GKA,
             'Madi - Key user' => self::TYPE_MADI_KEYUSER,
             'Madi - Dossierbehandelaar' => self::TYPE_MADI,
-            ucfirst(self::TYPE_APPBEHEERDER) => self::TYPE_APPBEHEERDER,
             ucfirst(self::TYPE_ONBEKEND) => self::TYPE_ONBEKEND
         ];
         if ($type === self::TYPE_ADMIN) {
