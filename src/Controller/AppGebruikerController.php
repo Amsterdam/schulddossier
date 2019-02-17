@@ -39,7 +39,7 @@ class AppGebruikerController extends Controller
 
                 break;
             case Gebruiker::TYPE_GKA_APPBEHEERDER:
-                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
                 break;
 

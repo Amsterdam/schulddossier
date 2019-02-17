@@ -353,6 +353,8 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
             case self::TYPE_GKA_APPBEHEERDER:
                 $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
+                $defaultTypes['Madi']['Madi - Dossierbehandelaar'] = self::TYPE_MADI;
+                $defaultTypes['Madi']['Madi - Key User'] = self::TYPE_MADI_KEYUSER;
                 break;
 
             case self::TYPE_ADMIN:
