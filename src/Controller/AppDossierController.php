@@ -4,6 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent as ActionEventEntity;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument;
@@ -46,11 +47,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent as ActionEventEntity;
 
 /**
  * @Route("/app/dossier")
- * @Security("has_role('ROLE_MADI') || has_role('ROLE_GKA') || has_role('ROLE_ADMIN')")
+ * @Security("has_role('ROLE_MADI') || has_role('ROLE_GKA') || has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
  */
 class AppDossierController extends Controller
 {

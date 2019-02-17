@@ -1,13 +1,11 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends Controller
 {
@@ -25,7 +23,7 @@ class DefaultController extends Controller
      */
     public function appRedirectAction(Request $request)
     {
-        if ($this->isGranted('ROLE_APPBEHEER')) {
+        if ($this->isGranted('ROLE_GKA_APPBEHEERDER')) {
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index');
         }
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');

@@ -12,11 +12,11 @@
             <nav class="nav-internal">
                 <ul>
                     <li>Teams</li>
-                    {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_create') }}">Nieuw team</a></li>{% endif %}
+                    {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_create') }}">Nieuw team</a></li>{% endif %}
                 </ul>
             </nav>
         </div>
-        {% if is_granted('ROLE_APPBEHEER') == false and is_granted('ROLE_ADMIN') == false %}
+        {% if is_granted('ROLE_GKA_APPBEHEERDER') == false and is_granted('ROLE_ADMIN') == false %}
             <p>Alleen applicatie beheerders kunnen nieuwe teams toevoegen en bestaande teams wijzigen</p>
         {% endif %}
         <div class="table">
@@ -29,9 +29,9 @@
                 </thead>
                 <tbody>
 {% for team in teams %}
-                    <tr{% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
+                    <tr{% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
                         <th>
-                            {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}
+                            {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}
                                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_update', {'teamId': team.id}) }}">{{ team.naam }}</a>
                             {% else %}
                                 {{ team.naam }}

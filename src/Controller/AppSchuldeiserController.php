@@ -1,33 +1,21 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
-use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DossierDocumentFormType;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Form\FormError;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
-use GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldeiserRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldeiserRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/app/schuldeiser")
- * @Security("has_role('ROLE_MADI') || has_role('ROLE_GKA') || has_role('ROLE_ADMIN')")
+ * @Security("has_role('ROLE_MADI') || has_role('ROLE_GKA') || has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
  */
 class AppSchuldeiserController extends Controller
 {
@@ -62,7 +50,7 @@ class AppSchuldeiserController extends Controller
 
     /**
      * @Route("/nieuw")
-     * @Security("has_role('ROLE_GKA') || has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_GKA') || has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
      */
     public function createAction(Request $request, EntityManagerInterface $em)
     {
@@ -94,7 +82,7 @@ class AppSchuldeiserController extends Controller
 
     /**
      * @Route("/detail/{schuldeiserId}/bewerken")
-     * @Security("has_role('ROLE_GKA') || has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_GKA') || has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
      * @ParamConverter("schuldeiser", options={"id"="schuldeiserId"})
      */
     public function updateAction(Request $request, EntityManagerInterface $em, Schuldeiser $schuldeiser)

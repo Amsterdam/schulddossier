@@ -25,7 +25,7 @@
         <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/0037f97b-b0f6-41de-8f33-75b12c9f76ea.css"/>
     </head>
     <body class="{% block body_classes %}{% endblock %}" data-decorator="restore-splitter" data-version-date="{{ app_version.getVersionDate }}">
-      
+
         {% block pdfsplitter %}
           <aside id="pdfsplitter" class="pdf-splitter no-header file-pdf-pages" data-decorator="droppable" data-changer="pdfsplitter">
               <div class="pages"></div>
@@ -73,14 +73,14 @@
                 <nav class="nav">
                   <ul class="menu">
                       {% block navigation_menu %}
-                    {% if is_granted('ROLE_MADI') or is_granted('ROLE_GKA') or is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ROLE_MADI') or is_granted('ROLE_GKA') or is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_MADI_KEYUSER') or is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appdossier_') %} class="active"{% endif %}>Dossiers</a></li>
                         <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_') %} class="active"{% endif %}>Schuldeisers</a></li>
                     {% endif %}
                     <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_') %} class="active"{% endif %}>Schuldhulpbureaus</a></li>
                     <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appteam_') %} class="active"{% endif %}>Teams</a></li>
                     <li class="divider"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_') %} class="active"{% endif %}>Gebruikers</a></li>
-                    {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_applog_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_applog_') %} class="active"{% endif %}>Logs</a></li>
                     {% endif %}
                     <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_') %} class="active"{% endif %}>Versies</a></li>
@@ -96,7 +96,7 @@
                 {% endif %}
               </div>
         </header>
-        
+
         <div class="{% block documentContainerClass %}document-container{% endblock %}">
 
 {% for type, messages in app.flashes %}

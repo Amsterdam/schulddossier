@@ -2,14 +2,14 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Serializable;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
-use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
@@ -21,13 +21,14 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, EquatableInterface
 {
-    const TYPE_GKA = 'gka';
-    const TYPE_MADI = 'madi';
+    const TYPE_ADMIN = 'admin';
 
+    const TYPE_GKA = 'gka';
     const TYPE_GKA_APPBEHEERDER = 'gka_appbeheerder';
+
+    const TYPE_MADI = 'madi';
     const TYPE_MADI_KEYUSER = 'madi_keyuser';
 
-    const TYPE_ADMIN = 'admin';
     const TYPE_APPBEHEERDER = 'appbeheer';
     const TYPE_ONBEKEND = 'onbekend';
 
@@ -67,7 +68,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=10, nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
      * @Assert\NotBlank
      * @Assert\Choice(callback="getTypes")
      */
@@ -207,7 +208,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
 
     public function setType($type)
     {
-        $this->type = strtolower(str_replace(' ','_', $type));
+        $this->type = strtolower(str_replace(' ', '_', $type));
     }
 
     public function setNaam($naam)
@@ -338,15 +339,16 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
 
     /**
      * @param string $type
+     *
      * @return string[]
      */
     public static function getTypes(string $type = null)
     {
         $defaultTypes = [
-            'MADI - Dossierbehandelaar' => self::TYPE_MADI,
-            'GKA - Dossierbehandelaar' => self::TYPE_GKA,
             'GKA - App Beheerder' => self::TYPE_GKA_APPBEHEERDER,
+            'GKA - Dossierbehandelaar' => self::TYPE_GKA,
             'Madi - Key user' => self::TYPE_MADI_KEYUSER,
+            'Madi - Dossierbehandelaar' => self::TYPE_MADI,
             ucfirst(self::TYPE_APPBEHEERDER) => self::TYPE_APPBEHEERDER,
             ucfirst(self::TYPE_ONBEKEND) => self::TYPE_ONBEKEND
         ];
