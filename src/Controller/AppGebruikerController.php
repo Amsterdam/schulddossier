@@ -46,7 +46,7 @@ class AppGebruikerController extends Controller
 
     /**
      * @Route("/nieuw")
-     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
      */
     public function createAction(Request $request, EntityManagerInterface $em)
     {
@@ -70,7 +70,7 @@ class AppGebruikerController extends Controller
 
     /**
      * @Route("/detail/{gebruikerId}/bewerken")
-     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
     public function updateAction(Request $request, EntityManagerInterface $em, Gebruiker $gebruiker, EventDispatcherInterface $eventDispatcher, TokenStorageInterface $tokenStorage)

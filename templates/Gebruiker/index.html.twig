@@ -12,11 +12,11 @@
             <nav class="nav-internal">
                 <ul>
                     <li>Gebruikers</li>
-                    {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_create') }}">Nieuwe gebruiker</a></li>{% endif %}
+                    {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_MADI_KEYUSER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_create') }}">Nieuwe gebruiker</a></li>{% endif %}
                 </ul>
             </nav>
         </div>
-        {% if is_granted('ROLE_GKA_APPBEHEERDER') == false and is_granted('ROLE_ADMIN') == false %}
+        {% if is_granted('ROLE_GKA_APPBEHEERDER') == false and is_granted('ROLE_MADI_KEYUSER') == false and is_granted('ROLE_ADMIN') == false %}
             <p>Alleen applicatie beheerders kunnen nieuwe gebruikers toevoegen en bestaande gebruikers wijzigen</p>
         {% endif %}
         <div class="table">
@@ -33,9 +33,9 @@
                 </thead>
                 <tbody>
 {% for gebruiker in gebruikers %}
-                    <tr{% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
+                    <tr{% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_MADI_KEYUSER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
                         <th>
-                            {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}
+                            {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_MADI_KEYUSER') or is_granted('ROLE_ADMIN') %}
                                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', {'gebruikerId': gebruiker.id}) }}">{{ gebruiker.username }}</a>
                             {% else %}
                                 {{ gebruiker.username }}
