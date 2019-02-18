@@ -2,14 +2,14 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Serializable;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
-use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
@@ -21,10 +21,14 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, EquatableInterface
 {
-    const TYPE_GKA = 'gka';
-    const TYPE_MADI = 'madi';
     const TYPE_ADMIN = 'admin';
-    const TYPE_APPBEHEERDER = 'appbeheer';
+
+    const TYPE_GKA = 'gka';
+    const TYPE_GKA_APPBEHEERDER = 'gka_appbeheerder';
+
+    const TYPE_MADI = 'madi';
+    const TYPE_MADI_KEYUSER = 'madi_keyuser';
+
     const TYPE_ONBEKEND = 'onbekend';
 
     /**
@@ -63,7 +67,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=10, nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
      * @Assert\NotBlank
      * @Assert\Choice(callback="getTypes")
      */
@@ -203,7 +207,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
 
     public function setType($type)
     {
-        $this->type = strtolower(str_replace(' ','_', $type));
+        $this->type = strtolower(str_replace(' ', '_', $type));
     }
 
     public function setNaam($naam)
@@ -334,20 +338,49 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
 
     /**
      * @param string $type
+     *
      * @return string[]
      */
     public static function getTypes(string $type = null)
     {
-        $defaultTypes = [
-            'Dossierbehandelaar MADI' => self::TYPE_MADI,
-            'Dossierbehandelaar GKA' => self::TYPE_GKA,
-            ucfirst(self::TYPE_APPBEHEERDER) => self::TYPE_APPBEHEERDER,
-            ucfirst(self::TYPE_ONBEKEND) => self::TYPE_ONBEKEND
-        ];
-        if ($type === self::TYPE_ADMIN) {
-            $defaultTypes[ucfirst(self::TYPE_ADMIN)] = self::TYPE_ADMIN;
+        $defaultTypes = [];
+        switch ($type) {
+            case self::TYPE_MADI_KEYUSER:
+                $defaultTypes['Madi']['Madi - Dossierbehandelaar'] = self::TYPE_MADI;
+                $defaultTypes['Madi']['Madi - Key User'] = self::TYPE_MADI_KEYUSER;
+                break;
+
+            case self::TYPE_GKA_APPBEHEERDER:
+                $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
+                $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
+                $defaultTypes['Madi']['Madi - Dossierbehandelaar'] = self::TYPE_MADI;
+                $defaultTypes['Madi']['Madi - Key User'] = self::TYPE_MADI_KEYUSER;
+                break;
+
+            case self::TYPE_ADMIN:
+            case 'ALL_TYPES':
+                $defaultTypes['Applicatie'][ucfirst(self::TYPE_ADMIN)] = self::TYPE_ADMIN;
+                $defaultTypes['Applicatie'][ucfirst(self::TYPE_ONBEKEND)] = self::TYPE_ONBEKEND;
+                $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
+                $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
+                $defaultTypes['Madi']['Madi - Dossierbehandelaar'] = self::TYPE_MADI;
+                $defaultTypes['Madi']['Madi - Key User'] = self::TYPE_MADI_KEYUSER;
+
+                break;
         }
         return $defaultTypes;
+    }
+
+    /**
+     * Return the human readable title matching giving Gebruiker::TYPE.
+     *
+     * @param string $type
+     *
+     * @return string
+     */
+    public static function getTitleFromType(string $type): string
+    {
+        return array_search($type, array_merge(...array_values(self::getTypes('ALL_TYPES'))));
     }
 
     /**

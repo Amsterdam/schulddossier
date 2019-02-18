@@ -30,8 +30,25 @@ class AppGebruikerController extends Controller
         $repository = $em->getRepository(Gebruiker::class);
 
         $maxPageSize = 20;
+        /** @var Gebruiker $user */
+        $user = $this->getUser();
+        $gebruikers = '';
+        switch ($user->getType()) {
+            case Gebruiker::TYPE_MADI_KEYUSER:
+                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
-        $gebruikers = $repository->findAll($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+                break;
+            case Gebruiker::TYPE_GKA_APPBEHEERDER:
+                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+
+                break;
+
+            case Gebruiker::TYPE_ADMIN:
+                $gebruikers = $repository->findAll($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+
+                break;
+        }
+
 
         return $this->render('Gebruiker/index.html.twig', [
             'gebruikers' => $gebruikers,
@@ -46,7 +63,7 @@ class AppGebruikerController extends Controller
 
     /**
      * @Route("/nieuw")
-     * @Security("has_role('ROLE_APPBEHEER') || has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
      */
     public function createAction(Request $request, EntityManagerInterface $em)
     {
@@ -70,7 +87,7 @@ class AppGebruikerController extends Controller
 
     /**
      * @Route("/detail/{gebruikerId}/bewerken")
-     * @Security("has_role('ROLE_APPBEHEER') || has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
     public function updateAction(Request $request, EntityManagerInterface $em, Gebruiker $gebruiker, EventDispatcherInterface $eventDispatcher, TokenStorageInterface $tokenStorage)
