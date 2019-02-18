@@ -346,15 +346,15 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
         $defaultTypes = [];
         switch ($type) {
             case self::TYPE_MADI_KEYUSER:
-                $defaultTypes['Madi']['Madi - Dossierbehandelaar'] = self::TYPE_MADI;
-                $defaultTypes['Madi']['Madi - Key User'] = self::TYPE_MADI_KEYUSER;
+                $defaultTypes['MaDi']['MaDi - Dossierbehandelaar'] = self::TYPE_MADI;
+                $defaultTypes['MaDi']['MaDi - Key User'] = self::TYPE_MADI_KEYUSER;
                 break;
 
             case self::TYPE_GKA_APPBEHEERDER:
                 $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
-                $defaultTypes['Madi']['Madi - Dossierbehandelaar'] = self::TYPE_MADI;
-                $defaultTypes['Madi']['Madi - Key User'] = self::TYPE_MADI_KEYUSER;
+                $defaultTypes['MaDi']['MaDi - Dossierbehandelaar'] = self::TYPE_MADI;
+                $defaultTypes['MaDi']['MaDi - Key User'] = self::TYPE_MADI_KEYUSER;
                 break;
 
             case self::TYPE_ADMIN:
@@ -363,8 +363,8 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
                 $defaultTypes['Applicatie'][ucfirst(self::TYPE_ONBEKEND)] = self::TYPE_ONBEKEND;
                 $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
-                $defaultTypes['Madi']['Madi - Dossierbehandelaar'] = self::TYPE_MADI;
-                $defaultTypes['Madi']['Madi - Key User'] = self::TYPE_MADI_KEYUSER;
+                $defaultTypes['MaDi']['MaDi - Dossierbehandelaar'] = self::TYPE_MADI;
+                $defaultTypes['MaDi']['MaDi - Key User'] = self::TYPE_MADI_KEYUSER;
 
                 break;
         }

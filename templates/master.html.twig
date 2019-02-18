@@ -78,7 +78,9 @@
                     {% endif %}
                     <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_') %} class="active"{% endif %}>Schuldhulpbureaus</a></li>
                     <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appteam_') %} class="active"{% endif %}>Teams</a></li>
-                    <li class="divider"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_') %} class="active"{% endif %}>Gebruikers</a></li>
+                    {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_MADI_KEYUSER') or is_granted('ROLE_ADMIN') %}
+                        <li class="divider"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_') %} class="active"{% endif %}>Gebruikers</a></li>
+                    {% endif %}
                     {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_applog_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_applog_') %} class="active"{% endif %}>Logs</a></li>
                     {% endif %}
