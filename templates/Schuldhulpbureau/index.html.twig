@@ -12,11 +12,11 @@
             <nav class="nav-internal">
                 <ul>
                     <li>Schuldhulpbureaus</li>
-                    {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_create') }}">Nieuw schuldhulpbureau</a></li>{% endif %}
+                    {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_create') }}">Nieuw schuldhulpbureau</a></li>{% endif %}
                 </ul>
             </nav>
         </div>
-        {% if is_granted('ROLE_APPBEHEER') == false and is_granted('ROLE_ADMIN') == false %}
+        {% if is_granted('ROLE_GKA_APPBEHEERDER') == false and is_granted('ROLE_ADMIN') == false %}
             <p>Alleen applicatie beheerders kunnen nieuwe schuldhulpbureaus toevoegen en bestaande schuldhulpbureaus wijzigen</p>
         {% endif %}
         <div class="table">
@@ -29,9 +29,9 @@
                 </thead>
                 <tbody>
 {% for schuldhulpbureau in schuldhulpbureaus %}
-                    <tr{% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
+                    <tr{% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
                         <th>
-                            {% if is_granted('ROLE_APPBEHEER') or is_granted('ROLE_ADMIN') %}
+                            {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}
                                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_update', {'schuldhulpbureauId': schuldhulpbureau.id}) }}">{{ schuldhulpbureau.naam }}</a>
                             {% else %}
                                 {{ schuldhulpbureau.naam }}

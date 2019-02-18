@@ -1,18 +1,15 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Doctrine\ORM\EntityManagerInterface;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\TeamFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/app/team")
@@ -45,7 +42,7 @@ class AppTeamController extends Controller
 
     /**
      * @Route("/nieuw")
-     * @Security("has_role('ROLE_APPBEHEER') || has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
      */
     public function createAction(Request $request, EntityManagerInterface $em)
     {
@@ -68,7 +65,7 @@ class AppTeamController extends Controller
 
     /**
      * @Route("/detail/{teamId}/bewerken")
-     * @Security("has_role('ROLE_APPBEHEER') || has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
      * @ParamConverter("team", options={"id"="teamId"})
      */
     public function updateAction(Request $request, EntityManagerInterface $em, Team $team)

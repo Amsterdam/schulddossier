@@ -1,15 +1,15 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldhulpbureauFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/app/schuldhulpbureau")
@@ -42,7 +42,7 @@ class AppSchuldhulpbureauController extends Controller
 
     /**
      * @Route("/nieuw")
-     * @Security("has_role('ROLE_APPBEHEER') || has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
      */
     public function createAction(Request $request, EntityManagerInterface $em)
     {
@@ -65,7 +65,7 @@ class AppSchuldhulpbureauController extends Controller
 
     /**
      * @Route("/detail/{schuldhulpbureauId}/bewerken")
-     * @Security("has_role('ROLE_APPBEHEER') || has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
      * @ParamConverter("schuldhulpbureau", options={"id"="schuldhulpbureauId"})
      */
     public function updateAction(Request $request, EntityManagerInterface $em, Schuldhulpbureau $schuldhulpbureau)

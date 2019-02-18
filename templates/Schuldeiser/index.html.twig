@@ -12,11 +12,11 @@
             <nav class="nav-internal">
                 <ul>
                     <li>Schuldeisers</li>
-                    {% if is_granted('ROLE_GKA') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create') }}">Nieuwe schuldeiser</a></li>{% endif %}
+                    {% if is_granted('ROLE_GKA') or is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create') }}">Nieuwe schuldeiser</a></li>{% endif %}
                 </ul>
             </nav>
         </div>
-        {% if is_granted('ROLE_GKA') == false and is_granted('ROLE_ADMIN') == false %}
+        {% if is_granted('ROLE_GKA') == false and is_granted('ROLE_ADMIN') == false and is_granted('ROLE_GKA_APPBEHEERDER') %}
             <p>Alleen medewerkers van het GKA kunnen schuldeisers toevoegen of wijzigen.</p>
         {% endif %}
         <div class="table">
@@ -29,9 +29,9 @@
                 </thead>
                 <tbody>
 {% for schuldeiser in schuldeisers %}
-                    <tr{% if is_granted('ROLE_GKA') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
+                    <tr{% if is_granted('ROLE_GKA') or is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
                         <th>
-                            {% if is_granted('ROLE_GKA') or is_granted('ROLE_ADMIN') %}
+                            {% if is_granted('ROLE_GKA') or is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}
                                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_update', {'schuldeiserId': schuldeiser.id}) }}">{{ schuldeiser.bedrijfsnaam }}</a>
                             {% else %}
                                 {{ schuldeiser.bedrijfsnaam }}
