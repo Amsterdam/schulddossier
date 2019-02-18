@@ -26,8 +26,10 @@
 
                     <div class="dossier__container team-{{ app.user.type }}" data-keyupper="vertical-list-nav"
                          data-decorator="droppable">
+                         <h2></h2>
                         {% include 'Dossier/partial.voorleggerLegitimatie.html.twig' with {'form': voorleggerForm.legitimatie, 'dossier': dossier, 'title': 'Legitimatie'} only %}
                         {% include 'Dossier/partial.voorleggerVtlb.html.twig' with {'form': voorleggerForm.vtlb, 'dossier': dossier, 'title': 'VTLB (Vrij te laten bedrag)'} only %}
+                        {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForm.ondertekendAanvraagFormulier, 'dossier': dossier, 'title': 'Ondertekend aanvraagformulier'} only %}
                         <h2>Inkomen</h2>
                         {% include 'Dossier/partial.voorleggerInkomstenspecificatie.html.twig' with {'form': voorleggerForm.inkomstenspecificatie, 'dossier': dossier, 'title': 'Inkomstenspecificatie'} only %}
                         {% include 'Dossier/partial.voorleggerArbeidsovereenkomst.html.twig' with {'form': voorleggerForm.arbeidsovereenkomst, 'dossier': dossier, 'title': 'Arbeidsovereenkomst'} only %}
@@ -41,7 +43,7 @@
                         {% include 'Dossier/partial.voorleggerAlimentatieEchtscheidingsconvenant.html.twig' with {'form': voorleggerForm.alimentatieEchtscheidingsconvenant, 'dossier': dossier, 'title': 'Alimentatie Echtscheidingsconvenant'} only %}
                         {% include 'Dossier/partial.voorleggerPolisbladZorgverzekering.html.twig' with {'form': voorleggerForm.polisbladZorgverzekering, 'dossier': dossier, 'title': 'Polisblad zorgverzekering'} only %}
                         {% include 'Dossier/partial.voorleggerOvereenkomstKinderopvang.html.twig' with {'form': voorleggerForm.overeenkomstKinderopvang, 'dossier': dossier, 'title': 'Overeenkomst kinderopvang'} only %}
-                        {% include 'Dossier/partial.voorleggerKwijtscheldingGemeenteBelasting.html.twig' with {'form': voorleggerForm.kwijtscheldingGemeenteBelasting, 'dossier': dossier, 'title': 'Kwijtschelding gemeente belasting'} only %}
+                        {% include 'Dossier/partial.voorleggerKwijtscheldingGemeenteBelasting.html.twig' with {'form': voorleggerForm.kwijtscheldingGemeenteBelasting, 'dossier': dossier, 'title': 'Kwijtschelding gemeentebelasting'} only %}
                         <h2>Auto</h2>
                         {% include 'Dossier/partial.voorleggerAutoTaxatie.html.twig' with {'form': voorleggerForm.autoTaxatie, 'dossier': dossier, 'title': 'Auto taxatie'} only %}
                         {% include 'Dossier/partial.voorleggerAutolastenKmWoonwerkverkeer.html.twig' with {'form': voorleggerForm.autolastenKmWoonwerkverkeer, 'dossier': dossier, 'title': 'Autolasten km woon-werk-verkeer'} only %}
@@ -56,14 +58,13 @@
                         {% include 'Dossier/partial.voorleggerWaternet.html.twig' with {'form': voorleggerForm.waternet, 'dossier': dossier, 'title': 'Waternet'} only %}
                         {% include 'Dossier/partial.voorleggerRetourbewijsModem.html.twig' with {'form': voorleggerForm.retourbewijsModem, 'dossier': dossier, 'title': 'Retourbewijs modem'} only %}
                         <h2>Aanvraag schuldsanering</h2>
-                        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringClient.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringClient, 'dossier': dossier, 'title': 'Toelichting aanvraag schuldsanering client'} only %}
-                        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringMadi.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringMadi, 'dossier': dossier, 'title': 'Toelichting aanvraag schuldsanering MaDi'} only %}
+                        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringClient.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringClient, 'dossier': dossier, 'title': 'Toelichting cliënt'} only %}
+                        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringMadi.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringMadi, 'dossier': dossier, 'title': 'Toelichting MaDi'} only %}
                         <h2>Onderbewindstelling of budgetbeheer</h2>
                         {% include 'Dossier/partial.voorleggerBeschikkingOnderBewindstelling.html.twig' with {'form': voorleggerForm.beschikkingOnderBewindstelling, 'dossier': dossier, 'title': 'Beschikking onderbewindstelling'} only %}
                         {% include 'Dossier/partial.voorleggerBudgetbeheer.html.twig' with {'form': voorleggerForm.budgetbeheer, 'dossier': dossier, 'title': 'Budgetbeheer'} only %}
                         {% include 'Dossier/partial.voorleggerGereserveerdeGelden.html.twig' with {'form': voorleggerForm.gereserveerdeGelden, 'dossier': dossier, 'title': 'Gereserveerde gelden'} only %}
                         <h2>Overige</h2>
-                        {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForm.ondertekendAanvraagFormulier, 'dossier': dossier, 'title': 'Ondertekend aanvraag formulier'} only %}
                         {% include 'Dossier/partial.voorleggerOverigeDocumenten.html.twig' with {'form': voorleggerForm.overigeDocumenten, 'dossier': dossier, 'title': 'Overige documenten'} only %}
 
 
