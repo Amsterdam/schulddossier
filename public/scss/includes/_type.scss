@@ -10,10 +10,10 @@ body,
 pre,
 input[type="checkbox"] + strong {
   font-size: $fontSize;
-  font-family: "AvenirNextLTW01-Regular", verdana, sans-serif;
+  font-family: $ff-regular;
 }
 .bold, b, strong, th {
-  font-family: "Avenir Next LT W01 Demi", verdana, sans-serif;
+  font-family: $ff-bold;
 }
 [type="text"],
 [type="search"],
@@ -29,7 +29,7 @@ select,
 option,
 textarea {
   font-size: $fontSize;
-  font-family: "AvenirNextLTW01-Regular", verdana, sans-serif;
+  font-family: $ff-regular;
 }
 
 body {
