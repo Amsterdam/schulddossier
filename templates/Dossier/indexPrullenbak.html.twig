@@ -23,8 +23,8 @@
                     <tr>
                         <th>Naam</th>
                         <th>MaDi</th>
-                        <th>Regas</th>
-                        <th>Allegro</th>
+                        <th>MaDi dossiernr.</th>
+                        <th>GKA dossiernr.</th>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
                     </tr>
@@ -35,10 +35,10 @@
                         <td>{{ dossier.clientNaam }}</td>
                         <td>{{ dossier.schuldhulpbureau }}</td>
                         <td class="nummer">
-                            {{ dossier.regasNummer|default('-') }} 
+                            {{ dossier.regasNummer|default('-') }}
                         </td>
                         <td class="nummer">
-                            {{ dossier.allegroNummer|default('-') }} 
+                            {{ dossier.allegroNummer|default('-') }}
                         </td>
                         <td>
                             <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove', {'dossierId': dossier.id}) }}" method="post" data-submitter="zeker-weten">

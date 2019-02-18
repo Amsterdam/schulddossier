@@ -16,10 +16,10 @@
         <p>Ingezonden op: {{ 'now'|date('d-m-Y') }}</p>
         <p>&nbsp;</p>
         {% if dossier.regasNummer is not empty %}
-        <p>Regas nummer: {{ dossier.regasNummer }}</p>
+        <p>MaDi dossiernr.: {{ dossier.regasNummer }}</p>
         {% endif %}
         {% if dossier.allegroNummer is not empty %}
-        <p>Allegro nummer: {{ dossier.allegroNummer }}</p>
+        <p>GKA dossiernr.: {{ dossier.allegroNummer }}</p>
         {% endif %}
         <p>&nbsp;</p>
         <p><a href="{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId}) }}">Open dossier</a>
@@ -36,11 +36,11 @@ Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}
 Ingezonden op: {{ 'now'|date('d-m-Y') }}
 
 {% if dossier.regasNummer is not empty %}
-Regas nummer: {{ dossier.regasNummer }}
+MaDi dossiernr.: {{ dossier.regasNummer }}
 
 {% endif %}
 {% if dossier.allegroNummer is not empty %}
-Allegro nummer: {{ dossier.allegroNummer }}
+GKA dossiernr.: {{ dossier.allegroNummer }}
 
 {% endif %}
 
