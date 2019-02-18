@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 /**
  * @Route("/app/gebruiker")
- * @Security("has_role('ROLE_USER')")
+ * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
  */
 class AppGebruikerController extends Controller
 {
