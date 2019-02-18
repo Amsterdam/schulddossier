@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 /**
  * @Route("/app/gebruiker")
- * @Security("has_role('ROLE_USER')")
+ * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
  */
 class AppGebruikerController extends Controller
 {
@@ -35,11 +35,11 @@ class AppGebruikerController extends Controller
         $gebruikers = '';
         switch ($user->getType()) {
             case Gebruiker::TYPE_MADI_KEYUSER:
-                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+                $gebruikers = $repository->findAllByTypeAndSchuldhulpbureau([Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER, Gebruiker::TYPE_ONBEKEND], $user->getSchuldhulpbureaus(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
                 break;
             case Gebruiker::TYPE_GKA_APPBEHEERDER:
-                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER, Gebruiker::TYPE_ONBEKEND], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
                 break;
 
