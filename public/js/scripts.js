@@ -35,21 +35,37 @@
         val = self.dataset.id,
         t = self.dataset.type,
         form = (e && e.target) && _closest(e.target, 'form'),
-        container = _closest(self, '.dossier__item'),
+        activeContainer = document.querySelector('.dossier__item.active'),
+        container = _closest(self, '.dossier__item') ? _closest(self, '.dossier__item') : activeContainer,
+        containerDummy = document.querySelector('.dossier__item__dummy'),
         statusRadio = container.querySelector('.status-' + self.dataset.type + ' input[type="radio"][value="'+ val +'"]'),
         nvtCheckbox = container.querySelector('.nvt-input .form-row input[type="checkbox"]');
 
       e && e.preventDefault();
+
 
       if (val === '-1'){
         if (nvtCheckbox) {
           nvtCheckbox.checked = true;
         }
         container.classList.add('status-nvt');
+        if (container.classList.contains('active')){
+          containerDummy.classList.add('status-nvt');
+        }
+
       }else {
         container.classList.remove('status-nvt');
+        if (container.classList.contains('active')) {
+          containerDummy.classList.remove('status-nvt');
+        }
         for (var i = 0; i < 5; i++){
           container.classList.remove('status-' + t + '-' + i);
+          if (container.classList.contains('active')) {
+            containerDummy.classList.remove('status-' + t + '-' + i);
+          }
+        }
+        if (container.classList.contains('active')) {
+          containerDummy.classList.add('status-' + t + '-' + val);
         }
         container.classList.add('status-' + t + '-' + val);
         if (nvtCheckbox){
@@ -1495,8 +1511,8 @@
     'sticky-section': function () {
       var self = this;
       var activeSection = document.querySelector('.dossier__item.active');
-      var top = document.querySelector('.dossier__item__dummy__top');
-      var bottom = document.querySelector('.dossier__item__dummy__bottom');
+      var top = document.querySelector('.dossier__voorlegger__header__top');
+      var bottom = document.querySelector('.dossier__voorlegger__header__bottom');
       if (activeSection){
         bottom.classList[(activeSection.dataset.offsetBottom > (self.scrollTop + self.offsetHeight)) ? 'add' : 'remove']('show');
         top.classList[(activeSection.dataset.offsetTop < self.scrollTop) ? 'add' : 'remove']('show');
@@ -1571,7 +1587,7 @@
         scrollParent = _closest(el, '.dossier__scroll-content'),
         scrollContainer = _closest(el, '.dossier__scroll-container'),
         doc = el.querySelector('[data-handler="bestand"]'),
-        dummyElements = document.querySelectorAll('.dossier__item__dummy'),
+        dummyElement = document.querySelector('.dossier__item__dummy'),
         timeout,
         breadcrumb = document.querySelector('.nav-internal--breadcrumb__section'),
         breadcrumbDossier = document.querySelector('.nav-internal--breadcrumb__dossier'),
@@ -1585,11 +1601,20 @@
           el.classList['add']('active');
           el.dataset.offsetTop = el.getBoundingClientRect().top - scrollParent.getBoundingClientRect().top;
           el.dataset.offsetBottom = el.getBoundingClientRect().bottom - scrollParent.getBoundingClientRect().top;
-          for (var i = 0; i < dummyElements.length; i++) {
-            while (dummyElements[i].firstChild) {
-              dummyElements[i].removeChild(dummyElements[i].firstChild);
+          while (dummyElement.firstChild) {
+            dummyElement.removeChild(dummyElement.firstChild);
+          }
+          var top = el.querySelector('.dossier__voorlegger__header').cloneNode(true);
+          var bottom = el.querySelector('.dossier__voorlegger__header').cloneNode(true);
+          top.classList.add('dossier__voorlegger__header__top');
+          bottom.classList.add('dossier__voorlegger__header__bottom');
+          dummyElement.appendChild(top);
+          dummyElement.appendChild(bottom);
+          removeClassByPrefix(dummyElement, 'status-');
+          for (var j = 0; j < el.classList.length; j++){
+            if (el.classList[j].lastIndexOf('status-', 0) === 0){
+              dummyElement.classList.add(el.classList[j]);
             }
-            dummyElements[i].appendChild(el.querySelector('.dossier__voorlegger__header').cloneNode(true));
           }
           doc && viewer.showDocument(doc, 1);
           scrollContainer.fn.call(scrollContainer, scrollContainer);
@@ -1599,20 +1624,6 @@
           if (outsideTop || outsideBottom){
             el.scrollIntoView(!outsideTop);
           }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           if (breadcrumb) {
             window.clearTimeout(timeout);
@@ -1628,9 +1639,6 @@
       }else {
         breadcrumb.classList.add('hide');
         breadcrumbDossier.classList.add('in-active');
-        for (var i = 0; i < dummyElements.length; i++) {
-          dummyElements[i].classList.remove('show');
-        }
         _deactivate(el);
       }
     }
@@ -1827,4 +1835,10 @@ function getElementIndex(node) {
         index++;
     }
     return index;
+}
+
+function removeClassByPrefix(el, prefix) {
+    var regx = new RegExp('\\b' + prefix + '.*?\\b', 'g');
+    el.className = el.className.replace(regx, '');
+    return el;
 }

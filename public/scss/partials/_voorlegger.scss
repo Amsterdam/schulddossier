@@ -524,6 +524,7 @@
 .dossier__scroll-content {
   direction: ltr;
   padding-bottom: 150px;
+  padding-top: 30px;
 }
 
 .dossier__item__dummy.active,
@@ -865,22 +866,36 @@
 }
 
 .dossier__item__dummy {
+  background-color: transparent;
   position: absolute;
   z-index: 100;
-  opacity: 0;
+  pointer-events: none;
+  top: 295px;
+  bottom: 0;
+  opacity: 1;
   left: 17px;
   right: 0;
-  pointer-events: none;
-  &.show {
-    opacity: 1;
+
+  .dossier__voorlegger__header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    background-color: #fff;
+    &.show {
+      opacity: 1;
+      .status-result__container {
+        pointer-events: auto;
+      }
+    }
   }
 }
 
-.dossier__item__dummy__top {
-  top: 295px;
+.dossier__voorlegger__header__top {
+  top: 0;
 }
 
-.dossier__item__dummy__bottom {
+.dossier__voorlegger__header__bottom {
   bottom: 0;
 }
 
