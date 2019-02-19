@@ -17,11 +17,9 @@
         <meta name=“msapplication-TileColor” content=“#da532c”>
         <meta name=“theme-color” content=“#ffffff”>
 
-        <link type="text/css" rel="stylesheet" href="{{ asset('/css/screen.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('/css/screen.css') }}"  media="all">
 
         <script type="text/javascript">!function(a){a.className=a.className.replace(/\bno-js\b/g,'js'),'ontouchstart'in window&&(a.className=a.className.replace(/\bno-touch\b/g,'touch'))}(document.documentElement)</script>
-
-        <link type="text/css" rel="stylesheet" href="//fast.fonts.net/t/1.css?apiType=css&projectid=0037f97b-b0f6-41de-8f33-75b12c9f76ea"/>
     </head>
     <body class="{% block body_classes %}{% endblock %}" data-decorator="restore-splitter" data-version-date="{{ app_version.getVersionDate }}">
 
