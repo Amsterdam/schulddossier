@@ -368,11 +368,17 @@
           _checkSeenAll();
         },
         _hasNote = function(noteId){
+          var hasNote = false;
           if (window.localStorage){
             var releaseNotesSeen = JSON.parse(window.localStorage.getItem(storageKey) || '{}');
-            return releaseNotesSeen[noteId];
+            hasNote = releaseNotesSeen[noteId];
           }
-          return false;
+          if (!hasNote){
+            var releaseNotesSeen = _getStorage();
+            delete releaseNotesSeen['all'];
+            window.localStorage.setItem('release-notes-seen', JSON.stringify(releaseNotesSeen));
+          }
+          return hasNote;
         },
         _onChange = function(e){
           var self = this;
