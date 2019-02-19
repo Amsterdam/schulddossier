@@ -126,12 +126,16 @@
 
   ul {
     list-style: none;
-    padding: .5rem 1rem 0 .5rem;
+    padding: 5px;
     border-radius: 5px;
     background-color: rgba(#fff, 0);
-    margin-top: -.5rem;
     overflow: hidden;
     z-index: 1;
+    pointer-events: none;
+    margin: 0;
+    opacity: 0;
+    transform: scale(.5);
+    //transition: .1s $transitionEaseDefault;
   }
   li a:hover strong {
     background: $lightColor3;
@@ -183,8 +187,9 @@
      }
     ul {
       position: absolute;
-      right: -20px;
-      top: -9px;
+      right: -15px;
+      top: -13px;
+      transform-origin: top right;
     }
   }
   &__label {
@@ -209,6 +214,9 @@
     ul {
       background-color: #fff;
       box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+      pointer-events: auto;
+      opacity: 1;
+      transform: scale(1);
 
     }
     strong {
@@ -217,4 +225,8 @@
       padding: 0 40px 0 10px;
     }
   }
+}
+.dossier__item__dummy .dossier__voorlegger__header__bottom .status-result ul {
+  top: auto;
+  bottom: 3px;
 }
