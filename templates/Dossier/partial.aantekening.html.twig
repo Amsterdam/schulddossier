@@ -8,9 +8,9 @@
       {% if showContext|default(false) %}
         <span class="aantekening-context">
           {% if aantekening.schuldItem %}
-            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': aantekening.dossier.id}) }}#schuldItem-{{ aantekening.schuldItem.id }}">{{ aantekening.onderwerp|humanize }}</a>
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': aantekening.dossier.id}) }}#id_schuldItem-{{ aantekening.schuldItem.id }}">{{ aantekening.onderwerp|humanize }}</a>
           {% elseif aantekening.onderwerp != 'overige' %}
-            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': aantekening.dossier.id}) }}#voorlegger-{{ aantekening.onderwerp }}">{{ aantekening.onderwerp|humanize }}</a>
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': aantekening.dossier.id}) }}#id_voorlegger-{{ aantekening.onderwerp }}">{{ aantekening.onderwerp|humanize }}</a>
           {% else %}
             {{ aantekening.onderwerp|humanize }}
           {% endif %}
