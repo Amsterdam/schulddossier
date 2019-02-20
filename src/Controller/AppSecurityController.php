@@ -15,9 +15,19 @@ class AppSecurityController extends Controller
     /**
      * @Route("/app/login")
      */
-    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
+    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils, \Symfony\Component\Security\Core\Security $security)
     {
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
+        if ($security->isGranted('ROLE_USER')) {
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
+        }
+
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return new Response($this->render('Security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error
+        ]));
     }
 
     /**
