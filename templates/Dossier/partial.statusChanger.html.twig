@@ -1,6 +1,6 @@
 <div class="status-result__container">
     <span class="status-result__label">Status: </span>
-    {% if app.user.type == 'madi' %}
+    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
         <div class="status-result status text-right">
             <ul>
                 {% if show_nvt %}
@@ -31,7 +31,7 @@
                 </li>
             </ul>
         </div>
-    {% elseif app.user.type == 'gka' %}
+    {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
         <div class="status-result status text-right">
             <ul>
                 {% if show_nvt %}

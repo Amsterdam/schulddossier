@@ -2,9 +2,9 @@
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('autoTaxatie') %}
 
 <div class="dossier__item {{ dossier.voorlegger.autoTaxatieNvt ? ' status-nvt' }}
-    {% if app.user.type == 'madi' %}
+    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
     status-madi-{{ dossier.voorlegger.autoTaxatieOntvangenMadi }}
-    {% elseif app.user.type == 'gka' %}
+    {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
     status-gka-{{ dossier.voorlegger.autoTaxatieOntvangenGka }}
     {% endif %}
     {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-autoTaxatie"
