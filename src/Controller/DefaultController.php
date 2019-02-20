@@ -23,9 +23,6 @@ class DefaultController extends Controller
      */
     public function appRedirectAction(Request $request)
     {
-        if ($this->isGranted('ROLE_GKA_APPBEHEERDER')) {
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index');
-        }
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 }
