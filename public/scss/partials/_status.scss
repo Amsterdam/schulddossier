@@ -120,6 +120,8 @@
     font-family: $ff-regular;
   }
   .status-nvt.status-gka-0 &:after,
+  .status-nvt.status-gka-3 &:after,
+  .status-nvt.status-madi-3 &:after,
   .status-nvt.status-madi-0 &:after {
     display: none;
   }
