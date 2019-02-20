@@ -2,9 +2,9 @@
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('toeslagen') %}
 
 <div class="dossier__item {{ dossier.voorlegger.toeslagenNvt ? ' status-nvt' }}
-    {% if app.user.type == 'madi' %}
+    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
     status-madi-{{ dossier.voorlegger.toeslagenOntvangenMadi }}
-    {% elseif app.user.type == 'gka' %}
+    {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
     status-gka-{{ dossier.voorlegger.toeslagenOntvangenGka }}
     {% endif %}
     {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-toeslagen"
