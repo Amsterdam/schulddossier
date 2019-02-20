@@ -51,9 +51,13 @@ class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
         $form = $event->getForm();
         $data = $event->getData();
 
-        $schuldhulpbureau = $data->getSchuldhulpbureau()->getId();
-        $medewerkerSchuldhulpbureau = $data->getMedewerkerSchuldhulpbureau()->getId();
-        $schuldHulpbureauGebruiker = $schuldhulpbureau . '_' . $medewerkerSchuldhulpbureau;
+        $schuldHulpbureauGebruiker = 0;
+
+        if(!empty($data->getSchuldhulpbureau())){
+            $schuldhulpbureau = $data->getSchuldhulpbureau()->getId();
+            $medewerkerSchuldhulpbureau = $data->getMedewerkerSchuldhulpbureau()->getId();
+            $schuldHulpbureauGebruiker = $schuldhulpbureau . '_' . $medewerkerSchuldhulpbureau;
+        }
 
         $form->add('schuldHulpbureauGebruiker', SchuldhulpbureauMedewerkerType::class, [
             'required' => true,
