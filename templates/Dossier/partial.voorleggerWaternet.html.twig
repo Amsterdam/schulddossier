@@ -2,9 +2,9 @@
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('waternet') %}
 
 <div class="dossier__item {{ dossier.voorlegger.waternetNvt ? ' status-nvt' }}
-    {% if app.user.type == 'madi' %}
+    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
     status-madi-{{ dossier.voorlegger.waternetOntvangenMadi }}
-    {% elseif app.user.type == 'gka' %}
+    {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
     status-gka-{{ dossier.voorlegger.waternetOntvangenGka }}
     {% endif %}
     {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-waternet"
