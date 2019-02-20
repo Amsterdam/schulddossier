@@ -23,17 +23,6 @@
     font-size: $fs-default;
     padding: 0 25px;
   }
-  //.form-changed & .in-progress .dossier__save,
-  //.dossier__save {
-  //
-  //  background: #fff;
-  //  color: grey;
-  //  border: 1px solid grey;
-  //  cursor: initial;
-  //  pointer-events: none;
-  //  transition: all .3s;
-  //  margin: 0;
-  //}
   &:before {
     content: '';
     position: absolute;
@@ -46,9 +35,9 @@
   &:after {
     content: '';
     position: absolute;
-    width: 387px;
+    width: 392px;
     height: 1px;
-    left: 50px;
+    left: 45px;
     background-color: $borderColor2;
     top: 100px;
   }
@@ -650,7 +639,7 @@
 .dossier__header {
   height: 180px;
   position: relative;
-  padding-left: 50px;
+  padding-left: 60px;
   padding-top: 120px;
   max-width: 375px;
   p {
@@ -659,7 +648,7 @@
   .nav-internal--breadcrumb {
     position: absolute;
     top: 68px;
-    left: 40px;
+    left: 35px;
     margin: 0;
     background: transparent;
     a {
@@ -698,7 +687,7 @@
     margin-bottom: 0;
   }
   .page-toggle {
-    width: 397px;
+    width: 412px;
     position: absolute;
     bottom: 5px;
     left: 40px;
