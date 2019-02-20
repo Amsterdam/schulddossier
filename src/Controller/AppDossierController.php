@@ -72,7 +72,7 @@ class AppDossierController extends Controller
             'archief' => ['afgesloten_gka'],
             'search' => []
         ];
-        $section = $request->query->get('section', $this->getUser()->getType() === Gebruiker::TYPE_GKA ? 'gka' : 'madi');
+        $section = $request->query->get('section', $this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser()->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER ? 'gka' : 'madi');
 
         if ($authChecker->isGranted('ROLE_MADI') || $authChecker->isGranted('ROLE_MADI_KEYUSER')) {
             if ($this->getUser()->getSchuldhulpbureaus()->count() === 0) {
