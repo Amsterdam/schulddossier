@@ -2,11 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldhulpbureauRepository")
  * @ORM\Table
  */
 class Schuldhulpbureau
@@ -41,6 +42,17 @@ class Schuldhulpbureau
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $standaardGkaTeam;
+
+    /**
+     * @var Gebruiker[]|ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Gebruiker", mappedBy="schuldhulpbureaus")
+     */
+    private $gebruikers;
+
+    public function __construct()
+    {
+        $this->gebruikers = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -85,5 +97,10 @@ class Schuldhulpbureau
         $this->standaardGkaTeam = $standaardGkaTeam;
 
         return $this;
+    }
+
+    public function getGebruikers()
+    {
+        return $this->gebruikers;
     }
 }
