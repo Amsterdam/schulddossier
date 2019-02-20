@@ -27,9 +27,12 @@ class SchuldhulpbureauMedewerkerType extends AbstractType
     private $options;
 
     /**
-     * SchuldeiserType constructor.
+     * SchuldhulpbureauMedewerkerType constructor.
      *
-     * @param TokenStorageInterface $tokenStorage
+     * @param TokenStorageInterface  $tokenStorage
+     * @param EntityManagerInterface $entityManager
+     *
+     * @throws \Exception
      */
     public function __construct(TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager)
     {
@@ -52,9 +55,14 @@ class SchuldhulpbureauMedewerkerType extends AbstractType
      * @param Collection $collection
      *
      * @return array
+     * @throws \Exception
      */
     private function transformCollectionToChoices(Collection $collection): array
     {
+        if($collection->isEmpty()){
+           return [];
+        }
+
         return array_merge(...$collection->map(function (SchuldhulpBureau $schuldhulpbureau) {
             $choices = [];
             $choices[$schuldhulpbureau->getNaam()] = array_merge(...$schuldhulpbureau->getGebruikers()
