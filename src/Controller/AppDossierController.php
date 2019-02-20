@@ -74,7 +74,7 @@ class AppDossierController extends Controller
         ];
         $section = $request->query->get('section', $this->getUser()->getType() === Gebruiker::TYPE_GKA ? 'gka' : 'madi');
 
-        if ($authChecker->isGranted('ROLE_MADI')) {
+        if ($authChecker->isGranted('ROLE_MADI') || $authChecker->isGranted('ROLE_MADI_KEYUSER')) {
             if ($this->getUser()->getSchuldhulpbureaus()->count() === 0) {
                 return $this->render('Security/accessDenied.html.twig', [
                     'message' => 'Gebruiker is niet gekoppeld aan een schuldhulpbureau.',
@@ -88,7 +88,7 @@ class AppDossierController extends Controller
             'naam' => '',
             'status' => $section2status[$section],
             'schuldhulpbureaus' => $em->getRepository(Schuldhulpbureau::class)->findAll(),
-            'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI ? $this->getUser() : null,
+            'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI || $this->getUser()->getType() === Gebruiker::TYPE_MADI_KEYUSER ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
         ];
 
