@@ -6,16 +6,15 @@
     position: relative;
     pointer-events: none;
     font-size: 10px;
-    //opacity: 0;
   }
   &__nieuw__icon {
     opacity: 0;
     transition: opacity .3s linear 0s;
+
   }
   &__nieuw__icon:before,
   &__nieuw__icon:after {
-    //transform: scale(1) rotate(-45deg);
-    animation: pulse-star 3s cubic-bezier(0.455, 0.03, 0.515, 0.955) -.01s 1;
+    opacity: inherit;
   }
   &__nieuw__icon:before {
     content: '';
@@ -28,7 +27,6 @@
     display: inline-block;
     width: 20px;
     height: 20px;
-    //background-color: $brandColor1;
     border-radius: 50%;
   }
   &__nieuw__icon:after {
@@ -160,9 +158,14 @@
 
 .release-note-not-seen .release-notes__nieuw__icon {
   opacity: 1;
-  transition: opacity .3s linear 0s;
+  //transition: opacity .3s linear 0s;
 }
-
+.release-notes-not-seen .release-notes__menu .release-notes__nieuw__icon:before,
+.release-notes-not-seen .release-notes__menu .release-notes__nieuw__icon:after,
+.release-note-not-seen .release-notes__nieuw__icon:before,
+.release-note-not-seen .release-notes__nieuw__icon:after {
+  animation: pulse-star 3s cubic-bezier(0.455, 0.03, 0.515, 0.955) -.01s 1;
+}
 
 @keyframes pulse-star {
   0% {
