@@ -201,6 +201,52 @@
   background-size: 100% auto;
   background-image: url('../images/ico_undo.svg');
 }
+.icon-animated-arrow-big-down {
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 3px;
+    background-color: #000;
+    border-radius: 3px;
+    top: 9px;
+    transition: all .5s $transition-ease-default .2s;
+  }
+  &:before {
+    right: 0;
+    transform-origin: left center;
+    transform: rotate(-45deg);
+  }
+  &:after {
+    right: 11px;
+    transform-origin: right center;
+    transform: rotate(45deg);
+  }
+}
+.icon-animated-arrow-big-up {
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 3px;
+    background-color: #000;
+    border-radius: 3px;
+    transition: all .5s $transition-ease-default .2s;
+    top: 0;
+  }
+  &:before {
+    right: 0;
+    transform-origin: left center;
+    transform: rotate(45deg);
+  }
+  &:after {
+    right: 11px;
+    transform-origin: right center;
+    transform: rotate(-45deg);
+  }
+}
 
 .icon-search {
   position: relative;
