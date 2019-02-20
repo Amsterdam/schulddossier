@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldhulpbureauMedewerkerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
@@ -55,7 +55,7 @@ class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
         $medewerkerSchuldhulpbureau = $data->getMedewerkerSchuldhulpbureau()->getId();
         $schuldHulpbureauGebruiker = $schuldhulpbureau . '_' . $medewerkerSchuldhulpbureau;
 
-        $form->add('schuldHulpbureauGebruiker', SchuldeiserType::class, [
+        $form->add('schuldHulpbureauGebruiker', SchuldhulpbureauMedewerkerType::class, [
             'required' => true,
             'multiple' => false,
             'expanded' => false,
