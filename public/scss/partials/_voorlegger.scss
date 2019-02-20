@@ -301,6 +301,7 @@
     transform: scale(1, 1);
     z-index: 2;
     border-color: transparent;
+    left: 442px;
     .dossier__voorlegger__sectie {
       background-color: transparent;
     }
@@ -442,7 +443,7 @@
   top: 100px;
   bottom: 0;
   transition: all .5s $transitionEaseDefault;
-  width: calc(100vw - 429px);
+  width: calc(100vw - 446px);
   height: calc(100vh - 104px);
   transform: scale(.8, .8);
   transform-origin: 0 center;
