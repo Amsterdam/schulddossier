@@ -17,12 +17,14 @@
     {{ form_start(form, {'attr': {'id': 'overige_form', 'data-submitter': 'save', 'data-result-selector': '#overige_form .accordion', 'data-changer': 'change'}}) }}
       <div class="accordion-container" data-decorator="droppable">
         <div class="dossier__item no-header">
+          {% if not dossier.isInPrullenbak %}
           <p>Plaats hier documenten die niet thuishoren in overige secties</p>
           {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Document'} only %}
           {% do form.removeFile.setRendered() %}
+          {% endif %}
 
           {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossier.getDocumentenByOnderwerp('overige'), 'removeFile': form.removeFile} only %}
-
+          {% if not dossier.isInPrullenbak %}
           <div class="form-global-buttons">
               <div class="container">
                   <p class="buttons right">
@@ -31,6 +33,7 @@
                   </p>
               </div>
           </div>
+        {% endif %}
         </div>
 
       </div>

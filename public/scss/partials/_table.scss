@@ -1,5 +1,5 @@
 .table {
-  line-height: 1.2;  
+  line-height: 1.2;
   table {
     width: 100%;
     border-spacing: 0;
@@ -21,20 +21,20 @@
     }
     tr:last-child td,
     tr:last-child th {
-        border-bottom: 2px solid $borderColor2;
+      border-bottom: 2px solid $borderColor2;
     }
-    
+
     a {
       text-decoration: none;
       &:hover {
         text-decoration: underline;
       }
     }
-    
+
     tbody > tr:nth-child(2n+1) {
       background-color: rgba($lightColor2, 1);
     }
-    
+
     .row-link {
       overflow: hidden;
       th {
@@ -52,7 +52,6 @@
           left: 0;
           top: 0;
           bottom: 0;
-          height: 10em;
           width: 100vw;
           background-color: rgba(#000, 0);
         }
@@ -60,10 +59,39 @@
           text-decoration: none;
         }
       }
-      
+
+    }
+    .row-link__dimmed {
+      //pointer-events: none;
+      th a {
+        &:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 100vw;
+          background-color: rgba(#fff, 0.7);
+        }
+        &:hover:before {
+          background-color: rgba(#fff, 1);
+        }
+        &:hover:after {
+          content: 'Dit dossier is verwijderd';
+          color: $brandColor1;
+          font-size: $fs-large;
+          position: absolute;
+          top: 50%;
+          bottom: auto;
+          left: 2rem;
+          width: 100vw;
+          transform: translateY(-50%);
+        }
+      }
     }
   }
 }
+
 .empty-table {
   text-align: center;
   padding: $padding / 2;

@@ -95,7 +95,7 @@
                 {% set empty = true %}
                 {% for dossier in dossiers %}
                     {% set empty = false %}
-                    <tr class="row-link">
+                    <tr class="row-link{% if dossier.isInPrullenbak %} row-link__dimmed{% endif %}">
                         <th>
                             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a>
                         </th>

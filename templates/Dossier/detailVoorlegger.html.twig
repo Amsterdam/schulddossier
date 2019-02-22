@@ -6,13 +6,14 @@
 
 {% block document %}
     <div class="dossier">
-
+        {% if not dossier.isInPrullenbak %}
         {% include 'Dossier/partial.dossierWorkflow.html.twig' with {'dossier': dossier} only %}
+        {% endif %}
 
 
         {% include 'Dossier/partial.dossierHeader.html.twig' with {'dossier': dossier, 'active': 'aanvraag'} only %}
         {{ form_start(voorleggerForm, {'attr': {'id': 'voorlegger_form', 'data-submitter': 'save', 'data-result-selector': '.dossier__list-container', 'data-changer': 'change'}}) }}
-        <button type="submit" class="dossier__save button primary">Opslaan</button>
+        {% if dossier.isInPrullenbak %}<h2 class="dossier__deleted__message">Dit dossier is verwijderd</h2>{% else %}<button type="submit" class="dossier__save button primary">Opslaan</button>{% endif %}
         {{ form_errors(voorleggerForm) }}
         <div class="dossier__list-container">
             {% include 'Dossier/partial.dossierDashboard.html.twig' with {'dossier': dossier} only %}
