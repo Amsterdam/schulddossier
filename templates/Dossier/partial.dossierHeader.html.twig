@@ -9,12 +9,17 @@
            data-label="Alle acties"><span class="nav-open primary">Alle acties <i class="icon-arrow-bottom"></i></span></a>
         <nav class="nav" id="acties">
             <ul class="menu">
+                {% if dossier.isInPrullenbak %}
+                <li>
+                  <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore', {'dossierId': dossier.id}) }}" method="post">
+                      <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore') }}">
+                      <button type="submit" class="link"><i class="icon-undo"></i>Dossier herstellen</button>
+                  </form>
+                <li>
+                {% else %}
                 <li>
                     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocumenten', {'dossierId': dossier.id}) }}"><i
                                 class="icon-documenten"></i> Toon alle documenten</a></li>
-                <li>
-                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', {'dossierId': dossier.id}) }}"><i
-                                class="icon-documenten"></i> Toon overige documenten</a></li>
                 <li><a href="#pdfsplitter" data-handler="global-toggle" data-toggle-class="splitter-active"><i
                                 class="icon-splitsen"></i> pdf splitsen</a></li>
                 <li>
@@ -37,6 +42,7 @@
                         </button>
                     </form>
                 </li>
+                {% endif %}
             </ul>
         </nav>
     </nav>

@@ -32,7 +32,7 @@
               </div>
             </div>
         </div>
-
+        {% if not dossier.isInPrullenbak %}
         <div class="form-global-buttons">
             <div class="container">
                 <p class="buttons right">
@@ -41,6 +41,7 @@
                 </p>
             </div>
         </div>
+        {% endif %}
 
       {{ form_end(form) }}
 

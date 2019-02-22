@@ -807,6 +807,7 @@
   }
 }
 
+.dossier__deleted__message,
 .dossier__save {
   position: absolute;
   top: 55px;
@@ -930,4 +931,10 @@
     max-width: 300px;
     min-width: 100px;
   }
+}
+.dossier__deleted__message {
+  color: $brandColor1;
+  margin: 0;
+  line-height: 40px;
+
 }

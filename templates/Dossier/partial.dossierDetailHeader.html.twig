@@ -1,6 +1,9 @@
 <div class="document-header group">
     
   <div>
+    {% if dossier.isInPrullenbak %}
+    <h1 class="dossier__deleted__message">Dit dossier is verwijderd</h1>
+    {% endif %}
     <h1 class="document-title">{{ title }}</h1>
       <ul class="document-meta">
           <li>Cliëntnaam: <strong>{{ dossier.clientnaam }}</strong></li>
