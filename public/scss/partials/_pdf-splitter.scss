@@ -127,9 +127,58 @@ $splitter-bg-color: #555;
         height: auto;
       }
       &.dragged {
-        opacity: 0.4;
+        position: relative;
+        //opacity: 0.4;
         &:hover {
           opacity: 1;
+        }
+
+      }
+      .added-container {
+
+      }
+      .added {
+        position: absolute;
+        display: block;
+        right: 10px;
+        top: 10px;
+        border-radius: 50%;
+        background-color: #000;
+        width: 24px;
+        height: 24px;
+
+
+        @for $i from 1 through 15 {
+          &:nth-child(#{$i}) {
+            right: #{(($i - 1) * 30) + 10}px;
+          }
+        }
+        &:after {
+          content: '';
+          position: absolute;
+          right: 4px;
+          left: auto;
+          top: 6px;
+          width: 12px;
+          height: 6px;
+          border: 4px solid #fff;
+          border-right: none;
+          border-top: none;
+          transform: rotate(-45deg);
+          opacity: 1 !important;
+          border-radius: 0;
+          background-color: transparent;
+        }
+        &:hover:before {
+          content: "Toegevoegd aan: "  attr(data-section);
+          display: inline-block;
+          position: absolute;
+          right: 0;
+          top: 30px;
+          padding: 5px;
+          background-color: #000;
+          color: #fff;
+          min-width: 200px;
         }
       }
       &:hover {
@@ -137,7 +186,6 @@ $splitter-bg-color: #555;
       }
     }
   }
-
   .drag-mode & {
     opacity: 1;
     transform: translate3d((-$pdfSplitterWidth + 10px), 0, 0);

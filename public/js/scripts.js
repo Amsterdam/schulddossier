@@ -1343,10 +1343,22 @@
 
               dropZone = lastFile.querySelector('.drop-area');
 
+              // inform sender
               e.item.classList.add('dragged');
+              var added = document.createElement('a');
+              added.classList.add('added');
+              added.setAttribute('href', '#id_' + zone.getAttribute('id'));
+              added.dataset.section = zone.querySelector('.dossier__voorlegger__header h3').textContent;
+              var container = e.item.querySelector('.added-container');
+              if (!container){
+                container = document.createElement('div');
+                container.classList.add('added-container');
+                e.item.appendChild(container);
+              }
+              container.appendChild(added);
+
 
               var original = e.item.querySelector('canvas');
-
               var canvas = document.createElement('canvas');
               var context = canvas.getContext('2d');
               canvas.width = original.width;
