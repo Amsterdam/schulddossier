@@ -53,7 +53,7 @@ class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
 
         $schuldHulpbureauGebruiker = 0;
 
-        if(!empty($data->getSchuldhulpbureau())){
+        if (!empty($data->getSchuldhulpbureau())) {
             $schuldhulpbureau = $data->getSchuldhulpbureau()->getId();
             $medewerkerSchuldhulpbureau = $data->getMedewerkerSchuldhulpbureau()->getId();
             $schuldHulpbureauGebruiker = $schuldhulpbureau . '_' . $medewerkerSchuldhulpbureau;
@@ -77,6 +77,10 @@ class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
     {
         $form = $event->getForm();
         $data = $event->getData();
+
+        if (empty($data['schuldHulpbureauGebruiker'])) {
+            return;
+        }
 
         $ids = explode('_', $data['schuldHulpbureauGebruiker']);
 
