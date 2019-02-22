@@ -4,7 +4,9 @@
         <div class="dossier__voorlegger__sectie">
             <div class="dossier__voorlegger__sectie__header">
                 <h3>Nieuwe schuld</h3>
+                {% if not dossier.isInPrullenbak %}
                 <button type="submit" class="dossier__nieuwe-schuld-save button primary">Nieuwe schuld opslaan</button>
+                {% endif %}
             </div>
             <div class="dossier__voorlegger__sectie__body">
 
