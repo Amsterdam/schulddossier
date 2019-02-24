@@ -61,7 +61,24 @@
                         {% include 'Dossier/partial.aantekening.html.twig' with {'aantekening': aantekening, 'showContext': true} %}
                     {% endfor %}
                 </div>
+
             </div>
         </div>
+        {% if dossier.isAfgesloten == FALSE and dossier.isInPrullenbak == FALSE %}
+            {% if app.user.isApplicationAdmin or (app.user.isMadiKeyUser and dossier.withMadi) or (app.user.isGkaAppBeheerder and dossier.withGka) %}
+                <div class="dossier__dashboard__controls">
+                    <div class="row">
+                        <h2>Dossier acties</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="dashboard_dossier_status_changer">
+                                {% include 'Dossier/partial.dossierStatusChanger.twig' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
     </div>
 </div>
