@@ -59,7 +59,7 @@
                 </div>
                 <div class="columns">
                     <div class="column">
-                        {% if is_granted('ROLE_MADI') is same as(FALSE) %}
+                        {% if is_granted('ROLE_MADI') is same as(FALSE) and is_granted('ROLE_MADI_KEYUSER') is same as(FALSE) %}
                             {{ form_row(searchForm.schuldhulpbureaus) }}
                         {% endif %}
                         {{ form_row(searchForm.medewerkerSchuldhulpbureau) }}

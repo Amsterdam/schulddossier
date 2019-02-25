@@ -87,7 +87,7 @@ class AppDossierController extends Controller
             'section' => $section,
             'naam' => '',
             'status' => $section2status[$section],
-            'schuldhulpbureaus' => $em->getRepository(Schuldhulpbureau::class)->findAll(),
+            'schuldhulpbureaus' => !empty($forcedSchuldhulpbureaus) ? $forcedSchuldhulpbureaus : $em->getRepository(Schuldhulpbureau::class)->findAll(),
             'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI || $this->getUser()->getType() === Gebruiker::TYPE_MADI_KEYUSER ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
         ];
@@ -101,7 +101,7 @@ class AppDossierController extends Controller
             $orderBy = 'gka-verzenddatum';
         }
         // if user is from a madi limit his search results on the user schuldhulpbureaus
-        if ($authChecker->isGranted('ROLE_MADI')) {
+        if ($authChecker->isGranted('ROLE_MADI') || $authChecker->isGranted('ROLE_MADI_KEYUSER')) {
             $seachQuery['schuldhulpbureaus'] = $forcedSchuldhulpbureaus;
         }
         $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize), $orderBy);

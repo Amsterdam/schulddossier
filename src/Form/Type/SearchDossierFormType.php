@@ -53,7 +53,7 @@ class SearchDossierFormType extends AbstractType
             ]
         ]);
 
-        if (!$this->authorizationChecker->isGranted('ROLE_MADI')) {
+        if (!$this->authorizationChecker->isGranted('ROLE_MADI') && !$this->authorizationChecker->isGranted('ROLE_MADI_KEYUSER')) {
             $builder->add('schuldhulpbureaus', EntityType::class, [
                 'required' => false,
                 'class' => Schuldhulpbureau::class,
