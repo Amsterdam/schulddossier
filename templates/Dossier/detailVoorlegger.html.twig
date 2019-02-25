@@ -27,7 +27,12 @@
                          data-decorator="droppable">
                         {% include 'Dossier/partial.voorleggerLegitimatie.html.twig' with {'form': voorleggerForm.legitimatie, 'dossier': dossier, 'title': 'Legitimatie'} only %}
                         {% include 'Dossier/partial.voorleggerVtlb.html.twig' with {'form': voorleggerForm.vtlb, 'dossier': dossier, 'title': 'VTLB (Vrij te laten bedrag)'} only %}
+
+                        <h2>Aanvraag schuldsanering</h2>
                         {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForm.ondertekendAanvraagFormulier, 'dossier': dossier, 'title': 'Ondertekend aanvraagformulier'} only %}
+                        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringClient.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringClient, 'dossier': dossier, 'title': 'Toelichting cliënt'} only %}
+                        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringMadi.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringMadi, 'dossier': dossier, 'title': 'Toelichting MaDi'} only %}
+
                         <h2>Inkomen</h2>
                         {% include 'Dossier/partial.voorleggerInkomstenspecificatie.html.twig' with {'form': voorleggerForm.inkomstenspecificatie, 'dossier': dossier, 'title': 'Inkomstenspecificatie'} only %}
                         {% include 'Dossier/partial.voorleggerArbeidsovereenkomst.html.twig' with {'form': voorleggerForm.arbeidsovereenkomst, 'dossier': dossier, 'title': 'Arbeidsovereenkomst'} only %}
@@ -55,9 +60,6 @@
                         {% include 'Dossier/partial.voorleggerMeterstandenEnergie.html.twig' with {'form': voorleggerForm.meterstandenEnergie, 'dossier': dossier, 'title': 'Meterstanden energie'} only %}
                         {% include 'Dossier/partial.voorleggerWaternet.html.twig' with {'form': voorleggerForm.waternet, 'dossier': dossier, 'title': 'Waternet'} only %}
                         {% include 'Dossier/partial.voorleggerRetourbewijsModem.html.twig' with {'form': voorleggerForm.retourbewijsModem, 'dossier': dossier, 'title': 'Retourbewijs modem'} only %}
-                        <h2>Aanvraag schuldsanering</h2>
-                        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringClient.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringClient, 'dossier': dossier, 'title': 'Toelichting cliënt'} only %}
-                        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringMadi.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringMadi, 'dossier': dossier, 'title': 'Toelichting MaDi'} only %}
                         <h2>Onderbewindstelling of budgetbeheer</h2>
                         {% include 'Dossier/partial.voorleggerBeschikkingOnderBewindstelling.html.twig' with {'form': voorleggerForm.beschikkingOnderBewindstelling, 'dossier': dossier, 'title': 'Beschikking onderbewindstelling'} only %}
                         {% include 'Dossier/partial.voorleggerBudgetbeheer.html.twig' with {'form': voorleggerForm.budgetbeheer, 'dossier': dossier, 'title': 'Budgetbeheer'} only %}
