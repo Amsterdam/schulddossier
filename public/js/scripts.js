@@ -9,7 +9,6 @@
         allPages = pages.querySelectorAll('.page');
       if (page){
         page.classList[page.classList.contains('selected') ? 'remove' : 'add']('selected');
-        //page.setAttribute('draggable', page.classList.contains('selected'));
       }
       var selectedPages = pages.querySelectorAll('.page.selected');
       elemSelectedPages.textContent = selectedPages.length + ' / ' + allPages.length;
@@ -1379,22 +1378,24 @@
             d.classList.add('sort-mode');
           },
           setData: function (dataTransfer, dragEl) {
-
-            if (!dragEl.classList.contains('selected')){
-              var pages = dragEl.parentNode.querySelectorAll('.page.selected');
-              for (var i = 0; i < pages.length; i++){
-                pages[i].classList.remove('selected');
+            var page = _closest(dragEl, '.page'),
+              allPages = _closest(dragEl, '.pages').querySelectorAll('.page');
+            if (!page.classList.contains('selected')){
+              var selectedPages = pages.querySelectorAll('.page.selected');
+              for (var i = 0; i < selectedPages.length; i++){
+                selectedPages[i].classList.remove('selected');
               }
-              dragEl.classList.add('selected');
+              page.classList.add('selected');
             }
             var currentDragger = document.querySelector('.drag-ghost-container');
             if (currentDragger){
-              currentDragger.innerHTML = '';
+              currentDragger.parentNode.removeChild(currentDragger);
             }
 
             dragGhost = document.createElement('div');
             dragGhost.classList.add('drag-ghost-container');
-            var draggedItems = dragEl.parentNode.querySelectorAll('.page.selected');
+            var draggedItems = pages.querySelectorAll('.page.selected'),
+              elemSelectedPages = document.querySelector('.pdfsplitter__selected-pages');
             for (var i = 0; i < draggedItems.length; i++){
               var oldCanvas  = draggedItems[i].querySelector('canvas'),
                 newCanvas  = document.createElement('canvas'),
@@ -1405,16 +1406,13 @@
               dragGhost.appendChild(newCanvas);
             }
 
-            dragEl.draggedItems = draggedItems;
-
             document.body.appendChild(dragGhost);
 
+            elemSelectedPages.textContent = draggedItems.length + ' / ' + allPages.length;
+
+            dragEl.draggedItems = draggedItems;
+
             dataTransfer.setDragImage(dragGhost, 0, 0);
-          },
-
-
-          onChoose: function(/**Event*/evt) {
-
           },
           onEnd: function (e) {
 
