@@ -25,6 +25,7 @@
 
         {% block pdfsplitter %}
           <aside id="pdfsplitter" class="pdf-splitter no-header file-pdf-pages" data-decorator="droppable" data-changer="pdfsplitter">
+              <span class="pdfsplitter__selected-pages"></span>
               <div class="pages" data-handler="page-select"></div>
               <label class="file-selector">
                   <input type="file" name="file" accept="application/pdf">
