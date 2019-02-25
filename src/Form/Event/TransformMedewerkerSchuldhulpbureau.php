@@ -102,12 +102,16 @@ class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
             'class' => Schuldhulpbureau::class,
             'multiple' => false,
             'expanded' => false,
+            'label_attr' => ['class' => 'hidden'],
+            'attr' => ['class' => 'hidden'],
         ])->setData($schuldhulpbureau->getId());
 
         $form->add('medewerkerSchuldhulpbureau', EntityType::class, [
             'required' => true,
             'class' => Gebruiker::class,
             'multiple' => false,
+            'label_attr' => ['class' => 'hidden'],
+            'attr' => ['class' => 'hidden'],
         ])->setData($medewerkerSchuldhulpbureau->getId());
 
         $event->setData($data);
