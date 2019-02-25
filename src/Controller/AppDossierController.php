@@ -129,6 +129,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/prullenbak")
+     * @Security("has_role('ROLE_GKA') || has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
      */
     public function indexPrullenbakAction(Request $request, EntityManagerInterface $em)
     {
