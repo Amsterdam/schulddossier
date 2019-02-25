@@ -26,8 +26,9 @@
 
                 <nav class="nav-internal">
                     <ul>
-                        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak') }}">Prullenbak</a>
-                        </li>
+                        {% if app.user.type != 'madi' and app.user.type != 'madi_keyuser' %}
+                            <li>appelsap <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak') }}">Prullenbak</a></li>
+                        {% endif %}
                         <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_create') }}" class="primary">Nieuw
                                 dossier</a></li>
                     </ul>
