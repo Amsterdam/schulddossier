@@ -75,9 +75,10 @@ class DossierRepository extends EntityRepository
         if ($query['naam'] !== null) {
             $qb->andWhere('FULLTEXTSEARCH(dossier.clientNaam, :searchPhrase, :searchPhrase) = TRUE');
             $qb->orWhere('LEVENSHTEIN(LOWER(dossier.clientNaam), :searchPhrase) <= :tolerance');
-            $qb->orWhere('dossier.allegroNummer = :searchPhrase');
+            $qb->orWhere('dossier.allegroNummer LIKE :searchLike');
 
             $qb->setParameter('searchPhrase', $query['naam']);
+            $qb->setParameter('searchLike', $query['naam']. '%');
             $qb->setParameter('tolerance', Levenshtein::determineTolerance($query['naam']));
         }
 
