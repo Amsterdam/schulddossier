@@ -242,7 +242,7 @@ class AppDossierController extends Controller
         $changeDossierStatusForm = false;
 
 
-        if (!$dossier->isInPrullenbak() && !$dossier->isAfgesloten()) {
+        if (!$dossier->isInPrullenbak()) {
             if (
                 $this->getUser()->isApplicationAdmin()
                 ||
