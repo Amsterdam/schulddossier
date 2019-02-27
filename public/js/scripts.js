@@ -1062,7 +1062,6 @@
 
 
       e && e.preventDefault();
-      console.log(form.classList.contains('invalid'));
       if (form.classList.contains('invalid')){
         return;
       }
@@ -1206,13 +1205,12 @@
     'float': function(){
       return validators['default'].call(this, {
         'valid': this.value === '' || /^-?(?=.*[1-9])\d+(\.\d+)?(,\d+)?$/.test(this.value),
-        // 'valid': /^-?\d*(\.\d+)?(,\d+)?$/.test(this.value),
         'message': 'Dit veld mag alleen comma gescheiden getallen bevatten'
       });
     },
     'required': function(){
       return validators['default'].call(this, {
-        'valid': self.value !== '',
+        'valid': this.value !== '',
         'message': 'Dit veld is verplicht'
       });
     }
@@ -1557,7 +1555,7 @@
           }
         }
       }
-    },
+    }
   };
   var scrollerElements = {
     'sticky-section': function () {
