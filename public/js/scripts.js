@@ -1200,13 +1200,13 @@
     },
     'integer': function(){
       return validators['default'].call(this, {
-        'valid': this.value === '' || /^\d*[1-9]\d*$/.test(this.value),
+        'valid': this.value === '' || /^(0*[1-9][0-9]*|0)$/.test(this.value),
         'message': 'Dit veld mag alleen hele getallen bevatten'
       });
     },
     'float': function(){
       return validators['default'].call(this, {
-        'valid': this.value === '' || /^-?(?=.*[1-9])\d+(\.\d+)?(,\d+)?$/.test(this.value),
+        'valid': this.value === '' || /^-?(?=.*[0-9])\d+(\.\d+)?(,\d+)?$/.test(this.value),
         'message': 'Dit veld mag alleen comma gescheiden getallen bevatten'
       });
     },
