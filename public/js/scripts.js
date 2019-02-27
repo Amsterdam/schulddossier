@@ -1345,10 +1345,11 @@
 
               // inform sender
               e.item.classList.add('dragged');
-              var added = document.createElement('a');
+              var added = document.createElement('a'),
+                textContentElem = zone.querySelector('.dossier__voorlegger__header h3') || zone.querySelector('.dossier__voorlegger__sectie__header h3');
               added.classList.add('added');
               added.setAttribute('href', '#id_' + zone.getAttribute('id'));
-              added.dataset.section = zone.querySelector('.dossier__voorlegger__header h3').textContent;
+              added.dataset.section = textContentElem.textContent;
               var container = e.item.querySelector('.added-container');
               if (!container){
                 container = document.createElement('div');
