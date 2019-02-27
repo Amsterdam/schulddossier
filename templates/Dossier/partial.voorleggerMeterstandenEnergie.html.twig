@@ -49,7 +49,7 @@
                 {{ form_row(form.warmteBedrijf) }}
                 {{ form_row(form.warmteBedrijfKlantnummer) }}
                 {{ form_row(form.warmteBedrijfDatumOpname) }}
-                {{ form_row(form.warmteBedrijfOpname, {'attr': {'data-unit': 'GJ'}}) }}
+                {{ form_row(form.warmteBedrijfOpname, {'attr': {'data-unit': 'GJ', 'data-validator': 'float'}}) }}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden energie'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}
