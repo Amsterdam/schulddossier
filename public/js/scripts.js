@@ -1559,7 +1559,7 @@
           }
         }
       }
-    },
+    }
   };
   var scrollerElements = {
     'sticky-section': function () {
