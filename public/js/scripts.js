@@ -1062,6 +1062,8 @@
 
 
       e && e.preventDefault();
+
+      form && changers[form.dataset.changer].call(form, e);
       if (form.classList.contains('invalid')){
         return;
       }
@@ -1181,7 +1183,7 @@
         container = _closest(self, '.form-row'),
         elemMessageClass = 'form-row__validation-message';
 
-      if (!container.querySelector('.' + elemMessageClass)){
+      if (!container.querySelector('.' + elemMessageClass) && self.classList.contains('touched')){
         var elemMessage = document.createElement('span');
         elemMessage.classList.add(elemMessageClass);
         container.appendChild(elemMessage);
@@ -1236,8 +1238,10 @@
       var
         form = this,
         formChangedClass = this.dataset.formChangedSelector || 'form-changed',
-        validatorFields = form.querySelectorAll('input[data-validator].touched'),
+        validatorFields = form.querySelectorAll('input[data-validator]'),
         defaultDocumentNaam = form.querySelector('#nieuwe-schuld-toevoegen .result-container .search-result-item-static span');
+
+      e && e.target && e.target.classList.add('touched');
 
       form.classList.remove('invalid');
       for (var i = 0; i < validatorFields.length; i++){
@@ -1728,7 +1732,6 @@
   d.addEventListener('keyup', function (e) {
     if (e.target.type === 'textarea' || e.target.type === 'text' || e.target.type === 'number' || e.target.type === 'email'){
       var form = _closest(e.target, 'form');
-      e.target.classList.add('touched');
       form && changers[form.dataset.changer].call(form, e);
     }else {
       for (var i in keyuppers){
