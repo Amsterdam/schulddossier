@@ -1241,8 +1241,6 @@
         validatorFields = form.querySelectorAll('input[data-validator]'),
         defaultDocumentNaam = form.querySelector('#nieuwe-schuld-toevoegen .result-container .search-result-item-static span');
 
-      e && e.target && e.target.classList.add('touched');
-
       form.classList.remove('invalid');
       for (var i = 0; i < validatorFields.length; i++){
         if (!validators[validatorFields[i].dataset.validator].call(validatorFields[i])){
@@ -1559,7 +1557,7 @@
           }
         }
       }
-    }
+    },
   };
   var scrollerElements = {
     'sticky-section': function () {
