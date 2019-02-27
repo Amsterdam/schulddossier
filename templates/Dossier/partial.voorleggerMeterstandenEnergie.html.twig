@@ -43,9 +43,9 @@
                 {{ form_row(form.energieBedrijf) }}
                 {{ form_row(form.energieBedrijfKlantnummer) }}
                 {{ form_row(form.energieBedrijfDatumOpname) }}
-                {{ form_row(form.energieBedrijfT1, {'attr': {'data-unit': 'kWh'}}) }}
-                {{ form_row(form.energieBedrijfT2, {'attr': {'data-unit': 'kWh'}}) }}
-                {{ form_row(form.energieBedrijfGas, {'attr': {'data-unit': 'm³'}}) }}
+                {{ form_row(form.energieBedrijfT1, {'attr': {'data-unit': 'kWh', 'data-validator': 'integer'}}) }}
+                {{ form_row(form.energieBedrijfT2, {'attr': {'data-unit': 'kWh', 'data-validator': 'integer'}}) }}
+                {{ form_row(form.energieBedrijfGas, {'attr': {'data-unit': 'm³', 'data-validator': 'float'}}) }}
                 {{ form_row(form.warmteBedrijf) }}
                 {{ form_row(form.warmteBedrijfKlantnummer) }}
                 {{ form_row(form.warmteBedrijfDatumOpname) }}

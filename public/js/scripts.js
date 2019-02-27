@@ -502,7 +502,7 @@
           _setZoom();
         },
         _showDocument = function(docElem, pageNum){
-          currentDocElem = docElem
+          currentDocElem = docElem;
           var extension = currentDocElem.querySelector('[data-extension]').dataset.extension;
           self.classList.add('loading');
           self.classList.remove('disabled');
@@ -1060,9 +1060,13 @@
         newDocCounter = 1,
         i;
 
-      submitButton.setAttribute('disabled', 'disabled');
 
       e && e.preventDefault();
+      if (form.classList.contains('invalid')){
+        return;
+      }
+      submitButton.setAttribute('disabled', 'disabled');
+
       if (form.request) form.request.abort();
 
       form.classList.add('in-progress');
@@ -1171,6 +1175,46 @@
 
   };
 
+  var validators = {
+    'default': function(data){
+      var self = this,
+        container = _closest(self, '.form-row'),
+        elemMessageClass = 'form-row__validation-message';
+
+      if (!container.querySelector('.' + elemMessageClass)){
+        var elemMessage = document.createElement('span');
+        elemMessage.classList.add(elemMessageClass);
+        container.appendChild(elemMessage);
+        elemMessage.textContent = data.message;
+      }
+      container.classList[data.valid ? 'remove' : 'add']('invalid');
+      return data.valid;
+    },
+    'required-integer': function(){
+      return validators['default'].call(this, {
+        'valid': this.value !== '' && /^\d*[1-9]\d*$/.test(this.value),
+        'message': 'Dit veld is verplicht en mag alleen hele getallen bevatten'
+      });
+    },
+    'integer': function(){
+      return validators['default'].call(this, {
+        'valid': this.value === '' || /^\d*[1-9]\d*$/.test(this.value),
+        'message': 'Dit veld mag alleen hele getallen bevatten'
+      });
+    },
+    'float': function(){
+      return validators['default'].call(this, {
+        'valid': this.value === '' || /^-?(?=.*[1-9])\d+(\.\d+)?(,\d+)?$/.test(this.value),
+        'message': 'Dit veld mag alleen comma gescheiden getallen bevatten'
+      });
+    },
+    'required': function(){
+      return validators['default'].call(this, {
+        'valid': this.value !== '',
+        'message': 'Dit veld is verplicht'
+      });
+    }
+  };
   var changers = {
     'status-changer': function(e){
       var self = this,
@@ -1180,6 +1224,7 @@
         nvtCheckbox = container.querySelector('.nvt > .form-row input[type="checkbox"]');
 
       e && e.preventDefault();
+
       if (val === -1){
         nvtCheckbox.checked = true;
       }else {
@@ -1187,24 +1232,31 @@
         statusRadio.checked = true;
       }
     },
-    'change': function () {
+    'change': function (e) {
       var
         form = this,
         formChangedClass = this.dataset.formChangedSelector || 'form-changed',
+        validatorFields = form.querySelectorAll('input[data-validator].touched'),
         defaultDocumentNaam = form.querySelector('#nieuwe-schuld-toevoegen .result-container .search-result-item-static span');
 
-      d.classList.add(formChangedClass);
+      form.classList.remove('invalid');
+      for (var i = 0; i < validatorFields.length; i++){
+        if (!validators[validatorFields[i].dataset.validator].call(validatorFields[i])){
+          form.classList.add('invalid');
+        }
+      }
+
+      d.classList[form.classList.contains('invalid') ? 'remove': 'add'](formChangedClass);
 
       if (defaultDocumentNaam){
         form.querySelector('#nieuwe-schuld-toevoegen [data-default-document-naam]').dataset.defaultDocumentNaam = defaultDocumentNaam.textContent;
       }
-
       if (form.changed === undefined) {
         form.changed = true;
         w.onbeforeunload = function () {
-          if (document.querySelectorAll('.' + formChangedClass).length) {
+          //if (document.querySelectorAll('.' + formChangedClass).length) {
             return 'Je hebt nog niet opgeslagen wijzigingen. Deze zullen verloren gaan als je niet eerst je wijzigingen opslaat';
-          }
+          //}
         }
       }
 
@@ -1675,6 +1727,9 @@
 
   d.addEventListener('keyup', function (e) {
     if (e.target.type === 'textarea' || e.target.type === 'text' || e.target.type === 'number' || e.target.type === 'email'){
+      var form = _closest(e.target, 'form');
+      e.target.classList.add('touched');
+      form && changers[form.dataset.changer].call(form, e);
     }else {
       for (var i in keyuppers){
         if (keyuppers.hasOwnProperty(i)) {

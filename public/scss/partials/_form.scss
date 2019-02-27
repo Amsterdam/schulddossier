@@ -225,6 +225,13 @@ form {
       border-left: 1px solid rgba(#000, .1);
     }
   }
+  .form-row .form-row__validation-message {
+    display: none;
+  }
+  .form-row.invalid .form-row__validation-message {
+    color: $brandColor1;
+    display: inline-block;
+  }
   .group {
     display: flex;
 
@@ -768,6 +775,7 @@ form {
   .group {
     position: relative;
     align-items: flex-start;
+    flex-direction: column;
     input {
       //flex-basis: 50%;
       //margin-right: $padding;
