@@ -3,7 +3,7 @@
     <div class="dashboard_dossier_status_changer_element">
         {{ form_label(changeDossierStatusForm.status) }}
         <br>
-        {{ form_widget(changeDossierStatusForm.status) }}
+        {{ form_widget(changeDossierStatusForm.status, {'attr': {'data-current': dossier.status}}) }}
     </div>
     <div class="dashboard_dossier_status_changer_element_errors">
         {{ form_errors(changeDossierStatusForm.status) }}
