@@ -21,7 +21,9 @@
                                            placeholder="Zoek een schuldeiser" autocomplete="off">
                                     <div class="search-result-container"></div>
                                     <i class="icon-search"></i>
-                                    {{ form_row(createForm.schuldeiser) }}
+                                    <div class="form-row">
+                                    {{ form_row(createForm.schuldeiser, {'attr': {'data-validator': 'required'}}) }}
+                                    </div>
                                 </div>
                                 {{ form_errors(createForm) }}
                             </div>
@@ -49,9 +51,9 @@
                         </div>
                         <div class="columns">
                             <div class="column">
-                                {{ form_row(createForm.bedrag, {'attr': {'data-unit': '€'}}) }}
+                                    {{ form_row(createForm.bedrag, {'attr': {'data-unit': '€', 'data-validator': 'required-integer'}}) }}
                                 {{ form_row(createForm.type) }}
-                                {{ form_row(createForm.referentie) }}
+                                {{ form_row(createForm.referentie, {'attr': {'data-validator': 'required'}}) }}
                             </div>
                             <div class="column">
                                 {{ form_row(createForm.vastStelDatum) }}
