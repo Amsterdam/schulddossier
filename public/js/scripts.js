@@ -1061,7 +1061,8 @@
         i;
 
       if (form.querySelector('#change_dossier_status_status') && form.querySelector('#change_dossier_status_status').value !== form.querySelector('#change_dossier_status_status').dataset.current){
-        w.onbeforeunload = function () {}
+        w.onbeforeunload = function () {};
+        return;
       }else {
         e && e.preventDefault();
       }
