@@ -14,6 +14,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateAantekeningFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
@@ -230,6 +231,7 @@ class AppDossierController extends Controller
                     $aantekening->setGebruiker($this->getUser());
                     $aantekening->setOnderwerp($key);
                     $aantekening->setTekst($child->get('aantekening')->get('tekst')->getData());
+                    $eventDispatcher->dispatch(DossierAddedAantekeningEvent::NAME, new DossierAddedAantekeningEvent($dossier, $this->getUser()));
                 }
             }
             $em->flush();
@@ -491,6 +493,7 @@ class AppDossierController extends Controller
                     $aantekening->setOnderwerp('schuldenoverzicht');
                     $aantekening->setSchuldItem($child->getData());
                     $aantekening->setTekst($child->get('aantekening')->get('tekst')->getData());
+                    $eventDispatcher->dispatch(DossierAddedAantekeningEvent::NAME, new DossierAddedAantekeningEvent($dossier, $this->getUser()));
                 }
             }
             $em->flush();
@@ -541,6 +544,7 @@ class AppDossierController extends Controller
                 $aantekening->setOnderwerp('schuldenoverzicht');
                 $aantekening->setSchuldItem($schuldItem);
                 $aantekening->setTekst($createForm->get('aantekening')->get('tekst')->getData());
+                $eventDispatcher->dispatch(DossierAddedAantekeningEvent::NAME, new DossierAddedAantekeningEvent($dossier, $this->getUser()));
             }
             $em->flush();
             $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
@@ -585,6 +589,7 @@ class AppDossierController extends Controller
 
             $em->flush();
             $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
+            $eventDispatcher->dispatch(DossierAddedAantekeningEvent::NAME, new DossierAddedAantekeningEvent($dossier, $this->getUser()));
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen', ['dossierId' => $dossier->getId()]);
         }
