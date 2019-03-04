@@ -1928,6 +1928,44 @@
   _checkHash();
 
 
+  document.onpaste = function(event) {
+    var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+    console.log(JSON.stringify(items)); // will give you the mime types
+    for (index in items) {
+      var item = items[index];
+      if (item.kind === 'file') {
+        var blob = item.getAsFile();
+        var reader = new FileReader();
+        reader.onload = function (event) {
+          var activateSection = document.querySelector('.dossier__item.active'),
+            form = activateSection && _closest(activateSection, 'form'),
+            addButton = document.querySelector('.dossier__item.active .files-container .add.bestand');
+
+          if (addButton && form) {
+            var
+              file = handlers['add-file'].call(addButton),
+              input = file.querySelector('[type="file"]'),
+              button = file.querySelector('.file'),
+              icon = file.querySelector('[data-extension]');
+
+            helpers.trigger(file, 'filled');
+
+            form.files = form.files || [];
+            form.files.push({
+              'name': input.name,
+              'file': blob
+            });
+            input.parentNode.removeChild(input);
+
+            file.classList.add('has-file');
+
+          }
+        }
+        reader.readAsDataURL(blob);
+      }
+    }
+  }
+
 }(window, document.documentElement);
 
 (function(doc, proto) {
