@@ -2,17 +2,15 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Workflow\Event\Event;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
-use Psr\Log\LoggerInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Workflow\Event\Event;
 
 class MailNotitificationSubscriber implements EventSubscriberInterface
 {
@@ -101,6 +99,19 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         }
     }
 
+    /**
+     * @param DossierAddedAantekeningEvent $event
+     */
+    public function notifyMadiAboutAantekening(DossierAddedAantekeningEvent $event): void
+    {
+        if ($event->getDossier()->getMedewerkerSchuldhulpbureau() !== null && in_array($event->getGebruiker()->getType(), [Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_GKA], true)) {
+            $this->mail($this->fromNotificiatieAdres, $event->getDossier()->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyAddedAantekeningMadi.html.twig', [
+                'dossier' => $event->getDossier(),
+                'tokenStorage' => $this->tokenStorage
+            ]);
+        }
+    }
+
     public function notifyAfkeurenMadi(Event $event)
     {
         /** @var $dossier Dossier */
@@ -177,7 +188,8 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             'workflow.dossier_flow.completed.goedkeuren_madi' => 'notifyGoedkeurenMadi',
             'workflow.dossier_flow.completed.verzenden_madi' => 'notifyVerzendenMadi',
             'workflow.dossier_flow.completed.afkeuren_dossier_gka' => 'notifyAfkeurenDossierGka',
-            DossierChangedEvent::NAME => 'notifyChangedGka'
+            DossierChangedEvent::NAME => 'notifyChangedGka',
+            DossierAddedAantekeningEvent::NAME => 'notifyMadiAboutAantekening'
         ];
     }
 }
