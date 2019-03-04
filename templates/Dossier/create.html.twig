@@ -4,8 +4,9 @@
 
 {% block pdfsplitter %}{% endblock %}
 
+{% block documentContainerClass %}{{ parent() }} document-container__wide{% endblock %}
 {% block document %}
-  
+
 
 <nav class="nav-internal">
     <ul>
@@ -24,8 +25,24 @@
     
     <div class="form-container">
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
-        {{ form_row(form.clientNaam) }}
-        {{ form_row(form.partnerNaam) }}
+        <div class="columns">
+        <div class="column">
+            <h3 class="document-team">Cliënt</h3>
+            {{ form_row(form.clientGeslacht) }}
+            {{ form_row(form.clientNaam) }}
+            {{ form_row(form.clientVoorletters) }}
+            {{ form_row(form.clientGeboortedatum) }}
+            {{ form_row(form.clientBSN) }}
+        </div>
+        <div class="column">
+            <h3 class="document-team">Partner</h3>
+            {{ form_row(form.partnerGeslacht) }}
+            {{ form_row(form.partnerNaam) }}
+            {{ form_row(form.partnerVoorletters) }}
+            {{ form_row(form.partnerGeboortedatum) }}
+            {{ form_row(form.partnerBSN) }}
+        </div>
+        </div>
         <div class="columns">
             <div class="column">
                 <h3 class="document-team">MaDi</h3>

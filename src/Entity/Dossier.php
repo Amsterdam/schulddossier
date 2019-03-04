@@ -56,7 +56,114 @@ class Dossier
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
      */
+    private $clientVoorletters;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length(min=0, max=255)
+     * @Assert\Choice(callback="getGeslachtOpties")
+     */
+    private $clientGeslacht;
+
+    /**
+     * @var \Date
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $clientGeboortedatum;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $clientBSN;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $clientTelefoonnummer;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $clientStraat;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=50, nullable=true)
+     * @Assert\Length(min=0, max=50)
+     */
+    private $clientHuisnummer;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=50, nullable=true)
+     * @Assert\Length(min=0, max=50)
+     */
+    private $clientPostcode;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $clientWoonplaats;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length(min=0, max=255)
+     * @Assert\Choice(callback="getClientBurgelijkeStaatOpties")
+     */
+    private $clientBurgelijkeStaat;
+
+    /**
+     * @var array
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $clientKinderen;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
     private $partnerNaam;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $partnerVoorletters;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     * @Assert\Choice(callback="getGeslachtOpties")
+     */
+    private $partnerGeslacht;
+
+    /**
+     * @var \Date
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $partnerGeboortedatum;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $partnerBSN;
 
     /**
      * @var Schuldhulpbureau
@@ -177,9 +284,54 @@ class Dossier
         return $this->clientNaam;
     }
 
+    public function getClientVoorletters()
+    {
+        return $this->clientVoorletters;
+    }
+
+    public function getClientGeslacht()
+    {
+        return $this->clientGeslacht;
+    }
+
+    public function getClientGeboortedatum()
+    {
+        return $this->clientGeboortedatum;
+    }
+
+    public function getClientBSN()
+    {
+        return $this->clientBSN;
+    }
+
+    public function getClientBurgelijkeStaat()
+    {
+        return $this->clientBurgelijkeStaat;
+    }
+
     public function getPartnerNaam()
     {
         return $this->partnerNaam;
+    }
+
+    public function getPartnerVoorletters()
+    {
+        return $this->partnerVoorletters;
+    }
+
+    public function getPartnerGeslacht()
+    {
+        return $this->partnerGeslacht;
+    }
+
+    public function getPartnerGeboortedatum()
+    {
+        return $this->partnerGeboortedatum;
+    }
+
+    public function getPartnerBSN()
+    {
+        return $this->partnerBSN;
     }
 
     /**
@@ -222,6 +374,35 @@ class Dossier
     public function getAanmaker()
     {
         return $this->aanmaker;
+    }
+
+    /**
+     * @param string $geslacht
+     *
+     * @return string[]
+     */
+    public static function getGeslachtOpties()
+    {
+        return [
+            'Man' => 'Man',
+            'Vrouw' => 'Vrouw',
+        ];
+    }
+
+    /**
+     * @param string $burgelijkeStaat
+     *
+     * @return string[]
+     */
+    public static function getBurgelijkeStaatOpties()
+    {
+        return [
+            'Gehuwd in gemeenschap van goederen' => 'Gehuwd in gemeenschap van goederen',
+            'Gehuwd buiten iedere gemeenschap' => 'Gehuwd buiten iedere gemeenschap',
+            'Samenwonend' => 'Samenwonend',
+            'Ongehuwd' => 'Ongehuwd',
+            'Gescheiden' => 'Gescheiden',
+        ];
     }
 
     /**

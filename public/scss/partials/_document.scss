@@ -6,6 +6,9 @@
 .document-container__narrow {
   max-width: $maxContentNarrowWidth;
 }
+.document-container__wide {
+  max-width: $maxContentWideWidth;
+}
 
 .pdf-splitter.animatable ~ .document-container {
   //transition: padding .3s;
