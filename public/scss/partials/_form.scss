@@ -228,7 +228,7 @@ form {
   .form-row .form-row__validation-message {
     display: none;
   }
-  .form-row.invalid .form-row__validation-message {
+  .form-row.invalid.touched .form-row__validation-message {
     color: $brandColor1;
     display: inline-block;
   }

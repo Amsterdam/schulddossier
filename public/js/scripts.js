@@ -1122,6 +1122,8 @@
         var div = document.createElement('div');
         div.innerHTML = data;
 
+        form.classList.remove('changed');
+
         var
           result = div.querySelectorAll(selector),
           target = d.querySelectorAll(selector);
@@ -1154,7 +1156,6 @@
         data: data,
         callback: function (data) {
           _process(data, form.dataset.resultSelector || 'body');
-          //w.location.hash = '_';
 
           if (form.dataset.submitterCallback && typeof callbackers[form.dataset.submitterCallback] == 'function') {
             callbackers[form.dataset.submitterCallback].call(form);
@@ -1178,43 +1179,55 @@
   };
 
   var validators = {
-    'default': function(data){
+    'default': function(data, e){
       var self = this,
         container = _closest(self, '.form-row'),
         elemMessageClass = 'form-row__validation-message';
 
-      if (!container.querySelector('.' + elemMessageClass) && self.classList.contains('touched')){
+      if (!container.querySelector('.' + elemMessageClass)){
         var elemMessage = document.createElement('span');
         elemMessage.classList.add(elemMessageClass);
         container.appendChild(elemMessage);
         elemMessage.textContent = data.message;
       }
+      if (e && self === e.target){
+        container.classList.add('touched')
+      }
       container.classList[data.valid ? 'remove' : 'add']('invalid');
       return data.valid;
     },
-    'required-integer': function(){
+    'required-integer': function(e){
       return validators['default'].call(this, {
-        'valid': this.value !== '' && /^\d*[1-9]\d*$/.test(this.value),
+        // 'valid': this.value !== '' && /^\d*[1-9]\d*$/.test(this.value),
+        'valid': this.value !== '' && /^-?0*(?:[1-9][0-9]?|100000)$/.test(this.value),
         'message': 'Dit veld is verplicht en mag alleen hele getallen bevatten'
-      });
+      }, e);
     },
-    'integer': function(){
+    'integer': function(e){
       return validators['default'].call(this, {
-        'valid': this.value === '' || /^(0*[1-9][0-9]*|0)$/.test(this.value),
+        // 'valid': this.value === '' || /^(0*[0-9][0-9]*|0)$/.test(this.value),
+        'valid': this.value === '' || /^-?0*(?:[0-9][0-9]?|100000)$/.test(this.value),
         'message': 'Dit veld mag alleen hele getallen bevatten'
-      });
+      }, e);
     },
-    'float': function(){
+    'required-float': function(e){
       return validators['default'].call(this, {
-        'valid': this.value === '' || /^-?(?=.*[0-9])\d+(\.\d+)?(,\d+)?$/.test(this.value),
-        'message': 'Dit veld mag alleen comma gescheiden getallen bevatten'
-      });
+        'valid': this.value !== '' && /^(?:[0-9][0-9]{0,5}(?:\.\d{1,2})?(?:,\d{1,2})?|1000000|1000000.00|1000000.0|1000000,0|1000000,00)$/.test(this.value),
+        // 'valid': this.value !== '' && /^-?(?=.*[1-9])\d+(\.\d+)?(,\d+)?$/.test(this.value),
+        'message': 'Dit veld is verplicht en mag alleen comma gescheiden getallen bevatten'
+      }, e);
     },
-    'required': function(){
+    'float': function(e){
+      return validators['default'].call(this, {
+        'valid': this.value === '' || /^-?(?:[1-9][0-9]{0,4}(?:\.\d{1,2})?(?:,\d{1,2})?|100000|100000.00|100000.0|100000,0|100000,00)$/.test(this.value),
+        'message': 'Dit veld mag alleen comma gescheiden getallen bevatten'
+      }, e);
+    },
+    'required': function(e){
       return validators['default'].call(this, {
         'valid': this.value !== '',
         'message': 'Dit veld is verplicht'
-      });
+      }, e);
     }
   };
   var changers = {
@@ -1241,11 +1254,9 @@
         validatorFields = form.querySelectorAll('input[data-validator]'),
         defaultDocumentNaam = form.querySelector('#nieuwe-schuld-toevoegen .result-container .search-result-item-static span');
 
-      e && e.target && e.target.classList.add('touched');
-
       form.classList.remove('invalid');
       for (var i = 0; i < validatorFields.length; i++){
-        if (!validators[validatorFields[i].dataset.validator].call(validatorFields[i])){
+        if (!validators[validatorFields[i].dataset.validator].call(validatorFields[i], e)){
           form.classList.add('invalid');
         }
       }
@@ -1255,14 +1266,13 @@
       if (defaultDocumentNaam){
         form.querySelector('#nieuwe-schuld-toevoegen [data-default-document-naam]').dataset.defaultDocumentNaam = defaultDocumentNaam.textContent;
       }
-      if (form.changed === undefined) {
-        form.changed = true;
-        w.onbeforeunload = function () {
-          //if (document.querySelectorAll('.' + formChangedClass).length) {
-            return 'Je hebt nog niet opgeslagen wijzigingen. Deze zullen verloren gaan als je niet eerst je wijzigingen opslaat';
-          //}
+
+      w.onbeforeunload = function () {
+        if (document.querySelector('form.changed')) {
+          return 'Je hebt nog niet opgeslagen wijzigingen. Deze zullen verloren gaan als je niet eerst je wijzigingen opslaat';
         }
       }
+      form.classList.add('changed');
 
     },
 
@@ -1559,7 +1569,7 @@
           }
         }
       }
-    }
+    },
   };
   var scrollerElements = {
     'sticky-section': function () {
