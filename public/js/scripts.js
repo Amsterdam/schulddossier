@@ -1122,6 +1122,8 @@
         var div = document.createElement('div');
         div.innerHTML = data;
 
+        form.classList.remove('changed');
+
         var
           result = div.querySelectorAll(selector),
           target = d.querySelectorAll(selector);
@@ -1182,7 +1184,7 @@
         container = _closest(self, '.form-row'),
         elemMessageClass = 'form-row__validation-message';
 
-      if (!container.querySelector('.' + elemMessageClass) && self.classList.contains('touched')){
+      if (!container.querySelector('.' + elemMessageClass)){
         var elemMessage = document.createElement('span');
         elemMessage.classList.add(elemMessageClass);
         container.appendChild(elemMessage);
@@ -1266,8 +1268,7 @@
       }
 
       w.onbeforeunload = function () {
-        console.log(document.querySelector('form.changed'));
-        if (document.querySelector('form.form-changed')) {
+        if (document.querySelector('form.changed')) {
           return 'Je hebt nog niet opgeslagen wijzigingen. Deze zullen verloren gaan als je niet eerst je wijzigingen opslaat';
         }
       }
