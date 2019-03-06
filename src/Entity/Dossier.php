@@ -118,7 +118,7 @@ class Dossier
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
-     * @Assert\Choice(callback="getClientBurgelijkeStaatOpties")
+     * @Assert\Choice(callback="getBurgelijkeStaatOpties")
      */
     private $clientBurgelijkeStaat;
 

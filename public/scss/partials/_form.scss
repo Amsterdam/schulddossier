@@ -277,6 +277,23 @@ form {
         margin-right: 10px;
       }
     }
+    .radio-group__horizontal {
+
+    }
+    .radio-group__vertical {
+      flex-wrap: wrap;
+      input,
+      label {
+        margin: 0 0 10px 0;
+        padding: 0;
+      }
+      input {
+        width: 12%;
+      }
+      label {
+        width: 88%;
+      }
+    }
     label {
       width: 33.333%;
     }

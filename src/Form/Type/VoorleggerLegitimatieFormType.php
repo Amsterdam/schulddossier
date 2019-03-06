@@ -28,6 +28,8 @@ class VoorleggerLegitimatieFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+
         $builder->add('legitimatieOntvangenMadi', MadiStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'

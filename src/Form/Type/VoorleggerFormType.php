@@ -43,6 +43,12 @@ class VoorleggerFormType extends AbstractType
             'data' => $options['data']
         ];
 
+//        $builder->add('clientNaam', TextType::class, [
+//            'label' => 'Achternaam *',
+//            'required' => true
+//        ]);
+
+
         $builder->add('alimentatieEchtscheidingsconvenant', VoorleggerAlimentatieEchtscheidingsconvenantFormType::class, $settings);
         $builder->add('alimentatie', VoorleggerAlimentatieFormType::class, $settings);
         $builder->add('arbeidsovereenkomst', VoorleggerArbeidsovereenkomstFormType::class, $settings);
