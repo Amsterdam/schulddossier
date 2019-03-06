@@ -1216,14 +1216,14 @@
     },
     'required-float': function(e){
       return validators['default'].call(this, {
-        'valid': this.value !== '' && /^(?:[0-9][0-9]{0,5}(?:\.\d{1,2})?(?:,\d{1,2})?|1000000|1000000.00|1000000.0|1000000,0|1000000,00)$/.test(this.value),
+        'valid': this.value !== '' && /^(?:[1-9][0-9]{0,5}(?:\.\d{1,2})?(?:,\d{1,2})?|1000000|1000000.00|1000000.0|1000000,0|1000000,00)$/.test(this.value),
         // 'valid': this.value !== '' && /^-?(?=.*[1-9])\d+(\.\d+)?(,\d+)?$/.test(this.value),
         'message': 'Dit veld is verplicht en mag alleen komma gescheiden getallen bevatten'
       }, e);
     },
     'float': function(e){
       return validators['default'].call(this, {
-        'valid': this.value === '' || /^-?(?:[1-9][0-9]{0,4}(?:\.\d{1,2})?(?:,\d{1,2})?|100000|100000.00|100000.0|100000,0|100000,00)$/.test(this.value),
+        'valid': this.value === '' || /^-?(?:[0-9][0-9]{0,4}(?:\.\d{1,2})?(?:,\d{1,2})?|100000|100000.00|100000.0|100000,0|100000,00)$/.test(this.value),
         'message': 'Dit veld mag alleen komma gescheiden getallen bevatten'
       }, e);
     },
@@ -1746,7 +1746,7 @@
   d.addEventListener('keyup', function (e) {
     if (e.target.type === 'textarea' || e.target.type === 'text' || e.target.type === 'number' || e.target.type === 'email'){
       var form = _closest(e.target, 'form');
-      form && changers[form.dataset.changer].call(form, e);
+      form && form.dataset.changer && changers[form.dataset.changer].call(form, e);
     }else {
       for (var i in keyuppers){
         if (keyuppers.hasOwnProperty(i)) {
