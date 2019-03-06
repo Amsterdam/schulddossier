@@ -8,13 +8,15 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190304134050 extends AbstractMigration
+final class Version20190306101915 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
+        $this->addSql('CREATE SEQUENCE client_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE TABLE client (id INT NOT NULL, achternaam VARCHAR(255) NOT NULL, voorletters VARCHAR(255) DEFAULT NULL, geslacht VARCHAR(255) DEFAULT NULL, geboortedatum DATE DEFAULT NULL, bsn VARCHAR(255) DEFAULT NULL, telefoonnummer VARCHAR(255) DEFAULT NULL, straat VARCHAR(255) DEFAULT NULL, huisnummer VARCHAR(50) DEFAULT NULL, postcode VARCHAR(50) DEFAULT NULL, woonplaats VARCHAR(255) DEFAULT NULL, burgelijke_staat VARCHAR(255) DEFAULT NULL, kinderen JSON DEFAULT NULL, partner_achternaam VARCHAR(255) DEFAULT NULL, partner_voorletters VARCHAR(255) DEFAULT NULL, partner_geslacht VARCHAR(255) DEFAULT NULL, partner_geboortedatum DATE DEFAULT NULL, partner_bsn VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('ALTER TABLE dossier ADD client_voorletters VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE dossier ADD client_geslacht VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE dossier ADD client_geboortedatum DATE DEFAULT NULL');
@@ -37,7 +39,9 @@ final class Version20190304134050 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        //$this->addSql('CREATE SCHEMA public');
+        $this->addSql('CREATE SCHEMA public');
+        $this->addSql('DROP SEQUENCE client_id_seq CASCADE');
+        $this->addSql('DROP TABLE client');
         $this->addSql('ALTER TABLE dossier DROP client_voorletters');
         $this->addSql('ALTER TABLE dossier DROP client_geslacht');
         $this->addSql('ALTER TABLE dossier DROP client_geboortedatum');

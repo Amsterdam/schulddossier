@@ -317,7 +317,7 @@ class AppDossierController extends Controller
 
         $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
 
-        return $this->render('Dossier/detailAlgemeen.html.twig', [
+        return $this->render('Dossier/createAddtional.html.twig', [
             'dossier' => $dossier,
             'form' => $form->createView(),
         ]);
