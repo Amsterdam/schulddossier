@@ -22,7 +22,10 @@
   .document-team {
     border-bottom: 1px solid #CCCCCC;
     padding: 0 0 1rem 0;
-    margin: 0 0 $lineHeight 0;
+    margin: 0 0 20px 0;
+  }
+  .document-title {
+    margin-bottom: 80px;
   }
 
   .document-header {
@@ -50,6 +53,9 @@
 
   }
 
+}
+.document__gray {
+  background-color: #fafafa;
 }
 
 .document-header,

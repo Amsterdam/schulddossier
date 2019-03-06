@@ -174,11 +174,46 @@ class AppDossierController extends Controller
 
             $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier));
 
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_createaddtional', [
                 'dossierId' => $dossier->getId()
             ]);
         }
         return $this->render('Dossier/create.html.twig', [
+            'dossier' => $dossier,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/nieuw/{dossierId}/")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function createAddtionalAction(Request $request, EntityManagerInterface $em, Dossier $dossier, EventDispatcherInterface $eventDispatcher)
+    {
+        if ($dossier->getVoorlegger() === null) {
+            $dossier->setVoorlegger(new Voorlegger());
+        }
+
+        $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger(), [
+            'disabled' => $dossier->isInPrullenbak() === true,
+            'disable_group' => $this->getUser()->getType()
+        ]);
+
+        $form = $this->createForm(DetailDossierFormType::class, $dossier);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($dossier);
+            $em->flush();
+            $this->addFlash('success', 'Dossier aangemaakt');
+
+            $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier));
+
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
+                'dossierId' => $dossier->getId()
+            ]);
+        }
+        return $this->render('Dossier/createAddtional.html.twig', [
             'dossier' => $dossier,
             'form' => $form->createView()
         ]);

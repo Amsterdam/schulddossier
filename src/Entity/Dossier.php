@@ -61,7 +61,6 @@ class Dossier
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank
      * @Assert\Length(min=0, max=255)
      * @Assert\Choice(callback="getGeslachtOpties")
      */
@@ -118,7 +117,6 @@ class Dossier
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank
      * @Assert\Length(min=0, max=255)
      * @Assert\Choice(callback="getClientBurgelijkeStaatOpties")
      */
@@ -304,6 +302,36 @@ class Dossier
         return $this->clientBSN;
     }
 
+    public function getClientTelefoonnummer()
+    {
+        return $this->clientTelefoonnummer;
+    }
+
+    public function getClientStraat()
+    {
+        return $this->clientStraat;
+    }
+
+    public function getClientHuisnummer()
+    {
+        return $this->clientHuisnummer;
+    }
+
+    public function getClientPostcode()
+    {
+        return $this->clientPostcode;
+    }
+
+    public function getClientWoonplaats()
+    {
+        return $this->clientWoonplaats;
+    }
+
+    public function getClientKinderen()
+    {
+        return $this->clientKinderen;
+    }
+
     public function getClientBurgelijkeStaat()
     {
         return $this->clientBurgelijkeStaat;
@@ -433,9 +461,88 @@ class Dossier
         $this->clientNaam = $clientNaam;
     }
 
-    public function setPartnerNaam($partnerNaam)
+    public function setClientVoorletters($clientVoorletters)
+    {
+        $this->clientVoorletters = $clientVoorletters;
+    }
+
+    public function setClientGeslacht($clientGeslacht = null)
+    {
+        $this->clientGeslacht = $clientGeslacht;
+    }
+
+    public function setClientGeboortedatum($clientGeboortedatum = null)
+    {
+        $this->clientGeboortedatum = $clientGeboortedatum;
+    }
+
+    public function setClientBSN($clientBSN = null)
+    {
+        $this->clientBSN = $clientBSN;
+    }
+
+    public function setClientTelefoonnummer($clientTelefoonnummer = null)
+    {
+        $this->clientTelefoonnummer = $clientTelefoonnummer;
+    }
+
+    public function setClientStraat($clientStraat = null)
+    {
+        $this->clientStraat = $clientStraat;
+    }
+
+    public function setClientHuisnummer($clientHuisnummer = null)
+    {
+        $this->clientHuisnummer = $clientHuisnummer;
+    }
+
+    public function setClientPostcode($clientPostcode = null)
+    {
+        $this->clientPostcode = $clientPostcode;
+    }
+
+    public function setClientWoonplaats($clientWoonplaats = null)
+    {
+        $this->clientWoonplaats = $clientWoonplaats;
+    }
+
+    public function setClientBurgelijkeStaat($clientBurgelijkeStaat = null)
+    {
+        $this->clientBurgelijkeStaat = $clientBurgelijkeStaat;
+    }
+
+    public function setClientKinderen($clientKinderen = null)
+    {
+        $this->clientKinderen = $clientKinderen;
+    }
+
+
+
+
+
+    public function setPartnerNaam($partnerNaam = null)
     {
         $this->partnerNaam = $partnerNaam;
+    }
+
+    public function setPartnerVoorletters($partnerVoorletters = null)
+    {
+        $this->partnerVoorletters = $partnerVoorletters;
+    }
+
+    public function setPartnerGeslacht($partnerGeslacht = null)
+    {
+        $this->partnerGeslacht = $partnerGeslacht;
+    }
+
+    public function setPartnerGeboortedatum($partnerGeboortedatum = null)
+    {
+        $this->partnerGeboortedatum = $partnerGeboortedatum;
+    }
+
+    public function setPartnerBSN($partnerBSN = null)
+    {
+        $this->partnerBSN = $partnerBSN;
     }
 
     /**

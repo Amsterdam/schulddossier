@@ -87,7 +87,17 @@ textarea {
 }
 
 select {
-  padding-right: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  padding-right: 25px;
+  @extend .ico-arrow-down;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center;
+
+
 }
 
 input[readonly],
@@ -252,6 +262,24 @@ form {
     }
 
     display: block;
+  }
+  .form-row__wide {
+    .label-widget {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+    }
+    .radio-group {
+      width: 66.666%;
+      display: flex;
+      input {
+        margin-right: 10px;
+      }
+    }
+    label {
+      width: 33.333%;
+    }
   }
 }
 
