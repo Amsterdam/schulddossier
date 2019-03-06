@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Service;
 
@@ -15,52 +14,53 @@ class ApplicationVersion
      */
     protected $path;
 
-    public function __construct(string $env, string $path)
+    /**
+     * @param string $env
+     * @param string  $path
+     */
+    public function __construct($env, $path)
     {
         $this->env = $env;
         $this->path = $path;
     }
 
-    public function getEnv(): string
+    public function getEnv()
     {
         return $this->env;
     }
 
-    public function getEnvVersion(): string
+    public function getEnvVersion()
     {
         if ($this->env === 'dev') {
             return 'dev-' . date('YmdHis');
+        } else {
+            return $this->env . '-' . $this->getVersionId();
         }
-
-        return $this->env . '-' . $this->getVersionId();
     }
-
-    private function getVersionFile(): string
+    public function getVersionFile()
     {
+        $versionFile = $this->path . DIRECTORY_SEPARATOR . 'version_file';
         if ($this->env === 'dev') {
-            return $this->path . DIRECTORY_SEPARATOR . '.git/refs/heads/master';
+            $versionFile = $this->path . DIRECTORY_SEPARATOR . '.git/refs/heads/master';
         }
-
-        return $this->path . DIRECTORY_SEPARATOR . 'version_file';
+        return $versionFile;
     }
-
-    public function getVersionId(): string
+    public function getVersionId()
     {
         $versionFile = $this->getVersionFile();
         if (file_exists($versionFile)) {
             return substr(trim(file_get_contents($versionFile)), 0, 7);
+        } else {
+            return '0000';
         }
-
-        return '0000';
     }
-
-    public function getVersionDate(): string
+    public function getVersionDate()
     {
         $versionFile = $this->getVersionFile();
         if (file_exists($versionFile)) {
-            return date ('y-m-d', filemtime($versionFile));
+            $versionFile = $this->getVersionFile();
+            return date ("y-m-d", filemtime($versionFile));
         }
-
         return '';
     }
 }
