@@ -418,4 +418,98 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
         }
         return true;
     }
+
+    /**
+     * Check if current user is part of a MaDi organisation, based on the following roles:
+     *     Gebruiker::TYPE_MADI,
+     *     Gebruiker::TYPE_MADI_KEYUSER,
+     *
+     * @return bool
+     */
+    public function isMadi(): bool
+    {
+        return in_array($this->getType(), [
+            self::TYPE_MADI,
+            self::TYPE_MADI_KEYUSER,
+        ], true);
+    }
+
+    /**
+     * Checks whether the user is a Madi Key User
+     * This check can be used to check if a user has access by having one of the following role:
+     *     Gebruiker::TYPE_MADI_KEYUSER,
+     *
+     * @return bool
+     */
+    public function isMadiKeyUser(): bool
+    {
+        return $this->getType() === self::TYPE_MADI_KEYUSER;
+    }
+
+    /**
+     * Check if current user is part of the Gka organisation, based on the following roles:
+     *     Gebruiker::TYPE_GKA,
+     *     Gebruiker::TYPE_GKA_APPBEHEERDER,
+     *
+     * @return bool
+     */
+    public function isGka(): bool
+    {
+        return in_array($this->getType(), [
+            self::TYPE_GKA,
+            self::TYPE_GKA_APPBEHEERDER,
+        ], true);
+    }
+    /**
+     * Checks whether the user is a GKA AppBeheerder
+     * This check can be used to check if a user has access by having one of the following role:
+     *     Gebruiker::TYPE_GKA_APPBEHEERDER,
+     *
+     * @return bool
+     */
+    public function isGkaAppBeheerder(): bool
+    {
+        return $this->getType() === self::TYPE_GKA_APPBEHEERDER;
+    }
+
+    /**
+     * Checks wether the user is either a Application Admin, a GKA Admin or a Madi Key User
+     * This check can be used to check if a user has access by having one of the following roles:
+     *     Gebruiker::TYPE_ADMIN,
+     *     Gebruiker::TYPE_GKA_APPBEHEEDER,
+     *     Gebruiker::TYPE_MADI_KEYUSER,
+     *
+     * @return bool
+     */
+    public function isGkaAppBeheerderOrMadiKeyUserOrApplicationAdmin(): bool
+    {
+        return in_array($this->getType(), [
+            self::TYPE_ADMIN,
+            self::TYPE_GKA_APPBEHEERDER,
+            self::TYPE_MADI_KEYUSER,
+        ], true);
+    }
+
+    /**
+     * Checks whether the user is a Application Admin
+     * This check can be used to check if a user has access by having one of the following role:
+     *     Gebruiker::TYPE_ADMIN,
+     * @return bool
+     */
+    public function isApplicationAdmin(): bool
+    {
+        return $this->getType() === self::TYPE_ADMIN;
+    }
+
+    /**
+     * Checks whether the user is unknown
+     * This check can be used to check if a user has access by having one of the following role:
+     *     Gebruiker::TYPE_ONBEKEND,
+     *
+     * @return bool
+     */
+    public function isUnknown(): bool
+    {
+        return $this->getType() === self::TYPE_ONBEKEND;
+    }
 }

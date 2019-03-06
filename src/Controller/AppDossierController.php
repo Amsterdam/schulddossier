@@ -16,6 +16,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateAantekeningFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierFormType;
@@ -238,6 +239,24 @@ class AppDossierController extends Controller
             $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
+        $changeDossierStatusForm = false;
+
+
+        if (!$dossier->isInPrullenbak()) {
+            if (
+                $this->getUser()->isApplicationAdmin()
+                ||
+                ($dossier->withMadi() && $this->getUser()->isMadiKeyUser())
+                ||
+                ($dossier->withGka() && $this->getUser()->isGkaAppBeheerder())
+            ) {
+                $changeDossierStatusForm = $this->createForm(ChangeDossierStatusType::class, $dossier, [
+                    'disabled' => $dossier->isInPrullenbak() === true,
+                ]);
+                $changeDossierStatusForm->handleRequest($request);
+            }
+        }
+
 
         $workflow = $registry->get($dossier);
 
@@ -246,6 +265,7 @@ class AppDossierController extends Controller
         return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
             'voorleggerForm' => $voorleggerForm->createView(),
+            'changeDossierStatusForm' => $changeDossierStatusForm !== false ? $changeDossierStatusForm->createView() : false
         ]);
     }
 
