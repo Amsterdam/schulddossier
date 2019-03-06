@@ -32,14 +32,3 @@ docker-compose-dev.override.yml
 .web-server-pid
 ###< symfony/web-server-bundle ###
 /public/scss/.sass-cache
-
-###> symfony/phpunit-bridge ###
-.phpunit
-/phpunit.xml
-###< symfony/phpunit-bridge ###
-
-###> phpunit/phpunit ###
-/phpunit.xml
-/.phpunit.result.cache
-###< phpunit/phpunit ###
-
