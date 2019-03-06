@@ -1218,13 +1218,13 @@
       return validators['default'].call(this, {
         'valid': this.value !== '' && /^(?:[0-9][0-9]{0,5}(?:\.\d{1,2})?(?:,\d{1,2})?|1000000|1000000.00|1000000.0|1000000,0|1000000,00)$/.test(this.value),
         // 'valid': this.value !== '' && /^-?(?=.*[1-9])\d+(\.\d+)?(,\d+)?$/.test(this.value),
-        'message': 'Dit veld is verplicht en mag alleen comma gescheiden getallen bevatten'
+        'message': 'Dit veld is verplicht en mag alleen komma gescheiden getallen bevatten'
       }, e);
     },
     'float': function(e){
       return validators['default'].call(this, {
         'valid': this.value === '' || /^-?(?:[1-9][0-9]{0,4}(?:\.\d{1,2})?(?:,\d{1,2})?|100000|100000.00|100000.0|100000,0|100000,00)$/.test(this.value),
-        'message': 'Dit veld mag alleen comma gescheiden getallen bevatten'
+        'message': 'Dit veld mag alleen komma gescheiden getallen bevatten'
       }, e);
     },
     'required': function(e){
