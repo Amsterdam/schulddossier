@@ -1060,8 +1060,12 @@
         newDocCounter = 1,
         i;
 
-
-      e && e.preventDefault();
+      if (form.querySelector('#change_dossier_status_status') && form.querySelector('#change_dossier_status_status').value !== form.querySelector('#change_dossier_status_status').dataset.current){
+        w.onbeforeunload = function () {};
+        return;
+      }else {
+        e && e.preventDefault();
+      }
 
       form && changers[form.dataset.changer].call(form, e);
       if (form.classList.contains('invalid')){

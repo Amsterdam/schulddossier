@@ -2,10 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository")
@@ -15,6 +15,14 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Dossier
 {
+    public const STATUS_BEZIG_MADI = 'bezig_madi';
+    public const STATUS_COMPLEET_MADI = 'compleet_madi';
+    public const STATUS_GECONTROLEERD_MADI = 'gecontroleerd_madi';
+    public const STATUS_VERZONDEN_MADI = 'verzonden_madi';
+    public const STATUS_COMPLEET_GKA = 'compleet_gka';
+    public const STATUS_DOSSIER_GECONTROLEERD_GKA = 'dossier_gecontroleerd_gka';
+    public const STATUS_AFGESLOTEN_GKA = 'afgesloten_gka';
+
     /**
      * @var integer
      * @ORM\Id
@@ -329,6 +337,7 @@ class Dossier
 
     /**
      * @param string $onderwerp
+     *
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
      */
     public function getDocumentenByOnderwerp($onderwerp)
@@ -340,6 +349,7 @@ class Dossier
 
     /**
      * @param string $onderwerp
+     *
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
      */
     public function getNietVerwijderdeDocumentenByOnderwerp($onderwerp)
@@ -351,6 +361,7 @@ class Dossier
 
     /**
      * @param Array $onderwerpen
+     *
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
      */
     public function getNietVerwijderdeDocumentenByOnderwerpen($onderwerpen)
@@ -362,6 +373,7 @@ class Dossier
 
     /**
      * @param integer $id
+     *
      * @return NULL|DossierDocument
      */
     public function getDossierDocumentByDocumentId($id)
@@ -374,6 +386,7 @@ class Dossier
 
     /**
      * @param integer $id
+     *
      * @return NULL|DossierDocument
      */
     public function getDossierDocumentByDossierDocumentId($id)
@@ -515,5 +528,42 @@ class Dossier
         }
     }
 
+    /**
+     * Based on current status we can determine whether a dossier is with a MaDi organisation
+     *
+     * @return bool
+     */
+    public function withMadi(): bool
+    {
+        return in_array($this->getStatus(), [
+            self::STATUS_BEZIG_MADI,
+            self::STATUS_COMPLEET_MADI,
+            self::STATUS_GECONTROLEERD_MADI,
+        ], true);
+    }
 
+    /**
+     * Based on current status we can determine whether a dossier is with the GKA
+     *
+     * @return bool
+     */
+    public function withGka(): bool
+    {
+        return in_array($this->getStatus(), [
+            self::STATUS_VERZONDEN_MADI,
+            self::STATUS_COMPLEET_GKA,
+            self::STATUS_DOSSIER_GECONTROLEERD_GKA,
+            self::STATUS_AFGESLOTEN_GKA,
+        ], true);
+    }
+
+    /**
+     * Checks whether the current dossier is closed based on status.
+     *
+     * @return bool
+     */
+    public function isAfgesloten(): bool
+    {
+        return $this->getStatus() === self::STATUS_AFGESLOTEN_GKA;
+    }
 }
