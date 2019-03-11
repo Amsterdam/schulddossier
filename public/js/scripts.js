@@ -1,35 +1,47 @@
 !function (w, d) {
 
   var handlers = {
-      'accordion': function (e) {
-          e && e.preventDefault();
-          var self = this,
-            container = _closest(self, self.dataset.container),
-            transition = 'max-height 0.5s cubic-bezier(0.900, 0.000, 0.100, 1.000)',
-            stateClass = this.dataset.stateClass || 'accordion-active',
-            active = container.classList.contains(stateClass);
+    'page-select': function(e){
+      var self = this,
+        elemSelectedPages = document.querySelector('.pdfsplitter__selected-pages'),
+        page = _closest(e.target, '.page'),
+        pages = _closest(e.target, '.pages'),
+        allPages = pages.querySelectorAll('.page');
+      if (page){
+        page.classList[page.classList.contains('selected') ? 'remove' : 'add']('selected');
+      }
+      var selectedPages = pages.querySelectorAll('.page.selected');
+      elemSelectedPages.textContent = selectedPages.length + ' / ' + allPages.length;
+    },
+    'accordion': function (e) {
+        e && e.preventDefault();
+        var self = this,
+          container = _closest(self, self.dataset.container),
+          transition = 'max-height 0.5s cubic-bezier(0.900, 0.000, 0.100, 1.000)',
+          stateClass = this.dataset.stateClass || 'accordion-active',
+          active = container.classList.contains(stateClass);
 
-          container.body = container.querySelector('.accordion__body');
-          container.body.style.transition = 'none';
-          container.body.style.maxHeight = 200000 + 'px';
-          var h = container.body.offsetHeight;
+        container.body = container.querySelector('.accordion__body');
+        container.body.style.transition = 'none';
+        container.body.style.maxHeight = 200000 + 'px';
+        var h = container.body.offsetHeight;
+        if (active){
+          container.body.style.maxHeight = h + 'px';
+        }else {
+          container.body.style.maxHeight = '0';
+        }
+        container.classList[active ? 'remove' : 'add'](stateClass);
+        window.clearTimeout(container.timeout);
+        container.timeout = setTimeout(function() {
+          container.body.style.transition = transition;
           if (active){
-            container.body.style.maxHeight = h + 'px';
-          }else {
             container.body.style.maxHeight = '0';
+          }else {
+            container.body.style.maxHeight = h + 'px';
           }
-          container.classList[active ? 'remove' : 'add'](stateClass);
-          window.clearTimeout(container.timeout);
-          container.timeout = setTimeout(function() {
-            container.body.style.transition = transition;
-            if (active){
-              container.body.style.maxHeight = '0';
-            }else {
-              container.body.style.maxHeight = h + 'px';
-            }
-           }, 10);
-          helpers.trigger(self, 'change');
-      },
+         }, 10);
+        helpers.trigger(self, 'change');
+    },
     'status-changer': function(e){
       var self = this,
         val = self.dataset.id,
@@ -1284,6 +1296,7 @@
       var
         container = this,
         pages = container.querySelector('.pages'),
+        dragGhost = {},
         file = (e && e.dataTransfer && e.dataTransfer.files[0]) || this.querySelector('[name="file"]').files[0];
 
 
@@ -1353,6 +1366,7 @@
       _load();
 
       if (!container.sortable && Sortable) {
+
         container.sortable = Sortable.create(pages, {
           filter: '.page-delete',
           animation: 150,
@@ -1360,8 +1374,45 @@
           scroll: true,
           scrollSensitivity: 30,
           scrollSpeed: 10,
-          onStart: function () {
+          onStart: function (e) {
             d.classList.add('sort-mode');
+          },
+          setData: function (dataTransfer, dragEl) {
+            var page = _closest(dragEl, '.page'),
+              allPages = _closest(dragEl, '.pages').querySelectorAll('.page');
+            if (!page.classList.contains('selected')){
+              var selectedPages = pages.querySelectorAll('.page.selected');
+              for (var i = 0; i < selectedPages.length; i++){
+                selectedPages[i].classList.remove('selected');
+              }
+              page.classList.add('selected');
+            }
+            var currentDragger = document.querySelector('.drag-ghost-container');
+            if (currentDragger){
+              currentDragger.parentNode.removeChild(currentDragger);
+            }
+
+            dragGhost = document.createElement('div');
+            dragGhost.classList.add('drag-ghost-container');
+            var draggedItems = pages.querySelectorAll('.page.selected'),
+              elemSelectedPages = document.querySelector('.pdfsplitter__selected-pages');
+            for (var i = 0; i < draggedItems.length; i++){
+              var oldCanvas  = draggedItems[i].querySelector('canvas'),
+                newCanvas  = document.createElement('canvas'),
+                context = newCanvas.getContext('2d');
+              newCanvas.width = oldCanvas.width;
+              newCanvas.height = oldCanvas.height;
+              context.drawImage(oldCanvas, 0, 0);
+              dragGhost.appendChild(newCanvas);
+            }
+
+            document.body.appendChild(dragGhost);
+
+            elemSelectedPages.textContent = draggedItems.length + ' / ' + allPages.length;
+
+            dragEl.draggedItems = draggedItems;
+
+            dataTransfer.setDragImage(dragGhost, 0, 0);
           },
           onEnd: function (e) {
 
@@ -1371,70 +1422,79 @@
               file = _closest(e.originalEvent.target, '.file-container.active:not(.has-file)'),
               dropZone = false;
 
-            if (zone) {
-
+            if (zone && e.item.draggedItems && e.item.draggedItems.length > 0) {
+              var pages = document.querySelectorAll('.pdf-splitter .page.selected'),
+                elemSelectedPages = document.querySelector('.pdfsplitter__selected-pages');
               if (zone.classList.contains('pdf-splitter')) {
                 return;
               }
 
-              location.hash = 'id_' + zone.getAttribute('id');
-
-              var lastFile = file ? [file] : zone.querySelectorAll('.file-container.active:not(.has-file) .drop-area')
-
-              if (!lastFile.length) {
-                var addButton = zone.querySelector('.files-container .add.bestand');
-                lastFile = handlers['add-file'].call(addButton);
-
-              } else {
-                lastFile = lastFile[(lastFile.length - 1)];
-                lastFile = _closest(lastFile, '.file-container');
+              for (var i = 0; i < pages.length; i++){
+                pages[i].classList.remove('selected');
               }
+              elemSelectedPages.textContent = '';
 
-              var label = lastFile.querySelector('label');
-              if (label) label.parentNode.removeChild(label);
+              for (var i = 0; i < e.item.draggedItems.length; i++) {
+                var item = e.item.draggedItems[i];
 
-              var icon = lastFile.querySelector('[data-extension]');
-              if (icon) icon.dataset.extension = 'pdf';
+                location.hash = 'id_' + zone.getAttribute('id');
 
-              lastFile.classList.add('file-pdf-pages');
+                var lastFile = file ? [file] : zone.querySelectorAll('.file-container.active:not(.has-file) .drop-area')
 
-              // var event = new Event('filled');
-              // lastFile.dispatchEvent(event);
+                if (!lastFile.length) {
+                  var addButton = zone.querySelector('.files-container .add.bestand');
+                  lastFile = handlers['add-file'].call(addButton);
 
-              helpers.trigger(lastFile, 'filled');
+                } else {
+                  lastFile = lastFile[(lastFile.length - 1)];
+                  lastFile = _closest(lastFile, '.file-container');
+                }
+
+                var label = lastFile.querySelector('label');
+                if (label) label.parentNode.removeChild(label);
+
+                var icon = lastFile.querySelector('[data-extension]');
+                if (icon) icon.dataset.extension = 'pdf';
+
+                lastFile.classList.add('file-pdf-pages');
+
+                // var event = new Event('filled');
+                // lastFile.dispatchEvent(event);
+
+                helpers.trigger(lastFile, 'filled');
 
 
-              dropZone = lastFile.querySelector('.drop-area');
+                dropZone = lastFile.querySelector('.drop-area');
 
               // inform sender
-              e.item.classList.add('dragged');
+              item.classList.add('dragged');
               var added = document.createElement('a'),
-                textContentElem = zone.querySelector('.dossier__voorlegger__header h3') || zone.querySelector('.dossier__voorlegger__sectie__header h3');
-              added.classList.add('added');
+              textContentElem = zone.querySelector('.dossier__voorlegger__header h3') || zone.querySelector('.dossier__voorlegger__sectie__header h3');added.classList.add('added');
               added.setAttribute('href', '#id_' + zone.getAttribute('id'));
               added.dataset.section = textContentElem.textContent;
-              var container = e.item.querySelector('.added-container');
+              var container = item.querySelector('.added-container');
               if (!container){
                 container = document.createElement('div');
                 container.classList.add('added-container');
-                e.item.appendChild(container);
+                item.appendChild(container);
               }
               container.appendChild(added);
 
 
-              var original = e.item.querySelector('canvas');
-              var canvas = document.createElement('canvas');
-              var context = canvas.getContext('2d');
-              canvas.width = original.width;
-              canvas.height = original.height;
-              context.drawImage(original, 0, 0);
-              var page = document.createElement('div');
-              page.classList.add('page');
-              page.appendChild(canvas);
+                var original = item.querySelector('canvas');
+                var canvas = document.createElement('canvas');
+                var context = canvas.getContext('2d');
+                canvas.width = original.width;
+                canvas.height = original.height;
+                context.drawImage(original, 0, 0);
+                var page = document.createElement('div');
+                page.classList.add('page');
+                page.appendChild(canvas);
 
-              dropZone.appendChild(page);
+                dropZone.appendChild(page);
 
-              changer && changers[changer.dataset.changer].call(changer, e.originalEvent);
+                changer && changers[changer.dataset.changer].call(changer, e.originalEvent);
+              }
 
               if (!dropZone.sortable) {
                 dropZone.sortable = Sortable.create(dropZone, {
