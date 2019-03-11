@@ -42,11 +42,14 @@
                     <div class="form-row form-row__wide">
                         <div class="label-widget">
                             <label>Geboortedatum inwonende kind(eren)</label>
-                            <div class="kind__container" data-prototype="{{ form_widget(form.clientKinderen.vars.prototype)|e }}">
+                            <div class="kind__container" data-prototype="{{ form_widget(form.clientKinderen.vars.prototype)|e }}" data-decorator="add-kind">
+                                <ul class="kind__item-list">
                                 {% for kindField in form.clientKinderen %}
-                                    {{ form_errors(kindField) }}
-                                    {{ form_widget(kindField) }}
+                                    <li class="kind__item">
+                                    {{ form_widget(kindField) }}<a class="kind__item__delete" href="#">x</a>
+                                    </li>
                                 {% endfor %}
+                                </ul>
                             </div>
                         </div>
                     </div>

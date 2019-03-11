@@ -63,6 +63,11 @@ dl.dl {
 .kind {
   &__container {
     position: relative;
+    display: flex;
+    & > input[type="text"] {
+      width: calc(100% - 45px);
+      display: inline-block;
+    }
   }
   &__value-list {
     list-style: none;

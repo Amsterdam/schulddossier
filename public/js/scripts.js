@@ -321,6 +321,7 @@
   var decorators = {
     'add-kind': function(){
       var self = this,
+        proto = self.dataset.prototype,
         row = _closest(self, '.label-widget'),
         inputElements = [],
         container = document.createElement('div'),
@@ -387,11 +388,7 @@
         };
       if (self.tagName === 'TEXTAREA' || self.tagName === 'INPUT'){
         self.classList.add('hidden');
-        add.classList.add('kind__add');
-        add.classList.add('button');
-        add.classList.add('secondary');
-        add.setAttribute('href', '#');
-        add.textContent = 'Voeg kind toe';
+
         container.classList.add('kind__container');
         valueList.classList.add('kind__value-list');
         input.classList.add('kind__input');
@@ -403,11 +400,19 @@
         //decorators['rome'].call(input);
 
         container.addEventListener('click', _remove);
-        add.addEventListener('click', _add);
         //container.addEventListener('change', _change);
 
 
       }
+      add.classList.add('kind__add');
+      add.classList.add('button');
+      add.classList.add('secondary');
+      add.setAttribute('href', '#');
+      add.textContent = 'Voeg kind toe';
+      self.appendChild(add);
+
+      add.addEventListener('click', _add);
+
 
     },
     'lazy-load-document-thumb': function () {
