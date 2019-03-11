@@ -1928,6 +1928,42 @@
   _checkHash();
 
 
+  document.onpaste = function(event) {
+    var items = (event.clipboardData || event.originalEvent.clipboardData).items,
+      index;
+    for (index in items) {
+      var item = items[index];
+      if (item.kind === 'file') {
+        var blob = item.getAsFile();
+        var reader = new FileReader();
+        reader.onload = function (event) {
+          var activateSection = document.querySelector('.dossier__item.active') || document.querySelector('.dossier > .dossier__item form'),
+            form = activateSection && _closest(activateSection, 'form'),
+            changer = activateSection && _closest(activateSection, '[data-changer]'),
+            addButton = activateSection.querySelector('.files-container .add.bestand');
+
+          if (addButton && form) {
+            var
+              file = handlers['add-file'].call(addButton),
+              input = file.querySelector('[type="file"]');
+
+            helpers.trigger(file, 'filled');
+
+            form.files = form.files || [];
+            form.files.push({
+              'name': input.name,
+              'file': blob
+            });
+            input.parentNode.removeChild(input);
+            file.classList.add('has-file');
+            changer && changer.dataset.changer && changers[changer.dataset.changer].call(changer, event.originalEvent);
+          }
+        };
+        reader.readAsDataURL(blob);
+      }
+    }
+  }
+
 }(window, document.documentElement);
 
 (function(doc, proto) {
