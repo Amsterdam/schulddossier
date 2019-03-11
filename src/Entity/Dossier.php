@@ -327,9 +327,16 @@ class Dossier
         return $this->clientWoonplaats;
     }
 
-    public function getClientKinderen()
+    /**
+     * @return array
+     */
+    public function getClientKinderen(): ?array
     {
-        return $this->clientKinderen;
+        $kinderen = $this->clientKinderen;
+        if (is_string($kinderen)){
+            $kinderen = json_decode($kinderen);
+        }
+        return $kinderen;
     }
 
     public function getClientBurgelijkeStaat()
@@ -511,7 +518,10 @@ class Dossier
         $this->clientBurgelijkeStaat = $clientBurgelijkeStaat;
     }
 
-    public function setClientKinderen($clientKinderen = null)
+    /**
+     * @param array $clientKinderen
+     */
+    public function setClientKinderen(array $clientKinderen = null): void
     {
         $this->clientKinderen = $clientKinderen;
     }

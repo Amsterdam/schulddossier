@@ -7,49 +7,62 @@
 {% block document %}
 
 
-<nav class="nav-internal">
-    <ul>
-        <li>
-          <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"><i class="icon-arrow-left"></i> Terug naar overzicht</a>
-        </li>
-    </ul>
-</nav>
+    <nav class="nav-internal">
+        <ul>
+            <li>
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"><i
+                            class="icon-arrow-left"></i> Terug naar overzicht</a>
+            </li>
+        </ul>
+    </nav>
 
-<div class="document document__gray well well__wide">
+    <div class="document document__gray well well__wide">
 
-      <h1 class="document-title">Nieuw dossier</h1>
-    {#<div class="document-header">#}
-      {#<p class="document-help">Vul onderstaand formulier in om een nieuw dossier te openen.</p>#}
-    {#</div>#}
+        <h1 class="document-title">Nieuw dossier</h1>
+        {#<div class="document-header">#}
+        {#<p class="document-help">Vul onderstaand formulier in om een nieuw dossier te openen.</p>#}
+        {#</div>#}
 
-    <div class="form-container">
-        {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
-        {{ form_errors(form) }}
+        <div class="form-container">
+            {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
+            {{ form_errors(form) }}
 
-        <div class="columns">
-            <div class="column">
-                <h3 class="document-team">Adresgegevens</h3>
-                {{ form_row(form.clientTelefoonnummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
-                {{ form_row(form.clientStraat, {'attr': {'form_row_class': 'form-row__wide'}}) }}
-                {{ form_row(form.clientHuisnummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
-                {{ form_row(form.clientPostcode, {'attr': {'form_row_class': 'form-row__wide'}}) }}
-                {{ form_row(form.clientWoonplaats, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+            <div class="columns">
+                <div class="column">
+                    <h3 class="document-team">Adresgegevens</h3>
+                    {{ form_row(form.clientTelefoonnummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                    {{ form_row(form.clientStraat, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                    {{ form_row(form.clientHuisnummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                    {{ form_row(form.clientPostcode, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                    {{ form_row(form.clientWoonplaats, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                </div>
+                <div class="column">
+                    <h3 class="document-team">Gezinssamenstelling</h3>
+                    {{ form_row(form.clientBurgelijkeStaat, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__vertical'}}) }}
+                    <div class="form-row form-row__wide">
+                        <div class="label-widget">
+                            <label>Geboortedatum inwonende kind(eren)</label>
+                            <div class="kind__container" data-prototype="{{ form_widget(form.clientKinderen.vars.prototype)|e }}">
+                                {% for kindField in form.clientKinderen %}
+                                    {{ form_errors(kindField) }}
+                                    {{ form_widget(kindField) }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {#{{ form_row(form.clientKinderen, {'attr': {'form_row_class': 'form-row__wide', 'data-decorator': 'add-kind'}, 'widget_container_attributes': {'data-decorator': 'add-kind'}}) }}#}
+                </div>
             </div>
-            <div class="column">
-                <h3 class="document-team">Gezinssamenstelling</h3>
-                {{ form_row(form.clientBurgelijkeStaat, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__vertical'}}) }}
-                {{ form_row(form.clientKinderen, {'attr': {'form_row_class': 'form-row__wide', 'data-decorator': 'add-kind'}}) }}
-            </div>
+
+
+            <p class="buttons right">
+                <button type="submit" class="button primary">Opslaan</button>
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Annuleren</a>
+            </p>
+            {{ form_end(form) }}
         </div>
-
-
-        <p class="buttons right">
-            <button type="submit" class="button primary">Opslaan</button>
-            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Annuleren</a>
-        </p>
-        {{ form_end(form) }}
     </div>
-</div>
 
 
 {% endblock %}

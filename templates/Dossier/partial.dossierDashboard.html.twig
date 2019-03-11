@@ -62,7 +62,7 @@
                     <dt>Burgelijke staat</dt>
                     <dd>{% if dossier.clientBurgelijkeStaat %}{{ dossier.clientBurgelijkeStaat }}{% else %}-{% endif %}</dd>
                     <dt>Geboortedatum inwonende kind(eren)</dt>
-                    <dd>{% if dossier.clientKinderen %}{{ dossier.clientKinderen }}{% else %}-{% endif %}</dd>
+                    <dd>{% if dossier.clientKinderen %}<ul>{% for k in dossier.clientKinderen %}<li>{{ k }}</li>{% endfor %}</ul>{% else %}-{% endif %}</dd>
                 </dl>
                 </a>
             </div>

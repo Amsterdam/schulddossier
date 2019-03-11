@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 /**
  * Class ChangeDossierClientType
@@ -124,8 +125,9 @@ class ChangeDossierClientType extends AbstractType
             'choices' => Dossier::getBurgelijkeStaatOpties()
         ]);
 
-        $builder->add('clientKinderen', TextareaType::class, [
+        $builder->add('clientKinderen', CollectionType::class, [
             'label' => 'Geboortedatum inwonende kind(eren)',
+            'allow_add' => true,
             'required' => false
         ]);
 
