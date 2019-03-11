@@ -61,14 +61,16 @@
                             </div>
                         </div>
 
-                        {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
-                        {% do createForm.removeFile.setRendered() %}
 
-                        {{ form_row(createForm.aantekening) }}
-
-                        {% do createForm.verwijderd.setRendered() %}
 
                     </div>
+
+                    {% include 'partial.files-container.html.twig' with {'form_elm': createForm.file} only %}
+                    {% do createForm.removeFile.setRendered() %}
+
+                    <h4>Aantekeningen</h4>{{ form_row(createForm.aantekening) }}
+
+                    {% do createForm.verwijderd.setRendered() %}
 
                 </div>
             </div>
