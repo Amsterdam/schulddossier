@@ -58,7 +58,9 @@
 
                                 <i class="icon-search"></i>
                                 <div class="form-row">
+                                {% if not schuldItem.verwijderd %}
                                 {{ form_row(form.schuldeiser, {'attr': {'data-validator': 'required'}}) }}
+                                {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -107,6 +109,7 @@
                         </div>
                     </div>
 
+                    {% if not schuldItem.verwijderd %}
                     <div class="columns">
                         <div class="column">
                             {{ form_row(form.bedrag, {'attr': {'data-unit': '€', 'data-validator': 'required-float'}}) }}
@@ -118,6 +121,7 @@
                             {{ form_row(form.ontstaansDatum) }}
                         </div>
                     </div>
+                    {% endif %}
 
 
                 </div>
