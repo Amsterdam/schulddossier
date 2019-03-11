@@ -1239,15 +1239,13 @@
     },
     'required-integer': function(e){
       return validators['default'].call(this, {
-        // 'valid': this.value !== '' && /^\d*[1-9]\d*$/.test(this.value),
-        'valid': this.value !== '' && /^-?0*(?:[1-9][0-9]?|100000)$/.test(this.value),
+        'valid': this.value !== '' && /^-?([1-9][0-9]{0,4}|100000)$/.test(this.value),
         'message': 'Dit veld is verplicht en mag alleen hele getallen bevatten'
       }, e);
     },
     'integer': function(e){
       return validators['default'].call(this, {
-        // 'valid': this.value === '' || /^(0*[0-9][0-9]*|0)$/.test(this.value),
-        'valid': this.value === '' || /^-?0*(?:[0-9][0-9]?|100000)$/.test(this.value),
+        'valid': this.value === '' || /^-?([0-9][0-9]{0,4}|100000)$/.test(this.value),
         'message': 'Dit veld mag alleen hele getallen bevatten'
       }, e);
     },
