@@ -60,6 +60,8 @@
                                 <div class="form-row">
                                 {% if not schuldItem.verwijderd %}
                                 {{ form_row(form.schuldeiser, {'attr': {'data-validator': 'required'}}) }}
+                                {% else %}
+                                {{ form_row(form.schuldeiser) }}
                                 {% endif %}
                                 </div>
                             </div>
@@ -109,19 +111,25 @@
                         </div>
                     </div>
 
-                    {% if not schuldItem.verwijderd %}
                     <div class="columns">
                         <div class="column">
+                            {% if not schuldItem.verwijderd %}
                             {{ form_row(form.bedrag, {'attr': {'data-unit': '€', 'data-validator': 'required-float'}}) }}
+                            {% else %}
+                            {{ form_row(form.bedrag) }}
+                            {% endif %}
                             {{ form_row(form.type) }}
+                            {% if not schuldItem.verwijderd %}
                             {{ form_row(form.referentie, {'attr': {'data-validator': 'required'}}) }}
+                            {% else %}
+                            {{ form_row(form.referentie) }}
+                            {% endif %}
                         </div>
                         <div class="column">
                             {{ form_row(form.vastStelDatum) }}
                             {{ form_row(form.ontstaansDatum) }}
                         </div>
                     </div>
-                    {% endif %}
 
 
                 </div>
