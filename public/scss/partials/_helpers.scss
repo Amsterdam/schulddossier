@@ -6,3 +6,106 @@ hr {
   margin: 2 * $lineHeight 0;
   
 }
+a.a__editable {
+  position: relative;
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  display: block;
+  transition: background-color .3s;
+  h3 {
+    margin: 0 0 20px 0;
+  }
+  &:hover {
+    background-color: #fff;
+  }
+  &:after {
+    content: '';
+    @extend .ico-pencil-black;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: contain;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    display: block;
+    right: 10px;
+    top: 10px;
+  }
+}
+dl.dl {
+  &__horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    //a {
+    //}
+    dt, dd {
+      margin: 0;
+      text-decoration: none;
+      margin-bottom: 5px;
+      &:nth-last-child(2),
+      &:nth-last-child(1){
+        margin-bottom: 0;
+      }
+    }
+    dt {
+      width: 33.333%;
+      font-weight: normal;
+
+    }
+    dd {
+      width: 66.666%;
+    }
+  }
+}
+
+.kind {
+  &__container {
+    position: relative;
+  }
+  &__value-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+
+  }
+  &__input {
+    width: calc(100% - 47px)!important;
+  }
+  &__value {
+    padding: 0;
+    position: relative;
+    display: block;
+    margin-bottom: 5px;
+
+  }
+  &__delete {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    line-height: 38px;
+    height: 40px;
+    background: #fff;
+    font-size: 20px;
+    text-align: center;
+    color: #000;
+    border: 1px solid #000;
+    text-decoration: none;
+    transition: background-color .3s;
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+  &__add {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0!important;
+    line-height: 40px !important;
+  }
+}

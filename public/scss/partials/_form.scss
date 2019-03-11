@@ -221,6 +221,10 @@ form {
     position: relative;
     z-index: 1;
     margin-bottom: $lineHeight;
+
+  }
+  .form-row.rome-active {
+    z-index: 2;
   }
   [data-unit] {
     position: relative;
@@ -269,6 +273,9 @@ form {
       flex-direction: row;
       justify-content: flex-end;
 
+    }
+    .kind__container {
+      width: 66.666%;
     }
     .radio-group {
       width: 66.666%;

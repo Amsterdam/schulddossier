@@ -38,7 +38,7 @@
             <div class="column">
                 <h3 class="document-team">Gezinssamenstelling</h3>
                 {{ form_row(form.clientBurgelijkeStaat, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__vertical'}}) }}
-                {{ form_row(form.clientKinderen, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                {{ form_row(form.clientKinderen, {'attr': {'form_row_class': 'form-row__wide', 'data-decorator': 'add-kind'}}) }}
             </div>
         </div>
 

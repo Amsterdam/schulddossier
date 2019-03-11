@@ -319,6 +319,97 @@
   };
 
   var decorators = {
+    'add-kind': function(){
+      var self = this,
+        row = _closest(self, '.label-widget'),
+        inputElements = [],
+        container = document.createElement('div'),
+        valueList = document.createElement('ul'),
+        input = document.createElement('input'),
+        add = document.createElement('a'),
+        _buildValueList = function () {
+          var value = JSON.parse(self.value);
+          valueList.innerHTML = '';
+          for (var i =0; i < value.length; i++){
+            _add(false, value[i]);
+          }
+        },
+        _setValue = function(){
+          var a = [];
+          for (var i = 0; i < inputElements.length; i++) {
+            if (inputElements[i].value !== ''){
+            a.push(inputElements[i].value)
+            }
+          }
+          self.value  = JSON.stringify(a);
+        },
+        _change = function(e){
+          e && e.preventDefault();
+          if (e.target.tagName === 'INPUT'){
+            _setValue();
+          }
+        },
+        _add = function(e, value){
+          e && e.preventDefault();
+          var v = document.createElement('li');
+          var del = document.createElement('a');
+          var inp = document.createElement('input');
+          inp.setAttribute('type', 'text');
+          inp.classList.add('kind__input');
+          v.classList.add('kind__value');
+          del.classList.add('kind__delete');
+          del.textContent = 'x';
+          del.setAttribute('href', '#');
+          inp.value = (value !== undefined) ? value : '';
+          v.appendChild(inp);
+          v.appendChild(del);
+          valueList.appendChild(v);
+          inp.addEventListener('input', _change);
+          decorators['rome'].call(inp);
+
+          inputElements = valueList.querySelectorAll('input');
+          _setValue();
+        },
+        _remove = function (e) {
+          e && e.preventDefault();
+          var delElem = _closest(e.target, '.kind__delete');
+
+          if (delElem){
+            var elem = _closest(delElem, '.kind__value');
+            elem.parentNode.removeChild(elem);
+            inputElements = valueList.querySelectorAll('input');
+            _setValue();
+            // var value = JSON.parse(self.value);
+            // value.splice( value.indexOf(delElem.dataset.value), 1 );
+            // self.value = JSON.stringify(value);
+            // _buildValueList();
+          }
+        };
+      if (self.tagName === 'TEXTAREA' || self.tagName === 'INPUT'){
+        self.classList.add('hidden');
+        add.classList.add('kind__add');
+        add.classList.add('button');
+        add.classList.add('secondary');
+        add.setAttribute('href', '#');
+        add.textContent = 'Voeg kind toe';
+        container.classList.add('kind__container');
+        valueList.classList.add('kind__value-list');
+        input.classList.add('kind__input');
+        input.setAttribute('type', 'text');
+        container.appendChild(valueList);
+        container.appendChild(add);
+        row.appendChild(container);
+        _buildValueList();
+        //decorators['rome'].call(input);
+
+        container.addEventListener('click', _remove);
+        add.addEventListener('click', _add);
+        //container.addEventListener('change', _change);
+
+
+      }
+
+    },
     'lazy-load-document-thumb': function () {
       var self = this,
         bgUrl = self.dataset.backgroundImage;
@@ -852,6 +943,7 @@
       if (typeof rome != 'function' || this.tagName != 'INPUT') return;
       var datepicker = rome(this, {
         'inputFormat': 'DD-MM-YYYY',
+        'appendTo': 'parent',
         'time': false,
         'max': this.getAttribute('data-max'),
         'moment': {
@@ -861,8 +953,21 @@
       datepicker.on('data', function () {
         if (!this.associated) return;
         var changer = _closest(this.associated, '[data-changer]');
+        helpers.trigger(this.associated, 'input');
         changer && changers[changer.dataset.changer].call(changer);
       });
+      datepicker.on('show', function(){
+        this.container.style.left =  this.associated.offsetLeft + 'px';
+        this.container.style.top = this.associated.offsetHeight + 'px';
+        var row = _closest(this.associated, '.form-row');
+        row.classList.add('rome-active');
+      });
+      datepicker.on('hide', function(){
+        var row = _closest(this.associated, '.form-row');
+        row.classList.remove('rome-active');
+
+      });
+
 
     },
     'select-condition': function () {

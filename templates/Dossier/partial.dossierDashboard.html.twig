@@ -2,24 +2,69 @@
     <div class="dossier__dashboard__default">
         <div class="row">
             <div class="col-1-1">
-                <h2>Algemene dossierinformatie</h2>
-                {% if not dossier.isInPrullenbak %}
-                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', {'dossierId': dossier.id}) }}" class="button secondary">Wijzig algemene informatie</a>
-                {% endif %}
+                <h2>Samenvatting</h2>
             </div>
         </div>
-        <div class="row row-max-height">
+        <div class="row">
             <div class="col-1-2">
-                <dl>
-                    <dt>Cliëntnaam</dt>
+                <a href="#id_voorlegger-legitimatie" class="a__editable">
+                <h3>Cliënt</h3>
+                <dl class="dl__horizontal">
+                    <dt>Achternaam</dt>
                     <dd>{{ dossier.clientNaam }}</dd>
+                    <dt>Voorletters</dt>
+                    <dd>{{ dossier.clientVoorletters }}</dd>
+                    <dt>Geslacht</dt>
+                    <dd>{% if dossier.clientGeslacht %}{{ dossier.clientGeslacht }}{% else %}-{% endif %}</dd>
+                    <dt>Geboortedatum</dt>
+                    <dd>{% if dossier.clientGeboortedatum %}{{ dossier.clientGeboortedatum|date('d-m-Y') }}{% else %}-{% endif %}</dd>
+                    <dt>B.S.N.</dt>
+                    <dd>{% if dossier.clientBSN %}{{ dossier.clientBSN }}{% else %}-{% endif %}</dd>
                 </dl>
+                </a>
             </div>
             <div class="col-1-2">
-                <dl>
-                    <dt>Partnernaam</dt>
-                    <dd>{{ dossier.partnerNaam }}</dd>
+                <a href="#id_voorlegger-legitimatie" class="a__editable">
+                <h3>Partner</h3>
+                <dl class="dl__horizontal">
+                    <dt>Achternaam</dt>
+                    <dd>{% if dossier.partnerVoorletters %}{{ dossier.partnerNaam }}{% else %}-{% endif %}</dd>
+                    <dt>Voorletters</dt>
+                    <dd>{% if dossier.partnerVoorletters %}{{ dossier.partnerVoorletters }}{% else %}-{% endif %}</dd>
+                    <dt>Geslacht</dt>
+                    <dd>{% if dossier.partnerGeslacht %}{{ dossier.partnerGeslacht }}{% else %}-{% endif %}</dd>
+                    <dt>Geboortedatum</dt>
+                    <dd>{% if dossier.partnerGeboortedatum %}{{ dossier.partnerGeboortedatum|date('d-m-Y') }}{% else %}-{% endif %}</dd>
+                    <dt>B.S.N.</dt>
+                    <dd>{% if dossier.partnerBSN %}{{ dossier.partnerBSN }}{% else %}-{% endif %}</dd>
                 </dl>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1-2">
+                <a href="#id_voorlegger-legitimatie" class="a__editable">
+                <h3>Contactgegevens</h3>
+                <dl class="dl__horizontal">
+                    <dt>Telefoonnummer</dt>
+                    <dd>{{ dossier.clientTelefoonnummer }}</dd>
+                    <dt>Adres</dt>
+                    <dd>{% if not dossier.clientStraat and not dossier.clientHuisnummer and not dossier.clientPostcode and not dossier.clientWoonplaats %}-{% else %}{{ dossier.clientStraat }} {{ dossier.clientHuisnummer }}
+                        {{ dossier.clientPostcode }} {{ dossier.clientWoonplaats }}{% endif %}
+                    </dd>
+                </dl>
+                </a>
+            </div>
+            <div class="col-1-2">
+                <a href="#id_voorlegger-legitimatie" class="a__editable">
+                <h3>Gezinssamenstelling</h3>
+                <dl class="dl__horizontal">
+                    <dt>Burgelijke staat</dt>
+                    <dd>{% if dossier.clientBurgelijkeStaat %}{{ dossier.clientBurgelijkeStaat }}{% else %}-{% endif %}</dd>
+                    <dt>Geboortedatum inwonende kind(eren)</dt>
+                    <dd>{% if dossier.clientKinderen %}{{ dossier.clientKinderen }}{% else %}-{% endif %}</dd>
+                </dl>
+                </a>
             </div>
         </div>
         <div class="row">

@@ -17,6 +17,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierClientType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateAantekeningFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierFormType;
@@ -236,9 +237,6 @@ class AppDossierController extends Controller
             'disabled' => $dossier->isInPrullenbak() === true,
             'disable_group' => $this->getUser()->getType(),
         ]);
-        $voorleggerForm->add('foo', 'Dossier', array(
-        'data_class' => 'Foo',
-        ));
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
             foreach ($voorleggerForm->all() as $key => $child) {
@@ -280,6 +278,11 @@ class AppDossierController extends Controller
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
         $changeDossierStatusForm = false;
+        $changeClientForm = false;
+        $changeClientForm = $this->createForm(ChangeDossierClientType::class, $dossier, [
+            'disabled' => $dossier->isInPrullenbak() === true,
+        ]);
+        $changeClientForm->handleRequest($request);
 
         $workflow = $registry->get($dossier);
 
