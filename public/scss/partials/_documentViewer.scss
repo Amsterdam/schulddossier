@@ -8,19 +8,8 @@
   right: 10px;
   top: 10px;
   bottom: 10px;
-  img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: none;
-    width: 100px;
-    height: 100px;
-    margin-left: -50px;
-    margin-top: -50px;
-    &.visible {
-      display: block;
-    }
-  }
+
+  img,
   canvas {
     transition: transform .3s $transitionEaseDefault;
     display:inline-block;
@@ -28,12 +17,25 @@
     background-color: white;
     box-shadow: rgba(0,0,0,0.5) 2px 2px 6px 1px;
   }
+  .document__viewer__email {
+    text-align: left;
+    align-self: start;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 0 60px;
+  }
+  &[data-extension="html"] .button {
+    display: none;
+  }
+  .ie11 & img,
   .ie11 & canvas {
     cursor: url('/images/zoomout.cur'), e-resize;
   }
+  &.dragging img,
   &.dragging canvas {
     cursor: grab;
   }
+  .ie11 &.dragging img,
   .ie11 &.dragging canvas {
     cursor: url('/images/drag.cur'), e-resize;
   }
@@ -218,6 +220,7 @@
     @extend .icon-spinner-transparent;
   }
   &.fit-mode {
+    img,
     canvas {
       cursor: zoom-in;
       position: static;
@@ -230,6 +233,7 @@
       content: 'Zoom uit';
     }
   }
+  .ie11 &.fit-mode img,
   .ie11 &.fit-mode canvas {
     cursor: url('/images/zoomin.cur'), e-resize;
   }

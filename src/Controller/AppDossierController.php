@@ -830,6 +830,14 @@ class AppDossierController extends Controller
     }
 
     /**
+     * @Route("/detail/documenten/detail/dummy-html/")
+     */
+    public function dummyHTMLDocumentAction(Request $request, EntityManagerInterface $em)
+    {
+        return $this->render('Dossier/documentEmailHTML.html.twig', []);
+    }
+
+    /**
      * @Route("/detail/{dossierId}/naar-prullenbak")
      * @Method("POST")
      * @Security("is_granted('access', dossier)")

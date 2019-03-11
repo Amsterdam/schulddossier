@@ -477,10 +477,11 @@
         maxScale = 2,
         canvas,
         _clear = function () {
-            var canvasElements = viewerContainer.querySelectorAll('canvas');
-            for (var i = 0; i < canvasElements.length; i ++) {
-                canvasElements.item(i).parentNode.removeChild(canvasElements.item(i));
-            }
+            // var canvasElements = viewerContainer.querySelectorAll('canvas');
+            // for (var i = 0; i < canvasElements.length; i ++) {
+            //     canvasElements.item(i).parentNode.removeChild(canvasElements.item(i));
+            // }
+            viewerContainer.innerHTML = '';
             viewerContainer.style.backgroundImage = '';
         },
         _deselectDocument = function(){
@@ -517,6 +518,7 @@
           currentDocElem = docElem;
           var extension = currentDocElem.querySelector('[data-extension]').dataset.extension;
           self.classList.add('loading');
+          self.dataset.extension = extension;
           self.classList.remove('disabled');
           for(var i = 0; i < documents.length; i++){
             documents[i].deselect();
@@ -525,7 +527,7 @@
           title.textContent = '';
           counter.textContent = '';
           _reset();
-          if (extension !== 'pdf') {
+          if (extension !== 'pdf' && extension !== 'html' && extension !== 'jpg' && extension !== 'png') {
             self.classList.remove('loading');
             self.classList.add('disabled');
             statusElem.innerHTML = '<span>Het <strong>'+extension+'</strong> bestand kan hier niet worden getoond.</span><br><span>Download het bestand om deze weer te geven.</span>';
@@ -535,16 +537,42 @@
           statusElem.innerHTML = '<span>Het document</span><br><strong>'+ docElem.textContent + '</strong><br><span>wordt geladen</span>';
 
           loadTimeout = setTimeout(function(){
-            loadingTask = PDFJS.getDocument(docElem.datauristring || docElem.getAttribute('href'));
-            loadingTask.promise.then(function (pdf) {
-                currentPDFJS = pdf;
-                title.textContent = docElem.textContent;
-                counter.textContent = ' (' + pageNum + ' / ' + currentPDFJS.numPages + ')';
+            if (extension === 'pdf') {
+              loadingTask = PDFJS.getDocument(docElem.datauristring || docElem.getAttribute('href'));
+              loadingTask.promise.then(function (pdf) {
+                  currentPDFJS = pdf;
+                  title.textContent = docElem.textContent;
+                  counter.textContent = ' (' + pageNum + ' / ' + currentPDFJS.numPages + ')';
 
-                _showPage(pageNum);
-            }).catch(function(error){
-              console.log(error);
-            });
+                  _showPage(pageNum);
+              }).catch(function(error){
+                console.log(error);
+              });
+            } else if(extension === 'html'){
+                title.textContent = docElem.textContent;
+                helpers.ajax({
+                  type: 'get',
+                  url: docElem.getAttribute('href'),
+                  data: {},
+                  headers: [['X-Requested-With', 'XMLHttpRequest']],
+                  callback: function (data, t) {
+                    viewerContainer.innerHTML = data.trim();
+                    self.classList.remove('loading');
+                  }
+                })
+            }else if (extension === 'jpg'|| extension === 'png') {
+                  canvas = new Image();
+                  canvas.addEventListener("load", function(){
+                      this.width = this.naturalWidth;
+                      this.height = this.naturalHeight;
+                      self.classList.remove('loading');
+                      self.classList.add('fit-mode');
+                      _setZoom();
+                  });
+                  canvas.src = docElem.getAttribute('href');
+                  viewerContainer.appendChild(canvas);
+                  title.textContent = docElem.textContent;
+            }
           }, 200)
 
         },
@@ -592,15 +620,12 @@
           _setZoom();
         },
         _currentCanvasAspect = function(){
-          var c = viewerContainer.querySelector('canvas');
-          return c.width / c.height;
+          return canvas.width / canvas.height;
         },
         _currentViewerAspect = function(){
           return viewerContainer.offsetWidth / viewerContainer.offsetHeight;
         },
         _setZoom = function () {
-
-          var c = viewerContainer.querySelector('canvas');
 
           if(canvas) {
             if (!self.classList.contains('fit-mode')) {
@@ -609,14 +634,14 @@
               currentPageTranslate = 'translate(0, 0)';
               currentPageScale = 'scale(1)';
               if (_currentCanvasAspect() > _currentViewerAspect()){
-                c.style.height = 'auto';
-                c.style.width = '100%';
+                canvas.style.height = 'auto';
+                canvas.style.width = '100%';
               }else {
-                c.style.width = 'auto';
-                c.style.height = '100%';
+                canvas.style.width = 'auto';
+                canvas.style.height = '100%';
               }
             }
-            c.style.transform = currentPageScale + ' ' + currentPageTranslate;
+            canvas.style.transform = currentPageScale + ' ' + currentPageTranslate;
           }
         },
         _showPage = function(num){
