@@ -1436,8 +1436,12 @@
             elemSelectedPages.textContent = draggedItems.length + ' / ' + allPages.length;
 
             dragEl.draggedItems = draggedItems;
-
-            dataTransfer.setDragImage(dragGhost, 0, 0);
+            var hasNativeDraggable = (dragEl.draggable && !(document.uniqueID || window.opera));
+            if(hasNativeDraggable) {
+                dataTransfer.setDragImage(dragGhost, 0, 0);
+            } else {
+                console.error("not supported");
+            }
           },
           onEnd: function (e) {
 
