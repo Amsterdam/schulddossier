@@ -26,9 +26,7 @@ RUN docker-php-ext-install zip
 COPY --from=composer:1.8 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /
-
 RUN mkdir /srv/app
-
 COPY . /srv/app
 
 VOLUME /srv/app/config
