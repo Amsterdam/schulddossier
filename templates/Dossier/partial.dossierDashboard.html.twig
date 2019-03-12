@@ -65,7 +65,7 @@
             </div>
         </div>
         {% if dossier.isInPrullenbak == FALSE %}
-            {% if app.user.isApplicationAdmin or (app.user.isMadiKeyUser and dossier.withMadi) or (app.user.isGkaAppBeheerder and dossier.withGka) %}
+            {% if app.user.isApplicationAdmin or app.user.isMadiKeyUser or app.user.isGkaAppBeheerder %}
                 <div class="dossier__dashboard__controls">
                     <div class="row">
                         <h2>Dossier acties</h2>
