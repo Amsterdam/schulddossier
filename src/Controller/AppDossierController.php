@@ -243,18 +243,10 @@ class AppDossierController extends Controller
 
 
         if (!$dossier->isInPrullenbak()) {
-            if (
-                $this->getUser()->isApplicationAdmin()
-                ||
-                ($dossier->withMadi() && $this->getUser()->isMadiKeyUser())
-                ||
-                ($dossier->withGka() && $this->getUser()->isGkaAppBeheerder())
-            ) {
-                $changeDossierStatusForm = $this->createForm(ChangeDossierStatusType::class, $dossier, [
-                    'disabled' => $dossier->isInPrullenbak() === true,
-                ]);
-                $changeDossierStatusForm->handleRequest($request);
-            }
+            $changeDossierStatusForm = $this->createForm(ChangeDossierStatusType::class, $dossier, [
+                'disabled' => $dossier->isInPrullenbak() === true,
+            ]);
+            $changeDossierStatusForm->handleRequest($request);
         }
 
 
