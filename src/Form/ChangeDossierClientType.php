@@ -128,6 +128,8 @@ class ChangeDossierClientType extends AbstractType
         $builder->add('clientKinderen', CollectionType::class, [
             'label' => 'Geboortedatum inwonende kind(eren)',
             'allow_add' => true,
+            'delete_empty' => true,
+            'allow_delete' => true,
             'required' => false
         ]);
 
