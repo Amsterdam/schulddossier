@@ -59,6 +59,7 @@ class DetailDossierAdditionalFormType extends AbstractType
             'label' => 'Geboortedatum inwonende kind(eren)',
             'allow_add' => true,
             'delete_empty' => true,
+            'allow_delete' => true,
             'required' => false
         ]);
     }

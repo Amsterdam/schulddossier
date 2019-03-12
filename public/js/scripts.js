@@ -322,96 +322,46 @@
     'add-kind': function(){
       var self = this,
         proto = self.dataset.prototype,
-        row = _closest(self, '.label-widget'),
-        inputElements = [],
-        container = document.createElement('div'),
-        valueList = document.createElement('ul'),
-        input = document.createElement('input'),
-        add = document.createElement('a'),
-        _buildValueList = function () {
-          var value = JSON.parse(self.value);
-          valueList.innerHTML = '';
-          for (var i =0; i < value.length; i++){
-            _add(false, value[i]);
-          }
-        },
-        _setValue = function(){
-          var a = [];
-          for (var i = 0; i < inputElements.length; i++) {
-            if (inputElements[i].value !== ''){
-            a.push(inputElements[i].value)
-            }
-          }
-          self.value  = JSON.stringify(a);
-        },
-        _change = function(e){
-          e && e.preventDefault();
-          if (e.target.tagName === 'INPUT'){
-            _setValue();
-          }
-        },
+        itemList = self.querySelector('.kind__item-list'),
+        inputList = itemList.querySelectorAll('input[type="text"]'),
+        add = self.querySelector('.kind__add' ),
         _add = function(e, value){
           e && e.preventDefault();
-          var v = document.createElement('li');
-          var del = document.createElement('a');
-          var inp = document.createElement('input');
-          inp.setAttribute('type', 'text');
-          inp.classList.add('kind__input');
-          v.classList.add('kind__value');
-          del.classList.add('kind__delete');
-          del.textContent = 'x';
-          del.setAttribute('href', '#');
-          inp.value = (value !== undefined) ? value : '';
-          v.appendChild(inp);
-          v.appendChild(del);
-          valueList.appendChild(v);
-          inp.addEventListener('input', _change);
-          decorators['rome'].call(inp);
-
-          inputElements = valueList.querySelectorAll('input');
-          _setValue();
+          var ids = Array.from(itemList.querySelectorAll('input[type="text"]')).map(function (item) {
+              return item.getAttribute('id');
+            }).sort(),
+            splitLast = ids[ids.length-1].split('_'),
+            count = parseInt(splitLast[splitLast.length-1]) + 1,
+            li = document.createElement('li'),
+            a = document.createElement('a'),
+            newInput = proto.replace(/__name__/g, count);
+          li.classList.add('kind__item');
+          a.classList.add('kind__item__delete');
+          a.setAttribute('href', '#');
+          a.textContent = 'x';
+          li.innerHTML = newInput.trim();
+          li.appendChild(a);
+          itemList.appendChild(li);
+          decorators['rome'].call(li.querySelector('input[type="text"]'));
         },
         _remove = function (e) {
           e && e.preventDefault();
-          var delElem = _closest(e.target, '.kind__delete');
+          var delElem = _closest(e.target, '.kind__item__delete');
 
           if (delElem){
-            var elem = _closest(delElem, '.kind__value');
+            var elem = _closest(delElem, '.kind__item');
             elem.parentNode.removeChild(elem);
-            inputElements = valueList.querySelectorAll('input');
-            _setValue();
-            // var value = JSON.parse(self.value);
-            // value.splice( value.indexOf(delElem.dataset.value), 1 );
-            // self.value = JSON.stringify(value);
-            // _buildValueList();
+            //elem.querySelector('input[type="text"]').value = '';
+            //elem.querySelector('input[type="text"]').setAttribute("value", "");
+            //elem.classList.add('disabled');
           }
         };
-      if (self.tagName === 'TEXTAREA' || self.tagName === 'INPUT'){
-        self.classList.add('hidden');
-
-        container.classList.add('kind__container');
-        valueList.classList.add('kind__value-list');
-        input.classList.add('kind__input');
-        input.setAttribute('type', 'text');
-        container.appendChild(valueList);
-        container.appendChild(add);
-        row.appendChild(container);
-        _buildValueList();
-        //decorators['rome'].call(input);
-
-        container.addEventListener('click', _remove);
-        //container.addEventListener('change', _change);
-
-
+      for(var i = 0; i < inputList.length; i++){
+        decorators['rome'].call(inputList[i]);
       }
-      add.classList.add('kind__add');
-      add.classList.add('button');
-      add.classList.add('secondary');
-      add.setAttribute('href', '#');
-      add.textContent = 'Voeg kind toe';
-      self.appendChild(add);
 
       add.addEventListener('click', _add);
+      self.addEventListener('click', _remove);
 
 
     },

@@ -6,21 +6,9 @@
 
 {% block document %}
 
-
-<nav class="nav-internal">
-    <ul>
-        <li>
-          <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"><i class="icon-arrow-left"></i> Terug naar overzicht</a>
-        </li>
-    </ul>
-</nav>
-
 <div class="document document__gray well well__wide">
     
       <h1 class="document-title">Nieuw dossier</h1>
-    {#<div class="document-header">#}
-      {#<p class="document-help">Vul onderstaand formulier in om een nieuw dossier te openen.</p>#}
-    {#</div>#}
     
     <div class="form-container">
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}

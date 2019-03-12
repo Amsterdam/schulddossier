@@ -63,37 +63,41 @@ dl.dl {
 .kind {
   &__container {
     position: relative;
-    display: flex;
-    & > input[type="text"] {
-      width: calc(100% - 45px);
-      display: inline-block;
-    }
   }
-  &__value-list {
+  &__item-list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: block;
 
   }
-  &__input {
-    width: calc(100% - 47px)!important;
-  }
-  &__value {
-    padding: 0;
+  &__item {
+    height: 40px;
+    opacity: 1;
+    transition: height .4s $transition-ease-default, opacity .3s;
     position: relative;
-    display: block;
     margin-bottom: 5px;
-
+    &.disabled {
+      //pointer-events: none;
+      //height: 0;
+      opacity: 0;
+    }
+    & > input[type="text"] {
+      display: inline-block;
+      width: calc(100% - 47px)!important;
+    }
   }
-  &__delete {
-    display: block;
+
+  &__input {
+  }
+  &__item__delete {
+    display: inline-block;
     position: absolute;
     right: 0;
     top: 0;
     width: 40px;
-    line-height: 38px;
     height: 40px;
+    line-height: 38px;
     background: #fff;
     font-size: 20px;
     text-align: center;
