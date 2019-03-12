@@ -327,14 +327,16 @@
         add = self.querySelector('.kind__add' ),
         _add = function(e, value){
           e && e.preventDefault();
+
           var ids = Array.from(itemList.querySelectorAll('input[type="text"]')).map(function (item) {
-              return item.getAttribute('id');
-            }).sort(),
-            splitLast = ids[ids.length-1].split('_'),
-            count = parseInt(splitLast[splitLast.length-1]) + 1,
+              var split = item.getAttribute('id').split('_');
+              return parseInt(split[split.length - 1]);
+            }).sort(function (a,b) { return a-b; }),
+            count = ids[ids.length-1] + 1,
             li = document.createElement('li'),
             a = document.createElement('a'),
             newInput = proto.replace(/__name__/g, count);
+
           li.classList.add('kind__item');
           a.classList.add('kind__item__delete');
           a.setAttribute('href', '#');
@@ -915,12 +917,12 @@
         this.container.style.left =  this.associated.offsetLeft + 'px';
         this.container.style.top = this.associated.offsetHeight + 'px';
         var row = _closest(this.associated, '.form-row');
-        row.classList.add('rome-active');
+        row && row.classList.add('rome-active');
       });
       datepicker.on('hide', function(){
         var row = _closest(this.associated, '.form-row');
-        row.classList.remove('rome-active');
-
+        console.log(this.associated);
+        row && row.classList.remove('rome-active');
       });
 
 

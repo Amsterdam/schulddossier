@@ -23,5 +23,21 @@
 
 <h4>Gezinssamenstelling</h4>
 {{ form_row(form.clientBurgelijkeStaat, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__vertical'}}) }}
-{{ form_row(form.clientKinderen, {'attr': {'form_row_class': 'form-row__wide', 'data-decorator': 'add-kind'}}) }}
+{#{{ form_row(form.clientKinderen, {'attr': {'form_row_class': 'form-row__wide', 'data-decorator': 'add-kind'}}) }}#}
+<div class="form-row form-row__wide">
+    <div class="label-widget">
+        <label>Geboortedatum inwonende kind(eren)</label>
+        <div class="kind__container" data-prototype="{{ form_widget(form.clientKinderen.vars.prototype)|e }}"
+             data-decorator="add-kind">
+            <ul class="kind__item-list">
+                {% for kindField in form.clientKinderen %}
+                    <li class="kind__item">
+                        {{ form_widget(kindField) }}<a class="kind__item__delete" href="#">x</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="#" class="kind__add button secondary">Voeg kind toe</a>
+        </div>
+    </div>
+</div>
 {{ form_end(form) }}
