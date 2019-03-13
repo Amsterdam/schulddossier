@@ -1,14 +1,13 @@
 <div class="dossier__dashboard">
-    <div class="dossier__dashboard__default">
-        <div class="row">
-            <div class="col-1-1">
-                <h2>Samenvatting</h2>
-            </div>
-        </div>
+    <div class="dossier__dashboard__default dossier__dashboard--line">
+    <div class="dossier__dashboard__well--line">
+        <h2 class="dossier__dashboard__well__header">
+            <span>Samenvatting</span>
+        </h2>
         <div class="row">
             <div class="col-1-2">
-                <a href="#id_voorlegger-legitimatie" class="a__editable">
                 <h3>Cliënt</h3>
+                <a href="#id_voorlegger-legitimatie" class="a__editable">
                 <dl class="dl__horizontal">
                     <dt>Achternaam</dt>
                     <dd>{{ dossier.clientNaam }}</dd>
@@ -24,8 +23,8 @@
                 </a>
             </div>
             <div class="col-1-2">
-                <a href="#id_voorlegger-legitimatie" class="a__editable">
                 <h3>Partner</h3>
+                <a href="#id_voorlegger-legitimatie" class="a__editable">
                 <dl class="dl__horizontal">
                     <dt>Achternaam</dt>
                     <dd>{% if dossier.partnerVoorletters %}{{ dossier.partnerNaam }}{% else %}-{% endif %}</dd>
@@ -66,6 +65,7 @@
                 </dl>
                 </a>
             </div>
+        </div>
         </div>
         <div class="row">
             <div class="col-1-2">

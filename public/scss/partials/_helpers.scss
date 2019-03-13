@@ -8,8 +8,9 @@ hr {
 }
 a.a__editable {
   position: relative;
-  padding: 10px;
-  border: 1px solid #ddd;
+  //padding: 10px;
+
+  border: 1px solid transparent;
   text-decoration: none;
   display: block;
   transition: background-color .3s;
@@ -19,9 +20,13 @@ a.a__editable {
   &:hover {
     background-color: #fff;
   }
+  &:hover:after {
+    opacity: 1;
+  }
   &:after {
     content: '';
     @extend .ico-pencil-black;
+    transition: opacity .3s;
     background-repeat: no-repeat;
     background-position: 0 0;
     background-size: contain;
@@ -31,6 +36,7 @@ a.a__editable {
     display: block;
     right: 10px;
     top: 10px;
+    opacity: 0;
   }
 }
 dl.dl {

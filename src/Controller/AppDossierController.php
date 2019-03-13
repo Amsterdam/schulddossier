@@ -237,6 +237,8 @@ class AppDossierController extends Controller
             'disabled' => $dossier->isInPrullenbak() === true,
             'disable_group' => $this->getUser()->getType(),
         ]);
+
+
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
             foreach ($voorleggerForm->all() as $key => $child) {

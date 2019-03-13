@@ -24,6 +24,7 @@
         </div>
         <div class="column">
             <h3 class="document-team">Partner</h3>
+            {{ form_row(form.partnerNvt, {'attr': {'form_row_class': 'form-row__wide'}}) }}
             {{ form_row(form.partnerGeslacht, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__horizontal'}}) }}
             {{ form_row(form.partnerNaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
             {{ form_row(form.partnerVoorletters, {'attr': {'form_row_class': 'form-row__wide'}}) }}

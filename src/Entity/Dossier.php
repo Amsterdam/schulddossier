@@ -129,6 +129,12 @@ class Dossier
     private $clientKinderen;
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $partnerNvt;
+
+    /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
@@ -344,6 +350,11 @@ class Dossier
         return $this->clientBurgelijkeStaat;
     }
 
+    public function getPartnerNvt()
+    {
+        return $this->partnerNvt;
+    }
+
     public function getPartnerNaam()
     {
         return $this->partnerNaam;
@@ -526,9 +537,10 @@ class Dossier
         $this->clientKinderen = $clientKinderen;
     }
 
-
-
-
+    public function setPartnerNvt($partnerNvt = null)
+    {
+        $this->partnerNvt = $partnerNvt;
+    }
 
     public function setPartnerNaam($partnerNaam = null)
     {

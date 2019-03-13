@@ -727,7 +727,6 @@
   h2 {
     margin-bottom: 20px;
   }
-
 }
 .dossier__dashboard__default {
   width: 55%;
@@ -735,6 +734,21 @@
 
 .dossier__dashboard__messages {
   width: 25%;
+}
+.dossier__dashboard__well--line {
+  border: 1px $borderColor2 solid;
+  padding: 10px;
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+
+}
+.dossier__dashboard__well__header {
+  margin-top: -23px;
+  span {
+    background-color: #f8f8f8;
+    padding: 0 10px;
+  }
 }
 
 .dossier__workflow {

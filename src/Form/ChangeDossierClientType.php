@@ -9,8 +9,10 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class ChangeDossierClientType
@@ -55,6 +57,11 @@ class ChangeDossierClientType extends AbstractType
 
         $builder->add('clientBSN', TextType::class, [
             'label' => 'B.S.N.',
+            'required' => false
+        ]);
+
+        $builder->add('partnerNvt', CheckboxType::class, [
+            'label' => 'n.v.t.',
             'required' => false
         ]);
 
@@ -134,5 +141,10 @@ class ChangeDossierClientType extends AbstractType
         ]);
 
 
+    }
+    public function configureOptions(OptionsResolver $resolver) {
+        $resolver->setDefaults([
+            'data_class' => Dossier::class,
+        ]);
     }
 }

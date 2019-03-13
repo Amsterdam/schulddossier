@@ -25,6 +25,8 @@ use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType;
 
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+
 class VoorleggerFormType extends AbstractType
 {
     private $tokenStorage;
@@ -42,11 +44,6 @@ class VoorleggerFormType extends AbstractType
             'disable_group' => $options['disable_group'],
             'data' => $options['data']
         ];
-
-//        $builder->add('clientNaam', TextType::class, [
-//            'label' => 'Achternaam *',
-//            'required' => true
-//        ]);
 
 
         $builder->add('alimentatieEchtscheidingsconvenant', VoorleggerAlimentatieEchtscheidingsconvenantFormType::class, $settings);
