@@ -332,7 +332,7 @@
               var split = item.getAttribute('id').split('_');
               return parseInt(split[split.length - 1]);
             }).sort(function (a,b) { return a-b; }),
-            count = ids[ids.length-1] + 1,
+            count = (ids.length) ? ids[ids.length-1] + 1 : 0,
             li = document.createElement('li'),
             a = document.createElement('a'),
             newInput = proto.replace(/__name__/g, count);

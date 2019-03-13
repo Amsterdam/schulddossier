@@ -223,6 +223,10 @@ form {
     margin-bottom: $lineHeight;
 
   }
+  .form-row--no-label-margin label {
+    margin: 0;
+    padding: 0;
+  }
   .form-row.rome-active {
     z-index: 2;
   }
@@ -304,6 +308,9 @@ form {
     label {
       width: 33.333%;
     }
+  }
+  .form-row__checkbox--right {
+
   }
 }
 

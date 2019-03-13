@@ -10,6 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -66,6 +67,11 @@ class CreateDossierFormType extends AbstractType
 
         $builder->add('clientBSN', TextType::class, [
             'label' => 'B.S.N.',
+            'required' => false
+        ]);
+
+        $builder->add('partnerNvt', CheckboxType::class, [
+            'label' => 'n.v.t.',
             'required' => false
         ]);
 

@@ -8,20 +8,25 @@ hr {
 }
 a.a__editable {
   position: relative;
-  //padding: 10px;
-
-  border: 1px solid transparent;
   text-decoration: none;
   display: block;
-  transition: background-color .3s;
-  h3 {
-    margin: 0 0 20px 0;
+  transition: all .3s;
+  & > * {
+    position: relative;
+    z-index: 1;
   }
-  &:hover {
+  &:before {
+    content: '';
     background-color: #fff;
-  }
-  &:hover:after {
-    opacity: 1;
+    border: 1px solid $borderColor2;
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity .3s;
   }
   &:after {
     content: '';
@@ -34,18 +39,25 @@ a.a__editable {
     width: 15px;
     height: 15px;
     display: block;
-    right: 10px;
-    top: 10px;
+    right: 0;
+    top: 0;
     opacity: 0;
+  }
+  &:hover {
+    z-index: 1;
+  }
+  &:hover:after {
+    opacity: 1;
+  }
+  &:hover:before {
+    opacity: 1;
   }
 }
 dl.dl {
   &__horizontal {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 0;
-    //a {
-    //}
+    margin-bottom: 5px;
     dt, dd {
       margin: 0;
       text-decoration: none;
@@ -82,10 +94,8 @@ dl.dl {
     opacity: 1;
     transition: height .4s $transition-ease-default, opacity .3s;
     position: relative;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
     &.disabled {
-      //pointer-events: none;
-      //height: 0;
       opacity: 0;
     }
     & > input[type="text"] {
@@ -108,7 +118,7 @@ dl.dl {
     font-size: 20px;
     text-align: center;
     color: #000;
-    border: 1px solid #000;
+    border: 1px solid #e5e5e5;
     text-decoration: none;
     transition: background-color .3s;
     &:hover {
