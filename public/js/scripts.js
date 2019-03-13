@@ -1251,15 +1251,32 @@
     },
     'required-float': function(e){
       return validators['default'].call(this, {
-        'valid': this.value !== '' && /^(?:[1-9][0-9]{0,5}(?:\.\d{1,2})?(?:,\d{1,2})?|1000000|1000000.00|1000000.0|1000000,0|1000000,00)$/.test(this.value),
+        // 'valid': this.value !== '' && /^(?:[1-9][0-9]{0,5}(?:\.\d{1,2})?(?:,\d{1,2})?|1000000|1000000.00|1000000.0|1000000,0|1000000,00)$/.test(this.value),
         // 'valid': this.value !== '' && /^-?(?=.*[1-9])\d+(\.\d+)?(,\d+)?$/.test(this.value),
-        'message': 'Dit veld is verplicht en mag alleen komma gescheiden getallen bevatten'
+        'valid': (function(v){
+          v = v.replace(',', '.');
+          if (v.split('.').length > 2){
+            return false;
+          }
+          var valid = isNumber(v);
+          return (valid && v >= 0 && v <= 1000000);
+        }(this.value)),
+        'message': 'Dit veld is verplicht en mag alleen komma gescheiden getallen bevatten van 0 t/m 1000000'
       }, e);
     },
     'float': function(e){
       return validators['default'].call(this, {
-        'valid': this.value === '' || /^-?(?:[0-9][0-9]{0,4}(?:\.\d{1,2})?(?:,\d{1,2})?|100000|100000.00|100000.0|100000,0|100000,00)$/.test(this.value),
-        'message': 'Dit veld mag alleen komma gescheiden getallen bevatten'
+        //'valid': this.value === '' || /^-?(?:[0-9][0-9]{0,4}(?:\.\d{1,2})?(?:,\d{1,2})?|100000|100000.00|100000.0|100000,0|100000,00)$/.test(this.value),
+        'valid': (function(v){
+          if (v === '') return true;
+          v = v.replace(',', '.');
+          if (v.split('.').length > 2){
+            return false;
+          }
+          var valid = isNumber(v);
+          return (valid && v >= -100000 && v <= 100000);
+        }(this.value)),
+        'message': 'Dit veld mag alleen komma gescheiden getallen bevatten van -100000 t/m 100000'
       }, e);
     },
     'required': function(e){
@@ -2002,4 +2019,7 @@ function removeClassByPrefix(el, prefix) {
     var regx = new RegExp('\\b' + prefix + '.*?\\b', 'g');
     el.className = el.className.replace(regx, '');
     return el;
+}
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
 }
