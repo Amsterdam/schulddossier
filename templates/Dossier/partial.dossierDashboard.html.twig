@@ -64,8 +64,7 @@
 
             </div>
         </div>
-        {% if dossier.isInPrullenbak == FALSE %}
-            {% if app.user.isApplicationAdmin or (app.user.isMadiKeyUser and dossier.withMadi) or (app.user.isGkaAppBeheerder and dossier.withGka) %}
+        {% if voorleggerForm.cdst is defined %}
                 <div class="dossier__dashboard__controls">
                     <div class="row">
                         <h2>Dossier acties</h2>
@@ -73,12 +72,11 @@
                     <div class="row">
                         <div class="col">
                             <div class="dashboard_dossier_status_changer">
-                                {% include 'Dossier/partial.dossierStatusChanger.twig' %}
+                                {% include 'Dossier/partial.dossierStatusChanger.twig' with {'changeDossierStatusForm': voorleggerForm.cdst} %}
                             </div>
                         </div>
                     </div>
                 </div>
-            {% endif %}
         {% endif %}
     </div>
 </div>

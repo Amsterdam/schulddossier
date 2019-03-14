@@ -199,6 +199,22 @@ class AppDossierController extends Controller
             'disabled' => $dossier->isInPrullenbak() === true,
             'disable_group' => $this->getUser()->getType()
         ]);
+        if (!$dossier->isInPrullenbak()) {
+            if (
+                $this->getUser()->isApplicationAdmin()
+                ||
+                ($dossier->withMadi() && $this->getUser()->isMadiKeyUser())
+                ||
+                ($dossier->withGka() && $this->getUser()->isGkaAppBeheerder())
+                ) {
+                    $voorleggerForm->add('cdst', ChangeDossierStatusType::class, [
+                        'required' => true,
+                        'mapped' => false,
+                        'data' => $dossier,
+                        'disabled' => $dossier->isInPrullenbak() === true
+                    ]);
+                }
+        }
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
             foreach ($voorleggerForm->all() as $key => $child) {
@@ -241,31 +257,13 @@ class AppDossierController extends Controller
         }
         $changeDossierStatusForm = false;
 
-
-        if (!$dossier->isInPrullenbak()) {
-            if (
-                $this->getUser()->isApplicationAdmin()
-                ||
-                ($dossier->withMadi() && $this->getUser()->isMadiKeyUser())
-                ||
-                ($dossier->withGka() && $this->getUser()->isGkaAppBeheerder())
-            ) {
-                $changeDossierStatusForm = $this->createForm(ChangeDossierStatusType::class, $dossier, [
-                    'disabled' => $dossier->isInPrullenbak() === true,
-                ]);
-                $changeDossierStatusForm->handleRequest($request);
-            }
-        }
-
-
         $workflow = $registry->get($dossier);
 
         $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
 
         return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
-            'voorleggerForm' => $voorleggerForm->createView(),
-            'changeDossierStatusForm' => $changeDossierStatusForm !== false ? $changeDossierStatusForm->createView() : false
+            'voorleggerForm' => $voorleggerForm->createView()
         ]);
     }
 

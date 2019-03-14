@@ -1,5 +1,5 @@
 {% if changeDossierStatusForm != false %}
-    {{ form_start(changeDossierStatusForm) }}
+    {#{ form_start(changeDossierStatusForm) }#}
     <div class="dashboard_dossier_status_changer_element">
         {{ form_label(changeDossierStatusForm.status) }}
         <br>
@@ -8,5 +8,5 @@
     <div class="dashboard_dossier_status_changer_element_errors">
         {{ form_errors(changeDossierStatusForm.status) }}
     </div>
-    {{ form_end(changeDossierStatusForm) }}
+    {#{ form_end(changeDossierStatusForm) }#}
 {% endif %}
