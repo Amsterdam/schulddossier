@@ -197,24 +197,8 @@ class AppDossierController extends Controller
 
         $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger(), [
             'disabled' => $dossier->isInPrullenbak() === true,
-            'disable_group' => $this->getUser()->getType()
+            'disable_group' => $this->getUser()->getType(),
         ]);
-        if (!$dossier->isInPrullenbak()) {
-            if (
-                $this->getUser()->isApplicationAdmin()
-                ||
-                ($dossier->withMadi() && $this->getUser()->isMadiKeyUser())
-                ||
-                ($dossier->withGka() && $this->getUser()->isGkaAppBeheerder())
-                ) {
-                    $voorleggerForm->add('cdst', ChangeDossierStatusType::class, [
-                        'required' => true,
-                        'mapped' => false,
-                        'data' => $dossier,
-                        'disabled' => $dossier->isInPrullenbak() === true
-                    ]);
-                }
-        }
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
             foreach ($voorleggerForm->all() as $key => $child) {

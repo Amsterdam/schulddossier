@@ -22,9 +22,18 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints\Valid;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType;
 
 class VoorleggerFormType extends AbstractType
 {
+    private $tokenStorage;
+
+    public function __construct(TokenStorageInterface $tokenStorage)
+    {
+        $this->tokenStorage = $tokenStorage;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $settings = [
@@ -66,6 +75,31 @@ class VoorleggerFormType extends AbstractType
         $builder->add('vrijwaringsbewijs', VoorleggerVrijwaringsbewijsFormType::class, $settings);
         $builder->add('vtlb', VoorleggerVtlbFormType::class, $settings);
         $builder->add('waternet', VoorleggerWaternetFormType::class, $settings);
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            /* @var $voorlegger Voorlegger */
+            $voorlegger = $event->getData();
+            $dossier = $voorlegger->getDossier();
+            if ($this->tokenStorage->getToken() === null || $this->tokenStorage->getToken()->getUser() === null) {
+                return;
+            }
+            if (!$dossier->isInPrullenbak()) {
+                if (
+                    $this->tokenStorage->getToken()->getUser()->isApplicationAdmin()
+                    ||
+                    ($dossier->withMadi() && $this->tokenStorage->getToken()->getUser()->isMadiKeyUser())
+                    ||
+                    ($dossier->withGka() && $this->tokenStorage->getToken()->getUser()->isGkaAppBeheerder())
+                    ) {
+                        $event->getForm()->add('cdst', ChangeDossierStatusType::class, [
+                            'required' => true,
+                            'mapped' => false,
+                            'data' => $dossier,
+                            'disabled' => $dossier->isInPrullenbak() === true
+                        ]);
+                    }
+            }
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver)
