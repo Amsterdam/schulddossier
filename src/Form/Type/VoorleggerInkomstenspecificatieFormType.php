@@ -36,6 +36,39 @@ class VoorleggerInkomstenspecificatieFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
+
+        $builder->add('beschikkingInkomenUitWerk', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('beschikkingUwvZw', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('beschikkingUwvWw', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('beschikkingUwvWia', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('beschikkingUwvWajong', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('beschikkingGemeenteAmsterdamWPI', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('beschikkingSVBAOW', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('beschikkingSVBANW', CheckboxType::class, [
+            'required' => false
+        ]);
+        $builder->add('beschikkingGemeenteAmsterdamIOAW', CheckboxType::class, [
+            'required' => false
+        ]);
+
+        $builder->add('beschikkingUwvOverig', TextType::class, [
+            'required' => false
+        ]);
+
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
             'entry_type' => DocumentFormType::class,

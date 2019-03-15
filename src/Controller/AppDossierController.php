@@ -318,7 +318,7 @@ class AppDossierController extends Controller
             }
 
             $this->addFlash('success', 'Opgeslagen');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', [
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
                 'dossierId' => $dossier->getId()
             ]);
         } elseif ($form->isSubmitted() && $request->isXmlHttpRequest()) {
@@ -327,7 +327,7 @@ class AppDossierController extends Controller
 
         $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
 
-        return $this->render('Dossier/create.html.twig', [
+        return $this->render('Dossier/detailAlgemeen.html.twig', [
             'dossier' => $dossier,
             'form' => $form->createView(),
         ]);

@@ -700,18 +700,15 @@
 .dossier__dashboard {
   top: 110px;
   left: 437px;
-  //background: lightgrey;
+  overflow-y: auto;
   position: absolute;
-  width: calc(100vw - 435px);
+  width: calc(100vw - 442px);
   height: calc(100vh - 110px);
   display: flex;
   justify-content: space-evenly;
   .col-1-1 {
     //border-top: 1px solid #000;
     //text-align: center;
-  }
-  .button {
-    //margin-top: 30px;
   }
   h4 {
     font-size: $fs-large;
@@ -725,8 +722,7 @@
 .dossier__dashboard__default,
 .dossier__dashboard__messages {
   padding-top: 100px;
-  height: calc(100% - 100px);
-  overflow-y: auto;
+  //height: calc(100% - 100px);
   //width: 40%;
   //padding: 50px 6.666% 0;
   h2 {

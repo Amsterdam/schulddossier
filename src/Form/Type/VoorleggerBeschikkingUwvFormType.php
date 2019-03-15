@@ -39,18 +39,6 @@ class VoorleggerBeschikkingUwvFormType extends AbstractType
         $builder->add('beschikkingUwvNvt', CheckboxType::class, [
             'required' => false
         ]);
-        $builder->add('beschikkingUwvWw', CheckboxType::class, [
-            'required' => false
-        ]);
-        $builder->add('beschikkingUwvWia', CheckboxType::class, [
-            'required' => false
-        ]);
-        $builder->add('beschikkingUwvZw', CheckboxType::class, [
-            'required' => false
-        ]);
-        $builder->add('beschikkingUwvOverig', TextType::class, [
-            'required' => false
-        ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
             'entry_type' => DocumentFormType::class,

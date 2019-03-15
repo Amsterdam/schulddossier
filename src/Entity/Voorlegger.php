@@ -106,6 +106,36 @@ class Voorlegger
      */
     private $arbeidsovereenkomstNvt;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $arbeidsovereenkomstWerkgever;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     * @Assert\Choice(callback="getContractOpties")
+     */
+    private $arbeidsovereenkomstContract;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $arbeidsovereenkomstPartnerWerkgever;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     * @Assert\Choice(callback="getContractOpties")
+     */
+    private $arbeidsovereenkomstPartnerContract;
+
     // ---
 
     /**
@@ -130,6 +160,18 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
+    private $beschikkingInkomenUitWerk;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $beschikkingUwvZw;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
     private $beschikkingUwvWw;
 
     /**
@@ -142,7 +184,31 @@ class Voorlegger
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $beschikkingUwvZw;
+    private $beschikkingUwvWajong;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $beschikkingGemeenteAmsterdamWPI;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $beschikkingSVBAOW;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $beschikkingSVBANW;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $beschikkingGemeenteAmsterdamIOAW;
 
     /**
      * @var string
@@ -875,9 +941,15 @@ class Voorlegger
         $this->beschikkingUwvOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->beschikkingUwvOntvangenGka = false;
         $this->beschikkingUwvNvt = false;
+        $this->beschikkingInkomenUitWerk = false;
         $this->beschikkingUwvWw = false;
         $this->beschikkingUwvWia = false;
         $this->beschikkingUwvZw = false;
+        $this->beschikkingUwvWajong = false;
+        $this->beschikkingGemeenteAmsterdamIOAW = false;
+        $this->beschikkingGemeenteAmsterdamWPI = false;
+        $this->beschikkingSVBANW = false;
+        $this->beschikkingSVBAOW = false;
         $this->voorlopigeTeruggaafBelastingdienstOntvangenMadi = self::STATUS_MADI_OPEN;
         $this->voorlopigeTeruggaafBelastingdienstOntvangenGka = false;
         $this->voorlopigeTeruggaafBelastingdienstNvt = false;
@@ -1042,9 +1114,34 @@ class Voorlegger
         return $this->arbeidsovereenkomstNvt;
     }
 
+    public function getArbeidsovereenkomstWerkgever()
+    {
+        return $this->arbeidsovereenkomstWerkgever;
+    }
+
+    public function getArbeidsovereenkomstContract()
+    {
+        return $this->arbeidsovereenkomstContract;
+    }
+
+    public function getArbeidsovereenkomstPartnerWerkgever()
+    {
+        return $this->arbeidsovereenkomstPartnerWerkgever;
+    }
+
+    public function getArbeidsovereenkomstPartnerContract()
+    {
+        return $this->arbeidsovereenkomstPartnerContract;
+    }
+
     public function isBeschikkingUwvNvt()
     {
         return $this->beschikkingUwvNvt;
+    }
+
+    public function isBeschikkingInkomenUitWerk()
+    {
+        return $this->beschikkingInkomenUitWerk;
     }
 
     public function isBeschikkingUwvWw()
@@ -1060,6 +1157,31 @@ class Voorlegger
     public function isBeschikkingUwvZw()
     {
         return $this->beschikkingUwvZw;
+    }
+
+    public function isBeschikkingUwvWajong()
+    {
+        return $this->beschikkingUwvWajong;
+    }
+
+    public function isBeschikkingGemeenteAmsterdamWPI()
+    {
+        return $this->beschikkingGemeenteAmsterdamWPI;
+    }
+
+    public function isBeschikkingSVBANW()
+    {
+        return $this->beschikkingSVBANW;
+    }
+
+    public function isBeschikkingSVBAOW()
+    {
+        return $this->beschikkingSVBAOW;
+    }
+
+    public function isBeschikkingGemeenteAmsterdamIOAW()
+    {
+        return $this->beschikkingGemeenteAmsterdamIOAW;
     }
 
     public function getBeschikkingUwvOverig()
@@ -1564,6 +1686,17 @@ class Voorlegger
     }
 
     /**
+     * @return string[]
+     */
+    public static function getContractOpties()
+    {
+        return [
+            'Tijdelijk contract' => 'Tijdelijk contract',
+            'Vast contract' => 'Vast contract',
+        ];
+    }
+
+    /**
      * @param Dossier $dossier
      */
     public function setDossier(Dossier $dossier = null)
@@ -1628,6 +1761,26 @@ class Voorlegger
         $this->arbeidsovereenkomstNvt = $arbeidsovereenkomstNvt;
     }
 
+    public function setArbeidsovereenkomstWerkgever($arbeidsovereenkomstWerkgever)
+    {
+        $this->arbeidsovereenkomstWerkgever = $arbeidsovereenkomstWerkgever;
+    }
+
+    public function setArbeidsovereenkomstContract($arbeidsovereenkomstContract)
+    {
+        $this->arbeidsovereenkomstContract = $arbeidsovereenkomstContract;
+    }
+
+    public function setArbeidsovereenkomstPartnerWerkgever($arbeidsovereenkomstPartnerWerkgever)
+    {
+        $this->arbeidsovereenkomstPartnerWerkgevert = $arbeidsovereenkomstPartnerWerkgever;
+    }
+
+    public function setArbeidsovereenkomstPartnerContract($arbeidsovereenkomstPartnerContract)
+    {
+        $this->arbeidsovereenkomstPartnerContract = $arbeidsovereenkomstPartnerContract;
+    }
+
     public function setBeschikkingUwvOntvangenMadi($beschikkingUwvOntvangenMadi)
     {
         $this->beschikkingUwvOntvangenMadi = $beschikkingUwvOntvangenMadi;
@@ -1643,6 +1796,11 @@ class Voorlegger
         $this->beschikkingUwvNvt = $beschikkingUwvNvt;
     }
 
+    public function setBeschikkingInkomenUitWerk($beschikkingInkomenUitWerk)
+    {
+        $this->beschikkingInkomenUitWerk = $beschikkingInkomenUitWerk;
+    }
+
     public function setBeschikkingUwvWw($beschikkingUwvWw)
     {
         $this->beschikkingUwvWw = $beschikkingUwvWw;
@@ -1656,6 +1814,31 @@ class Voorlegger
     public function setBeschikkingUwvZw($beschikkingUwvZw)
     {
         $this->beschikkingUwvZw = $beschikkingUwvZw;
+    }
+
+    public function setBeschikkingUwvWajong($beschikkingUwvWajong)
+    {
+        $this->beschikkingUwvWajong = $beschikkingUwvWajong;
+    }
+
+    public function setBeschikkingGemeenteAmsterdamWPI($beschikkingGemeenteAmsterdamWPI)
+    {
+        $this->beschikkingGemeenteAmsterdamWPI = $beschikkingGemeenteAmsterdamWPI;
+    }
+
+    public function setBeschikkingSVBAOW($beschikkingSVBAOW)
+    {
+        $this->beschikkingSVBAOW = $beschikkingSVBAOW;
+    }
+
+    public function setBeschikkingSVBANW($beschikkingSVBANW)
+    {
+        $this->beschikkingSVBANW = $beschikkingSVBANW;
+    }
+
+    public function setBeschikkingGemeenteAmsterdamIOAW($beschikkingGemeenteAmsterdamIOAW)
+    {
+        $this->beschikkingGemeenteAmsterdamIOAW = $beschikkingGemeenteAmsterdamIOAW;
     }
 
     public function setBeschikkingUwvOverig($beschikkingUwvOverig)

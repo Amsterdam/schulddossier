@@ -8,7 +8,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190313091627 extends AbstractMigration
+final class Version20190315141225 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
@@ -31,6 +31,16 @@ final class Version20190313091627 extends AbstractMigration
         $this->addSql('ALTER TABLE dossier ADD partner_geslacht VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE dossier ADD partner_geboortedatum DATE DEFAULT NULL');
         $this->addSql('ALTER TABLE dossier ADD partner_bsn VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE voorlegger ADD arbeidsovereenkomst_werkgever VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE voorlegger ADD arbeidsovereenkomst_contract VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE voorlegger ADD arbeidsovereenkomst_partner_werkgever VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE voorlegger ADD arbeidsovereenkomst_partner_contract VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE voorlegger ADD beschikking_inkomen_uit_werk BOOLEAN DEFAULT NULL');
+        $this->addSql('ALTER TABLE voorlegger ADD beschikking_uwv_wajong BOOLEAN DEFAULT NULL');
+        $this->addSql('ALTER TABLE voorlegger ADD beschikking_gemeente_amsterdam_wpi BOOLEAN DEFAULT NULL');
+        $this->addSql('ALTER TABLE voorlegger ADD beschikking_svbaow BOOLEAN DEFAULT NULL');
+        $this->addSql('ALTER TABLE voorlegger ADD beschikking_svbanw BOOLEAN DEFAULT NULL');
+        $this->addSql('ALTER TABLE voorlegger ADD beschikking_gemeente_amsterdam_ioaw BOOLEAN DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -38,7 +48,7 @@ final class Version20190313091627 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('CREATE SCHEMA public');
+//        $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER TABLE dossier DROP client_voorletters');
         $this->addSql('ALTER TABLE dossier DROP client_geslacht');
         $this->addSql('ALTER TABLE dossier DROP client_geboortedatum');
@@ -55,5 +65,15 @@ final class Version20190313091627 extends AbstractMigration
         $this->addSql('ALTER TABLE dossier DROP partner_geslacht');
         $this->addSql('ALTER TABLE dossier DROP partner_geboortedatum');
         $this->addSql('ALTER TABLE dossier DROP partner_bsn');
+        $this->addSql('ALTER TABLE voorlegger DROP arbeidsovereenkomst_werkgever');
+        $this->addSql('ALTER TABLE voorlegger DROP arbeidsovereenkomst_contract');
+        $this->addSql('ALTER TABLE voorlegger DROP arbeidsovereenkomst_partner_werkgever');
+        $this->addSql('ALTER TABLE voorlegger DROP arbeidsovereenkomst_partner_contract');
+        $this->addSql('ALTER TABLE voorlegger DROP beschikking_inkomen_uit_werk');
+        $this->addSql('ALTER TABLE voorlegger DROP beschikking_uwv_wajong');
+        $this->addSql('ALTER TABLE voorlegger DROP beschikking_gemeente_amsterdam_wpi');
+        $this->addSql('ALTER TABLE voorlegger DROP beschikking_svbaow');
+        $this->addSql('ALTER TABLE voorlegger DROP beschikking_svbanw');
+        $this->addSql('ALTER TABLE voorlegger DROP beschikking_gemeente_amsterdam_ioaw');
     }
 }

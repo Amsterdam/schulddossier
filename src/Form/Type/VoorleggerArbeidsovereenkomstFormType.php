@@ -39,6 +39,30 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
         $builder->add('arbeidsovereenkomstNvt', CheckboxType::class, [
             'required' => false
         ]);
+        $builder->add('arbeidsovereenkomstWerkgever', TextType::class, [
+            'label' => 'Werkgever',
+            'required' => false
+        ]);
+        $builder->add('arbeidsovereenkomstContract', ChoiceType::class, [
+            'label' => 'Soort dienstverband',
+            'required' => false,
+            'multiple' => false,
+            'expanded' => true,
+            'placeholder' => false,
+            'choices' => Voorlegger::getContractOpties()
+        ]);
+        $builder->add('arbeidsovereenkomstPartnerWerkgever', TextType::class, [
+            'label' => 'Werkgever',
+            'required' => false
+        ]);
+        $builder->add('arbeidsovereenkomstPartnerContract', ChoiceType::class, [
+            'label' => 'Soort dienstverband',
+            'required' => false,
+            'multiple' => false,
+            'expanded' => true,
+            'placeholder' => false,
+            'choices' => Voorlegger::getContractOpties()
+        ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
             'entry_type' => DocumentFormType::class,
