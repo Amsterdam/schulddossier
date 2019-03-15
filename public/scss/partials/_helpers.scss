@@ -52,6 +52,11 @@ a.a__editable {
   &:hover:before {
     opacity: 1;
   }
+  &--disabled {
+    & > * {
+      opacity: .5;
+    }
+  }
 }
 dl.dl {
   &__horizontal {

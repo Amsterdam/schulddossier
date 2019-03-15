@@ -227,6 +227,21 @@ form {
     margin: 0;
     padding: 0;
   }
+  .form-row__checkbox--right {
+    float: right;
+    margin: 5px 0 0;
+    input,
+    label {
+      display: inline-block;
+    }
+    input[type="checkbox"] {
+      height: auto;
+    }
+    label {
+      padding: 0;
+      width: auto;
+    }
+  }
   .form-row.rome-active {
     z-index: 2;
   }

@@ -7,8 +7,10 @@
 {{ form_row(form.clientGeboortedatum, {'attr': {'form_row_class': 'form-row__wide'}}) }}
 {{ form_row(form.clientBSN, {'attr': {'form_row_class': 'form-row__wide'}}) }}
 
-<h4>Partner</h4>
-{{ form_row(form.partnerNvt, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+<h4>
+    Partner
+{{ form_row(form.partnerNvt, {'attr': {'form_row_class': 'form-row__checkbox--right'}}) }}
+</h4>
 {{ form_row(form.partnerGeslacht, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__horizontal'}}) }}
 {{ form_row(form.partnerNaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
 {{ form_row(form.partnerVoorletters, {'attr': {'form_row_class': 'form-row__wide'}}) }}

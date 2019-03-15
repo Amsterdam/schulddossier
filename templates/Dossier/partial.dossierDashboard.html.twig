@@ -1,8 +1,8 @@
 <div class="dossier__dashboard">
-    <div class="dossier__dashboard__default dossier__dashboard--line">
+    <div class="dossier__dashboard__default">
         <div class="dossier__dashboard__well--line">
             <h2 class="dossier__dashboard__well__header">
-                <span>Samenvatting</span>
+                <span>Samenvatting{{ form_errors(voorleggerForm) }}</span>
             </h2>
             <div class="row">
                 <div class="col-1-2">
@@ -31,8 +31,9 @@
                     </a>
                 </div>
                 <div class="col-1-2">
-                    <h3>Partner</h3>
-                    <a href="#id_voorlegger-legitimatie" class="a__editable">
+                    <h3>Partner{% if dossier.partnerNvt %} (n.v.t.){% endif %}</h3>
+                    <a href="#id_voorlegger-legitimatie"
+                       class="a__editable{% if dossier.partnerNvt %} a__editable--disabled{% endif %}">
                         <dl class="dl__horizontal">
                             <dt>Achternaam</dt>
                             <dd>{% if dossier.partnerVoorletters %}{{ dossier.partnerNaam }}{% else %}-{% endif %}</dd>
@@ -69,15 +70,13 @@
                             <dt>Burgelijke staat</dt>
                             <dd>{% if dossier.clientBurgelijkeStaat %}{{ dossier.clientBurgelijkeStaat }}{% else %}-{% endif %}</dd>
                             <dt>Geboortedatum inwonende kind(eren)</dt>
-                            <br>
-                                {% if dossier.clientKinderen %}
-                                {{ dossier.clientKinderen|length }} inwonende kinderen:<br>
-                                    {% for k in dossier.clientKinderen %}
+                            {% if dossier.clientKinderen %}{{ dossier.clientKinderen|length }} kinderen:<br>
+                                {% for k in dossier.clientKinderen %}
                                     {{ k }}<br>
-                                    {% endfor %}
-                                {% else %}
-                                    -
-                                {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                -
+                            {% endif %}
                             </dd>
                         </dl>
                     </a>
@@ -88,28 +87,30 @@
             <h2 class="dossier__dashboard__well__header">
                 <span>Dossierbehandelaars</span>
             </h2>
-            <div class="row">
-                <div class="col-1-2">
-                    <h4>MaDi</h4>
-                    <dl>
-                        <dt>Schuldhulpbureau</dt>
-                        <dd>{{ dossier.schuldhulpbureau }}</dd>
-                        <dt>Medewerker schuldhulpbureau</dt>
-                        <dd>{{ dossier.medewerkerSchuldhulpbureau }}</dd>
-                        <dt>MaDi dossiernr.</dt>
-                        <dd>{{ dossier.regasNummer }}</dd>
-                    </dl>
+            <a href="#id_voorlegger-legitimatie" class="a__editable">
+                <div class="row">
+                    <div class="col-1-2">
+                        <h4>MaDi</h4>
+                        <dl>
+                            <dt>Schuldhulpbureau</dt>
+                            <dd>{{ dossier.schuldhulpbureau }}</dd>
+                            <dt>Medewerker schuldhulpbureau</dt>
+                            <dd>{{ dossier.medewerkerSchuldhulpbureau }}</dd>
+                            <dt>MaDi dossiernr.</dt>
+                            <dd>{{ dossier.regasNummer }}</dd>
+                        </dl>
+                    </div>
+                    <div class="col-1-2">
+                        <h4>GKA</h4>
+                        <dl>
+                            <dt>Team GKA</dt>
+                            <dd>{{ dossier.teamGka }}</dd>
+                            <dt>GKA dossiernr.</dt>
+                            <dd>{{ dossier.allegroNummer }}</dd>
+                        </dl>
+                    </div>
                 </div>
-                <div class="col-1-2">
-                    <h4>GKA</h4>
-                    <dl>
-                        <dt>Team GKA</dt>
-                        <dd>{{ dossier.teamGka }}</dd>
-                        <dt>GKA dossiernr.</dt>
-                        <dd>{{ dossier.allegroNummer }}</dd>
-                    </dl>
-                </div>
-            </div>
+            </a>
         </div>
     </div>
     <div class="dossier__dashboard__messages">
@@ -146,5 +147,6 @@
                     </div>
                 </div>
         {% endif %}
+
     </div>
 </div>

@@ -725,6 +725,8 @@
 .dossier__dashboard__default,
 .dossier__dashboard__messages {
   padding-top: 100px;
+  height: calc(100% - 100px);
+  overflow-y: auto;
   //width: 40%;
   //padding: 50px 6.666% 0;
   h2 {
