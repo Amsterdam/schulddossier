@@ -19,6 +19,8 @@
                             <dd>{% if dossier.clientGeboortedatum %}{{ dossier.clientGeboortedatum|date('d-m-Y') }}{% else %}-{% endif %}</dd>
                             <dt>B.S.N.</dt>
                             <dd>{% if dossier.clientBSN %}{{ dossier.clientBSN }}{% else %}-{% endif %}</dd>
+                            <dt>Banknaam</dt>
+                            <dd>{% if dossier.clientBanknaam %}{{ dossier.clientBanknaam }}{% else %}-{% endif %}</dd>
                         </dl>
                     </a>
                     <a href="#id_voorlegger-legitimatie" class="a__editable">
@@ -45,6 +47,8 @@
                             <dd>{% if dossier.partnerGeboortedatum %}{{ dossier.partnerGeboortedatum|date('d-m-Y') }}{% else %}-{% endif %}</dd>
                             <dt>B.S.N.</dt>
                             <dd>{% if dossier.partnerBSN %}{{ dossier.partnerBSN }}{% else %}-{% endif %}</dd>
+                            <dt>Banknaam</dt>
+                            <dd>{% if dossier.partnerBanknaam %}{{ dossier.partnerBanknaam }}{% else %}-{% endif %}</dd>
                         </dl>
                     </a>
                 </div>

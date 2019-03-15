@@ -84,6 +84,13 @@ class Dossier
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
      */
+    private $clientBanknaam;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
     private $clientTelefoonnummer;
 
     /**
@@ -168,6 +175,13 @@ class Dossier
      * @Assert\Length(min=0, max=255)
      */
     private $partnerBSN;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $partnerBanknaam;
 
     /**
      * @var Schuldhulpbureau
@@ -308,6 +322,11 @@ class Dossier
         return $this->clientBSN;
     }
 
+    public function getClientBanknaam()
+    {
+        return $this->clientBanknaam;
+    }
+
     public function getClientTelefoonnummer()
     {
         return $this->clientTelefoonnummer;
@@ -378,6 +397,11 @@ class Dossier
     public function getPartnerBSN()
     {
         return $this->partnerBSN;
+    }
+
+    public function getPartnerBanknaam()
+    {
+        return $this->partnerBanknaam;
     }
 
     /**
@@ -499,6 +523,11 @@ class Dossier
         $this->clientBSN = $clientBSN;
     }
 
+    public function setClientBanknaam($clientBanknaam = null)
+    {
+        $this->clientBanknaam = $clientBanknaam;
+    }
+
     public function setClientTelefoonnummer($clientTelefoonnummer = null)
     {
         $this->clientTelefoonnummer = $clientTelefoonnummer;
@@ -565,6 +594,11 @@ class Dossier
     public function setPartnerBSN($partnerBSN = null)
     {
         $this->partnerBSN = $partnerBSN;
+    }
+
+    public function setPartnerBanknaam($partnerBanknaam = null)
+    {
+        $this->partnerBanknaam = $partnerBanknaam;
     }
 
     /**

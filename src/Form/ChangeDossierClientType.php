@@ -59,6 +59,10 @@ class ChangeDossierClientType extends AbstractType
             'label' => 'B.S.N.',
             'required' => false
         ]);
+        $builder->add('clientBanknaam', TextType::class, [
+            'label' => 'Banknaam',
+            'required' => false
+        ]);
 
         $builder->add('partnerNvt', CheckboxType::class, [
             'label' => 'n.v.t.',
@@ -95,6 +99,10 @@ class ChangeDossierClientType extends AbstractType
 
         $builder->add('partnerBSN', TextType::class, [
             'label' => 'B.S.N.',
+            'required' => false
+        ]);
+        $builder->add('partnerBanknaam', TextType::class, [
+            'label' => 'Banknaam',
             'required' => false
         ]);
 
