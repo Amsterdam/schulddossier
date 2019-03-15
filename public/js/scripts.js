@@ -1097,7 +1097,7 @@
         newDocCounter = 1,
         i;
 
-      if (form.querySelector('#change_dossier_status_status') && form.querySelector('#change_dossier_status_status').value !== form.querySelector('#change_dossier_status_status').dataset.current){
+      if (form.querySelector('#voorlegger_form_cdst_status') && form.querySelector('#voorlegger_form_cdst_status').value !== form.querySelector('#voorlegger_form_cdst_status').dataset.current){
         w.onbeforeunload = function () {};
         return;
       }else {
