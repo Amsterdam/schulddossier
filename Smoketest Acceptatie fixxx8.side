@@ -17,9 +17,16 @@
       "id": "446afa8a-c070-4bda-bd74-4a6f26b9dd72",
       "comment": "",
       "command": "executeScript",
-      "target": "return 'Selenium Test ' + ${datum}",
+      "target": "return 'Test ' + ${datum}",
       "targets": [],
       "value": "clientnaam"
+    }, {
+      "id": "776c7455-d580-4411-b12d-f493cd798f73",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return 'ST'",
+      "targets": [],
+      "value": "clientnaam_voorletters"
     }, {
       "id": "9449f23b-37b7-48c7-99f1-f058e6636f07",
       "comment": "",
@@ -60,7 +67,7 @@
     }, {
       "id": "496eb481-e5bb-4025-be1f-8213cb2d60f7",
       "comment": "",
-      "command": "click",
+      "command": "//click",
       "target": "id=create_dossier_form_clientNaam",
       "targets": [
         ["id=create_dossier_form_clientNaam", "id"],
@@ -84,9 +91,22 @@
       ],
       "value": "${clientnaam}"
     }, {
+      "id": "63d8098d-6e46-471b-b10a-7fc45b870092",
+      "comment": "",
+      "command": "type",
+      "target": "id=create_dossier_form_clientVoorletters",
+      "targets": [
+        ["id=create_dossier_form_clientVoorletters", "id"],
+        ["name=create_dossier_form[clientVoorletters]", "name"],
+        ["css=#create_dossier_form_clientVoorletters", "css:finder"],
+        ["xpath=//input[@id='create_dossier_form_clientVoorletters']", "xpath:attributes"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "${clientnaam_voorletters}"
+    }, {
       "id": "fd6286af-b60a-4ee1-9219-9883ba0ac67a",
       "comment": "",
-      "command": "click",
+      "command": "//click",
       "target": "id=create_dossier_form_partnerNaam",
       "targets": [
         ["id=create_dossier_form_clientNaam", "id"],
@@ -102,11 +122,24 @@
       "command": "type",
       "target": "id=create_dossier_form_partnerNaam",
       "targets": [],
-      "value": "N Partner"
+      "value": "Partner"
+    }, {
+      "id": "cdf7d033-8b38-4542-815b-c0410f2ed0ae",
+      "comment": "",
+      "command": "type",
+      "target": "id=create_dossier_form_partnerVoorletters",
+      "targets": [
+        ["id=create_dossier_form_partnerVoorletters", "id"],
+        ["name=create_dossier_form[partnerVoorletters]", "name"],
+        ["css=#create_dossier_form_partnerVoorletters", "css:finder"],
+        ["xpath=//input[@id='create_dossier_form_partnerVoorletters']", "xpath:attributes"],
+        ["xpath=//div[2]/div[4]/div/input", "xpath:position"]
+      ],
+      "value": "N"
     }, {
       "id": "35df639e-5116-4a1d-8c15-19ca2077f78c",
       "comment": "",
-      "command": "click",
+      "command": "//click",
       "target": "id=create_dossier_form_regasNummer",
       "targets": [
         ["id=create_dossier_form_regasNummer", "id"],
@@ -201,15 +234,15 @@
       "id": "8a6cb063-2f2f-4208-8ff4-fa3d3575e40c",
       "comment": "",
       "command": "click",
-      "target": "linkText=Legitimatie",
+      "target": "linkText=Persoonsgegevens en legitimatie",
       "targets": [
-        ["linkText=Legitimatie", "linkText"],
+        ["linkText=Persoonsgegevens en legitimatie", "linkText"],
         ["css=#voorlegger-legitimatie .naam > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Legitimatie')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Persoonsgegevens en legitimatie')]", "xpath:link"],
         ["xpath=//div[@id='voorlegger-legitimatie']/div/div/h3/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#id_voorlegger-legitimatie')]", "xpath:href"],
-        ["xpath=//h3/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Legitimatie')]", "xpath:innerText"]
+        ["xpath=(//a[contains(@href, '#id_voorlegger-legitimatie')])[5]", "xpath:href"],
+        ["xpath=//div/div/div/div/div/h3/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Persoonsgegevens en legitimatie')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -294,15 +327,15 @@
       "id": "fd1ddac2-1871-4443-8e98-3845e0290911",
       "comment": "",
       "command": "click",
-      "target": "linkText=Ondertekend aanvraagformulier",
+      "target": "linkText=Ondertekende volmacht",
       "targets": [
-        ["linkText=Ondertekend aanvraagformulier", "linkText"],
+        ["linkText=Ondertekende volmacht", "linkText"],
         ["css=#voorlegger-ondertekendAanvraagFormulier .naam > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Ondertekend aanvraagformulier')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Ondertekende volmacht')]", "xpath:link"],
         ["xpath=//div[@id='voorlegger-ondertekendAanvraagFormulier']/div/div/h3/a", "xpath:idRelative"],
         ["xpath=//a[contains(@href, '#id_voorlegger-ondertekendAanvraagFormulier')]", "xpath:href"],
-        ["xpath=//div/div/div[3]/div/div/h3/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Ondertekend aanvraagformulier')]", "xpath:innerText"]
+        ["xpath=//div[3]/div/div/h3/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Ondertekende volmacht')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -967,15 +1000,15 @@
       "id": "510c2781-d04b-45eb-9472-9ee060bef5cb",
       "comment": "",
       "command": "click",
-      "target": "linkText=Ondertekend aanvraagformulier",
+      "target": "linkText=Ondertekende volmacht",
       "targets": [
-        ["linkText=Ondertekend aanvraagformulier", "linkText"],
+        ["linkText=Ondertekende volmacht", "linkText"],
         ["css=#voorlegger-ondertekendAanvraagFormulier .naam > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Ondertekend aanvraagformulier')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Ondertekende volmacht')]", "xpath:link"],
         ["xpath=//div[@id='voorlegger-ondertekendAanvraagFormulier']/div/div/h3/a", "xpath:idRelative"],
         ["xpath=//a[contains(@href, '#id_voorlegger-ondertekendAanvraagFormulier')]", "xpath:href"],
         ["xpath=//div/div/div[3]/div/div/h3/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Ondertekend aanvraagformulier')]", "xpath:innerText"]
+        ["xpath=//a[contains(.,'Ondertekende volmacht')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -1178,6 +1211,424 @@
       ],
       "value": ""
     }, {
+      "id": "eec488b4-bad6-4f74-8246-2506309feb5d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Persoonsgegevens en legitimatie",
+      "targets": [
+        ["linkText=Persoonsgegevens en legitimatie", "linkText"],
+        ["css=#voorlegger-legitimatie .naam > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Persoonsgegevens en legitimatie')]", "xpath:link"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div/div/h3/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#id_voorlegger-legitimatie')])[5]", "xpath:href"],
+        ["xpath=//h3/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Persoonsgegevens en legitimatie')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f3cdb1f7-6855-47f5-8dd9-8bd25923ec47",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_clientGeslacht_0",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientGeslacht_0", "id"],
+        ["name=voorlegger_form[cdct][clientGeslacht]", "name"],
+        ["css=#voorlegger_form_cdct_clientGeslacht_0", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientGeslacht_0']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger_form_cdct_clientGeslacht']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "19033009-9935-47a7-bd3d-8954b08cdb02",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_clientGeboortedatum",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientGeboortedatum", "id"],
+        ["name=voorlegger_form[cdct][clientGeboortedatum]", "name"],
+        ["css=#voorlegger_form_cdct_clientGeboortedatum", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientGeboortedatum']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "47bf6bbb-6498-4c07-8393-f42eb96fabba",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_clientGeboortedatum",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientGeboortedatum", "id"],
+        ["name=voorlegger_form[cdct][clientGeboortedatum]", "name"],
+        ["css=#voorlegger_form_cdct_clientGeboortedatum", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientGeboortedatum']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/input", "xpath:position"]
+      ],
+      "value": "15-05-1980"
+    }, {
+      "id": "aa4abadf-8842-4c89-b902-ceda3f6c3531",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_clientBSN",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientBSN", "id"],
+        ["name=voorlegger_form[cdct][clientBSN]", "name"],
+        ["css=#voorlegger_form_cdct_clientBSN", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientBSN']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[5]/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d3fee3c0-c2b7-490b-a782-a22a5f45a96b",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_clientBSN",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientBSN", "id"],
+        ["name=voorlegger_form[cdct][clientBSN]", "name"],
+        ["css=#voorlegger_form_cdct_clientBSN", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientBSN']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[5]/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/input", "xpath:position"]
+      ],
+      "value": "523698745"
+    }, {
+      "id": "0afbf94f-bb59-4605-b8cd-b2d0f6c4a70b",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_clientBanknaam",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientBanknaam", "id"],
+        ["name=voorlegger_form[cdct][clientBanknaam]", "name"],
+        ["css=#voorlegger_form_cdct_clientBanknaam", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientBanknaam']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[6]/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dde54219-5721-47c5-be8b-07c9c369ebdb",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_clientBanknaam",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientBanknaam", "id"],
+        ["name=voorlegger_form[cdct][clientBanknaam]", "name"],
+        ["css=#voorlegger_form_cdct_clientBanknaam", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientBanknaam']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[6]/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/input", "xpath:position"]
+      ],
+      "value": "BLINK"
+    }, {
+      "id": "191ca5a7-d050-4496-8e9e-014558f0882c",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_partnerGeslacht_1",
+      "targets": [
+        ["id=voorlegger_form_cdct_partnerGeslacht_1", "id"],
+        ["css=#voorlegger_form_cdct_partnerGeslacht_1", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_partnerGeslacht_1']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger_form_cdct_partnerGeslacht']/input[2]", "xpath:idRelative"],
+        ["xpath=//div[7]/div/div/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2f0a9d2b-f44a-4d34-88d0-c502610ee632",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_partnerGeboortedatum",
+      "targets": [
+        ["id=voorlegger_form_cdct_partnerGeboortedatum", "id"],
+        ["name=voorlegger_form[cdct][partnerGeboortedatum]", "name"],
+        ["css=#voorlegger_form_cdct_partnerGeboortedatum", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_partnerGeboortedatum']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[10]/div/input", "xpath:idRelative"],
+        ["xpath=//div[10]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ba5bbe3-9290-40f2-8fde-afe403da4fbf",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_partnerGeboortedatum",
+      "targets": [
+        ["id=voorlegger_form_cdct_partnerGeboortedatum", "id"],
+        ["name=voorlegger_form[cdct][partnerGeboortedatum]", "name"],
+        ["css=#voorlegger_form_cdct_partnerGeboortedatum", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_partnerGeboortedatum']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[10]/div/input", "xpath:idRelative"],
+        ["xpath=//div[10]/div/input", "xpath:position"]
+      ],
+      "value": "5-8-1983"
+    }, {
+      "id": "3d689805-2ddc-4b20-8e93-7ad6d809f742",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_partnerBSN",
+      "targets": [
+        ["id=voorlegger_form_cdct_partnerBSN", "id"],
+        ["name=voorlegger_form[cdct][partnerBSN]", "name"],
+        ["css=#voorlegger_form_cdct_partnerBSN", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_partnerBSN']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[11]/div/input", "xpath:idRelative"],
+        ["xpath=//div[11]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "830d8e42-819d-430a-9916-147760d53821",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_partnerBSN",
+      "targets": [
+        ["id=voorlegger_form_cdct_partnerBSN", "id"],
+        ["name=voorlegger_form[cdct][partnerBSN]", "name"],
+        ["css=#voorlegger_form_cdct_partnerBSN", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_partnerBSN']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[11]/div/input", "xpath:idRelative"],
+        ["xpath=//div[11]/div/input", "xpath:position"]
+      ],
+      "value": "84569874"
+    }, {
+      "id": "bfc72a7b-350d-4477-949d-b45aa35752a7",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_partnerBanknaam",
+      "targets": [
+        ["id=voorlegger_form_cdct_partnerBanknaam", "id"],
+        ["name=voorlegger_form[cdct][partnerBanknaam]", "name"],
+        ["css=#voorlegger_form_cdct_partnerBanknaam", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_partnerBanknaam']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[12]/div/input", "xpath:idRelative"],
+        ["xpath=//div[12]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fea7c0f7-9c84-4aeb-aa9b-7e7a7e9f9a24",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_partnerBanknaam",
+      "targets": [
+        ["id=voorlegger_form_cdct_partnerBanknaam", "id"],
+        ["name=voorlegger_form[cdct][partnerBanknaam]", "name"],
+        ["css=#voorlegger_form_cdct_partnerBanknaam", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_partnerBanknaam']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[12]/div/input", "xpath:idRelative"],
+        ["xpath=//div[12]/div/input", "xpath:position"]
+      ],
+      "value": "INK"
+    }, {
+      "id": "6f2a796d-5092-462d-8b5f-253644a2053e",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_clientTelefoonnummer",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientTelefoonnummer", "id"],
+        ["name=voorlegger_form[cdct][clientTelefoonnummer]", "name"],
+        ["css=#voorlegger_form_cdct_clientTelefoonnummer", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientTelefoonnummer']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[13]/div/input", "xpath:idRelative"],
+        ["xpath=//div[13]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a66fb31f-6d80-49f1-a462-3f2360a2cf45",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_clientTelefoonnummer",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientTelefoonnummer", "id"],
+        ["name=voorlegger_form[cdct][clientTelefoonnummer]", "name"],
+        ["css=#voorlegger_form_cdct_clientTelefoonnummer", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientTelefoonnummer']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[13]/div/input", "xpath:idRelative"],
+        ["xpath=//div[13]/div/input", "xpath:position"]
+      ],
+      "value": "06-12345678"
+    }, {
+      "id": "f37d0965-d693-4bd4-97ff-7bd8a1cf2fdf",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_clientStraat",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientStraat", "id"],
+        ["name=voorlegger_form[cdct][clientStraat]", "name"],
+        ["css=#voorlegger_form_cdct_clientStraat", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientStraat']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[14]/div/input", "xpath:idRelative"],
+        ["xpath=//div[14]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c2a53d23-0393-4724-b36d-791c79f0d6ad",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_clientStraat",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientStraat", "id"],
+        ["name=voorlegger_form[cdct][clientStraat]", "name"],
+        ["css=#voorlegger_form_cdct_clientStraat", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientStraat']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[14]/div/input", "xpath:idRelative"],
+        ["xpath=//div[14]/div/input", "xpath:position"]
+      ],
+      "value": "Steegstraat"
+    }, {
+      "id": "82761a9c-720c-4276-a67b-29239e2b4ebf",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_clientHuisnummer",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientHuisnummer", "id"],
+        ["name=voorlegger_form[cdct][clientHuisnummer]", "name"],
+        ["css=#voorlegger_form_cdct_clientHuisnummer", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientHuisnummer']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[15]/div/input", "xpath:idRelative"],
+        ["xpath=//div[15]/div/input", "xpath:position"]
+      ],
+      "value": "1 B"
+    }, {
+      "id": "f647360a-8af2-4cff-8164-0abad52d1ca7",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_clientPostcode",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientPostcode", "id"],
+        ["name=voorlegger_form[cdct][clientPostcode]", "name"],
+        ["css=#voorlegger_form_cdct_clientPostcode", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientPostcode']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[16]/div/input", "xpath:idRelative"],
+        ["xpath=//div[16]/div/input", "xpath:position"]
+      ],
+      "value": "1234 WK"
+    }, {
+      "id": "a820aace-b8b3-4e79-86a7-a0b8ae1271f5",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_clientWoonplaats",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientWoonplaats", "id"],
+        ["name=voorlegger_form[cdct][clientWoonplaats]", "name"],
+        ["css=#voorlegger_form_cdct_clientWoonplaats", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientWoonplaats']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[17]/div/input", "xpath:idRelative"],
+        ["xpath=//div[17]/div/input", "xpath:position"]
+      ],
+      "value": "'s Compasser"
+    }, {
+      "id": "cddcb811-6b42-43c9-be24-ca4ae9b7ea0b",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_clientBurgelijkeStaat_2",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientBurgelijkeStaat_2", "id"],
+        ["css=#voorlegger_form_cdct_clientBurgelijkeStaat_2", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientBurgelijkeStaat_2']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger_form_cdct_clientBurgelijkeStaat']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8e3ed092-023c-4a3a-9d80-ac1d6ce04468",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Voeg kind toe",
+      "targets": [
+        ["linkText=Voeg kind toe", "linkText"],
+        ["css=.kind__add", "css:finder"],
+        ["xpath=//a[contains(text(),'Voeg kind toe')]", "xpath:link"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[19]/div/div/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[34]", "xpath:href"],
+        ["xpath=//div[19]/div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Voeg kind toe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0dc31a11-014a-434f-98b9-a1bbfa75a928",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_clientKinderen_0",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientKinderen_0", "id"],
+        ["name=voorlegger_form[cdct][clientKinderen][0]", "name"],
+        ["css=#voorlegger_form_cdct_clientKinderen_0", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientKinderen_0']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[19]/div/div/ul/li/input", "xpath:idRelative"],
+        ["xpath=//li/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dff1db96-15a6-4071-a860-520b4e70113e",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_clientKinderen_0",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientKinderen_0", "id"],
+        ["name=voorlegger_form[cdct][clientKinderen][0]", "name"],
+        ["css=#voorlegger_form_cdct_clientKinderen_0", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientKinderen_0']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[19]/div/div/ul/li/input", "xpath:idRelative"],
+        ["xpath=//li/input", "xpath:position"]
+      ],
+      "value": "1-1-2001"
+    }, {
+      "id": "068bd311-9667-499f-bc9b-f53f7870406f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Voeg kind toe",
+      "targets": [
+        ["linkText=Voeg kind toe", "linkText"],
+        ["css=.kind__add", "css:finder"],
+        ["xpath=//a[contains(text(),'Voeg kind toe')]", "xpath:link"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[19]/div/div/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[35]", "xpath:href"],
+        ["xpath=//div[19]/div/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Voeg kind toe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "22f672fb-7727-425c-98de-ec46c92dffeb",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_cdct_clientKinderen_1",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientKinderen_1", "id"],
+        ["name=voorlegger_form[cdct][clientKinderen][1]", "name"],
+        ["css=#voorlegger_form_cdct_clientKinderen_1", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientKinderen_1']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[19]/div/div/ul/li[2]/input", "xpath:idRelative"],
+        ["xpath=//li[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c4f41ed-91b0-406f-9bbc-e38874ccc736",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_cdct_clientKinderen_1",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientKinderen_1", "id"],
+        ["name=voorlegger_form[cdct][clientKinderen][1]", "name"],
+        ["css=#voorlegger_form_cdct_clientKinderen_1", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientKinderen_1']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[19]/div/div/ul/li[2]/input", "xpath:idRelative"],
+        ["xpath=//li[2]/input", "xpath:position"]
+      ],
+      "value": "1-2-2002"
+    }, {
+      "id": "6eefc849-3094-4aa4-8b78-466ee36e5ec5",
+      "comment": "",
+      "command": "click",
+      "target": "css=#voorlegger-legitimatie .dossier__voorlegger__sectie__body",
+      "targets": [
+        ["css=#voorlegger-legitimatie .dossier__voorlegger__sectie__body", "css:finder"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div/div/div/div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
       "id": "c72dc569-5891-4910-9bae-04b4784420c7",
       "comment": "",
       "command": "click",
@@ -1237,15 +1688,15 @@
       "id": "c9c59fe1-4d7d-45e8-9c4b-50e01b0dd9d3",
       "comment": "",
       "command": "click",
-      "target": "linkText=Ondertekend aanvraagformulier",
+      "target": "linkText=Ondertekende volmacht",
       "targets": [
-        ["linkText=Ondertekend aanvraagformulier", "linkText"],
+        ["linkText=Ondertekende volmacht", "linkText"],
         ["css=#voorlegger-ondertekendAanvraagFormulier .naam > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Ondertekend aanvraagformulier')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Ondertekende volmacht')]", "xpath:link"],
         ["xpath=//div[@id='voorlegger-ondertekendAanvraagFormulier']/div/div/h3/a", "xpath:idRelative"],
         ["xpath=(//a[contains(@href, '#id_voorlegger-ondertekendAanvraagFormulier')])[2]", "xpath:href"],
         ["xpath=//div[3]/div/div/h3/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Ondertekend aanvraagformulier')]", "xpath:innerText"]
+        ["xpath=//a[contains(.,'Ondertekende volmacht')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -1304,57 +1755,141 @@
       "id": "96d3e0d8-1472-4797-8f5b-61a279e88f49",
       "comment": "",
       "command": "click",
-      "target": "linkText=Beschikking UWV",
+      "target": "linkText=Inkomstenspecificatie",
       "targets": [
-        ["linkText=Beschikking UWV", "linkText"],
-        ["css=#voorlegger-beschikkingUwv .naam > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Beschikking UWV')]", "xpath:link"],
-        ["xpath=//div[@id='voorlegger-beschikkingUwv']/div/div/h3/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#id_voorlegger-beschikkingUwv')]", "xpath:href"],
-        ["xpath=//div[8]/div/div/h3/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Beschikking UWV')]", "xpath:innerText"]
+        ["linkText=Inkomstenspecificatie", "linkText"],
+        ["css=#voorlegger-inkomstenspecificatie .naam > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Inkomstenspecificatie')]", "xpath:link"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div/div/h3/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#id_voorlegger-inkomstenspecificatie')]", "xpath:href"],
+        ["xpath=//div[6]/div/div/h3/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Inkomstenspecificatie')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d444c442-4267-43c6-9019-4f8463bafcac",
+      "comment": "",
+      "command": "check",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingInkomenUitWerk",
+      "targets": [
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingInkomenUitWerk", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingInkomenUitWerk]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingInkomenUitWerk", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingInkomenUitWerk']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div[2]/div/div[2]/div/div/input", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "bb3a96d1-6943-49d7-bbba-5b9284d790af",
       "comment": "",
-      "command": "click",
-      "target": "id=voorlegger_form_beschikkingUwv_beschikkingUwvWw",
+      "command": "check",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingUwvZw",
       "targets": [
-        ["id=voorlegger_form_beschikkingUwv_beschikkingUwvWw", "id"],
-        ["name=voorlegger_form[beschikkingUwv][beschikkingUwvWw]", "name"],
-        ["css=#voorlegger_form_beschikkingUwv_beschikkingUwvWw", "css:finder"],
-        ["xpath=//input[@id='voorlegger_form_beschikkingUwv_beschikkingUwvWw']", "xpath:attributes"],
-        ["xpath=//div[@id='voorlegger-beschikkingUwv']/div[2]/div/div[2]/div/div/input", "xpath:idRelative"],
-        ["xpath=//div[8]/div[2]/div/div[2]/div/div/input", "xpath:position"]
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingUwvZw", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingUwvZw]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingUwvZw", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingUwvZw']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/div/input", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "82a09430-ba9a-40b7-bc09-acccc36be514",
       "comment": "",
-      "command": "click",
-      "target": "id=voorlegger_form_beschikkingUwv_beschikkingUwvWia",
+      "command": "check",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingUwvWw",
       "targets": [
-        ["id=voorlegger_form_beschikkingUwv_beschikkingUwvWia", "id"],
-        ["name=voorlegger_form[beschikkingUwv][beschikkingUwvWia]", "name"],
-        ["css=#voorlegger_form_beschikkingUwv_beschikkingUwvWia", "css:finder"],
-        ["xpath=//input[@id='voorlegger_form_beschikkingUwv_beschikkingUwvWia']", "xpath:attributes"],
-        ["xpath=//div[@id='voorlegger-beschikkingUwv']/div[2]/div/div[2]/div[2]/div/input", "xpath:idRelative"],
-        ["xpath=//div[2]/div/input", "xpath:position"]
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingUwvWw", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingUwvWw]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingUwvWw", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingUwvWw']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[2]/div/input", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "42767b2c-b273-4d98-baee-7f5776e5e6c7",
       "comment": "",
-      "command": "click",
-      "target": "id=voorlegger_form_beschikkingUwv_beschikkingUwvZw",
+      "command": "check",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingUwvWia",
       "targets": [
-        ["id=voorlegger_form_beschikkingUwv_beschikkingUwvZw", "id"],
-        ["name=voorlegger_form[beschikkingUwv][beschikkingUwvZw]", "name"],
-        ["css=#voorlegger_form_beschikkingUwv_beschikkingUwvZw", "css:finder"],
-        ["xpath=//input[@id='voorlegger_form_beschikkingUwv_beschikkingUwvZw']", "xpath:attributes"],
-        ["xpath=//div[@id='voorlegger-beschikkingUwv']/div[2]/div/div[2]/div[3]/div/input", "xpath:idRelative"],
-        ["xpath=//div[3]/div/input", "xpath:position"]
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingUwvWia", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingUwvWia]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingUwvWia", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingUwvWia']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "70af8f25-cc43-4a75-9168-383a5bf890ce",
+      "comment": "",
+      "command": "check",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingUwvWajong",
+      "targets": [
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingUwvWajong", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingUwvWajong]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingUwvWajong", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingUwvWajong']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[4]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3f39e961-3a7d-4f8d-8200-8853ec69054e",
+      "comment": "",
+      "command": "check",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamWPI",
+      "targets": [
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamWPI", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingGemeenteAmsterdamWPI]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamWPI", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamWPI']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[5]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[5]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a53356da-7b0d-4f5a-8a38-00ab8c2323de",
+      "comment": "",
+      "command": "check",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingSVBAOW",
+      "targets": [
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingSVBAOW", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingSVBAOW]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingSVBAOW", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingSVBAOW']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[6]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[6]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2db76102-08cc-4417-94d4-e0705f234de7",
+      "comment": "",
+      "command": "check",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingSVBANW",
+      "targets": [
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingSVBANW", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingSVBANW]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingSVBANW", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingSVBANW']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[7]/div/input", "xpath:idRelative"],
+        ["xpath=//div[7]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "eb26a8a0-3777-4e94-9eff-11fe0e17efae",
+      "comment": "",
+      "command": "check",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamIOAW",
+      "targets": [
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamIOAW", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingGemeenteAmsterdamIOAW]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamIOAW", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamIOAW']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[8]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[8]/div/input", "xpath:position"]
       ],
       "value": ""
     }, {
@@ -1375,14 +1910,14 @@
       "id": "dd2b3476-8989-45ea-a529-9aeca79ea1da",
       "comment": "",
       "command": "type",
-      "target": "id=voorlegger_form_beschikkingUwv_beschikkingUwvOverig",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingUwvOverig",
       "targets": [
-        ["id=voorlegger_form_beschikkingUwv_beschikkingUwvOverig", "id"],
-        ["name=voorlegger_form[beschikkingUwv][beschikkingUwvOverig]", "name"],
-        ["css=#voorlegger_form_beschikkingUwv_beschikkingUwvOverig", "css:finder"],
-        ["xpath=//input[@id='voorlegger_form_beschikkingUwv_beschikkingUwvOverig']", "xpath:attributes"],
-        ["xpath=//div[@id='voorlegger-beschikkingUwv']/div[2]/div/div[2]/div[4]/div/input", "xpath:idRelative"],
-        ["xpath=//div[4]/div/input", "xpath:position"]
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingUwvOverig", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingUwvOverig]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingUwvOverig", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingUwvOverig']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div[2]/div/div[2]/div[3]/div/input", "xpath:position"]
       ],
       "value": "Lorem Ipsum"
     }, {
@@ -1399,18 +1934,84 @@
       ],
       "value": ""
     }, {
+      "id": "4ee9bb0f-b9ef-43ff-8348-d05985847ee4",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Arbeidsovereenkomst",
+      "targets": [
+        ["css=#voorlegger-arbeidsovereenkomst .naam > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Arbeidsovereenkomst')])[4]", "xpath:link"],
+        ["xpath=//div[@id='voorlegger-arbeidsovereenkomst']/div/div/h3/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#id_voorlegger-arbeidsovereenkomst')])[6]", "xpath:href"],
+        ["xpath=//div[7]/div/div/h3/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "11fb102d-3c8d-4ed0-a83a-e757168061b1",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstWerkgever",
+      "targets": [
+        ["id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstWerkgever", "id"],
+        ["name=voorlegger_form[arbeidsovereenkomst][arbeidsovereenkomstWerkgever]", "name"],
+        ["css=#voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstWerkgever", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstWerkgever']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-arbeidsovereenkomst']/div[2]/div/div[2]/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[7]/div[2]/div/div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": "Lorem BV"
+    }, {
+      "id": "81c173a3-a24f-41ec-880f-cb0dc3714cf6",
+      "comment": "",
+      "command": "check",
+      "target": "id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstContract_1",
+      "targets": [
+        ["id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstContract_1", "id"],
+        ["css=#voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstContract_1", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstContract_1']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstContract']/input[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1b75d95e-fec3-4025-9186-b6e39621242b",
+      "comment": "",
+      "command": "type",
+      "target": "id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerWerkgever",
+      "targets": [
+        ["id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerWerkgever", "id"],
+        ["name=voorlegger_form[arbeidsovereenkomst][arbeidsovereenkomstPartnerWerkgever]", "name"],
+        ["css=#voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerWerkgever", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerWerkgever']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-arbeidsovereenkomst']/div[2]/div/div[2]/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[7]/div[2]/div/div[2]/div[3]/div/input", "xpath:position"]
+      ],
+      "value": "Ipsum NV"
+    }, {
+      "id": "c4914482-346c-494b-a0c6-9de6f2e43181",
+      "comment": "",
+      "command": "check",
+      "target": "id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerContract_0",
+      "targets": [
+        ["id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerContract_0", "id"],
+        ["name=voorlegger_form[arbeidsovereenkomst][arbeidsovereenkomstPartnerContract]", "name"],
+        ["css=#voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerContract_0", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerContract_0']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerContract']/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
       "id": "72a9989f-02b3-4a92-8183-3e7fd7b42039",
       "comment": "",
       "command": "click",
       "target": "linkText=Toeslagen",
       "targets": [
-        ["linkText=Toeslagen", "linkText"],
         ["css=#voorlegger-toeslagen .naam > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Toeslagen')]", "xpath:link"],
+        ["xpath=(//a[contains(text(),'Toeslagen')])[2]", "xpath:link"],
         ["xpath=//div[@id='voorlegger-toeslagen']/div/div/h3/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#id_voorlegger-toeslagen')]", "xpath:href"],
-        ["xpath=//div[12]/div/div/h3/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Toeslagen')]", "xpath:innerText"]
+        ["xpath=(//a[contains(@href, '#id_voorlegger-toeslagen')])[2]", "xpath:href"],
+        ["xpath=//div[12]/div/div/h3/a", "xpath:position"]
       ],
       "value": ""
     }, {
@@ -2393,15 +2994,15 @@
       "id": "31985392-8b6b-414e-bca1-218e8f07b45e",
       "comment": "",
       "command": "click",
-      "target": "linkText=Legitimatie",
+      "target": "linkText=Persoonsgegevens en legitimatie",
       "targets": [
-        ["linkText=Legitimatie", "linkText"],
+        ["linkText=Persoonsgegevens en legitimatie", "linkText"],
         ["css=#voorlegger-legitimatie .naam > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Legitimatie')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Persoonsgegevens en legitimatie')]", "xpath:link"],
         ["xpath=//div[@id='voorlegger-legitimatie']/div/div/h3/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#id_voorlegger-legitimatie')]", "xpath:href"],
+        ["xpath=(//a[contains(@href, '#id_voorlegger-legitimatie')])[5]", "xpath:href"],
         ["xpath=//h3/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Legitimatie')]", "xpath:innerText"]
+        ["xpath=//a[contains(.,'Persoonsgegevens en legitimatie')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -2479,15 +3080,15 @@
       "id": "9c6076e7-61eb-4996-9146-5d83542333aa",
       "comment": "",
       "command": "click",
-      "target": "linkText=Ondertekend aanvraagformulier",
+      "target": "linkText=Ondertekende volmacht",
       "targets": [
-        ["linkText=Ondertekend aanvraagformulier", "linkText"],
+        ["linkText=Ondertekende volmacht", "linkText"],
         ["css=#voorlegger-ondertekendAanvraagFormulier .naam > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Ondertekend aanvraagformulier')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Ondertekende volmacht')]", "xpath:link"],
         ["xpath=//div[@id='voorlegger-ondertekendAanvraagFormulier']/div/div/h3/a", "xpath:idRelative"],
         ["xpath=//a[contains(@href, '#id_voorlegger-ondertekendAanvraagFormulier')]", "xpath:href"],
         ["xpath=//div[3]/div/div/h3/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Ondertekend aanvraagformulier')]", "xpath:innerText"]
+        ["xpath=//a[contains(.,'Ondertekende volmacht')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -4011,35 +4612,14 @@
     }, {
       "id": "e24c1236-3385-432f-ac31-6fd147cc22eb",
       "comment": "",
-      "command": "click",
-      "target": "css=.rd-container:nth-child(13) .rd-back",
+      "command": "type",
+      "target": "id=schuld_item_form_ontstaansDatum",
       "targets": [
         ["css=.rd-container:nth-child(13) .rd-back", "css:finder"],
         ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
         ["xpath=//div[3]/div/div/button", "xpath:position"]
       ],
-      "value": "Vul datum in door te klikken"
-    }, {
-      "id": "8892f9b1-30e5-451e-b1d3-fa05e3c220a2",
-      "comment": "",
-      "command": "click",
-      "target": "css=.rd-container:nth-child(13) .rd-back",
-      "targets": [
-        ["css=.rd-container:nth-child(13) .rd-back", "css:finder"],
-        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
-        ["xpath=//div[3]/div/div/button", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "49fb6fc9-89cf-40e5-af7d-cd71c17ed67f",
-      "comment": "",
-      "command": "click",
-      "target": "css=.rd-container:nth-child(13) .rd-days-row:nth-child(1) > .rd-day-body:nth-child(2)",
-      "targets": [
-        ["css=.rd-container:nth-child(13) .rd-days-row:nth-child(1) > .rd-day-body:nth-child(2)", "css:finder"],
-        ["xpath=//div[3]/div/div/table/tbody/tr/td[2]", "xpath:position"]
-      ],
-      "value": ""
+      "value": "1-2-2017"
     }, {
       "id": "f1032ef4-5e8e-408b-ba7e-7f81a62886b1",
       "comment": "",
@@ -4192,14 +4772,11 @@
       "id": "043173bc-62c5-4e9f-adb1-c8a996896c1a",
       "comment": "",
       "command": "type",
-      "target": "id=schuld_item_form_ontstaansDatum",
+      "target": "css=.nav-toggle > .primary",
       "targets": [
-        ["id=schuld_item_form_ontstaansDatum", "id"],
-        ["name=schuld_item_form[ontstaansDatum]", "name"],
-        ["css=#schuld_item_form_ontstaansDatum", "css:finder"],
-        ["xpath=//input[@id='schuld_item_form_ontstaansDatum']", "xpath:attributes"],
-        ["xpath=//div[@id='nieuwe-schuld-toevoegen']/div/div[3]/div[2]/div[2]/div/input", "xpath:idRelative"],
-        ["xpath=//div[2]/div/input", "xpath:position"]
+        ["css=.nav-toggle > .primary", "css:finder"],
+        ["xpath=//nav/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Alle acties ')]", "xpath:innerText"]
       ],
       "value": "01-01-2018"
     }, {
@@ -4489,11 +5066,12 @@
       "id": "f0f9ab0a-86b2-41f9-a5da-bff7d2ec2ae6",
       "comment": "",
       "command": "click",
-      "target": "css=#schuldItem-395 strong",
+      "target": "css=#schuldItem-412 > .dossier__voorlegger__header a",
       "targets": [
-        ["css=#schuldItem-395 strong", "css:finder"],
-        ["xpath=//div[@id='schuldItem-395']/div/div/h3/a/strong", "xpath:idRelative"],
-        ["xpath=//h3/a/strong", "xpath:position"]
+        ["css=#schuldItem-412 > .dossier__voorlegger__header a", "css:finder"],
+        ["xpath=//div[@id='schuldItem-412']/div/div/h3/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#id_schuldItem-412')]", "xpath:href"],
+        ["xpath=//h3/a", "xpath:position"]
       ],
       "value": ""
     }, {
@@ -4745,6 +5323,229 @@
       ],
       "value": ""
     }, {
+      "id": "1722dda2-3600-4527-b5eb-f6000fe14632",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Persoonsgegevens en legitimatie",
+      "targets": [
+        ["linkText=Persoonsgegevens en legitimatie", "linkText"],
+        ["css=#voorlegger-legitimatie .naam > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Persoonsgegevens en legitimatie')]", "xpath:link"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div/div/h3/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#id_voorlegger-legitimatie')])[5]", "xpath:href"],
+        ["xpath=//h3/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Persoonsgegevens en legitimatie')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c3bbcbf1-a39f-4341-a882-1dd95a06b741",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_clientGeboortedatum",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientGeboortedatum", "id"],
+        ["name=voorlegger_form[cdct][clientGeboortedatum]", "name"],
+        ["css=#voorlegger_form_cdct_clientGeboortedatum", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientGeboortedatum']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/input", "xpath:position"]
+      ],
+      "value": "15-05-1980"
+    }, {
+      "id": "5654f4fa-65b4-48ca-8bc3-a9bdc07721fd",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_clientBSN",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientBSN", "id"],
+        ["name=voorlegger_form[cdct][clientBSN]", "name"],
+        ["css=#voorlegger_form_cdct_clientBSN", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientBSN']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[5]/div/input", "xpath:idRelative"],
+        ["xpath=//div[5]/div/input", "xpath:position"]
+      ],
+      "value": "523698745"
+    }, {
+      "id": "5bfb25d2-f974-49a7-bf62-c8be84af411f",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_clientBanknaam",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientBanknaam", "id"],
+        ["name=voorlegger_form[cdct][clientBanknaam]", "name"],
+        ["css=#voorlegger_form_cdct_clientBanknaam", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientBanknaam']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[6]/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/input", "xpath:position"]
+      ],
+      "value": "BLINK"
+    }, {
+      "id": "01cc10ad-afc6-4f97-b6a0-793c218787ab",
+      "comment": "",
+      "command": "assertChecked",
+      "target": "id=voorlegger_form_cdct_partnerGeslacht_1",
+      "targets": [
+        ["id=voorlegger_form_cdct_partnerGeslacht_1", "id"],
+        ["css=#voorlegger_form_cdct_partnerGeslacht_1", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_partnerGeslacht_1']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger_form_cdct_partnerGeslacht']/input[2]", "xpath:idRelative"],
+        ["xpath=//div[7]/div/div/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a8d058af-5229-454a-9067-24d951a4c685",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_partnerGeboortedatum",
+      "targets": [
+        ["id=voorlegger_form_cdct_partnerGeboortedatum", "id"],
+        ["name=voorlegger_form[cdct][partnerGeboortedatum]", "name"],
+        ["css=#voorlegger_form_cdct_partnerGeboortedatum", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_partnerGeboortedatum']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[10]/div/input", "xpath:idRelative"],
+        ["xpath=//div[10]/div/input", "xpath:position"]
+      ],
+      "value": "05-08-1983"
+    }, {
+      "id": "fd18f185-113d-47cf-b0fd-2392e39dc517",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_partnerBSN",
+      "targets": [
+        ["id=voorlegger_form_cdct_partnerBSN", "id"],
+        ["name=voorlegger_form[cdct][partnerBSN]", "name"],
+        ["css=#voorlegger_form_cdct_partnerBSN", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_partnerBSN']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[11]/div/input", "xpath:idRelative"],
+        ["xpath=//div[11]/div/input", "xpath:position"]
+      ],
+      "value": "84569874"
+    }, {
+      "id": "603accb8-f095-4ab9-ae04-c86c4921407c",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_partnerBanknaam",
+      "targets": [
+        ["id=voorlegger_form_cdct_partnerBanknaam", "id"],
+        ["name=voorlegger_form[cdct][partnerBanknaam]", "name"],
+        ["css=#voorlegger_form_cdct_partnerBanknaam", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_partnerBanknaam']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[12]/div/input", "xpath:idRelative"],
+        ["xpath=//div[12]/div/input", "xpath:position"]
+      ],
+      "value": "INK"
+    }, {
+      "id": "47ad01d6-586d-4373-a8be-d1784c723e1c",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_clientTelefoonnummer",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientTelefoonnummer", "id"],
+        ["name=voorlegger_form[cdct][clientTelefoonnummer]", "name"],
+        ["css=#voorlegger_form_cdct_clientTelefoonnummer", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientTelefoonnummer']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[13]/div/input", "xpath:idRelative"],
+        ["xpath=//div[13]/div/input", "xpath:position"]
+      ],
+      "value": "06-12345678"
+    }, {
+      "id": "e742938c-2e19-443b-8d11-2406b444eaa3",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_clientStraat",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientStraat", "id"],
+        ["name=voorlegger_form[cdct][clientStraat]", "name"],
+        ["css=#voorlegger_form_cdct_clientStraat", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientStraat']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[14]/div/input", "xpath:idRelative"],
+        ["xpath=//div[14]/div/input", "xpath:position"]
+      ],
+      "value": "Steegstraat"
+    }, {
+      "id": "a03a9276-a516-4e41-8cfa-a8290bb47114",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_clientHuisnummer",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientHuisnummer", "id"],
+        ["name=voorlegger_form[cdct][clientHuisnummer]", "name"],
+        ["css=#voorlegger_form_cdct_clientHuisnummer", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientHuisnummer']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[15]/div/input", "xpath:idRelative"],
+        ["xpath=//div[15]/div/input", "xpath:position"]
+      ],
+      "value": "1 B"
+    }, {
+      "id": "a5129a3a-b709-4974-8152-be3dc0bd877a",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_clientPostcode",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientPostcode", "id"],
+        ["name=voorlegger_form[cdct][clientPostcode]", "name"],
+        ["css=#voorlegger_form_cdct_clientPostcode", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientPostcode']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[16]/div/input", "xpath:idRelative"],
+        ["xpath=//div[16]/div/input", "xpath:position"]
+      ],
+      "value": "1234 WK"
+    }, {
+      "id": "a62b5572-efa6-4dd9-9de3-53acfd5d7e7d",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_clientWoonplaats",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientWoonplaats", "id"],
+        ["name=voorlegger_form[cdct][clientWoonplaats]", "name"],
+        ["css=#voorlegger_form_cdct_clientWoonplaats", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientWoonplaats']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[17]/div/input", "xpath:idRelative"],
+        ["xpath=//div[17]/div/input", "xpath:position"]
+      ],
+      "value": "'s Compasser"
+    }, {
+      "id": "74c628b4-fd94-4908-9d14-024d1082ccfb",
+      "comment": "",
+      "command": "assertChecked",
+      "target": "id=voorlegger_form_cdct_clientBurgelijkeStaat_2",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientBurgelijkeStaat_2", "id"],
+        ["css=#voorlegger_form_cdct_clientBurgelijkeStaat_2", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientBurgelijkeStaat_2']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger_form_cdct_clientBurgelijkeStaat']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f338c52-f2c5-46cd-8f2e-9ad1a0fd77f8",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_clientKinderen_0",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientKinderen_0", "id"],
+        ["name=voorlegger_form[cdct][clientKinderen][0]", "name"],
+        ["css=#voorlegger_form_cdct_clientKinderen_0", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientKinderen_0']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[19]/div/div/ul/li/input", "xpath:idRelative"],
+        ["xpath=//li/input", "xpath:position"]
+      ],
+      "value": "01-01-2001"
+    }, {
+      "id": "3ccfb804-8aea-4d2f-9300-91be338f5abf",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_cdct_clientKinderen_1",
+      "targets": [
+        ["id=voorlegger_form_cdct_clientKinderen_1", "id"],
+        ["name=voorlegger_form[cdct][clientKinderen][1]", "name"],
+        ["css=#voorlegger_form_cdct_clientKinderen_1", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_cdct_clientKinderen_1']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[19]/div/div/ul/li[2]/input", "xpath:idRelative"],
+        ["xpath=//li[2]/input", "xpath:position"]
+      ],
+      "value": "01-02-2002"
+    }, {
       "id": "5e565364-abfd-4b31-bd98-598a6f421fc2",
       "comment": "",
       "command": "click",
@@ -4777,15 +5578,15 @@
       "id": "1b941fe2-c001-4070-afff-85e6839e36f4",
       "comment": "",
       "command": "click",
-      "target": "linkText=Ondertekend aanvraagformulier",
+      "target": "linkText=Ondertekende volmacht",
       "targets": [
-        ["linkText=Ondertekend aanvraagformulier", "linkText"],
+        ["linkText=Ondertekende volmacht", "linkText"],
         ["css=#voorlegger-ondertekendAanvraagFormulier .naam > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Ondertekend aanvraagformulier')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Ondertekende volmacht')]", "xpath:link"],
         ["xpath=//div[@id='voorlegger-ondertekendAanvraagFormulier']/div/div/h3/a", "xpath:idRelative"],
         ["xpath=(//a[contains(@href, '#id_voorlegger-ondertekendAanvraagFormulier')])[2]", "xpath:href"],
         ["xpath=//div[3]/div/div/h3/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Ondertekend aanvraagformulier')]", "xpath:innerText"]
+        ["xpath=//a[contains(.,'Ondertekende volmacht')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -4817,77 +5618,227 @@
       "id": "aa10441a-f0c3-414f-b597-365c6e5ca017",
       "comment": "",
       "command": "click",
-      "target": "linkText=Beschikking UWV",
+      "target": "css=#voorlegger-inkomstenspecificatie .naam > a",
       "targets": [
-        ["linkText=Beschikking UWV", "linkText"],
-        ["css=#voorlegger-beschikkingUwv .naam > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Beschikking UWV')]", "xpath:link"],
-        ["xpath=//div[@id='voorlegger-beschikkingUwv']/div/div/h3/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#id_voorlegger-beschikkingUwv')]", "xpath:href"],
-        ["xpath=//div[8]/div/div/h3/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Beschikking UWV')]", "xpath:innerText"]
+        ["css=#voorlegger-inkomstenspecificatie .naam > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Inkomstenspecificatie')])[3]", "xpath:link"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div/div/h3/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#id_voorlegger-inkomstenspecificatie')])[3]", "xpath:href"],
+        ["xpath=//div[6]/div/div/h3/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a47eaf79-69ae-4c96-93ee-76536dfb24a6",
+      "comment": "",
+      "command": "verifyChecked",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingInkomenUitWerk",
+      "targets": [
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingInkomenUitWerk", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingInkomenUitWerk]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingInkomenUitWerk", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingInkomenUitWerk']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div[2]/div/div[2]/div/div/input", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "afada6bb-e689-4ef0-9265-42184a9e0720",
       "comment": "",
       "command": "verifyChecked",
-      "target": "id=voorlegger_form_beschikkingUwv_beschikkingUwvWw",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingUwvZw",
       "targets": [
-        ["id=voorlegger_form_beschikkingUwv_beschikkingUwvWw", "id"],
-        ["name=voorlegger_form[beschikkingUwv][beschikkingUwvWw]", "name"],
-        ["css=#voorlegger_form_beschikkingUwv_beschikkingUwvWw", "css:finder"],
-        ["xpath=//input[@id='voorlegger_form_beschikkingUwv_beschikkingUwvWw']", "xpath:attributes"],
-        ["xpath=//div[@id='voorlegger-beschikkingUwv']/div[2]/div/div[2]/div/div/input", "xpath:idRelative"],
-        ["xpath=//div[8]/div[2]/div/div[2]/div/div/input", "xpath:position"]
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingUwvZw", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingUwvZw]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingUwvZw", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingUwvZw']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/div/input", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "c7a103e2-2977-48b9-94e5-df2706588bb1",
       "comment": "",
       "command": "verifyChecked",
-      "target": "id=voorlegger_form_beschikkingUwv_beschikkingUwvWia",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingUwvWw",
       "targets": [
-        ["id=voorlegger_form_beschikkingUwv_beschikkingUwvWia", "id"],
-        ["name=voorlegger_form[beschikkingUwv][beschikkingUwvWia]", "name"],
-        ["css=#voorlegger_form_beschikkingUwv_beschikkingUwvWia", "css:finder"],
-        ["xpath=//input[@id='voorlegger_form_beschikkingUwv_beschikkingUwvWia']", "xpath:attributes"],
-        ["xpath=//div[@id='voorlegger-beschikkingUwv']/div[2]/div/div[2]/div[2]/div/input", "xpath:idRelative"],
-        ["xpath=//div[2]/div/input", "xpath:position"]
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingUwvWw", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingUwvWw]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingUwvWw", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingUwvWw']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[2]/div/input", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "6426ea73-6f63-48bd-af29-f1e4abcf2fdf",
       "comment": "",
       "command": "verifyChecked",
-      "target": "id=voorlegger_form_beschikkingUwv_beschikkingUwvZw",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingUwvWia",
       "targets": [
-        ["id=voorlegger_form_beschikkingUwv_beschikkingUwvZw", "id"],
-        ["name=voorlegger_form[beschikkingUwv][beschikkingUwvZw]", "name"],
-        ["css=#voorlegger_form_beschikkingUwv_beschikkingUwvZw", "css:finder"],
-        ["xpath=//input[@id='voorlegger_form_beschikkingUwv_beschikkingUwvZw']", "xpath:attributes"],
-        ["xpath=//div[@id='voorlegger-beschikkingUwv']/div[2]/div/div[2]/div[3]/div/input", "xpath:idRelative"],
-        ["xpath=//div[3]/div/input", "xpath:position"]
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingUwvWia", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingUwvWia]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingUwvWia", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingUwvWia']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f44370f6-c854-4697-8575-9c56424480a8",
+      "comment": "",
+      "command": "verifyChecked",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingUwvWajong",
+      "targets": [
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingUwvWajong", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingUwvWajong]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingUwvWajong", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingUwvWajong']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[4]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[4]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d2caef2f-35d9-4f7a-8943-c4add5fe239d",
+      "comment": "",
+      "command": "verifyChecked",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamWPI",
+      "targets": [
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamWPI", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingGemeenteAmsterdamWPI]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamWPI", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamWPI']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[5]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[5]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0cbf0697-80d4-4ab8-80bb-c5ab39f5baae",
+      "comment": "",
+      "command": "verifyChecked",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingSVBAOW",
+      "targets": [
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingSVBAOW", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingSVBAOW]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingSVBAOW", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingSVBAOW']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[6]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[6]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5b61b37e-9c02-406e-9bef-e0c00dd899df",
+      "comment": "",
+      "command": "verifyChecked",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingSVBANW",
+      "targets": [
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingSVBANW", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingSVBANW]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingSVBANW", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingSVBANW']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[7]/div/input", "xpath:idRelative"],
+        ["xpath=//div[7]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "80705f5b-a4b7-40e1-8828-f25df6af2e8d",
+      "comment": "",
+      "command": "verifyChecked",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamIOAW",
+      "targets": [
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamIOAW", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingGemeenteAmsterdamIOAW]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamIOAW", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingGemeenteAmsterdamIOAW']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[2]/div[8]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div[8]/div/input", "xpath:position"]
       ],
       "value": ""
     }, {
       "id": "dfc1bb33-a3b9-4dd8-b577-7e9aba3b8020",
       "comment": "",
       "command": "verifyValue",
-      "target": "id=voorlegger_form_beschikkingUwv_beschikkingUwvOverig",
+      "target": "id=voorlegger_form_inkomstenspecificatie_beschikkingUwvOverig",
       "targets": [
-        ["id=voorlegger_form_beschikkingUwv_beschikkingUwvOverig", "id"],
-        ["name=voorlegger_form[beschikkingUwv][beschikkingUwvOverig]", "name"],
-        ["css=#voorlegger_form_beschikkingUwv_beschikkingUwvOverig", "css:finder"],
-        ["xpath=//input[@id='voorlegger_form_beschikkingUwv_beschikkingUwvOverig']", "xpath:attributes"],
-        ["xpath=//div[@id='voorlegger-beschikkingUwv']/div[2]/div/div[2]/div[4]/div/input", "xpath:idRelative"],
-        ["xpath=//div[4]/div/input", "xpath:position"]
+        ["id=voorlegger_form_inkomstenspecificatie_beschikkingUwvOverig", "id"],
+        ["name=voorlegger_form[inkomstenspecificatie][beschikkingUwvOverig]", "name"],
+        ["css=#voorlegger_form_inkomstenspecificatie_beschikkingUwvOverig", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_inkomstenspecificatie_beschikkingUwvOverig']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-inkomstenspecificatie']/div[2]/div/div[2]/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div[2]/div/div[2]/div[3]/div/input", "xpath:position"]
       ],
       "value": "Lorem Ipsum"
     }, {
+      "id": "cef72f9a-d185-490f-b266-66f2cdc52cd8",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Arbeidsovereenkomst",
+      "targets": [
+        ["css=#voorlegger-arbeidsovereenkomst .naam > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'Arbeidsovereenkomst')])[4]", "xpath:link"],
+        ["xpath=//div[@id='voorlegger-arbeidsovereenkomst']/div/div/h3/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#id_voorlegger-arbeidsovereenkomst')])[6]", "xpath:href"],
+        ["xpath=//div[7]/div/div/h3/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "43bd8219-da62-4481-8154-4ff84326a913",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstWerkgever",
+      "targets": [
+        ["id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstWerkgever", "id"],
+        ["name=voorlegger_form[arbeidsovereenkomst][arbeidsovereenkomstWerkgever]", "name"],
+        ["css=#voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstWerkgever", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstWerkgever']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-arbeidsovereenkomst']/div[2]/div/div[2]/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[7]/div[2]/div/div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": "Lorem BV"
+    }, {
+      "id": "47a7d722-5d90-47ae-9417-a6edf441dbf5",
+      "comment": "",
+      "command": "assertChecked",
+      "target": "id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstContract_1",
+      "targets": [
+        ["id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstContract_1", "id"],
+        ["css=#voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstContract_1", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstContract_1']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstContract']/input[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "53d774ae-2933-47a6-989b-0438999b3176",
+      "comment": "",
+      "command": "assertValue",
+      "target": "id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerWerkgever",
+      "targets": [
+        ["id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerWerkgever", "id"],
+        ["name=voorlegger_form[arbeidsovereenkomst][arbeidsovereenkomstPartnerWerkgever]", "name"],
+        ["css=#voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerWerkgever", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerWerkgever']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-arbeidsovereenkomst']/div[2]/div/div[2]/div[3]/div/input", "xpath:idRelative"],
+        ["xpath=//div[7]/div[2]/div/div[2]/div[3]/div/input", "xpath:position"]
+      ],
+      "value": "Ipsum NV"
+    }, {
+      "id": "8dbc708c-93a2-4f46-aa92-525ae9d8a0ae",
+      "comment": "",
+      "command": "assertChecked",
+      "target": "id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerContract_0",
+      "targets": [
+        ["id=voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerContract_0", "id"],
+        ["name=voorlegger_form[arbeidsovereenkomst][arbeidsovereenkomstPartnerContract]", "name"],
+        ["css=#voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerContract_0", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerContract_0']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger_form_arbeidsovereenkomst_arbeidsovereenkomstPartnerContract']/input", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
       "id": "59c0b805-1428-484e-b725-abc445f7c069",
       "comment": "",
-      "command": "//click",
+      "command": "click",
       "target": "linkText=Toeslagen",
       "targets": [
         ["linkText=Toeslagen", "linkText"],
@@ -5462,15 +6413,15 @@
       "id": "6ea3be35-39a5-4988-9422-61b09e0158f1",
       "comment": "",
       "command": "click",
-      "target": "linkText=Legitimatie",
+      "target": "linkText=Persoonsgegevens en legitimatie",
       "targets": [
-        ["linkText=Legitimatie", "linkText"],
+        ["linkText=Persoonsgegevens en legitimatie", "linkText"],
         ["css=#voorlegger-legitimatie .naam > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Legitimatie')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Persoonsgegevens en legitimatie')]", "xpath:link"],
         ["xpath=//div[@id='voorlegger-legitimatie']/div/div/h3/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#id_voorlegger-legitimatie')]", "xpath:href"],
+        ["xpath=(//a[contains(@href, '#id_voorlegger-legitimatie')])[5]", "xpath:href"],
         ["xpath=//h3/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Legitimatie')]", "xpath:innerText"]
+        ["xpath=//a[contains(.,'Persoonsgegevens en legitimatie')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
