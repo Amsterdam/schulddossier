@@ -5,37 +5,45 @@
 {% block pdfsplitter %}{% endblock %}
 
 {% block document %}
-  
 
-<nav class="nav-internal">
-    <ul>
-        <li>
-          <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"><i class="icon-arrow-left"></i> Terug naar overzicht</a>
-        </li>
-    </ul>
-</nav>
-
-<div class="document well">
+<div class="document document__gray well well__wide">
     
-    <div class="document-header">
       <h1 class="document-title">Nieuw dossier</h1>
-      <p class="document-help">Vul onderstaand formulier in om een nieuw dossier te openen.</p>
-    </div>
     
     <div class="form-container">
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
-        {{ form_row(form.clientNaam) }}
-        {{ form_row(form.partnerNaam) }}
+        {{ form_errors(form) }}
+        <div class="columns">
+        <div class="column">
+            <h3 class="document-team">Cliënt</h3>
+            {{ form_row(form.clientGeslacht, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__horizontal'}}) }}
+            {{ form_row(form.clientNaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+            {{ form_row(form.clientVoorletters, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+            {{ form_row(form.clientGeboortedatum, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+            {{ form_row(form.clientBSN, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+            {{ form_row(form.clientBanknaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+        </div>
+        <div class="column">
+            {{ form_row(form.partnerNvt, {'attr': {'form_row_class': 'form-row__checkbox--right'}}) }}
+            <h3 class="document-team">Partner</h3>
+            {{ form_row(form.partnerGeslacht, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__horizontal'}}) }}
+            {{ form_row(form.partnerNaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+            {{ form_row(form.partnerVoorletters, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+            {{ form_row(form.partnerGeboortedatum, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+            {{ form_row(form.partnerBSN, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+            {{ form_row(form.partnerBanknaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+        </div>
+        </div>
         <div class="columns">
             <div class="column">
                 <h3 class="document-team">MaDi</h3>
-                {{ form_row(form.schuldHulpbureauGebruiker) }}
-                {{ form_row(form.regasNummer) }}
+                {{ form_row(form.schuldHulpbureauGebruiker, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                {{ form_row(form.regasNummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
             </div>
             <div class="column">
                 <h3 class="document-team">GKA</h3>
-                {{ form_row(form.teamGka) }}
-                {{ form_row(form.allegroNummer) }}
+                {{ form_row(form.teamGka, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                {{ form_row(form.allegroNummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
             </div>
         </div>
         <p class="buttons right">

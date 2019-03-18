@@ -87,7 +87,17 @@ textarea {
 }
 
 select {
-  padding-right: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  padding-right: 25px;
+  @extend .ico-arrow-down;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center;
+
+
 }
 
 input[readonly],
@@ -211,6 +221,29 @@ form {
     position: relative;
     z-index: 1;
     margin-bottom: $lineHeight;
+
+  }
+  .form-row--no-label-margin label {
+    margin: 0;
+    padding: 0;
+  }
+  .form-row__checkbox--right {
+    float: right;
+    margin: 5px 0 0;
+    input,
+    label {
+      display: inline-block;
+    }
+    input[type="checkbox"] {
+      height: auto;
+    }
+    label {
+      padding: 0;
+      width: auto;
+    }
+  }
+  .form-row.rome-active {
+    z-index: 2;
   }
   [data-unit] {
     position: relative;
@@ -252,6 +285,70 @@ form {
     }
 
     display: block;
+  }
+  .form-row__wide {
+    .label-widget {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+    }
+    .kind__container {
+      width: 66.666%;
+    }
+    .radio-group {
+      width: 66.666%;
+      display: flex;
+      input {
+        margin-right: 10px;
+      }
+    }
+    .radio-group__horizontal {
+
+    }
+    .radio-group__vertical {
+      flex-wrap: wrap;
+      input,
+      label {
+        margin: 0 0 10px 0;
+        padding: 0;
+      }
+      input {
+        width: 12%;
+      }
+      label {
+        width: 88%;
+      }
+    }
+    label {
+      width: 33.333%;
+    }
+  }
+  .form-row__checkbox--right {
+
+  }
+  .form-row-wrapper {
+    display: flex;
+  }
+  .form-row-wrapper--horizontal {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    .form-row {
+      display: inline;
+      margin: 0 30px 20px 0;
+    }
+    .label-widget {
+      width: auto;
+    }
+    label {
+      order: 2;
+      padding: 0;
+      width: auto;
+    }
+    input[type="checkbox"] {
+      order: 1;
+      height: auto;
+    }
   }
 }
 
@@ -332,6 +429,9 @@ form {
       margin-left: 2em;
 
     }
+  }
+  .spread {
+
   }
 
   &.sticky {

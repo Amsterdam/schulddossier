@@ -40,10 +40,6 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
-                {{ form_row(form.beschikkingUwvWw) }}
-                {{ form_row(form.beschikkingUwvWia) }}
-                {{ form_row(form.beschikkingUwvZw) }}
-                {{ form_row(form.beschikkingUwvOverig) }}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Beschikking UWV'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}

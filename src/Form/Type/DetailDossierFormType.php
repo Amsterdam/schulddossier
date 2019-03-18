@@ -8,6 +8,11 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Event\TransformMedewerkerSchuldhulpbu
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,16 +30,9 @@ class DetailDossierFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('clientNaam', TextType::class, [
-            'label' => 'Cliëntnaam',
-            'required' => true
-        ]);
-        $builder->add('partnerNaam', TextType::class, [
-            'label' => 'Partnernaam',
-            'required' => false
-        ]);
 
         $builder->add('teamGka', EntityType::class, [
+            'placeholder' => '- Kies een GKA Team -',
             'required' => false,
             'class' => Team::class,
             'multiple' => false,

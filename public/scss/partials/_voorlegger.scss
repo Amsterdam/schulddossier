@@ -1,17 +1,17 @@
 .dossier {
   .row {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-bottom: 20px;
     & > * {
-      width: 45%;
-      padding: 0 2.5%;
+      width: 47%;
     }
     .col-1-1 {
       width: 100%;
     }
     .col-1-2 {
-      width: 45%;
-      padding: 0 2.5%;
+      width: 47%;
     }
     &.row-max-height {
       overflow-y: auto;
@@ -613,9 +613,6 @@
       margin: 0;
     }
   }
-  h4 + .form-row label {
-    display: none;
-  }
 }
 
 .dossier__voorlegger__sectie__close {
@@ -703,20 +700,21 @@
 .dossier__dashboard {
   top: 110px;
   left: 437px;
-  //background: lightgrey;
+  overflow-y: auto;
   position: absolute;
-  width: calc(100vw - 435px);
+  width: calc(100vw - 442px);
   height: calc(100vh - 110px);
   display: flex;
+  justify-content: space-evenly;
   .col-1-1 {
     //border-top: 1px solid #000;
     //text-align: center;
   }
-  .button {
-    //margin-top: 30px;
-  }
   h4 {
     font-size: $fs-large;
+    margin-bottom: 10px;
+  }
+  h3  {
     margin-bottom: 10px;
   }
 }
@@ -724,16 +722,36 @@
 .dossier__dashboard__default,
 .dossier__dashboard__messages {
   padding-top: 100px;
-  width: 40%;
-  padding: 50px 6.666% 0;
+  //height: calc(100% - 100px);
+  //width: 40%;
+  //padding: 50px 6.666% 0;
   h2 {
     margin-bottom: 20px;
   }
-
+}
+.dossier__dashboard__default {
+  width: 55%;
 }
 
 .dossier__dashboard__messages {
-  padding-left: 0;
+  width: 25%;
+}
+.dossier__dashboard__well--line {
+  border: 1px $borderColor2 solid;
+  padding: 20px;
+  margin-bottom: 50px;
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+
+}
+.dossier__dashboard__well__header {
+  margin-top: -33px;
+  margin-left: -10px;
+  span {
+    background-color: #f8f8f8;
+    padding: 0 10px;
+  }
 }
 
 .dossier__workflow {

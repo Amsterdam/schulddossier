@@ -1,0 +1,58 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Nieuw dossier - {{ parent() }}{% endblock %}
+
+{% block pdfsplitter %}{% endblock %}
+
+{% block document %}
+
+    <div class="document document__gray well well__wide">
+
+        <h1 class="document-title">Nieuw dossier (stap 2)</h1>
+
+        <div class="form-container">
+            {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
+            {{ form_errors(form) }}
+
+            <div class="columns">
+                <div class="column">
+                    <h3 class="document-team">Contactgegevens</h3>
+                    {{ form_row(form.clientTelefoonnummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                    {{ form_row(form.clientStraat, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                    {{ form_row(form.clientHuisnummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                    {{ form_row(form.clientPostcode, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                    {{ form_row(form.clientWoonplaats, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+                </div>
+                <div class="column">
+                    <h3 class="document-team">Gezinssamenstelling</h3>
+                    {{ form_row(form.clientBurgelijkeStaat, {'attr': {'form_row_class': 'form-row__wide form-row--no-label-margin', 'class': 'radio-group radio-group__vertical'}}) }}
+                    {% do form.clientKinderen.setRendered %}
+                    <div class="form-row form-row__wide form-row--no-label-margin">
+                        <div class="label-widget">
+                            <label>Geboortedatum inwonende kind(eren)</label>
+                            <div class="kind__container" data-prototype="{{ form_widget(form.clientKinderen.vars.prototype)|e }}" data-decorator="add-kind">
+                                <ul class="kind__item-list">
+                                {% for kindField in form.clientKinderen %}
+                                    <li class="kind__item">
+                                    {{ form_widget(kindField) }}<a class="kind__item__delete" href="#">x</a>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                                <a href="#" class="kind__add button secondary">Voeg kind toe</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <p class="buttons right">
+                <button type="submit" class="button primary">Opslaan en doorgaan</button>
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}">Overslaan</a>
+            </p>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
+{% endblock %}

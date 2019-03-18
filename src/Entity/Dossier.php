@@ -56,7 +56,132 @@ class Dossier
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
      */
+    private $clientVoorletters;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     * @Assert\Choice(callback="getGeslachtOpties")
+     */
+    private $clientGeslacht;
+
+    /**
+     * @var \Date
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $clientGeboortedatum;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $clientBSN;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $clientBanknaam;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $clientTelefoonnummer;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $clientStraat;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=50, nullable=true)
+     * @Assert\Length(min=0, max=50)
+     */
+    private $clientHuisnummer;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=50, nullable=true)
+     * @Assert\Length(min=0, max=50)
+     */
+    private $clientPostcode;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $clientWoonplaats;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     * @Assert\Choice(callback="getBurgelijkeStaatOpties")
+     */
+    private $clientBurgelijkeStaat;
+
+    /**
+     * @var array
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $clientKinderen;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $partnerNvt;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
     private $partnerNaam;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $partnerVoorletters;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     * @Assert\Choice(callback="getGeslachtOpties")
+     */
+    private $partnerGeslacht;
+
+    /**
+     * @var \Date
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $partnerGeboortedatum;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $partnerBSN;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $partnerBanknaam;
 
     /**
      * @var Schuldhulpbureau
@@ -177,9 +302,106 @@ class Dossier
         return $this->clientNaam;
     }
 
+    public function getClientVoorletters()
+    {
+        return $this->clientVoorletters;
+    }
+
+    public function getClientGeslacht()
+    {
+        return $this->clientGeslacht;
+    }
+
+    public function getClientGeboortedatum()
+    {
+        return $this->clientGeboortedatum;
+    }
+
+    public function getClientBSN()
+    {
+        return $this->clientBSN;
+    }
+
+    public function getClientBanknaam()
+    {
+        return $this->clientBanknaam;
+    }
+
+    public function getClientTelefoonnummer()
+    {
+        return $this->clientTelefoonnummer;
+    }
+
+    public function getClientStraat()
+    {
+        return $this->clientStraat;
+    }
+
+    public function getClientHuisnummer()
+    {
+        return $this->clientHuisnummer;
+    }
+
+    public function getClientPostcode()
+    {
+        return $this->clientPostcode;
+    }
+
+    public function getClientWoonplaats()
+    {
+        return $this->clientWoonplaats;
+    }
+
+    /**
+     * @return array
+     */
+    public function getClientKinderen(): ?array
+    {
+        $kinderen = $this->clientKinderen;
+        if (is_string($kinderen)){
+            $kinderen = json_decode($kinderen);
+        }
+        return $kinderen;
+    }
+
+    public function getClientBurgelijkeStaat()
+    {
+        return $this->clientBurgelijkeStaat;
+    }
+
+    public function getPartnerNvt()
+    {
+        return $this->partnerNvt;
+    }
+
     public function getPartnerNaam()
     {
         return $this->partnerNaam;
+    }
+
+    public function getPartnerVoorletters()
+    {
+        return $this->partnerVoorletters;
+    }
+
+    public function getPartnerGeslacht()
+    {
+        return $this->partnerGeslacht;
+    }
+
+    public function getPartnerGeboortedatum()
+    {
+        return $this->partnerGeboortedatum;
+    }
+
+    public function getPartnerBSN()
+    {
+        return $this->partnerBSN;
+    }
+
+    public function getPartnerBanknaam()
+    {
+        return $this->partnerBanknaam;
     }
 
     /**
@@ -225,6 +447,35 @@ class Dossier
     }
 
     /**
+     * @param string $geslacht
+     *
+     * @return string[]
+     */
+    public static function getGeslachtOpties()
+    {
+        return [
+            'Man' => 'Man',
+            'Vrouw' => 'Vrouw',
+        ];
+    }
+
+    /**
+     * @param string $burgelijkeStaat
+     *
+     * @return string[]
+     */
+    public static function getBurgelijkeStaatOpties()
+    {
+        return [
+            'Gehuwd in gemeenschap van goederen' => 'Gehuwd in gemeenschap van goederen',
+            'Gehuwd buiten iedere gemeenschap' => 'Gehuwd buiten iedere gemeenschap',
+            'Samenwonend' => 'Samenwonend',
+            'Ongehuwd' => 'Ongehuwd',
+            'Gescheiden' => 'Gescheiden',
+        ];
+    }
+
+    /**
      * @return \DateTime
      */
     public function getAanmaakDatumTijd()
@@ -252,9 +503,102 @@ class Dossier
         $this->clientNaam = $clientNaam;
     }
 
-    public function setPartnerNaam($partnerNaam)
+    public function setClientVoorletters($clientVoorletters)
+    {
+        $this->clientVoorletters = $clientVoorletters;
+    }
+
+    public function setClientGeslacht($clientGeslacht = null)
+    {
+        $this->clientGeslacht = $clientGeslacht;
+    }
+
+    public function setClientGeboortedatum($clientGeboortedatum = null)
+    {
+        $this->clientGeboortedatum = $clientGeboortedatum;
+    }
+
+    public function setClientBSN($clientBSN = null)
+    {
+        $this->clientBSN = $clientBSN;
+    }
+
+    public function setClientBanknaam($clientBanknaam = null)
+    {
+        $this->clientBanknaam = $clientBanknaam;
+    }
+
+    public function setClientTelefoonnummer($clientTelefoonnummer = null)
+    {
+        $this->clientTelefoonnummer = $clientTelefoonnummer;
+    }
+
+    public function setClientStraat($clientStraat = null)
+    {
+        $this->clientStraat = $clientStraat;
+    }
+
+    public function setClientHuisnummer($clientHuisnummer = null)
+    {
+        $this->clientHuisnummer = $clientHuisnummer;
+    }
+
+    public function setClientPostcode($clientPostcode = null)
+    {
+        $this->clientPostcode = $clientPostcode;
+    }
+
+    public function setClientWoonplaats($clientWoonplaats = null)
+    {
+        $this->clientWoonplaats = $clientWoonplaats;
+    }
+
+    public function setClientBurgelijkeStaat($clientBurgelijkeStaat = null)
+    {
+        $this->clientBurgelijkeStaat = $clientBurgelijkeStaat;
+    }
+
+    /**
+     * @param array $clientKinderen
+     */
+    public function setClientKinderen(array $clientKinderen = null): void
+    {
+        $this->clientKinderen = $clientKinderen;
+    }
+
+    public function setPartnerNvt($partnerNvt = null)
+    {
+        $this->partnerNvt = $partnerNvt;
+    }
+
+    public function setPartnerNaam($partnerNaam = null)
     {
         $this->partnerNaam = $partnerNaam;
+    }
+
+    public function setPartnerVoorletters($partnerVoorletters = null)
+    {
+        $this->partnerVoorletters = $partnerVoorletters;
+    }
+
+    public function setPartnerGeslacht($partnerGeslacht = null)
+    {
+        $this->partnerGeslacht = $partnerGeslacht;
+    }
+
+    public function setPartnerGeboortedatum($partnerGeboortedatum = null)
+    {
+        $this->partnerGeboortedatum = $partnerGeboortedatum;
+    }
+
+    public function setPartnerBSN($partnerBSN = null)
+    {
+        $this->partnerBSN = $partnerBSN;
+    }
+
+    public function setPartnerBanknaam($partnerBanknaam = null)
+    {
+        $this->partnerBanknaam = $partnerBanknaam;
     }
 
     /**

@@ -34,6 +34,9 @@
     padding: 10px;
   }
 }
+.well__wide {
+  padding: 50px;
+}
 .visually-hidden {
   position: absolute;
   clip: rect(0,0,0,0);
@@ -69,8 +72,8 @@
 .columns {
   display: flex;
   .column {
-    margin-bottom: $lineHeight;
-    padding-right: $padding;
+    margin-bottom: 50px;
+    padding-right: 50px;
     flex-basis: 50%;
     &:last-child {
       padding-right: 0;

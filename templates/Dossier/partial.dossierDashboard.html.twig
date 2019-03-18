@@ -1,48 +1,128 @@
 <div class="dossier__dashboard">
     <div class="dossier__dashboard__default">
-        <div class="row">
-            <div class="col-1-1">
-                <h2>Algemene dossierinformatie</h2>
-                {% if not dossier.isInPrullenbak %}
-                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', {'dossierId': dossier.id}) }}" class="button secondary">Wijzig algemene informatie</a>
-                {% endif %}
+        <div class="dossier__dashboard__well--line">
+            <h2 class="dossier__dashboard__well__header">
+                <span>Samenvatting{{ form_errors(voorleggerForm) }}</span>
+            </h2>
+            <div class="row">
+                <div class="col-1-2">
+                    <h3>Cliënt</h3>
+                    <a href="#id_voorlegger-legitimatie" class="a__editable">
+                        <dl class="dl__horizontal">
+                            <dt>Achternaam</dt>
+                            <dd>{{ dossier.clientNaam }}</dd>
+                            <dt>Voorletters</dt>
+                            <dd>{{ dossier.clientVoorletters }}</dd>
+                            <dt>Geslacht</dt>
+                            <dd>{% if dossier.clientGeslacht %}{{ dossier.clientGeslacht }}{% else %}-{% endif %}</dd>
+                            <dt>Geboortedatum</dt>
+                            <dd>{% if dossier.clientGeboortedatum %}{{ dossier.clientGeboortedatum|date('d-m-Y') }}{% else %}-{% endif %}</dd>
+                            <dt>B.S.N.</dt>
+                            <dd>{% if dossier.clientBSN %}{{ dossier.clientBSN }}{% else %}-{% endif %}</dd>
+                            <dt>Banknaam</dt>
+                            <dd>{% if dossier.clientBanknaam %}{{ dossier.clientBanknaam }}{% else %}-{% endif %}</dd>
+                        </dl>
+                    </a>
+                    <a href="#id_voorlegger-arbeidsovereenkomst" class="a__editable">
+                        <dl class="dl__horizontal">
+                            <dt>Werkgever</dt>
+                            <dd>{% if dossier.voorlegger.arbeidsovereenkomstWerkgever %}{{ dossier.voorlegger.arbeidsovereenkomstWerkgever }}{% else %}-{% endif %}</dd>
+                            <dt>Soort dienstverband</dt>
+                            <dd>{% if dossier.voorlegger.arbeidsovereenkomstContract %}{{ dossier.voorlegger.arbeidsovereenkomstContract }}{% else %}-{% endif %}</dd>
+                        </dl>
+                    </a>
+                </div>
+                <div class="col-1-2">
+                    <h3>Partner{% if dossier.partnerNvt %} (n.v.t.){% endif %}</h3>
+                    <a href="#id_voorlegger-legitimatie"
+                       class="a__editable{% if dossier.partnerNvt %} a__editable--disabled{% endif %}">
+                        <dl class="dl__horizontal">
+                            <dt>Achternaam</dt>
+                            <dd>{% if dossier.partnerVoorletters %}{{ dossier.partnerNaam }}{% else %}-{% endif %}</dd>
+                            <dt>Voorletters</dt>
+                            <dd>{% if dossier.partnerVoorletters %}{{ dossier.partnerVoorletters }}{% else %}-{% endif %}</dd>
+                            <dt>Geslacht</dt>
+                            <dd>{% if dossier.partnerGeslacht %}{{ dossier.partnerGeslacht }}{% else %}-{% endif %}</dd>
+                            <dt>Geboortedatum</dt>
+                            <dd>{% if dossier.partnerGeboortedatum %}{{ dossier.partnerGeboortedatum|date('d-m-Y') }}{% else %}-{% endif %}</dd>
+                            <dt>B.S.N.</dt>
+                            <dd>{% if dossier.partnerBSN %}{{ dossier.partnerBSN }}{% else %}-{% endif %}</dd>
+                            <dt>Banknaam</dt>
+                            <dd>{% if dossier.partnerBanknaam %}{{ dossier.partnerBanknaam }}{% else %}-{% endif %}</dd>
+                        </dl>
+                    </a>
+                    <a href="#id_voorlegger-arbeidsovereenkomst" class="a__editable{% if dossier.partnerNvt %} a__editable--disabled{% endif %}">
+                        <dl class="dl__horizontal">
+                            <dt>Werkgever</dt>
+                            <dd>{% if dossier.voorlegger.arbeidsovereenkomstPartnerWerkgever %}{{ dossier.voorlegger.arbeidsovereenkomstPartnerWerkgever }}{% else %}-{% endif %}</dd>
+                            <dt>Soort dienstverband</dt>
+                            <dd>{% if dossier.voorlegger.arbeidsovereenkomstPartnerContract %}{{ dossier.voorlegger.arbeidsovereenkomstPartnerContract }}{% else %}-{% endif %}</dd>
+                        </dl>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1-2">
+                    <h3>Contactgegevens</h3>
+                    <a href="#id_voorlegger-legitimatie" class="a__editable">
+                        <dl class="dl__horizontal">
+                            <dt>Telefoonnummer</dt>
+                            <dd>{{ dossier.clientTelefoonnummer }}</dd>
+                            <dt>Adres</dt>
+                            <dd>{% if not dossier.clientStraat and not dossier.clientHuisnummer and not dossier.clientPostcode and not dossier.clientWoonplaats %}-{% else %}{{ dossier.clientStraat }} {{ dossier.clientHuisnummer }}
+                                    {{ dossier.clientPostcode }} {{ dossier.clientWoonplaats }}{% endif %}
+                            </dd>
+                        </dl>
+                    </a>
+                </div>
+                <div class="col-1-2">
+                    <h3>Gezinssamenstelling</h3>
+                    <a href="#id_voorlegger-legitimatie" class="a__editable">
+                        <dl class="dl__horizontal">
+                            <dt>Burgelijke staat</dt>
+                            <dd>{% if dossier.clientBurgelijkeStaat %}{{ dossier.clientBurgelijkeStaat }}{% else %}-{% endif %}</dd>
+                            <dt>Geboortedatum inwonende kind(eren)</dt>
+                            {% if dossier.clientKinderen %}{{ dossier.clientKinderen|length }} kinderen:<br>
+                                {% for k in dossier.clientKinderen %}
+                                    {{ k }}<br>
+                                {% endfor %}
+                            {% else %}
+                                -
+                            {% endif %}
+                            </dd>
+                        </dl>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="row row-max-height">
-            <div class="col-1-2">
-                <dl>
-                    <dt>Cliëntnaam</dt>
-                    <dd>{{ dossier.clientNaam }}</dd>
-                </dl>
-            </div>
-            <div class="col-1-2">
-                <dl>
-                    <dt>Partnernaam</dt>
-                    <dd>{{ dossier.partnerNaam }}</dd>
-                </dl>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-1-2">
-                <h4>MaDi</h4>
-                <dl>
-                    <dt>Schuldhulpbureau</dt>
-                    <dd>{{ dossier.schuldhulpbureau }}</dd>
-                    <dt>Medewerker schuldhulpbureau</dt>
-                    <dd>{{ dossier.medewerkerSchuldhulpbureau }}</dd>
-                    <dt>MaDi dossiernr.</dt>
-                    <dd>{{ dossier.regasNummer }}</dd>
-                </dl>
-            </div>
-            <div class="col-1-2">
-                <h4>GKA</h4>
-                <dl>
-                    <dt>Team GKA</dt>
-                    <dd>{{ dossier.teamGka }}</dd>
-                    <dt>GKA dossiernr.</dt>
-                    <dd>{{ dossier.allegroNummer }}</dd>
-                </dl>
-            </div>
+        <div class="dossier__dashboard__well--line">
+            <h2 class="dossier__dashboard__well__header">
+                <span>Dossierbehandelaars</span>
+            </h2>
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', {'dossierId': dossier.id}) }}" class="a__editable">
+                <div class="row">
+                    <div class="col-1-2">
+                        <h4>MaDi</h4>
+                        <dl>
+                            <dt>Schuldhulpbureau</dt>
+                            <dd>{{ dossier.schuldhulpbureau }}</dd>
+                            <dt>Medewerker schuldhulpbureau</dt>
+                            <dd>{{ dossier.medewerkerSchuldhulpbureau }}</dd>
+                            <dt>MaDi dossiernr.</dt>
+                            <dd>{{ dossier.regasNummer }}</dd>
+                        </dl>
+                    </div>
+                    <div class="col-1-2">
+                        <h4>GKA</h4>
+                        <dl>
+                            <dt>Team GKA</dt>
+                            <dd>{{ dossier.teamGka }}</dd>
+                            <dt>GKA dossiernr.</dt>
+                            <dd>{{ dossier.allegroNummer }}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
     <div class="dossier__dashboard__messages">
@@ -50,7 +130,8 @@
             <div class="col-1-1">
                 <h2>Overleg</h2>
                 {% if not dossier.isInPrullenbak %}
-                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen', {'dossierId': dossier.id}) }}" class="button secondary">Aantekening toevoegen</a>
+                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen', {'dossierId': dossier.id}) }}"
+                       class="button secondary">Aantekening toevoegen</a>
                 {% endif %}
             </div>
         </div>
@@ -78,5 +159,6 @@
                     </div>
                 </div>
         {% endif %}
+
     </div>
 </div>

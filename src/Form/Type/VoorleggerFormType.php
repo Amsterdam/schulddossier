@@ -24,6 +24,9 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierClientType;
+
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 class VoorleggerFormType extends AbstractType
 {
@@ -42,6 +45,7 @@ class VoorleggerFormType extends AbstractType
             'disable_group' => $options['disable_group'],
             'data' => $options['data']
         ];
+
 
         $builder->add('alimentatieEchtscheidingsconvenant', VoorleggerAlimentatieEchtscheidingsconvenantFormType::class, $settings);
         $builder->add('alimentatie', VoorleggerAlimentatieFormType::class, $settings);
@@ -83,6 +87,13 @@ class VoorleggerFormType extends AbstractType
             if ($this->tokenStorage->getToken() === null || $this->tokenStorage->getToken()->getUser() === null) {
                 return;
             }
+            $event->getForm()->add('cdct', ChangeDossierClientType::class, [
+                'required' => true,
+                'mapped' => false,
+                'data' => $dossier,
+                'disabled' => $dossier->isInPrullenbak() === true
+            ]);
+
             if (!$dossier->isInPrullenbak()) {
                 if (
                     $this->tokenStorage->getToken()->getUser()->isApplicationAdmin()

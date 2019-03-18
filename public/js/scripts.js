@@ -319,6 +319,54 @@
   };
 
   var decorators = {
+    'add-kind': function(){
+      var self = this,
+        proto = self.dataset.prototype,
+        itemList = self.querySelector('.kind__item-list'),
+        inputList = itemList.querySelectorAll('input[type="text"]'),
+        add = self.querySelector('.kind__add' ),
+        _add = function(e, value){
+          e && e.preventDefault();
+
+          var ids = Array.from(itemList.querySelectorAll('input[type="text"]')).map(function (item) {
+              var split = item.getAttribute('id').split('_');
+              return parseInt(split[split.length - 1]);
+            }).sort(function (a,b) { return a-b; }),
+            count = (ids.length) ? ids[ids.length-1] + 1 : 0,
+            li = document.createElement('li'),
+            a = document.createElement('a'),
+            newInput = proto.replace(/__name__/g, count);
+
+          li.classList.add('kind__item');
+          a.classList.add('kind__item__delete');
+          a.setAttribute('href', '#');
+          a.textContent = 'x';
+          li.innerHTML = newInput.trim();
+          li.appendChild(a);
+          itemList.appendChild(li);
+          decorators['rome'].call(li.querySelector('input[type="text"]'));
+        },
+        _remove = function (e) {
+          e && e.preventDefault();
+          var delElem = _closest(e.target, '.kind__item__delete');
+
+          if (delElem){
+            var elem = _closest(delElem, '.kind__item');
+            elem.parentNode.removeChild(elem);
+            //elem.querySelector('input[type="text"]').value = '';
+            //elem.querySelector('input[type="text"]').setAttribute("value", "");
+            //elem.classList.add('disabled');
+          }
+        };
+      for(var i = 0; i < inputList.length; i++){
+        decorators['rome'].call(inputList[i]);
+      }
+
+      add.addEventListener('click', _add);
+      self.addEventListener('click', _remove);
+
+
+    },
     'lazy-load-document-thumb': function () {
       var self = this,
         bgUrl = self.dataset.backgroundImage;
@@ -527,7 +575,8 @@
           title.textContent = '';
           counter.textContent = '';
           _reset();
-          if (extension !== 'pdf' && extension !== 'html' && extension !== 'jpeg' && extension !== 'jpg' && extension !== 'png') {
+          // if (extension !== 'pdf' && extension !== 'html' && extension !== 'jpeg' && extension !== 'jpg' && extension !== 'png') {
+          if (extension !== 'pdf' && extension !== 'jpeg' && extension !== 'jpg' && extension !== 'png') {
             self.classList.remove('loading');
             self.classList.add('disabled');
             statusElem.innerHTML = '<span>Het <strong>'+extension+'</strong> bestand kan hier niet worden getoond.</span><br><span>Download het bestand om deze weer te geven.</span>';
@@ -548,18 +597,18 @@
               }).catch(function(error){
                 console.log(error);
               });
-            } else if(extension === 'html'){
-                title.textContent = docElem.textContent;
-                helpers.ajax({
-                  type: 'get',
-                  url: docElem.getAttribute('href'),
-                  data: {},
-                  headers: [['X-Requested-With', 'XMLHttpRequest']],
-                  callback: function (data, t) {
-                    viewerContainer.innerHTML = data.trim();
-                    self.classList.remove('loading');
-                  }
-                })
+            // } else if(extension === 'html'){
+            //     title.textContent = docElem.textContent;
+            //     helpers.ajax({
+            //       type: 'get',
+            //       url: docElem.getAttribute('href'),
+            //       data: {},
+            //       headers: [['X-Requested-With', 'XMLHttpRequest']],
+            //       callback: function (data, t) {
+            //         viewerContainer.innerHTML = data.trim();
+            //         self.classList.remove('loading');
+            //       }
+            //     })
             }else if (extension === 'jpg'|| extension === 'png' || extension === 'jpeg') {
                   canvas = new Image();
                   canvas.addEventListener("load", function(){
@@ -852,6 +901,7 @@
       if (typeof rome != 'function' || this.tagName != 'INPUT') return;
       var datepicker = rome(this, {
         'inputFormat': 'DD-MM-YYYY',
+        'appendTo': 'parent',
         'time': false,
         'max': this.getAttribute('data-max'),
         'moment': {
@@ -861,8 +911,21 @@
       datepicker.on('data', function () {
         if (!this.associated) return;
         var changer = _closest(this.associated, '[data-changer]');
+        helpers.trigger(this.associated, 'input');
         changer && changers[changer.dataset.changer].call(changer);
       });
+      datepicker.on('show', function(){
+        this.container.style.left =  this.associated.offsetLeft + 'px';
+        this.container.style.top = this.associated.offsetHeight + 'px';
+        var row = _closest(this.associated, '.form-row');
+        row && row.classList.add('rome-active');
+      });
+      datepicker.on('hide', function(){
+        var row = _closest(this.associated, '.form-row');
+        console.log(this.associated);
+        row && row.classList.remove('rome-active');
+      });
+
 
     },
     'select-condition': function () {

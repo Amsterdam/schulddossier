@@ -343,7 +343,7 @@
 {%- endblock repeated_row -%}
 
 {%- block form_row -%}
-    <div class="form-row">
+    <div class="form-row{% if attr.form_row_class is defined %} {{ attr.form_row_class }}{% endif %}">
         <div class="label-widget"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
           {{- form_label(form) -}}
           {{- form_widget(form) -}}
