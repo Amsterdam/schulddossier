@@ -1,0 +1,46 @@
+<h4>Cliënt</h4>
+{{ form_row(form.clientGeslacht, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__horizontal'}}) }}
+{{ form_row(form.clientNaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{{ form_row(form.clientVoorletters, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{{ form_row(form.clientGeboortedatum, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{{ form_row(form.clientBSN, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{{ form_row(form.clientBanknaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+
+<h4>
+    Partner
+{{ form_row(form.partnerNvt, {'attr': {'form_row_class': 'form-row__checkbox--right'}}) }}
+</h4>
+{{ form_row(form.partnerGeslacht, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__horizontal'}}) }}
+{{ form_row(form.partnerNaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{{ form_row(form.partnerVoorletters, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{{ form_row(form.partnerGeboortedatum, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{{ form_row(form.partnerBSN, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{{ form_row(form.partnerBanknaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+
+<h4>Contactgegevens</h4>
+{{ form_row(form.clientTelefoonnummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{{ form_row(form.clientStraat, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{{ form_row(form.clientHuisnummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{{ form_row(form.clientPostcode, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{{ form_row(form.clientWoonplaats, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+
+<h4>Gezinssamenstelling</h4>
+{{ form_row(form.clientBurgelijkeStaat, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__vertical'}}) }}
+{% do form.clientKinderen.setRendered %}
+<div class="form-row form-row__wide">
+    <div class="label-widget">
+        <label>Geboortedatum inwonende kind(eren)</label>
+        <div class="kind__container" data-prototype="{{ form_widget(form.clientKinderen.vars.prototype)|e }}"
+             data-decorator="add-kind">
+            <ul class="kind__item-list">
+                {% for kindField in form.clientKinderen %}
+                    <li class="kind__item">
+                        {{ form_widget(kindField) }}<a class="kind__item__delete" href="#">x</a>
+                        {{ form_errors(kindField) }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <a href="#" class="kind__add button secondary">Voeg kind toe</a>
+        </div>
+    </div>
+</div>

@@ -17,9 +17,11 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierClientType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateAantekeningFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierAdditionalFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DocumentFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldenFormType;
@@ -174,11 +176,47 @@ class AppDossierController extends Controller
 
             $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier));
 
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_createaddtional', [
                 'dossierId' => $dossier->getId()
             ]);
         }
         return $this->render('Dossier/create.html.twig', [
+            'dossier' => $dossier,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/nieuw/{dossierId}/")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     */
+    public function createAddtionalAction(Request $request, EntityManagerInterface $em, Dossier $dossier, EventDispatcherInterface $eventDispatcher)
+    {
+        if ($dossier->getVoorlegger() === null) {
+            $dossier->setVoorlegger(new Voorlegger());
+        }
+
+        $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger(), [
+            'disabled' => $dossier->isInPrullenbak() === true,
+            'disable_group' => $this->getUser()->getType()
+        ]);
+
+        $form = $this->createForm(DetailDossierAdditionalFormType::class, $dossier);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($dossier);
+            $em->flush();
+            $this->addFlash('success', 'Dossier aangemaakt');
+
+            $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier));
+
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
+                'dossierId' => $dossier->getId()
+            ]);
+        }
+        return $this->render('Dossier/createAddtional.html.twig', [
             'dossier' => $dossier,
             'form' => $form->createView()
         ]);
@@ -199,6 +237,8 @@ class AppDossierController extends Controller
             'disabled' => $dossier->isInPrullenbak() === true,
             'disable_group' => $this->getUser()->getType(),
         ]);
+
+
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
             foreach ($voorleggerForm->all() as $key => $child) {
@@ -239,7 +279,6 @@ class AppDossierController extends Controller
             $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
-        $changeDossierStatusForm = false;
 
         $workflow = $registry->get($dossier);
 
@@ -273,7 +312,7 @@ class AppDossierController extends Controller
             }
 
             $this->addFlash('success', 'Opgeslagen');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', [
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
                 'dossierId' => $dossier->getId()
             ]);
         } elseif ($form->isSubmitted() && $request->isXmlHttpRequest()) {

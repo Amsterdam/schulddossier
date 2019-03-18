@@ -15,10 +15,8 @@
 
       {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier, 'title': 'Wijzig algemene informatie'} only %}
 
-      {{ form_start(form, {'attr': {'data-submitter': 'save', 'data-result-selector': '.form-content', 'data-changer': 'change'}}) }}
+      {{ form_start(form) }}
         <div class="form-content">
-            {{ form_row(form.clientNaam) }}
-            {{ form_row(form.partnerNaam) }}
             <div class="columns">
               <div class="column">
                 <h3 class="document-team">MaDi</h3>

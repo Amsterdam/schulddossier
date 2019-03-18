@@ -40,10 +40,12 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <div class="form-row-wrapper form-row-wrapper--horizontal">
                 {{ form_row(form.toeslagenHuur) }}
                 {{ form_row(form.toeslagenZorg) }}
                 {{ form_row(form.toeslagenKindgebondenBudget) }}
                 {{ form_row(form.toeslagenKinderopvang) }}
+                </div>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Toeslag'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}

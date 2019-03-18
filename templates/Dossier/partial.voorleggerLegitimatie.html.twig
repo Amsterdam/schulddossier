@@ -38,6 +38,8 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+
+                {% include 'Dossier/partial.clientForm.html.twig' with {'form': changeClientForm} only %}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Legitimatie'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>
