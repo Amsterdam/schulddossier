@@ -25,12 +25,18 @@ use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierClientType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 class VoorleggerFormType extends AbstractType
 {
     private $tokenStorage;
+    /**
+     * @var Gebruiker $user
+     */
+    private $user;
 
     public function __construct(TokenStorageInterface $tokenStorage)
     {
@@ -82,6 +88,7 @@ class VoorleggerFormType extends AbstractType
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             /* @var $voorlegger Voorlegger */
+            $this->user = $this->tokenStorage->getToken()->getUser();
             $voorlegger = $event->getData();
             $dossier = $voorlegger->getDossier();
             if ($this->tokenStorage->getToken() === null || $this->tokenStorage->getToken()->getUser() === null) {
@@ -102,10 +109,43 @@ class VoorleggerFormType extends AbstractType
                     ||
                     ($dossier->withGka() && $this->tokenStorage->getToken()->getUser()->isGkaAppBeheerder())
                     ) {
+                        $choices = [];
+
+                        switch ($this->user->getType()) {
+                            case Gebruiker::TYPE_MADI_KEYUSER:
+                                $choices = [
+                                    'bezig_madi' => Dossier::STATUS_BEZIG_MADI,
+                                    'compleet_madi' => Dossier::STATUS_COMPLEET_MADI,
+                                    'gecontroleerd_madi' => Dossier::STATUS_GECONTROLEERD_MADI,
+                                ];
+                                break;
+                            case Gebruiker::TYPE_GKA_APPBEHEERDER:
+                                $choices = [
+                                    'verzonden_madi' => Dossier::STATUS_VERZONDEN_MADI,
+                                    'compleet_gka' => Dossier::STATUS_COMPLEET_GKA,
+                                    'dossier_gecontroleerd_gka' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
+                                    'afgesloten_gka' => Dossier::STATUS_AFGESLOTEN_GKA,
+                                ];
+                                break;
+                            case Gebruiker::TYPE_ADMIN:
+
+                                $choices = [
+                                    'bezig_madi' => Dossier::STATUS_BEZIG_MADI,
+                                    'compleet_madi' => Dossier::STATUS_COMPLEET_MADI,
+                                    'gecontroleerd_madi' => Dossier::STATUS_GECONTROLEERD_MADI,
+                                    'verzonden_madi' => Dossier::STATUS_VERZONDEN_MADI,
+                                    'compleet_gka' => Dossier::STATUS_COMPLEET_GKA,
+                                    'dossier_gecontroleerd_gka' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
+                                    'afgesloten_gka' => Dossier::STATUS_AFGESLOTEN_GKA,
+                                ];
+                                break;
+                        }
                         $event->getForm()->add('cdst', ChangeDossierStatusType::class, [
                             'required' => true,
                             'mapped' => false,
                             'data' => $dossier,
+//                            'data' => $dossier,
+                            'choices' => $choices,
                             'disabled' => $dossier->isInPrullenbak() === true
                         ]);
                     }
