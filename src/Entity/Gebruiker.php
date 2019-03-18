@@ -93,7 +93,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     /**
      * @var string
      * @ORM\Column(type="string", length=12, nullable=true)
-     * @Assert\Length(min=1, max=12)
+     * @Assert\Length(max=12)
      */
     private $telefoonnummer;
 
