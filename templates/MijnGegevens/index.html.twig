@@ -12,7 +12,14 @@
     </div>
     <div class="form-container">
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
-        {{ form_row(form.naam) }}
+
+        <div class="form-row">
+            <div class="label-widget">
+                <label>Naam</label>
+                <div style="padding-top: 1em; line-height: 1em">{{ gebruiker.naam }}</div>
+            </div>
+        </div>
+
         {{ form_row(form.telefoonnummer) }}
 
         <div class="form-row">

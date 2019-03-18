@@ -25,10 +25,6 @@ class MijnGegevensFormType extends AbstractType
         /** @var Gebruiker $user */
         $user = $this->security->getUser();
 
-        $builder->add('naam', TextType::class, [
-            'required' => true
-        ]);
-
         $builder->add('telefoonnummer', TextType::class, [
             'required' => false
         ]);
