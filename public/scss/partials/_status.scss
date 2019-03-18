@@ -46,16 +46,16 @@
     background-color: #fff;
   }
 
-  .status-gka-1 strong:before,
-  .status-gka-1 &:before,
+  .status-gka-2 strong:before,
+  .status-gka-2 &:before,
   .status-madi-1 strong:before,
   .status-madi-1 &:before {
     border-top-color: red;
     border-right-color: red;
     transform: rotate(45deg);
   }
-  .status-gka-2 strong:before,
-  .status-gka-2 &:before,
+  //.status-gka-2 strong:before,
+  //.status-gka-2 &:before,
   .status-madi-2 strong:before,
   .status-madi-2 &:before {
     border-color: green;
@@ -106,6 +106,10 @@
   }
 
   .status-nvt & .status-nvt strong,
+  .status-gka-0 & .status-gka-0 strong,
+  .status-gka-1 & .status-gka-1 strong,
+  .status-gka-2 & .status-gka-2 strong,
+  .status-gka-3 & .status-gka-3 strong,
   .status-madi-0 & .status-madi-0 strong,
   .status-madi-1 & .status-madi-1 strong,
   .status-madi-2 & .status-madi-2 strong,
@@ -113,6 +117,10 @@
     font-family: $ff-bold;
     color: #000;
   }
+  .status-nvt & .status-gka-0 strong,
+  .status-nvt & .status-gka-1 strong,
+  .status-nvt & .status-gka-2 strong,
+  .status-nvt & .status-gka-3 strong,
   .status-nvt & .status-madi-0 strong,
   .status-nvt & .status-madi-1 strong,
   .status-nvt & .status-madi-2 strong,
