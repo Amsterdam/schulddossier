@@ -1,5 +1,3 @@
-{{ form_start(form) }}
-
 <h4>Cliënt</h4>
 {{ form_row(form.clientGeslacht, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__horizontal'}}) }}
 {{ form_row(form.clientNaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
@@ -28,6 +26,7 @@
 
 <h4>Gezinssamenstelling</h4>
 {{ form_row(form.clientBurgelijkeStaat, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__vertical'}}) }}
+{% do form.clientKinderen.setRendered %}
 <div class="form-row form-row__wide">
     <div class="label-widget">
         <label>Geboortedatum inwonende kind(eren)</label>
@@ -37,6 +36,7 @@
                 {% for kindField in form.clientKinderen %}
                     <li class="kind__item">
                         {{ form_widget(kindField) }}<a class="kind__item__delete" href="#">x</a>
+                        {{ form_errors(kindField) }}
                     </li>
                 {% endfor %}
             </ul>
@@ -44,4 +44,3 @@
         </div>
     </div>
 </div>
-{{ form_end(form) }}

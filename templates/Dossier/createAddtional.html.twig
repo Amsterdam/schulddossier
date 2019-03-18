@@ -26,6 +26,7 @@
                 <div class="column">
                     <h3 class="document-team">Gezinssamenstelling</h3>
                     {{ form_row(form.clientBurgelijkeStaat, {'attr': {'form_row_class': 'form-row__wide form-row--no-label-margin', 'class': 'radio-group radio-group__vertical'}}) }}
+                    {% do form.clientKinderen.setRendered %}
                     <div class="form-row form-row__wide form-row--no-label-margin">
                         <div class="label-widget">
                             <label>Geboortedatum inwonende kind(eren)</label>
@@ -41,15 +42,13 @@
                             </div>
                         </div>
                     </div>
-
-                    {#{{ form_row(form.clientKinderen, {'attr': {'form_row_class': 'form-row__wide', 'data-decorator': 'add-kind'}, 'widget_container_attributes': {'data-decorator': 'add-kind'}}) }}#}
                 </div>
             </div>
 
 
             <p class="buttons right">
                 <button type="submit" class="button primary">Opslaan en doorgaan</button>
-                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Overslaan</a>
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}">Overslaan</a>
             </p>
             {{ form_end(form) }}
         </div>

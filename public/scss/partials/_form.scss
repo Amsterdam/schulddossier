@@ -327,6 +327,29 @@ form {
   .form-row__checkbox--right {
 
   }
+  .form-row-wrapper {
+    display: flex;
+  }
+  .form-row-wrapper--horizontal {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    .form-row {
+      display: inline;
+      margin: 0 30px 20px 0;
+    }
+    .label-widget {
+      width: auto;
+    }
+    label {
+      order: 2;
+      padding: 0;
+      width: auto;
+    }
+    input[type="checkbox"] {
+      order: 1;
+      height: auto;
+    }
+  }
 }
 
 .form-list {

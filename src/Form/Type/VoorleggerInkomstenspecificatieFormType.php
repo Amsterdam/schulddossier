@@ -38,30 +38,39 @@ class VoorleggerInkomstenspecificatieFormType extends AbstractType
         ]);
 
         $builder->add('beschikkingInkomenUitWerk', CheckboxType::class, [
+            'label' => 'Inkomen uit werk',
             'required' => false
         ]);
         $builder->add('beschikkingUwvZw', CheckboxType::class, [
+            'label' => 'UWV ZW',
             'required' => false
         ]);
         $builder->add('beschikkingUwvWw', CheckboxType::class, [
+            'label' => 'UWV WW',
             'required' => false
         ]);
         $builder->add('beschikkingUwvWia', CheckboxType::class, [
+            'label' => 'UWV Wia',
             'required' => false
         ]);
         $builder->add('beschikkingUwvWajong', CheckboxType::class, [
+            'label' => 'UWV Wajong',
             'required' => false
         ]);
         $builder->add('beschikkingGemeenteAmsterdamWPI', CheckboxType::class, [
+            'label' => 'Gemeente Amasterdam (WPI)',
             'required' => false
         ]);
         $builder->add('beschikkingSVBAOW', CheckboxType::class, [
+            'label' => 'SVB (AOW)',
             'required' => false
         ]);
         $builder->add('beschikkingSVBANW', CheckboxType::class, [
+            'label' => 'SVB (ANW)',
             'required' => false
         ]);
         $builder->add('beschikkingGemeenteAmsterdamIOAW', CheckboxType::class, [
+            'label' => 'Gemeente Amasterdam (IOAW)',
             'required' => false
         ]);
 

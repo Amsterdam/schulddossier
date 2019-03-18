@@ -575,7 +575,8 @@
           title.textContent = '';
           counter.textContent = '';
           _reset();
-          if (extension !== 'pdf' && extension !== 'html' && extension !== 'jpeg' && extension !== 'jpg' && extension !== 'png') {
+          // if (extension !== 'pdf' && extension !== 'html' && extension !== 'jpeg' && extension !== 'jpg' && extension !== 'png') {
+          if (extension !== 'pdf' && extension !== 'jpeg' && extension !== 'jpg' && extension !== 'png') {
             self.classList.remove('loading');
             self.classList.add('disabled');
             statusElem.innerHTML = '<span>Het <strong>'+extension+'</strong> bestand kan hier niet worden getoond.</span><br><span>Download het bestand om deze weer te geven.</span>';
@@ -596,18 +597,18 @@
               }).catch(function(error){
                 console.log(error);
               });
-            } else if(extension === 'html'){
-                title.textContent = docElem.textContent;
-                helpers.ajax({
-                  type: 'get',
-                  url: docElem.getAttribute('href'),
-                  data: {},
-                  headers: [['X-Requested-With', 'XMLHttpRequest']],
-                  callback: function (data, t) {
-                    viewerContainer.innerHTML = data.trim();
-                    self.classList.remove('loading');
-                  }
-                })
+            // } else if(extension === 'html'){
+            //     title.textContent = docElem.textContent;
+            //     helpers.ajax({
+            //       type: 'get',
+            //       url: docElem.getAttribute('href'),
+            //       data: {},
+            //       headers: [['X-Requested-With', 'XMLHttpRequest']],
+            //       callback: function (data, t) {
+            //         viewerContainer.innerHTML = data.trim();
+            //         self.classList.remove('loading');
+            //       }
+            //     })
             }else if (extension === 'jpg'|| extension === 'png' || extension === 'jpeg') {
                   canvas = new Image();
                   canvas.addEventListener("load", function(){

@@ -23,12 +23,12 @@
                             <dd>{% if dossier.clientBanknaam %}{{ dossier.clientBanknaam }}{% else %}-{% endif %}</dd>
                         </dl>
                     </a>
-                    <a href="#id_voorlegger-legitimatie" class="a__editable">
+                    <a href="#id_voorlegger-arbeidsovereenkomst" class="a__editable">
                         <dl class="dl__horizontal">
                             <dt>Werkgever</dt>
-                            <dd>{{ dossier.voorlegger.energieBedrijfKlantnummer }}</dd>
-                            <dt>Dienstverband</dt>
-                            <dd>{{ dossier.voorlegger.energieBedrijfKlantnummer }}</dd>
+                            <dd>{% if dossier.voorlegger.arbeidsovereenkomstWerkgever %}{{ dossier.voorlegger.arbeidsovereenkomstWerkgever }}{% else %}-{% endif %}</dd>
+                            <dt>Soort dienstverband</dt>
+                            <dd>{% if dossier.voorlegger.arbeidsovereenkomstContract %}{{ dossier.voorlegger.arbeidsovereenkomstContract }}{% else %}-{% endif %}</dd>
                         </dl>
                     </a>
                 </div>
@@ -49,6 +49,14 @@
                             <dd>{% if dossier.partnerBSN %}{{ dossier.partnerBSN }}{% else %}-{% endif %}</dd>
                             <dt>Banknaam</dt>
                             <dd>{% if dossier.partnerBanknaam %}{{ dossier.partnerBanknaam }}{% else %}-{% endif %}</dd>
+                        </dl>
+                    </a>
+                    <a href="#id_voorlegger-arbeidsovereenkomst" class="a__editable{% if dossier.partnerNvt %} a__editable--disabled{% endif %}">
+                        <dl class="dl__horizontal">
+                            <dt>Werkgever</dt>
+                            <dd>{% if dossier.voorlegger.arbeidsovereenkomstPartnerWerkgever %}{{ dossier.voorlegger.arbeidsovereenkomstPartnerWerkgever }}{% else %}-{% endif %}</dd>
+                            <dt>Soort dienstverband</dt>
+                            <dd>{% if dossier.voorlegger.arbeidsovereenkomstPartnerContract %}{{ dossier.voorlegger.arbeidsovereenkomstPartnerContract }}{% else %}-{% endif %}</dd>
                         </dl>
                     </a>
                 </div>

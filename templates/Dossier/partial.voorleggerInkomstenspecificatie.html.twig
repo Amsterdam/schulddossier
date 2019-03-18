@@ -39,6 +39,7 @@
             <div class="dossier__voorlegger__sectie__body">
                 {{ form_row(form.beschikkingInkomenUitWerk) }}
                 <h4>Beschikking</h4>
+                <div class="form-row-wrapper form-row-wrapper--horizontal">
                 {{ form_row(form.beschikkingUwvZw) }}
                 {{ form_row(form.beschikkingUwvWw) }}
                 {{ form_row(form.beschikkingUwvWia) }}
@@ -47,6 +48,7 @@
                 {{ form_row(form.beschikkingSVBAOW) }}
                 {{ form_row(form.beschikkingSVBANW) }}
                 {{ form_row(form.beschikkingGemeenteAmsterdamIOAW) }}
+                </div>
 
                 {{ form_row(form.beschikkingUwvOverig) }}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Inkomstenspecificatie'} only %}

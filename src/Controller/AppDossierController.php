@@ -279,12 +279,6 @@ class AppDossierController extends Controller
             $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
-        $changeDossierStatusForm = false;
-        $changeClientForm = false;
-        $changeClientForm = $this->createForm(ChangeDossierClientType::class, $dossier, [
-            'disabled' => $dossier->isInPrullenbak() === true,
-        ]);
-        $changeClientForm->handleRequest($request);
 
         $workflow = $registry->get($dossier);
 

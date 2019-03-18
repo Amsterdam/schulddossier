@@ -1773,7 +1773,7 @@ class Voorlegger
 
     public function setArbeidsovereenkomstPartnerWerkgever($arbeidsovereenkomstPartnerWerkgever)
     {
-        $this->arbeidsovereenkomstPartnerWerkgevert = $arbeidsovereenkomstPartnerWerkgever;
+        $this->arbeidsovereenkomstPartnerWerkgever = $arbeidsovereenkomstPartnerWerkgever;
     }
 
     public function setArbeidsovereenkomstPartnerContract($arbeidsovereenkomstPartnerContract)

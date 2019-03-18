@@ -44,10 +44,10 @@
             </div>
             <div class="dossier__voorlegger__sectie__body">
                 {{ form_row(form.arbeidsovereenkomstWerkgever) }}
-                {{ form_row(form.arbeidsovereenkomstContract) }}
+                {{ form_row(form.arbeidsovereenkomstContract, {'attr': {'form_row_class': 'form-row__wide  form-row--no-label-margin', 'class': 'radio-group radio-group__vertical'}}) }}
                 <h4>Dienstverband partner</h4>
                 {{ form_row(form.arbeidsovereenkomstPartnerWerkgever) }}
-                {{ form_row(form.arbeidsovereenkomstPartnerContract) }}
+                {{ form_row(form.arbeidsovereenkomstPartnerContract, {'attr': {'form_row_class': 'form-row__wide  form-row--no-label-margin', 'class': 'radio-group radio-group__vertical'}}) }}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Arbeidsovereenkomst'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>
