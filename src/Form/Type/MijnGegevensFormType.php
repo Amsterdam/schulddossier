@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MijnGegevensFormType extends AbstractType
 {
@@ -31,5 +32,11 @@ class MijnGegevensFormType extends AbstractType
         $builder->add('telefoonnummer', TextType::class, [
             'required' => false
         ]);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefault('data_class', Gebruiker::class);
+        $resolver->setDefault('validation_groups', false);
     }
 }
