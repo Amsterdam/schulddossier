@@ -102,53 +102,21 @@ class VoorleggerFormType extends AbstractType
             ]);
 
             if (!$dossier->isInPrullenbak()) {
-                if (
-                    $this->tokenStorage->getToken()->getUser()->isApplicationAdmin()
-                    ||
-                    ($dossier->withMadi() && $this->tokenStorage->getToken()->getUser()->isMadiKeyUser())
-                    ||
-                    ($dossier->withGka() && $this->tokenStorage->getToken()->getUser()->isGkaAppBeheerder())
-                    ) {
-                        $choices = [];
+//                if (
+//                    $this->tokenStorage->getToken()->getUser()->isApplicationAdmin()
+//                    ||
+//                    ($dossier->withMadi() && $this->tokenStorage->getToken()->getUser()->isMadiKeyUser())
+//                    ||
+//                    ($dossier->withGka() && $this->tokenStorage->getToken()->getUser()->isGkaAppBeheerder())
+//                    ) {
 
-                        switch ($this->user->getType()) {
-                            case Gebruiker::TYPE_MADI_KEYUSER:
-                                $choices = [
-                                    'bezig_madi' => Dossier::STATUS_BEZIG_MADI,
-                                    'compleet_madi' => Dossier::STATUS_COMPLEET_MADI,
-                                    'gecontroleerd_madi' => Dossier::STATUS_GECONTROLEERD_MADI,
-                                ];
-                                break;
-                            case Gebruiker::TYPE_GKA_APPBEHEERDER:
-                                $choices = [
-                                    'verzonden_madi' => Dossier::STATUS_VERZONDEN_MADI,
-                                    'compleet_gka' => Dossier::STATUS_COMPLEET_GKA,
-                                    'dossier_gecontroleerd_gka' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
-                                    'afgesloten_gka' => Dossier::STATUS_AFGESLOTEN_GKA,
-                                ];
-                                break;
-                            case Gebruiker::TYPE_ADMIN:
-
-                                $choices = [
-                                    'bezig_madi' => Dossier::STATUS_BEZIG_MADI,
-                                    'compleet_madi' => Dossier::STATUS_COMPLEET_MADI,
-                                    'gecontroleerd_madi' => Dossier::STATUS_GECONTROLEERD_MADI,
-                                    'verzonden_madi' => Dossier::STATUS_VERZONDEN_MADI,
-                                    'compleet_gka' => Dossier::STATUS_COMPLEET_GKA,
-                                    'dossier_gecontroleerd_gka' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
-                                    'afgesloten_gka' => Dossier::STATUS_AFGESLOTEN_GKA,
-                                ];
-                                break;
-                        }
                         $event->getForm()->add('cdst', ChangeDossierStatusType::class, [
                             'required' => true,
                             'mapped' => false,
                             'data' => $dossier,
-//                            'data' => $dossier,
-                            'choices' => $choices,
                             'disabled' => $dossier->isInPrullenbak() === true
                         ]);
-                    }
+//                    }
             }
         });
     }

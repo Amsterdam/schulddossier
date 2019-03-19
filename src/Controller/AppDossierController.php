@@ -232,10 +232,12 @@ class AppDossierController extends Controller
         if ($dossier->getVoorlegger() === null) {
             $dossier->setVoorlegger(new Voorlegger());
         }
+        $workflow = $registry->get($dossier);
 
         $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger(), [
             'disabled' => $dossier->isInPrullenbak() === true,
             'disable_group' => $this->getUser()->getType(),
+            //'data' => $workflow
         ]);
 
 
@@ -280,7 +282,6 @@ class AppDossierController extends Controller
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
 
-        $workflow = $registry->get($dossier);
 
         $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
 
