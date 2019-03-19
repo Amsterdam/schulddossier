@@ -36,76 +36,94 @@ class ChangeDossierStatusType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $choices = [];
+        $workflowChoices = [];
         $status = $options['data']->getStatus();
 
         switch ($status) {
             case Dossier::STATUS_BEZIG_MADI;
-                $choices = [
+                $workflowChoices = [
                     'Ter controle aanbieden' => Dossier::STATUS_COMPLEET_MADI,
                 ];
                 break;
             case Dossier::STATUS_COMPLEET_MADI:
-                $choices = [
+                $workflowChoices = [
                     'Afkeuren' => Dossier::STATUS_BEZIG_MADI,
                     'Goedkeuren' => Dossier::STATUS_GECONTROLEERD_MADI,
                 ];
                 break;
             case Dossier::STATUS_GECONTROLEERD_MADI:
-                $choices = [
+                $workflowChoices = [
                     'Afkeuren' => Dossier::STATUS_BEZIG_MADI,
                     'Verzenden naar GKA' => Dossier::STATUS_VERZONDEN_MADI,
                 ];
                 break;
             case Dossier::STATUS_VERZONDEN_MADI:
-                $choices = [
+                $workflowChoices = [
                     'Start proces GKA' => Dossier::STATUS_COMPLEET_GKA,
                 ];
                 break;
             case Dossier::STATUS_COMPLEET_GKA:
-                $choices = [
+                $workflowChoices = [
                     'Dossier akkoord' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
                     'Dossier afwijzen (terug naar MaDi)' => Dossier::STATUS_BEZIG_MADI,
                 ];
                 break;
             case Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA:
-                $choices = [
+                $workflowChoices = [
                     'Afsluiten GKA' => Dossier::STATUS_AFGESLOTEN_GKA,
+                ];
+                break;
+            case Dossier::STATUS_AFGESLOTEN_GKA:
+                $workflowChoices = [
                 ];
                 break;
         }
 
         switch ($this->user->getType()) {
-            case Gebruiker::TYPE_MADI_KEYUSER:
+//            case Gebruiker::TYPE_MADI_KEYUSER:
+//                $choices = [
+//                    'bezig_madi' => Dossier::STATUS_BEZIG_MADI,
+//                    'compleet_madi' => Dossier::STATUS_COMPLEET_MADI,
+//                    'gecontroleerd_madi' => Dossier::STATUS_GECONTROLEERD_MADI,
+//                ];
+//                break;
+//            case Gebruiker::TYPE_GKA_APPBEHEERDER:
+//                $choices = [
+//                    'verzonden_madi' => Dossier::STATUS_VERZONDEN_MADI,
+//                    'compleet_gka' => Dossier::STATUS_COMPLEET_GKA,
+//                    'dossier_gecontroleerd_gka' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
+//                    'afgesloten_gka' => Dossier::STATUS_AFGESLOTEN_GKA,
+//                ];
+//                break;
+            case Gebruiker::TYPE_ADMIN || Gebruiker::TYPE_GKA_APPBEHEERDER || Gebruiker::TYPE_MADI_KEYUSER:
                 $choices = [
                     'bezig_madi' => Dossier::STATUS_BEZIG_MADI,
                     'compleet_madi' => Dossier::STATUS_COMPLEET_MADI,
                     'gecontroleerd_madi' => Dossier::STATUS_GECONTROLEERD_MADI,
-                ];
-                break;
-            case Gebruiker::TYPE_GKA_APPBEHEERDER:
-                $choices = [
                     'verzonden_madi' => Dossier::STATUS_VERZONDEN_MADI,
                     'compleet_gka' => Dossier::STATUS_COMPLEET_GKA,
                     'dossier_gecontroleerd_gka' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
                     'afgesloten_gka' => Dossier::STATUS_AFGESLOTEN_GKA,
                 ];
                 break;
-            case Gebruiker::TYPE_ADMIN:
-                $choices = [
-                    'bezig_madi' => Dossier::STATUS_BEZIG_MADI,
-                    'compleet_madi' => Dossier::STATUS_COMPLEET_MADI,
-                    'gecontroleerd_madi' => Dossier::STATUS_GECONTROLEERD_MADI,
-                    'verzonden_madi' => Dossier::STATUS_VERZONDEN_MADI,
-                    'compleet_gka' => Dossier::STATUS_COMPLEET_GKA,
-                    'dossier_gecontroleerd_gka' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
-                    'afgesloten_gka' => Dossier::STATUS_AFGESLOTEN_GKA,
-                ];
+            default:
+                $choices = $workflowChoices;
+                $choices[$status] = $status;
                 break;
         }
         $builder
             ->add('status', ChoiceType::class, [
                 'label' => 'Wijzig status naar',
                 'choices' => $choices,
+            ])
+            ->add('workflowStatus', ChoiceType::class, [
+                'label' => 'Wijzig status naar',
+                'mapped' => false,
+                'required' => false,
+                'multiple' => false,
+                'expanded' => true,
+                'placeholder' => false,
+                'choices' => $workflowChoices,
             ]);
 
     }
