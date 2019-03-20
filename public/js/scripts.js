@@ -13,6 +13,42 @@
       var selectedPages = pages.querySelectorAll('.page.selected');
       elemSelectedPages.textContent = selectedPages.length + ' / ' + allPages.length;
     },
+    'modal': function(e){
+      e.preventDefault();
+      var
+        el = this.hash && document.getElementById(this.hash.substring(1)),
+        url = this.href,
+        template = '<div class="modal-inner">[[CONTENT]]</div><a href="#" class="modal-close" data-handler="modal-close">SLUITEN</a>';
+        var content = false;
+
+      var _render = function(content){
+        var modal = document.createElement('div');
+        modal.classList.add('modal');
+        modal.innerHTML = template.replace('[[CONTENT]]', content);
+        document.body.appendChild(modal);
+        setTimeout(function(){
+          modal.classList.add('active');
+        }, 300);
+      };
+
+      if (el) {
+        content = el.innerHTML;
+        _render(content);
+      } else if (url) {
+        helpers.ajax(url, function(response){
+          if (response.status >= 200 && response.status < 400) {
+            var r = document.createElement('div');
+            r.innerHTML = response.responseText;
+            (content = r.querySelector('main')) && _render(content.innerHTML);
+          } else {
+            w.location = url;
+          }
+        });
+      } else {
+        w.location = url;
+      }
+
+    },
     'accordion': function (e) {
         e && e.preventDefault();
         var self = this,
