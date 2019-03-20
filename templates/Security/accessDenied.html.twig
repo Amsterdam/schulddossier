@@ -24,9 +24,10 @@
         Vraag aan de applicatiebeheerder of aan een key-user om je toe te voegen als gebruiker aan het SchuldDossier.</p>
         <p>Hij/zij heeft hier je e-mailadres voor nodig, dus houd deze bij de hand: {{ app.user.username }}</p>
         <p>Zodra de applicatiebeheerder of key-user aangeeft dat je als gebruiker bent toegevoegd aan het SchuldDossier kun je via onderstaande knop opnieuw inloggen</p>
-        <p><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Opnieuw inloggen</a></p>
-        <blockquote style="font-style: italic">
+        <p><a class="button primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Opnieuw inloggen</a></p>
+        <p>Ondertussen kun je alvast je <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appmijngegevens_index') }}">gegevens aanpassen</a>.</p>
+        <!--<blockquote style="font-style: italic">
             {{ message }}
-        </blockquote>
+        </blockquote>-->
     </div>
 {% endblock %}
