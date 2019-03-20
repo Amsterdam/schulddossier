@@ -26,11 +26,16 @@ class SearchDossierFormType extends AbstractType
      * @var TokenStorageInterface
      */
     private $tokenStorage;
+    private $schuldhulpbureauIds = [];
 
     public function __construct(AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage)
     {
         $this->authorizationChecker = $authorizationChecker;
         $this->tokenStorage = $tokenStorage;
+        $this->schuldhulpbureauIds = $tokenStorage->getToken()
+            ->getUser()
+            ->getSchuldhulpbureaus()
+            ->map(function($obj){return $obj->getId();})->getValues();
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -70,9 +75,19 @@ class SearchDossierFormType extends AbstractType
             'expanded' => false,
             'query_builder' => function (EntityRepository $repository) {
                 $qb = $repository->createQueryBuilder('gebruiker');
-                $qb->andWhere('gebruiker.type = :type');
-                $qb->setParameter('type', Gebruiker::TYPE_MADI);
-                $qb->addOrderBy('gebruiker.username', 'ASC');
+                $qb->select('u', 's')
+                  ->from(Gebruiker::class, 'u')
+                  ->innerJoin('u.schuldhulpbureaus','s')
+                  ->where($qb->expr()->in('s.id', ':bureaus'))
+                  ->andWhere($qb->expr()->orX(
+                       $qb->expr()->eq('gebruiker.type', ':madi_keyuser'),
+                       $qb->expr()->eq('gebruiker.type', ':madi')
+                   ))
+                  ->setParameter('madi_keyuser', Gebruiker::TYPE_MADI)
+                  ->setParameter('madi', Gebruiker::TYPE_MADI_KEYUSER)
+                  ->setParameter('bureaus', $this->schuldhulpbureauIds)
+                  ->addOrderBy('gebruiker.username', 'ASC');
+
                 return $qb;
             },
             'placeholder' => 'Alle medewerkers'
