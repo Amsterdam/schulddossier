@@ -182,7 +182,7 @@
       "targets": [
         ["css=.document-title", "css:finder"],
         ["xpath=//h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Selenium Test 18/02/2019, 14:31:06')]", "xpath:innerText"]
+        ["xpath=//h1[contains(.,'Test 18/03/2019, 21:40:05')]", "xpath:innerText"]
       ],
       "value": "${clientnaam}"
     }]
@@ -1145,13 +1145,6 @@
       ],
       "value": ""
     }, {
-      "id": "6184d4fe-e7be-4d72-8ed7-05674f42f869",
-      "comment": "",
-      "command": "assert",
-      "target": "Weet je het zeker?",
-      "targets": [],
-      "value": ""
-    }, {
       "id": "6ca3ccc3-b2f2-4ce1-8efc-7bd27c5df54b",
       "comment": "",
       "command": "chooseOkOnNextConfirmation",
@@ -1163,6 +1156,13 @@
       "comment": "",
       "command": "webdriverChooseOkOnVisibleConfirmation",
       "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6184d4fe-e7be-4d72-8ed7-05674f42f869",
+      "comment": "",
+      "command": "//assert",
+      "target": "Weet je het zeker?",
       "targets": [],
       "value": ""
     }]
@@ -6470,15 +6470,15 @@
     }, {
       "id": "3ce3f941-34eb-4c3b-a943-b1e3caf4ea5f",
       "comment": "",
-      "command": "verifyText",
-      "target": "css=.touched > .form-row__validation-message",
+      "command": "assertElementNotPresent",
+      "target": "css=.touched .invalid",
       "targets": [
         ["css=.touched > .form-row__validation-message", "css:finder"],
         ["xpath=//div[@id='voorlegger-vtlb']/div[2]/div/div[2]/div/span", "xpath:idRelative"],
         ["xpath=//div[2]/div/div[2]/div/span", "xpath:position"],
         ["xpath=//span[contains(.,'Dit veld mag alleen komma gescheiden getallen bevatten')]", "xpath:innerText"]
       ],
-      "value": "Dit veld mag alleen komma gescheiden getallen bevatten"
+      "value": ""
     }, {
       "id": "b5810abc-799d-4165-b01f-eb6641c478d2",
       "comment": "",
@@ -6492,7 +6492,19 @@
         ["xpath=//div[@id='voorlegger-vtlb']/div[2]/div/div[2]/div/div/input", "xpath:idRelative"],
         ["xpath=//div/input", "xpath:position"]
       ],
-      "value": "150.46"
+      "value": "1.460,2"
+    }, {
+      "id": "e60ab33d-6b45-4ac5-9540-1c32d366aa71",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.touched > .form-row__validation-message",
+      "targets": [
+        ["css=.touched > .form-row__validation-message", "css:finder"],
+        ["xpath=//div[@id='voorlegger-vtlb']/div[2]/div/div[2]/div/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Dit veld mag alleen komma gescheiden getallen bevatten')]", "xpath:innerText"]
+      ],
+      "value": "Dit veld mag alleen komma gescheiden getallen bevatten van -100000 t/m 100000"
     }]
   }],
   "suites": [{
