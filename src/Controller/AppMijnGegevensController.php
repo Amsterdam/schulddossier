@@ -23,7 +23,7 @@ class AppMijnGegevensController extends Controller
     public function indexAction(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $gebruiker = $this->getUser();
-        $form = $this->createForm(MijnGegevensFormType::class, $gebruiker, []);
+        $form = $this->createForm(MijnGegevensFormType::class, $gebruiker);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {

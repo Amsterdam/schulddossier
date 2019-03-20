@@ -93,7 +93,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     /**
      * @var string
      * @ORM\Column(type="string", length=12, nullable=true)
-     * @Assert\Length(max=12)
+     * @Assert\Length(max=12, groups={"mijn-gegevens"})
      */
     private $telefoonnummer;
 
@@ -247,12 +247,12 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
 
     public function getTelefoonnummer()
     {
-        return strtolower($this->telefoonnummer);
+        return $this->telefoonnummer;
     }
 
     public function setTelefoonnummer($telefoonnummer)
     {
-        $this->telefoonnummer = strtolower($telefoonnummer);
+        $this->telefoonnummer = $telefoonnummer;
     }
 
     public function getTeamGka()
