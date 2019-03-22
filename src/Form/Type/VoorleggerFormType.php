@@ -1,6 +1,7 @@
 <?php
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
@@ -25,6 +27,7 @@ use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierClientType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
@@ -94,7 +97,7 @@ class VoorleggerFormType extends AbstractType
             $this->user = $this->tokenStorage->getToken()->getUser();
             $voorlegger = $event->getData();
             $dossier = $voorlegger->getDossier();
-
+            $user = $this->tokenStorage->getToken()->getUser();
             if ($this->tokenStorage->getToken() === null || $this->tokenStorage->getToken()->getUser() === null) {
                 return;
             }
@@ -104,6 +107,30 @@ class VoorleggerFormType extends AbstractType
                 'mapped' => false,
                 'data' => $dossier,
                 'disabled' => $dossier->isInPrullenbak() === true
+            ]);
+            $event->getForm()->add('controleerGebruiker', EntityType::class, [
+                'required' => false,
+                'class' => Gebruiker::class,
+                'multiple' => false,
+                'mapped' => false,
+                'expanded' => false,
+                'query_builder' => function (EntityRepository $repository) use ( $dossier, $user )  {
+                    $qb = $repository->createQueryBuilder('g');
+                    $qb->innerJoin('g.schuldhulpbureaus','s');
+                    $qb->where($qb->expr()->eq('s.id', ':bureau_id'));
+                    $qb->andWhere($qb->expr()->neq('g.id', ':my_id'));
+                    $qb->andWhere($qb->expr()->orX(
+                       $qb->expr()->eq('g.type', ':madi_keyuser'),
+                       $qb->expr()->eq('g.type', ':madi')
+                    ));
+                    $qb->setParameter('madi_keyuser', Gebruiker::TYPE_MADI);
+                    $qb->setParameter('madi', Gebruiker::TYPE_MADI_KEYUSER);
+                    $qb->setParameter('bureau_id', $dossier->getSchuldhulpbureau()->getId());
+                    $qb->setParameter('my_id', $user->getId());
+                    $qb->addOrderBy('g.username', 'ASC');
+                    return $qb;
+                },
+                'placeholder' => 'Alle medewerkers'
             ]);
             $event->getForm()->add('cdst', ChangeDossierStatusType::class, [
                 'required' => true,
