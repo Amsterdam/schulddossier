@@ -49,6 +49,25 @@
       }
 
     },
+    'modal-close': function(e){
+      var modal = _closest(this, '.modal');
+      if (modal) {
+        e.preventDefault();
+        this.handled = true;
+        modal.parentNode.removeChild(modal);
+      }
+    },
+    'save-form': function (e) {
+      var self = this,
+        modal = document.querySelector('.modal'),
+        form = this.hash && document.getElementById(this.hash.substring(1));
+      form && form.dataset.submitter && submitters[form.dataset.submitter].call(form, e);
+      if(modal){
+        modal.parentNode.removeChild(modal);
+      }
+
+
+    },
     'accordion': function (e) {
         e && e.preventDefault();
         var self = this,

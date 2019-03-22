@@ -95,4 +95,61 @@ class GebruikerRepository extends EntityRepository
 
         return $qb;
     }
+    /**
+     * @param int $schuldhulpbureauId
+     *
+     * @return QueryBuilder
+     */
+    public function findAllGebruikersBySchuldhulpbureau(int $schuldhulpbureauId): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('gebruiker');
+        $qb->select('u', 's')
+            ->from(Gebruiker::class, 'u')
+            ->innerJoin('u.schuldhulpbureaus','s')
+            ->where($qb->expr()->eq('s.id', ':bureau_id'))
+            ->andWhere($qb->expr()->orX(
+               $qb->expr()->eq('gebruiker.type', ':madi_keyuser'),
+               $qb->expr()->eq('gebruiker.type', ':madi')
+            ))
+            ->setParameter('madi_keyuser', Gebruiker::TYPE_MADI)
+            ->setParameter('madi', Gebruiker::TYPE_MADI_KEYUSER)
+            ->setParameter('bureau_id', $schuldhulpbureauId)
+            ->addOrderBy('gebruiker.username', 'ASC')
+            ->getQuery()->getResult();
+        return $qb;
+
+
+
+//        return new ArrayCollection($this
+//            ->createQueryBuilder('gebruiker')
+//            ->select('u', 's')
+//            ->from(Gebruiker::class, 'u')
+//            ->innerJoin('u.schuldhulpbureaus','s')
+//            ->where($this->expr()->eq('s.id', ':bureau_id'))
+//            ->andWhere($this->expr()->orX(
+//               $this->expr()->eq('gebruiker.type', ':madi_keyuser'),
+//               $this->expr()->eq('gebruiker.type', ':madi')
+//            ))
+//            ->setParameter('madi_keyuser', Gebruiker::TYPE_MADI)
+//            ->setParameter('madi', Gebruiker::TYPE_MADI_KEYUSER)
+//            ->setParameter('bureau_id', $schuldhulpbureauId)
+//            ->addOrderBy('gebruiker.username', 'ASC')
+//            ->getQuery()->getResult());
+
+//
+//        $qb = $repository->createQueryBuilder('gebruiker');
+//        $qb->select('u', 's')
+//          ->from(Gebruiker::class, 'u')
+//          ->innerJoin('u.schuldhulpbureaus','s')
+//          ->where($qb->expr()->eq('s.id', ':bureau_id'))
+//          ->andWhere($qb->expr()->orX(
+//               $qb->expr()->eq('gebruiker.type', ':madi_keyuser'),
+//               $qb->expr()->eq('gebruiker.type', ':madi')
+//           ))
+//          ->setParameter('madi_keyuser', Gebruiker::TYPE_MADI)
+//          ->setParameter('madi', Gebruiker::TYPE_MADI_KEYUSER)
+//          ->setParameter('bureau_id', $schuldhulpbureauId)
+//          ->addOrderBy('gebruiker.username', 'ASC');
+//        return $qb;
+    }
 }

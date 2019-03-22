@@ -293,6 +293,7 @@ class AppDossierController extends Controller
 
         return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
+            'gebruikers' => $em->getRepository(Gebruiker::class)->findAllGebruikersBySchuldhulpbureau($dossier->getSchuldhulpbureau()->getId()),
             'voorleggerForm' => $voorleggerForm->createView()
         ]);
     }
