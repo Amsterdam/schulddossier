@@ -4,6 +4,8 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * Class GebruikerRepository
@@ -29,6 +31,16 @@ class GebruikerRepository extends EntityRepository
     }
 
     /**
+     * @return Doctrine\ORM\QueryBuilder
+     */
+    public function findAllRaw(): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('gebruiker');
+        $qb->orderBy('gebruiker.username', 'ASC');
+        return $qb;
+    }
+
+    /**
      * @param array $type
      * @param int   $page
      * @param int   $pageSize
@@ -43,7 +55,6 @@ class GebruikerRepository extends EntityRepository
         $qb->orderBy('gebruiker.username', 'ASC');
         $qb->setFirstResult($page * $pageSize);
         $qb->setMaxResults($pageSize);
-
         return new Paginator($qb->getQuery());
     }
 
@@ -57,6 +68,21 @@ class GebruikerRepository extends EntityRepository
      */
     public function findAllByTypeAndSchuldhulpbureau(array $type, $bureaus, int $page = 0, int $pageSize = 100): Paginator
     {
+        $qb = $this->findAllByTypeAndSchuldhulpbureauRaw($type, $bureaus, $page, $pageSize);
+        $qb->setFirstResult($page * $pageSize);
+        $qb->setMaxResults($pageSize);
+
+        return new Paginator($qb->getQuery());
+    }
+
+    /**
+     * @param array $type
+     * @param array $bureaus
+     *
+     * @return Doctrine\ORM\QueryBuilder
+     */
+    public function findAllByTypeAndSchuldhulpbureauRaw(array $type, $bureaus): QueryBuilder
+    {
         $qb = $this->createQueryBuilder('gebruiker');
         $qb->andWhere('gebruiker.type IN (:type)');
         $qb->setParameter('type', $type);
@@ -66,9 +92,7 @@ class GebruikerRepository extends EntityRepository
         $qb->setParameter('shb_ids', $bureaus);
 
         $qb->orderBy('gebruiker.username', 'ASC');
-        $qb->setFirstResult($page * $pageSize);
-        $qb->setMaxResults($pageSize);
 
-        return new Paginator($qb->getQuery());
+        return $qb;
     }
 }
