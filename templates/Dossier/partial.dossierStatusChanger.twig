@@ -1,12 +1,11 @@
-{% if changeDossierStatusForm != false %}
-    {#{ form_start(changeDossierStatusForm) }#}
-    <div class="dashboard_dossier_status_changer_element">
-        {{ form_label(changeDossierStatusForm.status) }}
-        <br>
-        {{ form_widget(changeDossierStatusForm.status, {'attr': {'data-current': dossier.status}}) }}
-    </div>
-    <div class="dashboard_dossier_status_changer_element_errors">
-        {{ form_errors(changeDossierStatusForm.status) }}
-    </div>
-    {#{ form_end(changeDossierStatusForm) }#}
-{% endif %}
+
+<div class="dossier-status" data-decorator="dossier-status">
+    Huidige status: <strong>{{ dossier.status|trans }}</strong>
+    <br>
+    <br>
+    <span>Wijzig dossier status:</span>
+
+    {{ form_widget(changeDossierStatusForm.transition, {'attr': {'data-current': dossier.status, 'class': 'dossier-status__buttons'}}) }}
+    {{ form_widget(changeDossierStatusForm.status, {'attr': {'data-current': dossier.status, 'class': 'dossier-status__select'}}) }}
+</div>
+

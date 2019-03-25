@@ -381,6 +381,9 @@
       right: 10%;
     }
   }
+  &.invalid .dossier__voorlegger__header * {
+    //color: red !important;
+  }
 }
 
 .dossier__voorlegger__header {
@@ -705,7 +708,8 @@
   width: calc(100vw - 442px);
   height: calc(100vh - 110px);
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  flex-direction: row;
   .col-1-1 {
     //border-top: 1px solid #000;
     //text-align: center;
@@ -722,6 +726,7 @@
 .dossier__dashboard__default,
 .dossier__dashboard__messages {
   padding-top: 100px;
+  margin: 0 25px;
   //height: calc(100% - 100px);
   //width: 40%;
   //padding: 50px 6.666% 0;
@@ -734,7 +739,7 @@
 }
 
 .dossier__dashboard__messages {
-  width: 25%;
+  width: 30%;
 }
 .dossier__dashboard__well--line {
   border: 1px $borderColor2 solid;
@@ -765,7 +770,8 @@
   }
   li {
     display: inline-block;
-    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 40px;
   }
 
 }

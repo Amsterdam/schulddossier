@@ -2,7 +2,7 @@
     <div class="dossier__dashboard__default">
         <div class="dossier__dashboard__well--line">
             <h2 class="dossier__dashboard__well__header">
-                <span>Samenvatting{{ form_errors(voorleggerForm) }}</span>
+                <span>Samenvatting</span>
             </h2>
             <div class="row">
                 <div class="col-1-2">
@@ -82,6 +82,7 @@
                             <dt>Burgelijke staat</dt>
                             <dd>{% if dossier.clientBurgelijkeStaat %}{{ dossier.clientBurgelijkeStaat }}{% else %}-{% endif %}</dd>
                             <dt>Geboortedatum inwonende kind(eren)</dt>
+                            <dd>
                             {% if dossier.clientKinderen %}{{ dossier.clientKinderen|length }} kinderen:<br>
                                 {% for k in dossier.clientKinderen %}
                                     {{ k }}<br>
@@ -126,39 +127,42 @@
         </div>
     </div>
     <div class="dossier__dashboard__messages">
-        <div class="row">
-            <div class="col-1-1">
-                <h2>Overleg</h2>
-                {% if not dossier.isInPrullenbak %}
-                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen', {'dossierId': dossier.id}) }}"
-                       class="button secondary">Aantekening toevoegen</a>
-                {% endif %}
-            </div>
-        </div>
-        <div class="row row-max-height">
-            <div class="col-1-1">
-                <div class="aantekeningen">
-                    {% for aantekening in dossier.aantekeningen %}
-                        {% include 'Dossier/partial.aantekening.html.twig' with {'aantekening': aantekening, 'showContext': true} %}
-                    {% endfor %}
-                </div>
-
-            </div>
-        </div>
         {% if voorleggerForm.cdst is defined %}
-                <div class="dossier__dashboard__controls">
-                    <div class="row">
-                        <h2>Dossier acties</h2>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="dashboard_dossier_status_changer">
-                                {% include 'Dossier/partial.dossierStatusChanger.twig' with {'changeDossierStatusForm': voorleggerForm.cdst} %}
-                            </div>
-                        </div>
-                    </div>
+        <div class="dossier__dashboard__well--line">
+            <h2 class="dossier__dashboard__well__header">
+                <span>Dossier status</span>
+            </h2>
+            <div class="row">
+                <div class="col-1-1">
+                    {% include 'Dossier/partial.dossierStatusChanger.twig' with {'changeDossierStatusForm': voorleggerForm.cdst} %}
                 </div>
+            </div>
+
+        </div>
         {% endif %}
+        <div class="dossier__dashboard__well--line">
+            <h2 class="dossier__dashboard__well__header">
+                <span>Overleg</span>
+            </h2>
+            <div class="row">
+                <div class="col-1-1">
+                    {% if not dossier.isInPrullenbak %}
+                        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen', {'dossierId': dossier.id}) }}"
+                           class="button secondary">Aantekening toevoegen</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row row-max-height">
+                <div class="col-1-1">
+                    <div class="aantekeningen">
+                        {% for aantekening in dossier.aantekeningen %}
+                            {% include 'Dossier/partial.aantekening.html.twig' with {'aantekening': aantekening, 'showContext': true} %}
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
