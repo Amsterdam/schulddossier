@@ -323,6 +323,7 @@
       var self = this,
         proto = self.dataset.prototype,
         itemList = self.querySelector('.kind__item-list'),
+        form = _closest(self, 'form'),
         inputList = itemList.querySelectorAll('input[type="text"]'),
         add = self.querySelector('.kind__add' ),
         _add = function(e, value){
@@ -353,9 +354,7 @@
           if (delElem){
             var elem = _closest(delElem, '.kind__item');
             elem.parentNode.removeChild(elem);
-            //elem.querySelector('input[type="text"]').value = '';
-            //elem.querySelector('input[type="text"]').setAttribute("value", "");
-            //elem.classList.add('disabled');
+            form && form.dataset.changer && changers[form.dataset.changer].call(form, e);
           }
         };
       for(var i = 0; i < inputList.length; i++){
@@ -487,16 +486,23 @@
           }).join( '|' );
         };
       for(var i = 0; i < eventElem.length; i++){
-        console.log(eventElem[i]);
         eventElem[i].addEventListener('change', _formChange)
       }
-      console.log(radio.value);
       self.dataset.initialData = _getData();
       self.addEventListener('change', _formChange);
 
     },
-    'accordion': function(){
-      var self = this;
+    'dossier-status': function(){
+      var self = this,
+        form = _closest(self, 'form'),
+        buttons = self.querySelectorAll('.dossier-status__buttons input');
+
+      for (var i = 0; i < buttons.length; i++){
+        var b = buttons[i];
+        b.addEventListener('click', function(e) {
+          submitters[form.dataset.submitter].call(form);
+        });
+      }
 
 
     },
@@ -922,7 +928,6 @@
       });
       datepicker.on('hide', function(){
         var row = _closest(this.associated, '.form-row');
-        console.log(this.associated);
         row && row.classList.remove('rome-active');
       });
 
@@ -1160,12 +1165,7 @@
         newDocCounter = 1,
         i;
 
-      if (form.querySelector('#voorlegger_form_cdst_status') && form.querySelector('#voorlegger_form_cdst_status').value !== form.querySelector('#voorlegger_form_cdst_status').dataset.current){
-        w.onbeforeunload = function () {};
-        return;
-      }else {
-        e && e.preventDefault();
-      }
+      e && e.preventDefault();
 
       form && changers[form.dataset.changer].call(form, e);
       if (form.classList.contains('invalid')){
@@ -1186,7 +1186,6 @@
       }
 
       var data = new FormData(form);
-
 
       var url = form.action + '?v' + (new Date()).getTime();
 
@@ -1286,6 +1285,7 @@
     'default': function(data, e){
       var self = this,
         container = _closest(self, '.form-row'),
+        section = _closest(self, '.dossier__item'),
         elemMessageClass = 'form-row__validation-message';
 
       if (!container.querySelector('.' + elemMessageClass)){
@@ -1298,6 +1298,7 @@
         container.classList.add('touched')
       }
       container.classList[data.valid ? 'remove' : 'add']('invalid');
+      section && section.classList[data.valid ? 'remove' : 'add']('invalid');
       return data.valid;
     },
     'required-integer': function(e){
@@ -1519,7 +1520,7 @@
                 dataTransfer.setDragImage(dragGhost, 0, 0);
                 dataTransfer.setData('Text', dragEl.textContent); // dataTransfer object of HTML5 DragEvent
             } else {
-                console.error("not supported");
+                console.error("not supported: draggable");
             }
           },
           onEnd: function (e) {

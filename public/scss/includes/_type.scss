@@ -31,6 +31,9 @@ textarea {
   font-size: $fontSize;
   font-family: $ff-regular;
 }
+select::-ms-expand {
+    display: none;
+}
 
 body {
   line-height: $lineHeightRelative;
