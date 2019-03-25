@@ -495,17 +495,11 @@
     'dossier-status': function(){
       var self = this,
         form = _closest(self, 'form'),
-        buttons = self.querySelectorAll('.dossier-status__buttons input'),
-        select = self.querySelector('.dossier-status__select'),
-        prevValue = null;
+        buttons = self.querySelectorAll('.dossier-status__buttons input');
 
       for (var i = 0; i < buttons.length; i++){
         var b = buttons[i];
         b.addEventListener('click', function(e) {
-          if (this !== prevValue) {
-              prevValue = this;
-              select.value  = this.value;
-          }
           submitters[form.dataset.submitter].call(form);
         });
       }
