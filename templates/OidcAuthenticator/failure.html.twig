@@ -1,0 +1,16 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}
+    Oops!
+{% endblock %}
+
+{% block document %}
+    <h1>Oops, daar ging iets mis... </h1>
+    <h2>Probeer het nog eens of neem contact op met uw app beheerder.</h2>
+    <br>
+    <h3><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Klik hier</a> om terug te gaan naar de voorpagina.</h3>
+    <br>
+    <p>{{ e.message }}</p>
+
+{% endblock %}
+
