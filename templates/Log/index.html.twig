@@ -54,8 +54,14 @@
                             {% if log.name == 'dossier_gewijzigd' %}
                                 Dossier gewijzigd
                             {% endif %}
+                            {% if log.name == 'dossier_verwijderd' %}
+                                Dossier verwijderd
+                                <br>
+                                MaDi dossiernr.: {{ log.data.dossier.allegro_nummer }} <br>
+                                GKA dossiernr.: {{ log.data.dossier.regas_nummer }}
+                            {% endif %}
                             {% if log.name == 'gebruiker_ingelogd' %}
-                                Gebruiker inglogd
+                                Gebruiker ingelogd
                             {% endif %}
                             {% if log.name == 'gebruiker_gewijzigd' %}
                                 Gebruiker gewijzigd

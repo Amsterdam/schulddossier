@@ -159,7 +159,7 @@ class ActionEvent extends Event
             self::getDossierData($dossier)
         );
 
-        return new self(self::DOSSIER_VERWIJDERD, $data, $dossier);
+        return new self(self::DOSSIER_VERWIJDERD, $data);
     }
 
     /**
