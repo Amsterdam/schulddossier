@@ -500,6 +500,9 @@
       for (var i = 0; i < buttons.length; i++){
         var b = buttons[i];
         b.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.onbeforeunload = null;
+          form.dataset.refresh = '/app/dossier/';
           submitters[form.dataset.submitter].call(form);
         });
       }
@@ -1221,6 +1224,10 @@
       form.files = [];
 
       var _process = function (data, selector) {
+        if (form.dataset.refresh){
+          window.onbeforeunload = null;
+          window.location = form.dataset.refresh;
+        }
         submitButton.removeAttribute("disabled");
         var div = document.createElement('div');
         div.innerHTML = data;
@@ -1238,7 +1245,7 @@
             // IE11 placeholder bug FIX
             var els = target[i].querySelectorAll('[placeholder]');
             for (var l = 0; l < els.length; l++) {
-              if (els[l].getAttribute('placeholder') == els[l].value) els[l].value = '';
+              if (els[l].getAttribute('placeholder') === els[l].value) els[l].value = '';
             }
 
 
@@ -1266,6 +1273,10 @@
 
         },
         error: function () {
+          if (form.dataset.refresh){
+            window.onbeforeunload = null;
+            window.location = form.dataset.refresh;
+          }
           form.classList.remove('in-progress');
           form.classList.add('ajax-error');
         }
