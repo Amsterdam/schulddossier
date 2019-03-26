@@ -12,6 +12,7 @@ use Lcobucci\JWT\ValidationData;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -26,6 +27,11 @@ use Lcobucci\JWT\Signer\Ecdsa\Sha384;
 use Lcobucci\JWT\Signer\Rsa\Sha512;
 use Twig\Environment;
 
+/**
+ * Class OidcAuthenticator
+ *
+ * @package GemeenteAmsterdam\FixxxSchuldhulp\Security
+ */
 class OidcAuthenticator extends AbstractGuardAuthenticator
 {
     /**
@@ -64,6 +70,18 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
      */
     private $twig;
 
+    /**
+     * OidcAuthenticator constructor.
+     *
+     * @param EntityManagerInterface    $em
+     * @param UrlGeneratorInterface     $urlGenerator
+     * @param CsrfTokenManagerInterface $csrf
+     * @param LoggerInterface           $logger
+     * @param Environment               $twig
+     * @param                           $clientId
+     * @param                           $clientSecret
+     * @param                           $baseUrl
+     */
     public function __construct(EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrf, LoggerInterface $logger, Environment $twig, $clientId, $clientSecret, $baseUrl)
     {
         $this->gebruikerRepository = $em->getRepository(Gebruiker::class);
@@ -81,6 +99,11 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
 
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return bool
+     */
     public function supports(Request $request)
     {
         if ($request->query->get('state') !== $request->getSession()->getId()) {
@@ -91,6 +114,11 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         return $request->attributes->get('_route') === 'gemeenteamsterdam_fixxxschuldhulp_appdossier_index';
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return array|mixed
+     */
     public function getCredentials(Request $request)
     {
         return [
@@ -165,6 +193,13 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         return $user;
     }
 
+    /**
+     * @param Request        $request
+     * @param TokenInterface $token
+     * @param string         $providerKey
+     *
+     * @return null|RedirectResponse|Response
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         if ($request->getSession()->has('loginReturnUrl')) {
@@ -174,13 +209,28 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         }
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
+    /**
+     * @param Request                 $request
+     * @param AuthenticationException $exception
+     *
+     * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
     {
-        return $this->twig->render('OidcAuthenticator/failure.html.twig', [
+        return new Response($this->twig->render('OidcAuthenticator/failure.html.twig', [
             'e' => $exception
-        ]);
+        ]));
     }
 
+    /**
+     * @param Request                      $request
+     * @param AuthenticationException|null $authException
+     *
+     * @return RedirectResponse|Response
+     */
     public function start(Request $request, AuthenticationException $authException = null)
     {
         $request->getSession()->set('loginReturnUrl', $request->getUri());
@@ -194,11 +244,20 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         return new RedirectResponse($this->baseUrl . '/protocol/openid-connect/auth?' . http_build_query($params));
     }
 
+    /**
+     * @param mixed         $credentials
+     * @param UserInterface $user
+     *
+     * @return bool
+     */
     public function checkCredentials($credentials, UserInterface $user)
     {
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public function supportsRememberMe()
     {
         return false;
