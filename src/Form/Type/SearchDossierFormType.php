@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -26,11 +28,13 @@ class SearchDossierFormType extends AbstractType
      * @var TokenStorageInterface
      */
     private $tokenStorage;
+    private $user = null;
 
     public function __construct(AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage)
     {
         $this->authorizationChecker = $authorizationChecker;
         $this->tokenStorage = $tokenStorage;
+        $this->user = $tokenStorage->getToken()->getUser();
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -63,20 +67,6 @@ class SearchDossierFormType extends AbstractType
             ]);
         }
 
-        $builder->add('medewerkerSchuldhulpbureau', EntityType::class, [
-            'required' => false,
-            'class' => Gebruiker::class,
-            'multiple' => false,
-            'expanded' => false,
-            'query_builder' => function (EntityRepository $repository) {
-                $qb = $repository->createQueryBuilder('gebruiker');
-                $qb->andWhere('gebruiker.type = :type');
-                $qb->setParameter('type', Gebruiker::TYPE_MADI);
-                $qb->addOrderBy('gebruiker.username', 'ASC');
-                return $qb;
-            },
-            'placeholder' => 'Alle medewerkers'
-        ]);
         $builder->add('teamGka', EntityType::class, [
             'required' => false,
             'class' => Team::class,
@@ -84,6 +74,27 @@ class SearchDossierFormType extends AbstractType
             'expanded' => false,
             'placeholder' => 'Alle teams'
         ]);
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $form = $event->getForm();
+            $data = $event->getData();
+
+            $form->add('medewerkerSchuldhulpbureau', EntityType::class, [
+                'required' => false,
+                'class' => Gebruiker::class,
+                'multiple' => false,
+                'expanded' => false,
+                'query_builder' => function (EntityRepository $repository) {
+                    if ($this->user->getType() === Gebruiker::TYPE_MADI || $this->user->getType() === Gebruiker::TYPE_MADI_KEYUSER){
+                        return $repository->findAllByTypeAndSchuldhulpbureauRaw([Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER, Gebruiker::TYPE_ONBEKEND], $this->user->getSchuldhulpbureaus());
+                    }else{
+                        return $repository->findAllRaw();
+
+                    }
+                },
+                'placeholder' => 'Alle medewerkers'
+            ]);
+
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver)
