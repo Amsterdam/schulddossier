@@ -28,7 +28,6 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierClientType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
 
