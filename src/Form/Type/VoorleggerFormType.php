@@ -2,6 +2,8 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -42,10 +44,11 @@ class VoorleggerFormType extends AbstractType
     private $user;
     private $workflowRegistry;
 
-    public function __construct(TokenStorageInterface $tokenStorage, WorkflowRegistry $registry)
+    public function __construct(TokenStorageInterface $tokenStorage, WorkflowRegistry $registry, EntityManagerInterface $em)
     {
         $this->tokenStorage = $tokenStorage;
         $this->workflowRegistry = $registry;
+        $this->em = $em;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -97,8 +100,24 @@ class VoorleggerFormType extends AbstractType
             $voorlegger = $event->getData();
             $dossier = $voorlegger->getDossier();
             $user = $this->tokenStorage->getToken()->getUser();
+            $gebruikers = $this->em->getRepository(Gebruiker::class)->findAllByTypeAndSchuldhulpbureauRaw(
+                    [Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER],
+                    [$dossier->getSchuldhulpbureau()]
+                );
             if ($this->tokenStorage->getToken() === null || $this->tokenStorage->getToken()->getUser() === null) {
                 return;
+            }
+
+            $choices = [];
+            $data = null;
+            if (empty($dossier->getSchuldhulpbureau()->getEmailAdresControle()) === false){
+                $data = $dossier->getSchuldhulpbureau()->getEmailAdresControle();
+                $choices['Controle e-mailadres (' . $dossier->getSchuldhulpbureau()->getEmailAdresControle() . ')'] = $dossier->getSchuldhulpbureau()->getEmailAdresControle();
+            }
+            foreach ($gebruikers->getQuery()->getResult() as $key => $value) {
+                if ($value != $user){
+                    $choices[$value->getNaam() . ' (' .$value->getEmail() . ')'] = $value->getEmail();
+                }
             }
 
             $event->getForm()->add('cdct', ChangeDossierClientType::class, [
@@ -107,29 +126,14 @@ class VoorleggerFormType extends AbstractType
                 'data' => $dossier,
                 'disabled' => $dossier->isInPrullenbak() === true
             ]);
-            $event->getForm()->add('controleerGebruiker', EntityType::class, [
+            $event->getForm()->add('controleerGebruiker', ChoiceType::class, [
                 'required' => false,
-                'class' => Gebruiker::class,
                 'multiple' => false,
-                'mapped' => false,
                 'expanded' => false,
-                'query_builder' => function (EntityRepository $repository) use ( $dossier, $user )  {
-                    $qb = $repository->createQueryBuilder('g');
-                    $qb->innerJoin('g.schuldhulpbureaus','s');
-                    $qb->where($qb->expr()->eq('s.id', ':bureau_id'));
-                    $qb->andWhere($qb->expr()->neq('g.id', ':my_id'));
-                    $qb->andWhere($qb->expr()->orX(
-                       $qb->expr()->eq('g.type', ':madi_keyuser'),
-                       $qb->expr()->eq('g.type', ':madi')
-                    ));
-                    $qb->setParameter('madi_keyuser', Gebruiker::TYPE_MADI);
-                    $qb->setParameter('madi', Gebruiker::TYPE_MADI_KEYUSER);
-                    $qb->setParameter('bureau_id', $dossier->getSchuldhulpbureau()->getId());
-                    $qb->setParameter('my_id', $user->getId());
-                    $qb->addOrderBy('g.username', 'ASC');
-                    return $qb;
-                },
-                'placeholder' => 'Alle medewerkers'
+                'mapped' => false,
+                'choices' => $choices,
+                'data' => $data,
+                'placeholder' => 'Kies een collega'
             ]);
             $event->getForm()->add('cdst', ChangeDossierStatusType::class, [
                 'required' => true,

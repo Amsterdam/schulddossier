@@ -1,4 +1,5 @@
 .button, button {
+  font-family: $ff-native;
   display: inline-block;
   box-sizing: border-box;
 
@@ -349,6 +350,9 @@ form {
       order: 1;
       height: auto;
     }
+  }
+  .form-container > *:last-child {
+    margin-bottom: 0;
   }
 }
 

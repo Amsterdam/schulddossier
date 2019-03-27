@@ -82,11 +82,22 @@
  }
 
 }
+.modal__button {
+  &--validate {
+    form.invalid & {
+      pointer-events: none;
+      color: #999;
+      border-color: #999;
+      background-color: white;
+    }
+  }
+
+}
 .modal-inner {
   position: relative;
   z-index: 2;
   margin: $padding / 2;
-  max-width: 80vw;
+  max-width: 700px;
 
   background-color: #fff;
 

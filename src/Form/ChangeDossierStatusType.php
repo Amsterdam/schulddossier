@@ -140,6 +140,9 @@ class ChangeDossierStatusType extends AbstractType
                 'expanded' => true,
                 'placeholder' => false,
                 'choices' => $transitionChoices,
+                'choice_attr' => [
+                    'Ter controle aanbieden' => ['data-popup' => 'modal', 'data-root' => '#voorlegger_form', 'data-content-id' => 'madi-controlle-dialoog']
+                ],
             ]);
             $form->add('status', ChoiceType::class, [
                 'label' => 'Wijzig status naar',

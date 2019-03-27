@@ -16,8 +16,10 @@
     'modal': function(e){
       e.preventDefault();
       var
-        el = this.hash && document.getElementById(this.hash.substring(1)),
+        el = this.hash && document.getElementById(this.hash.substring(1)) || this.dataset.contentId && document.getElementById(this.dataset.contentId),
         url = this.href,
+        form = _closest(this, 'form'),
+        rootElem = this.dataset.root && document.querySelector(this.dataset.root) || document.body,
         template = '<div class="modal-inner">[[CONTENT]]</div><a href="#" class="modal-close" data-handler="modal-close">SLUITEN</a>';
         var content = false;
 
@@ -25,7 +27,14 @@
         var modal = document.createElement('div');
         modal.classList.add('modal');
         modal.innerHTML = template.replace('[[CONTENT]]', content);
-        document.body.appendChild(modal);
+        var fields = modal.querySelectorAll('select, input');
+        for (var i = 0; i < fields.length; i++){
+          var f = fields[i];
+          f.dataset.id && f.setAttribute('id', f.dataset.id);
+          f.dataset.name && f.setAttribute('name', f.dataset.name);
+        }
+        rootElem.appendChild(modal);
+        form && changers['change'].call(form);
         setTimeout(function(){
           modal.classList.add('active');
         }, 300);
@@ -39,6 +48,7 @@
           if (response.status >= 200 && response.status < 400) {
             var r = document.createElement('div');
             r.innerHTML = response.responseText;
+
             (content = r.querySelector('main')) && _render(content.innerHTML);
           } else {
             w.location = url;
@@ -47,20 +57,32 @@
       } else {
         w.location = url;
       }
+      document.body.classList.add('modal-active');
 
     },
     'modal-close': function(e){
       var modal = _closest(this, '.modal');
       if (modal) {
-        e.preventDefault();
         this.handled = true;
         modal.parentNode.removeChild(modal);
       }
+      document.body.classList.remove('modal-active');
     },
     'save-form': function (e) {
       var self = this,
         modal = document.querySelector('.modal'),
+        field = self.dataset.field && document.querySelector('[name="'+self.dataset.field+'"]'),
+        fieldValue = self.dataset.fieldValue,
         form = this.hash && document.getElementById(this.hash.substring(1));
+      e && e.preventDefault();
+      if (field && fieldValue){
+        if (field.tagName === 'INPUT' && field.getAttribute('type') === 'radio') {
+          var el = document.querySelector('[name="' + self.dataset.field + '"][value="' + fieldValue + '"]');
+          if (el) {
+            el.checked = true;
+          }
+        }
+      }
       form && form.dataset.submitter && submitters[form.dataset.submitter].call(form, e);
       if(modal){
         modal.parentNode.removeChild(modal);
@@ -556,14 +578,32 @@
       for (var i = 0; i < buttons.length; i++){
         var b = buttons[i];
         b.addEventListener('click', function(e) {
-          e.preventDefault();
-          window.onbeforeunload = null;
           form.dataset.refresh = '/app/dossier/';
-          submitters[form.dataset.submitter].call(form);
+          if (this.dataset.popup){
+            handlers['modal'].call(this, e);
+          }else {
+            this.checked = true;
+            window.onbeforeunload = null;
+            submitters[form.dataset.submitter].call(form);
+          }
         });
       }
 
 
+    },
+    'prepare-modal': function(){
+      var self = this,
+        ids = self.querySelectorAll('input[id], select[id]'),
+        names = self.querySelectorAll('input[name], select[name]'),
+        i;
+      for(i = 0; i < ids.length; i++){
+        ids[i].dataset.id = ids[i].getAttribute('id');
+        ids[i].removeAttribute('id');
+      }
+      for(i = 0; i < names.length; i++){
+        names[i].dataset.name = names[i].getAttribute('name');
+        names[i].removeAttribute('name');
+      }
     },
     'bestand-viewer': function () {
       var self = this,
@@ -1354,7 +1394,6 @@
         container = _closest(self, '.form-row'),
         section = _closest(self, '.dossier__item'),
         elemMessageClass = 'form-row__validation-message';
-
       if (!container.querySelector('.' + elemMessageClass)){
         var elemMessage = document.createElement('span');
         elemMessage.classList.add(elemMessageClass);
@@ -1438,7 +1477,7 @@
       var
         form = this,
         formChangedClass = this.dataset.formChangedSelector || 'form-changed',
-        validatorFields = form.querySelectorAll('input[data-validator]'),
+        validatorFields = form.querySelectorAll('input[data-validator], select[data-validator]'),
         defaultDocumentNaam = form.querySelector('#nieuwe-schuld-toevoegen .result-container .search-result-item-static span');
 
       form.classList.remove('invalid');

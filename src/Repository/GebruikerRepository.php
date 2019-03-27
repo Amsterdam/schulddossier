@@ -117,4 +117,14 @@ class GebruikerRepository extends EntityRepository
             $qb = $qb->getQuery()->getResult();
         return $qb;
     }
+
+    /**
+     * @param int $gebruikerId
+     *
+     * @return String
+     */
+    public function getGebruikerEmailById(int $gebruikerId): String
+    {
+        return $this->findOneBy(array('id' => $gebruikerId))->getEmail();
+    }
 }

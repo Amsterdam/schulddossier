@@ -252,6 +252,9 @@
   &.splitter-active .document-container {
     transform: translate($pdfSplitterWidth, 0);
   }
+  &.modal-active .document-container {
+    z-index: 200;
+  }
 
 }
 
