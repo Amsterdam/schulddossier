@@ -147,3 +147,26 @@
     {% endfor %}
 </table>
 
+<table class="table table-striped" width="100%" style="border: 1px solid #3f3f3f">
+    <thead class="thead">
+    <tr>
+        <th colspan="4" scope="col"><h1 style="text-align: center; border-bottom: 1px solid #3f3f3f">Log</h1>
+        </th>
+    </tr>
+    </thead>
+    {% for actionEvent in dossier.actionEvents %}
+        <tr>
+            <td>
+                <b>Naam:</b> {{ actionEvent.name }}
+                <br>
+                <b>IP:</b> {{ actionEvent.ip }}
+                <br>
+                <b>Datum/tijd:</b> {{ actionEvent.datumTijd|date('d-m-Y h:i:s') }}
+                <br>
+                <b>Data:</b>
+                <br>
+                {{ actionEvent.data|json_encode }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
