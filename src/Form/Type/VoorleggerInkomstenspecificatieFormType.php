@@ -58,7 +58,7 @@ class VoorleggerInkomstenspecificatieFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('beschikkingGemeenteAmsterdamWPI', CheckboxType::class, [
-            'label' => 'Gemeente Amasterdam (WPI)',
+            'label' => 'Gemeente Amsterdam (WPI)',
             'required' => false
         ]);
         $builder->add('beschikkingSVBAOW', CheckboxType::class, [
@@ -70,7 +70,7 @@ class VoorleggerInkomstenspecificatieFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('beschikkingGemeenteAmsterdamIOAW', CheckboxType::class, [
-            'label' => 'Gemeente Amasterdam (IOAW)',
+            'label' => 'Gemeente Amsterdam (IOAW)',
             'required' => false
         ]);
 
