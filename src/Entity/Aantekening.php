@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -11,6 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Aantekening
 {
+    use ExportAble;
     /**
      * @var integer
      * @ORM\Id

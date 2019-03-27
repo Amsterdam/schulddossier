@@ -900,6 +900,19 @@ class Dossier
         return $header . PHP_EOL . implode(PHP_EOL, $rows);
     }
 
+    public function getAantekeningenAsCsv()
+    {
+        $rows=[];
+        $header='';
+        /** @var Aantekening $aantekening */
+        foreach($this->getAantekeningen() as $aantekening){
+            list($header, $row) = $aantekening->asCsvValues();
+            $rows[] = $row;
+        }
+
+        return $header . PHP_EOL . implode(PHP_EOL, $rows);
+    }
+
     /**
      * Based on current status we can determine whether a dossier is with a MaDi organisation
      *

@@ -1036,9 +1036,10 @@ class AppDossierController extends Controller
     public function downloadCsv(Dossier $dossier)
     {
         $dossierCsv = $dossier->asCsv();
+        $aantekeningenCsv = $dossier->getAantekeningenAsCsv();
         $voorleggerCsv = $dossier->getVoorlegger()->asCsv();
         $logCsv = $dossier->getActionEventsAsCsv();
 
-        return Response::create($dossierCsv . PHP_EOL . PHP_EOL . $voorleggerCsv . PHP_EOL . PHP_EOL . $logCsv);
+        return Response::create($dossierCsv . PHP_EOL . PHP_EOL . $aantekeningenCsv . PHP_EOL . PHP_EOL . $voorleggerCsv . PHP_EOL . PHP_EOL . $logCsv);
     }
 }
