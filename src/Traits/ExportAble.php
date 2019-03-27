@@ -15,17 +15,28 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
  */
 trait ExportAble
 {
+    public function asCsv()
+    {
+        list($header, $rows) = $this->asCsvValues();
+        return $header . PHP_EOL . $rows;
+    }
+
     /**
-     * @return string
+     * @return array
      */
-    public function toCsv(): string
+    public function asCsvValues(): array
     {
         list($csvHeader, $csvValues) = $this->getClassAttributesAndValues();
 
         $csvHeaderRow = '"' . implode('","', $csvHeader) . '"';
         $csvValuesRow = '"' . implode('","', $csvValues) . '"';
 
-        return $csvHeaderRow . PHP_EOL . $csvValuesRow;
+        return [$csvHeaderRow, $csvValuesRow];
+    }
+
+    private function escapeInput($input): string
+    {
+        return str_replace('"','\"', $input);
     }
 
     /**
@@ -71,9 +82,9 @@ trait ExportAble
             if ($attributeValue instanceof PersistentCollection) {
                 $attributeValue = \json_encode($attributeValue->toArray());
             }
-            $csvHeader[] = $attributeKey;
-            $csvValues[] = $attributeValue;
+            $csvHeader[] = $this->escapeInput($attributeKey);
+            $csvValues[] = $this->escapeInput($attributeValue);
         }
-        return array($csvHeader, $csvValues);
+        return [$csvHeader, $csvValues];
     }
 }

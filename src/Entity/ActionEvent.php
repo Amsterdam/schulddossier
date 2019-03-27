@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
 
 /**
  * @ORM\Entity
@@ -12,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ActionEvent
 {
+    use ExportAble;
+
     /**
      * @var integer
      * @ORM\Id

@@ -882,6 +882,24 @@ class Dossier
         }
     }
 
+    public function getActionEvents()
+    {
+        return $this->actionEvents;
+    }
+
+    public function getActionEventsAsCsv()
+    {
+        $rows=[];
+        $header='';
+        /** @var ActionEvent $actionEvent */
+        foreach($this->getActionEvents() as $actionEvent){
+            list($header, $row) = $actionEvent->asCsvValues();
+            $rows[] = $row;
+        }
+
+        return $header . PHP_EOL . implode(PHP_EOL, $rows);
+    }
+
     /**
      * Based on current status we can determine whether a dossier is with a MaDi organisation
      *
