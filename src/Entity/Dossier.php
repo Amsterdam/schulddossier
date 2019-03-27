@@ -4,6 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,6 +16,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Dossier
 {
+    use ExportAble;
+
     public const STATUS_BEZIG_MADI = 'bezig_madi';
     public const STATUS_COMPLEET_MADI = 'compleet_madi';
     public const STATUS_GECONTROLEERD_MADI = 'gecontroleerd_madi';

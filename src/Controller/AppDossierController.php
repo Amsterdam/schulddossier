@@ -16,12 +16,10 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierClientType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateAantekeningFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierAdditionalFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DocumentFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldenFormType;
@@ -1010,5 +1008,34 @@ class AppDossierController extends Controller
         $this->addFlash('success', 'Schuld hersteld');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/downloadPdf")
+     * @Method("GET")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @param Dossier $dossier
+     *
+     * @return Response
+     */
+    public function downloadPdf(Dossier $dossier)
+    {
+        return $this->render('DocumentPlus/export.html.twig', ['dossier' => $dossier]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/downloadCsv")
+     * @Method("GET")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @param Dossier $dossier
+     *
+     * @return Response
+     */
+    public function downloadCsv(Dossier $dossier)
+    {
+        return Response::create($dossier->toCsv());
+//        return Response::create($dossier->getVoorlegger()->toCsv());
     }
 }

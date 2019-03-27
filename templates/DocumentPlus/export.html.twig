@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<table class="table table-striped" width="100%" style="border: 1px solid #3f3f3f">
+    <thead class="thead">
+    <tr>
+        <th colspan="4" scope="col"><h1 style="text-align: center; border-bottom: 1px solid #3f3f3f">Algemene
+                informatie</h1></th>
+    </tr>
+    </thead>
+    <tr>
+        <td colspan="4">
+            <h2>Client</h2>
+        </td>
+    </tr>
+    <tr>
+        <td><b>GKA Nummer:</b></td>
+        <td>{{ dossier.allegroNummer }}</td>
+        <td><b>MaDi Nummer:</b></td>
+        <td>{{ dossier.regasNummer }}</td>
+    </tr>
+    <tr>
+        <td><b>Dossier status:</b></td>
+        <td>{{ dossier.status }}</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><b>Achternaam:</b></td>
+        <td>{{ dossier.clientNaam }}</td>
+        <td><b>Voorletters:</b></td>
+        <td>{{ dossier.clientVoorletters }}</td>
+    </tr>
+    <tr>
+        <td><b>Geslacht:</b></td>
+        <td>{{ dossier.clientGeslacht }}</td>
+        <td><b>Geboortedatum:</b></td>
+        <td>{{ dossier.clientGeboortedatum|date('d-m-Y') }}</td>
+    </tr>
+    <tr>
+        <td><b>Banknaam:</b></td>
+        <td>{{ dossier.clientBanknaam }}</td>
+        <td><b>Werkgever:</b></td>
+        <td>{{ dossier.voorlegger.arbeidsovereenkomstWerkgever }}</td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <h2>Partner</h2>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Achternaam:</b></td>
+        <td>{{ dossier.partnerNaam }}</td>
+        <td><b>Voorletters:</b></td>
+        <td>{{ dossier.partnerVoorletters }}</td>
+    </tr>
+    <tr>
+        <td><b>Geslacht:</b></td>
+        <td>{{ dossier.partnerGeslacht }}</td>
+        <td><b>Geboortedatum:</b></td>
+        <td>{{ dossier.partnerGeboortedatum|date('d-m-Y') }}</td>
+    </tr>
+    <tr>
+        <td><b>Banknaam:</b></td>
+        <td>{{ dossier.partnerBanknaam }}</td>
+        <td><b>Werkgever:</b></td>
+        <td>{{ dossier.voorlegger.arbeidsovereenkomstWerkgever }}</td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <h2>Contactgegevens</h2>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Telefoonnummer:</b></td>
+        <td>{{ dossier.clientTelefoonnummer }}</td>
+        <td><b>Adres:</b></td>
+        <td>{{ dossier.clientStraat }} {{ dossier.clientHuisnummer }} {{ dossier.clientPostcode }} {{ dossier.clientWoonplaats }}</td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <h2>Gezinssamenstelling</h2>
+        </td>
+    </tr>
+    <tr>
+        <td><b>Burgelijke staat:</b></td>
+        <td>{{ dossier.clientBurgelijkeStaat }}</td>
+        <td><b>Geboortedatum inwonende kinderen:</b></td>
+        <td>{{ dossier.clientKinderen|json_encode }}</td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <h2>Dossierbehandelaars</h2>
+        </td>
+    </tr>
+    <tr>
+        <td><h2>MaDi</h2></td>
+        <td></td>
+        <td><h2>GKA</h2></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><b>Schuldhulpbureau:</b></td>
+        <td>{{ dossier.schuldhulpbureau.naam }}</td>
+        <td><b>Team GKA:</b></td>
+        <td>{{ dossier.teamGka.naam }}</td>
+    </tr>
+    <tr>
+        <td><b>Medewerker schuldhulpbureau:</b></td>
+        <td>{{ dossier.medewerkerSchuldhulpbureau.naam }}</td>
+        <td><b></b></td>
+        <td></td>
+    </tr>
+</table>
+
+<table class="table table-striped" width="100%" style="border: 1px solid #3f3f3f">
+    <thead class="thead">
+    <tr>
+        <th colspan="4" scope="col"><h1 style="text-align: center; border-bottom: 1px solid #3f3f3f">Voorlegger</h1>
+        </th>
+    </tr>
+    </thead>
+    {{ dossier.voorlegger|exportDossierVoorlegger|raw }}
+</table>
+
+<table class="table table-striped" width="100%" style="border: 1px solid #3f3f3f">
+    <thead class="thead">
+    <tr>
+        <th scope="col" colspan="6"><h1 style="text-align: center; border-bottom: 1px solid #3f3f3f">Aantekeningen</h1>
+        </th>
+    </tr>
+    </thead>
+    {% for aantekening in dossier.aantekeningen %}
+        <tr>
+            <td>
+                <b>Datum:</b> {{ aantekening.datumTijd|date('d-m-Y h:i:s') }}
+                <br>
+                <b>Verzonden door:</b> {{ aantekening.gebruiker.naam }}&lt;{{ aantekening.gebruiker.email }}&gt;
+                <br>
+                <b>Onderwerp:</b> {{ aantekening.onderwerp }}
+                <br>
+                <b>Bericht: </b>
+                <br>
+                {{ aantekening.tekst }}
+            </td>
+        </tr>
+
+    {% endfor %}
+</table>
+
