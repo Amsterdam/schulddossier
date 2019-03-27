@@ -328,8 +328,9 @@
         add = self.querySelector('.kind__add' ),
         _add = function(e, value){
           e && e.preventDefault();
-
-          var ids = Array.from(itemList.querySelectorAll('input[type="text"]')).map(function (item) {
+          var elems = itemList.querySelectorAll('input[type="text"]');
+          var elemsArray = [].slice.call(elems);
+          var ids = elemsArray.map(function (item) {
               var split = item.getAttribute('id').split('_');
               return parseInt(split[split.length - 1]);
             }).sort(function (a,b) { return a-b; }),
