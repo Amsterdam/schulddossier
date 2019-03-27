@@ -1,0 +1,47 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Mijn gegevens - {{ parent() }}{% endblock %}
+
+{% block pdfsplitter %}{% endblock %}
+
+{% block document %}
+
+<div class="document well">
+    <div class="document-header">
+        <h1 class="document-title">Mijn gegevens</h1>
+    </div>
+    <div class="form-container">
+        {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
+
+        <div class="form-row">
+            <div class="label-widget">
+                <label>Naam</label>
+                <div style="padding-top: 1em; line-height: 1em">{{ gebruiker.naam }}</div>
+            </div>
+        </div>
+
+        {{ form_row(form.telefoonnummer) }}
+
+        <div class="form-row">
+            <div class="label-widget">
+                <label>Email</label>
+                <div style="padding-top: 1em; line-height: 1em">{{ gebruiker.email }}</div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="label-widget">
+                <label>Username</label>
+                <div style="padding-top: 1em; line-height: 1em">{{ gebruiker.username }}</div>
+            </div>
+        </div>
+
+        <p class="buttons right">
+            <button type="submit" class="button primary">Opslaan</button>
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Annuleren</a>
+        </p>
+
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
