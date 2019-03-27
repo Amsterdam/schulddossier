@@ -245,8 +245,14 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
         $this->email = strtolower($email);
     }
 
+    /**
+     * @return string
+     */
     public function getTelefoonnummer()
     {
+        if(empty($this->telefoonnummer)){
+            $this->telefoonnummer = '';
+        }
         return $this->telefoonnummer;
     }
 
@@ -349,7 +355,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
         $this->id = $data['id'];
         $this->username = $data['username'];
         $this->email = $data['email'];
-        $this->telefoonnummer = $data['telefoonnummer'];
+        $this->telefoonnummer = $data['telefoonnummer'] ?? '';
         $this->password = $data['password'];
         $this->type = $data['type'];
         $this->enabled = $data['enabled'];
