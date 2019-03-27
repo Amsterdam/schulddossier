@@ -41,6 +41,9 @@ class GebruikerFormType extends AbstractType
         $builder->add('email', EmailType::class, [
             'required' => true,
         ]);
+        $builder->add('telefoonnummer', TextType::class, [
+            'required' => false,
+        ]);
         $builder->add('username', TextType::class, [
             'required' => true
         ]);

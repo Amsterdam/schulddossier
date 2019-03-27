@@ -91,6 +91,13 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     private $email;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=12, nullable=true)
+     * @Assert\Length(max=12, groups={"mijn-gegevens"})
+     */
+    private $telefoonnummer;
+
+    /**
      * @var Team
      * @ORM\ManyToOne(targetEntity="Team")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true)
@@ -238,6 +245,16 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
         $this->email = strtolower($email);
     }
 
+    public function getTelefoonnummer()
+    {
+        return $this->telefoonnummer;
+    }
+
+    public function setTelefoonnummer($telefoonnummer)
+    {
+        $this->telefoonnummer = $telefoonnummer;
+    }
+
     public function getTeamGka()
     {
         return $this->teamGka;
@@ -315,6 +332,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
             'id' => $this->id,
             'username' => $this->username,
             'email' => $this->email,
+            'telefoonnummer' => $this->telefoonnummer,
             'password' => $this->password,
             'type' => $this->type,
             'enabled' => $this->enabled
@@ -331,6 +349,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
         $this->id = $data['id'];
         $this->username = $data['username'];
         $this->email = $data['email'];
+        $this->telefoonnummer = $data['telefoonnummer'];
         $this->password = $data['password'];
         $this->type = $data['type'];
         $this->enabled = $data['enabled'];
@@ -405,6 +424,9 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
             return false;
         }
         if ($user->getEmail() !== $this->getEmail()) {
+            return false;
+        }
+        if ($user->getTelefoonnummer() !== $this->getTelefoonnummer()) {
             return false;
         }
         if ($user->getUsername() !== $this->getUsername()) {
