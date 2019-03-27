@@ -255,7 +255,7 @@ class Dossier
 
     /**
      * @var SchuldItem[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="SchuldItem", mappedBy="dossier", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="SchuldItem", mappedBy="dossier", cascade={"persist", "remove"})
      * @ORM\OrderBy({"id"="ASC"})
      */
     private $schuldItems;
@@ -269,10 +269,17 @@ class Dossier
 
     /**
      * @var DossierTimeline[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="DossierTimeline", mappedBy="dossier", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="DossierTimeline", mappedBy="dossier", cascade={"persist", "remove"})
      * @ORM\OrderBy({"datumtijd"="DESC", "id"="DESC"})
      */
     private $timeline;
+
+    /**
+     * @var ActionEvent[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="ActionEvent", mappedBy="dossier", cascade={"remove"})
+     * @ORM\OrderBy({"id"="DESC"})
+     */
+    private $actionEvents;
 
     public function __construct()
     {
