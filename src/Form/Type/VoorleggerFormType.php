@@ -70,6 +70,7 @@ class VoorleggerFormType extends AbstractType
         $builder->add('beschikkingUwv', VoorleggerBeschikkingUwvFormType::class, $settings);
         $builder->add('budgetbeheer', VoorleggerBudgetbeheerFormType::class, $settings);
         $builder->add('cjib', VoorleggerCjibFormType::class, $settings);
+        $builder->add('correspondentie', VoorleggerCorrespondentieFormType::class, $settings);
         $builder->add('gereserveerdeGelden', VoorleggerGereserveerdeGeldenFormType::class, $settings);
         $builder->add('huurspecificatie', VoorleggerHuurspecificatieFormType::class, $settings);
         $builder->add('toeslagen', VoorleggerToeslagenFormType::class, $settings);
