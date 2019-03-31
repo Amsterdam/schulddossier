@@ -118,6 +118,11 @@
                             {% else %}
                             {{ form_row(form.bedrag) }}
                             {% endif %}
+                            {% if not schuldItem.verwijderd %}
+                            {{ form_row(form.bedragOorspronkelijk, {'attr': {'data-unit': '€', 'data-validator': 'float', 'data-num-max': '1000000', 'data-num-min': '1'}}) }}
+                            {% else %}
+                            {{ form_row(form.bedragOorspronkelijk) }}
+                            {% endif %}
                             {{ form_row(form.type) }}
                             {% if not schuldItem.verwijderd %}
                             {{ form_row(form.referentie, {'attr': {'data-validator': 'required'}}) }}

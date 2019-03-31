@@ -1420,6 +1420,8 @@
       }, e);
     },
     'required-float': function(e){
+      var min = this.dataset.numMin ? parseInt(this.dataset.numMin) : 0,
+          max = this.dataset.numMax ? parseInt(this.dataset.numMax) : 1000000;
       return validators['default'].call(this, {
         // 'valid': this.value !== '' && /^(?:[1-9][0-9]{0,5}(?:\.\d{1,2})?(?:,\d{1,2})?|1000000|1000000.00|1000000.0|1000000,0|1000000,00)$/.test(this.value),
         // 'valid': this.value !== '' && /^-?(?=.*[1-9])\d+(\.\d+)?(,\d+)?$/.test(this.value),
@@ -1429,12 +1431,14 @@
             return false;
           }
           var valid = isNumber(v);
-          return (valid && v >= 0 && v <= 1000000);
+          return (valid && v >= min && v <= max);
         }(this.value)),
-        'message': 'Dit veld is verplicht en mag alleen komma gescheiden getallen bevatten van 0 t/m 1000000'
+        'message': 'Dit veld is verplicht en mag alleen komma gescheiden getallen bevatten van ' + min + ' t/m ' + max
       }, e);
     },
     'float': function(e){
+      var min = this.dataset.numMin ? parseInt(this.dataset.numMin) : -100000,
+          max = this.dataset.numMax ? parseInt(this.dataset.numMax) : 100000;
       return validators['default'].call(this, {
         //'valid': this.value === '' || /^-?(?:[0-9][0-9]{0,4}(?:\.\d{1,2})?(?:,\d{1,2})?|100000|100000.00|100000.0|100000,0|100000,00)$/.test(this.value),
         'valid': (function(v){
@@ -1444,9 +1448,9 @@
             return false;
           }
           var valid = isNumber(v);
-          return (valid && v >= -100000 && v <= 100000);
+          return (valid && v >= min && v <= max);
         }(this.value)),
-        'message': 'Dit veld mag alleen komma gescheiden getallen bevatten van -100000 t/m 100000'
+        'message': 'Dit veld mag alleen komma gescheiden getallen bevatten van ' + min + ' t/m ' + max
       }, e);
     },
     'required': function(e){
