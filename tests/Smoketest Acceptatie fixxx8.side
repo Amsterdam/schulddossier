@@ -175,6 +175,13 @@
       ],
       "value": ""
     }, {
+      "id": "f009d632-7762-40bb-8fba-4ec022891165",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "css=.document-title",
+      "targets": [],
+      "value": "5000"
+    }, {
       "id": "8589195f-cd7e-4d3f-9350-40b0670931b0",
       "comment": "Test of dossier open is van clientnaam",
       "command": "assertText",
@@ -2798,7 +2805,7 @@
     }, {
       "id": "d8c73c0b-202c-4603-9a7f-9f35e6b17aa2",
       "comment": "",
-      "command": "click",
+      "command": "//click",
       "target": "css=#voorlegger-gereserveerdeGelden .dossier__voorlegger__sectie__body",
       "targets": [
         ["css=#voorlegger-gereserveerdeGelden .dossier__voorlegger__sectie__body", "css:finder"],
@@ -2819,6 +2826,19 @@
         ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "9e66082e-ba48-42af-9dcc-c324efd4171e",
+      "comment": "",
+      "command": "waitForElementEditable",
+      "target": "css=.dossier__save",
+      "targets": [
+        ["css=.dossier__save", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
+        ["xpath=//div/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
+      ],
+      "value": "5000"
     }]
   }, {
     "id": "21608483-6a50-4611-a70c-09aae07c9e11",
@@ -4409,6 +4429,19 @@
         ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "9abb4aa5-ef29-44a0-a4d3-0edca181f54b",
+      "comment": "",
+      "command": "waitForElementEditable",
+      "target": "css=.dossier__save",
+      "targets": [
+        ["css=.dossier__save", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
+        ["xpath=//div/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
+      ],
+      "value": "5000"
     }]
   }, {
     "id": "c3b67a50-fe32-432e-955f-1f03270367ed",
@@ -5277,6 +5310,19 @@
         ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "c250dec6-ee18-4f1d-95fc-d2a2e4ca5f58",
+      "comment": "",
+      "command": "waitForElementEditable",
+      "target": "css=.dossier__save",
+      "targets": [
+        ["css=.dossier__save", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
+        ["xpath=//div/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
+      ],
+      "value": "5000"
     }]
   }, {
     "id": "b02cad2d-64ed-43e6-9476-ad8925300f89",
