@@ -32,7 +32,7 @@
                 <tbody>
 {% for dossier in dossiers %}
                     <tr>
-                        <td>{{ dossier.clientNaam }}</td>
+                        <td>{% if dossier.clientVoorletters %}{{ dossier.clientVoorletters|trim }} {% endif %}{{ dossier.clientNaam }}</td>
                         <td>{{ dossier.schuldhulpbureau }}</td>
                         <td class="nummer">
                             {{ dossier.regasNummer|default('-') }}

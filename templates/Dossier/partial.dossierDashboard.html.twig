@@ -12,7 +12,7 @@
                             <dt>Achternaam</dt>
                             <dd>{{ dossier.clientNaam }}</dd>
                             <dt>Voorletters</dt>
-                            <dd>{{ dossier.clientVoorletters }}</dd>
+                            <dd>{% if dossier.clientVoorletters %}{{ dossier.clientVoorletters }}{% else %}-{% endif %}</dd>
                             <dt>Geslacht</dt>
                             <dd>{% if dossier.clientGeslacht %}{{ dossier.clientGeslacht }}{% else %}-{% endif %}</dd>
                             <dt>Geboortedatum</dt>
@@ -67,7 +67,7 @@
                     <a href="#id_voorlegger-legitimatie" class="a__editable">
                         <dl class="dl__horizontal">
                             <dt>Telefoonnummer</dt>
-                            <dd>{{ dossier.clientTelefoonnummer }}</dd>
+                            <dd>{% if dossier.clientTelefoonnummer %}{{ dossier.clientTelefoonnummer }}{% else %}-{% endif %}</dd>
                             <dt>Adres</dt>
                             <dd>{% if not dossier.clientStraat and not dossier.clientHuisnummer and not dossier.clientPostcode and not dossier.clientWoonplaats %}-{% else %}{{ dossier.clientStraat }} {{ dossier.clientHuisnummer }}
                                     {{ dossier.clientPostcode }} {{ dossier.clientWoonplaats }}{% endif %}

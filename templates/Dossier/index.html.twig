@@ -98,7 +98,7 @@
                     {% set empty = false %}
                     <tr class="row-link{% if dossier.isInPrullenbak %} row-link__dimmed{% endif %}">
                         <th>
-                            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.Id}) }}">{{ dossier.clientNaam }}</a>
+                            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.Id}) }}">{% if dossier.clientVoorletters %}{{ dossier.clientVoorletters|trim }} {% endif %}{{ dossier.clientNaam }}</a>
                         </th>
                         <td>{{ dossier.schuldhulpbureau }}</td>
                         <td class="nummer">
