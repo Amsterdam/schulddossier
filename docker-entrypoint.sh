@@ -25,6 +25,7 @@ php bin/console doctrine:migrations:migrate --no-interaction
 
 chown -R www-data:www-data var
 
+rm /etc/nginx/conf.d/default.conf
 cp docker/nginx/nginx.conf /etc/nginx/nginx.conf
 cp docker/nginx/vhost.conf /etc/nginx/conf.d/vhost.conf
 
