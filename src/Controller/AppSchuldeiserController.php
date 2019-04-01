@@ -40,6 +40,8 @@ class AppSchuldeiserController extends Controller
         return $this->render('Schuldeiser/index.html.twig', [
             'schuldeisers' => $items,
             'pagination' => [
+                'reverse' => 'gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index',
+                'reverse_params' => [],
                 'page' => $request->query->getInt('page', 0),
                 'pageSize' => $maxPageSize,
                 'numberOfItems' => count($items),

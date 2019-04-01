@@ -1,0 +1,55 @@
+{% if pagination is defined %}
+<div class="pagination">
+    {% set p0 = pagination.reverse_params|merge({'page': 0}) %}
+    {% set pMax = pagination.reverse_params|merge({'page': pagination.numberOfPages-1}) %}
+    {% set p1 = pagination.reverse_params|merge({'page': pagination.page + 1}) %}
+    {% set p2 = pagination.reverse_params|merge({'page': pagination.page + 2}) %}
+    {% set p3 = pagination.reverse_params|merge({'page': pagination.page + 3}) %}
+    {% set pMin1 = pagination.reverse_params|merge({'page': pagination.page - 1}) %}
+    {% set pMin2 = pagination.reverse_params|merge({'page': pagination.page - 2}) %}
+    {% set pMin3 = pagination.reverse_params|merge({'page': pagination.page - 3}) %}
+
+    {% if pagination.page > 0 %}
+        <a class="prev"
+           href="{{ path(pagination.reverse, pMin1) }}"><</a>
+        <a href="{{ path(pagination.reverse, p0) }}"><span>1</span></a>
+    {% endif %}
+
+    {% if pagination.page > 4 %}
+        <span>...</span>
+    {% endif %}
+
+    {% if pagination.page > 3 %}
+        <a href="{{ path(pagination.reverse, pMin3) }}"><span>{{ pagination.page - 2 }}</span></a>
+    {% endif %}
+    {% if pagination.page > 2 %}
+        <a href="{{ path(pagination.reverse, pMin2) }}"><span>{{ pagination.page - 1 }}</span></a>
+    {% endif %}
+    {% if pagination.page > 1 %}
+        <a href="{{ path(pagination.reverse, pMin1) }}"><span>{{ pagination.page }}</span></a>
+    {% endif %}
+
+    <span class="pagination__current-page">{{ pagination.page + 1 }}</span>
+
+    {% if pagination.numberOfPages > pagination.page+2 %}
+        <a href="{{ path(pagination.reverse, p1) }}"><span>{{ pagination.page + 2 }}</span></a>
+    {% endif %}
+    {% if pagination.numberOfPages > pagination.page+3 %}
+        <a href="{{ path(pagination.reverse, p2) }}"><span>{{ pagination.page + 3 }}</span></a>
+    {% endif %}
+    {% if pagination.numberOfPages > pagination.page+4 %}
+        <a href="{{ path(pagination.reverse, p3) }}"><span>{{ pagination.page + 4 }}</span></a>
+    {% endif %}
+
+    {% if pagination.numberOfPages > pagination.page+5 %}
+        <span>...</span>
+    {% endif %}
+
+    {% if pagination.numberOfPages > pagination.page+1 %}
+        <a href="{{ path(pagination.reverse, pMax) }}"><span>{{ pagination.numberOfPages }}</span></a>
+        <a class="next"
+           href="{{ path(pagination.reverse, p1) }}">></a>
+    {% endif %}
+
+</div>
+{% endif %}

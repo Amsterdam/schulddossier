@@ -1,24 +1,35 @@
 .pagination {
+  text-align: center;
   width: 100%;
-  display: flex;
+  //display: flex;
+  //justify-content: center;
   padding: 20px;
   box-sizing: border-box;
+
   > {
     * {
-      width: 33%;
-      flex-grow: 1;
+      margin: 0 5px;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      text-decoration: none;
+      > span {
+        border-bottom: 1px solid #000;
+      }
     }
     a {
       color: #000000;
     }
-    .prev {
-      text-align: left;
-    }
-    span {
-      text-align: center;
-    }
+    .prev,
     .next {
-      text-align: right;
+      font-size: 18px;
+      margin: 0 40px;
     }
+  }
+  &__current-page {
+    background-color: #000;
+    color: #fff;
   }
 }

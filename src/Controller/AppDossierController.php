@@ -123,6 +123,11 @@ class AppDossierController extends Controller
             'searchQuery' => $seachQuery,
             'searchForm' => $searchForm->createView(),
             'pagination' => [
+                'reverse' => 'gemeenteamsterdam_fixxxschuldhulp_appdossier_index',
+                'reverse_params' => [
+                    'section' => $seachQuery['section'],
+                    'search_dossier_form' => $request->query->get('search_dossier_form')
+                ],
                 'page' => $request->query->getInt('page', 0),
                 'pageSize' => $maxPageSize,
                 'numberOfItems' => count($dossiers),
@@ -140,13 +145,15 @@ class AppDossierController extends Controller
         /** @var $repository DossierRepository */
         $repository = $em->getRepository(Dossier::class);
 
-        $maxPageSize = 10;
+        $maxPageSize = 20;
 
         $dossiers = $repository->findInactive($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
         return $this->render('Dossier/indexPrullenbak.html.twig', [
             'dossiers' => $dossiers,
             'pagination' => [
+                'reverse' => 'gemeenteamsterdam_fixxxschuldhulp_appdossier_indexprullenbak',
+                'reverse_params' => [],
                 'page' => $request->query->getInt('page', 0),
                 'pageSize' => $maxPageSize,
                 'numberOfItems' => count($dossiers),
