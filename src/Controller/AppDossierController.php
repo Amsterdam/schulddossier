@@ -92,6 +92,7 @@ class AppDossierController extends Controller
             'section' => $section,
             'naam' => '',
             'status' => $section2status[$section],
+            'eersteKeerVerzondenAanGKA' => ($this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser()->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER),
             'schuldhulpbureaus' => !empty($forcedSchuldhulpbureaus) ? $forcedSchuldhulpbureaus : $em->getRepository(Schuldhulpbureau::class)->findAll(),
             'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI || $this->getUser()->getType() === Gebruiker::TYPE_MADI_KEYUSER ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
@@ -109,10 +110,6 @@ class AppDossierController extends Controller
         if ($authChecker->isGranted('ROLE_MADI') || $authChecker->isGranted('ROLE_MADI_KEYUSER')) {
             $seachQuery['schuldhulpbureaus'] = $forcedSchuldhulpbureaus;
         }
-        if ($this->getUser()->getType() === Gebruiker::TYPE_GKA) {
-            $seachQuery['eersteKeerVerzondenAanGKA'] = true;
-
-        }
 
         $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize), $orderBy);
 
@@ -123,7 +120,6 @@ class AppDossierController extends Controller
             $seachQuery['teamGka'] = null;
             $searchForm = $this->createForm(SearchDossierFormType::class, $seachQuery, ['method' => 'GET']);
         }
-        var_dump(count($dossiers));
 
         return $this->render('Dossier/index.html.twig', [
             'dossiers' => $dossiers,

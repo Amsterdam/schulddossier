@@ -69,6 +69,13 @@ class DossierVoter extends Voter
                 return false;
             }
         }
+        if (
+            ($user->getType() === Gebruiker::TYPE_GKA || $user->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER)
+            &&
+            !$dossier->isEersteKeerVerzondenAanGKA()
+            ) {
+            return false;
+        }
 
         return true;
     }

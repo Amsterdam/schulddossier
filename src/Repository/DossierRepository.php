@@ -52,7 +52,6 @@ class DossierRepository extends EntityRepository
             'status' => [],
             'schuldhulpbureaus' => null,
             'medewerkerSchuldhulpbureau' => null,
-            'eersteKeerVerzondenAanGKA' => null,
             'teamGka' => null,
         ], $query);
 
@@ -121,7 +120,7 @@ class DossierRepository extends EntityRepository
             $qb->andWhere('dossier.medewerkerSchuldhulpbureau = :medewerkerSchuldhulpbureau');
             $qb->setParameter('medewerkerSchuldhulpbureau', $query['medewerkerSchuldhulpbureau']);
         }
-        if ($query['eersteKeerVerzondenAanGKA'] !== null) {
+        if (!is_null($query['eersteKeerVerzondenAanGKA']) && $query['eersteKeerVerzondenAanGKA']) {
             $qb->andWhere('dossier.eersteKeerVerzondenAanGKA = :eersteKeerVerzondenAanGKA');
             $qb->setParameter('eersteKeerVerzondenAanGKA', $query['eersteKeerVerzondenAanGKA']);
         }
