@@ -44,19 +44,7 @@
             </table>
         </div>
         {% if pagination.numberOfPages > 1 %}
-          <div class="pagination">
-              {% if pagination.page <= 0 %}
-              <span class="prev">vorige</span>
-              {% else %}
-              <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index', {'page': pagination.page - 1}) }}">vorige</a>
-              {% endif %}
-              <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
-              {% if (pagination.page + 1) >= pagination.numberOfPages %}
-              <span class="next">volgende</span>
-              {% else %}
-              <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index', {'page': pagination.page + 1}) }}">volgende</a>
-              {% endif %}
-          </div>
+            {% include 'pagination.html.twig' with {'pagination': pagination} only %}
         {% endif %}
     </div>
 {% endblock %}
