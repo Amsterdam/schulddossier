@@ -104,7 +104,7 @@
         </header>
 
         <div class="{% block documentContainerClass %}document-container{% endblock %}">
-
+{% block flash %}
 {% for type, messages in app.flashes %}
     {% for message in messages %}
         <div class="flash-message flash-type-{{ type }}">
@@ -113,6 +113,7 @@
         </div>
     {% endfor %}
 {% endfor %}
+{% endblock %}
 
 {% block document %}.{% endblock %}
         </div>

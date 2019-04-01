@@ -10,7 +10,7 @@
     
       <h1 class="document-title">Nieuw dossier</h1>
     
-    <div class="form-container">
+    <p class="form-container">
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
         {{ form_errors(form) }}
         <div class="columns">
@@ -49,7 +49,7 @@
         <p class="buttons right">
             <button type="submit" class="button primary">Opslaan</button>
             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Annuleren</a>
-        </div>
+        </p>
         {{ form_end(form) }}
     </div>
 </div>

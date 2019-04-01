@@ -397,6 +397,41 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     }
 
     /**
+     * @param Schuldhulpbureau $schuldhulpbureau
+     *
+     * @return self[]
+     */
+    public static function getMijnSchuldhulpbureauMedewerkers(Schuldhulpbureau $schuldhulpbureau = null)
+    {
+        $defaultTypes = [];
+        switch ($type) {
+            case self::TYPE_MADI_KEYUSER:
+                $defaultTypes['MaDi']['MaDi - Dossierbehandelaar'] = self::TYPE_MADI;
+                $defaultTypes['MaDi']['MaDi - Key User'] = self::TYPE_MADI_KEYUSER;
+                break;
+
+            case self::TYPE_GKA_APPBEHEERDER:
+                $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
+                $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
+                $defaultTypes['MaDi']['MaDi - Dossierbehandelaar'] = self::TYPE_MADI;
+                $defaultTypes['MaDi']['MaDi - Key User'] = self::TYPE_MADI_KEYUSER;
+                break;
+
+            case self::TYPE_ADMIN:
+            case 'ALL_TYPES':
+                $defaultTypes['Applicatie'][ucfirst(self::TYPE_ADMIN)] = self::TYPE_ADMIN;
+                $defaultTypes['Applicatie'][ucfirst(self::TYPE_ONBEKEND)] = self::TYPE_ONBEKEND;
+                $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
+                $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
+                $defaultTypes['MaDi']['MaDi - Dossierbehandelaar'] = self::TYPE_MADI;
+                $defaultTypes['MaDi']['MaDi - Key User'] = self::TYPE_MADI_KEYUSER;
+
+                break;
+        }
+        return $defaultTypes;
+    }
+
+    /**
      * Return the human readable title matching giving Gebruiker::TYPE.
      *
      * @param string $type
