@@ -23,7 +23,7 @@ class AppLogController extends Controller
     {
         $logs = $this->getDoctrine()
             ->getRepository(ActionEvent::class)
-            ->findBy([], ['datumTijd' => 'DESC'], 30);
+            ->findBy([], ['datumTijd' => 'DESC'], 100);
 
         if (!$logs) {
             throw $this->createNotFoundException(
