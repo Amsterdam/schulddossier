@@ -233,7 +233,6 @@ class AppDossierController extends Controller
             $dossier->setVoorlegger(new Voorlegger());
         }
         $workflow = $registry->get($dossier);
-
         $currentStatus = $dossier->getStatus();
 
         $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger(), [
@@ -243,11 +242,6 @@ class AppDossierController extends Controller
 
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
-            $subForm = $voorleggerForm->get('cdst');
-            if (!is_null($subForm['transition']->getData())){
-                $workflow->apply($dossier, $subForm['transition']->getData());
-                $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()));
-            }
 
             foreach ($voorleggerForm->all() as $key => $child) {
                 if ($child->has('file')) {
@@ -283,6 +277,18 @@ class AppDossierController extends Controller
                     $eventDispatcher->dispatch(DossierAddedAantekeningEvent::NAME, new DossierAddedAantekeningEvent($dossier, $this->getUser()));
                 }
             }
+
+            $subForm = $voorleggerForm->get('cdst');
+            if (!is_null($subForm['transition']->getData())){
+                $workflow->apply($dossier, $subForm['transition']->getData());
+                $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()));
+                if (!empty($request->get('voorlegger_form')['controleerGebruiker'])){
+                    $this->addFlash('success', 'De status is gewijzigd. Mail is verzonden naar ' . $request->get('voorlegger_form')['controleerGebruiker']);
+                }else{
+                    $this->addFlash('success', 'De status is gewijzigd');
+                }
+            }
+
             $em->flush();
             $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
@@ -293,6 +299,7 @@ class AppDossierController extends Controller
 
         return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
+            'gebruikers' => $em->getRepository(Gebruiker::class)->findAllGebruikersBySchuldhulpbureau($dossier->getSchuldhulpbureau()->getId()),
             'voorleggerForm' => $voorleggerForm->createView()
         ]);
     }

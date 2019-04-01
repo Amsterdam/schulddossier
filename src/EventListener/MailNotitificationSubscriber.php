@@ -2,6 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
+use Doctrine\ORM\EntityManagerInterface;
+
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
@@ -11,6 +13,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Workflow\Event\Event;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class MailNotitificationSubscriber implements EventSubscriberInterface
 {
@@ -44,7 +47,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
      */
     private $twig;
 
-    public function __construct(\Swift_Mailer $mailer, $fromNotificiatieAdres, LoggerInterface $logger, TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator, \Twig\Environment $twig)
+    public function __construct(\Swift_Mailer $mailer, $fromNotificiatieAdres, LoggerInterface $logger, TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator, \Twig\Environment $twig, RequestStack $requestStack, EntityManagerInterface $em)
     {
         $this->mailer = $mailer;
         $this->fromNotificiatieAdres = $fromNotificiatieAdres;
@@ -52,6 +55,8 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $this->tokenStorage = $tokenStorage;
         $this->urlGenerator = $urlGenerator;
         $this->twig = $twig;
+        $this->requestStack = $requestStack;
+        $this->em = $em;
     }
 
     public function notifyOpgevoerdMadi(Event $event)
@@ -59,8 +64,10 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         /** @var $dossier Dossier */
         $dossier = $event->getSubject();
 
-        if (empty($dossier->getSchuldhulpbureau()->getEmailAdresControle()) === false) {
-            $this->mail($this->fromNotificiatieAdres, $dossier->getSchuldhulpbureau()->getEmailAdresControle(), 'mails/notifyOpgevoerdMadi.html.twig', [
+        $request = $this->requestStack->getMasterRequest();
+
+        if (!empty($request->get('voorlegger_form')['controleerGebruiker'])){
+            $this->mail($this->fromNotificiatieAdres, $request->get('voorlegger_form')['controleerGebruiker'], 'mails/notifyOpgevoerdMadi.html.twig', [
                 'dossier' => $dossier,
                 'tokenStorage' => $this->tokenStorage
             ]);

@@ -95,4 +95,36 @@ class GebruikerRepository extends EntityRepository
 
         return $qb;
     }
+
+    /**
+     * @param int $schuldhulpbureauId
+     *
+     * @return Array
+     */
+    public function findAllGebruikersBySchuldhulpbureau(int $schuldhulpbureauId): Array
+    {
+            $qb = $this->createQueryBuilder('g');
+            $qb->innerJoin('g.schuldhulpbureaus','s');
+            $qb->where($qb->expr()->eq('s.id', ':bureau_id'));
+            $qb->andWhere($qb->expr()->orX(
+               $qb->expr()->eq('g.type', ':madi_keyuser'),
+               $qb->expr()->eq('g.type', ':madi')
+            ));
+            $qb->setParameter('madi_keyuser', Gebruiker::TYPE_MADI);
+            $qb->setParameter('madi', Gebruiker::TYPE_MADI_KEYUSER);
+            $qb->setParameter('bureau_id', $schuldhulpbureauId);
+            $qb->addOrderBy('g.username', 'ASC');
+            $qb = $qb->getQuery()->getResult();
+        return $qb;
+    }
+
+    /**
+     * @param int $gebruikerId
+     *
+     * @return String
+     */
+    public function getGebruikerEmailById(int $gebruikerId): String
+    {
+        return $this->findOneBy(array('id' => $gebruikerId))->getEmail();
+    }
 }

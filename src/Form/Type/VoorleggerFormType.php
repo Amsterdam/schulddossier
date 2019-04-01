@@ -1,6 +1,9 @@
 <?php
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -13,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
@@ -40,10 +44,11 @@ class VoorleggerFormType extends AbstractType
     private $user;
     private $workflowRegistry;
 
-    public function __construct(TokenStorageInterface $tokenStorage, WorkflowRegistry $registry)
+    public function __construct(TokenStorageInterface $tokenStorage, WorkflowRegistry $registry, EntityManagerInterface $em)
     {
         $this->tokenStorage = $tokenStorage;
         $this->workflowRegistry = $registry;
+        $this->em = $em;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -94,9 +99,25 @@ class VoorleggerFormType extends AbstractType
             $this->user = $this->tokenStorage->getToken()->getUser();
             $voorlegger = $event->getData();
             $dossier = $voorlegger->getDossier();
-
+            $user = $this->tokenStorage->getToken()->getUser();
+            $gebruikers = $this->em->getRepository(Gebruiker::class)->findAllByTypeAndSchuldhulpbureauRaw(
+                    [Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER],
+                    [$dossier->getSchuldhulpbureau()]
+                );
             if ($this->tokenStorage->getToken() === null || $this->tokenStorage->getToken()->getUser() === null) {
                 return;
+            }
+
+            $choices = [];
+            $data = null;
+            if (empty($dossier->getSchuldhulpbureau()->getEmailAdresControle()) === false){
+                $data = $dossier->getSchuldhulpbureau()->getEmailAdresControle();
+                $choices['Controle e-mailadres (' . $dossier->getSchuldhulpbureau()->getEmailAdresControle() . ')'] = $dossier->getSchuldhulpbureau()->getEmailAdresControle();
+            }
+            foreach ($gebruikers->getQuery()->getResult() as $key => $value) {
+                if ($value != $user){
+                    $choices[$value->getNaam() . ' (' .$value->getEmail() . ')'] = $value->getEmail();
+                }
             }
 
             $event->getForm()->add('cdct', ChangeDossierClientType::class, [
@@ -104,6 +125,15 @@ class VoorleggerFormType extends AbstractType
                 'mapped' => false,
                 'data' => $dossier,
                 'disabled' => $dossier->isInPrullenbak() === true
+            ]);
+            $event->getForm()->add('controleerGebruiker', ChoiceType::class, [
+                'required' => false,
+                'multiple' => false,
+                'expanded' => false,
+                'mapped' => false,
+                'choices' => $choices,
+                'data' => $data,
+                'placeholder' => 'Kies een collega'
             ]);
             $event->getForm()->add('cdst', ChangeDossierStatusType::class, [
                 'required' => true,
