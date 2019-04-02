@@ -2,6 +2,10 @@
     <p class="aantekening-meta">
       <time>{{ aantekening.datumTijd|date('d-m-Y H:i') }}</time>
       <strong>{{ aantekening.gebruiker.naam }}</strong>
+      {% if aantekening.gebruiker.userName == app.user.userName %}
+        <i style="margin: 4px; cursor: pointer" class="icon-prullenbak" data-aantekening-id="{{ aantekening.id }}" data-handler="remove-aantekening">
+        </i>
+      {% endif %}
     </p>
     <p class="aantekening-bericht">
       {{ aantekening.tekst|nl2br }}
@@ -16,6 +20,5 @@
           {% endif %}
         </span>
       {% endif %}
-      
     </p>
 </div>
