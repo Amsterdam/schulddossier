@@ -10,6 +10,7 @@
         aantekeningNode.style.display = 'none';
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/app/dossier/detail/1/aantekeningen/' + aantekeningId + '?_method=DELETE', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('token=' + csrfToken);
         xhr.onreadystatechange = function() {
           if (this.readyState === XMLHttpRequest.DONE) {
