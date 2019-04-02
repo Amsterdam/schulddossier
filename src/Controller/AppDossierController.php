@@ -150,7 +150,7 @@ class AppDossierController extends Controller
 
         $maxPageSize = 20;
 
-        $dossiers = $repository->findInactive($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+        $dossiers = $repository->findInactive($this->getUser(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
         return $this->render('Dossier/indexPrullenbak.html.twig', [
             'dossiers' => $dossiers,
