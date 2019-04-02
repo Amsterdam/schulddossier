@@ -19,24 +19,29 @@ class SchuldeiserFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('bedrijfsnaam', TextType::class, [
+            'label' => 'Bedrijfsnaam *',
             'required' => true
         ]);
         $builder->add('rekening', TextType::class, [
             'required' => false
         ]);
         $builder->add('straat', TextType::class, [
+            'label' => 'Straat *',
             'required' => true
         ]);
         $builder->add('huisnummer', TextType::class, [
+            'label' => 'Huisnummer *',
             'required' => true
         ]);
         $builder->add('huisnummerToevoeging', TextType::class, [
             'required' => false
         ]);
         $builder->add('postcode', TextType::class, [
+            'label' => 'Postcode *',
             'required' => true
         ]);
         $builder->add('plaats', TextType::class, [
+            'label' => 'Plaats *',
             'required' => true
         ]);
         $builder->add('allegroCode', TextType::class, [

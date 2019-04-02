@@ -60,6 +60,7 @@ class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
         }
 
         $form->add('schuldHulpbureauGebruiker', SchuldhulpbureauMedewerkerType::class, [
+            'label' => 'Schuld hulpbureau gebruiker *',
             'required' => true,
             'multiple' => false,
             'expanded' => false,
@@ -107,6 +108,7 @@ class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
         ])->setData($schuldhulpbureau->getId());
 
         $form->add('medewerkerSchuldhulpbureau', EntityType::class, [
+            'label' => 'Schuld hulpbureau gebruiker *',
             'required' => true,
             'class' => Gebruiker::class,
             'multiple' => false,
