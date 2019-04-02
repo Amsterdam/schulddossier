@@ -110,15 +110,16 @@ class VoorleggerFormType extends AbstractType
 
             $choices = [];
             $data = null;
-            if (empty($dossier->getSchuldhulpbureau()->getEmailAdresControle()) === false){
-                $data = $dossier->getSchuldhulpbureau()->getEmailAdresControle();
-                $choices['Controle e-mailadres (' . $dossier->getSchuldhulpbureau()->getEmailAdresControle() . ')'] = $dossier->getSchuldhulpbureau()->getEmailAdresControle();
-            }
             foreach ($gebruikers->getQuery()->getResult() as $key => $value) {
                 if ($value != $user){
-                    $choices[$value->getNaam() . ' (' .$value->getEmail() . ')'] = $value->getEmail();
+                    $choices[$value->getEmail()] = $value->getNaam() . ' (' .$value->getEmail() . ')';
                 }
             }
+            if (empty($dossier->getSchuldhulpbureau()->getEmailAdresControle()) === false){
+                $data = $dossier->getSchuldhulpbureau()->getEmailAdresControle();
+                $choices[$dossier->getSchuldhulpbureau()->getEmailAdresControle()] = 'Controle e-mailadres (' . $dossier->getSchuldhulpbureau()->getEmailAdresControle() . ')';
+            }
+            $choices = array_flip($choices);
 
             $event->getForm()->add('cdct', ChangeDossierClientType::class, [
                 'required' => true,
