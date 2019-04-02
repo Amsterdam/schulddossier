@@ -667,14 +667,17 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/detail/{dossierId}/aantekeningen/{aantekeningId}")
+     * @Method("DELETE")
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("aantekening", options={"id"="aantekeningId"})
      */
     public function deleteAantekeningAction(Request $request, Dossier $dossier, Aantekening $aantekening, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
-        $dossier->removeAantekening($aantekening);
-        return new JsonResponse([]);
+        $em->remove($aantekening);
+        $em->flush();
+
+        return new JsonResponse(null);
     }
 
     /**
