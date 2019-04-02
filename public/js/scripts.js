@@ -6,10 +6,11 @@
         var aantekeningNode = this.parentNode.parentNode;
         var aantekeningenNode = aantekeningNode.parentNode;
         var aantekeningId = parseInt(this.dataset.aantekeningId);
+        var csrfToken = this.dataset.csrfToken;
         aantekeningNode.style.display = 'none';
         var xhr = new XMLHttpRequest();
-        xhr.open('DELETE', '/app/dossier/detail/1/aantekeningen/' + aantekeningId, true);
-        xhr.send(null);
+        xhr.open('POST', '/app/dossier/detail/1/aantekeningen/' + aantekeningId + '?_method=DELETE', true);
+        xhr.send('token=' + csrfToken);
         xhr.onreadystatechange = function() {
           if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status === 200) {
