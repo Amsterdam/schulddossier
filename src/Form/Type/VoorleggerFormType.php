@@ -134,7 +134,7 @@ class VoorleggerFormType extends AbstractType
                 'mapped' => false,
                 'choices' => $choices,
                 'data' => $data,
-                'placeholder' => 'Kies een collega'
+                'placeholder' => 'Kies een collega *'
             ]);
             $event->getForm()->add('cdst', ChangeDossierStatusType::class, [
                 'required' => true,
