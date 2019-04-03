@@ -888,19 +888,6 @@ class Dossier
         return $this->actionEvents;
     }
 
-    public function getActionEventsAsCsv()
-    {
-        $rows=[];
-        $header='';
-        /** @var ActionEvent $actionEvent */
-        foreach($this->getActionEvents() as $actionEvent){
-            list($header, $row) = $actionEvent->asCsvValues();
-            $rows[] = $row;
-        }
-
-        return $header . PHP_EOL . implode(PHP_EOL, $rows);
-    }
-
     public function getAantekeningenAsSpreadsheetCsv(): Spreadsheet
     {
         $csvHeader = array_keys((new Aantekening())->getClassAttributes());
