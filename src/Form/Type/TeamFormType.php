@@ -23,9 +23,11 @@ class TeamFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('naam', TextType::class, [
+            'label' => 'Naam *',
             'required' => true
         ]);
         $builder->add('email', EmailType::class, [
+            'label' => 'E-mail *',
             'required' => true,
         ]);
     }

@@ -20,7 +20,7 @@ class CreateAantekeningFormType extends AbstractType
     {
         $builder->add('tekst', TextareaType::class, [
             'required' => true,
-            'label' => 'Aantekening maken'
+            'label' => 'Aantekening maken *'
         ]);
     }
 
