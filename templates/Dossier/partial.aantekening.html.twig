@@ -1,4 +1,4 @@
-<div class="aantekening{% if aantekening.gebruiker.userName == app.user.userName %} aantekening-mijn{% endif %}">
+<div class="aantekening{% if aantekening.gebruiker.userName == app.user.userName %} aantekening-mijn{% endif %}" data-id="{{ aantekening.id }}">
     <p class="aantekening-meta">
       <time>{{ aantekening.datumTijd|date('d-m-Y H:i') }}</time>
       <strong>{{ aantekening.gebruiker.naam }}</strong>

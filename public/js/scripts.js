@@ -2,12 +2,14 @@
 
   var handlers = {
     'remove-aantekening': function () {
+      var aantekeningNode = _closest(this, '.aantekening'),
+        all = document.querySelectorAll('.aantekening[data-id="'+aantekeningNode.dataset.id+'"]');
+      aantekeningNode.style.height = aantekeningNode.clientHeight + 'px';
+
       if (confirm('Deze aantekening verwijderen?')) {
-        var aantekeningNode = this.parentNode.parentNode;
-        var aantekeningenNode = aantekeningNode.parentNode;
         var aantekeningId = parseInt(this.dataset.aantekeningId);
         var csrfToken = this.dataset.csrfToken;
-        aantekeningNode.style.display = 'none';
+
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/app/dossier/detail/1/aantekeningen/' + aantekeningId + '?_method=DELETE', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -15,10 +17,14 @@
         xhr.onreadystatechange = function() {
           if (this.readyState === XMLHttpRequest.DONE) {
             if (this.status === 200) {
-              aantekeningenNode.removeChild(aantekeningNode);
+              aantekeningNode.classList.add('aantekening--verwijderen');
+              setTimeout(function(){
+                for(var i = 0; i < all.length; i++){
+                  all[i].parentNode.removeChild(all[i]);
+                }
+              }, 700);
             } else {
               alert('Er ging iets mis. De aantekening wordt hersteld.');
-              aantekeningNode.style.display = 'block';
             }
           }
         }
