@@ -891,10 +891,13 @@ class Dossier
     public function getAantekeningenAsSpreadsheetCsv(): Spreadsheet
     {
         $csvHeader = array_keys((new Aantekening())->getClassAttributes());
-        $csvRows = array_merge(...$this->getAantekeningen()->map(function (Aantekening $aantekening){
-            list($csvHeader, $row) = $aantekening->getClassAttributesAndValues();
-            return $row;
-        })->toArray());
+        $csvRows = [];
+        if(!$this->getAantekeningen()->isEmpty()){
+            $csvRows = array_merge(...$this->getAantekeningen()->map(function (Aantekening $aantekening){
+                list($csvHeader, $row) = $aantekening->getClassAttributesAndValues();
+                return $row;
+            })->toArray());
+        }
 
         return $this->batchToSpreadsheetCsv($csvHeader, $csvRows);
     }
@@ -902,10 +905,13 @@ class Dossier
     public function getLogsAsSpreadsheetCsv(): Spreadsheet
     {
         $csvHeader = array_keys((new ActionEvent())->getClassAttributes());
-        $csvRows = array_merge(...$this->getActionEvents()->map(function (ActionEvent $actionEvent){
-            list($csvHeader, $row) = $actionEvent->getClassAttributesAndValues();
-            return $row;
-        })->toArray());
+        $csvRows = [];
+        if(!$this->getActionEvents()){
+            $csvRows = array_merge(...$this->getActionEvents()->map(function (ActionEvent $actionEvent){
+                list($csvHeader, $row) = $actionEvent->getClassAttributesAndValues();
+                return $row;
+            })->toArray());
+        }
 
         return $this->batchToSpreadsheetCsv($csvHeader, $csvRows);
     }
