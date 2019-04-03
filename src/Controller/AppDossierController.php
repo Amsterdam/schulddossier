@@ -141,7 +141,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/prullenbak")
-     * @Security("has_role('ROLE_GKA') || has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_MADI') || has_role('ROLE_GKA') || has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
      */
     public function indexPrullenbakAction(Request $request, EntityManagerInterface $em)
     {
@@ -150,7 +150,7 @@ class AppDossierController extends Controller
 
         $maxPageSize = 20;
 
-        $dossiers = $repository->findInactive($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+        $dossiers = $repository->findInactive($this->getUser(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
         return $this->render('Dossier/indexPrullenbak.html.twig', [
             'dossiers' => $dossiers,

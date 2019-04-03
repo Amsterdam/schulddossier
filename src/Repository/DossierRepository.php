@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
 use GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions\Levenshtein;
 
@@ -33,12 +34,20 @@ class DossierRepository extends EntityRepository
         return new Paginator($qb->getQuery());
     }
 
-    public function findInactive($page = 0, $pageSize = 100)
+    public function findInactive($gebruiker, $page = 0, $pageSize = 100)
     {
         $qb = $this->createQueryBuilder('dossier');
         $qb->orderBy('dossier.aanmaakDatumTijd', 'DESC');
         $qb->andWhere('dossier.inPrullenbak = :inPrullenbak');
         $qb->setParameter('inPrullenbak', true);
+        if ($gebruiker->getType() === Gebruiker::TYPE_MADI) {
+            $qb->andWhere('dossier.medewerkerSchuldhulpbureau = :gebruikerId');
+            $qb->setParameter('gebruikerId', $gebruiker->getId());
+        }
+        if ($gebruiker->getType() === Gebruiker::TYPE_MADI_KEYUSER) {
+            $qb->andWhere('dossier.schuldhulpbureau IN (:ghbs)');
+            $qb->setParameter('ghbs', $gebruiker->getSchuldhulpbureaus());
+        }
         $qb->setFirstResult($page * $pageSize);
         $qb->setMaxResults($pageSize);
 
