@@ -71,6 +71,16 @@
   box-sizing: border-box;
   text-align: right;
   padding: $padding/2 4rem;
+  transition: transform .5s $transition-ease-default, opacity .5s $transition-ease-default, height .5s $transition-ease-default .2s;
+  overflow: hidden;
+  &.aantekening--bezig {
+    opacity: .5;
+  }
+  &.aantekening--verwijderen {
+    transform: scale3d(.5, .5, 1);
+    height: 0!important;
+    opacity: 0;
+  }
 }
 .aantekening-bericht {
   padding: .2em 1em .3em 1em;

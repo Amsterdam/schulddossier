@@ -1,6 +1,35 @@
 !function (w, d) {
 
   var handlers = {
+    'remove-aantekening': function () {
+      var aantekeningNode = _closest(this, '.aantekening'),
+        all = document.querySelectorAll('.aantekening[data-id="'+aantekeningNode.dataset.id+'"]');
+      aantekeningNode.style.height = aantekeningNode.clientHeight + 'px';
+
+      if (confirm('Deze aantekening verwijderen?')) {
+        var aantekeningId = parseInt(this.dataset.aantekeningId);
+        var csrfToken = this.dataset.csrfToken;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/app/dossier/detail/1/aantekeningen/' + aantekeningId + '?_method=DELETE', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('token=' + csrfToken);
+        xhr.onreadystatechange = function() {
+          if (this.readyState === XMLHttpRequest.DONE) {
+            if (this.status === 200) {
+              aantekeningNode.classList.add('aantekening--verwijderen');
+              setTimeout(function(){
+                for(var i = 0; i < all.length; i++){
+                  all[i].parentNode.removeChild(all[i]);
+                }
+              }, 700);
+            } else {
+              alert('Er ging iets mis. De aantekening wordt hersteld.');
+            }
+          }
+        }
+      }
+    },
     'page-select': function(e){
       var self = this,
         elemSelectedPages = document.querySelector('.pdfsplitter__selected-pages'),
@@ -2012,10 +2041,10 @@
     }
   }, false);
 
-  
+
   d.addEventListener('click',function(t){var k,e,a=t&&t.target;if(a=_closest(a,'[data-handler]')){var r=a.getAttribute('data-handler').split(/\s+/);if('A'==a.tagName&&(t.metaKey||t.shiftKey||t.ctrlKey||t.altKey))return;for(e=0;e<r.length;e++){k=r[e].split(/[\(\)]/);handlers[k[0]]&&handlers[k[0]].call(a,t,k[1])}}});
-  var l = { 
-    submit: 'submitter', 
+  var l = {
+    submit: 'submitter',
     change: 'changer'
   }
   for (var i in l){
@@ -2038,9 +2067,9 @@
     }
   });
 
-  
+
   var scrollers=[];w.addEventListener('scroll',function(){requestAnimationFrame(function(){for(var l=0;l<scrollers.length;l++)scrollers[l].el&&scrollers[l].fn.call(scrollers[l].el)})},!1);
-  
+
   var _scrollTo=function(n,o){var e,i=window.pageYOffset,t=window.pageYOffset+n.getBoundingClientRect().top,r=(document.body.scrollHeight-t<window.innerHeight?document.body.scrollHeight-window.innerHeight:t)-i,w=function(n){return n<.5?4*n*n*n:(n-1)*(2*n-2)*(2*n-2)+1},o=o||1e3;r&&window.requestAnimationFrame(function n(t){e||(e=t);var d=t-e,a=Math.min(d/o,1);a=w(a),window.scrollTo(0,i+r*a),d<o&&window.requestAnimationFrame(n)})};
 
   var _decorate = function(){var k,i,j,decoratorString,el,els=d.querySelectorAll('[data-decorator]');for(i=0;i<els.length;i++){for(decoratorString=(el=els[i]).getAttribute('data-decorator').split(/\s+/),j=0;j<decoratorString.length;j++){k=decoratorString[j].split(/[\(\)]/);decorators[k[0]]&&decorators[k[0]].call(el,k[1]);el.removeAttribute('data-decorator')}}};

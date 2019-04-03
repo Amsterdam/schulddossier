@@ -666,6 +666,25 @@ class AppDossierController extends Controller
     }
 
     /**
+     * @Route("/detail/{dossierId}/aantekeningen/{aantekeningId}")
+     * @Method("DELETE")
+     * @Security("user == aantekening.getGebruiker()")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("aantekening", options={"id"="aantekeningId"})
+     */
+    public function deleteAantekeningAction(Request $request, Dossier $dossier, Aantekening $aantekening, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    {
+        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening', $request->request->get('token')) !== true) {
+            throw $this->createAccessDeniedException('CSRF token invalid');
+        }
+
+        $em->remove($aantekening);
+        $em->flush();
+
+        return new JsonResponse([]);
+    }
+
+    /**
      * @Route("/detail/{dossierId}/schulden/excel")
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})

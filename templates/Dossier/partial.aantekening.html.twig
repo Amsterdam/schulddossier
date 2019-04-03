@@ -1,7 +1,10 @@
-<div class="aantekening{% if aantekening.gebruiker.userName == app.user.userName %} aantekening-mijn{% endif %}">
+<div class="aantekening{% if aantekening.gebruiker.userName == app.user.userName %} aantekening-mijn{% endif %}" data-id="{{ aantekening.id }}">
     <p class="aantekening-meta">
       <time>{{ aantekening.datumTijd|date('d-m-Y H:i') }}</time>
       <strong>{{ aantekening.gebruiker.naam }}</strong>
+      {% if aantekening.gebruiker.userName == app.user.userName %}
+        <i style="margin: 4px; cursor: pointer;" class="icon-prullenbak" data-aantekening-id="{{ aantekening.id }}" data-handler="remove-aantekening" data-csrf-token="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening') }}">&nbsp;&nbsp;&nbsp;</i>
+      {% endif %}
     </p>
     <p class="aantekening-bericht">
       {{ aantekening.tekst|nl2br }}
@@ -16,6 +19,5 @@
           {% endif %}
         </span>
       {% endif %}
-      
     </p>
 </div>
