@@ -109,6 +109,14 @@ class SchuldItem
     private $bedrag;
 
     /**
+     * @var float
+     * @ORM\Column(type="decimal", precision=9, scale=2, nullable=true)
+     * @Assert\Type("numeric")
+     * @Assert\Range(min=-1, max=1000000)
+     */
+    private $bedragOorspronkelijk;
+
+    /**
      * @var \DateTime
      * @ORM\Column(type="date", nullable=false)
      * @Assert\NotBlank
@@ -270,6 +278,16 @@ class SchuldItem
     public function setBedrag($bedrag)
     {
         $this->bedrag = $bedrag;
+    }
+
+    public function getBedragOorspronkelijk()
+    {
+        return $this->bedragOorspronkelijk;
+    }
+
+    public function setBedragOorspronkelijk($bedragOorspronkelijk = null)
+    {
+        $this->bedragOorspronkelijk = $bedragOorspronkelijk;
     }
 
     public function getVaststelDatum()
