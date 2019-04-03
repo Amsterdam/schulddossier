@@ -15,6 +15,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedCorrespondentie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateAantekeningFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
@@ -252,15 +253,7 @@ class AppDossierController extends Controller
 
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
-            $subForm = $voorleggerForm->get('cdst');
-            if (!is_null($subForm['transition']->getData())){
-                if ($subForm['transition']->getData() === 'verzenden_madi'){
-                    $dossier->setEersteKeerVerzondenAanGKA(true);
-                }
-                $workflow->apply($dossier, $subForm['transition']->getData());
-                $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()));
-            }
-
+            $sendCorrespondentieNotification = false;
             foreach ($voorleggerForm->all() as $key => $child) {
                 if ($child->has('file')) {
                     $files = $child->get('file')->getData();
@@ -276,6 +269,9 @@ class AppDossierController extends Controller
                             $dossierDocument->setDocument($document);
                             $dossierDocument->setDossier($dossier);
                             $dossierDocument->setOnderwerp($key);
+                            if ($key === 'correspondentie') {
+                                $sendCorrespondentieNotification = true;
+                            }
                         }
                     }
                 }
@@ -308,6 +304,9 @@ class AppDossierController extends Controller
             }
 
             $em->flush();
+            if ($sendCorrespondentieNotification === true) {
+                $eventDispatcher->dispatch(DossierAddedCorrespondentie::NAME, new DossierAddedCorrespondentie($dossier, $this->getUser()));
+            }
             $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }

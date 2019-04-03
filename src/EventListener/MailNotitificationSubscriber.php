@@ -3,17 +3,17 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
 use Doctrine\ORM\EntityManagerInterface;
-
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedCorrespondentie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Workflow\Event\Event;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 class MailNotitificationSubscriber implements EventSubscriberInterface
 {
@@ -59,6 +59,24 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $this->em = $em;
     }
 
+    /**
+     * @param DossierAddedCorrespondentie $event
+     */
+    public function notifyAboutCorrespondentie(DossierAddedCorrespondentie $event)
+    {
+        /** @var $dossier Dossier */
+        $dossier = $event->getDossier();
+
+        if ($dossier->getMedewerkerSchuldhulpbureau() !== null && !empty($dossier->getMedewerkerSchuldhulpbureau()->getEmail())) {
+            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyAboutCorrespondentie.html.twig', [
+                'dossier' => $dossier,
+                'tokenStorage' => $this->tokenStorage
+            ]);
+        } else {
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen e-mailadres is ingevuld voor het de behandelaar van dit dossier', ['dossierId' => $dossier->getId(), 'teamId' => $dossier->getTeamGka() ? $dossier->getTeamGka()->getId() : 'n/a']);
+        }
+    }
+
     public function notifyOpgevoerdMadi(Event $event)
     {
         /** @var $dossier Dossier */
@@ -66,7 +84,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
 
         $request = $this->requestStack->getMasterRequest();
 
-        if (!empty($request->get('voorlegger_form')['controleerGebruiker'])){
+        if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
             $this->mail($this->fromNotificiatieAdres, $request->get('voorlegger_form')['controleerGebruiker'], 'mails/notifyOpgevoerdMadi.html.twig', [
                 'dossier' => $dossier,
                 'tokenStorage' => $this->tokenStorage
@@ -196,7 +214,8 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             'workflow.dossier_flow.completed.verzenden_madi' => 'notifyVerzendenMadi',
             'workflow.dossier_flow.completed.afkeuren_dossier_gka' => 'notifyAfkeurenDossierGka',
             DossierChangedEvent::NAME => 'notifyChangedGka',
-            DossierAddedAantekeningEvent::NAME => 'notifyMadiAboutAantekening'
+            DossierAddedAantekeningEvent::NAME => 'notifyMadiAboutAantekening',
+            DossierAddedCorrespondentie::NAME => 'notifyAboutCorrespondentie'
         ];
     }
 }
