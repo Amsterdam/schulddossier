@@ -69,6 +69,10 @@ class SchuldItemFormType extends AbstractType
         $builder->add('bedrag', NumberType::class, [
             'required' => true,
         ]);
+        $builder->add('bedragOorspronkelijk', NumberType::class, [
+            'label' => 'Oorspronkelijk bedrag',
+            'required' => false,
+        ]);
         $builder->add('vastStelDatum', DateType::class, [
             'html5' => false,
             'attr' => ['data-decorator' => 'rome', 'data-max' => (new \DateTime('now'))->format("d-m-Y")],
