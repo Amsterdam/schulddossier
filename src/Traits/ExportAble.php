@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Traits;
 
 use Doctrine\ORM\PersistentCollection;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 /**
  * Trait ExportAble
@@ -15,28 +18,58 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
  */
 trait ExportAble
 {
-    public function asCsv()
+    /**
+     * @return Spreadsheet
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    public function toSpreadsheetCsv(): Spreadsheet
     {
-        list($header, $rows) = $this->asCsvValues();
-        return $header . PHP_EOL . $rows;
+        list($csvHeader, $csvValues) = $this->getClassAttributesAndValues();
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $columnIndex = 1;
+        foreach($csvHeader as $headerItem){
+            $sheet->setCellValueByColumnAndRow($columnIndex++, 1, $headerItem);
+        }
+        $maxColumnIndex = $columnIndex;
+        foreach($csvValues as $csvValue){
+            if($columnIndex === $maxColumnIndex){
+                $columnIndex = 1;
+            }
+            $sheet->setCellValueByColumnAndRow($columnIndex++, 2, $csvValue);
+        }
+
+        return $spreadsheet;
     }
 
     /**
-     * @return array
+     * @param array $header
+     * @param array $rows
+     *
+     * @return Spreadsheet
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    public function asCsvValues(): array
+    public function batchToSpreadsheetCsv(array $header, array $rows): Spreadsheet
     {
-        list($csvHeader, $csvValues) = $this->getClassAttributesAndValues();
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
 
-        $csvHeaderRow = '"' . implode('","', $csvHeader) . '"';
-        $csvValuesRow = '"' . implode('","', $csvValues) . '"';
+        $columnIndex = 1;
+        foreach($header as $headerItem){
+            $sheet->setCellValueByColumnAndRow($columnIndex++, 1, $headerItem);
+        }
+        $maxColumnIndex = $columnIndex;
+        $rowIndex = 1;
+        foreach($rows as $csvValue){
+            if($columnIndex === $maxColumnIndex){
+                $columnIndex = 1;
+                $rowIndex++;
+            }
+            $sheet->setCellValueByColumnAndRow($columnIndex++, $rowIndex, $csvValue);
+        }
 
-        return [$csvHeaderRow, $csvValuesRow];
-    }
-
-    private function escapeInput($input): string
-    {
-        return str_replace('"','\"', $input);
+        return $spreadsheet;
     }
 
     /**
@@ -45,8 +78,14 @@ trait ExportAble
     public function getClassAttributes(): array
     {
         $classAttributes = get_object_vars($this);
+
         if (get_class($this) === Dossier::class) {
             $remove = ['documenten', 'schuldItems', 'aantekeningen', 'timeline'];
+            $classAttributes = array_diff_key($classAttributes, array_flip($remove));
+        }
+
+        if (in_array(get_class($this), [Aantekening::class, ActionEvent::class], true)) {
+            $remove = ['dossier'];
             $classAttributes = array_diff_key($classAttributes, array_flip($remove));
         }
 
@@ -65,6 +104,7 @@ trait ExportAble
             if ($attributeValue instanceof Voorlegger) {
                 continue;
             }
+
             if ($attributeValue instanceof Dossier) {
                 continue;
             }
@@ -72,6 +112,7 @@ trait ExportAble
             if ($attributeValue instanceof \DateTime) {
                 $attributeValue = $attributeValue->format('d-m-Y h:i:s');
             }
+
             if(is_bool($attributeValue)){
                 $attributeValue = $attributeValue ? 'ja' : 'nee';
             }
@@ -79,11 +120,12 @@ trait ExportAble
             if (is_array($attributeValue)) {
                 $attributeValue = \json_encode($attributeValue);
             }
+
             if ($attributeValue instanceof PersistentCollection) {
                 $attributeValue = \json_encode($attributeValue->toArray());
             }
-            $csvHeader[] = $this->escapeInput($attributeKey);
-            $csvValues[] = $this->escapeInput($attributeValue);
+            $csvHeader[] = $attributeKey;
+            $csvValues[] = $attributeValue;
         }
         return [$csvHeader, $csvValues];
     }

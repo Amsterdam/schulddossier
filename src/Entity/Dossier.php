@@ -5,6 +5,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -900,17 +901,26 @@ class Dossier
         return $header . PHP_EOL . implode(PHP_EOL, $rows);
     }
 
-    public function getAantekeningenAsCsv()
+    public function getAantekeningenAsSpreadsheetCsv(): Spreadsheet
     {
-        $rows=[];
-        $header='';
-        /** @var Aantekening $aantekening */
-        foreach($this->getAantekeningen() as $aantekening){
-            list($header, $row) = $aantekening->asCsvValues();
-            $rows[] = $row;
-        }
+        $csvHeader = array_keys((new Aantekening())->getClassAttributes());
+        $csvRows = array_merge(...$this->getAantekeningen()->map(function (Aantekening $aantekening){
+            list($csvHeader, $row) = $aantekening->getClassAttributesAndValues();
+            return $row;
+        })->toArray());
 
-        return $header . PHP_EOL . implode(PHP_EOL, $rows);
+        return $this->batchToSpreadsheetCsv($csvHeader, $csvRows);
+    }
+
+    public function getLogsAsSpreadsheetCsv(): Spreadsheet
+    {
+        $csvHeader = array_keys((new ActionEvent())->getClassAttributes());
+        $csvRows = array_merge(...$this->getActionEvents()->map(function (ActionEvent $actionEvent){
+            list($csvHeader, $row) = $actionEvent->getClassAttributesAndValues();
+            return $row;
+        })->toArray());
+
+        return $this->batchToSpreadsheetCsv($csvHeader, $csvRows);
     }
 
     /**

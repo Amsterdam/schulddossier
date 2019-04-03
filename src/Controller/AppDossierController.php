@@ -29,6 +29,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -286,12 +287,12 @@ class AppDossierController extends Controller
             }
 
             $subForm = $voorleggerForm->get('cdst');
-            if (!is_null($subForm['transition']->getData())){
+            if (!is_null($subForm['transition']->getData())) {
                 $workflow->apply($dossier, $subForm['transition']->getData());
                 $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()));
-                if (!empty($request->get('voorlegger_form')['controleerGebruiker'])){
+                if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
                     $this->addFlash('success', 'De status is gewijzigd. Mail is verzonden naar ' . $request->get('voorlegger_form')['controleerGebruiker']);
-                }else{
+                } else {
                     $this->addFlash('success', 'De status is gewijzigd');
                 }
             }
@@ -986,10 +987,33 @@ class AppDossierController extends Controller
      */
     public function downloadCsv(Dossier $dossier, FileStorageSelector $fileStorageSelector): Response
     {
+        $filesystem = new Filesystem();
+        if (!$filesystem->exists($this->container->getParameter('kernel.project_dir') . '/var/tmp')) {
+            $filesystem->mkdir($this->container->getParameter('kernel.project_dir') . '/var/tmp');
+        }
+        $basePath = $this->container->getParameter('kernel.project_dir') . '/var/tmp';
+
+        $zipfileLocation = sprintf('%s/dossier-%s.zip', $basePath, $dossier->getId());
+        $dossierCsvFileLocation = sprintf('%s/dossier-%s.csv', $basePath, $dossier->getId());
+        $voorleggerCsvFileLocation = sprintf('%s/dossier-%s-voorlegger.csv', $basePath, $dossier->getId());
+        $aantekeningenCsvFileLocation = sprintf('%s/dossier-%s-aantekeningen.csv', $basePath, $dossier->getId());
+        $logsCsvFileLocation = sprintf('%s/dossier-%s-logs.csv', $basePath, $dossier->getId());
+        $schuldenlijstExcelFileLocation = sprintf('%s/dossier-%s-schuldenlijst.xlsx', $basePath, $dossier->getId());
+
+        $filesystemFiles = [
+            $zipfileLocation,
+            $dossierCsvFileLocation,
+            $voorleggerCsvFileLocation,
+            $aantekeningenCsvFileLocation,
+            $logsCsvFileLocation,
+            $schuldenlijstExcelFileLocation
+        ];
+
+        $filesystem->touch($filesystemFiles);
+
         $zipFactory = new ZipArchive();
-        $zipFileName = '/tmp/dossier-' . $dossier->getId() . '.zip';
         $files = $fileStorageSelector->getFileStorageForDossier()->listContents('dossier-' . $dossier->getId());
-        $zipFactory->open($zipFileName, ZipArchive::CREATE);
+        $zipFactory->open($zipfileLocation, ZipArchive::CREATE);
 
         $dossier->getDocumenten()->map(function (DossierDocument $dossierDocument) use ($files, $fileStorageSelector, $zipFactory) {
             $key = array_search($dossierDocument->getDocument()->getBestandsnaam(), array_column($files, 'basename'), true);
@@ -997,26 +1021,34 @@ class AppDossierController extends Controller
             $zipFactory->addFromString($dossierDocument->getOnderwerp() . DIRECTORY_SEPARATOR . $dossierDocument->getDocument()->getNaam() . '.' . $dossierDocument->getDocument()->getOrigineleExtensie(), $fileStorageSelector->getFileStorageForDossier()->read($files[$key]['path']));
         });
 
-        $zipFactory->addFromString('dossier.csv', $dossier->asCsv());
-        $zipFactory->addFromString('aantekeningen.csv', $dossier->getAantekeningenAsCsv());
-        $zipFactory->addFromString('voorlegger.csv', $dossier->getVoorlegger()->asCsv());
-        $zipFactory->addFromString('logs.csv', $dossier->getActionEventsAsCsv());
+        $dossierCsvFile = new Csv($dossier->toSpreadsheetCsv());
+        $dossierCsvFile->save($dossierCsvFileLocation);
+        $zipFactory->addFile($dossierCsvFileLocation, 'dossier-' . $dossier->getId() . '.csv');
+
+        $voorleggerCsvFile = new Csv($dossier->getVoorlegger()->toSpreadsheetCsv());
+        $voorleggerCsvFile->save($voorleggerCsvFileLocation);
+        $zipFactory->addFile($voorleggerCsvFileLocation, 'dossier-' . $dossier->getId() . '-voorlegger.csv');
+
+        $aantekeningenCsvFile = new Csv($dossier->getAantekeningenAsSpreadsheetCsv());
+        $aantekeningenCsvFile->save($aantekeningenCsvFileLocation);
+        $zipFactory->addFile($aantekeningenCsvFileLocation, 'dossier-' . $dossier->getId() . '-aantekeningen.csv');
+
+        $logsCsvFile = new Csv($dossier->getLogsAsSpreadsheetCsv());
+        $logsCsvFile->save($logsCsvFileLocation);
+        $zipFactory->addFile($logsCsvFileLocation, 'dossier-' . $dossier->getId() . '-logs.csv');
 
         $schuldenlijst = new Xlsx($this->schuldenAsExcel($dossier));
-        $tmpName = '/tmp/dossier-' . $dossier->getId() . '-schuldenlijst.xlsx';
-        $schuldenlijst->save($tmpName);
-        $zipFactory->addFile($tmpName, 'dossier-' . $dossier->getId() . '-schuldenlijst.xlsx');
+        $schuldenlijst->save($schuldenlijstExcelFileLocation);
+        $zipFactory->addFile($schuldenlijstExcelFileLocation, 'dossier-' . $dossier->getId() . '-schuldenlijst.xlsx');
 
         $zipFactory->close();
 
-        $response = Response::create(file_get_contents($zipFileName));
+        $response = Response::create(file_get_contents($zipfileLocation));
         $response->headers->set('Content-Type', 'application/zip');
         $response->headers->set('Content-Disposition', 'attachment;filename="dossier-' . $dossier->getId() . '.zip"');
-        $response->headers->set('Content-length', filesize($zipFileName));
+        $response->headers->set('Content-length', filesize($zipfileLocation));
 
-        @unlink($zipFileName);
-        @unlink($tmpName);
-        @unlink($schuldenlijst);
+        $filesystem->remove($filesystemFiles);
 
         return $response;
     }
@@ -1086,5 +1118,5 @@ class AppDossierController extends Controller
         $sheet->getHeaderFooter()->setOddFooter(date('d-m-Y H:i'));
         $sheet->getHeaderFooter()->setEvenFooter(date('d-m-Y H:i'));
         return $spreadsheet;
-}
+    }
 }
