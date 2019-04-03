@@ -8,6 +8,7 @@ use Doctrine\ORM\PersistentCollection;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
@@ -107,6 +108,10 @@ trait ExportAble
 
             if ($attributeValue instanceof Dossier) {
                 continue;
+            }
+
+            if ($attributeValue instanceof SchuldItem) {
+                $attributeValue = '';
             }
 
             if ($attributeValue instanceof \DateTime) {
