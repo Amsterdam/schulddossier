@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -11,6 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Voorlegger
 {
+    use ExportAble;
+
     const STATUS_MADI_OPEN = 0;
     const STATUS_MADI_BEZIG = 1;
     const STATUS_MADI_OPGEVOERD = 2;
@@ -1235,7 +1238,6 @@ class Voorlegger
     }
 
 
-
     public function getHuurspecificatieOntvangenMadi()
     {
         return $this->huurspecificatieOntvangenMadi;
@@ -1892,7 +1894,6 @@ class Voorlegger
     }
 
 
-
     public function setHuurspecificatieOntvangenMadi($huurspecificatieOntvangenMadi)
     {
         $this->huurspecificatieOntvangenMadi = $huurspecificatieOntvangenMadi;
@@ -2341,6 +2342,7 @@ class Voorlegger
     {
         $this->drinkwaterOpname = $drinkwaterOpname;
     }
+
     public function getToeslagenOntvangenMadi()
     {
         return $this->toeslagenOntvangenMadi;
@@ -2410,6 +2412,4 @@ class Voorlegger
     {
         $this->toeslagenKindgebondenBudget = $toeslagenKindgebondenBudget;
     }
-
-
 }
