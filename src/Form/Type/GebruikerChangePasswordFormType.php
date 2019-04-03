@@ -29,7 +29,7 @@ class GebruikerChangePasswordFormType extends AbstractType
         $builder->add('currentPassword', PasswordType::class, [
             'required' => true,
             'mapped' => false,
-            'label' => 'Huidig wachtwoord',
+            'label' => 'Huidig wachtwoord *',
             'constraints' => [
                 new UserPassword()
             ]

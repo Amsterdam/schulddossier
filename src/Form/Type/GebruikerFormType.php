@@ -36,15 +36,18 @@ class GebruikerFormType extends AbstractType
         $user = $this->security->getUser();
 
         $builder->add('naam', TextType::class, [
+            'label' => 'Naam *',
             'required' => true
         ]);
         $builder->add('email', EmailType::class, [
+            'label' => 'E-mail *',
             'required' => true,
         ]);
         $builder->add('telefoonnummer', TextType::class, [
             'required' => false,
         ]);
         $builder->add('username', TextType::class, [
+            'label' => 'Username *',
             'required' => true
         ]);
         $builder->add('clearPassword', RepeatedType::class, [
@@ -88,6 +91,7 @@ class GebruikerFormType extends AbstractType
             $gebruiker = $event->getData();
             $form = $event->getForm();
             $form->add('type', ChoiceType::class, [
+                'label' => 'Type *',
                 'required' => true,
                 'choices' => Gebruiker::getTypes($user->getType()),
             ]);
@@ -96,6 +100,7 @@ class GebruikerFormType extends AbstractType
             $gebruiker = $event->getData();
             $form = $event->getForm();
             $form->add('type', ChoiceType::class, [
+                'label' => 'Type *',
                 'required' => true,
                 'choices' => Gebruiker::getTypes($user->getType()),
             ]);

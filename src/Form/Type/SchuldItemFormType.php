@@ -60,13 +60,16 @@ class SchuldItemFormType extends AbstractType
         $builder->get('incassant')->addModelTransformer($this->idToSchuldeiserTransformer);
 
         $builder->add('referentie', TextType::class, [
+            'label' => 'Referentie *',
             'required' => true
         ]);
         $builder->add('type', ChoiceType::class, [
+            'label' => 'Type *',
             'required' => true,
             'choices' => SchuldItem::getTypes()
         ]);
         $builder->add('bedrag', NumberType::class, [
+            'label' => 'Bedrag *',
             'required' => true,
         ]);
         $builder->add('bedragOorspronkelijk', NumberType::class, [
@@ -78,7 +81,7 @@ class SchuldItemFormType extends AbstractType
             'attr' => ['data-decorator' => 'rome', 'data-max' => (new \DateTime('now'))->format("d-m-Y")],
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
-            'label' => 'Contactdatum',
+            'label' => 'Contactdatum *',
             'required' => true
         ]);
         $builder->add('ontstaansDatum', DateType::class, [
