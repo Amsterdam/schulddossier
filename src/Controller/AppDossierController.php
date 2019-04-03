@@ -16,12 +16,10 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierClientType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateAantekeningFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierAdditionalFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DetailDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\DocumentFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldenFormType;
@@ -29,7 +27,9 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldItemFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
+use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -51,6 +51,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
+use ZipArchive;
 
 /**
  * @Route("/app/dossier")
@@ -286,12 +287,12 @@ class AppDossierController extends Controller
             }
 
             $subForm = $voorleggerForm->get('cdst');
-            if (!is_null($subForm['transition']->getData())){
+            if (!is_null($subForm['transition']->getData())) {
                 $workflow->apply($dossier, $subForm['transition']->getData());
                 $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()));
-                if (!empty($request->get('voorlegger_form')['controleerGebruiker'])){
+                if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
                     $this->addFlash('success', 'De status is gewijzigd. Mail is verzonden naar ' . $request->get('voorlegger_form')['controleerGebruiker']);
-                }else{
+                } else {
                     $this->addFlash('success', 'De status is gewijzigd');
                 }
             }
@@ -671,62 +672,7 @@ class AppDossierController extends Controller
      */
     public function detailSchuldenExcel(Request $request, Dossier $dossier)
     {
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-
-        $sheet->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
-        $sheet->getPageSetup()->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4);
-
-
-        $sheet->setCellValueByColumnAndRow(1, 1, 'Schuldeiser');
-        $sheet->setCellValueByColumnAndRow(2, 1, 'Incassant');
-        $sheet->setCellValueByColumnAndRow(3, 1, 'Bedrag');
-        $sheet->setCellValueByColumnAndRow(4, 1, 'Ontstaansdatum');
-        $sheet->setCellValueByColumnAndRow(5, 1, 'Vaststeldatum');
-        $sheet->setCellValueByColumnAndRow(6, 1, 'Referentie');
-        $sheet->setCellValueByColumnAndRow(7, 1, 'Type');
-
-        $sheet->getStyleByColumnAndRow(1, 1, 7, 1)->getFont()->setBold(true);
-
-        foreach (array_values($dossier->getSchuldItemsNotInPrullenbak()->toArray()) as $rowIndex => $schuldItem) {
-            /** @var $schuldItem SchuldItem */
-            $rowIndex = $rowIndex + 2; // one-based instead of zero-based and one for the header
-            $sheet->setCellValueByColumnAndRow(1, $rowIndex, $schuldItem->getSchuldeiser() ? $schuldItem->getSchuldeiser()->getBedrijfsnaam() : '');
-            $sheet->setCellValueByColumnAndRow(2, $rowIndex, $schuldItem->getIncassant() ? $schuldItem->getIncassant()->getBedrijfsnaam() : '');
-            $sheet->setCellValueByColumnAndRow(3, $rowIndex, $schuldItem->getBedrag());
-            $sheet->setCellValueByColumnAndRow(4, $rowIndex, $schuldItem->getOntstaansDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getOntstaansDatum()) : null);
-            $sheet->setCellValueByColumnAndRow(5, $rowIndex, $schuldItem->getVaststelDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getVaststelDatum()) : null);
-            $sheet->setCellValueByColumnAndRow(6, $rowIndex, $schuldItem->getReferentie());
-            $sheet->setCellValueByColumnAndRow(7, $rowIndex, $schuldItem->getType());
-
-            if (count($schuldItem->getAantekeningen()) > 0) {
-                $opmerking = '';
-                foreach ($schuldItem->getAantekeningen() as $aantekening) {
-                    /** @var $aantekening Aantekening */
-                    $opmerking = $opmerking . $aantekening->getGebruiker()->__toString() . ' ' . $aantekening->getDatumTijd()->format('d-m-Y H:i') . ":\r\n" . $aantekening->getTekst() . "\r\n\r\n";
-                }
-                $sheet->getCommentByColumnAndRow(6, $rowIndex)->getText()->createText($opmerking);
-                $sheet->getCommentByColumnAndRow(6, $rowIndex)->setWidth('200pt');
-                $sheet->getCommentByColumnAndRow(6, $rowIndex)->setHeight('100pt');
-            }
-            $sheet->getStyleByColumnAndRow(3, $rowIndex)->getNumberFormat()->setFormatCode('"€"#,##0.00_-');
-            $sheet->getStyleByColumnAndRow(4, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
-            $sheet->getStyleByColumnAndRow(5, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
-        }
-
-        $sheet->getColumnDimensionByColumn(1)->setAutoSize(true);
-        $sheet->getColumnDimensionByColumn(2)->setAutoSize(true);
-        $sheet->getColumnDimensionByColumn(3)->setAutoSize(true);
-        $sheet->getColumnDimensionByColumn(4)->setAutoSize(true);
-        $sheet->getColumnDimensionByColumn(5)->setAutoSize(true);
-        $sheet->getColumnDimensionByColumn(6)->setAutoSize(true);
-        $sheet->getColumnDimensionByColumn(7)->setAutoSize(true);
-
-        $sheet->getHeaderFooter()->setOddHeader('Schuldenlijst: ' . $dossier->getClientNaam());
-        $sheet->getHeaderFooter()->setEvenHeader('Schuldenlijst: ' . $dossier->getClientNaam());
-
-        $sheet->getHeaderFooter()->setOddFooter(date('d-m-Y H:i'));
-        $sheet->getHeaderFooter()->setEvenFooter(date('d-m-Y H:i'));
+        $spreadsheet = $this->schuldenAsExcel($dossier);
 
         $fs = new Filesystem();
         $fs->mkdir($this->container->getParameter('kernel.project_dir') . '/var/tmp');
@@ -1010,5 +956,167 @@ class AppDossierController extends Controller
         $this->addFlash('success', 'Schuld hersteld');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/downloadPdf")
+     * @Method("GET")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @param Dossier $dossier
+     *
+     * @return Response
+     */
+    public function downloadPdf(Dossier $dossier)
+    {
+        return $this->render('DocumentPlus/export.html.twig', ['dossier' => $dossier]);
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/downloadCsv")
+     * @Method("GET")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @param Dossier             $dossier
+     *
+     * @param FileStorageSelector $fileStorageSelector
+     *
+     * @return Response
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     */
+    public function downloadCsv(Dossier $dossier, FileStorageSelector $fileStorageSelector): Response
+    {
+        $filesystem = new Filesystem();
+        if (!$filesystem->exists($this->container->getParameter('kernel.project_dir') . '/var/tmp')) {
+            $filesystem->mkdir($this->container->getParameter('kernel.project_dir') . '/var/tmp');
+        }
+        $basePath = $this->container->getParameter('kernel.project_dir') . '/var/tmp';
+
+        $zipfileLocation = sprintf('%s/dossier-%s.zip', $basePath, $dossier->getId());
+        $dossierCsvFileLocation = sprintf('%s/dossier-%s.csv', $basePath, $dossier->getId());
+        $voorleggerCsvFileLocation = sprintf('%s/dossier-%s-voorlegger.csv', $basePath, $dossier->getId());
+        $aantekeningenCsvFileLocation = sprintf('%s/dossier-%s-aantekeningen.csv', $basePath, $dossier->getId());
+        $logsCsvFileLocation = sprintf('%s/dossier-%s-logs.csv', $basePath, $dossier->getId());
+        $schuldenlijstExcelFileLocation = sprintf('%s/dossier-%s-schuldenlijst.xlsx', $basePath, $dossier->getId());
+
+        $filesystemFiles = [
+            $zipfileLocation,
+            $dossierCsvFileLocation,
+            $voorleggerCsvFileLocation,
+            $aantekeningenCsvFileLocation,
+            $logsCsvFileLocation,
+            $schuldenlijstExcelFileLocation
+        ];
+
+        $filesystem->touch($filesystemFiles);
+
+        $zipFactory = new ZipArchive();
+        $files = $fileStorageSelector->getFileStorageForDossier()->listContents('dossier-' . $dossier->getId());
+        $zipFactory->open($zipfileLocation, ZipArchive::CREATE);
+
+        $dossier->getDocumenten()->map(function (DossierDocument $dossierDocument) use ($files, $fileStorageSelector, $zipFactory) {
+            $key = array_search($dossierDocument->getDocument()->getBestandsnaam(), array_column($files, 'basename'), true);
+            $zipFactory->addEmptyDir($dossierDocument->getOnderwerp());
+            $zipFactory->addFromString($dossierDocument->getOnderwerp() . DIRECTORY_SEPARATOR . $dossierDocument->getDocument()->getNaam() . '.' . $dossierDocument->getDocument()->getOrigineleExtensie(), $fileStorageSelector->getFileStorageForDossier()->read($files[$key]['path']));
+        });
+
+        $dossierCsvFile = new Csv($dossier->toSpreadsheetCsv());
+        $dossierCsvFile->save($dossierCsvFileLocation);
+        $zipFactory->addFile($dossierCsvFileLocation, 'dossier-' . $dossier->getId() . '.csv');
+
+        $voorleggerCsvFile = new Csv($dossier->getVoorlegger()->toSpreadsheetCsv());
+        $voorleggerCsvFile->save($voorleggerCsvFileLocation);
+        $zipFactory->addFile($voorleggerCsvFileLocation, 'dossier-' . $dossier->getId() . '-voorlegger.csv');
+
+        $aantekeningenCsvFile = new Csv($dossier->getAantekeningenAsSpreadsheetCsv());
+        $aantekeningenCsvFile->save($aantekeningenCsvFileLocation);
+        $zipFactory->addFile($aantekeningenCsvFileLocation, 'dossier-' . $dossier->getId() . '-aantekeningen.csv');
+
+        $logsCsvFile = new Csv($dossier->getLogsAsSpreadsheetCsv());
+        $logsCsvFile->save($logsCsvFileLocation);
+        $zipFactory->addFile($logsCsvFileLocation, 'dossier-' . $dossier->getId() . '-logs.csv');
+
+        $schuldenlijst = new Xlsx($this->schuldenAsExcel($dossier));
+        $schuldenlijst->save($schuldenlijstExcelFileLocation);
+        $zipFactory->addFile($schuldenlijstExcelFileLocation, 'dossier-' . $dossier->getId() . '-schuldenlijst.xlsx');
+
+        $zipFactory->close();
+
+        $response = Response::create(file_get_contents($zipfileLocation));
+        $response->headers->set('Content-Type', 'application/zip');
+        $response->headers->set('Content-Disposition', 'attachment;filename="dossier-' . $dossier->getId() . '.zip"');
+        $response->headers->set('Content-length', filesize($zipfileLocation));
+
+        $filesystem->remove($filesystemFiles);
+
+        return $response;
+    }
+
+    /**
+     * @param Dossier $dossier
+     *
+     * @return Spreadsheet
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    private function schuldenAsExcel(Dossier $dossier): Spreadsheet
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+        $sheet->getPageSetup()->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4);
+
+
+        $sheet->setCellValueByColumnAndRow(1, 1, 'Schuldeiser');
+        $sheet->setCellValueByColumnAndRow(2, 1, 'Incassant');
+        $sheet->setCellValueByColumnAndRow(3, 1, 'Bedrag');
+        $sheet->setCellValueByColumnAndRow(4, 1, 'Ontstaansdatum');
+        $sheet->setCellValueByColumnAndRow(5, 1, 'Vaststeldatum');
+        $sheet->setCellValueByColumnAndRow(6, 1, 'Referentie');
+        $sheet->setCellValueByColumnAndRow(7, 1, 'Type');
+
+        $sheet->getStyleByColumnAndRow(1, 1, 7, 1)->getFont()->setBold(true);
+
+        foreach (array_values($dossier->getSchuldItemsNotInPrullenbak()->toArray()) as $rowIndex => $schuldItem) {
+            /** @var $schuldItem SchuldItem */
+            $rowIndex = $rowIndex + 2; // one-based instead of zero-based and one for the header
+            $sheet->setCellValueByColumnAndRow(1, $rowIndex, $schuldItem->getSchuldeiser() ? $schuldItem->getSchuldeiser()->getBedrijfsnaam() : '');
+            $sheet->setCellValueByColumnAndRow(2, $rowIndex, $schuldItem->getIncassant() ? $schuldItem->getIncassant()->getBedrijfsnaam() : '');
+            $sheet->setCellValueByColumnAndRow(3, $rowIndex, $schuldItem->getBedrag());
+            $sheet->setCellValueByColumnAndRow(4, $rowIndex, $schuldItem->getOntstaansDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getOntstaansDatum()) : null);
+            $sheet->setCellValueByColumnAndRow(5, $rowIndex, $schuldItem->getVaststelDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getVaststelDatum()) : null);
+            $sheet->setCellValueByColumnAndRow(6, $rowIndex, $schuldItem->getReferentie());
+            $sheet->setCellValueByColumnAndRow(7, $rowIndex, $schuldItem->getType());
+
+            if (count($schuldItem->getAantekeningen()) > 0) {
+                $opmerking = '';
+                foreach ($schuldItem->getAantekeningen() as $aantekening) {
+                    /** @var $aantekening Aantekening */
+                    $opmerking = $opmerking . $aantekening->getGebruiker()->__toString() . ' ' . $aantekening->getDatumTijd()->format('d-m-Y H:i') . ":\r\n" . $aantekening->getTekst() . "\r\n\r\n";
+                }
+                $sheet->getCommentByColumnAndRow(6, $rowIndex)->getText()->createText($opmerking);
+                $sheet->getCommentByColumnAndRow(6, $rowIndex)->setWidth('200pt');
+                $sheet->getCommentByColumnAndRow(6, $rowIndex)->setHeight('100pt');
+            }
+            $sheet->getStyleByColumnAndRow(3, $rowIndex)->getNumberFormat()->setFormatCode('"€"#,##0.00_-');
+            $sheet->getStyleByColumnAndRow(4, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
+            $sheet->getStyleByColumnAndRow(5, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
+        }
+
+        $sheet->getColumnDimensionByColumn(1)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(2)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(3)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(4)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(5)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(6)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(7)->setAutoSize(true);
+
+        $sheet->getHeaderFooter()->setOddHeader('Schuldenlijst: ' . $dossier->getClientNaam());
+        $sheet->getHeaderFooter()->setEvenHeader('Schuldenlijst: ' . $dossier->getClientNaam());
+
+        $sheet->getHeaderFooter()->setOddFooter(date('d-m-Y H:i'));
+        $sheet->getHeaderFooter()->setEvenFooter(date('d-m-Y H:i'));
+        return $spreadsheet;
     }
 }

@@ -4,6 +4,8 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,6 +17,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Dossier
 {
+    use ExportAble;
+
     public const STATUS_BEZIG_MADI = 'bezig_madi';
     public const STATUS_COMPLEET_MADI = 'compleet_madi';
     public const STATUS_GECONTROLEERD_MADI = 'gecontroleerd_madi';
@@ -877,6 +881,33 @@ class Dossier
         if ($aantekening->getDossier() === $this) {
             $aantekening->setDossier(null);
         }
+    }
+
+    public function getActionEvents()
+    {
+        return $this->actionEvents;
+    }
+
+    public function getAantekeningenAsSpreadsheetCsv(): Spreadsheet
+    {
+        $csvHeader = array_keys((new Aantekening())->getClassAttributes());
+        $csvRows = array_merge(...$this->getAantekeningen()->map(function (Aantekening $aantekening){
+            list($csvHeader, $row) = $aantekening->getClassAttributesAndValues();
+            return $row;
+        })->toArray());
+
+        return $this->batchToSpreadsheetCsv($csvHeader, $csvRows);
+    }
+
+    public function getLogsAsSpreadsheetCsv(): Spreadsheet
+    {
+        $csvHeader = array_keys((new ActionEvent())->getClassAttributes());
+        $csvRows = array_merge(...$this->getActionEvents()->map(function (ActionEvent $actionEvent){
+            list($csvHeader, $row) = $actionEvent->getClassAttributesAndValues();
+            return $row;
+        })->toArray());
+
+        return $this->batchToSpreadsheetCsv($csvHeader, $csvRows);
     }
 
     /**
