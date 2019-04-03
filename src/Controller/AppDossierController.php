@@ -1071,12 +1071,13 @@ class AppDossierController extends Controller
         $sheet->setCellValueByColumnAndRow(1, 1, 'Schuldeiser');
         $sheet->setCellValueByColumnAndRow(2, 1, 'Incassant');
         $sheet->setCellValueByColumnAndRow(3, 1, 'Bedrag');
-        $sheet->setCellValueByColumnAndRow(4, 1, 'Ontstaansdatum');
-        $sheet->setCellValueByColumnAndRow(5, 1, 'Vaststeldatum');
-        $sheet->setCellValueByColumnAndRow(6, 1, 'Referentie');
-        $sheet->setCellValueByColumnAndRow(7, 1, 'Type');
+        $sheet->setCellValueByColumnAndRow(4, 1, 'Oorspronkelijk bedrag');
+        $sheet->setCellValueByColumnAndRow(5, 1, 'Ontstaansdatum');
+        $sheet->setCellValueByColumnAndRow(6, 1, 'Vaststeldatum');
+        $sheet->setCellValueByColumnAndRow(7, 1, 'Referentie');
+        $sheet->setCellValueByColumnAndRow(8, 1, 'Type');
 
-        $sheet->getStyleByColumnAndRow(1, 1, 7, 1)->getFont()->setBold(true);
+        $sheet->getStyleByColumnAndRow(1, 1, 8, 1)->getFont()->setBold(true);
 
         foreach (array_values($dossier->getSchuldItemsNotInPrullenbak()->toArray()) as $rowIndex => $schuldItem) {
             /** @var $schuldItem SchuldItem */
@@ -1084,10 +1085,11 @@ class AppDossierController extends Controller
             $sheet->setCellValueByColumnAndRow(1, $rowIndex, $schuldItem->getSchuldeiser() ? $schuldItem->getSchuldeiser()->getBedrijfsnaam() : '');
             $sheet->setCellValueByColumnAndRow(2, $rowIndex, $schuldItem->getIncassant() ? $schuldItem->getIncassant()->getBedrijfsnaam() : '');
             $sheet->setCellValueByColumnAndRow(3, $rowIndex, $schuldItem->getBedrag());
-            $sheet->setCellValueByColumnAndRow(4, $rowIndex, $schuldItem->getOntstaansDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getOntstaansDatum()) : null);
-            $sheet->setCellValueByColumnAndRow(5, $rowIndex, $schuldItem->getVaststelDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getVaststelDatum()) : null);
-            $sheet->setCellValueByColumnAndRow(6, $rowIndex, $schuldItem->getReferentie());
-            $sheet->setCellValueByColumnAndRow(7, $rowIndex, $schuldItem->getType());
+            $sheet->setCellValueByColumnAndRow(4, $rowIndex, $schuldItem->getBedragOorspronkelijk());
+            $sheet->setCellValueByColumnAndRow(5, $rowIndex, $schuldItem->getOntstaansDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getOntstaansDatum()) : null);
+            $sheet->setCellValueByColumnAndRow(6, $rowIndex, $schuldItem->getVaststelDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getVaststelDatum()) : null);
+            $sheet->setCellValueByColumnAndRow(7, $rowIndex, $schuldItem->getReferentie());
+            $sheet->setCellValueByColumnAndRow(8, $rowIndex, $schuldItem->getType());
 
             if (count($schuldItem->getAantekeningen()) > 0) {
                 $opmerking = '';
@@ -1095,13 +1097,14 @@ class AppDossierController extends Controller
                     /** @var $aantekening Aantekening */
                     $opmerking = $opmerking . $aantekening->getGebruiker()->__toString() . ' ' . $aantekening->getDatumTijd()->format('d-m-Y H:i') . ":\r\n" . $aantekening->getTekst() . "\r\n\r\n";
                 }
-                $sheet->getCommentByColumnAndRow(6, $rowIndex)->getText()->createText($opmerking);
-                $sheet->getCommentByColumnAndRow(6, $rowIndex)->setWidth('200pt');
-                $sheet->getCommentByColumnAndRow(6, $rowIndex)->setHeight('100pt');
+                $sheet->getCommentByColumnAndRow(7, $rowIndex)->getText()->createText($opmerking);
+                $sheet->getCommentByColumnAndRow(7, $rowIndex)->setWidth('200pt');
+                $sheet->getCommentByColumnAndRow(7, $rowIndex)->setHeight('100pt');
             }
             $sheet->getStyleByColumnAndRow(3, $rowIndex)->getNumberFormat()->setFormatCode('"€"#,##0.00_-');
-            $sheet->getStyleByColumnAndRow(4, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
+            $sheet->getStyleByColumnAndRow(4, $rowIndex)->getNumberFormat()->setFormatCode('"€"#,##0.00_-');
             $sheet->getStyleByColumnAndRow(5, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
+            $sheet->getStyleByColumnAndRow(6, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
         }
 
         $sheet->getColumnDimensionByColumn(1)->setAutoSize(true);
@@ -1111,6 +1114,7 @@ class AppDossierController extends Controller
         $sheet->getColumnDimensionByColumn(5)->setAutoSize(true);
         $sheet->getColumnDimensionByColumn(6)->setAutoSize(true);
         $sheet->getColumnDimensionByColumn(7)->setAutoSize(true);
+        $sheet->getColumnDimensionByColumn(8)->setAutoSize(true);
 
         $sheet->getHeaderFooter()->setOddHeader('Schuldenlijst: ' . $dossier->getClientNaam());
         $sheet->getHeaderFooter()->setEvenHeader('Schuldenlijst: ' . $dossier->getClientNaam());
