@@ -29,7 +29,7 @@ class AppGebruikerController extends Controller
         /** @var $repository GebruikerRepository */
         $repository = $em->getRepository(Gebruiker::class);
 
-        $maxPageSize = 20;
+        $maxPageSize = 1000;
         /** @var Gebruiker $user */
         $user = $this->getUser();
         $gebruikers = '';
@@ -53,6 +53,8 @@ class AppGebruikerController extends Controller
         return $this->render('Gebruiker/index.html.twig', [
             'gebruikers' => $gebruikers,
             'pagination' => [
+                'reverse' => 'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index',
+                'reverse_params' => [],
                 'page' => $request->query->getInt('page', 0),
                 'pageSize' => $maxPageSize,
                 'numberOfItems' => count($gebruikers),
