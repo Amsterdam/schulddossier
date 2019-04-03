@@ -60,6 +60,7 @@ class DossierRepository extends EntityRepository
         $qb = $this->createQueryBuilder('dossier');
         $qb->andWhere('dossier.inPrullenbak = :inPrullenbak');
         $qb->setParameter('inPrullenbak', false);
+
         $qb->setFirstResult($page * $pageSize);
         $qb->setMaxResults($pageSize);
 
@@ -118,6 +119,10 @@ class DossierRepository extends EntityRepository
         if ($query['medewerkerSchuldhulpbureau'] !== null) {
             $qb->andWhere('dossier.medewerkerSchuldhulpbureau = :medewerkerSchuldhulpbureau');
             $qb->setParameter('medewerkerSchuldhulpbureau', $query['medewerkerSchuldhulpbureau']);
+        }
+        if (!is_null($query['eersteKeerVerzondenAanGKA']) && $query['eersteKeerVerzondenAanGKA']) {
+            $qb->andWhere('dossier.eersteKeerVerzondenAanGKA = :eersteKeerVerzondenAanGKA');
+            $qb->setParameter('eersteKeerVerzondenAanGKA', $query['eersteKeerVerzondenAanGKA']);
         }
 
         if ($query['teamGka'] !== null) {

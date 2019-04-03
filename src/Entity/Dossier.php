@@ -258,6 +258,12 @@ class Dossier
     private $inPrullenbak;
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=true, options={"default" : true})
+     */
+    private $eersteKeerVerzondenAanGKA;
+
+    /**
      * @var SchuldItem[]|ArrayCollection
      * @ORM\OneToMany(targetEntity="SchuldItem", mappedBy="dossier", cascade={"persist", "remove"})
      * @ORM\OrderBy({"id"="ASC"})
@@ -291,6 +297,7 @@ class Dossier
         $this->documenten = new ArrayCollection();
         $this->schuldItems = new ArrayCollection();
         $this->inPrullenbak = false;
+        $this->eersteKeerVerzondenAanGKA = false;
     }
 
     public function getId()
@@ -497,6 +504,11 @@ class Dossier
     public function isInPrullenbak()
     {
         return $this->inPrullenbak;
+    }
+
+    public function isEersteKeerVerzondenAanGKA()
+    {
+        return $this->eersteKeerVerzondenAanGKA;
     }
 
     public function setDossierTemplate($dossierTemplate)
@@ -770,6 +782,11 @@ class Dossier
     public function setInPrullenbak($inPrullenbak)
     {
         $this->inPrullenbak = $inPrullenbak;
+    }
+
+    public function setEersteKeerVerzondenAanGKA($eersteKeerVerzondenAanGKA)
+    {
+        $this->eersteKeerVerzondenAanGKA = $eersteKeerVerzondenAanGKA;
     }
 
     public function getSchuldItems()

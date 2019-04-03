@@ -92,6 +92,7 @@ class AppDossierController extends Controller
             'section' => $section,
             'naam' => '',
             'status' => $section2status[$section],
+            'eersteKeerVerzondenAanGKA' => ($this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser()->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER),
             'schuldhulpbureaus' => !empty($forcedSchuldhulpbureaus) ? $forcedSchuldhulpbureaus : $em->getRepository(Schuldhulpbureau::class)->findAll(),
             'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI || $this->getUser()->getType() === Gebruiker::TYPE_MADI_KEYUSER ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
@@ -109,6 +110,7 @@ class AppDossierController extends Controller
         if ($authChecker->isGranted('ROLE_MADI') || $authChecker->isGranted('ROLE_MADI_KEYUSER')) {
             $seachQuery['schuldhulpbureaus'] = $forcedSchuldhulpbureaus;
         }
+
         $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize), $orderBy);
 
         if ($seachQuery['section'] === 'madi' || $seachQuery['section'] === 'gka') {
@@ -250,6 +252,14 @@ class AppDossierController extends Controller
 
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
+            $subForm = $voorleggerForm->get('cdst');
+            if (!is_null($subForm['transition']->getData())){
+                if ($subForm['transition']->getData() === 'verzenden_madi'){
+                    $dossier->setEersteKeerVerzondenAanGKA(true);
+                }
+                $workflow->apply($dossier, $subForm['transition']->getData());
+                $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()));
+            }
 
             foreach ($voorleggerForm->all() as $key => $child) {
                 if ($child->has('file')) {
