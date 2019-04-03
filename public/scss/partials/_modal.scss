@@ -63,7 +63,6 @@
  top: 0;
  right: 0;
  bottom: 0;
- padding: 2 * $padding;
 
  display: flex;
  align-items: flex-start;
@@ -96,7 +95,7 @@
 .modal-inner {
   position: relative;
   z-index: 2;
-  margin: $padding / 2;
+  margin: 100px 20px 20px 20px;
   max-width: 700px;
 
   background-color: #fff;
@@ -108,9 +107,9 @@
 
 .modal-close {
   position: fixed;
-  z-index: 1;
-  right: $padding / 2;
-  top: $padding / 2;
+  z-index: 3;
+  right: calc((100vw / 2) - 350px);
+  top: 100px;
   width: $padding;
   height: $padding;
   font-size: 0;
@@ -119,16 +118,6 @@
   background-color: #000;
 
   text-decoration: none;
-
-  &:before {
-    content: '';
-    position: fixed;
-    left: 0;
-    right: 2rem;
-    top: 0;
-    bottom: 0;
-
-  }
   &:after {
     content: '×';
 
@@ -137,6 +126,14 @@
     line-height: $padding;
 
   }
+}
+.modal-close--bg {
+  z-index: 1;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 @include medium {
   .modal {
