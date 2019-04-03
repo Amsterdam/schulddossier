@@ -1059,8 +1059,8 @@ form {
   }
 }
 
-.button-remove-input:checked ~ .accordion-body,
-.button-remove-input:checked ~ .accordion-header {
+.button-remove-input:checked ~ .dossier__voorlegger__header,
+.button-remove-input:checked ~ .dossier__voorlegger__body {
   > * > * {
     opacity: .5;
   }
@@ -1069,8 +1069,13 @@ form {
   }
 }
 
-.button-remove-input:checked ~ .accordion-body .button-remove:before {
+.button-remove-input:checked ~ .dossier__voorlegger__body .button-remove:before {
   background-image: url('../images/ico_undo.svg');
   border-color: red;
   color: red;
+}
+.button-remove-input:checked ~ .dossier__voorlegger__body input,
+.button-remove-input:checked ~ .dossier__voorlegger__body textarea,
+.button-remove-input:checked ~ .dossier__voorlegger__body select {
+  pointer-events: none;
 }
