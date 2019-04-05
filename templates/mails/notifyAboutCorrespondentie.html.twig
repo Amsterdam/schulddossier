@@ -1,0 +1,47 @@
+{% block subject -%}
+    Nieuw schulddossier ({{ dossier.getSchuldhulpbureau().getNaam() }})
+{%- endblock  %}
+
+{% block html -%}
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{{ block('subject') }}</title>
+    </head>
+    <body>
+        <p>Hallo,</p>
+        <p>Er is een nieuw officieel correspondentie toegevoegd aan het dossier.</p>
+        <p>&nbsp;</p>
+        <p>Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}</p>
+        <p>Aangeboden op: {{ 'now'|date('d-m-Y') }}</p>
+        <p>&nbsp;</p>
+        {% if dossier.regasNummer is not empty %}
+        <p>MaDi dossiernr.: {{ dossier.regasNummer }}</p>
+        {% endif %}
+        {% if dossier.allegroNummer is not empty %}
+        <p>GKA dossiernr.: {{ dossier.allegroNummer }}</p>
+        {% endif %}
+        <p>&nbsp;</p>
+        <p><a href="{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId}) }}">Open dossier</a>
+    </body>
+</html>
+{%- endblock %}
+
+{% block txt -%}
+Hallo,
+
+Er is een nieuw officieel correspondentie toegevoegd aan het dossier.
+
+Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}
+Aangeboden op: {{ 'now'|date('d-m-Y') }}
+
+{% if dossier.regasNummer is not empty %}
+MaDi dossiernr.: {{ dossier.regasNummer }}
+
+{% endif %}
+{% if dossier.allegroNummer is not empty %}
+GKA dossiernr.: {{ dossier.allegroNummer }}
+
+{% endif %}
+{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId()}) }}
+{%- endblock %}
