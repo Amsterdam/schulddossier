@@ -1,12 +1,12 @@
 {% import 'partial.macros.html.twig' as tools %}
-{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerpen(['correspondentie']) %}
+{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerpen(['correspondentieVanGKA']) %}
 
-<div class="dossier__item {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-correspondentie" data-hashevent="activate-section" data-keyupper="section-document-nav">
+<div class="dossier__item {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-correspondentieVanGKA" data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 
         <div class="voorlegger-header">
             <h3 class="naam">
-                <a href="#id_voorlegger-correspondentie">{{ title }}</a>
+                <a href="#id_voorlegger-correspondentieVanGKA">{{ title }}</a>
             </h3>
             {% if dossierDocumenten|length > 0 %}
                 <div class="voortgang">
@@ -24,6 +24,15 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <div class="columns">
+                    <div class="column">
+                        <p>Documenten in deze sectie vormen officiële correspondentie van het GKA.</p>
+                        <p><strong>Let op!</strong> Bij toevoeging van documenten aan deze sectie wordt hierover een e-mail gestuurd naar {{ dossier.teamGka.email }}</p>
+                    </div>
+                    <div class="column">
+                    <img src="/images/envelop.svg"/>
+                    </div>
+                </div>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Correspondentie'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>
