@@ -599,7 +599,7 @@
 .dossier__voorlegger__sectie__body {
   //position: absolute;
   bottom: 0;
-  padding: 20px 10% 40px;
+  padding: 20px calc(10% - 17px) 40px 10%;
   overflow-y: auto;
   height: calc(100vh - 260px);
   h4 {
