@@ -159,8 +159,9 @@
 .document-header {
   .search-control {
     margin-top: $padding;
+    justify-content: space-between;
     .group {
-      flex-basis: 100%;
+      flex-basis: 80%;
     }
     .search-input {
       width: 50%;
