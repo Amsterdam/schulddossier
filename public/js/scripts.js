@@ -1960,6 +1960,7 @@
     'activate-section': function(hash){
       var el = this,
         activate = el.getAttribute('id') === hash.substr(3),
+        close = !(document.getElementById(hash.substr(3))),
         viewer = el.querySelector('.document__viewer'),
         scrollParent = _closest(el, '.dossier__scroll-content'),
         scrollContainer = _closest(el, '.dossier__scroll-container'),
@@ -2011,6 +2012,12 @@
             }, 600);
           }
         };
+      if(close){
+        var top = document.querySelector('.dossier__voorlegger__header__top');
+        var bottom = document.querySelector('.dossier__voorlegger__header__bottom');
+        top && top.classList.remove('show');
+        bottom && bottom.classList.remove('show');
+      }
       if (activate){
         _activate(el);
       }else {
