@@ -31,6 +31,7 @@
   color: $textColor;
   &:hover {
     color: $textColor;
+    background: transparent;
   }
 }
 
@@ -59,6 +60,7 @@
 .rd-day-body {
   cursor: pointer;
   text-align: center;
+  padding: 4px 5px;
 }
 
 .rd-day-selected, .rd-time-selected, .rd-time-option:hover {
