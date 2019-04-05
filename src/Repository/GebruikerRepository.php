@@ -91,7 +91,7 @@ class GebruikerRepository extends EntityRepository
         $qb->andWhere('shb.id IN (:shb_ids)');
         $qb->setParameter('shb_ids', $bureaus);
 
-        $qb->orderBy('gebruiker.username', 'ASC');
+        $qb->orderBy('gebruiker.naam', 'ASC');
 
         return $qb;
     }

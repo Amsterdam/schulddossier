@@ -112,13 +112,13 @@ class VoorleggerFormType extends AbstractType
             $choices = [];
             $data = null;
             foreach ($gebruikers->getQuery()->getResult() as $key => $value) {
-                if ($value != $user){
+                if ($value != $user && $value->isEnabled()){
                     $choices[$value->getEmail()] = $value->getNaam() . ' (' .$value->getEmail() . ')';
                 }
             }
             if (empty($dossier->getSchuldhulpbureau()->getEmailAdresControle()) === false){
                 $data = $dossier->getSchuldhulpbureau()->getEmailAdresControle();
-                $choices[$dossier->getSchuldhulpbureau()->getEmailAdresControle()] = 'Controle e-mailadres (' . $dossier->getSchuldhulpbureau()->getEmailAdresControle() . ')';
+                $choices = array($dossier->getSchuldhulpbureau()->getEmailAdresControle() => 'Controle e-mailadres (' . $dossier->getSchuldhulpbureau()->getEmailAdresControle() . ')') + $choices;
             }
             $choices = array_flip($choices);
 

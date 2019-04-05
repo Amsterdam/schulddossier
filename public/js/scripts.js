@@ -49,7 +49,7 @@
         url = this.href,
         form = _closest(this, 'form'),
         rootElem = this.dataset.root && document.querySelector(this.dataset.root) || document.body,
-        template = '<div class="modal-inner">[[CONTENT]]</div><a href="#" class="modal-close" data-handler="modal-close">SLUITEN</a>';
+        template = '<div class="modal-inner">[[CONTENT]]</div><a href="#" class="modal-close" data-handler="modal-close">SLUITEN</a><a href="#" class="modal-close--bg" data-handler="modal-close"></a>';
         var content = false;
 
       var _render = function(content){
