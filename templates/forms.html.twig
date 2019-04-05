@@ -344,7 +344,7 @@
 
 {%- block form_row -%}
     <div class="form-row{% if attr.form_row_class is defined %} {{ attr.form_row_class }}{% endif %}">
-        <div class="label-widget"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        <div class="label-widget"{% for attrname, attrvalue in attr %}{% if attrname not in ['form_row_class', 'class'] %} {{ attrname }}="{{ attrvalue }}"{% endif %}{% endfor %}>
           {{- form_label(form) -}}
           {{- form_widget(form) -}}
         </div>
@@ -450,6 +450,7 @@
 
 {% block attributes -%}
     {%- for attrname, attrvalue in attr -%}
+        {%- if attrname not in ['form_row_class'] -%}
         {{- " " -}}
         {%- if attrname in ['placeholder', 'title'] -%}
             {{- attrname }}="{{ translation_domain is same as(false) ? attrvalue : attrvalue|trans({}, translation_domain) }}"
@@ -457,6 +458,7 @@
             {{- attrname }}="{{ attrname }}"
         {%- elseif attrvalue is not same as(false) -%}
             {{- attrname }}="{{ attrvalue }}"
+        {%- endif -%}
         {%- endif -%}
     {%- endfor -%}
 {%- endblock attributes -%}
