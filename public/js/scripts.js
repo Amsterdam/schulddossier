@@ -1049,9 +1049,10 @@
         changer && changers[changer.dataset.changer].call(changer);
       });
       datepicker.on('show', function(){
+        var row = _closest(this.associated, '.form-row'),
+          widget = _closest(this.associated, '.label-widget');
         this.container.style.left =  this.associated.offsetLeft + 'px';
-        this.container.style.top = this.associated.offsetHeight + 'px';
-        var row = _closest(this.associated, '.form-row');
+        this.container.style.top = widget ? widget.offsetHeight + 'px' : this.associated.offsetHeight + 'px';
         row && row.classList.add('rome-active');
       });
       datepicker.on('hide', function(){

@@ -47,6 +47,7 @@
     &:hover {
       color: $textColor;
       text-decoration: underline;
+      background: transparent;
     }
     &.danger:hover {
       color: red;
