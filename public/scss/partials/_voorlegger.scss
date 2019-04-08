@@ -710,13 +710,8 @@
   position: absolute;
   width: calc(100vw - 442px);
   height: calc(100vh - 110px);
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  .col-1-1 {
-    //border-top: 1px solid #000;
-    //text-align: center;
-  }
+  display: inline-block;
+
   h4 {
     font-size: $fs-large;
     margin-bottom: 10px;
@@ -727,21 +722,23 @@
 }
 .dossier__dashboard__default,
 .dossier__dashboard__messages {
+  float: left;
   padding-top: 100px;
-  margin: 0 25px;
-  //height: calc(100% - 100px);
-  //width: 40%;
-  //padding: 50px 6.666% 0;
+
   h2 {
     margin-bottom: 20px;
   }
 }
 .dossier__dashboard__default {
   width: 55%;
+  margin-left: calc(7.5% - 25px);
+  margin-right: 25px;
 }
 
 .dossier__dashboard__messages {
   width: 30%;
+  margin-right: calc(7.5% - 25px);
+  margin-left: 25px;
 }
 .dossier__dashboard__well--line {
   border: 1px $borderColor2 solid;

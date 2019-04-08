@@ -1,5 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
-{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerpen(['correspondentieVanGKA']) %}
+{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('correspondentie') %}
 
 <div class="dossier__item {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-correspondentieVanGKA" data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">

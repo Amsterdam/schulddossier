@@ -1,9 +1,10 @@
 !function (w, d) {
 
   var handlers = {
-    'remove-aantekening': function () {
+    'remove-aantekening': function (e) {
       var aantekeningNode = _closest(this, '.aantekening'),
         all = document.querySelectorAll('.aantekening[data-id="'+aantekeningNode.dataset.id+'"]');
+      e && e.preventDefault();
       aantekeningNode.style.height = aantekeningNode.clientHeight + 'px';
 
       if (confirm('Deze aantekening verwijderen?')) {

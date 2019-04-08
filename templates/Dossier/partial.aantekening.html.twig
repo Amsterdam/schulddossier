@@ -1,15 +1,20 @@
-<div class="aantekening{% if aantekening.gebruiker.userName == app.user.userName %} aantekening-mijn{% endif %}" data-id="{{ aantekening.id }}">
+<div class="aantekening{% if aantekening.gebruiker.userName == app.user.userName %} aantekening-mijn{% endif %} {{  aantekening.gebruiker.type }}" data-id="{{ aantekening.id }}">
     <p class="aantekening-meta">
-      <time>{{ aantekening.datumTijd|date('d-m-Y H:i') }}</time>
+
       <strong>{{ aantekening.gebruiker.naam }}</strong>
-      {% if aantekening.gebruiker.userName == app.user.userName %}
-        <i style="margin: 4px; cursor: pointer;" class="icon-prullenbak" data-aantekening-id="{{ aantekening.id }}" data-handler="remove-aantekening" data-csrf-token="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening') }}">&nbsp;&nbsp;&nbsp;</i>
-      {% endif %}
     </p>
     <p class="aantekening-bericht">
+        <span class="aantekening-context">
+            <time>{{ aantekening.datumTijd|date('d-m-Y H:i') }}</time>
+      {% if aantekening.gebruiker.userName == app.user.userName %}
+        <a href="#" style="margin: 4px; cursor: pointer;" class="icon-prullenbak" data-aantekening-id="{{ aantekening.id }}" data-handler="remove-aantekening" data-csrf-token="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening') }}">&nbsp;&nbsp;&nbsp;</a>
+      {% endif %}
+        </span>
+
       {{ aantekening.tekst|nl2br }}
       {% if showContext|default(false) %}
-        <span class="aantekening-context">
+        <span class="aantekening-context aantekening-context__bottom">
+          In
           {% if aantekening.schuldItem %}
             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': aantekening.dossier.id}) }}#id_schuldItem-{{ aantekening.schuldItem.id }}">{{ aantekening.onderwerp|humanize }}</a>
           {% elseif aantekening.onderwerp != 'overige' %}
