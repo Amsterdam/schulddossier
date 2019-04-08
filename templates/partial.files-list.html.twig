@@ -13,7 +13,7 @@
                 {#{% if dossierDocument.document.origineleExtensie|lower == 'pdf' %}#}
                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
                    class="bestand-zoom" title="Bekijk deze {{ dossierDocument.document.origineleExtensie|lower }}"
-                   data-handler="bestand">
+                   data-handler="bestand" target="_blank">
                     {#{{ dossierDocument.document.naam }}#}
                     <i class="icon-document"
                        data-extension="{{ dossierDocument.document.origineleExtensie|lower }}" {% if documentThumbnail is not empty %} data-decorator="lazy-load-document-thumb" data-background-image="{{ documentThumbnail }}" {% endif %}></i>
