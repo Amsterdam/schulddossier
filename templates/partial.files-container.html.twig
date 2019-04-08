@@ -1,3 +1,5 @@
+{% if disableFields is defined %}
+{% else %}
 <h4>Documenten</h4>
 <div class="files-container" data-default-document-naam="{{ defaultDocumentNaam|default('') }}">
     <div class="file-container prototype" data-name="{{ form_elm.vars.prototype.file.vars.full_name }}">
@@ -28,4 +30,5 @@
       
     </a>
 </div>
+{% endif %}
 {% do form_elm.setRendered() %}
