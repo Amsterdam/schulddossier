@@ -150,3 +150,8 @@
     display: block;
   }
 }
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
