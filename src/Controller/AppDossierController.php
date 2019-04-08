@@ -679,7 +679,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/detail/{dossierId}/aantekeningen/{aantekeningId}")
-     * @Method("DELETE")
+     * @Method({"GET","DELETE"})
      * @Security("user == aantekening.getGebruiker()")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("aantekening", options={"id"="aantekeningId"})
