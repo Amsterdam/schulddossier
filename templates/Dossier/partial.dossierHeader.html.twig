@@ -1,10 +1,8 @@
 <div class="dossier__header">
-    <h1 class="document-title">{{ dossier.clientNaam }}</h1>
+    <h1 class="document-title">{% if dossier.clientVoorletters %}{{ dossier.clientVoorletters|trim }} {% endif %}{{ dossier.clientNaam }}</h1>
     {% if dossier.allegroNummer %}<p>GKA dossiernr.: <strong>{{ dossier.allegroNummer }}</strong></p>{% endif %}
-    {#{% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier} only %}#}
 
     <nav class="nav-internal actions">
-        {#<span class="nav-open primary">Alle acties <i class="icon-arrow-bottom"></i></span>#}
         <a href="#acties" class="nav-toggle" data-handler="global-toggle" data-toggle-class="acties-active"
            data-label="Alle acties"><span class="nav-open primary">Alle acties <i class="icon-arrow-bottom"></i></span></a>
         <nav class="nav" id="acties">

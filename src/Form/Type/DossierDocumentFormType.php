@@ -52,6 +52,7 @@ class DossierDocumentFormType extends AbstractType
                 'ondertekendAanvraagFormulier' => 'ondertekendAanvraagFormulier',
                 'aanvullendeInformatie' => 'aanvullendeInformatie',
                 'overigeDocumenten' => 'overigeDocumenten',
+                'correspondentie' => 'correspondentie',
             ],
             'multiple' => false,
             'expanded' => false
