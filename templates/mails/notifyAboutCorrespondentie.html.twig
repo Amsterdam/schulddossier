@@ -9,8 +9,8 @@
         <title>{{ block('subject') }}</title>
     </head>
     <body>
-        <p>Hallo,</p>
-        <p>Er is een nieuw officieel correspondentie toegevoegd aan het dossier.</p>
+        <p>Hallo {{ dossier.getMedewerkerSchuldhulpbureau.getNaam }},</p>
+        <p>Er is nieuwe post van de kredietbank toegevoegd aan jouw dossier.</p>
         <p>&nbsp;</p>
         <p>Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}</p>
         <p>Aangeboden op: {{ 'now'|date('d-m-Y') }}</p>
@@ -28,9 +28,9 @@
 {%- endblock %}
 
 {% block txt -%}
-Hallo,
+Hallo {{ dossier.getMedewerkerSchuldhulpbureau.getNaam }},
 
-Er is een nieuw officieel correspondentie toegevoegd aan het dossier.
+Er is nieuwe post van de kredietbank toegevoegd aan jouw dossier.
 
 Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}
 Aangeboden op: {{ 'now'|date('d-m-Y') }}
