@@ -33,7 +33,11 @@
                     <img src="/images/envelop.svg" alt="envelop"/>
                     </div>
                 </div>
+                {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
+                {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Correspondentie', 'disableFields': true} only %}
+                {% else %}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Correspondentie'} only %}
+                {% endif %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>
                 {{ form_row(form.aantekening) }}
