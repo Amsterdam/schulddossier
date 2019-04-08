@@ -295,6 +295,9 @@ class AppDossierController extends Controller
             $subForm = $voorleggerForm->get('cdst');
             if (!is_null($subForm['transition']->getData())) {
                 $workflow->apply($dossier, $subForm['transition']->getData());
+                if ($subForm['transition']->getData() === 'verzenden_madi'){
+                    $dossier->setEersteKeerVerzondenAanGKA(true);
+                }
                 $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()));
                 if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
                     $this->addFlash('success', 'De status is gewijzigd. Mail is verzonden naar ' . $request->get('voorlegger_form')['controleerGebruiker']);
