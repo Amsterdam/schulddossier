@@ -6,11 +6,15 @@
 
 {% block document %}
 
-    <nav class="nav-internal">
-        <ul>
-            <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"><i class="icon-arrow-left"></i>Terug naar overzicht</a></li>
-        </ul>
-    </nav>
+<p class="nav-internal--breadcrumb">
+    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class=" nav-internal--breadcrumb__home">
+        <span>Start</span>
+    </a>
+    <a href="#" class="nav-internal--breadcrumb__section in-active">
+        <i class="nav-internal--breadcrumb__icon-arrow-right"></i>
+        <span>Prullenbak</span>
+    </a>
+</p>
 
     <div class="document well">
         <div class="document-header">
