@@ -27,7 +27,7 @@ class TeamFormType extends AbstractType
             'required' => true
         ]);
         $builder->add('email', EmailType::class, [
-            'label' => 'E-mail *',
+            'label' => 'E-mailadres *',
             'required' => true,
         ]);
     }
