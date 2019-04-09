@@ -35,23 +35,26 @@ class AppGebruikerController extends Controller
         $gebruikers = '';
         switch ($user->getType()) {
             case Gebruiker::TYPE_MADI_KEYUSER:
-                $gebruikers = $repository->findAllByTypeAndSchuldhulpbureau([Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER, Gebruiker::TYPE_ONBEKEND], $user->getSchuldhulpbureaus(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+                $gebruikers = $repository->findAllByTypeAndSchuldhulpbureau([Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER], $user->getSchuldhulpbureaus(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
                 break;
+
             case Gebruiker::TYPE_GKA_APPBEHEERDER:
-                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER, Gebruiker::TYPE_ONBEKEND], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
                 break;
 
             case Gebruiker::TYPE_ADMIN:
-                $gebruikers = $repository->findAll($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_ADMIN, Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
                 break;
         }
 
+        $onbekendeGebruikers = $repository->findAllOnbekendeGebruikers()->getQuery()->getResult();
 
         return $this->render('Gebruiker/index.html.twig', [
             'gebruikers' => $gebruikers,
+            'onbekendeGebruikers' => $onbekendeGebruikers,
             'pagination' => [
                 'reverse' => 'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index',
                 'reverse_params' => [],
