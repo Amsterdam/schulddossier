@@ -12,7 +12,7 @@
         var csrfToken = this.dataset.csrfToken;
 
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/app/dossier/detail/1/aantekeningen/' + aantekeningId + '?_method=DELETE', true);
+        xhr.open('POST', '/app/dossier/detail/1/aantekeningen/' + aantekeningId + '/verwijder', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('token=' + csrfToken);
         xhr.onreadystatechange = function() {

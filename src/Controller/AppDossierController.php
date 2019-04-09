@@ -61,20 +61,6 @@ use ZipArchive;
 class AppDossierController extends Controller
 {
     /**
-     * @Route("/testjevoordelete")
-     */
-    public function test(Request $request)
-    {
-        var_dump($_GET);
-        var_dump($_POST);
-        var_dump($request->getMethod());
-        var_dump($request->request->all());
-        var_dump($request->query->all());
-        var_dump(Request::getHttpMethodParameterOverride());
-        exit('stop');
-    }
-
-    /**
      * @Route("/")
      * @throws \Exception
      */
@@ -692,13 +678,17 @@ class AppDossierController extends Controller
     }
 
     /**
-     * @Route("/detail/{dossierId}/aantekeningen/{aantekeningId}")
-     * @Method({"GET","DELETE"})
+     * @Route("/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder")
+     * @Method({"POST"})
      * @Security("user == aantekening.getGebruiker()")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("aantekening", options={"id"="aantekeningId"})
+     * @param Request                  $request
+     * @param Aantekening              $aantekening
+     * @param EntityManagerInterface   $em
+     *
+     * @return JsonResponse
      */
-    public function deleteAantekeningAction(Request $request, Dossier $dossier, Aantekening $aantekening, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function deleteAantekeningAction(Request $request, Aantekening $aantekening, EntityManagerInterface $em)
     {
         if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening', $request->request->get('token')) !== true) {
             throw $this->createAccessDeniedException('CSRF token invalid');
