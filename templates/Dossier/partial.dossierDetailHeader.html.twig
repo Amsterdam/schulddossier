@@ -6,7 +6,7 @@
     {% endif %}
     <h1 class="document-title">{{ title }}</h1>
       <ul class="document-meta">
-          <li>Cliëntnaam: <strong>{{ dossier.clientnaam }}</strong></li>
+          <li>Cliëntnaam: <strong>{% if dossier.clientVoorletters %}{{ dossier.clientVoorletters|trim }} {% endif %}{{ dossier.clientNaam }}</strong></li>
       </ul>
   </div>
 </div>

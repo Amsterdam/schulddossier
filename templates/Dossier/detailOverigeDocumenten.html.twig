@@ -4,11 +4,19 @@
 
 {% block document %}
 
-<nav class="nav-internal">
-  <ul>
-    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}"><i class="icon-arrow-left"></i><span>Terug naar dossier</span></a></li>
-  </ul>
-</nav>
+<p class="nav-internal--breadcrumb">
+    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class=" nav-internal--breadcrumb__home">
+        <span>Start</span>
+    </a>
+    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}" class="nav-internal--breadcrumb__dossier">
+        <i class="nav-internal--breadcrumb__icon-arrow-right"></i>
+        <span>Dossier: {% if dossier.clientVoorletters %}{{ dossier.clientVoorletters|trim }} {% endif %}{{ dossier.clientNaam }}</span>
+    </a>
+    <a href="#" class="nav-internal--breadcrumb__section in-active">
+        <i class="nav-internal--breadcrumb__icon-arrow-right"></i>
+        <span>Overige documenten</span>
+    </a>
+</p>
 
 <div class="document well">
 
