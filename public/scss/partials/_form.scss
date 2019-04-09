@@ -230,8 +230,13 @@ form {
     padding: 0;
   }
   .form-row__checkbox--right {
-    float: right;
-    margin: 5px 0 0;
+    position: relative;
+    margin: 0;
+    .label-widget {
+      position: absolute;
+      right: 0;
+      top: -50px;
+    }
     input,
     label {
       display: inline-block;
@@ -243,6 +248,9 @@ form {
       padding: 0;
       width: auto;
     }
+  }
+  .voorlegger & .form-row__checkbox--right .label-widget {
+      top: -37px;
   }
   .form-row.rome-active {
     z-index: 2;
@@ -317,6 +325,8 @@ form {
       }
       input {
         width: 12%;
+        height: 13px;
+        margin-top: 2px;
       }
       label {
         width: 88%;
