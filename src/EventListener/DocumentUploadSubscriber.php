@@ -37,15 +37,22 @@ class DocumentUploadSubscriber implements EventSubscriber
 
     /**
      * @param LifecycleEventArgs $args
+     *
+     * @throws \League\Flysystem\FileExistsException
      */
     public function prePersist(LifecycleEventArgs $args)
     {
         $object = $args->getObject();
+
         if (($object instanceof Document) === false) {
             return;
         }
-        /** @var $object Document */
 
+        if (null === $object->getFile()) {
+            return;
+        }
+
+        /** @var $object Document */
         $flysystem = $this->fileStorageSelector->getByGroep($object->getGroep());
         /** @var $uploadedFile UploadedFile */
         $uploadedFile = $object->getFile();
@@ -63,6 +70,8 @@ class DocumentUploadSubscriber implements EventSubscriber
 
     /**
      * @param LifecycleEventArgs $args
+     *
+     * @throws \League\Flysystem\FileNotFoundException
      */
     public function postRemove(LifecycleEventArgs $args)
     {
