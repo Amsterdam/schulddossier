@@ -61,6 +61,20 @@ use ZipArchive;
 class AppDossierController extends Controller
 {
     /**
+     * @Route("/testjevoordelete")
+     */
+    public function test(Request $request)
+    {
+        var_dump($_GET);
+        var_dump($_POST);
+        var_dump($request->getMethod());
+        var_dump($request->request->all());
+        var_dump($request->query->all());
+        var_dump(Request::getHttpMethodParameterOverride());
+        exit('stop');
+    }
+
+    /**
      * @Route("/")
      * @throws \Exception
      */
@@ -295,7 +309,7 @@ class AppDossierController extends Controller
             $subForm = $voorleggerForm->get('cdst');
             if (!is_null($subForm['transition']->getData())) {
                 $workflow->apply($dossier, $subForm['transition']->getData());
-                if ($subForm['transition']->getData() === 'verzenden_madi'){
+                if ($subForm['transition']->getData() === 'verzenden_madi') {
                     $dossier->setEersteKeerVerzondenAanGKA(true);
                 }
                 $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()));
