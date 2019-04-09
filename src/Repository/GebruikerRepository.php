@@ -79,7 +79,7 @@ class GebruikerRepository extends EntityRepository
      * @param array $type
      * @param array $bureaus
      *
-     * @return Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function findAllByTypeAndSchuldhulpbureauRaw(array $type, $bureaus): QueryBuilder
     {
@@ -90,6 +90,20 @@ class GebruikerRepository extends EntityRepository
         $qb->innerJoin('gebruiker.schuldhulpbureaus', 'shb');
         $qb->andWhere('shb.id IN (:shb_ids)');
         $qb->setParameter('shb_ids', $bureaus);
+
+        $qb->orderBy('gebruiker.naam', 'ASC');
+
+        return $qb;
+    }
+
+    /**
+     * @return QueryBuilder
+     */
+    public function findAllOnbekendeGebruikers(): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('gebruiker');
+        $qb->andWhere('gebruiker.type = (:type)');
+        $qb->setParameter('type', Gebruiker::TYPE_ONBEKEND);
 
         $qb->orderBy('gebruiker.naam', 'ASC');
 
