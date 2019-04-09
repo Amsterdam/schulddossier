@@ -27,6 +27,7 @@ class SchuldhulpbureauFormType extends AbstractType
             'required' => true
         ]);
         $builder->add('emailAdresControle', TextType::class, [
+            'label' => 'Controle e-mailadres',
             'required' => false
         ]);
         $builder->add('standaardGkaTeam', EntityType::class, [
