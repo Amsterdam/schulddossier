@@ -52,12 +52,12 @@
                         <div class="columns">
                             <div class="column">
                                 {{ form_row(createForm.bedrag, {'attr': {'data-unit': '€', 'data-validator': 'required-float'}}) }}
-                                {{ form_row(createForm.bedragOorspronkelijk, {'attr': {'data-unit': '€', 'data-validator': 'float', 'data-num-max': '1000000', 'data-num-min': '1'}}) }}
+                                {{ form_row(createForm.vastStelDatum) }}
                                 {{ form_row(createForm.type) }}
                                 {{ form_row(createForm.referentie, {'attr': {'data-validator': 'required'}}) }}
                             </div>
                             <div class="column">
-                                {{ form_row(createForm.vastStelDatum) }}
+                                {{ form_row(createForm.bedragOorspronkelijk, {'attr': {'data-unit': '€', 'data-validator': 'float', 'data-num-max': '1000000', 'data-num-min': '1'}}) }}
                                 {{ form_row(createForm.ontstaansDatum) }}
                             </div>
                         </div>
