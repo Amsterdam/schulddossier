@@ -20,7 +20,8 @@ class SchuldeiserFormType extends AbstractType
         ]);
 
         $builder->add('enabled', CheckboxType::class, [
-            'label' => 'Actief'
+            'label' => 'Actief',
+            'required' => false
         ]);
 
         $builder->add('rekening', TextType::class, [
