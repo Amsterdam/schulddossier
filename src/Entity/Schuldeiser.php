@@ -89,6 +89,12 @@ class Schuldeiser
      */
     private $opmerkingen;
 
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=false, options={"default" : true})
+     */
+    private $enabled = true;
+
     public function getId()
     {
         return $this->id;
@@ -182,6 +188,22 @@ class Schuldeiser
     public function setOpmerkingen($opmerkingen)
     {
         $this->opmerkingen = $opmerkingen;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool $enabled
+     */
+    public function setEnabled(bool $enabled): void
+    {
+        $this->enabled = $enabled;
     }
 
     public function __toString()

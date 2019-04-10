@@ -35,6 +35,7 @@
                     <tr>
                         <th>Naam</th>
                         <th>Allegro Code</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +49,7 @@
                             {% endif %}
                         </th>
                         <td>{{ schuldeiser.allegroCode }}</td>
+                        <td>{% if schuldeiser.enabled %}  {% else %} Niet actief {% endif %}</td>
                     </tr>
 {% endfor %}
                </tbody>

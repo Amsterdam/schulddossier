@@ -34,7 +34,7 @@ class AppSchuldeiserController extends Controller
 
         $maxPageSize = 50;
 
-        $items = $schuldeiserRepository->search($request->query->get('q'), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+        $items = $schuldeiserRepository->search($request->query->get('q'), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize), false);
 
 
         return $this->render('Schuldeiser/index.html.twig', [
