@@ -1,23 +1,26 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 
 class SchuldeiserRepository extends EntityRepository
 {
-    public function search($q = '', $page = 0, $pageSize = 100)
+    public function search($q = '', $page = 0, $pageSize = 100, $showEnabledOnly = true)
     {
         $q = explode(' ', $q);
         $q = array_filter($q, function ($item) {
-                return !empty($item);
-            });
+            return !empty($item);
+        });
         if (count($q) === 0) {
             $q = [''];
         }
         $q = array_map(function ($item) {
-                return strtolower($item);
-            }, $q);
+            return strtolower($item);
+        }, $q);
         $q = array_values($q);
 
         $qb = $this->createQueryBuilder('schuldeiser');
@@ -41,6 +44,9 @@ class SchuldeiserRepository extends EntityRepository
             $andX->add($orX);
         }
         $qb->andWhere($andX);
+        if ($showEnabledOnly) {
+            $qb->andWhere('schuldeiser.enabled = true');
+        }
 
         if ($pageSize > -1) {
             $qb->setFirstResult($page * $pageSize);
@@ -48,5 +54,21 @@ class SchuldeiserRepository extends EntityRepository
         }
 
         return new Paginator($qb->getQuery());
+    }
+
+    /**
+     * @param array $whitelist
+     *
+     * @return QueryBuilder
+     */
+    public function markMissingSchuldeisersInactive(array $whitelist): QueryBuilder
+    {
+        $queryBuilder = $this->createQueryBuilder(Schuldeiser::class);
+        $queryBuilder->update(Schuldeiser::class, 's')
+            ->set('s.enabled', 'false')
+            ->where('s NOT IN (:importedschuldeisers)')
+            ->andWhere("s.bedrijfsnaam NOT LIKE '%onbekende schuldeiser'")
+            ->setParameter('importedschuldeisers', $whitelist);
+        return $queryBuilder;
     }
 }

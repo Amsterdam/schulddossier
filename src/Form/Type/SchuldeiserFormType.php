@@ -1,18 +1,14 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
-use Doctrine\ORM\EntityRepository;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class SchuldeiserFormType extends AbstractType
 {
@@ -22,6 +18,11 @@ class SchuldeiserFormType extends AbstractType
             'label' => 'Bedrijfsnaam *',
             'required' => true
         ]);
+
+        $builder->add('enabled', CheckboxType::class, [
+            'label' => 'Actief'
+        ]);
+
         $builder->add('rekening', TextType::class, [
             'required' => false
         ]);
