@@ -379,21 +379,35 @@ a.bestand {
       top: 5.1rem;
     }
   }
+  .bestand-verwijderen-check ~ label {
+    border: 1px solid transparent;
+  }
   .bestand-verwijderen-check:checked ~ label {
     opacity: 1;
-    background-color: transparent;
+    width: 100%;
+    background: rgba(255,255,255,1);
+    border: 1px solid #000;
+    height: 100%;
+    left: 0;
+    top: 0;
     &:before {
       background-image: url('../images/ico_undo.svg');
+      background-position-x: 10px;
+      width: 100%;
+      background-size: contain;
     }
     &:after {
-      content: 'wordt verwijderd';
+      content: 'Document wordt verwijderd';
       position: absolute;
-      left: 2rem;
-      width: 8rem;
-      top: 5rem;
-      font-size: 12px;
-      line-height: 1;
+      left: 0;
+      width: 100%;
+      bottom: 50px;
+      font-size: 16px;
+      line-height: 1.2em;
       text-align: center;
+    }
+    &:hover:after {
+      content: 'Document herstellen';
     }
   }
   .bestand-verwijderen-check:checked ~ .bestand {
