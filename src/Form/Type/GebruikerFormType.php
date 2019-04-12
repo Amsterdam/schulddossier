@@ -46,16 +46,6 @@ class GebruikerFormType extends AbstractType
         $builder->add('telefoonnummer', TextType::class, [
             'required' => false,
         ]);
-        $builder->add('username', TextType::class, [
-            'label' => 'Username *',
-            'required' => true
-        ]);
-        $builder->add('clearPassword', RepeatedType::class, [
-            'required' => false,
-            'type' => PasswordType::class,
-            'first_options' => ['label' => 'Wachtwoord'],
-            'second_options' => ['label' => 'Wachtwoord (herhaal)'],
-        ]);
         $builder->add('teamGka', EntityType::class, [
             'required' => false,
             'expanded' => false,
@@ -82,11 +72,6 @@ class GebruikerFormType extends AbstractType
             'label' => 'Account actief?'
         ]);
 
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-            if ($event->getForm()->get('clearPassword')->getData() !== null && $event->getForm()->get('clearPassword')->getData() !== '') {
-                $event->getData()->setPasswordChangedDateTime(new \DateTime());
-            }
-        });
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($user) {
             $gebruiker = $event->getData();
             $form = $event->getForm();
