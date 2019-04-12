@@ -51,19 +51,6 @@
             </a>
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <div class="release-notes__menu" data-decorator="release-notes">
-                    <a href="#" class="release-notes__menu-trigger" data-handler="global-toggle" data-toggle-class="release-notes-menu-active">
-
-                    </a>
-                    <div class="release-notes__menu-content">
-                        <p>Sinds je laatste inlog is er het een en ander veranderd.</p>
-                        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}" class="button primary">Bekijk veranderingen</a>
-                    </div>
-                    <span class="release-notes__nieuw">
-                        <span class="release-notes__nieuw__icon"></span>
-                        Nieuwe versie
-                    </span>
-                </div>
               <div class="nav-container nav-container__main-menu">
 
                 <a href="#" class="nav-toggle nav-toggle__main-menu" data-handler="global-toggle" data-toggle-class="main-menu-active">
