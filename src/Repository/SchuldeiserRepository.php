@@ -53,6 +53,9 @@ class SchuldeiserRepository extends EntityRepository
             $qb->setMaxResults($pageSize);
         }
 
+        $qb->addOrderBy('schuldeiser.enabled', 'desc')
+        ->addOrderBy('schuldeiser.bedrijfsnaam', 'asc');
+
         return new Paginator($qb->getQuery());
     }
 
