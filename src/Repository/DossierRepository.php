@@ -6,8 +6,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions\Levenshtein;
 
 class DossierRepository extends EntityRepository
@@ -89,7 +89,7 @@ class DossierRepository extends EntityRepository
             $qb->orWhere('dossier.regasNummer LIKE :searchLike');
 
             $qb->setParameter('searchPhrase', $query['naam']);
-            $qb->setParameter('searchLike', $query['naam']. '%');
+            $qb->setParameter('searchLike', $query['naam'] . '%');
             $qb->setParameter('tolerance', Levenshtein::determineTolerance($query['naam']));
         }
 
