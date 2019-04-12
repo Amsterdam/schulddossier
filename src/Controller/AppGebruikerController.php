@@ -98,7 +98,7 @@ class AppGebruikerController extends Controller
     public function updateAction(Request $request, EntityManagerInterface $em, Gebruiker $gebruiker, EventDispatcherInterface $eventDispatcher, TokenStorageInterface $tokenStorage)
     {
         if ($this->getUser()->getType() === Gebruiker::TYPE_MADI_KEYUSER) {
-            if (empty(array_intersect($this->getUser()->getSchuldhulpbureaus()->toArray(), $gebruiker->getSchuldhulpbureaus()->toArray()))) {
+            if (!$gebruiker->getSchuldhulpbureaus()->isEmpty() && empty(array_intersect($this->getUser()->getSchuldhulpbureaus()->toArray(), $gebruiker->getSchuldhulpbureaus()->toArray()))) {
                 throw $this->createAccessDeniedException();
             }
         }
