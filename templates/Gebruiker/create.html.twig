@@ -22,14 +22,13 @@
 <div class="document well">
     <div class="document-header">
         <h1 class="document-title">Nieuwe gebruiker</h1>
+        {{ form_errors(form) }}
     </div>
     <div class="form-container">
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
         {{ form_row(form.naam) }}
         {{ form_row(form.email) }}
         {{ form_row(form.telefoonnummer) }}
-        {{ form_row(form.username) }}
-        {{ form_row(form.clearPassword) }}
         {{ form_row(form.type) }}
         <p>Alleen invullen indien werkzaam voor het GKA:</p>
         {{ form_row(form.teamGka) }}

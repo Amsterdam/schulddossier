@@ -41,13 +41,13 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $username;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $password;
 
@@ -207,7 +207,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
         $this->username = $username;
     }
 
-    public function setPassword($password)
+    public function setPassword($password = null)
     {
         $this->password = $password;
     }
@@ -441,21 +441,6 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     public static function getTitleFromType(string $type): string
     {
         return array_search($type, array_merge(...array_values(self::getTypes('ALL_TYPES'))));
-    }
-
-    /**
-     * @Assert\Callback
-     */
-    public function isValid(ExecutionContextInterface $context)
-    {
-        if ($this->getPassword() === null || $this->getPassword() === '') {
-            if ($this->getClearPassword() === null || $this->getClearPassword() === '') {
-                $context
-                    ->buildViolation('A password is required for new users')
-                    ->atPath('clearPassword')
-                    ->addViolation();
-            }
-        }
     }
 
     public function isEqualTo(UserInterface $user)
