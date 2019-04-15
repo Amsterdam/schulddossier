@@ -30,6 +30,50 @@
         {% if is_granted('ROLE_GKA_APPBEHEERDER') == false and is_granted('ROLE_MADI_KEYUSER') == false and is_granted('ROLE_ADMIN') == false %}
             <p>Alleen applicatie beheerders kunnen nieuwe gebruikers toevoegen en bestaande gebruikers wijzigen</p>
         {% endif %}
+        <br>
+        <h2>Onbekende gebruikers</h2>
+        {% if onbekendeGebruikers %}
+        <br>
+        <div class="table">
+            <table>
+                <thead>
+                <tr>
+                    <th>E-mailadres</th>
+                    <th>Naam</th>
+                    <th>Telefoonnummer</th>
+                    <th>Type</th>
+                    <th>Team GKA</th>
+                    <th>Team schuldhulpbureau</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for gebruiker in onbekendeGebruikers %}
+                    <tr{% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_MADI_KEYUSER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
+                        <th>
+                            {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_MADI_KEYUSER') or is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', {'gebruikerId': gebruiker.id}) }}">{{ gebruiker.email }}</a>
+                            {% else %}
+                                {{ gebruiker.email }}
+                            {% endif %}
+                        </th>
+                        <td>{{ gebruiker.naam }}</td>
+                        <td>{{ gebruiker.telefoonnummer }}</td>
+                        <td>
+                            {{ gebruiker.type|transform_type_in_title }}
+                        </td>
+                        <td>{{ gebruiker.teamGka }}</td>
+                        <td>{{ gebruiker.schuldhulpbureaus|join(', ') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <i>- Er zijn geen onbekende gebruikers -</i><br><br>
+        {% endif %}
+        <br>
+        <h2>Gebruikers</h2>
+        <br>
         <div class="table">
             <table>
                 <thead>
@@ -62,45 +106,6 @@
                     </tr>
 {% endfor %}
                </tbody>
-            </table>
-        </div>
-        <br>
-        <h2>Onbekende gebruikers</h2>
-        <br>
-        <div class="table">
-            <table>
-                <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Naam</th>
-                    <th>E-mailadres</th>
-                    <th>Telefoonnummer</th>
-                    <th>Type</th>
-                    <th>Team GKA</th>
-                    <th>Team schuldhulpbureau</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for gebruiker in onbekendeGebruikers %}
-                    <tr{% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_MADI_KEYUSER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
-                        <th>
-                            {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_MADI_KEYUSER') or is_granted('ROLE_ADMIN') %}
-                                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', {'gebruikerId': gebruiker.id}) }}">{{ gebruiker.username }}</a>
-                            {% else %}
-                                {{ gebruiker.username }}
-                            {% endif %}
-                        </th>
-                        <td>{{ gebruiker.naam }}</td>
-                        <td>{{ gebruiker.email }}</td>
-                        <td>{{ gebruiker.telefoonnummer }}</td>
-                        <td>
-                            {{ gebruiker.type|transform_type_in_title }}
-                        </td>
-                        <td>{{ gebruiker.teamGka }}</td>
-                        <td>{{ gebruiker.schuldhulpbureaus|join(', ') }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
             </table>
         </div>
         {% if pagination.numberOfPages > 1 %}
