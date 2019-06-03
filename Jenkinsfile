@@ -1,10 +1,11 @@
+#!groovy
+
 def tryStep(String message, Closure block, Closure tearDown = null) {
     try {
         block()
     }
     catch (Throwable t) {
-//        slackSend message: "${env.JOB_NAME}: ${message} failure ${env.BUILD_URL}", channel: '#ci-channel-app', color: 'danger'
-
+        slackSend message: "${env.JOB_NAME}: ${message} failure ${env.BUILD_URL}", channel: '#ci-channel-app', color: 'danger'
         throw t
     }
     finally {
@@ -37,14 +38,13 @@ node {
             sh 'echo SOURCE_COMMIT := $commit_id >> .build'
             println commit_id
             echo 'end git version'
-            def image = docker.build("build.app.amsterdam.nl:5000/fixxx/schuldhulp:${env.BUILD_NUMBER}")
-            image.push()
-
+            docker.withRegistry('https://repo.secure.amsterdam.nl','docker-registry') {
+                def image = docker.build("fixxx/schuldhulp:${env.BUILD_NUMBER}", "--build-arg http_proxy=${JENKINS_HTTP_PROXY_STRING} --build-arg https_proxy=${JENKINS_HTTP_PROXY_STRING} .")
+                image.push()
+            }
         }
     }
 }
-
-
 
 String BRANCH = "${env.BRANCH_NAME}"
 
@@ -53,10 +53,12 @@ if (BRANCH == "master") {
     node {
         stage('Push acceptance image') {
             tryStep "image tagging", {
-                def image = docker.image("build.app.amsterdam.nl:5000/fixxx/schuldhulp:${env.BUILD_NUMBER}")
-                image.pull()
-                image.push("acceptance")
-                image.push("production")
+                docker.withRegistry('https://repo.secure.amsterdam.nl','docker-registry') {
+                    def image = docker.image("fixxx/schuldhulp:${env.BUILD_NUMBER}")
+                    image.pull()
+                    image.push("acceptance")
+                    image.push("production")
+               }
             }
         }
     }
@@ -73,7 +75,6 @@ if (BRANCH == "master") {
         }
     }
 
-
     stage('Waiting for approval') {
         slackSend channel: '#ci-channel-app', color: 'warning', message: 'schuldhulp is waiting for Production Release - please confirm'
         input "Deploy to Production?"
@@ -82,10 +83,12 @@ if (BRANCH == "master") {
     node {
         stage('Push production image') {
             tryStep "image tagging", {
-                def image = docker.image("build.app.amsterdam.nl:5000/fixxx/schuldhulp:${env.BUILD_NUMBER}")
-                image.pull()
-                image.push("production")
-                image.push("latest")
+                docker.withRegistry('https://repo.secure.amsterdam.nl','docker-registry') {
+                    def image = docker.image("fixxx/schuldhulp:${env.BUILD_NUMBER}")
+                    image.pull()
+                    image.push("production")
+                    image.push("latest")
+                }
             }
         }
     }
