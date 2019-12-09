@@ -35,6 +35,19 @@ class SchuldhulpbureauFormType extends AbstractType
             'label' => 'Standaard team bij het GKA',
             'class' => Team::class
         ]);
+        $builder->add('allegroUsername', TextType::class, [
+            'label' => 'Allegro username',
+            'required' => false
+        ]);
+        $builder->add('allegroPassword', TextType::class, [
+            'label' => 'Allegro password',
+            'required' => false
+        ]);
+        $builder->add('allegroCheck', CheckboxType::class, [
+            'label' => 'Allegro inloggegevens controlleren',
+            'required' => false,
+            'mapped' => false
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
