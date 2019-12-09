@@ -57,7 +57,7 @@ class AppSchuldhulpbureauController extends Controller
             if (!$form['allegroCheck']->getData()) {
                 $this->addFlash('success', 'Schuldhulpbureau aangemaakt');
             } else {
-                if (false !== $allegroService->login($schuldhulpbureau)) {
+                if (false !== $allegroService->login($schuldhulpbureau, true)) {
                     $this->addFlash('success', 'Schuldhulpbureau aangemaakt en verbinding met allegro succesvol getest');
                 } else {
                     $this->addFlash('error', 'Schuldhulpbureau aangemaakt zonder verbinding met allegro te kunnen maken');
@@ -88,7 +88,7 @@ class AppSchuldhulpbureauController extends Controller
             if (!$form['allegroCheck']->getData()) {
                 $this->addFlash('success', 'Opgeslagen');
             } else {
-                if (false !== $allegroService->login($schuldhulpbureau)) {
+                if (false !== $allegroService->login($schuldhulpbureau, true)) {
                     $this->addFlash('success', 'Opgeslagen en verbinding met allegro succesvol getest');
                 } else {
                     $this->addFlash('error', 'Opgeslagen zonder verbinding met allegro te kunnen maken');
