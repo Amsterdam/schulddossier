@@ -33,13 +33,13 @@ class AllegroService
      * @return Schuldhulpbureau|false
      * @throws \Exception|SoapException
      */
-    public function login(Schuldhulpbureau $schuldHulpBureau)
+    public function login(Schuldhulpbureau $schuldHulpBureau, $force = false)
     {
         $now = new \DateTime();
         $oldestAllowedSession = clone $now;
         $oldestAllowedSession->modify(sprintf('-%s seconds', self::SESSION_TIMEOUT));
 
-        if (null !== $schuldHulpBureau->getAllegroSessionId() && $schuldHulpBureau->getAllegroSessionAge() >= $oldestAllowedSession) {
+        if (false === $force && null !== $schuldHulpBureau->getAllegroSessionId() && $schuldHulpBureau->getAllegroSessionAge() >= $oldestAllowedSession) {
             return $schuldHulpBureau;
         }
         $response = $this->loginService->allegroWebLogin((new LoginServiceAllegroWebLogin($schuldHulpBureau->getAllegroUsername(),
