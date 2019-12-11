@@ -8,6 +8,9 @@
     "bevacqua/rome": {
         "version": "2.1.22"
     },
+    "clue/stream-filter": {
+        "version": "v1.4.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -139,6 +142,27 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "php-http/client-common": {
+        "version": "1.10.0"
+    },
+    "php-http/discovery": {
+        "version": "1.7.0"
+    },
+    "php-http/guzzle6-adapter": {
+        "version": "v1.1.1"
+    },
+    "php-http/httplug": {
+        "version": "v1.1.0"
+    },
+    "php-http/message": {
+        "version": "1.8.0"
+    },
+    "php-http/message-factory": {
+        "version": "v1.0.2"
+    },
+    "php-http/promise": {
+        "version": "v1.0.0"
     },
     "php-opencloud/openstack": {
         "version": "v3.0.4"
