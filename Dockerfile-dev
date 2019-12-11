@@ -40,6 +40,8 @@ WORKDIR /srv/app
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
+ENV PHP_IDE_CONFIG serverName=_
+
 #RUN composer install --prefer-dist --no-progress --no-suggest --no-autoloader --no-scripts
 
 ENTRYPOINT /srv/app/docker-entrypoint.sh
