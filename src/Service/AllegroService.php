@@ -8,6 +8,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebL
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVOverzicht;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpClientFactory;
@@ -85,6 +86,19 @@ class AllegroService
     private function getSchuldHulpService(Schuldhulpbureau $bureau): AllegroSchuldHulpClient
     {
         return SchuldHulpClientFactory::factory($this->schuldHulpWsdl, $bureau);
+    }
+
+    /**
+     * @param Dossier $dossier
+     * @throws \Exception
+     */
+    public function updateDossier(Dossier $dossier)
+    {
+        $header = $this->getSRVAanvraagHeader($dossier->getSchuldhulpbureau(), $dossier->getAllegroNummer());
+        $dossier->setAllegroStatus($header->getStatus());
+        $dossier->setAllegroExtraStatus($header->getExtraStatus());
+        $dossier->setAllegroSyncDate((new \DateTime()));
+        $this->em->flush();
     }
 
     private function getLoginService(Schuldhulpbureau $bureau = null): AllegroLoginClient

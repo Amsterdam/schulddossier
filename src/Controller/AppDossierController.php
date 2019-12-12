@@ -692,6 +692,18 @@ class AppDossierController extends Controller
     }
 
     /**
+     * @Route("/allegro/refresh/{dossierId}")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @return RedirectResponse
+     */
+    public function allegroRefreshAction(Request $request, Dossier $dossier, AllegroService $allegroService)
+    {
+        $allegroService->updateDossier($dossier);
+        return $this->redirect($request->headers->get('referer'));
+    }
+
+    /**
      * @Route("/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder")
      * @Method({"POST"})
      * @Security("user == aantekening.getGebruiker()")
