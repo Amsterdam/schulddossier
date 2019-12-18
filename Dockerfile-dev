@@ -22,6 +22,8 @@ RUN apk add freetype-dev jpeg-dev libpng-dev
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install zip
+RUN docker-php-ext-install soap
+RUN pecl install xdebug &&docker-php-ext-enable xdebug
 
 COPY --from=composer:1.8 /usr/bin/composer /usr/bin/composer
 
@@ -37,6 +39,8 @@ VOLUME /srv/app/src
 WORKDIR /srv/app
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
+
+ENV PHP_IDE_CONFIG serverName=_
 
 #RUN composer install --prefer-dist --no-progress --no-suggest --no-autoloader --no-scripts
 
