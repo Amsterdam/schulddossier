@@ -44,7 +44,7 @@ class SchuldhulpbureauFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('allegroCheck', CheckboxType::class, [
-            'label' => 'Allegro inloggegevens controlleren',
+            'label' => 'Allegro inloggegevens controleren',
             'required' => false,
             'mapped' => false
         ]);

@@ -6,8 +6,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLogin;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzicht;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVEisers;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVOverzicht;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEisers;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginClientFactory;
@@ -80,6 +83,7 @@ class AllegroService
     {
         $bureau = $this->login($bureau);
         $response = $this->getSchuldHulpService($bureau)->getSRVOverzicht((new SchuldHulpServiceGetSRVOverzicht($relatieCode)));
+
         return $response->getResult()->getTSRVAanvraagHeader()[0];
     }
 
@@ -104,5 +108,24 @@ class AllegroService
     private function getLoginService(Schuldhulpbureau $bureau = null): AllegroLoginClient
     {
         return LoginClientFactory::factory($this->loginWsdl, $bureau);
+    }
+
+    /**
+     * @param Dossier $dossier
+     * @throws \Exception
+     */
+    public function getSRVEisers(Dossier $dossier, TSRVAanvraagHeader $header): ?TSRVEisers
+    {
+        return $this->getSchuldHulpService($dossier->getSchuldhulpbureau())->getSRVEisers((new SchuldHulpServiceGetSRVEisers((new TSRVAanvraagHeader($header->getRelatieCode(),
+            $header->getVolgnummer(), $header->getIsNPS(), $header->getStatus(), $header->getStatustekst(),
+            $header->getAanvraagdatum(), $header->getExtraStatus())))))->getResult();
+    }
+
+    /**
+     * @param Dossier $dossier
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzichtResponse|\Phpro\SoapClient\Type\ResultInterface
+     */
+    public function getSBOverzicht(Dossier $dossier) {
+        return $this->getSchuldHulpService($dossier->getSchuldhulpbureau())->getSBOverzicht((new SchuldHulpServiceGetSBOverzicht($dossier->getAllegroNummer())));
     }
 }
