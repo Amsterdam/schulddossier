@@ -28,6 +28,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldItemFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
+use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
@@ -169,7 +170,7 @@ class AppDossierController extends Controller
     /**
      * @Route("/nieuw")
      */
-    public function createAction(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function createAction(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher, AllegroService $allegroService)
     {
         $dossier = new Dossier();
         $dossier->setAanmaker($this->getUser());
@@ -183,7 +184,20 @@ class AppDossierController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($dossier);
             $em->flush();
-            $this->addFlash('success', 'Dossier aangemaakt');
+
+            if (!$form['allegroCheck']->getData()) {
+                $this->addFlash('success', 'Dossier aangemaakt');
+            } else {
+                if (null !== $allegroService->getSRVAanvraagHeader($dossier->getSchuldhulpbureau(), $dossier->getAllegroNummer())) {
+                    $this->addFlash('success', 'Dossier aangemaakt en gevonden in allegro');
+                } else {
+                    $this->addFlash('error', 'Dossier aangemaakt, niet aanwezig in allegro');
+                }
+            }
+
+            $allegroService->getSRVAanvraagHeader($dossier->getSchuldhulpbureau(), $dossier->getAllegroNummer());
+
+
 
             $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier));
 
@@ -675,6 +689,18 @@ class AppDossierController extends Controller
             'dossier' => $dossier,
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/allegro/refresh/{dossierId}")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @return RedirectResponse
+     */
+    public function allegroRefreshAction(Request $request, Dossier $dossier, AllegroService $allegroService)
+    {
+        $allegroService->updateDossier($dossier);
+        return $this->redirect($request->headers->get('referer'));
     }
 
     /**

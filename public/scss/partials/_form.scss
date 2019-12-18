@@ -335,6 +335,9 @@ form {
     label {
       width: 33.333%;
     }
+    input[type="checkbox"] {
+      width: 66.666%;
+    }
   }
   .form-row__checkbox--right {
 

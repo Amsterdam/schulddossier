@@ -134,6 +134,12 @@ class CreateDossierFormType extends AbstractType
             'label' => 'GKA dossiernr.'
         ]);
 
+        $builder->add('allegroCheck', CheckboxType::class, [
+            'label' => 'Aanwezigheid in Allegro controleren',
+            'required' => false,
+            'mapped' => false
+        ]);
+
         $builder->addEventSubscriber($this->medewerkerSchuldhulpbureau);
     }
 

@@ -32,3 +32,6 @@ docker-compose-dev.override.yml
 .web-server-pid
 ###< symfony/web-server-bundle ###
 /public/scss/.sass-cache
+
+config/soap-client-allegro-login.php
+config/soap-client-allegro-schuldhulp.php

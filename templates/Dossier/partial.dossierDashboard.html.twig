@@ -143,6 +143,34 @@
         {% endif %}
         <div class="dossier__dashboard__well--line">
             <h2 class="dossier__dashboard__well__header">
+                <span>GKA (Allegro)</span>
+            </h2>
+            <div class="row">
+                <div class="col-1-1">
+                    Laatste synchronisatie: <strong>{% if dossier.allegroSyncDate is null%}nooit{% else %}{{ dossier.allegroSyncDate|date('d-m-Y H:i:s') }}{% endif %}</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1-1">
+                    Status: <strong>{% if dossier.allegroSyncDate is null%}n.v.t.{% else %}{{ dossier.allegroStatus|allegro_status }}{% endif %}</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1-1">
+                    Extra status: <strong>{% if dossier.allegroExtraStatus is empty %}n.v.t.{% else %}{{ dossier.allegroExtraStatus }}{% endif %}</strong>
+                </div>
+            </div>
+            <div class="row row-max-height">
+                <div class="col-1-1">
+                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_allegrorefresh', {'dossierId': dossier.id}) }}"
+                       class="button secondary">Vernieuwen <i class="icon-reload"></i></a>
+                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_allegrosrveisers', {'dossierId': dossier.id}) }}"
+                       class="button secondary">Uitgebreide status</a>
+                </div>
+            </div>
+        </div>
+        <div class="dossier__dashboard__well--line">
+            <h2 class="dossier__dashboard__well__header">
                 <span>Overleg</span>
             </h2>
             <div class="row">
