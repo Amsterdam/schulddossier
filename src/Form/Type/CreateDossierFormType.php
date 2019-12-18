@@ -135,7 +135,7 @@ class CreateDossierFormType extends AbstractType
         ]);
 
         $builder->add('allegroCheck', CheckboxType::class, [
-            'label' => 'Aanwezigheid in allegro controleren',
+            'label' => 'Aanwezigheid in Allegro controleren',
             'required' => false,
             'mapped' => false
         ]);
