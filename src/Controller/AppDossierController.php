@@ -195,10 +195,6 @@ class AppDossierController extends Controller
                 }
             }
 
-            $allegroService->getSRVAanvraagHeader($dossier->getSchuldhulpbureau(), $dossier->getAllegroNummer());
-
-
-
             $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier));
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_createaddtional', [
@@ -699,8 +695,15 @@ class AppDossierController extends Controller
      */
     public function allegroRefreshAction(Request $request, Dossier $dossier, AllegroService $allegroService)
     {
-        $allegroService->updateDossier($dossier);
-        return $this->redirect($request->headers->get('referer'));
+        try {
+            $allegroService->updateDossier($dossier);
+        } catch (\Exception|\Error $e) {
+            $this->addFlash('error', 'Ongeldig allegro nummer of geen verbinding met allegro mogelijk.');
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
+        }
+
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger',
+            ['dossierId' => $dossier->getId()]);
     }
 
     /**
