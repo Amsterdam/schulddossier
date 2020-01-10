@@ -18,6 +18,9 @@ services:
         autowire: true
         autoconfigure: true
         public: false
+        bind:
+            $allegroEndpoint: '%env(ALLEGRO_ENDPOINT)%'
+
 
     GemeenteAmsterdam\FixxxSchuldhulp\:
         resource: '../src/*'

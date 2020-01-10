@@ -749,11 +749,30 @@
   }
 
 }
+.srv__dashboard__well--line {
+  border: 1px $borderColor2 solid;
+  padding: 20px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+
+}
 .dossier__dashboard__well__header {
   margin-top: -33px;
   margin-left: -10px;
   span {
     background-color: #f8f8f8;
+    padding: 0 10px;
+  }
+}
+
+.srv__dashboard__well__header {
+  margin-top: -33px;
+  margin-left: -10px;
+  span {
+    background-color: #ffffff;
     padding: 0 10px;
   }
 }
@@ -960,4 +979,20 @@
   margin: 0;
   line-height: 40px;
 
+}
+
+.dl_bold {
+  dt {
+    font-weight: bold!important;
+  }
+}
+
+.srv_col {
+  width: 47%;
+}
+
+.srv_row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
