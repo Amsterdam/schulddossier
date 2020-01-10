@@ -1,0 +1,77 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}{{ dossier.clientNaam }} - {{ parent() }}{% endblock %}
+
+{% block pdfsplitter %}{% endblock %}
+
+{% block document %}
+    <nav class="nav-internal">
+        <ul>
+            <li>
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}"><i
+                            class="icon-arrow-left"></i><span>Terug naar dossier</span></a></li>
+        </ul>
+    </nav>
+
+    <div class="document well">
+        {% include 'Dossier/partial.dossierDetailHeader.html.twig' with {'dossier': dossier, 'title': 'GKA (Allegro) uitgebreide status'} only %}
+
+        {% if header is null %}
+            <div>
+                Geen gegevens uit allegro kunnen laden. Is het <b>GKA nummer (Allegro)</b> ingevuld en bekend in allegro?
+            </div>
+        {% else %}
+
+            <div>
+                <dl class="dl__horizontal dl_bold">
+                    <dt>GKA nummer (Allegro)</dt>
+                    <dd>{{ header.RelatieCode }}.{{ header.Volgnummer|str_pad(2,'0') }}</dd>
+                    <dt>Aanvraagdatum</dt>
+                    <dd>{{ header.AanvraagDatum|date('d-m-Y') }}</dd>
+                    <dt>Status</dt>
+                    <dd>{{ header.Status|allegro_status }}</dd>
+                    <dt>Extra status</dt>
+                    <dd>{% if header.ExtraStatus is empty %}n.v.t.{% else %}{{ header.ExtraStatus }}{% endif %}</dd>
+                    <dt>Som teruggemeld bedrag</dt>
+                    <dd>€ {{ srvEisers.SomTeruggemeldBedrag|number_format(2, ',', '.') }}</dd>
+                    <dt>Som berekend bedrag</dt>
+                    <dd>€ {{ srvEisers.SomBerekendBedrag|number_format(2, ',', '.') }}</dd>
+                </dl>
+            </div>
+
+            {% for eiser in eisers %}
+                <div class="srv__dashboard__well--line">
+                    <h2 class="srv__dashboard__well__header">
+                        <span>{{ eiser.NaamEiser }}</span>
+                    </h2>
+                    <div class="srv_row">
+                        <div class="srv_col">
+                            <dl class="dl__horizontal dl_bold">
+                                <dt>Schuldeiser</dt>
+                                <dd>{{ eiser.NaamEiser }}</dd>
+                                <dt>Referentie</dt>
+                                <dd>{{ eiser.Referentie }}</dd>
+                                <dt>Code schuldeiser (Allegro)</dt>
+                                <dd>{{ eiser.CodeEiser }}</dd>
+                                <dt>Status saldo opgave</dt>
+                                <dd>{{ eiser.IndicatieOpgaaf }}</dd>
+                                <dt>Teruggemeld bedrag</dt>
+                                <dd>€ {{ eiser.TeruggemeldBedrag|number_format(2, ',', '.') }}</dd>
+                            </dl>
+                        </div>
+                        <div class="srv_col">
+                            <dl class="dl__horizontal dl_bold">
+                                <dt>Schuldregeling</dt>
+                                <dd>{{ eiser.IndicatieSK ? 'Saneringskrediet' : 'Schuldbemiddeling' }}</dd>
+                                <dt>Status voorstel</dt>
+                                <dd>{{ eiser.IndicatieVoorstel }}</dd>
+                                <dt>Betalingsvoorstel</dt>
+                                <dd>€ {{ eiser.PrognoseVoorstel|number_format(2, ',', '.') }}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
