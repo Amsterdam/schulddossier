@@ -114,7 +114,14 @@ class Voorlegger
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
      */
-    private $arbeidsovereenkomstWerkgever;
+    private $arbeidsovereenkomstWerkgever = null;
+
+    /**
+     * @var \DateTime|null
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date
+     */
+    private $arbeidsovereenkomstEinddatum;
 
     /**
      * @var string
@@ -129,7 +136,14 @@ class Voorlegger
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
      */
-    private $arbeidsovereenkomstPartnerWerkgever;
+    private $arbeidsovereenkomstPartnerWerkgever = null;
+
+    /**
+     * @var \DateTime|null
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date
+     */
+    private $arbeidsovereenkomstPartnerEinddatum;
 
     /**
      * @var string
@@ -2411,5 +2425,43 @@ class Voorlegger
     public function setToeslagenKindgebondenBudget($toeslagenKindgebondenBudget)
     {
         $this->toeslagenKindgebondenBudget = $toeslagenKindgebondenBudget;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getArbeidsovereenkomstEinddatum(): ?\DateTime
+    {
+        return $this->arbeidsovereenkomstEinddatum;
+    }
+
+    /**
+     * @param \DateTime|null $arbeidsovereenkomstEinddatum
+     * @return Voorlegger
+     */
+    public function setArbeidsovereenkomstEinddatum(?\DateTime $arbeidsovereenkomstEinddatum): Voorlegger
+    {
+        $this->arbeidsovereenkomstEinddatum = $arbeidsovereenkomstEinddatum;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getArbeidsovereenkomstPartnerEinddatum(): ?\DateTime
+    {
+        return $this->arbeidsovereenkomstPartnerEinddatum;
+    }
+
+    /**
+     * @param \DateTime|null $arbeidsovereenkomstPartnerEinddatum
+     * @return Voorlegger
+     */
+    public function setArbeidsovereenkomstPartnerEinddatum(?\DateTime $arbeidsovereenkomstPartnerEinddatum): Voorlegger
+    {
+        $this->arbeidsovereenkomstPartnerEinddatum = $arbeidsovereenkomstPartnerEinddatum;
+
+        return $this;
     }
 }
