@@ -56,6 +56,16 @@
       width: 100%;
       height: 40px;
     }
+    span {
+      font-size: $fontSize;
+      margin-right: auto;
+      font-family: $ff-regular;
+      line-height: 40px;
+      position: absolute;
+      width: 100%;
+      height: 40px;
+      font-style: italic;
+    }
     strong {
       display: inline-block;
       max-width: 210px;

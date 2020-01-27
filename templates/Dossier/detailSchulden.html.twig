@@ -11,18 +11,17 @@
 
         {% include 'Dossier/partial.dossierHeader.html.twig' with {'dossier': dossier, 'active': 'schulden'} only %}
         {{ form_start(form, {'attr': {'id': 'schulden_form', 'data-submitter': 'save', 'data-result-selector': '#schulden_form', 'data-changer': 'change', 'novalidate':'novalidate', 'autocomplete': 'off'}}) }}
-        {% if dossier.isInPrullenbak %}<h2 class="dossier__deleted__message">Dit dossier is verwijderd</h2>{% else %}<button type="submit" class="dossier__save button primary">Opslaan</button>{% endif %}
-
-
+        {% if dossier.isInPrullenbak %}<h2 class="dossier__deleted__message">Dit dossier is verwijderd</h2>{% else %}
+            <button type="submit" class="dossier__save button primary">Opslaan</button>{% endif %}
         <div class="dossier__list-container">
             <div class="dossier__item__dummy active">
                 <div class="dossier__voorlegger__header dossier__voorlegger__header__top"><h3>Top</h3></div>
                 <div class="dossier__voorlegger__header dossier__voorlegger__header__bottom"><h3>Bottom</h3></div>
             </div>
-            <div class="dossier__scroll-container"  data-scroller="sticky-section">
+            <div class="dossier__scroll-container" data-scroller="sticky-section">
                 <div class="dossier__scroll-content">
-
-                    <div class="dossier__container team-{% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}madi{% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}gka{% endif %}" data-decorator="droppable" data-keyupper="vertical-list-nav">
+                    <div class="dossier__container team-{% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}madi{% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}gka{% endif %}"
+                         data-decorator="droppable" data-keyupper="vertical-list-nav">
                         {% set empty = true %}
                         {% do form.schuldItems.setRendered %}
                         {% for schuldItemForm in form.schuldItems %}
@@ -35,6 +34,17 @@
 
                         {% if empty %}
                             <p class="empty-table">Er zijn nog geen schulden ingevoerd.</p>
+                        {% else %}
+                            <div class="dossier__voorlegger__header">
+                                <div class="voorlegger-header">
+                                    <h4 class="naam" title="Som">
+                                        <span><strong>Som</strong></span>
+                                    </h4>
+                                    <div class="bedrag">
+                                        &euro; {{ dossier.SumSchuldItemsNotInPrullenbak|number_format(2, ',', '.') }}
+                                    </div>
+                                </div>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
