@@ -53,7 +53,7 @@
                             {% set empty = false %}
                             <tr class="row-link">
                                 <th>
-                                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}#schuldItem-{{ schuldItem.id }}">{{ schuldItem.schuldeiser|default('-') }} {% if schuldItem.incassant %}/{% endif %} {{ schuldItem.incassant }}</a>
+                                    {{ schuldItem.schuldeiser|default('-') }} {% if schuldItem.incassant %}/{% endif %} {{ schuldItem.incassant }}
                                 </th>
                                 <td>{{ schuldItem.referentie }}</td>
                                 <td>{{ schuldItem.type }}</td>
