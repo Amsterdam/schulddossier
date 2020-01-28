@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
+
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPersoonAanvraag implements RequestInterface
@@ -63,6 +64,11 @@ class TPersoonAanvraag implements RequestInterface
     private $RekeningBank;
 
     /**
+     * @var string
+     */
+    private $Voorletters;
+
+    /**
      * Constructor
      *
      * @var int $Relatiecode
@@ -76,8 +82,9 @@ class TPersoonAanvraag implements RequestInterface
      * @var string $RekeningIBAN
      * @var string $RekeningBIC
      * @var string $RekeningBank
+     * @var string $Voorletters
      */
-    public function __construct($Relatiecode, $Voornamen, $Achternaam, $Voorvoegsels, $Geslacht, $Geboortedatum, $BSN, $Nationaliteit, $RekeningIBAN, $RekeningBIC, $RekeningBank)
+    public function __construct($Relatiecode, $Voornamen, $Achternaam, $Voorvoegsels, $Geslacht, $Geboortedatum, $BSN, $Nationaliteit, $RekeningIBAN, $RekeningBIC, $RekeningBank, $Voorletters)
     {
         $this->Relatiecode = $Relatiecode;
         $this->Voornamen = $Voornamen;
@@ -90,6 +97,7 @@ class TPersoonAanvraag implements RequestInterface
         $this->RekeningIBAN = $RekeningIBAN;
         $this->RekeningBIC = $RekeningBIC;
         $this->RekeningBank = $RekeningBank;
+        $this->Voorletters = $Voorletters;
     }
 
     /**
@@ -308,6 +316,26 @@ class TPersoonAanvraag implements RequestInterface
     {
         $new = clone $this;
         $new->RekeningBank = $RekeningBank;
+
+        return $new;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVoorletters()
+    {
+        return $this->Voorletters;
+    }
+
+    /**
+     * @param string $Voorletters
+     * @return TPersoonAanvraag
+     */
+    public function withVoorletters($Voorletters)
+    {
+        $new = clone $this;
+        $new->Voorletters = $Voorletters;
 
         return $new;
     }

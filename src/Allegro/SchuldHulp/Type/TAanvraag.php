@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
+
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TAanvraag implements RequestInterface
@@ -138,6 +139,11 @@ class TAanvraag implements RequestInterface
     private $Toelichting;
 
     /**
+     * @var bool
+     */
+    private $CollectieveBorgstelling;
+
+    /**
      * Constructor
      *
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag $Aanvrager
@@ -166,8 +172,9 @@ class TAanvraag implements RequestInterface
      * @var string $KredietSoort
      * @var bool $Borgstelling
      * @var string $Toelichting
+     * @var bool $CollectieveBorgstelling
      */
-    public function __construct($Aanvrager, $MetPartner, $Partner, $Bezoekadres, $Postadres, $Contact, $CorrespondentieMail, $GezinsSituatie, $AantalKinderen, $ToelichtingKinderen, $InkomenAanvrager, $InkomenPartner, $Uitgaven, $Schuldbedrag, $Schuldeisers, $SoortLening, $GewenstKrediet, $GewenstAflossing, $Bestedingsdoel, $Indiener, $HulpverlenerNaam, $OpdrachtgeverCode, $Contactpersoon, $KredietSoort, $Borgstelling, $Toelichting)
+    public function __construct($Aanvrager, $MetPartner, $Partner, $Bezoekadres, $Postadres, $Contact, $CorrespondentieMail, $GezinsSituatie, $AantalKinderen, $ToelichtingKinderen, $InkomenAanvrager, $InkomenPartner, $Uitgaven, $Schuldbedrag, $Schuldeisers, $SoortLening, $GewenstKrediet, $GewenstAflossing, $Bestedingsdoel, $Indiener, $HulpverlenerNaam, $OpdrachtgeverCode, $Contactpersoon, $KredietSoort, $Borgstelling, $Toelichting, $CollectieveBorgstelling)
     {
         $this->Aanvrager = $Aanvrager;
         $this->MetPartner = $MetPartner;
@@ -195,6 +202,7 @@ class TAanvraag implements RequestInterface
         $this->KredietSoort = $KredietSoort;
         $this->Borgstelling = $Borgstelling;
         $this->Toelichting = $Toelichting;
+        $this->CollectieveBorgstelling = $CollectieveBorgstelling;
     }
 
     /**
@@ -713,6 +721,26 @@ class TAanvraag implements RequestInterface
     {
         $new = clone $this;
         $new->Toelichting = $Toelichting;
+
+        return $new;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getCollectieveBorgstelling()
+    {
+        return $this->CollectieveBorgstelling;
+    }
+
+    /**
+     * @param bool $CollectieveBorgstelling
+     * @return TAanvraag
+     */
+    public function withCollectieveBorgstelling($CollectieveBorgstelling)
+    {
+        $new = clone $this;
+        $new->CollectieveBorgstelling = $CollectieveBorgstelling;
 
         return $new;
     }
