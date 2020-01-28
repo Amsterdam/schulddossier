@@ -834,11 +834,23 @@ class Dossier
         return $this->schuldItems;
     }
 
+    /**
+     * @return SchuldItem[]
+     */
     public function getSchuldItemsNotInPrullenbak()
     {
         return $this->schuldItems->filter(function (SchuldItem $schuldItem) {
             return $schuldItem->isVerwijderd() === false;
         });
+    }
+
+    public function getSumSchuldItemsNotInPrullenbak() {
+        $items = $this->getSchuldItemsNotInPrullenbak();
+        $sum = 0;
+        foreach ($items as $item) {
+            $sum += $item->getBedrag();
+        }
+        return $sum;
     }
 
     public function addSchuldItem(SchuldItem $schuldItem)

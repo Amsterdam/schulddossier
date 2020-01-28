@@ -1171,6 +1171,14 @@ class AppDossierController extends Controller
             $sheet->getStyleByColumnAndRow(6, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
         }
 
+        $rowIndex = $rowIndex+2;
+
+        $sheet->setCellValueByColumnAndRow(1, $rowIndex, 'Totaal bedrag');
+
+        $sheet->setCellValueByColumnAndRow(3, $rowIndex, $dossier->getSumSchuldItemsNotInPrullenbak());
+        $sheet->getStyleByColumnAndRow(3, $rowIndex)->getNumberFormat()->setFormatCode('"€"#,##0.00_-');
+
+
         $sheet->getColumnDimensionByColumn(1)->setAutoSize(true);
         $sheet->getColumnDimensionByColumn(2)->setAutoSize(true);
         $sheet->getColumnDimensionByColumn(3)->setAutoSize(true);
