@@ -53,7 +53,7 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
         ]);
         $builder->add('arbeidsovereenkomstEinddatum', DateType::class, [
             'html5' => false,
-            'attr' => ['data-decorator' => 'rome', 'data-max' => (new \DateTime('now'))->format("d-m-Y")],
+            'attr' => ['data-decorator' => 'rome'],
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => 'Einddatum dienstverband (indien van toepassing)',
@@ -73,7 +73,7 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
         ]);
         $builder->add('arbeidsovereenkomstPartnerEinddatum', DateType::class, [
             'html5' => false,
-            'attr' => ['data-decorator' => 'rome', 'data-max' => (new \DateTime('now'))->format("d-m-Y")],
+            'attr' => ['data-decorator' => 'rome'],
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => 'Einddatum dienstverband (indien van toepassing)',
