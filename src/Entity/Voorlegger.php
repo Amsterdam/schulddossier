@@ -941,6 +941,12 @@ class Voorlegger
      */
     private $drinkwaterOpname;
 
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true, options={"default" : false})
+     */
+    private $aangifteBelastingdienst;
+
     // ---
 
     public function __construct()
@@ -1056,6 +1062,7 @@ class Voorlegger
         $this->toeslagenZorg = false;
         $this->toeslagenKinderopvang = false;
         $this->toeslagenKindgebondenBudget = false;
+        $this->aangifteBelastingdienst = false;
     }
 
     public function getId()
@@ -2461,6 +2468,25 @@ class Voorlegger
     public function setArbeidsovereenkomstPartnerEinddatum(?\DateTime $arbeidsovereenkomstPartnerEinddatum): Voorlegger
     {
         $this->arbeidsovereenkomstPartnerEinddatum = $arbeidsovereenkomstPartnerEinddatum;
+
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getAangifteBelastingdienst(): ?bool
+    {
+        return $this->aangifteBelastingdienst;
+    }
+
+    /**
+     * @param bool|null $aangifteBelastingdienst
+     * @return Voorlegger
+     */
+    public function setAangifteBelastingdienst(?bool $aangifteBelastingdienst): Voorlegger
+    {
+        $this->aangifteBelastingdienst = $aangifteBelastingdienst;
 
         return $this;
     }
