@@ -59,6 +59,8 @@
                             <dd>{% if dossier.voorlegger.arbeidsovereenkomstPartnerWerkgever %}{{ dossier.voorlegger.arbeidsovereenkomstPartnerWerkgever }}{% else %}-{% endif %}</dd>
                             <dt>Soort dienstverband</dt>
                             <dd>{% if dossier.voorlegger.arbeidsovereenkomstPartnerContract %}{{ dossier.voorlegger.arbeidsovereenkomstPartnerContract }}{% else %}-{% endif %}</dd>
+                            <dt>Einddatum dienstverband</dt>
+                            <dd>{% if dossier.voorlegger.arbeidsovereenkomstPartnerEinddatum %}{{ dossier.voorlegger.arbeidsovereenkomstPartnerEinddatum|date('d-m-Y')}}{% else %}-{% endif %}</dd>
                         </dl>
                     </a>
                 </div>
