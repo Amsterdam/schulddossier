@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
+
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SimpleRequestInfo implements RequestInterface
@@ -23,7 +24,8 @@ class SimpleRequestInfo implements RequestInterface
     private $Where;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray
+     * @var
+     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray
      */
     private $Parameters;
 

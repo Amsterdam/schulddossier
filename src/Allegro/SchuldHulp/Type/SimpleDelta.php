@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
+
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SimpleDelta implements RequestInterface
@@ -18,7 +19,8 @@ class SimpleDelta implements RequestInterface
     private $Fields;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDeltaChangeArray
+     * @var
+     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDeltaChangeArray
      */
     private $Rows;
 

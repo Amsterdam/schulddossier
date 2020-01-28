@@ -27,10 +27,12 @@ class AllegroController extends Controller
     {
         $header = null;
         $srvEisers = null;
+        $aanvraag = null;
         $eisers = [];
         try {
             $header = $allegroService->getSRVAanvraagHeader($dossier->getSchuldhulpbureau(),
                 $dossier->getAllegroNummer());
+            $aanvraag = $allegroService->getSRVAanvraag($dossier->getSchuldhulpbureau(), $header);
             $srvEisers = $allegroService->getSRVEisers($dossier, $header);
             // $sbOaverzicht = $allegroService->getSBOverzicht($dossier); Geen response
             $eisers = $srvEisers->getEisers()->getTSRVEiser();
@@ -43,6 +45,7 @@ class AllegroController extends Controller
         return [
             'dossier' => $dossier,
             'header' => $header,
+            'aanvraag' => $aanvraag,
             'srvEisers' => $srvEisers,
             'eisers' => $eisers,
             'compareDate' => $compareDate,

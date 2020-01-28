@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
+
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSchuld implements RequestInterface
@@ -33,6 +34,11 @@ class TSchuld implements RequestInterface
     private $Omschrijving;
 
     /**
+     * @var int
+     */
+    private $CodeEiser;
+
+    /**
      * Constructor
      *
      * @var string $Naam
@@ -40,14 +46,16 @@ class TSchuld implements RequestInterface
      * @var bool $Studieschuld
      * @var string $Referentie
      * @var string $Omschrijving
+     * @var int $CodeEiser
      */
-    public function __construct($Naam, $Schuld, $Studieschuld, $Referentie, $Omschrijving)
+    public function __construct($Naam, $Schuld, $Studieschuld, $Referentie, $Omschrijving, $CodeEiser)
     {
         $this->Naam = $Naam;
         $this->Schuld = $Schuld;
         $this->Studieschuld = $Studieschuld;
         $this->Referentie = $Referentie;
         $this->Omschrijving = $Omschrijving;
+        $this->CodeEiser = $CodeEiser;
     }
 
     /**
@@ -146,6 +154,26 @@ class TSchuld implements RequestInterface
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
+
+        return $new;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCodeEiser()
+    {
+        return $this->CodeEiser;
+    }
+
+    /**
+     * @param int $CodeEiser
+     * @return TSchuld
+     */
+    public function withCodeEiser($CodeEiser)
+    {
+        $new = clone $this;
+        $new->CodeEiser = $CodeEiser;
 
         return $new;
     }
