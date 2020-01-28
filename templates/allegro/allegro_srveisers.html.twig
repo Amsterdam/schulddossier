@@ -36,6 +36,10 @@
                     <dd>€ {{ srvEisers.SomTeruggemeldBedrag|number_format(2, ',', '.') }}</dd>
                     <dt>Som berekend bedrag</dt>
                     <dd>€ {{ srvEisers.SomBerekendBedrag|number_format(2, ',', '.') }}</dd>
+                    {% if aanvraag is not null %}
+                        <dt>Netto afloscapaciteit</dt>
+                        <dd>€ {{ aanvraag.NettoAfloscapaciteit|number_format(2, ',', '.') }}</dd>
+                    {% endif %}
                 </dl>
             </div>
 
@@ -51,7 +55,7 @@
                                 <dd>{{ eiser.NaamEiser }}</dd>
                                 <dt>Referentie</dt>
                                 <dd>{{ eiser.Referentie }}</dd>
-                                <dt>Code schuldeiser (Allegro)</dt>
+                                <dt>Code schuldeiser</dt>
                                 <dd>{{ eiser.CodeEiser }}</dd>
                                 <dt>Status saldo opgave</dt>
                                 <dd>{{ eiser.IndicatieOpgaaf }}</dd>
@@ -61,6 +65,10 @@
                         </div>
                         <div class="srv_col">
                             <dl class="dl__horizontal dl_bold">
+                                <dt>&nbsp;</dt>
+                                <dd>&nbsp;</dd>
+                                <dt>&nbsp;</dt>
+                                <dd>&nbsp;</dd>
                                 <dt>Schuldregeling</dt>
                                 <dd>{{ eiser.IndicatieSK ? 'Saneringskrediet' : 'Schuldbemiddeling' }}</dd>
                                 <dt>Status voorstel</dt>

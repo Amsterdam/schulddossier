@@ -7,8 +7,10 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLogin;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzicht;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVAanvraag;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVEisers;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVOverzicht;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraag;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEisers;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
@@ -85,6 +87,20 @@ class AllegroService
         $response = $this->getSchuldHulpService($bureau)->getSRVOverzicht((new SchuldHulpServiceGetSRVOverzicht($relatieCode)));
 
         return $response->getResult()->getTSRVAanvraagHeader()[0];
+    }
+
+    /**
+     * @param Schuldhulpbureau $bureau
+     * @param TSRVAanvraagHeader $header
+     * @return TSRVAanvraag|null
+     * @throws \Exception
+     */
+    public function getSRVAanvraag(Schuldhulpbureau $bureau, TSRVAanvraagHeader $header): ?TSRVAanvraag
+    {
+        $bureau = $this->login($bureau);
+        $response = $this->getSchuldHulpService($bureau)->getSRVAanvraag((new SchuldHulpServiceGetSRVAanvraag($header)));
+
+        return $response->getResult();
     }
 
     private function getSchuldHulpService(Schuldhulpbureau $bureau): AllegroSchuldHulpClient
