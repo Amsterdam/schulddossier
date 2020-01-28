@@ -80,6 +80,26 @@ class AllegroSchuldHulpClient extends \Phpro\SoapClient\Client
         return $this->call('GetLijstSchuldeisers', $parameters);
     }
 
+    /**
+     * @param RequestInterface|Type\SchuldHulpServiceAanvraagSR $parameters
+     * @return ResultInterface|Type\SchuldHulpServiceAanvraagSRResponse
+     * @throws SoapException
+     */
+    public function aanvraagSR(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceAanvraagSR $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceAanvraagSRResponse
+    {
+        return $this->call('AanvraagSR', $parameters);
+    }
+
+    /**
+     * @param RequestInterface|Type\SchuldHulpServiceAanvraag2SR $parameters
+     * @return ResultInterface|Type\SchuldHulpServiceAanvraag2SRResponse
+     * @throws SoapException
+     */
+    public function aanvraag2SR(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceAanvraag2SR $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceAanvraag2SRResponse
+    {
+        return $this->call('Aanvraag2SR', $parameters);
+    }
+
 
 }
 
