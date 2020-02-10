@@ -15,6 +15,8 @@ def tryStep(String message, Closure block, Closure tearDown = null) {
 }
 
 
+String IMAGE_NAME = "${DOCKER_REGISTRY_NO_PROTOCOL}/fixxx/schuldhulp:${env.BUILD_NUMBER}"
+
 node {
     stage("Checkout") {
         checkout scm
@@ -37,7 +39,7 @@ node {
             sh 'echo SOURCE_COMMIT := $commit_id >> .build'
             println commit_id
             echo 'end git version'
-            def image = docker.build("repo.secure.amsterdam.nl/fixxx/schuldhulp:${env.BUILD_NUMBER}")
+            def image = docker.build("${IMAGE_NAME}")
             image.push()
 
         }
@@ -52,7 +54,7 @@ if (BRANCH == "secure") {
     node {
         stage('Push acceptance image') {
             tryStep "image tagging", {
-                def image = docker.image("repo.secure.amsterdam.nl/fixxx/schuldhulp:${env.BUILD_NUMBER}")
+                def image = docker.image("${IMAGE_NAME}")
                 image.pull()
                 image.push("acceptance")
             }
@@ -64,6 +66,7 @@ if (BRANCH == "secure") {
             tryStep "deployment", {
                 build job: 'Subtask_Openstack_Playbook',
                         parameters: [
+                            // TODO: remove following line after migration ('secure' is the default value)
                                 [$class: 'StringParameterValue', name: 'INFRASTRUCTURE', value: 'secure'],
                                 [$class: 'StringParameterValue', name: 'INVENTORY', value: 'acceptance'],
                                 [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-schuldhulp.yml'],
@@ -80,7 +83,7 @@ if (BRANCH == "secure") {
     node {
         stage('Push production image') {
             tryStep "image tagging", {
-                def image = docker.image("repo.secure.amsterdam.nl/fixxx/schuldhulp:${env.BUILD_NUMBER}")
+                def image = docker.image("${IMAGE_NAME}")
                 image.pull()
                 image.push("production")
                 image.push("latest")
@@ -93,6 +96,7 @@ if (BRANCH == "secure") {
             tryStep "deployment", {
                 build job: 'Subtask_Openstack_Playbook',
                         parameters: [
+                            // TODO: remove following line after migration ('secure' is the default value)
                                 [$class: 'StringParameterValue', name: 'INFRASTRUCTURE', value: 'secure'],
                                 [$class: 'StringParameterValue', name: 'INVENTORY', value: 'production'],
                                 [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-schuldhulp.yml'],
