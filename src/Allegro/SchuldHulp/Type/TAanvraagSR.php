@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
+
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TAanvraagSR implements RequestInterface
@@ -73,7 +74,8 @@ class TAanvraagSR implements RequestInterface
     private $OpenVragen;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray
+     * @var
+     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray
      */
     private $GeslotenVragen;
 
