@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
+
 use Phpro\SoapClient\Type\ResultInterface;
 
 class SchuldHulpServiceAanvraag2SRResponse implements ResultInterface
