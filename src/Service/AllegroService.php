@@ -6,14 +6,17 @@ use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLogin;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetLijstSchuldeisers;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzicht;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVAanvraag;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVEisers;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVOverzicht;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraag;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEisers;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpClientFactory;
@@ -143,5 +146,54 @@ class AllegroService
      */
     public function getSBOverzicht(Dossier $dossier) {
         return $this->getSchuldHulpService($dossier->getSchuldhulpbureau())->getSBOverzicht((new SchuldHulpServiceGetSBOverzicht($dossier->getAllegroNummer())));
+    }
+
+    /**
+     * @param Schuldhulpbureau $bureau
+     * @param string $searchString
+     * @throws \Exception
+     */
+    public function syncSchuldeisers(Schuldhulpbureau $bureau, $searchString = ''): array {
+        $bureau = $this->login($bureau);
+        $parameters = new SchuldHulpServiceGetLijstSchuldeisers($searchString);
+        $response = $this->getSchuldHulpService($bureau)->getLijstSchuldeisers($parameters);
+        $statistics = ['created' => 0, 'updated' => 0];
+
+        if (null === $response->getResult()->getTOrganisatie()) {
+            return $statistics;
+        }
+
+        $repo = $this->em->getRepository(Schuldeiser::class);
+
+        foreach ($response->getResult()->getTOrganisatie() as $organisatie) {
+            /**
+             * @var TOrganisatie $organisatie
+             */
+            $eiser = $repo->findOneBy(['allegroCode'=>$organisatie->getRelatieCode()]);
+
+            if (null === $eiser) {
+                $statistics['created'] ++;
+                $eiser = new Schuldeiser();
+                $eiser->setAllegroCode($organisatie->getRelatieCode());
+                $eiser->setEnabled(true);
+                $eiser->setRekening('');
+                $this->em->persist($eiser);
+            } else {
+                $statistics['updated'] ++;
+            }
+
+            $adres = $organisatie->getPostAdres();
+
+            $eiser->setBedrijfsnaam($organisatie->getNaam());
+            $eiser->setPlaats($adres->getWoonplaats());
+            $eiser->setHuisnummer($adres->getHuisnr());
+            $eiser->setHuisnummerToevoeging($adres->getHuisnrToev());
+            $eiser->setPostcode(substr(strtoupper(str_replace(' ', '', $adres->getPostcode())),0,6));
+            $eiser->setStraat($adres->getStraat());
+        }
+
+        $this->em->flush();
+
+        return $statistics;
     }
 }
