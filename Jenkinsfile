@@ -56,23 +56,24 @@ if (BRANCH == "dpsecure") {
             tryStep "image tagging", {
                 def image = docker.image("${IMAGE_NAME}")
                 image.pull()
-                image.push("acceptance")
-                image.push("production")
+                //image.push("acceptance")  // temporary: we do not want to deploy to, or tag for, ACC now
+                //image.push("production")  // permanent: we never want to tag for PROD here
             }
         }
     }
 
-    node {
-        stage("Deploy to ACC") {
-            tryStep "deployment", {
-                build job: 'Subtask_Openstack_Playbook',
-                        parameters: [
-                                [$class: 'StringParameterValue', name: 'INVENTORY', value: 'acceptance'],
-                                [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-schuldhulp.yml'],
-                        ]
-            }
-        }
-    }
+// temporary: we do not want to deploy to ACC
+//    node {
+//        stage("Deploy to ACC") {
+//            tryStep "deployment", {
+//                build job: 'Subtask_Openstack_Playbook',
+//                        parameters: [
+//                                [$class: 'StringParameterValue', name: 'INVENTORY', value: 'acceptance'],
+//                                [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-schuldhulp.yml'],
+//                        ]
+//            }
+//        }
+//    }
 
 
     stage('Waiting for approval') {
@@ -86,7 +87,7 @@ if (BRANCH == "dpsecure") {
                 def image = docker.image("${IMAGE_NAME}")
                 image.pull()
                 image.push("production")
-                image.push("latest")
+                //image.push("latest")
             }
         }
     }
