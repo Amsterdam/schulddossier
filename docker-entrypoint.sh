@@ -34,8 +34,17 @@ cp docker/nginx/localhost.key /srv/localhost.key
 
 cp docker/php/extra-$APP_ENV.ini /usr/local/etc/php/conf.d/99-extra.ini
 
-tail -f var/log/dev.log &
 tail -f /srv/app/var/log/nginx-schulddossier_* &
+
+touch /srv/app/var/log/dev.log
+touch /srv/app/var/log/acceptance.log
+touch /srv/app/var/log/production.log
+
+chmod ugo+rwx /srv/app/var/log/dev.log
+chmod ugo+rwx /srv/app/var/log/acceptance.log
+chmod ugo+rwx /srv/app/var/log/production.log
+
+tail -f /srv/app/var/log/dev.log &
 tail -f /srv/app/var/log/acceptance.log &
 tail -f /srv/app/var/log/production.log &
 
