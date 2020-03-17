@@ -517,7 +517,7 @@ class AppDossierController extends Controller
                     'dossier_gewijzigd',
                 ],
                 'dossier' => $dossier
-            ], ['datumTijd' => 'DESC'], 30);
+            ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
 
         return $this->render('Dossier/detailLogboek.html.twig', ['logs' => $logs, 'dossier' => $dossier]);
     }
