@@ -8,7 +8,7 @@ use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
 
 return Config::create()
     ->setEngine(ExtSoapEngineFactory::fromOptions(
-        ExtSoapOptions::defaults('http://swappams2694.basis.lan:8084/SOAP?service=SchuldHulpService', [])
+        ExtSoapOptions::defaults('/srv/app/doc/modified_schuldhulpservice.wsdl', [])
             ->disableWsdlCache()
     ))
     ->setTypeDestination('src/Allegro/SchuldHulp/Type')
