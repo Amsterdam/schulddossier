@@ -138,6 +138,18 @@
   background-image: url('../images/ico_delete.png');
 }
 
+.icon-reload {
+  position: relative;
+  display: inline-block;
+
+  width: 12px;
+  height: 12px;
+
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-image: url('../images/ico_reload.svg');
+}
+
 .icon-uit-prullenbak {
   position: relative;
   display: inline-block;
@@ -193,10 +205,10 @@
 .icon-undo {
   position: relative;
   display: inline-block;
-  
+
   width: 12px;
   height: 12px;
-  
+
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-image: url('../images/ico_undo.svg');
