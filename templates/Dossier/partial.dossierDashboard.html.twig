@@ -164,12 +164,20 @@
                     Extra status: <strong>{% if dossier.allegroExtraStatus is empty %}n.v.t.{% else %}{{ dossier.allegroExtraStatus }}{% endif %}</strong>
                 </div>
             </div>
+            {% if  is_granted('ROLE_ADMIN') or is_granted('ROLE_GKA') or is_granted('ROLE_GKA_APPBEHEERDER') %}
+                <div class="row">
+                    <div class="col-1-1">
+                        Dossier geexporteerd naar Allegro: <strong>{% if dossier.sendToAllegro is null %}nooit{% else %}{{ dossier.sendToAllegro|date('d-m-Y H:i:s') }}{% endif %}</strong>
+                    </div>
+                </div>
+            {% endif %}
             <div class="row row-max-height">
                 <div class="col-1-1">
                     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_allegrorefresh', {'dossierId': dossier.id}) }}"
                        class="button secondary">Vernieuwen <i class="icon-reload"></i></a>
                     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_allegrosrveisers', {'dossierId': dossier.id}) }}"
                        class="button secondary">Uitgebreide status</a>
+                    <a id="send_to_allegro" class="button {% if dossier.sendToAllegro is null %}secondary{% else %}grey{% endif %}">Exporteren</a>
                 </div>
             </div>
         </div>
@@ -199,3 +207,5 @@
 
     </div>
 </div>
+<input id="allegro_validate_url" value="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_validatesendtoallegro',{'dossierId': dossier.id}) }}">
+<input id="allegro_send_url" value="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_send',{'dossierId': dossier.id}) }}">

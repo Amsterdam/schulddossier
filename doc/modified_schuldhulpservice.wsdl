@@ -302,21 +302,21 @@
             </xs:complexType>
             <xs:complexType name="TAdres">
                 <xs:sequence>
-                    <xs:element name="Straat" type="xs:string">
+                    <xs:element name="Straat" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="Huisnr" type="xs:string">
+                    <xs:element name="Huisnr" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="HuisnrToev" type="xs:string">
+                    <xs:element name="HuisnrToev" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="Postcode" type="xs:string">
+                    <xs:element name="Postcode" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="PC" type="xs:int">
+                    <xs:element name="PC" minOccurs="0" type="xs:int">
                     </xs:element>
-                    <xs:element name="PL" type="xs:string">
+                    <xs:element name="PL" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="Woonplaats" type="xs:string">
+                    <xs:element name="Woonplaats" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="LandNaam" type="xs:string">
+                    <xs:element name="LandNaam" minOccurs="0" type="xs:string">
                     </xs:element>
                 </xs:sequence>
             </xs:complexType>
@@ -1146,7 +1146,7 @@
                     </xs:element>
                     <xs:element name="GemeenschapVanGoederen" type="xs:string">
                     </xs:element>
-                    <xs:element name="GemeenschapVanGoederenDetail" type="xs:string">
+                    <xs:element name="GemeenschapVanGoederenDetail" minOccurs="0" type="xs:string">
                     </xs:element>
                     <xs:element name="Kinderen" type="xs:string">
                     </xs:element>
@@ -1236,9 +1236,9 @@
                     </xs:element>
                     <xs:element name="Naam" type="xs:string">
                     </xs:element>
-                    <xs:element name="BezoekAdres" type="tns:TAdres">
+                    <xs:element name="BezoekAdres" minOccurs="0" type="tns:TAdres">
                     </xs:element>
-                    <xs:element name="PostAdres" type="tns:TAdres">
+                    <xs:element name="PostAdres" minOccurs="0" type="tns:TAdres">
                     </xs:element>
                 </xs:sequence>
             </xs:complexType>
@@ -1989,49 +1989,49 @@
                 <xs:sequence>
                     <xs:element name="SoortInkomen" type="tns:eSoortInkomen">
                     </xs:element>
-                    <xs:element name="Beroep" type="xs:string">
+                    <xs:element name="Beroep" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="Werkgever" type="xs:string">
+                    <xs:element name="Werkgever" minOccurs="0" type="xs:string">
                     </xs:element>
                     <xs:element name="WerkzaamSinds" type="xs:int">
                     </xs:element>
-                    <xs:element name="VastDienstverband" type="tns:eJaNeeLeeg">
+                    <xs:element name="VastDienstverband" minOccurs="0" type="tns:eJaNeeLeeg">
                     </xs:element>
                     <xs:element name="DienstVerbandTot" type="xs:int">
                     </xs:element>
                     <xs:element name="Loon" type="xs:double">
                     </xs:element>
-                    <xs:element name="LoonPeriode" type="tns:ePeriode">
+                    <xs:element name="LoonPeriode" minOccurs="0" type="tns:ePeriode">
                     </xs:element>
-                    <xs:element name="SoortUitkering" type="xs:string">
+                    <xs:element name="SoortUitkering" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="UitkeringsInstantie" type="xs:string">
+                    <xs:element name="UitkeringsInstantie" minOccurs="0" type="xs:string">
                     </xs:element>
                     <xs:element name="Uitkering" type="xs:double">
                     </xs:element>
-                    <xs:element name="UitkeringPeriode" type="tns:ePeriode">
+                    <xs:element name="UitkeringPeriode" minOccurs="0" type="tns:ePeriode">
                     </xs:element>
                     <xs:element name="Pensioen" type="xs:double">
                     </xs:element>
-                    <xs:element name="PensioenPeriode" type="tns:ePeriode">
+                    <xs:element name="PensioenPeriode" minOccurs="0" type="tns:ePeriode">
                     </xs:element>
                     <xs:element name="KGB" type="xs:double">
                     </xs:element>
                     <xs:element name="Vrijwilligers" type="xs:double">
                     </xs:element>
-                    <xs:element name="VrijwilligersPeriode" type="tns:ePeriode">
+                    <xs:element name="VrijwilligersPeriode" minOccurs="0" type="tns:ePeriode">
                     </xs:element>
                     <xs:element name="KinderAlimentatieBedrag" type="xs:double">
                     </xs:element>
                     <xs:element name="PartnerAlimentatieBedrag" type="xs:double">
                     </xs:element>
-                    <xs:element name="OverigInkomen" type="xs:string">
+                    <xs:element name="OverigInkomen" minOccurs="0" type="xs:string">
                     </xs:element>
                     <xs:element name="OverigInkomenBedrag" type="xs:double">
                     </xs:element>
-                    <xs:element name="OverigInkomenPeriode" type="tns:ePeriode">
+                    <xs:element name="OverigInkomenPeriode" minOccurs="0" type="tns:ePeriode">
                     </xs:element>
-                    <xs:element name="Toelichting" type="xs:string">
+                    <xs:element name="Toelichting" minOccurs="0" type="xs:string">
                     </xs:element>
                 </xs:sequence>
             </xs:complexType>
@@ -2163,11 +2163,11 @@
                     </xs:element>
                     <xs:element name="Schuld" type="xs:double">
                     </xs:element>
-                    <xs:element name="Studieschuld" type="xs:boolean">
+                    <xs:element name="Studieschuld" minOccurs="0" type="xs:boolean">
                     </xs:element>
-                    <xs:element name="Referentie" type="xs:string">
+                    <xs:element name="Referentie" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="Omschrijving" type="xs:string">
+                    <xs:element name="Omschrijving" minOccurs="0" type="xs:string">
                     </xs:element>
                     <xs:element name="CodeEiser" type="xs:int">
                     </xs:element>
@@ -2479,9 +2479,9 @@
                     </xs:element>
                     <xs:element name="Voornamen" type="xs:string">
                     </xs:element>
-                    <xs:element name="Voorletters" type="xs:string">
+                    <xs:element name="Voorletters" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="Voorvoegsels" type="xs:string">
+                    <xs:element name="Voorvoegsels" minOccurs="0" type="xs:string">
                     </xs:element>
                     <xs:element name="Achternaam" type="xs:string">
                     </xs:element>
@@ -2491,21 +2491,21 @@
                     </xs:element>
                     <xs:element name="Nationaliteit" type="tns:eNationaliteit">
                     </xs:element>
-                    <xs:element name="Rekeningnummers" type="tns:Rekeningnummer2Array">
+                    <xs:element name="Rekeningnummers" minOccurs="0" type="tns:Rekeningnummer2Array">
                     </xs:element>
-                    <xs:element name="Bezoekadres" type="tns:TAdres">
+                    <xs:element name="Bezoekadres" minOccurs="0" type="tns:TAdres">
                     </xs:element>
-                    <xs:element name="Postadres" type="tns:TAdres">
+                    <xs:element name="Postadres" minOccurs="0" type="tns:TAdres">
                     </xs:element>
                     <xs:element name="CorrespondentieMail" type="xs:boolean">
                     </xs:element>
                     <xs:element name="CorrespondentieWeb" type="xs:boolean">
                     </xs:element>
-                    <xs:element name="Contact" type="tns:TContact">
+                    <xs:element name="Contact" minOccurs="0" type="tns:TContact">
                     </xs:element>
-                    <xs:element name="Inkomen" type="tns:InkomenArray">
+                    <xs:element name="Inkomen" minOccurs="0" type="tns:InkomenArray">
                     </xs:element>
-                    <xs:element name="Uitgaven" type="tns:UitgavenArray">
+                    <xs:element name="Uitgaven" minOccurs="0" type="tns:UitgavenArray">
                     </xs:element>
                 </xs:sequence>
             </xs:complexType>
@@ -2517,43 +2517,43 @@
                     </xs:element>
                     <xs:element name="MetPartner" type="xs:boolean">
                     </xs:element>
-                    <xs:element name="Partner" type="tns:TAanvraag2Persoon">
+                    <xs:element name="Partner" minOccurs="0" type="tns:TAanvraag2Persoon">
                     </xs:element>
                     <xs:element name="GezinsSituatie" type="tns:TGezinsSituatie">
                     </xs:element>
                     <xs:element name="AantalKinderen" type="xs:int">
                     </xs:element>
-                    <xs:element name="ToelichtingKinderen" type="xs:string">
+                    <xs:element name="ToelichtingKinderen" minOccurs="0" type="xs:string">
                     </xs:element>
                     <xs:element name="Schuldbedrag" type="xs:double">
                     </xs:element>
                     <xs:element name="Schuldeisers" type="xs:int">
                     </xs:element>
-                    <xs:element name="SoortLening" type="xs:string">
+                    <xs:element name="SoortLening" minOccurs="0" type="xs:string">
                     </xs:element>
                     <xs:element name="GewenstKrediet" type="xs:double">
                     </xs:element>
                     <xs:element name="GewenstAflossing" type="xs:double">
                     </xs:element>
-                    <xs:element name="Bestedingsdoel" type="xs:string">
+                    <xs:element name="Bestedingsdoel" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="Indiener" type="xs:string">
+                    <xs:element name="Indiener" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="HulpverlenerNaam" type="xs:string">
+                    <xs:element name="HulpverlenerNaam" minOccurs="0" type="xs:string">
                     </xs:element>
                     <xs:element name="OpdrachtgeverCode" type="xs:int">
                     </xs:element>
-                    <xs:element name="Contactpersoon" type="xs:string">
+                    <xs:element name="Contactpersoon" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="KredietSoort" type="xs:string">
+                    <xs:element name="KredietSoort" minOccurs="0" type="xs:string">
                     </xs:element>
                     <xs:element name="Borgstelling" type="xs:boolean">
                     </xs:element>
-                    <xs:element name="Toelichting" type="xs:string">
+                    <xs:element name="Toelichting" minOccurs="0" type="xs:string">
                     </xs:element>
                     <xs:element name="CollectieveBorgstelling" type="xs:boolean">
                     </xs:element>
-                    <xs:element name="OverigeGegevens" type="xs:string">
+                    <xs:element name="OverigeGegevens" minOccurs="0" type="xs:string">
                     </xs:element>
                 </xs:sequence>
             </xs:complexType>
@@ -2576,17 +2576,17 @@
                     <xs:sequence>
                         <xs:element name="NPS" type="xs:boolean">
                         </xs:element>
-                        <xs:element name="OorzaakSchulden" type="xs:string">
+                        <xs:element name="OorzaakSchulden" minOccurs="0" type="xs:string">
                         </xs:element>
-                        <xs:element name="Bewindvoerder" type="tns:TOrganisatie">
+                        <xs:element name="Bewindvoerder" minOccurs="0" type="tns:TOrganisatie">
                         </xs:element>
-                        <xs:element name="ToelichtingAlgemeen" type="xs:string">
+                        <xs:element name="ToelichtingAlgemeen" minOccurs="0" type="xs:string">
                         </xs:element>
-                        <xs:element name="ToelichtingSO" type="xs:string">
+                        <xs:element name="ToelichtingSO" minOccurs="0" type="xs:string">
                         </xs:element>
-                        <xs:element name="ToelichtingAanmelding" type="xs:string">
+                        <xs:element name="ToelichtingAanmelding" minOccurs="0" type="xs:string">
                         </xs:element>
-                        <xs:element name="ToelichtingVoorstel" type="xs:string">
+                        <xs:element name="ToelichtingVoorstel" minOccurs="0" type="xs:string">
                         </xs:element>
                         <xs:element name="TotaalschuldVullen" type="xs:boolean">
                         </xs:element>
@@ -2594,11 +2594,11 @@
                         </xs:element>
                         <xs:element name="HulpverlenerOvernemen" type="xs:boolean">
                         </xs:element>
-                        <xs:element name="OpenVragen" type="tns:OpenVraagArray">
+                        <xs:element name="OpenVragen" minOccurs="0" type="tns:OpenVraagArray">
                         </xs:element>
-                        <xs:element name="GeslotenVragen" type="tns:GeslotenVraagArray">
+                        <xs:element name="GeslotenVragen" minOccurs="0" type="tns:GeslotenVraagArray">
                         </xs:element>
-                        <xs:element name="Schulden" type="tns:SchuldArray">
+                        <xs:element name="Schulden" minOccurs="0" type="tns:SchuldArray">
                         </xs:element>
                     </xs:sequence>
                 </xs:extension></xs:complexContent>
