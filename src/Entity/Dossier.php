@@ -27,6 +27,28 @@ class Dossier
     public const STATUS_DOSSIER_GECONTROLEERD_GKA = 'dossier_gecontroleerd_gka';
     public const STATUS_AFGESLOTEN_GKA = 'afgesloten_gka';
 
+    public const ALLEGRO_A = 'Inventariseren ingediende aanvraag';
+    public const ALLEGRO_B = 'Saldi worden opgevraagd';
+    public const ALLEGRO_C = 'Saldi worden opgevraagd';
+    public const ALLEGRO_D = 'Saldi worden opgevraagd';
+    public const ALLEGRO_E = 'Afkoopvoorstellen zijn verstuurd';
+    public const ALLEGRO_F = 'Afkoopvoorstellen zijn verstuurd';
+    public const ALLEGRO_G = 'Afkoopvoorstellen zijn verstuurd';
+    public const ALLEGRO_I = 'Schuldeisers akkoord';
+    public const ALLEGRO_Z = 'Aanvraag afgewezen ';
+
+    public const ALLEGRO_STATUS = [
+        'A' => self::ALLEGRO_A,
+        'B' => self::ALLEGRO_B,
+        'C' => self::ALLEGRO_C,
+        'D' => self::ALLEGRO_D,
+        'E' => self::ALLEGRO_E,
+        'F' => self::ALLEGRO_F,
+        'G' => self::ALLEGRO_G,
+        'I' => self::ALLEGRO_I,
+        'Z' => self::ALLEGRO_Z,
+    ];
+
     /**
      * @var integer
      * @ORM\Id
@@ -75,6 +97,12 @@ class Dossier
      * @ORM\Column(type="date", nullable=true)
      */
     private $clientGeboortedatum;
+
+    /**
+     * @var \DateTime|null
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $clientHuwelijksdatum;
 
     /**
      * @var string
@@ -226,6 +254,30 @@ class Dossier
     private $allegroNummer;
 
     /**
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $allegroSyncDate;
+
+    /**
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $sendToAllegro;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=1, nullable=true)
+     */
+    private $allegroStatus;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $allegroExtraStatus;
+
+    /**
      * @var Gebruiker
      * @ORM\ManyToOne(targetEntity="Gebruiker")
      * @ORM\JoinColumn(name="aanmaker_id", referencedColumnName="id", nullable=false)
@@ -330,6 +382,9 @@ class Dossier
         return $this->clientGeslacht;
     }
 
+    /**
+     * @return \DateTime|null
+     */
     public function getClientGeboortedatum()
     {
         return $this->clientGeboortedatum;
@@ -376,9 +431,10 @@ class Dossier
     public function getClientKinderen(): ?array
     {
         $kinderen = $this->clientKinderen;
-        if (is_string($kinderen)){
+        if (is_string($kinderen)) {
             $kinderen = json_decode($kinderen);
         }
+
         return $kinderen;
     }
 
@@ -734,7 +790,8 @@ class Dossier
     public function getNietVerwijderdeDocumentenByOnderwerpen($onderwerpen)
     {
         return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerpen) {
-            return in_array($dossierDocument->getOnderwerp(), $onderwerpen) && $dossierDocument->getDocument()->isInPrullenbak() === false;
+            return in_array($dossierDocument->getOnderwerp(),
+                    $onderwerpen) && $dossierDocument->getDocument()->isInPrullenbak() === false;
         });
     }
 
@@ -748,6 +805,7 @@ class Dossier
         $documenten = $this->documenten->filter(function (DossierDocument $dossierDocument) use ($id) {
             return $dossierDocument->getDocument()->getId() === $id;
         });
+
         return $documenten->count() === 1 ? $documenten->first() : null;
     }
 
@@ -761,6 +819,7 @@ class Dossier
         $documenten = $this->documenten->filter(function (DossierDocument $dossierDocument) use ($id) {
             return $dossierDocument->getId() === $id;
         });
+
         return $documenten->count() === 1 ? $documenten->first() : null;
     }
 
@@ -794,11 +853,25 @@ class Dossier
         return $this->schuldItems;
     }
 
+    /**
+     * @return SchuldItem[]
+     */
     public function getSchuldItemsNotInPrullenbak()
     {
         return $this->schuldItems->filter(function (SchuldItem $schuldItem) {
             return $schuldItem->isVerwijderd() === false;
         });
+    }
+
+    public function getSumSchuldItemsNotInPrullenbak()
+    {
+        $items = $this->getSchuldItemsNotInPrullenbak();
+        $sum = 0;
+        foreach ($items as $item) {
+            $sum += $item->getBedrag();
+        }
+
+        return $sum;
     }
 
     public function addSchuldItem(SchuldItem $schuldItem)
@@ -909,9 +982,10 @@ class Dossier
     {
         $csvHeader = array_keys((new Aantekening())->getClassAttributes());
         $csvRows = [];
-        if(!$this->getAantekeningen()->isEmpty()){
-            $csvRows = array_merge(...$this->getAantekeningen()->map(function (Aantekening $aantekening){
-                list($csvHeader, $row) = $aantekening->getClassAttributesAndValues();
+        if (!$this->getAantekeningen()->isEmpty()) {
+            $csvRows = array_merge(...$this->getAantekeningen()->map(function (Aantekening $aantekening) {
+                [$csvHeader, $row] = $aantekening->getClassAttributesAndValues();
+
                 return $row;
             })->toArray());
         }
@@ -923,9 +997,10 @@ class Dossier
     {
         $csvHeader = array_keys((new ActionEvent())->getClassAttributes());
         $csvRows = [];
-        if(!$this->getActionEvents()){
-            $csvRows = array_merge(...$this->getActionEvents()->map(function (ActionEvent $actionEvent){
-                list($csvHeader, $row) = $actionEvent->getClassAttributesAndValues();
+        if (!$this->getActionEvents()) {
+            $csvRows = array_merge(...$this->getActionEvents()->map(function (ActionEvent $actionEvent) {
+                [$csvHeader, $row] = $actionEvent->getClassAttributesAndValues();
+
                 return $row;
             })->toArray());
         }
@@ -971,4 +1046,105 @@ class Dossier
     {
         return $this->getStatus() === self::STATUS_AFGESLOTEN_GKA;
     }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getAllegroSyncDate(): ?\DateTime
+    {
+        return $this->allegroSyncDate;
+    }
+
+    /**
+     * @param \DateTime|null $allegroSyncDate
+     * @return Dossier
+     */
+    public function setAllegroSyncDate(?\DateTime $allegroSyncDate): Dossier
+    {
+        $this->allegroSyncDate = $allegroSyncDate;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAllegroStatus(): ?string
+    {
+        return $this->allegroStatus;
+    }
+
+    /**
+     * @param string|null $allegroStatus
+     * @return Dossier
+     */
+    public function setAllegroStatus(?string $allegroStatus): Dossier
+    {
+        $this->allegroStatus = $allegroStatus;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAllegroExtraStatus(): ?string
+    {
+        return $this->allegroExtraStatus;
+    }
+
+    /**
+     * @param string|null $allegroExtraStatus
+     * @return Dossier
+     */
+    public function setAllegroExtraStatus(?string $allegroExtraStatus): Dossier
+    {
+        $this->allegroExtraStatus = $allegroExtraStatus;
+
+        return $this;
+    }
+
+    public static function twigAllegroStatus(string $status): string
+    {
+        return isset(self::ALLEGRO_STATUS[$status]) ? self::ALLEGRO_STATUS[$status] : 'Onbekend';
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getClientHuwelijksdatum(): ?\DateTime
+    {
+        return $this->clientHuwelijksdatum;
+    }
+
+    /**
+     * @param \DateTime|null $clientHuwelijksdatum
+     * @return Dossier
+     */
+    public function setClientHuwelijksdatum(?\DateTime $clientHuwelijksdatum): Dossier
+    {
+        $this->clientHuwelijksdatum = $clientHuwelijksdatum;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getSendToAllegro(): ?\DateTime
+    {
+        return $this->sendToAllegro;
+    }
+
+    /**
+     * @param \DateTime|null $sendToAllegro
+     * @return Dossier
+     */
+    public function setSendToAllegro(?\DateTime $sendToAllegro): Dossier
+    {
+        $this->sendToAllegro = $sendToAllegro;
+
+        return $this;
+    }
+
 }

@@ -9,6 +9,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Thumbnail;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 
 class ThumbnailGenerationService implements EventSubscriberInterface
 {
@@ -23,8 +24,10 @@ class ThumbnailGenerationService implements EventSubscriberInterface
     private $em;
 
     private $serviceUrl;
+    
+    private $logger;
 
-    public function __construct($swiftContainerPrefix, $swiftTempUrlKey, $swiftPublicUrl, EntityManagerInterface $em, $serviceUrl)
+    public function __construct($swiftContainerPrefix, $swiftTempUrlKey, $swiftPublicUrl, EntityManagerInterface $em, $serviceUrl, LoggerInterface $logger)
     {
         $this->swiftContainerPrefix = $swiftContainerPrefix;
         $this->swiftTempUrlKey = $swiftTempUrlKey;
@@ -35,6 +38,8 @@ class ThumbnailGenerationService implements EventSubscriberInterface
         $this->serviceUrl = $serviceUrl;
 
         $this->queue = [];
+        
+        $this->logger = $logger;
     }
 
     public static function getSubscribedEvents()
@@ -66,14 +71,17 @@ class ThumbnailGenerationService implements EventSubscriberInterface
         if (in_array($document->getOrigineleExtensie(), ['pdf', 'doc', 'docx']) === false) {
             return;
         }
+        
+        $inputType = in_array($document->getOrigineleExtensie(), ['doc', 'docx']) ? 'docx' : 'pdf';
 
         $client = new Client();
+        $this->logger->info('Call thumbnail service', ['inputType' => $inputType, 'url' => $fullUrl]);
         $response = $client->post($this->serviceUrl . '1/generate', [
             'form_params' => [
                 'url' => $fullUrl,
                 'width' => 300,
                 'height' => 200,
-                'inputType' => in_array($document->getOrigineleExtensie(), ['doc', 'docx']) ? 'docx' : 'pdf',
+                'inputType' => $inputType,
                 'outputType' => 'png',
             ]
         ]);
