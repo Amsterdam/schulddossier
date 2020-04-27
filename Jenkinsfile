@@ -49,7 +49,7 @@ node {
 
 String BRANCH = "${env.BRANCH_NAME}"
 
-if (BRANCH == "dpsecure") {
+if (BRANCH == "dpsecure-secupgrade") {
 
     node {
         stage('Push acceptance image') {
