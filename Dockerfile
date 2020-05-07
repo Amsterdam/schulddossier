@@ -23,6 +23,7 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install soap
+RUN echo "10.16.136.56 schuldhulp.sociaal.amsterdam.nl schuldhulp-ft.sociaal.amsterdam.nl" > /etc/hosts
 
 COPY --from=composer:1.8 /usr/bin/composer /usr/bin/composer
 
