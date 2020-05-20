@@ -29,10 +29,13 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Exception\AllegroServiceException;
 use Phpro\SoapClient\Exception\SoapException;
+use Psr\Log\LoggerInterface;
 
 class AllegroService
 {
     const SESSION_TIMEOUT = 1800;
+
+    const LOGGING_CONTEXT = 'allegro';
 
     const MAPPING_GESLACHT = [
         'Man' => 'M',
@@ -81,11 +84,17 @@ class AllegroService
      */
     private $altService;
 
-    public function __construct(string $allegroEndpoint, EntityManagerInterface $em, SchuldHulpService $altService)
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    public function __construct(string $allegroEndpoint, EntityManagerInterface $em, SchuldHulpService $altService, LoggerInterface $logger)
     {
         $this->loginWsdl = sprintf('%s?service=LoginService', $allegroEndpoint);
         $this->schuldHulpWsdl = sprintf('%s?service=SchuldHulpService', $allegroEndpoint);
         $this->altService = $altService;
+        $this->logger = $logger;
 
         $this->em = $em;
     }
@@ -240,6 +249,10 @@ class AllegroService
         }
 
         $a = $this->altService->Aanvraag2SR(new SchuldHulpService___Aanvraag2SR($aanvraag));
+
+        if (!$a->getResult()) {
+            $this->logger->error(sprintf('%s - %s', $a->getExtraInfo(), $a->getExtraInfoOmschrijving()),[AllegroService::LOGGING_CONTEXT]);
+        }
 
         return $a->getResult();
     }
