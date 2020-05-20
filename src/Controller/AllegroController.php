@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Exception\AllegroServiceException;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -78,7 +79,7 @@ class AllegroController extends Controller
      * @IsGranted({"ROLE_ADMIN","ROLE_GKA","ROLE_GKA_APPBEHEERDER"})
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function send(Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator, EntityManagerInterface $em): JsonResponse {
+    public function send(Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator, EntityManagerInterface $em, LoggerInterface $logger): JsonResponse {
         try {
             $response = $allegroService->sendAanvraag($dossier);
             $dossier->setSendToAllegro((new \DateTime()));
@@ -91,6 +92,8 @@ class AllegroController extends Controller
         } catch (AllegroServiceException $e) {
             return new JsonResponse(['send' => false, 'message' => $translator->trans($e->getMessage())]);
         } catch (\Exception $e) {
+            // Logging toevoegen
+            $logger->error($e->getMessage(),[AllegroService::LOGGING_CONTEXT]);
             return new JsonResponse(['send' => false, 'message' => 'Er is iets mis gegaan in het contact met allegro, probeer het later nog een keer of neem contact op met het beheer']);
         }
     }
