@@ -203,7 +203,9 @@ class AllegroService
 
         $this->validateDossier($dossier);
 
-        $aanvrager = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2Persoon($dossier->getAllegroNummer(),
+        $relatiecode = (null === $dossier->getAllegroNummer() || '' === $dossier->getAllegroNummer()) ? 0 : (int)$dossier->getAllegroNummer();
+
+        $aanvrager = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2Persoon($relatiecode,
             $dossier->getClientBSN(), $dossier->getClientVoorletters(), $dossier->getClientNaam(),
             self::MAPPING_GESLACHT[$dossier->getClientGeslacht()],
             $dossier->getClientGeboortedatum()->format('Ymd'), eNationaliteit::Leeg, $aanvragerCorrespondentieMail,
