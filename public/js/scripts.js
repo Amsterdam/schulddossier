@@ -718,7 +718,7 @@
             return;
           };
 
-          statusElem.innerHTML = '<span>Het document</span><br><strong>'+ docElem.textContent + '</strong><br><span>wordt geladen</span>';
+          statusElem.innerHTML = '<span>Het document wordt geladen</span>';
 
           loadTimeout = setTimeout(function(){
             if (extension === 'pdf') {
