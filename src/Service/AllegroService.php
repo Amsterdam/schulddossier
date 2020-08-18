@@ -441,6 +441,22 @@ class AllegroService
      */
     public function validateDossier(Dossier $dossier): bool
     {
+        if (null === $dossier->getClientHuisnummer() || '' === $dossier->getClientHuisnummer()) {
+            throw AllegroServiceException::missingClientHousenumber();
+        }
+
+        if (null === $dossier->getClientStraat() || '' === $dossier->getClientStraat()) {
+            throw AllegroServiceException::missingClientStreet();
+        }
+
+        if (null === $dossier->getClientPostcode() || '' === $dossier->getClientPostcode()) {
+            throw AllegroServiceException::missingClientPostalcode();
+        }
+
+        if (null === $dossier->getClientWoonplaats() || '' === $dossier->getClientWoonplaats()) {
+            throw AllegroServiceException::missingClientResidence();
+        }
+
         if (null === $dossier->getClientGeboortedatum()) {
             throw AllegroServiceException::missingClientBirthdate();
         }
