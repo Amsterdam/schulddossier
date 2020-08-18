@@ -5,6 +5,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
+use GemeenteAmsterdam\FixxxSchuldhulp\Validator\Constraints\BSN;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -108,6 +109,7 @@ class Dossier
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
+     * @BSN()
      */
     private $clientBSN;
 
@@ -205,6 +207,7 @@ class Dossier
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
+     * @BSN()
      */
     private $partnerBSN;
 
