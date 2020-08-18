@@ -66,6 +66,9 @@
                             {% if log.name == 'dossier_aangemaakt' %}
                                 Dossier aangemaakt
                             {% endif %}
+                            {% if log.name == 'dossier_send_to_allegro' %}
+                                Dossier verzonden naar allegro
+                            {% endif %}
                             {% if log.name == 'dossier_geopened' %}
                                 Dossier geopend: {% if log.dossier is defined %}
                                 {% if log.dossier.clientNaam is defined %}
