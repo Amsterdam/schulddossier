@@ -21,13 +21,20 @@ class DossierChangedEvent extends Event
     private $gebruiker;
 
     /**
+     * @var string|null
+     */
+    private $forceType;
+
+
+    /**
      * @param Dossier $dossier
      * @param Gebruiker $gebruiker
      */
-    public function __construct(Dossier $dossier, Gebruiker $gebruiker)
+    public function __construct(Dossier $dossier, Gebruiker $gebruiker, string $forceType = null)
     {
         $this->dossier = $dossier;
         $this->gebruiker = $gebruiker;
+        $this->forceType = $forceType;
     }
 
     public function getDossier()
@@ -38,5 +45,10 @@ class DossierChangedEvent extends Event
     public function getGebruiker()
     {
         return $this->gebruiker;
+    }
+    
+    public function getForceType(): ?string
+    {
+        return $this->forceType;
     }
 }

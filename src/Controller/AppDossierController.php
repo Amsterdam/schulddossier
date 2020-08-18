@@ -527,6 +527,7 @@ class AppDossierController extends Controller
                 'name' => [
                     'dossier_status_gewijzigd',
                     'dossier_gewijzigd',
+                    'dossier_send_to_allegro'
                 ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));

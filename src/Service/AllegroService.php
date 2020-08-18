@@ -23,13 +23,18 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SchuldHulpService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SchuldHulpService___Aanvraag2SR;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSchuld;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpClientFactory;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Exception\AllegroServiceException;
 use Phpro\SoapClient\Exception\SoapException;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Security\Core\Security;
 
 class AllegroService
 {
@@ -89,12 +94,31 @@ class AllegroService
      */
     private $logger;
 
-    public function __construct(string $allegroEndpoint, EntityManagerInterface $em, SchuldHulpService $altService, LoggerInterface $logger)
-    {
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    /**
+     * @var Security
+     */
+    private $security;
+
+
+    public function __construct(
+        string $allegroEndpoint,
+        EntityManagerInterface $em,
+        SchuldHulpService $altService,
+        LoggerInterface $logger,
+        EventDispatcherInterface $eventDispatcher,
+        Security $security
+    ) {
         $this->loginWsdl = sprintf('%s?service=LoginService', $allegroEndpoint);
         $this->schuldHulpWsdl = sprintf('%s?service=SchuldHulpService', $allegroEndpoint);
         $this->altService = $altService;
         $this->logger = $logger;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->security = $security;
 
         $this->em = $em;
     }
@@ -255,6 +279,13 @@ class AllegroService
         if (!$a->getResult()) {
             $this->logger->error(sprintf('%s - %s', $a->getExtraInfo(), $a->getExtraInfoOmschrijving()),[AllegroService::LOGGING_CONTEXT]);
         }
+
+        $user = $this->security->getUser();
+        /**
+         * @var Gebruiker $user
+         */
+
+        $this->eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $user, ActionEvent::DOSSIER_SEND_TO_ALLEGRO));
 
         return $a->getResult();
     }
