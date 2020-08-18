@@ -9,6 +9,11 @@ class AllegroServiceException extends \Exception
     const TYPE_MISSING_CLIENT_BSN = 'MISSING_CLIENT_BSN';
     const TYPE_MISSING_CLIENT_INITIALS = 'MISSING_CLIENT_INITIALS';
 
+    const TYPE_MISSING_CLIENT_STREET = 'MISSING_CLIENT_STREET';
+    const TYPE_MISSING_CLIENT_HOUSENUMBER = 'MISSING_CLIENT_HOUSENUMBER';
+    const TYPE_MISSING_CLIENT_POSTALCODE = 'MISSING_CLIENT_POSTALCODE';
+    const TYPE_MISSING_CLIENT_RESIDENCE = 'MISSING_CLIENT_RESIDENCE';
+
     const TYPE_MISSING_PARTNER_BIRTHDATE = 'MISSING_PARTNER_BIRTHDATE';
     const TYPE_MISSING_PARTNER_GENDER = 'MISSING_PARTNER_GENDER';
     const TYPE_MISSING_PARTNER_BSN = 'MISSING_PARTNER_BSN';
@@ -28,6 +33,22 @@ class AllegroServiceException extends \Exception
 
     public static function missingClientInitials(): AllegroServiceException {
         return new self(self::TYPE_MISSING_CLIENT_INITIALS);
+    }
+
+    public static function missingClientStreet(): AllegroServiceException {
+        return new self(self::TYPE_MISSING_CLIENT_STREET);
+    }
+
+    public static function missingClientHousenumber(): AllegroServiceException {
+        return new self(self::TYPE_MISSING_CLIENT_HOUSENUMBER);
+    }
+
+    public static function missingClientPostalcode(): AllegroServiceException {
+        return new self(self::TYPE_MISSING_CLIENT_POSTALCODE);
+    }
+
+    public static function missingClientResidence(): AllegroServiceException {
+        return new self(self::TYPE_MISSING_CLIENT_RESIDENCE);
     }
 
     public static function missingPartnerBirthdate(): AllegroServiceException {

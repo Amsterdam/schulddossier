@@ -185,7 +185,9 @@ class AppDossierController extends Controller
             $em->persist($dossier);
             $em->flush();
 
-            if (!$form['allegroCheck']->getData()) {
+            $allegroCheck = isset($form['allegroCheck']) ? $form['allegroCheck']->getData() : false;
+
+            if (!$allegroCheck) {
                 $this->addFlash('success', 'Dossier aangemaakt');
             } else {
                 if (null !== $allegroService->getSRVAanvraagHeader($dossier->getSchuldhulpbureau(), $dossier->getAllegroNummer())) {
