@@ -15,7 +15,8 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
  * @ORM\Table(
  *  uniqueConstraints={
- *      @ORM\UniqueConstraint(name="uq_username", columns={"username"})
+ *      @ORM\UniqueConstraint(name="uq_username", columns={"username"}),
+ *      @ORM\UniqueConstraint(name="uq_email", columns={"email"})
  *  }
  * )
  */
@@ -69,7 +70,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
      * @var string
      * @ORM\Column(type="string", length=100, nullable=false)
      * @Assert\NotBlank
-     * @Assert\Choice(callback="getTypes")
+     * @Assert\Choice(callback="getTypesList")
      */
     private $type;
 
@@ -394,6 +395,11 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
                 break;
         }
         return $defaultTypes;
+    }
+    
+    public static function getTypesList()
+    {
+        return [self::TYPE_MADI, self::TYPE_MADI_KEYUSER, self::TYPE_GKA, self::TYPE_GKA_APPBEHEERDER, self::TYPE_ADMIN, self::TYPE_ONBEKEND];
     }
 
     /**

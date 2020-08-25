@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
+
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TGezinsSituatie implements RequestInterface
@@ -28,19 +29,26 @@ class TGezinsSituatie implements RequestInterface
     private $Kinderen;
 
     /**
+     * @var \DateTimeInterface
+     */
+    private $BurgerlijkeStaatSinds;
+
+    /**
      * Constructor
      *
      * @var string $BurgerlijkeStaat
      * @var string $GemeenschapVanGoederen
      * @var string $GemeenschapVanGoederenDetail
      * @var string $Kinderen
+     * @var \DateTimeInterface $BurgerlijkeStaatSinds
      */
-    public function __construct($BurgerlijkeStaat, $GemeenschapVanGoederen, $GemeenschapVanGoederenDetail, $Kinderen)
+    public function __construct($BurgerlijkeStaat, $GemeenschapVanGoederen, $GemeenschapVanGoederenDetail, $Kinderen, $BurgerlijkeStaatSinds)
     {
         $this->BurgerlijkeStaat = $BurgerlijkeStaat;
         $this->GemeenschapVanGoederen = $GemeenschapVanGoederen;
         $this->GemeenschapVanGoederenDetail = $GemeenschapVanGoederenDetail;
         $this->Kinderen = $Kinderen;
+        $this->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds;
     }
 
     /**
@@ -119,6 +127,26 @@ class TGezinsSituatie implements RequestInterface
     {
         $new = clone $this;
         $new->Kinderen = $Kinderen;
+
+        return $new;
+    }
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getBurgerlijkeStaatSinds()
+    {
+        return $this->BurgerlijkeStaatSinds;
+    }
+
+    /**
+     * @param \DateTimeInterface $BurgerlijkeStaatSinds
+     * @return TGezinsSituatie
+     */
+    public function withBurgerlijkeStaatSinds($BurgerlijkeStaatSinds)
+    {
+        $new = clone $this;
+        $new->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds;
 
         return $new;
     }

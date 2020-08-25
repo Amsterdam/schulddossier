@@ -11,3 +11,18 @@ afgesloten_gka: Afgesloten (GKA)
 
 # forms
 Team gka: Team GKA
+
+MISSING_CLIENT_BIRTHDATE: Geboortedatum van cliënt niet gevuld.
+MISSING_CLIENT_GENDER: Geslacht van cliënt niet gevuld.
+MISSING_CLIENT_BSN: BSN van cliënt niet gevuld.
+MISSING_CLIENT_INITIALS: Initialen van cliënt niet gevuld.
+
+MISSING_CLIENT_STREET: Straat van cliënt niet gevuld.
+MISSING_CLIENT_HOUSENUMBER: Huisnummer van cliënt niet gevuld.
+MISSING_CLIENT_POSTALCODE: Postcode van cliënt niet gevuld.
+MISSING_CLIENT_RESIDENCE: Woonplaats van cliënt niet gevuld.
+
+MISSING_PARTNER_BIRTHDATE: Geboortedatum van partner niet gevuld.
+MISSING_PARTNER_GENDER: Geslacht van partner niet gevuld.
+MISSING_PARTNER_BSN: BSN van partner niet gevuld.
+MISSING_PARTNER_INITIALS: Initialen van partner niet gevuld.

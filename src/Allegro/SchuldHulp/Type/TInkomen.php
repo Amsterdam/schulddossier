@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
+
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TInkomen implements RequestInterface
@@ -118,6 +119,11 @@ class TInkomen implements RequestInterface
     private $OverigInkomenPeriode;
 
     /**
+     * @var string
+     */
+    private $Toelichting;
+
+    /**
      * Constructor
      *
      * @var string $SoortInkomen
@@ -142,8 +148,9 @@ class TInkomen implements RequestInterface
      * @var string $OverigInkomen
      * @var float $OverigInkomenBedrag
      * @var string $OverigInkomenPeriode
+     * @var string $Toelichting
      */
-    public function __construct($SoortInkomen, $Beroep, $Werkgever, $WerkzaamSinds, $VastDienstverband, $DienstVerbandTot, $Loon, $LoonPeriode, $SoortUitkering, $UitkeringsInstantie, $Uitkering, $UitkeringPeriode, $Pensioen, $PensioenPeriode, $KGB, $Vrijwilligers, $VrijwilligersPeriode, $KinderAlimentatieBedrag, $PartnerAlimentatieBedrag, $OverigInkomen, $OverigInkomenBedrag, $OverigInkomenPeriode)
+    public function __construct($SoortInkomen, $Beroep, $Werkgever, $WerkzaamSinds, $VastDienstverband, $DienstVerbandTot, $Loon, $LoonPeriode, $SoortUitkering, $UitkeringsInstantie, $Uitkering, $UitkeringPeriode, $Pensioen, $PensioenPeriode, $KGB, $Vrijwilligers, $VrijwilligersPeriode, $KinderAlimentatieBedrag, $PartnerAlimentatieBedrag, $OverigInkomen, $OverigInkomenBedrag, $OverigInkomenPeriode, $Toelichting)
     {
         $this->SoortInkomen = $SoortInkomen;
         $this->Beroep = $Beroep;
@@ -167,6 +174,7 @@ class TInkomen implements RequestInterface
         $this->OverigInkomen = $OverigInkomen;
         $this->OverigInkomenBedrag = $OverigInkomenBedrag;
         $this->OverigInkomenPeriode = $OverigInkomenPeriode;
+        $this->Toelichting = $Toelichting;
     }
 
     /**
@@ -605,6 +613,26 @@ class TInkomen implements RequestInterface
     {
         $new = clone $this;
         $new->OverigInkomenPeriode = $OverigInkomenPeriode;
+
+        return $new;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToelichting()
+    {
+        return $this->Toelichting;
+    }
+
+    /**
+     * @param string $Toelichting
+     * @return TInkomen
+     */
+    public function withToelichting($Toelichting)
+    {
+        $new = clone $this;
+        $new->Toelichting = $Toelichting;
 
         return $new;
     }

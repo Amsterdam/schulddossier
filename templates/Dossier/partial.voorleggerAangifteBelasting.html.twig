@@ -1,0 +1,34 @@
+{% import 'partial.macros.html.twig' as tools %}
+{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerpen(['belasting']) %}
+
+<div class="dossier__item {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-belasting-documenten" data-hashevent="activate-section" data-keyupper="section-document-nav">
+    <div class="dossier__voorlegger__header">
+
+        <div class="voorlegger-header">
+            <h3 class="naam">
+                <a href="#id_voorlegger-belasting-documenten">{{ title }}</a>
+            </h3>
+            {% if dossierDocumenten|length > 0 %}
+                <div class="voortgang">
+                    <span>{{ dossierDocumenten|length }}</span>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+    <div class="dossier__voorlegger__body">
+        <div class="dossier__voorlegger__sectie">
+            <div class="dossier__voorlegger__sectie__header">
+                <a class="dossier__voorlegger__sectie__close" href="#_"></a>
+                <h3>{{ title }}</h3>
+                <hr>
+            </div>
+            <div class="dossier__voorlegger__sectie__body">
+                {{ form_row(form.aangifteBelastingdienst) }}
+                {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Belasting'} only %}
+                {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
+            </div>
+            {% include 'Dossier/partial.documentViewer.html.twig' %}
+        </div>
+    </div>
+</div>

@@ -34,4 +34,3 @@ docker-compose-dev.override.yml
 /public/scss/.sass-cache
 
 config/soap-client-allegro-login.php
-config/soap-client-allegro-schuldhulp.php

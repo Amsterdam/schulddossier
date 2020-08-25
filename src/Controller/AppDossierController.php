@@ -185,7 +185,9 @@ class AppDossierController extends Controller
             $em->persist($dossier);
             $em->flush();
 
-            if (!$form['allegroCheck']->getData()) {
+            $allegroCheck = isset($form['allegroCheck']) ? $form['allegroCheck']->getData() : false;
+
+            if (!$allegroCheck) {
                 $this->addFlash('success', 'Dossier aangemaakt');
             } else {
                 if (null !== $allegroService->getSRVAanvraagHeader($dossier->getSchuldhulpbureau(), $dossier->getAllegroNummer())) {
@@ -525,9 +527,10 @@ class AppDossierController extends Controller
                 'name' => [
                     'dossier_status_gewijzigd',
                     'dossier_gewijzigd',
+                    'dossier_send_to_allegro'
                 ],
                 'dossier' => $dossier
-            ], ['datumTijd' => 'DESC'], 30);
+            ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
 
         return $this->render('Dossier/detailLogboek.html.twig', ['logs' => $logs, 'dossier' => $dossier]);
     }
@@ -1170,6 +1173,14 @@ class AppDossierController extends Controller
             $sheet->getStyleByColumnAndRow(5, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
             $sheet->getStyleByColumnAndRow(6, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
         }
+
+        $rowIndex = $rowIndex+2;
+
+        $sheet->setCellValueByColumnAndRow(1, $rowIndex, 'Totaal bedrag');
+
+        $sheet->setCellValueByColumnAndRow(3, $rowIndex, $dossier->getSumSchuldItemsNotInPrullenbak());
+        $sheet->getStyleByColumnAndRow(3, $rowIndex)->getNumberFormat()->setFormatCode('"€"#,##0.00_-');
+
 
         $sheet->getColumnDimensionByColumn(1)->setAutoSize(true);
         $sheet->getColumnDimensionByColumn(2)->setAutoSize(true);

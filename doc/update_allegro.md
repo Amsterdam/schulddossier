@@ -31,6 +31,15 @@ These keywords are used in a case insensitive regex match with '/' delimiters, e
 
 ------------------
 
+Because we use an extended ExtendAssembler in config/soap-client-allegro-schuldhulp.php you can use the following 
+command to regenerate the types:
+
+./vendor/bin/soap-client generate:types --config config/soap-client-allegro-schuldhulp.php
+
+-----
+
+Start from scratch
+
 ./vendor/bin/soap-client wizard
 
  Where would you like to store your config file? [config/soap-client.php]:
