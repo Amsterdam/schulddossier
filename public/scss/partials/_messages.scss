@@ -9,6 +9,11 @@
     color: #155724;
     background-color: #d4edda;
   }
+  &.flash-type-error {
+    border-color: #c83514;
+    color: #570004;
+    background-color: #edd2c7;
+  }
   .message {
     order: 0;
     flex-grow: 1;

@@ -5,6 +5,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldhulpbureauFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -44,7 +45,7 @@ class AppSchuldhulpbureauController extends Controller
      * @Route("/nieuw")
      * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
      */
-    public function createAction(Request $request, EntityManagerInterface $em)
+    public function createAction(Request $request, EntityManagerInterface $em, AllegroService $allegroService)
     {
         $schuldhulpbureau = new Schuldhulpbureau();
         $form = $this->createForm(SchuldhulpbureauFormType::class, $schuldhulpbureau);
@@ -52,7 +53,16 @@ class AppSchuldhulpbureauController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($schuldhulpbureau);
             $em->flush();
-            $this->addFlash('success', 'Schuldhulpbureau aangemaakt');
+
+            if (!$form['allegroCheck']->getData()) {
+                $this->addFlash('success', 'Schuldhulpbureau aangemaakt');
+            } else {
+                if (false !== $allegroService->login($schuldhulpbureau, true)) {
+                    $this->addFlash('success', 'Schuldhulpbureau aangemaakt en verbinding met allegro succesvol getest');
+                } else {
+                    $this->addFlash('error', 'Schuldhulpbureau aangemaakt zonder verbinding met allegro te kunnen maken');
+                }
+            }
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_update', [
                 'schuldhulpbureauId' => $schuldhulpbureau->getId()
             ]);
@@ -68,13 +78,22 @@ class AppSchuldhulpbureauController extends Controller
      * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
      * @ParamConverter("schuldhulpbureau", options={"id"="schuldhulpbureauId"})
      */
-    public function updateAction(Request $request, EntityManagerInterface $em, Schuldhulpbureau $schuldhulpbureau)
+    public function updateAction(Request $request, EntityManagerInterface $em, Schuldhulpbureau $schuldhulpbureau, AllegroService $allegroService)
     {
         $form = $this->createForm(SchuldhulpbureauFormType::class, $schuldhulpbureau, []);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            $this->addFlash('success', 'Opgeslagen');
+
+            if (!$form['allegroCheck']->getData()) {
+                $this->addFlash('success', 'Opgeslagen');
+            } else {
+                if (false !== $allegroService->login($schuldhulpbureau, true)) {
+                    $this->addFlash('success', 'Opgeslagen en verbinding met allegro succesvol getest');
+                } else {
+                    $this->addFlash('error', 'Opgeslagen zonder verbinding met allegro te kunnen maken');
+                }
+            }
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_update', [
                 'schuldhulpbureauId' => $schuldhulpbureau->getId()
             ]);

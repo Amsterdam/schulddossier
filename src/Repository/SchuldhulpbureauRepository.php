@@ -4,6 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\NoResultException;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -35,5 +36,20 @@ class SchuldhulpbureauRepository extends ServiceEntityRepository
             ->select('schuldhulpbureau, g')
             ->innerJoin('schuldhulpbureau.gebruikers', 'g')
             ->getQuery()->getResult());
+    }
+
+    /**
+     * @return Schuldhulpbureau
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function fetchAllegroUser(): Schuldhulpbureau
+    {
+        $query = $this->_em->createQuery('SELECT s FROM ' . Schuldhulpbureau::class . ' s WHERE s.allegroUsername IS NOT NULL and s.allegroPassword IS NOT NULL');
+        $query->setMaxResults(1);
+        try {
+            return $query->getSingleResult();
+        } catch (NoResultException $e) {
+            return null;
+        }
     }
 }

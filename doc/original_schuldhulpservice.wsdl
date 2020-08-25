@@ -1,0 +1,3548 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        name="KreditLibrary"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+        xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+        targetNamespace="http://tempuri.org/"
+        xmlns:tns="http://tempuri.org/"
+>
+    <wsdl:types>
+        <xs:schema targetNamespace="http://tempuri.org/" elementFormDefault="qualified">
+            <xs:simpleType name="eCasusStatus">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="csAanmelding" />
+                    <xs:enumeration value="csAanmeldingVoltooid" />
+                    <xs:enumeration value="csSlapend" />
+                    <xs:enumeration value="csCrisis" />
+                    <xs:enumeration value="csInventarisatie" />
+                    <xs:enumeration value="csAnalyse" />
+                    <xs:enumeration value="csPvA" />
+                    <xs:enumeration value="csFiattering" />
+                    <xs:enumeration value="csAfwijzing" />
+                    <xs:enumeration value="csInactief" />
+                    <xs:enumeration value="csStop" />
+                    <xs:enumeration value="csNone" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eJaNeeLeeg">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Leeg" />
+                    <xs:enumeration value="Ja" />
+                    <xs:enumeration value="Nee" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eWelkAdres">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="waBezoek" />
+                    <xs:enumeration value="waPost" />
+                    <xs:enumeration value="waBeide" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eSoortRelatie">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                        1e positie: Klant
+                        2e positie: Opdrachtgever
+                        3e positie: Hulpverlener
+                        4e positie: Schuldeiser
+                        5e positie: Eigen organisatie
+                        6e positie: Andere instantie.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="srKlant" />
+                    <xs:enumeration value="srOpdrachtgever" />
+                    <xs:enumeration value="srHulpverlener" />
+                    <xs:enumeration value="srSchuldeiser" />
+                    <xs:enumeration value="srEigenOrganisatie" />
+                    <xs:enumeration value="srAndereInstantie" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eWelkEmailAdres">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="weaWebGegevens" />
+                    <xs:enumeration value="weaCorrespondentie" />
+                    <xs:enumeration value="weaBeide" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eContractSoort">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="scBBR" />
+                    <xs:enumeration value="scSR" />
+                    <xs:enumeration value="scLening" />
+                    <xs:enumeration value="scDK" />
+                    <xs:enumeration value="scAlles" />
+                    <xs:enumeration value="scCasus" />
+                    <xs:enumeration value="scAllesPlus" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eWelkeRekening">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="wrRelatie" />
+                    <xs:enumeration value="wrPartner" />
+                    <xs:enumeration value="wrAnders" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eSoortDocument">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+                        AW_aSoortDocument in AllegroWebPortierConst
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Onbekend" />
+                    <xs:enumeration value="Formulier" />
+                    <xs:enumeration value="Resultaat" />
+                    <xs:enumeration value="Leningaanvraag" />
+                    <xs:enumeration value="DKaanvraag" />
+                    <xs:enumeration value="SRaanvraag" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eSoortInkomen">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Werk" />
+                    <xs:enumeration value="Uitkering" />
+                    <xs:enumeration value="Combinatie_werk_en_uitkering" />
+                    <xs:enumeration value="Studiefinanciering" />
+                    <xs:enumeration value="Pensioen" />
+                    <xs:enumeration value="Combinatie_pensioen_en_uitkering" />
+                    <xs:enumeration value="Combinatie_werk_en_pensioen" />
+                    <xs:enumeration value="Combinatie_werk_en_uitkering_en_pensioen" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eJaNee">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Ja" />
+                    <xs:enumeration value="Nee" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="ePeriode">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Leeg" />
+                    <xs:enumeration value="Maand" />
+                    <xs:enumeration value="Vier_weken" />
+                    <xs:enumeration value="Week" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eWoningSoort">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Leeg" />
+                    <xs:enumeration value="Huur" />
+                    <xs:enumeration value="Koop" />
+                    <xs:enumeration value="Inwonend" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eNationaliteit">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Leeg" />
+                    <xs:enumeration value="Nederlandse" />
+                    <xs:enumeration value="Anders" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eSoortLening">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="PL" />
+                    <xs:enumeration value="SL" />
+                    <xs:enumeration value="SK" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eStatusAanvraag">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="A" />
+                    <xs:enumeration value="B" />
+                    <xs:enumeration value="C" />
+                    <xs:enumeration value="D" />
+                    <xs:enumeration value="E" />
+                    <xs:enumeration value="Gefiatteerd" />
+                    <xs:enumeration value="Afgewezen" />
+                    <xs:enumeration value="Ingetrokken" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eOntvangenVerzonden">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ovOntvangen" />
+                    <xs:enumeration value="ovVerzonden" />
+                    <xs:enumeration value="ovBeide" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eVeldSortering">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="vsCode" />
+                    <xs:enumeration value="vsAfzenderOntvanger" />
+                    <xs:enumeration value="vsOnderwerp" />
+                    <xs:enumeration value="vsTijdstip" />
+                    <xs:enumeration value="vsOntvangen" />
+                    <xs:enumeration value="vsGelezen" />
+                    <xs:enumeration value="vsGearchiveerd" />
+                    <xs:enumeration value="vsBijlagen" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="eSoortOpdracht">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ReserveringOfDoorbetaling" />
+                    <xs:enumeration value="Reservering" />
+                    <xs:enumeration value="Doorbetaling" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="SimpleDataType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="String" />
+                    <xs:enumeration value="Integer" />
+                    <xs:enumeration value="Double" />
+                    <xs:enumeration value="DateTime" />
+                    <xs:enumeration value="Int64" />
+                    <xs:enumeration value="Currency" />
+                    <xs:enumeration value="Guid" />
+                    <xs:enumeration value="Binary" />
+                    <xs:enumeration value="Boolean" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="SimpleDataMode">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Insert" />
+                    <xs:enumeration value="Delete" />
+                    <xs:enumeration value="Update" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="ColumnSortDirection">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Ascending" />
+                    <xs:enumeration value="Descending" />
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="TTest">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                        Struct met 2 properties:
+                        1) Veld1 van het type WideString
+                        2) Veld2 van het type Integer
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="Veld1" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Veld2" type="xs:int">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AWUserInfo">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                        Een meer uitgebreid UserInfo struct om extra informatie in kwijt te kunnen.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent><xs:extension base="tns:UserInfo">
+                    <xs:sequence>
+                        <xs:element name="LoginType" type="xs:string">
+                        </xs:element>
+                        <xs:element name="RelatieCode" type="xs:int">
+                        </xs:element>
+                        <xs:element name="Naam" type="xs:string">
+                        </xs:element>
+                        <xs:element name="LaatsteLogin" type="xs:dateTime">
+                        </xs:element>
+                        <xs:element name="Autorisaties" type="xs:string">
+                        </xs:element>
+                        <xs:element name="ExtraInfo" type="xs:int">
+                        </xs:element>
+                        <xs:element name="ExtraInfoOmschrijving" type="xs:string">
+                        </xs:element>
+                        <xs:element name="WachtwoordWijzigen" type="xs:boolean">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension></xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="TAdres">
+                <xs:sequence>
+                    <xs:element name="Straat" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Huisnr" type="xs:string">
+                    </xs:element>
+                    <xs:element name="HuisnrToev" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Postcode" type="xs:string">
+                    </xs:element>
+                    <xs:element name="PC" type="xs:int">
+                    </xs:element>
+                    <xs:element name="PL" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Woonplaats" type="xs:string">
+                    </xs:element>
+                    <xs:element name="LandNaam" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TRelatie">
+                <xs:sequence>
+                    <xs:element name="RelatieCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Voornamen" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorletters" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Zoeknaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Achternaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorvoegsels" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Geslacht" type="xs:string">
+                    </xs:element>
+                    <xs:element name="BezoekAdres" type="tns:TAdres">
+                    </xs:element>
+                    <xs:element name="PostAdres" type="tns:TAdres">
+                    </xs:element>
+                    <xs:element name="Geboortedatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Geboorteplaats" type="xs:string">
+                    </xs:element>
+                    <xs:element name="BSN" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Rekening" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Telefoon1" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Telefoon2" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Email" type="xs:string">
+                    </xs:element>
+                    <xs:element name="BurgerlijkeStaat" type="xs:string">
+                    </xs:element>
+                    <xs:element name="PartnerCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Autorisaties" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Identificatiebewijs" type="xs:string">
+                    </xs:element>
+                    <xs:element name="IdentificatieNummer" type="xs:string">
+                    </xs:element>
+                    <xs:element name="IdentificatieGeldig" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Kinderen" type="tns:KindArray">
+                    </xs:element>
+                    <xs:element name="Bedrijf" type="xs:int">
+                    </xs:element>
+                    <xs:element name="IBAN" type="xs:string">
+                    </xs:element>
+                    <xs:element name="BIC" type="xs:string">
+                    </xs:element>
+                    <xs:element name="InzakeRekening" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="RekeningInzake" type="xs:string">
+                    </xs:element>
+                    <xs:element name="RekeningInzakeIBAN" type="xs:string">
+                    </xs:element>
+                    <xs:element name="RekeningInzakeBIC" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Klantmanager" type="tns:TMedewerker">
+                    </xs:element>
+                    <xs:element name="Pincode" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TCasusHeader">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                        TCasusHeader bevat :
+                        - Relatiecode
+                        - Volgnummer
+                        - Aanmaakdatum
+                        - CasusStatus
+                        * Aanmelding (aanmelding &apos;in progress&apos;)
+                        * Aanmelding voltooid (aanmelding voltooid)
+                        * Inventarisatie (inventarisatie bezig)
+                        * Analyse (analyse bezig)
+                        * Plan Van Aanpak (plan van aanpak bezig)
+                        * Fiattering (fiattering bezig)
+                        * Slapend (laatste plan van aanpak gefiatteerd)
+                        * Crisis (crisis)
+                        * Afwijzing (casus zit in afwijzingsfase)
+                        * Einde (casus zit in beeindigingsfase)
+                        * Inactief (casus niet meer actief)
+                        * Geen status
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="CasusCode" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Aanmaakdatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="CasusStatus" type="tns:eCasusStatus">
+                    </xs:element>
+                    <xs:element name="CasusStatusTekst" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TCasusInfo">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                        Bevat volledige info over een casus.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="InfoHeader" type="tns:TCasusHeader">
+                    </xs:element>
+                    <xs:element name="CasusMedewerker" type="xs:string">
+                    </xs:element>
+                    <xs:element name="CasusTeam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Opdrachtgever" type="xs:int">
+                    </xs:element>
+                    <xs:element name="OpdrachtgeverContact" type="xs:int">
+                    </xs:element>
+                    <xs:element name="DatumAanmelding" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumAanmeldingEinde" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumIntake" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumIntakeEinde" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumInventarisatie" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumInventarisatieEinde" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumAnalyse" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumAnalyseEinde" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Crisis" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="DatumCrisis" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumCrisisEinde" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumAfwijzing" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumAfwijzingEinde" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumStop" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumStopEinde" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="VerwachteEinddatumIntake" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="PVA" type="tns:CasusPVAArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TCasusPVA">
+                <xs:sequence>
+                    <xs:element name="VolgnummerPVA" type="xs:int">
+                    </xs:element>
+                    <xs:element name="MedewerkerPVA" type="xs:string">
+                    </xs:element>
+                    <xs:element name="TeamPVA" type="xs:string">
+                    </xs:element>
+                    <xs:element name="DatumPVA" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumPVAEinde" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumFiattering" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumFiatteringEinde" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Gefiatteerd" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Producten" type="tns:CasusPVAProductArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TCasusPVAProduct">
+                <xs:sequence>
+                    <xs:element name="Naam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="IDAanvraag" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Geactiveerd" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="DatumActivering" type="xs:dateTime">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSRVAanvraag">
+                <xs:sequence>
+                    <xs:element name="InfoHeader" type="tns:TSRVAanvraagHeader">
+                    </xs:element>
+                    <xs:element name="Startdatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Einddatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Eindstatus" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Opdrachtgever" type="xs:int">
+                    </xs:element>
+                    <xs:element name="OpdrachtgeverContact" type="xs:int">
+                    </xs:element>
+                    <xs:element name="VTLB" type="xs:double">
+                    </xs:element>
+                    <xs:element name="DatumBerekening" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="BrutoAfloscapaciteit" type="xs:double">
+                    </xs:element>
+                    <xs:element name="KostenFinancieelBeheer" type="xs:double">
+                    </xs:element>
+                    <xs:element name="KostenSchuldhulpverlening" type="xs:double">
+                    </xs:element>
+                    <xs:element name="NettoAfloscapaciteit" type="xs:double">
+                    </xs:element>
+                    <xs:element name="TotaalAangemeldeSchuld" type="xs:double">
+                    </xs:element>
+                    <xs:element name="TotaalTeruggemeldeSchuld" type="xs:double">
+                    </xs:element>
+                    <xs:element name="PartnerCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Aanvraagdatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="RedenOpschorting" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ExtraInleg" type="xs:double">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSRVEiser">
+                <xs:sequence>
+                    <xs:element name="RelatieCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="CodeEiser" type="xs:int">
+                    </xs:element>
+                    <xs:element name="NaamEiser" type="xs:string">
+                    </xs:element>
+                    <xs:element name="UniekVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Referentie" type="xs:string">
+                    </xs:element>
+                    <xs:element name="AangemeldBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="TeruggemeldBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="PrognoseVoorstel" type="xs:double">
+                    </xs:element>
+                    <xs:element name="TerugmeldingVoorstel" type="xs:string">
+                    </xs:element>
+                    <xs:element name="DatumTerugmeldingVoorstel" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="IndicatieOpgaaf" type="xs:string">
+                    </xs:element>
+                    <xs:element name="IndicatieVoorstel" type="xs:string">
+                    </xs:element>
+                    <xs:element name="IndicatieSK" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="CodeIncasso" type="xs:int">
+                    </xs:element>
+                    <xs:element name="NaamIncasso" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ReferentieIncasso" type="xs:string">
+                    </xs:element>
+                    <xs:element name="CodeDeurwaarder" type="xs:int">
+                    </xs:element>
+                    <xs:element name="NaamDeurwaarder" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ReferentieDeurwaarder" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TMedewerker">
+                <xs:sequence>
+                    <xs:element name="Code" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voornaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Achternaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorvoegsels" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorletters" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Telefoon" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Teams" type="tns:TeamArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSB">
+                <xs:sequence>
+                    <xs:element name="InfoHeader" type="tns:TSBHeader">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Opdrachtgever" type="xs:int">
+                    </xs:element>
+                    <xs:element name="OpdrachtgeverContact" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Startdatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="StartdatumEersteBetaling" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="TheoEinddatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="TotaalAantalMaanden" type="xs:int">
+                    </xs:element>
+                    <xs:element name="TotaalAantalMaandenVerstreken" type="xs:int">
+                    </xs:element>
+                    <xs:element name="TotaalAantalMaandenResterend" type="xs:int">
+                    </xs:element>
+                    <xs:element name="VTLB" type="xs:double">
+                    </xs:element>
+                    <xs:element name="DatumBerekening" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="BrutoAflosCapaciteitMaand" type="xs:double">
+                    </xs:element>
+                    <xs:element name="KostenFinancieelBeheerMaand" type="xs:double">
+                    </xs:element>
+                    <xs:element name="KostenSchuldhulpverleningMaand" type="xs:double">
+                    </xs:element>
+                    <xs:element name="NettoAflosCapaciteitMaand" type="xs:double">
+                    </xs:element>
+                    <xs:element name="DatumOverzicht" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="PartnerCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="TotaalSchuldbedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="MaximumKosten" type="xs:double">
+                    </xs:element>
+                    <xs:element name="BetaaldeKosten" type="xs:double">
+                    </xs:element>
+                    <xs:element name="DatumLaatsteBetaling" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="BedragLaatsteBetaling" type="xs:double">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSBEiser">
+                <xs:sequence>
+                    <xs:element name="RelatieCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="CodeEiser" type="xs:int">
+                    </xs:element>
+                    <xs:element name="NaamEiser" type="xs:string">
+                    </xs:element>
+                    <xs:element name="UniekVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Referentie" type="xs:string">
+                    </xs:element>
+                    <xs:element name="TeruggemeldBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="BerekendBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="GereserveerdBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="DoorbetaaldBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="PrognoseRestschuld" type="xs:double">
+                    </xs:element>
+                    <xs:element name="CodeIncasso" type="xs:int">
+                    </xs:element>
+                    <xs:element name="NaamIncasso" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ReferentieIncasso" type="xs:string">
+                    </xs:element>
+                    <xs:element name="CodeDeurwaarder" type="xs:int">
+                    </xs:element>
+                    <xs:element name="NaamDeurwaarder" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ReferentieDeurwaarder" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSRVAanvraagHeader">
+                <xs:sequence>
+                    <xs:element name="RelatieCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="IsNPS" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Status" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Statustekst" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Aanvraagdatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="ExtraStatus" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSBHeader">
+                <xs:sequence>
+                    <xs:element name="RelatieCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="IsNPS" type="xs:boolean">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSRVEisers">
+                <xs:sequence>
+                    <xs:element name="Eisers" type="tns:SRVEiserArray">
+                    </xs:element>
+                    <xs:element name="SomAangemeldBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="SomTeruggemeldBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="SomBerekendBedrag" type="xs:double">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSBEisers">
+                <xs:sequence>
+                    <xs:element name="Eisers" type="tns:SBEiserArray">
+                    </xs:element>
+                    <xs:element name="SomTeruggemeldBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="SomBerekendBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="SomGereserveerdBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="SomDoorbetaaldBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="SomPrognoseRestschuld" type="xs:double">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPLHeader">
+                <xs:sequence>
+                    <xs:element name="RelatieCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Startdatum" type="xs:dateTime">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPL">
+                <xs:sequence>
+                    <xs:element name="InfoHeader" type="tns:TPLHeader">
+                    </xs:element>
+                    <xs:element name="Opdrachtgever" type="xs:int">
+                    </xs:element>
+                    <xs:element name="OpdrachtgeverContact" type="xs:int">
+                    </xs:element>
+                    <xs:element name="TheoEinddatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="NettoKredietsom" type="xs:double">
+                    </xs:element>
+                    <xs:element name="BrutoKredietsom" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Kredietvergoeding" type="xs:double">
+                    </xs:element>
+                    <xs:element name="MaandTermijn" type="xs:double">
+                    </xs:element>
+                    <xs:element name="KwartaalTermijn" type="xs:double">
+                    </xs:element>
+                    <xs:element name="AantalMaanden" type="xs:int">
+                    </xs:element>
+                    <xs:element name="AantalKwartalen" type="xs:int">
+                    </xs:element>
+                    <xs:element name="DatumEersteAflossing" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Betaald" type="xs:double">
+                    </xs:element>
+                    <xs:element name="SaldoLening" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Achterstand" type="xs:double">
+                    </xs:element>
+                    <xs:element name="ResterendeLooptijd" type="xs:int">
+                    </xs:element>
+                    <xs:element name="EffectiefJaarpercentage" type="xs:double">
+                    </xs:element>
+                    <xs:element name="DatumLaatsteBetaling" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="BedragLaatsteBetaling" type="xs:double">
+                    </xs:element>
+                    <xs:element name="VolledigVervroegdeAflossing" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="xs:string">
+                    </xs:element>
+                    <xs:element name="MedelenerCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="OpenstaandeVertragingsrente" type="xs:double">
+                    </xs:element>
+                    <xs:element name="OpenstaandeKredietvergoeding" type="xs:double">
+                    </xs:element>
+                    <xs:element name="BetaaldeVertragingsrente" type="xs:double">
+                    </xs:element>
+                    <xs:element name="BetaaldeBoeterente" type="xs:double">
+                    </xs:element>
+                    <xs:element name="KostenVVA" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Voorstand" type="xs:double">
+                    </xs:element>
+                    <xs:element name="LeningSoort" type="xs:string">
+                    </xs:element>
+                    <xs:element name="MaandPercentage" type="xs:double">
+                    </xs:element>
+                    <xs:element name="BetaaldeKredietvergoeding" type="xs:double">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPRSMutatie">
+                <xs:sequence>
+                    <xs:element name="RelatieCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="UniekVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="ContractCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="ContractVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Datum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="AfBij" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Bedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="VolgnummerAfschrift" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="SaldoVoor" type="xs:double">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPRSMutaties">
+                <xs:sequence>
+                    <xs:element name="Mutaties" type="tns:PRSMutatieArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TDKHeader">
+                <xs:sequence>
+                    <xs:element name="RelatieCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="DatumUitbetaling" type="xs:dateTime">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TDK">
+                <xs:sequence>
+                    <xs:element name="InfoHeader" type="tns:TDKHeader">
+                    </xs:element>
+                    <xs:element name="Opdrachtgever" type="xs:int">
+                    </xs:element>
+                    <xs:element name="OpdrachtgeverContact" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Contractlimiet" type="xs:double">
+                    </xs:element>
+                    <xs:element name="MaandTermijn" type="xs:double">
+                    </xs:element>
+                    <xs:element name="TheoretischeLooptijd" type="xs:int">
+                    </xs:element>
+                    <xs:element name="DatumEersteAflossing" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Saldo" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Achterstand" type="xs:double">
+                    </xs:element>
+                    <xs:element name="VrijOpneembaar" type="xs:double">
+                    </xs:element>
+                    <xs:element name="EffectiefJaarpercentage" type="xs:double">
+                    </xs:element>
+                    <xs:element name="DatumLaatsteBetaling" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="BedragLaatsteBetaling" type="xs:double">
+                    </xs:element>
+                    <xs:element name="VolledigVervroegdeAflossing" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="xs:string">
+                    </xs:element>
+                    <xs:element name="MedelenerCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Maandpercentage" type="xs:double">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBRHeader">
+                <xs:sequence>
+                    <xs:element name="RelatieCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Opdrachtgever" type="xs:int">
+                    </xs:element>
+                    <xs:element name="OpdrachtgeverContact" type="xs:int">
+                    </xs:element>
+                    <xs:element name="VormCode" type="xs:string">
+                    </xs:element>
+                    <xs:element name="VormNaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ProductNaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ProductOmschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Team" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBROpdracht">
+                <xs:sequence>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="CodeBegunstigde" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Begunstigde" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Referentie" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Periodiciteit" type="xs:string">
+                    </xs:element>
+                    <xs:element name="AantalKeerPerPeriode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="PeriodeBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Maximaal" type="xs:double">
+                    </xs:element>
+                    <xs:element name="StartDatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="VolgendeDatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="BetaaldBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="RestBetaling" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Soort" type="xs:string">
+                    </xs:element>
+                    <xs:element name="NummerReservering" type="xs:int">
+                    </xs:element>
+                    <xs:element name="UniekVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="DatumLaatsteBetaling" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Prioriteit" type="xs:int">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBROpdrachten">
+                <xs:sequence>
+                    <xs:element name="BBROpdrachten" type="tns:BBROpdrachtArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSaldoReservering">
+                <xs:sequence>
+                    <xs:element name="Datum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Saldo" type="xs:double">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPRSMutatiesPeriode">
+                <xs:sequence>
+                    <xs:element name="Mutaties" type="tns:PRSMutatieArray">
+                    </xs:element>
+                    <xs:element name="DatumStart" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumEinde" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="SaldoStart" type="xs:double">
+                    </xs:element>
+                    <xs:element name="SaldoEinde" type="xs:double">
+                    </xs:element>
+                    <xs:element name="TotaalAf" type="xs:double">
+                    </xs:element>
+                    <xs:element name="TotaalBij" type="xs:double">
+                    </xs:element>
+                    <xs:element name="PeriodeStart" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="PeriodeEinde" type="xs:dateTime">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSaldoReserveringen">
+                <xs:sequence>
+                    <xs:element name="SaldoReserveringen" type="tns:SaldoReserveringArray">
+                    </xs:element>
+                    <xs:element name="Totaal" type="xs:double">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPersoon">
+                <xs:sequence>
+                    <xs:element name="Voornamen" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Achternaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorvoegsels" type="xs:string">
+                    </xs:element>
+                    <xs:element name="BSN" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Geboortedatum" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Geslacht" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Ondernemer" type="xs:string">
+                    </xs:element>
+                    <xs:element name="SoortOndernemer" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TAanmelding">
+                <xs:sequence>
+                    <xs:element name="Aanvrager" type="tns:TPersoon">
+                    </xs:element>
+                    <xs:element name="Partner" type="tns:TPersoon">
+                    </xs:element>
+                    <xs:element name="GezinsSituatie" type="tns:TGezinsSituatie">
+                    </xs:element>
+                    <xs:element name="Adres" type="tns:TAdres">
+                    </xs:element>
+                    <xs:element name="Contact" type="tns:TContact">
+                    </xs:element>
+                    <xs:element name="Waarom" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Crisis" type="xs:string">
+                    </xs:element>
+                    <xs:element name="JaNeeVraag1" type="tns:TJaNeeVraag">
+                    </xs:element>
+                    <xs:element name="JaNeeVraag2" type="tns:TJaNeeVraag">
+                    </xs:element>
+                    <xs:element name="JaNeeVraag3" type="tns:TJaNeeVraag">
+                    </xs:element>
+                    <xs:element name="JaNeeVraag4" type="tns:TJaNeeVraag">
+                    </xs:element>
+                    <xs:element name="JaNeeVraag5" type="tns:TJaNeeVraag">
+                    </xs:element>
+                    <xs:element name="JaNeeVraag6" type="tns:TJaNeeVraag">
+                    </xs:element>
+                    <xs:element name="JaNeeVraag7" type="tns:TJaNeeVraag">
+                    </xs:element>
+                    <xs:element name="JaNeeVraag8" type="tns:TJaNeeVraag">
+                    </xs:element>
+                    <xs:element name="JaNeeVraag9" type="tns:TJaNeeVraag">
+                    </xs:element>
+                    <xs:element name="JaNeeVraag10" type="tns:TJaNeeVraag">
+                    </xs:element>
+                    <xs:element name="OpenVraag1" type="tns:TOpenVraag">
+                    </xs:element>
+                    <xs:element name="OpenVraag2" type="tns:TOpenVraag">
+                    </xs:element>
+                    <xs:element name="OpenVraag3" type="tns:TOpenVraag">
+                    </xs:element>
+                    <xs:element name="OpenVraag4" type="tns:TOpenVraag">
+                    </xs:element>
+                    <xs:element name="OpenVraag5" type="tns:TOpenVraag">
+                    </xs:element>
+                    <xs:element name="OpenVraag6" type="tns:TOpenVraag">
+                    </xs:element>
+                    <xs:element name="OpenVraag7" type="tns:TOpenVraag">
+                    </xs:element>
+                    <xs:element name="OpenVraag8" type="tns:TOpenVraag">
+                    </xs:element>
+                    <xs:element name="OpenVraag9" type="tns:TOpenVraag">
+                    </xs:element>
+                    <xs:element name="OpenVraag10" type="tns:TOpenVraag">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TContact">
+                <xs:sequence>
+                    <xs:element name="TelefoonThuis" type="xs:string">
+                    </xs:element>
+                    <xs:element name="TelefoonMobiel" type="xs:string">
+                    </xs:element>
+                    <xs:element name="EmailAdres" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TGezinsSituatie">
+                <xs:sequence>
+                    <xs:element name="BurgerlijkeStaat" type="xs:string">
+                    </xs:element>
+                    <xs:element name="GemeenschapVanGoederen" type="xs:string">
+                    </xs:element>
+                    <xs:element name="GemeenschapVanGoederenDetail" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Kinderen" type="xs:string">
+                    </xs:element>
+                    <xs:element name="BurgerlijkeStaatSinds" type="xs:dateTime">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TJaNeeVraag">
+                <xs:sequence>
+                    <xs:element name="Vraag" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Antwoord" type="xs:boolean">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TOpenVraag">
+                <xs:sequence>
+                    <xs:element name="Vraag" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Antwoord" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TAfspraak">
+                <xs:sequence>
+                    <xs:element name="StartTijdStip" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="EindTijdStip" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="tns:TMedewerker">
+                    </xs:element>
+                    <xs:element name="Locatie" type="xs:string">
+                    </xs:element>
+                    <xs:element name="LocatieAdres" type="tns:TAdres">
+                    </xs:element>
+                    <xs:element name="LocatieSpreekkamer" type="xs:string">
+                    </xs:element>
+                    <xs:element name="AfspraakCode" type="xs:string">
+                    </xs:element>
+                    <xs:element name="AfspraakOmschrijving" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TTeam">
+                <xs:sequence>
+                    <xs:element name="Team" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Code" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Standaard" type="xs:boolean">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TKind">
+                <xs:sequence>
+                    <xs:element name="UniekVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Voornaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Achternaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Geboortedatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Activiteit" type="xs:string">
+                    </xs:element>
+                    <xs:element name="MeetelKind" type="xs:boolean">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TProductExtra">
+                <xs:sequence>
+                    <xs:element name="Code" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Tabel" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Opdrachtgever" type="xs:int">
+                    </xs:element>
+                    <xs:element name="OpdrachtgeverContact" type="xs:int">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TOrganisatie">
+                <xs:sequence>
+                    <xs:element name="RelatieCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Naam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="BezoekAdres" type="tns:TAdres">
+                    </xs:element>
+                    <xs:element name="PostAdres" type="tns:TAdres">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TTrajectTaak">
+                <xs:sequence>
+                    <xs:element name="StartDatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Actie" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ActieOmschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="MedewerkerUitgevoerd" type="xs:string">
+                    </xs:element>
+                    <xs:element name="DatumUitgevoerd" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="AfmeldCategorie" type="xs:string">
+                    </xs:element>
+                    <xs:element name="StapnummerTraject" type="xs:int">
+                    </xs:element>
+                    <xs:element name="TrajectCode" type="xs:string">
+                    </xs:element>
+                    <xs:element name="TrajectOmschrijving" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TContract">
+                <xs:sequence>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="RelatieZoeknaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ContractVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="ContractSoort" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ContractStatus" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Contactpersoon" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Inzage" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TContractenLijst">
+                <xs:sequence>
+                    <xs:element name="Contracten" type="tns:ContractArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPRSAfschrift">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                        Tbv. PRS Online Afschriften
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="VolgnummerAfschrift" type="xs:int">
+                    </xs:element>
+                    <xs:element name="DatumAfschrift" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="SaldoPrs" type="xs:double">
+                        <xs:annotation>
+                            <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                                Saldo Prs op moment vervaardiging afschrift
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TotaalBedragBijMutaties" type="xs:double">
+                        <xs:annotation>
+                            <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                                Conform vervaardiging afschrift
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TotaalBedragAfMutaties" type="xs:double">
+                        <xs:annotation>
+                            <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                                Conform vervaardiging afschrift
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TotaalInReserveringen" type="xs:double">
+                        <xs:annotation>
+                            <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                                Conform vervaardiging afschrift
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TotaalUitReserveringen" type="xs:double">
+                        <xs:annotation>
+                            <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                                Conform vervaardiging afschrift
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TotaalSaldoReserveringen" type="xs:double">
+                        <xs:annotation>
+                            <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                                Totaal saldo reserveringen op moment vervaardiging afschrift
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="HuidigPrsSaldo" type="xs:double">
+                    </xs:element>
+                    <xs:element name="HuidigTotaalSaldoReserveringen" type="xs:double">
+                    </xs:element>
+                    <xs:element name="VorigSaldo" type="xs:double">
+                    </xs:element>
+                    <xs:element name="VorigDatumAfschift" type="xs:dateTime">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPRSAfschriftMutatie">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                        tbv. PRS Online Afschrift mutaties
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="VolgnummerMutatie" type="xs:int">
+                        <xs:annotation>
+                            <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                                Uniek volgnummer van de mutatie
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Contractcode" type="xs:int">
+                        <xs:annotation>
+                            <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                                Eventueel de relatiecode van het contract waarop de mutatie betrekking heeft.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ContractVolgnummer" type="xs:int">
+                        <xs:annotation>
+                            <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                                Eventueel het volgnummer van het contract waarop de mutatie betrekking heeft.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="DatumMutatie" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="IndicatieAf" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="IndicatieBij" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Bedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                                Afhankelijk van de waarde van bestaande parameter 757 van Allegro
+                                wordt in deze omschrijving de eventuele toevoeging &apos;BBR: &apos; weggelaten.
+                                Afhankelijk van de waarde van bestaande parameter 758 van Allegro
+                                wordt in deze omschrijving het eventuele saldo van een reservering
+                                al dan niet weggelaten.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Rekeningnummer" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ExtraToelichting" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Reservering" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                                indicatie of dit een mutatie op een reservering betreft
+                                (in/uit reservering - van/naar prs: indien het een mutatie is
+                                uit een reservering die direct is doorbetaald, krijgt deze
+                                mutatie dus niet de indicatie &apos;reservering&apos;).
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPRSAfschriftReservering">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                        tbv. PRS Online Afschrift reserveringen
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="VolgnummerReservering" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Saldo" type="xs:double">
+                        <xs:annotation>
+                            <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                                Het saldo van de reservering op datum vervaardiging afschrift.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPRSAfschriften">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                        Array van TPRSAfschrift
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="Afschriften" type="tns:PRSAfschriftArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPRSAfschriftMutaties">
+                <xs:sequence>
+                    <xs:element name="AfschriftMutaties" type="tns:PRSAfschriftMutatieArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPRSAfschriftReserveringen">
+                <xs:sequence>
+                    <xs:element name="AfschriftReserveringen" type="tns:PRSAfschriftReseveringArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TCasusDeelopdracht">
+                <xs:sequence>
+                    <xs:element name="VolgnummerCasus" type="xs:int">
+                    </xs:element>
+                    <xs:element name="VolgnummerKlantopdracht" type="xs:int">
+                    </xs:element>
+                    <xs:element name="ToelichtingKlantopdracht" type="xs:string">
+                    </xs:element>
+                    <xs:element name="VolgnummerDeelopdracht" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Naam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="RubriekSoort" type="xs:string">
+                    </xs:element>
+                    <xs:element name="RubriekNaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Toelichting" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Startdatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumUiterlijk" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumUitgevoerd" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumNietUitgevoerd" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="NaamLang" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="THulpverlener">
+                <xs:sequence>
+                    <xs:element name="Code" type="xs:int">
+                    </xs:element>
+                    <xs:element name="OrganisatieCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="OrganisatieNaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ContactCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="ContactNaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="SoortHulp" type="xs:string">
+                    </xs:element>
+                    <xs:element name="InzageGevraagd" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="DatumInzageGevraagd" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Inzage" type="xs:string">
+                    </xs:element>
+                    <xs:element name="DatumInzage" type="xs:dateTime">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TContactpersoon">
+                <xs:sequence>
+                    <xs:element name="Code" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Achternaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorvoegsels" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voornaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorletters" type="xs:string">
+                    </xs:element>
+                    <xs:element name="GeboorteDatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Telefoon" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Email" type="xs:string">
+                    </xs:element>
+                    <xs:element name="NogBevestigen" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Actief" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="MagAanmelden" type="xs:boolean">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TExtraProductHeader">
+                <xs:sequence>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="AanvraagDatum" type="xs:dateTime">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TExtraProduct">
+                <xs:sequence>
+                    <xs:element name="InfoHeader" type="tns:TExtraProductHeader">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Opdrachtgever" type="xs:int">
+                    </xs:element>
+                    <xs:element name="OpdrachtgeverContact" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Startdatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Status" type="xs:string">
+                    </xs:element>
+                    <xs:element name="StatusOmschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="UitvoerendeOrganisatie" type="xs:int">
+                    </xs:element>
+                    <xs:element name="UitvoerendeOrganisatieContact" type="xs:int">
+                    </xs:element>
+                    <xs:element name="GeschatteEinddatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="PartnerCode" type="xs:int">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TCasusToelichting">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                        Als toelichting 4 met subtitel 0 wordt opgevraagd van een casus, en toelichting 4 bestaat uit 7 subtitels, komen dus 7 resultaten terug in de array:
+                        - Toelichting 4 met subtitel 1
+                        - Toelichting 4 met subtitel 2
+                        - Etc.
+
+                        Bij deze resultaten zullen de gegevens Titel, TitelTitel, Medewerker en Datum allemaal gelijk zijn (ze betreffen immers allemaal toelichting 4).
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="VolgnummerCasus" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Titel" type="xs:int">
+                    </xs:element>
+                    <xs:element name="TitelTitel" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Datum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="SubTitel" type="xs:int">
+                    </xs:element>
+                    <xs:element name="SubTitelTitel" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Tekst" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TOpdrachtgeverKlant">
+                <xs:sequence>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Zoeknaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="GeboorteDatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="BSN" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Adres" type="tns:TAdres">
+                    </xs:element>
+                    <xs:element name="CasusVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="AanvraagSRVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="SRVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="AanvraagBBRVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="BBRVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="CasusCrisis" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="CasusFase" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Trajecten" type="tns:TrajectSoortArray">
+                    </xs:element>
+                    <xs:element name="BBRVorm" type="tns:BBRVormArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TTrajectSoort">
+                <xs:sequence>
+                    <xs:element name="Trajectnaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Trajectcodes" type="xs:int">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TTraject">
+                <xs:sequence>
+                    <xs:element name="UniekTrajectNummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="TrajectSoort" type="tns:TTrajectSoort">
+                    </xs:element>
+                    <xs:element name="Startdatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="StartMedewerker" type="tns:TMedewerker">
+                    </xs:element>
+                    <xs:element name="Einddatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="EindMedewerker" type="tns:TMedewerker">
+                    </xs:element>
+                    <xs:element name="Lopend" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Contractvolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="ContractVolgnummerSoort" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBRVorm">
+                <xs:sequence>
+                    <xs:element name="BBRVormCode" type="xs:string">
+                    </xs:element>
+                    <xs:element name="BBRVormOmschrijving" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TCasusNotitie">
+                <xs:sequence>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Datum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Beschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="tns:TMedewerker">
+                    </xs:element>
+                    <xs:element name="PDF" type="xs:boolean">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPersoonAanvraag">
+                <xs:sequence>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Voornamen" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Achternaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorvoegsels" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Geslacht" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Geboortedatum" type="xs:int">
+                    </xs:element>
+                    <xs:element name="BSN" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Nationaliteit" type="tns:eNationaliteit">
+                    </xs:element>
+                    <xs:element name="RekeningIBAN" type="xs:string">
+                    </xs:element>
+                    <xs:element name="RekeningBIC" type="xs:string">
+                    </xs:element>
+                    <xs:element name="RekeningBank" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorletters" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TAanvraag">
+                <xs:sequence>
+                    <xs:element name="Aanvrager" type="tns:TPersoonAanvraag">
+                    </xs:element>
+                    <xs:element name="MetPartner" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Partner" type="tns:TPersoonAanvraag">
+                    </xs:element>
+                    <xs:element name="Bezoekadres" type="tns:TAdres">
+                    </xs:element>
+                    <xs:element name="Postadres" type="tns:TAdres">
+                    </xs:element>
+                    <xs:element name="Contact" type="tns:TContact">
+                    </xs:element>
+                    <xs:element name="CorrespondentieMail" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="GezinsSituatie" type="tns:TGezinsSituatie">
+                    </xs:element>
+                    <xs:element name="AantalKinderen" type="xs:int">
+                    </xs:element>
+                    <xs:element name="ToelichtingKinderen" type="xs:string">
+                    </xs:element>
+                    <xs:element name="InkomenAanvrager" type="tns:TInkomen">
+                    </xs:element>
+                    <xs:element name="InkomenPartner" type="tns:TInkomen">
+                    </xs:element>
+                    <xs:element name="Uitgaven" type="tns:TUitgaven">
+                    </xs:element>
+                    <xs:element name="Schuldbedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Schuldeisers" type="xs:int">
+                    </xs:element>
+                    <xs:element name="SoortLening" type="xs:string">
+                    </xs:element>
+                    <xs:element name="GewenstKrediet" type="xs:double">
+                    </xs:element>
+                    <xs:element name="GewenstAflossing" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Bestedingsdoel" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Indiener" type="xs:string">
+                    </xs:element>
+                    <xs:element name="HulpverlenerNaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="OpdrachtgeverCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Contactpersoon" type="xs:string">
+                    </xs:element>
+                    <xs:element name="KredietSoort" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Borgstelling" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Toelichting" type="xs:string">
+                    </xs:element>
+                    <xs:element name="CollectieveBorgstelling" type="xs:boolean">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TInkomen">
+                <xs:sequence>
+                    <xs:element name="SoortInkomen" type="tns:eSoortInkomen">
+                    </xs:element>
+                    <xs:element name="Beroep" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Werkgever" type="xs:string">
+                    </xs:element>
+                    <xs:element name="WerkzaamSinds" type="xs:int">
+                    </xs:element>
+                    <xs:element name="VastDienstverband" type="tns:eJaNeeLeeg">
+                    </xs:element>
+                    <xs:element name="DienstVerbandTot" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Loon" type="xs:double">
+                    </xs:element>
+                    <xs:element name="LoonPeriode" type="tns:ePeriode">
+                    </xs:element>
+                    <xs:element name="SoortUitkering" type="xs:string">
+                    </xs:element>
+                    <xs:element name="UitkeringsInstantie" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Uitkering" type="xs:double">
+                    </xs:element>
+                    <xs:element name="UitkeringPeriode" type="tns:ePeriode">
+                    </xs:element>
+                    <xs:element name="Pensioen" type="xs:double">
+                    </xs:element>
+                    <xs:element name="PensioenPeriode" type="tns:ePeriode">
+                    </xs:element>
+                    <xs:element name="KGB" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Vrijwilligers" type="xs:double">
+                    </xs:element>
+                    <xs:element name="VrijwilligersPeriode" type="tns:ePeriode">
+                    </xs:element>
+                    <xs:element name="KinderAlimentatieBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="PartnerAlimentatieBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="OverigInkomen" type="xs:string">
+                    </xs:element>
+                    <xs:element name="OverigInkomenBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="OverigInkomenPeriode" type="tns:ePeriode">
+                    </xs:element>
+                    <xs:element name="Toelichting" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TUitgaven">
+                <xs:sequence>
+                    <xs:element name="WoningSoort" type="tns:eWoningSoort">
+                    </xs:element>
+                    <xs:element name="Kostgeld" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Huur" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Huurtoeslag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="MaandHypotheek" type="xs:double">
+                    </xs:element>
+                    <xs:element name="MaandTeruggave" type="xs:double">
+                    </xs:element>
+                    <xs:element name="SaldoHypotheek" type="xs:double">
+                    </xs:element>
+                    <xs:element name="WOZWaarde" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Zorgpremie" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Zorgtoeslag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="KinderAlimentatieBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="PartnerAlimentatieBedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="OverigUitgaven" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Toelichting" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TDocument">
+                <xs:sequence>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="ContractVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Achternaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Geslacht" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Geboortedatum" type="xs:int">
+                    </xs:element>
+                    <xs:element name="BSN" type="xs:int">
+                    </xs:element>
+                    <xs:element name="SoortDocument" type="tns:eSoortDocument">
+                    </xs:element>
+                    <xs:element name="Onderwerp" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="DocumentNaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Document" type="xs:base64Binary">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBijlage">
+                <xs:sequence>
+                    <xs:element name="Soort" type="tns:eSoortDocument">
+                    </xs:element>
+                    <xs:element name="Extension" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Bijlage" type="xs:base64Binary">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TRelatieProduct">
+                <xs:sequence>
+                    <xs:element name="Contractnummer" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Product" type="xs:string">
+                    </xs:element>
+                    <xs:element name="NaamProduct" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Status" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Startdatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Einddatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Eindstatus" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="tns:TMedewerker">
+                    </xs:element>
+                    <xs:element name="Team" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TAanvraagLening">
+                <xs:complexContent><xs:extension base="tns:TAanvraag">
+                    <xs:sequence>
+                        <xs:element name="Schulden" type="tns:SchuldArray">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension></xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="TAanvraagDK">
+                <xs:complexContent><xs:extension base="tns:TAanvraag">
+                    <xs:sequence>
+                    </xs:sequence>
+                </xs:extension></xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="TLijstOpdrachtgever">
+                <xs:sequence>
+                    <xs:element name="RelatieCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Naam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Vestigingsplaats" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TLijstKredietsoort">
+                <xs:sequence>
+                    <xs:element name="Code" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSchuld">
+                <xs:sequence>
+                    <xs:element name="Naam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Schuld" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Studieschuld" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Referentie" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="CodeEiser" type="xs:int">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TAllegroDocument">
+                <xs:sequence>
+                    <xs:element name="DocumentSleutel" type="tns:TDocumentSleutel">
+                    </xs:element>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Activiteit" type="xs:int">
+                    </xs:element>
+                    <xs:element name="SoortActiviteit" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Onderwerp" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TDocumentSleutel">
+                <xs:sequence>
+                    <xs:element name="ComponentCode" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ArchiefDatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Kenmerk" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TPLAanvraag">
+                <xs:sequence>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="DatumAanvraag" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="SoortLening" type="tns:eSoortLening">
+                    </xs:element>
+                    <xs:element name="MedelenerCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="xs:string">
+                    </xs:element>
+                    <xs:element name="GewenstKrediet" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Status" type="tns:eStatusAanvraag">
+                    </xs:element>
+                    <xs:element name="DatumStatus" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="RedenAfwijzing" type="xs:string">
+                    </xs:element>
+                    <xs:element name="DatumStatusA" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumStatusB" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumStatusC" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumStatusD" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumStatusE" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumStatusAfIn" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="DatumStatusFiat" type="xs:dateTime">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TRCHeader">
+                <xs:sequence>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Ingangsdatum" type="xs:dateTime">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TRC">
+                <xs:sequence>
+                    <xs:element name="InfoHeader" type="tns:TRCHeader">
+                    </xs:element>
+                    <xs:element name="Medewerker" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Rentecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="RentecodeOmschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="TabelIngangsdatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="RentepercentagePositief" type="xs:double">
+                    </xs:element>
+                    <xs:element name="RentepercentageNegatief" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Jaarrente" type="tns:RCJaarrenteArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TRCJaarrente">
+                <xs:sequence>
+                    <xs:element name="Jaar" type="xs:int">
+                    </xs:element>
+                    <xs:element name="RentePositief" type="xs:double">
+                    </xs:element>
+                    <xs:element name="RenteNegatief" type="xs:double">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBoxHeader">
+                <xs:sequence>
+                    <xs:element name="Code" type="xs:long">
+                    </xs:element>
+                    <xs:element name="AfzenderOntvanger" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Onderwerp" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Tijdstip" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="IndicatieOntvangen" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="IndicatieGelezen" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="IndicatieArchief" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="IndicatieBijlage" type="xs:boolean">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBoxDetail">
+                <xs:sequence>
+                    <xs:element name="Code" type="xs:long">
+                    </xs:element>
+                    <xs:element name="Relatie" type="tns:TRelatie">
+                    </xs:element>
+                    <xs:element name="ContractVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="ContractSoort" type="xs:string">
+                    </xs:element>
+                    <xs:element name="SoortOpdracht" type="xs:string">
+                    </xs:element>
+                    <xs:element name="CodeEiserBegunstigde" type="xs:int">
+                    </xs:element>
+                    <xs:element name="NummerReservering" type="xs:int">
+                    </xs:element>
+                    <xs:element name="UniekVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="AanmaakDatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="OntvangstDatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="Nieuw" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="EmailDatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="AanmaakMedewerker" type="tns:TMedewerker">
+                    </xs:element>
+                    <xs:element name="AanmaakRelatie" type="tns:TRelatie">
+                    </xs:element>
+                    <xs:element name="AfzenderMedewerker" type="tns:TMedewerker">
+                    </xs:element>
+                    <xs:element name="AfzenderRelatie" type="tns:TRelatie">
+                    </xs:element>
+                    <xs:element name="OntvangerMedewerker" type="tns:TMedewerker">
+                    </xs:element>
+                    <xs:element name="OntvangerRelatie" type="tns:TRelatie">
+                    </xs:element>
+                    <xs:element name="LeesDatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="LeesMedewerker" type="tns:TMedewerker">
+                    </xs:element>
+                    <xs:element name="LeesRelatie" type="tns:TRelatie">
+                    </xs:element>
+                    <xs:element name="ArchiefDatum" type="xs:dateTime">
+                    </xs:element>
+                    <xs:element name="ArchiefMedewerker" type="tns:TMedewerker">
+                    </xs:element>
+                    <xs:element name="ArchiefRelatie" type="tns:TRelatie">
+                    </xs:element>
+                    <xs:element name="Onderwerp" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Tekst" type="xs:string">
+                    </xs:element>
+                    <xs:element name="BijlagenAantal" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Bijlagen" type="tns:TBBoxBijlageArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBoxBijlage">
+                <xs:sequence>
+                    <xs:element name="Code" type="xs:long">
+                    </xs:element>
+                    <xs:element name="UniekVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Bijlage" type="xs:base64Binary">
+                    </xs:element>
+                    <xs:element name="BijlageSize" type="xs:long">
+                    </xs:element>
+                    <xs:element name="BijlageNaam" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBoxGeadresseerde">
+                <xs:sequence>
+                    <xs:element name="Medewerker" type="tns:TMedewerker">
+                    </xs:element>
+                    <xs:element name="Informatie" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBoxTekst">
+                <xs:sequence>
+                    <xs:element name="Code" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Naam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Onderwerp" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Tekst" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSorteerInfo">
+                <xs:sequence>
+                    <xs:element name="Veld" type="tns:eVeldSortering">
+                    </xs:element>
+                    <xs:element name="Oplopend" type="xs:boolean">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBRBegunstigde">
+                <xs:sequence>
+                    <xs:element name="Achternaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorvoegsels" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorletters" type="xs:string">
+                    </xs:element>
+                    <xs:element name="PlaatsnaamBezoekadres" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="OpdrachtSoortKeuze" type="tns:eSoortOpdracht">
+                    </xs:element>
+                    <xs:element name="KeuzeReservering" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Betaalwijze" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Rekeningnummers" type="tns:RekeningnummerArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TAfspraakSoorten">
+                <xs:sequence>
+                    <xs:element name="Code" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TContract2">
+                <xs:sequence>
+                    <xs:element name="ContractCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="ContractVolgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="ContractSoort" type="xs:string">
+                    </xs:element>
+                    <xs:element name="ContractVolgnrSoort" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TRelatiecodeBedrijfcode">
+                <xs:sequence>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Bedrijfscode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Bedrijfsnaam" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TRekeningnummer">
+                <xs:sequence>
+                    <xs:element name="Volgnummer" type="xs:int">
+                    </xs:element>
+                    <xs:element name="IBAN" type="xs:string">
+                    </xs:element>
+                    <xs:element name="BIC" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Bank" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Omschrijving" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Buitenland" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Geblokkeerd" type="xs:boolean">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TAanvraag2Persoon">
+                <xs:sequence>
+                    <xs:element name="Relatiecode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="BSN" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Voornamen" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorletters" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Voorvoegsels" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Achternaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Geslacht" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Geboortedatum" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Nationaliteit" type="tns:eNationaliteit">
+                    </xs:element>
+                    <xs:element name="Rekeningnummers" type="tns:Rekeningnummer2Array">
+                    </xs:element>
+                    <xs:element name="Bezoekadres" type="tns:TAdres">
+                    </xs:element>
+                    <xs:element name="Postadres" type="tns:TAdres">
+                    </xs:element>
+                    <xs:element name="CorrespondentieMail" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="CorrespondentieWeb" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Contact" type="tns:TContact">
+                    </xs:element>
+                    <xs:element name="Inkomen" type="tns:InkomenArray">
+                    </xs:element>
+                    <xs:element name="Uitgaven" type="tns:UitgavenArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TAanvraag2">
+                <xs:sequence>
+                    <xs:element name="Bedrijfscode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Aanvrager" type="tns:TAanvraag2Persoon">
+                    </xs:element>
+                    <xs:element name="MetPartner" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Partner" type="tns:TAanvraag2Persoon">
+                    </xs:element>
+                    <xs:element name="GezinsSituatie" type="tns:TGezinsSituatie">
+                    </xs:element>
+                    <xs:element name="AantalKinderen" type="xs:int">
+                    </xs:element>
+                    <xs:element name="ToelichtingKinderen" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Schuldbedrag" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Schuldeisers" type="xs:int">
+                    </xs:element>
+                    <xs:element name="SoortLening" type="xs:string">
+                    </xs:element>
+                    <xs:element name="GewenstKrediet" type="xs:double">
+                    </xs:element>
+                    <xs:element name="GewenstAflossing" type="xs:double">
+                    </xs:element>
+                    <xs:element name="Bestedingsdoel" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Indiener" type="xs:string">
+                    </xs:element>
+                    <xs:element name="HulpverlenerNaam" type="xs:string">
+                    </xs:element>
+                    <xs:element name="OpdrachtgeverCode" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Contactpersoon" type="xs:string">
+                    </xs:element>
+                    <xs:element name="KredietSoort" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Borgstelling" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="Toelichting" type="xs:string">
+                    </xs:element>
+                    <xs:element name="CollectieveBorgstelling" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="OverigeGegevens" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TAanvraag2Lening">
+                <xs:complexContent><xs:extension base="tns:TAanvraag2">
+                    <xs:sequence>
+                        <xs:element name="Schulden" type="tns:SchuldArray">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension></xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="TAanvraag2DK">
+                <xs:complexContent><xs:extension base="tns:TAanvraag2">
+                    <xs:sequence>
+                    </xs:sequence>
+                </xs:extension></xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="TAanvraag2SR">
+                <xs:complexContent><xs:extension base="tns:TAanvraag2">
+                    <xs:sequence>
+                        <xs:element name="NPS" type="xs:boolean">
+                        </xs:element>
+                        <xs:element name="OorzaakSchulden" type="xs:string">
+                        </xs:element>
+                        <xs:element name="Bewindvoerder" type="tns:TOrganisatie">
+                        </xs:element>
+                        <xs:element name="ToelichtingAlgemeen" type="xs:string">
+                        </xs:element>
+                        <xs:element name="ToelichtingSO" type="xs:string">
+                        </xs:element>
+                        <xs:element name="ToelichtingAanmelding" type="xs:string">
+                        </xs:element>
+                        <xs:element name="ToelichtingVoorstel" type="xs:string">
+                        </xs:element>
+                        <xs:element name="TotaalschuldVullen" type="xs:boolean">
+                        </xs:element>
+                        <xs:element name="OpdrachtgeverOvernemen" type="xs:boolean">
+                        </xs:element>
+                        <xs:element name="HulpverlenerOvernemen" type="xs:boolean">
+                        </xs:element>
+                        <xs:element name="OpenVragen" type="tns:OpenVraagArray">
+                        </xs:element>
+                        <xs:element name="GeslotenVragen" type="tns:GeslotenVraagArray">
+                        </xs:element>
+                        <xs:element name="Schulden" type="tns:SchuldArray">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension></xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="TAanvraagSR">
+                <xs:complexContent><xs:extension base="tns:TAanvraag">
+                    <xs:sequence>
+                        <xs:element name="Bedrijfscode" type="xs:int">
+                        </xs:element>
+                        <xs:element name="CorrespondentieWeb" type="xs:boolean">
+                        </xs:element>
+                        <xs:element name="NPS" type="xs:boolean">
+                        </xs:element>
+                        <xs:element name="OorzaakSchulden" type="xs:string">
+                        </xs:element>
+                        <xs:element name="Bewindvoerder" type="tns:TOrganisatie">
+                        </xs:element>
+                        <xs:element name="ToelichtingAlgemeen" type="xs:string">
+                        </xs:element>
+                        <xs:element name="ToelichtingSO" type="xs:string">
+                        </xs:element>
+                        <xs:element name="ToelichtingAanmelding" type="xs:string">
+                        </xs:element>
+                        <xs:element name="ToelichtingVoorstel" type="xs:string">
+                        </xs:element>
+                        <xs:element name="TotaalschuldVullen" type="xs:boolean">
+                        </xs:element>
+                        <xs:element name="OpdrachtgeverOvernemen" type="xs:boolean">
+                        </xs:element>
+                        <xs:element name="HulpverlenerOvernemen" type="xs:boolean">
+                        </xs:element>
+                        <xs:element name="OpenVragen" type="tns:OpenVraagArray">
+                        </xs:element>
+                        <xs:element name="GeslotenVragen" type="tns:GeslotenVraagArray">
+                        </xs:element>
+                        <xs:element name="Schulden" type="tns:SchuldArray">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension></xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="TGeslotenVraag">
+                <xs:sequence>
+                    <xs:element name="Vraag" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Antwoord" type="tns:eJaNeeLeeg">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TableRequestInfo">
+                <xs:sequence>
+                    <xs:element name="UserFilter" type="xs:string">
+                    </xs:element>
+                    <xs:element name="IncludeSchema" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="MaxRecords" type="xs:int">
+                    </xs:element>
+                    <xs:element name="Parameters" type="tns:DataParameterArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DataParameter">
+                <xs:sequence>
+                    <xs:element name="Name" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Value" type="xs:anyType">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SimpleRequestInfo">
+                <xs:sequence>
+                    <xs:element name="SQL" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Table" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Where" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Parameters" type="tns:SimpleDataParameterArray">
+                    </xs:element>
+                    <xs:element name="MaxRecords" type="xs:int">
+                    </xs:element>
+                    <xs:element name="IncludeSchema" type="xs:boolean">
+                    </xs:element>
+                    <xs:element name="SimpleMode" type="xs:boolean">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SimpleDataParameter">
+                <xs:sequence>
+                    <xs:element name="DataType" type="tns:SimpleDataType">
+                    </xs:element>
+                    <xs:element name="Name" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Value" type="xs:string">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SimpleDataResult">
+                <xs:sequence>
+                    <xs:element name="TableName" type="xs:string">
+                    </xs:element>
+                    <xs:element name="FieldInfo" type="tns:SimpleFieldInfoArray">
+                    </xs:element>
+                    <xs:element name="Data" type="tns:StringArrayArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SimpleFieldInfo">
+                <xs:sequence>
+                    <xs:element name="Name" type="xs:string">
+                    </xs:element>
+                    <xs:element name="DataType" type="tns:SimpleDataType">
+                    </xs:element>
+                    <xs:element name="Hidden" type="xs:boolean">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SimpleDelta">
+                <xs:sequence>
+                    <xs:element name="TableName" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Fields" type="tns:StringArray">
+                    </xs:element>
+                    <xs:element name="Rows" type="tns:SimpleDeltaChangeArray">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SimpleDeltaChange">
+                <xs:sequence>
+                    <xs:element name="OldValues" type="tns:StringArray">
+                    </xs:element>
+                    <xs:element name="NewValues" type="tns:StringArray">
+                    </xs:element>
+                    <xs:element name="Error" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Mode" type="tns:SimpleDataMode">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="UserInfo">
+                <xs:sequence>
+                    <xs:element name="SessionID" type="xs:string">
+                    </xs:element>
+                    <xs:element name="UserID" type="xs:string">
+                    </xs:element>
+                    <xs:element name="Privileges" type="tns:StringArray">
+                    </xs:element>
+                    <xs:element name="Attributes" type="tns:VariantArray">
+                    </xs:element>
+                    <xs:element name="UserData" type="xs:base64Binary">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TableRequestInfoV5">
+                <xs:complexContent><xs:extension base="tns:TableRequestInfo">
+                    <xs:sequence>
+                        <xs:element name="WhereClause" type="xs:anyType">
+                        </xs:element>
+                        <xs:element name="DynamicSelectFieldNames" type="tns:StringArray">
+                        </xs:element>
+                        <xs:element name="Sorting" type="tns:ColumnSorting">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension></xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="ColumnSorting">
+                <xs:sequence>
+                    <xs:element name="FieldName" type="xs:string">
+                    </xs:element>
+                    <xs:element name="SortDirection" type="tns:ColumnSortDirection">
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TableRequestInfoV6">
+                <xs:complexContent><xs:extension base="tns:TableRequestInfo">
+                    <xs:sequence>
+                        <xs:element name="Sql" type="xs:string">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension></xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="SimpleDataResultEx">
+                <xs:complexContent><xs:extension base="tns:SimpleDataResult">
+                    <xs:sequence>
+                    </xs:sequence>
+                </xs:extension></xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="TestArray">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                        Array van TTest.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="TTest" minOccurs="0" maxOccurs="unbounded" type="tns:TTest" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="IntegerArray">
+                <xs:sequence>
+                    <xs:element name="int" minOccurs="0" maxOccurs="unbounded" type="xs:int" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CasusHeaderArray">
+                <xs:annotation>
+                    <xs:documentation>
+
+
+
+
+
+
+
+
+
+
+
+
+                        Deze array bevat TCasusHeader items.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                    <xs:element name="TCasusHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TCasusHeader" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CasusPVAArray">
+                <xs:sequence>
+                    <xs:element name="TCasusPVA" minOccurs="0" maxOccurs="unbounded" type="tns:TCasusPVA" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CasusPVAProductArray">
+                <xs:sequence>
+                    <xs:element name="TCasusPVAProduct" minOccurs="0" maxOccurs="unbounded" type="tns:TCasusPVAProduct" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BooleanArray">
+                <xs:sequence>
+                    <xs:element name="boolean" minOccurs="0" maxOccurs="unbounded" type="xs:boolean" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SRVAanvraagHeaderArray">
+                <xs:sequence>
+                    <xs:element name="TSRVAanvraagHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TSRVAanvraagHeader" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SRVEiserArray">
+                <xs:sequence>
+                    <xs:element name="TSRVEiser" minOccurs="0" maxOccurs="unbounded" type="tns:TSRVEiser" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SBEiserArray">
+                <xs:sequence>
+                    <xs:element name="TSBEiser" minOccurs="0" maxOccurs="unbounded" type="tns:TSBEiser" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SBHeaderArray">
+                <xs:sequence>
+                    <xs:element name="TSBHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TSBHeader" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PLHeaderArray">
+                <xs:sequence>
+                    <xs:element name="TPLHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TPLHeader" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PRSMutatieArray">
+                <xs:sequence>
+                    <xs:element name="TPRSMutatie" minOccurs="0" maxOccurs="unbounded" type="tns:TPRSMutatie" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DKHeaderArray">
+                <xs:sequence>
+                    <xs:element name="TDKHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TDKHeader" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BBRHeaderArray">
+                <xs:sequence>
+                    <xs:element name="TBBRHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TBBRHeader" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BBROpdrachtArray">
+                <xs:sequence>
+                    <xs:element name="TBBROpdracht" minOccurs="0" maxOccurs="unbounded" type="tns:TBBROpdracht" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SaldoReserveringArray">
+                <xs:sequence>
+                    <xs:element name="TSaldoReservering" minOccurs="0" maxOccurs="unbounded" type="tns:TSaldoReservering" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TeamArray">
+                <xs:sequence>
+                    <xs:element name="TTeam" minOccurs="0" maxOccurs="unbounded" type="tns:TTeam" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="KindArray">
+                <xs:sequence>
+                    <xs:element name="TKind" minOccurs="0" maxOccurs="unbounded" type="tns:TKind" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TrajectTaakArray">
+                <xs:sequence>
+                    <xs:element name="TTrajectTaak" minOccurs="0" maxOccurs="unbounded" type="tns:TTrajectTaak" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="OrganisatieArray">
+                <xs:sequence>
+                    <xs:element name="TOrganisatie" minOccurs="0" maxOccurs="unbounded" type="tns:TOrganisatie" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AfspraakArray">
+                <xs:sequence>
+                    <xs:element name="TAfspraak" minOccurs="0" maxOccurs="unbounded" type="tns:TAfspraak" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ContractArray">
+                <xs:sequence>
+                    <xs:element name="TContract" minOccurs="0" maxOccurs="unbounded" type="tns:TContract" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PRSAfschriftArray">
+                <xs:sequence>
+                    <xs:element name="TPRSAfschrift" minOccurs="0" maxOccurs="unbounded" type="tns:TPRSAfschrift" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PRSAfschriftMutatieArray">
+                <xs:sequence>
+                    <xs:element name="TPRSAfschriftMutatie" minOccurs="0" maxOccurs="unbounded" type="tns:TPRSAfschriftMutatie" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PRSAfschriftReseveringArray">
+                <xs:sequence>
+                    <xs:element name="TPRSAfschriftReservering" minOccurs="0" maxOccurs="unbounded" type="tns:TPRSAfschriftReservering" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CasusDeelopdrachtArray">
+                <xs:sequence>
+                    <xs:element name="TCasusDeelopdracht" minOccurs="0" maxOccurs="unbounded" type="tns:TCasusDeelopdracht" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="HulpverlenerArray">
+                <xs:sequence>
+                    <xs:element name="THulpverlener" minOccurs="0" maxOccurs="unbounded" type="tns:THulpverlener" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ContactpersoonArray">
+                <xs:sequence>
+                    <xs:element name="TContactpersoon" minOccurs="0" maxOccurs="unbounded" type="tns:TContactpersoon" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TExtraProductHeaderArray">
+                <xs:sequence>
+                    <xs:element name="TExtraProductHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TExtraProductHeader" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CasusToelichtingArray">
+                <xs:sequence>
+                    <xs:element name="TCasusToelichting" minOccurs="0" maxOccurs="unbounded" type="tns:TCasusToelichting" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TrajectSoortArray">
+                <xs:sequence>
+                    <xs:element name="TTrajectSoort" minOccurs="0" maxOccurs="unbounded" type="tns:TTrajectSoort" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="OpdrachtgeverKlantArray">
+                <xs:sequence>
+                    <xs:element name="TOpdrachtgeverKlant" minOccurs="0" maxOccurs="unbounded" type="tns:TOpdrachtgeverKlant" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TrajectArray">
+                <xs:sequence>
+                    <xs:element name="TTraject" minOccurs="0" maxOccurs="unbounded" type="tns:TTraject" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BBRVormArray">
+                <xs:sequence>
+                    <xs:element name="TBBRVorm" minOccurs="0" maxOccurs="unbounded" type="tns:TBBRVorm" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CasusNotitieArray">
+                <xs:sequence>
+                    <xs:element name="TCasusNotitie" minOccurs="0" maxOccurs="unbounded" type="tns:TCasusNotitie" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BijlageArray">
+                <xs:sequence>
+                    <xs:element name="TBijlage" minOccurs="0" maxOccurs="unbounded" type="tns:TBijlage" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RelatieProductArray">
+                <xs:sequence>
+                    <xs:element name="TRelatieProduct" minOccurs="0" maxOccurs="unbounded" type="tns:TRelatieProduct" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LijstOpdrachtgeverArray">
+                <xs:sequence>
+                    <xs:element name="TLijstOpdrachtgever" minOccurs="0" maxOccurs="unbounded" type="tns:TLijstOpdrachtgever" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LijstKredietsoortArray">
+                <xs:sequence>
+                    <xs:element name="TLijstKredietsoort" minOccurs="0" maxOccurs="unbounded" type="tns:TLijstKredietsoort" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SchuldArray">
+                <xs:sequence>
+                    <xs:element name="TSchuld" minOccurs="0" maxOccurs="unbounded" type="tns:TSchuld" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AllegroDocumentArray">
+                <xs:sequence>
+                    <xs:element name="TAllegroDocument" minOccurs="0" maxOccurs="unbounded" type="tns:TAllegroDocument" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PLAanvraagArray">
+                <xs:sequence>
+                    <xs:element name="TPLAanvraag" minOccurs="0" maxOccurs="unbounded" type="tns:TPLAanvraag" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RCJaarrenteArray">
+                <xs:sequence>
+                    <xs:element name="TRCJaarrente" minOccurs="0" maxOccurs="unbounded" type="tns:TRCJaarrente" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RCHeaderArray">
+                <xs:sequence>
+                    <xs:element name="TRCHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TRCHeader" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBoxHeaderArray">
+                <xs:sequence>
+                    <xs:element name="TBBoxHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TBBoxHeader" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBoxBijlageArray">
+                <xs:sequence>
+                    <xs:element name="TBBoxBijlage" minOccurs="0" maxOccurs="unbounded" type="tns:TBBoxBijlage" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBoxGeadresseerdeArray">
+                <xs:sequence>
+                    <xs:element name="TBBoxGeadresseerde" minOccurs="0" maxOccurs="unbounded" type="tns:TBBoxGeadresseerde" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TBBoxTekstArray">
+                <xs:sequence>
+                    <xs:element name="TBBoxTekst" minOccurs="0" maxOccurs="unbounded" type="tns:TBBoxTekst" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Int64Array">
+                <xs:sequence>
+                    <xs:element name="long" minOccurs="0" maxOccurs="unbounded" type="xs:long" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TSorteerInfoArray">
+                <xs:sequence>
+                    <xs:element name="TSorteerInfo" minOccurs="0" maxOccurs="unbounded" type="tns:TSorteerInfo" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="BBRBegunstigdeArray">
+                <xs:sequence>
+                    <xs:element name="TBBRBegunstigde" minOccurs="0" maxOccurs="unbounded" type="tns:TBBRBegunstigde" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TAfspraakSoortenArray">
+                <xs:sequence>
+                    <xs:element name="TAfspraakSoorten" minOccurs="0" maxOccurs="unbounded" type="tns:TAfspraakSoorten" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TContract2Array">
+                <xs:sequence>
+                    <xs:element name="TContract2" minOccurs="0" maxOccurs="unbounded" type="tns:TContract2" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RekeningnummerArray">
+                <xs:sequence>
+                    <xs:element name="string" minOccurs="0" maxOccurs="unbounded" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RelatiecodeBedrijfcodeArray">
+                <xs:sequence>
+                    <xs:element name="TRelatiecodeBedrijfcode" minOccurs="0" maxOccurs="unbounded" type="tns:TRelatiecodeBedrijfcode" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Rekeningnummer2Array">
+                <xs:sequence>
+                    <xs:element name="TRekeningnummer" minOccurs="0" maxOccurs="unbounded" type="tns:TRekeningnummer" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="InkomenArray">
+                <xs:sequence>
+                    <xs:element name="TInkomen" minOccurs="0" maxOccurs="unbounded" type="tns:TInkomen" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="UitgavenArray">
+                <xs:sequence>
+                    <xs:element name="TUitgaven" minOccurs="0" maxOccurs="unbounded" type="tns:TUitgaven" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="OpenVraagArray">
+                <xs:sequence>
+                    <xs:element name="TOpenVraag" minOccurs="0" maxOccurs="unbounded" type="tns:TOpenVraag" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="GeslotenVraagArray">
+                <xs:sequence>
+                    <xs:element name="TGeslotenVraag" minOccurs="0" maxOccurs="unbounded" type="tns:TGeslotenVraag" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="StringArray">
+                <xs:sequence>
+                    <xs:element name="string" minOccurs="0" maxOccurs="unbounded" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="TableRequestInfoArray">
+                <xs:sequence>
+                    <xs:element name="TableRequestInfo" minOccurs="0" maxOccurs="unbounded" type="tns:TableRequestInfo" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="DataParameterArray">
+                <xs:sequence>
+                    <xs:element name="DataParameter" minOccurs="0" maxOccurs="unbounded" type="tns:DataParameter" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SimpleRequestInfoArray">
+                <xs:sequence>
+                    <xs:element name="SimpleRequestInfo" minOccurs="0" maxOccurs="unbounded" type="tns:SimpleRequestInfo" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SimpleDataParameterArray">
+                <xs:sequence>
+                    <xs:element name="SimpleDataParameter" minOccurs="0" maxOccurs="unbounded" type="tns:SimpleDataParameter" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SimpleDataResultArray">
+                <xs:sequence>
+                    <xs:element name="SimpleDataResult" minOccurs="0" maxOccurs="unbounded" type="tns:SimpleDataResult" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SimpleFieldInfoArray">
+                <xs:sequence>
+                    <xs:element name="SimpleFieldInfo" minOccurs="0" maxOccurs="unbounded" type="tns:SimpleFieldInfo" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="StringArrayArray">
+                <xs:sequence>
+                    <xs:element name="StringArray" minOccurs="0" maxOccurs="unbounded" type="tns:StringArray" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SimpleDeltaArray">
+                <xs:sequence>
+                    <xs:element name="SimpleDelta" minOccurs="0" maxOccurs="unbounded" type="tns:SimpleDelta" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SimpleDeltaChangeArray">
+                <xs:sequence>
+                    <xs:element name="SimpleDeltaChange" minOccurs="0" maxOccurs="unbounded" type="tns:SimpleDeltaChange" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="VariantArray">
+                <xs:sequence>
+                    <xs:element name="anyType" minOccurs="0" maxOccurs="unbounded" type="xs:anyType" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="SchuldHulpService___GetSBOverzicht">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="aRelatieCode" minOccurs="1" maxOccurs="1" type="xs:int">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetSBOverzichtResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Result" minOccurs="1" maxOccurs="1" type="tns:SBHeaderArray">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetSB">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="aHeader" minOccurs="1" maxOccurs="1" type="tns:TSBHeader">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetSBResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Result" minOccurs="1" maxOccurs="1" type="tns:TSB">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetSBEisers">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="aHeader" minOccurs="1" maxOccurs="1" type="tns:TSBHeader">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetSBEisersResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Result" minOccurs="1" maxOccurs="1" type="tns:TSBEisers">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetSRVOverzicht">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="aRelatieCode" minOccurs="1" maxOccurs="1" type="xs:int">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetSRVOverzichtResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Result" minOccurs="1" maxOccurs="1" type="tns:SRVAanvraagHeaderArray">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetSRVAanvraag">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="aHeader" minOccurs="1" maxOccurs="1" type="tns:TSRVAanvraagHeader">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetSRVAanvraagResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Result" minOccurs="1" maxOccurs="1" type="tns:TSRVAanvraag">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetSRVEisers">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="aHeader" minOccurs="1" maxOccurs="1" type="tns:TSRVAanvraagHeader">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetSRVEisersResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Result" minOccurs="1" maxOccurs="1" type="tns:TSRVEisers">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetLijstSchuldeisers">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="aZoekargument" minOccurs="1" maxOccurs="1" type="xs:string">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___GetLijstSchuldeisersResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Result" minOccurs="1" maxOccurs="1" type="tns:OrganisatieArray">
+                        </xs:element>
+                        <xs:element name="ExtraInfo" minOccurs="1" maxOccurs="1" type="xs:int">
+                        </xs:element>
+                        <xs:element name="ExtraInfoOmschrijving" minOccurs="1" maxOccurs="1" type="xs:string">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___AanvraagSR">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="aAanvraagSR" minOccurs="1" maxOccurs="1" type="tns:TAanvraagSR">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___AanvraagSRResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Result" minOccurs="1" maxOccurs="1" type="xs:boolean">
+                        </xs:element>
+                        <xs:element name="ExtraInfo" minOccurs="1" maxOccurs="1" type="xs:int">
+                        </xs:element>
+                        <xs:element name="ExtraInfoOmschrijving" minOccurs="1" maxOccurs="1" type="xs:string">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___Aanvraag2SR">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="aAanvraag2SR" minOccurs="1" maxOccurs="1" type="tns:TAanvraag2SR">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SchuldHulpService___Aanvraag2SRResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Result" minOccurs="1" maxOccurs="1" type="xs:boolean">
+                        </xs:element>
+                        <xs:element name="ExtraInfo" minOccurs="1" maxOccurs="1" type="xs:int">
+                        </xs:element>
+                        <xs:element name="ExtraInfoOmschrijving" minOccurs="1" maxOccurs="1" type="xs:string">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ROClientIDHeader">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ID" minOccurs="0" maxOccurs="1" type="xs:string" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="SchuldHulpService___GetSBOverzichtRequest">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetSBOverzicht" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetSBOverzichtResponse">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetSBOverzichtResponse" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetSBRequest">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetSB" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetSBResponse">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetSBResponse" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetSBEisersRequest">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetSBEisers" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetSBEisersResponse">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetSBEisersResponse" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetSRVOverzichtRequest">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetSRVOverzicht" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetSRVOverzichtResponse">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetSRVOverzichtResponse" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetSRVAanvraagRequest">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetSRVAanvraag" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetSRVAanvraagResponse">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetSRVAanvraagResponse" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetSRVEisersRequest">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetSRVEisers" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetSRVEisersResponse">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetSRVEisersResponse" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetLijstSchuldeisersRequest">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetLijstSchuldeisers" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___GetLijstSchuldeisersResponse">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___GetLijstSchuldeisersResponse" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___AanvraagSRRequest">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___AanvraagSR" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___AanvraagSRResponse">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___AanvraagSRResponse" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___Aanvraag2SRRequest">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___Aanvraag2SR" />
+    </wsdl:message>
+    <wsdl:message name="SchuldHulpService___Aanvraag2SRResponse">
+        <wsdl:part name="parameters" element="tns:SchuldHulpService___Aanvraag2SRResponse" />
+    </wsdl:message>
+    <wsdl:message name="ROClientIDHeaderMessage">
+        <wsdl:part name="ROClientID" element="tns:ROClientIDHeader" />
+    </wsdl:message>
+    <wsdl:portType name="SchuldHulpService">
+        <wsdl:operation name="GetSBOverzicht">
+            <wsdl:input message="tns:SchuldHulpService___GetSBOverzichtRequest" />
+            <wsdl:output message="tns:SchuldHulpService___GetSBOverzichtResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="GetSB">
+            <wsdl:input message="tns:SchuldHulpService___GetSBRequest" />
+            <wsdl:output message="tns:SchuldHulpService___GetSBResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="GetSBEisers">
+            <wsdl:input message="tns:SchuldHulpService___GetSBEisersRequest" />
+            <wsdl:output message="tns:SchuldHulpService___GetSBEisersResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="GetSRVOverzicht">
+            <wsdl:input message="tns:SchuldHulpService___GetSRVOverzichtRequest" />
+            <wsdl:output message="tns:SchuldHulpService___GetSRVOverzichtResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="GetSRVAanvraag">
+            <wsdl:input message="tns:SchuldHulpService___GetSRVAanvraagRequest" />
+            <wsdl:output message="tns:SchuldHulpService___GetSRVAanvraagResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="GetSRVEisers">
+            <wsdl:input message="tns:SchuldHulpService___GetSRVEisersRequest" />
+            <wsdl:output message="tns:SchuldHulpService___GetSRVEisersResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="GetLijstSchuldeisers">
+            <wsdl:input message="tns:SchuldHulpService___GetLijstSchuldeisersRequest" />
+            <wsdl:output message="tns:SchuldHulpService___GetLijstSchuldeisersResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="AanvraagSR">
+            <wsdl:documentation>
+
+                deprecated Allegro 3.26.1
+            </wsdl:documentation>
+            <wsdl:input message="tns:SchuldHulpService___AanvraagSRRequest" />
+            <wsdl:output message="tns:SchuldHulpService___AanvraagSRResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="Aanvraag2SR">
+            <wsdl:input message="tns:SchuldHulpService___Aanvraag2SRRequest" />
+            <wsdl:output message="tns:SchuldHulpService___Aanvraag2SRResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SchuldHulpServiceBinding" type="tns:SchuldHulpService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="GetSBOverzicht">
+            <soap:operation soapAction="urn:KreditLibrary-SchuldHulpService#GetSBOverzicht" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSB">
+            <soap:operation soapAction="urn:KreditLibrary-SchuldHulpService#GetSB" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSBEisers">
+            <soap:operation soapAction="urn:KreditLibrary-SchuldHulpService#GetSBEisers" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSRVOverzicht">
+            <soap:operation soapAction="urn:KreditLibrary-SchuldHulpService#GetSRVOverzicht" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSRVAanvraag">
+            <soap:operation soapAction="urn:KreditLibrary-SchuldHulpService#GetSRVAanvraag" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSRVEisers">
+            <soap:operation soapAction="urn:KreditLibrary-SchuldHulpService#GetSRVEisers" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetLijstSchuldeisers">
+            <soap:operation soapAction="urn:KreditLibrary-SchuldHulpService#GetLijstSchuldeisers" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AanvraagSR">
+            <soap:operation soapAction="urn:KreditLibrary-SchuldHulpService#AanvraagSR" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Aanvraag2SR">
+            <soap:operation soapAction="urn:KreditLibrary-SchuldHulpService#Aanvraag2SR" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+                <soap:header message="tns:ROClientIDHeaderMessage" use="literal" part="ROClientID" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SchuldHulpService">
+        <wsdl:port name="SchuldHulpServicePort" binding="tns:SchuldHulpServiceBinding">
+            <soap:address location="https://schuldhulp-ft.sociaal.amsterdam.nl:8084/SOAP?service=SchuldHulpService" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

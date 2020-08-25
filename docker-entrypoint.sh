@@ -5,6 +5,10 @@ echo "Environment: $APP_ENV"
 
 set -u
 
+echo "10.16.136.56 schuldhulp.sociaal.amsterdam.nl schuldhulp-ft.sociaal.amsterdam.nl" >> /etc/hosts
+echo 'Dumping hosts file:'
+cat /etc/hosts
+
 composer run-script post-install-cmd
 
 if [ "$APP_ENV" = "dev" ]

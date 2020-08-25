@@ -34,6 +34,17 @@
 
     }
   }
+
+  &.grey {
+    background-color: #ccc;
+    border-color: #000;
+    color: #000;
+    &:hover {
+      background-color: #000;
+      color: #fff;
+
+    }
+  }
   &.link {
     white-space: nowrap;
     font-size: inherit;
@@ -334,6 +345,9 @@ form {
     }
     label {
       width: 33.333%;
+    }
+    input[type="checkbox"] {
+      width: 66.666%;
     }
   }
   .form-row__checkbox--right {
