@@ -29,6 +29,8 @@
                             <dd>{% if dossier.voorlegger.arbeidsovereenkomstWerkgever %}{{ dossier.voorlegger.arbeidsovereenkomstWerkgever }}{% else %}-{% endif %}</dd>
                             <dt>Soort dienstverband</dt>
                             <dd>{% if dossier.voorlegger.arbeidsovereenkomstContract %}{{ dossier.voorlegger.arbeidsovereenkomstContract }}{% else %}-{% endif %}</dd>
+                            <dt>Einddatum dienstverband</dt>
+                            <dd>{% if dossier.voorlegger.arbeidsovereenkomstEinddatum %}{{ dossier.voorlegger.arbeidsovereenkomstEinddatum|date('d-m-Y')}}{% else %}-{% endif %}</dd>
                         </dl>
                     </a>
                 </div>
@@ -57,6 +59,8 @@
                             <dd>{% if dossier.voorlegger.arbeidsovereenkomstPartnerWerkgever %}{{ dossier.voorlegger.arbeidsovereenkomstPartnerWerkgever }}{% else %}-{% endif %}</dd>
                             <dt>Soort dienstverband</dt>
                             <dd>{% if dossier.voorlegger.arbeidsovereenkomstPartnerContract %}{{ dossier.voorlegger.arbeidsovereenkomstPartnerContract }}{% else %}-{% endif %}</dd>
+                            <dt>Einddatum dienstverband</dt>
+                            <dd>{% if dossier.voorlegger.arbeidsovereenkomstPartnerEinddatum %}{{ dossier.voorlegger.arbeidsovereenkomstPartnerEinddatum|date('d-m-Y')}}{% else %}-{% endif %}</dd>
                         </dl>
                     </a>
                 </div>
@@ -160,12 +164,22 @@
                     Extra status: <strong>{% if dossier.allegroExtraStatus is empty %}n.v.t.{% else %}{{ dossier.allegroExtraStatus }}{% endif %}</strong>
                 </div>
             </div>
+            {% if  is_granted('ROLE_ADMIN') or is_granted('ROLE_GKA') or is_granted('ROLE_GKA_APPBEHEERDER') %}
+                <div class="row">
+                    <div class="col-1-1">
+                        Dossier geexporteerd naar Allegro: <strong>{% if dossier.sendToAllegro is null %}nooit{% else %}{{ dossier.sendToAllegro|date('d-m-Y H:i:s') }}{% endif %}</strong>
+                    </div>
+                </div>
+            {% endif %}
             <div class="row row-max-height">
                 <div class="col-1-1">
                     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_allegrorefresh', {'dossierId': dossier.id}) }}"
                        class="button secondary">Vernieuwen <i class="icon-reload"></i></a>
                     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_allegrosrveisers', {'dossierId': dossier.id}) }}"
                        class="button secondary">Uitgebreide status</a>
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GKA') or is_granted('ROLE_GKA_APPBEHEERDER') %}
+                        <a id="send_to_allegro" class="button {% if dossier.sendToAllegro is null %}secondary{% else %}grey{% endif %}">Exporteren</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -195,3 +209,5 @@
 
     </div>
 </div>
+<input id="allegro_validate_url" value="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_validatesendtoallegro',{'dossierId': dossier.id}) }}">
+<input id="allegro_send_url" value="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_send',{'dossierId': dossier.id}) }}">

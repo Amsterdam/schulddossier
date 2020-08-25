@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
+
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TOpdrachtgeverKlant implements RequestInterface
@@ -68,7 +69,8 @@ class TOpdrachtgeverKlant implements RequestInterface
     private $CasusFase;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TrajectSoortArray
+     * @var
+     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TrajectSoortArray
      */
     private $Trajecten;
 

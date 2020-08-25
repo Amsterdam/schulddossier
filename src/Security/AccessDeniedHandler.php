@@ -49,5 +49,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
                 'message' => 'Gebruikerstype is onbekend. [' . $user->getEmail() . ']',
             ]), Response::HTTP_FORBIDDEN);
         }
+        
+        return new Response($accessDeniedException->getMessage(), Response::HTTP_FORBIDDEN);
     }
 }

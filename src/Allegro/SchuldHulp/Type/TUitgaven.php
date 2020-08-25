@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
+
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TUitgaven implements RequestInterface
@@ -73,6 +74,11 @@ class TUitgaven implements RequestInterface
     private $OverigUitgaven;
 
     /**
+     * @var string
+     */
+    private $Toelichting;
+
+    /**
      * Constructor
      *
      * @var string $WoningSoort
@@ -88,8 +94,9 @@ class TUitgaven implements RequestInterface
      * @var float $KinderAlimentatieBedrag
      * @var float $PartnerAlimentatieBedrag
      * @var string $OverigUitgaven
+     * @var string $Toelichting
      */
-    public function __construct($WoningSoort, $Kostgeld, $Huur, $Huurtoeslag, $MaandHypotheek, $MaandTeruggave, $SaldoHypotheek, $WOZWaarde, $Zorgpremie, $Zorgtoeslag, $KinderAlimentatieBedrag, $PartnerAlimentatieBedrag, $OverigUitgaven)
+    public function __construct($WoningSoort, $Kostgeld, $Huur, $Huurtoeslag, $MaandHypotheek, $MaandTeruggave, $SaldoHypotheek, $WOZWaarde, $Zorgpremie, $Zorgtoeslag, $KinderAlimentatieBedrag, $PartnerAlimentatieBedrag, $OverigUitgaven, $Toelichting)
     {
         $this->WoningSoort = $WoningSoort;
         $this->Kostgeld = $Kostgeld;
@@ -104,6 +111,7 @@ class TUitgaven implements RequestInterface
         $this->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
         $this->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
         $this->OverigUitgaven = $OverigUitgaven;
+        $this->Toelichting = $Toelichting;
     }
 
     /**
@@ -362,6 +370,26 @@ class TUitgaven implements RequestInterface
     {
         $new = clone $this;
         $new->OverigUitgaven = $OverigUitgaven;
+
+        return $new;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToelichting()
+    {
+        return $this->Toelichting;
+    }
+
+    /**
+     * @param string $Toelichting
+     * @return TUitgaven
+     */
+    public function withToelichting($Toelichting)
+    {
+        $new = clone $this;
+        $new->Toelichting = $Toelichting;
 
         return $new;
     }

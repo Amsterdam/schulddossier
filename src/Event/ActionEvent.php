@@ -41,6 +41,7 @@ class ActionEvent extends Event
     const DOSSIER_VERPLAATST_NAAR_PRULLENBAK = 'dossier_verplaatst_naar_prullenbak';
     const DOSSIER_VERWIJDERD = 'dossier_verwijderd';
     const DOSSIER_HERSTELD = 'dossier_hersteld';
+    const DOSSIER_SEND_TO_ALLEGRO = 'dossier_send_to_allegro';
 
 //    public function __construct(string $actionName, array $data = [])
     public function __construct(string $actionName, array $data = [], Dossier $dossier = null)

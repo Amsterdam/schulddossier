@@ -1,10 +1,11 @@
+#!groovy
+
 def tryStep(String message, Closure block, Closure tearDown = null) {
     try {
         block()
     }
     catch (Throwable t) {
-//        slackSend message: "${env.JOB_NAME}: ${message} failure ${env.BUILD_URL}", channel: '#ci-channel-app', color: 'danger'
-
+        slackSend message: "${env.JOB_NAME}: ${message} failure ${env.BUILD_URL}", channel: '#ci-channel-app', color: 'danger'
         throw t
     }
     finally {
@@ -40,24 +41,21 @@ node {
             echo 'end git version'
             def image = docker.build("${IMAGE_NAME}")
             image.push()
-
         }
     }
 }
 
-
-
 String BRANCH = "${env.BRANCH_NAME}"
 
-if (BRANCH == "master") {
+if (BRANCH == "dpsecure") {
 
     node {
         stage('Push acceptance image') {
             tryStep "image tagging", {
                 def image = docker.image("${IMAGE_NAME}")
                 image.pull()
-                image.push("acceptance")
-                image.push("production")
+                image.push("acceptance")  // temporary: we do not want to deploy to, or tag for, ACC now
+                //image.push("production")  // permanent: we never want to tag for PROD here
             }
         }
     }
@@ -74,7 +72,6 @@ if (BRANCH == "master") {
         }
     }
 
-
     stage('Waiting for approval') {
         slackSend channel: '#ci-channel-app', color: 'warning', message: 'schuldhulp is waiting for Production Release - please confirm'
         input "Deploy to Production?"
@@ -86,7 +83,7 @@ if (BRANCH == "master") {
                 def image = docker.image("${IMAGE_NAME}")
                 image.pull()
                 image.push("production")
-                image.push("latest")
+                //image.push("latest")
             }
         }
     }

@@ -5,6 +5,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
+use GemeenteAmsterdam\FixxxSchuldhulp\Validator\Constraints\BSN;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -99,9 +100,16 @@ class Dossier
     private $clientGeboortedatum;
 
     /**
+     * @var \DateTime|null
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $clientHuwelijksdatum;
+
+    /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
+     * @BSN()
      */
     private $clientBSN;
 
@@ -199,6 +207,7 @@ class Dossier
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
+     * @BSN()
      */
     private $partnerBSN;
 
@@ -252,6 +261,12 @@ class Dossier
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $allegroSyncDate;
+
+    /**
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $sendToAllegro;
 
     /**
      * @var string|null
@@ -370,6 +385,9 @@ class Dossier
         return $this->clientGeslacht;
     }
 
+    /**
+     * @return \DateTime|null
+     */
     public function getClientGeboortedatum()
     {
         return $this->clientGeboortedatum;
@@ -416,9 +434,10 @@ class Dossier
     public function getClientKinderen(): ?array
     {
         $kinderen = $this->clientKinderen;
-        if (is_string($kinderen)){
+        if (is_string($kinderen)) {
             $kinderen = json_decode($kinderen);
         }
+
         return $kinderen;
     }
 
@@ -774,7 +793,8 @@ class Dossier
     public function getNietVerwijderdeDocumentenByOnderwerpen($onderwerpen)
     {
         return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerpen) {
-            return in_array($dossierDocument->getOnderwerp(), $onderwerpen) && $dossierDocument->getDocument()->isInPrullenbak() === false;
+            return in_array($dossierDocument->getOnderwerp(),
+                    $onderwerpen) && $dossierDocument->getDocument()->isInPrullenbak() === false;
         });
     }
 
@@ -788,6 +808,7 @@ class Dossier
         $documenten = $this->documenten->filter(function (DossierDocument $dossierDocument) use ($id) {
             return $dossierDocument->getDocument()->getId() === $id;
         });
+
         return $documenten->count() === 1 ? $documenten->first() : null;
     }
 
@@ -801,6 +822,7 @@ class Dossier
         $documenten = $this->documenten->filter(function (DossierDocument $dossierDocument) use ($id) {
             return $dossierDocument->getId() === $id;
         });
+
         return $documenten->count() === 1 ? $documenten->first() : null;
     }
 
@@ -834,11 +856,25 @@ class Dossier
         return $this->schuldItems;
     }
 
+    /**
+     * @return SchuldItem[]
+     */
     public function getSchuldItemsNotInPrullenbak()
     {
         return $this->schuldItems->filter(function (SchuldItem $schuldItem) {
             return $schuldItem->isVerwijderd() === false;
         });
+    }
+
+    public function getSumSchuldItemsNotInPrullenbak()
+    {
+        $items = $this->getSchuldItemsNotInPrullenbak();
+        $sum = 0;
+        foreach ($items as $item) {
+            $sum += $item->getBedrag();
+        }
+
+        return $sum;
     }
 
     public function addSchuldItem(SchuldItem $schuldItem)
@@ -949,9 +985,10 @@ class Dossier
     {
         $csvHeader = array_keys((new Aantekening())->getClassAttributes());
         $csvRows = [];
-        if(!$this->getAantekeningen()->isEmpty()){
-            $csvRows = array_merge(...$this->getAantekeningen()->map(function (Aantekening $aantekening){
-                list($csvHeader, $row) = $aantekening->getClassAttributesAndValues();
+        if (!$this->getAantekeningen()->isEmpty()) {
+            $csvRows = array_merge(...$this->getAantekeningen()->map(function (Aantekening $aantekening) {
+                [$csvHeader, $row] = $aantekening->getClassAttributesAndValues();
+
                 return $row;
             })->toArray());
         }
@@ -963,9 +1000,10 @@ class Dossier
     {
         $csvHeader = array_keys((new ActionEvent())->getClassAttributes());
         $csvRows = [];
-        if(!$this->getActionEvents()){
-            $csvRows = array_merge(...$this->getActionEvents()->map(function (ActionEvent $actionEvent){
-                list($csvHeader, $row) = $actionEvent->getClassAttributesAndValues();
+        if (!$this->getActionEvents()) {
+            $csvRows = array_merge(...$this->getActionEvents()->map(function (ActionEvent $actionEvent) {
+                [$csvHeader, $row] = $actionEvent->getClassAttributesAndValues();
+
                 return $row;
             })->toArray());
         }
@@ -1073,4 +1111,43 @@ class Dossier
     {
         return isset(self::ALLEGRO_STATUS[$status]) ? self::ALLEGRO_STATUS[$status] : 'Onbekend';
     }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getClientHuwelijksdatum(): ?\DateTime
+    {
+        return $this->clientHuwelijksdatum;
+    }
+
+    /**
+     * @param \DateTime|null $clientHuwelijksdatum
+     * @return Dossier
+     */
+    public function setClientHuwelijksdatum(?\DateTime $clientHuwelijksdatum): Dossier
+    {
+        $this->clientHuwelijksdatum = $clientHuwelijksdatum;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getSendToAllegro(): ?\DateTime
+    {
+        return $this->sendToAllegro;
+    }
+
+    /**
+     * @param \DateTime|null $sendToAllegro
+     * @return Dossier
+     */
+    public function setSendToAllegro(?\DateTime $sendToAllegro): Dossier
+    {
+        $this->sendToAllegro = $sendToAllegro;
+
+        return $this;
+    }
+
 }
