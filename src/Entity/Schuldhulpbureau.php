@@ -49,6 +49,32 @@ class Schuldhulpbureau
      */
     private $gebruikers;
 
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $allegroUsername;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $allegroPassword;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $allegroSessionId;
+
+    /**
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $allegroSessionAge;
+
     public function __construct()
     {
         $this->gebruikers = new ArrayCollection();
@@ -102,5 +128,81 @@ class Schuldhulpbureau
     public function getGebruikers()
     {
         return $this->gebruikers;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAllegroUsername(): ?string
+    {
+        return $this->allegroUsername;
+    }
+
+    /**
+     * @param string|null $allegroUsername
+     * @return Schuldhulpbureau
+     */
+    public function setAllegroUsername(?string $allegroUsername): Schuldhulpbureau
+    {
+        $this->allegroUsername = $allegroUsername;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAllegroPassword(): ?string
+    {
+        return $this->allegroPassword;
+    }
+
+    /**
+     * @param string|null $allegroPassword
+     * @return Schuldhulpbureau
+     */
+    public function setAllegroPassword(?string $allegroPassword): Schuldhulpbureau
+    {
+        $this->allegroPassword = $allegroPassword;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAllegroSessionId(): ?string
+    {
+        return $this->allegroSessionId;
+    }
+
+    /**
+     * @param string|null $allegroSessionId
+     * @return Schuldhulpbureau
+     */
+    public function setAllegroSessionId(?string $allegroSessionId): Schuldhulpbureau
+    {
+        $this->allegroSessionId = $allegroSessionId;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getAllegroSessionAge(): ?\DateTime
+    {
+        return $this->allegroSessionAge;
+    }
+
+    /**
+     * @param \DateTime|null $allegroSessionAge
+     * @return Schuldhulpbureau
+     */
+    public function setAllegroSessionAge(?\DateTime $allegroSessionAge): Schuldhulpbureau
+    {
+        $this->allegroSessionAge = $allegroSessionAge;
+
+        return $this;
     }
 }

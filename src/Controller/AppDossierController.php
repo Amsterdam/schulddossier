@@ -28,6 +28,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldItemFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
+use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
@@ -169,7 +170,7 @@ class AppDossierController extends Controller
     /**
      * @Route("/nieuw")
      */
-    public function createAction(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function createAction(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher, AllegroService $allegroService)
     {
         $dossier = new Dossier();
         $dossier->setAanmaker($this->getUser());
@@ -183,7 +184,18 @@ class AppDossierController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($dossier);
             $em->flush();
-            $this->addFlash('success', 'Dossier aangemaakt');
+
+            $allegroCheck = isset($form['allegroCheck']) ? $form['allegroCheck']->getData() : false;
+
+            if (!$allegroCheck) {
+                $this->addFlash('success', 'Dossier aangemaakt');
+            } else {
+                if (null !== $allegroService->getSRVAanvraagHeader($dossier->getSchuldhulpbureau(), $dossier->getAllegroNummer())) {
+                    $this->addFlash('success', 'Dossier aangemaakt en gevonden in allegro');
+                } else {
+                    $this->addFlash('error', 'Dossier aangemaakt, niet aanwezig in allegro');
+                }
+            }
 
             $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier));
 
@@ -515,6 +527,7 @@ class AppDossierController extends Controller
                 'name' => [
                     'dossier_status_gewijzigd',
                     'dossier_gewijzigd',
+                    'dossier_send_to_allegro'
                 ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
@@ -675,6 +688,25 @@ class AppDossierController extends Controller
             'dossier' => $dossier,
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/allegro/refresh/{dossierId}")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @return RedirectResponse
+     */
+    public function allegroRefreshAction(Request $request, Dossier $dossier, AllegroService $allegroService)
+    {
+        try {
+            $allegroService->updateDossier($dossier);
+        } catch (\Exception|\Error $e) {
+            $this->addFlash('error', 'Ongeldig allegro nummer of geen verbinding met allegro mogelijk.');
+            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
+        }
+
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger',
+            ['dossierId' => $dossier->getId()]);
     }
 
     /**
@@ -1141,6 +1173,14 @@ class AppDossierController extends Controller
             $sheet->getStyleByColumnAndRow(5, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
             $sheet->getStyleByColumnAndRow(6, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
         }
+
+        $rowIndex = $rowIndex+2;
+
+        $sheet->setCellValueByColumnAndRow(1, $rowIndex, 'Totaal bedrag');
+
+        $sheet->setCellValueByColumnAndRow(3, $rowIndex, $dossier->getSumSchuldItemsNotInPrullenbak());
+        $sheet->getStyleByColumnAndRow(3, $rowIndex)->getNumberFormat()->setFormatCode('"€"#,##0.00_-');
+
 
         $sheet->getColumnDimensionByColumn(1)->setAutoSize(true);
         $sheet->getColumnDimensionByColumn(2)->setAutoSize(true);
