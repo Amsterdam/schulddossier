@@ -2167,7 +2167,7 @@
                     </xs:element>
                     <xs:element name="Referentie" minOccurs="0" type="xs:string">
                     </xs:element>
-                    <xs:element name="Omschrijving" minOccurs="0" type="xs:string">
+                    <xs:element name="Omschrijving" type="xs:string">
                     </xs:element>
                     <xs:element name="CodeEiser" type="xs:int">
                     </xs:element>
