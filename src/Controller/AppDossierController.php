@@ -1146,6 +1146,8 @@ class AppDossierController extends Controller
 
         $sheet->getStyleByColumnAndRow(1, 1, 8, 1)->getFont()->setBold(true);
 
+        $rowIndex = 0;
+
         foreach (array_values($dossier->getSchuldItemsNotInPrullenbak()->toArray()) as $rowIndex => $schuldItem) {
             /** @var $schuldItem SchuldItem */
             $rowIndex = $rowIndex + 2; // one-based instead of zero-based and one for the header
@@ -1181,6 +1183,11 @@ class AppDossierController extends Controller
         $sheet->setCellValueByColumnAndRow(3, $rowIndex, $dossier->getSumSchuldItemsNotInPrullenbak());
         $sheet->getStyleByColumnAndRow(3, $rowIndex)->getNumberFormat()->setFormatCode('"€"#,##0.00_-');
 
+        $rowIndex = $rowIndex+4;
+
+        $sheet->setCellValueByColumnAndRow(1, $rowIndex, 'Naam:');
+        $sheet->setCellValueByColumnAndRow(4, $rowIndex, 'Datum:');
+        $sheet->setCellValueByColumnAndRow(6, $rowIndex, 'Handtekening:');
 
         $sheet->getColumnDimensionByColumn(1)->setAutoSize(true);
         $sheet->getColumnDimensionByColumn(2)->setAutoSize(true);
