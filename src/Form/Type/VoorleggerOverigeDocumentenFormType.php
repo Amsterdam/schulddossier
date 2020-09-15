@@ -40,6 +40,15 @@ class VoorleggerOverigeDocumentenFormType extends AbstractType
                 new Valid()
             ]
         ]);
+
+        $builder->add('aantekening', CreateAantekeningFormType::class, [
+            'mapped' => false,
+            'required' => false,
+            'constraints' => [
+                new Valid()
+            ]
+        ]);
+
         $builder->add('removeFile', CollectionType::class, [
             'mapped' => false,
             'entry_type' => HiddenType::class,
