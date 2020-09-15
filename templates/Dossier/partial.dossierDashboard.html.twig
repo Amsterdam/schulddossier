@@ -209,5 +209,5 @@
 
     </div>
 </div>
-<input id="allegro_validate_url" value="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_validatesendtoallegro',{'dossierId': dossier.id}) }}">
-<input id="allegro_send_url" value="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_send',{'dossierId': dossier.id}) }}">
+<input type="hidden" id="allegro_validate_url" value="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_validatesendtoallegro',{'dossierId': dossier.id}) }}">
+<input type="hidden" id="allegro_send_url" value="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_send',{'dossierId': dossier.id}) }}">
