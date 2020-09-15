@@ -36,6 +36,10 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'madi'
         ]);
+        $builder->add('jongerenSchuldenvrijeStart', CheckboxType::class, [
+            'required' => false,
+            'label' => 'Jongeren Schuldenvrije Start (JSS)'
+        ]);
         $builder->add('aanvullendeInformatie', TextareaType::class, [
             'required' => false
         ]);

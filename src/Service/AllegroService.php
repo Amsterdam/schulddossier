@@ -264,7 +264,7 @@ class AllegroService
         $aanvraag = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2SR($bedrijfsCode,
             $aanvrager, false, $gezin, $kinderen, $aanvraagSchuldbedrag,
             count($dossier->getSchuldItemsNotInPrullenbak()), 0, 0, 0,
-            false, false, false, true, true,
+            false, false, $dossier->getVoorlegger()->getJongerenSchuldenvrijeStart(), true, true,
             true);
 
         $schulden = $this->mapSchulden($dossier);

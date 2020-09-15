@@ -965,6 +965,12 @@ class Voorlegger
      */
     private $aangifteBelastingdienstNvt;
 
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $jongerenSchuldenvrijeStart;
+
     // ---
 
     public function __construct()
@@ -1084,6 +1090,7 @@ class Voorlegger
         $this->aangifteBelastingdienstMadi = self::STATUS_MADI_OPEN;
         $this->aangifteBelastingdienstGka = false;
         $this->aangifteBelastingdienstNvt = false;
+        $this->jongerenSchuldenvrijeStart = false;
     }
 
     public function getId()
@@ -2569,5 +2576,23 @@ class Voorlegger
         return $this;
     }
 
+    /**
+     * @return bool|null
+     */
+    public function getJongerenSchuldenvrijeStart(): ?bool
+    {
+        return $this->jongerenSchuldenvrijeStart;
+    }
+
+    /**
+     * @param bool|null $jongerenSchuldenvrijeStart
+     * @return Voorlegger
+     */
+    public function setJongerenSchuldenvrijeStart(?bool $jongerenSchuldenvrijeStart): Voorlegger
+    {
+        $this->jongerenSchuldenvrijeStart = $jongerenSchuldenvrijeStart;
+
+        return $this;
+    }
 
 }
