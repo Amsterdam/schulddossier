@@ -84,7 +84,7 @@
                     <a href="#id_voorlegger-legitimatie" class="a__editable">
                         <dl class="dl__horizontal">
                             <dt>Burgelijke staat</dt>
-                            <dd>{% if dossier.clientBurgelijkeStaat %}{{ dossier.clientBurgelijkeStaat }}{% else %}-{% endif %}</dd>
+                            <dd>{% if dossier.clientBurgelijkeStaat %}{{ dossier.clientBurgelijkeStaat }}{% if dossier.clientBurgelijkeStaatSinds %} ({{ dossier.clientBurgelijkeStaatSinds|date('d-m-Y') }}){% endif %}{% else %}-{% endif %}</dd>
                             <dt>Geboortedatum inwonende kind(eren)</dt>
                             <dd>
                             {% if dossier.clientKinderen %}{{ dossier.clientKinderen|length }} kinderen:<br>
