@@ -396,7 +396,7 @@ class AllegroService
 
             $codeEiser = null === $item->getSchuldeiser()->getAllegroCode() ? self::ONBEKENDE_SCHULDEISER : $item->getSchuldeiser()->getAllegroCode();
 
-            $schuld = new TSchuld($item->getSchuldeiser()->getBedrijfsnaam(), $item->getBedrag(), $codeEiser);
+            $schuld = new TSchuld($item->getSchuldeiser()->getBedrijfsnaam(), 1, $item->getBedrag(), $codeEiser);
 
             if (null !== $item->getReferentie() && strlen($item->getReferentie())) {
                 $schuld->setReferentie($item->getReferentie());

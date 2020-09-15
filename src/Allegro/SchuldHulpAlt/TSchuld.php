@@ -38,12 +38,14 @@ class TSchuld
     /**
      * @param string $Naam
      * @param float $Schuld
+     * @param string $Omschrijving
      * @param int $CodeEiser
      */
-    public function __construct($Naam, $Schuld, $CodeEiser)
+    public function __construct($Naam, $Schuld, $Omschrijving, $CodeEiser)
     {
       $this->Naam = $Naam;
       $this->Schuld = $Schuld;
+      $this->Omschrijving = $Omschrijving;
       $this->CodeEiser = $CodeEiser;
     }
 
