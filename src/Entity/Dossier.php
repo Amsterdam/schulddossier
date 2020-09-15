@@ -164,6 +164,12 @@ class Dossier
     private $clientBurgelijkeStaat;
 
     /**
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $clientBurgelijkeStaatSinds;
+
+    /**
      * @var array
      * @ORM\Column(type="json", nullable=true)
      */
@@ -1153,4 +1159,22 @@ class Dossier
         return $this;
     }
 
+    /**
+     * @return \DateTime|null
+     */
+    public function getClientBurgelijkeStaatSinds(): ?\DateTime
+    {
+        return $this->clientBurgelijkeStaatSinds;
+    }
+
+    /**
+     * @param \DateTime|null $clientBurgelijkeStaatSinds
+     * @return Dossier
+     */
+    public function setClientBurgelijkeStaatSinds(?\DateTime $clientBurgelijkeStaatSinds): Dossier
+    {
+        $this->clientBurgelijkeStaatSinds = $clientBurgelijkeStaatSinds;
+
+        return $this;
+    }
 }
