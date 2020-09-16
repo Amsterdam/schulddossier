@@ -5,7 +5,8 @@ echo "Environment: $APP_ENV"
 
 set -u
 
-echo "10.16.136.56 schuldhulp.sociaal.amsterdam.nl schuldhulp-ft.sociaal.amsterdam.nl" >> /etc/hosts
+echo "10.16.136.56 schuldhulp-ft.sociaal.amsterdam.nl" >> /etc/hosts
+echo "10.16.130.3 schuldhulp.sociaal.amsterdam.nl" >> /etc/hosts
 echo 'Dumping hosts file:'
 cat /etc/hosts
 
