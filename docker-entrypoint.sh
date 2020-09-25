@@ -32,7 +32,7 @@ chown -R www-data:www-data var
 
 rm /etc/nginx/conf.d/default.conf
 cp docker/nginx/nginx.conf /etc/nginx/nginx.conf
-cp docker/nginx/vhost.conf /etc/nginx/conf.d/vhost.conf
+cp docker/nginx/vhost-$APP_ENV.conf /etc/nginx/conf.d/vhost.conf
 
 cp docker/nginx/localhost.crt /srv/localhost.crt
 cp docker/nginx/localhost.key /srv/localhost.key
