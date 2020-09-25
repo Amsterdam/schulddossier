@@ -947,6 +947,30 @@ class Voorlegger
      */
     private $aangifteBelastingdienst;
 
+    /**
+     * @var integer|null
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $aangifteBelastingdienstMadi;
+
+    /**
+     * @var integer|null
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $aangifteBelastingdienstGka;
+
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $aangifteBelastingdienstNvt;
+
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $jongerenSchuldenvrijeStart;
+
     // ---
 
     public function __construct()
@@ -1063,6 +1087,10 @@ class Voorlegger
         $this->toeslagenKinderopvang = false;
         $this->toeslagenKindgebondenBudget = false;
         $this->aangifteBelastingdienst = false;
+        $this->aangifteBelastingdienstMadi = self::STATUS_MADI_OPEN;
+        $this->aangifteBelastingdienstGka = false;
+        $this->aangifteBelastingdienstNvt = false;
+        $this->jongerenSchuldenvrijeStart = false;
     }
 
     public function getId()
@@ -2490,4 +2518,81 @@ class Voorlegger
 
         return $this;
     }
+
+    /**
+     * @return int|null
+     */
+    public function getAangifteBelastingdienstMadi(): ?int
+    {
+        return $this->aangifteBelastingdienstMadi;
+    }
+
+    /**
+     * @param int|null $aangifteBelastingdienstMadi
+     * @return Voorlegger
+     */
+    public function setAangifteBelastingdienstMadi(?int $aangifteBelastingdienstMadi): Voorlegger
+    {
+        $this->aangifteBelastingdienstMadi = $aangifteBelastingdienstMadi;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getAangifteBelastingdienstGka(): ?int
+    {
+        return $this->aangifteBelastingdienstGka;
+    }
+
+    /**
+     * @param int|null $aangifteBelastingdienstGka
+     * @return Voorlegger
+     */
+    public function setAangifteBelastingdienstGka(?int $aangifteBelastingdienstGka): Voorlegger
+    {
+        $this->aangifteBelastingdienstGka = $aangifteBelastingdienstGka;
+
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getAangifteBelastingdienstNvt(): ?bool
+    {
+        return $this->aangifteBelastingdienstNvt;
+    }
+
+    /**
+     * @param bool|null $aangifteBelastingdienstNvt
+     * @return Voorlegger
+     */
+    public function setAangifteBelastingdienstNvt(?bool $aangifteBelastingdienstNvt): Voorlegger
+    {
+        $this->aangifteBelastingdienstNvt = $aangifteBelastingdienstNvt;
+
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getJongerenSchuldenvrijeStart(): ?bool
+    {
+        return $this->jongerenSchuldenvrijeStart;
+    }
+
+    /**
+     * @param bool|null $jongerenSchuldenvrijeStart
+     * @return Voorlegger
+     */
+    public function setJongerenSchuldenvrijeStart(?bool $jongerenSchuldenvrijeStart): Voorlegger
+    {
+        $this->jongerenSchuldenvrijeStart = $jongerenSchuldenvrijeStart;
+
+        return $this;
+    }
+
 }

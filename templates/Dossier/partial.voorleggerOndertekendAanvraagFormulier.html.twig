@@ -36,6 +36,7 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                {{ form_row(form.jongerenSchuldenvrijeStart) }}
                 {{ form_row(form.aanvullendeInformatie) }}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Ondertekend aanvraagformulier'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}

@@ -1,7 +1,13 @@
 {% import 'partial.macros.html.twig' as tools %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerpen(['belasting']) %}
 
-<div class="dossier__item {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-belasting-documenten" data-hashevent="activate-section" data-keyupper="section-document-nav">
+<div class="dossier__item {{ dossier.voorlegger.aangifteBelastingdienstNvt ? ' status-nvt' }}
+    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
+    status-madi-{{ dossier.voorlegger.aangifteBelastingdienstMadi }}
+    {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
+    status-gka-{{ dossier.voorlegger.aangifteBelastingdienstGka }}
+    {% endif %}
+{{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-belasting-documenten" data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 
         <div class="voorlegger-header">
@@ -13,6 +19,7 @@
                     <span>{{ dossierDocumenten|length }}</span>
                 </div>
             {% endif %}
+            {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': true} %}
         </div>
 
     </div>
@@ -20,6 +27,14 @@
         <div class="dossier__voorlegger__sectie">
             <div class="dossier__voorlegger__sectie__header">
                 <a class="dossier__voorlegger__sectie__close" href="#_"></a>
+                <div class="status-container hide"><span>Status:</span>
+                    {{ form_row(form.aangifteBelastingdienstMadi) }}
+                    {{ form_row(form.aangifteBelastingdienstGka) }}
+                </div>
+                <div class="nvt-input hide">
+                    {{ form_row(form.aangifteBelastingdienstNvt) }}
+                </div>
+                {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': true} %}
                 <h3>{{ title }}</h3>
                 <hr>
             </div>

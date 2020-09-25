@@ -164,6 +164,12 @@ class Dossier
     private $clientBurgelijkeStaat;
 
     /**
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $clientBurgelijkeStaatSinds;
+
+    /**
      * @var array
      * @ORM\Column(type="json", nullable=true)
      */
@@ -778,9 +784,12 @@ class Dossier
      *
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
      */
-    public function getNietVerwijderdeDocumentenByOnderwerp($onderwerp)
+    public function getNietVerwijderdeDocumentenByOnderwerp($onderwerp, $zonderSchulditem = false)
     {
-        return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerp) {
+        return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerp, $zonderSchulditem) {
+            if ($zonderSchulditem && null !== $dossierDocument->getSchuldItem()) {
+                return false;
+            }
             return $dossierDocument->getOnderwerp() === $onderwerp && $dossierDocument->getDocument()->isInPrullenbak() === false;
         });
     }
@@ -1150,4 +1159,22 @@ class Dossier
         return $this;
     }
 
+    /**
+     * @return \DateTime|null
+     */
+    public function getClientBurgelijkeStaatSinds(): ?\DateTime
+    {
+        return $this->clientBurgelijkeStaatSinds;
+    }
+
+    /**
+     * @param \DateTime|null $clientBurgelijkeStaatSinds
+     * @return Dossier
+     */
+    public function setClientBurgelijkeStaatSinds(?\DateTime $clientBurgelijkeStaatSinds): Dossier
+    {
+        $this->clientBurgelijkeStaatSinds = $clientBurgelijkeStaatSinds;
+
+        return $this;
+    }
 }

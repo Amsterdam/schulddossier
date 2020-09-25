@@ -140,6 +140,15 @@ class ChangeDossierClientType extends AbstractType
             'choices' => Dossier::getBurgelijkeStaatOpties()
         ]);
 
+        $builder->add('clientBurgelijkeStaatSinds', DateType::class, [
+            'label' => 'Burgelijke staat sinds',
+            'required' => false,
+            'html5' => false,
+            'attr' => ['data-decorator' => 'rome'],
+            'format' => 'dd-MM-yyyy',
+            'widget' => 'single_text',
+        ]);
+
         $builder->add('clientKinderen', CollectionType::class, [
             'label' => 'Geboortedatum inwonende kind(eren)',
             'allow_add' => true,

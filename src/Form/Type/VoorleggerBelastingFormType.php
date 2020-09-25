@@ -28,6 +28,17 @@ class VoorleggerBelastingFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('aangifteBelastingdienstMadi', MadiStatusFormType::class, [
+            'required' => true,
+            'disabled' => $options['disable_group'] === 'gka'
+        ]);
+        $builder->add('aangifteBelastingdienstGka', GkaStatusFormType::class, [
+            'required' => true,
+            'disabled' => $options['disable_group'] === 'madi'
+        ]);
+        $builder->add('aangifteBelastingdienstNvt', CheckboxType::class, [
+            'required' => false
+        ]);
         $builder->add('aangifteBelastingdienst', CheckboxType::class, [
             'required' => false,
             'label' => 'Aangifte ingediend'
