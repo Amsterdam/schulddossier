@@ -1,5 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
-{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('schuldenoverzicht') %}
+{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('schuldenoverzicht', true) %}
 
 <div class="dossier__item
     {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}

@@ -26,6 +26,7 @@
                 <div class="column">
                     <h3 class="document-team">Gezinssamenstelling</h3>
                     {{ form_row(form.clientBurgelijkeStaat, {'attr': {'form_row_class': 'form-row__wide form-row--no-label-margin', 'class': 'radio-group radio-group__vertical'}}) }}
+                    {{ form_row(form.clientBurgelijkeStaatSinds, {'attr': {'form_row_class': 'form-row__wide'}}) }}
                     {% do form.clientKinderen.setRendered %}
                     <div class="form-row form-row__wide form-row--no-label-margin">
                         <div class="label-widget">
