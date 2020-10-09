@@ -202,6 +202,8 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $message->setBody($html, 'text/html');
         $message->addPart($txt, 'text/plain');
 
+        $this->logger->info(sprintf('Mail from: %s, to: %s, subject: %s', $from, $to, $subject), ['mail']);
+
         $this->mailer->send($message);
     }
 
