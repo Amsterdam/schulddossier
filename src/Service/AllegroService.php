@@ -47,8 +47,6 @@ class AllegroService
         'Vrouw' => 'V',
     ];
 
-    const ONBEKENDE_SCHULDEISER = '2450232';
-
     /**
      * Burgerlijke staat:
      * varchar(1), Null allowed, waarden(@, A = Onbekend, B = Alleenstaand, C = Samenwonend, D = Geregistreerd partnerschap, E = Gehuwd, F = Gescheiden, G = Weduwnaar, Null)
@@ -104,6 +102,11 @@ class AllegroService
      */
     private $security;
 
+    /**
+     * @var string
+     */
+    private $onbekendeSchuldeiser;
+
 
     public function __construct(
         string $allegroEndpoint,
@@ -111,7 +114,8 @@ class AllegroService
         SchuldHulpService $altService,
         LoggerInterface $logger,
         EventDispatcherInterface $eventDispatcher,
-        Security $security
+        Security $security,
+        $allegroOnbekendeSchuldeiser
     ) {
         $this->loginWsdl = sprintf('%s?service=LoginService', $allegroEndpoint);
         $this->schuldHulpWsdl = sprintf('%s?service=SchuldHulpService', $allegroEndpoint);
@@ -119,8 +123,8 @@ class AllegroService
         $this->logger = $logger;
         $this->eventDispatcher = $eventDispatcher;
         $this->security = $security;
-
         $this->em = $em;
+        $this->onbekendeSchuldeiser = (string)$allegroOnbekendeSchuldeiser;
     }
 
     /**
@@ -394,7 +398,7 @@ class AllegroService
                 continue;
             }
 
-            $codeEiser = null === $item->getSchuldeiser()->getAllegroCode() ? self::ONBEKENDE_SCHULDEISER : $item->getSchuldeiser()->getAllegroCode();
+            $codeEiser = null === $item->getSchuldeiser()->getAllegroCode() ? $this->onbekendeSchuldeiser : $item->getSchuldeiser()->getAllegroCode();
 
             $schuld = new TSchuld($item->getSchuldeiser()->getBedrijfsnaam(), 1, $item->getBedrag(), $codeEiser);
 
