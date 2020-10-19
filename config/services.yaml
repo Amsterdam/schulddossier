@@ -20,6 +20,7 @@ services:
         public: false
         bind:
             $allegroEndpoint: '%env(ALLEGRO_ENDPOINT)%'
+            $allegroOnbekendeSchuldeiser: '%env(ALLEGRO_ONBEKENDE_SCHULDEISER)%'
 
 
     GemeenteAmsterdam\FixxxSchuldhulp\:
