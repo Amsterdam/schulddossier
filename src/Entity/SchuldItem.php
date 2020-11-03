@@ -130,6 +130,12 @@ class SchuldItem
     private $ontstaansDatum;
 
     /**
+     * @var string|null
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $toevoegingOnbekendeSchuldeiser;
+
+    /**
      * @var DossierDocument[]|ArrayCollection
      * @ORM\OneToMany(targetEntity="DossierDocument", mappedBy="schuldItem", cascade={"persist", "remove"})
      * @ORM\OrderBy({"id"="ASC"})
@@ -386,5 +392,24 @@ class SchuldItem
             SchuldItem::TYPE_CONCURRENT => SchuldItem::TYPE_CONCURRENT,
             SchuldItem::TYPE_PREFERENT => SchuldItem::TYPE_PREFERENT,
         ];
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getToevoegingOnbekendeSchuldeiser(): ?string
+    {
+        return $this->toevoegingOnbekendeSchuldeiser;
+    }
+
+    /**
+     * @param string|null $toevoegingOnbekendeSchuldeiser
+     * @return SchuldItem
+     */
+    public function setToevoegingOnbekendeSchuldeiser(?string $toevoegingOnbekendeSchuldeiser): SchuldItem
+    {
+        $this->toevoegingOnbekendeSchuldeiser = $toevoegingOnbekendeSchuldeiser;
+
+        return $this;
     }
 }
