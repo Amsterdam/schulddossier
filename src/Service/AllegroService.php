@@ -400,7 +400,15 @@ class AllegroService
 
             $codeEiser = null === $item->getSchuldeiser()->getAllegroCode() ? $this->onbekendeSchuldeiser : $item->getSchuldeiser()->getAllegroCode();
 
-            $schuld = new TSchuld($item->getSchuldeiser()->getBedrijfsnaam(), 1, $item->getBedrag(), $codeEiser);
+            $omschrijving = $item->getBedrag();
+            if ($item->getSchuldeiser()->getAllegroCode() === $this->onbekendeSchuldeiser) {
+                $omschrijving = sprintf('%s - %s', $omschrijving, $item->getToevoegingOnbekendeSchuldeiser());
+                if (strlen($omschrijving) > 200) {
+                    $omschrijving = sprintf('%s%s', substr($omschrijving, 0, 200), ' VOOR MEER ZIE SCHULDDOSSIER...');
+                }
+            }
+
+            $schuld = new TSchuld($item->getSchuldeiser()->getBedrijfsnaam(), 1, $omschrijving, $codeEiser);
 
             if (null !== $item->getReferentie() && strlen($item->getReferentie())) {
                 $schuld->setReferentie($item->getReferentie());
