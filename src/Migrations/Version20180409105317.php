@@ -2,7 +2,7 @@
 
 namespace DoctrineMigrations;
 
-use Doctrine\DBAL\Migrations\AbstractMigration;
+use Doctrine\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
 /**
@@ -10,7 +10,7 @@ use Doctrine\DBAL\Schema\Schema;
  */
 class Version20180409105317 extends AbstractMigration
 {
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         $this->addSql('UPDATE voorlegger SET legitimatie_ontvangen_gka = 0 WHERE legitimatie_ontvangen_gka = 1');
         $this->addSql('UPDATE voorlegger SET inkomstenspecificatie_ontvangen_gka = 0 WHERE inkomstenspecificatie_ontvangen_gka = 1');
@@ -46,7 +46,7 @@ class Version20180409105317 extends AbstractMigration
         $this->addSql('UPDATE voorlegger SET vtlb_ontvangen_gka = 0 WHERE vtlb_ontvangen_gka = 1');
     }
 
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
 
