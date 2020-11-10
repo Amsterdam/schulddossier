@@ -202,6 +202,14 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+        $gebruiker = $token->getUser();
+        /**
+         * @var Gebruiker $gebruiker
+         */
+        $now = new \DateTime();
+        $gebruiker->setLastLogin($now);
+        $this->entityManager->flush();
+
         if ($request->getSession()->has('loginReturnUrl')) {
             $response = new RedirectResponse($request->getSession()->get('loginReturnUrl'));
             $request->getSession()->remove('loginReturnUrl');

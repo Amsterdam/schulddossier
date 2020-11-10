@@ -2,7 +2,7 @@
 
 namespace DoctrineMigrations;
 
-use Doctrine\DBAL\Migrations\AbstractMigration;
+use Doctrine\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
 /**
@@ -10,7 +10,7 @@ use Doctrine\DBAL\Schema\Schema;
  */
 class Version20180301101733 extends AbstractMigration
 {
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         // Nieuwe gebruiker gka1 voor development en testen met wachtwoord test12345
         $this->addSql('INSERT INTO gebruiker (id, username, password, type) VALUES (nextval(\'gebruiker_id_seq\'), \'gka1\', \'$2y$13$LL4DFiDFQuFBIx23deASOuWQalcSf0eOXPSpb97QVwP0FXcXpiTKm\', \'gka\')');
@@ -29,7 +29,7 @@ class Version20180301101733 extends AbstractMigration
         $this->addSql('INSERT INTO schuldhulpbureau (id, naam) VALUES (nextval(\'schuldhulpbureau_id_seq\'), \'Puur Zuid (Amsterdam-Zuid)\')');
     }
 
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
 
