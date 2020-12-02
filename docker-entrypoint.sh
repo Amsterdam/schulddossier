@@ -25,6 +25,7 @@ then
     php bin/console cache:warmup --env=acceptance
 fi
 
+php bin/console doctrine:migrations:sync-metadata-storage --no-interaction
 php bin/console doctrine:migrations:migrate --no-interaction
 
 chown -R www-data:www-data var
