@@ -115,7 +115,7 @@ class SchuldItemFormType extends AbstractType
         ]);
         $builder->add('toevoegingOnbekendeSchuldeiser', TextareaType::class, [
             'label' => 'Informatie onbekende schuldeiser *',
-            'attr' => ['placeholder' => 'NAW / Naam / Telefoon'],
+            'attr' => ['placeholder' => 'Naam/Adres/E-mail/Telefoon/IBAN'],
             'required' => false
         ]);
 
