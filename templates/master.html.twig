@@ -25,6 +25,7 @@
 
         {% block pdfsplitter %}
           <aside id="pdfsplitter" class="pdf-splitter no-header file-pdf-pages" data-decorator="droppable" data-changer="pdfsplitter">
+              <div id="connection_error" class="connection_error hidden">Er is op dit moment geen verbinding met het schulddossier. Wacht een paar minuten om op te slaan.</div>
               <span class="pdfsplitter__selected-pages"></span>
               <div class="pages" data-handler="page-select"></div>
               <label class="file-selector">
