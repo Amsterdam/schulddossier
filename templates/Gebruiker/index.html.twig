@@ -74,9 +74,9 @@
         <br>
         <h2>Gebruikers</h2>
         {% if inactive %}
-            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index') }}">Active gebruikers weergeven</a>
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {sort:'g.naam', direction: 'asc', page: 1}) }}">Active gebruikers weergeven</a>
         {% else %}
-            <a href="{{ path('gebruikers_inactive') }}">Niet actieve gebruikers weergeven</a>
+            <a href="{{ path('gebruikers_inactive', {sort:'g.naam', direction: 'asc', page: 1}) }}">Niet actieve gebruikers weergeven</a>
         {% endif %}
         <br>
         <div>
