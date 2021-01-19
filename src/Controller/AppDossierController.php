@@ -188,14 +188,18 @@ class AppDossierController extends Controller
             $allegroCheck = isset($form['allegroCheck']) ? $form['allegroCheck']->getData() : false;
 
             $dossierRepository = $em->getRepository(Dossier::class);
-            $dossiers = $dossierRepository->findBy(['clientBSN'=>$dossier->getClientBSN(), 'schuldhulpbureau'=>$dossier->getSchuldhulpbureau()]);
-            if (count($dossiers) > 1) {
-                $this->addFlash('success', sprintf('Info: Er bestaat al een ander dossier met deze BSN binnen %s', $dossier->getSchuldhulpbureau()->getNaam()));
+            if (null !== $dossier->getClientBSN() && 0 !== strlen($dossier->getClientBSN())) {
+                $dossiers = $dossierRepository->findBy(['clientBSN' => $dossier->getClientBSN(), 'schuldhulpbureau' => $dossier->getSchuldhulpbureau()]);
+                if (count($dossiers) > 1) {
+                    $this->addFlash('success', sprintf('Info: Er bestaat al een ander dossier met deze BSN binnen %s', $dossier->getSchuldhulpbureau()->getNaam()));
+                }
             }
 
-            $dossiers = $dossierRepository->findBy(['regasNummer'=>$dossier->getRegasNummer(), 'schuldhulpbureau'=>$dossier->getSchuldhulpbureau()]);
-            if (count($dossiers) > 1) {
-                $this->addFlash('success', sprintf('Info: Er bestaat al een ander dossier met dit Regas nummer binnen %s', $dossier->getSchuldhulpbureau()->getNaam()));
+            if (null !== $dossier->getRegasNummer() && 0 !== strlen($dossier->getRegasNummer())) {
+                $dossiers = $dossierRepository->findBy(['regasNummer' => $dossier->getRegasNummer(), 'schuldhulpbureau' => $dossier->getSchuldhulpbureau()]);
+                if (count($dossiers) > 1) {
+                    $this->addFlash('success', sprintf('Info: Er bestaat al een ander dossier met dit Regas nummer binnen %s', $dossier->getSchuldhulpbureau()->getNaam()));
+                }
             }
 
             if (!$allegroCheck) {
