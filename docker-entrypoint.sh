@@ -5,7 +5,11 @@ echo "Environment: $APP_ENV"
 
 set -u
 
-echo "10.16.136.56 schuldhulp.sociaal.amsterdam.nl schuldhulp-ft.sociaal.amsterdam.nl" >> /etc/hosts
+#echo "10.16.136.56 schuldhulp-ft.sociaal.amsterdam.nl" >> /etc/hosts
+#echo "10.205.130.12 schuldhulp-ft.sociaal.amsterdam.nl" >> /etc/hosts # hent change 1
+echo "10.204.22.40 schuldhulp-ft.sociaal.amsterdam.nl" >> /etc/hosts # hent change 2
+#echo "10.16.130.3 schuldhulp.sociaal.amsterdam.nl" >> /etc/hosts
+echo "10.204.22.39 schuldhulp.sociaal.amsterdam.nl" >> /etc/hosts
 echo 'Dumping hosts file:'
 cat /etc/hosts
 
@@ -25,14 +29,13 @@ then
     php bin/console cache:warmup --env=acceptance
 fi
 
-php bin/console doctrine:migrations:sync-metadata-storage --no-interaction
 php bin/console doctrine:migrations:migrate --no-interaction
 
 chown -R www-data:www-data var
 
 rm /etc/nginx/conf.d/default.conf
 cp docker/nginx/nginx.conf /etc/nginx/nginx.conf
-cp docker/nginx/vhost.conf /etc/nginx/conf.d/vhost.conf
+cp docker/nginx/vhost-$APP_ENV.conf /etc/nginx/conf.d/vhost.conf
 
 cp docker/nginx/localhost.crt /srv/localhost.crt
 cp docker/nginx/localhost.key /srv/localhost.key
