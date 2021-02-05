@@ -40,6 +40,14 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             'required' => false,
             'label' => 'Jongeren Schuldenvrije Start (JSS)'
         ]);
+        $builder->add('schuldenrustLening', CheckboxType::class, [
+            'required' => false,
+            'label' => 'Schuldenrust lening (SRL)'
+        ]);
+        $builder->add('saneringsKrediet', CheckboxType::class, [
+            'required' => false,
+            'label' => 'Saneringskrediet (SK)'
+        ]);
         $builder->add('aanvullendeInformatie', TextareaType::class, [
             'required' => false
         ]);

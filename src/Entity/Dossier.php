@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository")
  * @ORM\Table
- * @UniqueEntity("regasNummer")
  * @UniqueEntity("allegroNummer")
  */
 class Dossier

@@ -39,4 +39,13 @@ class DefaultController extends Controller
             'trustedProxies' => $request->getTrustedProxies(),
         ]);
     }
+
+    /**
+     * @Route("/ping")
+     * @return JsonResponse
+     */
+    public function pingAction()
+    {
+        return new JsonResponse(['status'=>'OK']);
+    }
 }

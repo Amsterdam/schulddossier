@@ -54,7 +54,7 @@ class ChangeDossierStatusType extends AbstractType
                 $transitionChoices['Afkeuren'] = 'afkeuren_madi';
             }
             if ($workflow->can($dossier, 'afkeuren_dossier_gka')){
-                $transitionChoices['Dossier afwijzen (terug naar MaDi)'] = 'afkeuren_dossier_gka';
+                $transitionChoices['Dossier afwijzen (terug naar MaDi/Bewindvoerder)'] = 'afkeuren_dossier_gka';
             }
             if ($workflow->can($dossier, 'opgevoerd_madi')){
                 $transitionChoices['Ter controle aanbieden'] = 'opgevoerd_madi';
@@ -101,7 +101,7 @@ class ChangeDossierStatusType extends AbstractType
                 case Dossier::STATUS_COMPLEET_GKA:
                     $workflowChoices = [
                         'Dossier akkoord' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
-                        'Dossier afwijzen (terug naar MaDi)' => Dossier::STATUS_BEZIG_MADI,
+                        'Dossier afwijzen (terug naar MaDi/Bewindvoerder)' => Dossier::STATUS_BEZIG_MADI,
                     ];
                     break;
                 case Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA:

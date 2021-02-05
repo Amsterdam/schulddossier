@@ -41,7 +41,7 @@ class DetailDossierFormType extends AbstractType
 
         $builder->add('regasNummer', TextType::class, [
             'required' => false,
-            'label' => 'MaDi dossiernr.'
+            'label' => 'MaDi/Bewindvoerder dossiernr.'
         ]);
 
         $builder->add('allegroNummer', TextType::class, [

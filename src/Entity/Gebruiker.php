@@ -92,6 +92,12 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     private $email;
 
     /**
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastLogin;
+
+    /**
      * @var string
      * @ORM\Column(type="string", length=12, nullable=true)
      * @Assert\Length(max=12, groups={"mijn-gegevens"})
@@ -565,5 +571,24 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     public function isUnknown(): bool
     {
         return $this->getType() === self::TYPE_ONBEKEND;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getLastLogin(): ?\DateTime
+    {
+        return $this->lastLogin;
+    }
+
+    /**
+     * @param \DateTime|null $lastLogin
+     * @return Gebruiker
+     */
+    public function setLastLogin(?\DateTime $lastLogin): Gebruiker
+    {
+        $this->lastLogin = $lastLogin;
+
+        return $this;
     }
 }

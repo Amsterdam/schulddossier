@@ -971,6 +971,18 @@ class Voorlegger
      */
     private $jongerenSchuldenvrijeStart;
 
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $schuldenrustLening;
+
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $saneringsKrediet;
+
     // ---
 
     public function __construct()
@@ -2593,6 +2605,38 @@ class Voorlegger
         $this->jongerenSchuldenvrijeStart = $jongerenSchuldenvrijeStart;
 
         return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getSchuldenrustLening(): ?bool
+    {
+        return $this->schuldenrustLening;
+    }
+
+    /**
+     * @param bool|null $schuldenrustLening
+     */
+    public function setSchuldenrustLening(?bool $schuldenrustLening): void
+    {
+        $this->schuldenrustLening = $schuldenrustLening;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getSaneringsKrediet(): ?bool
+    {
+        return $this->saneringsKrediet;
+    }
+
+    /**
+     * @param bool|null $saneringsKrediet
+     */
+    public function setSaneringsKrediet(?bool $saneringsKrediet): void
+    {
+        $this->saneringsKrediet = $saneringsKrediet;
     }
 
 }
