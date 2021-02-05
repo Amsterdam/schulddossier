@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Twitter Bootstrap v3 Sorting control implementation.
+ *
+ * @author Afolabi Olayinka <folabiolayinka@gmail.com>
+ */
+#}
+<a{% for attr, value  in options %} {{ attr }}="{{ value }}"{% endfor %}">
+    <span>
+        {% if sorted %}
+            {% if direction == 'desc' %}
+                <i class="fas fa-sort"></i>
+            {% else %}
+                <i class="fas fa-sort"></i>
+            {% endif %}
+        {% else %}
+            <i class="fas fa-sort"></i>
+        {% endif %}
+    </span>
+    {{ title }}
+</a>

@@ -67,6 +67,8 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $action = new ActionEventEntity();
         $dateTime = new \DateTime();
 
+        $gebruiker->setLastLogin($dateTime);
+
         $action->setName(ActionEvent::GEBRUIKER_INGELOGD);
         $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
         $action->setDatumTijd($dateTime);

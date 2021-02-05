@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -112,6 +113,12 @@ class SchuldItemFormType extends AbstractType
             'prototype_name' => '__name__',
             'by_reference' => false,
         ]);
+        $builder->add('toevoegingOnbekendeSchuldeiser', TextareaType::class, [
+            'label' => 'Informatie onbekende schuldeiser *',
+            'attr' => ['placeholder' => 'Naam/Adres/E-mail/Telefoon/IBAN'],
+            'required' => false
+        ]);
+
         $builder->add('aantekening', CreateAantekeningFormType::class, [
             'mapped' => false,
             'required' => false,

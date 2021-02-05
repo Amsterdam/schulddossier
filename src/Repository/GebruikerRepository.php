@@ -2,8 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Persistence\ManagerRegistry;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use Doctrine\ORM\QueryBuilder;
 
@@ -12,8 +14,74 @@ use Doctrine\ORM\QueryBuilder;
  *
  * @package GemeenteAmsterdam\FixxxSchuldhulp\Repository
  */
-class GebruikerRepository extends EntityRepository
+class GebruikerRepository extends ServiceEntityRepository
 {
+    const INACTIVE_MODIFIER = '-3 months';
+
+    use PaginationTrait;
+
+    /**
+     * SchuldhulpbureauRepository constructor.
+     *
+     * @param ManagerRegistry $registry
+     */
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Gebruiker::class);
+        $this->setPaginationAlias('g');
+        $this->addPaginationLeftJoin('g.schuldhulpbureaus', 'shb');
+        $this->addPaginationLeftJoin('g.teamGka', 't');
+    }
+
+    public function generatePaginationQueryForUser(Gebruiker $gebruiker, bool $inactive): Query
+    {
+        switch ($gebruiker->getType()) {
+            case Gebruiker::TYPE_MADI_KEYUSER:
+                return $this->generatePaginationQueryForKeyuser($gebruiker, $inactive);
+            case Gebruiker::TYPE_GKA_APPBEHEERDER:
+                return $this->generatePaginationQueryForGkaAppbeheerder($gebruiker, $inactive);
+            case Gebruiker::TYPE_ADMIN:
+                return $this->generatePaginationQueryForAdmin($gebruiker, $inactive);
+        }
+    }
+
+    public function generatePaginationQueryForKeyuser(Gebruiker $gebruiker, $inactive): Query {
+        $query =  $this->generatePaginationQuery(sprintf('%s WHERE shb.id IN (:bureaus) AND g.type IN (:types) %s', $this->generatePaginationQueryDql(), $this->generateInactiveQueryPart($inactive)));
+        $query->setParameter('bureaus', $gebruiker->getSchuldhulpbureaus());
+        $query->setParameter('types', [Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER]);
+        $lastLogin = new \DateTime();
+        $lastLogin->modify(self::INACTIVE_MODIFIER);
+        $query->setParameter('lastLogin', $lastLogin);
+
+        return $query;
+    }
+
+    public function generatePaginationQueryForGkaAppbeheerder(Gebruiker $gebruiker, $inactive): Query {
+        $query =  $this->generatePaginationQuery(sprintf('%s WHERE g.type IN (:types) %s', $this->generatePaginationQueryDql(), $this->generateInactiveQueryPart($inactive)));
+        $query->setParameter('types', [Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER]);
+        $lastLogin = new \DateTime();
+        $lastLogin->modify(self::INACTIVE_MODIFIER);
+        $query->setParameter('lastLogin', $lastLogin);
+        return $query;
+    }
+
+    public function generatePaginationQueryForAdmin(Gebruiker $gebruiker, $inactive): Query {
+        $query =  $this->generatePaginationQuery(sprintf('%s WHERE g.type IN (:types) %s', $this->generatePaginationQueryDql(), $this->generateInactiveQueryPart($inactive)));
+        $query->setParameter('types', [Gebruiker::TYPE_ADMIN, Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER]);
+        $lastLogin = new \DateTime();
+        $lastLogin->modify(self::INACTIVE_MODIFIER);
+        $query->setParameter('lastLogin', $lastLogin);
+        return $query;
+    }
+
+    protected function generateInactiveQueryPart(bool $inactive) {
+        if ($inactive) {
+            return 'AND (g.lastLogin <= :lastLogin OR g.lastLogin IS NULL)';
+        }
+
+        return 'AND g.lastLogin > :lastLogin';
+    }
+
     /**
      * @param int $page
      * @param int $pageSize

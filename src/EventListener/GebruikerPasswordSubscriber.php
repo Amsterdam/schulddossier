@@ -3,7 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 

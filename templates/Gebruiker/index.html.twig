@@ -61,7 +61,7 @@
                         <td>
                             {{ gebruiker.type|transform_type_in_title }}
                         </td>
-                        <td>{{ gebruiker.teamGka }}</td>
+                        <td>{{ gebruiker.teamGka.naam }}</td>
                         <td>{{ gebruiker.schuldhulpbureaus|join(', ') }}</td>
                     </tr>
                 {% endfor %}
@@ -73,21 +73,35 @@
         {% endif %}
         <br>
         <h2>Gebruikers</h2>
+        {% if inactive %}
+            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {sort:'g.naam', direction: 'asc', page: 1}) }}">Active gebruikers weergeven</a>
+        {% else %}
+            <a href="{{ path('gebruikers_inactive', {sort:'g.naam', direction: 'asc', page: 1}) }}">Niet actieve gebruikers weergeven</a>
+        {% endif %}
         <br>
+        <div>
+            {{ knp_pagination_filter(pagination,
+                {
+                    'g.email': 'E-mailadres',
+                    'g.naam': 'Naam',
+                    't.naam': 'Team GKA',
+                }) }}
+        </div>
         <div class="table">
             <table>
                 <thead>
                     <tr>
-                        <th>E-mailadres</th>
-                        <th>Naam</th>
-                        <th>Telefoonnummer</th>
-                        <th>Type</th>
-                        <th>Team GKA</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'E-mailadres', 'g.email') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Naam', 'g.naam') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Telefoonnummer', 'g.telefoonnummer') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Type', 'g.type') }}</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Team GKA', 'g.teamGka') }}</th>
                         <th>Team schuldhulpbureau</th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Laatste login', 'g.lastLogin') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-{% for gebruiker in gebruikers %}
+{% for gebruiker in pagination %}
                     <tr{% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_MADI_KEYUSER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
                         <th>
                             {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_MADI_KEYUSER') or is_granted('ROLE_ADMIN') %}
@@ -103,13 +117,14 @@
                         </td>
                         <td>{{ gebruiker.teamGka }}</td>
                         <td>{{ gebruiker.schuldhulpbureaus|join(', ') }}</td>
+                        <td>{% if gebruiker.lastLogin is not null %}{{ gebruiker.lastLogin|date('d-m-Y') }}{% else %}nooit{% endif %}</td>
                     </tr>
 {% endfor %}
                </tbody>
             </table>
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
         </div>
-        {% if pagination.numberOfPages > 1 %}
-            {% include 'pagination.html.twig' with {'pagination': pagination} only %}
-        {% endif %}
     </div>
 {% endblock %}

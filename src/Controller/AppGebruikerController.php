@@ -7,6 +7,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -21,48 +22,27 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 class AppGebruikerController extends Controller
 {
+
     /**
      * @Route("/")
+     * @Route("/inactive", name="gebruikers_inactive")
      */
-    public function indexAction(Request $request, EntityManagerInterface $em)
+    public function indexAction(Request $request, PaginatorInterface $paginator, GebruikerRepository $repository)
     {
-        /** @var $repository GebruikerRepository */
-        $repository = $em->getRepository(Gebruiker::class);
+        $inactive = 'gebruikers_inactive' === $request->get('_route');
 
-        $maxPageSize = 1000;
-        /** @var Gebruiker $user */
-        $user = $this->getUser();
-        $gebruikers = '';
-        switch ($user->getType()) {
-            case Gebruiker::TYPE_MADI_KEYUSER:
-                $gebruikers = $repository->findAllByTypeAndSchuldhulpbureau([Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER], $user->getSchuldhulpbureaus(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
-
-                break;
-
-            case Gebruiker::TYPE_GKA_APPBEHEERDER:
-                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
-
-                break;
-
-            case Gebruiker::TYPE_ADMIN:
-                $gebruikers = $repository->findAllByType([Gebruiker::TYPE_ADMIN, Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER], $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
-
-                break;
-        }
+        $pagination = $paginator->paginate(
+            $repository->generatePaginationQueryForUser($this->getUser(), $inactive),
+            $request->query->getInt('page', 1),
+            10
+        );
 
         $onbekendeGebruikers = $repository->findAllOnbekendeGebruikers()->getQuery()->getResult();
 
         return $this->render('Gebruiker/index.html.twig', [
-            'gebruikers' => $gebruikers,
+            'pagination' => $pagination,
             'onbekendeGebruikers' => $onbekendeGebruikers,
-            'pagination' => [
-                'reverse' => 'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index',
-                'reverse_params' => [],
-                'page' => $request->query->getInt('page', 0),
-                'pageSize' => $maxPageSize,
-                'numberOfItems' => count($gebruikers),
-                'numberOfPages' => ceil(count($gebruikers) / $request->query->getInt('pageSize', $maxPageSize))
-            ]
+            'inactive' => $inactive
         ]);
     }
 

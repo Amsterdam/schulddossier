@@ -352,3 +352,15 @@ $splitter-bg-color: #555;
     margin-right: 5px;
   }
 }
+
+.connection_error {
+  top: 30px;
+  margin: 15px;
+  margin-top: 60px;
+  width: 431px;
+  background-color: red;
+  color: white;
+  font-size: 16px;
+  padding: 5px;
+  border: 1px solid black;
+}

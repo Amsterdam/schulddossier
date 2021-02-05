@@ -41,7 +41,7 @@ class VoorleggerKwijtscheldingGemeenteBelastingFormType extends AbstractType
         ]);
         $builder->add('kwijtscheldingGemeenteBelasting', CheckboxType::class, [
             'required' => false,
-            'label' => 'Kwijtschelding (MaDi)',
+            'label' => 'Kwijtschelding (MaDi/Bewindvoerder)',
         ]);
         $builder->add('corrigerenGemeenteBelasting', CheckboxType::class, [
             'required' => false,
