@@ -75,6 +75,12 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     private $type;
 
     /**
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastNewsView;
+
+    /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank
@@ -588,6 +594,25 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     public function setLastLogin(?\DateTime $lastLogin): Gebruiker
     {
         $this->lastLogin = $lastLogin;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getLastNewsView(): ?\DateTime
+    {
+        return $this->lastNewsView;
+    }
+
+    /**
+     * @param \DateTime|null $lastNewsView
+     * @return Gebruiker
+     */
+    public function setLastNewsView(?\DateTime $lastNewsView): Gebruiker
+    {
+        $this->lastNewsView = $lastNewsView;
 
         return $this;
     }

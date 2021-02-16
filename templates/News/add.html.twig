@@ -1,0 +1,71 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Nieuws - {{ parent() }}{% endblock %}
+
+{% block pdfsplitter %}{% endblock %}
+
+{% block documentContainerClass %}document-container document-container__wide{% endblock %}
+
+{% block document %}
+    <input type="hidden" id="newsAddUrl" value="{{ path('gemeenteamsterdam_fixxxschuldhulp_news_add') }}">
+    <input type="hidden" id="newsIndexUrl" value="{{ path('gemeenteamsterdam_fixxxschuldhulp_news_index', {'sort': 'n.publishedAt', 'direction': 'asc', 'page': 1}) }}">
+    <p class="nav-internal--breadcrumb">
+        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"
+           class=" nav-internal--breadcrumb__home">
+            <span>Start</span>
+        </a>
+        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_news_index') }}"
+           class=" nav-internal--breadcrumb__dossier active">
+            <i class="nav-internal--breadcrumb__icon-arrow-right"></i>
+            <span>Nieuws</span>
+        </a>
+        <a href="#" class=" nav-internal--breadcrumb__dossier in-active">
+            <i class="nav-internal--breadcrumb__icon-arrow-right"></i>
+            <span>Toevoegen</span>
+        </a>
+    </p>
+
+    <div class="document well">
+        <div class="document-header group">
+            <h1 class="document-title">Nieuws toevoegen</h1>
+        </div>
+        <div class="form-container">
+            <form name="news_form" method="post" class="default-form-style">
+                <div class="form-row">
+                    <div class="label-widget"><label for="news_title" class="required">Titel</label>
+                        <input type="text" id="news_title" name="news_title" required="required" value="">
+                    </div>
+                </div>
+                <div style="width: 100%" id="news_content"></div>
+                <div class="form-row">
+                    <div class="label-widget"><label for="publish">Publiceren</label><input type="checkbox" id="publish"
+                                                                                            name="publish"></div>
+                </div>
+                <div class="form-row">
+                    <div class="label-widget"><label for="visible_gka">Zichtbaar voor gka</label><input type="checkbox" id="visible_gka"
+                                                                                            name="visible_gka"></div>
+                </div>
+                <div class="form-row">
+                    <div class="label-widget"><label for="visible_madi">Zichtbaar voor madi</label><input type="checkbox" id="visible_madi"
+                                                                                                        name="visible_madi"></div>
+                </div>
+            </form>
+            <p class="buttons right">
+                <button id="submit_news" class="button primary">Opslaan</button>
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_news_index') }}">Annuleren</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('quill/quill.js') }}"></script>
+    <script src="{{ asset('js/newsAdd.js') }}"></script>
+{% endblock %}
+
+
+{% block stylesheets %}
+    <link type="text/css" rel="stylesheet" href="{{ asset('/quill/quill.snow.css') }}">
+{% endblock %}

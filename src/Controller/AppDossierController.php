@@ -28,6 +28,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldItemFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\NewsItemRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -65,7 +66,7 @@ class AppDossierController extends Controller
      * @Route("/")
      * @throws \Exception
      */
-    public function indexAction(Request $request, EntityManagerInterface $em, AuthorizationCheckerInterface $authChecker)
+    public function indexAction(Request $request, EntityManagerInterface $em, AuthorizationCheckerInterface $authChecker, NewsItemRepository $newsItemRepository)
     {
         /** @var $repository DossierRepository */
         $repository = $em->getRepository(Dossier::class);
@@ -123,9 +124,12 @@ class AppDossierController extends Controller
             $searchForm = $this->createForm(SearchDossierFormType::class, $seachQuery, ['method' => 'GET']);
         }
 
+        $newsItem = $newsItemRepository->findLatest($this->getUser());
+
         return $this->render('Dossier/index.html.twig', [
             'dossiers' => $dossiers,
             'searchQuery' => $seachQuery,
+            'newsItem' => $newsItem,
             'searchForm' => $searchForm->createView(),
             'pagination' => [
                 'reverse' => 'gemeenteamsterdam_fixxxschuldhulp_appdossier_index',

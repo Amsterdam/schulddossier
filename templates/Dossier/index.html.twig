@@ -7,7 +7,12 @@
 {% block documentContainerClass %}document-container document-container__wide{% endblock %}
 
 {% block document %}
-
+    {% if newsItem is not null %}
+        <div class="flash-message flash-type-info">
+            <a class="btn" href="#close-flash">x</a>
+            <span class="message"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_news_show', {'item': newsItem.id}) }}">Ongelezen nieuws update: {{ newsItem.title }}</a></span>
+        </div>
+    {% endif %}
     <div class="document well">
         {{ form_start(searchForm, {'attr': {}}) }}
         <div class="document-header">

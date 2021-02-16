@@ -18,6 +18,7 @@
         <meta name="theme-color" content="#ffffff">
 
         <link type="text/css" rel="stylesheet" href="{{ asset('/css/screen.css') }}"  media="all">
+        {% block stylesheets %}{% endblock %}
 
         <script>!function(a){a.className=a.className.replace(/\bno-js\b/g,'js'),'ontouchstart'in window&&(a.className=a.className.replace(/\bno-touch\b/g,'touch'))}(document.documentElement)</script>
     </head>
@@ -62,6 +63,7 @@
                 <nav class="nav">
                   <ul class="menu">
                       {% block navigation_menu %}
+                          <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_news_index', {'sort': 'n.publishedAt', 'direction': 'asc', 'page': 1}) }}">Nieuws</a></li>
                     {% if is_granted('ROLE_MADI') or is_granted('ROLE_GKA') or is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_MADI_KEYUSER') or is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appdossier_') %} class="active"{% endif %}>Dossiers</a></li>
                         <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_') %} class="active"{% endif %}>Schuldeisers</a></li>

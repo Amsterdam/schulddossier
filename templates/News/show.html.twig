@@ -1,0 +1,40 @@
+{% extends 'master.html.twig' %}
+
+{% block title %}Nieuws - {{ parent() }}{% endblock %}
+
+{% block pdfsplitter %}{% endblock %}
+
+{% block documentContainerClass %}document-container document-container__wide{% endblock %}
+
+{% block document %}
+    <p class="nav-internal--breadcrumb">
+        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"
+           class=" nav-internal--breadcrumb__home">
+            <span>Start</span>
+        </a>
+        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_news_index') }}"
+           class=" nav-internal--breadcrumb__dossier active">
+            <i class="nav-internal--breadcrumb__icon-arrow-right"></i>
+            <span>Nieuws</span>
+        </a>
+        <a href="#" class=" nav-internal--breadcrumb__dossier in-active">
+            <i class="nav-internal--breadcrumb__icon-arrow-right"></i>
+            <span>{{ item.title }}</span>
+        </a>
+    </p>
+
+    <div class="document well">
+        <div class="document-header group">
+            <h1 class="document-title">{{ item.title }}</h1>
+            {% if is_granted('ROLE_ADMIN') %}
+                <nav class="nav-internal">
+                    <ul>
+                        <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_news_edit',{'item':item.id}) }}"
+                               class="primary">Bewerken</a></li>
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>
+        {{ item.content|raw }}
+    </div>
+{% endblock %}
