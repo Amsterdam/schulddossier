@@ -47,7 +47,7 @@ node {
 
 String BRANCH = "${env.BRANCH_NAME}"
 
-if (BRANCH == "master" || BRANCH == "dpsecure" || BRANCH == "feature/user_search") {
+if (BRANCH == "master" || BRANCH == "develop") {
 
     node {
         stage('Push acceptance image') {
@@ -72,6 +72,9 @@ if (BRANCH == "master" || BRANCH == "dpsecure" || BRANCH == "feature/user_search
             }
         }
     }
+    
+}
+if (BRANCH == "master") {
 
     stage('Waiting for approval') {
         slackSend channel: '#ci-channel-app', color: 'warning', message: 'schuldhulp is waiting for Production Release - please confirm'
