@@ -11,17 +11,15 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Workflow\Event\Event;
 
 class MailNotitificationSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var \Swift_Mailer
-     */
-    private $mailer;
-
     /**
      * @var string
      */
@@ -47,11 +45,16 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
      */
     private $twig;
 
-    public function __construct(\Swift_Mailer $mailer, $fromNotificiatieAdres, LoggerInterface $logger, TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator, \Twig\Environment $twig, RequestStack $requestStack, EntityManagerInterface $em)
+    /**
+     * @var MailerInterface
+     */
+    private $mailer;
+
+    public function __construct(MailerInterface $mailer, $fromNotificiatieAdres, LoggerInterface $mailLogger, TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator, \Twig\Environment $twig, RequestStack $requestStack, EntityManagerInterface $em)
     {
         $this->mailer = $mailer;
         $this->fromNotificiatieAdres = $fromNotificiatieAdres;
-        $this->logger = $logger;
+        $this->logger = $mailLogger;
         $this->tokenStorage = $tokenStorage;
         $this->urlGenerator = $urlGenerator;
         $this->twig = $twig;
@@ -189,22 +192,23 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
 
     protected function mail($from, $to, $template, $data)
     {
-        $message = new \Swift_Message();
+        $message = new Email();
         $message->getHeaders()->addTextHeader('X-Application', 'Schuldhulp');
         $message->addFrom($from);
         $message->addTo($to);
 
-        $subject = $this->twig->load($template)->renderBlock('subject', $data);
-        $html = $this->twig->load($template)->renderBlock('html', $data);
-        $txt = $this->twig->load($template)->renderBlock('txt', $data);
+        $message->subject($this->twig->load($template)->renderBlock('subject', $data));
+        $message->html($this->twig->load($template)->renderBlock('html', $data));
+        $message->text($this->twig->load($template)->renderBlock('txt', $data));
 
-        $message->setSubject($subject);
-        $message->setBody($html, 'text/html');
-        $message->addPart($txt, 'text/plain');
-
-        $this->logger->info(sprintf('Mail from: %s, to: %s, subject: %s', $from, $to, $subject), ['mail']);
-
-        $this->mailer->send($message);
+        try {
+            $this->logger->info('Mail: start sending', ['from' => $from, 'to' => $to, 'subject' => $message->getSubject()]);
+            $this->mailer->send($message);
+            $this->logger->info('Mail: successfully send', ['from' => $from, 'to' => $to, 'subject' => $message->getSubject()]);
+        } catch (TransportExceptionInterface $e) {
+            $this->logger->error('Mail: send failure', ['exception' => get_class($e), 'reason' => $e->getMessage(), 'from' => $from, 'to' => $to, 'subject' => $message->getSubject()]);
+            throw $e;
+        }
     }
 
     public static function getSubscribedEvents()
