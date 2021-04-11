@@ -47,14 +47,23 @@ tail -f /srv/app/var/log/nginx-schulddossier_* &
 touch /srv/app/var/log/dev.log
 touch /srv/app/var/log/acceptance.log
 touch /srv/app/var/log/production.log
+touch /srv/app/var/log/mail-dev.log
+touch /srv/app/var/log/mail-acceptance.log
+touch /srv/app/var/log/mail-production.log
 
 chmod ugo+rwx /srv/app/var/log/dev.log
 chmod ugo+rwx /srv/app/var/log/acceptance.log
 chmod ugo+rwx /srv/app/var/log/production.log
+chmod ugo+rwx /srv/app/var/log/mail-dev.log
+chmod ugo+rwx /srv/app/var/log/mail-acceptance.log
+chmod ugo+rwx /srv/app/var/log/mail-production.log
 
 tail -f /srv/app/var/log/dev.log &
 tail -f /srv/app/var/log/acceptance.log &
 tail -f /srv/app/var/log/production.log &
+tail -f /srv/app/var/log/mail-dev.log &
+tail -f /srv/app/var/log/mail-acceptance.log &
+tail -f /srv/app/var/log/mail-production.log &
 
 nginx
 php-fpm -F
