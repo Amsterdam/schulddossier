@@ -50,7 +50,6 @@ services:
         arguments:
             - '@mailer'
             - '%env(APP_NOTIFICATIE_FROM)%'
-            - '@logger'
     
     # Services
     GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector:
