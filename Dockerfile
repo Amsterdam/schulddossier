@@ -6,6 +6,10 @@ EXPOSE 80
 RUN apk update \
  && apk upgrade
 
+COPY certificates/adp_rootca.crt /usr/local/share/ca-certificates/adp_rootca.crt
+RUN chmod 644 /usr/local/share/ca-certificates/adp_rootca.crt \
+  && update-ca-certificates --fresh
+
 RUN apk add bash
 
 RUN apk add nginx \
