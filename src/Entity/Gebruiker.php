@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
@@ -19,6 +20,8 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  *      @ORM\UniqueConstraint(name="uq_email", columns={"email"})
  *  }
  * )
+ * @UniqueEntity("email")
+ * @UniqueEntity("username")
  */
 class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, EquatableInterface
 {
@@ -250,6 +253,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
     public function setEmail($email)
     {
         $this->email = strtolower($email);
+        $this->username = $this->getEmail();
     }
 
     /**
@@ -402,7 +406,7 @@ class Gebruiker implements UserInterface, \Serializable, AdvancedUserInterface, 
         }
         return $defaultTypes;
     }
-    
+
     public static function getTypesList()
     {
         return [self::TYPE_MADI, self::TYPE_MADI_KEYUSER, self::TYPE_GKA, self::TYPE_GKA_APPBEHEERDER, self::TYPE_ADMIN, self::TYPE_ONBEKEND];
