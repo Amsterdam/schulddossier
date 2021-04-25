@@ -174,8 +174,11 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
             throw new AuthenticationException('Auth server did not supply a e-mail');
         }
 
+        $this->logger->info('Claims received from IDP', ['claims' => $token->getClaims()]);
+
         $user = $this->gebruikerRepository->findOneBy(['email' => strtolower($token->getClaim('email'))]);
         if ($user === null) {
+            $this->logger->info('No user found, tried with the following claim', ['email' => strtolower($token->getClaim('email'))]);
             $user = new Gebruiker();
             $user->setEmail($token->getClaim('email'));
             $user->setUsername($token->getClaim('email'));
@@ -188,6 +191,8 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
             $user->setType(Gebruiker::TYPE_ONBEKEND);
             $this->entityManager->persist($user);
             $this->entityManager->flush($user);
+        } else {
+            $this->logger->info('User found', ['id' => $user->getId()]);
         }
 
         return $user;
