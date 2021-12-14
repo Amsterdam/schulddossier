@@ -10,29 +10,34 @@ services:
       POSTGRES_DB: schuldhulp
   web_dev:
     build:
-        context: .
-        dockerfile: Dockerfile-dev
+      context: .
+      dockerfile: Dockerfile-dev
     restart: always
     volumes:
       - type: bind
         source: ./config
         target: /srv/app/config
-        volume:
-          consistency: cached
       - type: bind
         source: ./public
         target: /srv/app/public
       - type: bind
         source: ./src
         target: /srv/app/src
-        volume:
-          consistency: cached
+      - type: bind
+        source: ./doc
+        target: /srv/app/doc
+      - type: bind
+        source: ./translations
+        target: /srv/app/translations
       - type: bind
         source: ./templates
         target: /srv/app/templates
     ports:
       - "80:80"
       - "443:443"
+    extra_hosts:
+      - "schuldhulp-ft.sociaal.amsterdam.nl:10.16.136.56"
+      - "host.docker.internal:host-gateway"
     links:
       - database_dev
     environment:
@@ -50,4 +55,41 @@ services:
       - SWIFT_EXTERNAL_DOMAIN=
       - APP_NOTIFICATIE_FROM=tester@test.com
       - THUMBNAILSERVICE_URL=https://thumbnail.service/
-
+      - IAM_LOGOUT_URL=60Op4HFM0I8ajz0WdiStAbziZ-VFQttXuxixHHs2R7r7-CW8GR79l-mmLqMhc-Sa
+      - IAM_CLIENT_ID=schuld
+      - IAM_CLIENT_SECRET=c08249d8-df5a-435f-a528-341f6c5bb89c
+      - IAM_URL=http://host.docker.internal:8080/auth/realms/ams
+      - ALLEGRO_ENDPOINT=https://schuldhulp-ft.sociaal.amsterdam.nl:8084/SOAP
+      - ALLEGRO_ONBEKENDE_SCHULDEISER=2450232
+      - MAILER_DSN=smtp://localhost
+  mariadb:
+    image: mariadb
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
+    # Copy-pasted from https://github.com/docker-library/mariadb/issues/94
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
+#  keycloak:
+#    image: quay.io/keycloak/keycloak:latest
+#    environment:
+#      DB_VENDOR: mariadb
+#      DB_ADDR: mariadb
+#      DB_DATABASE: keycloak
+#      DB_USER: keycloak
+#      DB_PASSWORD: password
+#      KEYCLOAK_USER: admin
+#      KEYCLOAK_PASSWORD: Pa55w0rd
+#      JGROUPS_DISCOVERY_PROTOCOL: JDBC_PING
+#    depends_on:
+#      - mariadb
+#    ports:
+#      - "8080:8080"
+#      - "9990:9990"
+volumes:
+  mysql_data:
+    driver: local

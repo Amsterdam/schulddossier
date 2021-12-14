@@ -11,34 +11,34 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        #app:
-        #    pattern: ^/app
-        #    security: true
-        #    provider: database
-        #    anonymous: true
-        #    form_login:
-        #        login_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
-        #        check_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
-        #        csrf_token_generator: security.csrf.token_manager
-        #    logout:
-        #        path: /app/logout
-        #        target: /
         app:
             pattern: ^/app
-            access_denied_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\AccessDeniedHandler
             security: true
-            anonymous: false
-            stateless: false
-            logout_on_user_change: true
-            guard:
-                authenticators:
-                    - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
-                entry_point: GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
+            provider: database
+            anonymous: true
+            form_login:
+                login_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
+                check_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
+                csrf_token_generator: security.csrf.token_manager
             logout:
                 path: /app/logout
-                success_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\LogoutSuccessHandler
+                target: /
+        #        app:
+        #            pattern: ^/app
+        #            access_denied_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\AccessDeniedHandler
+        #            security: true
+        #            anonymous: false
+        #            stateless: false
+        #            logout_on_user_change: true
+        #            guard:
+        #                authenticators:
+        #                    - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
+        #                entry_point: GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
+        #            logout:
+        #                path: /app/logout
+        #                success_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\LogoutSuccessHandler
         main:
             anonymous: true
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+    # - { path: ^/admin, roles: ROLE_ADMIN }
+    # - { path: ^/profile, roles: ROLE_USER }
