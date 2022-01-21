@@ -8,7 +8,8 @@ framework:
     #http_method_override: true
 
     session:
-        handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+        handler_id: ~
+#        handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
         cookie_lifetime: 0
         gc_maxlifetime: 28800
 
