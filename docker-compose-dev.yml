@@ -15,23 +15,26 @@ services:
     restart: always
     volumes:
       - type: bind
-        source: ./config
-        target: /srv/app/config
-      - type: bind
-        source: ./public
-        target: /srv/app/public
-      - type: bind
-        source: ./src
-        target: /srv/app/src
-      - type: bind
-        source: ./doc
-        target: /srv/app/doc
-      - type: bind
-        source: ./translations
-        target: /srv/app/translations
-      - type: bind
-        source: ./templates
-        target: /srv/app/templates
+        source: .
+        target: /srv/app
+#      - type: bind
+#        source: ./config
+#        target: /srv/app/config
+#      - type: bind
+#        source: ./public
+#        target: /srv/app/public
+#      - type: bind
+#        source: ./src
+#        target: /srv/app/src
+#      - type: bind
+#        source: ./doc
+#        target: /srv/app/doc
+#      - type: bind
+#        source: ./translations
+#        target: /srv/app/translations
+#      - type: bind
+#        source: ./templates
+#        target: /srv/app/templates
     ports:
       - "80:80"
       - "443:443"
