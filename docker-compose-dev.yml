@@ -8,6 +8,7 @@ services:
       POSTGRES_PASSWORD: insecure
       POSTGRES_USER: schuldhulp
       POSTGRES_DB: schuldhulp
+
   web_dev:
     build:
       context: .
@@ -17,9 +18,9 @@ services:
       - type: bind
         source: .
         target: /srv/app
-#      - type: bind
-#        source: ./config
-#        target: /srv/app/config
+      - type: bind
+        source: ./config
+        target: /srv/app/config
 #      - type: bind
 #        source: ./public
 #        target: /srv/app/public
@@ -32,9 +33,9 @@ services:
 #      - type: bind
 #        source: ./translations
 #        target: /srv/app/translations
-#      - type: bind
-#        source: ./templates
-#        target: /srv/app/templates
+      - type: bind
+        source: ./templates
+        target: /srv/app/templates
     ports:
       - "80:80"
       - "443:443"
@@ -58,13 +59,14 @@ services:
       - SWIFT_EXTERNAL_DOMAIN=
       - APP_NOTIFICATIE_FROM=tester@test.com
       - THUMBNAILSERVICE_URL=https://thumbnail.service/
-      - IAM_LOGOUT_URL=60Op4HFM0I8ajz0WdiStAbziZ-VFQttXuxixHHs2R7r7-CW8GR79l-mmLqMhc-Sa
+      - IAM_LOGOUT_URL=http://host.docker.internal:8080/auth/realms/ams/protocol/openid-connect/logout
       - IAM_CLIENT_ID=schuld
-      - IAM_CLIENT_SECRET=c08249d8-df5a-435f-a528-341f6c5bb89c
+      - IAM_CLIENT_SECRET=TmqRJUQ5FBEzjpUxPOcGkGM4wR7OTRwj
       - IAM_URL=http://host.docker.internal:8080/auth/realms/ams
       - ALLEGRO_ENDPOINT=https://schuldhulp-ft.sociaal.amsterdam.nl:8084/SOAP
       - ALLEGRO_ONBEKENDE_SCHULDEISER=2450232
       - MAILER_DSN=smtp://localhost
+
   mariadb:
     image: mariadb
     volumes:
@@ -77,22 +79,28 @@ services:
     # Copy-pasted from https://github.com/docker-library/mariadb/issues/94
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "--silent"]
-#  keycloak:
-#    image: quay.io/keycloak/keycloak:latest
-#    environment:
-#      DB_VENDOR: mariadb
-#      DB_ADDR: mariadb
-#      DB_DATABASE: keycloak
-#      DB_USER: keycloak
-#      DB_PASSWORD: password
-#      KEYCLOAK_USER: admin
-#      KEYCLOAK_PASSWORD: Pa55w0rd
-#      JGROUPS_DISCOVERY_PROTOCOL: JDBC_PING
-#    depends_on:
-#      - mariadb
-#    ports:
-#      - "8080:8080"
-#      - "9990:9990"
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    volumes:
+     - ./keycloak_realms:/opt/jboss/keycloak/imports
+#     - ./keycloak_theme:/opt/jboss/keycloak/themes
+    command:
+      - "-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/ams.json"
+    environment:
+      DB_VENDOR: mariadb
+      DB_ADDR: mariadb
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: Pa55w0rd
+      JGROUPS_DISCOVERY_PROTOCOL: JDBC_PING
+    depends_on:
+      - mariadb
+    ports:
+      - "8080:8080"
+      - "9990:9990"
 volumes:
   mysql_data:
     driver: local
