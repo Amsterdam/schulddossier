@@ -15,27 +15,30 @@ services:
       dockerfile: Dockerfile-dev
     restart: always
     volumes:
-      - type: bind
-        source: .
-        target: /srv/app
-      - type: bind
-        source: ./config
-        target: /srv/app/config
+      - .:/srv/app:rw,cached
+      - /srv/app/var/
+      - /srv/app/components/
 #      - type: bind
-#        source: ./public
-#        target: /srv/app/public
+#        source: .
+#        target: /srv/app
+#      - type: bind
+#        source: ./config
+#        target: /srv/app/config
+##      - type: bind
+##        source: ./public
+##        target: /srv/app/public
 #      - type: bind
 #        source: ./src
 #        target: /srv/app/src
+##      - type: bind
+##        source: ./doc
+##        target: /srv/app/doc
+##      - type: bind
+##        source: ./translations
+##        target: /srv/app/translations
 #      - type: bind
-#        source: ./doc
-#        target: /srv/app/doc
-#      - type: bind
-#        source: ./translations
-#        target: /srv/app/translations
-      - type: bind
-        source: ./templates
-        target: /srv/app/templates
+#        source: ./templates
+#        target: /srv/app/templates
     ports:
       - "80:80"
       - "443:443"
@@ -46,6 +49,7 @@ services:
       - database_dev
     environment:
       - APP_ENV=dev
+      - APP_DEBUG=1
       - APP_SECRET=secret
       - DATABASE_URL=pgsql://schuldhulp:insecure@database_dev:5432/schuldhulp
       - SWIFT_AUTH_URL=
