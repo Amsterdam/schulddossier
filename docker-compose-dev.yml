@@ -16,7 +16,7 @@ services:
     restart: always
     volumes:
       - .:/srv/app:rw,cached
-      - /srv/app/var/
+#      - /srv/app/var/
       - /srv/app/components/
 #      - type: bind
 #        source: .
@@ -85,12 +85,13 @@ services:
       test: ["CMD", "mysqladmin", "ping", "--silent"]
 
   keycloak:
-    image: quay.io/keycloak/keycloak:latest
+    image: quay.io/keycloak/keycloak:16.1.1
     volumes:
      - ./keycloak_realms:/opt/jboss/keycloak/imports
 #     - ./keycloak_theme:/opt/jboss/keycloak/themes
     command:
-      - "-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/ams.json"
+      - "-b 0.0.0.0"
+      - "-Dkeycloak.import=/opt/jboss/keycloak/imports/ams.json"
     environment:
       DB_VENDOR: mariadb
       DB_ADDR: mariadb
