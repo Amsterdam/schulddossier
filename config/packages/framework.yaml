@@ -1,7 +1,7 @@
 framework:
-    templating:
-        engines:
-            - twig
+#    templating:
+#        engines:
+#            - twig
     secret: '%env(APP_SECRET)%'
     default_locale: nl
     #csrf_protection: true
@@ -41,10 +41,10 @@ services:
     app.asset.my_versioning_strategy:
         class: Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy
         arguments:
-            - !service { class: GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion, factory: 'GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion:getEnvVersion' }
+            - !service { class: GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion, factory: 'GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion::getEnvVersion', arguments: ['%kernel.environment%','%kernel.project_dir%'] }
 
 
     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
         arguments:
-            - !service { class: PDO, factory: 'database_connection:getWrappedConnection' }
+            - !service { class: PDO, factory: 'database_connection::getWrappedConnection' }
             - { lock_mode: 1 }

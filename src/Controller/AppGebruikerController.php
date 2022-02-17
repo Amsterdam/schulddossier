@@ -11,16 +11,16 @@ use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * @Route("/app/gebruiker")
- * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
+ * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_MADI_KEYUSER') || is_granted('ROLE_ADMIN')")
  */
-class AppGebruikerController extends Controller
+class AppGebruikerController extends AbstractController
 {
 
     /**
@@ -48,7 +48,7 @@ class AppGebruikerController extends Controller
 
     /**
      * @Route("/nieuw")
-     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_MADI_KEYUSER') || is_granted('ROLE_ADMIN')")
      */
     public function createAction(Request $request, EntityManagerInterface $em)
     {
@@ -72,7 +72,7 @@ class AppGebruikerController extends Controller
 
     /**
      * @Route("/detail/{gebruikerId}/bewerken")
-     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_MADI_KEYUSER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
     public function updateAction(Request $request, EntityManagerInterface $em, Gebruiker $gebruiker, EventDispatcherInterface $eventDispatcher, TokenStorageInterface $tokenStorage)

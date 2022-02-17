@@ -37,7 +37,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -57,9 +57,9 @@ use ZipArchive;
 
 /**
  * @Route("/app/dossier")
- * @Security("has_role('ROLE_MADI') || has_role('ROLE_GKA') || has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
+ * @Security("is_granted('ROLE_MADI') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_MADI_KEYUSER') || is_granted('ROLE_ADMIN')")
  */
-class AppDossierController extends Controller
+class AppDossierController extends AbstractController
 {
     /**
      * @Route("/")
@@ -89,7 +89,7 @@ class AppDossierController extends Controller
             }
             $forcedSchuldhulpbureaus = $this->getUser()->getSchuldhulpbureaus();
         }
-
+//        var_dump($section);
         $seachQuery = [
             'section' => $section,
             'naam' => '',
@@ -99,7 +99,7 @@ class AppDossierController extends Controller
             'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI || $this->getUser()->getType() === Gebruiker::TYPE_MADI_KEYUSER ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
         ];
-
+//var_dump($seachQuery['schuldhulpbureaus']);
         $searchForm = $this->createForm(SearchDossierFormType::class, $seachQuery, ['method' => 'GET']);
         if ($section === 'search') {
             $searchForm->handleRequest($request);
@@ -143,7 +143,7 @@ class AppDossierController extends Controller
 
     /**
      * @Route("/prullenbak")
-     * @Security("has_role('ROLE_MADI') || has_role('ROLE_GKA') || has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_MADI') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_MADI_KEYUSER') || is_granted('ROLE_ADMIN')")
      */
     public function indexPrullenbakAction(Request $request, EntityManagerInterface $em)
     {

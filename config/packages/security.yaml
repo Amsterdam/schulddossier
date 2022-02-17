@@ -29,7 +29,6 @@ security:
             security: true
             anonymous: false
             stateless: false
-            logout_on_user_change: true
             guard:
                 authenticators:
                     - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator

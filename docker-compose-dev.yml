@@ -16,7 +16,7 @@ services:
     restart: always
     volumes:
       - .:/srv/app:rw,cached
-#      - /srv/app/var/
+      - /srv/app/var/
       - /srv/app/components/
 #      - type: bind
 #        source: .

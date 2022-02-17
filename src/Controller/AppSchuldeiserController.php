@@ -9,15 +9,15 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldeiserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/app/schuldeiser")
- * @Security("has_role('ROLE_MADI') || has_role('ROLE_GKA') || has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_MADI_KEYUSER') || has_role('ROLE_ADMIN')")
+ * @Security("is_granted('ROLE_MADI') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_MADI_KEYUSER') || is_granted('ROLE_ADMIN')")
  */
-class AppSchuldeiserController extends Controller
+class AppSchuldeiserController extends AbstractController
 {
     /**
      * @Route("/")
@@ -52,7 +52,7 @@ class AppSchuldeiserController extends Controller
 
     /**
      * @Route("/nieuw")
-     * @Security("has_role('ROLE_GKA') || has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      */
     public function createAction(Request $request, EntityManagerInterface $em)
     {
@@ -84,7 +84,7 @@ class AppSchuldeiserController extends Controller
 
     /**
      * @Route("/detail/{schuldeiserId}/bewerken")
-     * @Security("has_role('ROLE_GKA') || has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("schuldeiser", options={"id"="schuldeiserId"})
      */
     public function updateAction(Request $request, EntityManagerInterface $em, Schuldeiser $schuldeiser)
