@@ -15,7 +15,7 @@
         "knplabs/knp-paginator-bundle": "5.3.0",
         "lcobucci/jwt": "^3.2",
         "league/flysystem": "^1.0",
-        "markei/filesystemoperations": "^1",
+        "markei/filesystemoperations": "dev-symfony5support",
         "moment/moment": "^2.21",
         "mozilla/pdf.js": "1.9.426",
         "mrrio/jspdf": "1.3.5",
@@ -37,6 +37,7 @@
         "symfony/console": "^5.4",
         "symfony/dependency-injection": "^5.4",
         "symfony/expression-language": "^5.4",
+        "symfony/filesystem": "^5.4",
         "symfony/flex": "^1.0",
         "symfony/form": "^5.4",
         "symfony/framework-bundle": "^5.4",
@@ -52,8 +53,8 @@
         "symfony/var-dumper": "^5.4",
         "symfony/workflow": "^5.4",
         "symfony/yaml": "^5.4",
-        "twig/twig": "~2.0",
-        "twig/extensions": "*"
+        "twig/extensions": "*",
+        "twig/twig": "~2.0"
     },
     "require-dev": {
         "symfony/debug-bundle": "^5.4",
@@ -118,6 +119,10 @@
         ]
     },
     "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:conductionnl/filesystemoperations.git"
+        },
         {
             "type": "package",
             "package": {
