@@ -90,7 +90,7 @@ class AppGebruikerController extends AbstractController
             $this->addFlash('success', 'Opgeslagen');
             /** @var Gebruiker $currentGebruiker */
             $currentGebruiker = $tokenStorage->getToken()->getUser();
-            $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerGebruikerGewijzigd($currentGebruiker, $gebruiker));
+            $eventDispatcher->dispatch(ActionEvent::registerGebruikerGewijzigd($currentGebruiker, $gebruiker), ActionEvent::NAME);
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', [
                 'gebruikerId' => $gebruiker->getId()
             ]);

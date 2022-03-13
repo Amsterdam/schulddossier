@@ -212,7 +212,7 @@ class AppDossierController extends AbstractController
                 }
             }
 
-            $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier));
+            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier),ActionEvent::NAME);
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_createaddtional', [
                 'dossierId' => $dossier->getId()
@@ -248,7 +248,7 @@ class AppDossierController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'Dossier aangemaakt');
 
-            $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier));
+            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier), ActionEvent::NAME);
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
                 'dossierId' => $dossier->getId()
@@ -315,7 +315,7 @@ class AppDossierController extends AbstractController
                     $aantekening->setGebruiker($this->getUser());
                     $aantekening->setOnderwerp($key);
                     $aantekening->setTekst($child->get('aantekening')->get('tekst')->getData());
-                    $eventDispatcher->dispatch(DossierAddedAantekeningEvent::NAME, new DossierAddedAantekeningEvent($dossier, $this->getUser()));
+                    $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
                 }
             }
 
@@ -325,7 +325,7 @@ class AppDossierController extends AbstractController
                 if ($subForm['transition']->getData() === 'verzenden_madi') {
                     $dossier->setEersteKeerVerzondenAanGKA(true);
                 }
-                $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()));
+                $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
                 if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
                     $this->addFlash('success', 'De status is gewijzigd. Mail is verzonden naar ' . $request->get('voorlegger_form')['controleerGebruiker']);
                 } else {
@@ -335,14 +335,14 @@ class AppDossierController extends AbstractController
 
             $em->flush();
             if ($sendCorrespondentieNotification === true) {
-                $eventDispatcher->dispatch(DossierAddedCorrespondentie::NAME, new DossierAddedCorrespondentie($dossier, $this->getUser()));
+                $eventDispatcher->dispatch( new DossierAddedCorrespondentie($dossier, $this->getUser()), DossierAddedCorrespondentie::NAME);
             }
-            $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
+            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
 
 
-        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
+        $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier),ActionEvent::NAME);
 
         return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
@@ -366,7 +366,7 @@ class AppDossierController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
+            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
 
             if ($request->isXmlHttpRequest()) {
                 return new JsonResponse(['msg' => 'OK']);
@@ -380,7 +380,7 @@ class AppDossierController extends AbstractController
             return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         }
 
-        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
+        $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
 
         return $this->render('Dossier/detailAlgemeen.html.twig', [
             'dossier' => $dossier,
@@ -469,7 +469,7 @@ class AppDossierController extends AbstractController
                 $documentId = intval($documentId);
                 $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
             }
-            $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
+            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
             $em->flush();
 
             if ($request->isXmlHttpRequest()) {
@@ -482,7 +482,7 @@ class AppDossierController extends AbstractController
             return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         }
 
-        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
+        $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
 
         return $this->render('Dossier/detailOverigeDocumenten.html.twig', [
             'dossier' => $dossier,
@@ -596,11 +596,11 @@ class AppDossierController extends AbstractController
                     $aantekening->setOnderwerp('schuldenoverzicht');
                     $aantekening->setSchuldItem($child->getData());
                     $aantekening->setTekst($child->get('aantekening')->get('tekst')->getData());
-                    $eventDispatcher->dispatch(DossierAddedAantekeningEvent::NAME, new DossierAddedAantekeningEvent($dossier, $this->getUser()));
+                    $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
                 }
             }
             $em->flush();
-            $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
+            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
             //if ($request->isXmlHttpRequest()) {
             //    return new JsonResponse(['status' => 'OK']);
             //}
@@ -647,10 +647,10 @@ class AppDossierController extends AbstractController
                 $aantekening->setOnderwerp('schuldenoverzicht');
                 $aantekening->setSchuldItem($schuldItem);
                 $aantekening->setTekst($createForm->get('aantekening')->get('tekst')->getData());
-                $eventDispatcher->dispatch(DossierAddedAantekeningEvent::NAME, new DossierAddedAantekeningEvent($dossier, $this->getUser()));
+                $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
             }
             $em->flush();
-            $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
+            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
             //$this->addFlash('success', 'Toegevoegd');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
         } //else if ($createForm->isSubmitted() && $request->isXmlHttpRequest()) {
@@ -662,7 +662,7 @@ class AppDossierController extends AbstractController
             'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create', [])
         ]);
 
-        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
+        $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
 
         return $this->render('Dossier/detailSchulden.html.twig', [
             'dossier' => $dossier,
@@ -691,13 +691,13 @@ class AppDossierController extends AbstractController
             $aantekening->setGebruiker($this->getUser());
 
             $em->flush();
-            $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
-            $eventDispatcher->dispatch(DossierAddedAantekeningEvent::NAME, new DossierAddedAantekeningEvent($dossier, $this->getUser()));
+            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+            $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen', ['dossierId' => $dossier->getId()]);
         }
 
-        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierGeopened($this->getUser(), $dossier));
+        $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
 
         return $this->render('Dossier/detailAantekeningen.html.twig', [
             'dossier' => $dossier,
@@ -791,7 +791,7 @@ class AppDossierController extends AbstractController
             throw $this->createNotFoundException('Transition not available');
         }
 
-        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $request->get('transition')));
+        $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $request->get('transition')), ActionEvent::NAME);
 
         $workflow->apply($dossier, $request->get('transition'));
         $em->flush();
@@ -828,7 +828,7 @@ class AppDossierController extends AbstractController
         $this->addFlash('success', 'Document in prullenbak geplaatst');
 
         $em->flush();
-        $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()]);
     }
@@ -859,7 +859,7 @@ class AppDossierController extends AbstractController
 
         $em->remove($document);
 
-        $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
         $em->flush();
         $this->addFlash('success', 'Document definitief verwijderd');
 
@@ -893,7 +893,7 @@ class AppDossierController extends AbstractController
         $document->setInPrullenbak(false);
 
         $em->flush();
-        $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Document hersteld');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
@@ -923,7 +923,7 @@ class AppDossierController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'Dossier in prullenbak geplaatst');
 
-        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierVerplaatstNaarPrullenbak($this->getUser(), $dossier));
+        $eventDispatcher->dispatch(ActionEvent::registerDossierVerplaatstNaarPrullenbak($this->getUser(), $dossier), ActionEvent::NAME);
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
@@ -953,7 +953,7 @@ class AppDossierController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'Dossier definitief verwijderd');
 
-        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierVerwijderd($this->getUser(), $dossier));
+        $eventDispatcher->dispatch(ActionEvent::registerDossierVerwijderd($this->getUser(), $dossier), ActionEvent::NAME);
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
@@ -975,7 +975,7 @@ class AppDossierController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'Dossier hersteld');
 
-        $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerDossierHersteld($this->getUser(), $dossier));
+        $eventDispatcher->dispatch(ActionEvent::registerDossierHersteld($this->getUser(), $dossier), ActionEvent::NAME);
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()]);
     }
@@ -1004,7 +1004,7 @@ class AppDossierController extends AbstractController
         $em->remove($schuldItem);
 
         $em->flush();
-        $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Schuld definitief verwijderd');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
@@ -1034,7 +1034,7 @@ class AppDossierController extends AbstractController
         $schuldItem->setVerwijderd(false);
 
         $em->flush();
-        $eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $this->getUser()));
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Schuld hersteld');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);

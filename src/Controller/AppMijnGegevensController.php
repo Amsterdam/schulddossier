@@ -29,7 +29,7 @@ class AppMijnGegevensController extends AbstractController
             if ($form->isValid()) {
                 $em->flush();
                 $this->addFlash('success', 'Opgeslagen');
-                $eventDispatcher->dispatch(ActionEvent::NAME, ActionEvent::registerGebruikerGewijzigd($gebruiker, $gebruiker));
+                $eventDispatcher->dispatch(ActionEvent::registerGebruikerGewijzigd($gebruiker, $gebruiker), ActionEvent::NAME);
                 return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appmijngegevens_index');
             } else {
                 foreach ($form->getErrors() as $key => $error) {
