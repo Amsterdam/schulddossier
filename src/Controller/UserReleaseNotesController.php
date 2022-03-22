@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Serializer\Serializer;
 
 
 /**
@@ -60,7 +61,7 @@ class UserReleaseNotesController extends AbstractController
      * @Route("/seen")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function releaseNoteSeenAction(Request $request)
+    public function releaseNoteSeenAction(Request $request, Serializer $jsonSerializer)
     {
 
 //        $seenReleaseNotes = $request->getSession()->get('seenReleaseNotes');
@@ -68,7 +69,7 @@ class UserReleaseNotesController extends AbstractController
         $seenReleaseNotes["ts" . $request->query->get('ts')] = 0;
 
 
-        return new JsonResponse($this->get('json_serializer')->normalize([
+        return new JsonResponse($jsonSerializer->normalize([
             'ts' => $request->query->get('ts'),
             'user' => $this->getUser(),
             'rn' => $seenReleaseNotes,

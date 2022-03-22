@@ -22,14 +22,14 @@ class AppSchuldeiserController extends AbstractController
     /**
      * @Route("/")
      */
-    public function indexAction(Request $request, EntityManagerInterface $em)
+    public function indexAction(Request $request, EntityManagerInterface $em, \Symfony\Component\Serializer\Serializer $jsonSerializer)
     {
         /** @var $schuldeiserRepository SchuldeiserRepository */
         $schuldeiserRepository = $em->getRepository(Schuldeiser::class);
 
         if ($request->isXmlHttpRequest()) {
             $items = $schuldeiserRepository->search($request->query->get('q'), 0, -1);
-            return new JsonResponse($this->get('json_serializer')->normalize($items));
+            return new JsonResponse($jsonSerializer->normalize($items));
         }
 
         $maxPageSize = 50;
@@ -54,7 +54,7 @@ class AppSchuldeiserController extends AbstractController
      * @Route("/nieuw")
      * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      */
-    public function createAction(Request $request, EntityManagerInterface $em)
+    public function createAction(Request $request, EntityManagerInterface $em, \Symfony\Component\Serializer\Serializer $jsonSerializer)
     {
         $schuldeiser = new Schuldeiser();
 
@@ -66,14 +66,14 @@ class AppSchuldeiserController extends AbstractController
             $em->flush($schuldeiser);
 
             if ($request->isXmlHttpRequest()) {
-                return new JsonResponse($this->get('json_serializer')->normalize($schuldeiser), JsonResponse::HTTP_CREATED);
+                return new JsonResponse($jsonSerializer->normalize($schuldeiser), JsonResponse::HTTP_CREATED);
             }
 
             $this->addFlash('succes', 'Schuldeiser aangemaakt');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_update', ['schuldeiserId' => $schuldeiser->getId()]);
         } elseif ($form->isSubmitted() && $form->isValid() === false) {
             if ($request->isXmlHttpRequest()) {
-                return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
+                return new JsonResponse($jsonSerializer->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
             }
         }
 
