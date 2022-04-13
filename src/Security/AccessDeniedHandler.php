@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Security;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Twig\Environment as EngineInterface;
+//use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;

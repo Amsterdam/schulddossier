@@ -3,9 +3,8 @@ framework:
     dossier_flow:
       type: state_machine
       marking_store:
-        type: single_state
-        arguments:
-          - status
+        type: method
+        property: status
       supports:
         - GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier
       places:

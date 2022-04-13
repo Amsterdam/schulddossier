@@ -29,14 +29,15 @@ class ApplicationVersion
         return $this->env;
     }
 
-    public function getEnvVersion()
+    public static function getEnvVersion($env, $path)
     {
-        if ($this->env === 'dev') {
+        if ($env === 'dev') {
             return 'dev-' . date('YmdHis');
         } else {
-            return $this->env . '-' . $this->getVersionId();
+            return $env . '-' . (new self($env, $path))->getVersionId();
         }
     }
+
     public function getVersionFile()
     {
         $versionFile = $this->path . DIRECTORY_SEPARATOR . 'version_file';
@@ -47,7 +48,7 @@ class ApplicationVersion
     }
     public function getVersionId()
     {
-        $versionFile = $this->getVersionFile();
+        $versionFile = self::getVersionFile();
         if (file_exists($versionFile)) {
             return substr(trim(file_get_contents($versionFile)), 0, 7);
         } else {
@@ -56,9 +57,9 @@ class ApplicationVersion
     }
     public function getVersionDate()
     {
-        $versionFile = $this->getVersionFile();
+        $versionFile = self::getVersionFile();
         if (file_exists($versionFile)) {
-            $versionFile = $this->getVersionFile();
+            $versionFile = self::getVersionFile();
             return date ("y-m-d", filemtime($versionFile));
         }
         return '';

@@ -31,10 +31,12 @@ WORKDIR /
 RUN mkdir /srv/app
 COPY . /srv/app
 
-VOLUME /srv/app/config
-VOLUME /srv/app/public
-VOLUME /srv/app/templates
-VOLUME /srv/app/src
+#VOLUME /srv/app/config
+#VOLUME /srv/app/public
+#VOLUME /srv/app/templates
+#VOLUME /srv/app/src
+
+VOLUME /srv/app/var
 
 WORKDIR /srv/app
 

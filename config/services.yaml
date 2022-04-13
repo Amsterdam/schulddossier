@@ -81,6 +81,32 @@ services:
             - '%swift_public_url%'
         tags:
             - { name: twig.runtime }
+
+    GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\:
+        resource: '../src/Form/Type'
+
+    app.form.type.search:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType
+        arguments:
+            - '@security.authorization_checker'
+            - '@security.token_storage'
+
+    app.form.type.create:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType
+        arguments:
+            - '@GemeenteAmsterdam\FixxxSchuldhulp\Form\Event\TransformMedewerkerSchuldhulpbureau'
+
+    app.form.type.employeetype:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldhulpbureauMedewerkerType
+        arguments:
+            - '@security.token_storage'
+            - '@doctrine.orm.entity_manager'
+
+    app.form.type.change_status:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType
+        arguments:
+            - '@security.authorization_checker'
+            - '@security.token_storage'
     
     # Serializer
     json_serializer:

@@ -9,14 +9,14 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/app/schuldhulpbureau")
- * @Security("has_role('ROLE_USER')")
+ * @Security("is_granted('ROLE_USER')")
  */
-class AppSchuldhulpbureauController extends Controller
+class AppSchuldhulpbureauController extends AbstractController
 {
     /**
      * @Route("/")
@@ -43,7 +43,7 @@ class AppSchuldhulpbureauController extends Controller
 
     /**
      * @Route("/nieuw")
-     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      */
     public function createAction(Request $request, EntityManagerInterface $em, AllegroService $allegroService)
     {
@@ -75,7 +75,7 @@ class AppSchuldhulpbureauController extends Controller
 
     /**
      * @Route("/detail/{schuldhulpbureauId}/bewerken")
-     * @Security("has_role('ROLE_GKA_APPBEHEERDER') || has_role('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("schuldhulpbureau", options={"id"="schuldhulpbureauId"})
      */
     public function updateAction(Request $request, EntityManagerInterface $em, Schuldhulpbureau $schuldhulpbureau, AllegroService $allegroService)

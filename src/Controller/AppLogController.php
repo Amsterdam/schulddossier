@@ -7,17 +7,17 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/app/log")
- * @Security("has_role('ROLE_USER')")
+ * @Security("is_granted('ROLE_USER')")
  */
-class AppLogController extends Controller
+class AppLogController extends AbstractController
 {
     /**
      * @Route("/")
-     * @Security("has_role('ROLE_USER')")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function indexAction()
     {

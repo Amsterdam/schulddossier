@@ -119,7 +119,7 @@ class Voorlegger
     /**
      * @var \DateTime|null
      * @ORM\Column(type="date", nullable=true)
-     * @Assert\Date
+     * @Assert\Type("\DateTimeInterface")
      */
     private $arbeidsovereenkomstEinddatum;
 
@@ -141,7 +141,7 @@ class Voorlegger
     /**
      * @var \DateTime|null
      * @ORM\Column(type="date", nullable=true)
-     * @Assert\Date
+     * @Assert\Type("\DateTimeInterface")
      */
     private $arbeidsovereenkomstPartnerEinddatum;
 
@@ -862,7 +862,7 @@ class Voorlegger
     /**
      * @var \DateTime
      * @ORM\Column(type="date", nullable=true)
-     * @Assert\Date
+     * @Assert\Type("\DateTimeInterface")
      */
     private $energieBedrijfDatumOpname;
 
@@ -907,7 +907,7 @@ class Voorlegger
     /**
      * @var \DateTime
      * @ORM\Column(type="date", nullable=true)
-     * @Assert\Date
+     * @Assert\Type("\DateTimeInterface")
      */
     private $warmteBedrijfDatumOpname;
 
@@ -929,7 +929,7 @@ class Voorlegger
     /**
      * @var \DateTime
      * @ORM\Column(type="date", nullable=true)
-     * @Assert\Date
+     * @Assert\Type("\DateTimeInterface")
      */
     private $drinkwaterDatumOpname;
 

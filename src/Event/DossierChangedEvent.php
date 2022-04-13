@@ -4,7 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Event;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class DossierChangedEvent extends Event
 {

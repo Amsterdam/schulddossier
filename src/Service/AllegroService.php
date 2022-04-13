@@ -289,7 +289,7 @@ class AllegroService
          * @var Gebruiker $user
          */
 
-        $this->eventDispatcher->dispatch(DossierChangedEvent::NAME, new DossierChangedEvent($dossier, $user, ActionEvent::DOSSIER_SEND_TO_ALLEGRO));
+        $this->eventDispatcher->dispatch(new DossierChangedEvent($dossier, $user, ActionEvent::DOSSIER_SEND_TO_ALLEGRO), DossierChangedEvent::NAME);
 
         return $a->getResult();
     }

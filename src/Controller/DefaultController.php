@@ -3,12 +3,12 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController extends Controller
+class DefaultController extends AbstractController
 {
     /**
      * @Route("/")
@@ -20,7 +20,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/app")
-     * @Security("has_role('ROLE_USER')")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function appRedirectAction(Request $request)
     {
@@ -29,7 +29,7 @@ class DefaultController extends Controller
     
     /**
      * @Route("/app/debug")
-     * @Security("has_role('ROLE_USER')")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function debugAction(Request $request)
     {

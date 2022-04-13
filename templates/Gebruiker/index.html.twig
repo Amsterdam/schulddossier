@@ -61,8 +61,8 @@
                         <td>
                             {{ gebruiker.type|transform_type_in_title }}
                         </td>
-                        <td>{{ gebruiker.teamGka.naam }}</td>
-                        <td>{{ gebruiker.schuldhulpbureaus|join(', ') }}</td>
+                        <td>{% if gebruiker.teamGka|default %}{{ gebruiker.teamGka.naam }}{% endif %}</td>
+                        <td>{% if gebruiker.schuldhulpbureaus|default %}{{ gebruiker.schuldhulpbureaus|join(', ') }}{% endif %}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
