@@ -18,27 +18,6 @@ services:
       - .:/srv/app:rw,cached
       - /srv/app/var/
       - /srv/app/components/
-#      - type: bind
-#        source: .
-#        target: /srv/app
-#      - type: bind
-#        source: ./config
-#        target: /srv/app/config
-##      - type: bind
-##        source: ./public
-##        target: /srv/app/public
-#      - type: bind
-#        source: ./src
-#        target: /srv/app/src
-##      - type: bind
-##        source: ./doc
-##        target: /srv/app/doc
-##      - type: bind
-##        source: ./translations
-##        target: /srv/app/translations
-#      - type: bind
-#        source: ./templates
-#        target: /srv/app/templates
     ports:
       - "80:80"
       - "443:443"
@@ -88,7 +67,6 @@ services:
     image: quay.io/keycloak/keycloak:16.1.1
     volumes:
      - ./keycloak_realms:/opt/jboss/keycloak/imports
-#     - ./keycloak_theme:/opt/jboss/keycloak/themes
     command:
       - "-b 0.0.0.0"
       - "-Dkeycloak.import=/opt/jboss/keycloak/imports/ams.json"
