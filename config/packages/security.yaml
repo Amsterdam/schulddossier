@@ -11,6 +11,7 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+# (Un)comment the following lines to enable/disable local login instead of OIDC
 #        app:
 #            pattern: ^/app
 #            security: true
@@ -23,6 +24,8 @@ security:
 #            logout:
 #                path: /app/logout
 #                target: /
+#
+# (Un)comment the following lines to enable/disable OIDC login instead of local login
         app:
             pattern: ^/app
             access_denied_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\AccessDeniedHandler
