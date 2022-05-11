@@ -1,0 +1,15 @@
+FROM nginx:stable-alpine
+
+COPY certificates/adp_rootca.crt /usr/local/share/ca-certificates/adp_rootca.crt
+RUN update-ca-certificates --fresh
+
+RUN apk update && apk upgrade
+
+COPY docker-nginx/default.template /tmp/default.template
+COPY --chown=nginx ./public /var/www/public
+
+WORKDIR /var/www
+
+CMD envsubst '$FASTCGI_PASS' < /tmp/default.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'
+
+EXPOSE 80
