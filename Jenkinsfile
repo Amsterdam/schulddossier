@@ -1,8 +1,10 @@
 #!groovy
 String PROJECTNAME = "schuldhulp"
 String CONTAINERDIR = "."
-String CONTAINERNAME = "salmagundi/${PROJECTNAME}"
-String DOCKERFILE = "Dockerfile"
+String NGINX_CONTAINERNAME = "salmagundi/${PROJECTNAME}_nginx"
+String PHP_CONTAINERNAME = "salmagundi/${PROJECTNAME}_phpfpm"
+String NGINX_DOCKERFILE = "Dockerfile_nginx"
+String PHP_DOCKERFILE = "Dockerfile_phpfpm"
 String INFRASTRUCTURE = "secure"
 String PLAYBOOK = "deploy.yml"
 
@@ -51,8 +53,10 @@ pipeline {
                         sh "cat version_file"
 
                         docker.withRegistry("${DOCKER_REGISTRY_HOST}","docker_registry_auth") {
-                            image = docker.build("${CONTAINERNAME}:${env.BUILD_NUMBER}","-f ${DOCKERFILE} ${CONTAINERDIR}")
-                            image.push()
+                            nginx_image = docker.build("${NGINX_CONTAINERNAME}:${env.BUILD_NUMBER}","-f ${NGINX_DOCKERFILE} ${CONTAINERDIR}")
+                            nginx_image.push()
+                            php_image = docker.build("${PHP_CONTAINERNAME}:${env.BUILD_NUMBER}","-f ${PHP_DOCKERFILE} ${CONTAINERDIR}")
+                            php_image.push()
                         }
                     }
 
@@ -79,8 +83,11 @@ pipeline {
 
                             tryStep "deployment", {
                                 docker.withRegistry("${DOCKER_REGISTRY_HOST}","docker_registry_auth") {
-                                    docker.image("${CONTAINERNAME}:${env.BUILD_NUMBER}").pull()
-                                    retagAndPush("${CONTAINERNAME}", "acceptance")
+                                    docker.image("${NGINX_CONTAINERNAME}:${env.BUILD_NUMBER}").pull()
+                                    retagAndPush("${NGINX_CONTAINERNAME}", "acceptance")
+                                    docker.image("${PHP_CONTAINERNAME}:${env.BUILD_NUMBER}").pull()
+                                    retagAndPush("${PHP_CONTAINERNAME}", "acceptance")
+
                                 }
 
                                 build job: "Subtask_Openstack_Playbook", parameters: [
@@ -120,9 +127,10 @@ pipeline {
 
                             tryStep "deployment", {
                                 docker.withRegistry("${DOCKER_REGISTRY_HOST}","docker_registry_auth") {
-                                    docker.image("${CONTAINERNAME}:${env.BUILD_NUMBER}").pull()
-                                    retagAndPush("${CONTAINERNAME}", "production")
-                                }
+                                    docker.image("${NGINX_CONTAINERNAME}:${env.BUILD_NUMBER}").pull()
+                                    retagAndPush("${NGINX_CONTAINERNAME}", "production")
+                                    docker.image("${PHP_CONTAINERNAME}:${env.BUILD_NUMBER}").pull()
+                                    retagAndPush("${PHP_CONTAINERNAME}", "production")                                }
 
                                 build job: "Subtask_Openstack_Playbook", parameters: [
                                     [$class: "StringParameterValue", name: "INFRASTRUCTURE", value: "${INFRASTRUCTURE}"],
