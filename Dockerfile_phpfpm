@@ -55,4 +55,4 @@ RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
 
 RUN chown -R www-data: /var/www
 
-CMD ["php-fpm"]
+CMD ["/var/www/docker-entrypoint_phpfpm.sh"]
