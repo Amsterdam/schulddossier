@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@bevacqua/rome": "^3.0.4",
+    "jspdf": "~1.3",
+    "moment": "~2.21.0",
+    "pdfjs-dist": "1.9.426"
+  }
+}
