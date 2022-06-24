@@ -34,3 +34,8 @@ docker-compose-dev.override.yml
 /public/scss/.sass-cache
 
 config/soap-client-allegro-login.php
+
+# Yarn
+/node_modules/
+npm-debug.log
+yarn-error.log

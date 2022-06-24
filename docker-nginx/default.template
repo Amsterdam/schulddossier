@@ -9,10 +9,15 @@ server {
     real_ip_header X-Forwarded-For;
     real_ip_recursive on;
 
+    set $CSP_DEFAULT "default-src 'self'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'";
+    set $CSP_FONT_SRC "font-src https://fast.fonts.net/";
+    set $CSP_IMAGE_SRC "img-src 'self' https://*.objectstore.eu/ data: blob:";
+    set $CSP_CONNECT_SRC "connect-src 'self' https://*.objectstore.eu/";
+
     add_header Feature-Policy "";
     add_header Strict-Transport-Security "max-age=31536000; preload";
     add_header X-Frame-Options "deny";
-    add_header Content-Security-Policy "default-src 'self'; style-src 'unsafe-inline' 'self'; script-src 'unsafe-inline' 'self'";
+    add_header Content-Security-Policy "${CSP_DEFAULT}; ${CSP_FONT_SRC}; ${CSP_IMAGE_SRC}; ${CSP_CONNECT_SRC}";
     add_header Referrer-Policy "strict-origin";
     add_header X-Content-Type-Options "nosniff";
 
