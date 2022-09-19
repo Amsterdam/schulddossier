@@ -1,14 +1,14 @@
 [
   {
-    "name": "gka1",
+    "name": "schulddossier_gka",
+    "roles": ["ROLE_GKA"]
+  },
+  {
+    "name": "schulddossier_madi",
+    "roles": ["ROLE_MADI"]
+  },
+  {
+    "name": "schulddossier_admin",
     "roles": ["ROLE_ADMIN"]
-  },
-  {
-    "name": "madi1",
-    "roles": ["ROLE_USER"]
-  },
-  {
-    "name": "admin1",
-    "roles": ["ROLE_USER_MANAGEMENT"]
   }
 ]
