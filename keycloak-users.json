@@ -1,0 +1,14 @@
+[
+  {
+    "name": "gka1",
+    "roles": ["ROLE_ADMIN"]
+  },
+  {
+    "name": "madi1",
+    "roles": ["ROLE_USER"]
+  },
+  {
+    "name": "admin1",
+    "roles": ["ROLE_USER_MANAGEMENT"]
+  }
+]
