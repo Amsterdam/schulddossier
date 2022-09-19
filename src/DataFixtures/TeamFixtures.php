@@ -7,7 +7,6 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 
 class TeamFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
 {
-
     /**
      * @inheritDoc
      */
@@ -19,6 +18,8 @@ class TeamFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
             $team->setEmail("gka$teamNumber@example.com");
 
             $manager->persist($team);
+
+            $this->addReference("Team $teamNumber", $team);
         }
 
         $manager->flush();
