@@ -28,6 +28,8 @@ class SchuldItemFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture impleme
         $schuldItem->setAanmaker($gebruiker);
         $schuldItem->setBewerker($gebruiker);
 
+        $this->addReference('schulditem', $schuldItem);
+
         $manager->persist($schuldItem);
         $manager->flush();
     }
