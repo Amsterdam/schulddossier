@@ -26,6 +26,11 @@ class DetailDossierAdditionalFormType extends AbstractType
             'required' => false
         ]);
 
+        $builder->add('clientEmail', TextType::class, [
+            'label' => 'Emailadres',
+            'required' => false
+        ]);
+
         $builder->add('clientStraat', TextType::class, [
             'label' => 'Straat',
             'required' => false
