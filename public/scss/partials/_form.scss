@@ -618,6 +618,11 @@ form {
   }
 }
 
+.warning-text {
+  font-style: italic;
+  margin-bottom: $padding / 2;
+}
+
 .files-container {
   //padding: $padding / 2 $padding / 2 0 $padding / 2;
   background-color: transparent;

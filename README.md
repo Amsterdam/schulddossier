@@ -43,3 +43,11 @@ De volgende accounts worden tijdens de installatie aangemaakt. Wijzig de gegeven
     gebruikersnaam: madi1 / wachtwoord: test12345
     gebruikersnaam: admin1 / wachtwoord: test12345
 
+### CSS genereren:
+
+De css wordt vanuit `public/scss/screen.scss` naar `public/css/screen.css` gecompiled.
+
+```aidl
+npm install -g sass@1.32.13
+sass public/scss/screen.scss public/css/screen.css --style compressed
+```
