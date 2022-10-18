@@ -78,6 +78,17 @@ class VoorleggerInkomstenspecificatieFormType extends AbstractType
             'required' => false
         ]);
 
+        $combined = array_combine(range(1, 31), range(1, 31));
+
+        $verloningsDagOptions = ['-' => null] + $combined;
+
+        $builder->add('verloningsDag', ChoiceType::class, [
+            'required' => true,
+            'choices' => $verloningsDagOptions,
+            'label' => 'Verloningsmoment',
+            'empty_data' => null
+        ]);
+
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
             'entry_type' => DocumentFormType::class,

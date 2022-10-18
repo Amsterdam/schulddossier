@@ -26,6 +26,37 @@
     </div>
     <div class="dossier__voorlegger__body">
         <div class="dossier__voorlegger__sectie">
+            <div class="dossier__voorlegger__sectie__body">
+                {{ form_row(form.beschikkingInkomenUitWerk) }}
+                <h4>Beschikking</h4>
+                <div class="form-row-wrapper form-row-wrapper--horizontal">
+                    {{ form_row(form.beschikkingUwvZw) }}
+                    {{ form_row(form.beschikkingUwvWw) }}
+                    {{ form_row(form.beschikkingUwvWia) }}
+                    {{ form_row(form.beschikkingUwvWajong) }}
+                    {{ form_row(form.beschikkingGemeenteAmsterdamWPI) }}
+                    {{ form_row(form.beschikkingSVBAOW) }}
+                    {{ form_row(form.beschikkingSVBANW) }}
+                    {{ form_row(form.beschikkingGemeenteAmsterdamIOAW) }}
+                </div>
+
+                {{ form_row(form.beschikkingUwvOverig) }}
+                <h4>Verloningsmoment</h4>
+
+                <div>
+                    <div class="warning-text">
+                        Het verloningsmoment is de dag in de maand die uiterlijk gehanteerd wordt voor uitbetaling.
+                    </div>
+                    <div class="input-choice">
+                        {{ form_row(form.verloningsDag) }}
+                    </div>
+                </div>
+                {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Inkomstenspecificatie'} only %}
+                {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
+                <h4>Aantekeningen</h4>
+                {{ form_row(form.aantekening) }}
+                {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('inkomstenspecificatie')} only %}
+            </div>
             <div class="dossier__voorlegger__sectie__header">
                 <a class="dossier__voorlegger__sectie__close" href="#_"></a>
                 <div class="status-container hide"><span>Status:</span>
@@ -35,27 +66,6 @@
                 {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
                 <h3>{{ title }}</h3>
                 <hr>
-            </div>
-            <div class="dossier__voorlegger__sectie__body">
-                {{ form_row(form.beschikkingInkomenUitWerk) }}
-                <h4>Beschikking</h4>
-                <div class="form-row-wrapper form-row-wrapper--horizontal">
-                {{ form_row(form.beschikkingUwvZw) }}
-                {{ form_row(form.beschikkingUwvWw) }}
-                {{ form_row(form.beschikkingUwvWia) }}
-                {{ form_row(form.beschikkingUwvWajong) }}
-                {{ form_row(form.beschikkingGemeenteAmsterdamWPI) }}
-                {{ form_row(form.beschikkingSVBAOW) }}
-                {{ form_row(form.beschikkingSVBANW) }}
-                {{ form_row(form.beschikkingGemeenteAmsterdamIOAW) }}
-                </div>
-
-                {{ form_row(form.beschikkingUwvOverig) }}
-                {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Inkomstenspecificatie'} only %}
-                {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
-                <h4>Aantekeningen</h4>
-                {{ form_row(form.aantekening) }}
-                {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('inkomstenspecificatie')} only %}
             </div>
             {% include 'Dossier/partial.documentViewer.html.twig' %}
         </div>
