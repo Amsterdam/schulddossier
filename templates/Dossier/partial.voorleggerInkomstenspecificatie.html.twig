@@ -26,6 +26,16 @@
     </div>
     <div class="dossier__voorlegger__body">
         <div class="dossier__voorlegger__sectie">
+            <div class="dossier__voorlegger__sectie__header">
+                <a class="dossier__voorlegger__sectie__close" href="#_"></a>
+                <div class="status-container hide"><span>Status:</span>
+                    {{ form_row(form.inkomstenspecificatieOntvangenMadi) }}
+                    {{ form_row(form.inkomstenspecificatieOntvangenGka) }}
+                </div>
+                {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
+                <h3>{{ title }}</h3>
+                <hr>
+            </div>
             <div class="dossier__voorlegger__sectie__body">
                 {{ form_row(form.beschikkingInkomenUitWerk) }}
                 <h4>Beschikking</h4>
@@ -56,16 +66,6 @@
                 <h4>Aantekeningen</h4>
                 {{ form_row(form.aantekening) }}
                 {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('inkomstenspecificatie')} only %}
-            </div>
-            <div class="dossier__voorlegger__sectie__header">
-                <a class="dossier__voorlegger__sectie__close" href="#_"></a>
-                <div class="status-container hide"><span>Status:</span>
-                    {{ form_row(form.inkomstenspecificatieOntvangenMadi) }}
-                    {{ form_row(form.inkomstenspecificatieOntvangenGka) }}
-                </div>
-                {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
-                <h3>{{ title }}</h3>
-                <hr>
             </div>
             {% include 'Dossier/partial.documentViewer.html.twig' %}
         </div>
