@@ -237,6 +237,13 @@ class Voorlegger
     // ---
 
     /**
+     * @var integer|null
+     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private ?int $verloningsDag;
+
+    /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
@@ -1908,6 +1915,21 @@ class Voorlegger
     {
         $this->beschikkingUwvOverig = $beschikkingUwvOverig;
     }
+    /**
+     * @return int|null
+     */
+    public function getVerloningsDag(): ?int
+    {
+        return $this->verloningsDag;
+    }
+
+    /**
+     * @param int|null $verloningsDag
+     */
+    public function setVerloningsDag(?int $verloningsDag): void
+    {
+        $this->verloningsDag = $verloningsDag;
+    }
 
     public function setVoorlopigeTeruggaafBelastingdienstOntvangenMadi($voorlopigeTeruggaafBelastingdienstOntvangenMadi)
     {
@@ -2638,5 +2660,6 @@ class Voorlegger
     {
         $this->saneringsKrediet = $saneringsKrediet;
     }
+
 
 }
