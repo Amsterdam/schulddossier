@@ -40,17 +40,27 @@
                 {{ form_row(form.beschikkingInkomenUitWerk) }}
                 <h4>Beschikking</h4>
                 <div class="form-row-wrapper form-row-wrapper--horizontal">
-                {{ form_row(form.beschikkingUwvZw) }}
-                {{ form_row(form.beschikkingUwvWw) }}
-                {{ form_row(form.beschikkingUwvWia) }}
-                {{ form_row(form.beschikkingUwvWajong) }}
-                {{ form_row(form.beschikkingGemeenteAmsterdamWPI) }}
-                {{ form_row(form.beschikkingSVBAOW) }}
-                {{ form_row(form.beschikkingSVBANW) }}
-                {{ form_row(form.beschikkingGemeenteAmsterdamIOAW) }}
+                    {{ form_row(form.beschikkingUwvZw) }}
+                    {{ form_row(form.beschikkingUwvWw) }}
+                    {{ form_row(form.beschikkingUwvWia) }}
+                    {{ form_row(form.beschikkingUwvWajong) }}
+                    {{ form_row(form.beschikkingGemeenteAmsterdamWPI) }}
+                    {{ form_row(form.beschikkingSVBAOW) }}
+                    {{ form_row(form.beschikkingSVBANW) }}
+                    {{ form_row(form.beschikkingGemeenteAmsterdamIOAW) }}
                 </div>
 
                 {{ form_row(form.beschikkingUwvOverig) }}
+                <h4>Verloningsmoment</h4>
+
+                <div>
+                    <div class="warning-text">
+                        Het verloningsmoment is de dag in de maand die uiterlijk gehanteerd wordt voor uitbetaling.
+                    </div>
+                    <div class="input-choice">
+                        {{ form_row(form.verloningsDag) }}
+                    </div>
+                </div>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Inkomstenspecificatie'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>
