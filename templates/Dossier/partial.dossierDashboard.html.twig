@@ -72,6 +72,8 @@
                         <dl class="dl__horizontal">
                             <dt>Telefoonnummer</dt>
                             <dd>{% if dossier.clientTelefoonnummer %}{{ dossier.clientTelefoonnummer }}{% else %}-{% endif %}</dd>
+                            <dt>Email</dt>
+                            <dd>{% if dossier.clientEmail %}{{ dossier.clientEmail }}{% else %}-{% endif %}</dd>
                             <dt>Adres</dt>
                             <dd>{% if not dossier.clientStraat and not dossier.clientHuisnummer and not dossier.clientPostcode and not dossier.clientWoonplaats %}-{% else %}{{ dossier.clientStraat }} {{ dossier.clientHuisnummer }}
                                     {{ dossier.clientPostcode }} {{ dossier.clientWoonplaats }}{% endif %}
