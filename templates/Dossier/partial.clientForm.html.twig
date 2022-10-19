@@ -16,7 +16,14 @@
 {{ form_row(form.partnerBanknaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
 
 <h4>Contactgegevens</h4>
+<div class="warning-text">
+    Vul telefoonnummer van cliënt in.
+</div>
 {{ form_row(form.clientTelefoonnummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+<div class="warning-text">
+    Vul emailadres van cliënt in.
+</div>
+{{ form_row(form.clientEmail, {'attr': {'form_row_class': 'form-row__wide'}}) }}
 {{ form_row(form.clientStraat, {'attr': {'form_row_class': 'form-row__wide'}}) }}
 {{ form_row(form.clientHuisnummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
 {{ form_row(form.clientPostcode, {'attr': {'form_row_class': 'form-row__wide'}}) }}

@@ -131,6 +131,13 @@ class Dossier
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
      */
+    private $clientEmail;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
     private $clientStraat;
 
     /**
@@ -413,6 +420,11 @@ class Dossier
         return $this->clientTelefoonnummer;
     }
 
+    public function getClientEmail()
+    {
+        return $this->clientEmail;
+    }
+
     public function getClientStraat()
     {
         return $this->clientStraat;
@@ -618,6 +630,11 @@ class Dossier
     public function setClientTelefoonnummer($clientTelefoonnummer = null)
     {
         $this->clientTelefoonnummer = $clientTelefoonnummer;
+    }
+
+    public function setClientEmail($clientEmail = null)
+    {
+        $this->clientEmail = $clientEmail;
     }
 
     public function setClientStraat($clientStraat = null)
