@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\File;
@@ -23,6 +24,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints\Valid;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
 {
@@ -38,7 +40,35 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
         ]);
         $builder->add('jongerenSchuldenvrijeStart', CheckboxType::class, [
             'required' => false,
-            'label' => 'Jongeren Schuldenvrije Start (JSS)'
+            'label' => 'Jongeren Schuldenvrije Start (JSS)',
+            'constraints' => [new Callback(function($value, ExecutionContextInterface $executionContext) {
+                /**
+                 * @var Voorlegger $voorlegger
+                 */
+                $voorlegger = $executionContext->getRoot()->getData();
+
+                if (!$voorlegger->getJongerenSchuldenvrijeStart() && ($voorlegger->getJssAdviseurEmail() || $voorlegger->getJssAdviseurNaam() || $voorlegger->getJssAdviseurTelefoon())) {
+                    $voorlegger->setJssAdviseurEmail(null);
+                    $voorlegger->setJssAdviseurNaam(null);
+                    $voorlegger->setJssAdviseurTelefoon(null);
+
+                    $executionContext->buildViolation('De JSS velden dienen alleen ingevuld worden bij Jongeren Schuldenvrije Start.')
+                        ->atPath('jongerenSchuldenvrijeStart')
+                        ->addViolation();
+                }
+            })]
+        ]);
+        $builder->add('jssAdviseurNaam', TextType::class, [
+            'required' => false,
+            'label' => 'Naam Jongerenadviseur'
+        ]);
+        $builder->add('jssAdviseurTelefoon', TextType::class, [
+            'required' => false,
+            'label' => 'Telefoonnummer Jongerenadviseur'
+        ]);
+        $builder->add('jssAdviseurEmail', TextType::class, [
+            'required' => false,
+            'label' => 'Emailadres Jongerenadviseur'
         ]);
         $builder->add('schuldenrustLening', CheckboxType::class, [
             'required' => false,
