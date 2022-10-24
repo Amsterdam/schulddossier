@@ -20,6 +20,8 @@ use Symfony\Component\Workflow\Event\Event;
 
 class MailNotitificationSubscriber implements EventSubscriberInterface
 {
+    private const TEST_EMAIL_ADRESSES_FILE_NAME = 'test-emails.json';
+
     /**
      * @var string
      */
@@ -50,7 +52,9 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
      */
     private $mailer;
 
-    public function __construct(MailerInterface $mailer, $fromNotificiatieAdres, LoggerInterface $mailLogger, TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator, \Twig\Environment $twig, RequestStack $requestStack, EntityManagerInterface $em)
+    private string $env;
+
+    public function __construct(MailerInterface $mailer, $fromNotificiatieAdres, string $env, LoggerInterface $mailLogger, TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator, \Twig\Environment $twig, RequestStack $requestStack, EntityManagerInterface $em)
     {
         $this->mailer = $mailer;
         $this->fromNotificiatieAdres = $fromNotificiatieAdres;
@@ -60,6 +64,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $this->twig = $twig;
         $this->requestStack = $requestStack;
         $this->em = $em;
+        $this->env = $env;
     }
 
     /**
@@ -192,6 +197,36 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
 
     protected function mail($from, $to, $template, $data)
     {
+        if ($this->env == 'acceptance' || $this->env == 'dev') {
+            return $this->mailRedirectAcceptance($from, $to, $template, $data);
+        }
+
+        $message = $this->composeEmail($from, $to, $template, $data);
+        $this->sendEmail($message, $from, $to);
+    }
+
+    protected function mailRedirectAcceptance($from, $to, $template, $data)
+    {
+        $subject = $this->twig->load($template)->renderBlock('subject', $data) . " (Acceptatie-mail. Oorspronkelijke ontvanger: $to)";
+
+        $message = $this->composeEmail($from, $to, $template, $data);
+
+        $message->subject($subject);
+        $message->to(...$this->getTestEmailsAdresses());
+
+        $this->sendEmail($message, $from, $to);
+    }
+
+    private function getTestEmailsAdresses()
+    {
+        $dir = explode('src/', __DIR__);
+        $file = $dir[0] . self::TEST_EMAIL_ADRESSES_FILE_NAME;
+        $jsonString = file_get_contents($file);
+
+        return json_decode($jsonString, true);
+    }
+
+    private function composeEmail($from, $to, $template, $data): Email {
         $message = new Email();
         $message->getHeaders()->addTextHeader('X-Application', 'Schuldhulp');
         $message->addFrom($from);
@@ -201,6 +236,10 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $message->html($this->twig->load($template)->renderBlock('html', $data));
         $message->text($this->twig->load($template)->renderBlock('txt', $data));
 
+        return $message;
+    }
+
+    private function sendEmail(Email $message, $from, $to) {
         try {
             $this->logger->info('Mail: start sending', ['from' => $from, 'to' => $to, 'subject' => $message->getSubject()]);
             $this->mailer->send($message);
