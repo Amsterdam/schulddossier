@@ -20,9 +20,7 @@ use Symfony\Component\Workflow\Event\Event;
 
 class MailNotitificationSubscriber implements EventSubscriberInterface
 {
-    private const TEST_EMAIL_ADRESSES = [
-        'team.salmagundi.ois@amsterdam.nl'
-    ];
+    private const TEST_EMAIL_ADRESSES_FILE_NAME = 'test-emails.json';
 
     /**
      * @var string
@@ -214,9 +212,18 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $message = $this->composeEmail($from, $to, $template, $data);
 
         $message->subject($subject);
-        $message->to(...self::TEST_EMAIL_ADRESSES);
+        $message->to(...$this->getTestEmailsAdresses());
 
         $this->sendEmail($message, $from, $to);
+    }
+
+    private function getTestEmailsAdresses()
+    {
+        $dir = explode('src/', __DIR__);
+        $file = $dir[0] . self::TEST_EMAIL_ADRESSES_FILE_NAME;
+        $jsonString = file_get_contents($file);
+
+        return json_decode($jsonString, true);
     }
 
     private function composeEmail($from, $to, $template, $data): Email {
