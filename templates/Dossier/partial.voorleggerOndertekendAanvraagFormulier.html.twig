@@ -37,6 +37,14 @@
             </div>
             <div class="dossier__voorlegger__sectie__body">
                 {{ form_row(form.jongerenSchuldenvrijeStart) }}
+                <div class="dossier__voorlegger__sectie_jss_informatie">
+                    <div class="warning-text">
+                        Let op: alleen invullen bij JSS
+                    </div>
+                    {{ form_row(form.jssAdviseurNaam) }}
+                    {{ form_row(form.jssAdviseurTelefoon) }}
+                    {{ form_row(form.jssAdviseurEmail) }}
+                </div>
                 {{ form_row(form.schuldenrustLening) }}
                 {{ form_row(form.saneringsKrediet) }}
                 {{ form_row(form.aanvullendeInformatie) }}
