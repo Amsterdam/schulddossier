@@ -979,6 +979,27 @@ class Voorlegger
     private $jongerenSchuldenvrijeStart;
 
     /**
+     * @var string|null
+     * @ORM\Column(type="string", length=25, nullable=true)
+     * @Assert\Length(min=0, max=25)
+     */
+    private ?string $jssAdviseurNaam;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=25, nullable=true)
+     * @Assert\Length(min=0, max=25)
+     */
+    private ?string $jssAdviseurTelefoon;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=25, nullable=true)
+     * @Assert\Length(min=0, max=25)
+     */
+    private ?string $jssAdviseurEmail;
+
+    /**
      * @var boolean|null
      * @ORM\Column(type="boolean", nullable=true)
      */
@@ -2661,5 +2682,51 @@ class Voorlegger
         $this->saneringsKrediet = $saneringsKrediet;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getJssAdviseurNaam(): ?string
+    {
+        return $this->jssAdviseurNaam;
+    }
 
+    /**
+     * @param string|null $jssAdviseurNaam
+     */
+    public function setJssAdviseurNaam(?string $jssAdviseurNaam): void
+    {
+        $this->jssAdviseurNaam = $jssAdviseurNaam;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getJssAdviseurTelefoon(): ?string
+    {
+        return $this->jssAdviseurTelefoon;
+    }
+
+    /**
+     * @param string|null $jssAdviseurTelefoon
+     */
+    public function setJssAdviseurTelefoon(?string $jssAdviseurTelefoon): void
+    {
+        $this->jssAdviseurTelefoon = $jssAdviseurTelefoon;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getJssAdviseurEmail(): ?string
+    {
+        return $this->jssAdviseurEmail;
+    }
+
+    /**
+     * @param string|null $jssAdviseurEmail
+     */
+    public function setJssAdviseurEmail(?string $jssAdviseurEmail): void
+    {
+        $this->jssAdviseurEmail = $jssAdviseurEmail;
+    }
 }
