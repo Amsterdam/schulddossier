@@ -107,12 +107,12 @@ class ChangeDossierClientType extends AbstractType
         ]);
 
         $builder->add('clientTelefoonnummer', TextType::class, [
-            'label' => 'Telefoonnummer',
+            'label' => 'Telefoonnummer *',
             'required' => false
         ]);
 
         $builder->add('clientEmail', TextType::class, [
-            'label' => 'Emailadres',
+            'label' => 'E-mailadres *',
             'required' => false
         ]);
 

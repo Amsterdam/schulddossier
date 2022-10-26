@@ -52,7 +52,13 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
                     $voorlegger->setJssAdviseurNaam(null);
                     $voorlegger->setJssAdviseurTelefoon(null);
 
-                    $executionContext->buildViolation('De JSS velden dienen alleen ingevuld worden bij Jongeren Schuldenvrije Start.')
+                    $executionContext->buildViolation('De JSS velden dienen alleen ingevuld te worden bij Jongeren Schuldenvrije Start.')
+                        ->atPath('jongerenSchuldenvrijeStart')
+                        ->addViolation();
+                }
+
+                if ($voorlegger->getJongerenSchuldenvrijeStart() && (!$voorlegger->getJssAdviseurEmail() || !$voorlegger->getJssAdviseurNaam() || !$voorlegger->getJssAdviseurTelefoon())) {
+                    $executionContext->buildViolation('Vul alle JSS velden in.')
                         ->atPath('jongerenSchuldenvrijeStart')
                         ->addViolation();
                 }
@@ -68,7 +74,7 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
         ]);
         $builder->add('jssAdviseurEmail', TextType::class, [
             'required' => false,
-            'label' => 'Emailadres Jongerenadviseur'
+            'label' => 'E-mailadres Jongerenadviseur'
         ]);
         $builder->add('schuldenrustLening', CheckboxType::class, [
             'required' => false,
