@@ -22,12 +22,12 @@ class DetailDossierAdditionalFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('clientTelefoonnummer', TextType::class, [
-            'label' => 'Telefoonnummer',
+            'label' => 'Telefoonnummer *',
             'required' => false
         ]);
 
         $builder->add('clientEmail', TextType::class, [
-            'label' => 'Emailadres',
+            'label' => 'E-mailadres *',
             'required' => false
         ]);
 

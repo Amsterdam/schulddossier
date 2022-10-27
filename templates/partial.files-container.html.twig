@@ -1,9 +1,11 @@
 {% if disableFields is defined %}
 {% else %}
 <h4>Documenten</h4>
-<div class="warning-text">
-    Upload hieronder een kopie van het paspoort, ID-kaart of verblijfsvergunning van de aanvrager en de eventuele partner. <b>Let op</b>: géén rijbewijs.
-</div>
+{% if defaultDocumentNaam|default('') == 'Legitimatie' %}
+    <div class="warning-text">
+        Upload hieronder een kopie van het paspoort, ID-kaart of verblijfsvergunning van de aanvrager en de eventuele partner. <b>Let op</b>: géén rijbewijs.
+    </div>
+{% endif %}
 <div class="files-container" data-default-document-naam="{{ defaultDocumentNaam|default('') }}">
     <div class="file-container prototype" data-name="{{ form_elm.vars.prototype.file.vars.full_name }}">
         
