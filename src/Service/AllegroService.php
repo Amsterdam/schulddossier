@@ -194,7 +194,7 @@ class AllegroService
         $this->setSoapHeader($bureau);
 
         $bedrijfsCode = 2; // Vaste waarde 2 = Kredietbank
-        $aanvragerCorrespondentieMail = false;
+        $aanvragerCorrespondentieMail = $dossier->getClientEmail() ?? '';
         $aanvragerCorrespondentieWeb = false;
         $aanvraagSchuldbedrag = $dossier->getSumSchuldItemsNotInPrullenbak();
 
