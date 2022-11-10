@@ -62,7 +62,7 @@ class SearchDossierFormType extends AbstractType
             $builder->add('schuldhulpbureaus', EntityType::class, [
                 'required' => false,
                 'class' => Schuldhulpbureau::class,
-                'multiple' => false,
+                'multiple' => true,
                 'expanded' => false,
                 'placeholder' => 'Alle schuldhulpbureau\'s'
             ]);
