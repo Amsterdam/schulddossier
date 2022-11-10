@@ -2,7 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
-class SchuldHulpService extends \SoapClient
+use SoapClient;
+
+class SchuldHulpService extends SoapClient
 {
 
     /**

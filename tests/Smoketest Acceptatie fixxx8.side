@@ -2,7 +2,7 @@
   "id": "1b6b2aed-07d8-4cbc-a9d7-229604acbced",
   "version": "2.0",
   "name": "Smoketest Acceptatie fixxx8",
-  "url": "https://acc.fixxx8.amsterdam.nl/",
+  "url": "acc.schulddossier.amsterdam.nl",
   "tests": [{
     "id": "433c2c93-c750-436c-bc53-4217401184c5",
     "name": "Schulddossier maken",
@@ -6575,6 +6575,6 @@
     "timeout": 300,
     "tests": ["433c2c93-c750-436c-bc53-4217401184c5", "dbbd400e-e907-4d70-b7ad-47feea930063", "d97a43da-5c7e-4f05-8546-07e2da3181da"]
   }],
-  "urls": ["https://acc.fixxx8.amsterdam.nl/", "https://dev-fixxx8.amsterdam.nl/"],
+  "urls": ["acc.schulddossier.amsterdam.nl"],
   "plugins": []
 }
