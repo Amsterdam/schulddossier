@@ -3,14 +3,14 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/oidc")
  */
-class OidcController extends Controller
+class OidcController extends AbstractController
 {
     /**
      * @Route("/test")

@@ -6,6 +6,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
 use Symfony\Component\HttpKernel\Event\PostResponseEvent;
 use GuzzleHttp\Client;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\TerminateEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Thumbnail;
 use Doctrine\ORM\EntityManagerInterface;
@@ -54,7 +55,7 @@ class ThumbnailGenerationService implements EventSubscriberInterface
         $this->queue[] = $document;
     }
 
-    public function onKernelTerminate(PostResponseEvent $event)
+    public function onKernelTerminate(TerminateEvent $event)
     {
         foreach ($this->queue as $document) {
             $this->generateThumbnail($document);

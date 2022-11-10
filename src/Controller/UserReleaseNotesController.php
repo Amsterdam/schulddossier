@@ -6,17 +6,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Serializer\Serializer;
 
 
 /**
  * @Route("/app/versies")
- * @Security("has_role('ROLE_USER')")
+ * @Security("is_granted('ROLE_USER')")
  */
-class UserReleaseNotesController extends Controller
+class UserReleaseNotesController extends AbstractController
 {
     private $session;
 
@@ -26,7 +27,7 @@ class UserReleaseNotesController extends Controller
     }
     /**
      * @Route("/")
-     * @Security("has_role('ROLE_USER')")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function indexAction(Request $request)
     {
@@ -58,9 +59,9 @@ class UserReleaseNotesController extends Controller
     }
     /**
      * @Route("/seen")
-     * @Security("has_role('ROLE_USER')")
+     * @Security("is_granted('ROLE_USER')")
      */
-    public function releaseNoteSeenAction(Request $request)
+    public function releaseNoteSeenAction(Request $request, Serializer $jsonSerializer)
     {
 
 //        $seenReleaseNotes = $request->getSession()->get('seenReleaseNotes');
@@ -68,7 +69,7 @@ class UserReleaseNotesController extends Controller
         $seenReleaseNotes["ts" . $request->query->get('ts')] = 0;
 
 
-        return new JsonResponse($this->get('json_serializer')->normalize([
+        return new JsonResponse($jsonSerializer->normalize([
             'ts' => $request->query->get('ts'),
             'user' => $this->getUser(),
             'rn' => $seenReleaseNotes,
