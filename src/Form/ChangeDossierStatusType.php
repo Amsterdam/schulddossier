@@ -27,7 +27,7 @@ class ChangeDossierStatusType extends AbstractType
     private $user;
     private $workflowRegistry;
 
-    public function __construct(TokenStorageInterface $tokenStorage, WorkflowRegistry $registry)
+    public function __construct(TokenStorageInterface $tokenStorage, ?WorkflowRegistry $registry)
     {
         $token = $tokenStorage->getToken();
         $this->user = $token->getUser();
