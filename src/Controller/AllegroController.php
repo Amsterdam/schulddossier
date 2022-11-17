@@ -82,9 +82,11 @@ class AllegroController extends AbstractController
     public function send(Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator, EntityManagerInterface $em, LoggerInterface $logger): JsonResponse {
         try {
             $response = $allegroService->sendAanvraag($dossier);
-            $dossier->setSendToAllegro((new \DateTime()));
+
             $em->flush();
+
             if ($response) {
+                $dossier->setSendToAllegro((new \DateTime()));
                 return new JsonResponse(['send' => true]);
             } else {
                 return new JsonResponse(['send' => false, 'message' => 'Er is iets mis gegaan in het contact met allegro, probeer het later nog een keer of neem contact op met het beheer']);
