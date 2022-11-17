@@ -21,6 +21,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\eSoortInkomen;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SchuldArray;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SchuldHulpService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SchuldHulpService___Aanvraag2SR;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TContact;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSchuld;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
@@ -194,7 +195,7 @@ class AllegroService
         $this->setSoapHeader($bureau);
 
         $bedrijfsCode = 2; // Vaste waarde 2 = Kredietbank
-        $aanvragerCorrespondentieMail = $dossier->getClientEmail() ?? false;
+        $aanvragerCorrespondentieMail = false;
         $aanvragerCorrespondentieWeb = false;
         $aanvraagSchuldbedrag = $dossier->getSumSchuldItemsNotInPrullenbak();
 
@@ -241,8 +242,10 @@ class AllegroService
 
         $aanvrager->setBezoekadres($aanvragerAdres);
 
-        // Partner
+        $contact = new TContact($dossier->getClientTelefoonnummer(), null, $dossier->getClientEmail());
+        $aanvrager->setContact($contact);
 
+        // Partner
         $partner = null;
         if (!$dossier->getPartnerNvt()) {
             $partner = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2Persoon(0,
