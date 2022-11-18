@@ -5,6 +5,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
+use DateTime;
 
 class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
 {
@@ -24,6 +25,15 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
 
         $dossier->setClientVoorletters("T");
         $dossier->setClientNaam("Tester Testemans");
+        $dossier->setClientGeslacht('Man');
+        $dossier->setClientGeboortedatum(new DateTime('12-11-1953'));
+        $dossier->setClientBSN('282372714');
+        $dossier->setClientTelefoonnummer('0634449270');
+        $dossier->setClientEmail('mail@invalid.nl');
+        $dossier->setClientStraat('Westwouderstraat');
+        $dossier->setClientHuisnummer('21');
+        $dossier->setClientPostcode('1023VN');
+        $dossier->setClientWoonplaats('Amsterdam');
         $dossier->setAanmaker($this->getReference(GebruikerFixtures::ADMIN_USER_REFERENCE));
         $dossier->setDossierTemplate('v1');
         $dossier->setStatus('bezig_madi');
