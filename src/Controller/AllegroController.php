@@ -60,6 +60,7 @@ class AllegroController extends AbstractController
     /**
      * @Route("/validate/{dossierId}")
      * @Security("is_granted('access', dossier)")
+     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function validateSendToAllegro(Request $request, Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator): JsonResponse {
@@ -74,6 +75,7 @@ class AllegroController extends AbstractController
     /**
      * @Route("/send/{dossierId}", methods={"POST"})
      * @Security("is_granted('access', dossier)")
+     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function send(Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator, EntityManagerInterface $em, LoggerInterface $logger): JsonResponse {
