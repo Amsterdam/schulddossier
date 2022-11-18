@@ -34,6 +34,7 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
         $dossier->setClientHuisnummer('21');
         $dossier->setClientPostcode('1023VN');
         $dossier->setClientWoonplaats('Amsterdam');
+        $dossier->setPartnerNvt(true);
         $dossier->setAanmaker($this->getReference(GebruikerFixtures::ADMIN_USER_REFERENCE));
         $dossier->setDossierTemplate('v1');
         $dossier->setStatus('bezig_madi');
