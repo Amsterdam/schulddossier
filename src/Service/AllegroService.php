@@ -242,9 +242,6 @@ class AllegroService
 
         $aanvrager->setBezoekadres($aanvragerAdres);
 
-        $contact = new TContact($dossier->getClientTelefoonnummer(), null, $dossier->getClientEmail());
-        $aanvrager->setContact($contact);
-
         // Partner
         $partner = null;
         if (!$dossier->getPartnerNvt()) {
