@@ -7,15 +7,14 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Exception\AllegroServiceException;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use Psr\Log\LoggerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/app/allegro")
@@ -61,7 +60,7 @@ class AllegroController extends AbstractController
     /**
      * @Route("/validate/{dossierId}")
      * @Security("is_granted('access', dossier)")
-     * @IsGranted({"ROLE_ADMIN","ROLE_GKA","ROLE_GKA_APPBEHEERDER"})
+     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function validateSendToAllegro(Request $request, Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator): JsonResponse {
@@ -76,7 +75,7 @@ class AllegroController extends AbstractController
     /**
      * @Route("/send/{dossierId}", methods={"POST"})
      * @Security("is_granted('access', dossier)")
-     * @IsGranted({"ROLE_ADMIN","ROLE_GKA","ROLE_GKA_APPBEHEERDER"})
+     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
     public function send(Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator, EntityManagerInterface $em, LoggerInterface $logger): JsonResponse {
