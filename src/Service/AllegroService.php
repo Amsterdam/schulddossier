@@ -475,7 +475,7 @@ class AllegroService
         $loginSucces = $this->login($bureau);
 
         if(!$loginSucces) {
-            throw new \Exception('Login of schuldhulpbureau failed')
+            throw new \Exception('Login of schuldhulpbureau failed');
         }
 
         $header = new \SoapHeader('http://tempuri.org/', 'ROClientIDHeader', ['ID' => $bureau->getAllegroSessionId()]);
