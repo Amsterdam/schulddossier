@@ -15,8 +15,6 @@ server {
     add_header Content-Security-Policy "frame-ancestors 'self'";
     add_header Referrer-Policy "strict-origin";
     add_header X-Content-Type-Options "nosniff";
-    add_header Access-Control-Allow-Credentials "false";
-    add_header Access-Control-Allow-Origin "*.amsterdam.nl";
 
     client_max_body_size 30M;
 
