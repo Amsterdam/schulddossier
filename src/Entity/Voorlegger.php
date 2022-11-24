@@ -980,22 +980,22 @@ class Voorlegger
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=25, nullable=true)
-     * @Assert\Length(min=0, max=25)
+     * @ORM\Column(type="string", length=125, nullable=true)
+     * @Assert\Length(min=0, max=125)
      */
     private ?string $jssAdviseurNaam;
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=25, nullable=true)
-     * @Assert\Length(min=0, max=25)
+     * @ORM\Column(type="string", length=125, nullable=true)
+     * @Assert\Length(min=0, max=125)
      */
     private ?string $jssAdviseurTelefoon;
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=25, nullable=true)
-     * @Assert\Length(min=0, max=25)
+     * @ORM\Column(type="string", length=125, nullable=true)
+     * @Assert\Length(min=0, max=125)
      */
     private ?string $jssAdviseurEmail;
 
