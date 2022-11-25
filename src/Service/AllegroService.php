@@ -242,9 +242,6 @@ class AllegroService
 
         $aanvrager->setBezoekadres($aanvragerAdres);
 
-        $contact = new TContact($dossier->getClientTelefoonnummer(), null, $dossier->getClientEmail());
-        $aanvrager->setContact($contact);
-
         // Partner
         $partner = null;
         if (!$dossier->getPartnerNvt()) {
@@ -475,7 +472,12 @@ class AllegroService
      */
     private function setSoapHeader(Schuldhulpbureau $bureau): void
     {
-        $this->login($bureau);
+        $loginSucces = $this->login($bureau);
+
+        if(!$loginSucces) {
+            throw new \Exception('Login of schuldhulpbureau failed');
+        }
+
         $header = new \SoapHeader('http://tempuri.org/', 'ROClientIDHeader', ['ID' => $bureau->getAllegroSessionId()]);
         $this->altService->__setSoapHeaders($header);
     }

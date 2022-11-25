@@ -53,6 +53,18 @@
     "knplabs/knp-paginator-bundle": {
         "version": "v5.3.0"
     },
+    "php-http/httplug-bundle": {
+        "version": "1.27",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.6",
+            "ref": "87b3d491d593d2c6e3b90bf0689ac69a188bfa5f"
+        },
+        "files": [
+            "config/packages/httplug.yaml"
+        ]
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.6",
         "recipe": {
