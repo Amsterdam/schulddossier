@@ -84,9 +84,9 @@ class AllegroController extends Controller
             $response = $allegroService->sendAanvraag($dossier);
 
             $em->flush();
+            $dossier->setSendToAllegro((new \DateTime()));
 
             if ($response) {
-                $dossier->setSendToAllegro((new \DateTime()));
                 return new JsonResponse(['send' => true]);
             } else {
                 return new JsonResponse(['send' => false, 'message' => 'Er is iets mis gegaan in het contact met allegro, probeer het later nog een keer of neem contact op met het beheer']);
