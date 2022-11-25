@@ -242,6 +242,11 @@ class AllegroService
 
         $aanvrager->setBezoekadres($aanvragerAdres);
 
+        if (null !== $dossier->getClientEmail() or null !== $dossier->getClientTelefoonnummer()) {
+           $contact = new TContact($dossier->getClientTelefoonnummer(), null, $dossier->getClientEmail());
+           $aanvrager->setContact($contact);
+        }
+
         // Partner
         $partner = null;
         if (!$dossier->getPartnerNvt()) {
