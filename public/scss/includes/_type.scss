@@ -10,10 +10,8 @@ body,
 pre,
 input[type="checkbox"] + strong {
   font-size: $fontSize;
-  font-family: $ff-regular;
 }
 .bold, b, strong, th {
-  font-family: $ff-bold;
 }
 [type="text"],
 [type="search"],
@@ -29,7 +27,6 @@ select,
 option,
 textarea {
   font-size: $fontSize;
-  font-family: $ff-regular;
 }
 select::-ms-expand {
     display: none;
@@ -85,7 +82,6 @@ a {
   color: $textColor;
 }
 h1, h2, h3 {
-  font-family: $ff-headings;
   font-weight: 400;
 }
 h4, .normal {

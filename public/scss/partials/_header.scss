@@ -48,7 +48,6 @@ header.top {
   top: 10px;
   left: 100px;
   strong {
-    font-family: $ff-headings;
     font-size: 18px;
     line-height: 18px;
   }
@@ -56,7 +55,6 @@ header.top {
     display: block;
     color: $accentColor;
     font-size: 9px;
-    font-family: $ff-headings;
   }
 }
 
@@ -66,7 +64,6 @@ header.top {
 
   font-size: 9px;
   line-height: 10px;
-  font-family: $ff-headings;
 
   color: $accentColor;
 
