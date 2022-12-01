@@ -9,29 +9,7 @@
   padding: $padding / 2;
   background-color: $lightColor;
   margin-bottom: $padding / 2;
-  //&:before {
-  //  content: '';
-  //  position: absolute;
-  //  background-color: $lightColor;
-  //  min-height: 80px;
-  //  left: 0;
-  //  right: 0;
-  //  top: 0;
-  //  bottom: 0;
-  //  z-index: 1;
-  //}
-  //div.active {
-  //  height: 6rem;
-  //}
-  //textarea {
-  //  position: absolute;
-  //  z-index: 2;
-  //  left: $padding / 2;
-  //  top: $padding / 2;
-  //  width: calc(100% - #{$padding});
-  //  height: calc(100% - #{$padding});
-  //  //display: none;
-  //}
+
   .active {
     textarea {
       display: block;
