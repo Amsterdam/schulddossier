@@ -16,7 +16,6 @@
 
     font-weight: normal;
     white-space: nowrap;
-    font-family: $ff-regular;
 
     &:before {
       content: '';
@@ -114,7 +113,6 @@
   .status-madi-1 & .status-madi-1 strong,
   .status-madi-2 & .status-madi-2 strong,
   .status-madi-3 & .status-madi-3 strong {
-    font-family: $ff-bold;
     color: #000;
   }
   .status-nvt & .status-gka-0 strong,
@@ -125,7 +123,6 @@
   .status-nvt & .status-madi-1 strong,
   .status-nvt & .status-madi-2 strong,
   .status-nvt & .status-madi-3 strong {
-    font-family: $ff-regular;
   }
   .status-nvt.status-gka-0 &:after,
   .status-nvt.status-gka-3 &:after,
