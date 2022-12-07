@@ -12,6 +12,7 @@ input[type="checkbox"] + strong {
   font-size: $fontSize;
 }
 .bold, b, strong, th {
+  font-weight:700;
 }
 [type="text"],
 [type="search"],
