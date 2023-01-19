@@ -1071,10 +1071,10 @@ class AppDossierController extends AbstractController
     public function downloadCsv(Dossier $dossier, FileStorageSelector $fileStorageSelector): Response
     {
         $filesystem = new Filesystem();
-        if (!$filesystem->exists($this->container->getParameter('kernel.project_dir') . '/var/tmp')) {
-            $filesystem->mkdir($this->container->getParameter('kernel.project_dir') . '/var/tmp');
+        if (!$filesystem->exists($this->getParameter('kernel.project_dir') . '/var/tmp')) {
+            $filesystem->mkdir($this->getParameter('kernel.project_dir') . '/var/tmp');
         }
-        $basePath = $this->container->getParameter('kernel.project_dir') . '/var/tmp';
+        $basePath = $this->getParameter('kernel.project_dir') . '/var/tmp';
 
         $zipfileLocation = sprintf('%s/dossier-%s.zip', $basePath, $dossier->getId());
         $dossierCsvFileLocation = sprintf('%s/dossier-%s.csv', $basePath, $dossier->getId());
