@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @Route("/app/schuldeiser")
@@ -23,7 +23,7 @@ class AppSchuldeiserController extends AbstractController
     /**
      * @Route("/")
      */
-    public function indexAction(Request $request, EntityManagerInterface $em, Serializer $jsonSerializer)
+    public function indexAction(Request $request, EntityManagerInterface $em, SerializerInterface $jsonSerializer)
     {
         /** @var $schuldeiserRepository SchuldeiserRepository */
         $schuldeiserRepository = $em->getRepository(Schuldeiser::class);
@@ -55,7 +55,7 @@ class AppSchuldeiserController extends AbstractController
      * @Route("/nieuw")
      * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      */
-    public function createAction(Request $request, EntityManagerInterface $em, Serializer $jsonSerializer)
+    public function createAction(Request $request, EntityManagerInterface $em, SerializerInterface $jsonSerializer)
     {
         $schuldeiser = new Schuldeiser();
 
