@@ -758,8 +758,8 @@ class AppDossierController extends AbstractController
         $spreadsheet = $this->schuldenAsExcel($dossier);
 
         $fs = new Filesystem();
-        $fs->mkdir($this->container->getParameter('kernel.project_dir') . '/var/tmp');
-        $tmpName = $this->container->getParameter('kernel.project_dir') . '/var/tmp/schuldenlijst-excel-' . $dossier->getId() . '.xlsx';
+        $fs->mkdir($this->getParameter('kernel.project_dir') . '/var/tmp');
+        $tmpName = $this->getParameter('kernel.project_dir') . '/var/tmp/schuldenlijst-excel-' . $dossier->getId() . '.xlsx';
         $fs->touch($tmpName);
         $writer = new Xlsx($spreadsheet);
         $writer->save($tmpName);
