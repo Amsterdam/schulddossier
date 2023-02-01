@@ -1,38 +1,71 @@
 {
-  "id": "1b6b2aed-07d8-4cbc-a9d7-229604acbced",
+  "id": "60c17cb4-0e00-4b81-a236-45b94e5f732f",
   "version": "2.0",
-  "name": "Smoketest Acceptatie fixxx8",
+  "name": "Smoketest Acceptatie fixxx8V2",
   "url": "acc.schulddossier.amsterdam.nl",
   "tests": [{
     "id": "433c2c93-c750-436c-bc53-4217401184c5",
     "name": "Schulddossier maken",
     "commands": [{
-      "id": "450a9a3c-79d0-4eda-8233-031e1714784f",
-      "comment": "",
-      "command": "executeScript",
-      "target": "return new Date().toLocaleString()",
-      "targets": [],
-      "value": "datum"
-    }, {
-      "id": "446afa8a-c070-4bda-bd74-4a6f26b9dd72",
-      "comment": "",
-      "command": "executeScript",
-      "target": "return 'Test ' + ${datum}",
-      "targets": [],
-      "value": "clientnaam"
-    }, {
-      "id": "776c7455-d580-4411-b12d-f493cd798f73",
-      "comment": "",
-      "command": "executeScript",
-      "target": "return 'ST'",
-      "targets": [],
-      "value": "clientnaam_voorletters"
-    }, {
       "id": "9449f23b-37b7-48c7-99f1-f058e6636f07",
       "comment": "",
       "command": "open",
       "target": "/app/dossier/",
       "targets": [],
+      "value": ""
+    }, {
+      "id": "20b0d856-b2c0-40f2-af68-58fdb425e589",
+      "comment": "",
+      "command": "click",
+      "target": "css=#zocial-datapunt-acc > span",
+      "targets": [
+        ["css=#zocial-datapunt-acc > span", "css:finder"],
+        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c7a0b2c6-ebae-462c-bffa-c1d531ba5cfe",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_EMAIL}"
+    }, {
+      "id": "817165f1-b60f-4fb6-948e-f913f7c3c94d",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_PASS}"
+    }, {
+      "id": "2f214153-d8a8-4a67-b811-6b0264a98f1b",
+      "comment": "",
+      "command": "click",
+      "target": "id=kc-login",
+      "targets": [
+        ["id=kc-login", "id"],
+        ["name=login", "name"],
+        ["css=#kc-login", "css:finder"],
+        ["xpath=//input[@id='kc-login']", "xpath:attributes"],
+        ["xpath=//div[@id='kc-form-buttons']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
       "value": ""
     }, {
       "id": "ec115179-56da-43ba-8c84-c90d8c0c71af",
@@ -69,13 +102,7 @@
       "comment": "",
       "command": "//click",
       "target": "id=create_dossier_form_clientNaam",
-      "targets": [
-        ["id=create_dossier_form_clientNaam", "id"],
-        ["name=create_dossier_form[clientNaam]", "name"],
-        ["css=#create_dossier_form_clientNaam", "css:finder"],
-        ["xpath=//input[@id='create_dossier_form_clientNaam']", "xpath:attributes"],
-        ["xpath=//input", "xpath:position"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "36225401-dbd0-491a-877a-8b9334f4c8b8",
@@ -89,7 +116,7 @@
         ["xpath=//input[@id='create_dossier_form_clientNaam']", "xpath:attributes"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "${clientnaam}"
+      "value": "Automatic Selenium test"
     }, {
       "id": "63d8098d-6e46-471b-b10a-7fc45b870092",
       "comment": "",
@@ -102,19 +129,13 @@
         ["xpath=//input[@id='create_dossier_form_clientVoorletters']", "xpath:attributes"],
         ["xpath=//div[3]/div/input", "xpath:position"]
       ],
-      "value": "${clientnaam_voorletters}"
+      "value": "ST"
     }, {
       "id": "fd6286af-b60a-4ee1-9219-9883ba0ac67a",
       "comment": "",
       "command": "//click",
       "target": "id=create_dossier_form_partnerNaam",
-      "targets": [
-        ["id=create_dossier_form_clientNaam", "id"],
-        ["name=create_dossier_form[clientNaam]", "name"],
-        ["css=#create_dossier_form_clientNaam", "css:finder"],
-        ["xpath=//input[@id='create_dossier_form_clientNaam']", "xpath:attributes"],
-        ["xpath=//input", "xpath:position"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "e03ce418-0ab7-459f-b932-c3990ad4e84e",
@@ -141,13 +162,7 @@
       "comment": "",
       "command": "//click",
       "target": "id=create_dossier_form_regasNummer",
-      "targets": [
-        ["id=create_dossier_form_regasNummer", "id"],
-        ["name=create_dossier_form[regasNummer]", "name"],
-        ["css=#create_dossier_form_regasNummer", "css:finder"],
-        ["xpath=//input[@id='create_dossier_form_regasNummer']", "xpath:attributes"],
-        ["xpath=//div[3]/div/input", "xpath:position"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "c17b7bb5-23fd-4287-93c1-8b92c4caa854",
@@ -175,6 +190,76 @@
       ],
       "value": ""
     }, {
+      "id": "5851c513-7ac0-4702-81ae-78987e10860e",
+      "comment": "",
+      "command": "select",
+      "target": "id=create_dossier_form_teamGka",
+      "targets": [],
+      "value": "label=GKA Team 1"
+    }, {
+      "id": "4cb4addf-5dc8-4ba7-addf-b7fea8529d71",
+      "comment": "",
+      "command": "click",
+      "target": "css=.button",
+      "targets": [
+        ["css=.button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a2d08c8c-5727-4989-9530-af48f8bf5583",
+      "comment": "",
+      "command": "click",
+      "target": "id=detail_dossier_additional_form_clientTelefoonnummer",
+      "targets": [
+        ["id=detail_dossier_additional_form_clientTelefoonnummer", "id"],
+        ["name=detail_dossier_additional_form[clientTelefoonnummer]", "name"],
+        ["css=#detail_dossier_additional_form_clientTelefoonnummer", "css:finder"],
+        ["xpath=//input[@id='detail_dossier_additional_form_clientTelefoonnummer']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f1c1375e-0157-4cdc-8178-dcd3570d8d2c",
+      "comment": "",
+      "command": "type",
+      "target": "id=detail_dossier_additional_form_clientTelefoonnummer",
+      "targets": [
+        ["id=detail_dossier_additional_form_clientTelefoonnummer", "id"],
+        ["name=detail_dossier_additional_form[clientTelefoonnummer]", "name"],
+        ["css=#detail_dossier_additional_form_clientTelefoonnummer", "css:finder"],
+        ["xpath=//input[@id='detail_dossier_additional_form_clientTelefoonnummer']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "020-1234567"
+    }, {
+      "id": "88442b3e-9414-4344-a884-8a8279be1cf7",
+      "comment": "",
+      "command": "type",
+      "target": "id=detail_dossier_additional_form_clientEmail",
+      "targets": [
+        ["id=detail_dossier_additional_form_clientEmail", "id"],
+        ["name=detail_dossier_additional_form[clientEmail]", "name"],
+        ["css=#detail_dossier_additional_form_clientEmail", "css:finder"],
+        ["xpath=//input[@id='detail_dossier_additional_form_clientEmail']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "salmagundi@amsterdam.nl"
+    }, {
+      "id": "a2801e16-a51b-4ec6-a9d1-d1b5cee7c350",
+      "comment": "",
+      "command": "click",
+      "target": "css=.primary",
+      "targets": [
+        ["css=.primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Opslaan en doorgaan')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
       "id": "f009d632-7762-40bb-8fba-4ec022891165",
       "comment": "",
       "command": "waitForElementPresent",
@@ -191,7 +276,7 @@
         ["xpath=//h1", "xpath:position"],
         ["xpath=//h1[contains(.,'Test 18/03/2019, 21:40:05')]", "xpath:innerText"]
       ],
-      "value": "${clientnaam}"
+      "value": "ST Automatic Selenium test"
     }]
   }, {
     "id": "db8ce94d-cd58-4309-8407-57a4a5b102a7",
@@ -214,10 +299,10 @@
       "id": "34edb5d3-eeda-4996-ac5c-dc652ce0deb6",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]",
+      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
       "targets": [
         ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
         ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
@@ -226,7 +311,7 @@
       "id": "f93349f8-c062-458e-8bae-80cac26ce961",
       "comment": "",
       "command": "click",
-      "target": "linkText=${clientnaam}",
+      "target": "linkText=ST Automatic Selenium test",
       "targets": [
         ["linkText=Selenium Test 18/02/2019, 14:31:06", "linkText"],
         ["css=.row-link:nth-child(1) a", "css:finder"],
@@ -1076,7 +1161,7 @@
     "id": "d97a43da-5c7e-4f05-8546-07e2da3181da",
     "name": "Scholddossier verwijderen",
     "commands": [{
-      "id": "8d2992f6-d127-41a9-96d4-37184155076a",
+      "id": "1de1a304-3528-44c8-9be6-d78e7f42aebb",
       "comment": "",
       "command": "open",
       "target": "/app/dossier/",
@@ -1090,13 +1175,67 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "cff34734-c412-4e86-b0e7-1316d8c2c9f3",
+      "comment": "",
+      "command": "click",
+      "target": "css=#zocial-datapunt-acc > span",
+      "targets": [
+        ["css=#zocial-datapunt-acc > span", "css:finder"],
+        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "12e37b82-4623-4ae9-80d8-f08d3850d139",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_EMAIL}"
+    }, {
+      "id": "a8c70056-2aba-49f1-9882-f66e94ebf7d5",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_PASS}"
+    }, {
+      "id": "d80a97bc-6814-42b4-a6ca-0bf2e0e0ab21",
+      "comment": "",
+      "command": "click",
+      "target": "id=kc-login",
+      "targets": [
+        ["id=kc-login", "id"],
+        ["name=login", "name"],
+        ["css=#kc-login", "css:finder"],
+        ["xpath=//input[@id='kc-login']", "xpath:attributes"],
+        ["xpath=//div[@id='kc-form-buttons']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
       "id": "6e9cfeb4-e109-4fa6-bc5b-ccd5b5bf52b5",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]",
+      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
       "targets": [
         ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
         ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
@@ -1105,7 +1244,7 @@
       "id": "a3a370e2-c6e6-4489-b0ae-8b6fec53e4b4",
       "comment": "Open dossier",
       "command": "click",
-      "target": "linkText=${clientnaam}",
+      "target": "linkText=ST Automatic Selenium test",
       "targets": [
         ["linkText=Selenium Test 18/02/2019, 14:31:06", "linkText"],
         ["css=.row-link:nth-child(1) a", "css:finder"],
@@ -1126,7 +1265,7 @@
         ["xpath=//h1", "xpath:position"],
         ["xpath=//h1[contains(.,'Selenium Test 18/02/2019, 14:31:06')]", "xpath:innerText"]
       ],
-      "value": "${clientnaam}"
+      "value": "ST Automatic Selenium test"
     }, {
       "id": "a1d7c783-4d09-4bec-b38e-db9430a69c3e",
       "comment": "",
@@ -1139,36 +1278,37 @@
       ],
       "value": ""
     }, {
+      "id": "bbe22141-acac-47e8-a560-74a535fcfa01",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "01f8bce4-29e4-45c1-9348-bc11701455ec",
       "comment": "",
       "command": "click",
-      "target": "xpath=//button[contains(.,' Dossier verwijderen')]",
+      "target": "xpath=//button[@name='token']",
       "targets": [
+        ["name=token", "name"],
         ["css=.link", "css:finder"],
         ["xpath=//button[@name='token']", "xpath:attributes"],
         ["xpath=//nav[@id='acties']/ul/li[8]/form/button", "xpath:idRelative"],
-        ["xpath=//li[8]/form/button", "xpath:position"],
+        ["xpath=//button", "xpath:position"],
         ["xpath=//button[contains(.,' Dossier verwijderen')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "6ca3ccc3-b2f2-4ce1-8efc-7bd27c5df54b",
-      "comment": "",
-      "command": "chooseOkOnNextConfirmation",
-      "target": "",
+      "id": "3379dd28-034a-4619-aad2-162d44c1d430",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "1000",
       "targets": [],
       "value": ""
     }, {
-      "id": "32a3f47e-1991-4af3-9a0d-b57b31ddad2f",
+      "id": "77d1944a-5b19-4fb4-b372-1d4d6346e6ad",
       "comment": "",
-      "command": "webdriverChooseOkOnVisibleConfirmation",
-      "target": "",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "6184d4fe-e7be-4d72-8ed7-05674f42f869",
-      "comment": "",
-      "command": "//assert",
+      "command": "assertConfirmation",
       "target": "Weet je het zeker?",
       "targets": [],
       "value": ""
@@ -1177,7 +1317,7 @@
     "id": "6cc54cdf-fea6-408d-b3be-98ee48fd2a1e",
     "name": "Dossier wijzigen / Aanvraag (alleen waarden)",
     "commands": [{
-      "id": "63121eb8-b408-4c65-816b-5c7c753da8ba",
+      "id": "e492e1a2-d9d3-4c77-9fba-a885440ee597",
       "comment": "",
       "command": "open",
       "target": "/app/dossier/",
@@ -1191,13 +1331,67 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "74d1f870-b140-4c3f-bc5a-50606f65c267",
+      "comment": "",
+      "command": "click",
+      "target": "css=#zocial-datapunt-acc > span",
+      "targets": [
+        ["css=#zocial-datapunt-acc > span", "css:finder"],
+        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7090a7a-f7e2-4ce6-b453-a6fb54665da3",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_EMAIL}"
+    }, {
+      "id": "30966b43-c0f1-43f7-a9e6-5883da6086bf",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_PASS}"
+    }, {
+      "id": "96607986-6a67-42eb-974b-c50b7917cdd1",
+      "comment": "",
+      "command": "click",
+      "target": "id=kc-login",
+      "targets": [
+        ["id=kc-login", "id"],
+        ["name=login", "name"],
+        ["css=#kc-login", "css:finder"],
+        ["xpath=//input[@id='kc-login']", "xpath:attributes"],
+        ["xpath=//div[@id='kc-form-buttons']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
       "id": "89cfe5c8-1fbd-4b78-a69d-4e34bcd2db94",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]",
+      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
       "targets": [
         ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
         ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
@@ -1206,7 +1400,7 @@
       "id": "53cb2ea6-a8fc-41a1-89a4-c120e1fa8bdf",
       "comment": "Open dossier",
       "command": "click",
-      "target": "linkText=${clientnaam}",
+      "target": "linkText=ST Automatic Selenium test",
       "targets": [
         ["linkText=Selenium Test 18/02/2019, 14:31:06", "linkText"],
         ["css=.row-link:nth-child(1) a", "css:finder"],
@@ -1261,6 +1455,13 @@
       ],
       "value": ""
     }, {
+      "id": "8077b13d-ce66-42d7-984e-023994372a47",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "47bf6bbb-6498-4c07-8393-f42eb96fabba",
       "comment": "",
       "command": "type",
@@ -1274,6 +1475,37 @@
         ["xpath=//div[4]/div/input", "xpath:position"]
       ],
       "value": "15-05-1980"
+    }, {
+      "id": "a48e6906-80c8-4771-8fe9-c550cadf5147",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "62e8b810-d41b-4062-8877-2fceb84b573e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.form-row__wide:nth-child(6) label",
+      "targets": [
+        ["css=.form-row__wide:nth-child(6) label", "css:finder"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[5]/div/label", "xpath:idRelative"],
+        ["xpath=//div[5]/div/label", "xpath:position"],
+        ["xpath=//label[contains(.,'B.S.N.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "baf60765-9a0a-462d-abb8-fe613cb85dc6",
+      "comment": "",
+      "command": "click",
+      "target": "css=#voorlegger-legitimatie .form-row:nth-child(7) label",
+      "targets": [
+        ["css=#voorlegger-legitimatie .form-row:nth-child(7) label", "css:finder"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[6]/div/label", "xpath:idRelative"],
+        ["xpath=//div[6]/div/label", "xpath:position"],
+        ["xpath=//label[contains(.,'Banknaam')]", "xpath:innerText"]
+      ],
+      "value": ""
     }, {
       "id": "aa4abadf-8842-4c89-b902-ceda3f6c3531",
       "comment": "",
@@ -1358,6 +1590,13 @@
       ],
       "value": ""
     }, {
+      "id": "f32600c4-5cbe-4c72-b045-34144c465be9",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "4ba5bbe3-9290-40f2-8fde-afe403da4fbf",
       "comment": "",
       "command": "type",
@@ -1370,7 +1609,26 @@
         ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[10]/div/input", "xpath:idRelative"],
         ["xpath=//div[10]/div/input", "xpath:position"]
       ],
-      "value": "5-8-1983"
+      "value": "05-08-1983"
+    }, {
+      "id": "c5e421d8-c422-4bd3-8132-09b501c22385",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "354012d1-a21e-4390-9e25-b7455d8e0779",
+      "comment": "",
+      "command": "click",
+      "target": "css=#voorlegger-legitimatie .form-row:nth-child(14) label",
+      "targets": [
+        ["css=#voorlegger-legitimatie .form-row:nth-child(7) label", "css:finder"],
+        ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[6]/div/label", "xpath:idRelative"],
+        ["xpath=//div[6]/div/label", "xpath:position"],
+        ["xpath=//label[contains(.,'Banknaam')]", "xpath:innerText"]
+      ],
+      "value": ""
     }, {
       "id": "3d689805-2ddc-4b20-8e93-7ad6d809f742",
       "comment": "",
@@ -1568,6 +1826,13 @@
       ],
       "value": ""
     }, {
+      "id": "73ce1879-2fb4-45bf-a9a1-84da81be0a00",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "dff1db96-15a6-4071-a860-520b4e70113e",
       "comment": "",
       "command": "type",
@@ -1580,7 +1845,14 @@
         ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[19]/div/div/ul/li/input", "xpath:idRelative"],
         ["xpath=//li/input", "xpath:position"]
       ],
-      "value": "1-1-2001"
+      "value": "01-01-2001"
+    }, {
+      "id": "8dca70b4-dfe0-497d-bc09-87f0b51776c8",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
     }, {
       "id": "068bd311-9667-499f-bc9b-f53f7870406f",
       "comment": "",
@@ -1611,6 +1883,13 @@
       ],
       "value": ""
     }, {
+      "id": "8fc0a70b-245d-420a-b23c-cd50d06737ac",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "3c4f41ed-91b0-406f-9bbc-e38874ccc736",
       "comment": "",
       "command": "type",
@@ -1623,7 +1902,14 @@
         ["xpath=//div[@id='voorlegger-legitimatie']/div[2]/div/div[2]/div[19]/div/div/ul/li[2]/input", "xpath:idRelative"],
         ["xpath=//li[2]/input", "xpath:position"]
       ],
-      "value": "1-2-2002"
+      "value": "01-02-2002"
+    }, {
+      "id": "b55d7863-1a4f-4179-bb0d-bd13f1baa373",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
     }, {
       "id": "6eefc849-3094-4aa4-8b78-466ee36e5ec5",
       "comment": "",
@@ -1683,13 +1969,7 @@
       "comment": "",
       "command": "//click",
       "target": "css=.dossier__save",
-      "targets": [
-        ["css=.dossier__save", "css:finder"],
-        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
-        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
-        ["xpath=//div/form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "c9c59fe1-4d7d-45e8-9c4b-50e01b0dd9d3",
@@ -1750,13 +2030,7 @@
       "comment": "",
       "command": "//click",
       "target": "css=.dossier__save",
-      "targets": [
-        ["css=.dossier__save", "css:finder"],
-        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
-        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
-        ["xpath=//div/form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "96d3e0d8-1472-4797-8f5b-61a279e88f49",
@@ -1904,14 +2178,7 @@
       "comment": "UWV overig",
       "command": "//click",
       "target": "id=voorlegger_form_beschikkingUwv_beschikkingUwvOverig",
-      "targets": [
-        ["id=voorlegger_form_beschikkingUwv_beschikkingUwvOverig", "id"],
-        ["name=voorlegger_form[beschikkingUwv][beschikkingUwvOverig]", "name"],
-        ["css=#voorlegger_form_beschikkingUwv_beschikkingUwvOverig", "css:finder"],
-        ["xpath=//input[@id='voorlegger_form_beschikkingUwv_beschikkingUwvOverig']", "xpath:attributes"],
-        ["xpath=//div[@id='voorlegger-beschikkingUwv']/div[2]/div/div[2]/div[4]/div/input", "xpath:idRelative"],
-        ["xpath=//div[4]/div/input", "xpath:position"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "dd2b3476-8989-45ea-a529-9aeca79ea1da",
@@ -1932,13 +2199,7 @@
       "comment": "",
       "command": "//click",
       "target": "css=.dossier__save",
-      "targets": [
-        ["css=.dossier__save", "css:finder"],
-        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
-        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
-        ["xpath=//div/form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "4ee9bb0f-b9ef-43ff-8348-d05985847ee4",
@@ -2068,38 +2329,14 @@
       "comment": "",
       "command": "click",
       "target": "id=voorlegger_form_toeslagen_toeslagenKinderopvang",
-      "targets": [
-        ["id=voorlegger_form_toeslagen_toeslagenKinderopvang", "id"],
-        ["name=voorlegger_form[toeslagen][toeslagenKinderopvang]", "name"],
-        ["css=#voorlegger_form_toeslagen_toeslagenKinderopvang", "css:finder"],
-        ["xpath=//input[@id='voorlegger_form_toeslagen_toeslagenKinderopvang']", "xpath:attributes"],
-        ["xpath=//div[@id='voorlegger-toeslagen']/div[2]/div/div[2]/div[4]/div/input", "xpath:idRelative"],
-        ["xpath=//div[12]/div[2]/div/div[2]/div[4]/div/input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "baf4598a-bbb8-41bc-a8bf-e5a5325f2845",
-      "comment": "",
-      "command": "click",
-      "target": "css=#voorlegger-toeslagen .form-row:nth-child(4) > .label-widget",
-      "targets": [
-        ["css=#voorlegger-toeslagen .form-row:nth-child(4) > .label-widget", "css:finder"],
-        ["xpath=//div[@id='voorlegger-toeslagen']/div[2]/div/div[2]/div[4]/div", "xpath:idRelative"],
-        ["xpath=//div[12]/div[2]/div/div[2]/div[4]/div", "xpath:position"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "2d367d37-5868-4465-aded-aa1864cc9439",
       "comment": "",
       "command": "//click",
       "target": "css=.dossier__save",
-      "targets": [
-        ["css=.dossier__save", "css:finder"],
-        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
-        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
-        ["xpath=//div/form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "687331b3-92e0-4fa8-8d57-5c427b460b19",
@@ -2160,13 +2397,7 @@
       "comment": "",
       "command": "//click",
       "target": "css=.dossier__save",
-      "targets": [
-        ["css=.dossier__save", "css:finder"],
-        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
-        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
-        ["xpath=//div/form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "bc3ae517-a7d7-44f7-80de-97fad42573e2",
@@ -2231,13 +2462,7 @@
       "comment": "",
       "command": "//click",
       "target": "css=.dossier__save",
-      "targets": [
-        ["css=.dossier__save", "css:finder"],
-        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
-        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
-        ["xpath=//div/form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "3eb331f1-d134-4f1c-8a7c-0c3a828b6b7f",
@@ -2325,6 +2550,13 @@
       ],
       "value": ""
     }, {
+      "id": "b519cc26-854e-40d2-a84a-bc6101749b30",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "5c745757-8504-4687-a5b0-a246ac553be7",
       "comment": "",
       "command": "type",
@@ -2339,14 +2571,22 @@
       ],
       "value": "01-12-2018"
     }, {
-      "id": "79f331ff-7a91-48c6-8147-991ba5f3a052",
+      "id": "ba8d4388-7919-48db-87ec-e542eeedca5d",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d75fa872-55ee-4c3f-913b-927abc21588b",
       "comment": "",
       "command": "click",
-      "target": "css=#voorlegger-meterstandenEnergie .dossier__voorlegger__sectie__body",
+      "target": "css=.rome-active label",
       "targets": [
-        ["css=#voorlegger-meterstandenEnergie .dossier__voorlegger__sectie__body", "css:finder"],
-        ["xpath=//div[@id='voorlegger-meterstandenEnergie']/div[2]/div/div[2]", "xpath:idRelative"],
-        ["xpath=//div[26]/div[2]/div/div[2]", "xpath:position"]
+        ["css=.rome-active label", "css:finder"],
+        ["xpath=//div[@id='voorlegger-meterstandenEnergie']/div[2]/div/div[2]/div[3]/div/label", "xpath:idRelative"],
+        ["xpath=//div[26]/div[2]/div/div[2]/div[3]/div/label", "xpath:position"],
+        ["xpath=//label[contains(.,'Datum opname')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -2490,6 +2730,13 @@
       ],
       "value": ""
     }, {
+      "id": "7e955495-eba3-4e60-9d71-4984f06c1a49",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "72e010ed-ccc1-4c69-a81f-7fddaa471f0f",
       "comment": "",
       "command": "type",
@@ -2503,6 +2750,13 @@
         ["xpath=//div[9]/div/input", "xpath:position"]
       ],
       "value": "01-12-2018"
+    }, {
+      "id": "ddf1cda8-1584-4b56-9558-0c7b6fda7268",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
     }, {
       "id": "21ea9f80-fad3-42b3-ac9a-fc64bf3a40a7",
       "comment": "",
@@ -2532,28 +2786,11 @@
       ],
       "value": "39234,03"
     }, {
-      "id": "db216361-3eb8-483d-9d19-dfd344f711da",
-      "comment": "",
-      "command": "click",
-      "target": "css=#voorlegger-meterstandenEnergie .dossier__voorlegger__sectie__body",
-      "targets": [
-        ["css=#voorlegger-meterstandenEnergie .dossier__voorlegger__sectie__body", "css:finder"],
-        ["xpath=//div[@id='voorlegger-meterstandenEnergie']/div[2]/div/div[2]", "xpath:idRelative"],
-        ["xpath=//div[26]/div[2]/div/div[2]", "xpath:position"]
-      ],
-      "value": ""
-    }, {
       "id": "7b9b4d2f-e518-4236-bcb1-3d72e81b91f8",
       "comment": "",
       "command": "//click",
       "target": "css=.dossier__save",
-      "targets": [
-        ["css=.dossier__save", "css:finder"],
-        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
-        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
-        ["xpath=//div/form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "42a6c2f9-d5a6-42f8-a8d8-ea7a6bf2ae1d",
@@ -2613,6 +2850,13 @@
       ],
       "value": ""
     }, {
+      "id": "c0616dd4-a026-4258-abcb-edc6eb839b95",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "afbb683c-373a-4cdc-a92e-8a9180e6d24c",
       "comment": "",
       "command": "type",
@@ -2626,6 +2870,13 @@
         ["xpath=//div[27]/div[2]/div/div[2]/div[2]/div/input", "xpath:position"]
       ],
       "value": "01-12-2019"
+    }, {
+      "id": "51c1e9b5-df13-4aa7-a6bf-72e422786e0f",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
     }, {
       "id": "007b137c-9768-4507-9ce0-50980e0137a3",
       "comment": "",
@@ -2656,13 +2907,7 @@
       "comment": "",
       "command": "//click",
       "target": "css=.dossier__save",
-      "targets": [
-        ["css=.dossier__save", "css:finder"],
-        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
-        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
-        ["xpath=//div/form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "d86b0394-84ea-4839-8177-a67a0c4dd7b3",
@@ -2765,13 +3010,7 @@
       "comment": "",
       "command": "//click",
       "target": "css=.dossier__save",
-      "targets": [
-        ["css=.dossier__save", "css:finder"],
-        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
-        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
-        ["xpath=//div/form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "ab6aca74-074d-44a5-94e4-44302cc98d4f",
@@ -2807,11 +3046,7 @@
       "comment": "",
       "command": "//click",
       "target": "css=#voorlegger-gereserveerdeGelden .dossier__voorlegger__sectie__body",
-      "targets": [
-        ["css=#voorlegger-gereserveerdeGelden .dossier__voorlegger__sectie__body", "css:finder"],
-        ["xpath=//div[@id='voorlegger-gereserveerdeGelden']/div[2]/div/div[2]", "xpath:idRelative"],
-        ["xpath=//div[31]/div[2]/div/div[2]", "xpath:position"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "638dcc10-9451-4380-a0b7-afe4bf85e378",
@@ -2861,7 +3096,7 @@
       "id": "35dd84fe-4365-41e0-83b2-fd8d214791f8",
       "comment": "Open dossier",
       "command": "click",
-      "target": "linkText=${clientnaam}",
+      "target": "linkText=ST Automatic Selenium test",
       "targets": [
         ["linkText=Selenium Test 18/02/2019, 14:31:06", "linkText"],
         ["css=.row-link:nth-child(1) a", "css:finder"],
@@ -2920,13 +3155,67 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "a86795f6-849b-4937-8e81-645a27a6b5a3",
+      "comment": "",
+      "command": "click",
+      "target": "css=#zocial-datapunt-acc > span",
+      "targets": [
+        ["css=#zocial-datapunt-acc > span", "css:finder"],
+        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "717ddace-2991-4cf0-8302-4dae947db8b2",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_EMAIL}"
+    }, {
+      "id": "b6d34311-60be-4db4-b1fc-a58c9ce87c4c",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_PASS}"
+    }, {
+      "id": "0f71b458-0266-4e1e-8862-d6557132762d",
+      "comment": "",
+      "command": "click",
+      "target": "id=kc-login",
+      "targets": [
+        ["id=kc-login", "id"],
+        ["name=login", "name"],
+        ["css=#kc-login", "css:finder"],
+        ["xpath=//input[@id='kc-login']", "xpath:attributes"],
+        ["xpath=//div[@id='kc-form-buttons']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
       "id": "d82ae91e-b85d-4a81-9ec2-ddd2fcc65cb6",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]",
+      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
       "targets": [
         ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
         ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
@@ -2935,7 +3224,7 @@
       "id": "b923abfe-3d34-409a-ba94-6d24e4917f01",
       "comment": "Open dossier",
       "command": "click",
-      "target": "linkText=${clientnaam}",
+      "target": "linkText=ST Automatic Selenium test",
       "targets": [
         ["linkText=Selenium Test 18/02/2019, 14:31:06", "linkText"],
         ["css=.row-link:nth-child(1) a", "css:finder"],
@@ -3186,7 +3475,7 @@
       "id": "7166f68e-aa64-4696-87fa-38bffc5da491",
       "comment": "",
       "command": "click",
-      "target": "linkText=Toelichting MaDi",
+      "target": "linkText=Toelichting MaDi/Bewindvoerder",
       "targets": [
         ["linkText=Toelichting MaDi", "linkText"],
         ["css=#voorlegger-toelichtingAanvraagSchuldsaneringMadi .naam > a", "css:finder"],
@@ -4447,7 +4736,7 @@
     "id": "c3b67a50-fe32-432e-955f-1f03270367ed",
     "name": "Dossier wijzigen / schulden toevoegen",
     "commands": [{
-      "id": "d746c2fd-2384-4fbe-9755-7305a57d4dc1",
+      "id": "96eb8d1d-4b3d-4254-abdf-2d9ee3ece29f",
       "comment": "",
       "command": "open",
       "target": "/app/dossier/",
@@ -4461,13 +4750,67 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "d6ac0048-c8de-46d0-8cc0-995e30f8a822",
+      "comment": "",
+      "command": "click",
+      "target": "css=#zocial-datapunt-acc > span",
+      "targets": [
+        ["css=#zocial-datapunt-acc > span", "css:finder"],
+        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "51119e91-7664-40ea-93d5-4dfacb6e0c79",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_EMAIL}"
+    }, {
+      "id": "e28af630-020f-48f4-a03d-6a2ce7b7aea6",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_PASS}"
+    }, {
+      "id": "6c13233d-0005-45b3-99cf-aba3208a3de7",
+      "comment": "",
+      "command": "click",
+      "target": "id=kc-login",
+      "targets": [
+        ["id=kc-login", "id"],
+        ["name=login", "name"],
+        ["css=#kc-login", "css:finder"],
+        ["xpath=//input[@id='kc-login']", "xpath:attributes"],
+        ["xpath=//div[@id='kc-form-buttons']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
       "id": "01a87695-b987-4d56-852a-82179c769d9b",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]",
+      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
       "targets": [
         ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
         ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
@@ -4476,7 +4819,7 @@
       "id": "44d3dd92-ad27-4cbe-a444-ea3fad4b85d9",
       "comment": "Open dossier",
       "command": "click",
-      "target": "linkText=${clientnaam}",
+      "target": "linkText=ST Automatic Selenium test",
       "targets": [
         ["linkText=Selenium Test 18/02/2019, 14:31:06", "linkText"],
         ["css=.row-link:nth-child(1) a", "css:finder"],
@@ -4515,6 +4858,13 @@
       ],
       "value": ""
     }, {
+      "id": "3526516a-ff65-4d45-82fc-970d4b5f8548",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "ae44b3de-9f89-42db-9cf2-a7c514bc63d7",
       "comment": "",
       "command": "type",
@@ -4528,14 +4878,21 @@
       ],
       "value": "gem"
     }, {
-      "id": "9ff4db28-6f9e-4b30-9add-1b8dc35a177b",
+      "id": "ee6ca63a-da11-4498-9bd7-c982102f37fe",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "1000",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "39a5443b-f89f-427f-a118-56ee54dca285",
       "comment": "",
       "command": "click",
-      "target": "css=.search-result-item:nth-child(3) > .search-result-item-selectable > span:nth-child(3)",
+      "target": "css=.search-result-item:nth-child(3) > .search-result-item-selectable > .small",
       "targets": [
-        ["css=.search-result-item:nth-child(3) > .search-result-item-selectable > span:nth-child(3)", "css:finder"],
-        ["xpath=//div[@id='nieuwe-schuld-toevoegen']/div/div/div/div/div/ul/li[3]/a/span[3]", "xpath:idRelative"],
-        ["xpath=//li[3]/a/span[3]", "xpath:position"]
+        ["css=.search-result-item:nth-child(3) > .search-result-item-selectable > .small", "css:finder"],
+        ["xpath=//div[@id='nieuwe-schuld-toevoegen']/div/div/div/div/div/ul/li[3]/a/span[2]", "xpath:idRelative"],
+        ["xpath=//li[3]/a/span[2]", "xpath:position"]
       ],
       "value": ""
     }, {
@@ -4552,6 +4909,13 @@
       ],
       "value": ""
     }, {
+      "id": "ae0a4012-faa8-4cc9-a5ba-2ae3a14f3e98",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "b6d5ff8b-d9e0-4e65-a3e1-9c7d48706fea",
       "comment": "",
       "command": "type",
@@ -4564,6 +4928,13 @@
         ["xpath=//div[2]/div/div/input", "xpath:position"]
       ],
       "value": "gem"
+    }, {
+      "id": "c53f437c-0cc9-4e81-b206-8fa7d6bfdebb",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "1000",
+      "targets": [],
+      "value": ""
     }, {
       "id": "60dec5d7-59b5-4562-ac34-5b514ac11f68",
       "comment": "",
@@ -4643,6 +5014,13 @@
       ],
       "value": ""
     }, {
+      "id": "c86d3064-3775-4cf8-81da-ea3075d5af67",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "e24c1236-3385-432f-ac31-6fd147cc22eb",
       "comment": "",
       "command": "type",
@@ -4653,6 +5031,13 @@
         ["xpath=//div[3]/div/div/button", "xpath:position"]
       ],
       "value": "1-2-2017"
+    }, {
+      "id": "dc5b9b29-d25c-44fe-8a30-4e612336ffab",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
     }, {
       "id": "f1032ef4-5e8e-408b-ba7e-7f81a62886b1",
       "comment": "",
@@ -4708,6 +5093,13 @@
       ],
       "value": ""
     }, {
+      "id": "210e26c6-5cc8-4e2f-b25a-5c4a5464bd41",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "aee220aa-9eac-47a7-971e-ec70d53fe22d",
       "comment": "",
       "command": "type",
@@ -4720,6 +5112,13 @@
         ["xpath=//div/input", "xpath:position"]
       ],
       "value": "gem"
+    }, {
+      "id": "9645c445-0a10-437f-82e8-ed09813b9c57",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "1000",
+      "targets": [],
+      "value": ""
     }, {
       "id": "05fb8a15-5a95-44bc-9f70-d037e59c037a",
       "comment": "",
@@ -4788,6 +5187,13 @@
       ],
       "value": ""
     }, {
+      "id": "2028e706-36f4-486c-bede-1877b773dff4",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "3f2d73c3-6df4-4e11-aa82-703658aaa0a8",
       "comment": "",
       "command": "type",
@@ -4802,16 +5208,33 @@
       ],
       "value": "10-01-2019"
     }, {
-      "id": "043173bc-62c5-4e9f-adb1-c8a996896c1a",
+      "id": "76513e63-94b1-4a76-816a-90d499dcbd39",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "1000",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7d9b02d6-8e97-4d83-9d15-235aa6b93013",
       "comment": "",
-      "command": "type",
-      "target": "css=.nav-toggle > .primary",
+      "command": "click",
+      "target": "id=schuld_item_form_ontstaansDatum",
       "targets": [
-        ["css=.nav-toggle > .primary", "css:finder"],
-        ["xpath=//nav/a/span", "xpath:position"],
-        ["xpath=//span[contains(.,'Alle acties ')]", "xpath:innerText"]
+        ["id=schuld_item_form_ontstaansDatum", "id"],
+        ["name=schuld_item_form[ontstaansDatum]", "name"],
+        ["css=#schuld_item_form_ontstaansDatum", "css:finder"],
+        ["xpath=//input[@id='schuld_item_form_ontstaansDatum']", "xpath:attributes"],
+        ["xpath=//div[@id='nieuwe-schuld-toevoegen']/div/div[3]/div[2]/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]/div/input", "xpath:position"]
       ],
-      "value": "01-01-2018"
+      "value": ""
+    }, {
+      "id": "b74c2609-4943-40d6-b290-7e3ae1ad4023",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
     }, {
       "id": "65b09f19-a17d-4551-8de6-b827cb4f8766",
       "comment": "",
@@ -4888,6 +5311,13 @@
       ],
       "value": ""
     }, {
+      "id": "509a44e8-fdbd-4d04-a57a-61aacac65b5f",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "3d0b884b-4f73-441b-8c66-f5e40fa14380",
       "comment": "",
       "command": "type",
@@ -4900,6 +5330,13 @@
         ["xpath=//div/input", "xpath:position"]
       ],
       "value": "gem"
+    }, {
+      "id": "294e15b2-1c83-407e-a8b6-82db37cc6283",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "1000",
+      "targets": [],
+      "value": ""
     }, {
       "id": "fafa4989-0d04-423e-9e7f-1c2eb6756932",
       "comment": "",
@@ -4968,6 +5405,13 @@
       ],
       "value": ""
     }, {
+      "id": "79214037-6a2e-4d02-b906-381432d8a118",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "fb57bb08-bb24-4d08-b78e-fbedd8891359",
       "comment": "",
       "command": "type",
@@ -4982,6 +5426,13 @@
       ],
       "value": "01-01-2018"
     }, {
+      "id": "3c9c6254-7b4a-4a8d-8621-8ec22702f63e",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "bee07333-9616-430f-880c-99c486ed3d05",
       "comment": "",
       "command": "type",
@@ -4995,6 +5446,13 @@
         ["xpath=//div[2]/div/input", "xpath:position"]
       ],
       "value": "01-01-2017"
+    }, {
+      "id": "97654c39-06bb-4775-a512-7661e04116f2",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
     }, {
       "id": "52a31f9c-7e6e-439e-9792-6a173df9a0f1",
       "comment": "",
@@ -5041,7 +5499,7 @@
     "id": "caaa7e1b-9e5a-4d3a-8043-9cd79abd1c14",
     "name": "Dossier wijzigen / schulden wijzigen",
     "commands": [{
-      "id": "8eca083f-b158-41cc-9df4-aa412a3834bf",
+      "id": "71ee8c05-eb71-4eed-a000-9d7d78a952d6",
       "comment": "",
       "command": "open",
       "target": "/app/dossier/",
@@ -5055,13 +5513,67 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "60b95291-91d1-46b3-94ac-8e1aef10420e",
+      "comment": "",
+      "command": "click",
+      "target": "css=#zocial-datapunt-acc > span",
+      "targets": [
+        ["css=#zocial-datapunt-acc > span", "css:finder"],
+        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7a9f4e82-b069-41ba-b983-1ce9f6121b0f",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_EMAIL}"
+    }, {
+      "id": "4edd5d3d-24ad-4531-82d9-c8bbdae4ebd1",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_PASS}"
+    }, {
+      "id": "25d1f240-c377-46b1-8e12-fefb2d88e8bd",
+      "comment": "",
+      "command": "click",
+      "target": "id=kc-login",
+      "targets": [
+        ["id=kc-login", "id"],
+        ["name=login", "name"],
+        ["css=#kc-login", "css:finder"],
+        ["xpath=//input[@id='kc-login']", "xpath:attributes"],
+        ["xpath=//div[@id='kc-form-buttons']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
       "id": "1c42efaf-c5e3-43b3-90d0-e04e78a54d79",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]",
+      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
       "targets": [
         ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
         ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
@@ -5070,7 +5582,7 @@
       "id": "c5a28f57-cdbb-44c3-8584-7ff170cc8c43",
       "comment": "Open dossier",
       "command": "click",
-      "target": "linkText=${clientnaam}",
+      "target": "linkText=ST Automatic Selenium test",
       "targets": [
         ["linkText=Selenium Test 18/02/2019, 14:31:06", "linkText"],
         ["css=.row-link:nth-child(1) a", "css:finder"],
@@ -5096,35 +5608,41 @@
       ],
       "value": ""
     }, {
-      "id": "f0f9ab0a-86b2-41f9-a5da-bff7d2ec2ae6",
+      "id": "1671d2cd-7e0e-4b62-bed2-d72e64ba7468",
       "comment": "",
       "command": "click",
-      "target": "css=#schuldItem-412 > .dossier__voorlegger__header a",
+      "target": "css=.naam > a > strong",
       "targets": [
-        ["css=#schuldItem-412 > .dossier__voorlegger__header a", "css:finder"],
-        ["xpath=//div[@id='schuldItem-412']/div/div/h3/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#id_schuldItem-412')]", "xpath:href"],
-        ["xpath=//h3/a", "xpath:position"]
+        ["css=.naam > a > strong", "css:finder"],
+        ["xpath=//div[@id='schuldItem-8207']/div/div/h3/a/strong", "xpath:idRelative"],
+        ["xpath=//h3/a/strong", "xpath:position"]
       ],
       "value": ""
     }, {
-      "id": "96a7c8d2-fb9b-4685-96f3-01634ed8f021",
+      "id": "bf402a62-4b18-446b-81aa-5ba94882b76c",
       "comment": "",
       "command": "click",
-      "target": "id=schuldeiser-helper-395",
+      "target": "xpath=//div[2]/div/div/div/div/input",
       "targets": [
-        ["id=schuldeiser-helper-395", "id"],
-        ["css=#schuldeiser-helper-395", "css:finder"],
-        ["xpath=//input[@id='schuldeiser-helper-395']", "xpath:attributes"],
-        ["xpath=//div[@id='schuldItem-395']/div[2]/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["id=schuldeiser-helper-8211", "id"],
+        ["css=#schuldeiser-helper-8211", "css:finder"],
+        ["xpath=//input[@id='schuldeiser-helper-8211']", "xpath:attributes"],
+        ["xpath=//div[@id='schuldItem-8211']/div[2]/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
         ["xpath=//div[2]/div/div/div/div/input", "xpath:position"]
       ],
+      "value": ""
+    }, {
+      "id": "1251132b-69c2-438b-9a50-a952c5fae419",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
       "value": ""
     }, {
       "id": "7e7a100d-f5b6-4e77-a549-33dd84430ef0",
       "comment": "",
       "command": "type",
-      "target": "id=schuldeiser-helper-395",
+      "target": "xpath=//div[2]/div/div/div/div/input",
       "targets": [
         ["id=schuldeiser-helper-395", "id"],
         ["css=#schuldeiser-helper-395", "css:finder"],
@@ -5133,6 +5651,13 @@
         ["xpath=//div[2]/div/div/div/div/input", "xpath:position"]
       ],
       "value": "gem"
+    }, {
+      "id": "2dbfabed-f43c-4d19-babb-c64e778fd547",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
     }, {
       "id": "971cfa58-e1ca-487b-839f-94f05382c81a",
       "comment": "",
@@ -5252,49 +5777,26 @@
       ],
       "value": ""
     }, {
-      "id": "b43162ec-f098-44a6-960a-9c7a6af0dc4d",
+      "id": "9454ba88-ce95-47b9-befc-7dcfab75685b",
       "comment": "",
       "command": "click",
-      "target": "css=.rd-container:nth-child(14) .rd-days-row:nth-child(3) > .rd-day-body:nth-child(2)",
+      "target": "css=.column:nth-child(1) .rd-days-row:nth-child(2) > .rd-day-body:nth-child(2)",
       "targets": [
-        ["css=.rd-container:nth-child(14) .rd-days-row:nth-child(3) > .rd-day-body:nth-child(2)", "css:finder"],
-        ["xpath=//tr[3]/td[2]", "xpath:position"],
-        ["xpath=//td[contains(.,'12')]", "xpath:innerText"]
+        ["css=.column:nth-child(1) .rd-days-row:nth-child(2) > .rd-day-body:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='schuldItem-8211']/div[2]/div/div[2]/div/div[3]/div/div[2]/div/div/div/div/table/tbody/tr[2]/td[2]", "xpath:idRelative"],
+        ["xpath=//tr[2]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'03')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
-      "id": "42acfa93-6e0d-4309-8353-5a94d4ff4a65",
+      "id": "c6f3255f-9e13-45b5-93b1-c195b5adc6f0",
       "comment": "",
       "command": "click",
-      "target": "css=.dossier__save",
+      "target": "css=.dossier__scroll-container",
       "targets": [
-        ["css=.dossier__save", "css:finder"],
-        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
-        ["xpath=//form[@id='schulden_form']/button", "xpath:idRelative"],
-        ["xpath=//div/form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "81269505-1913-4d81-bac9-327c9bd6f887",
-      "comment": "",
-      "command": "click",
-      "target": "css=#schuldItem-396 strong",
-      "targets": [
-        ["css=#schuldItem-396 strong", "css:finder"],
-        ["xpath=//div[@id='schuldItem-396']/div/div/h3/a/strong", "xpath:idRelative"],
-        ["xpath=//div[2]/div/div/h3/a/strong", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "f79d9dfc-5c97-4dc3-a366-13fb75e7d2a8",
-      "comment": "",
-      "command": "click",
-      "target": "css=#schuldItem-396 .link",
-      "targets": [
-        ["css=#schuldItem-396 .link", "css:finder"],
-        ["xpath=//div[@id='schuldItem-396']/div[2]/div/div/p/label/span", "xpath:idRelative"],
-        ["xpath=//div[2]/div[2]/div/div/p/label/span", "xpath:position"]
+        ["css=.dossier__scroll-container", "css:finder"],
+        ["xpath=//form[@id='schulden_form']/div/div[2]", "xpath:idRelative"],
+        ["xpath=//body/div/div/form/div/div[2]", "xpath:position"]
       ],
       "value": ""
     }, {
@@ -5342,13 +5844,67 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "a2ba7080-a03c-4926-9f47-5ca16aadde4e",
+      "comment": "",
+      "command": "click",
+      "target": "css=#zocial-datapunt-acc > span",
+      "targets": [
+        ["css=#zocial-datapunt-acc > span", "css:finder"],
+        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "85091f8f-1cde-458d-bc2e-baa38804e76b",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_EMAIL}"
+    }, {
+      "id": "2a0334ca-7730-46f8-aefc-b7b8e3fa173e",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_PASS}"
+    }, {
+      "id": "8a2ea08b-de66-4e39-b255-9332c82a58e1",
+      "comment": "",
+      "command": "click",
+      "target": "id=kc-login",
+      "targets": [
+        ["id=kc-login", "id"],
+        ["name=login", "name"],
+        ["css=#kc-login", "css:finder"],
+        ["xpath=//input[@id='kc-login']", "xpath:attributes"],
+        ["xpath=//div[@id='kc-form-buttons']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
       "id": "c567c0bb-b3cb-420b-839f-b00c4fa2a981",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]",
+      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
       "targets": [
         ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
         ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
@@ -5357,7 +5913,7 @@
       "id": "6b450929-24b0-4e14-bc2b-d0da074895c0",
       "comment": "Open dossier",
       "command": "click",
-      "target": "linkText=${clientnaam}",
+      "target": "linkText=ST Automatic Selenium test",
       "targets": [
         ["linkText=Selenium Test 18/02/2019, 14:31:06", "linkText"],
         ["css=.row-link:nth-child(1) a", "css:finder"],
@@ -5619,7 +6175,7 @@
         ["xpath=//div[@id='voorlegger-vtlb']/div[2]/div/div[2]/div/div/input", "xpath:idRelative"],
         ["xpath=//div/input", "xpath:position"]
       ],
-      "value": "150,54"
+      "value": "150.54"
     }, {
       "id": "1b941fe2-c001-4070-afff-85e6839e36f4",
       "comment": "",
@@ -5957,11 +6513,7 @@
       "comment": "",
       "command": "//click",
       "target": "css=#voorlegger-toeslagen .form-row:nth-child(4) > .label-widget",
-      "targets": [
-        ["css=#voorlegger-toeslagen .form-row:nth-child(4) > .label-widget", "css:finder"],
-        ["xpath=//div[@id='voorlegger-toeslagen']/div[2]/div/div[2]/div[4]/div", "xpath:idRelative"],
-        ["xpath=//div[12]/div[2]/div/div[2]/div[4]/div", "xpath:position"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "7f0a3545-a310-476a-b6f3-0243eae33d91",
@@ -6011,11 +6563,7 @@
       "comment": "",
       "command": "//click",
       "target": "css=#voorlegger-kwijtscheldingGemeenteBelasting .dossier__voorlegger__sectie__body > .form-row:nth-child(2) > .label-widget",
-      "targets": [
-        ["css=#voorlegger-kwijtscheldingGemeenteBelasting .dossier__voorlegger__sectie__body > .form-row:nth-child(2) > .label-widget", "css:finder"],
-        ["xpath=//div[@id='voorlegger-kwijtscheldingGemeenteBelasting']/div[2]/div/div[2]/div[2]/div", "xpath:idRelative"],
-        ["xpath=//div[17]/div[2]/div/div[2]/div[2]/div", "xpath:position"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "0c407029-f991-4b98-bc21-73fe3d5252da",
@@ -6051,38 +6599,21 @@
       "comment": "",
       "command": "//type",
       "target": "id=voorlegger_form_autolastenKmWoonwerkverkeer_autolastenKmWoonwerkverkeer",
-      "targets": [
-        ["id=voorlegger_form_autolastenKmWoonwerkverkeer_autolastenKmWoonwerkverkeer", "id"],
-        ["name=voorlegger_form[autolastenKmWoonwerkverkeer][autolastenKmWoonwerkverkeer]", "name"],
-        ["css=#voorlegger_form_autolastenKmWoonwerkverkeer_autolastenKmWoonwerkverkeer", "css:finder"],
-        ["xpath=//input[@id='voorlegger_form_autolastenKmWoonwerkverkeer_autolastenKmWoonwerkverkeer']", "xpath:attributes"],
-        ["xpath=//div[@id='voorlegger-autolastenKmWoonwerkverkeer']/div[2]/div/div[2]/div/div/input", "xpath:idRelative"],
-        ["xpath=//div[19]/div[2]/div/div[2]/div/div/input", "xpath:position"]
-      ],
+      "targets": [],
       "value": "2000.50"
     }, {
       "id": "8f3fdc7f-ca16-4cb2-9977-1804e85a420f",
       "comment": "",
       "command": "//click",
       "target": "css=#voorlegger-autolastenKmWoonwerkverkeer .dossier__voorlegger__sectie__body",
-      "targets": [
-        ["css=#voorlegger-autolastenKmWoonwerkverkeer .dossier__voorlegger__sectie__body", "css:finder"],
-        ["xpath=//div[@id='voorlegger-autolastenKmWoonwerkverkeer']/div[2]/div/div[2]", "xpath:idRelative"],
-        ["xpath=//div[19]/div[2]/div/div[2]", "xpath:position"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "8a9860fa-a265-40fd-8451-0e5c205df314",
       "comment": "",
       "command": "//click",
       "target": "css=.dossier__save",
-      "targets": [
-        ["css=.dossier__save", "css:finder"],
-        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
-        ["xpath=//form[@id='voorlegger_form']/button", "xpath:idRelative"],
-        ["xpath=//div/form/button", "xpath:position"],
-        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
-      ],
+      "targets": [],
       "value": ""
     }, {
       "id": "88974783-b54e-497b-9d61-ad00f75aa8ec",
@@ -6196,7 +6727,7 @@
         ["xpath=//div[@id='voorlegger-meterstandenEnergie']/div[2]/div/div[2]/div[6]/div/input", "xpath:idRelative"],
         ["xpath=//div[6]/div/input", "xpath:position"]
       ],
-      "value": "1203,45"
+      "value": "1203.45"
     }, {
       "id": "17f2ea45-14ea-470d-ab4b-3404058e1381",
       "comment": "",
@@ -6252,7 +6783,7 @@
         ["xpath=//div[@id='voorlegger-meterstandenEnergie']/div[2]/div/div[2]/div[10]/div/input", "xpath:idRelative"],
         ["xpath=//div[10]/div/input", "xpath:position"]
       ],
-      "value": "39234,03"
+      "value": "39234.03"
     }, {
       "id": "336b2171-6bd3-4a9d-8c88-d0aa97c0c313",
       "comment": "",
@@ -6309,7 +6840,7 @@
         ["xpath=//div[@id='voorlegger-waternet']/div[2]/div/div[2]/div[3]/div/input", "xpath:idRelative"],
         ["xpath=//div[27]/div[2]/div/div[2]/div[3]/div/input", "xpath:position"]
       ],
-      "value": "1000,4"
+      "value": "1000.4"
     }, {
       "id": "b2090a89-47cf-4220-957a-1e1172f33146",
       "comment": "",
@@ -6409,17 +6940,71 @@
         ["xpath=//div[@id='voorlegger-gereserveerdeGelden']/div[2]/div/div[2]/div/div/input", "xpath:idRelative"],
         ["xpath=//div[31]/div[2]/div/div[2]/div/div/input", "xpath:position"]
       ],
-      "value": "400,81"
+      "value": "400.81"
     }]
   }, {
     "id": "dbbd400e-e907-4d70-b7ad-47feea930063",
     "name": "Dossier wijzigen / bedragentest",
     "commands": [{
-      "id": "f651aa2f-f2ff-477f-ad67-c5aff68a894f",
+      "id": "b99ec20a-09ff-46ef-9563-db1a25b19642",
       "comment": "",
       "command": "open",
       "target": "/app/dossier/",
       "targets": [],
+      "value": ""
+    }, {
+      "id": "36d70f06-46a5-4602-8fec-67202aeb474a",
+      "comment": "",
+      "command": "click",
+      "target": "css=#zocial-datapunt-acc > span",
+      "targets": [
+        ["css=#zocial-datapunt-acc > span", "css:finder"],
+        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1aa4563e-f168-4a79-8637-2097682916c6",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_EMAIL}"
+    }, {
+      "id": "702c5338-405d-4d90-9d24-18e490b71a25",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_PASS}"
+    }, {
+      "id": "fb1a63c2-7521-4e72-9325-2cee3a03fd34",
+      "comment": "",
+      "command": "click",
+      "target": "id=kc-login",
+      "targets": [
+        ["id=kc-login", "id"],
+        ["name=login", "name"],
+        ["css=#kc-login", "css:finder"],
+        ["xpath=//input[@id='kc-login']", "xpath:attributes"],
+        ["xpath=//div[@id='kc-form-buttons']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
       "value": ""
     }, {
       "id": "6fc90baa-e8f7-4799-bb75-5b18b5897a64",
@@ -6432,10 +7017,10 @@
       "id": "3f845f97-29ed-401d-b6dc-8ffc7090bf91",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]",
+      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
       "targets": [
         ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi')]", "xpath:link"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
         ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
@@ -6444,7 +7029,7 @@
       "id": "5c63e179-222a-497b-bbad-af825d4abd48",
       "comment": "",
       "command": "click",
-      "target": "linkText=${clientnaam}",
+      "target": "linkText=ST Automatic Selenium test",
       "targets": [
         ["linkText=Selenium Test 18/02/2019, 14:31:06", "linkText"],
         ["css=.row-link:nth-child(1) a", "css:finder"],
@@ -6575,6 +7160,6 @@
     "timeout": 300,
     "tests": ["433c2c93-c750-436c-bc53-4217401184c5", "dbbd400e-e907-4d70-b7ad-47feea930063", "d97a43da-5c7e-4f05-8546-07e2da3181da"]
   }],
-  "urls": ["acc.schulddossier.amsterdam.nl"],
+  "urls": [],
   "plugins": []
 }
