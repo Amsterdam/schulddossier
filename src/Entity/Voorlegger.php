@@ -867,9 +867,8 @@ class Voorlegger
     private $energieBedrijfKlantnummer;
 
     /**
-     * @var \DateTime
+     * @var \Date
      * @ORM\Column(type="date", nullable=true)
-     * @Assert\Date
      */
     private $energieBedrijfDatumOpname;
 
@@ -912,9 +911,8 @@ class Voorlegger
     private $warmteBedrijfKlantnummer;
 
     /**
-     * @var \DateTime
+     * @var \Date
      * @ORM\Column(type="date", nullable=true)
-     * @Assert\Date
      */
     private $warmteBedrijfDatumOpname;
 
@@ -934,9 +932,9 @@ class Voorlegger
     private $drinkwaterKlantnummer;
 
     /**
-     * @var \DateTime
+     * @var \Date
      * @ORM\Column(type="date", nullable=true)
-     * @Assert\Date
+
      */
     private $drinkwaterDatumOpname;
 
