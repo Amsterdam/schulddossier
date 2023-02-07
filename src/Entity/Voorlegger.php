@@ -117,9 +117,8 @@ class Voorlegger
     private $arbeidsovereenkomstWerkgever = null;
 
     /**
-     * @var \DateTime|null
+     * @var \Date|null
      * @ORM\Column(type="date", nullable=true)
-     * @Assert\Date
      */
     private $arbeidsovereenkomstEinddatum;
 
@@ -139,9 +138,8 @@ class Voorlegger
     private $arbeidsovereenkomstPartnerWerkgever = null;
 
     /**
-     * @var \DateTime|null
+     * @var \Date|null
      * @ORM\Column(type="date", nullable=true)
-     * @Assert\Date
      */
     private $arbeidsovereenkomstPartnerEinddatum;
 
@@ -2524,7 +2522,7 @@ class Voorlegger
     }
 
     /**
-     * @param \DateTime|null $arbeidsovereenkomstEinddatum
+     * @param \Date|null $arbeidsovereenkomstEinddatum
      * @return Voorlegger
      */
     public function setArbeidsovereenkomstEinddatum(?\DateTime $arbeidsovereenkomstEinddatum): Voorlegger
