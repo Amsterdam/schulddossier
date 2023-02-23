@@ -5,7 +5,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClassmap;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
-use Http\Adapter\Guzzle6\Client;
+use Http\Adapter\Guzzle7\Client;
 use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
