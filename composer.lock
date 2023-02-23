@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8058e774c9c8fe945f572a137a11b168",
+    "content-hash": "413c5e3d3d85e5cc6e4bd099db15fafd",
     "packages": [
         {
             "name": "bevacqua/dragula",
