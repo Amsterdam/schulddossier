@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine
+FROM php:8.2.0-fpm-alpine
 
 COPY certificates/adp_rootca.crt /usr/local/share/ca-certificates/adp_rootca.crt
 RUN update-ca-certificates --fresh
@@ -33,9 +33,6 @@ RUN docker-php-ext-install \
 RUN apk add --no-cache --virtual .build-deps \
     build-base  \
     autoconf
-
-RUN pecl install \
-    mcrypt
 
 RUN apk del -f .build-deps
 
