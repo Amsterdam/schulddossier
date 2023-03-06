@@ -2,7 +2,7 @@
     "type": "project",
     "license": "MPLv2",
     "require": {
-        "php": "^7.4.12",
+        "php": "^8.2",
         "ext-iconv": "*",
         "bevacqua/dragula": "3.7.2",
         "bevacqua/horsey": "4.2.2",
@@ -12,14 +12,14 @@
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
         "jshjohnson/choices": "3.0.3",
-        "knplabs/knp-paginator-bundle": "5.3.0",
+        "knplabs/knp-paginator-bundle": "5.4.1",
         "lcobucci/jwt": "^3.2",
         "league/flysystem": "^1.0",
         "markei/filesystemoperations": "dev-symfony5support",
         "moment/moment": "^2.21",
         "mozilla/pdf.js": "1.9.426",
         "mrrio/jspdf": "1.3.5",
-        "nimbusoft/flysystem-openstack-swift": "^0.2.1",
+        "nimbusoft/flysystem-openstack-swift": "^0.4",
         "php-http/client-common": "^2.3",
         "php-http/discovery": "^1.3",
         "php-http/guzzle7-adapter": "*",
@@ -68,7 +68,7 @@
         "symfony/stopwatch": "^5.4",
         "symfony/web-profiler-bundle": "^5.4",
         "symfony/web-server-bundle": "^4.4",
-        "zendframework/zend-code": "^3.1.0"
+        "laminas/laminas-code": "^4.8.0"
     },
     "config": {
         "preferred-install": {
