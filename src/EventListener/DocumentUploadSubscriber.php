@@ -4,27 +4,24 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
-use League\Flysystem\Filesystem;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DocumentUploadSubscriber implements EventSubscriber
 {
-    /**
-     * @var FileStorageSelector
-     */
-    protected $fileStorageSelector;
 
     /**
      * @param FileStorageSelector $fileStorageSelector
+     * @param LoggerInterface $logger
      */
-    public function __construct(FileStorageSelector $fileStorageSelector)
-    {
-        $this->fileStorageSelector = $fileStorageSelector;
-    }
+    public function __construct(
+        protected FileStorageSelector $fileStorageSelector,
+        protected LoggerInterface     $logger
+    )
+    {}
+
 
     /**
      * {@inheritDoc}
@@ -65,7 +62,12 @@ class DocumentUploadSubscriber implements EventSubscriber
 
         $stream = fopen($uploadedFile->getPathname(), 'r+');
         $flysystem->writeStream($object->getDirectory() . '/' . $object->getBestandsnaam(), $stream);
-        fclose($stream);
+
+        try {
+            fclose($stream);
+        } catch (\Throwable $e) {
+            $this->logger->error(__CLASS__ . ":" . __METHOD__ . ": Failed fclose, errormessage: " . $e->getMessage());
+        }
     }
 
     /**
