@@ -6,6 +6,7 @@
     "pdfjs-dist": "1.9.426"
   },
   "devDependencies": {
+    "json5": "^1.0.2",
     "loader-utils": "^1.4.1"
   }
 }
