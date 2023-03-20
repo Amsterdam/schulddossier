@@ -4,5 +4,8 @@
     "jspdf": "~1.3",
     "moment": "~2.21.0",
     "pdfjs-dist": "1.9.426"
+  },
+  "devDependencies": {
+    "loader-utils": "^1.4.1"
   }
 }
