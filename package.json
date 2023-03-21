@@ -1,10 +1,13 @@
 {
   "dependencies": {
     "@bevacqua/rome": "^3.0.4",
+    "ajv": "^6.12.3",
     "glob-parent": "^6.0.2",
     "jspdf": "^2.5.1",
     "moment": "^2.29.4",
-    "pdfjs-dist": "1.9.426",
+    "pdfjs-dist": "^3.4.120",
+    "schema-utils": "^4.0.0",
+    "webpack": "^5.76.2",
     "yargs": "^17.7.1",
     "yargs-parser": "^21.1.1"
   },
