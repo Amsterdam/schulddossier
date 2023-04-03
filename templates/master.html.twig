@@ -107,6 +107,11 @@
 {% block document %}.{% endblock %}
         </div>
         <script src="{{ asset('/vendor/mozilla/pdf.js/build/pdf.js') }}"></script>
+        {# The workerSrc property must be specified.
+        Zie voorbeeld: https://github.com/mozilla/pdf.js/blob/master/examples/learning/helloworld.html #}
+        <script>
+            pdfjsLib.GlobalWorkerOptions.workerSrc = "{{ asset('/vendor/mozilla/pdf.js/build/pdf.worker.js') }}";
+        </script>
         <script src="{{ asset('/vendor/mrrio/jspdf/dist/jspdf.min.js') }}"></script>
         <script src="{{ asset('/js/sortable.min.js') }}"></script>
         <script src="{{ asset('/vendor/moment/moment/moment.js') }}"></script>
