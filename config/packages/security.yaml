@@ -9,7 +9,7 @@ security:
                 property: username
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_(profiler|wdt)|css|images|js|localworkingstorage)/
             security: false
 # (Un)comment the following lines to enable/disable local login instead of OIDC
 #        app:
