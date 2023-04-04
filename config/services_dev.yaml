@@ -1,5 +1,5 @@
 parameters:
-    swift_public_url: 'http://%swift_external_domain%/localworkingstorage'
+    swift_public_url: '%swift_external_domain%/localworkingstorage'
 
 services:
     # Flysystem
