@@ -15,7 +15,9 @@ RUN apk add \
     freetype-dev \
     libpng-dev \
     libjpeg-turbo-dev \
-    jpeg-dev
+    jpeg-dev \
+    libreoffice \
+    imagemagick-dev
 
 RUN docker-php-ext-configure \
     gd \
@@ -45,6 +47,7 @@ RUN php -r "unlink('composer-setup.php');"
 COPY --chown=www-data . /var/www
 
 RUN mkdir -p /var/www/var/cache
+RUN mkdir -p /var/www/public/localworkingstorage/dossier
 
 WORKDIR /var/www
 
