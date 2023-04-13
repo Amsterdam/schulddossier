@@ -88,10 +88,5 @@ class DocumentUploadSubscriber implements EventSubscriber
         if ($flysystem->has($object->getDirectory() . '/' . $object->getBestandsnaam())) {
             $flysystem->delete($object->getDirectory() . '/' . $object->getBestandsnaam());
         }
-
-        $contents = $flysystem->listContents($object->getDirectory(), false);
-        if (count($contents) === 0) {
-            $flysystem->deleteDir($object->getDirectory());
-        }
     }
 }
