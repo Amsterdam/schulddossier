@@ -669,7 +669,7 @@
 
           loadTimeout = setTimeout(function(){
             if (extension === 'pdf') {
-              loadingTask = pdfjsLib.getDocument(docElem.datauristring || docElem.getAttribute('href'));
+              const loadingTask = pdfjsLib.getDocument(docElem.datauristring || docElem.getAttribute('href'));
               loadingTask.promise.then(function (pdf) {
                   currentPDFJS = pdf;
                   title.textContent = docElem.textContent;
@@ -1216,6 +1216,10 @@
   var submitters = {
 
     'save': function (e) {
+      // Added line below for backwards compatibility.
+      // See release notes https://github.com/parallax/jsPDF/releases/tag/v2.0.0 2nd bullet point
+      window.jsPDF = window.jspdf.jsPDF
+
       var
         form = this,
         formChangedClass = this.dataset.formChangedSelector || 'form-changed',
@@ -1504,12 +1508,15 @@
 
       var _load = function () {
 
-        pdfjsLib.getDocument(blob).then(function (pdf) {
+        const loadingTask = pdfjsLib.getDocument(blob);
+        loadingTask.promise.then(function (pdf) {
           for (var i = 1; i <= pdf.numPages; i += 1) {
             pdf.getPage(i).then(function (pdfPage) {
               _thumb(pdfPage);
             });
           }
+        }).catch(function(error){
+          console.log(error);
         });
       };
 
@@ -1524,9 +1531,10 @@
         var canvas = document.createElement('canvas');
         canvas.classList.add('upload-as-pdf');
         var context = canvas.getContext('2d');
-        var viewport = pdfPage.getViewport(scale);
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
+        var viewport = pdfPage.getViewport({scale: scale});
+
+        canvas.width = viewport.width || viewport.viewBox[2];
+        canvas.height = viewport.height ||viewport.viewBox[3];
 
         var renderContext = {canvasContext: context, viewport: viewport};
         pdfPage.render(renderContext);
