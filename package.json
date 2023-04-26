@@ -14,5 +14,8 @@
   "devDependencies": {
     "json5": "^1.0.2",
     "loader-utils": "^3.2.1"
+  },
+  "scripts": {
+    "postinstall": "rm -fr ./public/vendor && mkdir -p ./public/vendor/mozilla &&  mkdir -p ./public/vendor/mrrio && mkdir -p ./public/vendor/moment && cp -R ./node_modules/pdfjs-dist ./public/vendor/mozilla/pdf.js && cp -R ./node_modules/jspdf ./public/vendor/mrrio/jspdf && cp -R ./node_modules/moment ./public/vendor/moment && cp -R ./node_modules/@bevacqua ./public/vendor/bevacqua"
   }
 }

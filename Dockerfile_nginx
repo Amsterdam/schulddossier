@@ -17,20 +17,7 @@ COPY --chown=nginx ./yarn.lock /var/www/yarn.lock
 WORKDIR /var/www
 
 RUN yarn --ignore-scripts --ignore-platform
-
-RUN rm -fr public/vendor  # remove vendor packages installed by Doctrine, we want to install them using Yarn
-RUN mkdir -p public/vendor
-
-RUN mkdir -p public/vendor/mozilla/pdf.js
-RUN cp -pr ./node_modules/pdfjs-dist/* ./public/vendor/mozilla/pdf.js/
-
-RUN mkdir -p public/vendor/mrrio
-RUN cp -pr ./node_modules/jspdf ./public/vendor/mrrio/
-
-RUN mkdir -p public/vendor/moment
-RUN cp -pr ./node_modules/moment ./public/vendor/moment/
-
-RUN cp -pr ./node_modules/@bevacqua ./public/vendor/bevacqua
+RUN yarn run postinstall
 
 RUN chown -R nginx ./public/vendor
 
