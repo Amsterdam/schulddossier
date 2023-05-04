@@ -29,6 +29,7 @@ security:
         app:
             pattern: ^/app
             access_denied_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\AccessDeniedHandler
+            user_checker: GemeenteAmsterdam\FixxxSchuldhulp\Security\UserChecker
             security: true
             anonymous: false
             stateless: false

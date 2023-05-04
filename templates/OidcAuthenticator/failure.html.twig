@@ -10,7 +10,14 @@
     <br>
     <h3><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">Klik hier</a> om terug te gaan naar de voorpagina.</h3>
     <br>
-    <p>{{ e.message }}</p>
+        <p>{{ e.message }}</p>
+    <br>
+    <br>
+    <p>
+        Blijft dit probleem ontstaan? Probeer uit- en opnieuw in te loggen via de onderstaande knop<br>
+        <a class="button primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appsecurity_logout') }}">Opnieuw inloggen</a>
+    </p>
+
 
 {% endblock %}
 
