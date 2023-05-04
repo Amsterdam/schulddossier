@@ -1159,7 +1159,7 @@
     }]
   }, {
     "id": "d97a43da-5c7e-4f05-8546-07e2da3181da",
-    "name": "Scholddossier verwijderen",
+    "name": "Schulddossier verwijderen",
     "commands": [{
       "id": "1de1a304-3528-44c8-9be6-d78e7f42aebb",
       "comment": "",
@@ -7137,6 +7137,77 @@
       ],
       "value": "Dit veld mag alleen komma gescheiden getallen bevatten van -100000 t/m 100000"
     }]
+  }, {
+    "id": "cb4d6342-a79b-4b90-9a95-460c8616b3e5",
+    "name": "SchulddossierLoginDisabled",
+    "commands": [{
+      "id": "9449f23b-37b7-48c7-99f1-f058e6636f07",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8100/app/dossier/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c7a0b2c6-ebae-462c-bffa-c1d531ba5cfe",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "schulddossier_disabled"
+    }, {
+      "id": "817165f1-b60f-4fb6-948e-f913f7c3c94d",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "insecure"
+    }, {
+      "id": "2f214153-d8a8-4a67-b811-6b0264a98f1b",
+      "comment": "",
+      "command": "click",
+      "target": "id=kc-login",
+      "targets": [
+        ["id=kc-login", "id"],
+        ["name=login", "name"],
+        ["css=#kc-login", "css:finder"],
+        ["xpath=//input[@id='kc-login']", "xpath:attributes"],
+        ["xpath=//div[@id='kc-form-buttons']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ec115179-56da-43ba-8c84-c90d8c0c71af",
+      "comment": "Testen of je op de foutpagina bent",
+      "command": "assertText",
+      "target": "css=.button",
+      "targets": [
+        ["css=.document-title", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Dossiers')]", "xpath:innerText"]
+      ],
+      "value": "Opnieuw inloggen"
+    }, {
+      "id": "ab70f72f-614e-49bc-856f-547fa9990327",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1080",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "ee9a3ef3-a550-4ab7-aa60-ff118b8886a7",
@@ -7159,6 +7230,13 @@
     "parallel": false,
     "timeout": 300,
     "tests": ["433c2c93-c750-436c-bc53-4217401184c5", "dbbd400e-e907-4d70-b7ad-47feea930063", "d97a43da-5c7e-4f05-8546-07e2da3181da"]
+  }, {
+    "id": "99ce8394-7f14-4a12-9409-8419832b2ef5",
+    "name": "LoginDisabledUser",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["cb4d6342-a79b-4b90-9a95-460c8616b3e5"]
   }],
   "urls": [],
   "plugins": []
