@@ -49,37 +49,27 @@ class GebruikerRepository extends ServiceEntityRepository
         $query =  $this->generatePaginationQuery(sprintf('%s WHERE shb.id IN (:bureaus) AND g.type IN (:types) %s', $this->generatePaginationQueryDql(), $this->generateInactiveQueryPart($inactive)));
         $query->setParameter('bureaus', $gebruiker->getSchuldhulpbureaus());
         $query->setParameter('types', [Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER]);
-        $lastLogin = new \DateTime();
-        $lastLogin->modify(self::INACTIVE_MODIFIER);
-        $query->setParameter('lastLogin', $lastLogin);
-
         return $query;
     }
 
     public function generatePaginationQueryForGkaAppbeheerder(Gebruiker $gebruiker, $inactive): Query {
         $query =  $this->generatePaginationQuery(sprintf('%s WHERE g.type IN (:types) %s', $this->generatePaginationQueryDql(), $this->generateInactiveQueryPart($inactive)));
         $query->setParameter('types', [Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER]);
-        $lastLogin = new \DateTime();
-        $lastLogin->modify(self::INACTIVE_MODIFIER);
-        $query->setParameter('lastLogin', $lastLogin);
         return $query;
     }
 
     public function generatePaginationQueryForAdmin(Gebruiker $gebruiker, $inactive): Query {
         $query =  $this->generatePaginationQuery(sprintf('%s WHERE g.type IN (:types) %s', $this->generatePaginationQueryDql(), $this->generateInactiveQueryPart($inactive)));
         $query->setParameter('types', [Gebruiker::TYPE_ADMIN, Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER]);
-        $lastLogin = new \DateTime();
-        $lastLogin->modify(self::INACTIVE_MODIFIER);
-        $query->setParameter('lastLogin', $lastLogin);
         return $query;
     }
 
     protected function generateInactiveQueryPart(bool $inactive) {
         if ($inactive) {
-            return 'AND (g.lastLogin <= :lastLogin OR g.lastLogin IS NULL)';
+            return 'AND g.enabled = false';
         }
 
-        return 'AND g.lastLogin > :lastLogin';
+        return 'AND g.enabled = true';
     }
 
     /**

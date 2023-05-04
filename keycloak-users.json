@@ -10,5 +10,9 @@
   {
     "name": "schulddossier_admin",
     "roles": ["ROLE_ADMIN"]
+  },
+  {
+    "name": "schulddossier_disabled",
+    "roles": ["ROLE_MADI"]
   }
 ]
