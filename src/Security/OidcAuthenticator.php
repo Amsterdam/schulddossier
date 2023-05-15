@@ -70,6 +70,8 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
      */
     private $twig;
 
+    private string $idToken;
+
     /**
      * OidcAuthenticator constructor.
      *
@@ -195,6 +197,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
             $this->logger->info('User found', ['id' => $user->getId()]);
         }
 
+        $this->id_token = $output['id_token'];
         return $user;
     }
 
@@ -218,6 +221,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         if ($request->getSession()->has('loginReturnUrl')) {
             $response = new RedirectResponse($request->getSession()->get('loginReturnUrl'));
             $request->getSession()->remove('loginReturnUrl');
+            $request->getSession()->set('OIDC_ID_TOKEN', $this->id_token);
             return $response;
         }
     }

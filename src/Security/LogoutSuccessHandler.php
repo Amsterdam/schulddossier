@@ -15,19 +15,12 @@ use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
 class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
 {
 
-    /**
-     * @var Router
-     */
-    private $router;
-    /**
-     * @var string
-     */
-    private $url;
-
-    public function __construct(string $url, RouterInterface $router)
+    public function __construct(
+        private readonly string          $url,
+        private readonly string          $keycloakVersion,
+        private readonly RouterInterface $router
+    )
     {
-        $this->router = $router;
-        $this->url = $url;
     }
 
     /**
@@ -35,10 +28,34 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
      *
      * @param Request $request
      *
-     * @return Response never null
+     * @return RedirectResponse never null
      */
-    public function onLogoutSuccess(Request $request)
+    public function onLogoutSuccess(Request $request): RedirectResponse
     {
-        return new RedirectResponse($this->url . '?redirect_uri=' . urlencode($this->router->generate('gemeenteamsterdam_fixxxschuldhulp_default_index', [], UrlGeneratorInterface::ABSOLUTE_URL)));
+        return new RedirectResponse(
+            $this->url . '?' .
+            $this->buildQueryString($request)
+        );
+    }
+
+
+    /**
+     * Create the correct query string for keycloak
+     *
+     * @param Request $request
+     * @return string
+     */
+    private function buildQueryString(Request $request): string
+    {
+        $url = $this->router->generate('gemeenteamsterdam_fixxxschuldhulp_default_index', [], UrlGeneratorInterface::ABSOLUTE_URL);
+        $redirectUrl = urlencode($url);
+
+        return match ($this->keycloakVersion) {
+            '17' => http_build_query(['redirect_uri' => $redirectUrl]),
+            default => http_build_query([
+                'post_logout_redirect_uri' => $redirectUrl,
+                'id_token_hint' => $request->getSession()->get('OIDC_ID_TOKEN') ?? null
+            ]),
+        };
     }
 }
