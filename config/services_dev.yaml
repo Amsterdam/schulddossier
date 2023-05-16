@@ -13,13 +13,3 @@ services:
         lazy: true
         arguments:
             - '@flysystem_openstack_adapter_dossier'
-    flysystem_openstack_adapter_thumbnail:
-        class: League\Flysystem\Adapter\Local
-        lazy: true
-        arguments:
-            - '%kernel.project_dir%/public/storage/thumbmails'
-    flysystem_thumbnail:
-        class: League\Flysystem\Filesystem
-        lazy: true
-        arguments:
-            - '@flysystem_openstack_adapter_thumbnail'
