@@ -7,16 +7,16 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * Class RequiredFieldsWhenAddingNewMadiUser
+ * Class RequiredFieldsWhenAddingNewShvUser
  *
  * @package GemeenteAmsterdam\FixxxSchuldhulp\Validator\Constraints
  */
-class RequiredFieldsWhenAddingNewMadiUser extends Constraint
+class RequiredFieldsWhenAddingNewShvUser extends Constraint
 {
     /**
      * @var string
      */
-    public $message = 'A schuldhulpbureau must be selected when creating a new user with the role Madi.';
+    public $message = 'A schuldhulpbureau must be selected when creating a new user with the role Shv.';
 
     /**
      * @return mixed

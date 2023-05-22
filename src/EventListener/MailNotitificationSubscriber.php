@@ -85,7 +85,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function notifyOpgevoerdMadi(Event $event)
+    public function notifyOpgevoerdShv(Event $event)
     {
         /** @var $dossier Dossier */
         $dossier = $event->getSubject();
@@ -93,7 +93,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $request = $this->requestStack->getMasterRequest();
 
         if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
-            $this->mail($this->fromNotificiatieAdres, $request->get('voorlegger_form')['controleerGebruiker'], 'mails/notifyOpgevoerdMadi.html.twig', [
+            $this->mail($this->fromNotificiatieAdres, $request->get('voorlegger_form')['controleerGebruiker'], 'mails/notifyOpgevoerdShv.html.twig', [
                 'dossier' => $dossier,
                 'tokenStorage' => $this->tokenStorage
             ]);
@@ -102,13 +102,13 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function notifyVerzendenMadi(Event $event)
+    public function notifyVerzendenShv(Event $event)
     {
         /** @var $dossier Dossier */
         $dossier = $event->getSubject();
 
         if ($dossier->getTeamGka() !== null && empty($dossier->getTeamGka()->getEmail()) === false) {
-            $this->mail($this->fromNotificiatieAdres, $dossier->getTeamGka()->getEmail(), 'mails/notifyVerzendenMadi.html.twig', [
+            $this->mail($this->fromNotificiatieAdres, $dossier->getTeamGka()->getEmail(), 'mails/notifyVerzendenShv.html.twig', [
                 'dossier' => $dossier,
                 'tokenStorage' => $this->tokenStorage
             ]);
@@ -117,13 +117,13 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function notifyGoedkeurenMadi(Event $event)
+    public function notifyGoedkeurenShv(Event $event)
     {
         /** @var $dossier Dossier */
         $dossier = $event->getSubject();
 
         if ($dossier->getMedewerkerSchuldhulpbureau() !== null && empty($dossier->getMedewerkerSchuldhulpbureau()->getEmail()) === false) {
-            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyGoedkeurenMadi.html.twig', [
+            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyGoedkeurenShv.html.twig', [
                 'dossier' => $dossier,
                 'tokenStorage' => $this->tokenStorage
             ]);
@@ -135,23 +135,23 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
     /**
      * @param DossierAddedAantekeningEvent $event
      */
-    public function notifyMadiAboutAantekening(DossierAddedAantekeningEvent $event): void
+    public function notifyShvAboutAantekening(DossierAddedAantekeningEvent $event): void
     {
         if ($event->getDossier()->getMedewerkerSchuldhulpbureau() !== null && in_array($event->getGebruiker()->getType(), [Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_GKA], true)) {
-            $this->mail($this->fromNotificiatieAdres, $event->getDossier()->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyAddedAantekeningMadi.html.twig', [
+            $this->mail($this->fromNotificiatieAdres, $event->getDossier()->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyAddedAantekeningShv.html.twig', [
                 'dossier' => $event->getDossier(),
                 'tokenStorage' => $this->tokenStorage
             ]);
         }
     }
 
-    public function notifyAfkeurenMadi(Event $event)
+    public function notifyAfkeurenShv(Event $event)
     {
         /** @var $dossier Dossier */
         $dossier = $event->getSubject();
 
         if ($dossier->getMedewerkerSchuldhulpbureau() !== null && empty($dossier->getMedewerkerSchuldhulpbureau()->getEmail()) === false) {
-            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyAfkeurenMadi.html.twig', [
+            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyAfkeurenShv.html.twig', [
                 'dossier' => $dossier,
                 'tokenStorage' => $this->tokenStorage
             ]);
@@ -177,11 +177,11 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
 
     public function notifyChangedGka(DossierChangedEvent $event)
     {
-        if ($event->getGebruiker()->getType() !== Gebruiker::TYPE_MADI) {
+        if ($event->getGebruiker()->getType() !== Gebruiker::TYPE_SHV) {
             return;
         }
 
-        if (in_array($event->getDossier()->getStatus(), ['verzonden_madi', 'compleet_gka', 'dossier_gecontroleerd_gka', 'afgesloten_gka']) === false) {
+        if (in_array($event->getDossier()->getStatus(), ['verzonden_shv', 'compleet_gka', 'dossier_gecontroleerd_gka', 'afgesloten_gka']) === false) {
             return;
         }
 
@@ -253,13 +253,13 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'workflow.dossier_flow.completed.opgevoerd_madi' => 'notifyOpgevoerdMadi',
-            'workflow.dossier_flow.completed.afkeuren_madi' => 'notifyAfkeurenMadi',
-            'workflow.dossier_flow.completed.goedkeuren_madi' => 'notifyGoedkeurenMadi',
-            'workflow.dossier_flow.completed.verzenden_madi' => 'notifyVerzendenMadi',
+            'workflow.dossier_flow.completed.opgevoerd_shv' => 'notifyOpgevoerdShv',
+            'workflow.dossier_flow.completed.afkeuren_shv' => 'notifyAfkeurenShv',
+            'workflow.dossier_flow.completed.goedkeuren_shv' => 'notifyGoedkeurenShv',
+            'workflow.dossier_flow.completed.verzenden_shv' => 'notifyVerzendenShv',
             'workflow.dossier_flow.completed.afkeuren_dossier_gka' => 'notifyAfkeurenDossierGka',
             DossierChangedEvent::NAME => 'notifyChangedGka',
-            DossierAddedAantekeningEvent::NAME => 'notifyMadiAboutAantekening',
+            DossierAddedAantekeningEvent::NAME => 'notifyShvAboutAantekening',
             DossierAddedCorrespondentie::NAME => 'notifyAboutCorrespondentie'
         ];
     }

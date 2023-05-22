@@ -28,13 +28,13 @@ class VoorleggerInkomstenspecificatieFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('inkomstenspecificatieOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('inkomstenspecificatieOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('inkomstenspecificatieOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
 
         $builder->add('beschikkingInkomenUitWerk', CheckboxType::class, [

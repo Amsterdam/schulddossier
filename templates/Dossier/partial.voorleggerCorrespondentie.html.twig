@@ -33,7 +33,7 @@
                     <img src="/images/envelop.svg" alt="envelop"/>
                     </div>
                 </div>
-                {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
+                {% if app.user.type == 'shv' or app.user.type == 'shv_keyuser' %}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Correspondentie', 'disableFields': true} only %}
                 {% else %}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Correspondentie'} only %}

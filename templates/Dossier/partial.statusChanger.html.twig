@@ -1,33 +1,33 @@
 <div class="status-result__container">
     <span class="status-result__label">Status: </span>
-    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
+    {% if app.user.type == 'shv' or app.user.type == 'shv_keyuser' %}
         <div class="status-result status text-right">
             <ul>
                 {% if show_nvt %}
                     <li>
-                        <a href="#" class="status-nvt" data-id="-1" data-handler="status-changer" data-type="madi">
+                        <a href="#" class="status-nvt" data-id="-1" data-handler="status-changer" data-type="shv">
                             <strong>niet van toepassing</strong>
                         </a>
                     </li>
                 {% endif %}
 
                 <li>
-                    <a href="#" class="status-madi-0 status-0" data-id="0" data-handler="status-changer" data-type="madi">
+                    <a href="#" class="status-shv-0 status-0" data-id="0" data-handler="status-changer" data-type="shv">
                         <strong>open</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="status-madi-1 status-1" data-id="1" data-handler="status-changer" data-type="madi">
+                    <a href="#" class="status-shv-1 status-1" data-id="1" data-handler="status-changer" data-type="shv">
                         <strong>bezig/incompleet</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="status-madi-2 status-2" data-id="2" data-handler="status-changer" data-type="madi">
+                    <a href="#" class="status-shv-2 status-2" data-id="2" data-handler="status-changer" data-type="shv">
                         <strong>opgevoerd</strong>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="status-madi-3 status-3" data-status="" data-handler="status-changer" data-id="3"  data-type="madi"><strong>gecontroleerd</strong></a>
+                    <a href="#" class="status-shv-3 status-3" data-status="" data-handler="status-changer" data-id="3"  data-type="shv"><strong>gecontroleerd</strong></a>
                 </li>
             </ul>
         </div>

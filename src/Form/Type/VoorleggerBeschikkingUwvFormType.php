@@ -28,13 +28,13 @@ class VoorleggerBeschikkingUwvFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('beschikkingUwvOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('beschikkingUwvOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('beschikkingUwvOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('beschikkingUwvNvt', CheckboxType::class, [
             'required' => false

@@ -19,10 +19,10 @@ class Dossier
 {
     use ExportAble;
 
-    public const STATUS_BEZIG_MADI = 'bezig_madi';
-    public const STATUS_COMPLEET_MADI = 'compleet_madi';
-    public const STATUS_GECONTROLEERD_MADI = 'gecontroleerd_madi';
-    public const STATUS_VERZONDEN_MADI = 'verzonden_madi';
+    public const STATUS_BEZIG_SHV = 'bezig_shv';
+    public const STATUS_COMPLEET_SHV = 'compleet_shv';
+    public const STATUS_GECONTROLEERD_SHV = 'gecontroleerd_shv';
+    public const STATUS_VERZONDEN_SHV = 'verzonden_shv';
     public const STATUS_COMPLEET_GKA = 'compleet_gka';
     public const STATUS_DOSSIER_GECONTROLEERD_GKA = 'dossier_gecontroleerd_gka';
     public const STATUS_AFGESLOTEN_GKA = 'afgesloten_gka';
@@ -1037,16 +1037,16 @@ class Dossier
     }
 
     /**
-     * Based on current status we can determine whether a dossier is with a MaDi organisation
+     * Based on current status we can determine whether a dossier is with a Schuldhulpverlener organisation
      *
      * @return bool
      */
-    public function withMadi(): bool
+    public function withSchuldhulpverlener(): bool
     {
         return in_array($this->getStatus(), [
-            self::STATUS_BEZIG_MADI,
-            self::STATUS_COMPLEET_MADI,
-            self::STATUS_GECONTROLEERD_MADI,
+            self::STATUS_BEZIG_SHV,
+            self::STATUS_COMPLEET_SHV,
+            self::STATUS_GECONTROLEERD_SHV,
         ], true);
     }
 
@@ -1058,7 +1058,7 @@ class Dossier
     public function withGka(): bool
     {
         return in_array($this->getStatus(), [
-            self::STATUS_VERZONDEN_MADI,
+            self::STATUS_VERZONDEN_SHV,
             self::STATUS_COMPLEET_GKA,
             self::STATUS_DOSSIER_GECONTROLEERD_GKA,
             self::STATUS_AFGESLOTEN_GKA,

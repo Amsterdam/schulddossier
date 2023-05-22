@@ -28,13 +28,13 @@ class VoorleggerToelichtingAanvraagSchuldsaneringClientFormType extends Abstract
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('toelichtingAanvraagSchuldsaneringClientOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('toelichtingAanvraagSchuldsaneringClientOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('toelichtingAanvraagSchuldsaneringClientOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,

@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
-use GemeenteAmsterdam\FixxxSchuldhulp\Validator\Constraints\RequiredFieldsWhenAddingNewMadiUser;
+use GemeenteAmsterdam\FixxxSchuldhulp\Validator\Constraints\RequiredFieldsWhenAddingNewShvUser;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -59,7 +59,7 @@ class GebruikerFormType extends AbstractType
             'class' => Schuldhulpbureau::class,
             'query_builder' => function (EntityRepository $repository) use ($user) {
                 $qb = $repository->createQueryBuilder('schuldhulpbureau');
-                if($user->getType() === Gebruiker::TYPE_MADI_KEYUSER){
+                if($user->getType() === Gebruiker::TYPE_SHV_KEYUSER){
                     $qb->andWhere('schuldhulpbureau IN (:bureaus)');
                     $qb->setParameter('bureaus', $user->getSchuldhulpbureaus());
                 }
@@ -94,7 +94,7 @@ class GebruikerFormType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefault('constraints', [new RequiredFieldsWhenAddingNewMadiUser()]);
+        $resolver->setDefault('constraints', [new RequiredFieldsWhenAddingNewShvUser()]);
         $resolver->setDefault('data_class', Gebruiker::class);
         $resolver->setDefault('choice_translation_domain', false);
     }

@@ -40,11 +40,11 @@ class DossierRepository extends EntityRepository
         $qb->orderBy('dossier.aanmaakDatumTijd', 'DESC');
         $qb->andWhere('dossier.inPrullenbak = :inPrullenbak');
         $qb->setParameter('inPrullenbak', true);
-        if ($gebruiker->getType() === Gebruiker::TYPE_MADI) {
+        if ($gebruiker->getType() === Gebruiker::TYPE_SHV) {
             $qb->andWhere('dossier.medewerkerSchuldhulpbureau = :gebruikerId');
             $qb->setParameter('gebruikerId', $gebruiker->getId());
         }
-        if ($gebruiker->getType() === Gebruiker::TYPE_MADI_KEYUSER) {
+        if ($gebruiker->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
             $qb->andWhere('dossier.schuldhulpbureau IN (:ghbs)');
             $qb->setParameter('ghbs', $gebruiker->getSchuldhulpbureaus());
         }
@@ -76,10 +76,10 @@ class DossierRepository extends EntityRepository
         if ($orderBy === 'default') {
             $qb->orderBy('dossier.aanmaakDatumTijd', 'DESC');
         } elseif ($orderBy === 'gka-verzenddatum') {
-            $qb->leftJoin('dossier.timeline', 'timeline_verzenden_madi', Join::WITH, 'timeline_verzenden_madi.type = :timeline_verzenden_madi_type AND timeline_verzenden_madi.subtype = :timeline_verzenden_madi_subtype');
-            $qb->setParameter('timeline_verzenden_madi_type', DossierTimeline::TYPE_WORKFLOW);
-            $qb->setParameter('timeline_verzenden_madi_subtype', 'verzenden_madi');
-            $qb->orderBy('timeline_verzenden_madi.datumtijd', 'DESC');
+            $qb->leftJoin('dossier.timeline', 'timeline_verzenden_shv', Join::WITH, 'timeline_verzenden_shv.type = :timeline_verzenden_shv_type AND timeline_verzenden_shv.subtype = :timeline_verzenden_shv_subtype');
+            $qb->setParameter('timeline_verzenden_shv_type', DossierTimeline::TYPE_WORKFLOW);
+            $qb->setParameter('timeline_verzenden_shv_subtype', 'verzenden_shv');
+            $qb->orderBy('timeline_verzenden_shv.datumtijd', 'DESC');
         }
 
         if ($query['naam'] !== null) {

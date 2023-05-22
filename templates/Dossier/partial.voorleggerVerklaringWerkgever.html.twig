@@ -2,8 +2,8 @@
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('verklaringWerkgever') %}
 
 <div class="dossier__item {{ dossier.voorlegger.verklaringWerkgeverNvt ? ' status-nvt' }}
-    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
-    status-madi-{{ dossier.voorlegger.verklaringWerkgeverOntvangenMadi }}
+    {% if app.user.type == 'shv' or app.user.type == 'shv_keyuser' %}
+    status-shv-{{ dossier.voorlegger.verklaringWerkgeverOntvangenShv }}
     {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
     status-gka-{{ dossier.voorlegger.verklaringWerkgeverOntvangenGka }}
     {% endif %}
@@ -29,7 +29,7 @@
             <div class="dossier__voorlegger__sectie__header">
                 <a class="dossier__voorlegger__sectie__close" href="#_"></a>
                 <div class="status-container hide"><span>Status:</span>
-                    {{ form_row(form.verklaringWerkgeverOntvangenMadi) }}
+                    {{ form_row(form.verklaringWerkgeverOntvangenShv) }}
                     {{ form_row(form.verklaringWerkgeverOntvangenGka) }}
                 </div>
                 <div class="nvt-input hide">

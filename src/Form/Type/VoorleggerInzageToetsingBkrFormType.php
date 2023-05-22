@@ -28,13 +28,13 @@ class VoorleggerInzageToetsingBkrFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('inzageToetsingBkrOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('inzageToetsingBkrOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('inzageToetsingBkrOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,

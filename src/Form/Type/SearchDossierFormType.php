@@ -48,17 +48,17 @@ class SearchDossierFormType extends AbstractType
             'expanded' => true,
             'multiple' => true,
             'choices' => [
-                'bezig_madi' => 'bezig_madi',
-                'compleet_madi' => 'compleet_madi',
-                'gecontroleerd_madi' => 'gecontroleerd_madi',
-                'verzonden_madi' => 'verzonden_madi',
+                'bezig_shv' => 'bezig_shv',
+                'compleet_shv' => 'compleet_shv',
+                'gecontroleerd_shv' => 'gecontroleerd_shv',
+                'verzonden_shv' => 'verzonden_shv',
                 'compleet_gka' => 'compleet_gka',
                 'dossier_gecontroleerd_gka' => 'dossier_gecontroleerd_gka',
                 'afgesloten_gka' => 'afgesloten_gka',
             ]
         ]);
 
-        if (!$this->authorizationChecker->isGranted('ROLE_MADI') && !$this->authorizationChecker->isGranted('ROLE_MADI_KEYUSER')) {
+        if (!$this->authorizationChecker->isGranted('ROLE_SHV') && !$this->authorizationChecker->isGranted('ROLE_SHV_KEYUSER')) {
             $builder->add('schuldhulpbureaus', EntityType::class, [
                 'required' => false,
                 'class' => Schuldhulpbureau::class,
@@ -85,8 +85,8 @@ class SearchDossierFormType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'query_builder' => function (EntityRepository $repository) {
-                    if ($this->user->getType() === Gebruiker::TYPE_MADI || $this->user->getType() === Gebruiker::TYPE_MADI_KEYUSER){
-                        return $repository->findAllByTypeAndSchuldhulpbureauRaw([Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER, Gebruiker::TYPE_ONBEKEND], $this->user->getSchuldhulpbureaus());
+                    if ($this->user->getType() === Gebruiker::TYPE_SHV || $this->user->getType() === Gebruiker::TYPE_SHV_KEYUSER){
+                        return $repository->findAllByTypeAndSchuldhulpbureauRaw([Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER, Gebruiker::TYPE_ONBEKEND], $this->user->getSchuldhulpbureaus());
                     }else{
                         return $repository->findAllRaw();
 
