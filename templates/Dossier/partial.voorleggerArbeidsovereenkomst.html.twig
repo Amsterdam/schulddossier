@@ -2,8 +2,8 @@
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('arbeidsovereenkomst') %}
 
 <div class="dossier__item {{ dossier.voorlegger.arbeidsovereenkomstNvt ? ' status-nvt' }}
-    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
-    status-madi-{{ dossier.voorlegger.arbeidsovereenkomstOntvangenMadi }}
+    {% if app.user.type == 'shv' or app.user.type == 'shv_keyuser' %}
+    status-shv-{{ dossier.voorlegger.arbeidsovereenkomstOntvangenShv }}
     {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
     status-gka-{{ dossier.voorlegger.arbeidsovereenkomstOntvangenGka }}
     {% endif %}
@@ -32,7 +32,7 @@
             <div class="dossier__voorlegger__sectie__header">
                 <a class="dossier__voorlegger__sectie__close" href="#_"></a>
                 <div class="status-container hide"><span>Status:</span>
-                    {{ form_row(form.arbeidsovereenkomstOntvangenMadi) }}
+                    {{ form_row(form.arbeidsovereenkomstOntvangenShv) }}
                     {{ form_row(form.arbeidsovereenkomstOntvangenGka) }}
                 </div>
                 <div class="nvt-input hide">

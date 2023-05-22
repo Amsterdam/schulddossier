@@ -40,16 +40,16 @@ class DossierStatusFormType extends AbstractType
 //
 //
 //        switch ($this->user->getType()) {
-//            case Gebruiker::TYPE_MADI_KEYUSER:
+//            case Gebruiker::TYPE_SHV_KEYUSER:
 //                $choices = [
-//                    'bezig_madi' => Dossier::STATUS_BEZIG_MADI,
-//                    'compleet_madi' => Dossier::STATUS_COMPLEET_MADI,
-//                    'gecontroleerd_madi' => Dossier::STATUS_GECONTROLEERD_MADI,
+//                    'bezig_shv' => Dossier::STATUS_BEZIG_SHV,
+//                    'compleet_shv' => Dossier::STATUS_COMPLEET_SHV,
+//                    'gecontroleerd_shv' => Dossier::STATUS_GECONTROLEERD_SHV,
 //                ];
 //                break;
 //            case Gebruiker::TYPE_GKA_APPBEHEERDER:
 //                $choices = [
-//                    'verzonden_madi' => Dossier::STATUS_VERZONDEN_MADI,
+//                    'verzonden_shv' => Dossier::STATUS_VERZONDEN_SHV,
 //                    'compleet_gka' => Dossier::STATUS_COMPLEET_GKA,
 //                    'dossier_gecontroleerd_gka' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
 //                    'afgesloten_gka' => Dossier::STATUS_AFGESLOTEN_GKA,
@@ -57,16 +57,16 @@ class DossierStatusFormType extends AbstractType
 //                break;
 //            case Gebruiker::TYPE_ADMIN:
 //                $choices = [
-//                    'bezig_madi' => Dossier::STATUS_BEZIG_MADI,
-//                    'compleet_madi' => Dossier::STATUS_COMPLEET_MADI,
-//                    'gecontroleerd_madi' => Dossier::STATUS_GECONTROLEERD_MADI,
-//                    'verzonden_madi' => Dossier::STATUS_VERZONDEN_MADI,
+//                    'bezig_shv' => Dossier::STATUS_BEZIG_SHV,
+//                    'compleet_shv' => Dossier::STATUS_COMPLEET_SHV,
+//                    'gecontroleerd_shv' => Dossier::STATUS_GECONTROLEERD_SHV,
+//                    'verzonden_shv' => Dossier::STATUS_VERZONDEN_SHV,
 //                    'compleet_gka' => Dossier::STATUS_COMPLEET_GKA,
 //                    'dossier_gecontroleerd_gka' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
 //                    'afgesloten_gka' => Dossier::STATUS_AFGESLOTEN_GKA,
 //                ];
 //                break;
-//            case Gebruiker::TYPE_MADI:
+//            case Gebruiker::TYPE_SHV:
 //                $choices = [
 //                    'afgesloten_gka' => Dossier::STATUS_AFGESLOTEN_GKA,
 //                ];

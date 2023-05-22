@@ -1,5 +1,5 @@
 {% block subject -%}
-    Dossier afgekeurd (Schulddossier) [{{ dossier.id }}]
+    Nieuw schulddossier (Schulddossier) [{{ dossier.id }}]
 {%- endblock  %}
 
 {% block html -%}
@@ -9,14 +9,14 @@
         <title>{{ block('subject') }}</title>
     </head>
     <body>
-        <p>Hallo {{ dossier.getMedewerkerSchuldhulpbureau.getNaam }},</p>
-        <p>Een door jouw ingezonden dossier is door de controleur afgekeurd.</p>
+        <p>Hallo,</p>
+        <p>Er staat een nieuw dossier ter controle klaar.</p>
         <p>&nbsp;</p>
         <p>Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}</p>
-        <p>Controle op: {{ 'now'|date('d-m-Y') }}</p>
+        <p>Aangeboden op: {{ 'now'|date('d-m-Y') }}</p>
         <p>&nbsp;</p>
         {% if dossier.regasNummer is not empty %}
-        <p>MaDi/Bewindvoerder dossiernr.: {{ dossier.regasNummer }}</p>
+        <p>Schuldhulpverlener dossiernr.: {{ dossier.regasNummer }}</p>
         {% endif %}
         {% if dossier.allegroNummer is not empty %}
         <p>GKA dossiernr.: {{ dossier.allegroNummer }}</p>
@@ -28,21 +28,20 @@
 {%- endblock %}
 
 {% block txt -%}
-Hallo {{ dossier.getMedewerkerSchuldhulpbureau().getNaam() }},
+Hallo,
 
-Een door jouw ingezonden dossier is door de controleur afgekeurd.
+Er staat een nieuw dossier ter controle klaar.
 
 Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}
-Controle op: {{ 'now'|date('d-m-Y') }}
+Aangeboden op: {{ 'now'|date('d-m-Y') }}
 
 {% if dossier.regasNummer is not empty %}
-MaDi/Bewindvoerder dossiernr.: {{ dossier.regasNummer }}
+Schuldhulpverlener dossiernr.: {{ dossier.regasNummer }}
 
 {% endif %}
 {% if dossier.allegroNummer is not empty %}
 GKA dossiernr.: {{ dossier.allegroNummer }}
 
 {% endif %}
-
 {{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId()}) }}
 {%- endblock %}

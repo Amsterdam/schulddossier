@@ -28,13 +28,13 @@ class VoorleggerAutoTaxatieFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('autoTaxatieOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('autoTaxatieOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('autoTaxatieOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('autoTaxatieNvt', CheckboxType::class, [
             'required' => false

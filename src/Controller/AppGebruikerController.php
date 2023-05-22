@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 /**
  * @Route("/app/gebruiker")
- * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_MADI_KEYUSER') || is_granted('ROLE_ADMIN')")
+ * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
  */
 class AppGebruikerController extends AbstractController
 {
@@ -48,7 +48,7 @@ class AppGebruikerController extends AbstractController
 
     /**
      * @Route("/nieuw")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_MADI_KEYUSER') || is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
      */
     public function createAction(Request $request, EntityManagerInterface $em)
     {
@@ -72,12 +72,12 @@ class AppGebruikerController extends AbstractController
 
     /**
      * @Route("/detail/{gebruikerId}/bewerken")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_MADI_KEYUSER') || is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
     public function updateAction(Request $request, EntityManagerInterface $em, Gebruiker $gebruiker, EventDispatcherInterface $eventDispatcher, TokenStorageInterface $tokenStorage)
     {
-        if ($this->getUser()->getType() === Gebruiker::TYPE_MADI_KEYUSER) {
+        if ($this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
             if (!$gebruiker->getSchuldhulpbureaus()->isEmpty() && empty(array_intersect($this->getUser()->getSchuldhulpbureaus()->toArray(), $gebruiker->getSchuldhulpbureaus()->toArray()))) {
                 throw $this->createAccessDeniedException();
             }

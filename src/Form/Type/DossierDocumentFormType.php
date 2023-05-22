@@ -45,7 +45,7 @@ class DossierDocumentFormType extends AbstractType
                 'waternet' => 'waternet',
                 'retourbewijsModem' => 'retourbewijsModem',
                 'toelichtingAanvraagSchuldsaneringClient' => 'toelichtingAanvraagSchuldsaneringClient',
-                'toelichtingAanvraagSchuldsaneringMadi' => 'toelichtingAanvraagSchuldsaneringMadi',
+                'toelichtingAanvraagSchuldsaneringShv' => 'toelichtingAanvraagSchuldsaneringShv',
                 'beschikkingOnderBewindstelling' => 'beschikkingOnderBewindstelling',
                 'budgetbeheer' => 'budgetbeheer',
                 'gereserveerdeGelden' => 'gereserveerdeGelden',

@@ -40,8 +40,8 @@
             <fieldset class="search-basic naked">
                 <div class="tabs">
                     <ul>
-                        <li class="{{ searchQuery.section == 'madi' ? 'active' }}"><a href="?section=madi">Dossiers bij
-                                MaDi/Bewindvoerder</a></li>
+                        <li class="{{ searchQuery.section == 'shv' ? 'active' }}"><a href="?section=shv">Dossiers bij
+                                Schuldhulpverlener</a></li>
                         <li class="{{ searchQuery.section == 'gka' ? 'active' }}"><a href="?section=gka">Dossiers bij
                                 GKA</a></li>
                         <li class="{{ searchQuery.section == 'archief' ? 'active' }}"><a href="?section=archief">Afgerond</a>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="columns">
                     <div class="column">
-                        {% if is_granted('ROLE_MADI') is same as(FALSE) and is_granted('ROLE_MADI_KEYUSER') is same as(FALSE) %}
+                        {% if is_granted('ROLE_SHV') is same as(FALSE) and is_granted('ROLE_SHV_KEYUSER') is same as(FALSE) %}
                             {{ form_row(searchForm.schuldhulpbureaus) }}
                         {% endif %}
                         {{ form_row(searchForm.medewerkerSchuldhulpbureau) }}
@@ -85,8 +85,8 @@
                 <thead>
                 <tr>
                     <th>Naam</th>
-                    <th>MaDi/Bewindvoerder</th>
-                    <th style="width: 75px;">MaDi/Bewindvoerder dossiernr.</th>
+                    <th>Schuldhulpverlener</th>
+                    <th style="width: 75px;">Schuldhulpverlener dossiernr.</th>
                     <th style="width: 75px;">GKA dossiernr.</th>
                     <th>Aangemaakt</th>
                     <th style="width: 150px;">Status</th>

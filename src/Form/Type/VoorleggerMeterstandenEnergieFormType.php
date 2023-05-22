@@ -28,13 +28,13 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('meterstandenEnergieOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('meterstandenEnergieOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('meterstandenEnergieOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('meterstandenEnergieNvt', CheckboxType::class, [
             'required' => false,

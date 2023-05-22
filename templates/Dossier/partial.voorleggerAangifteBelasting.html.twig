@@ -2,8 +2,8 @@
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerpen(['belasting']) %}
 
 <div class="dossier__item {{ dossier.voorlegger.aangifteBelastingdienstNvt ? ' status-nvt' }}
-    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
-    status-madi-{{ dossier.voorlegger.aangifteBelastingdienstMadi }}
+    {% if app.user.type == 'shv' or app.user.type == 'shv_keyuser' %}
+    status-shv-{{ dossier.voorlegger.aangifteBelastingdienstShv }}
     {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
     status-gka-{{ dossier.voorlegger.aangifteBelastingdienstGka }}
     {% endif %}
@@ -28,7 +28,7 @@
             <div class="dossier__voorlegger__sectie__header">
                 <a class="dossier__voorlegger__sectie__close" href="#_"></a>
                 <div class="status-container hide"><span>Status:</span>
-                    {{ form_row(form.aangifteBelastingdienstMadi) }}
+                    {{ form_row(form.aangifteBelastingdienstShv) }}
                     {{ form_row(form.aangifteBelastingdienstGka) }}
                 </div>
                 <div class="nvt-input hide">

@@ -2,8 +2,8 @@
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('toelichtingAanvraagSchuldsaneringClient') %}
 
 <div class="dossier__item
-    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
-    status-madi-{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringClientOntvangenMadi }}
+    {% if app.user.type == 'shv' or app.user.type == 'shv_keyuser' %}
+    status-shv-{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringClientOntvangenShv }}
     {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
     status-gka-{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringClientOntvangenGka }}
     {% endif %}
@@ -29,7 +29,7 @@
             <div class="dossier__voorlegger__sectie__header">
                 <a class="dossier__voorlegger__sectie__close" href="#_"></a>
                 <div class="status-container hide"><span>Status:</span>
-                    {{ form_row(form.toelichtingAanvraagSchuldsaneringClientOntvangenMadi) }}
+                    {{ form_row(form.toelichtingAanvraagSchuldsaneringClientOntvangenShv) }}
                     {{ form_row(form.toelichtingAanvraagSchuldsaneringClientOntvangenGka) }}
                 </div>
                 {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}

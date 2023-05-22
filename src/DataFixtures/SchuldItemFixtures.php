@@ -15,7 +15,7 @@ class SchuldItemFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture impleme
     public function load(ObjectManager $manager)
     {
         $dossier = $this->getReference('dossier');
-        $gebruiker = $this->getReference(GebruikerFixtures::MADI_USER_REFERENCE);
+        $gebruiker = $this->getReference(GebruikerFixtures::SHV_USER_REFERENCE);
         $schuldeiser = $this->getReference('schuldeiser');
 
         $schuldItem = new SchuldItem();

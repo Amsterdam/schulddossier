@@ -28,13 +28,13 @@ class VoorleggerAlimentatieFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('alimentatieOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('alimentatieOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('alimentatieOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('alimentatieNvt', CheckboxType::class, [
             'required' => false

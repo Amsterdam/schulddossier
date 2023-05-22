@@ -2,8 +2,8 @@
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('waternet') %}
 
 <div class="dossier__item {{ dossier.voorlegger.waternetNvt ? ' status-nvt' }}
-    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
-    status-madi-{{ dossier.voorlegger.waternetOntvangenMadi }}
+    {% if app.user.type == 'shv' or app.user.type == 'shv_keyuser' %}
+    status-shv-{{ dossier.voorlegger.waternetOntvangenShv }}
     {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
     status-gka-{{ dossier.voorlegger.waternetOntvangenGka }}
     {% endif %}
@@ -28,7 +28,7 @@
             <div class="dossier__voorlegger__sectie__header">
                 <a class="dossier__voorlegger__sectie__close" href="#_"></a>
                 <div class="status-container hide"><span>Status:</span>
-                    {{ form_row(form.waternetOntvangenMadi) }}
+                    {{ form_row(form.waternetOntvangenShv) }}
                     {{ form_row(form.waternetOntvangenGka) }}
                 </div>
                 <div class="nvt-input hide">

@@ -28,13 +28,13 @@ class VoorleggerBelastingFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('aangifteBelastingdienstMadi', MadiStatusFormType::class, [
+        $builder->add('aangifteBelastingdienstShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('aangifteBelastingdienstGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('aangifteBelastingdienstNvt', CheckboxType::class, [
             'required' => false

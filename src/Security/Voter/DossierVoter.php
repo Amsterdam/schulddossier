@@ -64,7 +64,7 @@ class DossierVoter extends Voter
             throw new \Exception('Cannot authorize this user');
         }
 
-        if ($this->decisionManager->decide($token, ['ROLE_MADI'])) {
+        if ($this->decisionManager->decide($token, ['ROLE_SHV'])) {
             if ($user->getSchuldhulpbureaus()->contains($dossier->getSchuldhulpbureau()) === false) {
                 return false;
             }

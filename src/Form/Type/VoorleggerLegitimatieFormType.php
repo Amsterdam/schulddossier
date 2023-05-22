@@ -30,13 +30,13 @@ class VoorleggerLegitimatieFormType extends AbstractType
     {
 
 
-        $builder->add('legitimatieOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('legitimatieOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('legitimatieOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,

@@ -8,19 +8,19 @@ framework:
       supports:
         - GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier
       places:
-        - bezig_madi
-        - compleet_madi
-        - gecontroleerd_madi
-        - verzonden_madi
+        - bezig_shv
+        - compleet_shv
+        - gecontroleerd_shv
+        - verzonden_shv
         - compleet_gka
         - dossier_gecontroleerd_gka
         - afgesloten_gka
       transitions:
-        opgevoerd_madi: { from: [bezig_madi], to: compleet_madi }
-        goedkeuren_madi: { from: [compleet_madi], to: gecontroleerd_madi }
-        afkeuren_madi: { from: [compleet_madi, gecontroleerd_madi], to: bezig_madi }
-        verzenden_madi: { from: [gecontroleerd_madi], to: verzonden_madi }
-        gestart_gka: { from: [verzonden_madi], to: compleet_gka }
+        opgevoerd_shv: { from: [bezig_shv], to: compleet_shv }
+        goedkeuren_shv: { from: [compleet_shv], to: gecontroleerd_shv }
+        afkeuren_shv: { from: [compleet_shv, gecontroleerd_shv], to: bezig_shv }
+        verzenden_shv: { from: [gecontroleerd_shv], to: verzonden_shv }
+        gestart_gka: { from: [verzonden_shv], to: compleet_gka }
         goedkeuren_dossier_gka: { from: [compleet_gka], to: dossier_gecontroleerd_gka }
-        afkeuren_dossier_gka: { from: [compleet_gka], to: bezig_madi }
+        afkeuren_dossier_gka: { from: [compleet_gka], to: bezig_shv }
         afsluiten_gka: { from: dossier_gecontroleerd_gka, to: afgesloten_gka }
