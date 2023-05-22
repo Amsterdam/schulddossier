@@ -2,8 +2,8 @@
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('budgetbeheer') %}
 
 <div class="dossier__item {{ dossier.voorlegger.budgetbeheerNvt ? ' status-nvt' }}
-    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
-    status-madi-{{ dossier.voorlegger.budgetbeheerOntvangenMadi }}
+    {% if app.user.type == 'shv' or app.user.type == 'shv_keyuser' %}
+    status-shv-{{ dossier.voorlegger.budgetbeheerOntvangenShv }}
     {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
     status-gka-{{ dossier.voorlegger.budgetbeheerOntvangenGka }}
     {% endif %}
@@ -29,7 +29,7 @@
             <div class="dossier__voorlegger__sectie__header">
                 <a class="dossier__voorlegger__sectie__close" href="#_"></a>
                 <div class="status-container hide"><span>Status:</span>
-                    {{ form_row(form.budgetbeheerOntvangenMadi) }}
+                    {{ form_row(form.budgetbeheerOntvangenShv) }}
                     {{ form_row(form.budgetbeheerOntvangenGka) }}
                 </div>
                 <div class="nvt-input hide">

@@ -9,7 +9,9 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
 {
     const ADMIN_USER_REFERENCE = 'admin';
     const GKA_USER_REFERENCE = 'gka';
-    const MADI_USER_REFERENCE = 'madi';
+    const GKA_APPBEHEERDER_USER_REFERENCE = 'gka_appbeheerder';
+    const SHV_USER_REFERENCE = 'shv';
+    const SHV_KEYUSER_USER_REFERENCE = 'shv_keyuser';
 
     /**
      * @inheritDoc
@@ -19,7 +21,9 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
         $gebruikerNames = [
             self::ADMIN_USER_REFERENCE,
             self::GKA_USER_REFERENCE,
-            self::MADI_USER_REFERENCE
+            self::GKA_APPBEHEERDER_USER_REFERENCE,
+            self::SHV_USER_REFERENCE,
+            self::SHV_KEYUSER_USER_REFERENCE
         ];
 
         $schuldhulpBureau = $this->getReference(SchuldhulpBureauFixtures::SCHULDHULP_BUREAU_REFERENCE);
@@ -44,7 +48,7 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
         $fullName = "schulddossier_disabled";
         $gebruiker = new Gebruiker();
         $gebruiker->setEmail("$fullName@amsterdam.nl");
-        $gebruiker->setType("madi");
+        $gebruiker->setType("shv");
         $gebruiker->setNaam("$fullName $fullName");
         $gebruiker->setUsername("$fullName@amsterdam.nl");
         $gebruiker->setEnabled(false);

@@ -1,9 +1,9 @@
 
 # workflow
-bezig_madi: Bezig (MaDi)
-compleet_madi: Compleet, wachten op goedkeuren (MaDi)
-gecontroleerd_madi: Gecontroleerd, wachten op verzenden (MaDi)
-verzonden_madi: Verzonden naar GKA
+bezig_shv: Bezig (SHV)
+compleet_shv: Compleet, wachten op goedkeuren (SHV)
+gecontroleerd_shv: Gecontroleerd, wachten op verzenden (SHV)
+verzonden_shv: Verzonden naar GKA
 bezig_gka: Bezig (GKA)
 compleet_gka: Dossier intern aangemaakt (GKA)
 dossier_gecontroleerd_gka: In behandeling (GKA)

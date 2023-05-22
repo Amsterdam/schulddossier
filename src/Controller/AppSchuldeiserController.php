@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @Route("/app/schuldeiser")
- * @Security("is_granted('ROLE_MADI') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_MADI_KEYUSER') || is_granted('ROLE_ADMIN')")
+ * @Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
  */
 class AppSchuldeiserController extends AbstractController
 {

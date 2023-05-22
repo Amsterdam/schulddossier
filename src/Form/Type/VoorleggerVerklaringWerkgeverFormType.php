@@ -28,13 +28,13 @@ class VoorleggerVerklaringWerkgeverFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('verklaringWerkgeverOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('verklaringWerkgeverOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('verklaringWerkgeverOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('verklaringWerkgeverNvt', CheckboxType::class, [
             'required' => false

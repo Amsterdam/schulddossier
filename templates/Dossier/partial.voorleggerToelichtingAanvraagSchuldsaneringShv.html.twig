@@ -1,19 +1,19 @@
 {% import 'partial.macros.html.twig' as tools %}
-{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('toelichtingAanvraagSchuldsaneringMadi') %}
+{% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('toelichtingAanvraagSchuldsaneringShv') %}
 
 <div class="dossier__item
-    {% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}
-    status-madi-{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringMadiOntvangenMadi }}
+    {% if app.user.type == 'shv' or app.user.type == 'shv_keyuser' %}
+    status-shv-{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringShvOntvangenShv }}
     {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
-    status-gka-{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringMadiOntvangenGka }}
+    status-gka-{{ dossier.voorlegger.toelichtingAanvraagSchuldsaneringShvOntvangenGka }}
     {% endif %}
     {{ app.request.isXmlHttpRequest ? 'active' }}"
-     id="voorlegger-toelichtingAanvraagSchuldsaneringMadi" data-hashevent="activate-section" data-keyupper="section-document-nav">
+     id="voorlegger-toelichtingAanvraagSchuldsaneringShv" data-hashevent="activate-section" data-keyupper="section-document-nav">
     <div class="dossier__voorlegger__header">
 
         <div class="voorlegger-header">
             <h3 class="naam">
-                <a href="#id_voorlegger-toelichtingAanvraagSchuldsaneringMadi">{{ title }}</a>
+                <a href="#id_voorlegger-toelichtingAanvraagSchuldsaneringShv">{{ title }}</a>
             </h3>
             {% if dossierDocumenten|length > 0 %}
                 <div class="voortgang">
@@ -29,18 +29,18 @@
             <div class="dossier__voorlegger__sectie__header">
                 <a class="dossier__voorlegger__sectie__close" href="#_"></a>
                 <div class="status-container hide"><span>Status:</span>
-                    {{ form_row(form.toelichtingAanvraagSchuldsaneringMadiOntvangenMadi) }}
-                    {{ form_row(form.toelichtingAanvraagSchuldsaneringMadiOntvangenGka) }}
+                    {{ form_row(form.toelichtingAanvraagSchuldsaneringShvOntvangenShv) }}
+                    {{ form_row(form.toelichtingAanvraagSchuldsaneringShvOntvangenGka) }}
                 </div>
                 {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
                 <h3>{{ title }}</h3>
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
-                {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Toelichting aanvraag schuldsanering MaDi/Bewindvoerder'} only %}
+                {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Toelichting aanvraag schuldsanering Schuldhulpverlener'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}
-                {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('toelichtingAanvraagSchuldsaneringMadi')} only %}
+                {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('toelichtingAanvraagSchuldsaneringShv')} only %}
             </div>
             {% include 'Dossier/partial.documentViewer.html.twig' %}
         </div>

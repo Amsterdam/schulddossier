@@ -28,13 +28,13 @@ class VoorleggerStabilisatieovereenkomstFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('stabilisatieovereenkomstOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('stabilisatieovereenkomstOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('stabilisatieovereenkomstOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('stabilisatieovereenkomstNvt', CheckboxType::class, [
             'required' => false

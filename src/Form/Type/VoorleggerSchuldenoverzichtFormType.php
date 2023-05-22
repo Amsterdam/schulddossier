@@ -28,13 +28,13 @@ class VoorleggerSchuldenoverzichtFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('schuldenoverzichtOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('schuldenoverzichtOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('schuldenoverzichtOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,

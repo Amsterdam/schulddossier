@@ -88,7 +88,7 @@ class VoorleggerFormType extends AbstractType
         $builder->add('retourbewijsModem', VoorleggerRetourbewijsModemFormType::class, $settings);
         $builder->add('schuldenoverzicht', VoorleggerSchuldenoverzichtFormType::class, $settings);
         $builder->add('stabilisatieovereenkomst', VoorleggerStabilisatieovereenkomstFormType::class, $settings);
-        $builder->add('toelichtingAanvraagSchuldsaneringMadi', VoorleggerToelichtingAanvraagSchuldsaneringMadiFormType::class, $settings);
+        $builder->add('toelichtingAanvraagSchuldsaneringShv', VoorleggerToelichtingAanvraagSchuldsaneringShvFormType::class, $settings);
         $builder->add('toelichtingAanvraagSchuldsaneringClient', VoorleggerToelichtingAanvraagSchuldsaneringClientFormType::class, $settings);
         $builder->add('verklaringWerkgever', VoorleggerVerklaringWerkgeverFormType::class, $settings);
         $builder->add('voorlopigeTeruggaafBelastingdienst', VoorleggerVoorlopigeTeruggaafBelastingdienstFormType::class, $settings);
@@ -103,7 +103,7 @@ class VoorleggerFormType extends AbstractType
             $dossier = $voorlegger->getDossier();
             $user = $this->tokenStorage->getToken()->getUser();
             $gebruikers = $this->em->getRepository(Gebruiker::class)->findAllByTypeAndSchuldhulpbureauRaw(
-                    [Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER],
+                    [Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER],
                     [$dossier->getSchuldhulpbureau()]
                 );
             if ($this->tokenStorage->getToken() === null || $this->tokenStorage->getToken()->getUser() === null) {

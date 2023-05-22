@@ -47,8 +47,7 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
      */
     private function buildQueryString(Request $request): string
     {
-        $url = $this->router->generate('gemeenteamsterdam_fixxxschuldhulp_default_index', [], UrlGeneratorInterface::ABSOLUTE_URL);
-        $redirectUrl = urlencode($url);
+        $redirectUrl = $this->router->generate('gemeenteamsterdam_fixxxschuldhulp_default_index', [], UrlGeneratorInterface::ABSOLUTE_URL);
 
         return match ($this->keycloakVersion) {
             '17' => http_build_query(['redirect_uri' => $redirectUrl]),

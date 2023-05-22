@@ -44,8 +44,8 @@ class SchuldhulpbureauMedewerkerType extends AbstractType
                     ->getRepository(Schuldhulpbureau::class)
                     ->getAllWithGebruikers());
                 break;
-            case Gebruiker::TYPE_MADI_KEYUSER:
-            case Gebruiker::TYPE_MADI:
+            case Gebruiker::TYPE_SHV_KEYUSER:
+            case Gebruiker::TYPE_SHV:
                 $this->options = $this->transformCollectionToChoices($tokenStorage->getToken()->getUser()->getSchuldhulpbureaus());
                 break;
         }

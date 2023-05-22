@@ -28,13 +28,13 @@ class VoorleggerOvereenkomstKinderopvangFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('overeenkomstKinderopvangOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('overeenkomstKinderopvangOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('overeenkomstKinderopvangOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('overeenkomstKinderopvangNvt', CheckboxType::class, [
             'required' => false
