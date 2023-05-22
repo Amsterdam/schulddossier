@@ -28,13 +28,13 @@ class VoorleggerAutolastenKmWoonwerkverkeerFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('autolastenKmWoonwerkverkeerOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('autolastenKmWoonwerkverkeerOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('autolastenKmWoonwerkverkeerOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('autolastenKmWoonwerkverkeerNvt', CheckboxType::class, [
             'required' => false

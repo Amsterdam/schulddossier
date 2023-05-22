@@ -36,7 +36,7 @@ class GebruikerRepository extends ServiceEntityRepository
     public function generatePaginationQueryForUser(Gebruiker $gebruiker, bool $inactive): Query
     {
         switch ($gebruiker->getType()) {
-            case Gebruiker::TYPE_MADI_KEYUSER:
+            case Gebruiker::TYPE_SHV_KEYUSER:
                 return $this->generatePaginationQueryForKeyuser($gebruiker, $inactive);
             case Gebruiker::TYPE_GKA_APPBEHEERDER:
                 return $this->generatePaginationQueryForGkaAppbeheerder($gebruiker, $inactive);
@@ -48,19 +48,19 @@ class GebruikerRepository extends ServiceEntityRepository
     public function generatePaginationQueryForKeyuser(Gebruiker $gebruiker, $inactive): Query {
         $query =  $this->generatePaginationQuery(sprintf('%s WHERE shb.id IN (:bureaus) AND g.type IN (:types) %s', $this->generatePaginationQueryDql(), $this->generateInactiveQueryPart($inactive)));
         $query->setParameter('bureaus', $gebruiker->getSchuldhulpbureaus());
-        $query->setParameter('types', [Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER]);
+        $query->setParameter('types', [Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER]);
         return $query;
     }
 
     public function generatePaginationQueryForGkaAppbeheerder(Gebruiker $gebruiker, $inactive): Query {
         $query =  $this->generatePaginationQuery(sprintf('%s WHERE g.type IN (:types) %s', $this->generatePaginationQueryDql(), $this->generateInactiveQueryPart($inactive)));
-        $query->setParameter('types', [Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER]);
+        $query->setParameter('types', [Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER]);
         return $query;
     }
 
     public function generatePaginationQueryForAdmin(Gebruiker $gebruiker, $inactive): Query {
         $query =  $this->generatePaginationQuery(sprintf('%s WHERE g.type IN (:types) %s', $this->generatePaginationQueryDql(), $this->generateInactiveQueryPart($inactive)));
-        $query->setParameter('types', [Gebruiker::TYPE_ADMIN, Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_MADI, Gebruiker::TYPE_MADI_KEYUSER]);
+        $query->setParameter('types', [Gebruiker::TYPE_ADMIN, Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER]);
         return $query;
     }
 
@@ -179,11 +179,11 @@ class GebruikerRepository extends ServiceEntityRepository
             $qb->innerJoin('g.schuldhulpbureaus','s');
             $qb->where($qb->expr()->eq('s.id', ':bureau_id'));
             $qb->andWhere($qb->expr()->orX(
-               $qb->expr()->eq('g.type', ':madi_keyuser'),
-               $qb->expr()->eq('g.type', ':madi')
+               $qb->expr()->eq('g.type', ':shv_keyuser'),
+               $qb->expr()->eq('g.type', ':shv')
             ));
-            $qb->setParameter('madi_keyuser', Gebruiker::TYPE_MADI);
-            $qb->setParameter('madi', Gebruiker::TYPE_MADI_KEYUSER);
+            $qb->setParameter('shv_keyuser', Gebruiker::TYPE_SHV);
+            $qb->setParameter('shv', Gebruiker::TYPE_SHV_KEYUSER);
             $qb->setParameter('bureau_id', $schuldhulpbureauId);
             $qb->addOrderBy('g.username', 'ASC');
             $qb = $qb->getQuery()->getResult();

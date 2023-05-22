@@ -4,15 +4,23 @@
     "roles": ["ROLE_GKA"]
   },
   {
-    "name": "schulddossier_madi",
-    "roles": ["ROLE_MADI"]
+    "name": "schulddossier_gka_appbeheerder",
+    "roles": ["ROLE_GKA_APPBEHEERDER"]
+  },
+  {
+    "name": "schulddossier_shv",
+    "roles": ["ROLE_SHV"]
+  },
+  {
+    "name": "schulddossier_shv_keyuser",
+    "roles": ["ROLE_SHV_KEYUSER"]
+  },
+  {
+    "name": "schulddossier_disabled",
+    "roles": ["ROLE_SHV"]
   },
   {
     "name": "schulddossier_admin",
     "roles": ["ROLE_ADMIN"]
-  },
-  {
-    "name": "schulddossier_disabled",
-    "roles": ["ROLE_MADI"]
   }
 ]

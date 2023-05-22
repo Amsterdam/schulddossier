@@ -14,10 +14,10 @@ class Voorlegger
 {
     use ExportAble;
 
-    const STATUS_MADI_OPEN = 0;
-    const STATUS_MADI_BEZIG = 1;
-    const STATUS_MADI_OPGEVOERD = 2;
-    const STATUS_MADI_GECONTROLEERD = 3;
+    const STATUS_SHV_OPEN = 0;
+    const STATUS_SHV_BEZIG = 1;
+    const STATUS_SHV_OPGEVOERD = 2;
+    const STATUS_SHV_GECONTROLEERD = 3;
 
     const STATUS_GKA_OPEN = 0;
     const STATUS_GKA_OPGEVOERD = 2;
@@ -45,7 +45,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $legitimatieOntvangenMadi;
+    private $legitimatieOntvangenShv;
 
     /**
      * @var integer
@@ -59,7 +59,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $vtlbOntvangenMadi;
+    private $vtlbOntvangenShv;
 
     /**
      * @var integer
@@ -81,7 +81,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $inkomstenspecificatieOntvangenMadi;
+    private $inkomstenspecificatieOntvangenShv;
 
     /**
      * @var integer
@@ -95,7 +95,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $arbeidsovereenkomstOntvangenMadi;
+    private $arbeidsovereenkomstOntvangenShv;
 
     /**
      * @var integer
@@ -157,7 +157,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $beschikkingUwvOntvangenMadi;
+    private $beschikkingUwvOntvangenShv;
 
     /**
      * @var integer
@@ -245,7 +245,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $voorlopigeTeruggaafBelastingdienstOntvangenMadi;
+    private $voorlopigeTeruggaafBelastingdienstOntvangenShv;
 
     /**
      * @var integer
@@ -265,7 +265,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $alimentatieOntvangenMadi;
+    private $alimentatieOntvangenShv;
 
     /**
      * @var integer
@@ -285,7 +285,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $kostgeldOntvangenMadi;
+    private $kostgeldOntvangenShv;
 
     /**
      * @var integer
@@ -305,7 +305,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $toeslagenOntvangenMadi;
+    private $toeslagenOntvangenShv;
 
     /**
      * @var integer
@@ -349,7 +349,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $huurspecificatieOntvangenMadi;
+    private $huurspecificatieOntvangenShv;
 
     /**
      * @var integer
@@ -369,7 +369,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $polisbladZorgverzekeringOntvangenMadi;
+    private $polisbladZorgverzekeringOntvangenShv;
 
     /**
      * @var integer
@@ -389,7 +389,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $alimentatieEchtscheidingsconvenantOntvangenMadi;
+    private $alimentatieEchtscheidingsconvenantOntvangenShv;
 
     /**
      * @var integer
@@ -409,7 +409,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $overeenkomstKinderopvangOntvangenMadi;
+    private $overeenkomstKinderopvangOntvangenShv;
 
     /**
      * @var integer
@@ -429,7 +429,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $kwijtscheldingGemeenteBelastingOntvangenMadi;
+    private $kwijtscheldingGemeenteBelastingOntvangenShv;
 
     /**
      * @var boolean
@@ -477,7 +477,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $autoTaxatieOntvangenMadi;
+    private $autoTaxatieOntvangenShv;
 
     /**
      * @var integer
@@ -497,7 +497,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $autolastenKmWoonwerkverkeerOntvangenMadi;
+    private $autolastenKmWoonwerkverkeerOntvangenShv;
 
     /**
      * @var integer
@@ -524,7 +524,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $verklaringWerkgeverOntvangenMadi;
+    private $verklaringWerkgeverOntvangenShv;
 
     /**
      * @var integer
@@ -544,7 +544,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $vrijwaringsbewijsOntvangenMadi;
+    private $vrijwaringsbewijsOntvangenShv;
 
     /**
      * @var integer
@@ -564,7 +564,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $schuldenoverzichtOntvangenMadi;
+    private $schuldenoverzichtOntvangenShv;
 
     /**
      * @var integer
@@ -578,7 +578,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $vorderingenOntvangenMadi;
+    private $vorderingenOntvangenShv;
 
     /**
      * @var integer
@@ -592,7 +592,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $inzageToetsingBkrOntvangenMadi;
+    private $inzageToetsingBkrOntvangenShv;
 
     /**
      * @var integer
@@ -606,7 +606,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $stabilisatieovereenkomstOntvangenMadi;
+    private $stabilisatieovereenkomstOntvangenShv;
 
     /**
      * @var integer
@@ -626,7 +626,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $cjibOntvangenMadi;
+    private $cjibOntvangenShv;
 
     /**
      * @var integer
@@ -652,7 +652,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $meterstandenEnergieOntvangenMadi;
+    private $meterstandenEnergieOntvangenShv;
 
     /**
      * @var integer
@@ -672,7 +672,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $waternetOntvangenMadi;
+    private $waternetOntvangenShv;
 
     /**
      * @var integer
@@ -692,7 +692,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $retourbewijsModemOntvangenMadi;
+    private $retourbewijsModemOntvangenShv;
 
     /**
      * @var integer
@@ -712,7 +712,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $toelichtingAanvraagSchuldsaneringClientOntvangenMadi;
+    private $toelichtingAanvraagSchuldsaneringClientOntvangenShv;
 
     /**
      * @var integer
@@ -726,13 +726,13 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $toelichtingAanvraagSchuldsaneringMadiOntvangenMadi;
+    private $toelichtingAanvraagSchuldsaneringShvOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $toelichtingAanvraagSchuldsaneringMadiOntvangenGka;
+    private $toelichtingAanvraagSchuldsaneringShvOntvangenGka;
 
     // ---
 
@@ -740,7 +740,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $beschikkingOnderBewindstellingOntvangenMadi;
+    private $beschikkingOnderBewindstellingOntvangenShv;
 
     /**
      * @var integer
@@ -760,7 +760,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $budgetbeheerOntvangenMadi;
+    private $budgetbeheerOntvangenShv;
 
     /**
      * @var integer
@@ -804,7 +804,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $gereserveerdeGeldenOntvangenMadi;
+    private $gereserveerdeGeldenOntvangenShv;
 
     /**
      * @var integer
@@ -832,7 +832,7 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $ondertekendAanvraagFormulierOntvangenMadi;
+    private $ondertekendAanvraagFormulierOntvangenShv;
 
     /**
      * @var integer
@@ -954,7 +954,7 @@ class Voorlegger
      * @var integer|null
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $aangifteBelastingdienstMadi;
+    private $aangifteBelastingdienstShv;
 
     /**
      * @var integer|null
@@ -1011,17 +1011,17 @@ class Voorlegger
 
     public function __construct()
     {
-        $this->legitimatieOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->legitimatieOntvangenShv = self::STATUS_SHV_OPEN;
         $this->legitimatieOntvangenGka = false;
-        $this->vtlbOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->vtlbOntvangenShv = self::STATUS_SHV_OPEN;
         $this->vtlbOntvangenGka = false;
         $this->vtlbBedrag = 0.00;
-        $this->inkomstenspecificatieOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->inkomstenspecificatieOntvangenShv = self::STATUS_SHV_OPEN;
         $this->inkomstenspecificatieOntvangenGka = false;
-        $this->arbeidsovereenkomstOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->arbeidsovereenkomstOntvangenShv = self::STATUS_SHV_OPEN;
         $this->arbeidsovereenkomstOntvangenGka = false;
         $this->arbeidsovereenkomstNvt = false;
-        $this->beschikkingUwvOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->beschikkingUwvOntvangenShv = self::STATUS_SHV_OPEN;
         $this->beschikkingUwvOntvangenGka = false;
         $this->beschikkingUwvNvt = false;
         $this->beschikkingInkomenUitWerk = false;
@@ -1033,89 +1033,89 @@ class Voorlegger
         $this->beschikkingGemeenteAmsterdamWPI = false;
         $this->beschikkingSVBANW = false;
         $this->beschikkingSVBAOW = false;
-        $this->voorlopigeTeruggaafBelastingdienstOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->voorlopigeTeruggaafBelastingdienstOntvangenShv = self::STATUS_SHV_OPEN;
         $this->voorlopigeTeruggaafBelastingdienstOntvangenGka = false;
         $this->voorlopigeTeruggaafBelastingdienstNvt = false;
-        $this->alimentatieOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->alimentatieOntvangenShv = self::STATUS_SHV_OPEN;
         $this->alimentatieOntvangenGka = false;
         $this->alimentatieNvt = false;
-        $this->kostgeldOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->kostgeldOntvangenShv = self::STATUS_SHV_OPEN;
         $this->kostgeldOntvangenGka = false;
         $this->kostgeldNvt = false;
-        $this->huurspecificatieOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->huurspecificatieOntvangenShv = self::STATUS_SHV_OPEN;
         $this->huurspecificatieOntvangenGka = false;
         $this->huurspecificatieNvt = false;
-        $this->polisbladZorgverzekeringOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->polisbladZorgverzekeringOntvangenShv = self::STATUS_SHV_OPEN;
         $this->polisbladZorgverzekeringOntvangenGka = false;
         $this->polisbladZorgverzekeringNvt = false;
-        $this->alimentatieEchtscheidingsconvenantOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->alimentatieEchtscheidingsconvenantOntvangenShv = self::STATUS_SHV_OPEN;
         $this->alimentatieEchtscheidingsconvenantOntvangenGka = false;
         $this->alimentatieEchtscheidingsconvenantNvt = false;
-        $this->overeenkomstKinderopvangOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->overeenkomstKinderopvangOntvangenShv = self::STATUS_SHV_OPEN;
         $this->overeenkomstKinderopvangOntvangenGka = false;
         $this->overeenkomstKinderopvangNvt = false;
-        $this->kwijtscheldingGemeenteBelastingOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->kwijtscheldingGemeenteBelastingOntvangenShv = self::STATUS_SHV_OPEN;
         $this->kwijtscheldingGemeenteBelastingNvt = false;
         $this->kwijtscheldingGemeenteBelasting = false;
         $this->corrigerenGemeenteBelastingOntvangenGka = false;
         $this->corrigerenGemeenteBelastingNvt = false;
         $this->corrigerenGemeenteBelasting = false;
         $this->autoNvt = false;
-        $this->autoTaxatieOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->autoTaxatieOntvangenShv = self::STATUS_SHV_OPEN;
         $this->autoTaxatieOntvangenGka = false;
         $this->autoTaxatieNvt = false;
-        $this->autolastenKmWoonwerkverkeerOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->autolastenKmWoonwerkverkeerOntvangenShv = self::STATUS_SHV_OPEN;
         $this->autolastenKmWoonwerkverkeerOntvangenGka = false;
         $this->autolastenKmWoonwerkverkeerNvt = false;
         $this->autolastenKmWoonwerkverkeer = 0;
-        $this->verklaringWerkgeverOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->verklaringWerkgeverOntvangenShv = self::STATUS_SHV_OPEN;
         $this->verklaringWerkgeverOntvangenGka = false;
         $this->verklaringWerkgeverNvt = false;
-        $this->vrijwaringsbewijsOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->vrijwaringsbewijsOntvangenShv = self::STATUS_SHV_OPEN;
         $this->vrijwaringsbewijsOntvangenGka = false;
         $this->vrijwaringsbewijsNvt = false;
-        $this->schuldenoverzichtOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->schuldenoverzichtOntvangenShv = self::STATUS_SHV_OPEN;
         $this->schuldenoverzichtOntvangenGka = false;
-        $this->vorderingenOntvangenMadi = false;
+        $this->vorderingenOntvangenShv = false;
         $this->vorderingenOntvangenGka = false;
-        $this->inzageToetsingBkrOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->inzageToetsingBkrOntvangenShv = self::STATUS_SHV_OPEN;
         $this->inzageToetsingBkrOntvangenGka = false;
-        $this->stabilisatieovereenkomstOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->stabilisatieovereenkomstOntvangenShv = self::STATUS_SHV_OPEN;
         $this->stabilisatieovereenkomstOntvangenGka = false;
         $this->stabilisatieovereenkomstNvt = false;
-        $this->cjibOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->cjibOntvangenShv = self::STATUS_SHV_OPEN;
         $this->cjibOntvangenGka = false;
         $this->cjib = false;
         $this->cjibNvt = false;
-        $this->meterstandenEnergieOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->meterstandenEnergieOntvangenShv = self::STATUS_SHV_OPEN;
         $this->meterstandenEnergieOntvangenGka = false;
         $this->meterstandenEnergieNvt = false;
-        $this->waternetOntvangenMadi = false;
+        $this->waternetOntvangenShv = false;
         $this->waternetOntvangenGka = false;
         $this->waternetNvt = false;
-        $this->retourbewijsModemOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->retourbewijsModemOntvangenShv = self::STATUS_SHV_OPEN;
         $this->retourbewijsModemOntvangenGka = false;
         $this->retourbewijsModemNvt = false;
-        $this->toelichtingAanvraagSchuldsaneringClientOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->toelichtingAanvraagSchuldsaneringClientOntvangenShv = self::STATUS_SHV_OPEN;
         $this->toelichtingAanvraagSchuldsaneringClientOntvangenGka = false;
-        $this->toelichtingAanvraagSchuldsaneringMadiOntvangenMadi = self::STATUS_MADI_OPEN;
-        $this->toelichtingAanvraagSchuldsaneringMadiOntvangenGka = false;
-        $this->beschikkingOnderBewindstellingOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->toelichtingAanvraagSchuldsaneringShvOntvangenShv = self::STATUS_SHV_OPEN;
+        $this->toelichtingAanvraagSchuldsaneringShvOntvangenGka = false;
+        $this->beschikkingOnderBewindstellingOntvangenShv = self::STATUS_SHV_OPEN;
         $this->beschikkingOnderBewindstellingOntvangenGka = false;
         $this->beschikkingOnderBewindstellingNvt = false;
-        $this->budgetbeheerOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->budgetbeheerOntvangenShv = self::STATUS_SHV_OPEN;
         $this->budgetbeheerOntvangenGka = false;
         $this->budgetbeheerNvt = false;
         $this->budgetbeheerPlangroep = false;
         $this->budgetbeheerCav = false;
         $this->budgetbeheerFibu = false;
-        $this->gereserveerdeGeldenOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->gereserveerdeGeldenOntvangenShv = self::STATUS_SHV_OPEN;
         $this->gereserveerdeGeldenOntvangenGka = false;
         $this->gereserveerdeGeldenNvt = false;
         $this->gereserveerdeGelden = 0.00;
-        $this->ondertekendAanvraagFormulierOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->ondertekendAanvraagFormulierOntvangenShv = self::STATUS_SHV_OPEN;
         $this->ondertekendAanvraagFormulierOntvangenGka = false;
-        $this->toeslagenOntvangenMadi = self::STATUS_MADI_OPEN;
+        $this->toeslagenOntvangenShv = self::STATUS_SHV_OPEN;
         $this->toeslagenOntvangenGka = false;
         $this->toeslagenNvt = false;
         $this->toeslagenHuur = false;
@@ -1123,7 +1123,7 @@ class Voorlegger
         $this->toeslagenKinderopvang = false;
         $this->toeslagenKindgebondenBudget = false;
         $this->aangifteBelastingdienst = false;
-        $this->aangifteBelastingdienstMadi = self::STATUS_MADI_OPEN;
+        $this->aangifteBelastingdienstShv = self::STATUS_SHV_OPEN;
         $this->aangifteBelastingdienstGka = false;
         $this->aangifteBelastingdienstNvt = false;
         $this->jongerenSchuldenvrijeStart = false;
@@ -1147,14 +1147,14 @@ class Voorlegger
         return $this->legitimatieOntvangenGka;
     }
 
-    public function getLegitimatieOntvangenMadi()
+    public function getLegitimatieOntvangenShv()
     {
-        return $this->legitimatieOntvangenMadi;
+        return $this->legitimatieOntvangenShv;
     }
 
-    public function getVtlbOntvangenMadi()
+    public function getVtlbOntvangenShv()
     {
-        return $this->vtlbOntvangenMadi;
+        return $this->vtlbOntvangenShv;
     }
 
     public function getVtlbOntvangenGka()
@@ -1167,9 +1167,9 @@ class Voorlegger
         return $this->vtlbBedrag;
     }
 
-    public function getInkomstenspecificatieOntvangenMadi()
+    public function getInkomstenspecificatieOntvangenShv()
     {
-        return $this->inkomstenspecificatieOntvangenMadi;
+        return $this->inkomstenspecificatieOntvangenShv;
     }
 
     public function getInkomstenspecificatieOntvangenGka()
@@ -1177,9 +1177,9 @@ class Voorlegger
         return $this->inkomstenspecificatieOntvangenGka;
     }
 
-    public function getArbeidsovereenkomstOntvangenMadi()
+    public function getArbeidsovereenkomstOntvangenShv()
     {
-        return $this->arbeidsovereenkomstOntvangenMadi;
+        return $this->arbeidsovereenkomstOntvangenShv;
     }
 
     public function getArbeidsovereenkomstOntvangenGka()
@@ -1187,9 +1187,9 @@ class Voorlegger
         return $this->arbeidsovereenkomstOntvangenGka;
     }
 
-    public function getBeschikkingUwvOntvangenMadi()
+    public function getBeschikkingUwvOntvangenShv()
     {
-        return $this->beschikkingUwvOntvangenMadi;
+        return $this->beschikkingUwvOntvangenShv;
     }
 
     public function getBeschikkingUwvOntvangenGka()
@@ -1277,9 +1277,9 @@ class Voorlegger
         return $this->beschikkingUwvOverig;
     }
 
-    public function getVoorlopigeTeruggaafBelastingdienstOntvangenMadi()
+    public function getVoorlopigeTeruggaafBelastingdienstOntvangenShv()
     {
-        return $this->voorlopigeTeruggaafBelastingdienstOntvangenMadi;
+        return $this->voorlopigeTeruggaafBelastingdienstOntvangenShv;
     }
 
     public function getVoorlopigeTeruggaafBelastingdienstOntvangenGka()
@@ -1292,9 +1292,9 @@ class Voorlegger
         return $this->voorlopigeTeruggaafBelastingdienstNvt;
     }
 
-    public function getAlimentatieOntvangenMadi()
+    public function getAlimentatieOntvangenShv()
     {
-        return $this->alimentatieOntvangenMadi;
+        return $this->alimentatieOntvangenShv;
     }
 
     public function getAlimentatieOntvangenGka()
@@ -1307,9 +1307,9 @@ class Voorlegger
         return $this->alimentatieNvt;
     }
 
-    public function getKostgeldOntvangenMadi()
+    public function getKostgeldOntvangenShv()
     {
-        return $this->kostgeldOntvangenMadi;
+        return $this->kostgeldOntvangenShv;
     }
 
     public function getKostgeldOntvangenGka()
@@ -1323,9 +1323,9 @@ class Voorlegger
     }
 
 
-    public function getHuurspecificatieOntvangenMadi()
+    public function getHuurspecificatieOntvangenShv()
     {
-        return $this->huurspecificatieOntvangenMadi;
+        return $this->huurspecificatieOntvangenShv;
     }
 
     public function getHuurspecificatieOntvangenGka()
@@ -1338,9 +1338,9 @@ class Voorlegger
         return $this->huurspecificatieNvt;
     }
 
-    public function getPolisbladZorgverzekeringOntvangenMadi()
+    public function getPolisbladZorgverzekeringOntvangenShv()
     {
-        return $this->polisbladZorgverzekeringOntvangenMadi;
+        return $this->polisbladZorgverzekeringOntvangenShv;
     }
 
     public function getPolisbladZorgverzekeringOntvangenGka()
@@ -1353,9 +1353,9 @@ class Voorlegger
         return $this->polisbladZorgverzekeringNvt;
     }
 
-    public function getAlimentatieEchtscheidingsconvenantOntvangenMadi()
+    public function getAlimentatieEchtscheidingsconvenantOntvangenShv()
     {
-        return $this->alimentatieEchtscheidingsconvenantOntvangenMadi;
+        return $this->alimentatieEchtscheidingsconvenantOntvangenShv;
     }
 
     public function getAlimentatieEchtscheidingsconvenantOntvangenGka()
@@ -1368,9 +1368,9 @@ class Voorlegger
         return $this->alimentatieEchtscheidingsconvenantNvt;
     }
 
-    public function getOvereenkomstKinderopvangOntvangenMadi()
+    public function getOvereenkomstKinderopvangOntvangenShv()
     {
-        return $this->overeenkomstKinderopvangOntvangenMadi;
+        return $this->overeenkomstKinderopvangOntvangenShv;
     }
 
     public function getOvereenkomstKinderopvangOntvangenGka()
@@ -1383,9 +1383,9 @@ class Voorlegger
         return $this->overeenkomstKinderopvangNvt;
     }
 
-    public function getKwijtscheldingGemeenteBelastingOntvangenMadi()
+    public function getKwijtscheldingGemeenteBelastingOntvangenShv()
     {
-        return $this->kwijtscheldingGemeenteBelastingOntvangenMadi;
+        return $this->kwijtscheldingGemeenteBelastingOntvangenShv;
     }
 
     public function isKwijtscheldingGemeenteBelastingNvt()
@@ -1418,9 +1418,9 @@ class Voorlegger
         return $this->autoNvt;
     }
 
-    public function getAutoTaxatieOntvangenMadi()
+    public function getAutoTaxatieOntvangenShv()
     {
-        return $this->autoTaxatieOntvangenMadi;
+        return $this->autoTaxatieOntvangenShv;
     }
 
     public function getAutoTaxatieOntvangenGka()
@@ -1433,9 +1433,9 @@ class Voorlegger
         return $this->autoTaxatieNvt;
     }
 
-    public function getAutolastenKmWoonwerkverkeerOntvangenMadi()
+    public function getAutolastenKmWoonwerkverkeerOntvangenShv()
     {
-        return $this->autolastenKmWoonwerkverkeerOntvangenMadi;
+        return $this->autolastenKmWoonwerkverkeerOntvangenShv;
     }
 
     public function getAutolastenKmWoonwerkverkeerOntvangenGka()
@@ -1453,9 +1453,9 @@ class Voorlegger
         return $this->autolastenKmWoonwerkverkeer;
     }
 
-    public function getVerklaringWerkgeverOntvangenMadi()
+    public function getVerklaringWerkgeverOntvangenShv()
     {
-        return $this->verklaringWerkgeverOntvangenMadi;
+        return $this->verklaringWerkgeverOntvangenShv;
     }
 
     public function getVerklaringWerkgeverOntvangenGka()
@@ -1468,9 +1468,9 @@ class Voorlegger
         return $this->verklaringWerkgeverNvt;
     }
 
-    public function getVrijwaringsbewijsOntvangenMadi()
+    public function getVrijwaringsbewijsOntvangenShv()
     {
-        return $this->vrijwaringsbewijsOntvangenMadi;
+        return $this->vrijwaringsbewijsOntvangenShv;
     }
 
     public function getVrijwaringsbewijsOntvangenGka()
@@ -1483,9 +1483,9 @@ class Voorlegger
         return $this->vrijwaringsbewijsNvt;
     }
 
-    public function getSchuldenoverzichtOntvangenMadi()
+    public function getSchuldenoverzichtOntvangenShv()
     {
-        return $this->schuldenoverzichtOntvangenMadi;
+        return $this->schuldenoverzichtOntvangenShv;
     }
 
     public function getSchuldenoverzichtOntvangenGka()
@@ -1493,9 +1493,9 @@ class Voorlegger
         return $this->schuldenoverzichtOntvangenGka;
     }
 
-    public function getVorderingenOntvangenMadi()
+    public function getVorderingenOntvangenShv()
     {
-        return $this->vorderingenOntvangenMadi;
+        return $this->vorderingenOntvangenShv;
     }
 
     public function getVorderingenOntvangenGka()
@@ -1503,9 +1503,9 @@ class Voorlegger
         return $this->vorderingenOntvangenGka;
     }
 
-    public function getInzageToetsingBkrOntvangenMadi()
+    public function getInzageToetsingBkrOntvangenShv()
     {
-        return $this->inzageToetsingBkrOntvangenMadi;
+        return $this->inzageToetsingBkrOntvangenShv;
     }
 
     public function getInzageToetsingBkrOntvangenGka()
@@ -1513,9 +1513,9 @@ class Voorlegger
         return $this->inzageToetsingBkrOntvangenGka;
     }
 
-    public function getStabilisatieovereenkomstOntvangenMadi()
+    public function getStabilisatieovereenkomstOntvangenShv()
     {
-        return $this->stabilisatieovereenkomstOntvangenMadi;
+        return $this->stabilisatieovereenkomstOntvangenShv;
     }
 
     public function getStabilisatieovereenkomstOntvangenGka()
@@ -1528,9 +1528,9 @@ class Voorlegger
         return $this->stabilisatieovereenkomstNvt;
     }
 
-    public function getCjibOntvangenMadi()
+    public function getCjibOntvangenShv()
     {
-        return $this->cjibOntvangenMadi;
+        return $this->cjibOntvangenShv;
     }
 
     public function getCjibOntvangenGka()
@@ -1548,9 +1548,9 @@ class Voorlegger
         return $this->cjibNvt;
     }
 
-    public function getMeterstandenEnergieOntvangenMadi()
+    public function getMeterstandenEnergieOntvangenShv()
     {
-        return $this->meterstandenEnergieOntvangenMadi;
+        return $this->meterstandenEnergieOntvangenShv;
     }
 
     public function getMeterstandenEnergieOntvangenGka()
@@ -1563,9 +1563,9 @@ class Voorlegger
         return $this->meterstandenEnergieNvt;
     }
 
-    public function getWaternetOntvangenMadi()
+    public function getWaternetOntvangenShv()
     {
-        return $this->waternetOntvangenMadi;
+        return $this->waternetOntvangenShv;
     }
 
     public function getWaternetOntvangenGka()
@@ -1578,9 +1578,9 @@ class Voorlegger
         return $this->waternetNvt;
     }
 
-    public function getRetourbewijsModemOntvangenMadi()
+    public function getRetourbewijsModemOntvangenShv()
     {
-        return $this->retourbewijsModemOntvangenMadi;
+        return $this->retourbewijsModemOntvangenShv;
     }
 
     public function getRetourbewijsModemOntvangenGka()
@@ -1593,9 +1593,9 @@ class Voorlegger
         return $this->retourbewijsModemNvt;
     }
 
-    public function getToelichtingAanvraagSchuldsaneringClientOntvangenMadi()
+    public function getToelichtingAanvraagSchuldsaneringClientOntvangenShv()
     {
-        return $this->toelichtingAanvraagSchuldsaneringClientOntvangenMadi;
+        return $this->toelichtingAanvraagSchuldsaneringClientOntvangenShv;
     }
 
     public function getToelichtingAanvraagSchuldsaneringClientOntvangenGka()
@@ -1603,19 +1603,19 @@ class Voorlegger
         return $this->toelichtingAanvraagSchuldsaneringClientOntvangenGka;
     }
 
-    public function getToelichtingAanvraagSchuldsaneringMadiOntvangenMadi()
+    public function getToelichtingAanvraagSchuldsaneringShvOntvangenShv()
     {
-        return $this->toelichtingAanvraagSchuldsaneringMadiOntvangenMadi;
+        return $this->toelichtingAanvraagSchuldsaneringShvOntvangenShv;
     }
 
-    public function getToelichtingAanvraagSchuldsaneringMadiOntvangenGka()
+    public function getToelichtingAanvraagSchuldsaneringShvOntvangenGka()
     {
-        return $this->toelichtingAanvraagSchuldsaneringMadiOntvangenGka;
+        return $this->toelichtingAanvraagSchuldsaneringShvOntvangenGka;
     }
 
-    public function getBeschikkingOnderBewindstellingOntvangenMadi()
+    public function getBeschikkingOnderBewindstellingOntvangenShv()
     {
-        return $this->beschikkingOnderBewindstellingOntvangenMadi;
+        return $this->beschikkingOnderBewindstellingOntvangenShv;
     }
 
     public function getBeschikkingOnderBewindstellingOntvangenGka()
@@ -1628,9 +1628,9 @@ class Voorlegger
         return $this->beschikkingOnderBewindstellingNvt;
     }
 
-    public function getBudgetbeheerOntvangenMadi()
+    public function getBudgetbeheerOntvangenShv()
     {
-        return $this->budgetbeheerOntvangenMadi;
+        return $this->budgetbeheerOntvangenShv;
     }
 
     public function getBudgetbeheerOntvangenGka()
@@ -1663,9 +1663,9 @@ class Voorlegger
         return $this->budgetbeheerOverig;
     }
 
-    public function getGereserveerdeGeldenOntvangenMadi()
+    public function getGereserveerdeGeldenOntvangenShv()
     {
-        return $this->gereserveerdeGeldenOntvangenMadi;
+        return $this->gereserveerdeGeldenOntvangenShv;
     }
 
     public function getGereserveerdeGeldenOntvangenGka()
@@ -1683,9 +1683,9 @@ class Voorlegger
         return $this->gereserveerdeGelden;
     }
 
-    public function getOndertekendAanvraagFormulierOntvangenMadi()
+    public function getOndertekendAanvraagFormulierOntvangenShv()
     {
-        return $this->ondertekendAanvraagFormulierOntvangenMadi;
+        return $this->ondertekendAanvraagFormulierOntvangenShv;
     }
 
     public function getOndertekendAanvraagFormulierOntvangenGka()
@@ -1803,14 +1803,14 @@ class Voorlegger
         $this->legitimatieOntvangenGka = $legitimatieOntvangenGka;
     }
 
-    public function setLegitimatieOntvangenMadi($legitimatieOntvangenMadi)
+    public function setLegitimatieOntvangenShv($legitimatieOntvangenShv)
     {
-        $this->legitimatieOntvangenMadi = $legitimatieOntvangenMadi;
+        $this->legitimatieOntvangenShv = $legitimatieOntvangenShv;
     }
 
-    public function setVtlbOntvangenMadi($vtlbOntvangenMadi)
+    public function setVtlbOntvangenShv($vtlbOntvangenShv)
     {
-        $this->vtlbOntvangenMadi = $vtlbOntvangenMadi;
+        $this->vtlbOntvangenShv = $vtlbOntvangenShv;
     }
 
     public function setVtlbOntvangenGka($vtlbOntvangenGka)
@@ -1823,9 +1823,9 @@ class Voorlegger
         $this->vtlbBedrag = $vtlbBedrag;
     }
 
-    public function setInkomstenspecificatieOntvangenMadi($inkomstenspecificatieOntvangenMadi)
+    public function setInkomstenspecificatieOntvangenShv($inkomstenspecificatieOntvangenShv)
     {
-        $this->inkomstenspecificatieOntvangenMadi = $inkomstenspecificatieOntvangenMadi;
+        $this->inkomstenspecificatieOntvangenShv = $inkomstenspecificatieOntvangenShv;
     }
 
     public function setInkomstenspecificatieOntvangenGka($inkomstenspecificatieOntvangenGka)
@@ -1833,9 +1833,9 @@ class Voorlegger
         $this->inkomstenspecificatieOntvangenGka = $inkomstenspecificatieOntvangenGka;
     }
 
-    public function setArbeidsovereenkomstOntvangenMadi($arbeidsovereenkomstOntvangenMadi)
+    public function setArbeidsovereenkomstOntvangenShv($arbeidsovereenkomstOntvangenShv)
     {
-        $this->arbeidsovereenkomstOntvangenMadi = $arbeidsovereenkomstOntvangenMadi;
+        $this->arbeidsovereenkomstOntvangenShv = $arbeidsovereenkomstOntvangenShv;
     }
 
     public function setArbeidsovereenkomstOntvangenGka($arbeidsovereenkomstOntvangenGka)
@@ -1868,9 +1868,9 @@ class Voorlegger
         $this->arbeidsovereenkomstPartnerContract = $arbeidsovereenkomstPartnerContract;
     }
 
-    public function setBeschikkingUwvOntvangenMadi($beschikkingUwvOntvangenMadi)
+    public function setBeschikkingUwvOntvangenShv($beschikkingUwvOntvangenShv)
     {
-        $this->beschikkingUwvOntvangenMadi = $beschikkingUwvOntvangenMadi;
+        $this->beschikkingUwvOntvangenShv = $beschikkingUwvOntvangenShv;
     }
 
     public function setBeschikkingUwvOntvangenGka($beschikkingUwvOntvangenGka)
@@ -1948,9 +1948,9 @@ class Voorlegger
         $this->verloningsDag = $verloningsDag;
     }
 
-    public function setVoorlopigeTeruggaafBelastingdienstOntvangenMadi($voorlopigeTeruggaafBelastingdienstOntvangenMadi)
+    public function setVoorlopigeTeruggaafBelastingdienstOntvangenShv($voorlopigeTeruggaafBelastingdienstOntvangenShv)
     {
-        $this->voorlopigeTeruggaafBelastingdienstOntvangenMadi = $voorlopigeTeruggaafBelastingdienstOntvangenMadi;
+        $this->voorlopigeTeruggaafBelastingdienstOntvangenShv = $voorlopigeTeruggaafBelastingdienstOntvangenShv;
     }
 
     public function setVoorlopigeTeruggaafBelastingdienstOntvangenGka($voorlopigeTeruggaafBelastingdienstOntvangenGka)
@@ -1963,9 +1963,9 @@ class Voorlegger
         $this->voorlopigeTeruggaafBelastingdienstNvt = $voorlopigeTeruggaafBelastingdienstNvt;
     }
 
-    public function setAlimentatieOntvangenMadi($alimentatieOntvangenMadi)
+    public function setAlimentatieOntvangenShv($alimentatieOntvangenShv)
     {
-        $this->alimentatieOntvangenMadi = $alimentatieOntvangenMadi;
+        $this->alimentatieOntvangenShv = $alimentatieOntvangenShv;
     }
 
     public function setAlimentatieOntvangenGka($alimentatieOntvangenGka)
@@ -1978,9 +1978,9 @@ class Voorlegger
         $this->alimentatieNvt = $alimentatieNvt;
     }
 
-    public function setKostgeldOntvangenMadi($kostgeldOntvangenMadi)
+    public function setKostgeldOntvangenShv($kostgeldOntvangenShv)
     {
-        $this->kostgeldOntvangenMadi = $kostgeldOntvangenMadi;
+        $this->kostgeldOntvangenShv = $kostgeldOntvangenShv;
     }
 
     public function setKostgeldOntvangenGka($kostgeldOntvangenGka)
@@ -1994,9 +1994,9 @@ class Voorlegger
     }
 
 
-    public function setHuurspecificatieOntvangenMadi($huurspecificatieOntvangenMadi)
+    public function setHuurspecificatieOntvangenShv($huurspecificatieOntvangenShv)
     {
-        $this->huurspecificatieOntvangenMadi = $huurspecificatieOntvangenMadi;
+        $this->huurspecificatieOntvangenShv = $huurspecificatieOntvangenShv;
     }
 
     public function setHuurspecificatieOntvangenGka($huurspecificatieOntvangenGka)
@@ -2009,9 +2009,9 @@ class Voorlegger
         $this->huurspecificatieNvt = $huurspecificatieNvt;
     }
 
-    public function setPolisbladZorgverzekeringOntvangenMadi($polisbladZorgverzekeringOntvangenMadi)
+    public function setPolisbladZorgverzekeringOntvangenShv($polisbladZorgverzekeringOntvangenShv)
     {
-        $this->polisbladZorgverzekeringOntvangenMadi = $polisbladZorgverzekeringOntvangenMadi;
+        $this->polisbladZorgverzekeringOntvangenShv = $polisbladZorgverzekeringOntvangenShv;
     }
 
     public function setPolisbladZorgverzekeringOntvangenGka($polisbladZorgverzekeringOntvangenGka)
@@ -2024,9 +2024,9 @@ class Voorlegger
         $this->polisbladZorgverzekeringNvt = $polisbladZorgverzekeringNvt;
     }
 
-    public function setAlimentatieEchtscheidingsconvenantOntvangenMadi($alimentatieEchtscheidingsconvenantOntvangenMadi)
+    public function setAlimentatieEchtscheidingsconvenantOntvangenShv($alimentatieEchtscheidingsconvenantOntvangenShv)
     {
-        $this->alimentatieEchtscheidingsconvenantOntvangenMadi = $alimentatieEchtscheidingsconvenantOntvangenMadi;
+        $this->alimentatieEchtscheidingsconvenantOntvangenShv = $alimentatieEchtscheidingsconvenantOntvangenShv;
     }
 
     public function setAlimentatieEchtscheidingsconvenantOntvangenGka($alimentatieEchtscheidingsconvenantOntvangenGka)
@@ -2039,9 +2039,9 @@ class Voorlegger
         $this->alimentatieEchtscheidingsconvenantNvt = $alimentatieEchtscheidingsconvenantNvt;
     }
 
-    public function setOvereenkomstKinderopvangOntvangenMadi($overeenkomstKinderopvangOntvangenMadi)
+    public function setOvereenkomstKinderopvangOntvangenShv($overeenkomstKinderopvangOntvangenShv)
     {
-        $this->overeenkomstKinderopvangOntvangenMadi = $overeenkomstKinderopvangOntvangenMadi;
+        $this->overeenkomstKinderopvangOntvangenShv = $overeenkomstKinderopvangOntvangenShv;
     }
 
     public function setOvereenkomstKinderopvangOntvangenGka($overeenkomstKinderopvangOntvangenGka)
@@ -2054,9 +2054,9 @@ class Voorlegger
         $this->overeenkomstKinderopvangNvt = $overeenkomstKinderopvangNvt;
     }
 
-    public function setKwijtscheldingGemeenteBelastingOntvangenMadi($kwijtscheldingGemeenteBelastingOntvangenMadi)
+    public function setKwijtscheldingGemeenteBelastingOntvangenShv($kwijtscheldingGemeenteBelastingOntvangenShv)
     {
-        $this->kwijtscheldingGemeenteBelastingOntvangenMadi = $kwijtscheldingGemeenteBelastingOntvangenMadi;
+        $this->kwijtscheldingGemeenteBelastingOntvangenShv = $kwijtscheldingGemeenteBelastingOntvangenShv;
     }
 
     public function setKwijtscheldingGemeenteBelastingNvt($kwijtscheldingGemeenteBelastingNvt)
@@ -2089,9 +2089,9 @@ class Voorlegger
         $this->autoNvt = $autoNvt;
     }
 
-    public function setAutoTaxatieOntvangenMadi($autoTaxatieOntvangenMadi)
+    public function setAutoTaxatieOntvangenShv($autoTaxatieOntvangenShv)
     {
-        $this->autoTaxatieOntvangenMadi = $autoTaxatieOntvangenMadi;
+        $this->autoTaxatieOntvangenShv = $autoTaxatieOntvangenShv;
     }
 
     public function setAutoTaxatieOntvangenGka($autoTaxatieOntvangenGka)
@@ -2104,9 +2104,9 @@ class Voorlegger
         $this->autoTaxatieNvt = $autoTaxatieNvt;
     }
 
-    public function setAutolastenKmWoonwerkverkeerOntvangenMadi($autolastenKmWoonwerkverkeerOntvangenMadi)
+    public function setAutolastenKmWoonwerkverkeerOntvangenShv($autolastenKmWoonwerkverkeerOntvangenShv)
     {
-        $this->autolastenKmWoonwerkverkeerOntvangenMadi = $autolastenKmWoonwerkverkeerOntvangenMadi;
+        $this->autolastenKmWoonwerkverkeerOntvangenShv = $autolastenKmWoonwerkverkeerOntvangenShv;
     }
 
     public function setAutolastenKmWoonwerkverkeerOntvangenGka($autolastenKmWoonwerkverkeerOntvangenGka)
@@ -2124,9 +2124,9 @@ class Voorlegger
         $this->autolastenKmWoonwerkverkeer = $autolastenKmWoonwerkverkeer;
     }
 
-    public function setVerklaringWerkgeverOntvangenMadi($verklaringWerkgeverOntvangenMadi)
+    public function setVerklaringWerkgeverOntvangenShv($verklaringWerkgeverOntvangenShv)
     {
-        $this->verklaringWerkgeverOntvangenMadi = $verklaringWerkgeverOntvangenMadi;
+        $this->verklaringWerkgeverOntvangenShv = $verklaringWerkgeverOntvangenShv;
     }
 
     public function setVerklaringWerkgeverOntvangenGka($verklaringWerkgeverOntvangenGka)
@@ -2139,9 +2139,9 @@ class Voorlegger
         $this->verklaringWerkgeverNvt = $verklaringWerkgeverNvt;
     }
 
-    public function setVrijwaringsbewijsOntvangenMadi($vrijwaringsbewijsOntvangenMadi)
+    public function setVrijwaringsbewijsOntvangenShv($vrijwaringsbewijsOntvangenShv)
     {
-        $this->vrijwaringsbewijsOntvangenMadi = $vrijwaringsbewijsOntvangenMadi;
+        $this->vrijwaringsbewijsOntvangenShv = $vrijwaringsbewijsOntvangenShv;
     }
 
     public function setVrijwaringsbewijsOntvangenGka($vrijwaringsbewijsOntvangenGka)
@@ -2154,9 +2154,9 @@ class Voorlegger
         $this->vrijwaringsbewijsNvt = $vrijwaringsbewijsNvt;
     }
 
-    public function setSchuldenoverzichtOntvangenMadi($schuldenoverzichtOntvangenMadi)
+    public function setSchuldenoverzichtOntvangenShv($schuldenoverzichtOntvangenShv)
     {
-        $this->schuldenoverzichtOntvangenMadi = $schuldenoverzichtOntvangenMadi;
+        $this->schuldenoverzichtOntvangenShv = $schuldenoverzichtOntvangenShv;
     }
 
     public function setSchuldenoverzichtOntvangenGka($schuldenoverzichtOntvangenGka)
@@ -2164,9 +2164,9 @@ class Voorlegger
         $this->schuldenoverzichtOntvangenGka = $schuldenoverzichtOntvangenGka;
     }
 
-    public function setVorderingenOntvangenMadi($vorderingenOntvangenMadi)
+    public function setVorderingenOntvangenShv($vorderingenOntvangenShv)
     {
-        $this->vorderingenOntvangenMadi = $vorderingenOntvangenMadi;
+        $this->vorderingenOntvangenShv = $vorderingenOntvangenShv;
     }
 
     public function setVorderingenOntvangenGka($vorderingenOntvangenGka)
@@ -2174,9 +2174,9 @@ class Voorlegger
         $this->vorderingenOntvangenGka = $vorderingenOntvangenGka;
     }
 
-    public function setInzageToetsingBkrOntvangenMadi($inzageToetsingBkrOntvangenMadi)
+    public function setInzageToetsingBkrOntvangenShv($inzageToetsingBkrOntvangenShv)
     {
-        $this->inzageToetsingBkrOntvangenMadi = $inzageToetsingBkrOntvangenMadi;
+        $this->inzageToetsingBkrOntvangenShv = $inzageToetsingBkrOntvangenShv;
     }
 
     public function setInzageToetsingBkrOntvangenGka($inzageToetsingBkrOntvangenGka)
@@ -2184,9 +2184,9 @@ class Voorlegger
         $this->inzageToetsingBkrOntvangenGka = $inzageToetsingBkrOntvangenGka;
     }
 
-    public function setStabilisatieovereenkomstOntvangenMadi($stabilisatieovereenkomstOntvangenMadi)
+    public function setStabilisatieovereenkomstOntvangenShv($stabilisatieovereenkomstOntvangenShv)
     {
-        $this->stabilisatieovereenkomstOntvangenMadi = $stabilisatieovereenkomstOntvangenMadi;
+        $this->stabilisatieovereenkomstOntvangenShv = $stabilisatieovereenkomstOntvangenShv;
     }
 
     public function setStabilisatieovereenkomstOntvangenGka($stabilisatieovereenkomstOntvangenGka)
@@ -2199,9 +2199,9 @@ class Voorlegger
         $this->stabilisatieovereenkomstNvt = $stabilisatieovereenkomstNvt;
     }
 
-    public function setCjibOntvangenMadi($cjibOntvangenMadi)
+    public function setCjibOntvangenShv($cjibOntvangenShv)
     {
-        $this->cjibOntvangenMadi = $cjibOntvangenMadi;
+        $this->cjibOntvangenShv = $cjibOntvangenShv;
     }
 
     public function setCjibOntvangenGka($cjibOntvangenGka)
@@ -2219,9 +2219,9 @@ class Voorlegger
         $this->cjibNvt = $cjibNvt;
     }
 
-    public function setMeterstandenEnergieOntvangenMadi($meterstandenEnergieOntvangenMadi)
+    public function setMeterstandenEnergieOntvangenShv($meterstandenEnergieOntvangenShv)
     {
-        $this->meterstandenEnergieOntvangenMadi = $meterstandenEnergieOntvangenMadi;
+        $this->meterstandenEnergieOntvangenShv = $meterstandenEnergieOntvangenShv;
     }
 
     public function setMeterstandenEnergieOntvangenGka($meterstandenEnergieOntvangenGka)
@@ -2234,9 +2234,9 @@ class Voorlegger
         $this->meterstandenEnergieNvt = $meterstandenEnergieNvt;
     }
 
-    public function setWaternetOntvangenMadi($waternetOntvangenMadi)
+    public function setWaternetOntvangenShv($waternetOntvangenShv)
     {
-        $this->waternetOntvangenMadi = $waternetOntvangenMadi;
+        $this->waternetOntvangenShv = $waternetOntvangenShv;
     }
 
     public function setWaternetOntvangenGka($waternetOntvangenGka)
@@ -2249,9 +2249,9 @@ class Voorlegger
         $this->waternetNvt = $waternetNvt;
     }
 
-    public function setRetourbewijsModemOntvangenMadi($retourbewijsModemOntvangenMadi)
+    public function setRetourbewijsModemOntvangenShv($retourbewijsModemOntvangenShv)
     {
-        $this->retourbewijsModemOntvangenMadi = $retourbewijsModemOntvangenMadi;
+        $this->retourbewijsModemOntvangenShv = $retourbewijsModemOntvangenShv;
     }
 
     public function setRetourbewijsModemOntvangenGka($retourbewijsModemOntvangenGka)
@@ -2264,9 +2264,9 @@ class Voorlegger
         $this->retourbewijsModemNvt = $retourbewijsModemNvt;
     }
 
-    public function setToelichtingAanvraagSchuldsaneringClientOntvangenMadi($toelichtingAanvraagSchuldsaneringClientOntvangenMadi)
+    public function setToelichtingAanvraagSchuldsaneringClientOntvangenShv($toelichtingAanvraagSchuldsaneringClientOntvangenShv)
     {
-        $this->toelichtingAanvraagSchuldsaneringClientOntvangenMadi = $toelichtingAanvraagSchuldsaneringClientOntvangenMadi;
+        $this->toelichtingAanvraagSchuldsaneringClientOntvangenShv = $toelichtingAanvraagSchuldsaneringClientOntvangenShv;
     }
 
     public function setToelichtingAanvraagSchuldsaneringClientOntvangenGka($toelichtingAanvraagSchuldsaneringClientOntvangenGka)
@@ -2274,19 +2274,19 @@ class Voorlegger
         $this->toelichtingAanvraagSchuldsaneringClientOntvangenGka = $toelichtingAanvraagSchuldsaneringClientOntvangenGka;
     }
 
-    public function setToelichtingAanvraagSchuldsaneringMadiOntvangenMadi($toelichtingAanvraagSchuldsaneringMadiOntvangenMadi)
+    public function setToelichtingAanvraagSchuldsaneringShvOntvangenShv($toelichtingAanvraagSchuldsaneringShvOntvangenShv)
     {
-        $this->toelichtingAanvraagSchuldsaneringMadiOntvangenMadi = $toelichtingAanvraagSchuldsaneringMadiOntvangenMadi;
+        $this->toelichtingAanvraagSchuldsaneringShvOntvangenShv = $toelichtingAanvraagSchuldsaneringShvOntvangenShv;
     }
 
-    public function setToelichtingAanvraagSchuldsaneringMadiOntvangenGka($toelichtingAanvraagSchuldsaneringMadiOntvangenGka)
+    public function setToelichtingAanvraagSchuldsaneringShvOntvangenGka($toelichtingAanvraagSchuldsaneringShvOntvangenGka)
     {
-        $this->toelichtingAanvraagSchuldsaneringMadiOntvangenGka = $toelichtingAanvraagSchuldsaneringMadiOntvangenGka;
+        $this->toelichtingAanvraagSchuldsaneringShvOntvangenGka = $toelichtingAanvraagSchuldsaneringShvOntvangenGka;
     }
 
-    public function setBeschikkingOnderBewindstellingOntvangenMadi($beschikkingOnderBewindstellingOntvangenMadi)
+    public function setBeschikkingOnderBewindstellingOntvangenShv($beschikkingOnderBewindstellingOntvangenShv)
     {
-        $this->beschikkingOnderBewindstellingOntvangenMadi = $beschikkingOnderBewindstellingOntvangenMadi;
+        $this->beschikkingOnderBewindstellingOntvangenShv = $beschikkingOnderBewindstellingOntvangenShv;
     }
 
     public function setBeschikkingOnderBewindstellingOntvangenGka($beschikkingOnderBewindstellingOntvangenGka)
@@ -2299,9 +2299,9 @@ class Voorlegger
         $this->beschikkingOnderBewindstellingNvt = $beschikkingOnderBewindstellingNvt;
     }
 
-    public function setBudgetbeheerOntvangenMadi($budgetbeheerOntvangenMadi)
+    public function setBudgetbeheerOntvangenShv($budgetbeheerOntvangenShv)
     {
-        $this->budgetbeheerOntvangenMadi = $budgetbeheerOntvangenMadi;
+        $this->budgetbeheerOntvangenShv = $budgetbeheerOntvangenShv;
     }
 
     public function setBudgetbeheerOntvangenGka($budgetbeheerOntvangenGka)
@@ -2334,9 +2334,9 @@ class Voorlegger
         $this->budgetbeheerOverig = $budgetbeheerOverig;
     }
 
-    public function setGereserveerdeGeldenOntvangenMadi($gereserveerdeGeldenOntvangenMadi)
+    public function setGereserveerdeGeldenOntvangenShv($gereserveerdeGeldenOntvangenShv)
     {
-        $this->gereserveerdeGeldenOntvangenMadi = $gereserveerdeGeldenOntvangenMadi;
+        $this->gereserveerdeGeldenOntvangenShv = $gereserveerdeGeldenOntvangenShv;
     }
 
     public function setGereserveerdeGeldenOntvangenGka($gereserveerdeGeldenOntvangenGka)
@@ -2354,9 +2354,9 @@ class Voorlegger
         $this->gereserveerdeGelden = $gereserveerdeGelden;
     }
 
-    public function setOndertekendAanvraagFormulierOntvangenMadi($ondertekendAanvraagFormulierOntvangenMadi)
+    public function setOndertekendAanvraagFormulierOntvangenShv($ondertekendAanvraagFormulierOntvangenShv)
     {
-        $this->ondertekendAanvraagFormulierOntvangenMadi = $ondertekendAanvraagFormulierOntvangenMadi;
+        $this->ondertekendAanvraagFormulierOntvangenShv = $ondertekendAanvraagFormulierOntvangenShv;
     }
 
     public function setOndertekendAanvraagFormulierOntvangenGka($ondertekendAanvraagFormulierOntvangenGka)
@@ -2443,14 +2443,14 @@ class Voorlegger
         $this->drinkwaterOpname = $drinkwaterOpname;
     }
 
-    public function getToeslagenOntvangenMadi()
+    public function gettoeslagenOntvangenShv()
     {
-        return $this->toeslagenOntvangenMadi;
+        return $this->toeslagenOntvangenShv;
     }
 
-    public function setToeslagenOntvangenMadi($toeslagenOntvangenMadi)
+    public function settoeslagenOntvangenShv($toeslagenOntvangenShv)
     {
-        $this->toeslagenOntvangenMadi = $toeslagenOntvangenMadi;
+        $this->toeslagenOntvangenShv = $toeslagenOntvangenShv;
     }
 
     public function getToeslagenOntvangenGka()
@@ -2573,18 +2573,18 @@ class Voorlegger
     /**
      * @return int|null
      */
-    public function getAangifteBelastingdienstMadi(): ?int
+    public function getAangifteBelastingdienstShv(): ?int
     {
-        return $this->aangifteBelastingdienstMadi;
+        return $this->aangifteBelastingdienstShv;
     }
 
     /**
-     * @param int|null $aangifteBelastingdienstMadi
+     * @param int|null $aangifteBelastingdienstShv
      * @return Voorlegger
      */
-    public function setAangifteBelastingdienstMadi(?int $aangifteBelastingdienstMadi): Voorlegger
+    public function setAangifteBelastingdienstShv(?int $aangifteBelastingdienstShv): Voorlegger
     {
-        $this->aangifteBelastingdienstMadi = $aangifteBelastingdienstMadi;
+        $this->aangifteBelastingdienstShv = $aangifteBelastingdienstShv;
 
         return $this;
     }

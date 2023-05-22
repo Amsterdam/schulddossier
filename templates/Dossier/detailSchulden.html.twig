@@ -20,7 +20,7 @@
             </div>
             <div class="dossier__scroll-container" data-scroller="sticky-section">
                 <div class="dossier__scroll-content">
-                    <div class="dossier__container team-{% if app.user.type == 'madi' or app.user.type == 'madi_keyuser' %}madi{% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}gka{% endif %}"
+                    <div class="dossier__container team-{% if app.user.type == 'shv' or app.user.type == 'shv_keyuser' %}shv{% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}gka{% endif %}"
                          data-decorator="droppable" data-keyupper="vertical-list-nav">
                         {% set empty = true %}
                         {% do form.schuldItems.setRendered %}

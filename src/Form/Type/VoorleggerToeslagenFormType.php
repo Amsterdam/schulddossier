@@ -28,13 +28,13 @@ class VoorleggerToeslagenFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('toeslagenOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('toeslagenOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('toeslagenOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('toeslagenNvt', CheckboxType::class, [
             'required' => false

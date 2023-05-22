@@ -59,7 +59,7 @@ use ZipArchive;
 
 /**
  * @Route("/app/dossier")
- * @Security("is_granted('ROLE_MADI') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_MADI_KEYUSER') || is_granted('ROLE_ADMIN')")
+ * @Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
  */
 class AppDossierController extends AbstractController
 {
@@ -76,14 +76,14 @@ class AppDossierController extends AbstractController
         $forcedSchuldhulpbureaus = [];
 
         $section2status = [
-            'madi' => ['bezig_madi', 'compleet_madi', 'gecontroleerd_madi', 'verzonden_madi'],
-            'gka' => ['verzonden_madi', 'compleet_gka', 'dossier_gecontroleerd_gka'],
+            'shv' => ['bezig_shv', 'compleet_shv', 'gecontroleerd_shv', 'verzonden_shv'],
+            'gka' => ['verzonden_shv', 'compleet_gka', 'dossier_gecontroleerd_gka'],
             'archief' => ['afgesloten_gka'],
             'search' => []
         ];
-        $section = $request->query->get('section', $this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser()->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER ? 'gka' : 'madi');
+        $section = $request->query->get('section', $this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser()->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER ? 'gka' : 'shv');
 
-        if ($authChecker->isGranted('ROLE_MADI') || $authChecker->isGranted('ROLE_MADI_KEYUSER')) {
+        if ($authChecker->isGranted('ROLE_SHV') || $authChecker->isGranted('ROLE_SHV_KEYUSER')) {
             if ($this->getUser()->getSchuldhulpbureaus()->count() === 0) {
                 return $this->render('Security/accessDenied.html.twig', [
                     'message' => 'Gebruiker is niet gekoppeld aan een schuldhulpbureau.',
@@ -98,7 +98,7 @@ class AppDossierController extends AbstractController
             'status' => $section2status[$section],
             'eersteKeerVerzondenAanGKA' => ($this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser()->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER),
             'schuldhulpbureaus' => !empty($forcedSchuldhulpbureaus) ? $forcedSchuldhulpbureaus : $em->getRepository(Schuldhulpbureau::class)->findAll(),
-            'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_MADI || $this->getUser()->getType() === Gebruiker::TYPE_MADI_KEYUSER ? $this->getUser() : null,
+            'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_SHV || $this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
         ];
 //var_dump($seachQuery['schuldhulpbureaus']);
@@ -110,14 +110,14 @@ class AppDossierController extends AbstractController
         if ($section === 'gka') {
             $orderBy = 'gka-verzenddatum';
         }
-        // if user is from a madi limit his search results on the user schuldhulpbureaus
-        if ($authChecker->isGranted('ROLE_MADI') || $authChecker->isGranted('ROLE_MADI_KEYUSER')) {
+        // if user is from a shv limit his search results on the user schuldhulpbureaus
+        if ($authChecker->isGranted('ROLE_SHV') || $authChecker->isGranted('ROLE_SHV_KEYUSER')) {
             $seachQuery['schuldhulpbureaus'] = $forcedSchuldhulpbureaus;
         }
 
         $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize), $orderBy);
 
-        if ($seachQuery['section'] === 'madi' || $seachQuery['section'] === 'gka') {
+        if ($seachQuery['section'] === 'shv' || $seachQuery['section'] === 'gka') {
             $seachQuery['status'] = [];
             $seachQuery['schuldhulpbureau'] = null;
             $seachQuery['medewerkerSchuldhulpbureau'] = null;
@@ -145,7 +145,7 @@ class AppDossierController extends AbstractController
 
     /**
      * @Route("/prullenbak")
-     * @Security("is_granted('ROLE_MADI') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_MADI_KEYUSER') || is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
      */
     public function indexPrullenbakAction(Request $request, EntityManagerInterface $em)
     {
@@ -180,7 +180,7 @@ class AppDossierController extends AbstractController
         $dossier->setSchuldhulpbureau($this->getUser()->getSchuldhulpbureaus()->count() > 0 ? $this->getUser()->getSchuldhulpbureaus()->first() : null);
         $dossier->setTeamGka($this->getUser()->getSchuldhulpbureaus()->count() > 0 ? $this->getUser()->getSchuldhulpbureaus()->first()->getStandaardGkaTeam() : null);
         $dossier->setDossierTemplate('v1');
-        $dossier->setStatus('bezig_madi');
+        $dossier->setStatus('bezig_shv');
         $form = $this->createForm(CreateDossierFormType::class, $dossier);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -324,7 +324,7 @@ class AppDossierController extends AbstractController
             $subForm = $voorleggerForm->get('cdst');
             if (!is_null($subForm['transition']->getData())) {
                 $workflow->apply($dossier, $subForm['transition']->getData());
-                if ($subForm['transition']->getData() === 'verzenden_madi') {
+                if ($subForm['transition']->getData() === 'verzenden_shv') {
                     $dossier->setEersteKeerVerzondenAanGKA(true);
                 }
                 $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);

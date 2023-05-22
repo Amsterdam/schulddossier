@@ -24,17 +24,17 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints\Valid;
 
-class VoorleggerToelichtingAanvraagSchuldsaneringMadiFormType extends AbstractType
+class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('toelichtingAanvraagSchuldsaneringMadiOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('toelichtingAanvraagSchuldsaneringShvOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
-        $builder->add('toelichtingAanvraagSchuldsaneringMadiOntvangenGka', GkaStatusFormType::class, [
+        $builder->add('toelichtingAanvraagSchuldsaneringShvOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,

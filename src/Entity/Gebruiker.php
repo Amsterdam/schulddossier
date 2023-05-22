@@ -29,8 +29,8 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     const TYPE_GKA = 'gka';
     const TYPE_GKA_APPBEHEERDER = 'gka_appbeheerder';
 
-    const TYPE_MADI = 'madi';
-    const TYPE_MADI_KEYUSER = 'madi_keyuser';
+    const TYPE_SHV = 'shv';
+    const TYPE_SHV_KEYUSER = 'shv_keyuser';
 
     const TYPE_ONBEKEND = 'onbekend';
 
@@ -380,16 +380,16 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     {
         $defaultTypes = [];
         switch ($type) {
-            case self::TYPE_MADI_KEYUSER:
-                $defaultTypes['MaDi']['MaDi - Dossierbehandelaar'] = self::TYPE_MADI;
-                $defaultTypes['MaDi']['MaDi - Key User'] = self::TYPE_MADI_KEYUSER;
+            case self::TYPE_SHV_KEYUSER:
+                $defaultTypes['SHV']['SHV - Dossierbehandelaar'] = self::TYPE_SHV;
+                $defaultTypes['SHV']['SHV - Key User'] = self::TYPE_SHV_KEYUSER;
                 break;
 
             case self::TYPE_GKA_APPBEHEERDER:
                 $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
-                $defaultTypes['MaDi']['MaDi - Dossierbehandelaar'] = self::TYPE_MADI;
-                $defaultTypes['MaDi']['MaDi - Key User'] = self::TYPE_MADI_KEYUSER;
+                $defaultTypes['SHV']['SHV - Dossierbehandelaar'] = self::TYPE_SHV;
+                $defaultTypes['SHV']['SHV - Key User'] = self::TYPE_SHV_KEYUSER;
                 break;
 
             case self::TYPE_ADMIN:
@@ -398,8 +398,8 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
                 $defaultTypes['Applicatie'][ucfirst(self::TYPE_ONBEKEND)] = self::TYPE_ONBEKEND;
                 $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
-                $defaultTypes['MaDi']['MaDi - Dossierbehandelaar'] = self::TYPE_MADI;
-                $defaultTypes['MaDi']['MaDi - Key User'] = self::TYPE_MADI_KEYUSER;
+                $defaultTypes['SHV']['SHV - Dossierbehandelaar'] = self::TYPE_SHV;
+                $defaultTypes['SHV']['SHV - Key User'] = self::TYPE_SHV_KEYUSER;
 
                 break;
         }
@@ -408,7 +408,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
 
     public static function getTypesList()
     {
-        return [self::TYPE_MADI, self::TYPE_MADI_KEYUSER, self::TYPE_GKA, self::TYPE_GKA_APPBEHEERDER, self::TYPE_ADMIN, self::TYPE_ONBEKEND];
+        return [self::TYPE_SHV, self::TYPE_SHV_KEYUSER, self::TYPE_GKA, self::TYPE_GKA_APPBEHEERDER, self::TYPE_ADMIN, self::TYPE_ONBEKEND];
     }
 
     /**
@@ -420,16 +420,16 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     {
         $defaultTypes = [];
         switch ($type) {
-            case self::TYPE_MADI_KEYUSER:
-                $defaultTypes['MaDi']['MaDi - Dossierbehandelaar'] = self::TYPE_MADI;
-                $defaultTypes['MaDi']['MaDi - Key User'] = self::TYPE_MADI_KEYUSER;
+            case self::TYPE_SHV_KEYUSER:
+                $defaultTypes['SHV']['SHV - Dossierbehandelaar'] = self::TYPE_SHV;
+                $defaultTypes['SHV']['SHV - Key User'] = self::TYPE_SHV_KEYUSER;
                 break;
 
             case self::TYPE_GKA_APPBEHEERDER:
                 $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
-                $defaultTypes['MaDi']['MaDi - Dossierbehandelaar'] = self::TYPE_MADI;
-                $defaultTypes['MaDi']['MaDi - Key User'] = self::TYPE_MADI_KEYUSER;
+                $defaultTypes['SHV']['SHV - Dossierbehandelaar'] = self::TYPE_SHV;
+                $defaultTypes['SHV']['SHV - Key User'] = self::TYPE_SHV_KEYUSER;
                 break;
 
             case self::TYPE_ADMIN:
@@ -438,8 +438,8 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
                 $defaultTypes['Applicatie'][ucfirst(self::TYPE_ONBEKEND)] = self::TYPE_ONBEKEND;
                 $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
-                $defaultTypes['MaDi']['MaDi - Dossierbehandelaar'] = self::TYPE_MADI;
-                $defaultTypes['MaDi']['MaDi - Key User'] = self::TYPE_MADI_KEYUSER;
+                $defaultTypes['SHV']['SHV - Dossierbehandelaar'] = self::TYPE_SHV;
+                $defaultTypes['SHV']['SHV - Key User'] = self::TYPE_SHV_KEYUSER;
 
                 break;
         }
@@ -483,30 +483,30 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * Check if current user is part of a MaDi organisation, based on the following roles:
-     *     Gebruiker::TYPE_MADI,
-     *     Gebruiker::TYPE_MADI_KEYUSER,
+     * Check if current user is part of a Schuldhulpverlener organisation, based on the following roles:
+     *     Gebruiker::TYPE_SHV,
+     *     Gebruiker::TYPE_SHV_KEYUSER,
      *
      * @return bool
      */
-    public function isMadi(): bool
+    public function isSchuldhulpverlener(): bool
     {
         return in_array($this->getType(), [
-            self::TYPE_MADI,
-            self::TYPE_MADI_KEYUSER,
+            self::TYPE_SHV,
+            self::TYPE_SHV_KEYUSER,
         ], true);
     }
 
     /**
-     * Checks whether the user is a Madi Key User
+     * Checks whether the user is a Schuldhulpverlener Key User
      * This check can be used to check if a user has access by having one of the following role:
-     *     Gebruiker::TYPE_MADI_KEYUSER,
+     *     Gebruiker::TYPE_SHV_KEYUSER,
      *
      * @return bool
      */
-    public function isMadiKeyUser(): bool
+    public function isShvKeyUser(): bool
     {
-        return $this->getType() === self::TYPE_MADI_KEYUSER;
+        return $this->getType() === self::TYPE_SHV_KEYUSER;
     }
 
     /**
@@ -536,20 +536,20 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * Checks wether the user is either a Application Admin, a GKA Admin or a Madi Key User
+     * Checks wether the user is either a Application Admin, a GKA Admin or a Schuldhulpverlener Key User
      * This check can be used to check if a user has access by having one of the following roles:
      *     Gebruiker::TYPE_ADMIN,
      *     Gebruiker::TYPE_GKA_APPBEHEEDER,
-     *     Gebruiker::TYPE_MADI_KEYUSER,
+     *     Gebruiker::TYPE_SHV_KEYUSER,
      *
      * @return bool
      */
-    public function isGkaAppBeheerderOrMadiKeyUserOrApplicationAdmin(): bool
+    public function isGkaAppBeheerderOrShvKeyUserOrApplicationAdmin(): bool
     {
         return in_array($this->getType(), [
             self::TYPE_ADMIN,
             self::TYPE_GKA_APPBEHEERDER,
-            self::TYPE_MADI_KEYUSER,
+            self::TYPE_SHV_KEYUSER,
         ], true);
     }
 

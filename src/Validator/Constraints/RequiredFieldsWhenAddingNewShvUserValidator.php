@@ -8,11 +8,11 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 /**
- * Class RequiredFieldsWhenAddingNewMadiUserValidator
+ * Class RequiredFieldsWhenAddingNewShvUserValidator
  *
  * @package GemeenteAmsterdam\FixxxSchuldhulp\Validator\Constraints
  */
-class RequiredFieldsWhenAddingNewMadiUserValidator extends ConstraintValidator
+class RequiredFieldsWhenAddingNewShvUserValidator extends ConstraintValidator
 {
 
     /**
@@ -23,7 +23,7 @@ class RequiredFieldsWhenAddingNewMadiUserValidator extends ConstraintValidator
      */
     public function validate($protocol, Constraint $constraint): void
     {
-        if (strtolower($protocol->getType()) === 'madi') {
+        if (strtolower($protocol->getType()) === 'shv') {
             if (count($protocol->getSchuldhulpbureaus()) === 0) {
                 $this->context->buildViolation($constraint->message)
                     ->atPath('schuldhulpbureaus')

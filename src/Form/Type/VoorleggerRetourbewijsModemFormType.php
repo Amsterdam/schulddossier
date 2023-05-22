@@ -28,13 +28,13 @@ class VoorleggerRetourbewijsModemFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('retourbewijsModemOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('retourbewijsModemOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('retourbewijsModemOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('retourbewijsModemNvt', CheckboxType::class, [
             'required' => false

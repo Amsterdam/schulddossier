@@ -50,20 +50,20 @@ class ChangeDossierStatusType extends AbstractType
             $choices = [];
             $workflowChoices = [];
             $transitionChoices = [];
-            if ($workflow->can($dossier, 'afkeuren_madi')){
-                $transitionChoices['Afkeuren'] = 'afkeuren_madi';
+            if ($workflow->can($dossier, 'afkeuren_shv')){
+                $transitionChoices['Afkeuren'] = 'afkeuren_shv';
             }
             if ($workflow->can($dossier, 'afkeuren_dossier_gka')){
-                $transitionChoices['Dossier afwijzen (terug naar MaDi/Bewindvoerder)'] = 'afkeuren_dossier_gka';
+                $transitionChoices['Dossier afwijzen (terug naar Schuldhulpverlener)'] = 'afkeuren_dossier_gka';
             }
-            if ($workflow->can($dossier, 'opgevoerd_madi')){
-                $transitionChoices['Ter controle aanbieden'] = 'opgevoerd_madi';
+            if ($workflow->can($dossier, 'opgevoerd_shv')){
+                $transitionChoices['Ter controle aanbieden'] = 'opgevoerd_shv';
             }
-            if ($workflow->can($dossier, 'goedkeuren_madi')){
-                $transitionChoices['Goedkeuren'] = 'goedkeuren_madi';
+            if ($workflow->can($dossier, 'goedkeuren_shv')){
+                $transitionChoices['Goedkeuren'] = 'goedkeuren_shv';
             }
-            if ($workflow->can($dossier, 'verzenden_madi')){
-                $transitionChoices['Verzenden naar GKA'] = 'verzenden_madi';
+            if ($workflow->can($dossier, 'verzenden_shv')){
+                $transitionChoices['Verzenden naar GKA'] = 'verzenden_shv';
             }
             if ($workflow->can($dossier, 'gestart_gka')){
                 $transitionChoices['Start proces GKA'] = 'gestart_gka';
@@ -76,24 +76,24 @@ class ChangeDossierStatusType extends AbstractType
             }
 
             switch ($status) {
-                case Dossier::STATUS_BEZIG_MADI;
+                case Dossier::STATUS_BEZIG_SHV;
                     $workflowChoices = [
-                        'Ter controle aanbieden' => Dossier::STATUS_COMPLEET_MADI,
+                        'Ter controle aanbieden' => Dossier::STATUS_COMPLEET_SHV,
                     ];
                     break;
-                case Dossier::STATUS_COMPLEET_MADI:
+                case Dossier::STATUS_COMPLEET_SHV:
                     $workflowChoices = [
-                        'Afkeuren' => Dossier::STATUS_BEZIG_MADI,
-                        'Goedkeuren' => Dossier::STATUS_GECONTROLEERD_MADI,
+                        'Afkeuren' => Dossier::STATUS_BEZIG_SHV,
+                        'Goedkeuren' => Dossier::STATUS_GECONTROLEERD_SHV,
                     ];
                     break;
-                case Dossier::STATUS_GECONTROLEERD_MADI:
+                case Dossier::STATUS_GECONTROLEERD_SHV:
                     $workflowChoices = [
-                        'Afkeuren' => Dossier::STATUS_BEZIG_MADI,
-                        'Verzenden naar GKA' => Dossier::STATUS_VERZONDEN_MADI,
+                        'Afkeuren' => Dossier::STATUS_BEZIG_SHV,
+                        'Verzenden naar GKA' => Dossier::STATUS_VERZONDEN_SHV,
                     ];
                     break;
-                case Dossier::STATUS_VERZONDEN_MADI:
+                case Dossier::STATUS_VERZONDEN_SHV:
                     $workflowChoices = [
                         'Start proces GKA' => Dossier::STATUS_COMPLEET_GKA,
                     ];
@@ -101,7 +101,7 @@ class ChangeDossierStatusType extends AbstractType
                 case Dossier::STATUS_COMPLEET_GKA:
                     $workflowChoices = [
                         'Dossier akkoord' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
-                        'Dossier afwijzen (terug naar MaDi/Bewindvoerder)' => Dossier::STATUS_BEZIG_MADI,
+                        'Dossier afwijzen (terug naar Schuldhulpverlener)' => Dossier::STATUS_BEZIG_SHV,
                     ];
                     break;
                 case Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA:
@@ -118,12 +118,12 @@ class ChangeDossierStatusType extends AbstractType
                 ||
                 $this->user->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER
                 ||
-                $this->user->getType() === Gebruiker::TYPE_MADI_KEYUSER){
+                $this->user->getType() === Gebruiker::TYPE_SHV_KEYUSER){
                     $choices = [
-                        'bezig_madi' => Dossier::STATUS_BEZIG_MADI,
-                        'compleet_madi' => Dossier::STATUS_COMPLEET_MADI,
-                        'gecontroleerd_madi' => Dossier::STATUS_GECONTROLEERD_MADI,
-                        'verzonden_madi' => Dossier::STATUS_VERZONDEN_MADI,
+                        'bezig_shv' => Dossier::STATUS_BEZIG_SHV,
+                        'compleet_shv' => Dossier::STATUS_COMPLEET_SHV,
+                        'gecontroleerd_shv' => Dossier::STATUS_GECONTROLEERD_SHV,
+                        'verzonden_shv' => Dossier::STATUS_VERZONDEN_SHV,
                         'compleet_gka' => Dossier::STATUS_COMPLEET_GKA,
                         'dossier_gecontroleerd_gka' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
                         'afgesloten_gka' => Dossier::STATUS_AFGESLOTEN_GKA,
@@ -141,7 +141,7 @@ class ChangeDossierStatusType extends AbstractType
                 'placeholder' => false,
                 'choices' => $transitionChoices,
                 'choice_attr' => [
-                    'Ter controle aanbieden' => ['data-popup' => 'modal', 'data-root' => '#voorlegger_form', 'data-content-id' => 'madi-controlle-dialoog']
+                    'Ter controle aanbieden' => ['data-popup' => 'modal', 'data-root' => '#voorlegger_form', 'data-content-id' => 'shv-controlle-dialoog']
                 ],
             ]);
             $form->add('status', ChoiceType::class, [

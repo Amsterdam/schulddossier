@@ -28,13 +28,13 @@ class VoorleggerPolisbladZorgverzekeringFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('polisbladZorgverzekeringOntvangenMadi', MadiStatusFormType::class, [
+        $builder->add('polisbladZorgverzekeringOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
         $builder->add('polisbladZorgverzekeringOntvangenGka', GkaStatusFormType::class, [
             'required' => true,
-            'disabled' => $options['disable_group'] === 'madi'
+            'disabled' => $options['disable_group'] === 'shv'
         ]);
         $builder->add('polisbladZorgverzekeringNvt', CheckboxType::class, [
             'required' => false
