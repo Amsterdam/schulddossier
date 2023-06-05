@@ -12,7 +12,7 @@ parameters:
     swift_public_url: 'https://%swift_project_id%.%swift_external_domain%'
     thumbnail_service_url: '%env(THUMBNAILSERVICE_URL)%'
     app_mail_from: '%env(APP_NOTIFICATIE_FROM)%'
-    keycloak_version: '17'
+    keycloak_version: '21'
 
 
 services:
