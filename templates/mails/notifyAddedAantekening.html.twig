@@ -9,8 +9,8 @@
         <title>{{ block('subject') }}</title>
     </head>
     <body>
-        <p>Hallo {{ dossier.getMedewerkerSchuldhulpbureau.getNaam }},</p>
-        <p>Er is door het GKA een aantekening toegevoegd op een door jouw ingezonden dossier.</p>
+        <p>Hallo,</p>
+        <p>Er is een aantekening toegevoegd op een dossier die je in behandeling hebt.</p>
         <p>&nbsp;</p>
         <p>Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}</p>
         <p>Toegevoegd op: {{ 'now'|date('d-m-Y') }}</p>
@@ -28,9 +28,9 @@
 {%- endblock %}
 
 {% block txt -%}
-Hallo {{ dossier.getMedewerkerSchuldhulpbureau().getNaam() }},
+Hallo,
 
-    Er is door het GKA een aantekening toegevoegd op een door jouw ingezonden dossier.
+    Er is een aantekening toegevoegd op een dossier die je in behandeling hebt.
 
 Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}
 Controle op: {{ 'now'|date('d-m-Y') }}
