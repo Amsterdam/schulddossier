@@ -1,0 +1,47 @@
+{% block subject -%}
+    Dossier intern aangemaakt (GKA via Schulddossier) [{{ dossier.id }}]
+{%- endblock  %}
+
+{% block html -%}
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{{ block('subject') }}</title>
+    </head>
+    <body>
+    <p>Hallo {{ dossier.getMedewerkerSchuldhulpbureau.getNaam }},</p>
+    <p>Het GKA heeft een intern dossier aangemaakt van een door jouw ingezonden dossier.</p>
+    <p>&nbsp;</p>
+    <p>Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}</p>
+    <p>Controle op: {{ 'now'|date('d-m-Y') }}</p>
+    <p>&nbsp;</p>
+    {% if dossier.regasNummer is not empty %}
+        <p>Schuldhulpverlener dossiernr.: {{ dossier.regasNummer }}</p>
+    {% endif %}
+    {% if dossier.allegroNummer is not empty %}
+        <p>GKA dossiernr.: {{ dossier.allegroNummer }}</p>
+    {% endif %}
+    <p>&nbsp;</p>
+    <p><a href="{{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId}) }}">Open dossier</a>
+    </body>
+    </html>
+{%- endblock %}
+
+{% block txt -%}
+    Hallo {{ dossier.getMedewerkerSchuldhulpbureau.getNaam }},
+    Het GKA heeft een intern dossier aangemaakt van een door jouw ingezonden dossier.
+
+    Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}
+    Controle op: {{ 'now'|date('d-m-Y') }}
+
+    {% if dossier.regasNummer is not empty %}
+        Schuldhulpverlener dossiernr.: {{ dossier.regasNummer }}
+
+    {% endif %}
+    {% if dossier.allegroNummer is not empty %}
+        GKA dossiernr.: {{ dossier.allegroNummer }}
+
+    {% endif %}
+
+    {{ url('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.getId}) }}
+{%- endblock %}

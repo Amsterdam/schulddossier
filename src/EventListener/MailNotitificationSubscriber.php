@@ -135,10 +135,17 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
     /**
      * @param DossierAddedAantekeningEvent $event
      */
-    public function notifyShvAboutAantekening(DossierAddedAantekeningEvent $event): void
+    public function notifyAboutAantekening(DossierAddedAantekeningEvent $event): void
     {
-        if ($event->getDossier()->getMedewerkerSchuldhulpbureau() !== null && in_array($event->getGebruiker()->getType(), [Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_GKA], true)) {
-            $this->mail($this->fromNotificiatieAdres, $event->getDossier()->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyAddedAantekeningShv.html.twig', [
+        if ($event->getDossier()->getMedewerkerSchuldhulpbureau() !== null && $event->getGebruiker()->isGka()) {
+            $this->mail($this->fromNotificiatieAdres, $event->getDossier()->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyAddedAantekening.html.twig', [
+                'dossier' => $event->getDossier(),
+                'tokenStorage' => $this->tokenStorage
+            ]);
+        }
+
+        if ($event->getDossier()->getMedewerkerSchuldhulpbureau() !== null && $event->getGebruiker()->isSchuldhulpverlener()) {
+            $this->mail($this->fromNotificiatieAdres, $event->getDossier()->getTeamGka()->getEmail(), 'mails/notifyAddedAantekening.html.twig', [
                 'dossier' => $event->getDossier(),
                 'tokenStorage' => $this->tokenStorage
             ]);
@@ -152,6 +159,36 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
 
         if ($dossier->getMedewerkerSchuldhulpbureau() !== null && empty($dossier->getMedewerkerSchuldhulpbureau()->getEmail()) === false) {
             $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyAfkeurenShv.html.twig', [
+                'dossier' => $dossier,
+                'tokenStorage' => $this->tokenStorage
+            ]);
+        } else {
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen medewerker schuldhulpbureau opgegeven of er is geen e-mailadres voor de medewerker van dit dossier ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerSchuldhulpbureau() ? $dossier->getMedewerkerSchuldhulpbureau()->getId() : 'n/a']);
+        }
+    }
+
+    public function notifyGestartGka(Event $event)
+    {
+        /** @var $dossier Dossier */
+        $dossier = $event->getSubject();
+
+        if ($dossier->getMedewerkerSchuldhulpbureau() !== null && empty($dossier->getMedewerkerSchuldhulpbureau()->getEmail()) === false) {
+            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyGestartGka.html.twig', [
+                'dossier' => $dossier,
+                'tokenStorage' => $this->tokenStorage
+            ]);
+        } else {
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen medewerker schuldhulpbureau opgegeven of er is geen e-mailadres voor de medewerker van dit dossier ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerSchuldhulpbureau() ? $dossier->getMedewerkerSchuldhulpbureau()->getId() : 'n/a']);
+        }
+    }
+
+    public function notifyAfsluitenDossierGka(Event $event)
+    {
+        /** @var $dossier Dossier */
+        $dossier = $event->getSubject();
+
+        if ($dossier->getMedewerkerSchuldhulpbureau() !== null && empty($dossier->getMedewerkerSchuldhulpbureau()->getEmail()) === false) {
+            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyAfgeslotenGka.html.twig', [
                 'dossier' => $dossier,
                 'tokenStorage' => $this->tokenStorage
             ]);
@@ -175,25 +212,20 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function notifyChangedGka(DossierChangedEvent $event)
-    {
-        if ($event->getGebruiker()->getType() !== Gebruiker::TYPE_SHV) {
-            return;
-        }
+    public function notifyGoedkeurenDossierGka(Event $event)
+        {
+            /** @var $dossier Dossier */
+            $dossier = $event->getSubject();
 
-        if (in_array($event->getDossier()->getStatus(), ['verzonden_shv', 'compleet_gka', 'dossier_gecontroleerd_gka', 'afgesloten_gka']) === false) {
-            return;
+            if ($dossier->getMedewerkerSchuldhulpbureau() !== null && empty($dossier->getMedewerkerSchuldhulpbureau()->getEmail()) === false) {
+                $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerSchuldhulpbureau()->getEmail(), 'mails/notifyGoedkeurenGka.html.twig', [
+                    'dossier' => $dossier,
+                    'tokenStorage' => $this->tokenStorage
+                ]);
+            } else {
+                $this->logger->notice('Kan geen notifificatie sturen omdat er geen medewerker schuldhulpbureau opgegeven of er is geen e-mailadres voor de medewerker van dit dossier ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerSchuldhulpbureau() ? $dossier->getMedewerkerSchuldhulpbureau()->getId() : 'n/a']);
+            }
         }
-
-        if ($event->getDossier()->getTeamGka() !== null && empty($event->getDossier()->getTeamGka()->getEmail()) === false) {
-            $this->mail($this->fromNotificiatieAdres, $event->getDossier()->getTeamGka()->getEmail(), 'mails/notifyChangedGka.html.twig', [
-                'dossier' => $event->getDossier(),
-                'tokenStorage' => $this->tokenStorage
-            ]);
-        } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen team is toegewezen of er geen e-mailadres is ingevuld voor het team van dit dossier', ['dossierId' => $event->getDossier()->getId(), 'teamId' => $event->getDossier()->getTeamGka() ? $event->getDossier()->getTeamGka()->getId() : 'n/a']);
-        }
-    }
 
     protected function mail($from, $to, $template, $data)
     {
@@ -258,8 +290,10 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             'workflow.dossier_flow.completed.goedkeuren_shv' => 'notifyGoedkeurenShv',
             'workflow.dossier_flow.completed.verzenden_shv' => 'notifyVerzendenShv',
             'workflow.dossier_flow.completed.afkeuren_dossier_gka' => 'notifyAfkeurenDossierGka',
-            DossierChangedEvent::NAME => 'notifyChangedGka',
-            DossierAddedAantekeningEvent::NAME => 'notifyShvAboutAantekening',
+            'workflow.dossier_flow.completed.gestart_gka' => 'notifyGestartGka',
+            'workflow.dossier_flow.completed.goedkeuren_dossier_gka' => 'notifyGoedkeurenDossierGka',
+            'workflow.dossier_flow.completed.afsluiten_gka' => 'notifyAfsluitenDossierGka',
+            DossierAddedAantekeningEvent::NAME => 'notifyAboutAantekening',
             DossierAddedCorrespondentie::NAME => 'notifyAboutCorrespondentie'
         ];
     }
