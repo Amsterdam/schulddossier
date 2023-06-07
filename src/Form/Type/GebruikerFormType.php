@@ -53,6 +53,7 @@ class GebruikerFormType extends AbstractType
             'class' => Team::class
         ]);
         $builder->add('schuldhulpbureaus', EntityType::class, [
+            'label' => 'Organisaties',
             'required' => false,
             'expanded' => true,
             'multiple' => true,

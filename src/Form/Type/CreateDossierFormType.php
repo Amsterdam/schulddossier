@@ -126,7 +126,7 @@ class CreateDossierFormType extends AbstractType
 
         $builder->add('regasNummer', TextType::class, [
             'required' => false,
-            'label' => 'Schuldhulpverlener dossiernr.'
+            'label' => 'SHV/Bewindvoerder dossiernr.'
         ]);
 
         $builder->add('allegroNummer', TextType::class, [
