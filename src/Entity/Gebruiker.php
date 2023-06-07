@@ -381,15 +381,15 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
         $defaultTypes = [];
         switch ($type) {
             case self::TYPE_SHV_KEYUSER:
-                $defaultTypes['SHV']['SHV - Dossierbehandelaar'] = self::TYPE_SHV;
-                $defaultTypes['SHV']['SHV - Key User'] = self::TYPE_SHV_KEYUSER;
+                $defaultTypes['SHVer/Bewindvoerder']['SHV - Dossierbehandelaar'] = self::TYPE_SHV;
+                $defaultTypes['SHVer/Bewindvoerder']['SHV - Key User'] = self::TYPE_SHV_KEYUSER;
                 break;
 
             case self::TYPE_GKA_APPBEHEERDER:
                 $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
-                $defaultTypes['SHV']['SHV - Dossierbehandelaar'] = self::TYPE_SHV;
-                $defaultTypes['SHV']['SHV - Key User'] = self::TYPE_SHV_KEYUSER;
+                $defaultTypes['SHVer/Bewindvoerder']['SHV - Dossierbehandelaar'] = self::TYPE_SHV;
+                $defaultTypes['SHVer/Bewindvoerder']['SHV - Key User'] = self::TYPE_SHV_KEYUSER;
                 break;
 
             case self::TYPE_ADMIN:
@@ -398,8 +398,8 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
                 $defaultTypes['Applicatie'][ucfirst(self::TYPE_ONBEKEND)] = self::TYPE_ONBEKEND;
                 $defaultTypes['GKA']['GKA - Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['GKA - App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
-                $defaultTypes['SHV']['SHV - Dossierbehandelaar'] = self::TYPE_SHV;
-                $defaultTypes['SHV']['SHV - Key User'] = self::TYPE_SHV_KEYUSER;
+                $defaultTypes['SHVer/Bewindvoerder']['SHV - Dossierbehandelaar'] = self::TYPE_SHV;
+                $defaultTypes['SHVer/Bewindvoerder']['SHV - Key User'] = self::TYPE_SHV_KEYUSER;
 
                 break;
         }

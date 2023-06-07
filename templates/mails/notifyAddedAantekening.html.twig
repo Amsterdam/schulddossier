@@ -16,7 +16,7 @@
         <p>Toegevoegd op: {{ 'now'|date('d-m-Y') }}</p>
         <p>&nbsp;</p>
         {% if dossier.regasNummer is not empty %}
-        <p>Schuldhulpverlener dossiernr.: {{ dossier.regasNummer }}</p>
+        <p>Schuldhulpverlener/Bewindvoerder dossiernr.: {{ dossier.regasNummer }}</p>
         {% endif %}
         {% if dossier.allegroNummer is not empty %}
         <p>GKA dossiernr.: {{ dossier.allegroNummer }}</p>
@@ -36,7 +36,7 @@ Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}
 Controle op: {{ 'now'|date('d-m-Y') }}
 
 {% if dossier.regasNummer is not empty %}
-Schuldhulpverlener dossiernr.: {{ dossier.regasNummer }}
+Schuldhulpverlener/Bewindvoerder dossiernr.: {{ dossier.regasNummer }}
 
 {% endif %}
 {% if dossier.allegroNummer is not empty %}
