@@ -60,7 +60,7 @@ class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
         }
 
         $form->add('schuldHulpbureauGebruiker', SchuldhulpbureauMedewerkerType::class, [
-            'label' => 'Schuldhulpbureau gebruiker *',
+            'label' => 'Organisatie gebruiker *',
             'required' => true,
             'multiple' => false,
             'expanded' => false,
@@ -87,7 +87,7 @@ class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
 
         $schuldhulpbureau = $this->entityManager->getRepository(Schuldhulpbureau::class)->find($ids[0]);
         if (empty($schuldhulpbureau)) {
-            throw new EntityNotFoundException('Schuldhulpbureau with the following id does not exist: ' . $ids[0]);
+            throw new EntityNotFoundException('Organisatie with the following id does not exist: ' . $ids[0]);
         }
 
         $medewerkerSchuldhulpbureau = $this->entityManager->getRepository(Gebruiker::class)->find($ids[1]);

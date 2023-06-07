@@ -64,7 +64,7 @@ class SearchDossierFormType extends AbstractType
                 'class' => Schuldhulpbureau::class,
                 'multiple' => true,
                 'expanded' => false,
-                'placeholder' => 'Alle schuldhulpbureau\'s'
+                'placeholder' => 'Alle organisaties'
             ]);
         }
 

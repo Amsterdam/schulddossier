@@ -109,14 +109,14 @@
             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailalgemeen', {'dossierId': dossier.id}) }}" class="a__editable">
                 <div class="row">
                     <div class="col-1-2">
-                        <h4>Schuldhulpverlener</h4>
+                        <h4>Schuldhulpverlener/Bewindvoerder</h4>
                         <dl>
-                            <dt>Schuldhulpbureau</dt>
+                            <dt>Organisatie</dt>
                             <dd>{{ dossier.schuldhulpbureau }}</dd>
-                            <dt>Medewerker schuldhulpbureau</dt>
+                            <dt>Medewerker organisatie</dt>
                             <dd>{{ dossier.medewerkerSchuldhulpbureau }}</dd>
                             <dd>{{ dossier.medewerkerSchuldhulpbureau.telefoonnummer }}</dd>
-                            <dt>Schuldhulpverlener dossiernr.</dt>
+                            <dt>Schuldhulpverlener/Bewindvoerder dossiernr.</dt>
                             <dd>{{ dossier.regasNummer }}</dd>
                         </dl>
                     </div>

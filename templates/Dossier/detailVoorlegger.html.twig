@@ -32,7 +32,7 @@
                         <h2>Aanvraag schuldsanering {{ form_errors(voorleggerForm) }}</h2>
                         {% include 'Dossier/partial.voorleggerOndertekendAanvraagFormulier.html.twig' with {'form': voorleggerForm.ondertekendAanvraagFormulier, 'dossier': dossier, 'title': 'Ondertekende volmacht'} only %}
                         {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringClient.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringClient, 'dossier': dossier, 'title': 'Toelichting cliënt'} only %}
-                        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringShv.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringShv, 'dossier': dossier, 'title': 'Toelichting Schuldhulpverlener'} only %}
+                        {% include 'Dossier/partial.voorleggerToelichtingAanvraagSchuldsaneringShv.html.twig' with {'form': voorleggerForm.toelichtingAanvraagSchuldsaneringShv, 'dossier': dossier, 'title': 'Toelichting SHVer/Bewindvoerder'} only %}
 
                         <h2>Inkomen</h2>
                         {% include 'Dossier/partial.voorleggerInkomstenspecificatie.html.twig' with {'form': voorleggerForm.inkomstenspecificatie, 'dossier': dossier, 'title': 'Inkomstenspecificatie'} only %}
