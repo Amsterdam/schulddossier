@@ -86,7 +86,7 @@ class AppDossierController extends AbstractController
         if ($authChecker->isGranted('ROLE_SHV') || $authChecker->isGranted('ROLE_SHV_KEYUSER')) {
             if ($this->getUser()->getSchuldhulpbureaus()->count() === 0) {
                 return $this->render('Security/accessDenied.html.twig', [
-                    'message' => 'Gebruiker is niet gekoppeld aan een schuldhulpbureau.',
+                    'message' => 'Gebruiker is niet gekoppeld aan een organisatie.',
                 ]);
             }
             $forcedSchuldhulpbureaus = $this->getUser()->getSchuldhulpbureaus();
