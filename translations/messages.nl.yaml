@@ -1,8 +1,8 @@
 
 # workflow
-bezig_shv: Bezig (SHV)
-compleet_shv: Compleet, wachten op goedkeuren (SHV)
-gecontroleerd_shv: Gecontroleerd, wachten op verzenden (SHV)
+bezig_shv: Bezig (SHV/Bewindvoerder)
+compleet_shv: Compleet, wachten op goedkeuren (SHV/Bewindvoerder)
+gecontroleerd_shv: Gecontroleerd, wachten op verzenden (SHV/Bewindvoerder)
 verzonden_shv: Verzonden naar GKA
 bezig_gka: Bezig (GKA)
 compleet_gka: Dossier intern aangemaakt (GKA)
