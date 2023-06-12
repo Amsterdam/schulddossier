@@ -61,6 +61,7 @@ class SearchDossierFormType extends AbstractType
         if (!$this->authorizationChecker->isGranted('ROLE_SHV') && !$this->authorizationChecker->isGranted('ROLE_SHV_KEYUSER')) {
             $builder->add('schuldhulpbureaus', EntityType::class, [
                 'required' => false,
+                'label' => 'Organisaties',
                 'class' => Schuldhulpbureau::class,
                 'multiple' => true,
                 'expanded' => false,
@@ -81,6 +82,7 @@ class SearchDossierFormType extends AbstractType
 
             $form->add('medewerkerSchuldhulpbureau', EntityType::class, [
                 'required' => false,
+                'label' => 'Medewerker organisatie',
                 'class' => Gebruiker::class,
                 'multiple' => false,
                 'expanded' => false,
