@@ -126,19 +126,13 @@ class CreateDossierFormType extends AbstractType
 
         $builder->add('regasNummer', TextType::class, [
             'required' => false,
-            'label' => 'SHV/Bewindvoerder dossiernr.'
+            'label' => 'SHV-er/Bewindvoerder dossiernr.'
         ]);
 
         $builder->add('allegroNummer', TextType::class, [
             'required' => false,
             'label' => 'GKA dossiernr.'
         ]);
-
-//        $builder->add('allegroCheck', CheckboxType::class, [
-//            'label' => 'Aanwezigheid in Allegro controleren',
-//            'required' => false,
-//            'mapped' => false
-//        ]);
 
         $builder->addEventSubscriber($this->medewerkerSchuldhulpbureau);
     }

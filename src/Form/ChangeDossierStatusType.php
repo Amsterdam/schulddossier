@@ -54,7 +54,7 @@ class ChangeDossierStatusType extends AbstractType
                 $transitionChoices['Afkeuren'] = 'afkeuren_shv';
             }
             if ($workflow->can($dossier, 'afkeuren_dossier_gka')){
-                $transitionChoices['Dossier afwijzen (terug naar SHVer/Bewindvoerder)'] = 'afkeuren_dossier_gka';
+                $transitionChoices['Dossier afwijzen (terug naar SHV-er/Bewindvoerder)'] = 'afkeuren_dossier_gka';
             }
             if ($workflow->can($dossier, 'opgevoerd_shv')){
                 $transitionChoices['Ter controle aanbieden'] = 'opgevoerd_shv';
@@ -101,7 +101,7 @@ class ChangeDossierStatusType extends AbstractType
                 case Dossier::STATUS_COMPLEET_GKA:
                     $workflowChoices = [
                         'Dossier akkoord' => Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA,
-                        'Dossier afwijzen (terug naar SHVer/Bewindvoerder)' => Dossier::STATUS_BEZIG_SHV,
+                        'Dossier afwijzen (terug naar SHV-er/Bewindvoerder)' => Dossier::STATUS_BEZIG_SHV,
                     ];
                     break;
                 case Dossier::STATUS_DOSSIER_GECONTROLEERD_GKA:
