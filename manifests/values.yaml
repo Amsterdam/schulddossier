@@ -1,0 +1,45 @@
+name: example
+
+image:
+  registry: saks01weuacrpgpgo5qvmwo.azurecr.io
+  repository: salmagundi/schulddossier-phpfpm
+  tag: latest
+
+labels:
+  app: schulddossier
+
+network:
+  allow-ingress:
+    selector: app == 'schulddossier'
+    ingress:
+      - action: Allow
+    egress:
+      - action: Allow
+
+deployments:
+  schulddossier:
+    selectorLabels:
+      component: schulddossier
+    env:
+      PORT: '8080'
+    containers:
+      - name: main
+        ports:
+          - port: 8080
+            name: http
+
+services:
+  schulddossier:
+    selector:
+      component: schulddossier
+    ports:
+      - port: 8080
+        targetPort: http
+
+ingress:
+  schulddossier-internal:
+    className: nginx-internal
+    paths:
+      - path: /
+        service: schulddossier
+        port: 8080
