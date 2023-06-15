@@ -1,4 +1,4 @@
-name: example
+name: schulddossier
 
 image:
   registry: saks01weuacrpgpgo5qvmwo.azurecr.io
