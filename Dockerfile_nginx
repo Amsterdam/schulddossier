@@ -29,6 +29,7 @@ RUN chown -R nginx:nginx /var/www && \
 
 USER nginx
 
-CMD envsubst '$FASTCGI_PASS' < /tmp/default.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'
+RUN envsubst '$FASTCGI_PASS' < /tmp/default.template > /etc/nginx/conf.d/default.conf 
+CMD exec nginx -g 'daemon off;'
 
 EXPOSE 80
