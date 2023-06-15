@@ -1,11 +1,12 @@
-name: schulddossier-phpfpm
+name: schulddossier
 
 image:
   registry: saks01weuacrpgpgo5qvmwo.azurecr.io
   tag: latest
 
 labels:
-  app: schulddossier-phpfpm
+  app-phpfpm: schulddossier-phpfpm
+  app-nginx: schulddossier-nginx
 
 network:
   allow-ingress:
@@ -20,7 +21,7 @@ deployments:
     image:
       repository: salmagundi/schulddossier-phpfpm
     selectorLabels:
-      app: schulddossier-phpfpm
+      app-phpfpm: schulddossier-phpfpm
 
     containers:
       - name: main
@@ -31,7 +32,7 @@ deployments:
     image:
       repository: salmagundi/schulddossier-nginx
     selectorLabels:
-      app: schulddossier-nginx
+      app-nginx: schulddossier-nginx
     containers:
       - name: main
         ports:
@@ -41,13 +42,13 @@ deployments:
 services:
   schulddossier-phpfpm:
     selector:
-      app: schulddossier-phpfpm
+      app-phpfpm: schulddossier-phpfpm
     ports:
       - port: 8080
         targetPort: http
   schulddossier-nginx:
     selector:
-      app: schulddossier-nginx
+      app-nginx: schulddossier-nginx
     ports:
       - port: 8080
         targetPort: http
