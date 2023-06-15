@@ -1,0 +1,46 @@
+name: my-app
+
+tenantId:
+keyVaultName:
+keyVaultIdentity:
+workloadIdentity: 
+
+securityContext:
+  pod:
+    runAsNonRoot: true
+    runAsUser: 1000
+  container:
+    privileged: false
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
+
+image:
+  registry:
+  repository:
+  tag: latest
+
+# nodepool that will be used as toleration
+nodepool: ""
+
+# Default host
+host: ""
+
+labels: {}
+tolerations: []
+
+env: {}
+
+keyvault: {}
+
+# Resources
+secrets: {}
+jobs: {}
+cronJobs: {}
+serviceAccounts: {}
+deployments: {}
+services: {}
+ingress: {}
+
+# Network policies
+# https://docs.tigera.io/calico/latest/reference/resources/networkpolicy
+network: {}

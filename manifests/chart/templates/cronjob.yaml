@@ -1,0 +1,61 @@
+{{- $fullName := include "helm.fullname" $ -}}
+
+{{- range $manifestName, $values := $.Values.cronJobs }}
+{{- if ne .enabled false }}
+{{- $context := dict "local" . "root" $ -}}
+{{- $annotations := include "resource.annotations" $context }}
+{{- $labels := include "resource.labels" $context }}
+{{- $selectorLabels := include "resource.selectorLabels" $context }}
+---
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ printf "%s-%s" $manifestName $fullName }}
+  labels: {{ $labels | nindent 4 }}
+  {{- with $annotations }}
+  annotations: {{ . | nindent 4 }}
+  {{- end }}
+spec:
+  schedule: {{ $values.schedule | quote }}
+  # default 300 seconds == 5 minutes
+  startingDeadlineSeconds: {{ $values.startingDeadlineSeconds | default 300 }}
+  successfulJobsHistoryLimit: {{ $values.successfulJobsHistoryLimit | default 1 }}
+  failedJobsHistoryLimit:  {{ $values.failedJobsHistoryLimit | default 1 }}
+  concurrencyPolicy: {{ $values.concurrencyPolicy | default "Forbid" }}
+  jobTemplate:
+    spec:
+      backoffLimit: {{ .backoffLimit | default 5 }}
+      {{- with .ttlSecondsAfterFinished }}
+      ttlSecondsAfterFinished: {{ . }}
+      {{- end }}
+      template:
+        metadata:
+          labels:
+            {{- $labels | nindent 12 }}
+            {{- if ne .enableWorkloadIdentity false }}
+            {{- with .workloadIdentity | default $.Values.workloadIdentity }}
+            azure.workload.identity/use: "true"
+            {{- end }}
+            {{- end }}
+        spec:
+          restartPolicy: OnFailure
+          {{- with include "pod.serviceAccount" $context }}
+          {{- . | trim | nindent 10}}
+          {{- end }}
+          {{- with include "pod.tolerations" $context }}
+          tolerations: {{- . | trim | nindent 12}}
+          {{- end }}
+          {{- with include "pod.securityContext" $context }}
+          securityContext: {{- . | trim | nindent 12}}
+          {{- end }}
+
+          {{- with include "pod.containers" $context }}
+          containers: {{- . |  indent 12 }}
+          {{- end }}
+
+          {{- with include "pod.volumes" $context }}
+          volumes: {{- . | nindent 12 }}
+          {{- end }}
+{{ end }}
+{{ end }}
