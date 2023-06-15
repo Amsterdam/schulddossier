@@ -3,13 +3,17 @@
 dc = docker-compose
 
 ENVIRONMENT ?= local
-HELM_ARGS = manifests/chart \
-	-f manifests/values.yaml \
-	-f manifests/env/${ENVIRONMENT}.yaml \
+HELM_ARGS_PHPFPM = manifests/phpfpm/chart \
+	-f manifests/phpfpm/values.yaml \
+	-f manifests/phpfpm/env/${ENVIRONMENT}.yaml \
+	--set image.tag=${VERSION}
+
+HELM_ARGS_NGINX = manifests/nginx/chart \
+	-f manifests/nginx/values.yaml \
+	-f manifests/nginx/env/${ENVIRONMENT}.yaml \
 	--set image.tag=${VERSION}
 
 REGISTRY ?= localhost:5000
-REPOSITORY ?= tamm/example-app
 VERSION ?= latest
 
 build:
@@ -22,10 +26,12 @@ push:
 	$(dc) push
 
 manifests:
-	@helm template schulddossier $(HELM_ARGS) $(ARGS)
+	@helm template schulddossier-phpfpm $(HELM_ARGS_PHPFPM) $(ARGS)
+	@helm template schulddossier-nginx $(HELM_ARGS_NGINX) $(ARGS)
 
 deploy: manifests
-	helm upgrade --install schulddossier $(HELM_ARGS) $(ARGS)
+	helm upgrade --install schulddossier-phpfpm $(HELM_ARGS_PHPFPM) $(ARGS)
+	helm upgrade --install schulddossier-nginx $(HELM_ARGS_NGINX) $(ARGS)
 
 update-chart:
 	rm -rf manifests/chart

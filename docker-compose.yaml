@@ -1,19 +1,19 @@
 version: '3.5'
 services:
-  schulddossier_phpfpm:
+  schulddossier-phpfpm:
     build:
       context: .
       dockerfile: Dockerfile_phpfpm
     environment:
       - TZ=Europe/Amsterdam
-    image: ${REGISTRY:-kind-registry:5000}/${REPOSITORY:-salmagundi/schulddossier_phpfpm}:${VERSION:-latest}
+    image: ${REGISTRY:-kind-registry:5000}/${REPOSITORY:-salmagundi/schulddossier-phpfpm}:${VERSION:-latest}
     
-  schulddossier_nginx:
+  schulddossier-nginx:
     build:
       context: .
       dockerfile: Dockerfile_nginx
     environment:
       - TZ=Europe/Amsterdam
-    image: ${REGISTRY:-kind-registry:5000}/${REPOSITORY:-salmagundi/schulddossier_nginx}:${VERSION:-latest}
+    image: ${REGISTRY:-kind-registry:5000}/${REPOSITORY:-salmagundi/schulddossier-nginx}:${VERSION:-latest}
     depends_on:
-      - schulddossier_phpfpm
+      - schulddossier-phpfpm
