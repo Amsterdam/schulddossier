@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile_phpfpm
     environment:
       - TZ=Europe/Amsterdam
-    image: ${REGISTRY:-localhost:5000}/${REPOSITORY:-salmagundi/schuldossier_phpfpm}:${VERSION:-latest}
+    image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/schuldossier_phpfpm}:${VERSION:-latest}
     
   schulddossier_nginx:
     build:
@@ -14,6 +14,6 @@ services:
       dockerfile: Dockerfile_nginx
     environment:
       - TZ=Europe/Amsterdam
-    image: ${REGISTRY:-localhost:5000}/${REPOSITORY:-salmagundi/schuldossier_nginx}:${VERSION:-latest}
+    image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/schuldossier_nginx}:${VERSION:-latest}
     depends_on:
       - schulddossier_phpfpm

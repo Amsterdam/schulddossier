@@ -1,0 +1,12 @@
+image:
+  registry: kind-registry:5001
+
+host: localhost
+
+network:
+  allow-ingress:
+    enabled: false
+
+ingress:
+  echo-server-internal:
+    className: nginx
