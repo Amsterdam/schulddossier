@@ -18,6 +18,8 @@ network:
 
 deployments:
   schulddossier-phpfpm:
+    securityContext:
+      runAsUser: 82
     image:
       repository: salmagundi/schulddossier-phpfpm
     selectorLabels:
