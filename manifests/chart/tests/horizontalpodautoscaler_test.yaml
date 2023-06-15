@@ -1,0 +1,221 @@
+suite: Autoscaler
+release:
+  name: test
+templates:
+  - horizontalpodautoscaler.yaml
+tests:
+  - it: should be possible to specify min replicas
+    set:
+      image:
+        repository: defaultrepo
+
+      deployments:
+        main:
+          autoscale:
+            min: 4
+            cpu: 71%
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.minReplicas
+          value: 4
+      - equal:
+          path: spec.maxReplicas
+          value: 5
+      - equal:
+          path: spec.scaleTargetRef
+          value:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: main-test
+      - equal:
+          path: spec.metrics
+          value:
+            - type: Resource
+              resource: 
+                name: cpu
+                target:
+                  averageUtilization: 71%
+                  type: Utilization
+
+  - it: should be possible to specify max replicas
+    set:
+      image:
+        repository: defaultrepo
+
+      deployments:
+        main:
+          autoscale:
+            max: 6
+            cpu: 71%
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.minReplicas
+          value: 1
+      - equal:
+          path: spec.maxReplicas
+          value: 6
+      - equal:
+          path: spec.scaleTargetRef
+          value:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: main-test
+      - equal:
+          path: spec.metrics
+          value:
+            - type: Resource
+              resource: 
+                name: cpu
+                target:
+                  averageUtilization: 71%
+                  type: Utilization
+
+  - it: should be possible to specify min and max replicas
+    set:
+      image:
+        repository: defaultrepo
+
+      deployments:
+        main:
+          autoscale:
+            min: 1
+            max: 2
+            cpu: 71%
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.minReplicas
+          value: 1
+      - equal:
+          path: spec.maxReplicas
+          value: 2
+      - equal:
+          path: spec.scaleTargetRef
+          value:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: main-test
+      - equal:
+          path: spec.metrics
+          value:
+            - type: Resource
+              resource: 
+                name: cpu
+                target:
+                  averageUtilization: 71%
+                  type: Utilization
+
+  - it: should be have default replicas 1-3
+    set:
+      image:
+        repository: defaultrepo
+
+      deployments:
+        main:
+          autoscale:
+            cpu: 71%
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.minReplicas
+          value: 1
+      - equal:
+          path: spec.maxReplicas
+          value: 3
+
+  - it: should be possible to autoscale on cpu
+    set:
+      image:
+        repository: defaultrepo
+
+      deployments:
+        main:
+          autoscale:
+            cpu: 71%
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.scaleTargetRef
+          value:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: main-test
+      - equal:
+          path: spec.metrics
+          value:
+            - type: Resource
+              resource: 
+                name: cpu
+                target:
+                  averageUtilization: 71%
+                  type: Utilization
+
+  - it: should be possible to autoscale on memory
+    set:
+      image:
+        repository: defaultrepo
+
+      deployments:
+        main:
+          autoscale:
+            memory: 72%
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.scaleTargetRef
+          value:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: main-test
+      - equal:
+          path: spec.metrics
+          value:
+            - type: Resource
+              resource: 
+                name: memory
+                target:
+                  averageUtilization: 72%
+                  type: Utilization
+
+  - it: should be possible to autoscale on cpu and memory
+    set:
+      image:
+        repository: defaultrepo
+
+      deployments:
+        main:
+          autoscale:
+            cpu: 71%
+            memory: 72%
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.scaleTargetRef
+          value:
+            apiVersion: apps/v1
+            kind: Deployment
+            name: main-test
+      - equal:
+          path: spec.metrics
+          value:
+            - type: Resource
+              resource: 
+                name: cpu
+                target:
+                  averageUtilization: 71%
+                  type: Utilization
+            - type: Resource
+              resource: 
+                name: memory
+                target:
+                  averageUtilization: 72%
+                  type: Utilization

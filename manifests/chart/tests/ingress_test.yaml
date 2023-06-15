@@ -1,0 +1,153 @@
+suite: Ingress
+release:
+  name: test
+templates:
+  - ingress.yaml
+tests:
+  - it: should give an error if no host
+    set:
+      ingress:
+        my-ingress: {}
+    asserts:
+      - failedTemplate:
+          errorMessage: "Ingress must have a host"
+
+  - it: should have release name as postfix
+    set:
+      ingress:
+        my-ingress:
+          host: example.com
+    asserts:
+      - isKind:
+          of: Ingress
+      - equal:
+          path: metadata.name
+          value: my-ingress-test
+
+  - it: should use default host
+    set:
+      host: default.domain.com
+      ingress:
+        my-ingress: {}
+    asserts:
+      - equal:
+          path: spec.rules[0].host
+          value: default.domain.com
+
+  - it: should use ingress specific host
+    set:
+      host: default.domain.com
+      ingress:
+        my-ingress:
+          host: my.domain.com
+    asserts:
+      - equal:
+          path: spec.rules[0].host
+          value: my.domain.com
+
+  - it: should require a service when using paths
+    set:
+      ingress:
+        my-ingress:
+          host: my.domain.com
+          paths:
+            - path: /api
+    asserts:
+      - failedTemplate:
+          errorMessage: "Ingress path needs a service"
+
+  - it: should require a port when using paths
+    set:
+      ingress:
+        my-ingress:
+          host: my.domain.com
+          paths:
+            - path: /api
+              service: api-service
+    asserts:
+      - failedTemplate:
+          errorMessage: "Ingress path needs a port"
+
+  - it: should support paths
+    set:
+      ingress:
+        my-ingress:
+          host: my.domain.com
+          paths:
+            - path: /api
+              service: api-service
+              port: 8000
+    asserts:
+      - isSubset:
+          path: spec.rules[0].http.paths[0]
+          content:
+            path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service-test
+                port:
+                  number: 8000
+
+  - it: should support path type
+    set:
+      ingress:
+        my-ingress:
+          host: my.domain.com
+          paths:
+            - path: /api
+              pathType: Exact
+              service: api-service
+              port: 8000
+    asserts:
+      - isSubset:
+          path: spec.rules[0].http.paths[0]
+          content:
+            pathType: Exact
+
+  - it: should support TLS with secret prefix
+    set:
+      ingress:
+        my-ingress:
+          host: my.domain.com
+          paths:
+            - path: /api
+              service: api-service
+              port: 8000
+          tls:
+            secretName: certificate
+    asserts:
+      - equal:
+          path: spec.tls[0].secretName
+          value: certificate-test
+
+  - it: should support TLS with existing secret
+    set:
+      ingress:
+        my-ingress:
+          host: my.domain.com
+          paths:
+            - path: /api
+              service: api-service
+              port: 8000
+          tls:
+            secretNameOverride: existing-secret
+    asserts:
+      - equal:
+          path: spec.tls[0].secretName
+          value: existing-secret
+
+  - it: should support TLS with values-definition of chart version <=1.5.1
+    set:
+      ingress:
+        my-ingress:
+          host: my.domain.com
+          paths:
+            - path: /api
+              service: api-service
+              port: 8000
+          tls: certificate
+    asserts:
+      - equal:
+          path: spec.tls[0].secretName
+          value: certificate-test
