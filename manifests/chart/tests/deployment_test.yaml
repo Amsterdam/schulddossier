@@ -1,0 +1,346 @@
+suite: Deployments
+release:
+  name: test
+templates:
+  - deployment.yaml
+tests:
+  - it: should give an error if no repository
+    template: deployment.yaml
+    set:
+      deployments:
+        app:
+          containers:
+            - name: main
+    asserts:
+      - failedTemplate:
+          errorMessage: "A repository configuration is required"
+
+  - it: should have release name as postfix
+    set:
+      image:
+        repository: defaultrepo
+      deployments:
+        app: {}
+    asserts:
+      - isKind:
+          of: Deployment
+      - matchRegex:
+          path: metadata.name
+          pattern: -test$
+
+  - it: should use image parameters
+    set:
+      image:
+        registry: defaultregistry
+        repository: defaultrepo
+        tag: "latest"
+      deployments:
+        aaa:
+          containers:
+            - name: main
+              image:
+                registry: myregistry
+        bbb:
+          containers:
+            - name: main
+              image:
+                repository: myrepo
+        ccc:
+          containers:
+            - name: main
+              image:
+                tag: mytag
+        ddd:
+          containers:
+            - name: main
+    asserts:
+      - hasDocuments:
+          count: 4
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: myregistry/defaultrepo:latest
+        documentIndex: 0
+
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: defaultregistry/myrepo:latest
+        documentIndex: 1
+
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: defaultregistry/defaultrepo:mytag
+        documentIndex: 2
+
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: defaultregistry/defaultrepo:latest
+        documentIndex: 3
+
+  - it: should be possible to set default image for all containers in the pod
+    set:
+      image:
+        registry: defaultregistry
+        repository: defaultrepo
+        tag: latest
+      deployments:
+        main:
+          image:
+            registry: null
+            repository: podrepo
+            tag: podtag
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: podrepo:podtag
+
+  - it: should be possible to have multiple containers per pod
+    set:
+      image:
+        repository: defaultrepo
+      deployments:
+        main:
+          containers:
+            - name: one
+              command:
+                - command1
+            - name: two
+              command:
+                - command2
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].name
+          value: one
+      - equal:
+          path: spec.template.spec.containers[0].command
+          value:
+            - command1
+
+      - equal:
+          path: spec.template.spec.containers[1].command
+          value:
+            - command2
+
+  - it: should set env from secrets
+    set:
+      image:
+        repository: defaultrepo
+      secrets:
+        mysecrets:
+          type: opaque
+          secrets:
+            secret1: value1
+            secret2: value2
+      deployments:
+        main:
+          containers:
+            - name: main
+              secrets:
+                - mysecrets
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[?(@.name=='main')].env
+          value:
+            - name: "SECRET1"
+              valueFrom:
+                secretKeyRef:
+                  name: "mysecrets-test"
+                  key: "secret1"
+            - name: "SECRET2"
+              valueFrom:
+                secretKeyRef:
+                  name: "mysecrets-test"
+                  key: "secret2"
+
+  - it: should use env defined on deployment level
+    set:
+      image:
+        repository: defaultrepo
+      secrets:
+        mysecrets:
+          type: opaque
+          secrets:
+            secret1: value1
+            secret2: value2
+      deployments:
+        main:
+          secrets:
+            - mysecrets
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[?(@.name=='main')].env
+          value:
+            - name: "SECRET1"
+              valueFrom:
+                secretKeyRef:
+                  name: "mysecrets-test"
+                  key: "secret1"
+            - name: "SECRET2"
+              valueFrom:
+                secretKeyRef:
+                  name: "mysecrets-test"
+                  key: "secret2"
+
+  - it: should give an error if the reference to a secret does not exist
+    set:
+      image:
+        repository: defaultrepo
+      deployments:
+        main:
+          containers:
+            - name: main
+              secrets:
+                - mysecret
+    asserts:
+      - failedTemplate:
+          errorMessage: "Secret mysecret does not exist"
+
+  - it: should use env vars defined at the deployment in the container
+    set:
+      image:
+        repository: defaultrepo
+      deployments:
+        main:
+          env:
+            defaultkey1: defaultvalue1
+            defaultkey2: defaultvalue2
+          containers:
+            - name: main
+              env:
+                defaultkey2: overridden2
+                extrakey: extravalue
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[?(@.name=='main')].env
+          value:
+            - name: DEFAULTKEY1
+              value: defaultvalue1
+            - name: DEFAULTKEY2
+              value: overridden2
+            - name: EXTRAKEY
+              value: extravalue
+
+  - it: should use resources defined at the deployment in the container
+    set:
+      image:
+        repository: defaultrepo
+      deployments:
+        main:
+          resources:
+            requests:
+              cpu: 1
+              memory: "256Mi"
+            limits:
+              cpu: 2
+              memory: "512Mi"
+          containers:
+            - name: main
+              resources:
+                limits:
+                  cpu: 4
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[?(@.name=='main')].resources
+          value:
+            requests:
+              cpu: 1
+              memory: 256Mi
+            limits:
+              cpu: 4
+              memory: 512Mi
+
+  - it: should have securityContext in pods and containers
+    set:
+      image:
+        repository: defaultrepo
+      deployments:
+        main:
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.template.spec.securityContext
+          value:
+            runAsNonRoot: true
+            runAsUser: 1000
+      - equal:
+          path: spec.template.spec.containers[?(@.name=='main')].securityContext
+          value:
+            privileged: false
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+
+  - it: should allow for securityContext to overWrite
+    set:
+      image:
+        repository: defaultrepo
+
+      deployments:
+        main:
+          securityContext:
+            runAsNonRoot: false
+            runAsUser: 2000
+          containers:
+            - name: main
+              securityContext:
+                allowPrivilegeEscalation: true
+                privileged: true
+                readOnlyRootFilesystem: false
+    asserts:
+      - equal:
+          path: spec.template.spec.securityContext
+          value:
+            runAsNonRoot: false
+            runAsUser: 2000
+      - equal:
+          path: spec.template.spec.containers[?(@.name=='main')].securityContext
+          value:
+            allowPrivilegeEscalation: true
+            privileged: true
+            readOnlyRootFilesystem: false
+
+  - it: should use the default serviceAccount
+    set:
+      image:
+        repository: defaultrepo
+      serviceAccount: foo
+      deployments:
+        main:
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.template.spec.serviceAccountName
+          value: foo-test
+
+  - it: should be possible to override the serviceaccount per pod
+    set:
+      image:
+        repository: defaultrepo
+      deployments:
+        main:
+          serviceAccount: foo
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.template.spec.serviceAccountName
+          value: foo-test
+
+  - it: should inject labels to use workload identity
+    set:
+      workloadIdentity: default-client-id
+      image:
+        repository: defaultrepo
+      deployments:
+        main:
+          containers:
+            - name: main
+    asserts:
+      - isSubset:
+          path: spec.template.metadata.labels
+          content:
+            azure.workload.identity/use: "true"

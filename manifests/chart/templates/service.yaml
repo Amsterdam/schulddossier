@@ -1,0 +1,29 @@
+{{- $root := . -}}
+{{- $fullName := include "helm.fullname" $ -}}
+
+{{- range $manifestName, $values := $.Values.services }}
+{{- if ne $values.enabled false }}
+
+{{- $context := dict "local" . "root" $ -}}
+{{- $annotations := include "resource.annotations" $context }}
+{{- $labels := include "resource.labels" $context }}
+{{- $selectorLabels := include "resource.selectorLabels" $context }}
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ $manifestName }}-{{ $fullName }}"
+  labels: {{ $labels | nindent 4 }}
+  {{- with $annotations }}
+  annotations: {{ . | nindent 4 }}
+  {{- end }}
+spec:
+  type: {{ .type | default "ClusterIP" }}
+  ports: {{ .ports | toYaml | nindent 4 }}
+  selector: 
+    {{- $selectorLabels | nindent 4 }}
+    {{- .selector | toYaml | nindent 4 }}
+
+{{- end }}
+{{- end }}
