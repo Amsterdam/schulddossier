@@ -1,0 +1,10 @@
+version: '3.5'
+services:
+  app:
+    build:
+      context: .
+    environment:
+      - TZ=Europe/Amsterdam
+    image: ${REGISTRY:-localhost:5000}/${REPOSITORY:-salmagundi/schuldossier}:${VERSION:-latest}
+    ports:
+      - '3000:80'
