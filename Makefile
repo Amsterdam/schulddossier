@@ -15,6 +15,9 @@ VERSION ?= latest
 build:
 	$(dc) build
 
+build-force-rm:
+	$(dc) build --force-rm
+
 test:
 	echo "No tests available"
 

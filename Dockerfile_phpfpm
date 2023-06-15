@@ -52,11 +52,9 @@ RUN mkdir -p /var/www/public/localworkingstorage/dossier
 WORKDIR /var/www
 
 RUN chown -R www-data: /var/www
-RUN chown -R www-data: /etc/hosts
 
 USER www-data
 
 RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
 
-# CMD ["/var/www/docker-entrypoint_phpfpm.sh"]
-CMD ["sleep 1000"]
+CMD ["/var/www/docker-entrypoint_phpfpm.sh"]
