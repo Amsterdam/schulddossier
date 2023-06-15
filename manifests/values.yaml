@@ -2,7 +2,7 @@ name: example
 
 image:
   registry: saks01weuacrpgpgo5qvmwo.azurecr.io
-  repository: salmagundi/schulddossier-phpfpm
+  repository: salmagundi/schulddossier_phpfpm
   tag: latest
 
 labels:

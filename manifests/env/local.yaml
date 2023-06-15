@@ -1,5 +1,5 @@
 image:
-  registry: kind-registry:5001
+  registry: kind-registry:5000
 
 host: localhost
 
