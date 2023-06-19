@@ -28,7 +28,7 @@ class VoorleggerRetourbewijsModemFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('retourbewijsModemOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('retourbewijsModemOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

@@ -28,7 +28,7 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('arbeidsovereenkomstOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('arbeidsovereenkomstOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

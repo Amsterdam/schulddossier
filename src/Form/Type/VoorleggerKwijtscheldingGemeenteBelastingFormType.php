@@ -28,7 +28,7 @@ class VoorleggerKwijtscheldingGemeenteBelastingFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('kwijtscheldingGemeenteBelastingOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('kwijtscheldingGemeenteBelastingOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
