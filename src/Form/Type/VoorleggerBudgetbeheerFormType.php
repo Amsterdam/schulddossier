@@ -28,7 +28,7 @@ class VoorleggerBudgetbeheerFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('budgetbeheerOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('budgetbeheerOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

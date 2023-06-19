@@ -28,7 +28,7 @@ class VoorleggerAutoTaxatieFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('autoTaxatieOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('autoTaxatieOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

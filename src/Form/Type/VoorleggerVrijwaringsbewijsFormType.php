@@ -28,7 +28,7 @@ class VoorleggerVrijwaringsbewijsFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('vrijwaringsbewijsOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('vrijwaringsbewijsOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

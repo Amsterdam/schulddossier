@@ -28,7 +28,7 @@ class VoorleggerVoorlopigeTeruggaafBelastingdienstFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('voorlopigeTeruggaafBelastingdienstOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('voorlopigeTeruggaafBelastingdienstOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

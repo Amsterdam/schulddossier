@@ -28,7 +28,7 @@ class VoorleggerCjibFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('cjibOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('cjibOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

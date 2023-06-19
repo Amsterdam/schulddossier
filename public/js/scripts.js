@@ -524,7 +524,7 @@
         q = 'input[type="text"], input[type="checkbox"], input[type="file"], input[type="radio"]:checked, textarea',
         formElements = self.querySelectorAll(q),
         eventElem = self.querySelectorAll('input, textarea'),
-        radio = self.querySelector('input[type="radio"][name="voorlegger_form[alimentatie][alimentatieOntvangenMadi]"]:checked'),
+        radio = self.querySelector('input[type="radio"][name="voorlegger_form[alimentatie][alimentatieOntvangenShv]"]:checked'),
         _formChange = function(e){
           console.log(e);
           console.log(self.dataset.initialData);
@@ -532,16 +532,10 @@
           console.log(self.dataset.initialData === _getData());
         },
         _getData = function(){
-          // console.log(self.querySelector('input[type="radio"][name="voorlegger_form[alimentatie][alimentatieOntvangenMadi]"]:checked').value);
           formElements = self.querySelectorAll(q);
           return [].map.call(formElements, function( input ) {
-              // console.log(input.type);
               if (input.type === 'radio'){
-                // console.log(input.value);
-                // console.log(input.name);
-
-                // console.log(input.parentNode.querySelector('input[name="' + input.getAttribute('name') + '"]:checked').value);
-              }else {
+              } else {
               }
                 return input.value;
           }).join( '|' );
@@ -657,7 +651,6 @@
           title.textContent = '';
           counter.textContent = '';
           _reset();
-          // if (extension !== 'pdf' && extension !== 'html' && extension !== 'jpeg' && extension !== 'jpg' && extension !== 'png') {
           if (extension !== 'pdf' && extension !== 'jpeg' && extension !== 'jpg' && extension !== 'png') {
             self.classList.remove('loading');
             self.classList.add('disabled');
@@ -809,7 +802,6 @@
       btnNext.addEventListener('click', _nextPage);
       btnPrev.addEventListener('click', _prevPage);
       viewerContainer.addEventListener('mousedown', _viewerMouseDown, false);
-      //window.addEventListener('mouseup', _viewerMouseUp, false);
 
       for (var i = 0; i < documents.length; i++){
         documents[i].select = _selectDocument;
@@ -1387,8 +1379,6 @@
       var min = this.dataset.numMin ? parseInt(this.dataset.numMin) : 0,
           max = this.dataset.numMax ? parseInt(this.dataset.numMax) : 1000000;
       return validators['default'].call(this, {
-        // 'valid': this.value !== '' && /^(?:[1-9][0-9]{0,5}(?:\.\d{1,2})?(?:,\d{1,2})?|1000000|1000000.00|1000000.0|1000000,0|1000000,00)$/.test(this.value),
-        // 'valid': this.value !== '' && /^-?(?=.*[1-9])\d+(\.\d+)?(,\d+)?$/.test(this.value),
         'valid': (function(v){
           v = v.replace(',', '.');
           if (v.split('.').length > 2){
@@ -1404,7 +1394,6 @@
       var min = this.dataset.numMin ? parseInt(this.dataset.numMin) : -100000,
           max = this.dataset.numMax ? parseInt(this.dataset.numMax) : 100000;
       return validators['default'].call(this, {
-        //'valid': this.value === '' || /^-?(?:[0-9][0-9]{0,4}(?:\.\d{1,2})?(?:,\d{1,2})?|100000|100000.00|100000.0|100000,0|100000,00)$/.test(this.value),
         'valid': (function(v){
           if (v === '') return true;
           v = v.replace(',', '.');
@@ -1436,7 +1425,7 @@
 
       if (val === -1){
         nvtCheckbox.checked = true;
-      }else {
+      } else {
         nvtCheckbox.checked = false;
         statusRadio.checked = true;
       }

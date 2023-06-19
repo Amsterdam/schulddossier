@@ -30,7 +30,7 @@ class VoorleggerLegitimatieFormType extends AbstractType
     {
 
 
-        $builder->add('legitimatieOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('legitimatieOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
