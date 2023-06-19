@@ -28,7 +28,7 @@ class VoorleggerKostgeldFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('kostgeldOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('kostgeldOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

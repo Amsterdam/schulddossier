@@ -28,7 +28,7 @@ class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractTyp
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('toelichtingAanvraagSchuldsaneringShvOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('toelichtingAanvraagSchuldsaneringShvOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

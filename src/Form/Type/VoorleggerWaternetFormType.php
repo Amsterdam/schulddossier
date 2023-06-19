@@ -28,7 +28,7 @@ class VoorleggerWaternetFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('waternetOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('waternetOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

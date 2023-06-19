@@ -28,7 +28,7 @@ class VoorleggerBeschikkingOnderBewindstellingFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('beschikkingOnderBewindstellingOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('beschikkingOnderBewindstellingOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
