@@ -28,7 +28,7 @@ class VoorleggerAlimentatieEchtscheidingsconvenantFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('alimentatieEchtscheidingsconvenantOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('alimentatieEchtscheidingsconvenantOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

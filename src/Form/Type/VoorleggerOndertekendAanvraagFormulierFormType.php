@@ -30,7 +30,7 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('ondertekendAanvraagFormulierOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('ondertekendAanvraagFormulierOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

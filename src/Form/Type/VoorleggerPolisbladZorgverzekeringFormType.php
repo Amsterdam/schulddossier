@@ -28,7 +28,7 @@ class VoorleggerPolisbladZorgverzekeringFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('polisbladZorgverzekeringOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('polisbladZorgverzekeringOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

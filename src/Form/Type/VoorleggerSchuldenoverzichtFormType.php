@@ -28,7 +28,7 @@ class VoorleggerSchuldenoverzichtFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('schuldenoverzichtOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('schuldenoverzichtOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);

@@ -28,7 +28,7 @@ class VoorleggerInzageToetsingBkrFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('inzageToetsingBkrOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('inzageToetsingBkrOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
