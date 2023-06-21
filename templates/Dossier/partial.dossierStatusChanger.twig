@@ -3,7 +3,6 @@
     Huidige status: <strong>{{ dossier.status|trans }}</strong>
     <br>
     <br>
-    <span>Wijzig dossier status:</span>
 
     {{ form_widget(changeDossierStatusForm.transition, {'attr': {'data-current': dossier.status, 'class': 'dossier-status__buttons'}}) }}
     {{ form_widget(changeDossierStatusForm.status, {'attr': {'data-current': dossier.status, 'class': 'dossier-status__select'}}) }}

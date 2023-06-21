@@ -9,63 +9,61 @@ use DateTime;
 
 class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
 {
+    public const DOSSIERS_JSON_FILENAME = 'dossiers.json';
 
     /**
      * @inheritDoc
      */
     public function load(ObjectManager $manager)
     {
-        $schuldhulpBureau = $this->getReference(SchuldhulpBureauFixtures::SCHULDHULP_BUREAU_REFERENCE);
+        $dossiers = $this->loadDossiersJson();
+        $schuldhulpBureau = $this->getReference('schuldhulpbureau');
 
-        $dossier = new Dossier();
-        $dossier->setTeamGka($this->getReference('Team 1'));
-        $dossier->setSchuldhulpbureau($schuldhulpBureau);
-        $dossier->setMedewerkerSchuldhulpbureau($this->getReference(GebruikerFixtures::SHV_USER_REFERENCE));
-        $dossier->setClientVoorletters("T");
-        $dossier->setClientNaam("Tester Testemans");
-        $dossier->setClientGeslacht('Man');
-        $dossier->setClientGeboortedatum(new DateTime('12-11-1953'));
-        $dossier->setClientBSN('282372714');
-        $dossier->setClientTelefoonnummer('0634449270');
-        $dossier->setClientEmail('mail@invalid.nl');
-        $dossier->setClientStraat('Westwouderstraat');
-        $dossier->setClientHuisnummer('21');
-        $dossier->setClientPostcode('1023VN');
-        $dossier->setClientWoonplaats('Amsterdam');
-        $dossier->setPartnerNvt(true);
-        $dossier->setAanmaker($this->getReference(GebruikerFixtures::SHV_USER_REFERENCE));
-        $dossier->setDossierTemplate('v1');
-        $dossier->setStatus('bezig_shv');
+        for ($i = 0; $i < 11; $i++) {
+            $aanmaker = ($i % 2) === 0 ? GebruikerFixtures::SHV_USER_REFERENCE : GebruikerFixtures::SHV_KEYUSER_USER_REFERENCE;
 
-        $this->addReference('dossier', $dossier);
+            $dossier = new Dossier();
+            $dossier->setTeamGka($this->getReference('Team 3'));
+            $dossier->setSchuldhulpbureau($schuldhulpBureau);
+            $dossier->setRegasNummer(($i + 2) . 634638 . $i);
+            $dossier->setMedewerkerSchuldhulpbureau($this->getReference($aanmaker));
+            $dossier->setClientVoorletters($dossiers[$i]['voorletters']);
+            $dossier->setClientNaam($dossiers[$i]['naam']);
+            $dossier->setClientGeslacht($dossiers[$i]['geslacht']);
+            $dossier->setClientGeboortedatum(new DateTime($dossiers[$i]['dateOfBirth']));
+            $dossier->setClientBSN($dossiers[$i]['bsn']);
+            $dossier->setClientTelefoonnummer('0634449272');
+            $dossier->setClientEmail($dossiers[$i]['email']);
+            $dossier->setClientStraat('Czaar Peterstraat');
+            $dossier->setClientHuisnummer('51');
+            $dossier->setClientPostcode('1018PB');
+            $dossier->setClientWoonplaats('Amsterdam');
+            $dossier->setPartnerNvt(true);
+            $dossier->setAanmaker($this->getReference($aanmaker));
+            $dossier->setDossierTemplate('v1');
+            $dossier->setStatus($dossiers[$i]['status']);
+            $dossier->setEersteKeerVerzondenAanGKA($dossiers[$i]['verzondenGka']);
+            $dossier->setInPrullenbak($dossiers[$i]['inPrullenbak']);
 
-        $manager->persist($dossier);
+            if($dossiers[$i]['verzondenGka']) {
+                $dossier->setAllegroNummer(834 . ($i-1) . 3879 . $i);
+            }
 
-        $dossier = new Dossier();
-        $dossier->setTeamGka($this->getReference('Team 2'));
-        $dossier->setSchuldhulpbureau($schuldhulpBureau);
-        $dossier->setMedewerkerSchuldhulpbureau($this->getReference(GebruikerFixtures::SHV_KEYUSER_USER_REFERENCE));
-        $dossier->setClientVoorletters("WA");
-        $dossier->setClientNaam("Wolfgang Amadeus Mozart");
-        $dossier->setClientGeslacht('Man');
-        $dossier->setClientGeboortedatum(new DateTime('11-11-1985'));
-        $dossier->setClientBSN('596897169');
-        $dossier->setClientTelefoonnummer('0634449271');
-        $dossier->setClientEmail('mozart@invalid.nl');
-        $dossier->setClientStraat('Czaar Peterstraat');
-        $dossier->setClientHuisnummer('51');
-        $dossier->setClientPostcode('1018PB');
-        $dossier->setClientWoonplaats('Amsterdam');
-        $dossier->setPartnerNvt(true);
-        $dossier->setAanmaker($this->getReference(GebruikerFixtures::SHV_KEYUSER_USER_REFERENCE));
-        $dossier->setDossierTemplate('v1');
-        $dossier->setStatus('gecontroleerd_shv');
+            $this->addReference($i === 0 ? 'dossier' : 'dossier'.$i, $dossier);
 
-        $this->addReference('dossier2', $dossier);
-
-        $manager->persist($dossier);
+            $manager->persist($dossier);
+        }
 
         $manager->flush();
+    }
+
+    private function loadDossiersJson()
+    {
+        $dir = explode('src/', __DIR__);
+        $file = $dir[0] . self::DOSSIERS_JSON_FILENAME;
+        $jsonString = file_get_contents($file);
+
+        return array_values(array_filter(json_decode($jsonString, true)));
     }
 
     public function getDependencies()
