@@ -1,0 +1,108 @@
+html {
+  font-size: 62.5%;
+  @include medium {
+    font-size: 50%;
+  }
+}
+
+body,
+.font-normal,
+pre,
+input[type="checkbox"] + strong {
+  font-size: $fontSize;
+}
+.bold, b, strong, th {
+  font-weight:700;
+}
+[type="text"],
+[type="search"],
+[type="email"],
+[type="password"],
+[type="url"],
+[type="number"],
+[type="date"],
+[type="time"],
+[type="tel"],
+[type="datalist"],
+select,
+option,
+textarea {
+  font-size: $fontSize;
+}
+select::-ms-expand {
+    display: none;
+}
+
+body {
+  line-height: $lineHeightRelative;
+  color: $textColor;
+}
+a:hover {
+  color: darken($textColor, 20);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 17px;
+}
+
+::-webkit-scrollbar-button {
+  width: 17px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 4px solid white;
+  background-color: rgba(0,0,0,.2);
+}
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+
+h1, .huge {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+h2, .big {
+  font-size: 2.4rem;
+  line-height: 1;
+  margin-bottom: 0.2em;
+}
+h3, .large {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+a {
+  color: $textColor;
+}
+h1, h2, h3 {
+  font-weight: 400;
+}
+h4, .normal {
+  font-size: $fontSize;
+  line-height: $lineHeightRelative;
+}
+h5, .small {
+  font-size: $fontSmallSize;
+  line-height: $lineHeightRelative;
+}
+h6, .tiny {
+  font-size: 1.2rem;
+  line-height: $lineHeightRelative;
+}
+mark {
+  background-color: yellow;
+}
+dl dt {
+  font-weight: bold;
+}
+dl dd {
+  margin: 1em 0 1em 0em;
+}
