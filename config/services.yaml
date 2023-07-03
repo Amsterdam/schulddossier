@@ -71,10 +71,10 @@ services:
     app.form.type.create:
         class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType
         arguments:
-            - '@GemeenteAmsterdam\FixxxSchuldhulp\Form\Event\TransformMedewerkerSchuldhulpbureau'
+            - '@GemeenteAmsterdam\FixxxSchuldhulp\Form\Event\TransformMedewerkerOrganisatie'
 
     app.form.type.employeetype:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldhulpbureauMedewerkerType
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\OrganisatieMedewerkerType
         arguments:
             - '@security.token_storage'
             - '@doctrine.orm.entity_manager'

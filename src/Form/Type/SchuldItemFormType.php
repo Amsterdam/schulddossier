@@ -3,11 +3,9 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Doctrine\ORM\EntityManagerInterface;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\DataTransformer\IdToSchuldeiserTransformer;
 use Psr\Log\LoggerInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

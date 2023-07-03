@@ -8,7 +8,6 @@ use Serializable;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -114,14 +113,14 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     private $teamGka;
 
     /**
-     * @var Schuldhulpbureau[]|ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Schuldhulpbureau")
+     * @var Organisatie[]|ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Organisatie")
      * @ORM\JoinTable(
      *  joinColumns={@ORM\JoinColumn(name="gebruiker_id", referencedColumnName="id")},
-     *  inverseJoinColumns={@ORM\JoinColumn(name="schuldhulpbureau_id", referencedColumnName="id")}
+     *  inverseJoinColumns={@ORM\JoinColumn(name="organisatie_id", referencedColumnName="id")}
      * )
      */
-    private $schuldhulpbureaus;
+    private $organisaties;
 
     /**
      * @var boolean
@@ -132,7 +131,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     public function __construct()
     {
         $this->enabled = true;
-        $this->schuldhulpbureaus = new ArrayCollection();
+        $this->organisaties = new ArrayCollection();
     }
 
     /**
@@ -281,27 +280,27 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
         $this->teamGka = $teamGka;
     }
 
-    public function getSchuldhulpbureaus()
+    public function getOrganisaties()
     {
-        return $this->schuldhulpbureaus;
+        return $this->organisaties;
     }
 
-    public function addSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau)
+    public function addOrganisatie(Organisatie $organisatie)
     {
-        if ($this->hasSchuldhulpbureau($schuldhulpbureau) === false) {
-            $this->schuldhulpbureaus->add($schuldhulpbureau);
+        if ($this->hasOrganisatie($organisatie) === false) {
+            $this->organisaties->add($organisatie);
         }
     }
 
-    public function hasSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau)
+    public function hasOrganisatie(Organisatie $organisatie)
     {
-        return $this->schuldhulpbureaus->contains($schuldhulpbureau);
+        return $this->organisaties->contains($organisatie);
     }
 
-    public function removeSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau)
+    public function removeOrganisatie(Organisatie $organisatie)
     {
-        if ($this->hasSchuldhulpbureau($schuldhulpbureau) === true) {
-            $this->schuldhulpbureaus->removeElement($schuldhulpbureau);
+        if ($this->hasOrganisatie($organisatie) === true) {
+            $this->organisaties->removeElement($organisatie);
         }
     }
 
@@ -386,7 +385,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
                 break;
 
             case self::TYPE_GKA_APPBEHEERDER:
-                $defaultTypes['GKA']['Dossierbehandelaar'] = self::TYPE_GKA;
+                $defaultTypes['GKA']['GKA-Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
                 $defaultTypes['Schuldhulpverlener/Bewindvoerder']['Dossierbehandelaar'] = self::TYPE_SHV;
                 $defaultTypes['Schuldhulpverlener/Bewindvoerder']['Key User'] = self::TYPE_SHV_KEYUSER;
@@ -396,7 +395,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
             case 'ALL_TYPES':
                 $defaultTypes['Applicatie'][ucfirst(self::TYPE_ADMIN)] = self::TYPE_ADMIN;
                 $defaultTypes['Applicatie'][ucfirst(self::TYPE_ONBEKEND)] = self::TYPE_ONBEKEND;
-                $defaultTypes['GKA']['Dossierbehandelaar'] = self::TYPE_GKA;
+                $defaultTypes['GKA']['GKA-Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
                 $defaultTypes['Schuldhulpverlener/Bewindvoerder']['Dossierbehandelaar'] = self::TYPE_SHV;
                 $defaultTypes['Schuldhulpverlener/Bewindvoerder']['Key User'] = self::TYPE_SHV_KEYUSER;

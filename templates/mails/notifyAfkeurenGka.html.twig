@@ -9,7 +9,7 @@
         <title>{{ block('subject') }}</title>
     </head>
     <body>
-        <p>Hallo {{ dossier.getMedewerkerSchuldhulpbureau.getNaam }},</p>
+        <p>Hallo {{ dossier.getMedewerkerOrganisatie.getNaam }},</p>
         <p>Een door jouw ingezonden dossier is door het GKA afgekeurd en bij deze teruggestuurd.</p>
         <p>&nbsp;</p>
         <p>Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}</p>
@@ -28,7 +28,7 @@
 {%- endblock %}
 
 {% block txt -%}
-Hallo {{ dossier.getMedewerkerSchuldhulpbureau.getNaam }},
+Hallo {{ dossier.getMedewerkerOrganisatie.getNaam }},
 Een door jouw ingezonden dossier is door het GKA afgekeurd en bij deze teruggestuurd.
 
 Afzender: {{ tokenStorage.getToken().getUser().getNaam() }}

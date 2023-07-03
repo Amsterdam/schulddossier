@@ -3,7 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,13 +36,13 @@ class ImportSchuldeisersAllegroCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->write('Looking up allegro credentials');
-        $bureauRepo = $this->em->getRepository(Schuldhulpbureau::class);
-        $bureau = $bureauRepo->fetchAllegroUser();
-        if (null === $bureau) {
+        $organisatieRepository = $this->em->getRepository(Organisatie::class);
+        $allegroId = $organisatieRepository->fetchAllegroUser();
+        if (null === $allegroId) {
             $output->write('No allegro credentials found');
             return;
         }
-        $statistics = $this->service->syncSchuldeisers($bureau, '');
+        $statistics = $this->service->syncSchuldeisers($allegroId, '');
         var_dump($statistics);
     }
 }

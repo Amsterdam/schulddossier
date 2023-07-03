@@ -4,7 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Event\TransformMedewerkerSchuldhulpbureau;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Event\TransformMedewerkerOrganisatie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,13 +22,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CreateDossierFormType extends AbstractType
 {
     /**
-     * @var TransformMedewerkerSchuldhulpbureau
+     * @var TransformMedewerkerOrganisatie
      */
-    private $medewerkerSchuldhulpbureau;
+    private $medewerkerOrganisatie;
 
-    public function __construct(TransformMedewerkerSchuldhulpbureau $medewerkerSchuldhulpbureau)
+    public function __construct(TransformMedewerkerOrganisatie $medewerkerOrganisatie)
     {
-        $this->medewerkerSchuldhulpbureau = $medewerkerSchuldhulpbureau;
+        $this->medewerkerOrganisatie = $medewerkerOrganisatie;
     }
 
     /**
@@ -134,7 +134,7 @@ class CreateDossierFormType extends AbstractType
             'label' => 'GKA dossiernr.'
         ]);
 
-        $builder->addEventSubscriber($this->medewerkerSchuldhulpbureau);
+        $builder->addEventSubscriber($this->medewerkerOrganisatie);
     }
 
     /**

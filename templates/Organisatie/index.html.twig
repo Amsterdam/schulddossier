@@ -1,6 +1,6 @@
 {% extends 'master.html.twig' %}
 
-{% block title %}Schuldhulpbureau - {{ parent() }}{% endblock %}
+{% block title %}Organisatie - {{ parent() }}{% endblock %}
 
 {% block pdfsplitter %}{% endblock %}
 
@@ -22,7 +22,7 @@
             <nav class="nav-internal">
                 <ul>
                     <li>Organisaties</li>
-                    {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_create') }}">Nieuwe organisatie</a></li>{% endif %}
+                    {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_apporganisatie_create') }}">Nieuwe organisatie</a></li>{% endif %}
                 </ul>
             </nav>
         </div>
@@ -38,17 +38,17 @@
                     </tr>
                 </thead>
                 <tbody>
-{% for schuldhulpbureau in schuldhulpbureaus %}
+{% for organisatie in organisaties %}
                     <tr{% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %} class="row-link"{% endif %}>
                         <th>
                             {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}
-                                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_update', {'schuldhulpbureauId': schuldhulpbureau.id}) }}">{{ schuldhulpbureau.naam }}</a>
+                                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_apporganisatie_update', {'organisatieId': organisatie.id}) }}">{{ organisatie.naam }}</a>
                             {% else %}
-                                {{ schuldhulpbureau.naam }}
+                                {{ organisatie.naam }}
                             {% endif %}
                         </th>
                         <td>
-                            {{ schuldhulpbureau.standaardGkaTeam }}
+                            {{ organisatie.standaardGkaTeam }}
                         </td>
                     </tr>
 {% endfor %}
@@ -60,13 +60,13 @@
               {% if pagination.page <= 0 %}
               <span class="prev">vorige</span>
               {% else %}
-              <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_index', {'page': pagination.page - 1}) }}">vorige</a>
+              <a class="prev" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_apporganisatie_index', {'page': pagination.page - 1}) }}">vorige</a>
               {% endif %}
               <span>pagina {{ pagination.page + 1 }} van {{ pagination.numberOfPages }}</span>
               {% if (pagination.page + 1) >= pagination.numberOfPages %}
               <span class="next">volgende</span>
               {% else %}
-              <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_index', {'page': pagination.page + 1}) }}">volgende</a>
+              <a class="next" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_apporganisatie_index', {'page': pagination.page + 1}) }}">volgende</a>
               {% endif %}
           </div>
         {% endif %}
