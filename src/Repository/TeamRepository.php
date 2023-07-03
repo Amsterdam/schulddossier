@@ -2,7 +2,6 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class TeamRepository extends EntityRepository
 {

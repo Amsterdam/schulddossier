@@ -67,8 +67,8 @@
                             {% endif %}
                         </td>
                         <td>
-                            {% if gebruiker.schuldhulpbureaus|default %}
-                                {{ gebruiker.schuldhulpbureaus|join(', ') }}
+                            {% if gebruiker.organisaties|default %}
+                                {{ gebruiker.organisaties|join(', ') }}
                             {% endif %}
                         </td>
                     </tr>
@@ -124,7 +124,7 @@
                             {{ gebruiker.type|transform_type_in_title }}
                         </td>
                         <td>{{ gebruiker.teamGka }}</td>
-                        <td>{{ gebruiker.schuldhulpbureaus|join(', ') }}</td>
+                        <td>{{ gebruiker.organisaties|join(', ') }}</td>
                         <td>{% if gebruiker.lastLogin is not null %}{{ gebruiker.lastLogin|date('d-m-Y') }}{% else %}nooit{% endif %}</td>
                     </tr>
 {% endfor %}

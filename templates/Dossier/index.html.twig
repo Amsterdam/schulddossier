@@ -61,9 +61,9 @@
                 <div class="columns">
                     <div class="column">
                         {% if is_granted('ROLE_SHV') is same as(FALSE) and is_granted('ROLE_SHV_KEYUSER') is same as(FALSE) %}
-                            {{ form_row(searchForm.schuldhulpbureaus) }}
+                            {{ form_row(searchForm.organisaties) }}
                         {% endif %}
-                        {{ form_row(searchForm.medewerkerSchuldhulpbureau) }}
+                        {{ form_row(searchForm.medewerkerOrganisatie) }}
                     </div>
                     <div class="column">
                         {{ form_row(searchForm.teamGka) }}
@@ -100,7 +100,7 @@
                         <th>
                             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.Id}) }}">{% if dossier.clientVoorletters %}{{ dossier.clientVoorletters|trim }} {% endif %}{{ dossier.clientNaam }}</a>
                         </th>
-                        <td>{{ dossier.schuldhulpbureau }}</td>
+                        <td>{{ dossier.organisatie }}</td>
                         <td class="nummer">
                             {{ dossier.regasNummer|default('-') }}
                         </td>

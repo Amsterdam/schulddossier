@@ -8,18 +8,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
- * Class SchuldhulpbureauMedewerkerType
+ * Class OrganisatieMedewerkerType
  *
  * @package GemeenteAmsterdam\FixxxSchuldhulp\Form\Type
  */
-class SchuldhulpbureauMedewerkerType extends AbstractType
+class OrganisatieMedewerkerType extends AbstractType
 {
     /**
      * @var ArrayCollection
@@ -27,7 +27,7 @@ class SchuldhulpbureauMedewerkerType extends AbstractType
     private $options;
 
     /**
-     * SchuldhulpbureauMedewerkerType constructor.
+     * OrganisatieMedewerkerType constructor.
      *
      * @param TokenStorageInterface  $tokenStorage
      * @param EntityManagerInterface $entityManager
@@ -41,12 +41,12 @@ class SchuldhulpbureauMedewerkerType extends AbstractType
             case Gebruiker::TYPE_GKA:
             case Gebruiker::TYPE_GKA_APPBEHEERDER:
                 $this->options = $this->transformCollectionToChoices($entityManager
-                    ->getRepository(Schuldhulpbureau::class)
+                    ->getRepository(Organisatie::class)
                     ->getAllWithGebruikers());
                 break;
             case Gebruiker::TYPE_SHV_KEYUSER:
             case Gebruiker::TYPE_SHV:
-                $this->options = $this->transformCollectionToChoices($tokenStorage->getToken()->getUser()->getSchuldhulpbureaus());
+                $this->options = $this->transformCollectionToChoices($tokenStorage->getToken()->getUser()->getOrganisaties());
                 break;
         }
     }
@@ -63,12 +63,12 @@ class SchuldhulpbureauMedewerkerType extends AbstractType
            return [];
         }
 
-        return array_merge(...$collection->map(function (SchuldhulpBureau $schuldhulpbureau) {
+        return array_merge(...$collection->map(function (Organisatie $organisatie) {
             $choices = [];
-            $choices[$schuldhulpbureau->getNaam()] = array_merge(...$schuldhulpbureau->getGebruikers()
-                ->map(function (Gebruiker $gebruiker) use ($schuldhulpbureau) {
+            $choices[$organisatie->getNaam()] = array_merge(...$organisatie->getGebruikers()
+                ->map(function (Gebruiker $gebruiker) use ($organisatie) {
                     $gebr = [];
-                    $gebr[$gebruiker->getNaam() . ' - ' . $gebruiker->getEmail()] = $schuldhulpbureau->getId() . '_' . $gebruiker->getId();
+                    $gebr[$gebruiker->getNaam() . ' - ' . $gebruiker->getEmail()] = $organisatie->getId() . '_' . $gebruiker->getId();
                     return $gebr;
                 })->toArray());
 

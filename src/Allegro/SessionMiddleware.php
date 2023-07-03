@@ -2,7 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro;
 
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GuzzleHttp\Promise\PromiseInterface;
 use Http\Promise\Promise;
 use Phpro\SoapClient\Middleware\Middleware;
@@ -17,9 +17,9 @@ class SessionMiddleware extends Middleware
      */
     private $sessionId;
 
-    public function __construct(Schuldhulpbureau $bureau)
+    public function __construct(Organisatie $organisatie)
     {
-        $this->sessionId = $bureau->getAllegroSessionId();
+        $this->sessionId = $organisatie->getAllegroSessionId();
     }
 
     public function getName(): string
