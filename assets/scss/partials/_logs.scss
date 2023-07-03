@@ -1,0 +1,22 @@
+.log-list {
+  list-style: none;
+  &__item {
+    margin-bottom: 30px;
+    dl {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    dt, dd {
+      display: inline-block;
+      margin: 0;
+    }
+    dt {
+      width: 90px;
+      margin-left: 10px;
+    }
+    dd {
+      width: calc(100% - 100px);
+    }
+  }
+}

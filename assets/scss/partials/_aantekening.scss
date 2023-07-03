@@ -1,0 +1,167 @@
+.aantekening-form {
+  label {
+    display: none;
+  }
+}
+
+.aantekening-form-row {
+  position: static;
+  padding: $padding / 2;
+  background-color: $lightColor;
+  margin-bottom: $padding / 2;
+
+  .active {
+    textarea {
+      display: block;
+      z-index: 5;
+    }
+  }
+  .aantekening-toevoegen {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    top: $padding / 2;
+    white-space: nowrap;
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.aantekening-toevoegen.active {
+  display: none;
+}
+
+.aantekeningen {
+  font-size: $fs-default;
+  position: relative;
+  
+  padding: $padding 0;
+  
+  background-color: $lightColor;
+  margin-bottom: $lineHeight;
+  > *:last-child {
+    margin-bottom: 0;
+  }
+  
+}
+.aantekening {
+  width:70%;
+  position: relative;
+  box-sizing: border-box;
+  text-align: left;
+  padding: $padding/2 5%;
+  transition: transform .5s $transition-ease-default, opacity .5s $transition-ease-default, height .5s $transition-ease-default .2s;
+  overflow: hidden;
+  &.aantekening--bezig {
+    opacity: .5;
+  }
+  &.aantekening--verwijderen {
+    transform: scale3d(.5, .5, 1);
+    height: 0!important;
+    opacity: 0;
+  }
+  .icon-prullenbak {
+    position: absolute;
+    right: 2px;
+    top: 3px;
+    text-decoration: none;
+  }
+}
+.aantekening-bericht {
+  padding: 6px 8px;
+  text-align: left;
+  margin: 0;
+  width: calc(100% - 16px);
+  //min-width: 60%;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(#000, .1);
+  position: relative;
+}
+.aantekening-meta {
+  margin: 0 0 .5em 0;
+  line-height: 1.2;
+  text-align: left;
+  //display: flex;
+  //flex-direction: row-reverse;
+  //justify-content: flex-start;
+  .admin &,
+  .gka_appbeheerder &,
+  .gka & {
+  text-align: right;
+    //flex-direction: row;
+  }
+  time {
+    order: 1;
+    .admin &,
+    .gka_appbeheerder &,
+    .gka & {
+      order: 2;
+      padding-left: 0;
+      padding-right: 10px;
+    }
+    //position: absolute;
+    white-space: nowrap;
+    z-index: 2;
+    top: $padding / 2;
+    left: calc(100% - 3.5rem);
+    font-size: 1.2rem;
+    margin-top: -1px;
+    
+    text-align: center;
+    padding: 5px 0 3px 10px;
+    background-color: $lightColor;
+    font-family: sans-serif;
+  }
+  strong {
+    order: 1;
+    .admin &,
+    .gka_appbeheerder &,
+    .gka & {
+      order: 2;
+    }
+  }
+}
+.aantekening-context {
+  font-size: 1.2rem;
+  color: rgba($textColor, .8);
+  display: block;
+  margin-bottom: 8px;
+  text-align: left;
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+.aantekening-context__bottom {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+.aantekening.gka,
+.aantekening.gka_appbeheerder,
+.aantekening.admin {
+  margin-left: auto;
+  text-align: right;
+  .aantekening-meta {
+    time {
+      left: auto;
+      right: calc(100% - 3.5rem);;
+    }
+  }
+  .aantekening-context {
+    text-align: right;
+  }
+  .icon-prullenbak {
+    left: 2px;
+  }
+  .aantekening-bericht {
+
+  }
+}
+.form-row + .aantekeningen {
+  padding-top: 0;
+  max-height: 500px;
+  overflow-x: auto;
+}

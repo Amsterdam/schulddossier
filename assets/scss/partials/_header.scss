@@ -1,0 +1,139 @@
+header.top {
+
+  background-color: #FFFFFF;
+//  display: flex;
+//  justify-content: space-evenly;
+//  align-items: center;
+  padding: 0 10px;
+  
+  height: $headerHeight;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  border-bottom: 1px solid darken($lightColor, 20);
+  z-index: 99;
+  
+  
+  .logo {
+
+    position: absolute;
+    top: 10px;
+    //left: $padding;
+    //top: $padding / 2;
+    //width: 65px;
+
+    flex-grow: 0;
+    //height: 30px;
+    
+    img {
+      width: 100%;
+    }
+  }
+  
+  .container {
+    position: relative;
+  }
+  .release-notes__menu {
+    position: absolute;
+    top: 0;
+    right: 86px;
+  }
+
+  
+}
+.header__title {
+  position: absolute;
+  top: 10px;
+  left: 100px;
+  strong {
+    font-size: 18px;
+    line-height: 18px;
+  }
+  span {
+    display: block;
+    color: $accentColor;
+    font-size: 9px;
+  }
+}
+
+.logo {
+  position: relative;
+  display: inline-block;
+
+  font-size: 9px;
+  line-height: 10px;
+
+  color: $accentColor;
+
+  text-decoration: none;
+  padding-left: 12px;
+  width: 65px;
+
+  i {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding-right: 1rem;
+  }
+  .icon-andreas {
+    //width: 2rem;
+    //height: 6.8rem;
+  }
+
+  strong {
+    position: absolute;
+    top: 0;
+    left: 14rem;
+    font-size: 18px;
+    line-height: 1;
+    white-space: nowrap;
+    color: #000;
+    font-weight: normal;
+  }
+  span {
+    display: block;
+    width: 500px;
+    position: absolute;
+    top: 2.8rem;
+    left: 14rem;
+  }
+  &:hover {
+    color: $accentColor;
+  }
+}
+
+.pdf-splitter.animatable ~ header.top,
+.pdf-splitter.animatable ~ header.top .logo {
+  //transition: transform .3s;
+}
+
+
+
+//.menu {
+//  margin-right: auto;
+//  ul {
+//    list-style: none;
+//    padding: 0;
+//    margin: 0;
+//    display: flex;
+//  }
+//  a {
+//    font-size: 1.8rem;
+//    line-height: 1;
+//    display: inline-block;
+//    text-decoration: none;
+//    padding: .4em 1em;
+//    margin-bottom: -3px;
+//    border-bottom: 3px solid #fff;
+//    &.active {
+//      border-color: $brandColor1;
+//      @extend .bold !optional;
+//    }
+//  }
+//}
+
+body {
+  padding-top: 50px;
+}

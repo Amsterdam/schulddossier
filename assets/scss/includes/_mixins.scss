@@ -1,0 +1,19 @@
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+@mixin breakpoint($point) {
+	@media (max-width: $point) { @content; }
+}
+
+@mixin large(){
+	@media (max-width: $large) { @content; }
+}
+
+@mixin medium(){
+	@media (max-width: $medium) { @content; }
+}
+
+@mixin small(){
+	@media (max-width: $small) { @content; }
+}

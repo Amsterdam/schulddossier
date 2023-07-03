@@ -7,15 +7,30 @@
     "moment": "^2.29.4",
     "pdfjs-dist": "^3.4.120",
     "schema-utils": "^4.0.0",
+    "sortablejs": "^1.15.0",
     "webpack": "^5.76.2",
     "yargs": "^17.7.1",
     "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@hotwired/stimulus": "^3.2.1",
+    "@symfony/stimulus-bridge": "^3.2.2",
+    "@symfony/webpack-encore": "^4.3.0",
+    "core-js": "^3.31.0",
+    "file-loader": "^6.0.0",
     "json5": "^1.0.2",
-    "loader-utils": "^3.2.1"
+    "loader-utils": "^3.2.1",
+    "sass": "^1.63.5",
+    "sass-loader": "^13.0.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-notifier": "^1.15.0"
   },
   "scripts": {
-    "postinstall": "rm -fr ./public/vendor && mkdir -p ./public/vendor/mozilla &&  mkdir -p ./public/vendor/mrrio && mkdir -p ./public/vendor/moment && cp -R ./node_modules/pdfjs-dist ./public/vendor/mozilla/pdf.js && cp -R ./node_modules/jspdf ./public/vendor/mrrio/jspdf && cp -R ./node_modules/moment ./public/vendor/moment && cp -R ./node_modules/@bevacqua ./public/vendor/bevacqua"
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production",
+    "postinstall": "rm -fr ./public/vendor && mkdir -p ./public/vendor/moment && cp -R ./node_modules/moment ./public/vendor/moment && cp -R ./node_modules/@bevacqua ./public/vendor/bevacqua"
   }
 }

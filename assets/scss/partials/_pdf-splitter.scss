@@ -1,0 +1,366 @@
+$splitter-bg-color: #555;
+.pdf-splitter {
+  background-color: $splitter-bg-color;
+  position: fixed;
+  z-index: 102;
+  top: 0;
+  left: -$pdfSplitterWidth;
+  bottom: 0;
+  width: $pdfSplitterWidth;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  transition: transform .4s $transitionEaseDefault;
+
+  &.drop-over {
+    transform: translateX(40px);
+  }
+  &:hover {
+    transform: translateX(10px);
+  }
+  .file-selector {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    text-align: center;
+
+    &:before {
+      position: absolute;
+      content: 'Kies een ander bestand';
+
+      font-size: $fontSize;
+      line-height: 38px;
+      color: $textColor;
+      background-color: #fff;
+      border: 1px solid #000;
+      left: 15px;
+      right: 42px;
+      top: 15px;
+      transition: all .3s;
+      font-family: $ff-native;
+      font-weight: 500;
+
+    }
+    &:hover:before {
+      border-color: rgba($textColor, 1);
+    }
+
+    input[type="file"] {
+      position: absolute;
+      opacity: 0;
+    }
+  }
+  .bestand-zoom {
+    position: absolute;
+    opacity: 1;
+    z-index: 10;
+    top: $padding / 2;
+    right: $padding /2;
+    left: auto;
+    height: 3.3rem;
+    width: 3.3rem;
+    border: 1px solid rgba($textColor, .2);
+    &:before, &:after {
+      margin-top: 2px;
+      margin-left: 2px;
+    }
+    &:hover {
+      border-color: rgba($textColor, 1);
+    }
+
+  }
+  .pages {
+    position: relative;
+    margin-right: 10px;
+    padding: 15px;
+    margin-top: 100px;
+    z-index: 4;
+    height: calc(100% - 130px);
+    overflow-y: scroll;
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      border: 4px solid #666;
+      background-color: #888;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 8px;
+      background-color: #666;
+    }
+    &:empty {
+      display: flex;
+      align-items: flex-start;
+      z-index: 2;
+      ~ .file-selector {
+        &:before {
+          left: $padding / 2;
+          content: 'Kies een bestand';
+        }
+      }
+      ~ .bestand-zoom {
+        display: none;
+      }
+    }
+    &:empty:after {
+      content: "Voeg pagina's toe door een document te uploaden.";
+      display: block;
+      text-align: center;
+      line-height: 1.2;
+      width: 100%;
+      height: 100%;
+      color: #fff;
+      padding-top: 15px;
+      background-color: rgba($textColor, .1);
+    }
+    .page {
+      background-color: #FFFFFF;
+
+      margin: 25px 0;
+      border: 2px solid $textColor;
+      cursor: move;
+
+      canvas {
+        width: 100%;
+        height: auto;
+      }
+      &.dragged {
+        position: relative;
+        //opacity: 0.4;
+        &:hover {
+          opacity: 1;
+        }
+
+      }
+      .added-container {
+
+      }
+      .added {
+        position: absolute;
+        display: block;
+        right: 10px;
+        top: 10px;
+        border-radius: 50%;
+        background-color: #000;
+        width: 24px;
+        height: 24px;
+
+        @for $i from 1 through 15 {
+          &:nth-child(#{$i}) {
+            right: #{(($i - 1) * 30) + 10}px;
+          }
+        }
+        &:after {
+          content: '';
+          position: absolute;
+          right: 4px;
+          left: auto;
+          top: 6px;
+          width: 12px;
+          height: 6px;
+          border: 4px solid #fff;
+          border-right: none;
+          border-top: none;
+          transform: rotate(-45deg);
+          opacity: 1 !important;
+          border-radius: 0;
+          background-color: transparent;
+        }
+        &:hover:before {
+          content: "Toegevoegd aan: " attr(data-section);
+          display: inline-block;
+          position: absolute;
+          right: 0;
+          top: 30px;
+          padding: 5px;
+          background-color: #000;
+          color: #fff;
+          min-width: 200px;
+        }
+      }
+      &.selected {
+        outline: 10px solid rgba($brandColor2, 1);
+      }
+      &:hover {
+        border-color: $textColor;
+      }
+    }
+  }
+  .drag-mode & {
+    opacity: 1;
+    transform: translate3d((-$pdfSplitterWidth + 10px), 0, 0);
+  }
+
+  .splitter-active &, &.drop-over {
+    opacity: 1;
+  }
+  .splitter-active & {
+    transform: translate3d($pdfSplitterWidth, 0, 0);
+    .pdfsplitter__label__icon {
+      @extend .icon-animated-arrow-big-up;
+      &:before, &:after {
+        background-color: #fff;
+      }
+    }
+  }
+  .pdfsplitter__label {
+    width: 50px;
+    height: 190px;
+    position: absolute;
+    right: -40px;
+    top: 100px;
+    background-color: $splitter-bg-color;
+    color: #fff;
+    z-index: 4;
+    a {
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      text-decoration: none;
+      display: block;
+      width: 190px;
+      color: #fff;
+      transform-origin: center;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      line-height: 40px;
+      font-family: $ff-native;
+      font-weight: 500;
+      padding-top: 10px;
+
+    }
+    .pdfsplitter__label__icon {
+      position: relative;
+      display: inline-block;
+      width: 24px;
+      height: 12px;
+      margin-bottom: -1px;
+      margin-left: 7px;
+      @extend .icon-animated-arrow-big-down;
+      &:before, &:after {
+        background-color: #fff;
+      }
+    }
+    i {
+      margin-right: .5em;
+    }
+  }
+
+}
+
+.pdf-splitter-trigger {
+  background: $lightColor3;
+  position: fixed;
+  z-index: 101;
+
+  text-align: center;
+  left: 0;
+  top: 55px;
+  //margin-top: -95px;
+  transition: transform .4s $transitionEaseDefault;
+  &.drop-over {
+    transform: translateX(40px);
+    a {
+      padding: 0;
+      border: 2px dashed black;
+    }
+
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100vh;
+    background-color: red;
+  }
+  a {
+
+    position: absolute;
+    transform: rotate(90deg);
+    transform-origin: left bottom;
+    width: 186px;
+    border: 1px solid black;
+    border-bottom-color: $lightColor3;
+    line-height: 26px;
+    font-size: $fs-default;
+    top: -30px;
+    left: -3px;
+    padding: 1px;
+
+    white-space: nowrap;
+    text-decoration: none;
+
+    background-color: $lightColor3;
+    transition: all .3s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  i {
+    top: 2px;
+    margin-right: .5em;
+  }
+  .splitter-active & {
+    transform: translateX($pdfSplitterWidth);
+  }
+}
+
+.pages {
+  counter-reset: page;
+  .page {
+    position: relative;
+    counter-increment: page;
+    &:before {
+      content: counter(page);
+      font-size: $fontSmallSize;
+      position: absolute;
+      padding: 0 .5em;
+      left: -1px;
+      top: -1px;
+      color: #fff;
+      background-color: #000;
+    }
+  }
+}
+
+.pdfsplitter__selected-pages {
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  top: 70px;
+  left: 15px;
+  right: 42px;
+  font-weight: 700;
+}
+
+.drag-ghost-container {
+  pointer-events: none;
+  position: fixed;
+  top: -9999999px;
+  left: -9999999px;
+  overflow: hidden;
+  z-index: 99999999;
+  display: flex;
+  canvas {
+    display: inline-block;
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 5px;
+  }
+}
+
+.connection_error {
+  top: 30px;
+  margin: 15px;
+  margin-top: 60px;
+  width: 431px;
+  background-color: red;
+  color: white;
+  font-size: 16px;
+  padding: 5px;
+  border: 1px solid black;
+}
