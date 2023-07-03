@@ -17,16 +17,16 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
     public function load(ObjectManager $manager)
     {
         $dossiers = $this->loadDossiersJson();
-        $schuldhulpBureau = $this->getReference('schuldhulpbureau');
+        $schuldhulpverlener = $this->getReference('schuldhulpverlener');
 
         for ($i = 0; $i < 11; $i++) {
             $aanmaker = ($i % 2) === 0 ? GebruikerFixtures::SHV_USER_REFERENCE : GebruikerFixtures::SHV_KEYUSER_USER_REFERENCE;
 
             $dossier = new Dossier();
             $dossier->setTeamGka($this->getReference('Team 3'));
-            $dossier->setSchuldhulpbureau($schuldhulpBureau);
+            $dossier->setOrganisatie($schuldhulpverlener);
             $dossier->setRegasNummer(($i + 2) . 634638 . $i);
-            $dossier->setMedewerkerSchuldhulpbureau($this->getReference($aanmaker));
+            $dossier->setMedewerkerOrganisatie($this->getReference($aanmaker));
             $dossier->setClientVoorletters($dossiers[$i]['voorletters']);
             $dossier->setClientNaam($dossiers[$i]['naam']);
             $dossier->setClientGeslacht($dossiers[$i]['geslacht']);

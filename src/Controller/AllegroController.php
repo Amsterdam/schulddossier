@@ -35,9 +35,9 @@ class AllegroController extends AbstractController
         $aanvraag = null;
         $eisers = [];
         try {
-            $header = $allegroService->getSRVAanvraagHeader($dossier->getSchuldhulpbureau(),
+            $header = $allegroService->getSRVAanvraagHeader($dossier->getOrganisatie(),
                 $dossier->getAllegroNummer());
-            $aanvraag = $allegroService->getSRVAanvraag($dossier->getSchuldhulpbureau(), $header);
+            $aanvraag = $allegroService->getSRVAanvraag($dossier->getOrganisatie(), $header);
             $srvEisers = $allegroService->getSRVEisers($dossier, $header);
             // $sbOaverzicht = $allegroService->getSBOverzicht($dossier); Geen response
             $eisers = $srvEisers->getEisers()->getTSRVEiser();

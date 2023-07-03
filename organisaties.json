@@ -1,10 +1,10 @@
 [
   {
     "id": 0,
-    "naam": "Salmagundi Schuldhulpbureau",
+    "naam": "Salmagundi Schuldhulpverlening",
     "email": "kredietbank.salmagundi@amsterdam.nl",
     "teamGka": "Team 3",
-    "reference": "schuldhulpbureau"
+    "reference": "schuldhulpverlener"
   },
   {
     "id": 1,
@@ -15,9 +15,9 @@
   },
   {
     "id": 2,
-    "naam": "Arrabiata Schuldhulpverlening",
+    "naam": "Arrabiata Schuldhulpbureau",
     "email": "arrabiata@bewindvoerding.nl",
     "teamGka": "Team 1",
-    "reference": "schuldhulpverlener"
+    "reference": "organisatie"
   }
 ]

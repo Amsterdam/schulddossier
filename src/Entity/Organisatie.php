@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldhulpbureauRepository")
+ * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository")
  * @ORM\Table
  */
-class Schuldhulpbureau
+class Organisatie
 {
     /**
      * @var integer
@@ -45,7 +45,7 @@ class Schuldhulpbureau
 
     /**
      * @var Gebruiker[]|ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Gebruiker", mappedBy="schuldhulpbureaus")
+     * @ORM\ManyToMany(targetEntity="Gebruiker", mappedBy="organisaties")
      */
     private $gebruikers;
 
@@ -140,9 +140,9 @@ class Schuldhulpbureau
 
     /**
      * @param string|null $allegroUsername
-     * @return Schuldhulpbureau
+     * @return Organisatie
      */
-    public function setAllegroUsername(?string $allegroUsername): Schuldhulpbureau
+    public function setAllegroUsername(?string $allegroUsername): Organisatie
     {
         $this->allegroUsername = $allegroUsername;
 
@@ -159,9 +159,9 @@ class Schuldhulpbureau
 
     /**
      * @param string|null $allegroPassword
-     * @return Schuldhulpbureau
+     * @return Organisatie
      */
-    public function setAllegroPassword(?string $allegroPassword): Schuldhulpbureau
+    public function setAllegroPassword(?string $allegroPassword): Organisatie
     {
         $this->allegroPassword = $allegroPassword;
 
@@ -178,9 +178,9 @@ class Schuldhulpbureau
 
     /**
      * @param string|null $allegroSessionId
-     * @return Schuldhulpbureau
+     * @return Organisatie
      */
-    public function setAllegroSessionId(?string $allegroSessionId): Schuldhulpbureau
+    public function setAllegroSessionId(?string $allegroSessionId): Organisatie
     {
         $this->allegroSessionId = $allegroSessionId;
 
@@ -197,9 +197,9 @@ class Schuldhulpbureau
 
     /**
      * @param \DateTime|null $allegroSessionAge
-     * @return Schuldhulpbureau
+     * @return Organisatie
      */
-    public function setAllegroSessionAge(?\DateTime $allegroSessionAge): Schuldhulpbureau
+    public function setAllegroSessionAge(?\DateTime $allegroSessionAge): Organisatie
     {
         $this->allegroSessionAge = $allegroSessionAge;
 

@@ -4,10 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument;
 

@@ -21,7 +21,7 @@ class GebruikerRepository extends ServiceEntityRepository
     use PaginationTrait;
 
     /**
-     * SchuldhulpbureauRepository constructor.
+     * OrganisatieRepository constructor.
      *
      * @param ManagerRegistry $registry
      */
@@ -29,7 +29,7 @@ class GebruikerRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Gebruiker::class);
         $this->setPaginationAlias('g');
-        $this->addPaginationLeftJoin('g.schuldhulpbureaus', 'shb');
+        $this->addPaginationLeftJoin('g.organisaties', 'o');
         $this->addPaginationLeftJoin('g.teamGka', 't');
     }
 
@@ -46,8 +46,8 @@ class GebruikerRepository extends ServiceEntityRepository
     }
 
     public function generatePaginationQueryForKeyuser(Gebruiker $gebruiker, $inactive): Query {
-        $query =  $this->generatePaginationQuery(sprintf('%s WHERE shb.id IN (:bureaus) AND g.type IN (:types) %s', $this->generatePaginationQueryDql(), $this->generateInactiveQueryPart($inactive)));
-        $query->setParameter('bureaus', $gebruiker->getSchuldhulpbureaus());
+        $query =  $this->generatePaginationQuery(sprintf('%s WHERE o.id IN (:organisaties) AND g.type IN (:types) %s', $this->generatePaginationQueryDql(), $this->generateInactiveQueryPart($inactive)));
+        $query->setParameter('organisaties', $gebruiker->getOrganisaties());
         $query->setParameter('types', [Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER]);
         return $query;
     }
@@ -118,15 +118,15 @@ class GebruikerRepository extends ServiceEntityRepository
 
     /**
      * @param array $type
-     * @param array $bureaus
+     * @param array $organisaties
      * @param int   $page
      * @param int   $pageSize
      *
      * @return Paginator
      */
-    public function findAllByTypeAndSchuldhulpbureau(array $type, $bureaus, int $page = 0, int $pageSize = 100): Paginator
+    public function findAllByTypeAndOrganisatie(array $type, $organisaties, int $page = 0, int $pageSize = 100): Paginator
     {
-        $qb = $this->findAllByTypeAndSchuldhulpbureauRaw($type, $bureaus, $page, $pageSize);
+        $qb = $this->findAllByTypeAndOrganisatieRaw($type, $organisaties, $page, $pageSize);
         $qb->setFirstResult($page * $pageSize);
         $qb->setMaxResults($pageSize);
 
@@ -135,19 +135,19 @@ class GebruikerRepository extends ServiceEntityRepository
 
     /**
      * @param array $type
-     * @param array $bureaus
+     * @param array $organisaties
      *
      * @return QueryBuilder
      */
-    public function findAllByTypeAndSchuldhulpbureauRaw(array $type, $bureaus): QueryBuilder
+    public function findAllByTypeAndOrganisatieRaw(array $type, $organisaties): QueryBuilder
     {
         $qb = $this->createQueryBuilder('gebruiker');
         $qb->andWhere('gebruiker.type IN (:type)');
         $qb->setParameter('type', $type);
 
-        $qb->innerJoin('gebruiker.schuldhulpbureaus', 'shb');
-        $qb->andWhere('shb.id IN (:shb_ids)');
-        $qb->setParameter('shb_ids', $bureaus);
+        $qb->innerJoin('gebruiker.organisaties', 'o');
+        $qb->andWhere('o.id IN (:o_ids)');
+        $qb->setParameter('o_ids', $organisaties);
 
         $qb->orderBy('gebruiker.naam', 'ASC');
 
@@ -169,22 +169,22 @@ class GebruikerRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param int $schuldhulpbureauId
+     * @param int $organisatieId
      *
      * @return Array
      */
-    public function findAllGebruikersBySchuldhulpbureau(int $schuldhulpbureauId): Array
+    public function findAllGebruikersByOrganisatie(int $organisatieId): Array
     {
             $qb = $this->createQueryBuilder('g');
-            $qb->innerJoin('g.schuldhulpbureaus','s');
-            $qb->where($qb->expr()->eq('s.id', ':bureau_id'));
+            $qb->innerJoin('g.organisaties','o');
+            $qb->where($qb->expr()->eq('o.id', ':organisatie_id'));
             $qb->andWhere($qb->expr()->orX(
                $qb->expr()->eq('g.type', ':shv_keyuser'),
                $qb->expr()->eq('g.type', ':shv')
             ));
             $qb->setParameter('shv_keyuser', Gebruiker::TYPE_SHV);
             $qb->setParameter('shv', Gebruiker::TYPE_SHV_KEYUSER);
-            $qb->setParameter('bureau_id', $schuldhulpbureauId);
+            $qb->setParameter('organisatie_id', $organisatieId);
             $qb->addOrderBy('g.username', 'ASC');
             $qb = $qb->getQuery()->getResult();
         return $qb;

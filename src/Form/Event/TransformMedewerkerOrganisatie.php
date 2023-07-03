@@ -7,14 +7,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Event;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
-use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldhulpbureauMedewerkerType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\OrganisatieMedewerkerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
+class TransformMedewerkerOrganisatie implements EventSubscriberInterface
 {
     /**
      * @var EntityManagerInterface
@@ -22,7 +22,7 @@ class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
     private $entityManager;
 
     /**
-     * TransformMedewerkerSchuldhulpbureau constructor.
+     * TransformMedewerkerOrganisatie constructor.
      *
      * @param EntityManagerInterface $entityManager
      */
@@ -51,22 +51,22 @@ class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
         $form = $event->getForm();
         $data = $event->getData();
 
-        $schuldHulpbureauGebruiker = 0;
+        $organisatieGebruiker = 0;
 
-        if (!empty($data->getSchuldhulpbureau())) {
-            $schuldhulpbureau = $data->getSchuldhulpbureau()->getId();
-            $medewerkerSchuldhulpbureau = $data->getMedewerkerSchuldhulpbureau()->getId();
-            $schuldHulpbureauGebruiker = $schuldhulpbureau . '_' . $medewerkerSchuldhulpbureau;
+        if (!empty($data->getOrganisatie())) {
+            $organisatie = $data->getOrganisatie()->getId();
+            $medewerkerOrganisatie = $data->getMedewerkerOrganisatie()->getId();
+            $organisatieGebruiker = $organisatie . '_' . $medewerkerOrganisatie;
         }
 
-        $form->add('schuldHulpbureauGebruiker', SchuldhulpbureauMedewerkerType::class, [
+        $form->add('organisatieGebruiker', OrganisatieMedewerkerType::class, [
             'label' => 'Organisatie gebruiker *',
             'required' => true,
             'multiple' => false,
             'expanded' => false,
             'mapped' => false,
-            'data' => $schuldHulpbureauGebruiker
-        ])->setData($schuldHulpbureauGebruiker);
+            'data' => $organisatieGebruiker
+        ])->setData($organisatieGebruiker);
     }
 
     /**
@@ -79,42 +79,42 @@ class TransformMedewerkerSchuldhulpbureau implements EventSubscriberInterface
         $form = $event->getForm();
         $data = $event->getData();
 
-        if (empty($data['schuldHulpbureauGebruiker'])) {
+        if (empty($data['organisatieGebruiker'])) {
             return;
         }
 
-        $ids = explode('_', $data['schuldHulpbureauGebruiker']);
+        $ids = explode('_', $data['organisatieGebruiker']);
 
-        $schuldhulpbureau = $this->entityManager->getRepository(Schuldhulpbureau::class)->find($ids[0]);
-        if (empty($schuldhulpbureau)) {
+        $organisatie = $this->entityManager->getRepository(Organisatie::class)->find($ids[0]);
+        if (empty($organisatie)) {
             throw new EntityNotFoundException('Organisatie with the following id does not exist: ' . $ids[0]);
         }
 
-        $medewerkerSchuldhulpbureau = $this->entityManager->getRepository(Gebruiker::class)->find($ids[1]);
-        if (empty($medewerkerSchuldhulpbureau)) {
+        $medewerkerOrganisatie = $this->entityManager->getRepository(Gebruiker::class)->find($ids[1]);
+        if (empty($medewerkerOrganisatie)) {
             throw new EntityNotFoundException('Gebruiker with the following id does not exist: ' . $ids[1]);
         }
 
-        $data['schuldhulpbureau'] = $schuldhulpbureau->getId();
-        $data['medewerkerSchuldhulpbureau'] = $medewerkerSchuldhulpbureau->getId();
+        $data['organisatie'] = $organisatie->getId();
+        $data['medewerkerOrganisatie'] = $medewerkerOrganisatie->getId();
 
-        $form->add('schuldhulpbureau', EntityType::class, [
+        $form->add('organisatie', EntityType::class, [
             'required' => true,
-            'class' => Schuldhulpbureau::class,
+            'class' => Organisatie::class,
             'multiple' => false,
             'expanded' => false,
             'label_attr' => ['class' => 'hidden'],
             'attr' => ['class' => 'hidden'],
-        ])->setData($schuldhulpbureau->getId());
+        ])->setData($organisatie->getId());
 
-        $form->add('medewerkerSchuldhulpbureau', EntityType::class, [
-            'label' => 'Schuldhulpbureau gebruiker *',
+        $form->add('medewerkerOrganisatie', EntityType::class, [
+            'label' => 'Organisatie gebruiker *',
             'required' => true,
             'class' => Gebruiker::class,
             'multiple' => false,
             'label_attr' => ['class' => 'hidden'],
             'attr' => ['class' => 'hidden'],
-        ])->setData($medewerkerSchuldhulpbureau->getId());
+        ])->setData($medewerkerOrganisatie->getId());
 
         $event->setData($data);
     }

@@ -1,39 +1,19 @@
 <?php
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
-use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierClientType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
-
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 class VoorleggerFormType extends AbstractType
 {
@@ -102,9 +82,9 @@ class VoorleggerFormType extends AbstractType
             $voorlegger = $event->getData();
             $dossier = $voorlegger->getDossier();
             $user = $this->tokenStorage->getToken()->getUser();
-            $gebruikers = $this->em->getRepository(Gebruiker::class)->findAllByTypeAndSchuldhulpbureauRaw(
+            $gebruikers = $this->em->getRepository(Gebruiker::class)->findAllByTypeAndOrganisatieRaw(
                     [Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER],
-                    [$dossier->getSchuldhulpbureau()]
+                    [$dossier->getOrganisatie()]
                 );
             if ($this->tokenStorage->getToken() === null || $this->tokenStorage->getToken()->getUser() === null) {
                 return;
@@ -117,9 +97,9 @@ class VoorleggerFormType extends AbstractType
                     $choices[$value->getEmail()] = $value->getNaam() . ' (' .$value->getEmail() . ')';
                 }
             }
-            if (empty($dossier->getSchuldhulpbureau()->getEmailAdresControle()) === false){
-                $data = $dossier->getSchuldhulpbureau()->getEmailAdresControle();
-                $choices = array($dossier->getSchuldhulpbureau()->getEmailAdresControle() => 'Controle e-mailadres (' . $dossier->getSchuldhulpbureau()->getEmailAdresControle() . ')') + $choices;
+            if (empty($dossier->getOrganisatie()->getEmailAdresControle()) === false){
+                $data = $dossier->getOrganisatie()->getEmailAdresControle();
+                $choices = array($dossier->getOrganisatie()->getEmailAdresControle() => 'Controle e-mailadres (' . $dossier->getOrganisatie()->getEmailAdresControle() . ')') + $choices;
             }
             $choices = array_flip($choices);
 
