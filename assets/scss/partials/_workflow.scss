@@ -1,0 +1,25 @@
+.document-workflow {
+  margin-bottom: $lineHeight;
+  ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    display: flex;
+  }
+  .well & {
+    margin-bottom: 0;
+  }
+  
+  .button {
+    margin:  0 0 0 $padding / 2;
+    white-space: nowrap;
+  }
+  
+  
+  
+}
+
+.document-workflow-current {
+  margin-right: auto;
+  align-self: center;
+}

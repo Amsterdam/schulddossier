@@ -17,7 +17,7 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
 
-        <link type="text/css" rel="stylesheet" href="{{ asset('/css/screen.css') }}"  media="all">
+        {{ encore_entry_link_tags('app') }}
 
         <script>!function(a){a.className=a.className.replace(/\bno-js\b/g,'js'),'ontouchstart'in window&&(a.className=a.className.replace(/\bno-touch\b/g,'touch'))}(document.documentElement)</script>
     </head>
@@ -106,19 +106,12 @@
 
 {% block document %}.{% endblock %}
         </div>
-        <script src="{{ asset('/vendor/mozilla/pdf.js/build/pdf.js') }}"></script>
-        {# The workerSrc property must be specified.
-        Zie voorbeeld: https://github.com/mozilla/pdf.js/blob/master/examples/learning/helloworld.html #}
-        <script>
-            pdfjsLib.GlobalWorkerOptions.workerSrc = "{{ asset('/vendor/mozilla/pdf.js/build/pdf.worker.js') }}";
-        </script>
-        <script src="{{ asset('/vendor/mrrio/jspdf/dist/jspdf.umd.min.js') }}"></script>
-        <script src="{{ asset('/js/sortable.min.js') }}"></script>
+        {{ encore_entry_script_tags('app') }}
+
         <script src="{{ asset('/vendor/moment/moment/moment.js') }}"></script>
         <script src="{{ asset('/vendor/moment/moment/locale/nl.js') }}"></script>
         <script src="{{ asset('/vendor/bevacqua/rome/dist/rome.standalone.min.js') }}"></script>
-        <script src="{{ asset('/js/flashMessage.js') }}"></script>
-        <script src="{{ asset('/js/scripts.js') }}"></script>
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>

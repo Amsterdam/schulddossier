@@ -1,0 +1,54 @@
+.schulditem-header {
+  display: flex;
+  height: 20px;
+  line-height: 20px;
+  .naam {
+    font-size: $fontSize;
+    height: 20px;
+    margin-right: auto;
+    flex-basis: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  a {
+    text-decoration: none;
+  }
+  .referentie {
+    color: #666666;
+  }
+
+  .voortgang {
+    padding-right: 2rem;
+    height: 20px;
+    white-space: nowrap;
+  }
+  .bedrag {
+    width: 150px;
+    flex-grow: 0;
+    text-align: right;
+  }
+  .verlopen {
+
+    white-space: nowrap;
+    color: rgba($textColor, .5);
+    padding-right: 2rem;
+    &:before {
+      content: '!';
+      display: inline-block;
+      font-size: 12px;
+      width: 1.2em;
+      height: 1.2em;
+      margin-right: .5em;
+      line-height: 1.2em;
+      border-radius: 50%;
+      color: #fff;
+      text-align: center;
+      font-weight: bold;
+      background-color: rgba($textColor, .5);
+    }
+  }
+}
+.schulditem-nieuw.active {
+  display: none;
+}

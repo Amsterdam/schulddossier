@@ -1,0 +1,36 @@
+.pagination {
+  text-align: center;
+  width: 100%;
+  //display: flex;
+  //justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+
+  > {
+    * {
+      margin: 0 5px;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      text-decoration: none;
+      > span {
+        border-bottom: 1px solid #000;
+      }
+    }
+    a {
+      color: #000000;
+    }
+    .prev,
+    .next {
+      font-size: 18px;
+      margin: 0 40px;
+    }
+  }
+  &__current-page {
+    background-color: #000;
+    color: #fff;
+    font-weight: 600;
+  }
+}

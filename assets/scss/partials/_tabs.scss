@@ -1,0 +1,113 @@
+.tabs {
+  margin: 0 0 $lineHeight 0;
+  overflow: hidden;
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    padding: 0;
+//    margin: 0 (-$padding/2);
+    border-bottom: 3px solid $lightColor;
+  }
+  
+  
+  li {
+    flex-basis: 100%;
+    
+    a {
+      text-align: center;
+      display: block;
+      font-weight: 700;
+      font-size: 1.6rem;
+      text-decoration: none;
+      padding: $padding/2;
+      border-bottom: 3px solid $lightColor;
+      margin-bottom: -3px;
+      
+      transition: all .3s;
+      
+      &:hover {
+        border-color: darken($lightColor, 20);
+      }
+    }
+    &.active a,
+    a.active {
+      @extend .bold !optional;
+      border-bottom-color: $brandColor1;
+      
+    }
+  }
+}
+
+.accordion-container {
+  
+  > h2 {
+    font-weight: normal;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .accordion {
+    margin-bottom: $padding / 2;
+    background-color: $lightColor3;
+    padding: 8px 15px;
+    border-radius: 2px;
+    box-shadow: 0 0 0 5px rgba(#000, 0);
+//    transition: all .3s;
+    .accordion-header {
+      position: relative;
+      padding-left: 36px;
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 9px;
+        width: 11px;
+        height: 3px;
+        background-color: #666;
+        transform: rotate(45deg);
+        transition: all .3s;
+      }
+      &:after {
+        left: 8px;
+        transform: rotate(-45deg);
+      }
+      a {
+        &:before {
+          content: '';
+          position: absolute;
+          z-index: 1;
+          left: -15px;
+          top: -8px;
+          right: -15px;
+          bottom: -8px;
+          background-color: rgba(#000, 0);
+          transition: background-color .3s;
+        }
+      }
+      &:hover a:before {
+        background-color: rgba(#000, .1);
+      }
+    }
+    
+    &.active .accordion-header {
+      &:before {
+        transform: rotate(-45deg);
+      }
+      &:after {
+        transform: rotate(45deg);
+      }
+    }
+    &.active {
+      background-color: darken($lightColor, 2);
+    }
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s;
+    }
+    &.active .accordion-body {
+      max-height: 2000px;
+    }
+  }
+}
