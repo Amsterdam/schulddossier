@@ -150,3 +150,10 @@ services:
             -
                 location: '%env(ALLEGRO_ENDPOINT)%?service=SchuldHulpService'
             - '%kernel.project_dir%/doc/modified_schuldhulpservice.wsdl'
+
+
+    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileListener:
+        arguments:
+            $publicDir: '%kernel.project_dir%/public'
+        tags:
+            - { name: 'kernel.event_listener', event: 'kernel.response' }

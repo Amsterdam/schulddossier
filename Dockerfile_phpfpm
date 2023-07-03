@@ -53,6 +53,12 @@ WORKDIR /var/www
 
 RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
 
+RUN apk add \
+    yarn
+RUN yarn --ignore-scripts --ignore-platform
+RUN yarn encore prod
+RUN yarn run postinstall
+
 RUN chown -R www-data: /var/www
 
 CMD ["/var/www/docker-entrypoint_phpfpm.sh"]

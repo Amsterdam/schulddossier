@@ -1,0 +1,142 @@
+hr {
+  border: none;
+  height: 2px;
+  background-color: $lightColor;
+  padding: 0;
+  margin: 2 * $lineHeight 0;
+  
+}
+a.a__editable {
+  position: relative;
+  text-decoration: none;
+  display: block;
+  transition: all .3s;
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+  &:before {
+    content: '';
+    background-color: #fff;
+    border: 1px solid $borderColor2;
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  &:after {
+    content: '';
+    @extend .ico-pencil-black;
+    transition: opacity .3s;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: contain;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    display: block;
+    right: 0;
+    top: 0;
+    opacity: 0;
+  }
+  &:hover {
+    z-index: 1;
+  }
+  &:hover:after {
+    opacity: 1;
+  }
+  &:hover:before {
+    opacity: 1;
+  }
+  &--disabled {
+    & > * {
+      opacity: .5;
+    }
+  }
+}
+dl.dl {
+  &__horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+    dt, dd {
+      margin: 0;
+      text-decoration: none;
+      margin-bottom: 5px;
+      &:nth-last-child(2),
+      &:nth-last-child(1){
+        margin-bottom: 0;
+      }
+    }
+    dt {
+      width: 40%;
+      font-weight: normal;
+
+    }
+    dd {
+      width: 60%;
+      text-align: right;
+    }
+  }
+}
+
+.kind {
+  &__container {
+    position: relative;
+  }
+  &__item-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+
+  }
+  &__item {
+    height: 40px;
+    opacity: 1;
+    transition: height .4s $transition-ease-default, opacity .3s;
+    position: relative;
+    margin-bottom: 7px;
+    &.disabled {
+      opacity: 0;
+    }
+    & > input[type="text"] {
+      display: inline-block;
+      width: calc(100% - 47px)!important;
+    }
+  }
+
+  &__input {
+  }
+  &__item__delete {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    background: #fff;
+    font-size: 20px;
+    text-align: center;
+    color: #000;
+    border: 1px solid #e5e5e5;
+    text-decoration: none;
+    transition: background-color .3s;
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+  &__add {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0!important;
+    line-height: 40px !important;
+  }
+}

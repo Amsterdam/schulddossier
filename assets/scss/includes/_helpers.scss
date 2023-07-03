@@ -1,0 +1,157 @@
+.text-left {
+  text-align: left !important;
+  * {
+    text-align: left !important;
+  }
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+
+.well {
+  position: relative;
+  padding: $padding;
+  background-color: $lightColor;
+  margin-bottom: $lineHeight;
+  border-bottom: 1px solid #bdbdbd;
+  box-shadow: 0 1px 3px 0 rgba(#000, .2);
+  > *:last-child {
+    margin-bottom: 0;
+  }
+  @include medium {
+    padding: 10px;
+  }
+}
+.well__wide {
+  padding: 50px;
+}
+.visually-hidden {
+  position: absolute;
+  clip: rect(0,0,0,0);
+  opacity: 0;
+  font-size: 0;
+}
+.hidden,
+.js .js-hidden {
+  display: none !important;
+}
+.js-show {
+  display: none;
+  .js & {
+    display: initial;
+  }
+}
+.small-hide {
+  @include small {
+    display: none !important;
+  }
+}
+.medium-show {
+  display: none;
+  @include medium {
+    display: initial;
+  }
+  
+}
+
+.margin-bottom {
+  margin-bottom: 2em;
+}
+.columns {
+  display: flex;
+  .column {
+    margin-bottom: 50px;
+    padding-right: 50px;
+    flex-basis: 50%;
+    &:last-child {
+      padding-right: 0;
+    }
+    &.column-big {
+      flex-basis: 80%;
+      & + .column {
+        flex-basis: 20%;
+      }
+    }
+  }
+}
+
+.help {
+ 
+  display: block;
+  box-sizing: border-box;
+  
+  background-color: #fff;
+
+  color: $textColor;
+  font-size: $fontSmallSize;
+  line-height: 1.2;
+
+  padding: 0 $padding / 4;
+  border: 0px solid rgba($textColor, .4);
+  overflow: hidden;
+  max-height: 0;
+  transition: all .3s;
+  &.active, &:target {
+    padding: $padding / 4;
+    border-width: 1px;
+    max-height: 1000px
+  }
+  
+}
+
+[data-count]:after {
+
+  content: attr(data-count);
+  display: inline-block;
+  
+  position: relative;
+  top: -.2em;
+  
+
+  font-size: .6em;
+  margin-left: 1em;
+  padding: .2em .5em;
+  
+  text-align: center;
+  
+  background-color: #fff;
+  border-radius: 3px;
+  
+  color: $textColor;
+}
+
+.footer {
+  font-size: $fontSmallSize;
+  margin-bottom: $lineHeight;
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.footer-well {
+  padding: 0 $padding;
+}
+
+.toggle-hidden {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
