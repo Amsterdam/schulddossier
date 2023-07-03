@@ -21,7 +21,7 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
     {
         $users = $this->loadUsersJson();
 
-        $schuldhulpBureau = $this->getReference('schuldhulpbureau');
+        $schuldhulpverlener = $this->getReference('schuldhulpverlener');
 
         foreach ($users as $user) {
             $gebruiker = new Gebruiker();
@@ -33,7 +33,7 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
             $gebruiker->setEnabled($user['enabled']);
 
             if($gebruiker->isSchuldhulpverlener()) {
-                $gebruiker->addSchuldhulpbureau($schuldhulpBureau);
+                $gebruiker->addOrganisatie($schuldhulpverlener);
             } else {
                 $gebruiker->setTeamGka($this->getReference(TeamFixtures::TEAM_3_REFERENCE));
             }
@@ -58,7 +58,7 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
     public function getDependencies()
     {
         return [
-            SchuldhulpBureauFixtures::class,
+            OrganisatieFixtures::class,
             TeamFixtures::class
         ];
     }

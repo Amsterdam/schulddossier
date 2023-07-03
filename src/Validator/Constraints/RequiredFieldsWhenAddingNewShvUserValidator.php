@@ -24,9 +24,9 @@ class RequiredFieldsWhenAddingNewShvUserValidator extends ConstraintValidator
     public function validate($protocol, Constraint $constraint): void
     {
         if (strtolower($protocol->getType()) === 'shv') {
-            if (count($protocol->getSchuldhulpbureaus()) === 0) {
+            if (count($protocol->getOrganisaties()) === 0) {
                 $this->context->buildViolation($constraint->message)
-                    ->atPath('schuldhulpbureaus')
+                    ->atPath('organisaties')
                     ->addViolation();
             }
         }

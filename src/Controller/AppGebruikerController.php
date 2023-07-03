@@ -78,7 +78,7 @@ class AppGebruikerController extends AbstractController
     public function updateAction(Request $request, EntityManagerInterface $em, Gebruiker $gebruiker, EventDispatcherInterface $eventDispatcher, TokenStorageInterface $tokenStorage)
     {
         if ($this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
-            if (!$gebruiker->getSchuldhulpbureaus()->isEmpty() && empty(array_intersect($this->getUser()->getSchuldhulpbureaus()->toArray(), $gebruiker->getSchuldhulpbureaus()->toArray()))) {
+            if (!$gebruiker->getOrganisaties()->isEmpty() && empty(array_intersect($this->getUser()->getOrganisaties()->toArray(), $gebruiker->getOrganisaties()->toArray()))) {
                 throw $this->createAccessDeniedException();
             }
         }

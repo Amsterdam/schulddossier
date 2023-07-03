@@ -2,14 +2,13 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
-use Doctrine\ORM\EntityRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -59,10 +58,10 @@ class SearchDossierFormType extends AbstractType
         ]);
 
         if (!$this->authorizationChecker->isGranted('ROLE_SHV') && !$this->authorizationChecker->isGranted('ROLE_SHV_KEYUSER')) {
-            $builder->add('schuldhulpbureaus', EntityType::class, [
+            $builder->add('organisaties', EntityType::class, [
                 'required' => false,
                 'label' => 'Organisaties',
-                'class' => Schuldhulpbureau::class,
+                'class' => Organisatie::class,
                 'multiple' => true,
                 'expanded' => false,
                 'placeholder' => 'Alle organisaties'
@@ -80,15 +79,15 @@ class SearchDossierFormType extends AbstractType
             $form = $event->getForm();
             $data = $event->getData();
 
-            $form->add('medewerkerSchuldhulpbureau', EntityType::class, [
+            $form->add('medewerkerOrganisatie', EntityType::class, [
                 'required' => false,
                 'label' => 'Medewerker organisatie',
                 'class' => Gebruiker::class,
                 'multiple' => false,
                 'expanded' => false,
-                'query_builder' => function (EntityRepository $repository) {
+                'query_builder' => function (GebruikerRepository $repository) {
                     if ($this->user->getType() === Gebruiker::TYPE_SHV || $this->user->getType() === Gebruiker::TYPE_SHV_KEYUSER){
-                        return $repository->findAllByTypeAndSchuldhulpbureauRaw([Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER, Gebruiker::TYPE_ONBEKEND], $this->user->getSchuldhulpbureaus());
+                        return $repository->findAllByTypeAndOrganisatieRaw([Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER, Gebruiker::TYPE_ONBEKEND], $this->user->getOrganisaties());
                     }else{
                         return $repository->findAllRaw();
 
