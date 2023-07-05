@@ -12,7 +12,7 @@ securityContext:
   container:
     privileged: false
     allowPrivilegeEscalation: false
-    readOnlyRootFilesystem: true
+    readOnlyRootFilesystem: false
 
 image:
   registry:
