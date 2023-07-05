@@ -5,52 +5,96 @@ image:
   tag: latest
 
 labels:
-  app-phpfpm: schulddossier-phpfpm
-  app-nginx: schulddossier-nginx
+  app: schulddossier
 
 network:
   allow-ingress:
-    selector: app == 'schulddossier-phpfpm'
+    selector: app == 'schulddossier'
     ingress:
       - action: Allow
     egress:
       - action: Allow
 
+serviceAccount: app
+serviceAccounts:
+  app: {}
+
+secrets:
+  certificate:
+    type: keyvault
+    tls: schulddossier
+
 deployments:
   schulddossier-phpfpm:
-    securityContext:
-      runAsUser: 82
+    env:
+      APP_ENV: dev
+      APP_DEBUG: 1
+      APP_SECRET: insecure
+      DATABASE_URL: pgsql://postgres:insecure@10.96.99.150:5432/adus?serverVersion=11&charset=utf8
     image:
       repository: salmagundi/schulddossier-phpfpm
+    securityContext:
+      runAsUser: 82 #TODO: maybe this is a system user
     selectorLabels:
-      app-phpfpm: schulddossier-phpfpm
-
+      component: phpfpm
     containers:
       - name: main
         ports:
           - port: 8080
             name: http
+        volumes:
+          - name: cache
+            mountPath: /var/www/var/cache
+          - name: logs
+            mountPath: /var/www/var/log
+    volumes:
+      - name: cache
+        spec:
+          emptyDir: { }
+      - name: logs
+        spec:
+          emptyDir: { }
+
   schulddossier-nginx:
     image:
       repository: salmagundi/schulddossier-nginx
+    securityContext:
+      runAsUser: 101
     selectorLabels:
-      app-nginx: schulddossier-nginx
+      component: nginx
     containers:
       - name: main
         ports:
           - port: 8080
             name: http
+        volumes:
+          - name: logs
+            mountPath: /var/log/nginx
+          - name: run
+            mountPath: /var/run
+          - name: cache
+            mountPath: /var/cache/nginx
+    volumes:
+      - name: logs
+        spec:
+          emptyDir: { }
+      - name: run
+        spec:
+          emptyDir: { }
+      - name: cache
+        spec:
+          emptyDir: { }
 
 services:
   schulddossier-phpfpm:
     selector:
-      app-phpfpm: schulddossier-phpfpm
+      component: phpfpm
     ports:
-      - port: 8080
+      - port: 9000
         targetPort: http
   schulddossier-nginx:
     selector:
-      app-nginx: schulddossier-nginx
+      component: nginx
     ports:
       - port: 8080
         targetPort: http
@@ -60,5 +104,8 @@ ingress:
     className: nginx-internal
     paths:
       - path: /
+        prefix: Prefix
         service: schulddossier-nginx
         port: 8080
+    tls:
+      secretNameOverride: adus

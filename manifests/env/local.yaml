@@ -1,12 +1,9 @@
 image:
   registry: kind-registry:5000
+  imagePullPolicy: Always
 
 host: localhost
 
-network:
-  allow-ingress:
+secrets:
+  certificate:
     enabled: false
-
-ingress:
-  echo-server-internal:
-    className: nginx
