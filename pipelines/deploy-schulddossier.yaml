@@ -15,7 +15,7 @@ resources:
 extends:
   template: pipelines/aks/template.yaml@azure-templates
   parameters:
-    name: deploy-schulddossier
+    name: schulddossier
     build:
       pool:
         name: ContainerBuilder
