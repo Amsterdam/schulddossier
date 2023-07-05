@@ -4,7 +4,7 @@ workloadIdentity: c0ffb513-12ed-4f8c-b071-d4a55b4b8f70
 
 nodepool: cccsalmont01
 
-host: schuAlddossier.salm-o.azure.amsterdam.nl
+host: schulddossier.salm-o.azure.amsterdam.nl
 
 secrets:
   certificate:
