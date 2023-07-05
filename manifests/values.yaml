@@ -108,4 +108,4 @@ ingress:
         service: schulddossier-nginx
         port: 8080
     tls:
-      secretNameOverride: adus
+      secretNameOverride: schulddossier
