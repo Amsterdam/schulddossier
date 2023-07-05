@@ -40,13 +40,17 @@ deployments:
     containers:
       - name: main
         ports:
-          - port: 8080
+          - port: 9000
             name: http
         volumes:
           - name: cache
             mountPath: /var/www/var/cache
           - name: logs
             mountPath: /var/www/var/log
+          - name: lock
+            mountPath: /run/lock
+          - name: tmp
+            mountPath: /tmp
     volumes:
       - name: cache
         spec:
@@ -54,7 +58,12 @@ deployments:
       - name: logs
         spec:
           emptyDir: { }
-
+      - name: lock
+        spec:
+          emptyDir: { }
+      - name: tmp
+        spec:
+          emptyDir: { }
   schulddossier-nginx:
     image:
       repository: salmagundi/schulddossier-nginx
