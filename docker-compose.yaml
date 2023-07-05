@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile_phpfpm
     environment:
       - TZ=Europe/Amsterdam
-    image: ${REGISTRY:-kind-registry:5000}/${REPOSITORY:-salmagundi/schulddossier-phpfpm}:${VERSION:-latest}
+    image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/schulddossier-phpfpm}:${VERSION:-latest}
     
   schulddossier-nginx:
     build:
@@ -19,6 +19,6 @@ services:
     environment:
       - FASTCGI_PASS=schulddossier-phpfpm:9000
       - TZ=Europe/Amsterdam
-    image: ${REGISTRY:-kind-registry:5000}/${REPOSITORY:-salmagundi/schulddossier-nginx}:${VERSION:-latest}
+    image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/schulddossier-nginx}:${VERSION:-latest}
     depends_on:
       - schulddossier-phpfpm
