@@ -12,7 +12,7 @@
     "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
-    "json5": "^1.0.2",
+    "json5": "^2.2.3",
     "loader-utils": "^3.2.1"
   },
   "scripts": {
