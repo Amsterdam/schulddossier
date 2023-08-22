@@ -16,7 +16,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *  uniqueConstraints={
  *      @ORM\UniqueConstraint(name="uq_username", columns={"username"}),
  *      @ORM\UniqueConstraint(name="uq_email", columns={"email"})
- *  }
+ *  },
+ *  indexes={
+ *      @ORM\Index(name="idx_verwijderd_datetime", columns={"verwijderd_date_time"}),
+ *  })
  * )
  * @UniqueEntity("email")
  * @UniqueEntity("username")
@@ -127,6 +130,12 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      * @ORM\Column(type="boolean", nullable=false)
      */
     private $enabled;
+
+    /**
+     * @var \DateTime|NULL
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $verwijderdDateTime;
 
     public function __construct()
     {
@@ -259,7 +268,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      */
     public function getTelefoonnummer()
     {
-        if(empty($this->telefoonnummer)){
+        if (empty($this->telefoonnummer)) {
             $this->telefoonnummer = '';
         }
         return $this->telefoonnummer;
@@ -327,6 +336,17 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
+    }
+
+    public function isVerwijderd()
+    {
+        return (bool)$this->verwijderdDateTime;
+    }
+
+    public function setVerwijderd($verwijderdDateTime)
+    {
+        $this->verwijderdDateTime = $verwijderdDateTime;
+        $this->setEnabled(false);
     }
 
     /**
@@ -407,7 +427,14 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
 
     public static function getTypesList()
     {
-        return [self::TYPE_SHV, self::TYPE_SHV_KEYUSER, self::TYPE_GKA, self::TYPE_GKA_APPBEHEERDER, self::TYPE_ADMIN, self::TYPE_ONBEKEND];
+        return [
+            self::TYPE_SHV,
+            self::TYPE_SHV_KEYUSER,
+            self::TYPE_GKA,
+            self::TYPE_GKA_APPBEHEERDER,
+            self::TYPE_ADMIN,
+            self::TYPE_ONBEKEND
+        ];
     }
 
     /**
@@ -487,6 +514,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
             self::TYPE_GKA_APPBEHEERDER,
         ], true);
     }
+
     /**
      * Checks whether the user is a GKA AppBeheerder
      * This check can be used to check if a user has access by having one of the following role:
@@ -557,5 +585,24 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
         $this->lastLogin = $lastLogin;
 
         return $this;
+    }
+
+    public function anonymize()
+    {
+        $uniqueSuffix = uniqid();
+        $this->setUsername("geanonimiseerd-" . $uniqueSuffix);
+        $this->setPassword();
+        $this->setType(self::TYPE_ONBEKEND);
+        $this->setNaam("geanonimiseerde  gebruiker - " . $uniqueSuffix);
+        $this->setPasswordChangedDateTime(null);
+        $this->setTeamGka(null);
+        $this->setEmail($uniqueSuffix . '@schulddossier.amsterdam.nl');
+        $this->setEnabled(false);
+        $this->setTelefoonnummer('');
+        $this->setLastLogin(null);
+
+        foreach ($this->getOrganisaties() as $organisatie) {
+            $this->removeOrganisatie($organisatie);
+        }
     }
 }

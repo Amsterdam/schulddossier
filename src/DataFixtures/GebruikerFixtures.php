@@ -32,13 +32,25 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
             $gebruiker->setTelefoonnummer($user['telefoon'] . $user['id']);
             $gebruiker->setEnabled($user['enabled']);
 
-            if($gebruiker->isSchuldhulpverlener()) {
+            if ($gebruiker->isSchuldhulpverlener()) {
                 $gebruiker->addOrganisatie($schuldhulpverlener);
             } else {
                 $gebruiker->setTeamGka($this->getReference(TeamFixtures::TEAM_3_REFERENCE));
             }
 
-            $this->addReference($user['enabled'] ? $user['type'] : 'disabled', $gebruiker);
+            if (isset($user['last_login_interval'])) {
+                $gebruiker->setLastLogin(
+                    (new \DateTime())->sub(
+                        new \DateInterval($user['last_login_interval'])
+                    )
+                );
+            }
+
+            try {
+                $this->addReference($user['enabled'] ? $user['type'] : 'disabled', $gebruiker);
+            } catch (\BadMethodCallException $e) {
+                //Catch toegevoegd om te voorkomen dat er dubbele referenties zijn.
+            }
 
             $manager->persist($gebruiker);
         }
