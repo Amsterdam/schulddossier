@@ -7,26 +7,77 @@
     "id": "433c2c93-c750-436c-bc53-4217401184c5",
     "name": "Schulddossier maken",
     "commands": [{
-      "id": "9449f23b-37b7-48c7-99f1-f058e6636f07",
+      "id": "4cc8f1c8-af98-4b23-b21f-0f7c0e5aa04f",
+      "comment": "",
+      "command": "store",
+      "target": "schulddossier_admin",
+      "targets": [],
+      "value": "TESTUSER_EMAIL"
+    }, {
+      "id": "2b577340-e68b-48c3-9b95-8006d52c2e75",
+      "comment": "",
+      "command": "store",
+      "target": "insecure",
+      "targets": [],
+      "value": "TESTUSER_PASS"
+    }, {
+      "id": "f54766b3-8a31-48f2-909a-71c47e71cbc1",
+      "comment": "",
+      "command": "store",
+      "target": "test@schulddossier.amsterdam.nl",
+      "targets": [],
+      "value": "CREATE_USER_EMAIL"
+    }, {
+      "id": "72f09520-8fb1-42b0-ac60-2fd52ea923ef",
+      "comment": "",
+      "command": "store",
+      "target": "123456",
+      "targets": [],
+      "value": "DOSSIERNUMMER"
+    }, {
+      "id": "1d3f7e08-6cf3-490f-aa77-4f31ee8d1f25",
       "comment": "",
       "command": "open",
-      "target": "/app/dossier/",
+      "target": "http://localhost:8100/app/dossier/",
       "targets": [],
       "value": ""
     }, {
-      "id": "20b0d856-b2c0-40f2-af68-58fdb425e589",
+      "id": "ab70f72f-614e-49bc-856f-547fa9990327",
       "comment": "",
-      "command": "click",
-      "target": "css=#zocial-datapunt-acc > span",
-      "targets": [
-        ["css=#zocial-datapunt-acc > span", "css:finder"],
-        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
-        ["xpath=//span", "xpath:position"],
-        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
-      ],
+      "command": "setWindowSize",
+      "target": "1920x1080",
+      "targets": [],
       "value": ""
     }, {
-      "id": "c7a0b2c6-ebae-462c-bffa-c1d531ba5cfe",
+      "id": "cb2d1d10-8912-4e23-9c02-17d0878b7753",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "53a366c2-3ffd-4daa-97b9-18b97e938441",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND"
+    }, {
+      "id": "eaae8e6d-2d8e-4eae-99e7-fd1b5b1ef6ab",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dfe83785-0fb7-436d-938c-d7acf42dc5f6",
+      "comment": "",
+      "command": "if",
+      "target": "${LOGIN_SCREEN_FOUND} == 1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "435ee021-a3d3-43b2-9831-b4d3a48b1870",
       "comment": "",
       "command": "type",
       "target": "id=username",
@@ -68,6 +119,13 @@
       ],
       "value": ""
     }, {
+      "id": "b3c5179b-59b2-4dc6-9e0d-6eae0b15fa4c",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "ec115179-56da-43ba-8c84-c90d8c0c71af",
       "comment": "Test of in dossieroverzicht zit",
       "command": "assertText",
@@ -78,13 +136,6 @@
         ["xpath=//h1[contains(.,'Dossiers')]", "xpath:innerText"]
       ],
       "value": "Dossiers"
-    }, {
-      "id": "ab70f72f-614e-49bc-856f-547fa9990327",
-      "comment": "",
-      "command": "setWindowSize",
-      "target": "1920x1080",
-      "targets": [],
-      "value": ""
     }, {
       "id": "719bf096-9f08-4b72-9032-0f8abb89f34c",
       "comment": "Nieuw dossier",
@@ -176,7 +227,14 @@
         ["xpath=//input[@id='create_dossier_form_regasNummer']", "xpath:attributes"],
         ["xpath=//div[3]/div/input", "xpath:position"]
       ],
-      "value": "${datum}"
+      "value": "${DOSSIERNUMMER}"
+    }, {
+      "id": "11bf7b32-10af-44a9-9348-88286fbe9f94",
+      "comment": "",
+      "command": "select",
+      "target": "id=create_dossier_form_teamGka",
+      "targets": [],
+      "value": "label=GKA Team 3"
     }, {
       "id": "6ee425bf-64d5-4f6c-b337-2386cd5e4827",
       "comment": "Maak dossier aan",
@@ -189,13 +247,6 @@
         ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
       ],
       "value": ""
-    }, {
-      "id": "5851c513-7ac0-4702-81ae-78987e10860e",
-      "comment": "",
-      "command": "select",
-      "target": "id=create_dossier_form_teamGka",
-      "targets": [],
-      "value": "label=GKA Team 1"
     }, {
       "id": "4cb4addf-5dc8-4ba7-addf-b7fea8529d71",
       "comment": "",
@@ -277,6 +328,64 @@
         ["xpath=//h1[contains(.,'Test 18/03/2019, 21:40:05')]", "xpath:innerText"]
       ],
       "value": "ST Automatic Selenium test"
+    }, {
+      "id": "774a90a2-9939-4bd4-8c23-4bd18dbb5d9f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open > span",
+      "targets": [
+        ["css=.nav-open > span", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8b560a2b-c30f-4c64-897f-9855f9b5047b",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//a[contains(@href, '/app/logout')]",
+      "targets": [
+        ["linkText=Afmelden (schulddossier_admin)", "linkText"],
+        ["css=li:nth-child(10) > a", "css:finder"],
+        ["xpath=//a[contains(@href, '/app/logout')]", "xpath:href"],
+        ["xpath=//li[10]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Afmelden (schulddossier_admin)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "45166a7c-ffdd-4601-bf7c-6d727a28659d",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "89367a3b-7692-460e-a601-306e9b56cd5e",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND2"
+    }, {
+      "id": "df96777d-5367-462e-a575-55162b2ffc45",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND2}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a6b7bcf3-e4f9-47fc-9199-c701923d70d9",
+      "comment": "",
+      "command": "verify",
+      "target": "LOGIN_SCREEN_FOUND2",
+      "targets": [],
+      "value": "1"
+    }, {
+      "id": "3f1c1d43-161d-4793-9be4-c455a86b4e95",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "db8ce94d-cd58-4309-8407-57a4a5b102a7",
@@ -1161,10 +1270,38 @@
     "id": "d97a43da-5c7e-4f05-8546-07e2da3181da",
     "name": "Schulddossier verwijderen",
     "commands": [{
-      "id": "1de1a304-3528-44c8-9be6-d78e7f42aebb",
+      "id": "17534414-0848-466d-8710-7d140d362e21",
+      "comment": "",
+      "command": "store",
+      "target": "schulddossier_admin",
+      "targets": [],
+      "value": "TESTUSER_EMAIL"
+    }, {
+      "id": "58491d7c-a622-4e50-b6fd-ef5c5da81833",
+      "comment": "",
+      "command": "store",
+      "target": "insecure",
+      "targets": [],
+      "value": "TESTUSER_PASS"
+    }, {
+      "id": "64060ad9-8c32-4e1a-817e-b397b6436324",
+      "comment": "",
+      "command": "store",
+      "target": "test@schulddossier.amsterdam.nl",
+      "targets": [],
+      "value": "CREATE_USER_EMAIL"
+    }, {
+      "id": "6ed1ebdf-23a4-4f73-81a9-317f9be59dc4",
+      "comment": "",
+      "command": "store",
+      "target": "123456",
+      "targets": [],
+      "value": "DOSSIERNUMMER"
+    }, {
+      "id": "db63c551-0e31-43f1-a39a-ca45c6b6e13f",
       "comment": "",
       "command": "open",
-      "target": "/app/dossier/",
+      "target": "http://localhost:8100/app/dossier/",
       "targets": [],
       "value": ""
     }, {
@@ -1175,19 +1312,35 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "cff34734-c412-4e86-b0e7-1316d8c2c9f3",
+      "id": "417d402c-6546-44ef-8d91-3e5299299f97",
       "comment": "",
-      "command": "click",
-      "target": "css=#zocial-datapunt-acc > span",
-      "targets": [
-        ["css=#zocial-datapunt-acc > span", "css:finder"],
-        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
-        ["xpath=//span", "xpath:position"],
-        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
-      ],
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "c8a09ae4-45dc-464d-ba83-af9c68f06a09",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND"
+    }, {
+      "id": "7b818055-e48d-4b77-b915-37ec26756fe0",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND}",
+      "targets": [],
       "value": ""
     }, {
-      "id": "12e37b82-4623-4ae9-80d8-f08d3850d139",
+      "id": "768aef4e-fe8c-4ce3-bd22-1269336c4bcb",
+      "comment": "",
+      "command": "if",
+      "target": "${LOGIN_SCREEN_FOUND} == 1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3d3cc754-4e1d-4aed-a1a9-aecd123a6d0d",
       "comment": "",
       "command": "type",
       "target": "id=username",
@@ -1201,7 +1354,7 @@
       ],
       "value": "${TESTUSER_EMAIL}"
     }, {
-      "id": "a8c70056-2aba-49f1-9882-f66e94ebf7d5",
+      "id": "ebb9166d-a64c-45ed-90da-4c56f923060c",
       "comment": "",
       "command": "type",
       "target": "id=password",
@@ -1215,7 +1368,7 @@
       ],
       "value": "${TESTUSER_PASS}"
     }, {
-      "id": "d80a97bc-6814-42b4-a6ca-0bf2e0e0ab21",
+      "id": "bdc7d8c6-14ff-4a4d-b618-00e03b8ced7b",
       "comment": "",
       "command": "click",
       "target": "id=kc-login",
@@ -1229,14 +1382,21 @@
       ],
       "value": ""
     }, {
-      "id": "6e9cfeb4-e109-4fa6-bc5b-ccd5b5bf52b5",
+      "id": "24c7fcb5-d124-46c4-b64b-7ebaa290b046",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5a9ed469-f585-4f7a-9e76-18b705a18f1f",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
+      "target": "xpath=//a[contains(@href, '?section=shv')]",
       "targets": [
-        ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
+        ["css=.active > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                SHV-er/Bewindvoerder')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '?section=shv')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
       "value": ""
@@ -1305,42 +1465,79 @@
       "target": "1000",
       "targets": [],
       "value": ""
-    }, {
-      "id": "77d1944a-5b19-4fb4-b372-1d4d6346e6ad",
-      "comment": "",
-      "command": "assertConfirmation",
-      "target": "Weet je het zeker?",
-      "targets": [],
-      "value": ""
     }]
   }, {
     "id": "6cc54cdf-fea6-408d-b3be-98ee48fd2a1e",
     "name": "Dossier wijzigen / Aanvraag (alleen waarden)",
     "commands": [{
-      "id": "e492e1a2-d9d3-4c77-9fba-a885440ee597",
+      "id": "17392aa8-aeaa-4e27-a0f5-e19693ee9ca4",
+      "comment": "",
+      "command": "store",
+      "target": "schulddossier_admin",
+      "targets": [],
+      "value": "TESTUSER_EMAIL"
+    }, {
+      "id": "5fe31ffe-8d2b-4d18-a17c-0a2819bd13ac",
+      "comment": "",
+      "command": "store",
+      "target": "insecure",
+      "targets": [],
+      "value": "TESTUSER_PASS"
+    }, {
+      "id": "d80f089f-e5aa-4c99-99fb-f7838ac05b34",
+      "comment": "",
+      "command": "store",
+      "target": "test@schulddossier.amsterdam.nl",
+      "targets": [],
+      "value": "CREATE_USER_EMAIL"
+    }, {
+      "id": "8c8eaf80-79f3-4e9f-a74f-a1fed0a14ea2",
+      "comment": "",
+      "command": "store",
+      "target": "123456",
+      "targets": [],
+      "value": "DOSSIERNUMMER"
+    }, {
+      "id": "4c22d83a-b559-49cd-9109-15ba17a5eb75",
       "comment": "",
       "command": "open",
-      "target": "/app/dossier/",
+      "target": "http://localhost:8100/app/dossier/",
       "targets": [],
       "value": ""
     }, {
       "id": "7c4495c2-fc2d-47b4-8e61-98483d61af00",
       "comment": "",
       "command": "setWindowSize",
-      "target": "1920x1080",
+      "target": "1920x1200",
       "targets": [],
       "value": ""
     }, {
-      "id": "74d1f870-b140-4c3f-bc5a-50606f65c267",
+      "id": "72ddb877-c5cf-4bfc-aa59-606d433fafd7",
       "comment": "",
-      "command": "click",
-      "target": "css=#zocial-datapunt-acc > span",
-      "targets": [
-        ["css=#zocial-datapunt-acc > span", "css:finder"],
-        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
-        ["xpath=//span", "xpath:position"],
-        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
-      ],
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "8519bb30-e6f3-42ff-b59f-86abeaba60b7",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND"
+    }, {
+      "id": "a6d6e9b9-015a-4e07-baec-34d432675a02",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "34973e15-a09e-4bb8-a3c8-97bb5648249e",
+      "comment": "",
+      "command": "if",
+      "target": "${LOGIN_SCREEN_FOUND} == 1",
+      "targets": [],
       "value": ""
     }, {
       "id": "b7090a7a-f7e2-4ce6-b453-a6fb54665da3",
@@ -1385,14 +1582,21 @@
       ],
       "value": ""
     }, {
-      "id": "89cfe5c8-1fbd-4b78-a69d-4e34bcd2db94",
+      "id": "02bdec70-115b-463a-b95f-ebac34e9d625",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fd6fb494-de98-42fa-9bf0-4bd44ddff1ec",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
+      "target": "xpath=//a[contains(@href, '?section=shv')]",
       "targets": [
-        ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
+        ["css=.active > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                SHV-er/Bewindvoerder')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '?section=shv')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
       "value": ""
@@ -3074,15 +3278,87 @@
         ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
       ],
       "value": "5000"
+    }, {
+      "id": "45ddc621-0a34-44c7-bdb6-73457676ea89",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open > span",
+      "targets": [
+        ["css=.nav-open > span", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a20d014a-50c3-4ddf-bdd6-0781a1a0e3fc",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//a[contains(@href, '/app/logout')]",
+      "targets": [
+        ["linkText=Afmelden (schulddossier_admin)", "linkText"],
+        ["css=li:nth-child(10) > a", "css:finder"],
+        ["xpath=//a[contains(@href, '/app/logout')]", "xpath:href"],
+        ["xpath=//li[10]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Afmelden (schulddossier_admin)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef12d4e4-4bc8-4ece-9d25-409f69d9eb97",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "023ee8bd-6adb-45f7-8c27-263b284e1a5d",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND2"
+    }, {
+      "id": "df7dc3d2-caa3-44b9-83ed-6633013a0dc1",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND2}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f9e77073-0280-41e1-ba3d-e5c92b39f6f3",
+      "comment": "",
+      "command": "verify",
+      "target": "LOGIN_SCREEN_FOUND2",
+      "targets": [],
+      "value": "1"
+    }, {
+      "id": "03c7850d-b1e2-4709-aa78-cb8bc231f090",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "21608483-6a50-4611-a70c-09aae07c9e11",
     "name": "Dossier openen",
     "commands": [{
-      "id": "70b8fa2b-2c75-4891-9f13-d46fb2da9b27",
+      "id": "cfa5cc24-47f8-4932-81c6-ab63ab1f019d",
+      "comment": "",
+      "command": "store",
+      "target": "schulddossier_disabled",
+      "targets": [],
+      "value": "TESTUSER_EMAIL"
+    }, {
+      "id": "66b04cca-91b5-4681-bc77-fa6d8270b972",
+      "comment": "",
+      "command": "store",
+      "target": "insecure",
+      "targets": [],
+      "value": "TESTUSER_PASS"
+    }, {
+      "id": "cbd8b201-4379-4c7a-8ea3-c82394e7eca3",
       "comment": "",
       "command": "open",
-      "target": "/app/dossier/",
+      "target": "http://localhost:8100/app/dossier/",
       "targets": [],
       "value": ""
     }, {
@@ -3090,6 +3366,27 @@
       "comment": "",
       "command": "setWindowSize",
       "target": "1920x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b269e278-405a-4da8-a27f-8b79dd1b0cb8",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "1dd9b3eb-e33c-48d0-87c4-4b2327d7bfe6",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND"
+    }, {
+      "id": "83963f26-3b50-470f-a0c0-ca2eb8cf98d1",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND}",
       "targets": [],
       "value": ""
     }, {
@@ -3141,10 +3438,38 @@
     "id": "2221cdef-0396-40d2-b0de-3dcfbe9bd124",
     "name": "Dossier wijzigen / aantekeningen toevoegen",
     "commands": [{
-      "id": "338f792d-2646-4ee5-98b8-85e02771fa2e",
+      "id": "71fab86e-d0c4-43e8-b1a6-7e918e33ec20",
+      "comment": "",
+      "command": "store",
+      "target": "schulddossier_admin",
+      "targets": [],
+      "value": "TESTUSER_EMAIL"
+    }, {
+      "id": "91aaf493-bb43-47a6-8edd-61cfc36c7576",
+      "comment": "",
+      "command": "store",
+      "target": "insecure",
+      "targets": [],
+      "value": "TESTUSER_PASS"
+    }, {
+      "id": "66d73dd2-c630-4be6-b637-68ed5d67b50a",
+      "comment": "",
+      "command": "store",
+      "target": "test@schulddossier.amsterdam.nl",
+      "targets": [],
+      "value": "CREATE_USER_EMAIL"
+    }, {
+      "id": "7fc49596-1f4c-41d9-b60a-b41c95b847e8",
+      "comment": "",
+      "command": "store",
+      "target": "123456",
+      "targets": [],
+      "value": "DOSSIERNUMMER"
+    }, {
+      "id": "9584b5be-5bff-4eda-ac14-3953fafe0d26",
       "comment": "",
       "command": "open",
-      "target": "/app/dossier/",
+      "target": "http://localhost:8100/app/dossier/",
       "targets": [],
       "value": ""
     }, {
@@ -3155,16 +3480,32 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "a86795f6-849b-4937-8e81-645a27a6b5a3",
+      "id": "96f271cc-d777-4217-9c59-303cd6392d82",
       "comment": "",
-      "command": "click",
-      "target": "css=#zocial-datapunt-acc > span",
-      "targets": [
-        ["css=#zocial-datapunt-acc > span", "css:finder"],
-        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
-        ["xpath=//span", "xpath:position"],
-        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
-      ],
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "89d609e8-a629-4198-90d6-04a38f382979",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND"
+    }, {
+      "id": "4bcfcf5e-1eae-4072-a855-96914e2afbce",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "170df0d2-fd89-43fd-8190-ba0ccd06f05b",
+      "comment": "",
+      "command": "if",
+      "target": "${LOGIN_SCREEN_FOUND} == 1",
+      "targets": [],
       "value": ""
     }, {
       "id": "717ddace-2991-4cf0-8302-4dae947db8b2",
@@ -3209,14 +3550,21 @@
       ],
       "value": ""
     }, {
-      "id": "d82ae91e-b85d-4a81-9ec2-ddd2fcc65cb6",
+      "id": "464d3511-4420-4845-ace0-3cf2ad34b270",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9230670d-cc18-4958-bf81-3cd0f20e06cf",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
+      "target": "xpath=//a[contains(@href, '?section=shv')]",
       "targets": [
-        ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
+        ["css=.active > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                SHV-er/Bewindvoerder')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '?section=shv')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
       "value": ""
@@ -3472,39 +3820,25 @@
       ],
       "value": "Dit is een aantekening. Eligendi assumenda esse quia et quod a quidem. Numquam itaque quia quibusdam recusandae nisi totam deleniti est vel. Magnam fugiat molestias nulla dolores sed. Delectus velit illo maiores maiores omnis qui ut fuga aspernatur."
     }, {
-      "id": "7166f68e-aa64-4696-87fa-38bffc5da491",
+      "id": "17bd7467-808c-46d1-b94f-896bdaacd434",
       "comment": "",
       "command": "click",
-      "target": "linkText=Toelichting MaDi/Bewindvoerder",
+      "target": "linkText=Toelichting SHV-er/Bewindvoerder",
       "targets": [
-        ["linkText=Toelichting MaDi", "linkText"],
-        ["css=#voorlegger-toelichtingAanvraagSchuldsaneringMadi .naam > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Toelichting MaDi')]", "xpath:link"],
-        ["xpath=//div[@id='voorlegger-toelichtingAanvraagSchuldsaneringMadi']/div/div/h3/a", "xpath:idRelative"],
-        ["xpath=//a[contains(@href, '#id_voorlegger-toelichtingAanvraagSchuldsaneringMadi')]", "xpath:href"],
+        ["linkText=Toelichting SHV-er/Bewindvoerder", "linkText"],
+        ["css=#voorlegger-toelichtingAanvraagSchuldsaneringShv > .dossier__voorlegger__header a", "css:finder"],
+        ["xpath=//a[contains(text(),'Toelichting SHV-er/Bewindvoerder')]", "xpath:link"],
+        ["xpath=//div[@id='voorlegger-toelichtingAanvraagSchuldsaneringShv']/div/div/h3/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#id_voorlegger-toelichtingAanvraagSchuldsaneringShv')]", "xpath:href"],
         ["xpath=//div[5]/div/div/h3/a", "xpath:position"],
-        ["xpath=//a[contains(.,'Toelichting MaDi')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "91bae5ed-fbf2-49ec-bb43-67d578913a44",
-      "comment": "",
-      "command": "click",
-      "target": "id=voorlegger_form_toelichtingAanvraagSchuldsaneringMadi_aantekening_tekst",
-      "targets": [
-        ["id=voorlegger_form_toelichtingAanvraagSchuldsaneringMadi_aantekening_tekst", "id"],
-        ["name=voorlegger_form[toelichtingAanvraagSchuldsaneringMadi][aantekening][tekst]", "name"],
-        ["css=#voorlegger_form_toelichtingAanvraagSchuldsaneringMadi_aantekening_tekst", "css:finder"],
-        ["xpath=//textarea[@id='voorlegger_form_toelichtingAanvraagSchuldsaneringMadi_aantekening_tekst']", "xpath:attributes"],
-        ["xpath=//div[@id='form-voorlegger_form_toelichtingAanvraagSchuldsaneringMadi_aantekening_tekst']/textarea", "xpath:idRelative"],
-        ["xpath=//div[5]/div[2]/div/div[2]/div[2]/div/div/div/textarea", "xpath:position"]
+        ["xpath=//a[contains(.,'Toelichting SHV-er/Bewindvoerder')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
       "id": "80e6a05e-8b03-47e7-925d-cea025955bf4",
       "comment": "",
       "command": "type",
-      "target": "id=voorlegger_form_toelichtingAanvraagSchuldsaneringMadi_aantekening_tekst",
+      "target": "id=voorlegger_form_toelichtingAanvraagSchuldsaneringShv_aantekening_tekst",
       "targets": [
         ["id=voorlegger_form_toelichtingAanvraagSchuldsaneringMadi_aantekening_tekst", "id"],
         ["name=voorlegger_form[toelichtingAanvraagSchuldsaneringMadi][aantekening][tekst]", "name"],
@@ -4731,15 +5065,101 @@
         ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
       ],
       "value": "5000"
+    }, {
+      "id": "9d61b1b5-d536-4ae7-9c9d-7ad05ee0f3b9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open > span",
+      "targets": [
+        ["css=.nav-open > span", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d14eb37-f7a7-46b5-b622-bc342e80430f",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//a[contains(@href, '/app/logout')]",
+      "targets": [
+        ["linkText=Afmelden (schulddossier_admin)", "linkText"],
+        ["css=li:nth-child(10) > a", "css:finder"],
+        ["xpath=//a[contains(@href, '/app/logout')]", "xpath:href"],
+        ["xpath=//li[10]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Afmelden (schulddossier_admin)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d5f81f27-1508-4e8b-9825-7883063548ff",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "6edf0100-886a-4ae1-bff5-e7b8eaa71374",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND2"
+    }, {
+      "id": "e424c1f7-d2de-4983-ad3d-beef69d46ff4",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND2}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d11713c4-7ef9-41fa-af47-32ca88514fcb",
+      "comment": "",
+      "command": "verify",
+      "target": "LOGIN_SCREEN_FOUND2",
+      "targets": [],
+      "value": "1"
+    }, {
+      "id": "1363715c-45f7-46ba-ab92-c27c288660fd",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "c3b67a50-fe32-432e-955f-1f03270367ed",
     "name": "Dossier wijzigen / schulden toevoegen",
     "commands": [{
-      "id": "96eb8d1d-4b3d-4254-abdf-2d9ee3ece29f",
+      "id": "2ec44550-4f4a-4369-9a92-e0f71109acca",
+      "comment": "",
+      "command": "store",
+      "target": "schulddossier_admin",
+      "targets": [],
+      "value": "TESTUSER_EMAIL"
+    }, {
+      "id": "7a865db6-b4ba-44ea-91d0-8a2115ed7b5c",
+      "comment": "",
+      "command": "store",
+      "target": "insecure",
+      "targets": [],
+      "value": "TESTUSER_PASS"
+    }, {
+      "id": "1a872a35-7234-44c8-ab76-d61f503f74a0",
+      "comment": "",
+      "command": "store",
+      "target": "test@schulddossier.amsterdam.nl",
+      "targets": [],
+      "value": "CREATE_USER_EMAIL"
+    }, {
+      "id": "fc1634f6-24ce-45e8-89c4-d2d650521eca",
+      "comment": "",
+      "command": "store",
+      "target": "123456",
+      "targets": [],
+      "value": "DOSSIERNUMMER"
+    }, {
+      "id": "975037a0-1508-41d6-8ec4-cdcb6342afa5",
       "comment": "",
       "command": "open",
-      "target": "/app/dossier/",
+      "target": "http://localhost:8100/app/dossier/",
       "targets": [],
       "value": ""
     }, {
@@ -4750,16 +5170,32 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "d6ac0048-c8de-46d0-8cc0-995e30f8a822",
+      "id": "35359b9f-3140-4a3d-a1b7-5ed5b28afe9b",
       "comment": "",
-      "command": "click",
-      "target": "css=#zocial-datapunt-acc > span",
-      "targets": [
-        ["css=#zocial-datapunt-acc > span", "css:finder"],
-        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
-        ["xpath=//span", "xpath:position"],
-        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
-      ],
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "f16b4064-7c91-44a0-ae04-1e7c7c8219fa",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND"
+    }, {
+      "id": "350ed407-d484-4414-8cb7-a3f4309327f5",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "75bcab5e-23b3-4d2f-98b9-f5b8280586f4",
+      "comment": "",
+      "command": "if",
+      "target": "${LOGIN_SCREEN_FOUND} == 1",
+      "targets": [],
       "value": ""
     }, {
       "id": "51119e91-7664-40ea-93d5-4dfacb6e0c79",
@@ -4804,14 +5240,21 @@
       ],
       "value": ""
     }, {
-      "id": "01a87695-b987-4d56-852a-82179c769d9b",
+      "id": "e4ea3d03-ce8e-4efc-b7e3-0919353559ce",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "aef5d629-7a05-4583-9c7e-3cb052994740",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
+      "target": "xpath=//a[contains(@href, '?section=shv')]",
       "targets": [
-        ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
+        ["css=.active > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                SHV-er/Bewindvoerder')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '?section=shv')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
       "value": ""
@@ -4876,7 +5319,7 @@
         ["xpath=//div[@id='nieuwe-schuld-toevoegen']/div/div/div/div/input", "xpath:idRelative"],
         ["xpath=//div/input", "xpath:position"]
       ],
-      "value": "gem"
+      "value": "a"
     }, {
       "id": "ee6ca63a-da11-4498-9bd7-c982102f37fe",
       "comment": "Pauzeer zodat Javascript tijd heeft",
@@ -4888,7 +5331,7 @@
       "id": "39a5443b-f89f-427f-a118-56ee54dca285",
       "comment": "",
       "command": "click",
-      "target": "css=.search-result-item:nth-child(3) > .search-result-item-selectable > .small",
+      "target": "css=.search-result-item:nth-child(1) > .search-result-item-selectable > .small",
       "targets": [
         ["css=.search-result-item:nth-child(3) > .search-result-item-selectable > .small", "css:finder"],
         ["xpath=//div[@id='nieuwe-schuld-toevoegen']/div/div/div/div/div/ul/li[3]/a/span[2]", "xpath:idRelative"],
@@ -4927,7 +5370,7 @@
         ["xpath=//div[@id='nieuwe-schuld-toevoegen']/div/div[2]/div/div/input", "xpath:idRelative"],
         ["xpath=//div[2]/div/div/input", "xpath:position"]
       ],
-      "value": "gem"
+      "value": "a"
     }, {
       "id": "c53f437c-0cc9-4e81-b206-8fa7d6bfdebb",
       "comment": "Pauzeer zodat Javascript tijd heeft",
@@ -4939,7 +5382,7 @@
       "id": "60dec5d7-59b5-4562-ac34-5b514ac11f68",
       "comment": "",
       "command": "click",
-      "target": "css=.search-result-item:nth-child(2) > .search-result-item-selectable > .small",
+      "target": "css=.search-result-item:nth-child(1) > .search-result-item-selectable > .small",
       "targets": [
         ["css=.search-result-item:nth-child(2) > .search-result-item-selectable > .small", "css:finder"],
         ["xpath=//div[@id='nieuwe-schuld-toevoegen']/div/div[2]/div/div/div/ul/li[2]/a/span[2]", "xpath:idRelative"],
@@ -5080,6 +5523,13 @@
       ],
       "value": ""
     }, {
+      "id": "e695aabe-14bf-4752-b842-508320ba1fb3",
+      "comment": "Pauzeer zodat Javascript tijd heeft",
+      "command": "pause",
+      "target": "500",
+      "targets": [],
+      "value": ""
+    }, {
       "id": "ccbfb4d0-011a-4b13-a7f9-fbac031b1bfb",
       "comment": "",
       "command": "click",
@@ -5111,7 +5561,7 @@
         ["xpath=//div[@id='nieuwe-schuld-toevoegen']/div/div/div/div/input", "xpath:idRelative"],
         ["xpath=//div/input", "xpath:position"]
       ],
-      "value": "gem"
+      "value": "a"
     }, {
       "id": "9645c445-0a10-437f-82e8-ed09813b9c57",
       "comment": "Pauzeer zodat Javascript tijd heeft",
@@ -5123,7 +5573,7 @@
       "id": "05fb8a15-5a95-44bc-9f70-d037e59c037a",
       "comment": "",
       "command": "click",
-      "target": "css=.search-result-item:nth-child(2) > .search-result-item-selectable > span:nth-child(1)",
+      "target": "css=.search-result-item:nth-child(1) > .search-result-item-selectable > span:nth-child(1)",
       "targets": [
         ["css=.search-result-item:nth-child(2) > .search-result-item-selectable > span:nth-child(1)", "css:finder"],
         ["xpath=//div[@id='nieuwe-schuld-toevoegen']/div/div/div/div/div/ul/li[2]/a/span", "xpath:idRelative"],
@@ -5329,7 +5779,7 @@
         ["xpath=//div[@id='nieuwe-schuld-toevoegen']/div/div/div/div/input", "xpath:idRelative"],
         ["xpath=//div/input", "xpath:position"]
       ],
-      "value": "gem"
+      "value": "a"
     }, {
       "id": "294e15b2-1c83-407e-a8b6-82db37cc6283",
       "comment": "Pauzeer zodat Javascript tijd heeft",
@@ -5341,7 +5791,7 @@
       "id": "fafa4989-0d04-423e-9e7f-1c2eb6756932",
       "comment": "",
       "command": "click",
-      "target": "css=.search-result-item:nth-child(3) > .search-result-item-selectable > span:nth-child(1)",
+      "target": "css=.search-result-item:nth-child(1) > .search-result-item-selectable > span:nth-child(1)",
       "targets": [
         ["css=.search-result-item:nth-child(3) > .search-result-item-selectable > span:nth-child(1)", "css:finder"],
         ["xpath=//div[@id='nieuwe-schuld-toevoegen']/div/div/div/div/div/ul/li[3]/a/span", "xpath:idRelative"],
@@ -5494,15 +5944,101 @@
         ["xpath=//button[contains(.,'Nieuwe schuld opslaan')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "067f7b6f-0975-4e3b-bacc-ebafb482ac35",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open > span",
+      "targets": [
+        ["css=.nav-open > span", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2088d124-76a9-44c0-b6cc-652e3547275d",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//a[contains(@href, '/app/logout')]",
+      "targets": [
+        ["linkText=Afmelden (schulddossier_admin)", "linkText"],
+        ["css=li:nth-child(10) > a", "css:finder"],
+        ["xpath=//a[contains(@href, '/app/logout')]", "xpath:href"],
+        ["xpath=//li[10]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Afmelden (schulddossier_admin)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "837bbed8-e84e-41fb-ae49-7d98a0fa7184",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "c6936a44-1b35-46a1-8815-986abfc525a7",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND2"
+    }, {
+      "id": "f37d3605-b447-493e-9c02-41bb536ad5b5",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND2}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "62c194a5-d533-48f0-b706-34792c2286dd",
+      "comment": "",
+      "command": "verify",
+      "target": "LOGIN_SCREEN_FOUND2",
+      "targets": [],
+      "value": "1"
+    }, {
+      "id": "4dc577bf-8ec6-42e9-a981-04e2c48822db",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "caaa7e1b-9e5a-4d3a-8043-9cd79abd1c14",
     "name": "Dossier wijzigen / schulden wijzigen",
     "commands": [{
-      "id": "71ee8c05-eb71-4eed-a000-9d7d78a952d6",
+      "id": "09cfffc8-f6d9-4209-9c5e-967a468b808c",
+      "comment": "",
+      "command": "store",
+      "target": "schulddossier_admin",
+      "targets": [],
+      "value": "TESTUSER_EMAIL"
+    }, {
+      "id": "f1a31e13-4754-4956-9d6b-1885c243f44c",
+      "comment": "",
+      "command": "store",
+      "target": "insecure",
+      "targets": [],
+      "value": "TESTUSER_PASS"
+    }, {
+      "id": "ef4ed8ac-e9a0-450b-ab9d-d6d06ea9d702",
+      "comment": "",
+      "command": "store",
+      "target": "test@schulddossier.amsterdam.nl",
+      "targets": [],
+      "value": "CREATE_USER_EMAIL"
+    }, {
+      "id": "01340d86-937b-4064-8c7f-dc0dba5265eb",
+      "comment": "",
+      "command": "store",
+      "target": "123456",
+      "targets": [],
+      "value": "DOSSIERNUMMER"
+    }, {
+      "id": "37c458fa-354c-4914-afc6-28b3e0fc45cc",
       "comment": "",
       "command": "open",
-      "target": "/app/dossier/",
+      "target": "http://localhost:8100/app/dossier/",
       "targets": [],
       "value": ""
     }, {
@@ -5513,16 +6049,32 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "60b95291-91d1-46b3-94ac-8e1aef10420e",
+      "id": "f2fb0a2e-8dc0-4b0a-9b97-79586aea3d62",
       "comment": "",
-      "command": "click",
-      "target": "css=#zocial-datapunt-acc > span",
-      "targets": [
-        ["css=#zocial-datapunt-acc > span", "css:finder"],
-        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
-        ["xpath=//span", "xpath:position"],
-        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
-      ],
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "dc0e5401-e661-4d5b-b5d0-545316cdf659",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND"
+    }, {
+      "id": "c7700693-136a-4cda-bb88-d3a374080d5e",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4eca43b5-9dea-4b22-8112-2805b760320d",
+      "comment": "",
+      "command": "if",
+      "target": "${LOGIN_SCREEN_FOUND} == 1",
+      "targets": [],
       "value": ""
     }, {
       "id": "7a9f4e82-b069-41ba-b983-1ce9f6121b0f",
@@ -5567,14 +6119,21 @@
       ],
       "value": ""
     }, {
-      "id": "1c42efaf-c5e3-43b3-90d0-e04e78a54d79",
+      "id": "aa1eea18-2d14-43e5-8b71-331ed06bd919",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b10b34fd-4df7-40bc-9295-d6263cb7d88c",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
+      "target": "xpath=//a[contains(@href, '?section=shv')]",
       "targets": [
-        ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
+        ["css=.active > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                SHV-er/Bewindvoerder')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '?section=shv')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
       "value": ""
@@ -5650,7 +6209,7 @@
         ["xpath=//div[@id='schuldItem-395']/div[2]/div/div[2]/div/div/div/div/input", "xpath:idRelative"],
         ["xpath=//div[2]/div/div/div/div/input", "xpath:position"]
       ],
-      "value": "gem"
+      "value": "a"
     }, {
       "id": "2dbfabed-f43c-4d19-babb-c64e778fd547",
       "comment": "Pauzeer zodat Javascript tijd heeft",
@@ -5662,7 +6221,7 @@
       "id": "971cfa58-e1ca-487b-839f-94f05382c81a",
       "comment": "",
       "command": "click",
-      "target": "css=.search-result-item:nth-child(2) > .search-result-item-selectable > .small",
+      "target": "css=.search-result-item:nth-child(1) > .search-result-item-selectable > .small",
       "targets": [
         ["css=.search-result-item:nth-child(2) > .search-result-item-selectable > .small", "css:finder"],
         ["xpath=//div[@id='schuldItem-395']/div[2]/div/div[2]/div/div/div/div/div/ul/li[2]/a/span[2]", "xpath:idRelative"],
@@ -5825,15 +6384,101 @@
         ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
       ],
       "value": "5000"
+    }, {
+      "id": "c3b8461e-8589-4db8-9161-7c879a59ca79",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open > span",
+      "targets": [
+        ["css=.nav-open > span", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5b6d1f2a-20ee-4496-8e67-c3b60453bbc1",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//a[contains(@href, '/app/logout')]",
+      "targets": [
+        ["linkText=Afmelden (schulddossier_admin)", "linkText"],
+        ["css=li:nth-child(10) > a", "css:finder"],
+        ["xpath=//a[contains(@href, '/app/logout')]", "xpath:href"],
+        ["xpath=//li[10]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Afmelden (schulddossier_admin)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "224ca378-b061-406e-81bb-8018de8aa9d6",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "92f2c5b1-7c52-4f8a-b57c-914dfe2259d7",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND2"
+    }, {
+      "id": "ddc65017-26d4-47f2-83c1-d9e6cb5594d0",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND2}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "338a07a6-155b-43bd-bd6d-5fe309ad645f",
+      "comment": "",
+      "command": "verify",
+      "target": "LOGIN_SCREEN_FOUND2",
+      "targets": [],
+      "value": "1"
+    }, {
+      "id": "1a9afa0d-1f93-4ab8-8415-20374492eef4",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "b02cad2d-64ed-43e6-9476-ad8925300f89",
     "name": "Dossier wijzigen / Aanvraag (Controle alleen waarden)",
     "commands": [{
-      "id": "57a70deb-0d06-47cd-bc50-153b807fb443",
+      "id": "b7c752fd-343a-4922-a0b0-b7f05df28d68",
+      "comment": "",
+      "command": "store",
+      "target": "schulddossier_admin",
+      "targets": [],
+      "value": "TESTUSER_EMAIL"
+    }, {
+      "id": "bb780245-f0ff-46bb-b0cb-31d29b6b28db",
+      "comment": "",
+      "command": "store",
+      "target": "insecure",
+      "targets": [],
+      "value": "TESTUSER_PASS"
+    }, {
+      "id": "aea1571e-1224-4dc4-a128-b283db1da79d",
+      "comment": "",
+      "command": "store",
+      "target": "test@schulddossier.amsterdam.nl",
+      "targets": [],
+      "value": "CREATE_USER_EMAIL"
+    }, {
+      "id": "bdc25607-297b-44f5-a99c-a9a2f0ab3094",
+      "comment": "",
+      "command": "store",
+      "target": "123456",
+      "targets": [],
+      "value": "DOSSIERNUMMER"
+    }, {
+      "id": "248b2602-0912-4955-82d4-41f88bbec2a6",
       "comment": "",
       "command": "open",
-      "target": "/app/dossier/",
+      "target": "http://localhost:8100/app/dossier/",
       "targets": [],
       "value": ""
     }, {
@@ -5844,16 +6489,32 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "a2ba7080-a03c-4926-9f47-5ca16aadde4e",
+      "id": "316f10ae-c5f5-4648-a37e-8960497dac19",
       "comment": "",
-      "command": "click",
-      "target": "css=#zocial-datapunt-acc > span",
-      "targets": [
-        ["css=#zocial-datapunt-acc > span", "css:finder"],
-        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
-        ["xpath=//span", "xpath:position"],
-        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
-      ],
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "eb202626-d32c-4af9-a217-490e8b8341d5",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND"
+    }, {
+      "id": "88c690ce-d644-421d-8041-0e1178cb8558",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "df8bf79a-01b5-436d-b5bf-4a594bcbd9c5",
+      "comment": "",
+      "command": "if",
+      "target": "${LOGIN_SCREEN_FOUND} == 1",
+      "targets": [],
       "value": ""
     }, {
       "id": "85091f8f-1cde-458d-bc2e-baa38804e76b",
@@ -5898,14 +6559,21 @@
       ],
       "value": ""
     }, {
-      "id": "c567c0bb-b3cb-420b-839f-b00c4fa2a981",
+      "id": "ead5a356-bfb9-4ec1-a199-69367c974d1d",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a349a63a-0715-48db-b3ad-6af51ed905fc",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
+      "target": "xpath=//a[contains(@href, '?section=shv')]",
       "targets": [
-        ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
+        ["css=.active > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                SHV-er/Bewindvoerder')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '?section=shv')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
       "value": ""
@@ -6941,28 +7609,137 @@
         ["xpath=//div[31]/div[2]/div/div[2]/div/div/input", "xpath:position"]
       ],
       "value": "400.81"
+    }, {
+      "id": "4dbe1e52-4bcb-4b59-9069-477401e1b6b4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open > span",
+      "targets": [
+        ["css=.nav-open > span", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "76b27376-3686-4632-a0e9-ae1144bc0d11",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//a[contains(@href, '/app/logout')]",
+      "targets": [
+        ["linkText=Afmelden (schulddossier_admin)", "linkText"],
+        ["css=li:nth-child(10) > a", "css:finder"],
+        ["xpath=//a[contains(@href, '/app/logout')]", "xpath:href"],
+        ["xpath=//li[10]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Afmelden (schulddossier_admin)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cf1dad3e-e45b-46de-aaea-eaca3ef96fc1",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "a1610ed6-a150-4aec-bf93-38ee5a02fff0",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND2"
+    }, {
+      "id": "674c6b9a-a023-45ad-96e6-e4f923ed5f18",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND2}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "411d8f61-83b7-4f9c-9d93-a9d05439131c",
+      "comment": "",
+      "command": "verify",
+      "target": "LOGIN_SCREEN_FOUND2",
+      "targets": [],
+      "value": "1"
+    }, {
+      "id": "fc1e48e7-6916-4634-b526-cd6a802a6fa3",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "dbbd400e-e907-4d70-b7ad-47feea930063",
     "name": "Dossier wijzigen / bedragentest",
     "commands": [{
-      "id": "b99ec20a-09ff-46ef-9563-db1a25b19642",
+      "id": "4da7d62a-2a28-430f-8970-6ed461b52d8a",
+      "comment": "",
+      "command": "store",
+      "target": "schulddossier_admin",
+      "targets": [],
+      "value": "TESTUSER_EMAIL"
+    }, {
+      "id": "9eb4019f-85c4-4142-af8f-f5520a08e105",
+      "comment": "",
+      "command": "store",
+      "target": "insecure",
+      "targets": [],
+      "value": "TESTUSER_PASS"
+    }, {
+      "id": "965aca86-532c-4190-9b42-63159432eaa8",
+      "comment": "",
+      "command": "store",
+      "target": "test@schulddossier.amsterdam.nl",
+      "targets": [],
+      "value": "CREATE_USER_EMAIL"
+    }, {
+      "id": "d2bc7376-1478-43d6-96ae-95fd0011ee6a",
+      "comment": "",
+      "command": "store",
+      "target": "123456",
+      "targets": [],
+      "value": "DOSSIERNUMMER"
+    }, {
+      "id": "42c0714e-7e23-4d20-a9c5-d723ceadb346",
       "comment": "",
       "command": "open",
-      "target": "/app/dossier/",
+      "target": "http://localhost:8100/app/dossier/",
       "targets": [],
       "value": ""
     }, {
-      "id": "36d70f06-46a5-4602-8fec-67202aeb474a",
+      "id": "6fc90baa-e8f7-4799-bb75-5b18b5897a64",
       "comment": "",
-      "command": "click",
-      "target": "css=#zocial-datapunt-acc > span",
-      "targets": [
-        ["css=#zocial-datapunt-acc > span", "css:finder"],
-        ["xpath=//a[@id='zocial-datapunt-acc']/span", "xpath:idRelative"],
-        ["xpath=//span", "xpath:position"],
-        ["xpath=//span[contains(.,'Datapunt (acceptatie)')]", "xpath:innerText"]
-      ],
+      "command": "setWindowSize",
+      "target": "1920x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "73129e54-606e-4768-abe4-c2563287f920",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "7dbf5bcd-6f56-4167-a9c0-2a3da2225d83",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND"
+    }, {
+      "id": "ec2f0a21-b8b9-4a2c-a12b-1e762122940a",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "493e14a2-7c7d-4c92-9fb1-ccd267270964",
+      "comment": "",
+      "command": "if",
+      "target": "${LOGIN_SCREEN_FOUND} == 1",
+      "targets": [],
       "value": ""
     }, {
       "id": "1aa4563e-f168-4a79-8637-2097682916c6",
@@ -7007,21 +7784,32 @@
       ],
       "value": ""
     }, {
-      "id": "6fc90baa-e8f7-4799-bb75-5b18b5897a64",
+      "id": "442b94e7-6331-41fd-9c9e-b0ae29e867d0",
       "comment": "",
-      "command": "setWindowSize",
-      "target": "1920x1080",
+      "command": "end",
+      "target": "",
       "targets": [],
       "value": ""
     }, {
-      "id": "3f845f97-29ed-401d-b6dc-8ffc7090bf91",
+      "id": "ac203836-018c-4f7b-b14f-5114d6e80c2d",
+      "comment": "Test of in dossieroverzicht zit",
+      "command": "assertText",
+      "target": "css=.document-title",
+      "targets": [
+        ["css=.document-title", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Dossiers')]", "xpath:innerText"]
+      ],
+      "value": "Dossiers"
+    }, {
+      "id": "4892f98f-b57d-49e0-a8f4-a9422e1c339c",
       "comment": "",
       "command": "click",
-      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]",
+      "target": "xpath=//a[contains(text(),'Dossiers bij\n                                SHV-er/Bewindvoerder')]",
       "targets": [
-        ["css=.tabs li:nth-child(1) > a", "css:finder"],
-        ["xpath=//a[contains(text(),'Dossiers bij\n                                MaDi/Bewindvoerder')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '?section=madi')]", "xpath:href"],
+        ["css=.active > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Dossiers bij\n                                SHV-er/Bewindvoerder')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '?section=shv')]", "xpath:href"],
         ["xpath=//div/ul/li/a", "xpath:position"]
       ],
       "value": ""
@@ -7136,11 +7924,97 @@
         ["xpath=//span[contains(.,'Dit veld mag alleen komma gescheiden getallen bevatten')]", "xpath:innerText"]
       ],
       "value": "Dit veld mag alleen komma gescheiden getallen bevatten van -100000 t/m 100000"
+    }, {
+      "id": "7ee53474-8d53-44ab-b6ba-aa361f2f8d60",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open > span",
+      "targets": [
+        ["css=.nav-open > span", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d9232096-dd2a-4170-8866-4850bd93e123",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//a[contains(@href, '/app/logout')]",
+      "targets": [
+        ["linkText=Afmelden (schulddossier_admin)", "linkText"],
+        ["css=li:nth-child(10) > a", "css:finder"],
+        ["xpath=//a[contains(@href, '/app/logout')]", "xpath:href"],
+        ["xpath=//li[10]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Afmelden (schulddossier_admin)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "623b1f3c-99b8-43d2-930f-a7a93fda79f3",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "f5b35ece-fcdc-4cfe-a0bd-11f8b905635b",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND2"
+    }, {
+      "id": "20e7df98-4387-408f-aee4-46274f55f1c8",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND2}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "431d5895-b6b3-4b25-95ad-cb0693bdbed5",
+      "comment": "",
+      "command": "verify",
+      "target": "LOGIN_SCREEN_FOUND2",
+      "targets": [],
+      "value": "1"
+    }, {
+      "id": "63667863-5967-4815-a018-264a4ed17ded",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "cb4d6342-a79b-4b90-9a95-460c8616b3e5",
-    "name": "SchulddossierLoginDisabled",
+    "name": "Gebruiker / Login disabled gebruiker",
     "commands": [{
+      "id": "e85961d8-d415-4a86-8586-756d21e2c502",
+      "comment": "",
+      "command": "store",
+      "target": "schulddossier_disabled",
+      "targets": [],
+      "value": "TESTUSER_EMAIL"
+    }, {
+      "id": "d0983209-9562-4a3d-9302-5a656f60815c",
+      "comment": "",
+      "command": "store",
+      "target": "insecure",
+      "targets": [],
+      "value": "TESTUSER_PASS"
+    }, {
+      "id": "63590fdb-3d99-4b2f-924b-5552dd139fe1",
+      "comment": "",
+      "command": "store",
+      "target": "test@schulddossier.amsterdam.nl",
+      "targets": [],
+      "value": "CREATE_USER_EMAIL"
+    }, {
+      "id": "aaeb5953-f565-4a62-a8ad-44170d68bb20",
+      "comment": "",
+      "command": "store",
+      "target": "123456",
+      "targets": [],
+      "value": "DOSSIERNUMMER"
+    }, {
       "id": "9449f23b-37b7-48c7-99f1-f058e6636f07",
       "comment": "",
       "command": "open",
@@ -7148,7 +8022,42 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "c7a0b2c6-ebae-462c-bffa-c1d531ba5cfe",
+      "id": "f8b24816-e6eb-42d4-9999-4eef4c1b6517",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5ea88196-7d6e-4c39-bdf0-38cf01f9935f",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "6c30b690-c65f-4c3f-98c1-f14665fb4fc6",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND"
+    }, {
+      "id": "e0aeb6d5-3c85-4fec-8de5-55fa293bf285",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "99178521-f622-4ba9-b2da-b83901d5fe15",
+      "comment": "",
+      "command": "if",
+      "target": "${LOGIN_SCREEN_FOUND} == 1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ee59fa35-bce9-4e62-b6fc-d224b2b8c691",
       "comment": "",
       "command": "type",
       "target": "id=username",
@@ -7160,9 +8069,9 @@
         ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "schulddossier_disabled"
+      "value": "${TESTUSER_EMAIL}"
     }, {
-      "id": "817165f1-b60f-4fb6-948e-f913f7c3c94d",
+      "id": "9614ebeb-ccaf-4602-a08e-1ffc71bde3ad",
       "comment": "",
       "command": "type",
       "target": "id=password",
@@ -7174,9 +8083,9 @@
         ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
         ["xpath=//div[2]/input", "xpath:position"]
       ],
-      "value": "insecure"
+      "value": "${TESTUSER_PASS}"
     }, {
-      "id": "2f214153-d8a8-4a67-b811-6b0264a98f1b",
+      "id": "6283c858-2482-4861-afa6-d19534b8b7dc",
       "comment": "",
       "command": "click",
       "target": "id=kc-login",
@@ -7190,7 +8099,100 @@
       ],
       "value": ""
     }, {
-      "id": "ec115179-56da-43ba-8c84-c90d8c0c71af",
+      "id": "38db8b28-a033-40ab-86aa-8a5e8c3b6baf",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "eec6526d-8a01-43ea-b929-bb6acba2ded4",
+      "comment": "",
+      "command": "if",
+      "target": "${LOGIN_SCREEN_FOUND} == 0",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2901b513-7fb5-4145-b19b-5ab917c26001",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open > span",
+      "targets": [
+        ["css=.nav-open > span", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "271b9730-e150-4bb3-94e7-84d249fee682",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//a[contains(@href, '/app/logout')]",
+      "targets": [
+        ["linkText=Afmelden (schulddossier_admin)", "linkText"],
+        ["css=li:nth-child(10) > a", "css:finder"],
+        ["xpath=//a[contains(@href, '/app/logout')]", "xpath:href"],
+        ["xpath=//li[10]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Afmelden (schulddossier_admin)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "57bd20e4-56fe-4470-b1d3-76161c94c0ec",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "3a346d85-07f2-4e1c-9405-8276cdebb8b6",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_EMAIL}"
+    }, {
+      "id": "eec33b82-7b93-4233-86e1-0effad609d96",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_PASS}"
+    }, {
+      "id": "a081efc8-0ddb-461c-af26-204010334461",
+      "comment": "",
+      "command": "click",
+      "target": "id=kc-login",
+      "targets": [
+        ["id=kc-login", "id"],
+        ["name=login", "name"],
+        ["css=#kc-login", "css:finder"],
+        ["xpath=//input[@id='kc-login']", "xpath:attributes"],
+        ["xpath=//div[@id='kc-form-buttons']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8eb0c7f9-378e-42ae-a6e5-64ae6dad47e1",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ecfa47e1-f3ac-491e-bdf3-5fb91f571a92",
       "comment": "Testen of je op de foutpagina bent",
       "command": "assertText",
       "target": "css=.button",
@@ -7201,10 +8203,790 @@
       ],
       "value": "Opnieuw inloggen"
     }, {
-      "id": "ab70f72f-614e-49bc-856f-547fa9990327",
+      "id": "ec115179-56da-43ba-8c84-c90d8c0c71af",
+      "comment": "Testen of je op de foutpagina bent",
+      "command": "click",
+      "target": "css=.button",
+      "targets": [],
+      "value": "Opnieuw inloggen"
+    }, {
+      "id": "f1a5ce40-0507-4e1b-a537-cc0cda8803b0",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "9a008aea-c344-462a-84f6-952dec541225",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "18103e0d-8c76-4cfd-adee-34040b51ff65",
+    "name": "Gebruiker / aanmaken",
+    "commands": [{
+      "id": "5632d142-9328-498d-b739-774bf1e2e401",
+      "comment": "",
+      "command": "store",
+      "target": "schulddossier_admin",
+      "targets": [],
+      "value": "TESTUSER_EMAIL"
+    }, {
+      "id": "9bc4d940-6b82-4da9-8cb3-770a94e8755f",
+      "comment": "",
+      "command": "store",
+      "target": "insecure",
+      "targets": [],
+      "value": "TESTUSER_PASS"
+    }, {
+      "id": "06febf25-c398-4b78-96e6-dc452fd7361c",
+      "comment": "",
+      "command": "store",
+      "target": "test@schulddossier.amsterdam.nl",
+      "targets": [],
+      "value": "CREATE_USER_EMAIL"
+    }, {
+      "id": "956335bd-92c9-4b4c-9e7b-10fe96a1fa50",
+      "comment": "",
+      "command": "store",
+      "target": "123456",
+      "targets": [],
+      "value": "DOSSIERNUMMER"
+    }, {
+      "id": "d7b2b8a3-0b44-4191-a63f-743f7bb5b7ef",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8100/app/dossier/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5e472c6b-cb6e-4d70-9567-dc95890c2cff",
       "comment": "",
       "command": "setWindowSize",
       "target": "1920x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "78c29a1c-eb3b-4327-ad42-61299750cacc",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "88eaa89d-e8e8-4eaa-93bd-1ad5d624bcc0",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND"
+    }, {
+      "id": "2f883412-b855-4f43-83d4-5a7a76970a67",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5109fcb9-cb59-482e-be5d-bd0fdc33835a",
+      "comment": "",
+      "command": "if",
+      "target": "${LOGIN_SCREEN_FOUND} == 1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "50c70547-db58-46b9-a808-982f673dff8f",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_EMAIL}"
+    }, {
+      "id": "abf63877-de87-442d-ac2c-7d67ca677799",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_PASS}"
+    }, {
+      "id": "e7888ff9-0178-4a19-a950-8b37b1180d85",
+      "comment": "",
+      "command": "click",
+      "target": "id=kc-login",
+      "targets": [
+        ["id=kc-login", "id"],
+        ["name=login", "name"],
+        ["css=#kc-login", "css:finder"],
+        ["xpath=//input[@id='kc-login']", "xpath:attributes"],
+        ["xpath=//div[@id='kc-form-buttons']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "07c0937d-9b2b-4d63-b289-196d411f657d",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "dce0383b-3add-494e-ab90-0f991539949c",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.document-title",
+      "targets": [],
+      "value": "Dossiers"
+    }, {
+      "id": "8701f064-df26-46d4-b18f-e3ea661de36f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open > span",
+      "targets": [
+        ["css=.nav-open > span", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9b79fb4c-7cc1-4467-9ac3-d16746c87dd6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Gebruikers",
+      "targets": [
+        ["linkText=Gebruikers", "linkText"],
+        ["css=.divider:nth-child(5) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Gebruikers')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/app/gebruiker/?sort=g.naam&direction=asc&page=1')]", "xpath:href"],
+        ["xpath=//li[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Gebruikers')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6a4675a-9bd0-4508-8ee0-81ec9719c55a",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//a[contains(text(),'test@schulddossier.amsterdam.nl')]",
+      "targets": [],
+      "value": "TESTGEBRUIKER_AANWEZIG"
+    }, {
+      "id": "abab59a6-7cc2-4e3c-a249-bd37cb135618",
+      "comment": "",
+      "command": "if",
+      "target": "${TESTGEBRUIKER_AANWEZIG} == 0",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0f2b8cd3-aa46-4436-adc0-e646325bdc68",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Nieuwe gebruiker",
+      "targets": [
+        ["linkText=Nieuwe gebruiker", "linkText"],
+        ["css=.primary", "css:finder"],
+        ["xpath=//a[contains(text(),'Nieuwe gebruiker')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/app/gebruiker/nieuw')]", "xpath:href"],
+        ["xpath=//div/div/nav/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Nieuwe gebruiker')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5b446519-8a6d-42cb-83c9-9cfc00c0c789",
+      "comment": "",
+      "command": "click",
+      "target": "id=gebruiker_form_naam",
+      "targets": [
+        ["id=gebruiker_form_naam", "id"],
+        ["name=gebruiker_form[naam]", "name"],
+        ["css=#gebruiker_form_naam", "css:finder"],
+        ["xpath=//input[@id='gebruiker_form_naam']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7a0a68c7-f0cd-411e-b676-9c5b4d5523ef",
+      "comment": "",
+      "command": "type",
+      "target": "id=gebruiker_form_naam",
+      "targets": [
+        ["id=gebruiker_form_naam", "id"],
+        ["name=gebruiker_form[naam]", "name"],
+        ["css=#gebruiker_form_naam", "css:finder"],
+        ["xpath=//input[@id='gebruiker_form_naam']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Testgebruiker"
+    }, {
+      "id": "83f324a0-b7bd-45f6-b24f-a59a5ace47ac",
+      "comment": "",
+      "command": "type",
+      "target": "id=gebruiker_form_email",
+      "targets": [
+        ["id=gebruiker_form_email", "id"],
+        ["name=gebruiker_form[email]", "name"],
+        ["css=#gebruiker_form_email", "css:finder"],
+        ["xpath=//input[@id='gebruiker_form_email']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "${CREATE_USER_EMAIL}"
+    }, {
+      "id": "67389490-0e0c-4168-b9b0-d1ee588367b1",
+      "comment": "",
+      "command": "type",
+      "target": "id=gebruiker_form_telefoonnummer",
+      "targets": [
+        ["id=gebruiker_form_telefoonnummer", "id"],
+        ["name=gebruiker_form[telefoonnummer]", "name"],
+        ["css=#gebruiker_form_telefoonnummer", "css:finder"],
+        ["xpath=//input[@id='gebruiker_form_telefoonnummer']", "xpath:attributes"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "0201234567"
+    }, {
+      "id": "d83ec153-d5da-42d5-9ce0-f4cb2bd53187",
+      "comment": "",
+      "command": "select",
+      "target": "id=gebruiker_form_type",
+      "targets": [],
+      "value": "label=Dossierbehandelaar"
+    }, {
+      "id": "f4ef8dbc-42ff-4d21-842d-174ff8d71b2e",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "id=gebruiker_form_type",
+      "targets": [
+        ["id=gebruiker_form_type", "id"],
+        ["name=gebruiker_form[type]", "name"],
+        ["css=#gebruiker_form_type", "css:finder"],
+        ["xpath=//select[@id='gebruiker_form_type']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "0,-0.546875"
+    }, {
+      "id": "bd8a6ba2-06b3-45f1-bc57-f222c08f9ff6",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "id=gebruiker_form_type",
+      "targets": [
+        ["id=gebruiker_form_type", "id"],
+        ["name=gebruiker_form[type]", "name"],
+        ["css=#gebruiker_form_type", "css:finder"],
+        ["xpath=//select[@id='gebruiker_form_type']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "0,-0.546875"
+    }, {
+      "id": "882557ce-9e62-4259-8a50-e583b420ddb6",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "id=gebruiker_form_type",
+      "targets": [
+        ["id=gebruiker_form_type", "id"],
+        ["name=gebruiker_form[type]", "name"],
+        ["css=#gebruiker_form_type", "css:finder"],
+        ["xpath=//select[@id='gebruiker_form_type']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "0,-0.546875"
+    }, {
+      "id": "5702c38d-aeb3-482a-a92c-4b291ab0a163",
+      "comment": "",
+      "command": "select",
+      "target": "id=gebruiker_form_teamGka",
+      "targets": [],
+      "value": "label=GKA Team 1"
+    }, {
+      "id": "dda96086-e411-42cf-b72f-537c4ffc652d",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "id=gebruiker_form_teamGka",
+      "targets": [
+        ["id=gebruiker_form_teamGka", "id"],
+        ["name=gebruiker_form[teamGka]", "name"],
+        ["css=#gebruiker_form_teamGka", "css:finder"],
+        ["xpath=//select[@id='gebruiker_form_teamGka']", "xpath:attributes"],
+        ["xpath=//div[5]/div/select", "xpath:position"]
+      ],
+      "value": "0,-0.296875"
+    }, {
+      "id": "b6182913-a9af-46e4-a6bf-d1991474e324",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "id=gebruiker_form_teamGka",
+      "targets": [
+        ["id=gebruiker_form_teamGka", "id"],
+        ["name=gebruiker_form[teamGka]", "name"],
+        ["css=#gebruiker_form_teamGka", "css:finder"],
+        ["xpath=//select[@id='gebruiker_form_teamGka']", "xpath:attributes"],
+        ["xpath=//div[5]/div/select", "xpath:position"]
+      ],
+      "value": "0,-0.296875"
+    }, {
+      "id": "79a8b2d3-ec64-4398-a01f-523a77a13401",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "id=gebruiker_form_teamGka",
+      "targets": [
+        ["id=gebruiker_form_teamGka", "id"],
+        ["name=gebruiker_form[teamGka]", "name"],
+        ["css=#gebruiker_form_teamGka", "css:finder"],
+        ["xpath=//select[@id='gebruiker_form_teamGka']", "xpath:attributes"],
+        ["xpath=//div[5]/div/select", "xpath:position"]
+      ],
+      "value": "0,-0.296875"
+    }, {
+      "id": "ffa26c06-fa53-422b-acdc-3eedb0565aef",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//div[@id='gebruiker_form_organisaties']/input[1]",
+      "targets": [
+        ["id=gebruiker_form_organisaties_3", "id"],
+        ["name=gebruiker_form[organisaties][]", "name"],
+        ["css=#gebruiker_form_organisaties_3", "css:finder"],
+        ["xpath=//input[@id='gebruiker_form_organisaties_3']", "xpath:attributes"],
+        ["xpath=//div[@id='gebruiker_form_organisaties']/input", "xpath:idRelative"],
+        ["xpath=//div[6]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4324fc35-a1db-4816-bf2d-540c9f33ed55",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//div[@id='gebruiker_form_organisaties']/input[2]",
+      "targets": [
+        ["id=gebruiker_form_organisaties_4", "id"],
+        ["css=#gebruiker_form_organisaties_4", "css:finder"],
+        ["xpath=//input[@id='gebruiker_form_organisaties_4']", "xpath:attributes"],
+        ["xpath=//div[@id='gebruiker_form_organisaties']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7300e21b-a7e2-458b-8052-0cbf58721712",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//div[@id='gebruiker_form_organisaties']/input[3]",
+      "targets": [
+        ["id=gebruiker_form_organisaties_5", "id"],
+        ["css=#gebruiker_form_organisaties_5", "css:finder"],
+        ["xpath=//input[@id='gebruiker_form_organisaties_5']", "xpath:attributes"],
+        ["xpath=//div[@id='gebruiker_form_organisaties']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c1e7290c-a0fc-4e3c-a991-5b80951a4444",
+      "comment": "",
+      "command": "click",
+      "target": "css=.button",
+      "targets": [
+        ["css=.button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Opslaan')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0cb22790-88aa-49df-b94e-5e90fae61739",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "xpath=//span[contains(.,'Gebruiker aangemaakt')]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8e5c1f3e-5c91-4afa-99e7-70ccb2d46a8f",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//span[contains(.,'Gebruikers')]",
+      "targets": [
+        ["css=.nav-internal--breadcrumb__dossier > span", "css:finder"],
+        ["xpath=//a[2]/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Gebruikers')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2e55803-63d9-477d-b3a5-877783b38b32",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "700f5a37-3af7-458f-8ee3-e88b7c1228a1",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "xpath=//a[contains(text(),'test@schulddossier.amsterdam.nl')]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ab2016ce-961d-46d9-9878-ad9ca1d3b91a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open > span",
+      "targets": [
+        ["css=.nav-open > span", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "03a35252-7368-4fba-ac27-b22e24544e77",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//a[contains(@href, '/app/logout')]",
+      "targets": [
+        ["linkText=Afmelden (schulddossier_admin)", "linkText"],
+        ["css=li:nth-child(10) > a", "css:finder"],
+        ["xpath=//a[contains(@href, '/app/logout')]", "xpath:href"],
+        ["xpath=//li[10]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Afmelden (schulddossier_admin)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "387afeb4-787d-4990-948f-48f3ddbd8b31",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "c7dcd140-8318-43c5-97a3-bb2ef95615a0",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND2"
+    }, {
+      "id": "cdc97376-af5c-427b-94d3-3e78c260a3bd",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND2}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6c75e098-6dbc-4646-8abd-5526fcb61a67",
+      "comment": "",
+      "command": "verify",
+      "target": "LOGIN_SCREEN_FOUND2",
+      "targets": [],
+      "value": "1"
+    }, {
+      "id": "16a0fae9-4798-4a8a-a4eb-011beeb96f9d",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "0cf8fa00-e7cc-41a4-b14e-f84c8b5c20b8",
+    "name": "Gebruiker / verwijderen",
+    "commands": [{
+      "id": "9f18745e-7e5c-415b-b709-4112a424b802",
+      "comment": "",
+      "command": "store",
+      "target": "schulddossier_admin",
+      "targets": [],
+      "value": "TESTUSER_EMAIL"
+    }, {
+      "id": "eac77166-f590-4edb-9387-7bc57581516c",
+      "comment": "",
+      "command": "store",
+      "target": "insecure",
+      "targets": [],
+      "value": "TESTUSER_PASS"
+    }, {
+      "id": "da2bcd72-bc07-4af2-814f-844d8f229823",
+      "comment": "",
+      "command": "store",
+      "target": "test@schulddossier.amsterdam.nl",
+      "targets": [],
+      "value": "CREATE_USER_EMAIL"
+    }, {
+      "id": "3642c694-83bf-404c-bce6-20ba13a9d004",
+      "comment": "",
+      "command": "store",
+      "target": "123456",
+      "targets": [],
+      "value": "DOSSIERNUMMER"
+    }, {
+      "id": "c834c0a5-bf86-4805-8b28-cb2eeff175ee",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:8100/app/dossier/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "87b72782-c169-4c3f-972c-7a7adc081aa4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "255e9c3b-5bc6-4989-97aa-79662266570c",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "5ca09cbf-5166-43c1-b085-c4905abe662e",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND"
+    }, {
+      "id": "d4af1acb-8a9f-45b2-860d-df1c88e38c32",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "478d42ae-8e15-47d1-ad23-d83e7d742cb7",
+      "comment": "",
+      "command": "if",
+      "target": "${LOGIN_SCREEN_FOUND} == 1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ec0b6b96-3b63-441b-b9ca-c7ad5f5f3160",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_EMAIL}"
+    }, {
+      "id": "b1379870-9843-4d34-8e81-c3dfd00809bb",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//form[@id='kc-form-login']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${TESTUSER_PASS}"
+    }, {
+      "id": "ea6fcc48-3215-449d-84c3-98a586051350",
+      "comment": "",
+      "command": "click",
+      "target": "id=kc-login",
+      "targets": [
+        ["id=kc-login", "id"],
+        ["name=login", "name"],
+        ["css=#kc-login", "css:finder"],
+        ["xpath=//input[@id='kc-login']", "xpath:attributes"],
+        ["xpath=//div[@id='kc-form-buttons']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a6586ced-c8ae-420b-8f43-3c5c67dd3004",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "af1664f7-ce48-464a-8a9a-745af9a1c234",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.document-title",
+      "targets": [],
+      "value": "Dossiers"
+    }, {
+      "id": "42d5c53e-18a6-4442-b720-b8efa3f340e4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open > span",
+      "targets": [
+        ["css=.nav-open > span", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2f982416-4d1f-499d-a733-2c21ffe29205",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Gebruikers",
+      "targets": [
+        ["linkText=Gebruikers", "linkText"],
+        ["css=.divider:nth-child(5) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Gebruikers')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/app/gebruiker/?sort=g.naam&direction=asc&page=1')]", "xpath:href"],
+        ["xpath=//li[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Gebruikers')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "efd8fe83-97a4-4795-a76f-0c3c5d699bd1",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//a[contains(text(),'test@schulddossier.amsterdam.nl')]",
+      "targets": [],
+      "value": "TESTGEBRUIKER_AANWEZIG"
+    }, {
+      "id": "a9b69d6b-5dc8-42ac-99aa-dfa573331626",
+      "comment": "",
+      "command": "if",
+      "target": "${TESTGEBRUIKER_AANWEZIG} == 1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "232981f6-a063-408a-80a2-ee4ebd68585d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=test@schulddossier.amsterdam.nl",
+      "targets": [
+        ["linkText=test@schulddossier.amsterdam.nl", "linkText"],
+        ["css=.row-link:nth-child(5) a", "css:finder"],
+        ["xpath=//a[contains(text(),'test@schulddossier.amsterdam.nl')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/app/gebruiker/detail/162/bewerken')]", "xpath:href"],
+        ["xpath=//tr[5]/th/a", "xpath:position"],
+        ["xpath=//a[contains(.,'test@schulddossier.amsterdam.nl')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5eff1800-a796-4c66-aa9d-2fb92f74a11c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.button:nth-child(2)",
+      "targets": [
+        ["css=.button:nth-child(2)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//form[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Gebruiker definitief verwijderen')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0486941a-ac87-4c58-81bf-f36dcb0aa771",
+      "comment": "Flash message welke verwijdering bevestigd",
+      "command": "assertElementPresent",
+      "target": "xpath=//span[contains(.,'Gebruiker verwijderd en geanonimiseerd')]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "07f937d0-31e6-4df7-b017-c1576a938100",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open",
+      "targets": [
+        ["css=.nav-open", "css:finder"],
+        ["xpath=//a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Menu')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "014c62b3-ce69-4ffb-98c0-60181789834a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Logs",
+      "targets": [
+        ["linkText=Logs", "linkText"],
+        ["css=li:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Logs')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/app/log/')]", "xpath:href"],
+        ["xpath=//li[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Logs')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "03fb41a5-4834-44c4-865a-6bb7ee2f1d8e",
+      "comment": "Controleer of logfile melding geeft dat gebruiker verwijderd is",
+      "command": "assertText",
+      "target": "css=.aantekening:nth-child(1) > .aantekening-bericht",
+      "targets": [],
+      "value": "Gebruiker verwijderd"
+    }, {
+      "id": "002419b6-dba7-441a-b607-7f867e76795f",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a078f515-140b-4dfa-a4f3-10c6c94016fd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.nav-open > span",
+      "targets": [
+        ["css=.nav-open > span", "css:finder"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "03e012de-53fe-45ae-938f-7f93c9bad04a",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//a[contains(@href, '/app/logout')]",
+      "targets": [
+        ["linkText=Afmelden (schulddossier_admin)", "linkText"],
+        ["css=li:nth-child(10) > a", "css:finder"],
+        ["xpath=//a[contains(@href, '/app/logout')]", "xpath:href"],
+        ["xpath=//li[10]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Afmelden (schulddossier_admin)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "af1ace61-9411-4a20-a69f-676038ea5ab6",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "xpath=//body",
+      "targets": [],
+      "value": "30000"
+    }, {
+      "id": "b7e6f860-b870-41cf-87e1-a7552c918de6",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//input[@id='username']",
+      "targets": [],
+      "value": "LOGIN_SCREEN_FOUND2"
+    }, {
+      "id": "20cafe8e-3791-401d-803b-f589ddd6d598",
+      "comment": "",
+      "command": "echo",
+      "target": "${LOGIN_SCREEN_FOUND2}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5a8ae6fa-1c01-4639-b7cf-7a5751d8258b",
+      "comment": "",
+      "command": "verify",
+      "target": "LOGIN_SCREEN_FOUND2",
+      "targets": [],
+      "value": "1"
+    }, {
+      "id": "42c42aac-e83e-49ef-aee6-f43ae59e9d00",
+      "comment": "",
+      "command": "close",
+      "target": "",
       "targets": [],
       "value": ""
     }]
@@ -7217,13 +8999,6 @@
     "timeout": 300,
     "tests": ["433c2c93-c750-436c-bc53-4217401184c5", "6cc54cdf-fea6-408d-b3be-98ee48fd2a1e", "b02cad2d-64ed-43e6-9476-ad8925300f89", "2221cdef-0396-40d2-b0de-3dcfbe9bd124", "c3b67a50-fe32-432e-955f-1f03270367ed", "caaa7e1b-9e5a-4d3a-8043-9cd79abd1c14", "d97a43da-5c7e-4f05-8546-07e2da3181da"]
   }, {
-    "id": "101ec288-5f20-4790-b1bf-676062f53b00",
-    "name": "Maak-verwijder",
-    "persistSession": false,
-    "parallel": false,
-    "timeout": 300,
-    "tests": ["433c2c93-c750-436c-bc53-4217401184c5", "d97a43da-5c7e-4f05-8546-07e2da3181da"]
-  }, {
     "id": "e0f85086-c105-402e-bee6-f4b4634916d0",
     "name": "Bedragentest",
     "persistSession": false,
@@ -7231,12 +9006,12 @@
     "timeout": 300,
     "tests": ["433c2c93-c750-436c-bc53-4217401184c5", "dbbd400e-e907-4d70-b7ad-47feea930063", "d97a43da-5c7e-4f05-8546-07e2da3181da"]
   }, {
-    "id": "99ce8394-7f14-4a12-9409-8419832b2ef5",
-    "name": "LoginDisabledUser",
+    "id": "dfc69ffc-c05d-47bf-805a-44bfbb7d2b36",
+    "name": "Gebruikers",
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["cb4d6342-a79b-4b90-9a95-460c8616b3e5"]
+    "tests": ["18103e0d-8c76-4cfd-adee-34040b51ff65", "0cf8fa00-e7cc-41a4-b14e-f84c8b5c20b8", "cb4d6342-a79b-4b90-9a95-460c8616b3e5"]
   }],
   "urls": [],
   "plugins": []

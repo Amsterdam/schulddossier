@@ -70,9 +70,19 @@
                             {% if log.name == 'gebruiker_gewijzigd' %}
                                 Gebruiker gewijzigd
                             {% endif %}
+                           {% if log.name == 'gebruiker_verwijderd' %}
+                               Gebruiker verwijderd
+                           {% endif %}
                             {% if log.name == 'dossier_aangemaakt' %}
                                 Dossier aangemaakt
                             {% endif %}
+                            {% if log.name == 'gebruiker_disabled_door_systeem' %}
+                                Het systeem heeft <strong>{{ log.data.aangepast.gebruikers }}</strong> gebruikers gedeactiveerd vanwege inactiviteit.
+                            {% endif %}
+                            {% if log.name == 'gebruiker_verwijderd_door_systeem' %}
+                                Het systeem heeft <strong>{{ log.data.aangepast.gebruikers }}</strong> gebruikers geanonimiseerd en uitgeschakeld vanwege inactiviteit. Hierdoor zijn <strong>{{ log.data.aangepast.actionevents }}</strong> logregels aangepast.
+                            {% endif %}
+
                             {% if log.name == 'dossier_geopened' %}
                                 Dossier geopend: {% if log.dossier is defined %}
                                 {% if log.dossier.clientNaam is defined %}

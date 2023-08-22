@@ -10,6 +10,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
 /**
  * @ORM\Entity
  * @ORM\Table
+ * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository")
  */
 class ActionEvent
 {
