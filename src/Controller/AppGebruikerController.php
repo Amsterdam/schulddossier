@@ -11,8 +11,10 @@ use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -32,7 +34,7 @@ class AppGebruikerController extends AbstractController
         $inactive = 'gebruikers_inactive' === $request->get('_route');
 
         $pagination = $paginator->paginate(
-            $repository->generatePaginationQueryForUser($this->getUser(), $inactive),
+            $repository->generatePaginationQueryForUser($this->getUser(), $inactive, false),
             $request->query->getInt('page', 1),
             10
         );
@@ -75,10 +77,19 @@ class AppGebruikerController extends AbstractController
      * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
-    public function updateAction(Request $request, EntityManagerInterface $em, Gebruiker $gebruiker, EventDispatcherInterface $eventDispatcher, TokenStorageInterface $tokenStorage)
-    {
+    public function updateAction(
+        Request $request,
+        EntityManagerInterface $em,
+        Gebruiker $gebruiker,
+        EventDispatcherInterface $eventDispatcher
+    ) {
         if ($this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
-            if (!$gebruiker->getOrganisaties()->isEmpty() && empty(array_intersect($this->getUser()->getOrganisaties()->toArray(), $gebruiker->getOrganisaties()->toArray()))) {
+            if (!$gebruiker->getOrganisaties()->isEmpty() && empty(
+                array_intersect(
+                    $this->getUser()->getOrganisaties()->toArray(),
+                    $gebruiker->getOrganisaties()->toArray()
+                )
+                )) {
                 throw $this->createAccessDeniedException();
             }
         }
@@ -88,9 +99,12 @@ class AppGebruikerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             $this->addFlash('success', 'Opgeslagen');
-            /** @var Gebruiker $currentGebruiker */
-            $currentGebruiker = $tokenStorage->getToken()->getUser();
-            $eventDispatcher->dispatch(ActionEvent::registerGebruikerGewijzigd($currentGebruiker, $gebruiker), ActionEvent::NAME);
+
+            $currentGebruiker = $this->getUser();
+            $eventDispatcher->dispatch(
+                ActionEvent::registerGebruikerGewijzigd($currentGebruiker, $gebruiker),
+                ActionEvent::NAME
+            );
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_update', [
                 'gebruikerId' => $gebruiker->getId()
             ]);
@@ -99,5 +113,41 @@ class AppGebruikerController extends AbstractController
             'gebruiker' => $gebruiker,
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/detail/{gebruikerId}/verwijder")
+     * @Method({"POST"})
+     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
+     * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
+     */
+    public function deleteAction(
+        Request $request,
+        EntityManagerInterface $em,
+        Gebruiker $gebruiker,
+        EventDispatcherInterface $eventDispatcher
+    ) {
+        if (
+            $this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_delete',
+                $request->request->get('token')
+            ) === false
+        ) {
+            throw $this->createAccessDeniedException('CSRF token invalid');
+        }
+
+        $currentGebruiker = $this->getUser();
+        $eventDispatcher->dispatch(
+            ActionEvent::registerGebruikerVerwijderd($currentGebruiker, $gebruiker),
+            ActionEvent::NAME
+        );
+
+        $gebruiker->setVerwijderd(new \DateTime());
+        $gebruiker->anonymize();
+        $em->persist($gebruiker);
+        $this->addFlash('success', 'Gebruiker verwijderd en geanonimiseerd');
+        $em->flush();
+
+        return new RedirectResponse('/app/gebruiker');
     }
 }
