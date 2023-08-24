@@ -2191,6 +2191,34 @@
       ],
       "value": ""
     }, {
+      "id": "f271eba0-e462-4905-8824-c3a38217db2a",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_ondertekendAanvraagFormulier_saneringsKrediet",
+      "targets": [
+        ["id=voorlegger_form_ondertekendAanvraagFormulier_saneringsKrediet", "id"],
+        ["name=voorlegger_form[ondertekendAanvraagFormulier][saneringsKrediet]", "name"],
+        ["css=#voorlegger_form_ondertekendAanvraagFormulier_saneringsKrediet", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_ondertekendAanvraagFormulier_saneringsKrediet']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-ondertekendAanvraagFormulier']/div[2]/div/div[2]/div[5]/div/input", "xpath:idRelative"],
+        ["xpath=//div[3]/div[2]/div/div[2]/div[5]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aea0189b-c75a-4605-b81f-1c6c01a97610",
+      "comment": "",
+      "command": "click",
+      "target": "id=voorlegger_form_ondertekendAanvraagFormulier_schuldenOpDeWerkvloer",
+      "targets": [
+        ["id=voorlegger_form_ondertekendAanvraagFormulier_schuldenOpDeWerkvloer", "id"],
+        ["name=voorlegger_form[ondertekendAanvraagFormulier][schuldenOpDeWerkvloer]", "name"],
+        ["css=#voorlegger_form_ondertekendAanvraagFormulier_schuldenOpDeWerkvloer", "css:finder"],
+        ["xpath=//input[@id='voorlegger_form_ondertekendAanvraagFormulier_schuldenOpDeWerkvloer']", "xpath:attributes"],
+        ["xpath=//div[@id='voorlegger-ondertekendAanvraagFormulier']/div[2]/div/div[2]/div[7]/div[2]/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[7]/div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
       "id": "153ecd10-7c10-45f1-9cdd-d688c5f59038",
       "comment": "",
       "command": "click",
@@ -6858,6 +6886,20 @@
         ["xpath=//div[3]/div/div/h3/a", "xpath:position"],
         ["xpath=//a[contains(.,'Ondertekende volmacht')]", "xpath:innerText"]
       ],
+      "value": ""
+    }, {
+      "id": "7a480fea-d760-48b0-a220-6abe6bd5abd0",
+      "comment": "",
+      "command": "assertChecked",
+      "target": "id=voorlegger_form_ondertekendAanvraagFormulier_saneringsKrediet",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e3724803-f430-4a14-a5b1-a1aceefc44ce",
+      "comment": "",
+      "command": "assertChecked",
+      "target": "id=voorlegger_form_ondertekendAanvraagFormulier_schuldenOpDeWerkvloer",
+      "targets": [],
       "value": ""
     }, {
       "id": "e6401eb8-bb5b-4df9-955b-dcaa491e4bf4",
