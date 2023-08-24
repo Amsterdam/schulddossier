@@ -36,6 +36,12 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <h4>Producten</h4>
+                <div>
+                    <div class="warning-text">
+                        Let op: per dossier mag er maar één van de onderstaande producten worden aangevinkt.
+                    </div>
+                </div>
                 {{ form_row(form.jongerenSchuldenvrijeStart) }}
                 <div class="dossier__voorlegger__sectie_jss_informatie">
                     <div class="warning-text">
@@ -47,7 +53,20 @@
                 </div>
                 {{ form_row(form.schuldenrustLening) }}
                 {{ form_row(form.saneringsKrediet) }}
+                {{ form_row(form.principebeslissing) }}
+
+                <h4>Schulden op de werkvloer</h4>
+                <div>
+                    <div class="warning-text">
+                        Alleen voor medewerkers van Gemeente Amsterdam en Pantar of werkzaam via een uitzendbureau voor Gemeente Amsterdam. Deze regel moet in combinatie met een van de bovenstaande producten worden geselecteerd.
+                    </div>
+                    <div class="input-choice">
+                        {{ form_row(form.schuldenOpDeWerkvloer) }}
+                    </div>
+                </div>
+                
                 {{ form_row(form.aanvullendeInformatie) }}
+
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Ondertekend aanvraagformulier'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}

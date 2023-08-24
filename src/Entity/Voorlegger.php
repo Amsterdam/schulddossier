@@ -1007,6 +1007,18 @@ class Voorlegger
      */
     private $saneringsKrediet;
 
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $principebeslissing;
+
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $schuldenOpDeWerkvloer;
+
     // ---
 
     public function __construct()
@@ -2676,6 +2688,38 @@ class Voorlegger
     public function setSaneringsKrediet(?bool $saneringsKrediet): void
     {
         $this->saneringsKrediet = $saneringsKrediet;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getPrincipebeslissing(): ?bool
+    {
+        return $this->principebeslissing;
+    }
+
+    /**
+     * @param bool|null $principebeslissing
+     */
+    public function setPrincipebeslissing(?bool $principebeslissing): void
+    {
+        $this->principebeslissing = $principebeslissing;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getSchuldenOpDeWerkvloer(): ?bool
+    {
+        return $this->schuldenOpDeWerkvloer;
+    }
+
+    /**
+     * @param bool|null $schuldenOpDeWerkvloer
+     */
+    public function setSchuldenOpDeWerkvloer(?bool $schuldenOpDeWerkvloer): void
+    {
+        $this->schuldenOpDeWerkvloer = $schuldenOpDeWerkvloer;
     }
 
     /**
