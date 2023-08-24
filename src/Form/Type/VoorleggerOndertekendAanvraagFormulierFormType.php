@@ -74,6 +74,14 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             'required' => false,
             'label' => 'Saneringskrediet (SK)'
         ]);
+        $builder->add('principebeslissing', CheckboxType::class, [
+            'required' => false,
+            'label' => 'Principebeslissing'
+        ]);
+        $builder->add('schuldenOpDeWerkvloer', CheckboxType::class, [
+            'required' => false,
+            'label' => 'Betreft Schulden op de werkvloer?'
+        ]);
         $builder->add('aanvullendeInformatie', TextareaType::class, [
             'required' => false
         ]);

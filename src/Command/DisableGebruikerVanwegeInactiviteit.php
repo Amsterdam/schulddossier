@@ -49,7 +49,7 @@ class DisableGebruikerVanwegeInactiviteit extends Command
             return Command::SUCCESS;
         }
 
-        $io->info('Er zijn ' . count($gebruikers) . ' gebruikers gevonden welke inactief zijn en gedeactiveerd zullen worden');
+        $io->info('Er zijn ' . $countGebruikers . ' gebruikers gevonden welke inactief zijn en gedeactiveerd zullen worden');
 
         /** @var Gebruiker $gebruiker */
         foreach ($gebruikers as $gebruiker) {
