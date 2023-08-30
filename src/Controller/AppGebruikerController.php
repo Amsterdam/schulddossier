@@ -127,6 +127,10 @@ class AppGebruikerController extends AbstractController
         Gebruiker $gebruiker,
         EventDispatcherInterface $eventDispatcher
     ) {
+        // TODO Dit punt is in opverleg met de kredietbank uitgeschakeld om te refinen welke gegevens er moeten worden geanonimiseerd
+        // TODO Weergave is ook weg gehaald in schulddossier/templates/Gebruiker/update.html.twig
+        throw $this->createAccessDeniedException('Deze functionaliteit is uitgeschakeld');
+
         if (
             $this->isCsrfTokenValid(
                 'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_delete',
