@@ -43,13 +43,15 @@
         </p>
         {{ form_end(form) }}
         {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}
-            <h2>Gebruiker verwijderen</h2>
+            {% if false %}
+                <h2>Gebruiker verwijderen</h2>
 
-            <p><span style="color: red; font-weight:bold">PAS OP:</span> Deze actie is definitief en onomkeerbaar. De gekozen gebruiker zal worden geanonimiseerd en een status krijgen dat deze niet meer in de applicatie beschikbaar is.</p>
-            <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_delete', {'gebruikerId': gebruiker.id}) }}" method="post">
-                <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_delete') }}">
-                <button type="submit" class="button primary">Gebruiker definitief verwijderen</button>
-            </form>
+                <p><span style="color: red; font-weight:bold">PAS OP:</span> Deze actie is definitief en onomkeerbaar. De gekozen gebruiker zal worden geanonimiseerd en een status krijgen dat deze niet meer in de applicatie beschikbaar is.</p>
+                <form action="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_delete', {'gebruikerId': gebruiker.id}) }}" method="post">
+                    <input type="hidden" name="token" value="{{ csrf_token('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_delete') }}">
+                    <button type="submit" class="button primary">Gebruiker definitief verwijderen</button>
+                </form>
+            {% endif %}
         {% endif %}
     </div>
 </div>
