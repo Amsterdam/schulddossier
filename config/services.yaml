@@ -12,6 +12,7 @@ parameters:
     swift_public_url: 'https://%swift_project_id%.%swift_external_domain%'
     app_mail_from: '%env(APP_NOTIFICATIE_FROM)%'
     keycloak_version: '21'
+    featureflag_herfinanciering: '%env(FEATUREFLAG_HERFINANCIERING)%'
 
 
 services:
@@ -72,6 +73,11 @@ services:
         class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType
         arguments:
             - '@GemeenteAmsterdam\FixxxSchuldhulp\Form\Event\TransformMedewerkerOrganisatie'
+
+    app.form.ondertekendaanvraagform:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerOndertekendAanvraagFormulierFormType
+        arguments:
+            - '%featureflag_herfinanciering%'
 
     app.form.type.employeetype:
         class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\OrganisatieMedewerkerType

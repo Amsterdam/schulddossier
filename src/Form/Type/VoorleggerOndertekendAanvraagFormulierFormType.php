@@ -18,6 +18,14 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
 {
+
+    private bool $featureflagHerfinanciering;
+
+    public function __construct(bool $featureflagHerfinanciering)
+    {
+        $this->featureflagHerfinanciering = $featureflagHerfinanciering;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('ondertekendAanvraagFormulierOntvangenShv', ShvStatusFormType::class, [
@@ -78,6 +86,7 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             'required' => false,
             'label' => 'Principebeslissing'
         ]);
+
         $builder->add('schuldenOpDeWerkvloer', CheckboxType::class, [
             'required' => false,
             'label' => 'Betreft Schulden op de werkvloer?'
@@ -119,6 +128,13 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             unset($data['removeFile']['__name__']);
             $event->setData($data);
         });
+
+        if ($this->featureflagHerfinanciering) {
+            $builder->add('herfinanciering', CheckboxType::class, [
+                'required' => false,
+                'label' => 'Herfinanciering'
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
