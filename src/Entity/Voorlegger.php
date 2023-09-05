@@ -1019,6 +1019,12 @@ class Voorlegger
      */
     private $schuldenOpDeWerkvloer;
 
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $herfinancering;
+
     // ---
 
     public function __construct()
@@ -2720,6 +2726,22 @@ class Voorlegger
     public function setSchuldenOpDeWerkvloer(?bool $schuldenOpDeWerkvloer): void
     {
         $this->schuldenOpDeWerkvloer = $schuldenOpDeWerkvloer;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getHerfinanciering(): ?bool
+    {
+        return $this->herfinancering;
+    }
+
+    /**
+     * @param bool|null $herfinancering
+     */
+    public function setHerfinanciering(?bool $herfinancering): void
+    {
+        $this->herfinancering = $herfinancering;
     }
 
     /**
