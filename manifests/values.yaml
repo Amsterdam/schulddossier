@@ -23,7 +23,6 @@ secrets:
   certificate:
     type: keyvault
     tls: schulddossier
-
   vault:
     type: keyvault
     secrets:
@@ -48,7 +47,7 @@ deployments:
           - port: 9000
             name: http
         secrets:
-          - iam-client-id
+          - vault
         volumes:
           - name: cache
             mountPath: /var/www/var/cache
