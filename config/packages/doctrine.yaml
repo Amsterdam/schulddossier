@@ -3,10 +3,12 @@ parameters:
 
 doctrine:
     dbal:
-        driver: 'pdo_pgsql'
-        charset: utf8
-        url: '%env(DATABASE_URL)%'
-        schema_filter: ~^(?!sessions).+$~
+        url: '%env(resolve:DATABASE_URL)%'
+
+        # IMPORTANT: You MUST configure your server version,
+        # either here or in the DATABASE_URL env var (see .env file)
+        #server_version: '13'
+        wrapper_class: App\Doctrine\DynamicConnection
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
