@@ -1,5 +1,7 @@
 name: schulddossier
 
+tenantId: 72fca1b1-2c2e-4376-a445-294d80196804
+
 image:
   registry: saks01weuacrpgpgo5qvmwo.azurecr.io
   tag: latest
