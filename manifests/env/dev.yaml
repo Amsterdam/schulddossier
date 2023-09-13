@@ -6,6 +6,8 @@ nodepool: cccsalmont01
 
 host: schulddossier.salm-o.azure.amsterdam.nl
 
+keyVaultName: schulddossier-o-o354tdmk
+
 secrets:
   certificate:
     keyVaultName: shared-o-xxmtgnro7phka
