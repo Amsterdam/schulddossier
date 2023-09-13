@@ -25,7 +25,6 @@ secrets:
     tls: schulddossier
   vault:
     type: keyvault
-    keyVaultName: schulddossier-o-o354tdmk
     secrets:
       - iam-client-id
 
