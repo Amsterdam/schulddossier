@@ -24,6 +24,11 @@ secrets:
     type: keyvault
     tls: schulddossier
 
+  vault:
+    type: keyvault
+    secrets:
+      - iam-client-id
+
 deployments:
   schulddossier-phpfpm:
     env:
@@ -42,6 +47,8 @@ deployments:
         ports:
           - port: 9000
             name: http
+        secrets:
+          - iam-client-id
         volumes:
           - name: cache
             mountPath: /var/www/var/cache
