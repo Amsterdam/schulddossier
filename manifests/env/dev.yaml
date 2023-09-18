@@ -1,5 +1,3 @@
-keyVaultName: schulddossier-o-o354tdmk
-
 workloadIdentity: c0ffb513-12ed-4f8c-b071-d4a55b4b8f70
 
 nodepool: cccsalmont01
@@ -9,6 +7,8 @@ host: schulddossier.salm-o.azure.amsterdam.nl
 secrets:
   certificate:
     keyVaultName: shared-o-xxmtgnro7phka
+  my-vault-secrets:
+    keyVaultName: schulddossier-o-o354tdmk
 
 deployments:
   schulddossier-phpfpm:
