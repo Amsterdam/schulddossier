@@ -18,13 +18,15 @@ network:
 
 serviceAccount: app
 serviceAccounts:
+  default:
+    enableWorkloadIdentity: true
   app: {}
 
 secrets:
   certificate:
     type: keyvault
     tls: schulddossier
-  vault:
+  my-vault-secrets:
     type: keyvault
     secrets:
       - iam-client-id
@@ -48,7 +50,7 @@ deployments:
           - port: 9000
             name: http
         secrets:
-          - vault
+          - my-vault-secrets
         volumes:
           - name: cache
             mountPath: /var/www/var/cache
