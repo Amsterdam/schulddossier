@@ -74,22 +74,6 @@ persistentVolumeClaims:
     accessModes: ReadWriteOnce
     resources:
 
-## @section ConfigMaps parameters
-## @extra configMaps `map` of the [ConfigMaps](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/config-map-v1/) that should be deployed
-## @param configMaps.<key>.data `map` of data to deploy in the configmap
-## e.g.
-## configMaps:
-##   my-config:
-##     data:
-##       foo: bar
-##       hello: world
-##       config.ini: |
-##         [test]
-##         foo=bar
-configMaps:
-  <key>:
-    data: []
-
 ## @section Secrets parameters
 ## @extra secrets `map` of the [Secrets](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/secret-v1/) that should be deployed
 ## @param secrets.<key>.type opaque/keyvault
