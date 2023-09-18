@@ -1,0 +1,82 @@
+suite: Deployments Securitycontext
+release:
+  name: test
+templates:
+  - deployment.yaml
+tests:
+
+  - it: should allow for securityContext to overWrite
+    set:
+      image:
+        repository: defaultrepo
+      deployments:
+        main:
+          securityContext:
+            runAsNonRoot: false
+            runAsUser: 2000
+          containers:
+            - name: main
+              securityContext:
+                allowPrivilegeEscalation: true
+                privileged: true
+                readOnlyRootFilesystem: false
+    asserts:
+      - equal:
+          path: spec.template.spec.securityContext
+          value:
+            runAsNonRoot: false
+            runAsUser: 2000
+      - equal:
+          path: spec.template.spec.containers[?(@.name=='main')].securityContext
+          value:
+            allowPrivilegeEscalation: true
+            privileged: true
+            readOnlyRootFilesystem: false
+
+  - it: should not copy security context from 1 container to another
+    set:
+      image:
+        repository: defaultrepo
+      deployments:
+        aaa:
+          securityContext:
+            runAsNonRoot: false
+            runAsUser: 2000
+          containers:
+            - name: main
+              securityContext:
+                allowPrivilegeEscalation: true
+                privileged: true
+                readOnlyRootFilesystem: false
+        bbb:
+          containers:
+            - name: main
+    asserts:
+      - hasDocuments:
+          count: 2
+      - equal:
+          path: spec.template.spec.securityContext
+          value:
+            runAsNonRoot: false
+            runAsUser: 2000
+        documentIndex: 0
+      - equal:
+          path: spec.template.spec.containers[?(@.name=='main')].securityContext
+          value:
+            allowPrivilegeEscalation: true
+            privileged: true
+            readOnlyRootFilesystem: false
+        documentIndex: 0
+      - equal:
+          path: spec.template.spec.securityContext
+          value:
+            runAsNonRoot: true
+            runAsUser: 1000
+        documentIndex: 1
+      - equal:
+          path: spec.template.spec.containers[?(@.name=='main')].securityContext
+          value:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: true
+        documentIndex: 1
