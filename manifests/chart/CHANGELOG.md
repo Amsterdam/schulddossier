@@ -1,19 +1,5 @@
 # Changelog
 
-## [1.6.1](https://github.com/Amsterdam/helm-application/compare/1.6.0...1.6.1) (2023-06-29)
-
-
-### Bug Fixes
-
-* **serviceaccount:** Default serviceaccount was not set properly ([a9be2dd](https://github.com/Amsterdam/helm-application/commit/a9be2ddc482bf6786ee35f13d020750ffb636f77))
-
-## [1.6.0](https://github.com/Amsterdam/helm-application/compare/1.5.2...1.6.0) (2023-06-28)
-
-
-### Features
-
-* **serviceaccount:** Implement default serviceaccount for the deployment ([70e643e](https://github.com/Amsterdam/helm-application/commit/70e643e9b1e08e2ccbe5c544874392735bc0cc7c))
-
 ## [1.5.2](https://github.com/Amsterdam/helm-application/compare/1.5.1...1.5.2) (2023-06-14)
 
 
