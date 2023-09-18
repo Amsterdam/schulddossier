@@ -7,8 +7,6 @@ host: schulddossier.salm-o.azure.amsterdam.nl
 secrets:
   certificate:
     keyVaultName: shared-o-xxmtgnro7phka
-  vault:
-    keyVaultName: schulddossier-o-o354tdmk
 
 deployments:
   schulddossier-phpfpm:
