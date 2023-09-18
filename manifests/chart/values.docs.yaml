@@ -1,0 +1,247 @@
+
+## @section Global parameters
+
+## @param name `required` Name of the application
+name: ''
+
+## @param nodepool `required` Name of the Nodepool (AKS Scaleset) where the workloads should run on
+nodepool: ''
+
+## @param host Default hostname to bind on ingresses
+host: ''
+
+## @param serviceAccount Default serviceaccount to bind on the pods
+serviceAccount: default
+
+## @param tolerations (Optional) Default workload [tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) object
+tolerations:
+
+## @section SecurityContext parameters
+## @extra securityContext.pod Default pod [securityContext](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1) object
+## @param securityContext.pod.runAsNonRoot Indicates that the container must run as a non-root user
+## @param securityContext.pod.runAsUser Run as UID
+## @extra securityContext.container Default container [securityContext](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-2) object. Inherits `securityContext.pod`
+## @param securityContext.container.privileged Run container in privileged mode
+## @param securityContext.container.allowPrivilegeEscalation Controls whether a process can gain more privileges than its parent process
+## @param securityContext.container.readOnlyRootFilesystem Whether this container has a read-only root filesystem
+securityContext:
+  pod:
+    runAsNonRoot: true
+    runAsUser: 1000
+  container:
+    privileged: false
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
+
+## @section Image parameters
+## @param image.registry Default registry of the workload images
+## @param image.repository Default repository of the workload images
+## @param image.tag Default tag/version of the workload images
+image:
+  registry: ''
+  repository: ''
+  tag: ''
+
+## @section Keyvault parameters
+## @param tenantId Default directory ID of the Azure tenant
+## @param keyVaultName Default name of the Keyvault that holds secrets and/or certificates
+## @param keyVaultIdentity `deprecated` Default Client ID of the Managed Identity with read-access on Keyvault secrets/certificates. Use `workloadIdentity` instead
+## @param workloadIdentity Default Client ID of the Managed Identity with read-access on Keyvault secrets/certificates.
+tenantId: ''
+keyVaultName: ''
+keyVaultIdentity: ''
+workloadIdentity: ''
+
+## @section ServiceAccounts parameters
+## @extra serviceAccounts `map` of the [ServiceAccounts](https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/service-account-v1/) that should be created
+## @param serviceAccounts.<key>.workloadIdentity Optionally override `root.workloadIdentity`
+## @param serviceAccounts.<key>.enableWorkloadIdentity Flag to enable/disable workload identity
+serviceAccounts:
+  <key>:
+    workloadIdentity:
+    enableWorkloadIdentity: false
+
+## @section Persistent data parameters
+## @extra persistentVolumeClaims `map` of the [PersistentVolumeClaims](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/persistent-volume-claim-v1/) that should be created
+## @param persistentVolumeClaims.<key>.storageClassName storageClassName is the name of the StorageClass required by the claim
+## @param persistentVolumeClaims.<key>.volumeName Name of the [Volume](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/volume/). Use this property instead of `storageClassName` to use an existing `Volume`
+## @param persistentVolumeClaims.<key>.accessModes Contains the desired access modes the volume should have
+## @param persistentVolumeClaims.<key>.resources Represents the minimum resources the volume should have. [More info](https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources)
+persistentVolumeClaims:
+  <key>:
+    storageClassName:
+    volumeName:
+    accessModes: ReadWriteOnce
+    resources:
+
+## @section ConfigMaps parameters
+## @extra configMaps `map` of the [ConfigMaps](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/config-map-v1/) that should be deployed
+## @param configMaps.<key>.data `map` of data to deploy in the configmap
+## e.g.
+## configMaps:
+##   my-config:
+##     data:
+##       foo: bar
+##       hello: world
+##       config.ini: |
+##         [test]
+##         foo=bar
+configMaps:
+  <key>:
+    data: []
+
+## @section Secrets parameters
+## @extra secrets `map` of the [Secrets](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/secret-v1/) that should be deployed
+## @param secrets.<key>.type opaque/keyvault
+## @param secrets.<key>.secrets `list` of keyvault secrets (type==keyvault) or `hashmap` of plaintext secrets (type==opaque)
+## e.g.
+## secrets:
+##   plain:
+##     type: opaque
+##     secrets:
+##       foo: bar
+##       hello: world
+##   vault:
+##     type: keyvault
+##     secrets:
+##       - secret1
+##       - secret2
+##       - secret3
+secrets:
+  <key>:
+    type:
+    secrets: []
+
+## @section Services parameters
+## @extra services `map` of the [Services](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/) that should be deployed
+## @param services.<key>.selector `map` of the pod's label selectors. Route service traffic to pods with label keys and values matching this selector
+## @extra services.<key>.ports `list` of ports that are exposed by this service
+services:
+  <key>:
+    selector: {}
+    ## @param services.<key>.ports[0].port The port that will be exposed by this service
+    ## @param services.<key>.ports[0].targetPort Number or name of the port to access on the pods targeted by the service
+    ports:
+      - port:
+        targetPort:
+
+## @section Ingress parameters
+## @extra ingress `map` of the [Ingresses](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/ingress-v1/) that should be deployed
+## @param ingress.<key>.className Name of an IngressClass cluster resource
+## @param ingress.<key>.host Optionally override `root.host`
+## @extra ingress.<key>.paths `list` of paths that map requests to backends
+## @param ingress.<key>.paths[0].path Path is matched against the path of an incoming request
+## @param ingress.<key>.paths[0].pathType Exact/ImplementationSpecific/Prefix
+## @param ingress.<key>.paths[0].service Name of the service to route the traffic to
+## @param ingress.<key>.paths[0].port Port number that the service exposes
+## @param ingress.<key>.tls.secretName Name of the secret that is generated as part of this installation that holds the certificate for SSL termination
+## @param ingress.<key>.tls.secretNameOverride Fullname of the secret that holds the certificate for SSL termination. Use this property instead of `secretname` if you want to use an existing secret.
+ingress:
+  <key>:
+    className:
+    host:
+    paths:
+      - path:
+        pathType: Prefix
+        service:
+        port:
+    tls:
+      secretName:
+      secretNameOverride:
+
+## @section Jobs parameters
+## @extra jobs `map` of the [Job](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/job-v1/) workloads that should be deployed
+## @param jobs.<key>.ttlSecondsAfterFinished Limits the lifetime of a Job that has finished execution
+## @param jobs.<key>.backoffLimit Specifies the number of retries before marking this job failed
+## @param jobs.<key>.enableWorkloadIdentity Enables the `Workload Identity` feature
+## @param jobs.<key>.workloadIdentity Optionally override `root.workloadIdentity`
+## @param jobs.<key>.env `map` of container environment variables
+## @param jobs.<key>.resources Default container [ResourceRequirements](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#resources)
+## @param jobs.<key>.serviceAccount Optionally override `root.serviceAccount`
+## @param jobs.<key>.tolerations Optionally override `root.tolerations`
+## @param jobs.<key>.securityContext Optionally override `root.securityContext.pod`
+## @param jobs.<key>.containers [array] [Container[]](#container-definition)
+## @param jobs.<key>.volumes [array] [Volume[]](#volume-definition)
+jobs:
+  <key>:
+    ttlSecondsAfterFinished:
+    backoffLimit: 5
+    enableWorkloadIdentity: true
+    workloadIdentity:
+    env:
+    resources:
+    serviceAccount:
+    tolerations:
+    securityContext:
+    containers: []
+    volumes: []
+
+## @section CronJob parameters
+## @extra cronJobs `map` of the [CronJob](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/cron-job-v1/) workloads that should be deployed
+## @param cronJobs.<key>.schedule Cron expression
+## @param cronJobs.<key>.startingDeadlineSeconds Deadline in seconds for starting the job if it misses scheduled time for any reason
+## @param cronJobs.<key>.successfulJobsHistoryLimit The number of successful finished jobs to retain
+## @param cronJobs.<key>.failedJobsHistoryLimit The number of failed finished jobs to retain
+## @param cronJobs.<key>.concurrencyPolicy Allow/Forbid/Replace
+## @param cronJobs.<key>.ttlSecondsAfterFinished Limits the lifetime of a Job that has finished execution
+## @param cronJobs.<key>.backoffLimit Specifies the number of retries before marking this job failed
+## @param cronJobs.<key>.enableWorkloadIdentity Enables the `Workload Identity` feature
+## @param cronJobs.<key>.workloadIdentity Optionally override `root.workloadIdentity`
+## @param cronJobs.<key>.env `map` of container environment variables
+## @param cronJobs.<key>.resources Default container [ResourceRequirements](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#resources)
+## @param cronJobs.<key>.serviceAccount Optionally override `root.serviceAccount`
+## @param cronJobs.<key>.tolerations Optionally override `root.tolerations`
+## @param cronJobs.<key>.securityContext Optionally override `root.securityContext.pod`
+## @param cronJobs.<key>.containers [array] [Container[]](#container-definition)
+## @param cronJobs.<key>.volumes [array] [Volume[]](#volume-definition)
+cronJobs:
+  <key>:
+    schedule: ''
+    startingDeadlineSeconds: 300
+    successfulJobsHistoryLimit: 1
+    failedJobsHistoryLimit: 1
+    concurrencyPolicy: Forbid
+    ttlSecondsAfterFinished:
+    backoffLimit: 5
+    enableWorkloadIdentity: true
+    workloadIdentity:
+    env:
+    resources:
+    serviceAccount:
+    tolerations:
+    securityContext:
+    containers: []
+    volumes: []
+
+## @section Deployment parameters
+## @extra deployments `map` of the [Deployment](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/) workloads that should be deployed
+## @extra deployments.<key>.autoscale (Optional) Enable pod autoscaling
+## @param deployments.<key>.autoscale.cpu CPU resource utilization percentage threshold
+## @param deployments.<key>.autoscale.memory Memory resource utilization percentage threshold
+## @param deployments.<key>.autoscale.min Minimum amount of pods
+## @param deployments.<key>.autoscale.max Maximum amount of pods
+## @param deployments.<key>.enableWorkloadIdentity Enables the `Workload Identity` feature
+## @param deployments.<key>.workloadIdentity Optionally override `root.workloadIdentity`
+## @param deployments.<key>.env `map` of container environment variables
+## @param deployments.<key>.resources Default container [ResourceRequirements](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#resources)
+## @param deployments.<key>.serviceAccount Optionally override `root.serviceAccount`
+## @param deployments.<key>.tolerations Optionally override `root.tolerations`
+## @param deployments.<key>.securityContext Optionally override `root.securityContext.pod`
+## @param deployments.<key>.containers [array] [Container[]](#container-definition)
+## @param deployments.<key>.volumes [array] [Volume[]](#volume-definition)
+deployments:
+  <key>:
+    autoscale:
+      cpu:
+      memory:
+      min: 1
+      max: 3
+    enableWorkloadIdentity: true
+    workloadIdentity:
+    env:
+    resources:
+    serviceAccount:
+    tolerations:
+    securityContext:
+    containers: []
+    volumes: []
