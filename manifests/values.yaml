@@ -24,10 +24,6 @@ secrets:
   certificate:
     type: keyvault
     tls: schulddossier
-  vault:
-    type: keyvault
-    secrets:
-      - iam-client-id
 
 deployments:
   schulddossier-phpfpm:
