@@ -1,3 +1,5 @@
+keyVaultName: schulddossier-o-o354tdmk
+
 workloadIdentity: c0ffb513-12ed-4f8c-b071-d4a55b4b8f70
 
 nodepool: cccsalmont01
@@ -10,6 +12,30 @@ secrets:
 
 deployments:
   schulddossier-phpfpm:
+    env:
+      - IAM_CLIENT_ID=schulddossier
+      - IAM_CLIENT_SECRET=insecure
+      - IAM_LOGOUT_URL=https://acc.iam.amsterdam.nl/auth/realms/schulddossier-acc/protocol/openid-connect/logout
+      - IAM_URL=https://acc.iam.amsterdam.nl/auth/realms/schulddossier-acc
+      - APP_ENV=dev
+      - APP_DEBUG=1
+      - APP_SECRET=insecure
+      - ALLEGRO_ENDPOINT=https://schuldhulp-ft.sociaal.amsterdam.nl:8084/SOAP
+      - APP_NOTIFICATIE_FROM=test@amsterdam.nl
+      - ALLEGRO_ONBEKENDE_SCHULDEISER="0"
+      - FEATUREFLAG_HERFINANCIERING=1
+      - MAILER_DSN=smtp://salm-kred-acc%40amsterdam.nl:%26Cc%2AJNU3nA4fWv@smr.amsterdam.nl:587
+      - SWIFT_AUTH_URL=
+      - SWIFT_REGION=
+      - SWIFT_USER_NAME=
+      - SWIFT_USER_DOMAIN_ID=
+      - SWIFT_USER_PASSWORD=
+      - SWIFT_PROJECT_ID=
+      - SWIFT_CONTAINER_PREFIX=
+      - SWIFT_TEMP_URL_KEY=
+      - SWIFT_EXTERNAL_DOMAIN=http://localhost:8100
+      - DATABASE_URL=postgresql://schulddossier:insecure@postgres:5432/schulddossier?serverVersion=11&charset=utf8
+      - REDIS_URL=redis://insecure@redis:6379
     autoscale:
       cpu: 70
       memory: 90

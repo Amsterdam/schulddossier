@@ -2,7 +2,7 @@ image:
   registry: 127.0.0.1:5001
   imagePullPolicy: Always
 
-host: localhost
+host: schulddossier.local
 
 secrets:
   certificate:
