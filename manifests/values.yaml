@@ -20,11 +20,7 @@ network:
 
 serviceAccount: app
 serviceAccounts:
-  default:
-    enableWorkloadIdentity: true
   app:
-    enableWorkloadIdentity: true
-  schulddossier:
     enableWorkloadIdentity: true
 
 secrets:
@@ -49,6 +45,7 @@ deployments:
       runAsUser: 82 #TODO: maybe this is a system user
     selectorLabels:
       component: phpfpm
+    serviceAccount: app
     containers:
       - name: main
         ports:
