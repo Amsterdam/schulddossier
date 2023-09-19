@@ -29,6 +29,9 @@ secrets:
     type: keyvault
     secrets:
       - iam-client-id
+      - iam-client-password
+      - iam-client-realm
+      - iam-client-server
 
 deployments:
   schulddossier-phpfpm:
