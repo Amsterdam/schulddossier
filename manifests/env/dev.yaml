@@ -1,4 +1,7 @@
-workloadIdentity: c0ffb513-12ed-4f8c-b071-d4a55b4b8f70
+#Client id van managed identity
+workloadIdentity: 276621e3-684f-4524-a0da-46dd07897d72
+
+keyVaultName: schulddossier-o-o354tdmk
 
 nodepool: cccsalmont01
 

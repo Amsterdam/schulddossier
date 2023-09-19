@@ -1,7 +1,5 @@
 name: schulddossier
 tenantId: 72fca1b1-2c2e-4376-a445-294d80196804
-keyVaultName: schulddossier-o-o354tdmk
-workloadIdentity: c0ffb513-12ed-4f8c-b071-d4a55b4b8f70
 
 labels:
   app: schulddossier
