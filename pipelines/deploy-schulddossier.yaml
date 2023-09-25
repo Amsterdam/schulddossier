@@ -19,10 +19,10 @@ extends:
     build:
       pool:
         name: ContainerBuilder
-    dev:
-      pool: salmagundi
-      namespace: ns-ccc-salm-ont-01-schulddossier
-      kubernetesServiceConnection: SCN-K8S-ns-ccc-salm-ont-01-schulddossier
+#    dev:
+#      pool: salmagundi
+#      namespace: ns-ccc-salm-ont-01-schulddossier
+#      kubernetesServiceConnection: SCN-K8S-ns-ccc-salm-ont-01-schulddossier
     test:
       pool: salmagundi
       namespace: ns-ccc-salm-tst-01-schulddossier
