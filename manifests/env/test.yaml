@@ -1,0 +1,17 @@
+workloadIdentity: e8b35c32-7b6c-45cb-b94e-d31f2ff73a87
+
+nodepool: cccsalmtst01
+
+host: schulddossier.salm-t.azure.amsterdam.nl
+
+secrets:
+  certificate:
+    keyVaultName: shared-t-7ft3qruminlt6
+
+deployments:
+  schulddossier-phpfpm:
+    autoscale:
+      cpu: 70
+      memory: 90
+      min: 1
+      max: 2
