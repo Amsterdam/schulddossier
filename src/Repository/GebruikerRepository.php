@@ -62,7 +62,7 @@ class GebruikerRepository extends ServiceEntityRepository
     {
         return $this->makeBaseQuery(
             '%s WHERE g.type IN (:types) %s %s',
-            [Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER],
+            [Gebruiker::TYPE_GKA, Gebruiker::TYPE_GKA_APPBEHEERDER, Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER],
             $inactive,
             $deleted
         );
