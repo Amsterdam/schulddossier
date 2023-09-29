@@ -18,7 +18,6 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        public: false
         bind:
             $allegroEndpoint: '%env(ALLEGRO_ENDPOINT)%'
             $allegroOnbekendeSchuldeiser: '%env(ALLEGRO_ONBEKENDE_SCHULDEISER)%'
@@ -32,8 +31,12 @@ services:
 
 
     GemeenteAmsterdam\FixxxSchuldhulp\:
-        resource: '../src/*'
-        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+        resource: '../src/'
+        exclude:
+            - '../src/Migrations/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
 
     # Controllers
     GemeenteAmsterdam\FixxxSchuldhulp\Controller\:
