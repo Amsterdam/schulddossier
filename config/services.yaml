@@ -27,6 +27,9 @@ services:
             string $azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
             string $azureClientId: '%env(AZURE_CLIENT_ID)%'
 
+    doctrine.dbal.connection_factory:
+        class: App\Doctrine\DynamicConnectionFactory
+
 
     GemeenteAmsterdam\FixxxSchuldhulp\:
         resource: '../src/*'
