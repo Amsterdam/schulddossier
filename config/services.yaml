@@ -22,6 +22,10 @@ services:
         bind:
             $allegroEndpoint: '%env(ALLEGRO_ENDPOINT)%'
             $allegroOnbekendeSchuldeiser: '%env(ALLEGRO_ONBEKENDE_SCHULDEISER)%'
+            string $azureAuthorityHost: '%env(AZURE_AUTHORITY_HOST)%'
+            string $azureTenantId: '%env(AZURE_TENANT_ID)%'
+            string $azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
+            string $azureClientId: '%env(AZURE_CLIENT_ID)%'
 
 
     GemeenteAmsterdam\FixxxSchuldhulp\:
