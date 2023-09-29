@@ -21,7 +21,7 @@ class DynamicConnection extends Connection
         if ($azureDatabase) {
             $params['password'] = $azureDatabase->getPassword($params['password']);
         }
-        
+
         parent::__construct($params, $driver, $config, $eventManager);
     }
 }
