@@ -28,7 +28,7 @@ services:
             string $azureClientId: '%env(AZURE_CLIENT_ID)%'
 
     doctrine.dbal.connection_factory:
-        class: App\Doctrine\DynamicConnectionFactory
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Doctrine\DynamicConnectionFactory
 
 
     GemeenteAmsterdam\FixxxSchuldhulp\:
