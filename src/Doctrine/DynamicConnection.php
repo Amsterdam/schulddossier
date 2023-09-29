@@ -2,7 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Doctrine;
 
-use App\Azure\AzureDatabase;
+use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureDatabase;
 use Doctrine\Common\EventManager;
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection;
