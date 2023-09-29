@@ -26,10 +26,6 @@ services:
             string $azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
             string $azureClientId: '%env(AZURE_CLIENT_ID)%'
 
-    doctrine.dbal.connection_factory:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Doctrine\DynamicConnectionFactory
-
-
     GemeenteAmsterdam\FixxxSchuldhulp\:
         resource: '../src/'
         exclude:
@@ -160,3 +156,6 @@ services:
             -
                 location: '%env(ALLEGRO_ENDPOINT)%?service=SchuldHulpService'
             - '%kernel.project_dir%/doc/modified_schuldhulpservice.wsdl'
+
+    doctrine.dbal.connection_factory:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Doctrine\DynamicConnectionFactory
