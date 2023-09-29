@@ -38,7 +38,7 @@ deployments:
       APP_ENV: dev
       APP_DEBUG: 1
       APP_SECRET: insecure
-      DATABASE_URL: pgsql://adus-app-o:temporary@schulddossier-o-o354tdmk.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
+      DATABASE_URL: pgsql://schulddossier-app-o:temporary@schulddossier-o-o354tdmk.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
     image:
       repository: salmagundi/schulddossier-phpfpm
     securityContext:
