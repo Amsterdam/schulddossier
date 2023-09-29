@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Doctrine;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Doctrine;
 
-use App\Azure\AzureDatabase;
+use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureDatabase;
 use Doctrine\Bundle\DoctrineBundle\ConnectionFactory as BaseConnectionFactory;
 use Doctrine\Common\EventManager;
 use Doctrine\DBAL\Configuration;
