@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Azure;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Azure;
 
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\RequestOptions;
@@ -40,27 +40,31 @@ class AzureDatabase
         ];
 
 
-        try {
+//        try {
             $response = $this->client->request('POST', $tokenUrl, [RequestOptions::HEADERS => ['Content-Type' => 'application/x-www-form-urlencoded'], RequestOptions::BODY => http_build_query($payload)]);
 
-            $body = $response->getContent();
+            if ($response->getStatusCode() >= 400) {
+                throw new \Exception(json_encode(['url' => $tokenUrl, 'payload' => $payload, 'response' => $response->getContent(false), 'fullresponse' => $response->toArray(false)]));
+            }
+
+            $body = $response->getContent(false);
             $data = json_decode($body, true);
 
             $accessToken = $data['access_token'];
 
             return $accessToken;
 
-        } catch (RequestException $e) {
-            // Handle the request exception
-            if ($e->hasResponse()) {
-                $response = $e->getResponse();
-                $body = $response->getBody();
-                $statusCode = $response->getStatusCode();
-
-                echo "ERROR: $body";
-                // Handle the error response...
-            }
-        }
+//        } catch (RequestException $e) {
+//            // Handle the request exception
+//            if ($e->hasResponse()) {
+//                $response = $e->getResponse();
+//                $body = $response->getBody();
+//                $statusCode = $response->getStatusCode();
+//
+//                echo "ERROR: $body";
+//                // Handle the error response...
+//            }
+//        }
 
         return '';
     }
