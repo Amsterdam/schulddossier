@@ -15,8 +15,6 @@ class AzureDatabase
 
     public function getPassword(string $default): string
     {
-        var_dump($this->azureAuthorityHost, $this->azureTenantId, $this->azureFederatedTokenFile, $this->azureClientId);die();
-                
         if (!$this->azureAuthorityHost || !$this->azureTenantId || !$this->azureFederatedTokenFile || !$this->azureClientId) return $default;
 
         return $this->getPasswordFromAzure();
@@ -51,7 +49,6 @@ class AzureDatabase
 
             $body = $response->getContent(false);
             $data = json_decode($body, true);
-            var_dump($data);die();
 
             $accessToken = $data['access_token'];
 
