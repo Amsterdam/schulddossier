@@ -49,6 +49,7 @@ class AzureDatabase
 
             $body = $response->getContent(false);
             $data = json_decode($body, true);
+            var_dump($data);die();
 
             $accessToken = $data['access_token'];
 
