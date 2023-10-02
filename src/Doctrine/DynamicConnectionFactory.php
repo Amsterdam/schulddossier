@@ -12,6 +12,7 @@ class DynamicConnectionFactory extends BaseConnectionFactory
 {
     public function __construct(private ContainerInterface $container, private AzureDatabase $azureDatabase)
     {
+        var_dump($this->azureDatabase); die();
         parent::__construct($container->getParameter('doctrine.dbal.connection_factory.types'));
 
     }
