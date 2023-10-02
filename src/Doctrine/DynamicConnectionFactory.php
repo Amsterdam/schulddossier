@@ -12,7 +12,9 @@ class DynamicConnectionFactory extends BaseConnectionFactory
 {
     public function __construct(private ContainerInterface $container, private AzureDatabase $azureDatabase)
     {
+        var_dump($this->azureDatabase->getPassword('ab'), get_class($this->container), get_class($this->azureDatabase)); die();
         parent::__construct($container->getParameter('doctrine.dbal.connection_factory.types'));
+
     }
 
     public function createConnection(array $params, ?Configuration $config = null, ?EventManager $eventManager = null, array $mappingTypes = []): DynamicConnection
@@ -21,6 +23,7 @@ class DynamicConnectionFactory extends BaseConnectionFactory
         $defaultConnection = parent::createConnection($params, $config, $eventManager, $mappingTypes);
 
         $driver = $defaultConnection->getDriver();
+
 
         return new DynamicConnection($defaultConnection->getParams(), $driver, $defaultConnection->getConfiguration(), $defaultConnection->getEventManager(), $this->azureDatabase);
     }

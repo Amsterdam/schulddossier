@@ -37,3 +37,11 @@ update-chart:
 
 clean:
 	$(dc) down -v --remove-orphans
+
+reset:
+	kubectl delete deployments --all && kubectl delete ingress schulddossier-nginx-internal-schulddossier && helm uninstall schulddossier
+
+refresh: reset build push deploy
+
+dev:
+	nohup kubycat kubycat-config.yaml > /dev/null 2>&1&
