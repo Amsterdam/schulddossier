@@ -114,6 +114,8 @@ deployments:
 
 
 jobs:
+  certificate-init:
+    enabled: false
   migrate:
     ttlSecondsAfterFinished: 100
     image:

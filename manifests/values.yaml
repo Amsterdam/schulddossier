@@ -131,6 +131,22 @@ ingress:
       secretNameOverride: schulddossier
 
 jobs:
+  certificate-init:
+    image:
+      repository: salmagundi/adus-nginx
+    annotations:
+      helm.sh/hook: post-install,post-upgrade
+    labels:
+      component: certificate
+    secrets:
+      - certificate
+    containers:
+      - name: main
+        command:
+          - sleep
+        args:
+          - "1"
+
   migrate:
     ttlSecondsAfterFinished: 100
     image:
