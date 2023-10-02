@@ -10,7 +10,6 @@ class AzureDatabase
 {
     public function __construct(private HttpClientInterface $client, private string $azureAuthorityHost, private string $azureTenantId, private string $azureFederatedTokenFile, private string $azureClientId)
     {
-
     }
 
     public function getPassword(string $default): string
