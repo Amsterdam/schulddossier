@@ -1,5 +1,7 @@
 workloadIdentity: e8b35c32-7b6c-45cb-b94e-d31f2ff73a87
 
+keyVaultName: schulddossier-t-izpkvmrb
+
 nodepool: cccsalmtst01
 
 host: schulddossier.salm-t.azure.amsterdam.nl
@@ -7,11 +9,53 @@ host: schulddossier.salm-t.azure.amsterdam.nl
 secrets:
   certificate:
     keyVaultName: shared-t-7ft3qruminlt6
+  my-vault-secrets:
+    keyVaultName: schulddossier-t-izpkvmrb
 
 deployments:
   schulddossier-phpfpm:
+    env:
+      DATABASE_URL: pgsql://schulddossier-app-t:temporary@schulddossier-t-izpkvmrb.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
+      APP_ENV: dev
+      APP_DEBUG: 1
+      APP_SECRET: insecure
     autoscale:
       cpu: 70
       memory: 90
       min: 1
       max: 2
+
+jobs:
+  migrate:
+    ttlSecondsAfterFinished: 100
+    image:
+      repository: salmagundi/schulddossier-phpfpm
+    annotations:
+      helm.sh/hook: post-install,post-upgrade
+    containers:
+      - name: main
+        volumes:
+          - name: cache
+            mountPath: /var/www/var/cache
+          - name: logs
+            mountPath: /var/www/var/log
+          - name: tmp
+            mountPath: /tmp
+        command: ["php", "bin/console", "doc:mig:mig"]
+        env:
+          APP_ENV: dev
+          APP_DEBUG: 1
+          APP_SECRET: insecure
+          DATABASE_URL: pgsql://schulddossier-app-t:temporary@schulddossier-t-izpkvmrb.postgres.database.azure.com:5432?serverVersion=13&charset=utf8
+    backoffLimit: 2
+
+    volumes:
+      - name: cache
+        spec:
+          emptyDir: {}
+      - name: logs
+        spec:
+          emptyDir: {}
+      - name: tmp
+        spec:
+          emptyDir: {}
