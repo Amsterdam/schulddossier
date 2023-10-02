@@ -18,12 +18,9 @@ class DynamicConnection extends Connection
         ?AzureDatabase $azureDatabase = null,
     )
     {
-        var_dump('aaaa');
-        var_dump($params['password']);
         if ($azureDatabase) {
             $params['password'] = $azureDatabase->getPassword($params['password']);
         }
-        var_dump($params['password']);die();
 
 
 
