@@ -1,4 +1,3 @@
-#Client id van managed identity
 workloadIdentity: 276621e3-684f-4524-a0da-46dd07897d72
 
 keyVaultName: schulddossier-o-o354tdmk
@@ -15,8 +14,48 @@ secrets:
 
 deployments:
   schulddossier-phpfpm:
+    env:
+      DATABASE_URL: pgsql://schulddossier-app-o:temporary@schulddossier-o-o354tdmk.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
+      APP_ENV: dev
+      APP_DEBUG: 1
+      APP_SECRET: insecure
     autoscale:
       cpu: 70
       memory: 90
       min: 1
       max: 2
+
+jobs:
+  migrate:
+    ttlSecondsAfterFinished: 100
+    image:
+      repository: salmagundi/schulddossier-phpfpm
+    annotations:
+      helm.sh/hook: post-install,post-upgrade
+    containers:
+      - name: main
+        volumes:
+          - name: cache
+            mountPath: /var/www/var/cache
+          - name: logs
+            mountPath: /var/www/var/log
+          - name: tmp
+            mountPath: /tmp
+        command: ["php", "bin/console", "doc:mig:mig"]
+        env:
+          APP_ENV: dev
+          APP_DEBUG: 1
+          APP_SECRET: insecure
+          DATABASE_URL: pgsql://schulddossier-app-o:temporary@schulddossier-o-o354tdmk.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
+    backoffLimit: 2
+
+    volumes:
+      - name: cache
+        spec:
+          emptyDir: {}
+      - name: logs
+        spec:
+          emptyDir: {}
+      - name: tmp
+        spec:
+          emptyDir: {}
