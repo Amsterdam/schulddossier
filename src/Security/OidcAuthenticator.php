@@ -25,6 +25,7 @@ use Lcobucci\JWT\Signer\Key;
 use Lcobucci\JWT\Signer\Rsa\Sha256;
 use Lcobucci\JWT\Signer\Ecdsa\Sha384;
 use Lcobucci\JWT\Signer\Rsa\Sha512;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
 
 /**
@@ -72,6 +73,8 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
 
     private string $idToken;
 
+    private HttpClientInterface $client;
+
     /**
      * OidcAuthenticator constructor.
      *
@@ -84,7 +87,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
      * @param                           $clientSecret
      * @param                           $baseUrl
      */
-    public function __construct(EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrf, LoggerInterface $logger, Environment $twig, $clientId, $clientSecret, $baseUrl)
+    public function __construct(HttpClientInterface $client, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrf, LoggerInterface $logger, Environment $twig, $clientId, $clientSecret, $baseUrl)
     {
         $this->gebruikerRepository = $em->getRepository(Gebruiker::class);
         $this->entityManager = $em;
@@ -98,6 +101,8 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         $this->logger = $logger;
 
         $this->twig = $twig;
+
+        $this->client = $client;
 
     }
 
@@ -143,7 +148,8 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
 
         try {
             $guzzle = new Client();
-            $response = $guzzle->post($this->baseUrl . '/protocol/openid-connect/token', [
+            $response = $this->client->request('POST',
+                $this->baseUrl . '/protocol/openid-connect/token', [
                 'form_params' => [
                     'grant_type' => 'authorization_code',
                     'code' => $credentials['code'],
