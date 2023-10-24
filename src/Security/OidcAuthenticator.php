@@ -115,8 +115,8 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
     {
         if ($request->query->get('state') !== $request->getSession()->getId()) {
             $this->logger->warning('OIDC login, state does not match session');
-            $this->logger->warning('HTTP Query session state: ' . print_r($request->query->get('state')));
-            $this->logger->warning('Session getId(): ' . print_r($request->getSession()->getId()));
+            $this->logger->warning('HTTP Query session state: ' . $request->query->get('state'));
+            $this->logger->warning('Session getId(): ' . $request->getSession()->getId());
             return false;
         }
 
