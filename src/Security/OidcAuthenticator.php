@@ -78,11 +78,11 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
     /**
      * OidcAuthenticator constructor.
      *
-     * @param EntityManagerInterface $em
-     * @param UrlGeneratorInterface $urlGenerator
+     * @param EntityManagerInterface    $em
+     * @param UrlGeneratorInterface     $urlGenerator
      * @param CsrfTokenManagerInterface $csrf
-     * @param LoggerInterface $logger
-     * @param Environment $twig
+     * @param LoggerInterface           $logger
+     * @param Environment               $twig
      * @param                           $clientId
      * @param                           $clientSecret
      * @param                           $baseUrl
@@ -115,8 +115,6 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
     {
         if ($request->query->get('state') !== $request->getSession()->getId()) {
             $this->logger->warning('OIDC login, state does not match session');
-            $this->logger->warning('HTTP Query session state: ' . $request->query->get('state'));
-            $this->logger->warning('Session getId(): ' . $request->getSession()->getId());
             return false;
         }
 
@@ -136,7 +134,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
     }
 
     /**
-     * @param mixed $credentials
+     * @param mixed                 $credentials
      * @param UserProviderInterface $userProvider
      *
      * @return Gebruiker|null|object|UserInterface|void
@@ -144,9 +142,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
      */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        $this->logger->info(__CLASS__ . ':' . __LINE__ . ': Start get user in OidcAuthenticator');
         if (empty($credentials['code']) === true) {
-            $this->logger->error(__CLASS__ . '' . __LINE__ . ': No code ');
             return;
         }
 
@@ -154,24 +150,20 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
             $guzzle = new Client();
             $response = $this->client->request('POST',
                 $this->baseUrl . '/protocol/openid-connect/token', [
-                    'form_params' => [
-                        'grant_type' => 'authorization_code',
-                        'code' => $credentials['code'],
-                        'redirect_uri' => $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', [], UrlGeneratorInterface::ABSOLUTE_URL),
-                        'client_id' => $this->clientId,
-                        'client_secret' => $this->clientSecret,
-                    ]]);
+                'form_params' => [
+                    'grant_type' => 'authorization_code',
+                    'code' => $credentials['code'],
+                    'redirect_uri' => $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', [], UrlGeneratorInterface::ABSOLUTE_URL),
+                    'client_id' => $this->clientId,
+                    'client_secret' => $this->clientSecret,
+                ]]);
 
             $output = json_decode($response->getBody()->__toString(), true);
-            $this->logger->info(__CLASS__ . ':' . __LINE__ . ': Output: ' . $output);
         } catch (TransferException $e) {
-            $this->logger->error('Can not set up request to token endpoint ' . $e->getMessage());
             throw new AuthenticationException('Can not set up request to token endpoint ' . $e->getMessage());
-
         }
 
         if (empty($output['id_token'])) {
-            $this->logger->error();
             throw new AuthenticationException('id_token is empty');
         }
 
@@ -179,17 +171,14 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         $token = (new Parser())->parse((string)$output['id_token']);
 
         if (!$this->tokenIsValid($token)) {
-            $this->logger->error();
             throw new AuthenticationException('token is invalid');
         }
 
         if (!$this->tokenIsVerified($token)) {
-            $this->logger->error();
             throw new AuthenticationException('token can not be verified');
         }
 
         if (empty($token->getClaim('email'))) {
-            $this->logger->error();
             throw new AuthenticationException('Auth server did not supply a e-mail');
         }
 
@@ -219,9 +208,9 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
     }
 
     /**
-     * @param Request $request
+     * @param Request        $request
      * @param TokenInterface $token
-     * @param string $providerKey
+     * @param string         $providerKey
      *
      * @return null|RedirectResponse|Response
      */
@@ -244,7 +233,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
     }
 
     /**
-     * @param Request $request
+     * @param Request                 $request
      * @param AuthenticationException $exception
      *
      * @return Response
@@ -260,7 +249,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
     }
 
     /**
-     * @param Request $request
+     * @param Request                      $request
      * @param AuthenticationException|null $authException
      *
      * @return RedirectResponse|Response
@@ -279,7 +268,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
     }
 
     /**
-     * @param mixed $credentials
+     * @param mixed         $credentials
      * @param UserInterface $user
      *
      * @return bool
@@ -313,8 +302,8 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * @param Token $token
-     * @return bool
      * @throws AuthenticationException
+     * @return bool
      */
     private function tokenIsVerified(Token $token): bool
     {
@@ -346,7 +335,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
 
             $rsa = new \phpseclib\Crypt\RSA();
             $rsa->loadKey([
-                'n' => new \phpseclib\Math\BigInteger(base64_decode(str_replace(['-', '_'], ['+', '/'], $keyData['n'])), 256),
+                'n' => new \phpseclib\Math\BigInteger(base64_decode(str_replace(['-','_'], ['+','/'], $keyData['n'])), 256),
                 'e' => new \phpseclib\Math\BigInteger(base64_decode($keyData['e']), 256)
             ]);
             $publicKey = $rsa->getPublicKey(\phpseclib\Crypt\RSA::PRIVATE_FORMAT_PKCS1);
@@ -356,7 +345,8 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
             $signer = new $signers[$token->getHeader('alg')];
 
             return $token->verify($signer, $signerKey);
-        } catch (TransferException $e) {
+        }
+        catch (TransferException $e) {
             throw new AuthenticationException('Can not connect to OIDC certs URL. Error ' . $e->getMessage());
         }
     }
