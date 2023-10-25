@@ -39,6 +39,8 @@ deployments:
       APP_DEBUG: 1
       APP_SECRET: insecure
       DATABASE_URL: pgsql://schulddossier-app-o:temporary@schulddossier-o-o354tdmk.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
+      ALLEGRO_ENDPOINT: https://schuldhulp-ft.sociaal.amsterdam.nl:8084/SOAP
+      ALLEGRO_ONBEKENDE_SCHULDEISER: "0"
     image:
       repository: salmagundi/schulddossier-phpfpm
     securityContext:
