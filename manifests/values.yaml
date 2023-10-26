@@ -29,7 +29,9 @@ secrets:
     type: keyvault
     secrets:
       - iam-client-id
+      - iam-client-realm
       - iam-client-secret
+      - iam-logout-url
       - iam-url
 
 deployments:
