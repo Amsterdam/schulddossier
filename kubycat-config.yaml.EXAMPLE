@@ -1,0 +1,13 @@
+kubycat:
+  namespace: default
+  interval: 100
+  sync:
+    - name: adus
+      # Replace this line with your actual directory
+      base: /home/joey/Code/ado/Adus
+      from:
+        - src
+        - tests
+      to: /var/www
+      pod-label: component=phpfpm
+      shell: /bin/sh
