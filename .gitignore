@@ -39,3 +39,5 @@ config/soap-client-allegro-login.php
 /node_modules/
 npm-debug.log
 yarn-error.log
+
+kubycat-config.yaml
