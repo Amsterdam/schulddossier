@@ -721,6 +721,19 @@ class Voorlegger
     private $toelichtingAanvraagSchuldsaneringClientOntvangenGka;
 
     // ---
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $ontstaanVanSchulden;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $inspanningsverplichting;
 
     /**
      * @var integer
@@ -1621,6 +1634,16 @@ class Voorlegger
         return $this->toelichtingAanvraagSchuldsaneringClientOntvangenGka;
     }
 
+    public function getOntstaanVanSchulden()
+    {
+        return $this->ontstaanVanSchulden;
+    }
+
+    public function getInspanningsverplichting()
+    {
+        return $this->inspanningsverplichting;
+    }
+
     public function getToelichtingAanvraagSchuldsaneringShvOntvangenShv()
     {
         return $this->toelichtingAanvraagSchuldsaneringShvOntvangenShv;
@@ -2290,6 +2313,16 @@ class Voorlegger
     public function setToelichtingAanvraagSchuldsaneringClientOntvangenGka($toelichtingAanvraagSchuldsaneringClientOntvangenGka)
     {
         $this->toelichtingAanvraagSchuldsaneringClientOntvangenGka = $toelichtingAanvraagSchuldsaneringClientOntvangenGka;
+    }
+
+    public function setOntstaanVanSchulden($ontstaan)
+    {
+        $this->ontstaanVanSchulden = $ontstaan;
+    }
+
+    public function setInspanningsverplichting($inspanningsverplichting)
+    {
+        $this->inspanningsverplichting = $inspanningsverplichting;
     }
 
     public function setToelichtingAanvraagSchuldsaneringShvOntvangenShv($toelichtingAanvraagSchuldsaneringShvOntvangenShv)

@@ -2,6 +2,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
@@ -15,6 +16,21 @@ class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractTyp
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        $builder->add('ontstaanVanSchulden', ChoiceType::class, [
+            'required' => false,
+            'choices' => $this->getOntstaanVanSchuldenOptions(),
+            'empty_data' => null,
+            'placeholder' => 'Selecteer een optie'
+        ]);
+
+        $builder->add('inspanningsverplichting', ChoiceType::class, [
+            'required' => false,
+            'choices' => $this->getInspanningsverplichting(),
+            'empty_data' => null,
+            'placeholder' => 'Selecteer een optie'
+        ]);
+
         $builder->add('toelichtingAanvraagSchuldsaneringShvOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
@@ -64,5 +80,23 @@ class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractTyp
         $resolver->setDefault('data_class', Voorlegger::class);
         $resolver->setDefault('choice_translation_domain', false);
         $resolver->setDefault('disable_group', null);
+    }
+
+    private function getOntstaanVanSchuldenOptions() {
+        return [
+            'Overlevingsschulden' => 'OVERLEVING',
+            'Compensatieschulden' => 'COMPENSATIE',
+            'Aanpassingsschulden' => 'AANPASSING',
+            'Overkrediterings of bestedingsschulden' => 'OVERKREDITERING',
+        ];
+    }
+
+    private function getInspanningsverplichting() {
+        return [
+            'Naar maximaal vermogen werkzaam' => 'MAXIMAAL_VERMOGEN',
+            'Niet naar maximaal vermogen werkzaam, sollicitatieplicht, hogere aflossingscapaciteit verwacht' => 'HOGE_CAPACITEIT',
+            'Niet naar maximaal vermogen werkzaam, sollicitatieplicht, geen hogere aflossingscapaciteit verwacht' => 'LAGE_CAPACITEIT',
+            'Niet in staat om werk te verrichten voor de looptijd van de schuldregeling' => 'GEEN_WERK',
+        ];
     }
 }
