@@ -37,6 +37,16 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <div>
+                    <h4>Hoe zijn de schulden ontstaan? (verplicht)</h4>
+                    <div class="input-choice">
+                        {{ form_row(form.ontstaanVanSchulden) }}
+                    </div>
+                    <h4>Welke soort verplichting is verwacht? (verplicht)</h4>
+                    <div class="input-choice">
+                        {{ form_row(form.inspanningsverplichting) }}
+                    </div>
+                </div>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Toelichting aanvraag schuldsanering SHV-er/Bewindvoerder'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}
