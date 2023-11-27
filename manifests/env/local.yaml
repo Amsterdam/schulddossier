@@ -55,6 +55,7 @@ deployments:
       runAsUser: 82 #TODO: maybe this is a system user
     selectorLabels:
       component: phpfpm
+      kubycat: schulddossier
     serviceAccount: app
     containers:
       - name: main
