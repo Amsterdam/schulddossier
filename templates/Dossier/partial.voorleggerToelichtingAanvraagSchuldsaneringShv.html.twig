@@ -37,12 +37,15 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <div class="warning-text">
+                    Let op: onderstaande vragen zijn verplicht
+                </div>
                 <div>
-                    <h4>Hoe zijn de schulden ontstaan? (verplicht)</h4>
+                    <h4>Hoe zijn de schulden ontstaan? <span style="color:red;">*</span></h4>
                     <div class="input-choice">
                         {{ form_row(form.ontstaanVanSchulden) }}
                     </div>
-                    <h4>Welke soort verplichting is verwacht? (verplicht)</h4>
+                        <h4>Welke inspanningsverplichting wordt nu verricht? <span style="color:red;">*</h4>
                     <div class="input-choice">
                         {{ form_row(form.inspanningsverplichting) }}
                     </div>
