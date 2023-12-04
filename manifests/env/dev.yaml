@@ -20,7 +20,6 @@ deployments:
       APP_ENV: dev
       APP_DEBUG: 0
       DATABASE_URL: pgsql://schulddossier-app-o:temporary@schulddossier-o-o354tdmk.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
-      MAILER_DSN:
       ALLEGRO_ENDPOINT: "https://schuldhulp.sociaal.amsterdam.nl:8084/SOAP"
       APP_NOTIFICATIE_FROM: "noreply@amsterdam.nl"
       ALLEGRO_ONBEKENDE_SCHULDEISER: "2506424"
