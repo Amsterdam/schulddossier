@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Azure;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Azure;
 
 use Exception;
 use GuzzleHttp\RequestOptions;
