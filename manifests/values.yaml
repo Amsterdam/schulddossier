@@ -67,6 +67,8 @@ deployments:
             mountPath: /run/lock
           - name: tmp
             mountPath: /tmp
+          - name: localworkingstorage
+            mountPath: /var/www/public/localworkingstorage
     volumes:
       - name: cache
         spec:
@@ -80,6 +82,10 @@ deployments:
       - name: tmp
         spec:
           emptyDir: { }
+      - name: localworkingstorage
+        spec:
+          emptyDir: { }
+
   schulddossier-nginx:
     image:
       repository: salmagundi/schulddossier-nginx
@@ -99,6 +105,8 @@ deployments:
             mountPath: /var/run
           - name: cache
             mountPath: /var/cache/nginx
+          - name: localworkingstorage
+            mountPath: /var/www/public/localworkingstorage
     volumes:
       - name: logs
         spec:
@@ -107,6 +115,9 @@ deployments:
         spec:
           emptyDir: { }
       - name: cache
+        spec:
+          emptyDir: { }
+      - name: localworkingstorage
         spec:
           emptyDir: { }
 
