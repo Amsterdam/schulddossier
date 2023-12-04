@@ -2,7 +2,7 @@ image:
   registry: 127.0.0.1:5001
   imagePullPolicy: Always
 
-host: schulddossier.local
+host: sd.local
 
 securityContext:
   container:
@@ -41,6 +41,7 @@ deployments:
       IAM_CLIENT_ID: kredietbank
       IAM_CLIENT_SECRET: insecure
       IAM_URL: http://keycloak.local/realms/kredietbank
+      IAM_LOGOUT_URL: http://keycloak.local/realms/kredietbank/protocol/openid-connect/logout
       APP_NOTIFICATIE_FROM: test@amsterdam.nl
       ALLEGRO_ENDPOINT: https://schuldhulp-ft.sociaal.amsterdam.nl:8084/SOAP
       ALLEGRO_ONBEKENDE_SCHULDEISER: "0"
@@ -54,6 +55,7 @@ deployments:
       runAsUser: 82 #TODO: maybe this is a system user
     selectorLabels:
       component: phpfpm
+      kubycat: schulddossier
     serviceAccount: app
     containers:
       - name: main

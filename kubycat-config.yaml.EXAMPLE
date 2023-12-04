@@ -1,13 +1,13 @@
 kubycat:
-  namespace: default
+  namespace: local
   interval: 100
   sync:
-    - name: adus
+    - name: schulddossier
       # Replace this line with your actual directory
-      base: /home/joey/Code/ado/Adus
+      base: /home/joey/Code/salmagundi/apps/oov/schulddossier
       from:
         - src
         - tests
       to: /var/www
-      pod-label: component=phpfpm
+      pod-label: kubycat=schulddossier
       shell: /bin/sh
