@@ -33,6 +33,7 @@ secrets:
       - iam-client-secret
       - iam-logout-url
       - iam-url
+      - mailer-dsn
 
 deployments:
   schulddossier-phpfpm:
