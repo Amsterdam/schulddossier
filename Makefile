@@ -12,6 +12,8 @@ REGISTRY ?= localhost:5000
 REPOSITORY ?= tamm/example-app
 VERSION ?= latest
 
+all: build push deploy fixtures
+
 build:
 	$(dc) build
 
@@ -39,9 +41,13 @@ clean:
 	$(dc) down -v --remove-orphans
 
 reset:
-	kubectl delete deployments --all && kubectl delete ingress schulddossier-nginx-internal-schulddossier && helm uninstall schulddossier
+	kubectl delete deployment schulddossier-phpfpm-schulddossier && kubectl delete deployment schulddossier-nginx-schulddossier && kubectl delete ingress schulddossier-nginx-internal-schulddossier && helm uninstall schulddossier
 
-refresh: reset build push deploy
+refresh: reset all
 
 dev:
 	nohup kubycat kubycat-config.yaml > /dev/null 2>&1&
+
+fixtures:
+	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh -c "php bin/console --no-interaction doctrine:migrations:migrate"
+	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh -c "php bin/console doc:fix:load  --no-interaction --purge-with-truncate"

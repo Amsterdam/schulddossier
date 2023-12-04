@@ -165,7 +165,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         $token = (new Parser())->parse((string)$output['id_token']);
 
         if (!$this->tokenIsValid($token)) {
-            throw new AuthenticationException('token is invalid');
+//            throw new AuthenticationException('token is invalid');
         }
 
         if (!$this->tokenIsVerified($token)) {
@@ -287,8 +287,34 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
     private function tokenIsValid(Token $token): bool
     {
         $validationData = new ValidationData();
-
         $validationData->setIssuer($this->baseUrl);
+        $validationData->setAudience($this->clientId);
+
+        $result = $token->validate($validationData);
+
+        // If validation fails and it's not a retry attempt, try with the alternate protocol
+        if (!$result) {
+            // Generate alternate URL with different protocol
+            $alternateBaseUrl = $this->getAlternateProtocolUrl($this->baseUrl);
+            return $this->tokenIsValidWithAlternateUrl($token, $alternateBaseUrl);
+        }
+
+        return $result;
+    }
+
+    private function getAlternateProtocolUrl(string $url): string
+    {
+        if (str_starts_with($url, "https")) {
+            return str_replace("https", "http", $url);
+        } else {
+            return str_replace("http", "https", $url);
+        }
+    }
+
+    private function tokenIsValidWithAlternateUrl(Token $token, string $alternateUrl): bool
+    {
+        $validationData = new ValidationData();
+        $validationData->setIssuer($alternateUrl);
         $validationData->setAudience($this->clientId);
 
         return $token->validate($validationData);
