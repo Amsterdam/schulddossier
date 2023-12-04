@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Doctrine;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Doctrine;
 
 use App\Azure\AzureDatabase;
 use Doctrine\Common\EventManager;
