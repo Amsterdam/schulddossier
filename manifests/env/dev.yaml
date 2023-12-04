@@ -50,7 +50,7 @@ deployments:
 
 jobs:
   migrate:
-    ttlSecondsAfterFinished: 100
+    ttlSecondsAfterFinished: 300
     image:
       repository: salmagundi/schulddossier-phpfpm
     annotations:
