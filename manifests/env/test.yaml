@@ -19,7 +19,7 @@ deployments:
       APP_SECRET: insecure
       APP_ENV: dev
       APP_DEBUG: 0
-      DATABASE_URL: pgsql://schulddossier-app-t:temporary@schulddossier-t-izpkvmrb.postgres.database.azure.com:5432?serverVersion=13&charset=utf8
+      DATABASE_URL: pgsql://schulddossier-app-t:temporary@schulddossier-t-izpkvmrb.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
       ALLEGRO_ENDPOINT: "https://schuldhulp.sociaal.amsterdam.nl:8084/SOAP"
       APP_NOTIFICATIE_FROM: "noreply@amsterdam.nl"
       ALLEGRO_ONBEKENDE_SCHULDEISER: "2506424"
@@ -69,7 +69,7 @@ jobs:
           APP_SECRET: insecure
           APP_ENV: dev
           APP_DEBUG: 0
-          DATABASE_URL: pgsql://schulddossier-app-t:temporary@schulddossier-t-izpkvmrb.postgres.database.azure.com:5432?serverVersion=13&charset=utf8
+          DATABASE_URL: pgsql://schulddossier-app-t:temporary@schulddossier-t-izpkvmrb.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
           ALLEGRO_ENDPOINT: "https://schuldhulp.sociaal.amsterdam.nl:8084/SOAP"
           APP_NOTIFICATIE_FROM: "noreply@amsterdam.nl"
           ALLEGRO_ONBEKENDE_SCHULDEISER: "2506424"
