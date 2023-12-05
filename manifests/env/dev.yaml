@@ -66,10 +66,32 @@ jobs:
             mountPath: /tmp
         command: ["php", "bin/console", "doc:mig:mig"]
         env:
-          APP_ENV: dev
-          APP_DEBUG: 1
+          ENV: dev
           APP_SECRET: insecure
+          APP_ENV: dev
+          APP_DEBUG: 0
           DATABASE_URL: pgsql://schulddossier-app-o:temporary@schulddossier-o-o354tdmk.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
+          ALLEGRO_ENDPOINT: "https://schuldhulp.sociaal.amsterdam.nl:8084/SOAP"
+          APP_NOTIFICATIE_FROM: "noreply@amsterdam.nl"
+          ALLEGRO_ONBEKENDE_SCHULDEISER: "2506424"
+          APP_GKA_NOTIFICATIE_ADRES: "kredietbank.salmagundi@amsterdam.nl"
+          SWIFT_AUTH_URL:
+          SWIFT_REGION:
+          SWIFT_USER_DOMAIN_ID:
+          SWIFT_EXTERNAL_DOMAIN:
+          SWIFT_USER_NAME:
+          SWIFT_USER_PASSWORD:
+          SWIFT_PROJECT_ID:
+          SWIFT_CONTAINER_PREFIX:
+          SWIFT_TEMP_URL_KEY:
+          THUMBNAILSERVICE_URL:
+          TRUSTED_PROXIES: "10.243.0.0/16"
+
+          # IAM_CLIENT_ID: VAULTED
+          # IAM_CLIENT_SECRET:VAULTED
+          # IAM_URL: VAULTED
+          # IAM_LOGOUT_URL: VAULTED
+          FEATUREFLAG_HERFINANCIERING: "0"
     backoffLimit: 2
 
     volumes:
