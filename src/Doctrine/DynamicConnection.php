@@ -20,16 +20,11 @@ class DynamicConnection extends Connection
         private readonly ?LoggerInterface $logger= null,
     )
     {
-        $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': isset($azureDatabase) = ' . isset($azureDatabase));
-        $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': isset($logger) = ' . isset($logger));
-        $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': isset($params[\'password\']) = ' . isset($params['password']));
-
         if ($azureDatabase && $this->logger && isset($params['password'])) {
             $newPassword = $azureDatabase->getPassword($params['password']);
             $params = $this->addNewPasswordToParams($params, $newPassword);
         }
 
-        $this->logger->debug("Running DynamicConnection parent construct function");
         parent::__construct($params, $driver, $config, $eventManager);
 
         if ($azureDatabase && $this->logger && isset($params['password'])) {
@@ -37,11 +32,14 @@ class DynamicConnection extends Connection
                 $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': Trying to connect to Azure DB');
                 $this->connect();
             } catch (\Exception $e) {
-                $this->logger->debug("DB Connection failed. Trying to invalidate cache and set password again.");
+                $this->logger->debug(__CLASS__ . ':' . __LINE__ . ": DB Connection failed. Trying to invalidate cache and set password again.");
                 $newPassword = $azureDatabase->getPassword($params['password'], true);
+                $this->logger->debug(__CLASS__ . ':' . __LINE__ . ": Got new password.");
                 $params = $this->addNewPasswordToParams($params, $newPassword);
                 parent::__construct($params, $driver, $config, $eventManager);
+                $this->logger->debug(__CLASS__ . ':' . __LINE__ . ": Parent construct done.");
                 $this->connect();
+                $this->logger->debug(__CLASS__ . ':' . __LINE__ . ": New connect done.");
             }
         }
         $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': finished __construct');
