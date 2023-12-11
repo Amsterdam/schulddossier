@@ -14,37 +14,37 @@ class DynamicConnection extends Connection
     public function __construct(
         array                             $params,
         Driver                            $driver,
+        private readonly LoggerInterface $logger,
         ?Configuration                    $config = null,
         ?EventManager                     $eventManager = null,
         private readonly ?AzureDatabase   $azureDatabase = null,
-        private readonly ?LoggerInterface $logger = null,
     )
     {
-        $logger->debug(__CLASS__ . ':' . __LINE__ . ': isset($azureDatabase) = ' . isset($azureDatabase));
-        $logger->debug(__CLASS__ . ':' . __LINE__ . ': isset($logger) = ' . isset($logger));
-        $logger->debug(__CLASS__ . ':' . __LINE__ . ': isset($params[\'password\']) = ' . isset($params['password']));
+        $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': isset($azureDatabase) = ' . isset($azureDatabase));
+        $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': isset($logger) = ' . isset($logger));
+        $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': isset($params[\'password\']) = ' . isset($params['password']));
 
-        if ($azureDatabase && $logger && isset($params['password'])) {
+        if ($azureDatabase && $this->logger && isset($params['password'])) {
             $newPassword = $azureDatabase->getPassword($params['password']);
             $params = $this->addNewPasswordToParams($params, $newPassword);
         }
 
-        $logger->debug("Running DynamicConnection parent construct function");
+        $this->logger->debug("Running DynamicConnection parent construct function");
         parent::__construct($params, $driver, $config, $eventManager);
 
-        if ($azureDatabase && $logger && isset($params['password'])) {
+        if ($azureDatabase && $this->logger && isset($params['password'])) {
             try {
-                $logger->debug(__CLASS__ . ':' . __LINE__ . ': Trying to connect to Azure DB');
+                $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': Trying to connect to Azure DB');
                 $this->connect();
             } catch (\Exception $e) {
-                $logger->debug("DB Connection failed. Trying to invalidate cache and set password again.");
+                $this->logger->debug("DB Connection failed. Trying to invalidate cache and set password again.");
                 $newPassword = $azureDatabase->getPassword($params['password'], true);
                 $params = $this->addNewPasswordToParams($params, $newPassword);
                 parent::__construct($params, $driver, $config, $eventManager);
                 $this->connect();
             }
         }
-        $logger->debug(__CLASS__ . ':' . __LINE__ . ': finished __construct');
+        $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': finished __construct');
     }
 
     private function addNewPasswordToParams(array $params, string $newPassword): array
