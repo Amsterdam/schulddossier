@@ -9,25 +9,16 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class AzureStorage implements AzureStorageInterface
 {
-    private HttpClientInterface $client;
-
-    private SASFileReaderConfig $SASFileReaderConfig;
-
-    private array $config;
-
-    private LoggerInterface $logger;
-
     public function __construct(
-        HttpClientInterface $client,
-        SASFileReaderConfig $SASFileReaderConfig,
-        LoggerInterface     $logger
-    ) {
-        $this->client = $client;
-        $this->SASFileReaderConfig = $SASFileReaderConfig;
-        $this->logger = $logger;
+        private readonly HttpClientInterface $client,
+        private readonly SASFileReaderConfig $SASFileReaderConfig,
+        private readonly LoggerInterface     $logger,
+        private ?array                       $config = null
+    )
+    {
     }
 
-    // Returns a url that is is signed with a SAS
+// Returns a url that is is signed with a SAS
     public function generateURLForFileReading(string $blob): string
     {
         // Use a config to keep everything extensible
@@ -39,10 +30,10 @@ class AzureStorage implements AzureStorageInterface
 
         // Create the signed blob URL
         $url = 'https://'
-            .$this->config['storageAccount'].'.blob.core.windows.net/'
-            .$this->config['fileContainer'].'/'
-            .$blob.'?'
-            .$signature;
+            . $this->config['storageAccount'] . '.blob.core.windows.net/'
+            . $this->config['fileContainer'] . '/'
+            . $blob . '?'
+            . $signature;
 
         return $url;
     }
@@ -51,20 +42,20 @@ class AzureStorage implements AzureStorageInterface
     private function getSAS($accessToken)
     {
         $url = 'https://management.azure.com/subscriptions/'
-            .$this->config['subscriptionId'].'/resourceGroups/'.$this->config['resourceGroup']
-            .'/providers/Microsoft.Storage/storageAccounts/'.$this->config['storageAccount']
-            .'/listServiceSas?api-version='.$this->config['apiVersion'];
+            . $this->config['subscriptionId'] . '/resourceGroups/' . $this->config['resourceGroup']
+            . '/providers/Microsoft.Storage/storageAccounts/' . $this->config['storageAccount']
+            . '/listServiceSas?api-version=' . $this->config['apiVersion'];
 
         $response = $this->client->request(
             'POST',
             $url,
             [
                 RequestOptions::HEADERS => [
-                    'Authorization' => 'Bearer '.$accessToken,
+                    'Authorization' => 'Bearer ' . $accessToken,
                     'Content-Type' => 'application/json',
                 ],
                 RequestOptions::JSON => [
-                    'canonicalizedResource' => '/blob/'.$this->config['storageAccount'].'/'.$this->config['container'],
+                    'canonicalizedResource' => '/blob/' . $this->config['storageAccount'] . '/' . $this->config['container'],
                     'signedResource' => $this->config['signedResource'],
                     'signedPermission' => $this->config['permissions'],
                     'signedProtocol' => 'https',
@@ -80,12 +71,12 @@ class AzureStorage implements AzureStorageInterface
         return $data['serviceSasToken'];
     }
 
-    // Authenticate with federated token to get access token,
-    // which is used to get a SAS from the resource manager
+// Authenticate with federated token to get access token,
+// which is used to get a SAS from the resource manager
     private function getAccessToken(): string
     {
         // TODO implement caching
-        $tokenUrl = $this->config['azureAuthorityHost'].$this->config['tenantId'].'/oauth2/v2.0/token';
+        $tokenUrl = $this->config['azureAuthorityHost'] . $this->config['tenantId'] . '/oauth2/v2.0/token';
         $grantType = 'client_credentials';
         $scope = 'https://management.azure.com//.default'; // double slash is on purpose
         $clientAssertion = file_get_contents($this->config['federatedTokenFile']);
@@ -94,10 +85,10 @@ class AzureStorage implements AzureStorageInterface
         // Prepare the request payload
         $payload = [
             'grant_type' => $grantType,
-             'scope' => $scope,
-             'client_assertion' => $clientAssertion,
-             'client_assertion_type' => $clientAssertionType,
-             'client_id' => $this->config['clientId'],
+            'scope' => $scope,
+            'client_assertion' => $clientAssertion,
+            'client_assertion_type' => $clientAssertionType,
+            'client_id' => $this->config['clientId'],
         ];
 
         $response = $this->client->request(
@@ -116,8 +107,6 @@ class AzureStorage implements AzureStorageInterface
         $body = $response->getContent(false);
         $data = json_decode($body, true);
 
-        $accessToken = $data['access_token'];
-
-        return $accessToken;
+        return $data['access_token'];
     }
 }
