@@ -3,4 +3,4 @@ name: application
 description: |
   A generic helm chart for deploying an application
 type: application
-version: 1.5.2
+version: 1.7.0

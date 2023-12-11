@@ -19,11 +19,6 @@ RUN apk add \
     libreoffice \
     imagemagick-dev
 
-RUN docker-php-ext-configure \
-    gd \
-    --with-freetype \
-    --with-jpeg
-
 RUN docker-php-ext-install \
     pdo_pgsql \
     opcache \
@@ -31,6 +26,11 @@ RUN docker-php-ext-install \
     soap \
     intl \
     gd
+
+RUN docker-php-ext-configure \
+    gd \
+    --with-freetype \
+    --with-jpeg
 
 RUN apk add --no-cache --virtual .build-deps \
     build-base  \
@@ -44,16 +44,16 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN php -r "unlink('composer-setup.php');"
 
-COPY --chown=www-data . /var/www
+RUN chown www-data: /var/www
+
+USER www-data
 
 RUN mkdir -p /var/www/var/cache
 RUN mkdir -p /var/www/public/localworkingstorage/dossier
 
 WORKDIR /var/www
 
-RUN chown -R www-data: /var/www
-
-USER www-data
+COPY --chown=www-data . /var/www
 
 RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
 

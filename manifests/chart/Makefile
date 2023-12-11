@@ -1,5 +1,5 @@
 VERSION ?= 0.0.0
-HELM_UNITTEST_VERSION ?= 0.3.2
+HELM_UNITTEST_VERSION ?= 0.3.3
 
 UID:=$(shell id --user)
 GID:=$(shell id --group)
@@ -7,7 +7,13 @@ GID:=$(shell id --group)
 clean:
 	rm -rf *.tgz
 
-build: clean
+docs:
+	npm install -g @bitnami/readme-generator-for-helm@2.5.0
+	readme-generator readme-generator \
+		-v values.docs.yaml \
+		-r README.md
+
+build: clean docs
 	helm package . --version ${VERSION}
 
 push: build
