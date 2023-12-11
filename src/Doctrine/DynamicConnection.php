@@ -25,10 +25,12 @@ class DynamicConnection extends Connection
             $params = $this->addNewPasswordToParams($params, $newPassword);
         }
 
+        $this->logger->debug("Running DynamicConnection parent construct function");
         parent::__construct($params, $driver, $config, $eventManager);
 
         if ($azureDatabase && $logger && isset($params['password'])) {
             try {
+                $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': Trying to connect to Azure DB');
                 $this->connect();
             } catch (\Exception $e) {
                 $this->logger->debug("DB Connection failed. Trying to invalidate cache and set password again.");
@@ -38,6 +40,7 @@ class DynamicConnection extends Connection
                 $this->connect();
             }
         }
+        $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': finished __construct');
     }
 
     private function addNewPasswordToParams(array $params, string $newPassword): array
