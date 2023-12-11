@@ -12,6 +12,10 @@ parameters:
     swift_public_url: 'https://%swift_project_id%.%swift_external_domain%'
     app_mail_from: '%env(APP_NOTIFICATIE_FROM)%'
     keycloak_version: '21'
+    azureSubscriptionId: '%env(AZURE_SUBSCRIPTION_ID)%'
+    azureResourceGroup: '%env(AZURE_RESOURCE_GROUP)%'
+    fileStorageAccount: '%env(AZURE_STORAGE_FILE_ACCOUNT)%'
+    fileContainer: '%env(AZURE_STORAGE_FILE_CONTAINER)%'
 
 
 services:
@@ -159,3 +163,29 @@ services:
 
     doctrine.dbal.connection_factory:
         class: GemeenteAmsterdam\FixxxSchuldhulp\Doctrine\DynamicConnectionFactory
+
+
+    App\Controller\ImageController:
+        arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
+
+    app_azure_base_config:
+        class: App\Azure\Config\AzureBaseConfig
+        arguments:
+            $subscriptionId: '%azureSubscriptionId%'
+            $resourceGroup: '%azureResourceGroup%'
+            $tenantId: '%azureTenantId%'
+            $clientId: '%azureClientId%'
+            $federatedTokenFile: '%azureFederatedTokenFile%'
+            $authorityHost: '%azureAuthorityHost%'
+
+
+    app_azure_sas_image_config:
+        class: App\Azure\Config\SASFileReaderConfig
+        arguments:
+            $baseConfig: '@app_azure_base_config'
+            $fileStorageAccount: '%fileStorageAccount%'
+            $fileContainer: '%fileContainer%'
+
+    App\Azure\AzureStorage:
+        arguments:
+            $SASFileReaderConfig: '@app_azure_sas_file_config'

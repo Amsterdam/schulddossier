@@ -85,6 +85,12 @@ jobs:
           SWIFT_TEMP_URL_KEY:
           THUMBNAILSERVICE_URL:
 
+          AZURE_SUBSCRIPTION_ID: ca66dbbd-4567-4bdb-aa01-bbf33dd9576a
+          AZURE_RESOURCE_GROUP: schulddossier-t-rg
+          AZURE_STORAGE_FILE_ACCOUNT: schulddossierdatatizpkvm
+          AZURE_STORAGE_FILE_CONTAINER: data
+
+
           TRUSTED_PROXIES: "10.243.0.0/16"
           # IAM_CLIENT_ID: VAULTED
           # IAM_CLIENT_SECRET:VAULTED
