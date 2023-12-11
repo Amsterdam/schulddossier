@@ -18,15 +18,21 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        public: false
         bind:
             $allegroEndpoint: '%env(ALLEGRO_ENDPOINT)%'
             $allegroOnbekendeSchuldeiser: '%env(ALLEGRO_ONBEKENDE_SCHULDEISER)%'
-
+            string $azureAuthorityHost: '%env(AZURE_AUTHORITY_HOST)%'
+            string $azureTenantId: '%env(AZURE_TENANT_ID)%'
+            string $azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
+            string $azureClientId: '%env(AZURE_CLIENT_ID)%'
 
     GemeenteAmsterdam\FixxxSchuldhulp\:
-        resource: '../src/*'
-        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+        resource: '../src/'
+        exclude:
+            - '../src/Migrations/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
 
     # Controllers
     GemeenteAmsterdam\FixxxSchuldhulp\Controller\:
@@ -150,3 +156,6 @@ services:
             -
                 location: '%env(ALLEGRO_ENDPOINT)%?service=SchuldHulpService'
             - '%kernel.project_dir%/doc/modified_schuldhulpservice.wsdl'
+
+    doctrine.dbal.connection_factory:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Doctrine\DynamicConnectionFactory
