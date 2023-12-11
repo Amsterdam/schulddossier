@@ -168,8 +168,8 @@ services:
     App\Controller\ImageController:
         arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
 
-    app_azure_base_config:
-        class: App\Azure\Config\AzureBaseConfig
+    gemeenteamsterdam_fixxxschuldhulp_azure_base_config:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\AzureBaseConfig
         arguments:
             $subscriptionId: '%azureSubscriptionId%'
             $resourceGroup: '%azureResourceGroup%'
@@ -179,13 +179,13 @@ services:
             $authorityHost: '%azureAuthorityHost%'
 
 
-    app_azure_sas_image_config:
-        class: App\Azure\Config\SASFileReaderConfig
+    gemeenteamsterdam_fixxxschuldhulp_azure_sas_image_config:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileReaderConfig
         arguments:
-            $baseConfig: '@app_azure_base_config'
+            $baseConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_base_config'
             $fileStorageAccount: '%fileStorageAccount%'
             $fileContainer: '%fileContainer%'
 
-    App\Azure\AzureStorage:
+    GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage:
         arguments:
-            $SASFileReaderConfig: '@app_azure_sas_file_config'
+            $SASFileReaderConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_config'
