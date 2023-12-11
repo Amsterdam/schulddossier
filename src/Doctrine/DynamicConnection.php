@@ -14,10 +14,10 @@ class DynamicConnection extends Connection
     public function __construct(
         array                            $params,
         Driver                           $driver,
-        private readonly LoggerInterface $logger,
         ?Configuration                   $config = null,
         ?EventManager                    $eventManager = null,
         private readonly ?AzureDatabase  $azureDatabase = null,
+        private readonly ?LoggerInterface $logger= null,
     )
     {
         $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': isset($azureDatabase) = ' . isset($azureDatabase));

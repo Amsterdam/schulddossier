@@ -34,10 +34,10 @@ class DynamicConnectionFactory extends BaseConnectionFactory
         return new DynamicConnection(
             $defaultConnection->getParams(),
             $driver,
-            $this->logger,
             $defaultConnection->getConfiguration(),
             $defaultConnection->getEventManager(),
-            $this->azureDatabase
+            $this->azureDatabase,
+            $this->logger,
         );
     }
 }
