@@ -12,14 +12,22 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class DynamicConnectionFactory extends BaseConnectionFactory
 {
     public function __construct(
-        private ContainerInterface $container,
-        private AzureDatabase      $azureDatabase,
-        private LoggerInterface    $logger
+        private readonly ContainerInterface $container,
+        private readonly AzureDatabase      $azureDatabase,
+        private readonly LoggerInterface    $logger
     )
     {
         parent::__construct($container->getParameter('doctrine.dbal.connection_factory.types'));
     }
 
+    /**
+     * @param array $params
+     * @param Configuration|null $config
+     * @param EventManager|null $eventManager
+     * @param array $mappingTypes
+     * @return DynamicConnection
+     * @throws \Doctrine\DBAL\Exception
+     */
     public function createConnection(
         array          $params,
         ?Configuration $config = null,
