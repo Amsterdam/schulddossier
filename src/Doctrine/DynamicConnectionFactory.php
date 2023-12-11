@@ -20,14 +20,6 @@ class DynamicConnectionFactory extends BaseConnectionFactory
         parent::__construct($container->getParameter('doctrine.dbal.connection_factory.types'));
     }
 
-    /**
-     * @param array $params
-     * @param Configuration|null $config
-     * @param EventManager|null $eventManager
-     * @param array $mappingTypes
-     * @return DynamicConnection
-     * @throws \Doctrine\DBAL\Exception
-     */
     public function createConnection(
         array          $params,
         ?Configuration $config = null,
@@ -42,10 +34,10 @@ class DynamicConnectionFactory extends BaseConnectionFactory
         return new DynamicConnection(
             $defaultConnection->getParams(),
             $driver,
+            $this->logger,
             $defaultConnection->getConfiguration(),
             $defaultConnection->getEventManager(),
-            $this->azureDatabase,
-            $this->logger
+            $this->azureDatabase
         );
     }
 }
