@@ -44,6 +44,10 @@ deployments:
       DATABASE_URL: pgsql://schulddossier-app-o:temporary@schulddossier-o-o354tdmk.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
       ALLEGRO_ENDPOINT: https://schuldhulp-ft.sociaal.amsterdam.nl:8084/SOAP
       ALLEGRO_ONBEKENDE_SCHULDEISER: "0"
+      AZURE_SUBSCRIPTION_ID: test
+      AZURE_RESOURCE_GROUP: test
+      AZURE_STORAGE_FILE_ACCOUNT: test
+      AZURE_STORAGE_FILE_CONTAINER: test
     image:
       repository: salmagundi/schulddossier-phpfpm
     securityContext:

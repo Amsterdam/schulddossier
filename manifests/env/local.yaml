@@ -50,6 +50,13 @@ deployments:
       APP_SECRET: insecure
       DATABASE_URL: pgsql://salmagundi:insecure@psql-postgresql:5432/schulddossier?serverVersion=13&charset=utf8/main?serverVersion=13&charset=utf8
       MAILER_DSN: smtp://mailhog.local.svc.cluster.local:1025
+
+      AZURE_SUBSCRIPTION_ID: test
+      AZURE_RESOURCE_GROUP: test
+      AZURE_STORAGE_FILE_ACCOUNT: test
+      AZURE_STORAGE_FILE_CONTAINER: test
+
+
     image:
       repository: salmagundi/schulddossier-phpfpm
     securityContext:
