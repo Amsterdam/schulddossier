@@ -41,8 +41,8 @@ class DynamicConnection extends Connection
                 $this->connect();
                 $this->logger->debug(__CLASS__ . ':' . __LINE__ . ": New connect done.");
             }
+            $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': finished __construct if it is an azure DB');
         }
-        $this->logger->debug(__CLASS__ . ':' . __LINE__ . ': finished __construct');
     }
 
     private function addNewPasswordToParams(array $params, string $newPassword): array
