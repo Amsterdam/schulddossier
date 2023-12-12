@@ -4,8 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb938e6e794d799712c4d2becb40d506",
+    "content-hash": "55d623f85e2a449bdef6423e4bc2f627",
     "packages": [
+        {
+            "name": "azure-oss/storage",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Azure-OSS/azure-storage-php.git",
+                "reference": "0663c8e7e0eaac9c1f9851de69a9d3073ce09cc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Azure-OSS/azure-storage-php/zipball/0663c8e7e0eaac9c1f9851de69a9d3073ce09cc5",
+                "reference": "0663c8e7e0eaac9c1f9851de69a9d3073ce09cc5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-fileinfo": "*",
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "ext-xsl": "*",
+                "guzzlehttp/guzzle": "^7.7",
+                "php": "^8.0.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.17",
+                "mikey179/vfsstream": "^1.6",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.6",
+                "symfony/var-dumper": "^6.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AzureOSS\\Storage\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This project provides a set of PHP client libraries that make it easy to access Microsoft Azure storage APIs.",
+            "keywords": [
+                "azure",
+                "php",
+                "sdk",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/Azure-OSS/azure-storage-php/issues",
+                "source": "https://github.com/Azure-OSS/azure-storage-php/tree/main"
+            },
+            "time": "2023-06-27T11:33:01+00:00"
+        },
         {
             "name": "bevacqua/dragula",
             "version": "3.7.2",
@@ -10876,6 +10930,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "azure-oss/storage": 20,
         "markei/filesystemoperations": 20
     },
     "prefer-stable": false,

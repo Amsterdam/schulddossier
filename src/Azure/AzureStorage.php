@@ -5,78 +5,52 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Azure;
 use GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileReaderConfig;
 use GuzzleHttp\RequestOptions;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class AzureStorage implements AzureStorageInterface
 {
+
+    public const CACHE_KEY = 'azure-blob-password';
+
     public function __construct(
         private readonly HttpClientInterface $client,
         private readonly SASFileReaderConfig $SASFileReaderConfig,
         private readonly LoggerInterface     $logger,
-        private ?array                       $config = null
+        private ?array                       $config = null,
     )
     {
     }
 
-// Returns a url that is is signed with a SAS
+    // Returns a url that is is signed with a SAS
     public function generateURLForFileReading(string $blob): string
     {
         // Use a config to keep everything extensible
-        $this->config = $this->SASFileReaderConfig->getConfig();
+        $this->config = $this->SASImageReaderConfig->getConfig();
 
         $accessToken = $this->getAccessToken();
 
-        $signature = $this->getSAS($accessToken);
+        return $accessToken;
 
-        // Create the signed blob URL
-        $url = 'https://'
-            . $this->config['storageAccount'] . '.blob.core.windows.net/'
-            . $this->config['fileContainer'] . '/'
-            . $blob . '?'
-            . $signature;
-
-        return $url;
+//        $signature = $this->getSAS($accessToken);
+//
+//        // Create the signed blob URL
+//        $url = 'https://'
+//            .$this->config['storageAccount'].'.blob.core.windows.net/'
+//            .$this->config['imageContainer'].'/'
+//            .$blob.'?'
+//            .$signature;
+//
+//        return $url;
     }
 
-    // Gets a SAS token from the resource manager using an access token
-    private function getSAS($accessToken)
-    {
-        $url = 'https://management.azure.com/subscriptions/'
-            . $this->config['subscriptionId'] . '/resourceGroups/' . $this->config['resourceGroup']
-            . '/providers/Microsoft.Storage/storageAccounts/' . $this->config['storageAccount']
-            . '/listServiceSas?api-version=' . $this->config['apiVersion'];
-
-        $response = $this->client->request(
-            'POST',
-            $url,
-            [
-                RequestOptions::HEADERS => [
-                    'Authorization' => 'Bearer ' . $accessToken,
-                    'Content-Type' => 'application/json',
-                ],
-                RequestOptions::JSON => [
-                    'canonicalizedResource' => '/blob/' . $this->config['storageAccount'] . '/' . $this->config['container'],
-                    'signedResource' => $this->config['signedResource'],
-                    'signedPermission' => $this->config['permissions'],
-                    'signedProtocol' => 'https',
-                    'signedExpiry' => $this->config['expired'],
-                    'signedStart' => $this->config['start'],
-                ],
-            ]
-        );
-
-        $body = $response->getContent(false);
-        $data = json_decode($body, true);
-
-        return $data['serviceSasToken'];
-    }
-
-// Authenticate with federated token to get access token,
-// which is used to get a SAS from the resource manager
+    // Authenticate with federated token to get access token,
+    // which is used to get a SAS from the resource manager
     private function getAccessToken(): string
     {
         // TODO implement caching
-        $tokenUrl = $this->config['azureAuthorityHost'] . $this->config['tenantId'] . '/oauth2/v2.0/token';
+        $tokenUrl = $this->config['azureAuthorityHost'].$this->config['tenantId'].'/oauth2/v2.0/token';
         $grantType = 'client_credentials';
         $scope = 'https://management.azure.com//.default'; // double slash is on purpose
         $clientAssertion = file_get_contents($this->config['federatedTokenFile']);
@@ -107,6 +81,9 @@ class AzureStorage implements AzureStorageInterface
         $body = $response->getContent(false);
         $data = json_decode($body, true);
 
-        return $data['access_token'];
+        $accessToken = $data['access_token'];
+
+        return $accessToken;
     }
+
 }
