@@ -27,7 +27,7 @@ class AzureStorage implements AzureStorageInterface
     public function generateURLForFileReading(string $blob): string
     {
         // Use a config to keep everything extensible
-        $this->config = $this->SASImageReaderConfig->getConfig();
+        $this->config = $this->SASFileReaderConfig->getConfig();
 
         $accessToken = $this->getAccessToken();
 
