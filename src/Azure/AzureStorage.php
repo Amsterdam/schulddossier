@@ -33,20 +33,34 @@ class AzureStorage implements AzureStorageInterface
 
         $accessToken = $this->getAccessToken();
 
-        $blobClient = $this->createBlobClient($accessToken);
-        
-        return $blobClient->listContainers();
+        $signature = $this->getSAS($accessToken);
 
-//        $signature = $this->getSAS($accessToken);
-//
-//        // Create the signed blob URL
-//        $url = 'https://'
-//            .$this->config['storageAccount'].'.blob.core.windows.net/'
-//            .$this->config['imageContainer'].'/'
-//            .$blob.'?'
-//            .$signature;
-//
-//        return $url;
+        $endpoint = 'https://' . $this->config['storageAccount'] . '.blob.core.windows.net';
+        $container = $this->config['container'];
+        $blob = 'envelop.svg';
+        $url = $endpoint . '/' . $container . '/' . $blob . '?' . $signature;
+
+        $uploadfile = "public/images/envelop.svg";
+        $content = file_get_contents($uploadfile);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-ms-blob-type: BlockBlob', 'Content-Length: ' . strlen($content)));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $content);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        $url = 'https://'
+            .$this->config['storageAccount'].'.blob.core.windows.net/'
+            .$this->config['imageContainer'].'/'
+            .$blob.'?'
+            .$signature;
+
+        return $url;
+
     }
 
 // Authenticate with federated token to get access token,
@@ -90,20 +104,40 @@ class AzureStorage implements AzureStorageInterface
         return $accessToken;
     }
 
+    // Gets a SAS token from the resource manager using an access token
+    private function getSAS($accessToken)
+    {
+        $url = 'https://management.azure.com/subscriptions/'
+            . $this->config['subscriptionId'] . '/resourceGroups/' . $this->config['resourceGroup']
+            . '/providers/Microsoft.Storage/storageAccounts/' . $this->config['storageAccount']
+            . '/listServiceSas?api-version=' . $this->config['apiVersion'];
 
-    private function createBlobClient(string $accessToken) {
-        $connectionString = 'DefaultEndpointsProtocol=https;AccountName='.
-        $this->config['fileStorageAccount'] .
-        ';AccountKey=' .
-        $accessToken;
+        $response = $this->client->request(
+            'POST',
+            $url,
+            [
+                RequestOptions::HEADERS => [
+                    'Authorization' => 'Bearer ' . $accessToken,
+                    'Content-Type' => 'application/json',
+                ],
+                RequestOptions::JSON => [
+                    'canonicalizedResource' => '/blob/' . $this->config['storageAccount'] . '/' . $this->config['container'],
+                    'signedResource' => $this->config['signedResource'],
+                    'signedPermission' => $this->config['permissions'],
+                    'signedProtocol' => 'https',
+                    'signedExpiry' => $this->config['expired'],
+                    'signedStart' => $this->config['start'],
+                ],
+            ]
+        );
 
-        return BlobRestProxy::createBlobService($connectionString);
+        $body = $response->getContent(false);
+        $data = json_decode($body, true);
+
+
+
+        return $data['serviceSasToken'];
     }
-
-    private function listContainers(BlobRestProxy $blobRestProxy) {
-        return $blobRestProxy->listContainers();
-    }
-
 
 
 }
