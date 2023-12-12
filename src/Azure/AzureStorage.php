@@ -132,7 +132,9 @@ class AzureStorage implements AzureStorageInterface
         );
 
         $body = $response->getContent(false);
+        var_dump($body);
         $data = json_decode($body, true);
+        var_dump($data);
 
 
 
