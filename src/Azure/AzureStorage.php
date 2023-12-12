@@ -50,7 +50,7 @@ class AzureStorage implements AzureStorageInterface
     private function getAccessToken(): string
     {
         // TODO implement caching
-        $tokenUrl = $this->config['azureAuthorityHost'].$this->config['tenantId'].'/oauth2/v2.0/token';
+        $tokenUrl = $this->config['authorityHost'].$this->config['tenantId'].'/oauth2/v2.0/token';
         $grantType = 'client_credentials';
         $scope = 'https://management.azure.com//.default'; // double slash is on purpose
         $clientAssertion = file_get_contents($this->config['federatedTokenFile']);
