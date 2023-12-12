@@ -16,7 +16,7 @@ class SASFileReaderConfig
             $baseConfig->getConfig(),
             [
                 'storageAccount' => $fileStorageAccount,
-                'fileContainer' => $fileContainer,
+                'container' => $fileContainer,
                 'permissions' => 'rw',
                 // specificies which resources are available
                 // currently signed to the container, but could also be signed to specific blob (b).
