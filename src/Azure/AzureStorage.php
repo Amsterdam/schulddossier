@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Azure;
 
+use AzureOSS\Storage\Blob\BlobRestProxy;
 use GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileReaderConfig;
 use GuzzleHttp\RequestOptions;
 use Psr\Log\LoggerInterface;
@@ -23,15 +24,18 @@ class AzureStorage implements AzureStorageInterface
     {
     }
 
-    // Returns a url that is is signed with a SAS
-    public function generateURLForFileReading(string $blob): string
+// Returns a url that is is signed with a SAS
+    public
+    function generateURLForFileReading(string $blob): string
     {
         // Use a config to keep everything extensible
         $this->config = $this->SASFileReaderConfig->getConfig();
 
         $accessToken = $this->getAccessToken();
 
-        return $accessToken;
+        $blobClient = $this->createBlobClient($accessToken);
+        
+        return $blobClient->listContainers();
 
 //        $signature = $this->getSAS($accessToken);
 //
@@ -45,12 +49,12 @@ class AzureStorage implements AzureStorageInterface
 //        return $url;
     }
 
-    // Authenticate with federated token to get access token,
-    // which is used to get a SAS from the resource manager
+// Authenticate with federated token to get access token,
+// which is used to get a SAS from the resource manager
     private function getAccessToken(): string
     {
         // TODO implement caching
-        $tokenUrl = $this->config['authorityHost'].$this->config['tenantId'].'/oauth2/v2.0/token';
+        $tokenUrl = $this->config['authorityHost'] . $this->config['tenantId'] . '/oauth2/v2.0/token';
         $grantType = 'client_credentials';
         $scope = 'https://management.azure.com//.default'; // double slash is on purpose
         $clientAssertion = file_get_contents($this->config['federatedTokenFile']);
@@ -85,5 +89,21 @@ class AzureStorage implements AzureStorageInterface
 
         return $accessToken;
     }
+
+
+    private function createBlobClient(string $accessToken) {
+        $connectionString = 'DefaultEndpointsProtocol=https;AccountName='.
+        $this->config['fileStorageAccount'] .
+        ';AccountKey=' .
+        $accessToken;
+
+        return BlobRestProxy::createBlobService($connectionString);
+    }
+
+    private function listContainers(BlobRestProxy $blobRestProxy) {
+        return $blobRestProxy->listContainers();
+    }
+
+
 
 }
