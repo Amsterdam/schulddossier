@@ -16,6 +16,11 @@ parameters:
     azureResourceGroup: '%env(AZURE_RESOURCE_GROUP)%'
     fileStorageAccount: '%env(AZURE_STORAGE_FILE_ACCOUNT)%'
     fileContainer: '%env(AZURE_STORAGE_FILE_CONTAINER)%'
+    azureAuthorityHost: '%env(AZURE_AUTHORITY_HOST)%'
+    azureTenantId: '%env(AZURE_TENANT_ID)%'
+    azureClientId: '%env(AZURE_CLIENT_ID)%'
+    azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
+
 
 
 services:
