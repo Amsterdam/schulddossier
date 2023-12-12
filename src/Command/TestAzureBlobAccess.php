@@ -43,8 +43,8 @@ class TestAzureBlobAccess extends Command
         $authorityHost = getenv('AZURE_AUTHORITY_HOST');
         $tenantId = getenv('AZURE_TENANT_ID');
         $tokenUrl = "$authorityHost$tenantId/oauth2/v2.0/token";
-        $grantType = 'client_credentials';
-        $scope = 'https://schulddossierdataoo354td.blob.core.windows.net/';
+        $grantType = 'authorization_code';
+        $scope = 'https://storage.azure.com/user_impersonation';
         $clientAssertion = file_get_contents('%env(AZURE_FEDERATED_TOKEN_FILE)%');
         $clientAssertionType = 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer';
         $clientId = getenv('AZURE_CLIENT_ID');
