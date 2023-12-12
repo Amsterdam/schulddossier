@@ -179,7 +179,7 @@ services:
             $authorityHost: '%azureAuthorityHost%'
 
 
-    gemeenteamsterdam_fixxxschuldhulp_azure_sas_image_config:
+    gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_config:
         class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileReaderConfig
         arguments:
             $baseConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_base_config'
