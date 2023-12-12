@@ -55,7 +55,7 @@ class AzureStorage implements AzureStorageInterface
 
         $url = 'https://'
             .$this->config['storageAccount'].'.blob.core.windows.net/'
-            .$this->config['imageContainer'].'/'
+            .$this->config['container'].'/'
             .$blob.'?'
             .$signature;
 
@@ -125,7 +125,7 @@ class AzureStorage implements AzureStorageInterface
                     'signedResource' => $this->config['signedResource'],
                     'signedPermission' => $this->config['permissions'],
                     'signedProtocol' => 'https',
-                    'signedExpiry' => $this->config['expired'],
+                    'signedExpiry' => $this->config['expiry'],
                     'signedStart' => $this->config['start'],
                 ],
             ]
