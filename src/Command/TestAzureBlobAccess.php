@@ -2,7 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Command;
 
-use App\Azure\AzureStorage;
+use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage;
 use AzureOSS\Storage\Blob\BlobRestProxy;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
