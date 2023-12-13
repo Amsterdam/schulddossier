@@ -40,6 +40,9 @@
             </div>
             <div class="dossier__voorlegger__sectie__body">
                 {{ form_row(form.aangifteBelastingdienst) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.aangifteBelastingdienst) }}
+                {% endif %}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Belasting'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
             </div>

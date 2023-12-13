@@ -401,6 +401,10 @@
     {%- endif -%}
 {%- endblock form_errors -%}
 
+{%- block form_help -%}
+    <mark>{{ help }}</mark>
+{%- endblock form_help -%}
+
 {%- block form_rest -%}
     {% for child in form -%}
         {% if not child.rendered %}

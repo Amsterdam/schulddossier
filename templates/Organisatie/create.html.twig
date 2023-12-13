@@ -27,11 +27,29 @@
     <div class="form-container">
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
         {{ form_row(form.naam) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.naam) }}
+        {% endif %}
         {{ form_row(form.emailAdresControle) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.emailAdresControle) }}
+        {% endif %}
         {{ form_row(form.standaardGkaTeam) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.standaardGkaTeam) }}
+        {% endif %}
         {{ form_row(form.allegroUsername) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.allegroUsername) }}
+        {% endif %}
         {{ form_row(form.allegroPassword) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.allegroPassword) }}
+        {% endif %}
         {{ form_row(form.allegroCheck) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.allegroCheck) }}
+        {% endif %}
         <p class="buttons right">
             <button type="submit" class="button primary">Opslaan</button>
             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_apporganisatie_index') }}">Annuleren</a>

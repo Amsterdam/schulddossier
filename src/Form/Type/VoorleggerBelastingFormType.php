@@ -29,7 +29,8 @@ class VoorleggerBelastingFormType extends AbstractType
         ]);
         $builder->add('aangifteBelastingdienst', CheckboxType::class, [
             'required' => false,
-            'label' => 'Aangifte ingediend'
+            'label' => 'Aangifte ingediend',
+            'help' => 'DB: voorlegger.aangifte_belastingdienst'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,

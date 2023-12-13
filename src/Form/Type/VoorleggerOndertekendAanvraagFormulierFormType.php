@@ -39,6 +39,7 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
         $builder->add('jongerenSchuldenvrijeStart', CheckboxType::class, [
             'required' => false,
             'label' => 'Jongeren Schuldenvrije Start (JSS)',
+            'help' => 'DB: voorlegger.jongeren_schuldenvrije_start',
             'constraints' => [new Callback(function($value, ExecutionContextInterface $executionContext) {
                 /**
                  * @var Voorlegger $voorlegger
@@ -64,35 +65,43 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
         ]);
         $builder->add('jssAdviseurNaam', TextType::class, [
             'required' => false,
-            'label' => 'Naam Jongerenadviseur'
+            'label' => 'Naam Jongerenadviseur',
+            'help' => 'DB: voorlegger.jss_adviseur_naam',
         ]);
         $builder->add('jssAdviseurTelefoon', TextType::class, [
             'required' => false,
-            'label' => 'Telefoonnummer Jongerenadviseur'
+            'label' => 'Telefoonnummer Jongerenadviseur',
+            'help' => 'DB: voorlegger.jss_adviseur_telefoon',
         ]);
         $builder->add('jssAdviseurEmail', TextType::class, [
             'required' => false,
-            'label' => 'E-mailadres Jongerenadviseur'
+            'label' => 'E-mailadres Jongerenadviseur',
+            'help' => 'DB: voorlegger.jss_adviseur_email',
         ]);
         $builder->add('schuldenrustLening', CheckboxType::class, [
             'required' => false,
-            'label' => 'Schuldenrust lening (SRL)'
+            'label' => 'Schuldenrust lening (SRL)',
+            'help' => 'DB: voorlegger.schuldenrust_lening',
         ]);
         $builder->add('saneringsKrediet', CheckboxType::class, [
             'required' => false,
-            'label' => 'Saneringskrediet (SK)'
+            'label' => 'Saneringskrediet (SK)',
+            'help' => 'DB: voorlegger.saneringskrediet',
         ]);
         $builder->add('principebeslissing', CheckboxType::class, [
             'required' => false,
-            'label' => 'Principebeslissing'
+            'label' => 'Principebeslissing',
+            'help' => 'DB: voorlegger.pricipebeslissing',
         ]);
 
         $builder->add('schuldenOpDeWerkvloer', CheckboxType::class, [
             'required' => false,
-            'label' => 'Betreft Schulden op de werkvloer?'
+            'label' => 'Betreft Schulden op de werkvloer?',
+            'help' => 'DB: voorlegger.schulden_op_de_werkvloer',
         ]);
         $builder->add('aanvullendeInformatie', TextareaType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.aanvullende_informatie',
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,

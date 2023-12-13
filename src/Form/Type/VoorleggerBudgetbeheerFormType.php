@@ -29,16 +29,20 @@ class VoorleggerBudgetbeheerFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('budgetbeheerPlangroep', CheckboxType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.budgetbeheer_plangroep'
         ]);
         $builder->add('budgetbeheerCav', CheckboxType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.budgetbeheer_cav'
         ]);
         $builder->add('budgetbeheerFibu', CheckboxType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.budgetbeheer_fibu'
         ]);
         $builder->add('budgetbeheerOverig', TextType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.budgetbeheer_overig'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,

@@ -29,7 +29,8 @@ class VoorleggerGereserveerdeGeldenFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('gereserveerdeGelden', NumberType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.gereserveerde_gelden'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
