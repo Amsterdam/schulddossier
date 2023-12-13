@@ -27,15 +27,45 @@
     <div class="form-container">
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
         {{ form_row(form.bedrijfsnaam) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.bedrijfsnaam) }}
+        {% endif %}
         {{ form_row(form.enabled) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.enabled) }}
+        {% endif %}
         {{ form_row(form.allegroCode) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.allegroCode) }}
+        {% endif %}
         {{ form_row(form.rekening) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.rekening) }}
+        {% endif %}
         {{ form_row(form.straat) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.straat) }}
+        {% endif %}
         {{ form_row(form.huisnummer) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.huisnummer) }}
+        {% endif %}
         {{ form_row(form.huisnummerToevoeging) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.huisnummerToevoeging) }}
+        {% endif %}
         {{ form_row(form.postcode) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.postcode) }}
+        {% endif %}
         {{ form_row(form.plaats) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.plaats) }}
+        {% endif %}
         {{ form_row(form.opmerkingen) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.opmerkingen) }}
+        {% endif %}
         <p class="buttons right">
             <button type="submit" class="button primary">Opslaan</button>
             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}">Annuleren</a>

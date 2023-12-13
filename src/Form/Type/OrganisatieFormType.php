@@ -16,29 +16,35 @@ class OrganisatieFormType extends AbstractType
     {
         $builder->add('naam', TextType::class, [
             'label' => 'Naam *',
-            'required' => true
+            'required' => true,
+            'help' => 'DB: organisatie.naam'
         ]);
         $builder->add('emailAdresControle', TextType::class, [
             'label' => 'Controle e-mailadres',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: organisatie.email_adres_controle'
         ]);
         $builder->add('standaardGkaTeam', EntityType::class, [
             'required' => false,
             'label' => 'Standaard team bij het GKA',
-            'class' => Team::class
+            'class' => Team::class,
+            'help' => 'DB: organisatie.team_id'
         ]);
         $builder->add('allegroUsername', TextType::class, [
             'label' => 'Allegro username',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: organisatie.allegro_username'
         ]);
         $builder->add('allegroPassword', TextType::class, [
             'label' => 'Allegro password',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: organisatie.allegro_password'
         ]);
         $builder->add('allegroCheck', CheckboxType::class, [
             'label' => 'Allegro inloggegevens controleren',
             'required' => false,
-            'mapped' => false
+            'mapped' => false,
+            'help' => 'If checked, attempts an Allegro connection. See: AllegroService->login'
         ]);
     }
 

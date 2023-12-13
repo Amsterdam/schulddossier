@@ -26,7 +26,13 @@
     <div class="form-container">
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
         {{ form_row(form.naam) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.naam) }}
+        {% endif %}
         {{ form_row(form.email) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.email) }}
+        {% endif %}
         <p class="buttons right">
             <button type="submit" class="button primary">Opslaan</button>
             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_index') }}">Annuleren</a>

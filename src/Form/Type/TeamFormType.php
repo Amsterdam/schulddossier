@@ -15,11 +15,13 @@ class TeamFormType extends AbstractType
     {
         $builder->add('naam', TextType::class, [
             'label' => 'Naam *',
-            'required' => true
+            'required' => true,
+            'help' => 'DB: team.naam'
         ]);
         $builder->add('email', EmailType::class, [
             'label' => 'E-mailadres *',
             'required' => true,
+            'help' => 'DB: team.email'
         ]);
     }
 

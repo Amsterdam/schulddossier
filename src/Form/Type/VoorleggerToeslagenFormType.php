@@ -28,16 +28,20 @@ class VoorleggerToeslagenFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('toeslagenHuur', CheckboxType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.toeslagen_huur'
         ]);
         $builder->add('toeslagenZorg', CheckboxType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.toeslagen_zorg'
         ]);
         $builder->add('toeslagenKindgebondenBudget', CheckboxType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.toeslagen_kindgebonden_budget'
         ]);
         $builder->add('toeslagenKinderopvang', CheckboxType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.toeslagen_kinderopvang'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,

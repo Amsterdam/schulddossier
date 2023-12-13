@@ -42,9 +42,21 @@
             <div class="dossier__voorlegger__sectie__body">
                 <div class="form-row-wrapper form-row-wrapper--horizontal">
                 {{ form_row(form.toeslagenHuur) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.toeslagenHuur) }}
+                {% endif %}
                 {{ form_row(form.toeslagenZorg) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.toeslagenZorg) }}
+                {% endif %}
                 {{ form_row(form.toeslagenKindgebondenBudget) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.toeslagenKindgebondenBudget) }}
+                {% endif %}
                 {{ form_row(form.toeslagenKinderopvang) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.toeslagenKinderopvang) }}
+                {% endif %}
                 </div>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Toeslag'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}

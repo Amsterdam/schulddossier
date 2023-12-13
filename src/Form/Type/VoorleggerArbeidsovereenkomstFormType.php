@@ -32,7 +32,8 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
         ]);
         $builder->add('arbeidsovereenkomstWerkgever', TextType::class, [
             'label' => 'Werkgever',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.arbeidsovereenkomst_werkgever'
         ]);
         $builder->add('arbeidsovereenkomstContract', ChoiceType::class, [
             'label' => 'Soort dienstverband',
@@ -40,7 +41,8 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
             'multiple' => false,
             'expanded' => true,
             'placeholder' => false,
-            'choices' => Voorlegger::getContractOpties()
+            'choices' => Voorlegger::getContractOpties(),
+            'help' => 'DB: voorlegger.arbeidsovereenkomst_contract'
         ]);
         $builder->add('arbeidsovereenkomstEinddatum', DateType::class, [
             'html5' => false,
@@ -48,11 +50,13 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => 'Einddatum dienstverband (indien van toepassing)',
-            'required' => true
+            'required' => true,
+            'help' => 'DB: voorlegger.arbeidsovereenkomst_einddatum'
         ]);
         $builder->add('arbeidsovereenkomstPartnerWerkgever', TextType::class, [
             'label' => 'Werkgever',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.arbeidsovereenkomst_partner_werkgever'
         ]);
         $builder->add('arbeidsovereenkomstPartnerContract', ChoiceType::class, [
             'label' => 'Soort dienstverband',
@@ -60,7 +64,8 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
             'multiple' => false,
             'expanded' => true,
             'placeholder' => false,
-            'choices' => Voorlegger::getContractOpties()
+            'choices' => Voorlegger::getContractOpties(),
+            'help' => 'DB: voorlegger.arbeidsovereenkomst_partner_contract'
         ]);
         $builder->add('arbeidsovereenkomstPartnerEinddatum', DateType::class, [
             'html5' => false,
@@ -68,7 +73,8 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => 'Einddatum dienstverband (indien van toepassing)',
-            'required' => true
+            'required' => true,
+            'help' => 'DB: voorlegger.arbeidsovereenkomst_partner_einddatum'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,

@@ -23,6 +23,9 @@
                                     <i class="icon-search"></i>
                                     <div class="form-row">
                                     {{ form_row(createForm.schuldeiser, {'attr': {'data-validator': 'required'}}) }}
+                                    {% if app.user.type == 'admin' %}
+                                        {{ form_help(createForm.schuldeiser) }}
+                                    {% endif %}
                                     </div>
                                 </div>
                                 {{ form_errors(createForm) }}
@@ -43,6 +46,9 @@
                                     <div class="search-result-container"></div>
                                     <i class="icon-search"></i>
                                     {{ form_row(createForm.incassant) }}
+                                    {% if app.user.type == 'admin' %}
+                                        {{ form_help(createForm.incassant) }}
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="column">
@@ -52,17 +58,38 @@
                         <div class="columns">
                             <div class="column">
                                 {{ form_row(createForm.bedrag, {'attr': {'data-unit': '€', 'data-validator': 'required-float'}}) }}
+                                {% if app.user.type == 'admin' %}
+                                    {{ form_help(createForm.bedrag) }}
+                                {% endif %}
                                 {{ form_row(createForm.vastStelDatum) }}
+                                {% if app.user.type == 'admin' %}
+                                    {{ form_help(createForm.vastStelDatum) }}
+                                {% endif %}
                                 {{ form_row(createForm.type) }}
+                                {% if app.user.type == 'admin' %}
+                                    {{ form_help(createForm.type) }}
+                                {% endif %}
                                 {{ form_row(createForm.referentie, {'attr': {'data-validator': 'required'}}) }}
+                                {% if app.user.type == 'admin' %}
+                                    {{ form_help(createForm.referentie) }}
+                                {% endif %}
                             </div>
                             <div class="column">
                                 {{ form_row(createForm.bedragOorspronkelijk, {'attr': {'data-unit': '€', 'data-validator': 'float', 'data-num-max': '1000000', 'data-num-min': '1'}}) }}
+                                {% if app.user.type == 'admin' %}
+                                    {{ form_help(createForm.bedragOorspronkelijk) }}
+                                {% endif %}
                                 {{ form_row(createForm.ontstaansDatum) }}
+                                {% if app.user.type == 'admin' %}
+                                    {{ form_help(createForm.ontstaansDatum) }}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="column" id="toevoeging_onbekende_schuldeiser">
                             {{ form_row(createForm.toevoegingOnbekendeSchuldeiser) }}
+                            {% if app.user.type == 'admin' %}
+                                {{ form_help(createForm.toevoegingOnbekendeSchuldeiser) }}
+                            {% endif %}
                         </div>
 
 
