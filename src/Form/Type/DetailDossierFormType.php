@@ -31,17 +31,20 @@ class DetailDossierFormType extends AbstractType
             'required' => false,
             'class' => Team::class,
             'multiple' => false,
-            'expanded' => false
+            'expanded' => false,
+            'help' => 'DB: team.naam'
         ]);
 
         $builder->add('regasNummer', TextType::class, [
             'required' => false,
-            'label' => 'Schuldhulpverlener/Bewindvoerder dossiernr.'
+            'label' => 'Schuldhulpverlener/Bewindvoerder dossiernr.',
+            'help' => 'DB: dossier.regas_nummer'
         ]);
 
         $builder->add('allegroNummer', TextType::class, [
             'required' => false,
-            'label' => 'GKA dossiernr.'
+            'label' => 'GKA dossiernr.',
+            'help' => 'DB: dossier.allegro_nummer'
         ]);
 
         $builder->addEventSubscriber($this->medewerkerOrganisatie);

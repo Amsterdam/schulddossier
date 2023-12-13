@@ -35,20 +35,24 @@ class GebruikerFormType extends AbstractType
 
         $builder->add('naam', TextType::class, [
             'label' => 'Naam *',
-            'required' => true
+            'required' => true,
+            'help' => 'DB: gebruiker.naam'
         ]);
         $builder->add('email', EmailType::class, [
             'label' => 'E-mailadres *',
             'required' => true,
+            'help' => 'DB: gebruiker.email'
         ]);
         $builder->add('telefoonnummer', TextType::class, [
             'required' => false,
+            'help' => 'DB: gebruiker.telefoonnummer'
         ]);
         $builder->add('teamGka', EntityType::class, [
             'required' => false,
             'expanded' => false,
             'multiple' => false,
-            'class' => Team::class
+            'class' => Team::class,
+            'help' => 'DB: gebruiker.team_id'
         ]);
         $builder->add('organisaties', EntityType::class, [
             'label' => 'Organisaties',
@@ -56,6 +60,7 @@ class GebruikerFormType extends AbstractType
             'expanded' => true,
             'multiple' => true,
             'class' => Organisatie::class,
+            'help' => 'DB: gebruiker_organisatie.gebruiker_id gebruiker_organisatie.organisatie_id',
             'query_builder' => function (EntityRepository $repository) use ($user) {
                 $qb = $repository->createQueryBuilder('organisatie');
                 if($user->getType() === Gebruiker::TYPE_SHV_KEYUSER){
@@ -68,7 +73,8 @@ class GebruikerFormType extends AbstractType
         ]);
         $builder->add('enabled', CheckboxType::class, [
             'required' => false,
-            'label' => 'Account actief?'
+            'label' => 'Account actief?',
+            'help' => 'DB: gebruiker.enabled'
         ]);
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($user) {
@@ -77,7 +83,7 @@ class GebruikerFormType extends AbstractType
             $form->add('type', ChoiceType::class, [
                 'label' => 'Type *',
                 'required' => true,
-                'choices' => Gebruiker::getTypes($user->getType()),
+                'choices' => Gebruiker::getTypes($user->getType())
             ]);
         });
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($user) {
@@ -87,6 +93,7 @@ class GebruikerFormType extends AbstractType
                 'label' => 'Type *',
                 'required' => true,
                 'choices' => Gebruiker::getTypes($user->getType()),
+                'help' => 'DB: gebruiker.type'
             ]);
         });
     }

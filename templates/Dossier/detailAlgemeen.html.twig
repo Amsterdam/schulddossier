@@ -21,12 +21,24 @@
               <div class="column">
                 <h3 class="document-team">Schuldhulpverlener/Bewindvoerder</h3>
                 {{ form_row(form.organisatieGebruiker) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.organisatieGebruiker) }}
+                {% endif %}
                 {{ form_row(form.regasNummer) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.regasNummer) }}
+                {% endif %}
               </div>
               <div class="column">
                 <h3 class="document-team">GKA</h3>
                 {{ form_row(form.teamGka) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.teamGka) }}
+                {% endif %}
                 {{ form_row(form.allegroNummer) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.allegroNummer) }}
+                {% endif %}
               </div>
             </div>
         </div>

@@ -21,14 +21,16 @@ class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractTyp
             'required' => false,
             'choices' => $this->getOntstaanVanSchuldenOptions(),
             'empty_data' => null,
-            'placeholder' => 'Selecteer een optie'
+            'placeholder' => 'Selecteer een optie',
+            'help' => 'DB: voorlegger.ontstaan_van_schulden'
         ]);
 
         $builder->add('inspanningsverplichting', ChoiceType::class, [
             'required' => false,
             'choices' => $this->getInspanningsverplichting(),
             'empty_data' => null,
-            'placeholder' => 'Selecteer een optie'
+            'placeholder' => 'Selecteer een optie',
+            'help' => 'DB: voorlegger.inspanningsverplichting'
         ]);
 
         $builder->add('toelichtingAanvraagSchuldsaneringShvOntvangenShv', ShvStatusFormType::class, [

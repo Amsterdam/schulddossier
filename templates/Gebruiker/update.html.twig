@@ -26,15 +26,36 @@
     <div class="form-container">
         {{ form_start(form, {'attr': {'class': 'default-form-style'} }) }}
         {{ form_row(form.naam) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.naam) }}
+        {% endif %}
         {{ form_row(form.email) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.email) }}
+        {% endif %}
         {{ form_row(form.telefoonnummer) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.telefoonnummer) }}
+        {% endif %}
         {{ form_row(form.type) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.type) }}
+        {% endif %}
         <p>Alleen invullen indien werkzaam voor het GKA:</p>
         {{ form_row(form.teamGka) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.teamGka) }}
+        {% endif %}
         <p>Alleen invullen indien werkzaam voor een Schuldhulpverlener/Bewindvoerder:</p>
         {{ form_row(form.organisaties) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.organisaties) }}
+        {% endif %}
         <p>Verwijder onderstaand vinkje om een account uit te schakelen.</p>
         {{ form_row(form.enabled) }}
+        {% if app.user.type == 'admin' %}
+            {{ form_help(form.enabled) }}
+        {% endif %}
         <p style="font-size: 0.7rem;">Gebruikers ID: {{ gebruiker.id }}</p>
         <p style="font-size: 0.7rem;">Gebruikersnaam: {{ gebruiker.username }}</p>
         <p class="buttons right">

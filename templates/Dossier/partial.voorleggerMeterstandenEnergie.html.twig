@@ -42,15 +42,45 @@
             <div class="dossier__voorlegger__sectie__body">
                 Alleen invullen indien er een achterstand is bij de huidige leverancier.
                 {{ form_row(form.energieBedrijf) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.energieBedrijf) }}
+                {% endif %}
                 {{ form_row(form.energieBedrijfKlantnummer) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.energieBedrijfKlantnummer) }}
+                {% endif %}
                 {{ form_row(form.energieBedrijfDatumOpname) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.energieBedrijfDatumOpname) }}
+                {% endif %}
                 {{ form_row(form.energieBedrijfT1, {'attr': {'data-unit': 'kWh', 'data-validator': 'integer'}}) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.energieBedrijfT1) }}
+                {% endif %}
                 {{ form_row(form.energieBedrijfT2, {'attr': {'data-unit': 'kWh', 'data-validator': 'integer'}}) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.energieBedrijfT2) }}
+                {% endif %}
                 {{ form_row(form.energieBedrijfGas, {'attr': {'data-unit': 'm³', 'data-validator': 'float'}}) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.energieBedrijfGas) }}
+                {% endif %}
                 {{ form_row(form.warmteBedrijf) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.warmteBedrijf) }}
+                {% endif %}
                 {{ form_row(form.warmteBedrijfKlantnummer) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.warmteBedrijfKlantnummer) }}
+                {% endif %}
                 {{ form_row(form.warmteBedrijfDatumOpname) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.warmteBedrijfDatumOpname) }}
+                {% endif %}
                 {{ form_row(form.warmteBedrijfOpname, {'attr': {'data-unit': 'GJ', 'data-validator': 'float'}}) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.warmteBedrijfOpname) }}
+                {% endif %}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Meterstanden energie'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}

@@ -38,19 +38,49 @@
             </div>
             <div class="dossier__voorlegger__sectie__body">
                 {{ form_row(form.beschikkingInkomenUitWerk) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.beschikkingInkomenUitWerk) }}
+                {% endif %}
                 <h4>Beschikking</h4>
                 <div class="form-row-wrapper form-row-wrapper--horizontal">
                     {{ form_row(form.beschikkingUwvZw) }}
+                    {% if app.user.type == 'admin' %}
+                        {{ form_help(form.beschikkingUwvZw) }}
+                    {% endif %}
                     {{ form_row(form.beschikkingUwvWw) }}
+                    {% if app.user.type == 'admin' %}
+                        {{ form_help(form.beschikkingUwvWw) }}
+                    {% endif %}
                     {{ form_row(form.beschikkingUwvWia) }}
+                    {% if app.user.type == 'admin' %}
+                        {{ form_help(form.beschikkingUwvWia) }}
+                    {% endif %}
                     {{ form_row(form.beschikkingUwvWajong) }}
+                    {% if app.user.type == 'admin' %}
+                        {{ form_help(form.beschikkingUwvWajong) }}
+                    {% endif %}
                     {{ form_row(form.beschikkingGemeenteAmsterdamWPI) }}
+                    {% if app.user.type == 'admin' %}
+                        {{ form_help(form.beschikkingGemeenteAmsterdamWPI) }}
+                    {% endif %}
                     {{ form_row(form.beschikkingSVBAOW) }}
+                    {% if app.user.type == 'admin' %}
+                        {{ form_help(form.beschikkingSVBAOW) }}
+                    {% endif %}
                     {{ form_row(form.beschikkingSVBANW) }}
+                    {% if app.user.type == 'admin' %}
+                        {{ form_help(form.beschikkingSVBANW) }}
+                    {% endif %}
                     {{ form_row(form.beschikkingGemeenteAmsterdamIOAW) }}
+                    {% if app.user.type == 'admin' %}
+                        {{ form_help(form.beschikkingGemeenteAmsterdamIOAW) }}
+                    {% endif %}
                 </div>
 
                 {{ form_row(form.beschikkingUwvOverig) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.beschikkingUwvOverig) }}
+                {% endif %}
                 <h4>Verloningsmoment</h4>
 
                 <div>
@@ -59,6 +89,9 @@
                     </div>
                     <div class="input-choice">
                         {{ form_row(form.verloningsDag) }}
+                        {% if app.user.type == 'admin' %}
+                            {{ form_help(form.verloningsDag) }}
+                        {% endif %}
                     </div>
                 </div>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Inkomstenspecificatie'} only %}

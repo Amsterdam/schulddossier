@@ -46,6 +46,7 @@ class SchuldItemFormType extends AbstractType
 
         $builder->add('schuldeiser', HiddenType::class, [
             'invalid_message' => 'The selected schuldeiser cannot be found.',
+            'help' => 'DB: schuld_item.schuldeiser_id'
 //            'required' => true,
 //            'error_bubbling'=>false,
         ]);
@@ -54,26 +55,31 @@ class SchuldItemFormType extends AbstractType
 
         $builder->add('incassant', HiddenType::class, [
             'invalid_message' => 'The selected incassant cannot be found.',
+            'help' => 'DB: schuld_item.incassant_id'
         ]);
 
         $builder->get('incassant')->addModelTransformer($this->idToSchuldeiserTransformer);
 
         $builder->add('referentie', TextType::class, [
             'label' => 'Referentie *',
-            'required' => true
+            'required' => true,
+            'help' => 'DB: schuld_item.referentie'
         ]);
         $builder->add('type', ChoiceType::class, [
             'label' => 'Type *',
             'required' => true,
-            'choices' => SchuldItem::getTypes()
+            'choices' => SchuldItem::getTypes(),
+            'help' => 'DB: schuld_item.type'
         ]);
         $builder->add('bedrag', NumberType::class, [
             'label' => 'Bedrag *',
             'required' => true,
+            'help' => 'DB: schuld_item.bedrag'
         ]);
         $builder->add('bedragOorspronkelijk', NumberType::class, [
             'label' => 'Oorspronkelijk bedrag',
             'required' => false,
+            'help' => 'DB: schuld_item.bedrag_oorspronkelijk'
         ]);
         $builder->add('vastStelDatum', DateType::class, [
             'html5' => false,
@@ -81,7 +87,8 @@ class SchuldItemFormType extends AbstractType
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => 'Contactdatum *',
-            'required' => true
+            'required' => true,
+            'help' => 'DB: schuld_item.vaststel_datum'
         ]);
         $builder->add('ontstaansDatum', DateType::class, [
             'html5' => false,
@@ -89,7 +96,8 @@ class SchuldItemFormType extends AbstractType
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => 'Ontstaansdatum',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: schuld_item.ontstaans_datum'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
@@ -114,7 +122,8 @@ class SchuldItemFormType extends AbstractType
         $builder->add('toevoegingOnbekendeSchuldeiser', TextareaType::class, [
             'label' => 'Informatie onbekende schuldeiser *',
             'attr' => ['placeholder' => 'Naam/Adres/E-mail/Telefoon/IBAN'],
-            'required' => false
+            'required' => false,
+            'help' => 'DB: schuld_item.toevoeging_onbekende_schuldeiser',
         ]);
 
         $builder->add('aantekening', CreateAantekeningFormType::class, [

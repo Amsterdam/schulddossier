@@ -1,31 +1,94 @@
 <h4>Cliënt</h4>
 {{ form_row(form.clientGeslacht, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__horizontal'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientGeslacht) }}
+{% endif %}
 {{ form_row(form.clientNaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientNaam) }}
+{% endif %}
 {{ form_row(form.clientVoorletters, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientVoorletters) }}
+{% endif %}
 {{ form_row(form.clientGeboortedatum, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientGeboortedatum) }}
+{% endif %}
 {{ form_row(form.clientBSN, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientBSN) }}
+{% endif %}
 {{ form_row(form.clientBanknaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientBanknaam) }}
+{% endif %}
 
 <h4>Partner</h4>
 {{ form_row(form.partnerNvt, {'attr': {'form_row_class': 'form-row__checkbox--right'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.partnerNvt) }}
+{% endif %}
 {{ form_row(form.partnerGeslacht, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__horizontal'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.partnerGeslacht) }}
+{% endif %}
 {{ form_row(form.partnerNaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.partnerNaam) }}
+{% endif %}
 {{ form_row(form.partnerVoorletters, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.partnerVoorletters) }}
+{% endif %}
 {{ form_row(form.partnerGeboortedatum, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.partnerGeboortedatum) }}
+{% endif %}
 {{ form_row(form.partnerBSN, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.partnerBSN) }}
+{% endif %}
 {{ form_row(form.partnerBanknaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.partnerBanknaam) }}
+{% endif %}
 
 <h4>Contactgegevens</h4>
 {{ form_row(form.clientTelefoonnummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientTelefoonnummer) }}
+{% endif %}
 {{ form_row(form.clientEmail, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientEmail) }}
+{% endif %}
 {{ form_row(form.clientStraat, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientStraat) }}
+{% endif %}
 {{ form_row(form.clientHuisnummer, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientHuisnummer) }}
+{% endif %}
 {{ form_row(form.clientPostcode, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientPostcode) }}
+{% endif %}
 {{ form_row(form.clientWoonplaats, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientWoonplaats) }}
+{% endif %}
 
 <h4>Gezinssamenstelling</h4>
 {{ form_row(form.clientBurgelijkeStaat, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__vertical'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientBurgelijkeStaat) }}
+{% endif %}
 {{ form_row(form.clientBurgelijkeStaatSinds, {'attr': {'form_row_class': 'form-row__wide'}}) }}
+{% if app.user.type == 'admin' %}
+    {{ form_help(form.clientBurgelijkeStaatSinds) }}
+{% endif %}
 {% do form.clientKinderen.setRendered %}
 <div class="form-row form-row__wide">
     <div class="label-widget">
