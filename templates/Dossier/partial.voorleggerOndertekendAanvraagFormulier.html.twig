@@ -43,20 +43,43 @@
                     </div>
                 </div>
                 {{ form_row(form.jongerenSchuldenvrijeStart) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.jongerenSchuldenvrijeStart) }}
+                {% endif %}
                 <div class="dossier__voorlegger__sectie_jss_informatie">
                     <div class="warning-text">
                         Let op: alleen invullen bij JSS (verplicht)
                     </div>
                     {{ form_row(form.jssAdviseurNaam) }}
+                    {% if app.user.type == 'admin' %}
+                        {{ form_help(form.jssAdviseurNaam) }}
+                    {% endif %}
                     {{ form_row(form.jssAdviseurTelefoon) }}
+                    {% if app.user.type == 'admin' %}
+                        {{ form_help(form.jssAdviseurTelefoon) }}
+                    {% endif %}
                     {{ form_row(form.jssAdviseurEmail) }}
+                    {% if app.user.type == 'admin' %}
+                        {{ form_help(form.jssAdviseurEmail) }}
+                    {% endif %}
                 </div>
                 {{ form_row(form.schuldenrustLening) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.schuldenrustLening) }}
+                {% endif %}
                 {{ form_row(form.saneringsKrediet) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.saneringsKrediet) }}
+                {% endif %}
                 {{ form_row(form.principebeslissing) }}
-
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.principebeslissing) }}
+                {% endif %}
                 {% if featureflag_herfinanciering %}
                     {{ form_row(form.herfinanciering) }}
+                    {% if app.user.type == 'admin' %}
+                        {{ form_help(form.herfinanciering) }}
+                    {% endif %}
                 {% endif %}
                 
                 <h4>Schulden op de werkvloer</h4>
@@ -66,11 +89,18 @@
                     </div>
                     <div class="input-choice">
                         {{ form_row(form.schuldenOpDeWerkvloer) }}
+                        {% if app.user.type == 'admin' %}
+                            {{ form_help(form.schuldenOpDeWerkvloer) }}
+                        {% endif %}
+
                     </div>
                 </div>
 
                 <h4>Aanvullende informatie</h4>
                 {{ form_row(form.aanvullendeInformatie) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.aanvullendeInformatie) }}
+                {% endif %}
 
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Ondertekend aanvraagformulier'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}

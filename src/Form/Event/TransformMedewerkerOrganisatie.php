@@ -65,7 +65,8 @@ class TransformMedewerkerOrganisatie implements EventSubscriberInterface
             'multiple' => false,
             'expanded' => false,
             'mapped' => false,
-            'data' => $organisatieGebruiker
+            'data' => $organisatieGebruiker,
+            'help' => 'DB: gebruiker.naam - gebruiker.email'
         ])->setData($organisatieGebruiker);
     }
 
