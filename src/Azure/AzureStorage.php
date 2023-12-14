@@ -6,8 +6,6 @@ use AzureOSS\Storage\Blob\BlobRestProxy;
 use GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileReaderConfig;
 use GuzzleHttp\RequestOptions;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class AzureStorage implements AzureStorageInterface
@@ -25,41 +23,48 @@ class AzureStorage implements AzureStorageInterface
     }
 
 // Returns a url that is is signed with a SAS
-    public
-    function generateURLForFileReading(string $blob): string
+    public function generateURLForFileReading(string $blob): string
     {
         // Use a config to keep everything extensible
         $this->config = $this->SASFileReaderConfig->getConfig();
 
+        var_dump($this->config);
+
         $accessToken = $this->getAccessToken();
 
-        $signature = $this->getSAS($accessToken);
+        $sasToken = $this->getSAS($accessToken);
+        var_dump($sasToken);
+        $blobClient = $this->createBlobClient();
 
-        $endpoint = 'https://' . $this->config['storageAccount'] . '.blob.core.windows.net';
-        $container = $this->config['container'];
-        $blob = 'envelop.svg';
-        $url = $endpoint . '/' . $container . '/' . $blob . '?' . $signature;
+        return $blobClient->listContainers();
 
-        $uploadfile = "public/images/envelop.svg";
-        $content = file_get_contents($uploadfile);
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-ms-blob-type: BlockBlob', 'Content-Length: ' . strlen($content)));
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $content);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        $url = 'https://'
-            .$this->config['storageAccount'].'.blob.core.windows.net/'
-            .$this->config['container'].'/'
-            .$blob.'?'
-            .$signature;
-
-        return $url;
+//        $signature = $this->getSAS($accessToken);
+//
+//        $endpoint = 'https://' . $this->config['storageAccount'] . '.blob.core.windows.net';
+//        $container = $this->config['container'];
+//        $blob = 'envelop.svg';
+//        $url = $endpoint . '/' . $container . '/' . $blob . '?' . $signature;
+//
+//        $uploadfile = "public/images/envelop.svg";
+//        $content = file_get_contents($uploadfile);
+//
+//        $ch = curl_init();
+//        curl_setopt($ch, CURLOPT_URL, $url);
+//        curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-ms-blob-type: BlockBlob', 'Content-Length: ' . strlen($content)));
+//        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+//        curl_setopt($ch, CURLOPT_POSTFIELDS, $content);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//        $response = curl_exec($ch);
+//        curl_close($ch);
+//
+//        $url = 'https://'
+//            . $this->config['storageAccount'] . '.blob.core.windows.net/'
+//            . $this->config['container'] . '/'
+//            . $blob . '?'
+//            . $signature;
+//
+//        return $url;
 
     }
 
@@ -98,6 +103,7 @@ class AzureStorage implements AzureStorageInterface
 
         $body = $response->getContent(false);
         $data = json_decode($body, true);
+        var_dump($data);
 
         $accessToken = $data['access_token'];
 
@@ -122,23 +128,34 @@ class AzureStorage implements AzureStorageInterface
                 ],
                 RequestOptions::JSON => [
                     'canonicalizedResource' => '/blob/' . $this->config['storageAccount'] . '/' . $this->config['container'],
-                    'signedResource' => $this->config['signedResource'],
+                    //'signedResource' => $this->config['signedResource'],
                     'signedPermission' => $this->config['permissions'],
-                    'signedProtocol' => 'https',
+                    //'signedProtocol' => 'https',
                     'signedExpiry' => $this->config['expiry'],
-                    'signedStart' => $this->config['start'],
+                    //'signedStart' => $this->config['start'],
                 ],
             ]
         );
 
         $body = $response->getContent(false);
-        var_dump($body);
         $data = json_decode($body, true);
         var_dump($data);
 
 
-
         return $data['serviceSasToken'];
+    }
+
+    private function createBlobClient($sasToken)
+    {
+        $client = BlobRestProxy::createBlobService(
+            'BlobEndpoint=https://' .
+            $this->config['storageAccount'] .
+            '.blob.core.windows.net/data;SharedAccessSignature='.
+            $sasToken .
+            ';'
+        );
+
+        return $client;
     }
 
 
