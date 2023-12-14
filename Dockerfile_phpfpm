@@ -57,4 +57,10 @@ COPY --chown=www-data . /var/www
 
 RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
 
+RUN apk add \
+    yarn
+RUN yarn --ignore-scripts --ignore-platform
+RUN yarn encore prod
+RUN yarn run postinstall
+
 CMD ["/var/www/docker-entrypoint_phpfpm.sh"]

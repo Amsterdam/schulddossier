@@ -8,7 +8,6 @@ use Serializable;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -17,7 +16,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *  uniqueConstraints={
  *      @ORM\UniqueConstraint(name="uq_username", columns={"username"}),
  *      @ORM\UniqueConstraint(name="uq_email", columns={"email"})
- *  }
+ *  },
+ *  indexes={
+ *      @ORM\Index(name="idx_verwijderd_datetime", columns={"verwijderd_date_time"}),
+ *  })
  * )
  * @UniqueEntity("email")
  * @UniqueEntity("username")
@@ -114,14 +116,14 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     private $teamGka;
 
     /**
-     * @var Schuldhulpbureau[]|ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Schuldhulpbureau")
+     * @var Organisatie[]|ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Organisatie")
      * @ORM\JoinTable(
      *  joinColumns={@ORM\JoinColumn(name="gebruiker_id", referencedColumnName="id")},
-     *  inverseJoinColumns={@ORM\JoinColumn(name="schuldhulpbureau_id", referencedColumnName="id")}
+     *  inverseJoinColumns={@ORM\JoinColumn(name="organisatie_id", referencedColumnName="id")}
      * )
      */
-    private $schuldhulpbureaus;
+    private $organisaties;
 
     /**
      * @var boolean
@@ -129,10 +131,16 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      */
     private $enabled;
 
+    /**
+     * @var \DateTime|NULL
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $verwijderdDateTime;
+
     public function __construct()
     {
         $this->enabled = true;
-        $this->schuldhulpbureaus = new ArrayCollection();
+        $this->organisaties = new ArrayCollection();
     }
 
     /**
@@ -260,7 +268,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      */
     public function getTelefoonnummer()
     {
-        if(empty($this->telefoonnummer)){
+        if (empty($this->telefoonnummer)) {
             $this->telefoonnummer = '';
         }
         return $this->telefoonnummer;
@@ -281,27 +289,27 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
         $this->teamGka = $teamGka;
     }
 
-    public function getSchuldhulpbureaus()
+    public function getOrganisaties()
     {
-        return $this->schuldhulpbureaus;
+        return $this->organisaties;
     }
 
-    public function addSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau)
+    public function addOrganisatie(Organisatie $organisatie)
     {
-        if ($this->hasSchuldhulpbureau($schuldhulpbureau) === false) {
-            $this->schuldhulpbureaus->add($schuldhulpbureau);
+        if ($this->hasOrganisatie($organisatie) === false) {
+            $this->organisaties->add($organisatie);
         }
     }
 
-    public function hasSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau)
+    public function hasOrganisatie(Organisatie $organisatie)
     {
-        return $this->schuldhulpbureaus->contains($schuldhulpbureau);
+        return $this->organisaties->contains($organisatie);
     }
 
-    public function removeSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau)
+    public function removeOrganisatie(Organisatie $organisatie)
     {
-        if ($this->hasSchuldhulpbureau($schuldhulpbureau) === true) {
-            $this->schuldhulpbureaus->removeElement($schuldhulpbureau);
+        if ($this->hasOrganisatie($organisatie) === true) {
+            $this->organisaties->removeElement($organisatie);
         }
     }
 
@@ -328,6 +336,17 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
+    }
+
+    public function isVerwijderd()
+    {
+        return (bool)$this->verwijderdDateTime;
+    }
+
+    public function setVerwijderd($verwijderdDateTime)
+    {
+        $this->verwijderdDateTime = $verwijderdDateTime;
+        $this->setEnabled(false);
     }
 
     /**
@@ -386,7 +405,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
                 break;
 
             case self::TYPE_GKA_APPBEHEERDER:
-                $defaultTypes['GKA']['Dossierbehandelaar'] = self::TYPE_GKA;
+                $defaultTypes['GKA']['GKA-Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
                 $defaultTypes['Schuldhulpverlener/Bewindvoerder']['Dossierbehandelaar'] = self::TYPE_SHV;
                 $defaultTypes['Schuldhulpverlener/Bewindvoerder']['Key User'] = self::TYPE_SHV_KEYUSER;
@@ -396,7 +415,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
             case 'ALL_TYPES':
                 $defaultTypes['Applicatie'][ucfirst(self::TYPE_ADMIN)] = self::TYPE_ADMIN;
                 $defaultTypes['Applicatie'][ucfirst(self::TYPE_ONBEKEND)] = self::TYPE_ONBEKEND;
-                $defaultTypes['GKA']['Dossierbehandelaar'] = self::TYPE_GKA;
+                $defaultTypes['GKA']['GKA-Dossierbehandelaar'] = self::TYPE_GKA;
                 $defaultTypes['GKA']['App Beheerder'] = self::TYPE_GKA_APPBEHEERDER;
                 $defaultTypes['Schuldhulpverlener/Bewindvoerder']['Dossierbehandelaar'] = self::TYPE_SHV;
                 $defaultTypes['Schuldhulpverlener/Bewindvoerder']['Key User'] = self::TYPE_SHV_KEYUSER;
@@ -408,7 +427,14 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
 
     public static function getTypesList()
     {
-        return [self::TYPE_SHV, self::TYPE_SHV_KEYUSER, self::TYPE_GKA, self::TYPE_GKA_APPBEHEERDER, self::TYPE_ADMIN, self::TYPE_ONBEKEND];
+        return [
+            self::TYPE_SHV,
+            self::TYPE_SHV_KEYUSER,
+            self::TYPE_GKA,
+            self::TYPE_GKA_APPBEHEERDER,
+            self::TYPE_ADMIN,
+            self::TYPE_ONBEKEND
+        ];
     }
 
     /**
@@ -488,6 +514,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
             self::TYPE_GKA_APPBEHEERDER,
         ], true);
     }
+
     /**
      * Checks whether the user is a GKA AppBeheerder
      * This check can be used to check if a user has access by having one of the following role:
@@ -558,5 +585,24 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
         $this->lastLogin = $lastLogin;
 
         return $this;
+    }
+
+    public function anonymize()
+    {
+        $uniqueSuffix = uniqid();
+        $this->setUsername("geanonimiseerd-" . $uniqueSuffix);
+        $this->setPassword();
+        $this->setType(self::TYPE_ONBEKEND);
+        $this->setNaam("geanonimiseerde  gebruiker - " . $uniqueSuffix);
+        $this->setPasswordChangedDateTime(null);
+        $this->setTeamGka(null);
+        $this->setEmail($uniqueSuffix . '@schulddossier.amsterdam.nl');
+        $this->setEnabled(false);
+        $this->setTelefoonnummer('');
+        $this->setLastLogin(null);
+
+        foreach ($this->getOrganisaties() as $organisatie) {
+            $this->removeOrganisatie($organisatie);
+        }
     }
 }

@@ -10,7 +10,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
@@ -73,7 +73,7 @@ class AppDossierController extends AbstractController
         $repository = $em->getRepository(Dossier::class);
 
         $maxPageSize = 20;
-        $forcedSchuldhulpbureaus = [];
+        $forcedOrganisaties = [];
 
         $section2status = [
             'shv' => ['bezig_shv', 'compleet_shv', 'gecontroleerd_shv', 'verzonden_shv'],
@@ -84,12 +84,12 @@ class AppDossierController extends AbstractController
         $section = $request->query->get('section', $this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser()->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER ? 'gka' : 'shv');
 
         if ($authChecker->isGranted('ROLE_SHV') || $authChecker->isGranted('ROLE_SHV_KEYUSER')) {
-            if ($this->getUser()->getSchuldhulpbureaus()->count() === 0) {
+            if ($this->getUser()->getOrganisaties()->count() === 0) {
                 return $this->render('Security/accessDenied.html.twig', [
                     'message' => 'Gebruiker is niet gekoppeld aan een organisatie.',
                 ]);
             }
-            $forcedSchuldhulpbureaus = $this->getUser()->getSchuldhulpbureaus();
+            $forcedOrganisaties = $this->getUser()->getOrganisaties();
         }
 //        var_dump($section);
         $seachQuery = [
@@ -97,11 +97,11 @@ class AppDossierController extends AbstractController
             'naam' => '',
             'status' => $section2status[$section],
             'eersteKeerVerzondenAanGKA' => ($this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser()->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER),
-            'schuldhulpbureaus' => !empty($forcedSchuldhulpbureaus) ? $forcedSchuldhulpbureaus : $em->getRepository(Schuldhulpbureau::class)->findAll(),
-            'medewerkerSchuldhulpbureau' => $this->getUser()->getType() === Gebruiker::TYPE_SHV || $this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER ? $this->getUser() : null,
+            'organisaties' => !empty($forcedOrganisaties) ? $forcedOrganisaties : $em->getRepository(Organisatie::class)->findAll(),
+            'medewerkerOrganisatie' => $this->getUser()->getType() === Gebruiker::TYPE_SHV || $this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
         ];
-//var_dump($seachQuery['schuldhulpbureaus']);
+//var_dump($seachQuery['organisaties']);
         $searchForm = $this->createForm(SearchDossierFormType::class, $seachQuery, ['method' => 'GET']);
         if ($section === 'search') {
             $searchForm->handleRequest($request);
@@ -110,17 +110,17 @@ class AppDossierController extends AbstractController
         if ($section === 'gka') {
             $orderBy = 'gka-verzenddatum';
         }
-        // if user is from a shv limit his search results on the user schuldhulpbureaus
+        // if user is from a shv limit his search results on the user organisaties
         if ($authChecker->isGranted('ROLE_SHV') || $authChecker->isGranted('ROLE_SHV_KEYUSER')) {
-            $seachQuery['schuldhulpbureaus'] = $forcedSchuldhulpbureaus;
+            $seachQuery['organisaties'] = $forcedOrganisaties;
         }
 
         $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize), $orderBy);
 
         if ($seachQuery['section'] === 'shv' || $seachQuery['section'] === 'gka') {
             $seachQuery['status'] = [];
-            $seachQuery['schuldhulpbureau'] = null;
-            $seachQuery['medewerkerSchuldhulpbureau'] = null;
+            $seachQuery['organisatie'] = null;
+            $seachQuery['medewerkerOrganisatie'] = null;
             $seachQuery['teamGka'] = null;
             $searchForm = $this->createForm(SearchDossierFormType::class, $seachQuery, ['method' => 'GET']);
         }
@@ -176,9 +176,9 @@ class AppDossierController extends AbstractController
     {
         $dossier = new Dossier();
         $dossier->setAanmaker($this->getUser());
-        $dossier->setMedewerkerSchuldhulpbureau($this->getUser());
-        $dossier->setSchuldhulpbureau($this->getUser()->getSchuldhulpbureaus()->count() > 0 ? $this->getUser()->getSchuldhulpbureaus()->first() : null);
-        $dossier->setTeamGka($this->getUser()->getSchuldhulpbureaus()->count() > 0 ? $this->getUser()->getSchuldhulpbureaus()->first()->getStandaardGkaTeam() : null);
+        $dossier->setMedewerkerOrganisatie($this->getUser());
+        $dossier->setOrganisatie($this->getUser()->getOrganisaties()->count() > 0 ? $this->getUser()->getOrganisaties()->first() : null);
+        $dossier->setTeamGka($this->getUser()->getOrganisaties()->count() > 0 ? $this->getUser()->getOrganisaties()->first()->getStandaardGkaTeam() : null);
         $dossier->setDossierTemplate('v1');
         $dossier->setStatus('bezig_shv');
         $form = $this->createForm(CreateDossierFormType::class, $dossier);
@@ -191,23 +191,23 @@ class AppDossierController extends AbstractController
 
             $dossierRepository = $em->getRepository(Dossier::class);
             if (null !== $dossier->getClientBSN() && 0 !== strlen($dossier->getClientBSN())) {
-                $dossiers = $dossierRepository->findBy(['clientBSN' => $dossier->getClientBSN(), 'schuldhulpbureau' => $dossier->getSchuldhulpbureau()]);
+                $dossiers = $dossierRepository->findBy(['clientBSN' => $dossier->getClientBSN(), 'organisatie' => $dossier->getOrganisatie()]);
                 if (count($dossiers) > 1) {
-                    $this->addFlash('success', sprintf('Info: Er bestaat al een ander dossier met deze BSN binnen %s', $dossier->getSchuldhulpbureau()->getNaam()));
+                    $this->addFlash('success', sprintf('Info: Er bestaat al een ander dossier met deze BSN binnen %s', $dossier->getOrganisatie()->getNaam()));
                 }
             }
 
             if (null !== $dossier->getRegasNummer() && 0 !== strlen($dossier->getRegasNummer())) {
-                $dossiers = $dossierRepository->findBy(['regasNummer' => $dossier->getRegasNummer(), 'schuldhulpbureau' => $dossier->getSchuldhulpbureau()]);
+                $dossiers = $dossierRepository->findBy(['regasNummer' => $dossier->getRegasNummer(), 'organisatie' => $dossier->getOrganisatie()]);
                 if (count($dossiers) > 1) {
-                    $this->addFlash('success', sprintf('Info: Er bestaat al een ander dossier met dit Regas nummer binnen %s', $dossier->getSchuldhulpbureau()->getNaam()));
+                    $this->addFlash('success', sprintf('Info: Er bestaat al een ander dossier met dit Regas nummer binnen %s', $dossier->getOrganisatie()->getNaam()));
                 }
             }
 
             if (!$allegroCheck) {
                 $this->addFlash('success', 'Dossier aangemaakt');
             } else {
-                if (null !== $allegroService->getSRVAanvraagHeader($dossier->getSchuldhulpbureau(), $dossier->getAllegroNummer())) {
+                if (null !== $allegroService->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer())) {
                     $this->addFlash('success', 'Dossier aangemaakt en gevonden in allegro');
                 } else {
                     $this->addFlash('error', 'Dossier aangemaakt, niet aanwezig in allegro');
@@ -348,7 +348,7 @@ class AppDossierController extends AbstractController
 
         return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
-            'gebruikers' => $em->getRepository(Gebruiker::class)->findAllGebruikersBySchuldhulpbureau($dossier->getSchuldhulpbureau()->getId()),
+            'gebruikers' => $em->getRepository(Gebruiker::class)->findAllGebruikersByOrganisatie($dossier->getOrganisatie()->getId()),
             'voorleggerForm' => $voorleggerForm->createView()
         ]);
     }

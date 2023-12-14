@@ -721,6 +721,19 @@ class Voorlegger
     private $toelichtingAanvraagSchuldsaneringClientOntvangenGka;
 
     // ---
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $ontstaanVanSchulden;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     */
+    private $inspanningsverplichting;
 
     /**
      * @var integer
@@ -1006,6 +1019,24 @@ class Voorlegger
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $saneringsKrediet;
+
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $principebeslissing;
+
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $schuldenOpDeWerkvloer;
+
+    /**
+     * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $herfinancering;
 
     // ---
 
@@ -1601,6 +1632,16 @@ class Voorlegger
     public function getToelichtingAanvraagSchuldsaneringClientOntvangenGka()
     {
         return $this->toelichtingAanvraagSchuldsaneringClientOntvangenGka;
+    }
+
+    public function getOntstaanVanSchulden()
+    {
+        return $this->ontstaanVanSchulden;
+    }
+
+    public function getInspanningsverplichting()
+    {
+        return $this->inspanningsverplichting;
     }
 
     public function getToelichtingAanvraagSchuldsaneringShvOntvangenShv()
@@ -2274,6 +2315,16 @@ class Voorlegger
         $this->toelichtingAanvraagSchuldsaneringClientOntvangenGka = $toelichtingAanvraagSchuldsaneringClientOntvangenGka;
     }
 
+    public function setOntstaanVanSchulden($ontstaan)
+    {
+        $this->ontstaanVanSchulden = $ontstaan;
+    }
+
+    public function setInspanningsverplichting($inspanningsverplichting)
+    {
+        $this->inspanningsverplichting = $inspanningsverplichting;
+    }
+
     public function setToelichtingAanvraagSchuldsaneringShvOntvangenShv($toelichtingAanvraagSchuldsaneringShvOntvangenShv)
     {
         $this->toelichtingAanvraagSchuldsaneringShvOntvangenShv = $toelichtingAanvraagSchuldsaneringShvOntvangenShv;
@@ -2676,6 +2727,54 @@ class Voorlegger
     public function setSaneringsKrediet(?bool $saneringsKrediet): void
     {
         $this->saneringsKrediet = $saneringsKrediet;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getPrincipebeslissing(): ?bool
+    {
+        return $this->principebeslissing;
+    }
+
+    /**
+     * @param bool|null $principebeslissing
+     */
+    public function setPrincipebeslissing(?bool $principebeslissing): void
+    {
+        $this->principebeslissing = $principebeslissing;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getSchuldenOpDeWerkvloer(): ?bool
+    {
+        return $this->schuldenOpDeWerkvloer;
+    }
+
+    /**
+     * @param bool|null $schuldenOpDeWerkvloer
+     */
+    public function setSchuldenOpDeWerkvloer(?bool $schuldenOpDeWerkvloer): void
+    {
+        $this->schuldenOpDeWerkvloer = $schuldenOpDeWerkvloer;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getHerfinanciering(): ?bool
+    {
+        return $this->herfinancering;
+    }
+
+    /**
+     * @param bool|null $herfinancering
+     */
+    public function setHerfinanciering(?bool $herfinancering): void
+    {
+        $this->herfinancering = $herfinancering;
     }
 
     /**

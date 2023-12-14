@@ -16,7 +16,7 @@ class RequiredFieldsWhenAddingNewShvUser extends Constraint
     /**
      * @var string
      */
-    public $message = 'A schuldhulpbureau must be selected when creating a new user with the role Shv.';
+    public $message = 'Je moet eerst een organisatie selecteren om een gebruiker met rol SHV-er/Bewindvoerder aan te kunnen maken';
 
     /**
      * @return mixed

@@ -8,18 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Validator\Constraints\Callback;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -28,9 +18,17 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
 {
+
+    private bool $featureflagHerfinanciering;
+
+    public function __construct(bool $featureflagHerfinanciering)
+    {
+        $this->featureflagHerfinanciering = $featureflagHerfinanciering;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('ondertekendAanvraagFormulierOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+        $builder->add('ondertekendAanvraagFormulierOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
@@ -84,6 +82,15 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             'required' => false,
             'label' => 'Saneringskrediet (SK)'
         ]);
+        $builder->add('principebeslissing', CheckboxType::class, [
+            'required' => false,
+            'label' => 'Principebeslissing'
+        ]);
+
+        $builder->add('schuldenOpDeWerkvloer', CheckboxType::class, [
+            'required' => false,
+            'label' => 'Betreft Schulden op de werkvloer?'
+        ]);
         $builder->add('aanvullendeInformatie', TextareaType::class, [
             'required' => false
         ]);
@@ -121,6 +128,13 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             unset($data['removeFile']['__name__']);
             $event->setData($data);
         });
+
+        if ($this->featureflagHerfinanciering) {
+            $builder->add('herfinanciering', CheckboxType::class, [
+                'required' => false,
+                'label' => 'Herfinanciering'
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
