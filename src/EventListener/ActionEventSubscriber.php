@@ -16,21 +16,26 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class ActionEventSubscriber implements EventSubscriberInterface
 {
+    private const systemActions = [
+        ActionEvent::GEBRUIKER_DELETED_SYSTEM,
+        ActionEvent::GEBRUIKER_DISABLED_SYSTEM
+    ];
+
     /**
      * @var EntityManagerInterface
      */
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
     /**
      * @var RequestStack
      */
-    private $requestStack;
+    private RequestStack $requestStack;
 
     /**
      * ActionEventSubscriber constructor.
      *
      * @param EntityManagerInterface $entityManager
-     * @param RequestStack           $requestStack
+     * @param RequestStack $requestStack
      */
     public function __construct(EntityManagerInterface $entityManager, RequestStack $requestStack)
     {
@@ -50,7 +55,12 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $action->setDatumTijd($event->getDateTimeOfEvent());
 
         $action->setName($event->getActionName());
-        $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
+
+        $action->setIp(
+            in_array($event->getActionName(), self::systemActions) ?
+                '127.0.0.1' :
+                $this->requestStack->getMasterRequest()->getClientIp()
+        );
 
         if (!empty($event->getData())) {
             $action->setData($event->getData());
@@ -72,9 +82,9 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $action->setName(ActionEvent::GEBRUIKER_INGELOGD);
         $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
         $action->setDatumTijd($dateTime);
-        $action->setData([
-                ActionEvent::getGebruikerData($gebruiker)
-            ]
+        $action->setData(
+            ActionEvent::getGebruikerData($gebruiker)
+
         );
 
         $this->entityManager->persist($action);
@@ -98,7 +108,8 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $action->setDatumTijd($dateTime);
         $action->setDossier($dossier);
         $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
-        $action->setData(array_merge(
+        $action->setData(
+            array_merge(
                 ActionEvent::getGebruikerData($gebruiker),
                 ActionEvent::getDossierData($dossier)
             )
