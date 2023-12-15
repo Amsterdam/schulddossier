@@ -17,7 +17,9 @@ RUN apk add \
     libjpeg-turbo-dev \
     jpeg-dev \
     libreoffice \
-    imagemagick-dev
+    imagemagick-dev \
+    libxslt \
+    libxslt-dev
 
 RUN docker-php-ext-install \
     pdo_pgsql \
@@ -25,12 +27,15 @@ RUN docker-php-ext-install \
     zip \
     soap \
     intl \
-    gd
+    gd \
+    xsl
 
 RUN docker-php-ext-configure \
     gd \
     --with-freetype \
-    --with-jpeg
+    --with-jpeg 
+
+RUN docker-php-ext-enable xsl
 
 RUN apk add --no-cache --virtual .build-deps \
     build-base  \
