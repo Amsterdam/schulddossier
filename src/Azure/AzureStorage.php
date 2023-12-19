@@ -34,45 +34,86 @@ class AzureStorage implements AzureStorageInterface
     }
 
     // Returns a url that is is signed with a SAS
-    public function generateURLForFileReading(string $blob): string
+    public function generateURLForFileReading(string $blob, ?string $destinationPath): string
     {
         // Use a config to keep everything extensible
         $this->config = $this->SASFileReaderConfig->getConfig();
 
-        $accessToken = $this->getAccessToken();
-
-        $signature = $this->getSAS($accessToken);
+        $signature = $this->generateSASSignature($blob, $destinationPath);
 
         // Create the signed blob URL
+        return $this->getFileUrl($blob, $signature, $destinationPath);
+    }
+
+    public function storeFile(UploadedFile $file, ?string $destinationPath = null): string
+    {
+        $this->config = $this->SASFileWriterConfig->getConfig();
+
+        $signature = $this->generateSASSignature($file->getClientOriginalName(), $destinationPath);
+
+        $uploadUrl = $this->getFileUrl($file->getClientOriginalName(), $signature, $destinationPath);
+
+        $content = $file->getContent();
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $uploadUrl);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-ms-blob-type: BlockBlob', 'Content-Length: ' . strlen($content)));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $content);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        var_dump($response);
+
+        return $this->generateURLForFileReading($file->getClientOriginalName(), $destinationPath);
+    }
+
+    private function generateSASSignature(string $filename, ?string $destinationPath = null): string
+    {
+        $accessToken = $this->getAccessToken();
+
+        $signature = $this->getSAS($accessToken, $filename, $destinationPath);
+
+        return $signature;
+    }
+
+    private function getFileUrl(string $blob, string $signature, ?string $destinationPath = null): string
+    {
         $url = 'https://'
             . $this->config['storageAccount'] . '.blob.core.windows.net/'
-            . $this->config['dataContainer'] . '/'
-            . $blob . '?'
+            . $this->config['container'] . '/';
+
+        if ($destinationPath) {
+            $url .= trim($destinationPath, '/\\') . '/';
+        }
+
+        $url .= $blob . '?'
             . $signature;
 
         return $url;
     }
 
-    public function storeFile(string $blob, ?UploadedFile $file)
+    private function getCanonicalizedResourcePath(?string $blob, ?string $path = null): string
     {
-        $this->config = $this->SASFileWriterConfig->getConfig();
+        $canonicalizedResourcePath = '/blob/' . $this->config['storageAccount'] . '/' . $this->config['container'] . '/';
 
-        $accessToken = $this->getAccessToken();
+        if ($path) {
+            $canonicalizedResourcePath .= trim($path, '/\\') . '/';
+        }
 
-        $signature = $this->getSAS($accessToken, $blob);
+        if ($blob) {
+            $canonicalizedResourcePath .= $blob;
+        }
 
-        var_dump($signature);
-
-        return $signature;
-
+        return $canonicalizedResourcePath;
     }
 
     // Gets a SAS token from the resource manager using an access token
-    private function getSAS($accessToken, ?string $blob)
+    private function getSAS($accessToken, ?string $blob = null, ?string $path = null): string
     {
-        $canonicalizedResource = $blob ?
-            '/blob/' . $this->config['storageAccount'] . '/' . $this->config['container'] . '/' . $blob :
-            '/blob/' . $this->config['storageAccount'] . '/' . $this->config['container'];
+        $canonicalizedResource = $this->getCanonicalizedResourcePath($blob, $path);
 
         $url = 'https://management.azure.com/subscriptions/'
             . $this->config['subscriptionId'] . '/resourceGroups/' . $this->config['resourceGroup']
@@ -92,7 +133,7 @@ class AzureStorage implements AzureStorageInterface
                     'signedResource' => $this->config['signedResource'],
                     'signedPermission' => $this->config['permissions'],
                     'signedProtocol' => 'https',
-                    'signedExpiry' => $this->config['expired'],
+                    'signedExpiry' => $this->config['expiry'],
                     'signedStart' => $this->config['start'],
                 ],
             ]
@@ -109,7 +150,7 @@ class AzureStorage implements AzureStorageInterface
     private function getAccessToken(): string
     {
         // TODO implement caching
-        $tokenUrl = $this->config['azureAuthorityHost'] . $this->config['tenantId'] . '/oauth2/v2.0/token';
+        $tokenUrl = $this->config['authorityHost'] . $this->config['tenantId'] . '/oauth2/v2.0/token';
         $grantType = 'client_credentials';
         $scope = 'https://management.azure.com//.default'; // double slash is on purpose
         $clientAssertion = file_get_contents($this->config['federatedTokenFile']);

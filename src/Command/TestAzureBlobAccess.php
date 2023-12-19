@@ -12,6 +12,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TestAzureBlobAccess extends Command
 {
@@ -34,7 +35,10 @@ class TestAzureBlobAccess extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $accessToken = $this->storage->storeFile('test.pdf');
+        $file = new UploadedFile('/var/www/assets/images/envelop.svg', 'envelop.svg');
+        $destinationPath = 'folder/test/';
+
+        $accessToken = $this->storage->storeFile($file, $destinationPath);
         $output->write(__CLASS__ . ':' . __FUNCTION__ . ':' . __LINE__ . ': access token: ' . $accessToken);
         return Command::SUCCESS;
 //
