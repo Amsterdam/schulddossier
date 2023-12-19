@@ -6,3 +6,4 @@ twig:
         - 'forms.html.twig'
     globals:
         app_version: '@GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion'
+        featureflag_herfinanciering: '%featureflag_herfinanciering%'

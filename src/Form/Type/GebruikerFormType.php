@@ -4,7 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 use GemeenteAmsterdam\FixxxSchuldhulp\Validator\Constraints\RequiredFieldsWhenAddingNewShvUser;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -12,8 +12,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -52,17 +50,17 @@ class GebruikerFormType extends AbstractType
             'multiple' => false,
             'class' => Team::class
         ]);
-        $builder->add('schuldhulpbureaus', EntityType::class, [
+        $builder->add('organisaties', EntityType::class, [
             'label' => 'Organisaties',
             'required' => false,
             'expanded' => true,
             'multiple' => true,
-            'class' => Schuldhulpbureau::class,
+            'class' => Organisatie::class,
             'query_builder' => function (EntityRepository $repository) use ($user) {
-                $qb = $repository->createQueryBuilder('schuldhulpbureau');
+                $qb = $repository->createQueryBuilder('organisatie');
                 if($user->getType() === Gebruiker::TYPE_SHV_KEYUSER){
-                    $qb->andWhere('schuldhulpbureau IN (:bureaus)');
-                    $qb->setParameter('bureaus', $user->getSchuldhulpbureaus());
+                    $qb->andWhere('organisatie IN (:organisaties)');
+                    $qb->setParameter('organisaties', $user->getOrganisaties());
                 }
 
                 return $qb;

@@ -7,6 +7,8 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 
 class TeamFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
 {
+    const TEAM_3_REFERENCE = 'Team 3';
+
     /**
      * @inheritDoc
      */

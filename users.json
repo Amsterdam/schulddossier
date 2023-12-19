@@ -1,0 +1,76 @@
+[
+  {
+    "id": 0,
+    "type": "admin",
+    "username": "schulddossier_admin",
+    "fullname": "T.S. Eliot",
+    "email": "schulddossier_admin@amsterdam.nl",
+    "telefoon": "06 3444 927",
+    "enabled": true
+  },
+  {
+    "id": 1,
+    "type": "gka",
+    "username": "schulddossier_gka",
+    "fullname": "Anushka Asthana",
+    "email": "schulddossier_gka@amsterdam.nl",
+    "telefoon": "06 3444 927",
+    "enabled": true
+  },
+  {
+    "id": 2,
+    "type": "gka_appbeheerder",
+    "username": "schulddossier_gka_appbeheerder",
+    "fullname": "Mariska Kriek",
+    "email": "schulddossier_gka_appbeheerder@amsterdam.nl",
+    "telefoon": "06 3444 927",
+    "enabled": true
+  },
+  {
+    "id": 3,
+    "type": "shv",
+    "username": "schulddossier_shv",
+    "fullname": "Thomas Piketty",
+    "email": "schulddossier_shv@amsterdam.nl",
+    "telefoon": "06 3444 927",
+    "enabled": true
+  },
+  {
+    "id": 4,
+    "type": "shv_keyuser",
+    "username": "schulddossier_shv_keyuser",
+    "fullname": "Pedro Almodovar",
+    "email": "schulddossier_shv_keyuser@amsterdam.nl",
+    "telefoon": "06 3444 927",
+    "enabled": true
+  },
+  {
+    "id": 5,
+    "type": "shv",
+    "username": "schulddossier_disabled",
+    "fullname": "Sebastien Bibou",
+    "email": "schulddossier_disabled@amsterdam.nl",
+    "telefoon": "06 3444 927",
+    "enabled": false
+  },
+  {
+    "id": 6,
+    "type": "shv",
+    "username": "schulddossier_inactive",
+    "fullname": "Antoine Hirschbach",
+    "email": "schulddossier_inactive@amsterdam.nl",
+    "telefoon": "06 3444 927",
+    "enabled": false,
+    "last_login_interval": "P91D"
+  },
+  {
+    "id": 7,
+    "type": "shv",
+    "username": "schulddossier_delete_anonymize",
+    "fullname": "Peter van den Broek",
+    "email": "schulddossier_delete_anonymize@amsterdam.nl",
+    "telefoon": "06 3444 927",
+    "enabled": false,
+    "last_login_interval": "P366D"
+  }
+]

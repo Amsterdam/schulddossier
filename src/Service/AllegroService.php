@@ -26,7 +26,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSchuld;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
@@ -69,9 +69,9 @@ class AllegroService
     ];
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient
+     * @var string
      */
-    private $loginService;
+    private $loginWsdl;
 
     /**
      * @var string
@@ -129,58 +129,58 @@ class AllegroService
     }
 
     /**
-     * @param Schuldhulpbureau $bureau
-     * @return Schuldhulpbureau|false
+     * @param Organisatie $organisatie
+     * @return Organisatie|false
      * @throws \Exception|SoapException
      */
-    public function login(Schuldhulpbureau $bureau, $force = false)
+    public function login(Organisatie $organisatie, $force = false)
     {
         $now = new \DateTime();
         $oldestAllowedSession = clone $now;
         $oldestAllowedSession->modify(sprintf('-%s seconds', self::SESSION_TIMEOUT));
 
-        if (false === $force && null !== $bureau->getAllegroSessionId() && $bureau->getAllegroSessionAge() >= $oldestAllowedSession) {
-            return $bureau;
+        if (false === $force && null !== $organisatie->getAllegroSessionId() && $organisatie->getAllegroSessionAge() >= $oldestAllowedSession) {
+            return $organisatie;
         }
-        $response = $this->getLoginService()->allegroWebLogin((new LoginServiceAllegroWebLogin($bureau->getAllegroUsername(),
-            $bureau->getAllegroPassword())));
+        $response = $this->getLoginService()->allegroWebLogin((new LoginServiceAllegroWebLogin($organisatie->getAllegroUsername(),
+            $organisatie->getAllegroPassword())));
         if ($response->getResult()) {
-            $bureau->setAllegroSessionAge($now);
-            $bureau->setAllegroSessionId($response->getAUserInfo()->SessionID);
+            $organisatie->setAllegroSessionAge($now);
+            $organisatie->setAllegroSessionId($response->getAUserInfo()->SessionID);
             $this->em->flush();
 
-            return $bureau;
+            return $organisatie;
         }
-        $bureau->setAllegroSessionAge(null);
-        $bureau->setAllegroSessionId(null);
+        $organisatie->setAllegroSessionAge(null);
+        $organisatie->setAllegroSessionId(null);
 
         return false;
     }
 
     /**
-     * @param Schuldhulpbureau $bureau
+     * @param Organisatie $organisatie
      * @param string $relatieCode
      * @return TSRVAanvraagHeader|null
      * @throws \Exception
      */
-    public function getSRVAanvraagHeader(Schuldhulpbureau $bureau, string $relatieCode): ?TSRVAanvraagHeader
+    public function getSRVAanvraagHeader(Organisatie $organisatie, string $relatieCode): ?TSRVAanvraagHeader
     {
-        $bureau = $this->login($bureau);
-        $response = $this->getSchuldHulpService($bureau)->getSRVOverzicht((new SchuldHulpServiceGetSRVOverzicht($relatieCode)));
+        $organisatie = $this->login($organisatie);
+        $response = $this->getSchuldHulpService($organisatie)->getSRVOverzicht((new SchuldHulpServiceGetSRVOverzicht($relatieCode)));
 
         return $response->getResult()->getTSRVAanvraagHeader()[0];
     }
 
     /**
-     * @param Schuldhulpbureau $bureau
+     * @param Organisatie $organisatie
      * @param TSRVAanvraagHeader $header
      * @return TSRVAanvraag|null
      * @throws \Exception
      */
-    public function getSRVAanvraag(Schuldhulpbureau $bureau, TSRVAanvraagHeader $header): ?TSRVAanvraag
+    public function getSRVAanvraag(Organisatie $organisatie, TSRVAanvraagHeader $header): ?TSRVAanvraag
     {
-        $bureau = $this->login($bureau);
-        $response = $this->getSchuldHulpService($bureau)->getSRVAanvraag((new SchuldHulpServiceGetSRVAanvraag($header)));
+        $organisatie = $this->login($organisatie);
+        $response = $this->getSchuldHulpService($organisatie)->getSRVAanvraag((new SchuldHulpServiceGetSRVAanvraag($header)));
 
         return $response->getResult();
     }
@@ -191,8 +191,8 @@ class AllegroService
      */
     public function sendAanvraag(Dossier $dossier): bool
     {
-        $bureau = $dossier->getSchuldhulpbureau();
-        $this->setSoapHeader($bureau);
+        $organisatie = $dossier->getOrganisatie();
+        $this->setSoapHeader($organisatie);
 
         $bedrijfsCode = 2; // Vaste waarde 2 = Kredietbank
         $aanvragerCorrespondentieMail = false;
@@ -428,9 +428,9 @@ class AllegroService
         return $schuldArray;
     }
 
-    private function getSchuldHulpService(Schuldhulpbureau $bureau): AllegroSchuldHulpClient
+    private function getSchuldHulpService(Organisatie $organisatie): AllegroSchuldHulpClient
     {
-        return SchuldHulpClientFactory::factory($this->schuldHulpWsdl, $bureau);
+        return SchuldHulpClientFactory::factory($this->schuldHulpWsdl, $organisatie);
     }
 
     /**
@@ -439,16 +439,16 @@ class AllegroService
      */
     public function updateDossier(Dossier $dossier)
     {
-        $header = $this->getSRVAanvraagHeader($dossier->getSchuldhulpbureau(), $dossier->getAllegroNummer());
+        $header = $this->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer());
         $dossier->setAllegroStatus($header->getStatus());
         $dossier->setAllegroExtraStatus($header->getExtraStatus());
         $dossier->setAllegroSyncDate((new \DateTime()));
         $this->em->flush();
     }
 
-    private function getLoginService(Schuldhulpbureau $bureau = null): AllegroLoginClient
+    private function getLoginService(Organisatie $organisatie = null): AllegroLoginClient
     {
-        return LoginClientFactory::factory($this->loginWsdl, $bureau);
+        return LoginClientFactory::factory($this->loginWsdl, $organisatie);
     }
 
     /**
@@ -457,7 +457,7 @@ class AllegroService
      */
     public function getSRVEisers(Dossier $dossier, TSRVAanvraagHeader $header): ?TSRVEisers
     {
-        return $this->getSchuldHulpService($dossier->getSchuldhulpbureau())->getSRVEisers((new SchuldHulpServiceGetSRVEisers((new TSRVAanvraagHeader($header->getRelatieCode(),
+        return $this->getSchuldHulpService($dossier->getOrganisatie())->getSRVEisers((new SchuldHulpServiceGetSRVEisers((new TSRVAanvraagHeader($header->getRelatieCode(),
             $header->getVolgnummer(), $header->getIsNPS(), $header->getStatus(), $header->getStatustekst(),
             $header->getAanvraagdatum(), $header->getExtraStatus())))))->getResult();
     }
@@ -468,22 +468,22 @@ class AllegroService
      */
     public function getSBOverzicht(Dossier $dossier)
     {
-        return $this->getSchuldHulpService($dossier->getSchuldhulpbureau())->getSBOverzicht((new SchuldHulpServiceGetSBOverzicht($dossier->getAllegroNummer())));
+        return $this->getSchuldHulpService($dossier->getOrganisatie())->getSBOverzicht((new SchuldHulpServiceGetSBOverzicht($dossier->getAllegroNummer())));
     }
 
     /**
-     * @param Schuldhulpbureau $bureau
+     * @param Organisatie $organisatie
      * @throws \Exception
      */
-    private function setSoapHeader(Schuldhulpbureau $bureau): void
+    private function setSoapHeader(Organisatie $organisatie): void
     {
-        $loginSucces = $this->login($bureau);
+        $loginSucces = $this->login($organisatie);
 
         if(!$loginSucces) {
-            throw new \Exception('Login of schuldhulpbureau failed');
+            throw new \Exception('Login of organisatie failed');
         }
 
-        $header = new \SoapHeader('http://tempuri.org/', 'ROClientIDHeader', ['ID' => $bureau->getAllegroSessionId()]);
+        $header = new \SoapHeader('http://tempuri.org/', 'ROClientIDHeader', ['ID' => $organisatie->getAllegroSessionId()]);
         $this->altService->__setSoapHeaders($header);
     }
 
@@ -540,14 +540,14 @@ class AllegroService
     }
 
     /**
-     * @param Schuldhulpbureau $bureau
+     * @param Organisatie $organisatie
      * @param string $searchString
      * @throws \Exception
      */
-    public function syncSchuldeisers(Schuldhulpbureau $bureau, $searchString = ''): array {
-        $bureau = $this->login($bureau);
+    public function syncSchuldeisers(Organisatie $organisatie, $searchString = ''): array {
+        $organisatie = $this->login($organisatie);
         $parameters = new SchuldHulpServiceGetLijstSchuldeisers($searchString);
-        $response = $this->getSchuldHulpService($bureau)->getLijstSchuldeisers($parameters);
+        $response = $this->getSchuldHulpService($organisatie)->getLijstSchuldeisers($parameters);
         $statistics = ['created' => 0, 'updated' => 0];
 
         if (null === $response->getResult()->getTOrganisatie()) {

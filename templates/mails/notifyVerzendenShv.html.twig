@@ -1,5 +1,5 @@
 {% block subject -%}
-    Nieuw schulddossier ({{ dossier.getSchuldhulpbureau().getNaam() }} via Schulddossier) [{{ dossier.id }}]
+    Nieuw schulddossier ({{ dossier.getOrganisatie().getNaam() }} via Schulddossier) [{{ dossier.id }}]
 {%- endblock  %}
 
 {% block html -%}

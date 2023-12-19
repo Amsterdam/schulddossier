@@ -1,0 +1,433 @@
+.document-container {
+  max-width: $maxContentWidth;
+  margin: 2 * $lineHeight auto;
+  position: relative;
+}
+.document-container__narrow {
+  max-width: $maxContentNarrowWidth;
+}
+.document-container__wide {
+  max-width: $maxContentWideWidth;
+}
+
+.pdf-splitter.animatable ~ .document-container {
+  //transition: padding .3s;
+}
+
+.document {
+  background-color: #fff;
+  > p {
+    max-width: 700px;
+  }
+  .document-team {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 0 0 1rem 0;
+    margin: 0 0 20px 0;
+  }
+  .document-title {
+    margin-bottom: 80px;
+  }
+
+  .document-header {
+    margin: (-$padding) (-$padding) $padding (-$padding);
+    @include medium {
+      margin: (-10px) (-10px) 10px (-10px);
+    }
+  }
+
+  .document-footer {
+    margin: $padding (-$padding) (-$padding) (-$padding);
+    @include medium {
+      margin: 10px (-10px) (-10px) (-10px);
+    }
+  }
+
+  .document-meta {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      display: inline-block;
+      margin-right: 1em;
+    }
+
+  }
+
+}
+.document__gray {
+  background-color: #fafafa;
+}
+
+.document-header,
+.document-footer {
+  background-color: #f7f7f7;
+  margin-bottom: $lineHeight;
+  padding: $padding;
+  @include medium {
+    padding: 10px;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+.document-footer {
+  border-top: 1px solid #dfdfdf;
+}
+
+.form-changed + .document-footer {
+  .button,
+  .button.primary,
+  .button.secondary {
+    color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    &:hover {
+      color: rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.document-header {
+  border-bottom: 1px solid #dfdfdf;
+  &.group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+  .document-title {
+    margin-bottom: .2em;
+  }
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.bestanden {
+  font-size: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+  li {
+    display: inline-block;
+    position: relative;
+  }
+}
+
+.bestand {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 150px;
+  margin: 5px;
+
+  //padding: 30px 30px 28px 30px;
+
+  //margin: 0 0 20px 0;
+  background-color: rgba($brandColor2, 0);
+  transition: background-color .3s;
+  i {
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: box-shadow .3s;
+    box-shadow: 0 0 5px 0 rgba(#000, 0);
+    text-align: center;
+    font-size: 24px;
+    line-height: 150px;
+    padding-right: 2px;
+    font-style: normal;
+    &:after {
+      transition: opacity .3s;
+    }
+  }
+
+}
+
+a.bestand {
+  pointer-events: none;
+  &:before {
+    content: '';
+    pointer-events: auto;
+    position: absolute;
+    z-index: 2;
+    @extend .icon-download !optional;
+    background-position: 50% 50%;
+    background-size: 20px auto;
+    width: 3rem;
+    height: 3rem;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity .3s;
+
+    background-color: #fff;
+  }
+  //&:hover {
+  //  background-color: rgba($brandColor2, .2);
+  //  &:before {
+  //    opacity: 1;
+  //  }
+  //  i {
+  //    box-shadow: 0 0 5px 0 rgba(#000, .4);
+  //  }
+  //}
+  &.add {
+    &:before {
+      display: none;
+    }
+    &:hover {
+      .icon-file:after {
+        opacity: 1;
+      }
+    }
+  }
+  .bestand-naam {
+    position: absolute;
+    font-size: 10px;
+    line-height: 1.2;
+    font-family: Tahoma;
+    text-align: center;
+    padding: 4px 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.bestand-verwijderen-check {
+  pointer-events: none;
+  position: absolute;
+  opacity: 0;
+  left: 0;
+}
+
+.bestand-verwijderen {
+  position: absolute;
+  z-index: 2;
+  left: 5px;
+  top: 5px;
+  font-size: 0;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+  opacity: 0;
+  background-color: rgba(#fff, .8);
+  transition: all .3s;
+  &:before {
+    content: '';
+    @extend .icon-prullenbak !optional;
+    margin-top: .5rem;
+    width: 20px;
+    height: 20px;
+  }
+  &:hover {
+    background-color: rgba(#fff, 1);
+  }
+}
+
+.bestand-zoom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  font-size: 0;
+
+  opacity: 0;
+
+  background-color: #fff;
+
+  transition: all .3s;
+  text-decoration: none;
+  border: 2px solid transparent;
+
+  @extend .icon-zoom_black;
+  background-color: transparent;
+  background-size: 20%;
+  background-repeat: no-repeat;
+  background-position: center;
+  i {
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: box-shadow .3s;
+    box-shadow: 0 0 5px 0 rgba(#000, 0);
+    text-align: center;
+    font-size: 18px;
+    line-height: 150px;
+    padding-right: 2px;
+    &:after {
+      transition: opacity .3s;
+    }
+  }
+  [data-extension] {
+    &:after {
+      content: attr(data-extension);
+      position: absolute;
+      font-size: 8px;
+      color: #fff;
+      background-color: $textColor;
+      left: 28%;
+      right: 29%;
+      bottom: 31%;
+      font-style: normal;
+      font-weight: bold;
+      //top: 50%;
+      line-height: 11px;
+      padding: 2px 0;
+      overflow: hidden;
+      text-transform: uppercase;
+    }
+  }
+  .bestand-naam {
+    position: absolute;
+    font-size: 10px;
+    line-height: 1.2;
+    font-family: Tahoma;
+    text-align: center;
+    padding: 4px 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  //&:before {
+  //  content: '';
+  //  position: absolute;
+  //  z-index: 2;
+  //  left: .3rem;
+  //  top: .3rem;
+  //  width: 1.2rem;
+  //  height: 1.2rem;
+  //  border-radius: 50%;
+  //  text-align: center;
+  //  font-size: 1.4rem;
+  //  line-height: 1rem;
+  //  border: 2px solid $textColor;
+  //  background-color: #fff;
+  //
+  //
+  //}
+  //&:after {
+  //  content: '';
+  //  position: absolute;
+  //  z-index: 1;
+  //  left: 1.7rem;
+  //  top: 1.4rem;
+  //  width: 0;
+  //  height: 1rem;
+  //  border-left: 4px solid $textColor;
+  //  transform: rotate(-45deg);
+  //
+  //}
+
+  &.selected {
+
+    background-color: $lightColor3;
+
+  }
+
+}
+
+.bestanden {
+  li {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  li:hover {
+    .bestand-verwijderen,
+    .bestand:before,
+    .bestand-zoom {
+      opacity: 1;
+    }
+    .bestand-zoom{
+      background-color: $lightColor3;
+    }
+  }
+  .bestand-zoom {
+
+    //background-color: transparent;
+    opacity: 1;
+    &:before {
+      left: 4.1rem;
+      top: 4rem;
+    }
+    &:after {
+      left: 5.4rem;
+      top: 5.1rem;
+    }
+  }
+  .bestand-verwijderen-check ~ label {
+    border: 1px solid transparent;
+  }
+  .bestand-verwijderen-check:checked ~ label {
+    opacity: 1;
+    width: 100%;
+    background: rgba(255,255,255,1);
+    border: 1px solid #000;
+    height: 100%;
+    left: 0;
+    top: 0;
+    &:before {
+      background-image: url('../../images/ico_undo.svg');
+      background-position-x: 10px;
+      width: 100%;
+      background-size: contain;
+    }
+    &:after {
+      content: 'Document wordt verwijderd';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      bottom: 50px;
+      font-size: 16px;
+      line-height: 1.2em;
+      text-align: center;
+    }
+    &:hover:after {
+      content: 'Document herstellen';
+    }
+  }
+  .bestand-verwijderen-check:checked ~ .bestand {
+    .icon-file {
+      opacity: .1;
+    }
+
+    &:hover {
+      &:before {
+        opacity: 0;
+      }
+      .icon-file:after {
+        opacity: 1;
+      }
+    }
+
+  }
+}
+
+.bestand-zoom.selected + .bestand + input + label,
+.bestand-zoom.selected + .bestand:before {
+  opacity: 1;
+}

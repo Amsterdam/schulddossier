@@ -20,6 +20,7 @@ parameters:
     azureTenantId: '%env(AZURE_TENANT_ID)%'
     azureClientId: '%env(AZURE_CLIENT_ID)%'
     azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
+    featureflag_herfinanciering: '%env(FEATUREFLAG_HERFINANCIERING)%'
 
 
 
@@ -86,10 +87,15 @@ services:
     app.form.type.create:
         class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType
         arguments:
-            - '@GemeenteAmsterdam\FixxxSchuldhulp\Form\Event\TransformMedewerkerSchuldhulpbureau'
+            - '@GemeenteAmsterdam\FixxxSchuldhulp\Form\Event\TransformMedewerkerOrganisatie'
+
+    app.form.ondertekendaanvraagform:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerOndertekendAanvraagFormulierFormType
+        arguments:
+            - '%featureflag_herfinanciering%'
 
     app.form.type.employeetype:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldhulpbureauMedewerkerType
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\OrganisatieMedewerkerType
         arguments:
             - '@security.token_storage'
             - '@doctrine.orm.entity_manager'
@@ -194,3 +200,9 @@ services:
     GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage:
         arguments:
             $SASFileReaderConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_config'
+
+    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileListener:
+        arguments:
+            $publicDir: '%kernel.project_dir%/public'
+        tags:
+            - { name: 'kernel.event_listener', event: 'kernel.response' }
