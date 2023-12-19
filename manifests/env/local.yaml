@@ -127,6 +127,7 @@ jobs:
   certificate-init:
     enabled: false
   migrate:
+    enabled: false
     ttlSecondsAfterFinished: 100
     image:
       repository: salmagundi/schulddossier-phpfpm

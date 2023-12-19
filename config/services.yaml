@@ -197,9 +197,17 @@ services:
             $fileStorageAccount: '%fileStorageAccount%'
             $fileContainer: '%fileContainer%'
 
+    gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_writer_config:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileWriterConfig
+        arguments:
+            $baseConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_base_config'
+            $fileStorageAccount: '%fileStorageAccount%'
+            $fileContainer: '%fileContainer%'
+
     GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage:
         arguments:
             $SASFileReaderConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_config'
+            $SASFileWriterConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_writer_config'
 
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileListener:
         arguments:
