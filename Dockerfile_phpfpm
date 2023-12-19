@@ -18,6 +18,8 @@ RUN apk add \
     jpeg-dev \
     libreoffice \
     imagemagick-dev \
+    libxslt \
+    libxslt-dev \
     yarn
 
 RUN docker-php-ext-install \
