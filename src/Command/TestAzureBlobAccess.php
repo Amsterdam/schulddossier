@@ -34,7 +34,7 @@ class TestAzureBlobAccess extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $accessToken = $this->storage->generateURLForFileReading('test');
+        $accessToken = $this->storage->storeFile('test.pdf');
         $output->write(__CLASS__ . ':' . __FUNCTION__ . ':' . __LINE__ . ': access token: ' . $accessToken);
         return Command::SUCCESS;
 //

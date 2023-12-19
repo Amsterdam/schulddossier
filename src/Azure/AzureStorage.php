@@ -53,7 +53,7 @@ class AzureStorage implements AzureStorageInterface
         return $url;
     }
 
-    public function storeFile(string $blob, UploadedFile $file)
+    public function storeFile(string $blob, ?UploadedFile $file)
     {
         $this->config = $this->SASFileWriterConfig->getConfig();
 
