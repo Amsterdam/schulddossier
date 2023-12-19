@@ -22,8 +22,8 @@ class SASFileReaderConfig
                 // currently signed to the container, but could also be signed to specific blob (b).
                 'signedResource' => 'c',
                 'apiVersion' => '2023-01-01',
-                'expiry' => (new \DateTime('now + 15 minutes'))->format('Y-m-d\TH:i:s\Z'),
-                'start' => (new \DateTime('15 minutes ago'))->format('Y-m-d\TH:i:s\Z'),
+                'expiry' => (new \DateTime('now + 120 minutes'))->format('Y-m-d\TH:i:s\Z'),
+                'start' => (new \DateTime('120 minutes ago'))->format('Y-m-d\TH:i:s\Z'),
             ]
         );
     }
