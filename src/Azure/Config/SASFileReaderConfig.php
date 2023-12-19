@@ -20,7 +20,7 @@ class SASFileReaderConfig
                 'permissions' => 'r',
                 // specificies which resources are available
                 // currently signed to the container, but could also be signed to specific blob (b).
-                'signedResource' => 'c',
+                'signedResource' => 'b',
                 'apiVersion' => '2023-01-01',
                 'expiry' => (new \DateTime('now + 120 minutes'))->format('Y-m-d\TH:i:s\Z'),
                 'start' => (new \DateTime('120 minutes ago'))->format('Y-m-d\TH:i:s\Z'),
