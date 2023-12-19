@@ -2,7 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config;
 
-class SASFileReaderConfig
+class SASFileWriterConfig
 {
     private array $config;
 
@@ -17,13 +17,13 @@ class SASFileReaderConfig
             [
                 'storageAccount' => $fileStorageAccount,
                 'container' => $fileContainer,
-                'permissions' => 'r',
+                'permissions' => 'w',
                 // specificies which resources are available
                 // currently signed to the container, but could also be signed to specific blob (b).
                 'signedResource' => 'c',
                 'apiVersion' => '2023-01-01',
-                'expiry' => (new \DateTime('now + 15 minutes'))->format('Y-m-d\TH:i:s\Z'),
-                'start' => (new \DateTime('15 minutes ago'))->format('Y-m-d\TH:i:s\Z'),
+                'expiry' => (new \DateTime('now + 2 minutes'))->format('Y-m-d\TH:i:s\Z'),
+                'start' => (new \DateTime('1 minute ago'))->format('Y-m-d\TH:i:s\Z'),
             ]
         );
     }
