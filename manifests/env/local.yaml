@@ -1,0 +1,170 @@
+image:
+  registry: 127.0.0.1:5001
+  imagePullPolicy: Always
+
+host: sd.local
+
+securityContext:
+  container:
+    readOnlyRootFilesystem: false
+
+secrets:
+  certificate:
+    enabled: false
+  my-vault-secrets:
+    enabled: false
+
+services:
+  schulddossier-nginx:
+    selector:
+      component: nginx
+    ports:
+      - port: 7020
+        targetPort: http
+
+ingress:
+  schulddossier-nginx-internal:
+    className: nginx
+    paths:
+      - path: /
+        pathType: Prefix
+        service: schulddossier-nginx
+        port: 7020
+
+deployments:
+  schulddossier-phpfpm:
+    env:
+      AZURE_AUTHORITY_HOST:
+      AZURE_TENANT_ID:
+      AZURE_FEDERATED_TOKEN_FILE:
+      AZURE_CLIENT_ID:
+      IAM_CLIENT_ID: kredietbank
+      IAM_CLIENT_SECRET: insecure
+      IAM_URL: http://keycloak.local/realms/kredietbank
+      IAM_LOGOUT_URL: http://keycloak.local/realms/kredietbank/protocol/openid-connect/logout
+      APP_NOTIFICATIE_FROM: test@amsterdam.nl
+      ALLEGRO_ENDPOINT: https://schuldhulp-ft.sociaal.amsterdam.nl:8084/SOAP
+      ALLEGRO_ONBEKENDE_SCHULDEISER: "0"
+      APP_ENV: dev
+      APP_DEBUG: 1
+      APP_SECRET: insecure
+      DATABASE_URL: pgsql://salmagundi:insecure@psql-postgresql:5432/schulddossier?serverVersion=13&charset=utf8/main?serverVersion=13&charset=utf8
+      MAILER_DSN: smtp://mailhog.local.svc.cluster.local:1025
+
+      AZURE_SUBSCRIPTION_ID: test
+      AZURE_RESOURCE_GROUP: test
+      AZURE_STORAGE_FILE_ACCOUNT: test
+      AZURE_STORAGE_FILE_CONTAINER: test
+
+
+    image:
+      repository: salmagundi/schulddossier-phpfpm
+    securityContext:
+      runAsUser: 82 #TODO: maybe this is a system user
+    selectorLabels:
+      component: phpfpm
+      kubycat: schulddossier
+    serviceAccount: app
+    containers:
+      - name: main
+        ports:
+          - port: 9000
+            name: http
+        volumes:
+          - name: cache
+            mountPath: /var/www/var/cache
+          - name: logs
+            mountPath: /var/www/var/log
+          - name: lock
+            mountPath: /run/lock
+          - name: tmp
+            mountPath: /tmp
+    volumes:
+      - name: cache
+        spec:
+          emptyDir: { }
+      - name: logs
+        spec:
+          emptyDir: { }
+      - name: lock
+        spec:
+          emptyDir: { }
+      - name: tmp
+        spec:
+          emptyDir: { }
+  schulddossier-nginx:
+    image:
+      repository: salmagundi/schulddossier-nginx
+    securityContext:
+      runAsUser: 101
+    selectorLabels:
+      component: nginx
+    containers:
+      - name: main
+        ports:
+          - port: 8080
+            name: http
+        volumes:
+          - name: logs
+            mountPath: /var/log/nginx
+          - name: run
+            mountPath: /var/run
+          - name: cache
+            mountPath: /var/cache/nginx
+    volumes:
+      - name: logs
+        spec:
+          emptyDir: { }
+      - name: run
+        spec:
+          emptyDir: { }
+      - name: cache
+        spec:
+          emptyDir: { }
+
+
+jobs:
+  certificate-init:
+    enabled: false
+  migrate:
+    ttlSecondsAfterFinished: 100
+    image:
+      repository: salmagundi/schulddossier-phpfpm
+    annotations:
+      helm.sh/hook: post-install,post-upgrade
+    containers:
+      - name: main
+        volumes:
+          - name: cache
+            mountPath: /var/www/var/cache
+          - name: logs
+            mountPath: /var/www/var/log
+          - name: lock
+            mountPath: /run/lock
+          - name: tmp
+            mountPath: /tmp
+        command: ["php", "bin/console", "doc:mig:mig"]
+        env:
+          AZURE_AUTHORITY_HOST:
+          AZURE_TENANT_ID:
+          AZURE_FEDERATED_TOKEN_FILE:
+          AZURE_CLIENT_ID:
+          APP_ENV: dev
+          APP_DEBUG: 1
+          APP_SECRET: insecure
+          DATABASE_URL: pgsql://salmagundi:insecure@psql-postgresql:5432/schulddossier?serverVersion=13&charset=utf8/main?serverVersion=13&charset=utf8
+    backoffLimit: 2
+
+    volumes:
+      - name: cache
+        spec:
+          emptyDir: {}
+      - name: logs
+        spec:
+          emptyDir: {}
+      - name: lock
+        spec:
+          emptyDir: {}
+      - name: tmp
+        spec:
+          emptyDir: {}

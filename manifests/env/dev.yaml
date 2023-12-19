@@ -1,0 +1,111 @@
+workloadIdentity: 276621e3-684f-4524-a0da-46dd07897d72
+
+keyVaultName: schulddossier-o-o354tdmk
+
+nodepool: cccsalmont01
+
+host: schulddossier.salm-o.azure.amsterdam.nl
+
+secrets:
+  certificate:
+    keyVaultName: shared-o-xxmtgnro7phka
+  my-vault-secrets:
+    keyVaultName: schulddossier-o-o354tdmk
+
+deployments:
+  schulddossier-phpfpm:
+    env:
+      ENV: dev
+      APP_SECRET: insecure
+      APP_ENV: dev
+      APP_DEBUG: 0
+      DATABASE_URL: pgsql://schulddossier-app-o:temporary@schulddossier-o-o354tdmk.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
+      ALLEGRO_ENDPOINT: "https://schuldhulp.sociaal.amsterdam.nl:8084/SOAP"
+      APP_NOTIFICATIE_FROM: "noreply@amsterdam.nl"
+      ALLEGRO_ONBEKENDE_SCHULDEISER: "2506424"
+      APP_GKA_NOTIFICATIE_ADRES: "kredietbank.salmagundi@amsterdam.nl"
+      SWIFT_AUTH_URL:
+      SWIFT_REGION:
+      SWIFT_USER_DOMAIN_ID:
+      SWIFT_EXTERNAL_DOMAIN:
+      SWIFT_USER_NAME:
+      SWIFT_USER_PASSWORD:
+      SWIFT_PROJECT_ID:
+      SWIFT_CONTAINER_PREFIX:
+      SWIFT_TEMP_URL_KEY:
+      THUMBNAILSERVICE_URL:
+      TRUSTED_PROXIES: "10.243.0.0/16"
+
+      AZURE_SUBSCRIPTION_ID: 48087296-794d-4fc5-9b84-9bb767f9e2ef
+      AZURE_RESOURCE_GROUP: schulddossier-o-rg
+      AZURE_STORAGE_FILE_ACCOUNT: schulddossierdataoo354td
+      AZURE_STORAGE_FILE_CONTAINER: data
+
+      # IAM_CLIENT_ID: VAULTED
+      # IAM_CLIENT_SECRET:VAULTED
+      # IAM_URL: VAULTED
+      # IAM_LOGOUT_URL: VAULTED
+      FEATUREFLAG_HERFINANCIERING: "0"
+
+    autoscale:
+      cpu: 70
+      memory: 90
+      min: 1
+      max: 2
+
+jobs:
+  migrate:
+    ttlSecondsAfterFinished: 300
+    image:
+      repository: salmagundi/schulddossier-phpfpm
+    annotations:
+      helm.sh/hook: post-install,post-upgrade
+    containers:
+      - name: main
+        volumes:
+          - name: cache
+            mountPath: /var/www/var/cache
+          - name: logs
+            mountPath: /var/www/var/log
+          - name: tmp
+            mountPath: /tmp
+        command: ["php", "bin/console", "doc:mig:mig"]
+        env:
+          ENV: dev
+          APP_SECRET: insecure
+          APP_ENV: dev
+          APP_DEBUG: 0
+          DATABASE_URL: pgsql://schulddossier-app-o:temporary@schulddossier-o-o354tdmk.postgres.database.azure.com:5432/main?serverVersion=13&charset=utf8
+          ALLEGRO_ENDPOINT: "https://schuldhulp.sociaal.amsterdam.nl:8084/SOAP"
+          APP_NOTIFICATIE_FROM: "noreply@amsterdam.nl"
+          ALLEGRO_ONBEKENDE_SCHULDEISER: "2506424"
+          APP_GKA_NOTIFICATIE_ADRES: "kredietbank.salmagundi@amsterdam.nl"
+          SWIFT_AUTH_URL:
+          SWIFT_REGION:
+          SWIFT_USER_DOMAIN_ID:
+          SWIFT_EXTERNAL_DOMAIN:
+          SWIFT_USER_NAME:
+          SWIFT_USER_PASSWORD:
+          SWIFT_PROJECT_ID:
+          SWIFT_CONTAINER_PREFIX:
+          SWIFT_TEMP_URL_KEY:
+          THUMBNAILSERVICE_URL:
+          TRUSTED_PROXIES: "10.243.0.0/16"
+
+          # IAM_CLIENT_ID: VAULTED
+          # IAM_CLIENT_SECRET:VAULTED
+          # IAM_URL: VAULTED
+          # IAM_LOGOUT_URL: VAULTED
+          FEATUREFLAG_HERFINANCIERING: "0"
+    backoffLimit: 2
+
+    volumes:
+      - name: cache
+        spec:
+          emptyDir: {}
+      - name: logs
+        spec:
+          emptyDir: {}
+      - name: tmp
+        spec:
+          emptyDir: {}
