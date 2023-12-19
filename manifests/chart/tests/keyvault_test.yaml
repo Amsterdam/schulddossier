@@ -1,0 +1,158 @@
+suite: SecretsProviderClass KeyVault
+release:
+  name: test
+templates:
+  - secretproviderclass.yaml
+tests:
+  - it: should have release name as postfix
+    set:
+      secrets:
+        my-secrets:
+          type: keyVault
+    asserts:
+      - isKind:
+          of: SecretProviderClass
+      - equal:
+          path: metadata.name
+          value: my-secrets-test
+
+  - it: should support keyvault secrets using secretproviderclass
+    set:
+      keyVaultName: default-kv
+      secrets:
+        my-secrets:
+          type: keyvault
+          secrets:
+            - secret1
+            - secret2
+    asserts:
+      - hasDocuments:
+          count: 1
+      - lengthEqual:
+          path: spec.secretObjects
+          count: 1
+      - isSubset:
+          path: spec.secretObjects[0]
+          content:
+            secretName: my-secrets-test
+            type: Opaque
+      - equal:
+          path: spec.secretObjects[0].data
+          value:
+            - key: secret1
+              objectName: secret1
+            - key: secret2
+              objectName: secret2
+
+      - isSubset:
+          path: spec.parameters
+          content:
+            objects: |
+              array:
+                - |
+                  objectName: "secret1"
+                  objectType: secret
+                - |
+                  objectName: "secret2"
+                  objectType: secret
+
+      - equal:
+          path: spec.parameters.keyvaultName
+          value: default-kv
+
+  - it: should should use the default keyVaultName
+    set:
+      keyVaultName: default-kv
+      secrets:
+        my-secrets:
+          type: keyvault
+    asserts:
+      - equal:
+          path: spec.parameters.keyvaultName
+          value: default-kv
+
+  - it: should should be possible to override the keyVaultName
+    set:
+      keyVaultName: default-kv
+      secrets:
+        my-secrets:
+          type: keyvault
+          keyVaultName: my-kv
+    asserts:
+      - equal:
+          path: spec.parameters.keyvaultName
+          value: my-kv
+
+  - it: should should use the default tenantId
+    set:
+      tenantId: default-tenant-id
+      secrets:
+        my-secrets:
+          type: keyvault
+    asserts:
+      - equal:
+          path: spec.parameters.tenantId
+          value: default-tenant-id
+
+  - it: should should be possible to override the tenant id
+    set:
+      tenantId: default-tenant-id
+      secrets:
+        my-secrets:
+          type: keyvault
+          tenantId: my-tenant-id
+    asserts:
+      - equal:
+          path: spec.parameters.tenantId
+          value: my-tenant-id
+
+  - it: should use workload identity in the keyvault
+    set:
+      workloadIdentity: default-client-id
+      secrets:
+        my-secrets:
+          type: keyvault
+    asserts:
+      - equal:
+          path: spec.parameters.clientID
+          value: default-client-id
+
+  - it: should be possible to set a workload identity for a specific secret
+    set:
+      workloadIdentity: default-client-id
+      secrets:
+        my-secrets:
+          type: keyvault
+          workloadIdentity: my-client-id
+    asserts:
+      - equal:
+          path: spec.parameters.clientID
+          value: my-client-id
+
+  - it: if workload identity is configured, dont use vm identity
+    set:
+      keyVaultIdentity: default-kv-identity
+      workloadIdentity: default-client-id
+      secrets:
+        my-secrets:
+          type: keyvault
+    asserts:
+      - notExists:
+          path: spec.parameters.userAssignedIdentityID
+      - equal:
+          path: spec.parameters.useVMManagedIdentity
+          value: "false"
+
+  - it: if workload identity is not configured, use vm identity
+    set:
+      keyVaultIdentity: default-kv-identity
+      secrets:
+        my-secrets:
+          type: keyvault
+    asserts:
+      - equal:
+          path: spec.parameters.userAssignedIdentityID
+          value: "default-kv-identity"
+      - equal:
+          path: spec.parameters.useVMManagedIdentity
+          value: "true"

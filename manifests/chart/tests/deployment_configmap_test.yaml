@@ -1,0 +1,79 @@
+suite: Deployments Configmaps
+release:
+  name: test
+templates:
+  - deployment.yaml
+tests:
+
+  - it: should use configmaps defined on container level
+    set:
+      image:
+        repository: defaultrepo
+      configMaps:
+        my-config:
+          data:
+            config1: value1
+            config2: value2
+      deployments:
+        main:
+          containers:
+            - name: main
+              configMaps:
+                - my-config
+    asserts: &asserts
+      - equal:
+          path: spec.template.spec.containers[?(@.name=='main')].env
+          value:
+            - name: "CONFIG1"
+              valueFrom:
+                configMapKeyRef:
+                  name: "my-config-test"
+                  key: "config1"
+            - name: "CONFIG2"
+              valueFrom:
+                configMapKeyRef:
+                  name: "my-config-test"
+                  key: "config2"
+      - equal:
+          path: spec.template.spec.containers[?(@.name=='main')].volumeMounts
+          value:
+            - mountPath: /mnt/configs/my-config
+              name: my-config
+              readOnly: true
+      - equal:
+          path: spec.template.spec.volumes
+          value:
+            - name: my-config
+              configMap:
+                name: my-config-test
+
+  - it: should use configmaps defined on deployment level
+    set:
+      image:
+        repository: defaultrepo
+      configMaps:
+        my-config:
+          data:
+            config1: value1
+            config2: value2
+      deployments:
+        main:
+          configMaps:
+            - my-config
+          containers:
+            - name: main
+    asserts: *asserts
+
+  - it: should give an error if the reference to a configmap does not exist
+    set:
+      image:
+        repository: defaultrepo
+      deployments:
+        main:
+          containers:
+            - name: main
+              configMaps:
+                - my-config
+    asserts:
+      - failedTemplate:
+          errorMessage: "ConfigMap my-config does not exist"

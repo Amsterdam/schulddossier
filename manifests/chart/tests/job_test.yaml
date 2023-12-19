@@ -1,0 +1,119 @@
+suite: Jobs
+release:
+  name: test
+templates:
+  - job.yaml
+tests:
+  - it: should give an error if no repository
+    set:
+      jobs:
+        app:
+          containers:
+            - name: main
+    asserts:
+      - failedTemplate:
+          errorMessage: "A repository configuration is required"
+
+  - it: should have release name as postfix
+    set:
+      image:
+        repository: defaultrepo
+      jobs:
+        app: {}
+    asserts:
+      - isKind:
+          of: Job
+      - matchRegex:
+          path: metadata.name
+          pattern: -test$
+
+  - it: should use override image parameters
+    set:
+      image:
+        registry: defaultregistry
+        repository: defaultrepo
+        tag: "latest"
+      jobs:
+        aaa:
+          containers:
+            - name: main
+              image:
+                registry: myregistry
+        bbb:
+          containers:
+            - name: main
+              image:
+                repository: myrepo
+        ccc:
+          containers:
+            - name: main
+              image:
+                tag: mytag
+        ddd:
+          containers:
+            - name: main
+    asserts:
+      - hasDocuments:
+          count: 4
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: myregistry/defaultrepo:latest
+        documentIndex: 0
+
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: defaultregistry/myrepo:latest
+        documentIndex: 1
+
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: defaultregistry/defaultrepo:mytag
+        documentIndex: 2
+
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: defaultregistry/defaultrepo:latest
+        documentIndex: 3
+
+  - it: should use the default serviceAccount
+    set:
+      image:
+        repository: defaultrepo
+      serviceAccount: foo
+      jobs:
+        main:
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.template.spec.serviceAccountName
+          value: foo-test
+
+  - it: should be possible to override the serviceaccount per pod
+    set:
+      image:
+        repository: defaultrepo
+      jobs:
+        main:
+          serviceAccount: foo
+          containers:
+            - name: main
+    asserts:
+      - equal:
+          path: spec.template.spec.serviceAccountName
+          value: foo-test
+
+  - it: should inject labels to use workload identity
+    set:
+      workloadIdentity: default-client-id
+      image:
+        repository: defaultrepo
+      jobs:
+        main:
+          containers:
+            - name: main
+    asserts:
+      - isSubset:
+          path: spec.template.metadata.labels
+          content:
+            azure.workload.identity/use: "true"
