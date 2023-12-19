@@ -4,7 +4,6 @@
     "require": {
         "php": "^8.2",
         "ext-iconv": "*",
-        "azure-oss/storage": "dev-main",
         "bevacqua/dragula": "3.7.2",
         "bevacqua/horsey": "4.2.2",
         "bevacqua/rome": "2.1.22",
