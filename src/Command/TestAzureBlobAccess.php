@@ -36,7 +36,7 @@ class TestAzureBlobAccess extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $file = new UploadedFile('/var/www/assets/images/envelop.svg', 'envelop.svg');
-        $destinationPath = 'folder/test/';
+        $destinationPath = 'folder/test1/';
 
         $urlWithSas = $this->storage->storeFile($file, $destinationPath);
         $io->info(__CLASS__ . ':' . __FUNCTION__ . ':' . __LINE__ . ': Uploaded file: ' . $file->getClientOriginalName());

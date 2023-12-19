@@ -89,16 +89,17 @@ class AzureStorage implements AzureStorageInterface
 
         $content = $file->getContent();
 
-        // TODO Change this to $this->client instead of curl
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $uploadUrl);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-ms-blob-type: BlockBlob', 'Content-Length: ' . strlen($content)));
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $content);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
+        $response = $this->client->request(
+            'PUT',
+            $uploadUrl,
+            [
+                RequestOptions::BODY => $content,
+                RequestOptions::HEADERS => [
+                    'x-ms-blob-type' => 'BlockBlob',
+                    # Do not override the Content-Type header here, Guzzle takes care of it
+                ] ,
+            ]
+        );
 
         return $this->generateURLForFileReading($file->getClientOriginalName(), $destinationPath);
     }
