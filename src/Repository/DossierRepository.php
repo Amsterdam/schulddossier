@@ -41,12 +41,12 @@ class DossierRepository extends EntityRepository
         $qb->andWhere('dossier.inPrullenbak = :inPrullenbak');
         $qb->setParameter('inPrullenbak', true);
         if ($gebruiker->getType() === Gebruiker::TYPE_SHV) {
-            $qb->andWhere('dossier.medewerkerSchuldhulpbureau = :gebruikerId');
+            $qb->andWhere('dossier.medewerkerOrganisatie = :gebruikerId');
             $qb->setParameter('gebruikerId', $gebruiker->getId());
         }
         if ($gebruiker->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
-            $qb->andWhere('dossier.schuldhulpbureau IN (:ghbs)');
-            $qb->setParameter('ghbs', $gebruiker->getSchuldhulpbureaus());
+            $qb->andWhere('dossier.organisatie IN (:ghbs)');
+            $qb->setParameter('ghbs', $gebruiker->getOrganisaties());
         }
         $qb->setFirstResult($page * $pageSize);
         $qb->setMaxResults($pageSize);
@@ -59,8 +59,8 @@ class DossierRepository extends EntityRepository
         $query = array_merge([
             'naam' => null,
             'status' => [],
-            'schuldhulpbureaus' => null,
-            'medewerkerSchuldhulpbureau' => null,
+            'organisaties' => null,
+            'medewerkerOrganisatie' => null,
             'teamGka' => null,
         ], $query);
 
@@ -102,33 +102,33 @@ class DossierRepository extends EntityRepository
             $qb->andWhere($orX);
         }
 
-        if ($query['schuldhulpbureaus'] !== null && count($query['schuldhulpbureaus']) > 0) {
+        if ($query['organisaties'] !== null && count($query['organisaties']) > 0) {
             $expr = $qb->expr()->orX();
 
-            $schuldhulpbureaus = [];
+            $organisaties = [];
 
-            if ($query['schuldhulpbureaus'] instanceof Collection) {
-                $schuldhulpbureaus = $query['schuldhulpbureaus']->toArray();
-            } else if (is_array($query['schuldhulpbureaus'])) {
-                $schuldhulpbureaus = $query['schuldhulpbureaus'];
+            if ($query['organisaties'] instanceof Collection) {
+                $organisaties = $query['organisaties']->toArray();
+            } else if (is_array($query['organisaties'])) {
+                $organisaties = $query['organisaties'];
             } else {
-                $schuldhulpbureaus = [$query['schuldhulpbureaus']];
+                $organisaties = [$query['organisaties']];
             }
 
-            foreach ($schuldhulpbureaus as $i => $schuldhulpbureau) {
-                $expr->add('dossier.schuldhulpbureau = :schuldhulpbureau_' . $i);
-                $qb->setParameter('schuldhulpbureau_' . $i, $schuldhulpbureau);
+            foreach ($organisaties as $i => $organisatie) {
+                $expr->add('dossier.organisatie = :organisatie_' . $i);
+                $qb->setParameter('organisatie_' . $i, $organisatie);
             }
             $qb->andWhere($expr);
         }
 
-        if (isset($query['schuldhulpbureau']) && $query['schuldhulpbureau'] !== null) {
-            @trigger_error('Query for schuldhulpbureau is no longer supported', E_USER_DEPRECATED);
+        if (isset($query['organisatie']) && $query['organisatie'] !== null) {
+            @trigger_error('Query for organisatie is no longer supported', E_USER_DEPRECATED);
         }
 
-        if ($query['medewerkerSchuldhulpbureau'] !== null) {
-            $qb->andWhere('dossier.medewerkerSchuldhulpbureau = :medewerkerSchuldhulpbureau');
-            $qb->setParameter('medewerkerSchuldhulpbureau', $query['medewerkerSchuldhulpbureau']);
+        if ($query['medewerkerOrganisatie'] !== null) {
+            $qb->andWhere('dossier.medewerkerOrganisatie = :medewerkerOrganisatie');
+            $qb->setParameter('medewerkerOrganisatie', $query['medewerkerOrganisatie']);
         }
         if (!is_null($query['eersteKeerVerzondenAanGKA']) && $query['eersteKeerVerzondenAanGKA']) {
             $qb->andWhere('dossier.eersteKeerVerzondenAanGKA = :eersteKeerVerzondenAanGKA');

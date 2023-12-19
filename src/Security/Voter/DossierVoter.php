@@ -65,7 +65,7 @@ class DossierVoter extends Voter
         }
 
         if ($this->decisionManager->decide($token, ['ROLE_SHV'])) {
-            if ($user->getSchuldhulpbureaus()->contains($dossier->getSchuldhulpbureau()) === false) {
+            if ($user->getOrganisaties()->contains($dossier->getOrganisatie()) === false) {
                 return false;
             }
         }

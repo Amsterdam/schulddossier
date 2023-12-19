@@ -2,23 +2,11 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -28,7 +16,22 @@ class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractTyp
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('toelichtingAanvraagSchuldsaneringShvOntvangenShv', SchuldhulpverlenerStatusFormType::class, [
+
+        $builder->add('ontstaanVanSchulden', ChoiceType::class, [
+            'required' => false,
+            'choices' => $this->getOntstaanVanSchuldenOptions(),
+            'empty_data' => null,
+            'placeholder' => 'Selecteer een optie'
+        ]);
+
+        $builder->add('inspanningsverplichting', ChoiceType::class, [
+            'required' => false,
+            'choices' => $this->getInspanningsverplichting(),
+            'empty_data' => null,
+            'placeholder' => 'Selecteer een optie'
+        ]);
+
+        $builder->add('toelichtingAanvraagSchuldsaneringShvOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
             'disabled' => $options['disable_group'] === 'gka'
         ]);
@@ -77,5 +80,23 @@ class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractTyp
         $resolver->setDefault('data_class', Voorlegger::class);
         $resolver->setDefault('choice_translation_domain', false);
         $resolver->setDefault('disable_group', null);
+    }
+
+    private function getOntstaanVanSchuldenOptions() {
+        return [
+            'Overlevingsschulden' => 'OVERLEVING',
+            'Compensatieschulden' => 'COMPENSATIE',
+            'Aanpassingsschulden' => 'AANPASSING',
+            'Overkrediterings of bestedingsschulden' => 'OVERKREDITERING',
+        ];
+    }
+
+    private function getInspanningsverplichting() {
+        return [
+            'Naar maximaal vermogen werkzaam' => 'MAXIMAAL_VERMOGEN',
+            'Niet naar maximaal vermogen werkzaam, sollicitatieplicht, hogere aflossingscapaciteit verwacht' => 'HOGE_CAPACITEIT',
+            'Niet naar maximaal vermogen werkzaam, sollicitatieplicht, geen hogere aflossingscapaciteit verwacht' => 'LAGE_CAPACITEIT',
+            'Niet in staat om werk te verrichten voor de looptijd van de schuldregeling' => 'GEEN_WERK',
+        ];
     }
 }

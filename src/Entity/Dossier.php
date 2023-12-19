@@ -231,20 +231,20 @@ class Dossier
     private $partnerBanknaam;
 
     /**
-     * @var Schuldhulpbureau
-     * @ORM\ManyToOne(targetEntity="Schuldhulpbureau")
-     * @ORM\JoinColumn(name="schuldhulpbureau_id", referencedColumnName="id", nullable=false)
+     * @var Organisatie
+     * @ORM\ManyToOne(targetEntity="Organisatie")
+     * @ORM\JoinColumn(name="organisatie_id", referencedColumnName="id", nullable=false)
      * @Assert\NotBlank
      */
-    private $schuldhulpbureau;
+    private $organisatie;
 
     /**
      * @var Gebruiker
      * @ORM\ManyToOne(targetEntity="Gebruiker")
-     * @ORM\JoinColumn(name="medewerker_schuldhulpbureau_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="medewerker_organisatie_id", referencedColumnName="id", nullable=false)
      * @Assert\NotBlank
      */
-    private $medewerkerSchuldhulpbureau;
+    private $medewerkerOrganisatie;
 
     /**
      * @var Team
@@ -499,19 +499,19 @@ class Dossier
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie
      */
-    public function getSchuldhulpbureau()
+    public function getOrganisatie()
     {
-        return $this->schuldhulpbureau;
+        return $this->organisatie;
     }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker
      */
-    public function getMedewerkerSchuldhulpbureau()
+    public function getMedewerkerOrganisatie()
     {
-        return $this->medewerkerSchuldhulpbureau;
+        return $this->medewerkerOrganisatie;
     }
 
     /**
@@ -706,19 +706,19 @@ class Dossier
     }
 
     /**
-     * @param Schuldhulpbureau $schuldhulpbureau
+     * @param Organisatie $organisatie
      */
-    public function setSchuldhulpbureau(Schuldhulpbureau $schuldhulpbureau = null)
+    public function setOrganisatie(Organisatie $organisatie = null)
     {
-        $this->schuldhulpbureau = $schuldhulpbureau;
+        $this->organisatie = $organisatie;
     }
 
     /**
-     * @param Gebruiker $medewerkerSchuldhulpbureau
+     * @param Gebruiker $medewerkerOrganisatie
      */
-    public function setMedewerkerSchuldhulpbureau(Gebruiker $medewerkerSchuldhulpbureau)
+    public function setMedewerkerOrganisatie(Gebruiker $medewerkerOrganisatie)
     {
-        $this->medewerkerSchuldhulpbureau = $medewerkerSchuldhulpbureau;
+        $this->medewerkerOrganisatie = $medewerkerOrganisatie;
     }
 
     /**

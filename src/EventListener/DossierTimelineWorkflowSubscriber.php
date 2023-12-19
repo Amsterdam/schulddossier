@@ -6,7 +6,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Workflow\Event\Event;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class DossierTimelineWorkflowSubscriber implements EventSubscriberInterface

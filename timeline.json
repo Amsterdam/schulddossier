@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "dossierId": 105,
+    "gebruikerId": 4,
+    "type": "workflow",
+    "datumtijd": "2022-11-10 10:01:58",
+    "omschrijving": "Status veranderd",
+    "subtype": "verzenden_shv"
+  }
+]

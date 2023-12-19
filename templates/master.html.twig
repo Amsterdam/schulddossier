@@ -17,7 +17,7 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
 
-        <link type="text/css" rel="stylesheet" href="{{ asset('/css/screen.css') }}"  media="all">
+        {{ encore_entry_link_tags('app') }}
 
         <script>!function(a){a.className=a.className.replace(/\bno-js\b/g,'js'),'ontouchstart'in window&&(a.className=a.className.replace(/\bno-touch\b/g,'touch'))}(document.documentElement)</script>
     </head>
@@ -67,7 +67,7 @@
                         <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appdossier_') %} class="active"{% endif %}>Dossiers</a></li>
                         <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_') %} class="active"{% endif %}>Schuldeisers</a></li>
                     {% endif %}
-                    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appschuldhulpbureau_') %} class="active"{% endif %}>Organisaties</a></li>
+                    <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_apporganisatie_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_apporganisatie_') %} class="active"{% endif %}>Organisaties</a></li>
                     <li><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appteam_index') }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appteam_') %} class="active"{% endif %}>Teams</a></li>
                     {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_SHV_KEYUSER') or is_granted('ROLE_ADMIN') %}
                         <li class="divider"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_index', {sort:'g.naam', direction: 'asc', page: 1}) }}"{% if (app.request.attributes.get('_route') starts with 'gemeenteamsterdam_fixxxschuldhulp_appgebruiker_') %} class="active"{% endif %}>Gebruikers</a></li>
@@ -106,19 +106,12 @@
 
 {% block document %}.{% endblock %}
         </div>
-        <script src="{{ asset('/vendor/mozilla/pdf.js/build/pdf.js') }}"></script>
-        {# The workerSrc property must be specified.
-        Zie voorbeeld: https://github.com/mozilla/pdf.js/blob/master/examples/learning/helloworld.html #}
-        <script>
-            pdfjsLib.GlobalWorkerOptions.workerSrc = "{{ asset('/vendor/mozilla/pdf.js/build/pdf.worker.js') }}";
-        </script>
-        <script src="{{ asset('/vendor/mrrio/jspdf/dist/jspdf.umd.min.js') }}"></script>
-        <script src="{{ asset('/js/sortable.min.js') }}"></script>
+        {{ encore_entry_script_tags('app') }}
+
         <script src="{{ asset('/vendor/moment/moment/moment.js') }}"></script>
         <script src="{{ asset('/vendor/moment/moment/locale/nl.js') }}"></script>
         <script src="{{ asset('/vendor/bevacqua/rome/dist/rome.standalone.min.js') }}"></script>
-        <script src="{{ asset('/js/flashMessage.js') }}"></script>
-        <script src="{{ asset('/js/scripts.js') }}"></script>
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
