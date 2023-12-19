@@ -19,7 +19,8 @@ RUN apk add \
     libreoffice \
     imagemagick-dev \
     libxslt \
-    libxslt-dev
+    libxslt-dev \
+    yarn
 
 RUN docker-php-ext-install \
     pdo_pgsql \
@@ -62,8 +63,6 @@ COPY --chown=www-data . /var/www
 
 RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
 
-RUN apk add \
-    yarn
 RUN yarn --ignore-scripts --ignore-platform
 RUN yarn encore prod
 RUN yarn run postinstall
