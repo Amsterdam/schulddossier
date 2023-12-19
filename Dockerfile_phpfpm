@@ -17,7 +17,8 @@ RUN apk add \
     libjpeg-turbo-dev \
     jpeg-dev \
     libreoffice \
-    imagemagick-dev
+    imagemagick-dev \
+    yarn
 
 RUN docker-php-ext-install \
     pdo_pgsql \
@@ -44,15 +45,19 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN php -r "unlink('composer-setup.php');"
 
+RUN chown www-data: /var/www
+
+USER www-data
+
 RUN mkdir -p /var/www/var/cache
 RUN mkdir -p /var/www/public/localworkingstorage/dossier
 
 WORKDIR /var/www
 
+COPY --chown=www-data . /var/www
+
 RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
 
-RUN apk add \
-    yarn
 RUN yarn --ignore-scripts --ignore-platform
 RUN yarn encore prod
 RUN yarn run postinstall
