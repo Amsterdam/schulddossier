@@ -25,6 +25,7 @@ class AzureStorage implements AzureStorageInterface
         private readonly LoggerInterface     $logger
     )
     {
+        // Set an initial config, so getting an access token works
         $this->config = $this->SASFileReaderConfig->getConfig();
         $this->getAccessToken();
     }
@@ -48,14 +49,9 @@ class AzureStorage implements AzureStorageInterface
     public function generateURLForFileReading(string $filename, ?string $destinationPath): string
     {
         // Use a config to keep everything extensible
-        $this->logger->debug('generateURLForFileReading: $file = ' . $filename);
-        $this->logger->debug('generateURLForFileReading: $destinationPath = ' . $destinationPath);
-        $this->logger->debug('Using SASFileReaderConfig config');
         $this->config = $this->SASFileReaderConfig->getConfig();
 
         $signature = $this->generateSASSignature($filename, $destinationPath);
-        $this->logger->debug('Using signature');
-        $this->logger->debug($signature);
 
         // Create the signed blob URL
         return $this->getFileUrl($filename, $signature, $destinationPath);
@@ -123,7 +119,6 @@ class AzureStorage implements AzureStorageInterface
         }
 
         $this->accessToken = $cache->get(self::CACHE_KEY, function (ItemInterface $item) {
-            $this->logger->debug("Cache invalid. Getting new access token from azure");
             return $this->getAccessTokenFromAzure();
         });
     }
@@ -208,7 +203,6 @@ class AzureStorage implements AzureStorageInterface
                 throw new \Exception();
             }
         } catch (\Exception $e) {
-            $this->logger->debug('Getting SAS failed, trying again with new Access token');
             $this->getAccessToken(true);
             $response = $this->makeSasRequest($url, $canonicalizedResource);
         }
