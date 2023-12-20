@@ -5,7 +5,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Azure;
 use GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileReaderConfig;
 use GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileWriterConfig;
 use GuzzleHttp\RequestOptions;
-use Matrix\Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -97,7 +96,7 @@ class AzureStorage implements AzureStorageInterface
                 RequestOptions::HEADERS => [
                     'x-ms-blob-type' => 'BlockBlob',
                     # Do not override the Content-Type header here, Guzzle takes care of it
-                ] ,
+                ],
             ]
         );
 
@@ -217,7 +216,7 @@ class AzureStorage implements AzureStorageInterface
         $body = $response->getContent(false);
         $data = json_decode($body, true);
 
-        if (!array_key_exists('serviceSasToken', $data)){
+        if (!array_key_exists('serviceSasToken', $data)) {
             throw new \Exception('Failed generating SAS signature');
         }
 
