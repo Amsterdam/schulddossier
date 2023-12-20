@@ -14,7 +14,7 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class AzureStorage implements AzureStorageInterface
 {
-    public const CACHE_KEY = 'azure-access-token';
+    private const CACHE_KEY = 'azure-access-token';
     private array $config;
     private string $accessToken;
 
@@ -59,7 +59,7 @@ class AzureStorage implements AzureStorageInterface
 
     /**
      *
-     * Store a file in the storage container and return the SAS signed URL for ir
+     * Store a file in the storage container and return the SAS signed URL for it
      *
      *
      * @param UploadedFile $file
