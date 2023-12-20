@@ -190,7 +190,7 @@ services:
             $authorityHost: '%azureAuthorityHost%'
 
 
-    gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_config:
+    gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_reader_config:
         class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileReaderConfig
         arguments:
             $baseConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_base_config'
@@ -206,7 +206,7 @@ services:
 
     GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage:
         arguments:
-            $SASFileReaderConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_config'
+            $SASFileReaderConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_reader_config'
             $SASFileWriterConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_writer_config'
 
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileListener:
