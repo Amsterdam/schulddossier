@@ -51,10 +51,8 @@ class AzureStorage implements AzureStorageInterface
         // Use a config to keep everything extensible
         $this->config = $this->SASFileReaderConfig->getConfig();
 
-        $signature = $this->generateSASSignature($filename, $destinationPath);
-
         // Create the signed blob URL
-        return $this->getFileUrl($filename, $signature, $destinationPath);
+        return $this->getFileUrl($filename, $destinationPath);
     }
 
     /**
@@ -78,9 +76,7 @@ class AzureStorage implements AzureStorageInterface
     {
         $this->config = $this->SASFileWriterConfig->getConfig();
 
-        $signature = $this->generateSASSignature($file->getClientOriginalName(), $destinationPath);
-
-        $uploadUrl = $this->getFileUrl($file->getClientOriginalName(), $signature, $destinationPath);
+        $uploadUrl = $this->getFileUrl($file->getClientOriginalName(), $destinationPath);
 
         $content = $file->getContent();
 
@@ -269,8 +265,10 @@ class AzureStorage implements AzureStorageInterface
      * @return string
      * The URL to access the file using the SAS signature
      */
-    private function getFileUrl(string $filename, string $signature, ?string $destinationPath = null): string
+    private function getFileUrl(string $filename, ?string $destinationPath = null): string
     {
+        $signature = $this->generateSASSignature($filename, $destinationPath);
+
         $url = 'https://'
             . $this->config['storageAccount'] . '.blob.core.windows.net/'
             . $this->config['container'] . '/';
