@@ -12,7 +12,17 @@ parameters:
     swift_public_url: 'https://%swift_project_id%.%swift_external_domain%'
     app_mail_from: '%env(APP_NOTIFICATIE_FROM)%'
     keycloak_version: '21'
+    azureSubscriptionId: '%env(AZURE_SUBSCRIPTION_ID)%'
+    azureResourceGroup: '%env(AZURE_RESOURCE_GROUP)%'
+    fileStorageAccount: '%env(AZURE_STORAGE_FILE_ACCOUNT)%'
+    fileContainer: '%env(AZURE_STORAGE_FILE_CONTAINER)%'
+    azureAuthorityHost: '%env(AZURE_AUTHORITY_HOST)%'
+    azureTenantId: '%env(AZURE_TENANT_ID)%'
+    azureClientId: '%env(AZURE_CLIENT_ID)%'
+    azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
     featureflag_herfinanciering: '%env(FEATUREFLAG_HERFINANCIERING)%'
+
+
 
 services:
     _defaults:
@@ -164,6 +174,40 @@ services:
 
     doctrine.dbal.connection_factory:
         class: GemeenteAmsterdam\FixxxSchuldhulp\Doctrine\DynamicConnectionFactory
+
+
+    App\Controller\ImageController:
+        arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
+
+    gemeenteamsterdam_fixxxschuldhulp_azure_base_config:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\AzureBaseConfig
+        arguments:
+            $subscriptionId: '%azureSubscriptionId%'
+            $resourceGroup: '%azureResourceGroup%'
+            $tenantId: '%azureTenantId%'
+            $clientId: '%azureClientId%'
+            $federatedTokenFile: '%azureFederatedTokenFile%'
+            $authorityHost: '%azureAuthorityHost%'
+
+
+    gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_reader_config:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileReaderConfig
+        arguments:
+            $baseConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_base_config'
+            $fileStorageAccount: '%fileStorageAccount%'
+            $fileContainer: '%fileContainer%'
+
+    gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_writer_config:
+        class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileWriterConfig
+        arguments:
+            $baseConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_base_config'
+            $fileStorageAccount: '%fileStorageAccount%'
+            $fileContainer: '%fileContainer%'
+
+    GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage:
+        arguments:
+            $SASFileReaderConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_reader_config'
+            $SASFileWriterConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_writer_config'
 
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileListener:
         arguments:
