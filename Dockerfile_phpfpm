@@ -18,6 +18,8 @@ RUN apk add \
     jpeg-dev \
     libreoffice \
     imagemagick-dev \
+    libxslt \
+    libxslt-dev \
     yarn
 
 RUN docker-php-ext-install \
@@ -26,12 +28,15 @@ RUN docker-php-ext-install \
     zip \
     soap \
     intl \
-    gd
+    gd \
+    xsl
 
 RUN docker-php-ext-configure \
     gd \
     --with-freetype \
-    --with-jpeg
+    --with-jpeg 
+
+RUN docker-php-ext-enable xsl
 
 RUN apk add --no-cache --virtual .build-deps \
     build-base  \
