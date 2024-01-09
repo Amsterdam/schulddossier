@@ -2,14 +2,11 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Command;
 
-use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage;
 use AzureOSS\Storage\Blob\BlobRestProxy;
 use Doctrine\ORM\EntityManagerInterface;
+use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
-use GuzzleHttp\Client;
-use GuzzleHttp\RequestOptions;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -43,6 +40,25 @@ class TestAzureBlobAccess extends Command
         $io->info(__CLASS__ . ':' . __FUNCTION__ . ':' . __LINE__ . ': Uploaded to path: ' . $destinationPath);
         $io->info(__CLASS__ . ':' . __FUNCTION__ . ':' . __LINE__ . ': Access URL found below');
         $io->info($urlWithSas);
+
+        $io->info(__CLASS__ . ':' . __FUNCTION__ . ':' . __LINE__ . ': Check file listing');
+        $files = $this->storage->listFiles($destinationPath);
+        $io->listing($files);
+
+        if (!count($files)) {
+            $io->error(__CLASS__ . ':' . __FUNCTION__ . ':' . __LINE__ . ': No files found, which should not be possible at this stage');
+            return Command::FAILURE;
+        }
+
+        if (count($files)) {
+            $io->info(__CLASS__ . ':' . __FUNCTION__ . ':' . __LINE__ . ': get FileContent of first file');
+            $file = $files[0];
+            $fileContent = $this->storage->getFileContent($file);
+
+            $io->info(__CLASS__ . ':' . __FUNCTION__ . ':' . __LINE__ . ': File content below');
+            $io->info($fileContent);
+        }
+
         return Command::SUCCESS;
 
     }
