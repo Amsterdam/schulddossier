@@ -15,8 +15,11 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 class AzureStorage implements AzureStorageInterface
 {
     private const CACHE_KEY = 'azure-access-token';
+    private const TOKEN_REQUEST_SCOPE_STORAGE = 'https://storage.azure.com//.default';
+    private const TOKEN_REQUEST_SCOPE_MANAGEMENT = 'https://management.azure.com//.default';
     private array $config;
     private string $accessToken;
+
 
     public function __construct(
         private readonly HttpClientInterface $client,
@@ -96,6 +99,78 @@ class AzureStorage implements AzureStorageInterface
     }
 
     /**
+     * returns an array with file names
+     *
+     *
+     * @param string|null $path
+     *  The prefix of the whole filepath, can be used to search inside a directory
+     *
+     * @return array
+     * The array with filenames, including prefixes
+     *
+     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+     */
+    public function listFiles(?string $path = ''): array
+    {
+        $accessToken = $this->getAccessTokenFromAzure(self::TOKEN_REQUEST_SCOPE_STORAGE);
+
+        $blobApiUrl = $this->createListBlobApiUrl($path);
+
+        $apiResponse = $this->client->request(
+            'GET',
+            $blobApiUrl,
+            [
+                RequestOptions::HEADERS => [
+                    'Authorization' => ' Bearer ' . $accessToken,
+                    'x-ms-version' => '2017-11-09',
+                    'Content-type' => 'application/json'
+                ]
+            ]
+        );
+
+        return $this->formatFileListResponse($apiResponse);
+
+    }
+
+    /**
+     * Get the content of a file or throw a not found error
+     *
+     *
+     * @param string $filePath
+     * The full path including filename and extension to the file
+     *
+     * @return string
+     * the file content
+     *
+     */
+    public function getFileContent(string $file): string
+    {
+        $accessToken = $this->getAccessTokenFromAzure(self::TOKEN_REQUEST_SCOPE_STORAGE);
+
+        $blobUrl = 'https://' .
+            $this->config['storageAccount'] .
+            '.blob.core.windows.net/' .
+            $this->config['storageAccount'] .
+            $file;
+
+        $apiResponse = $this->client->request(
+            'GET',
+            $blobUrl,
+            [
+                RequestOptions::HEADERS => [
+                    'Authorization' => ' Bearer ' . $accessToken,
+                    'x-ms-version' => '2017-11-09',
+                ]
+            ]
+        );
+
+        return $apiResponse->getContent();
+    }
+
+    /**
      * Sets the access token
      *
      * @param bool|null $invalidateCache
@@ -122,19 +197,26 @@ class AzureStorage implements AzureStorageInterface
     /**
      * Get a new access token from Azure using the federated credentials
      *
+     * @param string|null $scope
+     * Ability to specify a scope for the accesstoken
+     *
+     * THE DOUBLE SLASH BELOW IS INTENDED!
+     * Default: self::SCOPE_MANAGEMENT -> https://management.azure.com//.default
+     * Scope for storage access (no SAS generation): self::SCOPE_STORAGE -> https://storage.azure.com//.default
+     *
      * @return string
      * The new access token
      *
+     * @return string
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
      */
-    private function getAccessTokenFromAzure(): string
+    private function getAccessTokenFromAzure(?string $scope = self::TOKEN_REQUEST_SCOPE_MANAGEMENT): string
     {
         $tokenUrl = $this->config['authorityHost'] . $this->config['tenantId'] . '/oauth2/v2.0/token';
         $grantType = 'client_credentials';
-        $scope = 'https://management.azure.com//.default'; // double slash is on purpose
         $clientAssertion = file_get_contents($this->config['federatedTokenFile']);
         $clientAssertionType = 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer';
 
@@ -309,5 +391,52 @@ class AzureStorage implements AzureStorageInterface
         }
 
         return $canonicalizedResourcePath;
+    }
+
+    /**
+     * Creates an URL for listing files inside the container
+     *
+     * @param string|null $path
+     * The prefix of the whole filepath, can be used to search inside a directory
+     *
+     * @return string
+     * The URL which should list the files with the requested prefix
+     */
+    private function createListBlobApiUrl(?string $path = ''): string
+    {
+        $blobApiUrl = 'https://' .
+            $this->config['storageAccount'] .
+            '.blob.core.windows.net/' .
+            $this->config['storageAccount'] .
+            '?restype=container&comp=list&delimeter=%2F';
+
+        if ($path) {
+            $blobApiUrl .= '&prefix=' . urlencode($path);
+        }
+
+        return $blobApiUrl;
+    }
+
+    /**
+     * Converts the Azure API response to an array with filenames. Each line contains the full name including path, filename and extension as a string
+     *
+     * @param string $xmlResponseString
+     * The XML string response given by the Storage Blob API
+     *
+     * @return array
+     * All files in the given response
+     */
+    private function formatFileListResponse(string $xmlResponseString): array
+    {
+        $files = [];
+        $xml = simplexml_load_string($xmlResponseString);
+
+        $blobs = $xml->Blobs;
+
+        foreach ($blobs as $blob) {
+            $files[] = (string)$blob->Blob->Name;
+        }
+
+        return $files;
     }
 }
