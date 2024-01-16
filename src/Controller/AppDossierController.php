@@ -1094,11 +1094,13 @@ class AppDossierController extends AbstractController
      *
      * @param FileStorageSelector $fileStorageSelector
      *
+     * @param AzureStorage $azureStorage
+     *
      * @return Response
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
-    public function downloadCsv(Dossier $dossier, FileStorageSelector $fileStorageSelector): Response
+    public function downloadCsv(Dossier $dossier, FileStorageSelector $fileStorageSelector, AzureStorage $azureStorage): Response
     {
         $filesystem = new Filesystem();
         if (!$filesystem->exists($this->getParameter('kernel.project_dir') . '/var/tmp')) {
@@ -1125,18 +1127,24 @@ class AppDossierController extends AbstractController
         $filesystem->touch($filesystemFiles);
 
         $zipFactory = new ZipArchive();
-
-        $azureStorage = new AzureStorage();
-        $files = $azureStorage->listFiles('dossier-' . $dossier->getId() . '/');
-
-        $files = $fileStorageSelector->getFileStorageForDossier()->listContents('dossier-' . $dossier->getId());
-        var_dump($files); die();
         $zipFactory->open($zipfileLocation, ZipArchive::CREATE);
 
-        $dossier->getDocumenten()->map(function (DossierDocument $dossierDocument) use ($files, $fileStorageSelector, $zipFactory) {
-            $key = array_search($dossierDocument->getDocument()->getBestandsnaam(), array_column($files, 'basename'), true);
+        $files = $azureStorage->listFiles('dossier-' . $dossier->getId() . '/');
+
+        $dossier->getDocumenten()->map(function (DossierDocument $dossierDocument) use ($files, $fileStorageSelector, $zipFactory, $dossier, $azureStorage) {
+            $key = array_search(
+                'dossier-' . $dossier->getId() . '/' . $dossierDocument->getDocument()->getBestandsnaam(),
+                $files,
+                true
+            );
+
             $zipFactory->addEmptyDir($dossierDocument->getOnderwerp());
-            $zipFactory->addFromString($dossierDocument->getOnderwerp() . DIRECTORY_SEPARATOR . $dossierDocument->getDocument()->getNaam() . '.' . $dossierDocument->getDocument()->getOrigineleExtensie(), $fileStorageSelector->getFileStorageForDossier()->read($files[$key]['path']));
+            if ($key !== false) {
+                $zipFactory->addFromString(
+                    $dossierDocument->getOnderwerp() . DIRECTORY_SEPARATOR . $dossierDocument->getDocument()->getNaam() . '.' . $dossierDocument->getDocument()->getOrigineleExtensie(),
+                    $azureStorage->getBlobContent($files[$key])
+                );
+            }
         });
 
         $dossierCsvFile = new Csv($dossier->toSpreadsheetCsv());
