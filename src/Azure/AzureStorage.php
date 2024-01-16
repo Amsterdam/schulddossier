@@ -48,7 +48,7 @@ class AzureStorage implements AzureStorageInterface
 
     /**
      * Returns a url that is is signed with a SAS for reading
-     *
+     * Microsoft API doc:
      *
      * @param string $filename
      * Filename of file you are reading
@@ -76,9 +76,8 @@ class AzureStorage implements AzureStorageInterface
     }
 
     /**
-     *
      * Store a file in the storage container and return the SAS signed URL for it
-     *
+     * Microsoft API doc: https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob
      *
      * @param UploadedFile $file
      * The file that should be stored
@@ -123,7 +122,7 @@ class AzureStorage implements AzureStorageInterface
 
     /**
      * returns an array with file names
-     *
+     * Microsoft API doc: https://learn.microsoft.com/en-us/rest/api/storageservices/list-blobs
      *
      * @param string|null $path
      *  The prefix of the whole filepath, can be used to search inside a directory
@@ -153,13 +152,13 @@ class AzureStorage implements AzureStorageInterface
                 ]
             ]
         );
-
         return $this->formatFileListResponse($apiResponse->getContent());
 
     }
 
     /**
      * Removes a file, if soft delete is enabled the file will be softdeleted
+     * Microsoft API doc: https://learn.microsoft.com/en-us/rest/api/storageservices/delete-blob
      *
      * @param string|null $file
      *
@@ -202,7 +201,7 @@ class AzureStorage implements AzureStorageInterface
 
     /**
      * Get the complete blob or throw a not found error
-     *
+     * Microsoft API doc: https://learn.microsoft.com/en-us/rest/api/storageservices/get-blob
      *
      * @param string $file
      * The full path including filename and extension to the file
@@ -243,7 +242,6 @@ class AzureStorage implements AzureStorageInterface
 
         return $apiResponse;
     }
-
 
     /**
      * Get the content of a blob or throw a not found error
@@ -532,9 +530,8 @@ class AzureStorage implements AzureStorageInterface
     {
         $files = [];
         $xml = simplexml_load_string($xmlResponseString);
-
-        foreach ($xml->Blobs as $blob) {
-            $files[] = (string)$blob->Blob->Name;
+        foreach ($xml->Blobs->Blob as $blob) {
+            $files[] = (string)$blob->Name;
         }
 
         return $files;
