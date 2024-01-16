@@ -5,10 +5,16 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Azure;
 use GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileReaderConfig;
 use GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileWriterConfig;
 use GuzzleHttp\RequestOptions;
+use Http\Discovery\Exception\NotFoundException;
+use Psr\Cache\InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Contracts\Cache\ItemInterface;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface as ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
@@ -20,7 +26,14 @@ class AzureStorage implements AzureStorageInterface
     private array $config;
     private string $accessToken;
 
-
+    /**
+     * @param HttpClientInterface $client
+     * @param SASFileReaderConfig $SASFileReaderConfig
+     * @param SASFileWriterConfig $SASFileWriterConfig
+     * @param LoggerInterface $logger
+     *
+     * @throws InvalidArgumentException
+     */
     public function __construct(
         private readonly HttpClientInterface $client,
         private readonly SASFileReaderConfig $SASFileReaderConfig,
@@ -46,8 +59,12 @@ class AzureStorage implements AzureStorageInterface
      * @return string
      * returns an URL with SAS signature
      *
-     * @throws \Psr\Cache\InvalidArgumentException
-     * Can be thrown deep inside the Cache interface, see Symfony\Component\Cache\Traits\ConstraintsTrait:63     *
+     *
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function generateURLForFileReading(string $filename, ?string $destinationPath): string
     {
@@ -69,21 +86,27 @@ class AzureStorage implements AzureStorageInterface
      * @param string|null $destinationPath
      * Optional: the path where the file should be stored
      *
+     * @param string|null $overrideFilename
+     * Optional: Override the filename of the upload file for a cusyom filename
+     *
      * @return string
      * returns a SAS signed url of the file
      *
-     * @throws \Psr\Cache\InvalidArgumentException
-     * Can be thrown deep inside the Cache interface, see Symfony\Component\Cache\Traits\ConstraintsTrait:63
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
-    public function storeFile(UploadedFile $file, ?string $destinationPath = null): string
+    public function storeFile(UploadedFile $file, ?string $destinationPath = null, ?string $overrideFilename = null): string
     {
         $this->config = $this->SASFileWriterConfig->getConfig();
 
-        $uploadUrl = $this->getFileUrl($file->getClientOriginalName(), $destinationPath);
+        $uploadUrl = $this->getFileUrl($overrideFilename ?? $file->getClientOriginalName(), $destinationPath);
 
         $content = $file->getContent();
 
-        $response = $this->client->request(
+        $this->client->request(
             'PUT',
             $uploadUrl,
             [
@@ -95,7 +118,7 @@ class AzureStorage implements AzureStorageInterface
             ]
         );
 
-        return $this->generateURLForFileReading($file->getClientOriginalName(), $destinationPath);
+        return $this->generateURLForFileReading($overrideFilename ?? $file->getClientOriginalName(), $destinationPath);
     }
 
     /**
@@ -108,10 +131,10 @@ class AzureStorage implements AzureStorageInterface
      * @return array
      * The array with filenames, including prefixes
      *
-     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function listFiles(?string $path = ''): array
     {
@@ -131,29 +154,76 @@ class AzureStorage implements AzureStorageInterface
             ]
         );
 
-        return $this->formatFileListResponse($apiResponse);
+        return $this->formatFileListResponse($apiResponse->getContent());
 
     }
 
     /**
-     * Get the content of a file or throw a not found error
+     * Removes a file, if soft delete is enabled the file will be softdeleted
      *
+     * @param string|null $file
      *
-     * @param string $filePath
-     * The full path including filename and extension to the file
+     * @return bool
      *
-     * @return string
-     * the file content
-     *
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
-    public function getFileContent(string $file): string
+    public function deleteFiles(?string $file): bool
     {
         $accessToken = $this->getAccessTokenFromAzure(self::TOKEN_REQUEST_SCOPE_STORAGE);
 
         $blobUrl = 'https://' .
             $this->config['storageAccount'] .
             '.blob.core.windows.net/' .
+            $this->config['container'] .
+            '/' .
+            $file;
+
+        $apiResponse = $this->client->request(
+            'DELETE',
+            $blobUrl,
+            [
+                RequestOptions::HEADERS => [
+                    'Authorization' => ' Bearer ' . $accessToken,
+                    'x-ms-version' => '2017-11-09',
+                    'Content-type' => 'application/json'
+                ]
+            ]
+        );
+
+        if ($apiResponse->getStatusCode() != 202) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Get the complete blob or throw a not found error
+     *
+     *
+     * @param string $file
+     * The full path including filename and extension to the file
+     *
+     * @return ResponseInterface
+     * The response from the API
+     *
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function getBlob(string $file): ResponseInterface
+    {
+        $accessToken = $this->getAccessTokenFromAzure(self::TOKEN_REQUEST_SCOPE_STORAGE);
+
+        $blobUrl = 'https://' .
             $this->config['storageAccount'] .
+            '.blob.core.windows.net/' .
+            $this->config['container'] .
+            '/' .
             $file;
 
         $apiResponse = $this->client->request(
@@ -167,7 +237,34 @@ class AzureStorage implements AzureStorageInterface
             ]
         );
 
-        return $apiResponse->getContent();
+        if ($apiResponse->getStatusCode() != 200) {
+            throw new NotFoundException();
+        }
+
+        return $apiResponse;
+    }
+
+
+    /**
+     * Get the content of a blob or throw a not found error
+     *
+     *
+     * @param string $file
+     * The full path including filename and extension to the file
+     *
+     * @return string
+     * the file content
+     *
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    public function getBlobContent(string $file): string
+    {
+        $blob = $this->getBlob($file);
+
+        return $blob->getContent();
     }
 
     /**
@@ -179,7 +276,7 @@ class AzureStorage implements AzureStorageInterface
      * @return void
      *
      *
-     * @throws \Psr\Cache\InvalidArgumentException
+     * @throws InvalidArgumentException
      * Can be thrown deep inside the Cache interface, see Symfony\Component\Cache\Traits\ConstraintsTrait:63
      */
     private function getAccessToken(?bool $invalidateCache = false): void
@@ -208,10 +305,10 @@ class AzureStorage implements AzureStorageInterface
      * The new access token
      *
      * @return string
-     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
-     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     private function getAccessTokenFromAzure(?string $scope = self::TOKEN_REQUEST_SCOPE_MANAGEMENT): string
     {
@@ -262,8 +359,11 @@ class AzureStorage implements AzureStorageInterface
      * The SAS signature for the file with the active config
      *
      *
-     * @throws \Psr\Cache\InvalidArgumentException
-     * Can be thrown deep inside the Cache interface, see Symfony\Component\Cache\Traits\ConstraintsTrait:63
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     private function generateSASSignature(?string $filename = null, ?string $destinationPath = null): string
     {
@@ -280,7 +380,7 @@ class AzureStorage implements AzureStorageInterface
             if ($response->getStatusCode() >= 400) {
                 throw new \Exception();
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $this->getAccessToken(true);
             $response = $this->makeSasRequest($url, $canonicalizedResource);
         }
@@ -304,10 +404,8 @@ class AzureStorage implements AzureStorageInterface
      *
      * @return ResponseInterface
      *
-     * @throws \Psr\Cache\InvalidArgumentException
-     * Can be thrown deep inside the Cache interface, see Symfony\Component\Cache\Traits\ConstraintsTrait:63
      *
-     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+     * @throws TransportExceptionInterface
      */
     private function makeSasRequest(string $url, string $canonicalizedResource): ResponseInterface
     {
@@ -337,15 +435,19 @@ class AzureStorage implements AzureStorageInterface
      * @param string $filename
      * The file name
      *
-     * @param string $signature
-     * The signature for accessing this file
-     *
      * @param string|null $destinationPath
      * Optional: the path where the file is be stored
      *
      *
      * @return string
      * The URL to access the file using the SAS signature
+     *
+     *
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     private function getFileUrl(string $filename, ?string $destinationPath = null): string
     {
@@ -407,7 +509,7 @@ class AzureStorage implements AzureStorageInterface
         $blobApiUrl = 'https://' .
             $this->config['storageAccount'] .
             '.blob.core.windows.net/' .
-            $this->config['storageAccount'] .
+            $this->config['container'] .
             '?restype=container&comp=list&delimeter=%2F';
 
         if ($path) {
@@ -431,9 +533,7 @@ class AzureStorage implements AzureStorageInterface
         $files = [];
         $xml = simplexml_load_string($xmlResponseString);
 
-        $blobs = $xml->Blobs;
-
-        foreach ($blobs as $blob) {
+        foreach ($xml->Blobs as $blob) {
             $files[] = (string)$blob->Blob->Name;
         }
 

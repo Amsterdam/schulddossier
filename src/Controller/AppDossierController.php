@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent as ActionEventEntity;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
@@ -30,6 +31,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
+use Http\Discovery\Exception\NotFoundException;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -38,6 +40,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -49,12 +52,15 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
+use Symfony\Contracts\Cache\ItemInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 use ZipArchive;
 
 /**
@@ -510,7 +516,7 @@ class AppDossierController extends AbstractController
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
-    public function detailDocumentAction(Request $request, Dossier $dossier, Document $document)
+    public function detailDocumentAction(Request $request, Dossier $dossier, Document $document, AzureStorage $azureStorage)
     {
         $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
             return $dossierDocument->getDocument() === $document;
@@ -523,12 +529,35 @@ class AppDossierController extends AbstractController
             throw $this->createNotFoundException('Document not available');
         }
 
-        $timestamp = intval(time() + 30);
-        $path = '/' . $this->getParameter('swift_container_prefix') . $document->getGroep() . '/' . $document->getDirectory() . '/' . $document->getBestandsnaam();
-        $sign = hash_hmac('sha1', "GET\n" . $timestamp . "\n" . $path, $this->getParameter('swift_temp_url_key'));
-        $fullUrl = $this->getParameter('swift_public_url') . $path . '?temp_url_sig=' . $sign . '&temp_url_expires=' . $timestamp . '&filename=' . urlencode($document->getOrigineleBestandsnaam()) . ($request->query->has('inline') ? '&inline' : '');
+        $cache = new FilesystemAdapter();
 
-        return new RedirectResponse($fullUrl, Response::HTTP_TEMPORARY_REDIRECT);
+        $fullFilePath = $document->getDirectory() . '/' . $document->getBestandsnaam();
+        $cacheKey = $document->getDirectory() . $document->getBestandsnaam();
+
+        try {
+            /** @var ResponseInterface $blobApiResponse */
+            $blobApiResponse = $cache->get($cacheKey, function (ItemInterface $item) use ($azureStorage, $fullFilePath) {
+                $item->expiresAfter(900);
+                return $azureStorage->getBlob($fullFilePath);
+
+            });
+        } catch (\Exception $e) {
+            throw $this->createNotFoundException('Document ' . $fullFilePath . ' is not available, error message: ' . $e->getMessage());
+        }
+
+        $headers = $blobApiResponse->getHeaders();
+
+        return new Response(
+            $blobApiResponse->getContent()
+            ,
+            Response::HTTP_OK,
+            [
+                'Content-Transfer-Encoding', 'binary',
+                'Content-Type' => $headers['content-type'][0],
+                'Content-Disposition' => 'inline',
+                'Content-Length' => $headers['content-length'],
+            ]
+        );
     }
 
     /**
@@ -1096,7 +1125,12 @@ class AppDossierController extends AbstractController
         $filesystem->touch($filesystemFiles);
 
         $zipFactory = new ZipArchive();
+
+        $azureStorage = new AzureStorage();
+        $files = $azureStorage->listFiles('dossier-' . $dossier->getId() . '/');
+
         $files = $fileStorageSelector->getFileStorageForDossier()->listContents('dossier-' . $dossier->getId());
+        var_dump($files); die();
         $zipFactory->open($zipfileLocation, ZipArchive::CREATE);
 
         $dossier->getDocumenten()->map(function (DossierDocument $dossierDocument) use ($files, $fileStorageSelector, $zipFactory) {

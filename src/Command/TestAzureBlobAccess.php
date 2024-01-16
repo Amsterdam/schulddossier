@@ -53,7 +53,7 @@ class TestAzureBlobAccess extends Command
         if (count($files)) {
             $io->info(__CLASS__ . ':' . __FUNCTION__ . ':' . __LINE__ . ': get FileContent of first file');
             $file = $files[0];
-            $fileContent = $this->storage->getFileContent($file);
+            $fileContent = $this->storage->getBlobContent($file);
 
             $io->info(__CLASS__ . ':' . __FUNCTION__ . ':' . __LINE__ . ': File content below');
             $io->info($fileContent);
