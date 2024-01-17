@@ -2,6 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Azure;
 
+enum AzureTokenRequestScope: string
+{
+    case STORAGE = 'https://storage.azure.com//.default';
+    case MANAGEMENT = 'https://management.azure.com//.default';
+}
+
 use GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileReaderConfig;
 use GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileWriterConfig;
 use GuzzleHttp\RequestOptions;
@@ -21,8 +27,6 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 class AzureStorage implements AzureStorageInterface
 {
     private const CACHE_KEY = 'azure-access-token';
-    private const TOKEN_REQUEST_SCOPE_STORAGE = 'https://storage.azure.com//.default';
-    private const TOKEN_REQUEST_SCOPE_MANAGEMENT = 'https://management.azure.com//.default';
     private array $config;
     private string $accessToken;
 
@@ -112,7 +116,6 @@ class AzureStorage implements AzureStorageInterface
                 RequestOptions::BODY => $content,
                 RequestOptions::HEADERS => [
                     'x-ms-blob-type' => 'BlockBlob',
-                    # Do not override the Content-Type header here, Guzzle takes care of it
                 ],
             ]
         );
@@ -137,7 +140,7 @@ class AzureStorage implements AzureStorageInterface
      */
     public function listFiles(?string $path = ''): array
     {
-        $accessToken = $this->getAccessTokenFromAzure(self::TOKEN_REQUEST_SCOPE_STORAGE);
+        $accessToken = $this->getAccessTokenFromAzure(AzureTokenRequestScope::STORAGE);
 
         $blobApiUrl = $this->createListBlobApiUrl($path);
 
@@ -153,7 +156,6 @@ class AzureStorage implements AzureStorageInterface
             ]
         );
         return $this->formatFileListResponse($apiResponse->getContent());
-
     }
 
     /**
@@ -171,7 +173,7 @@ class AzureStorage implements AzureStorageInterface
      */
     public function deleteFiles(?string $file): bool
     {
-        $accessToken = $this->getAccessTokenFromAzure(self::TOKEN_REQUEST_SCOPE_STORAGE);
+        $accessToken = $this->getAccessTokenFromAzure(AzureTokenRequestScope::STORAGE);
 
         $blobUrl = 'https://' .
             $this->config['storageAccount'] .
@@ -216,7 +218,7 @@ class AzureStorage implements AzureStorageInterface
      */
     public function getBlob(string $file): ResponseInterface
     {
-        $accessToken = $this->getAccessTokenFromAzure(self::TOKEN_REQUEST_SCOPE_STORAGE);
+        $accessToken = $this->getAccessTokenFromAzure(AzureTokenRequestScope::STORAGE);
 
         $blobUrl = 'https://' .
             $this->config['storageAccount'] .
@@ -308,7 +310,7 @@ class AzureStorage implements AzureStorageInterface
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    private function getAccessTokenFromAzure(?string $scope = self::TOKEN_REQUEST_SCOPE_MANAGEMENT): string
+    private function getAccessTokenFromAzure(?AzureTokenRequestScope $scope = AzureTokenRequestScope::MANAGEMENT): string
     {
         $tokenUrl = $this->config['authorityHost'] . $this->config['tenantId'] . '/oauth2/v2.0/token';
         $grantType = 'client_credentials';
