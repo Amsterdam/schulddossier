@@ -389,7 +389,7 @@ class AzureStorage implements AzureStorageInterface
         $data = json_decode($body, true);
 
         if (!array_key_exists('serviceSasToken', $data)) {
-            throw new \Exception('Failed generating SAS signature');
+            throw new \Exception('Failed generating SAS signature. Data: ' . print_r($data, true));
         }
 
         return $data['serviceSasToken'];
