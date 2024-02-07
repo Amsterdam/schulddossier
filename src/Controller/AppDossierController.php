@@ -518,32 +518,9 @@ class AppDossierController extends AbstractController
      */
     public function detailDocumentAction(Request $request, Dossier $dossier, Document $document, AzureStorage $azureStorage)
     {
-        $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
-            return $dossierDocument->getDocument() === $document;
-        });
-        if ($dossierDocumenten->count() === 0) {
-            throw new NotFoundHttpException('Document does not match with dossier');
-        }
+        $this->checkDocumentAccess($dossier, $document);
 
-        if ($document->isInPrullenbak() === true) {
-            throw $this->createNotFoundException('Document not available');
-        }
-
-        $cache = new FilesystemAdapter();
-
-        $fullFilePath = $document->getDirectory() . '/' . $document->getBestandsnaam();
-        $cacheKey = $document->getDirectory() . $document->getBestandsnaam();
-
-        try {
-            /** @var ResponseInterface $blobApiResponse */
-            $blobApiResponse = $cache->get($cacheKey, function (ItemInterface $item) use ($azureStorage, $fullFilePath) {
-                $item->expiresAfter(900);
-                return $azureStorage->getBlob($fullFilePath);
-
-            });
-        } catch (\Exception $e) {
-            throw $this->createNotFoundException('Document ' . $fullFilePath . ' is not available, error message: ' . $e->getMessage());
-        }
+        $blobApiResponse = $this->getDocumentBlobApiResponse($document, $azureStorage);
 
         $headers = $blobApiResponse->getHeaders();
 
@@ -555,6 +532,33 @@ class AppDossierController extends AbstractController
                 'Content-Transfer-Encoding', 'binary',
                 'Content-Type' => $headers['content-type'][0],
                 'Content-Disposition' => 'inline',
+                'Content-Length' => $headers['content-length'],
+            ]
+        );
+    }
+
+    /**
+     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/download")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("document", options={"id"="documentId"})
+     */
+    public function downloadDocumentAction(Request $request, Dossier $dossier, Document $document, AzureStorage $azureStorage)
+    {
+        $this->checkDocumentAccess($dossier, $document);
+
+        $blobApiResponse = $this->getDocumentBlobApiResponse($document, $azureStorage);
+
+        $headers = $blobApiResponse->getHeaders();
+
+        return new Response(
+            $blobApiResponse->getContent()
+            ,
+            Response::HTTP_OK,
+            [
+                'Content-Transfer-Encoding', 'binary',
+                'Content-Type' => $headers['content-type'][0],
+                'Content-Disposition' => 'attachment; filename="'. $document->getOrigineleBestandsnaam() . '"',
                 'Content-Length' => $headers['content-length'],
             ]
         );
@@ -1264,4 +1268,49 @@ class AppDossierController extends AbstractController
         $sheet->getHeaderFooter()->setEvenFooter(date('d-m-Y H:i'));
         return $spreadsheet;
     }
+
+    /**
+     * @param Dossier $dossier
+     * @param Document $document
+     * @return void
+     */
+    private function checkDocumentAccess(Dossier $dossier, Document $document){
+        $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
+            return $dossierDocument->getDocument() === $document;
+        });
+        if ($dossierDocumenten->count() === 0) {
+            throw new NotFoundHttpException('Document does not match with dossier');
+        }
+
+        if ($document->isInPrullenbak() === true) {
+            throw $this->createNotFoundException('Document not available');
+        }
+    }
+
+    /**
+     * @param Document $document
+     * @param AzureStorage $azureStorage
+     * @return ResponseInterface
+     * @throws \Psr\Cache\InvalidArgumentException
+     */
+    private function getDocumentBlobApiResponse(Document $document, AzureStorage $azureStorage) {
+        $cache = new FilesystemAdapter();
+
+        $fullFilePath = $document->getDirectory() . '/' . $document->getBestandsnaam();
+        $cacheKey = $document->getDirectory() . $document->getBestandsnaam();
+
+        try {
+            /** @var ResponseInterface $blobApiResponse */
+            $blobApiResponse = $cache->get($cacheKey, function (ItemInterface $item) use ($azureStorage, $fullFilePath) {
+                $item->expiresAfter(900);
+                return $azureStorage->getBlob($fullFilePath);
+            });
+        } catch (\Exception $e) {
+            throw $this->createNotFoundException('Document ' . $fullFilePath . ' is not available, error message: ' . $e->getMessage());
+        }
+
+        return $blobApiResponse;
+    }
 }
+
+
