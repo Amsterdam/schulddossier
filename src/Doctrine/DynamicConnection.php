@@ -12,12 +12,12 @@ use Psr\Log\LoggerInterface;
 class DynamicConnection extends Connection
 {
     public function __construct(
-        array                            $params,
-        Driver                           $driver,
-        ?Configuration                   $config = null,
-        ?EventManager                    $eventManager = null,
-        private readonly ?AzureDatabase  $azureDatabase = null,
-        private readonly ?LoggerInterface $logger= null,
+        array                             $params,
+        Driver                            $driver,
+        ?Configuration                    $config = null,
+        ?EventManager                     $eventManager = null,
+        private readonly ?AzureDatabase   $azureDatabase = null,
+        private readonly ?LoggerInterface $logger = null,
     )
     {
         if ($azureDatabase && $this->logger && isset($params['password'])) {
@@ -43,7 +43,10 @@ class DynamicConnection extends Connection
     private function addNewPasswordToParams(array $params, string $newPassword): array
     {
         $params['password'] = $newPassword;
-        $params['url'] = str_replace('temporary', $newPassword, $params['url']);
+
+        if (array_key_exists('url', $params)) {
+            $params['url'] = str_replace('temporary', $newPassword, $params['url']);
+        }
 
         return $params;
     }

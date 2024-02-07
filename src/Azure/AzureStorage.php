@@ -320,7 +320,7 @@ class AzureStorage implements AzureStorageInterface
         // Prepare the request payload
         $payload = [
             'grant_type' => $grantType,
-            'scope' => $scope,
+            'scope' => $scope->value,
             'client_assertion' => $clientAssertion,
             'client_assertion_type' => $clientAssertionType,
             'client_id' => $this->config['clientId'],
