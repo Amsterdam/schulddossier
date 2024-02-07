@@ -559,7 +559,7 @@ class AppDossierController extends AbstractController
             [
                 'Content-Transfer-Encoding', 'binary',
                 'Content-Type' => $headers['content-type'][0],
-                'Content-Disposition' => 'attachment; filename="'. $document->getOrigineleBestandsnaam() . '.' . $document->getOrigineleExtensie() . '"',
+                'Content-Disposition' => 'attachment; filename="'. $document->getOrigineleBestandsnaam() . '"',
                 'Content-Length' => $headers['content-length'],
             ]
         );
