@@ -21,7 +21,7 @@ class KernelRequestSubscriber implements EventSubscriberInterface
      */
     public function __construct(
         private string $applicationName = 'Schulddossier',
-        private bool $isMaintenance = true
+        private bool $isMaintenance = false
     ) {
     }
 
