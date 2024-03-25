@@ -16,41 +16,51 @@ class SchuldeiserFormType extends AbstractType
     {
         $builder->add('bedrijfsnaam', TextType::class, [
             'label' => 'Bedrijfsnaam *',
-            'required' => true
+            'required' => true,
+            'help' => 'DB: schuldeiser.bedrijfsnaam',
         ]);
 
         $builder->add('enabled', CheckboxType::class, [
             'label' => 'Actief',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: schuldeiser.enabled',
         ]);
 
         $builder->add('rekening', TextType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: schuldeiser.rekening',
         ]);
         $builder->add('straat', TextType::class, [
             'label' => 'Straat *',
-            'required' => true
+            'required' => true,
+            'help' => 'DB: schuldeiser.straat',
         ]);
         $builder->add('huisnummer', TextType::class, [
             'label' => 'Huisnummer *',
-            'required' => true
+            'required' => true,
+            'help' => 'DB: schuldeiser.huisnummer',
         ]);
         $builder->add('huisnummerToevoeging', TextType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: schuldeiser.huisnummer_toevoeging',
         ]);
         $builder->add('postcode', TextType::class, [
             'label' => 'Postcode *',
-            'required' => true
+            'required' => true,
+            'help' => 'DB: schuldeiser.postcode',
         ]);
         $builder->add('plaats', TextType::class, [
             'label' => 'Plaats *',
-            'required' => true
+            'required' => true,
+            'help' => 'DB: schuldeiser.plaats',
         ]);
         $builder->add('allegroCode', TextType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: schuldeiser.allegro_code',
         ]);
         $builder->add('opmerkingen', TextareaType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: schuldeiser.opmerkingen',
         ]);
     }
 

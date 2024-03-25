@@ -34,11 +34,13 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
 
         $builder->add('energieBedrijf', TextType::class, [
             'required' => false,
-            'label' => "Huidig energiebedrijf"
+            'label' => "Huidig energiebedrijf",
+            'help' => 'DB: energie_bedrijf'
         ]);
         $builder->add('energieBedrijfKlantnummer', TextType::class, [
             'required' => false,
-            'label' => "Klantnummer"
+            'label' => "Klantnummer",
+            'help' => 'DB: energie_bedrijf_klantnummer'
         ]);
         $builder->add('energieBedrijfDatumOpname', DateType::class, [
             'required' => false,
@@ -46,27 +48,33 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
             'attr' => ['data-decorator' => 'rome'],
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
-            'label' => "Datum opname"
+            'label' => "Datum opname",
+            'help' => 'DB: energie_bedrijf_datum_opname'
         ]);
         $builder->add('energieBedrijfT1', NumberType::class, [
             'required' => false,
-            'label' => "Meterstand Elektriciteit T1"
+            'label' => "Meterstand Elektriciteit T1",
+            'help' => 'DB: energie_bedrijf_t1'
         ]);
         $builder->add('energieBedrijfT2', NumberType::class, [
             'required' => false,
-            'label' => "Meterstand Elektriciteit T2"
+            'label' => "Meterstand Elektriciteit T2",
+            'help' => 'DB: energie_bedrijf_t2'
         ]);
         $builder->add('energieBedrijfGas', NumberType::class, [
             'required' => false,
-            'label' => "Meterstand Gas"
+            'label' => "Meterstand Gas",
+            'help' => 'DB: energie_bedrijf_gas'
         ]);
         $builder->add('warmteBedrijf', TextType::class, [
             'required' => false,
-            'label' => "Warmtebedrijf"
+            'label' => "Warmtebedrijf",
+            'help' => 'DB: warmte_bedrijf'
         ]);
         $builder->add('warmteBedrijfKlantnummer', TextType::class, [
             'required' => false,
-            'label' => "Klantnummer (warmtebedrijf)"
+            'label' => "Klantnummer (warmtebedrijf)",
+            'help' => 'DB: warmte_bedrijf_klantnummer'
         ]);
         $builder->add('warmteBedrijfDatumOpname', DateType::class, [
             'required' => false,
@@ -74,11 +82,13 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
             'attr' => ['data-decorator' => 'rome'],
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
-            'label' => "Datum opname (warmtebedrijf)"
+            'label' => "Datum opname (warmtebedrijf)",
+            'help' => 'DB: warmte_bedrijf_datum_opname'
         ]);
         $builder->add('warmteBedrijfOpname', NumberType::class, [
             'required' => false,
-            'label' => "Meterstand Warmte"
+            'label' => "Meterstand Warmte",
+            'help' => 'DB: warmte_bedrijf_opname'
         ]);
 
         $builder->add('file', CollectionType::class, [

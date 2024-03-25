@@ -29,43 +29,53 @@ class VoorleggerInkomstenspecificatieFormType extends AbstractType
 
         $builder->add('beschikkingInkomenUitWerk', CheckboxType::class, [
             'label' => 'Inkomen uit werk',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.beschikking_inkomen_uit_werk'
         ]);
         $builder->add('beschikkingUwvZw', CheckboxType::class, [
             'label' => 'UWV ZW',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.beschikking_uwv_zw',
         ]);
         $builder->add('beschikkingUwvWw', CheckboxType::class, [
             'label' => 'UWV WW',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.beschikking_uwv_ww',
         ]);
         $builder->add('beschikkingUwvWia', CheckboxType::class, [
             'label' => 'UWV Wia',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.beschikking_uwv_wia',
         ]);
         $builder->add('beschikkingUwvWajong', CheckboxType::class, [
             'label' => 'UWV Wajong',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.beschikking_uwv_wajong',
         ]);
         $builder->add('beschikkingGemeenteAmsterdamWPI', CheckboxType::class, [
             'label' => 'Gemeente Amsterdam (WPI)',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.beschikking_gemeente_amsterdam_wpi',
         ]);
         $builder->add('beschikkingSVBAOW', CheckboxType::class, [
             'label' => 'SVB (AOW)',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.beschikking_svbaow',
         ]);
         $builder->add('beschikkingSVBANW', CheckboxType::class, [
             'label' => 'SVB (ANW)',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.beschikking_svbanw',
         ]);
         $builder->add('beschikkingGemeenteAmsterdamIOAW', CheckboxType::class, [
             'label' => 'Gemeente Amsterdam (IOAW)',
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.beschikking_gemeente_amsterdam_ioaw',
         ]);
 
         $builder->add('beschikkingUwvOverig', TextType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.beschikking_uwv_overig',
         ]);
 
         $combined = array_combine(range(1, 31), range(1, 31));
@@ -76,7 +86,8 @@ class VoorleggerInkomstenspecificatieFormType extends AbstractType
             'required' => true,
             'choices' => $verloningsDagOptions,
             'label' => 'Verloningsmoment',
-            'empty_data' => null
+            'empty_data' => null,
+            'help' => 'DB: voorlegger.verlonings_dag',
         ]);
 
         $builder->add('file', CollectionType::class, [
