@@ -80,7 +80,7 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
         ]);
         $builder->add('schuldenrustLening', CheckboxType::class, [
             'required' => false,
-            'label' => 'Schuldenrust lening (SRL)',
+            'label' => 'Kindregeling',
             'help' => 'DB: voorlegger.schuldenrust_lening',
         ]);
         $builder->add('saneringsKrediet', CheckboxType::class, [
