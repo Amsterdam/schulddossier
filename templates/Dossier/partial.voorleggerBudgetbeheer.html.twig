@@ -41,9 +41,21 @@
             </div>
             <div class="dossier__voorlegger__sectie__body">
                 {{ form_row(form.budgetbeheerPlangroep) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.budgetbeheerPlangroep) }}
+                {% endif %}
                 {{ form_row(form.budgetbeheerCav) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.budgetbeheerCav) }}
+                {% endif %}
                 {{ form_row(form.budgetbeheerFibu) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.budgetbeheerFibu) }}
+                {% endif %}
                 {{ form_row(form.budgetbeheerOverig) }}
+                {% if app.user.type == 'admin' %}
+                    {{ form_help(form.budgetbeheerOverig) }}
+                {% endif %}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Budgetbeheer'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}

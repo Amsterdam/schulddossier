@@ -44,10 +44,16 @@
                     <h4>Hoe zijn de schulden ontstaan? <span style="color:red;">*</span></h4>
                     <div class="input-choice">
                         {{ form_row(form.ontstaanVanSchulden) }}
+                        {% if app.user.type == 'admin' %}
+                            {{ form_help(form.ontstaanVanSchulden) }}
+                        {% endif %}
                     </div>
                         <h4>Welke inspanningsverplichting wordt nu verricht? <span style="color:red;">*</h4>
                     <div class="input-choice">
                         {{ form_row(form.inspanningsverplichting) }}
+                        {% if app.user.type == 'admin' %}
+                            {{ form_help(form.inspanningsverplichting) }}
+                        {% endif %}
                     </div>
                 </div>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Toelichting aanvraag schuldsanering SHV-er/Bewindvoerder'} only %}

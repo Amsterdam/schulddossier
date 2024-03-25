@@ -29,7 +29,8 @@ class VoorleggerAutolastenKmWoonwerkverkeerFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('autolastenKmWoonwerkverkeer', IntegerType::class, [
-            'required' => false
+            'required' => false,
+            'help' => 'DB: voorlegger.autolasten_km_woonwerkverkeer'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
