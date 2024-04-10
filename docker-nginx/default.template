@@ -1,5 +1,5 @@
 server {
-    listen 80 default;
+    listen 8080 default;
     server_name schulddossier.amsterdam.nl;
 
     root /var/www/public;
@@ -38,7 +38,7 @@ server {
     location ~ ^/index\.php(/|$) {
         try_files $uri = 404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass ${FASTCGI_PASS};
+        fastcgi_pass schulddossier-phpfpm-schulddossier:9000;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;

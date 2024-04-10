@@ -1,0 +1,13 @@
+kubycat:
+  namespace: local
+  interval: 100
+  sync:
+    - name: schulddossier
+      # Replace this line with your actual directory
+      base: /home/joey/Code/salmagundi/apps/oov/schulddossier
+      from:
+        - src
+        - tests
+      to: /var/www
+      pod-label: kubycat=schulddossier
+      shell: /bin/sh

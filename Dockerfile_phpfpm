@@ -1,4 +1,4 @@
-FROM php:8.2.0-fpm-alpine
+FROM php:8.2-fpm-alpine
 
 COPY certificates/adp_rootca.crt /usr/local/share/ca-certificates/adp_rootca.crt
 RUN update-ca-certificates --fresh
@@ -17,12 +17,10 @@ RUN apk add \
     libjpeg-turbo-dev \
     jpeg-dev \
     libreoffice \
-    imagemagick-dev
-
-RUN docker-php-ext-configure \
-    gd \
-    --with-freetype \
-    --with-jpeg
+    imagemagick-dev \
+    libxslt \
+    libxslt-dev \
+    yarn
 
 RUN docker-php-ext-install \
     pdo_pgsql \
@@ -30,7 +28,15 @@ RUN docker-php-ext-install \
     zip \
     soap \
     intl \
-    gd
+    gd \
+    xsl
+
+RUN docker-php-ext-configure \
+    gd \
+    --with-freetype \
+    --with-jpeg 
+
+RUN docker-php-ext-enable xsl
 
 RUN apk add --no-cache --virtual .build-deps \
     build-base  \
@@ -39,26 +45,27 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN apk del -f .build-deps
 
 COPY docker-phpfpm/php-ini-overrides.ini /usr/local/etc/php/conf.d/
+COPY docker-phpfpm/www.conf /usr/local/etc/php-fpm.d
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN php -r "unlink('composer-setup.php');"
 
-COPY --chown=www-data . /var/www
+RUN chown www-data: /var/www
+
+USER www-data
 
 RUN mkdir -p /var/www/var/cache
 RUN mkdir -p /var/www/public/localworkingstorage/dossier
 
 WORKDIR /var/www
 
+COPY --chown=www-data . /var/www
+
 RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
 
-RUN apk add \
-    yarn
 RUN yarn --ignore-scripts --ignore-platform
 RUN yarn encore prod
 RUN yarn run postinstall
-
-RUN chown -R www-data: /var/www
 
 CMD ["/var/www/docker-entrypoint_phpfpm.sh"]
