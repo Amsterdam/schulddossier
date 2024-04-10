@@ -42,5 +42,5 @@ services:
 
     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
         arguments:
-            - '%env(DATABASE_URL)%'
+            - '%env(dburl:DATABASE_URL)%'
             - { lock_mode: 1 }

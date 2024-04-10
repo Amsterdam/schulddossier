@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
@@ -15,10 +16,12 @@ class DocumentUploadSubscriber implements EventSubscriber
     /**
      * @param FileStorageSelector $fileStorageSelector
      * @param LoggerInterface $logger
+     * @param AzureStorage $azureStorage
      */
     public function __construct(
         protected FileStorageSelector $fileStorageSelector,
-        protected LoggerInterface     $logger
+        protected LoggerInterface     $logger,
+        protected AzureStorage        $azureStorage
     )
     {}
 
@@ -53,15 +56,17 @@ class DocumentUploadSubscriber implements EventSubscriber
         $flysystem = $this->fileStorageSelector->getByGroep($object->getGroep());
         /** @var $uploadedFile UploadedFile */
         $uploadedFile = $object->getFile();
+        $filename = time() . '-' . $object->getMd5Hash() . '-' . uniqid(null, true) . '.' . $uploadedFile->guessExtension();
 
         $object->setOrigineleBestandsnaam($uploadedFile->getClientOriginalName());
         $object->setOrigineleExtensie($uploadedFile->getClientOriginalExtension());
 
         $object->setDirectory($object->getMainTag());
-        $object->setBestandsnaam(time() . '-' . $object->getMd5Hash() . '-' . uniqid(null, true) . '.' . $uploadedFile->guessExtension());
+        $object->setBestandsnaam($filename);
 
         $stream = fopen($uploadedFile->getPathname(), 'r+');
-        $flysystem->writeStream($object->getDirectory() . '/' . $object->getBestandsnaam(), $stream);
+
+        $this->azureStorage->storeFile($uploadedFile, $object->getMainTag(), $filename);
 
         try {
             fclose($stream);
@@ -86,7 +91,16 @@ class DocumentUploadSubscriber implements EventSubscriber
         $flysystem = $this->fileStorageSelector->getByGroep($object->getGroep());
 
         if ($flysystem->has($object->getDirectory() . '/' . $object->getBestandsnaam())) {
-            $flysystem->delete($object->getDirectory() . '/' . $object->getBestandsnaam());
+            #$flysystem->delete($object->getDirectory() . '/' . $object->getBestandsnaam());
         }
+
+        if ($this->azureStorage->getBlobContent($object->getDirectory() . '/' . $object->getBestandsnaam())) {
+            $this->logger->debug(__CLASS__ . ":" . __METHOD__ . ": Removing file " . $object->getDirectory() . '/' . $object->getBestandsnaam());
+            return $this->azureStorage->deleteFiles($object->getDirectory() . '/' . $object->getBestandsnaam());
+        }
+
+        $this->logger->debug(__CLASS__ . ":" . __METHOD__ . ": File not found: " . $object->getDirectory() . '/' . $object->getBestandsnaam());
+        return false;
+
     }
 }
