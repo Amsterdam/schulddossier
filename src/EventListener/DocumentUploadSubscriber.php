@@ -56,7 +56,10 @@ class DocumentUploadSubscriber implements EventSubscriber
         $flysystem = $this->fileStorageSelector->getByGroep($object->getGroep());
         /** @var $uploadedFile UploadedFile */
         $uploadedFile = $object->getFile();
-        $filename = time() . '-' . $object->getMd5Hash() . '-' . uniqid(null, true) . '.' . $uploadedFile->guessExtension();
+        $filename = time() . '-' . $object->getMd5Hash() . '-' . uniqid(null, true) . '.';
+
+        //making sure the filename has an extension.
+        $filename .= $uploadedFile->guessExtension() ?? $uploadedFile->getClientOriginalExtension();
 
         $object->setOrigineleBestandsnaam($uploadedFile->getClientOriginalName());
         $object->setOrigineleExtensie($uploadedFile->getClientOriginalExtension());
