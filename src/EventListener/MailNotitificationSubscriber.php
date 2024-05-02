@@ -142,7 +142,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             ]);
         }
 
-        if ($event->getDossier()->getMedewerkerOrganisatie() !== null && $event->getGebruiker()->isSchuldhulpverlener()) {
+        if ($event->getDossier()->getMedewerkerOrganisatie() !== null && $event->getGebruiker()->isSchuldhulpverlener() && $event->getDossier()->isEersteKeerVerzondenAanGKA()) {
             $this->mail($this->fromNotificiatieAdres, $event->getDossier()->getTeamGka()->getEmail(), 'mails/notifyAddedAantekening.html.twig', [
                 'dossier' => $event->getDossier(),
                 'tokenStorage' => $this->tokenStorage
