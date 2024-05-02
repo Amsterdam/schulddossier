@@ -135,17 +135,30 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
      */
     public function notifyAboutAantekening(DossierAddedAantekeningEvent $event): void
     {
-        if ($event->getDossier()->getMedewerkerOrganisatie() !== null && $event->getGebruiker()->isGka()) {
-            $this->mail($this->fromNotificiatieAdres, $event->getDossier()->getMedewerkerOrganisatie()->getEmail(), 'mails/notifyAddedAantekening.html.twig', [
-                'dossier' => $event->getDossier(),
-                'tokenStorage' => $this->tokenStorage
+        if (
+            $event->getDossier()->getMedewerkerOrganisatie() !== null &&
+            $event->getGebruiker()->isGka()
+        ) {
+            $this->mail(
+                $this->fromNotificiatieAdres,
+                $event->getDossier()->getMedewerkerOrganisatie()->getEmail(),
+                'mails/notifyAddedAantekening.html.twig', [
+                    'dossier' => $event->getDossier(),
+                    'tokenStorage' => $this->tokenStorage
             ]);
         }
 
-        if ($event->getDossier()->getMedewerkerOrganisatie() !== null && $event->getGebruiker()->isSchuldhulpverlener() && $event->getDossier()->isEersteKeerVerzondenAanGKA()) {
-            $this->mail($this->fromNotificiatieAdres, $event->getDossier()->getTeamGka()->getEmail(), 'mails/notifyAddedAantekening.html.twig', [
-                'dossier' => $event->getDossier(),
-                'tokenStorage' => $this->tokenStorage
+        if (
+            $event->getDossier()->getMedewerkerOrganisatie() !== null &&
+            $event->getGebruiker()->isSchuldhulpverlener() &&
+            $event->getDossier()->isEersteKeerVerzondenAanGKA()
+        ) {
+            $this->mail(
+                $this->fromNotificiatieAdres,
+                $event->getDossier()->getTeamGka()->getEmail(),
+                'mails/notifyAddedAantekening.html.twig', [
+                    'dossier' => $event->getDossier(),
+                    'tokenStorage' => $this->tokenStorage
             ]);
         }
     }
