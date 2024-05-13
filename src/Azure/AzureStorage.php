@@ -314,7 +314,9 @@ class AzureStorage implements AzureStorageInterface
     {
         $tokenUrl = $this->config['authorityHost'] . $this->config['tenantId'] . '/oauth2/v2.0/token';
         $grantType = 'client_credentials';
-        $clientAssertion = file_get_contents($this->config['federatedTokenFile']);
+        $clientAssertion = $this->config['federatedTokenFile'] ?
+            file_get_contents($this->config['federatedTokenFile']) :
+            null;
         $clientAssertionType = 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer';
 
         // Prepare the request payload
