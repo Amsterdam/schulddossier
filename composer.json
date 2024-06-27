@@ -73,6 +73,10 @@
         "laminas/laminas-code": "^4.8.0"
     },
     "config": {
+        "platform": {
+            "php": "8.2",
+            "ext-gd": "1"
+        },
         "preferred-install": {
             "*": "dist"
         },
