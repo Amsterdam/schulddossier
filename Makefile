@@ -51,3 +51,19 @@ dev:
 fixtures:
 	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh -c "php bin/console --no-interaction doctrine:migrations:migrate"
 	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh -c "php bin/console doc:fix:load  --no-interaction --purge-with-truncate"
+
+composer-install:
+	docker run --rm -v .:/app -u 1000:1000 composer install
+
+composer-update:
+	docker run --rm -v .:/app -u 1000:1000 composer update --lock
+
+npm-install:
+	docker run --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm install"
+
+npm-run-dev:
+	docker run --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm run build && /usr/local/bin/npm run css:build"
+
+npm-watch:
+	docker run -it --init --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm run watch"
+
