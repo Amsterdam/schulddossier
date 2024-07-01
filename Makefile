@@ -62,7 +62,7 @@ npm-install:
 	docker run --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm install"
 
 npm-run-dev:
-	docker run --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm run build && /usr/local/bin/npm run css:build"
+	docker run --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm run dev && /usr/local/bin/npm run css:build"
 
 npm-watch:
 	docker run -it --init --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm run watch"
