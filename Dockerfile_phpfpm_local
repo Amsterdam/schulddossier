@@ -1,0 +1,80 @@
+FROM php:8.2-fpm-alpine
+
+COPY certificates/adp_rootca.crt /usr/local/share/ca-certificates/adp_rootca.crt
+RUN update-ca-certificates --fresh
+
+RUN apk update && apk upgrade
+
+RUN apk add \
+    icu-dev \
+    postgresql-dev \
+    libzip-dev \
+    libxml2-dev \
+    libmcrypt-dev \
+    zlib-dev \
+    freetype-dev \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    jpeg-dev \
+    libreoffice \
+    imagemagick-dev \
+    libxslt \
+    libxslt-dev \
+    yarn
+
+RUN docker-php-ext-install \
+    pdo_pgsql \
+    opcache \
+    zip \
+    soap \
+    intl \
+    gd \
+    xsl
+
+RUN docker-php-ext-configure \
+    gd \
+    --with-freetype \
+    --with-jpeg 
+
+RUN docker-php-ext-enable xsl
+
+RUN apk add --no-cache --virtual .build-deps \
+    build-base  \
+    autoconf
+
+RUN apk del -f .build-deps
+
+COPY docker-phpfpm/php-ini-overrides.ini /usr/local/etc/php/conf.d/
+COPY docker-phpfpm/www.conf /usr/local/etc/php-fpm.d
+
+# Install dependencies and xdebug in one layer
+RUN apk --no-cache add pcre-dev ${PHPIZE_DEPS} \
+  && apk add --update linux-headers \
+  && pecl install xdebug-3.3.0 && docker-php-ext-enable xdebug \
+  && apk del pcre-dev ${PHPIZE_DEPS}
+
+# Copy the Xdebug configuration file
+COPY ./docker-phpfpm/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN php -r "unlink('composer-setup.php');"
+
+RUN chown www-data: /var/www
+
+USER www-data
+
+RUN mkdir -p /var/www/var/cache
+RUN mkdir -p /var/www/public/localworkingstorage/dossier
+
+WORKDIR /var/www
+
+COPY --chown=www-data . /var/www
+
+RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
+
+RUN yarn --ignore-scripts --ignore-platform
+RUN yarn encore prod
+RUN yarn run postinstall
+
+CMD ["/var/www/docker-entrypoint_phpfpm.sh"]
