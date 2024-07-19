@@ -1,9 +1,16 @@
 trigger:
-- '*'
+  tags:
+    include:
+      - '*'
+  branches:
+    include:
+      - '*'
+
+pr: none
 
 pool: Selfhosted Azure Devops Agents
 
 steps:
-- checkout: none
-- script: echo Test
-  displayName: 'Always complete. This is here so that other pipelines can trigger on it.'
+  - checkout: none
+  - script: echo Test
+    displayName: 'Always complete. This is here so that other pipelines can trigger on it.'
