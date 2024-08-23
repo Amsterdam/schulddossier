@@ -33,7 +33,7 @@ class ElevateToAdminCommand extends Command
 
     protected function configure()
     {
-        $this->setName('app:user:make-admin')
+        $this->setName('app:gebruikers:make-admin')
             ->addArgument('email', InputArgument::REQUIRED, 'Which email address do you want to make an admin account?');
     }
 
