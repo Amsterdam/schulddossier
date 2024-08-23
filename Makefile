@@ -1,6 +1,6 @@
 .PHONY: manifests deploy
 
-dc = docker-compose
+dc = docker compose
 
 ENVIRONMENT ?= local
 HELM_ARGS = manifests/chart \
