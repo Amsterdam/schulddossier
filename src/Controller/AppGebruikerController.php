@@ -2,8 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
@@ -16,6 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
@@ -78,11 +81,12 @@ class AppGebruikerController extends AbstractController
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
     public function updateAction(
-        Request $request,
-        EntityManagerInterface $em,
-        Gebruiker $gebruiker,
+        Request                  $request,
+        EntityManagerInterface   $em,
+        Gebruiker                $gebruiker,
         EventDispatcherInterface $eventDispatcher
-    ) {
+    )
+    {
         if ($this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
             if (!$gebruiker->getOrganisaties()->isEmpty() && empty(
                 array_intersect(
@@ -122,11 +126,12 @@ class AppGebruikerController extends AbstractController
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
     public function deleteAction(
-        Request $request,
-        EntityManagerInterface $em,
-        Gebruiker $gebruiker,
+        Request                  $request,
+        EntityManagerInterface   $em,
+        Gebruiker                $gebruiker,
         EventDispatcherInterface $eventDispatcher
-    ) {
+    )
+    {
         // TODO Dit punt is in opverleg met de kredietbank uitgeschakeld om te refinen welke gegevens er moeten worden geanonimiseerd
         // TODO Weergave is ook weg gehaald in schulddossier/templates/Gebruiker/update.html.twig
         throw $this->createAccessDeniedException('Deze functionaliteit is uitgeschakeld');
@@ -153,5 +158,45 @@ class AppGebruikerController extends AbstractController
         $em->flush();
 
         return new RedirectResponse('/app/gebruiker');
+    }
+
+    /**
+     * @Route("/download-gebruikers-csv", name="get_gebruikers_csv", methods={"GET"})
+     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
+     */
+    public function getGebruikersCsv(GebruikerRepository $repository): StreamedResponse
+    {
+        $gebruikers = $repository->findAll();
+
+        $response = new StreamedResponse(function () use ($gebruikers) {
+            $handle = fopen('php://output', 'w+');
+
+            fputcsv($handle, ['naam', 'e-mail', 'organisatie', 'laatste login datum', 'enabled/disabled'], ';');
+
+            foreach ($gebruikers as $gebruiker) {
+
+                $lastLogin = $gebruiker->getLastLogin() !== null
+                    ? $gebruiker->getLastLogin()->format('Y-m-d H:i:s')
+                    : 'Nooit';
+
+                $isEnabled = $gebruiker->isEnabled() ? 'enabled' : 'disabled';
+
+                /**
+                 * @var $organisatieCollection Organisatie[]
+                 */
+                $organisatieCollection = $gebruiker->getOrganisaties()->toArray();
+                $organisatieNames = array_map(fn(Organisatie $org) => $org->getNaam(), $organisatieCollection);
+
+                $organisaties = implode(',', $organisatieNames);
+
+                fputcsv($handle, [$gebruiker->getNaam(), $gebruiker->getEmail(), $organisaties, $lastLogin, $isEnabled], ';');
+            }
+            fclose($handle);
+        });
+
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename="gebruikerslijst.csv"');
+
+        return $response;
     }
 }
