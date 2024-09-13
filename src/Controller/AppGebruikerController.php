@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
@@ -153,5 +154,35 @@ class AppGebruikerController extends AbstractController
         $em->flush();
 
         return new RedirectResponse('/app/gebruiker');
+    }
+
+    /**
+     * @Route("/download-gebruikers-csv", name="get_gebruikers_csv", methods={"GET"})
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function getGebruikersCsv(GebruikerRepository $repository): StreamedResponse
+    {
+        $gebruikers = $repository->findAll();
+
+        // Create a response that streams the CSV content
+        $response = new StreamedResponse(function () use ($gebruikers) {
+            $handle = fopen('php://output', 'w+');
+
+            // Add the CSV headers
+            fputcsv($handle, ['naam']);
+
+            // Add the user data to the CSV
+            foreach ($gebruikers as $gebruiker) {
+                fputcsv($handle, [$gebruiker->getNaam()]);
+            }
+
+            fclose($handle);
+        });
+
+        // Set the content type and headers to indicate a file download
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename="active_users.csv"');
+
+        return $response;
     }
 }
