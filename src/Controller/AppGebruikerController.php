@@ -162,7 +162,7 @@ class AppGebruikerController extends AbstractController
 
     /**
      * @Route("/download-gebruikers-csv", name="get_gebruikers_csv", methods={"GET"})
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      */
     public function getGebruikersCsv(GebruikerRepository $repository): StreamedResponse
     {
@@ -195,7 +195,7 @@ class AppGebruikerController extends AbstractController
         });
 
         $response->headers->set('Content-Type', 'text/csv');
-        $response->headers->set('Content-Disposition', 'attachment; filename="gebruikers.csv"');
+        $response->headers->set('Content-Disposition', 'attachment; filename="gebruikerslijst.csv"');
 
         return $response;
     }

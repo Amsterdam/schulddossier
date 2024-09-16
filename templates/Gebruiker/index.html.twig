@@ -23,18 +23,14 @@
             <nav class="nav-internal">
                 <ul>
                     <li>Gebruikers</li>
+                    {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('get_gebruikers_csv') }}">Download lijst gebruikers</a></li>{% endif %}
                     {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_SHV_KEYUSER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appgebruiker_create') }}">Nieuwe gebruiker</a></li>{% endif %}
-                    {% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('get_gebruikers_csv') }}">Download</a></li>{% endif %}
                 </ul>
             </nav>
         </div>
         {% if is_granted('ROLE_GKA_APPBEHEERDER') == false and is_granted('ROLE_SHV_KEYUSER') == false and is_granted('ROLE_ADMIN') == false %}
             <p>Alleen applicatie beheerders kunnen nieuwe gebruikers toevoegen en bestaande gebruikers wijzigen</p>
         {% endif %}
-        <br>
-         {% if(is_granted('ROLE_ADMIN') == true) %}
-            <a class="button secondary" href="{{ path('get_gebruikers_csv') }}">Download</a>
-         {% endif %}
         <br>
         <h2>Onbekende gebruikers</h2>
         {% if onbekendeGebruikers %}
