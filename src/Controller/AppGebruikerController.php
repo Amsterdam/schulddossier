@@ -164,24 +164,34 @@ class AppGebruikerController extends AbstractController
     {
         $gebruikers = $repository->findAll();
 
-        // Create a response that streams the CSV content
         $response = new StreamedResponse(function () use ($gebruikers) {
             $handle = fopen('php://output', 'w+');
 
-            // Add the CSV headers
-            fputcsv($handle, ['naam']);
+            fputcsv($handle, ['naam' , 'e-mail', 'organisatie', 'laatste login datum', 'enabled/disabled'], ';');
 
-            // Add the user data to the CSV
             foreach ($gebruikers as $gebruiker) {
-                fputcsv($handle, [$gebruiker->getNaam()]);
-            }
 
+                $lastLogin = $gebruiker->getLastLogin() !== null
+                    ? $gebruiker->getLastLogin()->format('Y-m-d H:i:s')
+                    : 'Nooit';
+
+                $isEnabled = $gebruiker->isEnabled() ? 'enabled' : 'disabled';
+
+                $organisatiesArray = $gebruiker->getOrganisaties();
+
+                if (!empty($organisatiesArray) && is_array($organisatiesArray)) {
+                    $organisaties = implode(',', $organisatiesArray);
+                } else {
+                    $organisaties= '-';
+                }
+
+                fputcsv($handle, [$gebruiker->getNaam(), $gebruiker->getEmail(), $organisaties , $lastLogin, $isEnabled], ';');
+            }
             fclose($handle);
         });
 
-        // Set the content type and headers to indicate a file download
         $response->headers->set('Content-Type', 'text/csv');
-        $response->headers->set('Content-Disposition', 'attachment; filename="active_users.csv"');
+        $response->headers->set('Content-Disposition', 'attachment; filename="gebruikers.csv"');
 
         return $response;
     }
