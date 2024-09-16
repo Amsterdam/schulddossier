@@ -2,8 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
@@ -79,11 +81,12 @@ class AppGebruikerController extends AbstractController
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
     public function updateAction(
-        Request $request,
-        EntityManagerInterface $em,
-        Gebruiker $gebruiker,
+        Request                  $request,
+        EntityManagerInterface   $em,
+        Gebruiker                $gebruiker,
         EventDispatcherInterface $eventDispatcher
-    ) {
+    )
+    {
         if ($this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
             if (!$gebruiker->getOrganisaties()->isEmpty() && empty(
                 array_intersect(
@@ -123,11 +126,12 @@ class AppGebruikerController extends AbstractController
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
     public function deleteAction(
-        Request $request,
-        EntityManagerInterface $em,
-        Gebruiker $gebruiker,
+        Request                  $request,
+        EntityManagerInterface   $em,
+        Gebruiker                $gebruiker,
         EventDispatcherInterface $eventDispatcher
-    ) {
+    )
+    {
         // TODO Dit punt is in opverleg met de kredietbank uitgeschakeld om te refinen welke gegevens er moeten worden geanonimiseerd
         // TODO Weergave is ook weg gehaald in schulddossier/templates/Gebruiker/update.html.twig
         throw $this->createAccessDeniedException('Deze functionaliteit is uitgeschakeld');
@@ -167,7 +171,7 @@ class AppGebruikerController extends AbstractController
         $response = new StreamedResponse(function () use ($gebruikers) {
             $handle = fopen('php://output', 'w+');
 
-            fputcsv($handle, ['naam' , 'e-mail', 'organisatie', 'laatste login datum', 'enabled/disabled'], ';');
+            fputcsv($handle, ['naam', 'e-mail', 'organisatie', 'laatste login datum', 'enabled/disabled'], ';');
 
             foreach ($gebruikers as $gebruiker) {
 
@@ -177,15 +181,15 @@ class AppGebruikerController extends AbstractController
 
                 $isEnabled = $gebruiker->isEnabled() ? 'enabled' : 'disabled';
 
-                $organisatiesArray = $gebruiker->getOrganisaties();
+                /**
+                 * @var $organisatieCollection Organisatie[]
+                 */
+                $organisatieCollection = $gebruiker->getOrganisaties()->toArray();
+                $organisatieNames = array_map(fn(Organisatie $org) => $org->getNaam(), $organisatieCollection);
 
-                if (!empty($organisatiesArray) && is_array($organisatiesArray)) {
-                    $organisaties = implode(',', $organisatiesArray);
-                } else {
-                    $organisaties= '-';
-                }
+                $organisaties = implode(',', $organisatieNames);
 
-                fputcsv($handle, [$gebruiker->getNaam(), $gebruiker->getEmail(), $organisaties , $lastLogin, $isEnabled], ';');
+                fputcsv($handle, [$gebruiker->getNaam(), $gebruiker->getEmail(), $organisaties, $lastLogin, $isEnabled], ';');
             }
             fclose($handle);
         });
