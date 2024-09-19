@@ -166,7 +166,7 @@ class AppGebruikerController extends AbstractController
      */
     public function getGebruikersCsv(GebruikerRepository $repository): StreamedResponse
     {
-        $gebruikers = $repository->findAll();
+        $gebruikers = $repository->findAll(0, 100000);
 
         $response = new StreamedResponse(function () use ($gebruikers) {
             $handle = fopen('php://output', 'w+');
