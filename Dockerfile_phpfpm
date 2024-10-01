@@ -20,7 +20,8 @@ RUN apk add \
     imagemagick-dev \
     libxslt \
     libxslt-dev \
-    yarn
+    yarn \
+    postgresql
 
 RUN docker-php-ext-install \
     pdo_pgsql \
