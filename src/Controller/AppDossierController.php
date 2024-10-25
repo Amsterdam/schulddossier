@@ -30,8 +30,10 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
+use GemeenteAmsterdam\FixxxSchuldhulp\Service\DossierDocumentService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use Http\Discovery\Exception\NotFoundException;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -220,7 +222,7 @@ class AppDossierController extends AbstractController
                 }
             }
 
-            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier),ActionEvent::NAME);
+            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier), ActionEvent::NAME);
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_createaddtional', [
                 'dossierId' => $dossier->getId()
@@ -279,7 +281,7 @@ class AppDossierController extends AbstractController
             $dossier->setVoorlegger(new Voorlegger());
         }
         $workflow = $registry->get($dossier);
-        $currentStatus = $dossier->getStatus();
+        $currentStatus = $dossier->getStatus(); 
 
         $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger(), [
             'disabled' => $dossier->isInPrullenbak() === true,
@@ -293,7 +295,7 @@ class AppDossierController extends AbstractController
                 if ($child->has('file')) {
                     $files = $child->get('file')->getData();
                     foreach ($files as $document) {
-                        /** @var $file Document */
+                        /** @var Document $document */
                         if ($document !== null && $document->getFile() !== null) {
                             $document->setMd5Hash(md5($document->getFile()->getRealPath()));
                             $document->setMainTag('dossier-' . $dossier->getId());
@@ -343,14 +345,14 @@ class AppDossierController extends AbstractController
 
             $em->flush();
             if ($sendCorrespondentieNotification === true) {
-                $eventDispatcher->dispatch( new DossierAddedCorrespondentie($dossier, $this->getUser()), DossierAddedCorrespondentie::NAME);
+                $eventDispatcher->dispatch(new DossierAddedCorrespondentie($dossier, $this->getUser()), DossierAddedCorrespondentie::NAME);
             }
             $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
 
 
-        $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier),ActionEvent::NAME);
+        $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
 
         return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
@@ -516,23 +518,31 @@ class AppDossierController extends AbstractController
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
-    public function detailDocumentAction(Request $request, Dossier $dossier, Document $document, AzureStorage $azureStorage)
+    public function detailDocumentAction(
+        Request                $request,
+        Dossier                $dossier,
+        Document               $document,
+        FileStorageSelector    $fileStorageSelector
+    ): Response
     {
         $this->checkDocumentAccess($dossier, $document);
+        $filesystem = $fileStorageSelector->getFileStorageForDossier();
+        $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
 
-        $blobApiResponse = $this->getDocumentBlobApiResponse($document, $azureStorage);
+        $file = $filesystem->readStream($path);
 
-        $headers = $blobApiResponse->getHeaders();
+        return new StreamedResponse(
+            function () use ($file, $filesystem, $path) {
+                $outputStream = fopen('php://output', 'wb');
 
-        return new Response(
-            $blobApiResponse->getContent()
-            ,
+                stream_copy_to_stream($file, $outputStream);
+            },
             Response::HTTP_OK,
             [
                 'Content-Transfer-Encoding', 'binary',
-                'Content-Type' => $headers['content-type'][0],
+                'Content-Type' => $filesystem->getMimetype($path),
                 'Content-Disposition' => 'inline',
-                'Content-Length' => $headers['content-length'],
+                'Content-Length' => fstat($file)['size'],
             ]
         );
     }
@@ -543,25 +553,37 @@ class AppDossierController extends AbstractController
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
-    public function downloadDocumentAction(Request $request, Dossier $dossier, Document $document, AzureStorage $azureStorage)
+    public
+    function downloadDocumentAction(
+        Request                $request,
+        Dossier                $dossier,
+        Document               $document,
+        FileStorageSelector    $fileStorageSelector
+    ): Response
     {
         $this->checkDocumentAccess($dossier, $document);
+        $filesystem = $fileStorageSelector->getFileStorageForDossier();
+        $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
 
-        $blobApiResponse = $this->getDocumentBlobApiResponse($document, $azureStorage);
+        $file = $filesystem->readStream($path);
 
-        $headers = $blobApiResponse->getHeaders();
+        return new StreamedResponse(
+            function () use ($file, $filesystem, $path, $document) {
+                $outputStream = fopen('php://output', 'wb');
 
-        return new Response(
-            $blobApiResponse->getContent()
-            ,
+                stream_copy_to_stream($file, $outputStream);
+            },
             Response::HTTP_OK,
             [
                 'Content-Transfer-Encoding', 'binary',
-                'Content-Type' => $headers['content-type'][0],
-                'Content-Disposition' => 'attachment; filename="'. $document->getOrigineleBestandsnaam() . '"',
-                'Content-Length' => $headers['content-length'],
+                'Content-Type' => $filesystem->getMimetype($path),
+                'Content-Disposition' => 'attachment; filename="'.$document->getOrigineleBestandsnaam().'.'.$document->getOrigineleExtensie().'"',
+                'Content-Length' => fstat($file)['size'],
             ]
         );
+
+
+
     }
 
     /**
@@ -764,9 +786,9 @@ class AppDossierController extends AbstractController
      * @Method({"POST"})
      * @Security("user == aantekening.getGebruiker()")
      * @ParamConverter("aantekening", options={"id"="aantekeningId"})
-     * @param Request                  $request
-     * @param Aantekening              $aantekening
-     * @param EntityManagerInterface   $em
+     * @param Request $request
+     * @param Aantekening $aantekening
+     * @param EntityManagerInterface $em
      *
      * @return JsonResponse
      */
@@ -1094,7 +1116,7 @@ class AppDossierController extends AbstractController
      * @Method("GET")
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
-     * @param Dossier             $dossier
+     * @param Dossier $dossier
      *
      * @param FileStorageSelector $fileStorageSelector
      *
@@ -1239,14 +1261,14 @@ class AppDossierController extends AbstractController
             $sheet->getStyleByColumnAndRow(6, $rowIndex)->getNumberFormat()->setFormatCode('dd mmmm yyyy');
         }
 
-        $rowIndex = $rowIndex+2;
+        $rowIndex = $rowIndex + 2;
 
         $sheet->setCellValueByColumnAndRow(1, $rowIndex, 'Totaal bedrag');
 
         $sheet->setCellValueByColumnAndRow(3, $rowIndex, $dossier->getSumSchuldItemsNotInPrullenbak());
         $sheet->getStyleByColumnAndRow(3, $rowIndex)->getNumberFormat()->setFormatCode('"€"#,##0.00_-');
 
-        $rowIndex = $rowIndex+4;
+        $rowIndex = $rowIndex + 4;
 
         $sheet->setCellValueByColumnAndRow(1, $rowIndex, 'Naam:');
         $sheet->setCellValueByColumnAndRow(4, $rowIndex, 'Datum:');
@@ -1274,7 +1296,8 @@ class AppDossierController extends AbstractController
      * @param Document $document
      * @return void
      */
-    private function checkDocumentAccess(Dossier $dossier, Document $document){
+    private function checkDocumentAccess(Dossier $dossier, Document $document)
+    {
         $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
             return $dossierDocument->getDocument() === $document;
         });
@@ -1293,7 +1316,8 @@ class AppDossierController extends AbstractController
      * @return ResponseInterface
      * @throws \Psr\Cache\InvalidArgumentException
      */
-    private function getDocumentBlobApiResponse(Document $document, AzureStorage $azureStorage) {
+    private function getDocumentBlobApiResponse(Document $document, AzureStorage $azureStorage)
+    {
         $cache = new FilesystemAdapter();
 
         $fullFilePath = $document->getDirectory() . '/' . $document->getBestandsnaam();
@@ -1311,6 +1335,40 @@ class AppDossierController extends AbstractController
 
         return $blobApiResponse;
     }
+
+    /**
+     * @param Document $document
+     * @param AzureStorage $azureStorage
+     * @return ResponseInterface
+     * @throws \Psr\Cache\InvalidArgumentException
+     */
+    private function getDocumentFromFileSystem(Document $document)
+    {
+        $cache = new FilesystemAdapter();
+
+        $fullFilePath = $document->getDirectory() . '/' . $document->getBestandsnaam();
+
+        try {
+            $projectDir = $params->get('kernel.project_dir');
+            $cacheDir = $projectDir . '/var/cache';
+
+            $this->cache = new FilesystemAdapter(
+                '', // namespace
+                0,  // default lifetime
+                $cacheDir // directory
+            );
+            $blobApiResponse = $cache->get($cacheKey, function (ItemInterface $item) use ($azureStorage, $fullFilePath) {
+                $item->expiresAfter(900);
+                return $azureStorage->getBlob($fullFilePath);
+            });
+        } catch (\Exception $e) {
+            throw $this->createNotFoundException('Document ' . $fullFilePath . ' is not available, error message: ' . $e->getMessage());
+        }
+
+        return $blobApiResponse;
+    }
+
+
 }
 
 
