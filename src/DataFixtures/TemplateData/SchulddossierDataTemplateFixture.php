@@ -22,10 +22,6 @@ class SchulddossierDataTemplateFixture extends \Doctrine\Bundle\FixturesBundle\F
      */
     public function load(ObjectManager $manager)
     {
-        if ($_ENV['APP_ENV'] !== 'acc') {
-            return;
-        }
-
         $sql = $this->loadSQLFile();
 
         $connection = $manager->getConnection();
