@@ -10,7 +10,6 @@ use Doctrine\ORM\Events;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
 use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage;
-use GemeenteAmsterdam\FixxxSchuldhulp\Service\DossierDocumentService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 
 use Psr\Log\LoggerInterface;
@@ -23,12 +22,10 @@ class DocumentUploadSubscriber implements EventSubscriberInterface
     /**
      * @param FileStorageSelector $fileStorageSelector
      * @param LoggerInterface $logger
-     * @param DossierDocumentService $service
      */
     public function __construct(
         protected FileStorageSelector $fileStorageSelector,
         protected LoggerInterface     $logger,
-        protected DossierDocumentService $service
     )
     {}
 
@@ -77,7 +74,7 @@ class DocumentUploadSubscriber implements EventSubscriberInterface
         $stream = fopen($uploadedFile->getPathname(), 'r+');
 
         try {
-            $this->service->storeDocumentFile($uploadedFile, $object->getMainTag(), $filename);
+            $flysystem->writeStream($object->getDirectory() . '/' . $object->getBestandsnaam(), $stream);
             fclose($stream);
         } catch (\Exception $e) {
             $this->logger->error(__CLASS__ . ":" . __METHOD__ . ": Failed to store file, errormessage: " . $e->getMessage());

@@ -22,13 +22,16 @@ class SchulddossierDataTemplateFixture extends \Doctrine\Bundle\FixturesBundle\F
      */
     public function load(ObjectManager $manager)
     {
+        if ($_ENV['APP_ENV'] !== 'acc') {
+            return;
+        }
+
         $sql = $this->loadSQLFile();
 
         $connection = $manager->getConnection();
 
         foreach($sql as $line) {
             if (strlen($line) > 1 && substr($line, 0, 2) !== '--') {
-                //echo "Execute ". $line;
                 $connection->executeQuery($line);  // Execute native SQL
             }
         }
