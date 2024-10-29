@@ -30,10 +30,8 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
-use GemeenteAmsterdam\FixxxSchuldhulp\Service\DossierDocumentService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use Http\Discovery\Exception\NotFoundException;
-use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -553,8 +551,7 @@ class AppDossierController extends AbstractController
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
-    public
-    function downloadDocumentAction(
+    public function downloadDocumentAction(
         Request                $request,
         Dossier                $dossier,
         Document               $document,
@@ -1298,66 +1295,6 @@ class AppDossierController extends AbstractController
             throw $this->createNotFoundException('Document not available');
         }
     }
-
-    /**
-     * @param Document $document
-     * @param AzureStorage $azureStorage
-     * @return ResponseInterface
-     * @throws \Psr\Cache\InvalidArgumentException
-     */
-    private function getDocumentBlobApiResponse(Document $document, AzureStorage $azureStorage)
-    {
-        $cache = new FilesystemAdapter();
-
-        $fullFilePath = $document->getDirectory() . '/' . $document->getBestandsnaam();
-        $cacheKey = $document->getDirectory() . $document->getBestandsnaam();
-
-        try {
-            /** @var ResponseInterface $blobApiResponse */
-            $blobApiResponse = $cache->get($cacheKey, function (ItemInterface $item) use ($azureStorage, $fullFilePath) {
-                $item->expiresAfter(900);
-                return $azureStorage->getBlob($fullFilePath);
-            });
-        } catch (\Exception $e) {
-            throw $this->createNotFoundException('Document ' . $fullFilePath . ' is not available, error message: ' . $e->getMessage());
-        }
-
-        return $blobApiResponse;
-    }
-
-    /**
-     * @param Document $document
-     * @param AzureStorage $azureStorage
-     * @return ResponseInterface
-     * @throws \Psr\Cache\InvalidArgumentException
-     */
-    private function getDocumentFromFileSystem(Document $document)
-    {
-        $cache = new FilesystemAdapter();
-
-        $fullFilePath = $document->getDirectory() . '/' . $document->getBestandsnaam();
-
-        try {
-            $projectDir = $params->get('kernel.project_dir');
-            $cacheDir = $projectDir . '/var/cache';
-
-            $this->cache = new FilesystemAdapter(
-                '', // namespace
-                0,  // default lifetime
-                $cacheDir // directory
-            );
-            $blobApiResponse = $cache->get($cacheKey, function (ItemInterface $item) use ($azureStorage, $fullFilePath) {
-                $item->expiresAfter(900);
-                return $azureStorage->getBlob($fullFilePath);
-            });
-        } catch (\Exception $e) {
-            throw $this->createNotFoundException('Document ' . $fullFilePath . ' is not available, error message: ' . $e->getMessage());
-        }
-
-        return $blobApiResponse;
-    }
-
-
 }
 
 
