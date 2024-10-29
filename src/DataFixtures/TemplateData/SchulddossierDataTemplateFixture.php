@@ -28,6 +28,7 @@ class SchulddossierDataTemplateFixture extends \Doctrine\Bundle\FixturesBundle\F
 
         foreach($sql as $line) {
             if (strlen($line) > 1 && substr($line, 0, 2) !== '--') {
+                //echo "Execute ". $line;
                 $connection->executeQuery($line);  // Execute native SQL
             }
         }
