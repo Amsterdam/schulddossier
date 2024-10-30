@@ -7,11 +7,8 @@ use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use Doctrine\ORM\Event\PostRemoveEventArgs;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Events;
-
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
-use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
-
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 

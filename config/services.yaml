@@ -164,35 +164,6 @@ services:
     App\Controller\ImageController:
         arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
 
-    gemeenteamsterdam_fixxxschuldhulp_azure_base_config:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\AzureBaseConfig
-        arguments:
-            $subscriptionId: '%azureSubscriptionId%'
-            $resourceGroup: '%azureResourceGroup%'
-            $tenantId: '%azureTenantId%'
-            $clientId: '%azureClientId%'
-            $federatedTokenFile: '%azureFederatedTokenFile%'
-            $authorityHost: '%azureAuthorityHost%'
-
-
-    gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_reader_config:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileReaderConfig
-        arguments:
-            $baseConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_base_config'
-            $fileStorageAccount: '%fileStorageAccount%'
-            $fileContainer: '%fileContainer%'
-
-    gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_writer_config:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileWriterConfig
-        arguments:
-            $baseConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_base_config'
-            $fileStorageAccount: '%fileStorageAccount%'
-            $fileContainer: '%fileContainer%'
-
-    GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage:
-        arguments:
-            $SASFileReaderConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_reader_config'
-            $SASFileWriterConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_writer_config'
 
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileListener:
         arguments:
