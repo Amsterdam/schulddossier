@@ -279,7 +279,7 @@ class AppDossierController extends AbstractController
             $dossier->setVoorlegger(new Voorlegger());
         }
         $workflow = $registry->get($dossier);
-        $currentStatus = $dossier->getStatus(); 
+        $currentStatus = $dossier->getStatus();
 
         $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger(), [
             'disabled' => $dossier->isInPrullenbak() === true,

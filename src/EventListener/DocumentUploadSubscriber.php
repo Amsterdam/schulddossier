@@ -96,10 +96,12 @@ class DocumentUploadSubscriber implements EventSubscriberInterface
         if (($object instanceof Document) === false) {
             return;
         }
-        /** @var $object Document */
-        if ($this->service->physicalFileExists($object)) {
+
+        $flysystem = $this->fileStorageSelector->getByGroep($object->getGroep());
+
+        if ($flysystem->has($object->getDirectory() . '/' . $object->getBestandsnaam())) {
             $this->logger->debug(__CLASS__ . ":" . __METHOD__ . ": Removing file " . $object->getDirectory() . '/' . $object->getBestandsnaam());
-            $this->service->removeFile($object);
+            $flysystem->delete($object->getDirectory() . '/' . $object->getBestandsnaam());
             return;
         }
 
