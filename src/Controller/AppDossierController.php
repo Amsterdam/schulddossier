@@ -3,7 +3,6 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
-use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent as ActionEventEntity;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
@@ -32,6 +31,8 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use Http\Discovery\Exception\NotFoundException;
+use League\Flysystem\FileNotFoundException;
+use League\Flysystem\Filesystem as FlysystemFilesystem;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -48,6 +49,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -524,25 +526,14 @@ class AppDossierController extends AbstractController
     ): Response
     {
         $this->checkDocumentAccess($dossier, $document);
-        $filesystem = $fileStorageSelector->getFileStorageForDossier();
-        $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
 
-        $file = $filesystem->readStream($path);
-
-        return new StreamedResponse(
-            function () use ($file, $filesystem, $path) {
-                $outputStream = fopen('php://output', 'wb');
-
-                stream_copy_to_stream($file, $outputStream);
-            },
-            Response::HTTP_OK,
-            [
-                'Content-Transfer-Encoding', 'binary',
-                'Content-Type' => $filesystem->getMimetype($path),
-                'Content-Disposition' => 'inline',
-                'Content-Length' => fstat($file)['size'],
-            ]
+        return $this->streamedFileResponse(
+            $fileStorageSelector->getFileStorageForDossier(),
+            $dossier,
+            $document,
+            HeaderUtils::DISPOSITION_INLINE
         );
+
     }
 
     /**
@@ -559,28 +550,46 @@ class AppDossierController extends AbstractController
     ): Response
     {
         $this->checkDocumentAccess($dossier, $document);
-        $filesystem = $fileStorageSelector->getFileStorageForDossier();
-        $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
 
-        $file = $filesystem->readStream($path);
+        return $this->streamedFileResponse(
+            $fileStorageSelector->getFileStorageForDossier(),
+            $dossier,
+            $document
+        );
+    }
 
-        return new StreamedResponse(
-            function () use ($file, $filesystem, $path, $document) {
+    private function streamedFileResponse(
+        FlysystemFilesystem $filesystem,
+        Dossier             $dossier,
+        Document            $document,
+        string              $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
+    ): StreamedResponse
+    {
+        try {
+            $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
+            $fileStream = $filesystem->readStream($path);
+        } catch (FileNotFoundException $e) {
+            throw new NotFoundHttpException('Document not found');
+        }
+
+        $response = new StreamedResponse(
+            function () use ($fileStream) {
                 $outputStream = fopen('php://output', 'wb');
-
-                stream_copy_to_stream($file, $outputStream);
-            },
-            Response::HTTP_OK,
-            [
-                'Content-Transfer-Encoding', 'binary',
-                'Content-Type' => $filesystem->getMimetype($path),
-                'Content-Disposition' => 'attachment; filename="'.$document->getOrigineleBestandsnaam().'.'.$document->getOrigineleExtensie().'"',
-                'Content-Length' => fstat($file)['size'],
-            ]
+                stream_copy_to_stream($fileStream, $outputStream);
+            }
         );
 
+        $response->headers->set('Content-Type', $filesystem->getMimetype($path));
+        $response->headers->set('Content-Length', $filesystem->getSize($path));
+        $response->headers->set(
+            'Content-Disposition',
+            HeaderUtils::makeDisposition(
+                HeaderUtils::DISPOSITION_ATTACHMENT,
+                $document->getOrigineleBestandsnaam() . '.' . $document->getOrigineleExtensie()
+            )
+        );
 
-
+        return $response;
     }
 
     /**
