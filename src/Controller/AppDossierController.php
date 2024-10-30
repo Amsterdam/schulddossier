@@ -572,13 +572,7 @@ class AppDossierController extends AbstractController
             throw new NotFoundHttpException('Document not found');
         }
 
-        $response = new StreamedResponse(
-            function () use ($fileStream) {
-                $outputStream = fopen('php://output', 'wb');
-                stream_copy_to_stream($fileStream, $outputStream);
-            }
-        );
-
+        $response = new StreamedResponse();
         $response->headers->set('Content-Type', $filesystem->getMimetype($path));
         $response->headers->set('Content-Length', $filesystem->getSize($path));
         $response->headers->set(
@@ -587,6 +581,12 @@ class AppDossierController extends AbstractController
                 HeaderUtils::DISPOSITION_ATTACHMENT,
                 $document->getOrigineleBestandsnaam() . '.' . $document->getOrigineleExtensie()
             )
+        );
+        $response->setCallback(
+            function () use ($fileStream) {
+                $outputStream = fopen('php://output', 'wb');
+                stream_copy_to_stream($fileStream, $outputStream);
+            }
         );
 
         return $response;
