@@ -2,47 +2,46 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
-use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage;
-use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
+use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
+use Doctrine\ORM\Event\PostRemoveEventArgs;
+use Doctrine\ORM\Event\PrePersistEventArgs;
+use Doctrine\ORM\Events;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class DocumentUploadSubscriber implements EventSubscriber
+#[AsDoctrineListener(event: Events::prePersist, priority: 500, connection: 'default')]
+#[AsDoctrineListener(event: Events::postRemove, priority: 500, connection: 'default')]
+class DocumentUploadSubscriber implements EventSubscriberInterface
 {
-
     /**
      * @param FileStorageSelector $fileStorageSelector
      * @param LoggerInterface $logger
-     * @param AzureStorage $azureStorage
      */
     public function __construct(
         protected FileStorageSelector $fileStorageSelector,
         protected LoggerInterface     $logger,
-        protected AzureStorage        $azureStorage
     )
     {}
 
-
-    /**
-     * {@inheritDoc}
-     * @see \Doctrine\Common\EventSubscriber::getSubscribedEvents()
-     */
-    public function getSubscribedEvents()
+    public function getSubscribedEvents(): array
     {
-        return ['prePersist', 'postRemove'];
+        return [
+            Events::prePersist,
+            Events::postRemove
+        ];
     }
 
     /**
-     * @param LifecycleEventArgs $args
-     *
-     * @throws \League\Flysystem\FileExistsException
+     * @param PrePersistEventArgs $args
      */
-    public function prePersist(LifecycleEventArgs $args)
+    public function prePersist(PrePersistEventArgs $args): void
     {
+
         $object = $args->getObject();
+
 
         if (($object instanceof Document) === false) {
             return;
@@ -52,7 +51,9 @@ class DocumentUploadSubscriber implements EventSubscriber
             return;
         }
 
-        /** @var $object Document */
+        $entityManager = $args->getObjectManager();
+
+        /** @var Document $object */
         $flysystem = $this->fileStorageSelector->getByGroep($object->getGroep());
         /** @var $uploadedFile UploadedFile */
         $uploadedFile = $object->getFile();
@@ -69,41 +70,38 @@ class DocumentUploadSubscriber implements EventSubscriber
 
         $stream = fopen($uploadedFile->getPathname(), 'r+');
 
-        $this->azureStorage->storeFile($uploadedFile, $object->getMainTag(), $filename);
-
         try {
+            $flysystem->writeStream($object->getDirectory() . '/' . $object->getBestandsnaam(), $stream);
             fclose($stream);
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
+            $this->logger->error(__CLASS__ . ":" . __METHOD__ . ": Failed to store file, errormessage: " . $e->getMessage());
+        }
+        catch (\Throwable $e) {
             $this->logger->error(__CLASS__ . ":" . __METHOD__ . ": Failed fclose, errormessage: " . $e->getMessage());
         }
+
     }
 
     /**
-     * @param LifecycleEventArgs $args
+     * @param PostRemoveEventArgs $args
      *
-     * @throws \League\Flysystem\FileNotFoundException
+     * @return false|void
      */
-    public function postRemove(LifecycleEventArgs $args)
+    public function postRemove(PostRemoveEventArgs $args)
     {
         $object = $args->getObject();
         if (($object instanceof Document) === false) {
             return;
         }
-        /** @var $object Document */
 
         $flysystem = $this->fileStorageSelector->getByGroep($object->getGroep());
 
         if ($flysystem->has($object->getDirectory() . '/' . $object->getBestandsnaam())) {
-            #$flysystem->delete($object->getDirectory() . '/' . $object->getBestandsnaam());
-        }
-
-        if ($this->azureStorage->getBlobContent($object->getDirectory() . '/' . $object->getBestandsnaam())) {
             $this->logger->debug(__CLASS__ . ":" . __METHOD__ . ": Removing file " . $object->getDirectory() . '/' . $object->getBestandsnaam());
-            return $this->azureStorage->deleteFiles($object->getDirectory() . '/' . $object->getBestandsnaam());
+            $flysystem->delete($object->getDirectory() . '/' . $object->getBestandsnaam());
+            return;
         }
 
         $this->logger->debug(__CLASS__ . ":" . __METHOD__ . ": File not found: " . $object->getDirectory() . '/' . $object->getBestandsnaam());
-        return false;
-
     }
 }

@@ -54,10 +54,12 @@ services:
         arguments:
             - '@security.user_password_encoder.generic'
         tags:
-            - { name: doctrine.event_subscriber, connection: default }
+            - name: doctrine.event_subscriber
+              connection: default
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\DocumentUploadSubscriber:
         tags:
-            - { name: doctrine.event_subscriber, connection: default }
+            - name: doctrine.event_subscriber
+              connection: default
     # Symfony EventListeners
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\MailNotitificationSubscriber:
         arguments:
@@ -124,34 +126,17 @@ services:
         class: Symfony\Component\Serializer\Encoder\JsonEncoder
         public: false
 
-    # OpenStack
-    openstack:
-        class: OpenStack\OpenStack
-        lazy: true
-        arguments:
-            - { authUrl: '%swift_auth_url%', region: '%swift_region%', user: { name: '%swift_user_name%', domain: { id: '%swift_user_domain_id%' }, password: '%swift_user_password%' }, scope: { project: { id: '%swift_project_id%' } } }
-    openstack_objectstore:
-        class: OpenStack\ObjectStore\v1\Service
-        lazy: true
-        factory: ['@openstack', 'objectStoreV1']
-    openstack_objectstore_container_dossier:
-        class: OpenStack\ObjectStore\v1\Models\Container
-        lazy: true
-        factory: ['@openstack_objectstore', 'getContainer']
-        arguments:
-            - '%swift_container_prefix%dossier'
-            
     # Flysystem
-    flysystem_openstack_adapter_dossier:
-        class: Nimbusoft\Flysystem\OpenStack\SwiftAdapter
+    flysystem_local_adapter_dossier:
+        class: League\Flysystem\Adapter\Local
         lazy: true
         arguments:
-            - '@openstack_objectstore_container_dossier'
+            - '%kernel.project_dir%/var/data/dossiers/'
     flysystem_dossier:
         class: League\Flysystem\Filesystem
         lazy: true
         arguments:
-            - '@flysystem_openstack_adapter_dossier'
+            - '@flysystem_local_adapter_dossier'
             
     # Security
     GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator:
@@ -179,35 +164,6 @@ services:
     App\Controller\ImageController:
         arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
 
-    gemeenteamsterdam_fixxxschuldhulp_azure_base_config:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\AzureBaseConfig
-        arguments:
-            $subscriptionId: '%azureSubscriptionId%'
-            $resourceGroup: '%azureResourceGroup%'
-            $tenantId: '%azureTenantId%'
-            $clientId: '%azureClientId%'
-            $federatedTokenFile: '%azureFederatedTokenFile%'
-            $authorityHost: '%azureAuthorityHost%'
-
-
-    gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_reader_config:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileReaderConfig
-        arguments:
-            $baseConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_base_config'
-            $fileStorageAccount: '%fileStorageAccount%'
-            $fileContainer: '%fileContainer%'
-
-    gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_writer_config:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Azure\Config\SASFileWriterConfig
-        arguments:
-            $baseConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_base_config'
-            $fileStorageAccount: '%fileStorageAccount%'
-            $fileContainer: '%fileContainer%'
-
-    GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureStorage:
-        arguments:
-            $SASFileReaderConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_reader_config'
-            $SASFileWriterConfig: '@gemeenteamsterdam_fixxxschuldhulp_azure_sas_file_writer_config'
 
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileListener:
         arguments:
