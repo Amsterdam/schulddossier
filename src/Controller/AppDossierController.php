@@ -571,7 +571,11 @@ class AppDossierController extends AbstractController
         } catch (FileNotFoundException $e) {
             throw new NotFoundHttpException('Document not found');
         }
-        $filename = $document->getOrigineleBestandsnaam() . '.' . $document->getOrigineleExtensie();
+        $origineleFilename = $document->getOrigineleBestandsnaam() . '.' . $document->getOrigineleExtensie();
+        $fallbackFilename =
+            preg_replace("/[^A-Za-z0-9 ]/", '', $document->getOrigineleBestandsnaam()) .
+            '.' .
+            preg_replace("/[^A-Za-z0-9 ]/", '', $document->getOrigineleExtensie());
 
         $response = new StreamedResponse();
         $response->headers->set('Content-Type', $filesystem->getMimetype($path));
@@ -580,8 +584,8 @@ class AppDossierController extends AbstractController
             'Content-Disposition',
             HeaderUtils::makeDisposition(
                 $disposition,
-                $filename,
-                preg_replace("/[^A-Za-z0-9 ]/", '', $filename)
+                $origineleFilename,
+                $fallbackFilename
             )
         );
         $response->setCallback(
