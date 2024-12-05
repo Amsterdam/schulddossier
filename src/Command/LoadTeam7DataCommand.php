@@ -12,7 +12,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class LoadTeam7DataCommand extends Command
 {
-    private const SQL_TEMPLATE_FILE = '/var/www/20240731_schulddossier_template_data_only.sql';
+    private const SQL_TEMPLATE_FILE = '/var/www/20241001_schulddossier_acc_template_test_data.sql';
 
     public function __construct(
         private readonly string $appEnv,
