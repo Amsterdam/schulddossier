@@ -5,7 +5,7 @@
     "glob-parent": "^6.0.2",
     "jspdf": "^2.5.1",
     "moment": "^2.29.4",
-    "pdfjs-dist": "^3.4.120",
+    "pdfjs-dist": "^4.9.155",
     "schema-utils": "^4.0.0",
     "sortablejs": "^1.15.0",
     "webpack": "^5.76.2",
@@ -13,8 +13,6 @@
     "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
-    "json5": "^2.2.3",
-    "loader-utils": "^3.2.1",
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
     "@hotwired/stimulus": "^3.2.1",
@@ -22,6 +20,8 @@
     "@symfony/webpack-encore": "^4.3.0",
     "core-js": "^3.31.0",
     "file-loader": "^6.0.0",
+    "json5": "^2.2.3",
+    "loader-utils": "^3.2.1",
     "sass": "^1.63.5",
     "sass-loader": "^13.0.0",
     "webpack-cli": "^5.1.4",
