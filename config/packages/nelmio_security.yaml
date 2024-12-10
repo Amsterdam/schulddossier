@@ -72,7 +72,7 @@ nelmio_security:
     # If ``strict-origin-when-cross-origin`` is not supported, use ``no-referrer`` policy,
     # no referrer information is sent along with requests.
     referrer_policy:
-        enabled: false
+        enabled: true
         policies:
             - 'no-referrer'
             - 'strict-origin-when-cross-origin'
