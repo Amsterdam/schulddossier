@@ -16,6 +16,11 @@ when@dev:
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
                 level: debug
                 channels: ["!event"]
+            csp_violations: # Add a handler for the csp_violations channel
+                type: stream
+                path: "%kernel.logs_dir%/%kernel.environment%-csp_violations.log"
+                level: notice
+                channels: [ "csp_violations" ]
             # uncomment to get logging in your browser
             # you may have to allow bigger header sizes in your Web server configuration
             #firephp:
