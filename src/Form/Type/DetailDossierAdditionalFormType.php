@@ -47,7 +47,7 @@ class DetailDossierAdditionalFormType extends AbstractType
         ]);
 
         $builder->add('clientBurgelijkeStaat', ChoiceType::class, [
-            'label' => 'Burgelijke staat',
+            'label' => 'Burgerlijke staat',
             'required' => false,
             'multiple' => false,
             'expanded' => true,
@@ -56,7 +56,7 @@ class DetailDossierAdditionalFormType extends AbstractType
         ]);
 
         $builder->add('clientBurgelijkeStaatSinds', DateType::class, [
-            'label' => 'Burgelijke staat sinds',
+            'label' => 'Burgerlijke staat sinds',
             'required' => false,
             'html5' => false,
             'attr' => ['data-decorator' => 'rome'],
