@@ -7,6 +7,11 @@ monolog:
             path: php://stderr
             level: error
             formatter: monolog.formatter.json
+        csp_violations: # Add a handler for the csp_violations channel
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%-csp_violations.log"
+            level: notice
+            channels: [ "csp_violations" ]
 
 when@dev:
     monolog:
