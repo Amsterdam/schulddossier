@@ -75,4 +75,3 @@ INSERT INTO public.voorlegger VALUES ('1276', 1459, 0, 0, 0, true, true, false, 
 SELECT pg_catalog.setval('public.dossier_id_seq', 1459, true);
 SELECT pg_catalog.setval('public.schuld_item_id_seq', 8423, true);
 SELECT pg_catalog.setval('public.voorlegger_id_seq', 1276, true);
-
