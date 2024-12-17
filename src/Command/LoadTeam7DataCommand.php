@@ -32,7 +32,7 @@ class LoadTeam7DataCommand extends Command
     {
         // Dit commando is heel specifiek voor de dataset welke op dit moment op ACC staat.
         // Hierdoor is dit commando alleen beschikbaar op ACC
-        if ($this->appEnv === 'acc') {
+        if ($this->appEnv === 'acc' || $this->appEnv === 'acceptance') {
             return true;
         }
 
