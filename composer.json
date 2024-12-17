@@ -20,6 +20,7 @@
         "moment/moment": "^2.21",
         "mozilla/pdf.js": "1.9.426",
         "mrrio/jspdf": "1.3.5",
+        "nelmio/security-bundle": "^3.4",
         "nimbusoft/flysystem-openstack-swift": "^0.4",
         "php-http/client-common": "^2.3",
         "php-http/discovery": "^1.3",

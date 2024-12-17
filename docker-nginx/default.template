@@ -9,13 +9,12 @@ server {
     real_ip_header X-Forwarded-For;
     real_ip_recursive on;
 
+    add_header Access-Control-Allow-Origin "*.amsterdam.nl";
+    add_header Cross-Origin-Opener-Policy same-origin;
+    add_header Cross-Origin-Resource-Policy same-site;
     add_header Feature-Policy "";
     add_header Strict-Transport-Security "max-age=31536000; preload";
     add_header X-Frame-Options "SAMEORIGIN";
-    add_header Content-Security-Policy "frame-ancestors 'self'";
-    add_header Referrer-Policy "strict-origin";
-    add_header X-Content-Type-Options "nosniff";
-    add_header Access-Control-Allow-Origin "*.amsterdam.nl";
 
     client_max_body_size 30M;
 
@@ -33,6 +32,14 @@ server {
         allow 172.0.0.0/8;
         allow 10.234.0.0/16;
         deny all; #deny all other hosts
+    }
+
+    location /.well-known/security.txt {
+       return 302 https://www.amsterdam.nl/security.txt;
+    }
+
+    location = /security.txt {
+       return 302 https://www.amsterdam.nl/security.txt;
     }
 
     location ~ ^/index\.php(/|$) {
