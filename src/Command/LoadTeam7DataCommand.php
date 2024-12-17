@@ -43,7 +43,6 @@ class LoadTeam7DataCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $io->title('Testdata laden voor Team 7');
-        $this->application->getKernel()->getEnvironment();
 
         $file = fopen(self::SQL_TEMPLATE_FILE, "r");
         $pdo = $this->em->getConnection()->getNativeConnection();
