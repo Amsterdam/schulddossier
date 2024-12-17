@@ -57,6 +57,7 @@ class LoadTeam7DataCommand extends Command
         try {
             while (!feof($file)) {
                 $line = fgets($file);
+                $io->info("Preparing line: " . $line);
                 $statement = $pdo->prepare($line);
                 $statement->execute();
                 $statements++;
