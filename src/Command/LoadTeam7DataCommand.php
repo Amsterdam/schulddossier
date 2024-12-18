@@ -12,7 +12,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class LoadTeam7DataCommand extends Command
 {
-    private const SQL_TEMPLATE_FILE = '/var/www/20240731_schulddossier_template_data_only.sql';
+    private const SQL_TEMPLATE_FILE = '/var/www/20241001_schulddossier_acc_template_test_data.sql';
 
     public function __construct(
         private readonly string $appEnv,
@@ -32,7 +32,7 @@ class LoadTeam7DataCommand extends Command
     {
         // Dit commando is heel specifiek voor de dataset welke op dit moment op ACC staat.
         // Hierdoor is dit commando alleen beschikbaar op ACC
-        if ($this->appEnv === 'acc') {
+        if ($this->appEnv === 'acc' || $this->appEnv === 'acceptance') {
             return true;
         }
 
@@ -43,7 +43,6 @@ class LoadTeam7DataCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $io->title('Testdata laden voor Team 7');
-        $this->application->getKernel()->getEnvironment();
 
         $file = fopen(self::SQL_TEMPLATE_FILE, "r");
         $pdo = $this->em->getConnection()->getNativeConnection();
@@ -58,6 +57,7 @@ class LoadTeam7DataCommand extends Command
         try {
             while (!feof($file)) {
                 $line = fgets($file);
+                $io->info("Preparing line: " . $line);
                 $statement = $pdo->prepare($line);
                 $statement->execute();
                 $statements++;
