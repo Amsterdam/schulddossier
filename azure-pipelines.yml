@@ -6,11 +6,9 @@ trigger:
     include:
       - '*'
 
-
 pr: none
 
 pool: Selfhosted Azure Devops Agents
-
 
 # These defaults need to be set as variables on the pipeline in the Devops webinterface
 parameters:
