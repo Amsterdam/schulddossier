@@ -13,6 +13,10 @@ pool: Selfhosted Azure Devops Agents
 
 
 parameters:
+  - name: organization
+    displayName: The Azure Devops organisation URL
+    type: string
+    default: https://dev.azure.com/CloudCompetenceCenter/
   - name: project
     displayName: The Azure Devops project which hosts the pipelines
     type: string
@@ -24,11 +28,8 @@ parameters:
   - name: buildPipelineBranch
     displayName: The Github application pipeline branch to use, this normally should be main
     type: string
-    default: refs/heads/main
-  - name: organization
-    displayName: The Azure Devops organisation URL
-    type: string
-    default: https://dev.azure.com/CloudCompetenceCenter/
+    default: refs/heads/feature/update-pipeline-trigger-direction
+    #default: refs/heads/main
 
 steps:
   - bash: |
