@@ -11,17 +11,28 @@ pr: none
 
 pool: Selfhosted Azure Devops Agents
 
+
+parameters:
+  - name: project
+    displayName: The Azure Devops project which hosts the pipelines
+    type: string
+    default: salmagundi
+  - name: pipelineId
+    displayName: The Azure Devops pipeline ID which should be activated, this should be the Github application pipeline
+    type: string
+    default: 3193
+  - name: buildPipelineBranch
+    displayName: The Github application pipeline branch to use, this normally should be main
+    type: string
+    default: refs/heads/main
+  - name: organization
+    displayName: The Azure Devops organisation URL
+    type: string
+    default: https://dev.azure.com/CloudCompetenceCenter/
+
 steps:
   - bash: |
-      - az pipelines run --project 'salmagundi' --id 3193 --branch 'refs/heads/feature/update-pipeline-trigger-direction' --org https://dev.azure.com/CloudCompetenceCenter/ --parameters "forceLockProducedImages=true"
-    displayName: 'Trigger Schulddossier application pipeline and lock produced image for $(BRANCH_NAME)'
-    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
-    env:
-      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
-
-  - bash: |
-      - az pipelines run --project 'salmagundi' --id 3193 --branch 'refs/heads/feature/update-pipeline-trigger-direction' --org https://dev.azure.com/CloudCompetenceCenter/ --parameters "forceLockProducedImages=false"
-    displayName: 'Trigger Schulddossier application pipeline for branch $(BRANCH_NAME)'
-    condition: not(startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
+      - az pipelines run --project $(parameters.project) --id $(parameters.pipelineId) --branch $(parameters.buildPipelineBranch) --org $(parameters.organization) --parameters applicationBranch=$(Build.SourceBranch)
+    displayName: 'Trigger Schulddossier application pipeline for branch $(Build.SourceBranch)'
     env:
       AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
