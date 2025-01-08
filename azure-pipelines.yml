@@ -6,13 +6,22 @@ trigger:
     include:
       - '*'
 
+
 pr: none
 
 pool: Selfhosted Azure Devops Agents
 
 steps:
   - bash: |
-      az pipelines run --project 'salmagundi' --id 3193 --branch 'feature/update-pipeline-trigger-direction' --org https://dev.azure.com/CloudCompetenceCenter/ --variables "applicationBranch=$(Build.SourceBranch)"
-    displayName: 'Trigger Schulddossier application pipeline retry'
+      - az pipelines run --project 'salmagundi' --id 3193 --branch 'refs/heads/feature/update-pipeline-trigger-direction' --org https://dev.azure.com/CloudCompetenceCenter/ --parameters "forceLockProducedImages=true"
+    displayName: 'Trigger Schulddossier application pipeline and lock produced image for $(BRANCH_NAME)'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+    env:
+      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
+
+  - bash: |
+      - az pipelines run --project 'salmagundi' --id 3193 --branch 'refs/heads/feature/update-pipeline-trigger-direction' --org https://dev.azure.com/CloudCompetenceCenter/ --parameters "forceLockProducedImages=false"
+    displayName: 'Trigger Schulddossier application pipeline for branch $(BRANCH_NAME)'
+    condition: not(startsWith(variables['Build.SourceBranch'], 'refs/tags/'))
     env:
       AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
