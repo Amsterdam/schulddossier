@@ -36,4 +36,4 @@ steps:
       az pipelines run --project ${{parameters.project}} --id ${{parameters.pipelineId}} --branch ${{parameters.buildPipelineBranch}} --org ${{parameters.organization}} --parameters applicationBranch=$(Build.SourceBranch)
     displayName: 'Trigger Schulddossier application pipeline for branch $(Build.SourceBranch)'
     env:
-      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
+      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken) 
