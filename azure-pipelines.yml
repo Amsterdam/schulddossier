@@ -11,6 +11,8 @@ pr: none
 pool: Selfhosted Azure Devops Agents
 
 steps:
-  - checkout: none
-  - script: echo Test
-    displayName: 'Always complete. This is here so that other pipelines can trigger on it.'
+  - bash: |
+      az pipelines run --project 'salmagundi' --id 3193 --branch $(Build.SourceBranch)
+    displayName: 'Trigger Schulddossier application pipeline'
+    env:
+      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
