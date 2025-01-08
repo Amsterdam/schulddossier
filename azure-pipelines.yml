@@ -28,8 +28,7 @@ parameters:
   - name: buildPipelineBranch
     displayName: The Github application pipeline branch to use, this normally should be main
     type: string
-    default: refs/heads/feature/update-pipeline-trigger-direction
-    #default: refs/heads/main
+    default: refs/heads/main
 
 steps:
   - bash: |
