@@ -16,15 +16,15 @@ parameters:
   - name: organization
     displayName: The Azure Devops organisation URL
     type: string
-    default: https://dev.azure.com/CloudCompetenceCenter/
+    default: $(devops-organisation-url)
   - name: project
     displayName: The Azure Devops project which hosts the pipelines
     type: string
-    default: salmagundi
+    default: $(devops-project-name)
   - name: pipelineId
     displayName: The Azure Devops pipeline ID which should be activated, this should be the Github application pipeline
     type: string
-    default: 3193
+    default: $(devops-pipeline-id)
   - name: buildPipelineBranch
     displayName: The Github application pipeline branch to use, this normally should be main
     type: string
