@@ -10,7 +10,28 @@ pr: none
 
 pool: Selfhosted Azure Devops Agents
 
+# These defaults need to be set as variables on the pipeline in the Devops webinterface
+parameters:
+  - name: organization
+    displayName: The Azure Devops organisation URL
+    type: string
+    default: $(devops-organisation-url)
+  - name: project
+    displayName: The Azure Devops project which hosts the pipelines
+    type: string
+    default: $(devops-project-name)
+  - name: pipelineId
+    displayName: The Azure Devops pipeline ID which should be activated, this should be the Github application pipeline
+    type: string
+    default: $(devops-pipeline-id)
+  - name: buildPipelineBranch
+    displayName: The Github application pipeline branch to use, this normally should be main
+    type: string
+    default: refs/heads/main
+
 steps:
-  - checkout: none
-  - script: echo Test
-    displayName: 'Always complete. This is here so that other pipelines can trigger on it.'
+  - bash: |
+      az pipelines run --project ${{parameters.project}} --id ${{parameters.pipelineId}} --branch ${{parameters.buildPipelineBranch}} --org ${{parameters.organization}} --parameters applicationBranch=$(Build.SourceBranch)
+    displayName: 'Trigger Schulddossier application pipeline for branch $(Build.SourceBranch)'
+    env:
+      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken) 
