@@ -2,7 +2,7 @@
 nelmio_security:
     # signs/verifies all cookies
     signed_cookie:
-        names: ['*']
+        names: [ '*' ]
     # prevents framing of the entire site
     clickjacking:
         paths:
@@ -41,26 +41,13 @@ nelmio_security:
                 '/^https?:\/\/\d+\.\d+\.\d+\.\d+(:\d+)*/': '*'
                 'maxcdn.bootstrapcdn.com': '*'
                 'www.gstatic.com': [ 'media-src', 'img-src' ]
-        hosts: []
-        content_types: []
+        hosts: [ ]
+        content_types: [ ]
         enforce:
             level1_fallback: false
             browser_adaptive:
                 enabled: false
             report-uri: '%router.request_context.base_url%/csp/report'
-            default-src:
-                - 'self'
-                - 'https://www.amsterdam.nl'
-                - 'unsafe-inline'
-            script-src:
-                - 'self'
-                - 'unsafe-inline'
-            img-src:
-                - 'self'
-                - 'data:'
-                - 'https://www.amsterdam.nl'
-            block-all-mixed-content: true # defaults to false, blocks HTTP content over HTTPS transport
-            # upgrade-insecure-requests: true # defaults to false, upgrades HTTP requests to HTTPS transport
 
     # disables content type sniffing for script resources
     content_type:
