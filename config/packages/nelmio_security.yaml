@@ -60,6 +60,10 @@ nelmio_security:
         - 'self'
         - 'data:'
         - 'https://www.amsterdam.nl'
+      connect-src:
+        - 'self'
+        - 'https://www.amsterdam.nl'
+        - 'blob:'
       block-all-mixed-content: true # defaults to false, blocks HTTP content over HTTPS transport
       # upgrade-insecure-requests: true # defaults to false, upgrades HTTP requests to HTTPS transport
 
