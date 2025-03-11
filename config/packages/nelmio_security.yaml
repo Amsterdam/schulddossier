@@ -1,78 +1,96 @@
 # config/packages/nelmio_security.yaml
 nelmio_security:
-    # signs/verifies all cookies
-    signed_cookie:
-        names: [ '*' ]
-    # prevents framing of the entire site
-    clickjacking:
-        paths:
-            '^/.*': DENY
-        hosts:
-            - '^foo\.com$'
-            - '\.example\.org$'
+  # signs/verifies all cookies
+  signed_cookie:
+    names: [ '*' ]
+  # prevents framing of the entire site
+  clickjacking:
+    paths:
+      '^/.*': DENY
+    hosts:
+      - '^foo\.com$'
+      - '\.example\.org$'
 
-    # prevents redirections outside the website's domain
-    external_redirects:
-        abort: false
-        log: true
+  # prevents redirections outside the website's domain
+  external_redirects:
+    abort: false
+    log: true
 
-    # prevents inline scripts, unsafe eval, external scripts/images/styles/frames, etc
-    csp:
-        report_endpoint:
-            log_level: "notice" # Use the appropriate log_level
-            log_formatter: GemeenteAmsterdam\FixxxSchuldhulp\LogFormatter\CSPLogFormatter    # Declare a service name that must implement Nelmio\SecurityBundle\ContentSecurityPolicy\Violation\Log\LogFormatterInterface
-            log_channel: csp_violations      # Declare the channel to use with the logger
-            filters:
-                # Filter false positive reports given a domain list
-                domains: true
-                # Filter false positive reports given a scheme list
-                schemes: true
-                # Filter false positive reports given known browser bugs
-                browser_bugs: true
-                # Filter false positive reports given known injected scripts
-                injected_scripts: true
-                # You can add you custom filter rules by implementing Nelmio\SecurityBundle\ContentSecurityPolicy\Violation\Filter\NoiseDetectorInterface
-                # and tag the service with "nelmio_security.csp_report_filter"
-            dismiss:
-                # A list of key-values that should be dismissed
-                # A key is either a domain or a regular expression
-                # A value is a source or an array of source. The '*' wilcard is accepted
-                '/^data:/': 'script-src'
-                '/^https?:\/\/\d+\.\d+\.\d+\.\d+(:\d+)*/': '*'
-                'maxcdn.bootstrapcdn.com': '*'
-                'www.gstatic.com': [ 'media-src', 'img-src' ]
-        hosts: [ ]
-        content_types: [ ]
-        enforce:
-            level1_fallback: false
-            browser_adaptive:
-                enabled: false
-            report-uri: '%router.request_context.base_url%/csp/report'
+  # prevents inline scripts, unsafe eval, external scripts/images/styles/frames, etc
+  csp:
+    report_endpoint:
+      log_level: "notice" # Use the appropriate log_level
+      log_formatter: GemeenteAmsterdam\FixxxSchuldhulp\LogFormatter\CSPLogFormatter    # Declare a service name that must implement Nelmio\SecurityBundle\ContentSecurityPolicy\Violation\Log\LogFormatterInterface
+      log_channel: csp_violations      # Declare the channel to use with the logger
+      filters:
+        # Filter false positive reports given a domain list
+        domains: true
+        # Filter false positive reports given a scheme list
+        schemes: true
+        # Filter false positive reports given known browser bugs
+        browser_bugs: true
+        # Filter false positive reports given known injected scripts
+        injected_scripts: true
+        # You can add you custom filter rules by implementing Nelmio\SecurityBundle\ContentSecurityPolicy\Violation\Filter\NoiseDetectorInterface
+        # and tag the service with "nelmio_security.csp_report_filter"
+      dismiss:
+        # A list of key-values that should be dismissed
+        # A key is either a domain or a regular expression
+        # A value is a source or an array of source. The '*' wilcard is accepted
+        '/^data:/': 'script-src'
+        '/^https?:\/\/\d+\.\d+\.\d+\.\d+(:\d+)*/': '*'
+        'maxcdn.bootstrapcdn.com': '*'
+        'www.gstatic.com': [ 'media-src', 'img-src' ]
+    hosts: [ ]
+    content_types: [ ]
+    enforce:
+      level1_fallback: false
+      browser_adaptive:
+        enabled: false
+      report-uri: '%router.request_context.base_url%/csp/report'
+      default-src:
+        - 'self'
+        - 'https://www.amsterdam.nl'
+        - 'unsafe-inline'
+      script-src:
+        - 'self'
+        - 'unsafe-inline'
+        - 'unsafe-eval'
+      img-src:
+        - 'self'
+        - 'data:'
+        - 'https://www.amsterdam.nl'
+      connect-src:
+        - 'self'
+        - 'https://www.amsterdam.nl'
+        - 'blob:'
+      block-all-mixed-content: true # defaults to false, blocks HTTP content over HTTPS transport
+      # upgrade-insecure-requests: true # defaults to false, upgrades HTTP requests to HTTPS transport
 
-    # disables content type sniffing for script resources
-    content_type:
-        nosniff: true
+  # disables content type sniffing for script resources
+  content_type:
+    nosniff: true
 
-    # Send a full URL in the ``Referer`` header when performing a same-origin request,
-    # only send the origin of the document to secure destination (HTTPS->HTTPS),
-    # and send no header to a less secure destination (HTTPS->HTTP).
-    # If ``strict-origin-when-cross-origin`` is not supported, use ``no-referrer`` policy,
-    # no referrer information is sent along with requests.
-    referrer_policy:
-        enabled: true
-        policies:
-            - 'no-referrer'
-            - 'strict-origin-when-cross-origin'
+  # Send a full URL in the ``Referer`` header when performing a same-origin request,
+  # only send the origin of the document to secure destination (HTTPS->HTTPS),
+  # and send no header to a less secure destination (HTTPS->HTTP).
+  # If ``strict-origin-when-cross-origin`` is not supported, use ``no-referrer`` policy,
+  # no referrer information is sent along with requests.
+  referrer_policy:
+    enabled: true
+    policies:
+      - 'no-referrer'
+      - 'strict-origin-when-cross-origin'
 
-    # forces HTTPS handling, don't combine with flexible mode
-    # and make sure you have SSL working on your site before enabling this
-    #    forced_ssl:
-    #        hsts_max_age: 2592000 # 30 days
-    #        hsts_subdomains: true
-    #        redirect_status_code: 302 # default, switch to 301 for permanent redirects
+  # forces HTTPS handling, don't combine with flexible mode
+  # and make sure you have SSL working on your site before enabling this
+  #    forced_ssl:
+  #        hsts_max_age: 2592000 # 30 days
+  #        hsts_subdomains: true
+  #        redirect_status_code: 302 # default, switch to 301 for permanent redirects
 
-    # flexible HTTPS handling, read the detailed config info
-    # and make sure you have SSL working on your site before enabling this
+  # flexible HTTPS handling, read the detailed config info
+  # and make sure you have SSL working on your site before enabling this
 #    flexible_ssl:
 #        cookie_name: auth
 #        unsecured_logout: false
