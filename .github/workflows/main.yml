@@ -2,7 +2,7 @@ name: Post PR merge to Slack
 
 on:
   pull_request:
-    types: [closed]
+    types: [ closed ]
 
 jobs:
   if_merged:
@@ -11,5 +11,5 @@ jobs:
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
-    - run: |
-        curl -X POST -H 'Content-type: application/json' --data '{"attachments":[{"color":"#00cc00","blocks":[{"type":"header","text":{"type":"plain_text","text":"Pull request gemerged naar main","emoji":true}},{"type":"section","fields":[{"type":"mrkdwn","text":"*Repository:*\n${{ github.event.repository.full_name}}"},{"type":"mrkdwn","text":"*PR titel:*\n${{ github.event.pull_request.title }}"}]},{"type":"actions","elements":[{"type":"button","text":{"type":"plain_text","emoji":true,"text":"Open PR"},"url":"${{ github.event.pull_request.html_url }}","style":"primary","value":"go_to_pr"}]}]}]}' $SLACK_WEBHOOK_URL
+      - run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"attachments":[{"color":"#00cc00","blocks":[{"type":"header","text":{"type":"plain_text","text":"Pull request gemerged naar main","emoji":true}},{"type":"section","fields":[{"type":"mrkdwn","text":"*Repository:*\n${{ github.event.repository.full_name}}"},{"type":"mrkdwn","text":"*PR titel:*\n${{ github.event.pull_request.title }}"}]},{"type":"actions","elements":[{"type":"button","text":{"type":"plain_text","emoji":true,"text":"Open PR"},"url":"${{ github.event.pull_request.html_url }}","style":"primary","value":"go_to_pr"}]}]}]}' $SLACK_WEBHOOK_URL
