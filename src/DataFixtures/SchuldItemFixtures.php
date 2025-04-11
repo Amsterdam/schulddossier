@@ -12,7 +12,7 @@ class SchuldItemFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture impleme
     /**
      * @inheritDoc
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $dossier = $this->getReference('dossier');
         $gebruiker = $this->getReference(GebruikerFixtures::SHV_USER_REFERENCE);
@@ -34,7 +34,7 @@ class SchuldItemFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture impleme
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             DossierFixtures::class,

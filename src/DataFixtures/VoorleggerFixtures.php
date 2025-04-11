@@ -13,7 +13,7 @@ public const VOORLEGGERS_JSON_FILENAME = 'voorleggers.json';
     /**
      * @inheritDoc
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $voorleggers = $this->loadVoorleggersJson();
 
@@ -42,7 +42,7 @@ public const VOORLEGGERS_JSON_FILENAME = 'voorleggers.json';
             return array_values(array_filter(json_decode($jsonString, true)));
         }
 
-        public function getDependencies()
+        public function getDependencies(): array
         {
             return [
                 DossierFixtures::class

@@ -14,7 +14,7 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
     /**
      * @inheritDoc
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $dossiers = $this->loadDossiersJson();
         $schuldhulpverlener = $this->getReference('schuldhulpverlener');
@@ -66,7 +66,7 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
         return array_values(array_filter(json_decode($jsonString, true)));
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             TeamFixtures::class,

@@ -1134,7 +1134,7 @@ class Dossier
 
     public static function twigAllegroStatus(string $status): string
     {
-        return isset(self::ALLEGRO_STATUS[$status]) ? self::ALLEGRO_STATUS[$status] : 'Onbekend';
+        return self::ALLEGRO_STATUS[$status] ?? 'Onbekend';
     }
 
     /**

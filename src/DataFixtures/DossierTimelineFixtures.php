@@ -14,7 +14,7 @@ class DossierTimelineFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture im
     /**
      * @inheritDoc
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $dossierTimelines = $this->loadDossierTimelineJson();
 
@@ -42,7 +42,7 @@ class DossierTimelineFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture im
         return array_values(array_filter(json_decode($jsonString, true)));
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             DossierFixtures::class

@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager as ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 
 class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
@@ -17,7 +18,7 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
     /**
      * @inheritDoc
      */
-    public function load(\Doctrine\Persistence\ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $users = $this->loadUsersJson();
 
@@ -67,7 +68,7 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
         return array_values(array_filter(json_decode($jsonString, true)));
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             OrganisatieFixtures::class,

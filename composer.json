@@ -2,7 +2,7 @@
     "type": "project",
     "license": "MPLv2",
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "ext-iconv": "*",
         "bevacqua/dragula": "3.7.2",
         "bevacqua/horsey": "4.2.2",
@@ -75,7 +75,7 @@
     },
     "config": {
         "platform": {
-            "php": "8.2",
+            "php": "8.4",
             "ext-gd": "1"
         },
         "preferred-install": {

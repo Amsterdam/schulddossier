@@ -12,7 +12,7 @@ class AantekeningFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implem
     /**
      * @inheritDoc
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $aantekening = new Aantekening();
 
@@ -30,7 +30,7 @@ class AantekeningFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implem
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             DossierFixtures::class,
