@@ -10,10 +10,9 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Bridge\Doctrine\Attribute\MapEntity;
-use Symfony\Component\ExpressionLanguage\Expression;
-use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -119,12 +118,15 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/gebruiker/detail/{gebruikerId}/verwijder', methods: ['POST'])]
-    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
-    public function delete(
-        Request $request,
-        EntityManagerInterface $em,
-        #[MapEntity(id: 'gebruikerId')]
+    /**
+     * @Route("/detail/{gebruikerId}/verwijder", methods={"POST"})
+     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
+     * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
+     */
+    public function deleteAction(
+        Request                  $request,
+        EntityManagerInterface   $em,
+        Gebruiker                $gebruiker,
         EventDispatcherInterface $eventDispatcher
     ): RedirectResponse {
         // TODO Dit punt is in opverleg met de kredietbank uitgeschakeld om te refinen welke gegevens er moeten worden geanonimiseerd

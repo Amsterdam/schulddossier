@@ -17,7 +17,7 @@ class Kernel extends BaseKernel
 
     public function registerBundles(): \Generator|array
     {
-        $contents = require $this->getProjectDir() . '/config/bundles.php';
+        $contents = require $this->getProjectDir().'/config/bundles.php';
         foreach ($contents as $class => $envs) {
             if (isset($envs['all']) || isset($envs[$this->environment])) {
                 yield new $class();
@@ -41,12 +41,12 @@ class Kernel extends BaseKernel
 
     protected function configureRoutes(RoutingConfigurator $routes): void
     {
-        $routes->import('../config/{routes}/' . $this->environment . '/*.yaml');
+        $routes->import('../config/{routes}/'.$this->environment.'/*.yaml');
         $routes->import('../config/{routes}/*.yaml');
 
-        if (is_file(\dirname(__DIR__) . '/config/routes.yaml')) {
+        if (is_file(\dirname(__DIR__).'/config/routes.yaml')) {
             $routes->import('../config/routes.yaml');
-        } elseif (is_file($path = \dirname(__DIR__) . '/config/routes.php')) {
+        } elseif (is_file($path = \dirname(__DIR__).'/config/routes.php')) {
             (require $path)($routes->withPath($path), $this);
         }
     }

@@ -28,7 +28,8 @@ class VoorleggerFormType extends AbstractType
         private TokenStorageInterface $tokenStorage,
         private WorkflowRegistry $workflowRegistry,
         private EntityManagerInterface $em
-    ) {
+    )
+    {
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

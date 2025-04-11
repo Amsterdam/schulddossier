@@ -19,9 +19,9 @@ class GebruikerPasswordSubscriber implements EventSubscriber
      * @param UserPasswordHasherInterface $encoder
      */
     public function __construct(
-        private UserPasswordHasherInterface $encoder
-    ) {
-    }
+        private UserPasswordHasherInterface  $encoder
+    ){}
+
 
 
     /**

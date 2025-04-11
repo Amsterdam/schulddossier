@@ -15,13 +15,12 @@
         "jshjohnson/choices": "3.0.3",
         "knplabs/knp-paginator-bundle": "5.4.1",
         "lcobucci/jwt": "^3.2",
-        "league/flysystem": "^1.0",
+        "league/flysystem": "^3.0",
         "markei/filesystemoperations": "dev-symfony5support",
         "moment/moment": "^2.21",
         "mozilla/pdf.js": "1.9.426",
         "mrrio/jspdf": "1.3.5",
         "nelmio/security-bundle": "^3.4",
-        "nimbusoft/flysystem-openstack-swift": "^0.4",
         "php-http/client-common": "^2.3",
         "php-http/discovery": "^1.3",
         "php-http/guzzle7-adapter": "*",
@@ -34,7 +33,7 @@
         "phpseclib/phpseclib": "^2.0",
         "psr/http-client": "^1.0",
         "psr/http-message": "^1.0",
-        "rollerworks/password-strength-validator": "^1.1",
+        "rollerworks/password-strength-validator": "^1.7",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "^5.4",
         "symfony/cache": "^5.4",
@@ -48,7 +47,6 @@
         "symfony/http-client": "5.4.*",
         "symfony/http-foundation": "^5.4",
         "symfony/mailer": "^5.4",
-        "symfony/maker-bundle": "^1.1",
         "symfony/monolog-bundle": "^3.1",
         "symfony/proxy-manager-bridge": "^5.4",
         "symfony/security-bundle": "^5.4",
@@ -61,11 +59,16 @@
         "symfony/webpack-encore-bundle": "^2.0",
         "symfony/workflow": "^5.4",
         "symfony/yaml": "^5.4",
-        "twig/extensions": "*",
-        "twig/twig": "~2.0"
+        "twig/twig": "^3.0"
     },
-    "preferred-install": {
-      "*": "dist"
+    "require-dev": {
+        "symfony/maker-bundle": "^1.1",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "symfony/debug-bundle": "^5.4",
+        "symfony/dotenv": "^5.4",
+        "symfony/stopwatch": "^5.4",
+        "symfony/web-profiler-bundle": "^5.4",
+        "laminas/laminas-code": "^4.8.0"
     },
     "config": {
         "platform": {
