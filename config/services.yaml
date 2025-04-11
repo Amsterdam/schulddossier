@@ -52,7 +52,7 @@ services:
     # Doctrine EventListeners
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\GebruikerPasswordSubscriber:
         arguments:
-            - '@security.user_password_encoder.generic'
+            - '@security.user_password_hasher'
         tags:
             - name: doctrine.event_subscriber
               connection: default
@@ -128,7 +128,7 @@ services:
 
     # Flysystem
     flysystem_local_adapter_dossier:
-        class: League\Flysystem\Adapter\Local
+        class: League\Flysystem\Local\LocalFilesystemAdapter
         lazy: true
         arguments:
             - '%kernel.project_dir%/var/data/dossiers/'

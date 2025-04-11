@@ -147,7 +147,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getRoles()
      */
-    public function getRoles()
+    public function getRoles(): array
     {
         return ['ROLE_USER', 'ROLE_' . strtoupper($this->getType())];
     }
@@ -156,7 +156,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getSalt()
      */
-    public function getSalt()
+    public function getSalt(): ?string
     {
         return null;
     }
@@ -174,7 +174,12 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getUsername()
      */
-    public function getUsername()
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function getUserIdentifier(): string
     {
         return $this->username;
     }
@@ -183,7 +188,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getPassword()
      */
-    public function getPassword()
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -247,7 +252,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     /**
      * @param \DateTime $passwordChangedDateTime
      */
-    public function setPasswordChangedDateTime(\DateTime $passwordChangedDateTime = null)
+    public function setPasswordChangedDateTime(?\DateTime $passwordChangedDateTime)
     {
         $this->passwordChangedDateTime = $passwordChangedDateTime;
     }
@@ -279,22 +284,22 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
         $this->telefoonnummer = $telefoonnummer;
     }
 
-    public function getTeamGka()
+    public function getTeamGka(): Team
     {
         return $this->teamGka;
     }
 
-    public function setTeamGka(Team $teamGka = null)
+    public function setTeamGka(?Team $teamGka = null): void
     {
         $this->teamGka = $teamGka;
     }
 
-    public function getOrganisaties()
+    public function getOrganisaties(): ArrayCollection|array
     {
         return $this->organisaties;
     }
 
-    public function addOrganisatie(Organisatie $organisatie)
+    public function addOrganisatie(Organisatie $organisatie): void
     {
         if ($this->hasOrganisatie($organisatie) === false) {
             $this->organisaties->add($organisatie);
@@ -395,7 +400,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      *
      * @return string[]
      */
-    public static function getTypes(string $type = null)
+    public static function getTypes(?string $type = null)
     {
         $defaultTypes = [];
         switch ($type) {
@@ -449,27 +454,29 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
         return array_search($type, array_merge(...array_values(self::getTypes('ALL_TYPES'))));
     }
 
-    public function isEqualTo(UserInterface $user)
+    /**
+     * The equality comparison should neither be done by referential equality
+     * nor by comparing identities (i.e. getId() === getId()).
+     *
+     * However, you do not need to compare every attribute, but only those that
+     * are relevant for assessing whether re-authentication is required.
+     *
+     * @return bool
+     */
+    public function isEqualTo(UserInterface $user): bool
     {
         /* @var $user Gebruiker */
-        if ($user->getId() !== $this->getId()) {
+        if (
+            $user->getId() !== $this->getId() ||
+            $user->getEmail() !== $this->getEmail() ||
+            $user->getTelefoonnummer() !== $this->getTelefoonnummer() ||
+            $user->getUserIdentifier() !== $this->getUserIdentifier() ||
+            $user->getType() !== $this->getType() ||
+            $user->isEnabled() !== $this->isEnabled()
+        ) {
             return false;
         }
-        if ($user->getEmail() !== $this->getEmail()) {
-            return false;
-        }
-        if ($user->getTelefoonnummer() !== $this->getTelefoonnummer()) {
-            return false;
-        }
-        if ($user->getUsername() !== $this->getUsername()) {
-            return false;
-        }
-        if ($user->getType() !== $this->getType()) {
-            return false;
-        }
-        if ($user->isEnabled() !== $this->isEnabled()) {
-            return false;
-        }
+
         return true;
     }
 
@@ -587,7 +594,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
         return $this;
     }
 
-    public function anonymize()
+    public function anonymize(): void
     {
         $uniqueSuffix = uniqid();
         $this->setUsername("geanonimiseerd-" . $uniqueSuffix);
