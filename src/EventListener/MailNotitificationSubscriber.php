@@ -30,7 +30,8 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         private \Twig\Environment $twig,
         private RequestStack $requestStack,
         private EntityManagerInterface $em
-    ) {
+    )
+    {
     }
 
     /**
@@ -153,8 +154,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             $this->mail(
                 $this->fromNotificiatieAdres,
                 $event->dossier->getMedewerkerOrganisatie()->getEmail(),
-                'mails/notifyAddedAantekening.html.twig',
-                [
+                'mails/notifyAddedAantekening.html.twig', [
                     'dossier' => $event->dossier,
                     'tokenStorage' => $this->tokenStorage
                 ]
@@ -169,8 +169,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             $this->mail(
                 $this->fromNotificiatieAdres,
                 $event->dossier->getTeamGka()->getEmail(),
-                'mails/notifyAddedAantekening.html.twig',
-                [
+                'mails/notifyAddedAantekening.html.twig', [
                     'dossier' => $event->dossier,
                     'tokenStorage' => $this->tokenStorage
                 ]
