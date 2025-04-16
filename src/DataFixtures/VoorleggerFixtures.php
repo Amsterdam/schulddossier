@@ -4,6 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 
 class VoorleggerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
@@ -21,7 +22,7 @@ public const VOORLEGGERS_JSON_FILENAME = 'voorleggers.json';
             $dossierReference = $i === 0 ? 'dossier' : 'dossier' . $i;
 
             $voorlegger = new Voorlegger();
-            $voorlegger->setDossier($this->getReference($dossierReference));
+            $voorlegger->setDossier($this->getReference($dossierReference, Dossier::class));
             $voorlegger->setLegitimatieOntvangenShv($voorleggers[$i]["legitimatieShv"]);
             $voorlegger->setLegitimatieOntvangenGka($voorleggers[$i]["legitimatieGka"]);
             $voorlegger->setArbeidsovereenkomstOntvangenShv($voorleggers[$i]["arbeidsovereenkomstShv"]);

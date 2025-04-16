@@ -6,6 +6,9 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use DateTime;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 
 class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
 {
@@ -17,16 +20,16 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
     public function load(ObjectManager $manager): void
     {
         $dossiers = $this->loadDossiersJson();
-        $schuldhulpverlener = $this->getReference('schuldhulpverlener');
+        $schuldhulpverlener = $this->getReference('schuldhulpverlener', Organisatie::class);
 
         for ($i = 0; $i < 11; $i++) {
             $aanmaker = ($i % 2) === 0 ? GebruikerFixtures::SHV_USER_REFERENCE : GebruikerFixtures::SHV_KEYUSER_USER_REFERENCE;
 
             $dossier = new Dossier();
-            $dossier->setTeamGka($this->getReference('Team 3'));
+            $dossier->setTeamGka($this->getReference('Team 3', Team::class));
             $dossier->setOrganisatie($schuldhulpverlener);
             $dossier->setRegasNummer(($i + 2) . 634638 . $i);
-            $dossier->setMedewerkerOrganisatie($this->getReference($aanmaker));
+            $dossier->setMedewerkerOrganisatie($this->getReference($aanmaker, Gebruiker::class));
             $dossier->setClientVoorletters($dossiers[$i]['voorletters']);
             $dossier->setClientNaam($dossiers[$i]['naam']);
             $dossier->setClientGeslacht($dossiers[$i]['geslacht']);
@@ -39,7 +42,7 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
             $dossier->setClientPostcode('1018PB');
             $dossier->setClientWoonplaats('Amsterdam');
             $dossier->setPartnerNvt(true);
-            $dossier->setAanmaker($this->getReference($aanmaker));
+            $dossier->setAanmaker($this->getReference($aanmaker, Gebruiker::class));
             $dossier->setDossierTemplate('v1');
             $dossier->setStatus($dossiers[$i]['status']);
             $dossier->setEersteKeerVerzondenAanGKA($dossiers[$i]['verzondenGka']);

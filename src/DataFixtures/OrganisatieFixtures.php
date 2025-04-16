@@ -4,6 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 use Override;
 
 class OrganisatieFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
@@ -22,7 +23,7 @@ class OrganisatieFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
             $organisatie = new Organisatie();
             $organisatie->setNaam($org['naam']);
             $organisatie->setEmailAdresControle($org['email']);
-            $organisatie->setStandaardGkaTeam($this->getReference($org['teamGka']));
+            $organisatie->setStandaardGkaTeam($this->getReference($org['teamGka'], Team::class));
             $this->addReference($org['reference'], $organisatie);
 
             $manager->persist($organisatie);

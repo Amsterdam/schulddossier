@@ -4,6 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
 
 
@@ -21,7 +22,7 @@ class DossierTimelineFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture im
         foreach ($dossierTimelines as $dossierTimeline) {
             $timeline = new DossierTimeline();
 
-            $timeline->setDossier($this->getReference('dossier5'));
+            $timeline->setDossier($this->getReference('dossier5', Dossier::class));
             $timeline->setType($dossierTimeline['type']);
             $timeline->setSubtype($dossierTimeline['subtype']);
             $timeline->setOmschrijving($dossierTimeline['omschrijving']);
