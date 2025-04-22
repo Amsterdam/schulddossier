@@ -14,7 +14,7 @@
         "guzzlehttp/guzzle": "^7.7.0",
         "jshjohnson/choices": "3.0.3",
         "knplabs/knp-paginator-bundle": "5.4.1",
-        "lcobucci/jwt": "^3.2",
+        "lcobucci/jwt": "^4.0",
         "league/flysystem": "^3.0",
         "markei/filesystemoperations": "dev-symfony5support",
         "moment/moment": "^2.21",

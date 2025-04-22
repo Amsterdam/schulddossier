@@ -1,47 +1,49 @@
 security:
+    enable_authenticator_manager: true
 
-  #encoders:
-  #  GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker:
-  #    algorithm: bcrypt
-  providers:
-    database:
-      entity:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker
-        property: username
-  firewalls:
-    dev:
-      pattern: ^/(_(profiler|wdt)|css|images|js|localworkingstorage)/
-      security: false
-    # (Un)comment the following lines to enable/disable local login instead of OIDC
-    #        app:
-    #            pattern: ^/app
-    #            security: true
-    #            provider: database
-    #            anonymous: true
-    #            form_login:
-    #                login_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
-    #                check_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
-    #                csrf_token_generator: security.csrf.token_manager
-    #            logout:
-    #                path: /app/logout
-    #                target: /
-    #
-    # (Un)comment the following lines to enable/disable OIDC login instead of local login
-    app:
-      pattern: ^/app
-      security: true
-      stateless: false
-      provider: database
-      user_checker: GemeenteAmsterdam\FixxxSchuldhulp\Security\UserChecker
-      custom_authenticators:
-        - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
-      entry_point: GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
-      access_denied_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\AccessDeniedHandler
-      #anonymous: false
-      logout:
-        path: /app/logout
-        target: gemeenteamsterdam_fixxxschuldhulp_default_index
-        invalidate_session: false
-  access_control:
+    encoders:
+        GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker:
+            algorithm: bcrypt
+    providers:
+        database:
+            entity:
+                class: GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker
+                property: username
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js|localworkingstorage)/
+            security: false
+# (Un)comment the following lines to enable/disable local login instead of OIDC
+#        app:
+#            pattern: ^/app
+#            security: true
+#            provider: database
+#            anonymous: true
+#            form_login:
+#                login_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
+#                check_path: gemeenteamsterdam_fixxxschuldhulp_appsecurity_login
+#                csrf_token_generator: security.csrf.token_manager
+#            logout:
+#                path: /app/logout
+#                target: /
+#
+# (Un)comment the following lines to enable/disable OIDC login instead of local login
+        app:
+            entry_point: GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
+            pattern: ^/app
+            access_denied_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\AccessDeniedHandler
+            user_checker: GemeenteAmsterdam\FixxxSchuldhulp\Security\UserChecker
+            security: true
+            anonymous: false
+            stateless: false
+            custom_authenticators:
+                - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
+            logout:
+                path: /app/logout
+                success_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\LogoutSuccessHandler
+        main:
+            custom_authenticators:
+                - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
+    access_control:
 #     - { path: ^/admin, roles: ROLE_ADMIN }
 #     - { path: ^/profile, roles: ROLE_USER }
