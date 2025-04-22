@@ -6,18 +6,24 @@ use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
 use GuzzleHttp\Client;
+use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Token;
+use Lcobucci\JWT\Validation\Constraint\IssuedBy;
+use Lcobucci\JWT\Validation\Constraint\PermittedFor;
 use Lcobucci\JWT\ValidationData;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use GuzzleHttp\Exception\TransferException;
@@ -25,350 +31,486 @@ use Lcobucci\JWT\Signer\Key;
 use Lcobucci\JWT\Signer\Rsa\Sha256;
 use Lcobucci\JWT\Signer\Ecdsa\Sha384;
 use Lcobucci\JWT\Signer\Rsa\Sha512;
+use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
+use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
+use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 /**
  * Class OidcAuthenticator
  *
  * @package GemeenteAmsterdam\FixxxSchuldhulp\Security
  */
-class OidcAuthenticator extends AbstractGuardAuthenticator
+class OidcAuthenticator extends AbstractAuthenticator implements AuthenticatorInterface,
+                                                                 AuthenticationEntryPointInterface
 {
+    const EXCEPTION_CODE_STATE_INVALID = 1;
+    const EXCEPTION_CODE_NO_USER_FOUND = 2;
+    const EXCEPTION_CODE_OIDC_CONNECT_ERROR = 3;
+    const EXCEPTION_CODE_TOKEN_INVALID = 4;
+
     /**
      * @var GebruikerRepository
      */
     private $gebruikerRepository;
 
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
+    private string $id_token;
 
-    private $clientId;
-
-    private $clientSecret;
-
-    private $baseUrl;
-
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $urlGenerator;
-
-    /**
-     * @var CsrfTokenManagerInterface
-     */
-    private $csrfTokenManager;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
-     * @var Environment
-     */
-    private $twig;
-
-    private string $idToken;
+    private Configuration $configuration;
 
     /**
      * OidcAuthenticator constructor.
-     *
-     * @param EntityManagerInterface    $em
-     * @param UrlGeneratorInterface     $urlGenerator
-     * @param CsrfTokenManagerInterface $csrf
-     * @param LoggerInterface           $logger
-     * @param Environment               $twig
-     * @param                           $clientId
-     * @param                           $clientSecret
-     * @param                           $baseUrl
      */
-    public function __construct(EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrf, LoggerInterface $logger, Environment $twig, $clientId, $clientSecret, $baseUrl)
-    {
-        $this->gebruikerRepository = $em->getRepository(Gebruiker::class);
-        $this->entityManager = $em;
-
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
-        $this->baseUrl = $baseUrl;
-
-        $this->urlGenerator = $urlGenerator;
-        $this->csrfTokenManager = $csrf;
-        $this->logger = $logger;
-
-        $this->twig = $twig;
-
+    public function __construct(
+        private EntityManagerInterface $entityManager,
+        private UrlGeneratorInterface $urlGenerator,
+        private CsrfTokenManagerInterface $csrfTokenManager,
+        private LoggerInterface $logger,
+        private Environment $twig,
+        private $clientId,
+        private $clientSecret,
+        private $baseUrl,
+        private readonly UserProviderInterface $userProvider,
+        private readonly HttpClientInterface $client,
+    ) {
+        $this->gebruikerRepository = $this->entityManager->getRepository(Gebruiker::class);
+        $this->configuration = Configuration::forUnsecuredSigner();
     }
 
     /**
      * @param Request $request
      *
-     * @return bool
+     * @return bool|null
      */
-    public function supports(Request $request)
+    public function supports(Request $request): ?bool
     {
-        if ($request->query->get('state') !== $request->getSession()->getId()) {
-            $this->logger->warning('OIDC login, state does not match session');
+        if ($this->csrfTokenManager->isTokenValid(
+                new CsrfToken('oidc_login', $request->query->get('state'))
+            ) === false) {
+            $this->logger->warning(
+                'OidcAuthenticator invalid state while getting credentials',
+                array('receivedState' => $request->query->get('state'))
+            );
             return false;
         }
 
         return $request->attributes->get('_route') === 'gemeenteamsterdam_fixxxschuldhulp_appdossier_index';
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return array|mixed
-     */
-    public function getCredentials(Request $request)
+    public function authenticate(Request $request): Passport
     {
-        return [
-            'code' => $request->query->get('code'),
-        ];
-    }
+        $state = $request->query->get('state');
+        $code = $request->query->get('code');
 
-    /**
-     * @param mixed                 $credentials
-     * @param UserProviderInterface $userProvider
-     *
-     * @return Gebruiker|null|object|UserInterface|void
-     * @throws \Exception
-     */
-    public function getUser($credentials, UserProviderInterface $userProvider)
-    {
-        if (empty($credentials['code']) === true) {
-            return;
+        if ($this->csrfTokenManager->isTokenValid(new CsrfToken('oidc_login', $state)) === false) {
+            $this->logger->warning(
+                'OidcAuthenticator invalid state while getting credentials',
+                array('receivedState' => $state)
+            );
+            return array(
+                'state_valid' => false
+            );
         }
 
-        try {
-            $guzzle = new Client();
-            $response = $guzzle->post($this->baseUrl . '/protocol/openid-connect/token', [
-                'form_params' => [
-                    'grant_type' => 'authorization_code',
-                    'code' => $credentials['code'],
-                    'redirect_uri' => $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', [], UrlGeneratorInterface::ABSOLUTE_URL),
+
+        $response = $this->client->request(
+            'POST',
+            $this->baseUrl . '/protocol/openid-connect/token',
+            [
+                'body' => [
                     'client_id' => $this->clientId,
                     'client_secret' => $this->clientSecret,
-                ]]);
+                    'code' => $code,
+                    'redirect_uri' => $this->urlGenerator->generate(
+                        'gemeenteamsterdam_fixxxschuldhulp_appdossier_index',
+                        [],
+                        UrlGeneratorInterface::ABSOLUTE_URL
+                    ),
+                    'state' => $state,
+                    'grant_type' => 'authorization_code'
+                ]
+            ]
+        );
 
-            $output = json_decode($response->getBody()->__toString(), true);
-        } catch (TransferException $e) {
-            throw new AuthenticationException('Can not set up request to token endpoint ' . $e->getMessage());
+        try {
+            $info = $response->toArray(true);
+            $info['parsed_id_token'] = $this->configuration->parser()->parse($info['id_token']);
+            $info['state_valid'] = true;
+            // also save id_token and refresh_token to session directly on a temporary place
+            // in onAuthenticationSuccess and onAuthenticationFailure we will move or drop it
+            $request->getSession()->set('id_token_temp', $info['id_token']);
+            $request->getSession()->set('refresh_token_temp', $info['refresh_token']);
+        } catch (TransportExceptionInterface $e) {
+            $this->logger->warning(
+                'OidcAuthenticator IdP can not connect to token endpoint',
+                array('e' => get_class($e), 'msg' => $e->getMessage())
+            );
+            throw $e;
+        } catch (HttpExceptionInterface $e) {
+            $this->logger->warning(
+                'OidcAuthenticator IdP invalid response from token endpoint',
+                array(
+                    'e' => get_class($e),
+                    'httpCode' => $e->getResponse()->getStatusCode(),
+                    'info' => $e->getResponse()->getInfo()
+                )
+            );
+            throw $e;
+        } catch (DecodingExceptionInterface $e) {
+            $this->logger->warning(
+                'Error decoding token from OidcAuthenticator',
+                array(
+                    'e' => get_class($e),
+                    'httpCode' => $e->getResponse()->getStatusCode(),
+                    'info' => $e->getResponse()->getInfo()
+                )
+            );
+            throw $e;
         }
 
-        if (empty($output['id_token'])) {
-            throw new AuthenticationException('id_token is empty');
-        }
+        $this->logger->debug('exchange code for access token', array('code' => $code, 'response' => $info));
 
-        /** @var Token $token */
-        $token = (new Parser())->parse((string)$output['id_token']);
+        $parsedIdToken = $this->configuration->parser()->parse($info['id_token']);
+        $username = $this->getUsernameFromToken($parsedIdToken);
 
-        if (!$this->tokenIsValid($token)) {
-//            throw new AuthenticationException('token is invalid');
-        }
+        $user = $this->userProvider->loadUserByIdentifier($username);
 
-        if (!$this->tokenIsVerified($token)) {
-            throw new AuthenticationException('token can not be verified');
-        }
+        $userBadge = new UserBadge($username, function ($userIdentifier) {
+            return $this->userProvider->loadUserByIdentifier($userIdentifier);
+        });
 
-        if (empty($token->getClaim('email'))) {
-            throw new AuthenticationException('Auth server did not supply a e-mail');
-        }
+        $csrfTokenBadge = new CsrfTokenBadge('oidc_login', $state);
 
-        $this->logger->info('Claims received from IDP', ['claims' => $token->getClaims()]);
 
-        $user = $this->gebruikerRepository->findOneBy(['email' => strtolower($token->getClaim('email'))]);
-        if ($user === null) {
-            $this->logger->info('No user found, tried with the following claim', ['email' => strtolower($token->getClaim('email'))]);
-            $user = new Gebruiker();
-            $user->setEmail($token->getClaim('email'));
-            $user->setUsername($token->getClaim('email'));
-            $user->setEnabled(true);
-            $user->setClearPassword(uniqid() . sha1($token->getClaim('email') . time())); // TODO remove this when password is no longer needed
-            if ($token->hasClaim('name')) {
-                $user->setNaam($token->getClaim('name'));
-            }
-            $user->setPasswordChangedDateTime(new \DateTime());
-            $user->setType(Gebruiker::TYPE_ONBEKEND);
-            $this->entityManager->persist($user);
-            $this->entityManager->flush($user);
-        } else {
-            $this->logger->info('User found', ['id' => $user->getId()]);
-        }
+        $return = new SelfValidatingPassport(
+            $userBadge,
+            [$csrfTokenBadge]
+        );
 
-        $this->id_token = $output['id_token'];
-        return $user;
+        $return = $return;
+
+        return $return;
     }
 
-    /**
-     * @param Request        $request
-     * @param TokenInterface $token
-     * @param string         $providerKey
-     *
-     * @return null|RedirectResponse|Response
-     */
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+    private function getUsernameFromToken(Token $token): ?string
     {
-        $gebruiker = $token->getUser();
-        /**
-         * @var Gebruiker $gebruiker
-         */
-        $now = new \DateTime();
-        $gebruiker->setLastLogin($now);
-        $this->entityManager->flush();
-
-        if ($request->getSession()->has('loginReturnUrl')) {
-            $response = new RedirectResponse($request->getSession()->get('loginReturnUrl'));
-            $request->getSession()->remove('loginReturnUrl');
-            $request->getSession()->set('OIDC_ID_TOKEN', $this->id_token);
-            return $response;
-        }
+        return $token->claims()->get('preferred_username');
     }
 
-    /**
-     * @param Request                 $request
-     * @param AuthenticationException $exception
-     *
-     * @return Response
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
-     */
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
         return new Response($this->twig->render('OidcAuthenticator/failure.html.twig', [
             'e' => $exception
         ]));
     }
 
-    /**
-     * @param Request                      $request
-     * @param AuthenticationException|null $authException
-     *
-     * @return RedirectResponse|Response
-     */
-    public function start(Request $request, AuthenticationException $authException = null)
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $firewallName): ?Response
+    {
+        $gebruiker = $token->getUser();
+        /**
+         * @var Gebruiker $gebruiker
+         */
+        $current_time = new \DateTime();
+        $gebruiker?->setLastLogin($current_time);
+        $this->entityManager->flush();
+
+        $request->getSession()->set('id_token', $request->getSession()->get('id_token_temp'));
+        $request->getSession()->set('refresh_token', $request->getSession()->get('refresh_token_temp'));
+
+        if ($request->getSession()->has('loginReturnUrl')) {
+            return new RedirectResponse($request->getSession()->get('loginReturnUrl'));
+        }
+
+        return new RedirectResponse($this->urlGenerator->generate('app_home_index'));
+    }
+
+    public function start(Request $request, ?AuthenticationException $authException = null): RedirectResponse
     {
         $request->getSession()->set('loginReturnUrl', $request->getUri());
 
+        $csrfToken = $this->csrfTokenManager->getToken('oidc_login');
+
         $params = [];
         $params['client_id'] = $this->clientId;
-        $params['redirect_uri'] = $this->urlGenerator->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_index', [], UrlGeneratorInterface::ABSOLUTE_URL);
+        $params['redirect_uri'] = $this->urlGenerator->generate(
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_index',
+            [],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
         $params['response_type'] = 'code';
         $params['scope'] = 'profile email openid';
-        $params['state'] = $request->getSession()->getId();
+        $params['state'] = $csrfToken->getValue();
         return new RedirectResponse($this->baseUrl . '/protocol/openid-connect/auth?' . http_build_query($params));
     }
 
-    /**
-     * @param mixed         $credentials
-     * @param UserInterface $user
-     *
-     * @return bool
-     */
-    public function checkCredentials($credentials, UserInterface $user)
-    {
-        return true;
-    }
 
-    /**
-     * @return bool
-     */
-    public function supportsRememberMe()
-    {
-        return false;
-    }
+//
+//    /**
+//     * @param mixed $credentials
+//     * @param UserInterface $user
+//     *
+//     * @return bool
+//     */
+//    public function checkCredentials($credentials, UserInterface $user): bool
+//    {
+//        $signers = array('RS256' => Sha256::class, 'RS384' => Sha384::class, 'RS512' => Sha512::class);
+//
+//        /* @var $token Token */
+//        $token = $credentials['parsed_id_token'];
+//
+//        $this->configuration->setValidationConstraints(
+//            new IssuedBy($this->oidcExpecedIss),
+//            new PermittedFor($this->oidcClientId)
+//        );
+//        $this->configuration->validator()->validate($token, ...$this->configuration->validationConstraints());
+//
+//        // check if alg is supported by code
+//        if (isset($signers[$token->headers()->get('alg')]) === false) {
+//            $this->logger->error('Algorithme not supported', array('alg' => $token->headers()->get('alg')));
+//            throw new AuthenticationException('Algorithme not supported', self::EXCEPTION_CODE_OIDC_CONNECT_ERROR);
+//        }
+//
+//        // download keys from jwks set
+//        $jwks = $this->jwksStorageCache->get('jwks_' . md5($this->oidcJwks), function (CacheItem $item) {
+//            try {
+//                return $this->client->request('GET', $this->oidcJwks)->toArray(true);
+//            } catch (ExceptionInterface $e) {
+//                $this->logger->error('Could not load JWKS url', array('e' => get_class($e), 'msg' => $e->getMessage()));
+//                throw new AuthenticationException('Could not load JWKS url', self::EXCEPTION_CODE_OIDC_CONNECT_ERROR);
+//            }
+//        });
+//
+//        // find the matching key based on kid
+//        $matchingKey = null;
+//        foreach ($jwks['keys'] as $key) {
+//            if ($key['kid'] === $token->headers()->get('kid')) {
+//                $matchingKey = $key;
+//                break;
+//            }
+//        }
+//        if ($matchingKey === null) {
+//            $this->logger->error('No matching key found via JWKS', array('kid' => $token->headers()->get('kid')));
+//            throw new AuthenticationException(
+//                'No matching key found via JWKS', self::EXCEPTION_CODE_OIDC_CONNECT_ERROR
+//            );
+//        }
+//
+//        // reconstruct public key from jwk information
+//        $rsa = new RSA();
+//        $keyLoadSuccess = $rsa->loadKey(
+//            array(
+//                'n' => new BigInteger(base64_decode(str_replace(array('-', '_'), array('+', '/'), $matchingKey['n'])),
+//                    256),
+//                'e' => new BigInteger(base64_decode($matchingKey['e']), 256)
+//            )
+//        );
+//        if ($keyLoadSuccess === false) {
+//            $this->logger->error('Could not reconstruct key from JWKS', array('kid' => $token->headers()->get('kid')));
+//            throw new AuthenticationException(
+//                'Could not reconstruct key from JWKS',
+//                self::EXCEPTION_CODE_OIDC_CONNECT_ERROR
+//            );
+//        }
+//        $publicKey = $rsa->getPublicKey(RSA::PRIVATE_FORMAT_PKCS1);
+//
+//        // verify
+//        $signerKey = Key\InMemory::plainText($publicKey);
+//        $signer = new $signers[$token->headers()->get('alg')];
+//
+//        $this->configuration->setValidationConstraints(new SignedWith($signer, $signerKey));
+//
+//        if (!$this->configuration->validator()->validate($token, ...$this->configuration->validationConstraints())) {
+//            $this->logger->error('Token is invalid');
+//            throw new AuthenticationException('Token is invalid', self::EXCEPTION_CODE_TOKEN_INVALID);
+//        }
+//
+//        // check if user and token match
+//        // usefull when doing reauth
+//        if ($user->getUserIdentifier() !== $this->getUsernameFromToken($token)) {
+//            $this->logger->error(
+//                'Token does not match given user',
+//                array('expectedUsername' => $this->getUsernameFromToken($token), $user->getUserIdentifier())
+//            );
+//            throw new AuthenticationException('Token does not match given user', self::EXCEPTION_CODE_NO_USER_FOUND);
+//        }
+//
+//        return true;
+//    }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//    /**
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     *
+//     */
+//
+//    /**
+//     * @param Request $request
+//     *
+//     * @return array
+//     */
+//    public function getCredentials(Request $request)
+//    {
+//        return [
+//            'code' => $request->query->get('code'),
+//        ];
+//    }
+//
+//    /**
+//     * @param mixed $credentials
+//     * @param UserProviderInterface $userProvider
+//     *
+//     * @return Gebruiker|null|object|UserInterface|void
+//     * @throws \Exception
+//     */
+//
+//    /**
+//     * @param Request $request
+//     * @param TokenInterface $token
+//     * @param string $providerKey
+//     *
+//     * @return Response|null
+//     */
+//    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey): ?Response
+//    {
+//        $gebruiker = $token->getUser();
+//        /**
+//         * @var Gebruiker $gebruiker
+//         */
+//        $current_time = new \DateTime();
+//        $gebruiker?->setLastLogin($current_time);
+//        $this->entityManager->flush();
+//
+//        if ($request->getSession()->has('loginReturnUrl')) {
+//            $response = new RedirectResponse($request->getSession()->get('loginReturnUrl'));
+//            $request->getSession()->remove('loginReturnUrl');
+//            $request->getSession()->set('OIDC_ID_TOKEN', $this->id_token);
+//            return $response;
+//        }
+//    }
+//
+//    /**
+//     * @param Request $request
+//     * @param AuthenticationException $exception
+//     *
+//     * @return Response
+//     * @throws LoaderError
+//     * @throws RuntimeError
+//     * @throws SyntaxError
+//     */
+//    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): Response
+//    {
+//        return new Response($this->twig->render('OidcAuthenticator/failure.html.twig', [
+//            'e' => $exception
+//        ]));
+//    }
+//
+//    /**
+//     * @param Request $request
+//     * @param AuthenticationException|null $authException
+//     *
+//     * @return RedirectResponse|Response
+//     */
+//    public function start(Request $request, ?AuthenticationException $authException = null): RedirectResponse|Response
+//    {
+//        $request->getSession()->set('loginReturnUrl', $request->getUri());
+//
+//        $params = [];
+//        $params['client_id'] = $this->clientId;
+//        $params['redirect_uri'] = $this->urlGenerator->generate(
+//            'gemeenteamsterdam_fixxxschuldhulp_appdossier_index',
+//            [],
+//            UrlGeneratorInterface::ABSOLUTE_URL
+//        );
+//        $params['response_type'] = 'code';
+//        $params['scope'] = 'profile email openid';
+//        $params['state'] = $request->getSession()->getId();
+//        return new RedirectResponse($this->baseUrl . '/protocol/openid-connect/auth?' . http_build_query($params));
+//    }
+//
+//
+//    /**
+//     * @return bool
+//     */
+//    public function supportsRememberMe(): bool
+//    {
+//        return false;
+//    }
 
-    /**
-     * @param $token
-     * @return bool
-     */
-    private function tokenIsValid(Token $token): bool
-    {
-        $validationData = new ValidationData();
-        $validationData->setIssuer($this->baseUrl);
-        $validationData->setAudience($this->clientId);
 
-        $result = $token->validate($validationData);
-
-        // If validation fails and it's not a retry attempt, try with the alternate protocol
-        if (!$result) {
-            // Generate alternate URL with different protocol
-            $alternateBaseUrl = $this->getAlternateProtocolUrl($this->baseUrl);
-            return $this->tokenIsValidWithAlternateUrl($token, $alternateBaseUrl);
-        }
-
-        return $result;
-    }
-
-    private function getAlternateProtocolUrl(string $url): string
-    {
-        if (str_starts_with($url, "https")) {
-            return str_replace("https", "http", $url);
-        } else {
-            return str_replace("http", "https", $url);
-        }
-    }
-
-    private function tokenIsValidWithAlternateUrl(Token $token, string $alternateUrl): bool
-    {
-        $validationData = new ValidationData();
-        $validationData->setIssuer($alternateUrl);
-        $validationData->setAudience($this->clientId);
-
-        return $token->validate($validationData);
-    }
-
-    /**
-     * @param Token $token
-     * @throws AuthenticationException
-     * @return bool
-     */
-    private function tokenIsVerified(Token $token): bool
-    {
-        $signers = [
-            'RS256' => Sha256::class,
-            'RS384' => Sha384::class,
-            'RS512' => Sha512::class
-        ];
-
-        if (isset($signers[$token->getHeader('alg')]) === false) {
-            throw new AuthenticationException('Algorithme not supported. Requested algorithmes ' . $token->getHeader('alg'));
-        }
-
-        try {
-            $guzzle = new Client();
-            $response = $guzzle->get($this->baseUrl . '/protocol/openid-connect/certs', []);
-            $data = json_decode($response->getBody()->__toString(), true);
-
-            $keyData = null;
-            foreach ($data['keys'] as $key) {
-                if ($key['kid'] === $token->getHeader('kid')) {
-                    $keyData = $key;
-                    break;
-                }
-            }
-            if ($keyData === null) {
-                throw new AuthenticationException('No matching OIDC key found, kid=' . $token->getHeader('kid'));
-            }
-
-            $rsa = new \phpseclib\Crypt\RSA();
-            $rsa->loadKey([
-                'n' => new \phpseclib\Math\BigInteger(base64_decode(str_replace(['-','_'], ['+','/'], $keyData['n'])), 256),
-                'e' => new \phpseclib\Math\BigInteger(base64_decode($keyData['e']), 256)
-            ]);
-            $publicKey = $rsa->getPublicKey(\phpseclib\Crypt\RSA::PRIVATE_FORMAT_PKCS1);
-
-            // create the key instance
-            $signerKey = new Key($publicKey);
-            $signer = new $signers[$token->getHeader('alg')];
-
-            return $token->verify($signer, $signerKey);
-        }
-        catch (TransferException $e) {
-            throw new AuthenticationException('Can not connect to OIDC certs URL. Error ' . $e->getMessage());
-        }
-    }
 }
 

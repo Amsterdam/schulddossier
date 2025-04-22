@@ -1,4 +1,6 @@
 security:
+    enable_authenticator_manager: true
+
     encoders:
         GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker:
             algorithm: bcrypt
@@ -27,21 +29,21 @@ security:
 #
 # (Un)comment the following lines to enable/disable OIDC login instead of local login
         app:
+            entry_point: GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
             pattern: ^/app
             access_denied_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\AccessDeniedHandler
             user_checker: GemeenteAmsterdam\FixxxSchuldhulp\Security\UserChecker
             security: true
             anonymous: false
             stateless: false
-            guard:
-                authenticators:
-                    - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
-                entry_point: GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
+            custom_authenticators:
+                - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
             logout:
                 path: /app/logout
                 success_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\LogoutSuccessHandler
         main:
-            anonymous: true
+            custom_authenticators:
+                - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
     access_control:
 #     - { path: ^/admin, roles: ROLE_ADMIN }
 #     - { path: ^/profile, roles: ROLE_USER }

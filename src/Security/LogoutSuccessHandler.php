@@ -10,17 +10,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
 
 class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
 {
 
     public function __construct(
-        private readonly string          $url,
-        private readonly string          $keycloakVersion,
-        private readonly RouterInterface $router
-    )
-    {
+        private readonly string $url,
+        private readonly string $keycloakVersion,
+        private readonly RouterInterface $router,
+        private readonly CsrfTokenManagerInterface $csrfTokenManager
+    ) {
     }
 
     /**
@@ -47,13 +48,17 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
      */
     private function buildQueryString(Request $request): string
     {
-        $redirectUrl = $this->router->generate('gemeenteamsterdam_fixxxschuldhulp_default_index', [], UrlGeneratorInterface::ABSOLUTE_URL);
+        $redirectUrl = $this->router->generate(
+            'gemeenteamsterdam_fixxxschuldhulp_default_index',
+            [],
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
 
         return match ($this->keycloakVersion) {
             '17' => http_build_query(['redirect_uri' => $redirectUrl]),
             default => http_build_query([
                 'post_logout_redirect_uri' => $redirectUrl,
-                'id_token_hint' => $request->getSession()->get('OIDC_ID_TOKEN') ?? null
+                'id_token_hint' => $request->getSession()->get('id_token') ?? null
             ]),
         };
     }
