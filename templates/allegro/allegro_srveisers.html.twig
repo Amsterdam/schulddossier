@@ -29,7 +29,7 @@
                     <dt>Aanvraagdatum</dt>
                     <dd>{{ header.AanvraagDatum|date('d-m-Y') }}</dd>
                     <dt>Status</dt>
-                    <dd>{{ header.Status|allegro_status }}</dd>
+                    <dd>{{ header.Status|allegroStatus }}</dd>
                     <dt>Extra status</dt>
                     <dd>{% if header.ExtraStatus is empty %}n.v.t.{% else %}{{ header.ExtraStatus }}{% endif %}</dd>
                     <dt>Som teruggemeld bedrag</dt>

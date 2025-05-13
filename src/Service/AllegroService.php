@@ -446,7 +446,7 @@ class AllegroService
         $this->em->flush();
     }
 
-    private function getLoginService(Organisatie $organisatie = null): AllegroLoginClient
+    private function getLoginService(?Organisatie $organisatie = null): AllegroLoginClient
     {
         return LoginClientFactory::factory($this->loginWsdl, $organisatie);
     }

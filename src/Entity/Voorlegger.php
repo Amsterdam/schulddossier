@@ -1827,7 +1827,7 @@ class Voorlegger
     /**
      * @param Dossier $dossier
      */
-    public function setDossier(Dossier $dossier = null)
+    public function setDossier(?Dossier $dossier = null)
     {
         $oldDossier = $this->dossier;
         $this->dossier = $dossier;
@@ -2433,7 +2433,7 @@ class Voorlegger
     /**
      * @param \DateTime $energieBedrijfDatumOpname
      */
-    public function setEnergieBedrijfDatumOpname(\DateTime $energieBedrijfDatumOpname = null)
+    public function setEnergieBedrijfDatumOpname(?\DateTime $energieBedrijfDatumOpname = null)
     {
         $this->energieBedrijfDatumOpname = $energieBedrijfDatumOpname;
     }
@@ -2466,7 +2466,7 @@ class Voorlegger
     /**
      * @param \DateTime $warmteBedrijfDatumOpname
      */
-    public function setWarmteBedrijfDatumOpname(\DateTime $warmteBedrijfDatumOpname = null)
+    public function setWarmteBedrijfDatumOpname(?\DateTime $warmteBedrijfDatumOpname = null)
     {
         $this->warmteBedrijfDatumOpname = $warmteBedrijfDatumOpname;
     }
@@ -2484,7 +2484,7 @@ class Voorlegger
     /**
      * @param \DateTime $drinkwaterDatumOpname
      */
-    public function setDrinkwaterDatumOpname(\DateTime $drinkwaterDatumOpname = null)
+    public function setDrinkwaterDatumOpname(?\DateTime $drinkwaterDatumOpname = null)
     {
         $this->drinkwaterDatumOpname = $drinkwaterDatumOpname;
     }

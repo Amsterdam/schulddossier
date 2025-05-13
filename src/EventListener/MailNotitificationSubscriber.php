@@ -20,58 +20,26 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
 {
     private const TEST_EMAIL_ADRESSES_FILE_NAME = 'test-emails.json';
 
-    /**
-     * @var string
-     */
-    private $fromNotificiatieAdres;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
-
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $urlGenerator;
-
-    /**
-     * @var \Twig\Environment
-     */
-    private $twig;
-
-    /**
-     * @var MailerInterface
-     */
-    private $mailer;
-
-    private string $env;
-
-    public function __construct(MailerInterface $mailer, $fromNotificiatieAdres, string $env, LoggerInterface $mailLogger, TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator, \Twig\Environment $twig, RequestStack $requestStack, EntityManagerInterface $em)
+    public function __construct(
+        private MailerInterface $mailer,
+        private string $fromNotificiatieAdres,
+        private string $env,
+        private LoggerInterface $logger,
+        private TokenStorageInterface $tokenStorage,
+        private UrlGeneratorInterface $urlGenerator,
+        private \Twig\Environment $twig,
+        private RequestStack $requestStack,
+        private EntityManagerInterface $em
+    )
     {
-        $this->mailer = $mailer;
-        $this->fromNotificiatieAdres = $fromNotificiatieAdres;
-        $this->logger = $mailLogger;
-        $this->tokenStorage = $tokenStorage;
-        $this->urlGenerator = $urlGenerator;
-        $this->twig = $twig;
-        $this->requestStack = $requestStack;
-        $this->em = $em;
-        $this->env = $env;
     }
 
     /**
      * @param DossierAddedCorrespondentie $event
      */
-    public function notifyAboutCorrespondentie(DossierAddedCorrespondentie $event)
+    public function notifyAboutCorrespondentie(DossierAddedCorrespondentie $event): void
     {
-        /** @var $dossier Dossier */
-        $dossier = $event->getDossier();
+        $dossier = $event->dossier;
 
         if ($dossier->getMedewerkerOrganisatie() !== null && !empty($dossier->getMedewerkerOrganisatie()->getEmail())) {
             $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerOrganisatie()->getEmail(), 'mails/notifyAboutCorrespondentie.html.twig', [
@@ -136,28 +104,28 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
     public function notifyAboutAantekening(DossierAddedAantekeningEvent $event): void
     {
         if (
-            $event->getDossier()->getMedewerkerOrganisatie() !== null &&
-            $event->getGebruiker()->isGka()
+            $event->dossier->getMedewerkerOrganisatie() !== null &&
+            $event->gebruiker->isGka()
         ) {
             $this->mail(
                 $this->fromNotificiatieAdres,
-                $event->getDossier()->getMedewerkerOrganisatie()->getEmail(),
+                $event->dossier->getMedewerkerOrganisatie()->getEmail(),
                 'mails/notifyAddedAantekening.html.twig', [
-                    'dossier' => $event->getDossier(),
+                    'dossier' => $event->dossier,
                     'tokenStorage' => $this->tokenStorage
             ]);
         }
 
         if (
-            $event->getDossier()->getMedewerkerOrganisatie() !== null &&
-            $event->getGebruiker()->isSchuldhulpverlener() &&
-            $event->getDossier()->isEersteKeerVerzondenAanGKA()
+            $event->dossier->getMedewerkerOrganisatie() !== null &&
+            $event->gebruiker->isSchuldhulpverlener() &&
+            $event->dossier->isEersteKeerVerzondenAanGKA()
         ) {
             $this->mail(
                 $this->fromNotificiatieAdres,
-                $event->getDossier()->getTeamGka()->getEmail(),
+                $event->dossier->getTeamGka()->getEmail(),
                 'mails/notifyAddedAantekening.html.twig', [
-                    'dossier' => $event->getDossier(),
+                    'dossier' => $event->dossier,
                     'tokenStorage' => $this->tokenStorage
             ]);
         }

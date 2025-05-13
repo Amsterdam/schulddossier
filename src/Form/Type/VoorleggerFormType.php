@@ -17,18 +17,18 @@ use Symfony\Component\Workflow\Registry as WorkflowRegistry;
 
 class VoorleggerFormType extends AbstractType
 {
-    private $tokenStorage;
+
     /**
      * @var Gebruiker $user
      */
     private $user;
-    private $workflowRegistry;
 
-    public function __construct(TokenStorageInterface $tokenStorage, WorkflowRegistry $registry, EntityManagerInterface $em)
+    public function __construct(
+        private TokenStorageInterface $tokenStorage,
+        private WorkflowRegistry $workflowRegistry,
+        private EntityManagerInterface $em
+    )
     {
-        $this->tokenStorage = $tokenStorage;
-        $this->workflowRegistry = $registry;
-        $this->em = $em;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)

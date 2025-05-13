@@ -49,16 +49,18 @@
                         </thead>
                         <tbody>
                         {% set empty = true %}
-                        {% for schuldItem in dossier.schuldItems if schuldItem.verwijderd == false %}
-                            {% set empty = false %}
-                            <tr class="row-link">
-                                <th>
-                                    {{ schuldItem.schuldeiser|default('-') }} {% if schuldItem.incassant %}/{% endif %} {{ schuldItem.incassant }}
-                                </th>
-                                <td>{{ schuldItem.referentie }}</td>
-                                <td>{{ schuldItem.type }}</td>
-                                <td align="right">&euro;&nbsp;{{ schuldItem.bedrag|number_format(2, ',', '.') }}</td>
-                            </tr>
+                        {% for schuldItem in dossier.schuldItems %}
+                            {% if schuldItem.verwijderd == false %}
+                                {% set empty = false %}
+                                <tr class="row-link">
+                                    <th>
+                                        {{ schuldItem.schuldeiser|default('-') }} {% if schuldItem.incassant %}/{% endif %} {{ schuldItem.incassant }}
+                                    </th>
+                                    <td>{{ schuldItem.referentie }}</td>
+                                    <td>{{ schuldItem.type }}</td>
+                                    <td align="right">&euro;&nbsp;{{ schuldItem.bedrag|number_format(2, ',', '.') }}</td>
+                                </tr>
+                            {% endif %}
                         {% endfor %}
                         </tbody>
                     </table>

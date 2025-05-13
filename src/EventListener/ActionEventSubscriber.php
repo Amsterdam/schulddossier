@@ -97,14 +97,14 @@ class ActionEventSubscriber implements EventSubscriberInterface
     public function registerDossierChange(DossierChangedEvent $event): void
     {
         /** @var Gebruiker $gebruiker */
-        $gebruiker = $event->getGebruiker();
+        $gebruiker = $event->gebruiker;
         /** @var Dossier $dossier */
-        $dossier = $event->getDossier();
+        $dossier = $event->dossier;
         $action = new ActionEventEntity();
 
         $dateTime = new \DateTime();
 
-        $action->setName(null === $event->getForceType() ? ActionEvent::DOSSIER_GEWIJZIGD : $event->getForceType());
+        $action->setName(null === $event->forceType ? ActionEvent::DOSSIER_GEWIJZIGD : $event->forceType);
         $action->setDatumTijd($dateTime);
         $action->setDossier($dossier);
         $action->setIp($this->requestStack->getMasterRequest()->getClientIp());

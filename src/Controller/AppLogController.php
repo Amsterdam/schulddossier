@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 

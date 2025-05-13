@@ -14,21 +14,6 @@ class ActionEvent extends Event
     const NAME = 'app.action.register';
 
     /**
-     * @var string
-     */
-    private $action;
-
-    /**
-     * @var array
-     */
-    private $data;
-
-    /**
-     * @var Dossier
-     */
-    private $dossier;
-
-    /**
      * @var \DateTime
      */
     private $dateTimeOfEvent;
@@ -48,11 +33,12 @@ class ActionEvent extends Event
     const DOSSIER_SEND_TO_ALLEGRO = 'dossier_send_to_allegro';
 
 //    public function __construct(string $actionName, array $data = [])
-    public function __construct(string $actionName, array $data = [], Dossier $dossier = null)
+    public function __construct(
+        private string $action,
+        private array $data = [],
+        private ?Dossier $dossier = null
+    )
     {
-        $this->action = $actionName;
-        $this->data = $data;
-        $this->dossier = $dossier;
         $this->dateTimeOfEvent = new \DateTime();
     }
 

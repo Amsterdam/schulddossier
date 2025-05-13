@@ -11,7 +11,7 @@ class SchuldeiserRepository extends EntityRepository
 {
     public function search($q = '', $page = 0, $pageSize = 100, $showEnabledOnly = true)
     {
-        $q = explode(' ', $q);
+        $q = $q ? explode(' ', $q) : [];
         $q = array_filter($q, function ($item) {
             return !empty($item);
         });

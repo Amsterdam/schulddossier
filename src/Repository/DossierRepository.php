@@ -12,7 +12,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions\Levenshtein;
 
 class DossierRepository extends EntityRepository
 {
-    public function findAll($page = 0, $pageSize = 100)
+    public function findAll($page = 0, $pageSize = 100): Paginator
     {
         $qb = $this->createQueryBuilder('dossier');
         $qb->orderBy('dossier.aanmaakDatumTijd', 'DESC');

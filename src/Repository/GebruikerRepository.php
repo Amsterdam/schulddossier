@@ -250,7 +250,7 @@ class GebruikerRepository extends ServiceEntityRepository
         return $qb;
     }
 
-    public function findActiveGebruikersInactiveForDays(int $days, bool $active = null)
+    public function findActiveGebruikersInactiveForDays(int $days, ?bool $active = null)
     {
         $limitDate = new \DateTime();
         $limitDate->sub(new \DateInterval('P' . $days . 'D'));

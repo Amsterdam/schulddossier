@@ -4,6 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 
 class VoorleggerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
@@ -13,7 +14,7 @@ public const VOORLEGGERS_JSON_FILENAME = 'voorleggers.json';
     /**
      * @inheritDoc
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $voorleggers = $this->loadVoorleggersJson();
 
@@ -21,7 +22,7 @@ public const VOORLEGGERS_JSON_FILENAME = 'voorleggers.json';
             $dossierReference = $i === 0 ? 'dossier' : 'dossier' . $i;
 
             $voorlegger = new Voorlegger();
-            $voorlegger->setDossier($this->getReference($dossierReference));
+            $voorlegger->setDossier($this->getReference($dossierReference, Dossier::class));
             $voorlegger->setLegitimatieOntvangenShv($voorleggers[$i]["legitimatieShv"]);
             $voorlegger->setLegitimatieOntvangenGka($voorleggers[$i]["legitimatieGka"]);
             $voorlegger->setArbeidsovereenkomstOntvangenShv($voorleggers[$i]["arbeidsovereenkomstShv"]);
@@ -42,7 +43,7 @@ public const VOORLEGGERS_JSON_FILENAME = 'voorleggers.json';
             return array_values(array_filter(json_decode($jsonString, true)));
         }
 
-        public function getDependencies()
+        public function getDependencies(): array
         {
             return [
                 DossierFixtures::class
