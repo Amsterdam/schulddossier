@@ -10,10 +10,9 @@ class BBRBegunstigdeArray
      */
     protected $TBBRBegunstigde = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class BBRBegunstigdeArray
      */
     public function getTBBRBegunstigde()
     {
-      return $this->TBBRBegunstigde;
+        return $this->TBBRBegunstigde;
     }
 
     /**
      * @param TBBRBegunstigde[] $TBBRBegunstigde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\BBRBegunstigdeArray
      */
-    public function setTBBRBegunstigde(array $TBBRBegunstigde = null)
+    public function setTBBRBegunstigde(?array $TBBRBegunstigde = null)
     {
-      $this->TBBRBegunstigde = $TBBRBegunstigde;
-      return $this;
+        $this->TBBRBegunstigde = $TBBRBegunstigde;
+        return $this;
     }
 
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -23,7 +24,7 @@ class ShvStatusFormType extends AbstractType
         $resolver->setDefault('required', true);
     }
 
-    public function getParent()
+    public function getParent(): ?string
     {
         return ChoiceType::class;
     }

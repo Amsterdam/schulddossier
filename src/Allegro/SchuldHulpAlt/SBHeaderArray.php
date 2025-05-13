@@ -10,10 +10,9 @@ class SBHeaderArray
      */
     protected $TSBHeader = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class SBHeaderArray
      */
     public function getTSBHeader()
     {
-      return $this->TSBHeader;
+        return $this->TSBHeader;
     }
 
     /**
      * @param TSBHeader[] $TSBHeader
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SBHeaderArray
      */
-    public function setTSBHeader(array $TSBHeader = null)
+    public function setTSBHeader(?array $TSBHeader = null)
     {
-      $this->TSBHeader = $TSBHeader;
-      return $this;
+        $this->TSBHeader = $TSBHeader;
+        return $this;
     }
 
 }

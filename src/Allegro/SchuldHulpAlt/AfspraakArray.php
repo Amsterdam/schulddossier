@@ -10,10 +10,9 @@ class AfspraakArray
      */
     protected $TAfspraak = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class AfspraakArray
      */
     public function getTAfspraak()
     {
-      return $this->TAfspraak;
+        return $this->TAfspraak;
     }
 
     /**
      * @param TAfspraak[] $TAfspraak
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\AfspraakArray
      */
-    public function setTAfspraak(array $TAfspraak = null)
+    public function setTAfspraak(?array $TAfspraak = null)
     {
-      $this->TAfspraak = $TAfspraak;
-      return $this;
+        $this->TAfspraak = $TAfspraak;
+        return $this;
     }
 
 }

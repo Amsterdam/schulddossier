@@ -10,10 +10,9 @@ class BooleanArray
      */
     protected $boolean = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class BooleanArray
      */
     public function getBoolean()
     {
-      return $this->boolean;
+        return $this->boolean;
     }
 
     /**
      * @param boolean[] $boolean
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\BooleanArray
      */
-    public function setBoolean(array $boolean = null)
+    public function setBoolean(?array $boolean = null)
     {
-      $this->boolean = $boolean;
-      return $this;
+        $this->boolean = $boolean;
+        return $this;
     }
 
 }

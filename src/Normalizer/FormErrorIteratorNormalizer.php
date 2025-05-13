@@ -12,13 +12,16 @@ class FormErrorIteratorNormalizer implements NormalizerInterface, NormalizerAwar
 {
     use NormalizerAwareTrait;
 
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null): bool
     {
         return $data instanceof FormErrorIterator;
     }
 
-    public function normalize($object, $format = null, array $context = [])
-    {
+    public function normalize(
+        $object,
+        $format = null,
+        array $context = []
+    ): array|string|int|float|bool|\ArrayObject|null {
         /** @var $object FormErrorIterator */
         $errorData = [];
         foreach ($object as $formError) {

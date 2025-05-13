@@ -10,10 +10,9 @@ class TrajectArray
      */
     protected $TTraject = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class TrajectArray
      */
     public function getTTraject()
     {
-      return $this->TTraject;
+        return $this->TTraject;
     }
 
     /**
      * @param TTraject[] $TTraject
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TrajectArray
      */
-    public function setTTraject(array $TTraject = null)
+    public function setTTraject(?array $TTraject = null)
     {
-      $this->TTraject = $TTraject;
-      return $this;
+        $this->TTraject = $TTraject;
+        return $this;
     }
 
 }

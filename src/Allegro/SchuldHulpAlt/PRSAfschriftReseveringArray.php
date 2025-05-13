@@ -10,10 +10,9 @@ class PRSAfschriftReseveringArray
      */
     protected $TPRSAfschriftReservering = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class PRSAfschriftReseveringArray
      */
     public function getTPRSAfschriftReservering()
     {
-      return $this->TPRSAfschriftReservering;
+        return $this->TPRSAfschriftReservering;
     }
 
     /**
      * @param TPRSAfschriftReservering[] $TPRSAfschriftReservering
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\PRSAfschriftReseveringArray
      */
-    public function setTPRSAfschriftReservering(array $TPRSAfschriftReservering = null)
+    public function setTPRSAfschriftReservering(?array $TPRSAfschriftReservering = null)
     {
-      $this->TPRSAfschriftReservering = $TPRSAfschriftReservering;
-      return $this;
+        $this->TPRSAfschriftReservering = $TPRSAfschriftReservering;
+        return $this;
     }
 
 }

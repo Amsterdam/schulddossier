@@ -34,12 +34,16 @@ class ElevateToAdminCommand extends Command
     protected function configure()
     {
         $this->setName('app:gebruikers:make-admin')
-            ->addArgument('email', InputArgument::REQUIRED, 'Which email address do you want to make an admin account?');
+            ->addArgument(
+                'email',
+                InputArgument::REQUIRED,
+                'Which email address do you want to make an admin account?'
+            );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->write('Trying to elevate the user with email address ' . $input->getArgument('email'). ' to admin');
+        $output->write('Trying to elevate the user with email address ' . $input->getArgument('email') . ' to admin');
         $userRepo = $this->em->getRepository(Gebruiker::class);
         /** @var Gebruiker $gebruiker */
         $gebruiker = $userRepo->findOneBy(['email' => strtolower($input->getArgument('email'))]);

@@ -10,10 +10,9 @@ class SimpleFieldInfoArray
      */
     protected $SimpleFieldInfo = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class SimpleFieldInfoArray
      */
     public function getSimpleFieldInfo()
     {
-      return $this->SimpleFieldInfo;
+        return $this->SimpleFieldInfo;
     }
 
     /**
      * @param SimpleFieldInfo[] $SimpleFieldInfo
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SimpleFieldInfoArray
      */
-    public function setSimpleFieldInfo(array $SimpleFieldInfo = null)
+    public function setSimpleFieldInfo(?array $SimpleFieldInfo = null)
     {
-      $this->SimpleFieldInfo = $SimpleFieldInfo;
-      return $this;
+        $this->SimpleFieldInfo = $SimpleFieldInfo;
+        return $this;
     }
 
 }

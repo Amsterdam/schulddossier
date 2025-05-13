@@ -1,7 +1,9 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,10 +22,11 @@ class HelpController extends AbstractController
 {
     private $session;
 
-    public function __construct(SessionInterface $session)
+    public function __construct(RequestStack $requestStack)
     {
-        $this->session = $session;
+        $this->session = $requestStack->getSession();
     }
+
     /**
      * @Route("/")
      * @Security("is_granted('ROLE_USER')")

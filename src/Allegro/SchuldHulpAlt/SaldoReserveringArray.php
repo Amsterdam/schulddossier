@@ -10,10 +10,9 @@ class SaldoReserveringArray
      */
     protected $TSaldoReservering = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class SaldoReserveringArray
      */
     public function getTSaldoReservering()
     {
-      return $this->TSaldoReservering;
+        return $this->TSaldoReservering;
     }
 
     /**
      * @param TSaldoReservering[] $TSaldoReservering
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SaldoReserveringArray
      */
-    public function setTSaldoReservering(array $TSaldoReservering = null)
+    public function setTSaldoReservering(?array $TSaldoReservering = null)
     {
-      $this->TSaldoReservering = $TSaldoReservering;
-      return $this;
+        $this->TSaldoReservering = $TSaldoReservering;
+        return $this;
     }
 
 }

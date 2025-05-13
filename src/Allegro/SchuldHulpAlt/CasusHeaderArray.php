@@ -10,10 +10,9 @@ class CasusHeaderArray
      */
     protected $TCasusHeader = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class CasusHeaderArray
      */
     public function getTCasusHeader()
     {
-      return $this->TCasusHeader;
+        return $this->TCasusHeader;
     }
 
     /**
      * @param TCasusHeader[] $TCasusHeader
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\CasusHeaderArray
      */
-    public function setTCasusHeader(array $TCasusHeader = null)
+    public function setTCasusHeader(?array $TCasusHeader = null)
     {
-      $this->TCasusHeader = $TCasusHeader;
-      return $this;
+        $this->TCasusHeader = $TCasusHeader;
+        return $this;
     }
 
 }
