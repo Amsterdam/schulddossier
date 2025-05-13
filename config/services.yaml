@@ -25,6 +25,9 @@ parameters:
 
 
 services:
+  # Added for upgrade to Symfony 6
+  Symfony\Component\DependencyInjection\ContainerInterface: '@service_container'
+
   _defaults:
     autowire: true
     autoconfigure: true

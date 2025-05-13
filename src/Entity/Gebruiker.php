@@ -26,7 +26,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity("email")
  * @UniqueEntity("username")
  */
-class Gebruiker implements UserInterface, EquatableInterface
+class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthenticatedUserInterface
 {
     const TYPE_ADMIN = 'admin';
 
