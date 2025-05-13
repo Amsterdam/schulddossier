@@ -4,6 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Serializable;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -294,7 +295,7 @@ class Gebruiker implements UserInterface, EquatableInterface
         $this->teamGka = $teamGka;
     }
 
-    public function getOrganisaties(): ArrayCollection|array
+    public function getOrganisaties(): PersistentCollection|array
     {
         return $this->organisaties;
     }
