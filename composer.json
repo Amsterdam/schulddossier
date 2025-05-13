@@ -62,7 +62,6 @@
         "twig/twig": "^3.0"
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.1",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "laminas/laminas-code": "^4.8.0",
         "symfony/debug-bundle": "^5.4",
