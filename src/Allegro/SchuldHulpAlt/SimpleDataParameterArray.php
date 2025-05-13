@@ -10,10 +10,9 @@ class SimpleDataParameterArray
      */
     protected $SimpleDataParameter = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class SimpleDataParameterArray
      */
     public function getSimpleDataParameter()
     {
-      return $this->SimpleDataParameter;
+        return $this->SimpleDataParameter;
     }
 
     /**
      * @param SimpleDataParameter[] $SimpleDataParameter
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SimpleDataParameterArray
      */
-    public function setSimpleDataParameter(array $SimpleDataParameter = null)
+    public function setSimpleDataParameter(?array $SimpleDataParameter = null)
     {
-      $this->SimpleDataParameter = $SimpleDataParameter;
-      return $this;
+        $this->SimpleDataParameter = $SimpleDataParameter;
+        return $this;
     }
 
 }

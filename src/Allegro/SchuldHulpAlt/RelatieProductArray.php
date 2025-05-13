@@ -10,10 +10,9 @@ class RelatieProductArray
      */
     protected $TRelatieProduct = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class RelatieProductArray
      */
     public function getTRelatieProduct()
     {
-      return $this->TRelatieProduct;
+        return $this->TRelatieProduct;
     }
 
     /**
      * @param TRelatieProduct[] $TRelatieProduct
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\RelatieProductArray
      */
-    public function setTRelatieProduct(array $TRelatieProduct = null)
+    public function setTRelatieProduct(?array $TRelatieProduct = null)
     {
-      $this->TRelatieProduct = $TRelatieProduct;
-      return $this;
+        $this->TRelatieProduct = $TRelatieProduct;
+        return $this;
     }
 
 }

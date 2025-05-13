@@ -10,10 +10,9 @@ class HulpverlenerArray
      */
     protected $THulpverlener = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class HulpverlenerArray
      */
     public function getTHulpverlener()
     {
-      return $this->THulpverlener;
+        return $this->THulpverlener;
     }
 
     /**
      * @param THulpverlener[] $THulpverlener
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\HulpverlenerArray
      */
-    public function setTHulpverlener(array $THulpverlener = null)
+    public function setTHulpverlener(?array $THulpverlener = null)
     {
-      $this->THulpverlener = $THulpverlener;
-      return $this;
+        $this->THulpverlener = $THulpverlener;
+        return $this;
     }
 
 }

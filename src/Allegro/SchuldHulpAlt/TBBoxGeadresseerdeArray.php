@@ -10,10 +10,9 @@ class TBBoxGeadresseerdeArray
      */
     protected $TBBoxGeadresseerde = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class TBBoxGeadresseerdeArray
      */
     public function getTBBoxGeadresseerde()
     {
-      return $this->TBBoxGeadresseerde;
+        return $this->TBBoxGeadresseerde;
     }
 
     /**
      * @param TBBoxGeadresseerde[] $TBBoxGeadresseerde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBoxGeadresseerdeArray
      */
-    public function setTBBoxGeadresseerde(array $TBBoxGeadresseerde = null)
+    public function setTBBoxGeadresseerde(?array $TBBoxGeadresseerde = null)
     {
-      $this->TBBoxGeadresseerde = $TBBoxGeadresseerde;
-      return $this;
+        $this->TBBoxGeadresseerde = $TBBoxGeadresseerde;
+        return $this;
     }
 
 }

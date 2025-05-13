@@ -10,10 +10,9 @@ class BBRVormArray
      */
     protected $TBBRVorm = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class BBRVormArray
      */
     public function getTBBRVorm()
     {
-      return $this->TBBRVorm;
+        return $this->TBBRVorm;
     }
 
     /**
      * @param TBBRVorm[] $TBBRVorm
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\BBRVormArray
      */
-    public function setTBBRVorm(array $TBBRVorm = null)
+    public function setTBBRVorm(?array $TBBRVorm = null)
     {
-      $this->TBBRVorm = $TBBRVorm;
-      return $this;
+        $this->TBBRVorm = $TBBRVorm;
+        return $this;
     }
 
 }

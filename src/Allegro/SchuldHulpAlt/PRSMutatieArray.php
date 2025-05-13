@@ -10,10 +10,9 @@ class PRSMutatieArray
      */
     protected $TPRSMutatie = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class PRSMutatieArray
      */
     public function getTPRSMutatie()
     {
-      return $this->TPRSMutatie;
+        return $this->TPRSMutatie;
     }
 
     /**
      * @param TPRSMutatie[] $TPRSMutatie
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\PRSMutatieArray
      */
-    public function setTPRSMutatie(array $TPRSMutatie = null)
+    public function setTPRSMutatie(?array $TPRSMutatie = null)
     {
-      $this->TPRSMutatie = $TPRSMutatie;
-      return $this;
+        $this->TPRSMutatie = $TPRSMutatie;
+        return $this;
     }
 
 }

@@ -10,10 +10,9 @@ class TBBoxBijlageArray
      */
     protected $TBBoxBijlage = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class TBBoxBijlageArray
      */
     public function getTBBoxBijlage()
     {
-      return $this->TBBoxBijlage;
+        return $this->TBBoxBijlage;
     }
 
     /**
      * @param TBBoxBijlage[] $TBBoxBijlage
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBoxBijlageArray
      */
-    public function setTBBoxBijlage(array $TBBoxBijlage = null)
+    public function setTBBoxBijlage(?array $TBBoxBijlage = null)
     {
-      $this->TBBoxBijlage = $TBBoxBijlage;
-      return $this;
+        $this->TBBoxBijlage = $TBBoxBijlage;
+        return $this;
     }
 
 }

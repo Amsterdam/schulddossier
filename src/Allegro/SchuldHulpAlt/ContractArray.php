@@ -10,10 +10,9 @@ class ContractArray
      */
     protected $TContract = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class ContractArray
      */
     public function getTContract()
     {
-      return $this->TContract;
+        return $this->TContract;
     }
 
     /**
      * @param TContract[] $TContract
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\ContractArray
      */
-    public function setTContract(array $TContract = null)
+    public function setTContract(?array $TContract = null)
     {
-      $this->TContract = $TContract;
-      return $this;
+        $this->TContract = $TContract;
+        return $this;
     }
 
 }

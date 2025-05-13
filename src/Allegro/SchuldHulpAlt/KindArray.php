@@ -10,10 +10,9 @@ class KindArray
      */
     protected $TKind = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class KindArray
      */
     public function getTKind()
     {
-      return $this->TKind;
+        return $this->TKind;
     }
 
     /**
      * @param TKind[] $TKind
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\KindArray
      */
-    public function setTKind(array $TKind = null)
+    public function setTKind(?array $TKind = null)
     {
-      $this->TKind = $TKind;
-      return $this;
+        $this->TKind = $TKind;
+        return $this;
     }
 
 }

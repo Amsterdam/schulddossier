@@ -10,10 +10,9 @@ class BBRHeaderArray
      */
     protected $TBBRHeader = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class BBRHeaderArray
      */
     public function getTBBRHeader()
     {
-      return $this->TBBRHeader;
+        return $this->TBBRHeader;
     }
 
     /**
      * @param TBBRHeader[] $TBBRHeader
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\BBRHeaderArray
      */
-    public function setTBBRHeader(array $TBBRHeader = null)
+    public function setTBBRHeader(?array $TBBRHeader = null)
     {
-      $this->TBBRHeader = $TBBRHeader;
-      return $this;
+        $this->TBBRHeader = $TBBRHeader;
+        return $this;
     }
 
 }

@@ -14,8 +14,10 @@ use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 
 class LoginClientFactory
 {
-    public static function factory(string $wsdl, Organisatie $organisatie = null): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient
-    {
+    public static function factory(
+        string $wsdl,
+        ?Organisatie $organisatie = null
+    ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient {
         $handler = HttPlugHandle::createForClient(
             Client::createWithConfig(['headers' => ['User-Agent' => 'fixxx-schuldhulp/1.0']])
         );

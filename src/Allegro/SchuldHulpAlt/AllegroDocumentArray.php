@@ -10,10 +10,9 @@ class AllegroDocumentArray
      */
     protected $TAllegroDocument = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class AllegroDocumentArray
      */
     public function getTAllegroDocument()
     {
-      return $this->TAllegroDocument;
+        return $this->TAllegroDocument;
     }
 
     /**
      * @param TAllegroDocument[] $TAllegroDocument
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\AllegroDocumentArray
      */
-    public function setTAllegroDocument(array $TAllegroDocument = null)
+    public function setTAllegroDocument(?array $TAllegroDocument = null)
     {
-      $this->TAllegroDocument = $TAllegroDocument;
-      return $this;
+        $this->TAllegroDocument = $TAllegroDocument;
+        return $this;
     }
 
 }

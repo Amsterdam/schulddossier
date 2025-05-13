@@ -10,10 +10,9 @@ class SRVEiserArray
      */
     protected $TSRVEiser = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class SRVEiserArray
      */
     public function getTSRVEiser()
     {
-      return $this->TSRVEiser;
+        return $this->TSRVEiser;
     }
 
     /**
      * @param TSRVEiser[] $TSRVEiser
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SRVEiserArray
      */
-    public function setTSRVEiser(array $TSRVEiser = null)
+    public function setTSRVEiser(?array $TSRVEiser = null)
     {
-      $this->TSRVEiser = $TSRVEiser;
-      return $this;
+        $this->TSRVEiser = $TSRVEiser;
+        return $this;
     }
 
 }

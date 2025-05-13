@@ -10,10 +10,9 @@ class PLAanvraagArray
      */
     protected $TPLAanvraag = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class PLAanvraagArray
      */
     public function getTPLAanvraag()
     {
-      return $this->TPLAanvraag;
+        return $this->TPLAanvraag;
     }
 
     /**
      * @param TPLAanvraag[] $TPLAanvraag
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\PLAanvraagArray
      */
-    public function setTPLAanvraag(array $TPLAanvraag = null)
+    public function setTPLAanvraag(?array $TPLAanvraag = null)
     {
-      $this->TPLAanvraag = $TPLAanvraag;
-      return $this;
+        $this->TPLAanvraag = $TPLAanvraag;
+        return $this;
     }
 
 }

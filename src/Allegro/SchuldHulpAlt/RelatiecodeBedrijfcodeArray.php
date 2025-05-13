@@ -10,10 +10,9 @@ class RelatiecodeBedrijfcodeArray
      */
     protected $TRelatiecodeBedrijfcode = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class RelatiecodeBedrijfcodeArray
      */
     public function getTRelatiecodeBedrijfcode()
     {
-      return $this->TRelatiecodeBedrijfcode;
+        return $this->TRelatiecodeBedrijfcode;
     }
 
     /**
      * @param TRelatiecodeBedrijfcode[] $TRelatiecodeBedrijfcode
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\RelatiecodeBedrijfcodeArray
      */
-    public function setTRelatiecodeBedrijfcode(array $TRelatiecodeBedrijfcode = null)
+    public function setTRelatiecodeBedrijfcode(?array $TRelatiecodeBedrijfcode = null)
     {
-      $this->TRelatiecodeBedrijfcode = $TRelatiecodeBedrijfcode;
-      return $this;
+        $this->TRelatiecodeBedrijfcode = $TRelatiecodeBedrijfcode;
+        return $this;
     }
 
 }
