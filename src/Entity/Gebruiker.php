@@ -288,7 +288,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
         $this->teamGka = $teamGka;
     }
 
-    public function getOrganisaties(): ArrayCollection|array
+    public function getOrganisaties(): PersistentCollection|array
     {
         return $this->organisaties;
     }
