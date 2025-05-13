@@ -25,9 +25,6 @@ parameters:
 
 
 services:
-  # Added for upgrade to Symfony 6
-  Symfony\Component\DependencyInjection\ContainerInterface: '@service_container'
-
   _defaults:
     autowire: true
     autoconfigure: true
@@ -47,33 +44,10 @@ services:
       - '../src/Kernel.php'
       - '../src/Tests/'
 
-    # Doctrine EventListeners
-    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\GebruikerPasswordSubscriber:
-        arguments:
-            - '@security.user_password_hasher'
-        tags:
-            - name: doctrine.event_subscriber
-              connection: default
-    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\DocumentUploadSubscriber:
-        tags:
-            - name: doctrine.event_subscriber
-              connection: default
-    # Symfony EventListeners
-    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\MailNotitificationSubscriber:
-        arguments:
-            - '@mailer'
-            - '%env(APP_NOTIFICATIE_FROM)%'
-            - '%env(APP_ENV)%'
-    
-    # Services
-    GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector:
-        #lazy: true
-        arguments:
-            - '@flysystem_dossier'
-    GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion:
-        arguments:
-            - '%kernel.environment%'
-            - '%kernel.project_dir%'
+  # Controllers
+  GemeenteAmsterdam\FixxxSchuldhulp\Controller\:
+    resource: '../src/Controller'
+    tags: [ 'controller.service_arguments' ]
 
   # Doctrine EventListeners
   GemeenteAmsterdam\FixxxSchuldhulp\EventListener\GebruikerPasswordSubscriber:
@@ -92,7 +66,7 @@ services:
       - '@mailer'
       - '%env(APP_NOTIFICATIE_FROM)%'
       - '%env(APP_ENV)%'
-
+      -
   GemeenteAmsterdam\FixxxSchuldhulp\EventListener\LogoutSubscriber:
     tags:
       - { name: kernel.event_listener, event: Symfony\Component\Security\Http\Event\LogoutEvent, dispatcher: security.event_dispatcher.app }
@@ -128,24 +102,11 @@ services:
     arguments:
       - '%featureflag_herfinanciering%'
 
-    # Flysystem
-    flysystem_local_adapter_dossier:
-        class: League\Flysystem\Local\LocalFilesystemAdapter
-        lazy: true
-        arguments:
-            - '%kernel.project_dir%/var/data/dossiers/'
-    flysystem_dossier:
-        class: League\Flysystem\Filesystem
-        lazy: true
-        arguments:
-            - '@flysystem_local_adapter_dossier'
-            
-    # Security
-    GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator:
-        bind:
-            $clientId: '%env(IAM_CLIENT_ID)%'
-            $clientSecret: '%env(IAM_CLIENT_SECRET)%'
-            $baseUrl: '%env(IAM_URL)%'
+  app.form.type.employeetype:
+    class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\OrganisatieMedewerkerType
+    arguments:
+      - '@security.token_storage'
+      - '@doctrine.orm.entity_manager'
 
   app.form.type.change_status:
     class: GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType
