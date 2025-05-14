@@ -2,19 +2,26 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
+use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PrePersistEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Doctrine\ORM\Events;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+#[AsDoctrineListener(event: Events::prePersist, priority: 500, connection: 'default')]
+#[AsDoctrineListener(event: Events::preUpdate, priority: 500, connection: 'default')]
 class GebruikerPasswordSubscriber implements EventSubscriber
 {
     /**
      * @param UserPasswordHasherInterface $encoder
      */
     public function __construct(
-        private UserPasswordHasherInterface  $encoder
-    ){}
+        private UserPasswordHasherInterface $encoder
+    ) {
+    }
 
 
     /**
@@ -26,14 +33,14 @@ class GebruikerPasswordSubscriber implements EventSubscriber
         return ['prePersist', 'preUpdate'];
     }
 
-    public function prePersist(LifecycleEventArgs $args)
+    public function prePersist(PrePersistEventArgs $args)
     {
         if ($this->canHandle($args->getObject())) {
             $this->updatePassword($args->getObject());
         }
     }
 
-    public function preUpdate(LifecycleEventArgs $args)
+    public function preUpdate(PreUpdateEventArgs $args)
     {
         if ($this->canHandle($args->getObject())) {
             $this->updatePassword($args->getObject());

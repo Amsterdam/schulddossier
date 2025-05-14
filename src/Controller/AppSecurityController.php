@@ -1,6 +1,8 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -8,12 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerChangePasswordFormType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AppSecurityController extends AbstractController
 {
     #[Route(path: '/app/login')]
-    public function login(AuthenticationUtils $authenticationUtils, \Symfony\Component\Security\Core\Security $security)
+    public function login(AuthenticationUtils $authenticationUtils, Security $security)
     {
         if ($security->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
