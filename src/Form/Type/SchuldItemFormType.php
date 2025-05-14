@@ -31,14 +31,17 @@ class SchuldItemFormType extends AbstractType
      */
     private $idToSchuldeiserTransformer;
 
-    public function __construct(EntityManagerInterface $em, LoggerInterface $logger, IdToSchuldeiserTransformer $idToSchuldeiserTransformer)
-    {
+    public function __construct(
+        EntityManagerInterface $em,
+        LoggerInterface $logger,
+        IdToSchuldeiserTransformer $idToSchuldeiserTransformer
+    ) {
         $this->em = $em;
         $this->logger = $logger;
         $this->idToSchuldeiserTransformer = $idToSchuldeiserTransformer;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('verwijderd', CheckboxType::class, [
             'required' => false
@@ -142,7 +145,7 @@ class SchuldItemFormType extends AbstractType
         });
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('data_class', SchuldItem::class);
         $resolver->setDefault('choice_translation_domain', false);

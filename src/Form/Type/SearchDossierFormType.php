@@ -30,14 +30,16 @@ class SearchDossierFormType extends AbstractType
     private $tokenStorage;
     private $user = null;
 
-    public function __construct(AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage)
-    {
+    public function __construct(
+        AuthorizationCheckerInterface $authorizationChecker,
+        TokenStorageInterface $tokenStorage
+    ) {
         $this->authorizationChecker = $authorizationChecker;
         $this->tokenStorage = $tokenStorage;
         $this->user = $tokenStorage->getToken()->getUser();
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('naam', TextType::class, [
             'required' => false
@@ -57,7 +59,9 @@ class SearchDossierFormType extends AbstractType
             ]
         ]);
 
-        if (!$this->authorizationChecker->isGranted('ROLE_SHV') && !$this->authorizationChecker->isGranted('ROLE_SHV_KEYUSER')) {
+        if (!$this->authorizationChecker->isGranted('ROLE_SHV') && !$this->authorizationChecker->isGranted(
+                'ROLE_SHV_KEYUSER'
+            )) {
             $builder->add('organisaties', EntityType::class, [
                 'required' => false,
                 'label' => 'Organisaties',
@@ -86,20 +90,22 @@ class SearchDossierFormType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'query_builder' => function (GebruikerRepository $repository) {
-                    if ($this->user->getType() === Gebruiker::TYPE_SHV || $this->user->getType() === Gebruiker::TYPE_SHV_KEYUSER){
-                        return $repository->findAllByTypeAndOrganisatieRaw([Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER, Gebruiker::TYPE_ONBEKEND], $this->user->getOrganisaties());
-                    }else{
+                    if ($this->user->getType() === Gebruiker::TYPE_SHV || $this->user->getType(
+                        ) === Gebruiker::TYPE_SHV_KEYUSER) {
+                        return $repository->findAllByTypeAndOrganisatieRaw(
+                            [Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER, Gebruiker::TYPE_ONBEKEND],
+                            $this->user->getOrganisaties()
+                        );
+                    } else {
                         return $repository->findAllRaw();
-
                     }
                 },
                 'placeholder' => 'Alle medewerkers'
             ]);
-
         });
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('choice_translation_domain', false);
     }

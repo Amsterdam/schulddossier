@@ -1,23 +1,26 @@
 doctrine:
-    dbal:
-        url: '%env(resolve:dburl:DATABASE_URL)%'
+  dbal:
+    url: '%env(resolve:dburl:DATABASE_URL)%'
 
-        # IMPORTANT: You MUST configure your server version,
-        # either here or in the DATABASE_URL env var (see .env file)
-        #server_version: '13'
-        wrapper_class: GemeenteAmsterdam\FixxxSchuldhulp\Doctrine\DynamicConnection
-    orm:
-        auto_generate_proxy_classes: '%kernel.debug%'
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
-        mappings:
-            FixxxSchuldhulp:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'GemeenteAmsterdam\FixxxSchuldhulp\Entity'
-                alias: FixxxSchuldhulp
-        dql:
-            string_functions:
-              FULLTEXTSEARCH: GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions\FullTextSearch
-              LEVENSHTEIN: GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions\Levenshtein
+    # IMPORTANT: You MUST configure your server version,
+    # either here or in the DATABASE_URL env var (see .env file)
+    #server_version: '13'
+    wrapper_class: GemeenteAmsterdam\FixxxSchuldhulp\Doctrine\DynamicConnection
+  orm:
+    auto_generate_proxy_classes: '%kernel.debug%'
+    naming_strategy: doctrine.orm.naming_strategy.underscore
+    auto_mapping: true
+    controller_resolver:
+      auto_mapping: true
+    enable_lazy_ghost_objects: true
+    mappings:
+      FixxxSchuldhulp:
+        is_bundle: false
+        type: annotation
+        dir: '%kernel.project_dir%/src/Entity'
+        prefix: 'GemeenteAmsterdam\FixxxSchuldhulp\Entity'
+        alias: FixxxSchuldhulp
+    dql:
+      string_functions:
+        FULLTEXTSEARCH: GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions\FullTextSearch
+        LEVENSHTEIN: GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions\Levenshtein

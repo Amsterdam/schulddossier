@@ -167,7 +167,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::eraseCredentials()
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         //
     }

@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Normalizer;
 
+use Symfony\Component\Form\FormErrorIterator;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
@@ -11,7 +12,7 @@ class SchuldeiserNormalizer implements NormalizerInterface, NormalizerAwareInter
 {
     use NormalizerAwareTrait;
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
         return $data instanceof Schuldeiser;
     }
@@ -32,6 +33,13 @@ class SchuldeiserNormalizer implements NormalizerInterface, NormalizerAwareInter
             'huisnummerToevoeging' => $object->getHuisnummerToevoeging(),
             'postcode' => $object->getPostcode(),
             'plaats' => $object->getPlaats(),
+        ];
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            Schuldeiser::class => false,
         ];
     }
 

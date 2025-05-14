@@ -23,9 +23,8 @@ class DetailDossierFormType extends AbstractType
         $this->medewerkerOrganisatie = $medewerkerOrganisatie;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         $builder->add('teamGka', EntityType::class, [
             'placeholder' => '- Kies een GKA Team -',
             'required' => false,
@@ -50,7 +49,7 @@ class DetailDossierFormType extends AbstractType
         $builder->addEventSubscriber($this->medewerkerOrganisatie);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('data_class', Dossier::class);
         $resolver->setDefault('choice_translation_domain', false);
