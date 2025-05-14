@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldeiserRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

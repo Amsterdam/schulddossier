@@ -10,7 +10,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
 use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -118,15 +118,12 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/gebruiker/detail/{gebruikerId}/verwijder", methods={"POST"})
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
-     */
+    #[Route(path: '/app/gebruiker/detail/{gebruikerId}/verwijder', methods: ['POST'])]
+    #[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
     public function delete(
-        Request                  $request,
-        EntityManagerInterface   $em,
-        Gebruiker                $gebruiker,
+        Request $request,
+        EntityManagerInterface $em,
+        #[MapEntity(id: 'gebruikerId')]
         EventDispatcherInterface $eventDispatcher
     ): RedirectResponse {
         // TODO Dit punt is in opverleg met de kredietbank uitgeschakeld om te refinen welke gegevens er moeten worden geanonimiseerd
