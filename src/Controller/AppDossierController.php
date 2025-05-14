@@ -909,7 +909,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder", methods={"POST"})
+     * @Route("/app/dossier/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder", methods={"POST"})
      * @Security("user == aantekening.getGebruiker()")
      * @ParamConverter("aantekening", options={"id"="aantekeningId"})
      * @param Request $request
@@ -964,11 +964,11 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/status", methods={"POST"})
+     * @Route("/app/dossier/detail/{dossierId}/status", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function changeStatusAction(Request $request, Dossier $dossier, WorkflowRegistry $registry, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function changeStatus(Request $request, Dossier $dossier, WorkflowRegistry $registry, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', $request->request->get('token')) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
@@ -1004,12 +1004,12 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/naar-prullenbak", methods={"POST"})
+     * @Route("/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/naar-prullenbak", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
-    public function moveDocumentToPrullenbakAction(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function moveDocumentToPrullenbak(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
             return $dossierDocument->getDocument() === $document;
@@ -1038,12 +1038,12 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/verwijderen", methods={"POST"})
+     * @Route("/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/verwijderen", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
-    public function removeDocumentAction(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function removeDocument(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
             return $dossierDocument->getDocument() === $document;
@@ -1079,12 +1079,12 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/herstellen", methods={"POST"})
+     * @Route("/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/herstellen", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
-    public function restoreDocumentAction(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function restoreDocument(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
             return $dossierDocument->getDocument() === $document;
@@ -1126,11 +1126,11 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/naar-prullenbak", methods={"POST"})
+     * @Route("/app/dossier/detail/{dossierId}/naar-prullenbak", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function moveToPrullenbakAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function moveToPrullenbak(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', $request->request->get('token')) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
@@ -1149,11 +1149,11 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/verwijderen", methods={"POST"})
+     * @Route("/app/dossier/detail/{dossierId}/verwijderen", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function removeAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function remove(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         if ($dossier->isInPrullenbak() === false) {
             throw $this->createNotFoundException('Dossier not in prullenbak, dossierId=' . $dossier->getId());
@@ -1184,11 +1184,11 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/herstellen", methods={"POST"})
+     * @Route("/app/dossier/detail/{dossierId}/herstellen", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function restoreAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function restore(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore', $request->request->get('token')) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
@@ -1208,12 +1208,12 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/schulden/detail/{schuldItemId}/verwijderen", methods={"POST"})
+     * @Route("/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/verwijderen", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
      */
-    public function removeSchuldItemAction(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function removeSchuldItem(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         if ($schuldItem->getDossier() !== $dossier) {
             throw new NotFoundHttpException('SchuldItem does not match with dossier');
@@ -1246,12 +1246,12 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/schulden/detail/{schuldItemId}/herstellen", methods={"POST"})
+     * @Route("/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/herstellen", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
      */
-    public function restoreSchuldItemAction(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function restoreSchuldItem(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         if ($schuldItem->getDossier() !== $dossier) {
             throw new NotFoundHttpException('SchuldItem does not match with dossier');
@@ -1284,7 +1284,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/downloadPdf", methods={"GET"})
+     * @Route("/app/dossier/detail/{dossierId}/downloadPdf", methods={"GET"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @param Dossier $dossier
@@ -1301,7 +1301,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/downloadCsv", methods={"GET"})
+     * @Route("/app/dossier/detail/{dossierId}/downloadCsv", methods={"GET"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @param Dossier $dossier

@@ -119,11 +119,11 @@ class AppGebruikerController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{gebruikerId}/verwijder", methods={"POST"})
+     * @Route("/app/gebruiker/detail/{gebruikerId}/verwijder", methods={"POST"})
      * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
-    public function deleteAction(
+    public function delete(
         Request                  $request,
         EntityManagerInterface   $em,
         Gebruiker                $gebruiker,
