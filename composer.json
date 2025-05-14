@@ -61,7 +61,7 @@
     "twig/twig": "^3.0"
   },
   "require-dev": {
-    "doctrine/doctrine-fixtures-bundle": "^3.4",
+    "doctrine/doctrine-fixtures-bundle": "^4.0.0",
     "laminas/laminas-code": "^4.8.0",
     "rector/rector": "^2.0",
     "symfony/debug-bundle": "*",
