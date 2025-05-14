@@ -12,15 +12,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @Route("/app/mijn-gegevens")
- */
 class AppMijnGegevensController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/app/mijn-gegevens/")
      */
-    public function indexAction(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function index(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $gebruiker = $this->getUser();
         $form = $this->createForm(MijnGegevensFormType::class, $gebruiker);
@@ -32,7 +29,7 @@ class AppMijnGegevensController extends AbstractController
                 $eventDispatcher->dispatch(ActionEvent::registerGebruikerGewijzigd($gebruiker, $gebruiker), ActionEvent::NAME);
                 return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appmijngegevens_index');
             } else {
-                foreach ($form->getErrors() as $key => $error) {
+                foreach ($form->getErrors() as $error) {
                     $this->addFlash('error', $error->getMessage());
                 }
             }

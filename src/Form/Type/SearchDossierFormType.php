@@ -75,7 +75,7 @@ class SearchDossierFormType extends AbstractType
             'expanded' => false,
             'placeholder' => 'Alle teams'
         ]);
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
             $form = $event->getForm();
             $data = $event->getData();
 

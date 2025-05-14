@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 /**
- * @Route("/app/help")
  * @Security("is_granted('ROLE_USER')")
  */
 class HelpController extends AbstractController
@@ -28,10 +27,10 @@ class HelpController extends AbstractController
     }
 
     /**
-     * @Route("/")
+     * @Route("/app/help/")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function indexAction(Request $request)
+    public function index(): \Symfony\Component\HttpFoundation\Response
     {
         return $this->render('Help/index.html.twig');
     }

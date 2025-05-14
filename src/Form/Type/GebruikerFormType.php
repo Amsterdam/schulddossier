@@ -77,7 +77,7 @@ class GebruikerFormType extends AbstractType
             'help' => 'DB: gebruiker.enabled'
         ]);
 
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($user) {
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($user): void {
             $gebruiker = $event->getData();
             $form = $event->getForm();
             $form->add('type', ChoiceType::class, [
@@ -86,7 +86,7 @@ class GebruikerFormType extends AbstractType
                 'choices' => Gebruiker::getTypes($user->getType())
             ]);
         });
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($user) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($user): void {
             $gebruiker = $event->getData();
             $form = $event->getForm();
             $form->add('type', ChoiceType::class, [

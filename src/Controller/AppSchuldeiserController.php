@@ -15,15 +15,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * @Route("/app/schuldeiser")
  * @Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
  */
 class AppSchuldeiserController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/app/schuldeiser/")
      */
-    public function indexAction(Request $request, EntityManagerInterface $em, SerializerInterface $jsonSerializer)
+    public function index(Request $request, EntityManagerInterface $em, SerializerInterface $jsonSerializer)
     {
         /** @var $schuldeiserRepository SchuldeiserRepository */
         $schuldeiserRepository = $em->getRepository(Schuldeiser::class);
@@ -52,10 +51,10 @@ class AppSchuldeiserController extends AbstractController
     }
 
     /**
-     * @Route("/nieuw")
+     * @Route("/app/schuldeiser/nieuw")
      * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      */
-    public function createAction(Request $request, EntityManagerInterface $em, SerializerInterface $jsonSerializer)
+    public function create(Request $request, EntityManagerInterface $em, SerializerInterface $jsonSerializer)
     {
         $schuldeiser = new Schuldeiser();
 
@@ -84,11 +83,11 @@ class AppSchuldeiserController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{schuldeiserId}/bewerken")
+     * @Route("/app/schuldeiser/detail/{schuldeiserId}/bewerken")
      * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("schuldeiser", options={"id"="schuldeiserId"})
      */
-    public function updateAction(Request $request, EntityManagerInterface $em, Schuldeiser $schuldeiser)
+    public function update(Request $request, EntityManagerInterface $em, Schuldeiser $schuldeiser)
     {
         $form = $this->createForm(SchuldeiserFormType::class, $schuldeiser, []);
         $form->handleRequest($request);

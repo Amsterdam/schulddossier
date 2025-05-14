@@ -12,15 +12,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/app/team")
  * @Security("is_granted('ROLE_USER')")
  */
 class AppTeamController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/app/team/")
      */
-    public function indexAction(Request $request, EntityManagerInterface $em)
+    public function index(Request $request, EntityManagerInterface $em): \Symfony\Component\HttpFoundation\Response
     {
         /** @var $repository TeamRepository */
         $repository = $em->getRepository(Team::class);
@@ -41,10 +40,10 @@ class AppTeamController extends AbstractController
     }
 
     /**
-     * @Route("/nieuw")
+     * @Route("/app/team/nieuw")
      * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      */
-    public function createAction(Request $request, EntityManagerInterface $em)
+    public function create(Request $request, EntityManagerInterface $em)
     {
         $team = new Team();
         $form = $this->createForm(TeamFormType::class, $team);
@@ -64,11 +63,11 @@ class AppTeamController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{teamId}/bewerken")
+     * @Route("/app/team/detail/{teamId}/bewerken")
      * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("team", options={"id"="teamId"})
      */
-    public function updateAction(Request $request, EntityManagerInterface $em, Team $team)
+    public function update(Request $request, EntityManagerInterface $em, Team $team)
     {
         $form = $this->createForm(TeamFormType::class, $team, []);
         $form->handleRequest($request);

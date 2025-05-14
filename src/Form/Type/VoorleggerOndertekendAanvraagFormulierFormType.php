@@ -40,7 +40,7 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             'required' => false,
             'label' => 'Jongeren Schuldenvrije Start (JSS)',
             'help' => 'DB: voorlegger.jongeren_schuldenvrije_start',
-            'constraints' => [new Callback(function($value, ExecutionContextInterface $executionContext) {
+            'constraints' => [new Callback(function($value, ExecutionContextInterface $executionContext): void {
                 /**
                  * @var Voorlegger $voorlegger
                  */
@@ -131,7 +131,7 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             ]
         ]);
 
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             $data = $event->getData();
             unset($data['file']['__name__']);
             unset($data['removeFile']['__name__']);

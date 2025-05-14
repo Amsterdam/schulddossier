@@ -76,7 +76,7 @@ class VoorleggerFormType extends AbstractType
         $builder->add('vtlb', VoorleggerVtlbFormType::class, $settings);
         $builder->add('waternet', VoorleggerWaternetFormType::class, $settings);
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
             /* @var $voorlegger Voorlegger */
             $this->user = $this->tokenStorage->getToken()->getUser();
             $voorlegger = $event->getData();
@@ -92,7 +92,7 @@ class VoorleggerFormType extends AbstractType
 
             $choices = [];
             $data = null;
-            foreach ($gebruikers->getQuery()->getResult() as $key => $value) {
+            foreach ($gebruikers->getQuery()->getResult() as $value) {
                 if ($value != $user && $value->isEnabled()){
                     $choices[$value->getEmail()] = $value->getNaam() . ' (' .$value->getEmail() . ')';
                 }
