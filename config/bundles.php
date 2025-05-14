@@ -15,4 +15,5 @@ return [
     Http\HttplugBundle\HttplugBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     Nelmio\SecurityBundle\NelmioSecurityBundle::class => ['all' => true],
+    Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
 ];

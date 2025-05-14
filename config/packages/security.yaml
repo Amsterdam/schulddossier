@@ -1,9 +1,9 @@
 security:
   enable_authenticator_manager: true
 
-  encoders:
-    GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker:
-      algorithm: bcrypt
+  #encoders:
+  #  GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker:
+  #    algorithm: bcrypt
   providers:
     database:
       entity:
@@ -34,7 +34,7 @@ security:
       access_denied_handler: GemeenteAmsterdam\FixxxSchuldhulp\Security\AccessDeniedHandler
       user_checker: GemeenteAmsterdam\FixxxSchuldhulp\Security\UserChecker
       security: true
-      anonymous: false
+      #anonymous: false
       stateless: false
       custom_authenticators:
         - GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator
