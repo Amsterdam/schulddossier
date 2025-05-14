@@ -6,7 +6,7 @@ framework:
   handle_all_throwables: true
 
 
-  attribute:
+  annotations:
     enabled: false
 
   session:

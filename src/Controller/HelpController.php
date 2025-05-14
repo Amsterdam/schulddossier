@@ -14,9 +14,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
-/**
- * @Security("is_granted('ROLE_USER')")
- */
+#[Security("is_granted('ROLE_USER')")]
 class HelpController extends AbstractController
 {
     private $session;
@@ -26,10 +24,8 @@ class HelpController extends AbstractController
         $this->session = $requestStack->getSession();
     }
 
-    /**
-     * @Route("/app/help/")
-     * @Security("is_granted('ROLE_USER')")
-     */
+    #[Route(path: '/app/help/')]
+    #[Security("is_granted('ROLE_USER')")]
     public function index(): \Symfony\Component\HttpFoundation\Response
     {
         return $this->render('Help/index.html.twig');

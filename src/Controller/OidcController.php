@@ -9,17 +9,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class OidcController extends AbstractController
 {
-    /**
-     * @Route("/oidc/test")
-     */
+    #[Route(path: '/oidc/test')]
     public function index(): \Symfony\Component\HttpFoundation\Response
     {
         return new Response('<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]) . '</body></html>');
     }
 
-    /**
-     * @Route("/oidc/return")
-     */
+    #[Route(path: '/oidc/return')]
     public function return(): \Symfony\Component\HttpFoundation\Response
     {
         return new Response('<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]) . '</body></html>');

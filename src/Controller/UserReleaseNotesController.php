@@ -15,9 +15,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Serializer\Serializer;
 
 
-/**
- * @Security("is_granted('ROLE_USER')")
- */
+#[Security("is_granted('ROLE_USER')")]
 class UserReleaseNotesController extends AbstractController
 {
     private $session;
@@ -27,10 +25,8 @@ class UserReleaseNotesController extends AbstractController
         $this->session = $requestStack->getSession();
     }
 
-    /**
-     * @Route("/app/versies/")
-     * @Security("is_granted('ROLE_USER')")
-     */
+    #[Route(path: '/app/versies/')]
+    #[Security("is_granted('ROLE_USER')")]
     public function index(): \Symfony\Component\HttpFoundation\Response
     {
         $finder = new Finder();
@@ -66,10 +62,8 @@ class UserReleaseNotesController extends AbstractController
         return $this->render('UserReleaseNotes/index.html.twig', ['templates' => $templates]);
     }
 
-    /**
-     * @Route("/app/versies/seen")
-     * @Security("is_granted('ROLE_USER')")
-     */
+    #[Route(path: '/app/versies/seen')]
+    #[Security("is_granted('ROLE_USER')")]
     public function releaseNoteSeen(Request $request, Serializer $jsonSerializer): \Symfony\Component\HttpFoundation\JsonResponse
     {
 //        $seenReleaseNotes = $request->getSession()->get('seenReleaseNotes');

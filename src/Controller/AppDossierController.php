@@ -37,7 +37,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -65,17 +65,18 @@ use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use ZipArchive;
 
-/**
- * @Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
- */
+#[Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
 class AppDossierController extends AbstractController
 {
     /**
-     * @Route("/app/dossier/")
      * @throws \Exception
      */
-    public function index(Request $request, EntityManagerInterface $em, AuthorizationCheckerInterface $authChecker): \Symfony\Component\HttpFoundation\Response
-    {
+    #[Route(path: '/app/dossier/')]
+    public function index(
+        Request $request,
+        EntityManagerInterface $em,
+        AuthorizationCheckerInterface $authChecker
+    ): Response {
         /** @var $repository DossierRepository */
         $repository = $em->getRepository(Dossier::class);
 
@@ -88,7 +89,11 @@ class AppDossierController extends AbstractController
             'archief' => ['afgesloten_gka'],
             'search' => []
         ];
-        $section = $request->query->get('section', $this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser()->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER ? 'gka' : 'shv');
+        $section = $request->query->get(
+            'section',
+            $this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser()->getType(
+            ) === Gebruiker::TYPE_GKA_APPBEHEERDER ? 'gka' : 'shv'
+        );
 
         if ($authChecker->isGranted('ROLE_SHV') || $authChecker->isGranted('ROLE_SHV_KEYUSER')) {
             if ($this->getUser()->getOrganisaties()->count() === 0) {
@@ -103,9 +108,13 @@ class AppDossierController extends AbstractController
             'section' => $section,
             'naam' => '',
             'status' => $section2status[$section],
-            'eersteKeerVerzondenAanGKA' => ($this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser()->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER),
-            'organisaties' => !empty($forcedOrganisaties) ? $forcedOrganisaties : $em->getRepository(Organisatie::class)->findAll(),
-            'medewerkerOrganisatie' => $this->getUser()->getType() === Gebruiker::TYPE_SHV || $this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER ? $this->getUser() : null,
+            'eersteKeerVerzondenAanGKA' => ($this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser(
+                )->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER),
+            'organisaties' => !empty($forcedOrganisaties) ? $forcedOrganisaties : $em->getRepository(
+                Organisatie::class
+            )->findAll(),
+            'medewerkerOrganisatie' => $this->getUser()->getType() === Gebruiker::TYPE_SHV || $this->getUser()->getType(
+            ) === Gebruiker::TYPE_SHV_KEYUSER ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
         ];
 //var_dump($seachQuery['organisaties']);
@@ -122,7 +131,12 @@ class AppDossierController extends AbstractController
             $seachQuery['organisaties'] = $forcedOrganisaties;
         }
 
-        $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize), $orderBy);
+        $dossiers = $repository->search(
+            $searchForm->getData(),
+            $request->query->getInt('page', 0),
+            $request->query->getInt('pageSize', $maxPageSize),
+            $orderBy
+        );
 
         if ($seachQuery['section'] === 'shv' || $seachQuery['section'] === 'gka') {
             $seachQuery['status'] = [];
@@ -150,18 +164,22 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/dossier/prullenbak")
-     * @Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
-     */
-    public function indexPrullenbak(Request $request, EntityManagerInterface $em): \Symfony\Component\HttpFoundation\Response
-    {
+    #[Route(path: '/app/dossier/prullenbak')]
+    #[Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
+    public function indexPrullenbak(
+        Request $request,
+        EntityManagerInterface $em
+    ): Response {
         /** @var $repository DossierRepository */
         $repository = $em->getRepository(Dossier::class);
 
         $maxPageSize = 20;
 
-        $dossiers = $repository->findInactive($this->getUser(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+        $dossiers = $repository->findInactive(
+            $this->getUser(),
+            $request->query->getInt('page', 0),
+            $request->query->getInt('pageSize', $maxPageSize)
+        );
 
         return $this->render('Dossier/indexPrullenbak.html.twig', [
             'dossiers' => $dossiers,
@@ -176,16 +194,23 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/dossier/nieuw")
-     */
-    public function create(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher, AllegroService $allegroService)
-    {
+    #[Route(path: '/app/dossier/nieuw')]
+    public function create(
+        Request $request,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher,
+        AllegroService $allegroService
+    ) {
         $dossier = new Dossier();
         $dossier->setAanmaker($this->getUser());
         $dossier->setMedewerkerOrganisatie($this->getUser());
-        $dossier->setOrganisatie($this->getUser()->getOrganisaties()->count() > 0 ? $this->getUser()->getOrganisaties()->first() : null);
-        $dossier->setTeamGka($this->getUser()->getOrganisaties()->count() > 0 ? $this->getUser()->getOrganisaties()->first()->getStandaardGkaTeam() : null);
+        $dossier->setOrganisatie(
+            $this->getUser()->getOrganisaties()->count() > 0 ? $this->getUser()->getOrganisaties()->first() : null
+        );
+        $dossier->setTeamGka(
+            $this->getUser()->getOrganisaties()->count() > 0 ? $this->getUser()->getOrganisaties()->first(
+            )->getStandaardGkaTeam() : null
+        );
         $dossier->setDossierTemplate('v1');
         $dossier->setStatus('bezig_shv');
         $form = $this->createForm(CreateDossierFormType::class, $dossier);
@@ -198,30 +223,52 @@ class AppDossierController extends AbstractController
 
             $dossierRepository = $em->getRepository(Dossier::class);
             if (null !== $dossier->getClientBSN() && 0 !== strlen($dossier->getClientBSN())) {
-                $dossiers = $dossierRepository->findBy(['clientBSN' => $dossier->getClientBSN(), 'organisatie' => $dossier->getOrganisatie()]);
+                $dossiers = $dossierRepository->findBy(
+                    ['clientBSN' => $dossier->getClientBSN(), 'organisatie' => $dossier->getOrganisatie()]
+                );
                 if (count($dossiers) > 1) {
-                    $this->addFlash('success', sprintf('Info: Er bestaat al een ander dossier met deze BSN binnen %s', $dossier->getOrganisatie()->getNaam()));
+                    $this->addFlash(
+                        'success',
+                        sprintf(
+                            'Info: Er bestaat al een ander dossier met deze BSN binnen %s',
+                            $dossier->getOrganisatie()->getNaam()
+                        )
+                    );
                 }
             }
 
             if (null !== $dossier->getRegasNummer() && 0 !== strlen($dossier->getRegasNummer())) {
-                $dossiers = $dossierRepository->findBy(['regasNummer' => $dossier->getRegasNummer(), 'organisatie' => $dossier->getOrganisatie()]);
+                $dossiers = $dossierRepository->findBy(
+                    ['regasNummer' => $dossier->getRegasNummer(), 'organisatie' => $dossier->getOrganisatie()]
+                );
                 if (count($dossiers) > 1) {
-                    $this->addFlash('success', sprintf('Info: Er bestaat al een ander dossier met dit Regas nummer binnen %s', $dossier->getOrganisatie()->getNaam()));
+                    $this->addFlash(
+                        'success',
+                        sprintf(
+                            'Info: Er bestaat al een ander dossier met dit Regas nummer binnen %s',
+                            $dossier->getOrganisatie()->getNaam()
+                        )
+                    );
                 }
             }
 
             if (!$allegroCheck) {
                 $this->addFlash('success', 'Dossier aangemaakt');
             } else {
-                if (null !== $allegroService->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer())) {
+                if (null !== $allegroService->getSRVAanvraagHeader(
+                        $dossier->getOrganisatie(),
+                        $dossier->getAllegroNummer()
+                    )) {
                     $this->addFlash('success', 'Dossier aangemaakt en gevonden in allegro');
                 } else {
                     $this->addFlash('error', 'Dossier aangemaakt, niet aanwezig in allegro');
                 }
             }
 
-            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier), ActionEvent::NAME);
+            $eventDispatcher->dispatch(
+                ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier),
+                ActionEvent::NAME
+            );
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_createaddtional', [
                 'dossierId' => $dossier->getId()
@@ -233,13 +280,15 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/dossier/nieuw/{dossierId}/")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function createAddtional(Request $request, EntityManagerInterface $em, Dossier $dossier, EventDispatcherInterface $eventDispatcher)
-    {
+    #[Route(path: '/app/dossier/nieuw/{dossierId}/')]
+    #[Security("is_granted('access', dossier)")]
+    public function createAddtional(
+        Request $request,
+        EntityManagerInterface $em,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        EventDispatcherInterface $eventDispatcher
+    ) {
         if ($dossier->getVoorlegger() === null) {
             $dossier->setVoorlegger(new Voorlegger());
         }
@@ -257,7 +306,10 @@ class AppDossierController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'Dossier aangemaakt');
 
-            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier), ActionEvent::NAME);
+            $eventDispatcher->dispatch(
+                ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier),
+                ActionEvent::NAME
+            );
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
                 'dossierId' => $dossier->getId()
@@ -269,13 +321,16 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/voorlegger")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function detailVoorlegger(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\Response
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/voorlegger')]
+    #[Security("is_granted('access', dossier)")]
+    public function detailVoorlegger(
+        Request $request,
+        EntityManagerInterface $em,
+        WorkflowRegistry $registry,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        EventDispatcherInterface $eventDispatcher
+    ): Response {
         if ($dossier->getVoorlegger() === null) {
             $dossier->setVoorlegger(new Voorlegger());
         }
@@ -318,13 +373,18 @@ class AppDossierController extends AbstractController
                         $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
                     }
                 }
-                if ($child->has('aantekening') && empty($child->get('aantekening')->get('tekst')->getData()) === false) {
+                if ($child->has('aantekening') && empty(
+                    $child->get('aantekening')->get('tekst')->getData()
+                    ) === false) {
                     $aantekening = new Aantekening();
                     $aantekening->setDossier($dossier);
                     $aantekening->setGebruiker($this->getUser());
                     $aantekening->setOnderwerp($key);
                     $aantekening->setTekst($child->get('aantekening')->get('tekst')->getData());
-                    $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
+                    $eventDispatcher->dispatch(
+                        new DossierAddedAantekeningEvent($dossier, $this->getUser()),
+                        DossierAddedAantekeningEvent::NAME
+                    );
                 }
             }
 
@@ -334,9 +394,22 @@ class AppDossierController extends AbstractController
                 if ($subForm['transition']->getData() === 'verzenden_shv') {
                     $dossier->setEersteKeerVerzondenAanGKA(true);
                 }
-                $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
+                $eventDispatcher->dispatch(
+                    ActionEvent::registerDossierStatusGewijzigd(
+                        $this->getUser(),
+                        $dossier,
+                        $currentStatus,
+                        $subForm['transition']->getData()
+                    ),
+                    ActionEvent::NAME
+                );
                 if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
-                    $this->addFlash('success', 'De status is gewijzigd. Mail is verzonden naar ' . $request->get('voorlegger_form')['controleerGebruiker']);
+                    $this->addFlash(
+                        'success',
+                        'De status is gewijzigd. Mail is verzonden naar ' . $request->get(
+                            'voorlegger_form'
+                        )['controleerGebruiker']
+                    );
                 } else {
                     $this->addFlash('success', 'De status is gewijzigd');
                 }
@@ -344,7 +417,10 @@ class AppDossierController extends AbstractController
 
             $em->flush();
             if ($sendCorrespondentieNotification === true) {
-                $eventDispatcher->dispatch(new DossierAddedCorrespondentie($dossier, $this->getUser()), DossierAddedCorrespondentie::NAME);
+                $eventDispatcher->dispatch(
+                    new DossierAddedCorrespondentie($dossier, $this->getUser()),
+                    DossierAddedCorrespondentie::NAME
+                );
             }
             $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
@@ -355,18 +431,24 @@ class AppDossierController extends AbstractController
 
         return $this->render('Dossier/detailVoorlegger.html.twig', [
             'dossier' => $dossier,
-            'gebruikers' => $em->getRepository(Gebruiker::class)->findAllGebruikersByOrganisatie($dossier->getOrganisatie()->getId()),
+            'gebruikers' => $em->getRepository(Gebruiker::class)->findAllGebruikersByOrganisatie(
+                $dossier->getOrganisatie()->getId()
+            ),
             'voorleggerForm' => $voorleggerForm->createView()
         ]);
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function detailAlgemeen(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier, EventDispatcherInterface $eventDispatcher, SerializerInterface $serializer)
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}')]
+    #[Security("is_granted('access', dossier)")]
+    public function detailAlgemeen(
+        Request $request,
+        EntityManagerInterface $em,
+        WorkflowRegistry $registry,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        EventDispatcherInterface $eventDispatcher,
+        SerializerInterface $serializer
+    ) {
         $form = $this->createForm(DetailDossierFormType::class, $dossier, [
             'disabled' => $dossier->isInPrullenbak() === true,
             'disable_group' => $this->getUser()->getType()
@@ -386,7 +468,9 @@ class AppDossierController extends AbstractController
                 'dossierId' => $dossier->getId()
             ]);
         } elseif ($form->isSubmitted() && $request->isXmlHttpRequest()) {
-            return new JsonResponse($serializer->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
+            return new JsonResponse(
+                $serializer->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST
+            );
         }
 
         $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
@@ -397,13 +481,12 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/documenten/prullenbak")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function detailPrullenbak(Dossier $dossier): \Symfony\Component\HttpFoundation\Response
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/prullenbak')]
+    #[Security("is_granted('access', dossier)")]
+    public function detailPrullenbak(
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier
+    ): Response {
         $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) {
             return $dossierDocument->getDocument()->isInPrullenbak();
         });
@@ -419,13 +502,16 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/documenten/overige-documenten")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function detailOverigeDocumenten(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher, Serializer $serializer)
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/overige-documenten')]
+    #[Security("is_granted('access', dossier)")]
+    public function detailOverigeDocumenten(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher,
+        Serializer $serializer
+    ) {
         $formBuilder = $this->createFormBuilder(['file' => []]);
         $formBuilder->add('file', CollectionType::class, [
             'mapped' => false,
@@ -486,9 +572,17 @@ class AppDossierController extends AbstractController
             }
 
             $this->addFlash('success', 'Document toegevoegd');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', ['dossierId' => $dossier->getId()]);
-        } else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
-            return new JsonResponse($serializer->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
+            return $this->redirectToRoute(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten',
+                ['dossierId' => $dossier->getId()]
+            );
+        } else {
+            if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
+                return new JsonResponse(
+                    $serializer->normalize($form->getErrors(true, true)),
+                    JsonResponse::HTTP_BAD_REQUEST
+                );
+            }
         }
 
         $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
@@ -499,30 +593,26 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/documenten")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function detailDocumenten(Dossier $dossier): \Symfony\Component\HttpFoundation\Response
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/documenten')]
+    #[Security("is_granted('access', dossier)")]
+    public function detailDocumenten(
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier
+    ): Response {
         return $this->render('Dossier/detailDocumenten.html.twig', [
             'dossier' => $dossier
         ]);
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/documenten/detail/{documentId}")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     * @ParamConverter("document", options={"id"="documentId"})
-     */
+    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}')]
+    #[Security("is_granted('access', dossier)")]
     public function detailDocument(
-        Dossier                $dossier,
-        Document               $document,
-        FileStorageSelector    $fileStorageSelector
-    ): Response
-    {
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        #[MapEntity(id: 'documentId')]
+        Document $document,
+        FileStorageSelector $fileStorageSelector
+    ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
         return $this->streamedFileResponse(
@@ -531,21 +621,17 @@ class AppDossierController extends AbstractController
             $document,
             HeaderUtils::DISPOSITION_INLINE
         );
-
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/download")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     * @ParamConverter("document", options={"id"="documentId"})
-     */
+    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/download')]
+    #[Security("is_granted('access', dossier)")]
     public function downloadDocument(
-        Dossier                $dossier,
-        Document               $document,
-        FileStorageSelector    $fileStorageSelector
-    ): Response
-    {
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        #[MapEntity(id: 'documentId')]
+        Document $document,
+        FileStorageSelector $fileStorageSelector
+    ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
         return $this->streamedFileResponse(
@@ -557,11 +643,10 @@ class AppDossierController extends AbstractController
 
     private function streamedFileResponse(
         FlysystemFilesystem $filesystem,
-        Dossier             $dossier,
-        Document            $document,
-        string              $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
-    ): StreamedResponse
-    {
+        Dossier $dossier,
+        Document $document,
+        string $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
+    ): StreamedResponse {
         try {
             $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
             $fileStream = $filesystem->readStream($path);
@@ -595,13 +680,13 @@ class AppDossierController extends AbstractController
         return $response;
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/log")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function log(Request $request, Dossier $dossier): \Symfony\Component\HttpFoundation\Response
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/log')]
+    #[Security("is_granted('access', dossier)")]
+    public function log(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier
+    ): Response {
         $logs = $this->getDoctrine()
             ->getRepository(ActionEventEntity::class)
             ->findBy([
@@ -616,13 +701,15 @@ class AppDossierController extends AbstractController
         return $this->render('Dossier/detailLogboek.html.twig', ['logs' => $logs, 'dossier' => $dossier]);
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/schulden")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function detailSchulden(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/schulden')]
+    #[Security("is_granted('access', dossier)")]
+    public function detailSchulden(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher
+    ) {
         $schuldItems = $dossier->getSchuldItems();
 
         $form = $this->createForm(SchuldenFormType::class, $dossier, [
@@ -662,7 +749,10 @@ class AppDossierController extends AbstractController
                     $aantekening->setOnderwerp('schuldenoverzicht');
                     $aantekening->setSchuldItem($child->getData());
                     $aantekening->setTekst($child->get('aantekening')->get('tekst')->getData());
-                    $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
+                    $eventDispatcher->dispatch(
+                        new DossierAddedAantekeningEvent($dossier, $this->getUser()),
+                        DossierAddedAantekeningEvent::NAME
+                    );
                 }
             }
             $em->flush();
@@ -671,7 +761,10 @@ class AppDossierController extends AbstractController
             //    return new JsonResponse(['status' => 'OK']);
             //}
             //$this->addFlash('success', 'Opgeslagen');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
+            return $this->redirectToRoute(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden',
+                ['dossierId' => $dossier->getId()]
+            );
         }
         //else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
         //    return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
@@ -713,12 +806,18 @@ class AppDossierController extends AbstractController
                 $aantekening->setOnderwerp('schuldenoverzicht');
                 $aantekening->setSchuldItem($schuldItem);
                 $aantekening->setTekst($createForm->get('aantekening')->get('tekst')->getData());
-                $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
+                $eventDispatcher->dispatch(
+                    new DossierAddedAantekeningEvent($dossier, $this->getUser()),
+                    DossierAddedAantekeningEvent::NAME
+                );
             }
             $em->flush();
             $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
             //$this->addFlash('success', 'Toegevoegd');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
+            return $this->redirectToRoute(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden',
+                ['dossierId' => $dossier->getId()]
+            );
         } //else if ($createForm->isSubmitted() && $request->isXmlHttpRequest()) {
         //    return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         //}
@@ -739,13 +838,15 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/aantekeningen")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function detailAantekeningen(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/aantekeningen')]
+    #[Security("is_granted('access', dossier)")]
+    public function detailAantekeningen(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher
+    ) {
         $aantekening = new Aantekening();
 
         $form = $this->createForm(CreateAantekeningFormType::class, $aantekening);
@@ -758,9 +859,15 @@ class AppDossierController extends AbstractController
 
             $em->flush();
             $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
-            $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
+            $eventDispatcher->dispatch(
+                new DossierAddedAantekeningEvent($dossier, $this->getUser()),
+                DossierAddedAantekeningEvent::NAME
+            );
 
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen', ['dossierId' => $dossier->getId()]);
+            return $this->redirectToRoute(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailaantekeningen',
+                ['dossierId' => $dossier->getId()]
+            );
         }
 
         $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
@@ -772,13 +879,15 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/app/dossier/allegro/refresh/{dossierId}")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
      * @return RedirectResponse
      */
-    public function allegroRefresh(Dossier $dossier, AllegroService $allegroService): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
+    #[Route(path: '/app/dossier/allegro/refresh/{dossierId}')]
+    #[Security("is_granted('access', dossier)")]
+    public function allegroRefresh(
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        AllegroService $allegroService
+    ): RedirectResponse {
         try {
             $allegroService->updateDossier($dossier);
         } catch (\Exception|\Error $e) {
@@ -786,23 +895,31 @@ class AppDossierController extends AbstractController
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
         }
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger',
-            ['dossierId' => $dossier->getId()]);
+        return $this->redirectToRoute(
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger',
+            ['dossierId' => $dossier->getId()]
+        );
     }
 
     /**
-     * @Route("/app/dossier/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder", methods={"POST"})
-     * @Security("user == aantekening.getGebruiker()")
-     * @ParamConverter("aantekening", options={"id"="aantekeningId"})
      * @param Request $request
      * @param Aantekening $aantekening
      * @param EntityManagerInterface $em
      *
      * @return JsonResponse
      */
-    public function deleteAantekening(Request $request, Aantekening $aantekening, EntityManagerInterface $em): \Symfony\Component\HttpFoundation\JsonResponse
-    {
-        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening', $request->request->get('token')) !== true) {
+    #[Route(path: '/app/dossier/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder', methods: ['POST'])]
+    #[Security('user == aantekening.getGebruiker()')]
+    public function deleteAantekening(
+        Request $request,
+        #[MapEntity(id: 'aantekeningId')]
+        Aantekening $aantekening,
+        EntityManagerInterface $em
+    ): \Symfony\Component\HttpFoundation\JsonResponse {
+        if ($this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening',
+                $request->request->get('token')
+            ) !== true) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -812,18 +929,18 @@ class AppDossierController extends AbstractController
         return new JsonResponse([]);
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/schulden/excel")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function detailSchuldenExcel(Dossier $dossier): \Symfony\Component\HttpFoundation\BinaryFileResponse
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/schulden/excel')]
+    #[Security("is_granted('access', dossier)")]
+    public function detailSchuldenExcel(
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier
+    ): BinaryFileResponse {
         $spreadsheet = $this->schuldenAsExcel($dossier);
 
         $fs = new Filesystem();
         $fs->mkdir($this->getParameter('kernel.project_dir') . '/var/tmp');
-        $tmpName = $this->getParameter('kernel.project_dir') . '/var/tmp/schuldenlijst-excel-' . $dossier->getId() . '.xlsx';
+        $tmpName = $this->getParameter('kernel.project_dir') . '/var/tmp/schuldenlijst-excel-' . $dossier->getId(
+            ) . '.xlsx';
         $fs->touch($tmpName);
         $writer = new Xlsx($spreadsheet);
         $writer->save($tmpName);
@@ -836,14 +953,20 @@ class AppDossierController extends AbstractController
         return $response;
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/status", methods={"POST"})
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function changeStatus(Request $request, Dossier $dossier, WorkflowRegistry $registry, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
-    {
-        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus', $request->request->get('token')) === false) {
+    #[Route(path: '/app/dossier/detail/{dossierId}/status', methods: ['POST'])]
+    #[Security("is_granted('access', dossier)")]
+    public function changeStatus(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        WorkflowRegistry $registry,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher
+    ) {
+        if ($this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus',
+                $request->request->get('token')
+            ) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -855,7 +978,15 @@ class AppDossierController extends AbstractController
             throw $this->createNotFoundException('Transition not available');
         }
 
-        $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $request->get('transition')), ActionEvent::NAME);
+        $eventDispatcher->dispatch(
+            ActionEvent::registerDossierStatusGewijzigd(
+                $this->getUser(),
+                $dossier,
+                $currentStatus,
+                $request->get('transition')
+            ),
+            ActionEvent::NAME
+        );
 
         $workflow->apply($dossier, $request->get('transition'));
         $em->flush();
@@ -868,22 +999,30 @@ class AppDossierController extends AbstractController
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/naar-prullenbak", methods={"POST"})
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     * @ParamConverter("document", options={"id"="documentId"})
-     */
-    public function moveDocumentToPrullenbak(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
-        $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
-            return $dossierDocument->getDocument() === $document;
-        });
+    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/naar-prullenbak', methods: ['POST'])]
+    #[Security("is_granted('access', dossier)")]
+    public function moveDocumentToPrullenbak(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        #[MapEntity(id: 'documentId')]
+        Document $document,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher
+    ): RedirectResponse {
+        $dossierDocumenten = $dossier->getDocumenten()->filter(
+            function (DossierDocument $dossierDocument) use ($document) {
+                return $dossierDocument->getDocument() === $document;
+            }
+        );
         if ($dossierDocumenten->count() === 0) {
             throw new NotFoundHttpException('Document does not match with dossier');
         }
 
-        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_movedocumenttoprullenbak', $request->request->get('token')) === false) {
+        if ($this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_movedocumenttoprullenbak',
+                $request->request->get('token')
+            ) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -893,29 +1032,43 @@ class AppDossierController extends AbstractController
         $em->flush();
         $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()]);
+        return $this->redirectToRoute(
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger',
+            ['dossierId' => $dossier->getId()]
+        );
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/verwijderen", methods={"POST"})
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     * @ParamConverter("document", options={"id"="documentId"})
-     */
-    public function removeDocument(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
-        $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
-            return $dossierDocument->getDocument() === $document;
-        });
+    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/verwijderen', methods: ['POST'])]
+    #[Security("is_granted('access', dossier)")]
+    public function removeDocument(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        #[MapEntity(id: 'documentId')]
+        Document $document,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher
+    ): RedirectResponse {
+        $dossierDocumenten = $dossier->getDocumenten()->filter(
+            function (DossierDocument $dossierDocument) use ($document) {
+                return $dossierDocument->getDocument() === $document;
+            }
+        );
         if ($dossierDocumenten->count() === 0) {
             throw new NotFoundHttpException('Document does not match with dossier');
         }
 
         if ($document->isInPrullenbak() === false) {
-            throw $this->createNotFoundException('Document not in prullenbak already', ['documentId' => $document->getId()]);
+            throw $this->createNotFoundException(
+                'Document not in prullenbak already',
+                ['documentId' => $document->getId()]
+            );
         }
 
-        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_removedocument', $request->request->get('token')) === false) {
+        if ($this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_removedocument',
+                $request->request->get('token')
+            ) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -925,29 +1078,43 @@ class AppDossierController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'Document definitief verwijderd');
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
+        return $this->redirectToRoute(
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak',
+            ['dossierId' => $dossier->getId()]
+        );
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/herstellen", methods={"POST"})
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     * @ParamConverter("document", options={"id"="documentId"})
-     */
-    public function restoreDocument(Request $request, Dossier $dossier, Document $document, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
-        $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
-            return $dossierDocument->getDocument() === $document;
-        });
+    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/herstellen', methods: ['POST'])]
+    #[Security("is_granted('access', dossier)")]
+    public function restoreDocument(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        #[MapEntity(id: 'documentId')]
+        Document $document,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher
+    ): RedirectResponse {
+        $dossierDocumenten = $dossier->getDocumenten()->filter(
+            function (DossierDocument $dossierDocument) use ($document) {
+                return $dossierDocument->getDocument() === $document;
+            }
+        );
         if ($dossierDocumenten->count() === 0) {
             throw new NotFoundHttpException('Document does not match with dossier');
         }
 
         if ($document->isInPrullenbak() === false) {
-            throw $this->createNotFoundException('Document not in prullenbak already', ['documentId' => $document->getId()]);
+            throw $this->createNotFoundException(
+                'Document not in prullenbak already',
+                ['documentId' => $document->getId()]
+            );
         }
 
-        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoredocument', $request->request->get('token')) === false) {
+        if ($this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_restoredocument',
+                $request->request->get('token')
+            ) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -957,25 +1124,31 @@ class AppDossierController extends AbstractController
         $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Document hersteld');
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
+        return $this->redirectToRoute(
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak',
+            ['dossierId' => $dossier->getId()]
+        );
     }
 
-    /**
-     * @Route("/app/dossier/detail/documenten/detail/dummy-html/")
-     */
-    public function dummyHTMLDocument(EntityManagerInterface $em): \Symfony\Component\HttpFoundation\Response
+    #[Route(path: '/app/dossier/detail/documenten/detail/dummy-html/')]
+    public function dummyHTMLDocument(EntityManagerInterface $em): Response
     {
         return $this->render('Dossier/documentEmailHTML.html.twig', []);
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/naar-prullenbak", methods={"POST"})
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function moveToPrullenbak(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
-        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak', $request->request->get('token')) === false) {
+    #[Route(path: '/app/dossier/detail/{dossierId}/naar-prullenbak', methods: ['POST'])]
+    #[Security("is_granted('access', dossier)")]
+    public function moveToPrullenbak(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher
+    ): RedirectResponse {
+        if ($this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak',
+                $request->request->get('token')
+            ) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -983,23 +1156,31 @@ class AppDossierController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'Dossier in prullenbak geplaatst');
 
-        $eventDispatcher->dispatch(ActionEvent::registerDossierVerplaatstNaarPrullenbak($this->getUser(), $dossier), ActionEvent::NAME);
+        $eventDispatcher->dispatch(
+            ActionEvent::registerDossierVerplaatstNaarPrullenbak($this->getUser(), $dossier),
+            ActionEvent::NAME
+        );
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/verwijderen", methods={"POST"})
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function remove(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/verwijderen', methods: ['POST'])]
+    #[Security("is_granted('access', dossier)")]
+    public function remove(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher
+    ): RedirectResponse {
         if ($dossier->isInPrullenbak() === false) {
             throw $this->createNotFoundException('Dossier not in prullenbak, dossierId=' . $dossier->getId());
         }
 
-        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_remove', $request->request->get('token')) === false) {
+        if ($this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_remove',
+                $request->request->get('token')
+            ) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -1012,19 +1193,27 @@ class AppDossierController extends AbstractController
         $em->flush();
         $this->addFlash('success', 'Dossier definitief verwijderd');
 
-        $eventDispatcher->dispatch(ActionEvent::registerDossierVerwijderd($this->getUser(), $dossier), ActionEvent::NAME);
+        $eventDispatcher->dispatch(
+            ActionEvent::registerDossierVerwijderd($this->getUser(), $dossier),
+            ActionEvent::NAME
+        );
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/herstellen", methods={"POST"})
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function restore(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
-        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_restore', $request->request->get('token')) === false) {
+    #[Route(path: '/app/dossier/detail/{dossierId}/herstellen', methods: ['POST'])]
+    #[Security("is_granted('access', dossier)")]
+    public function restore(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher
+    ): RedirectResponse {
+        if ($this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_restore',
+                $request->request->get('token')
+            ) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -1035,26 +1224,38 @@ class AppDossierController extends AbstractController
 
         $eventDispatcher->dispatch(ActionEvent::registerDossierHersteld($this->getUser(), $dossier), ActionEvent::NAME);
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()]);
+        return $this->redirectToRoute(
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger',
+            ['dossierId' => $dossier->getId()]
+        );
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/verwijderen", methods={"POST"})
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
-     */
-    public function removeSchuldItem(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/verwijderen', methods: ['POST'])]
+    #[Security("is_granted('access', dossier)")]
+    public function removeSchuldItem(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        #[MapEntity(id: 'schuldItemId')]
+        SchuldItem $schuldItem,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher
+    ): RedirectResponse {
         if ($schuldItem->getDossier() !== $dossier) {
             throw new NotFoundHttpException('SchuldItem does not match with dossier');
         }
 
         if ($schuldItem->isVerwijderd() === false) {
-            throw $this->createNotFoundException('SchuldItem not in prullenbak', ['schuldItemId' => $schuldItem->getId()]);
+            throw $this->createNotFoundException(
+                'SchuldItem not in prullenbak',
+                ['schuldItemId' => $schuldItem->getId()]
+            );
         }
 
-        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_removeschulditem', $request->request->get('token')) === false) {
+        if ($this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_removeschulditem',
+                $request->request->get('token')
+            ) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -1064,26 +1265,38 @@ class AppDossierController extends AbstractController
         $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Schuld definitief verwijderd');
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
+        return $this->redirectToRoute(
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak',
+            ['dossierId' => $dossier->getId()]
+        );
     }
 
-    /**
-     * @Route("/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/herstellen", methods={"POST"})
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
-     */
-    public function restoreSchuldItem(Request $request, Dossier $dossier, SchuldItem $schuldItem, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/herstellen', methods: ['POST'])]
+    #[Security("is_granted('access', dossier)")]
+    public function restoreSchuldItem(
+        Request $request,
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        #[MapEntity(id: 'schuldItemId')]
+        SchuldItem $schuldItem,
+        EntityManagerInterface $em,
+        EventDispatcherInterface $eventDispatcher
+    ): RedirectResponse {
         if ($schuldItem->getDossier() !== $dossier) {
             throw new NotFoundHttpException('SchuldItem does not match with dossier');
         }
 
         if ($schuldItem->isVerwijderd() === false) {
-            throw $this->createNotFoundException('SchuldItem not in prullenbak', ['schuldItemId' => $schuldItem->getId()]);
+            throw $this->createNotFoundException(
+                'SchuldItem not in prullenbak',
+                ['schuldItemId' => $schuldItem->getId()]
+            );
         }
 
-        if ($this->isCsrfTokenValid('gemeenteamsterdam_fixxxschuldhulp_appdossier_restoreschulditem', $request->request->get('token')) === false) {
+        if ($this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_restoreschulditem',
+                $request->request->get('token')
+            ) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -1093,36 +1306,41 @@ class AppDossierController extends AbstractController
         $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Schuld hersteld');
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
+        return $this->redirectToRoute(
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak',
+            ['dossierId' => $dossier->getId()]
+        );
     }
 
     /**
-     * @Route("/app/dossier/detail/{dossierId}/downloadPdf", methods={"GET"})
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
      * @param Dossier $dossier
      *
      * @return Response
      */
-    public function downloadPdf(Dossier $dossier): \Symfony\Component\HttpFoundation\Response
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/downloadPdf', methods: ['GET'])]
+    #[Security("is_granted('access', dossier)")]
+    public function downloadPdf(
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier
+    ): Response {
         return $this->render('DocumentPlus/export.html.twig', ['dossier' => $dossier]);
     }
 
     /**
-     * @Route("/app/dossier/detail/{dossierId}/downloadCsv", methods={"GET"})
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
      * @param Dossier $dossier
      *
      * @param FileStorageSelector $fileStorageSelector
-     *
      * @return Response
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
-    public function downloadCsv(Dossier $dossier, FileStorageSelector $fileStorageSelector): Response
-    {
+    #[Route(path: '/app/dossier/detail/{dossierId}/downloadCsv', methods: ['GET'])]
+    #[Security("is_granted('access', dossier)")]
+    public function downloadCsv(
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        FileStorageSelector $fileStorageSelector
+    ): Response {
         $filesystem = new Filesystem();
         if (!$filesystem->exists($this->getParameter('kernel.project_dir') . '/var/tmp')) {
             $filesystem->mkdir($this->getParameter('kernel.project_dir') . '/var/tmp');
@@ -1152,11 +1370,21 @@ class AppDossierController extends AbstractController
 
         $files = $fileStorageSelector->getFileStorageForDossier()->listContents('dossier-' . $dossier->getId());
 
-        $dossier->getDocumenten()->map(function (DossierDocument $dossierDocument) use ($files, $fileStorageSelector, $zipFactory): void {
-            $key = array_search($dossierDocument->getDocument()->getBestandsnaam(), array_column($files, 'basename'), true);
-            $zipFactory->addEmptyDir($dossierDocument->getOnderwerp());
-            $zipFactory->addFromString($dossierDocument->getOnderwerp() . DIRECTORY_SEPARATOR . $dossierDocument->getDocument()->getNaam() . '.' . $dossierDocument->getDocument()->getOrigineleExtensie(), $fileStorageSelector->getFileStorageForDossier()->read($files[$key]['path']));
-        });
+        $dossier->getDocumenten()->map(
+            function (DossierDocument $dossierDocument) use ($files, $fileStorageSelector, $zipFactory): void {
+                $key = array_search(
+                    $dossierDocument->getDocument()->getBestandsnaam(),
+                    array_column($files, 'basename'),
+                    true
+                );
+                $zipFactory->addEmptyDir($dossierDocument->getOnderwerp());
+                $zipFactory->addFromString(
+                    $dossierDocument->getOnderwerp() . DIRECTORY_SEPARATOR . $dossierDocument->getDocument()->getNaam(
+                    ) . '.' . $dossierDocument->getDocument()->getOrigineleExtensie(),
+                    $fileStorageSelector->getFileStorageForDossier()->read($files[$key]['path'])
+                );
+            }
+        );
 
 
         $dossierCsvFile = new Csv($dossier->toSpreadsheetCsv());
@@ -1222,12 +1450,32 @@ class AppDossierController extends AbstractController
         foreach (array_values($dossier->getSchuldItemsNotInPrullenbak()->toArray()) as $rowIndex => $schuldItem) {
             /** @var $schuldItem SchuldItem */
             $rowIndex += 2; // one-based instead of zero-based and one for the header
-            $sheet->setCellValueByColumnAndRow(1, $rowIndex, $schuldItem->getSchuldeiser() ? $schuldItem->getSchuldeiser()->getBedrijfsnaam() : '');
-            $sheet->setCellValueByColumnAndRow(2, $rowIndex, $schuldItem->getIncassant() ? $schuldItem->getIncassant()->getBedrijfsnaam() : '');
+            $sheet->setCellValueByColumnAndRow(
+                1,
+                $rowIndex,
+                $schuldItem->getSchuldeiser() ? $schuldItem->getSchuldeiser()->getBedrijfsnaam() : ''
+            );
+            $sheet->setCellValueByColumnAndRow(
+                2,
+                $rowIndex,
+                $schuldItem->getIncassant() ? $schuldItem->getIncassant()->getBedrijfsnaam() : ''
+            );
             $sheet->setCellValueByColumnAndRow(3, $rowIndex, $schuldItem->getBedrag());
             $sheet->setCellValueByColumnAndRow(4, $rowIndex, $schuldItem->getBedragOorspronkelijk());
-            $sheet->setCellValueByColumnAndRow(5, $rowIndex, $schuldItem->getOntstaansDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getOntstaansDatum()) : null);
-            $sheet->setCellValueByColumnAndRow(6, $rowIndex, $schuldItem->getVaststelDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($schuldItem->getVaststelDatum()) : null);
+            $sheet->setCellValueByColumnAndRow(
+                5,
+                $rowIndex,
+                $schuldItem->getOntstaansDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel(
+                    $schuldItem->getOntstaansDatum()
+                ) : null
+            );
+            $sheet->setCellValueByColumnAndRow(
+                6,
+                $rowIndex,
+                $schuldItem->getVaststelDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel(
+                    $schuldItem->getVaststelDatum()
+                ) : null
+            );
             $sheet->setCellValueByColumnAndRow(7, $rowIndex, $schuldItem->getReferentie());
             $sheet->setCellValueByColumnAndRow(8, $rowIndex, $schuldItem->getType());
 
@@ -1235,7 +1483,9 @@ class AppDossierController extends AbstractController
                 $opmerking = '';
                 foreach ($schuldItem->getAantekeningen() as $aantekening) {
                     /** @var $aantekening Aantekening */
-                    $opmerking = $opmerking . $aantekening->getGebruiker()->__toString() . ' ' . $aantekening->getDatumTijd()->format('d-m-Y H:i') . ":\r\n" . $aantekening->getTekst() . "\r\n\r\n";
+                    $opmerking = $opmerking . $aantekening->getGebruiker()->__toString(
+                        ) . ' ' . $aantekening->getDatumTijd()->format('d-m-Y H:i') . ":\r\n" . $aantekening->getTekst(
+                        ) . "\r\n\r\n";
                 }
                 $sheet->getCommentByColumnAndRow(7, $rowIndex)->getText()->createText($opmerking);
                 $sheet->getCommentByColumnAndRow(7, $rowIndex)->setWidth('200pt');
@@ -1284,9 +1534,11 @@ class AppDossierController extends AbstractController
      */
     private function checkDocumentAccess(Dossier $dossier, Document $document)
     {
-        $dossierDocumenten = $dossier->getDocumenten()->filter(function (DossierDocument $dossierDocument) use ($document) {
-            return $dossierDocument->getDocument() === $document;
-        });
+        $dossierDocumenten = $dossier->getDocumenten()->filter(
+            function (DossierDocument $dossierDocument) use ($document) {
+                return $dossierDocument->getDocument() === $document;
+            }
+        );
         if ($dossierDocumenten->count() === 0) {
             throw new NotFoundHttpException('Document does not match with dossier');
         }
