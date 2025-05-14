@@ -286,7 +286,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
         $this->telefoonnummer = $telefoonnummer;
     }
 
-    public function getTeamGka(): Team
+    public function getTeamGka(): ?Team
     {
         return $this->teamGka;
     }

@@ -514,12 +514,10 @@ class Dossier
         return $this->medewerkerOrganisatie;
     }
 
-    /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team
-     */
-    public function getTeamGka()
+    
+    public function getTeamGka(): ?Team
     {
-        return $this->teamGka;
+        return $this->teamGka ?? null;
     }
 
     public function getRegasNummer()
@@ -802,12 +800,15 @@ class Dossier
      */
     public function getNietVerwijderdeDocumentenByOnderwerp($onderwerp, $zonderSchulditem = false)
     {
-        return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerp, $zonderSchulditem) {
-            if ($zonderSchulditem && null !== $dossierDocument->getSchuldItem()) {
-                return false;
+        return $this->documenten->filter(
+            function (DossierDocument $dossierDocument) use ($onderwerp, $zonderSchulditem) {
+                if ($zonderSchulditem && null !== $dossierDocument->getSchuldItem()) {
+                    return false;
+                }
+                return $dossierDocument->getOnderwerp() === $onderwerp && $dossierDocument->getDocument(
+                    )->isInPrullenbak() === false;
             }
-            return $dossierDocument->getOnderwerp() === $onderwerp && $dossierDocument->getDocument()->isInPrullenbak() === false;
-        });
+        );
     }
 
     /**
@@ -818,8 +819,10 @@ class Dossier
     public function getNietVerwijderdeDocumentenByOnderwerpen($onderwerpen)
     {
         return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerpen) {
-            return in_array($dossierDocument->getOnderwerp(),
-                    $onderwerpen) && $dossierDocument->getDocument()->isInPrullenbak() === false;
+            return in_array(
+                    $dossierDocument->getOnderwerp(),
+                    $onderwerpen
+                ) && $dossierDocument->getDocument()->isInPrullenbak() === false;
         });
     }
 
@@ -1011,11 +1014,13 @@ class Dossier
         $csvHeader = array_keys((new Aantekening())->getClassAttributes());
         $csvRows = [];
         if (!$this->getAantekeningen()->isEmpty()) {
-            $csvRows = array_merge(...$this->getAantekeningen()->map(function (Aantekening $aantekening) {
+            $csvRows = array_merge(
+                ...$this->getAantekeningen()->map(function (Aantekening $aantekening) {
                 [$csvHeader, $row] = $aantekening->getClassAttributesAndValues();
 
                 return $row;
-            })->toArray());
+            })->toArray()
+            );
         }
 
         return $this->batchToSpreadsheetCsv($csvHeader, $csvRows);
@@ -1026,11 +1031,13 @@ class Dossier
         $csvHeader = array_keys((new ActionEvent())->getClassAttributes());
         $csvRows = [];
         if (!$this->getActionEvents()) {
-            $csvRows = array_merge(...$this->getActionEvents()->map(function (ActionEvent $actionEvent) {
+            $csvRows = array_merge(
+                ...$this->getActionEvents()->map(function (ActionEvent $actionEvent) {
                 [$csvHeader, $row] = $actionEvent->getClassAttributesAndValues();
 
                 return $row;
-            })->toArray());
+            })->toArray()
+            );
         }
 
         return $this->batchToSpreadsheetCsv($csvHeader, $csvRows);
