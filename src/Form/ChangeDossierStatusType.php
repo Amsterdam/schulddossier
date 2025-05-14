@@ -41,7 +41,7 @@ class ChangeDossierStatusType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
             $form = $event->getForm();
             $dossier = $event->getData();
             $workflow = $this->workflowRegistry->get($dossier);

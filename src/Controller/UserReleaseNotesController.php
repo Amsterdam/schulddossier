@@ -16,7 +16,6 @@ use Symfony\Component\Serializer\Serializer;
 
 
 /**
- * @Route("/app/versies")
  * @Security("is_granted('ROLE_USER')")
  */
 class UserReleaseNotesController extends AbstractController
@@ -29,19 +28,17 @@ class UserReleaseNotesController extends AbstractController
     }
 
     /**
-     * @Route("/")
+     * @Route("/app/versies/")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function indexAction(Request $request)
+    public function index(): \Symfony\Component\HttpFoundation\Response
     {
         $finder = new Finder();
         $finder->directories()->in($this->getParameter('kernel.project_dir') . '/templates/UserReleaseNotes/');
         $finder->sort(function ($a, $b) {
             return strcmp($b->getRelativePathname(), $a->getRelativePathname());
         });
-
         $templates = [];
-
         foreach ($finder as $dir) {
             $dirPath = $dir->getRealPath();
             $o = [];
@@ -70,10 +67,10 @@ class UserReleaseNotesController extends AbstractController
     }
 
     /**
-     * @Route("/seen")
+     * @Route("/app/versies/seen")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function releaseNoteSeenAction(Request $request, Serializer $jsonSerializer)
+    public function releaseNoteSeen(Request $request, Serializer $jsonSerializer): \Symfony\Component\HttpFoundation\JsonResponse
     {
 //        $seenReleaseNotes = $request->getSession()->get('seenReleaseNotes');
         $seenReleaseNotes = $this->session->get('seenReleaseNotes');

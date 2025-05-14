@@ -15,7 +15,7 @@ class AppSecurityController extends AbstractController
     /**
      * @Route("/app/login")
      */
-    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils, \Symfony\Component\Security\Core\Security $security)
+    public function login(AuthenticationUtils $authenticationUtils, \Symfony\Component\Security\Core\Security $security)
     {
         if ($security->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
@@ -33,7 +33,7 @@ class AppSecurityController extends AbstractController
     /**
      * @Route("/app/logout")
      */
-    public function logoutAction()
+    public function logout()
     {
         //
     }
@@ -42,7 +42,7 @@ class AppSecurityController extends AbstractController
      * @Route("/app/wachtwoord-veranderen")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function changePasswordAction(Request $request, EntityManagerInterface $em)
+    public function changePassword(Request $request, EntityManagerInterface $em)
     {
         $gebruiker = $this->getUser();
 

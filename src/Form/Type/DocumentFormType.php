@@ -20,7 +20,7 @@ class DocumentFormType extends AbstractType
         $builder->add('file', FileType::class, [
             'required' => true,
         ]);
-        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event): void {
             /** @var $entity Document */
             $entity = $event->getData();
             if ($entity !== null && $entity->getFile() !== null) {

@@ -13,7 +13,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/")
      */
-    public function indexAction(Request $request)
+    public function index(): \Symfony\Component\HttpFoundation\Response
     {
         return $this->render('Default/index.html.twig');
     }
@@ -22,7 +22,7 @@ class DefaultController extends AbstractController
      * @Route("/app")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function appRedirectAction(Request $request)
+    public function appRedirect(): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
@@ -31,7 +31,7 @@ class DefaultController extends AbstractController
      * @Route("/app/debug")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function debugAction(Request $request)
+    public function debug(Request $request): \Symfony\Component\HttpFoundation\JsonResponse
     {
         return new JsonResponse([
             'clientIp' => $request->getClientIp(),
@@ -44,7 +44,7 @@ class DefaultController extends AbstractController
      * @Route("/ping")
      * @return JsonResponse
      */
-    public function pingAction()
+    public function ping(): \Symfony\Component\HttpFoundation\JsonResponse
     {
         return new JsonResponse(['status'=>'OK']);
     }

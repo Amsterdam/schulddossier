@@ -14,15 +14,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/app/organisatie")
  * @Security("is_granted('ROLE_USER')")
  */
 class AppOrganisatieController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/app/organisatie/")
      */
-    public function indexAction(Request $request, EntityManagerInterface $em)
+    public function index(Request $request, EntityManagerInterface $em): \Symfony\Component\HttpFoundation\Response
     {
         /** @var $repository OrganisatieRepository */
         $repository = $em->getRepository(Organisatie::class);
@@ -43,10 +42,10 @@ class AppOrganisatieController extends AbstractController
     }
 
     /**
-     * @Route("/nieuw")
+     * @Route("/app/organisatie/nieuw")
      * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      */
-    public function createAction(Request $request, EntityManagerInterface $em, AllegroService $allegroService)
+    public function create(Request $request, EntityManagerInterface $em, AllegroService $allegroService)
     {
         $organisatie = new Organisatie();
         $form = $this->createForm(OrganisatieFormType::class, $organisatie);
@@ -75,11 +74,11 @@ class AppOrganisatieController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{organisatieId}/bewerken")
+     * @Route("/app/organisatie/detail/{organisatieId}/bewerken")
      * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("organisatie", options={"id"="organisatieId"})
      */
-    public function updateAction(Request $request, EntityManagerInterface $em, Organisatie $organisatie, AllegroService $allegroService)
+    public function update(Request $request, EntityManagerInterface $em, Organisatie $organisatie, AllegroService $allegroService)
     {
         $form = $this->createForm(OrganisatieFormType::class, $organisatie, []);
         $form->handleRequest($request);

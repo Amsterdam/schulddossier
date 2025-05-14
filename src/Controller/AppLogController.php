@@ -10,16 +10,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/app/log")
  * @Security("is_granted('ROLE_USER')")
  */
 class AppLogController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/app/log/")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function indexAction()
+    public function index(): \Symfony\Component\HttpFoundation\Response
     {
         $logs = $this->getDoctrine()
             ->getRepository(ActionEvent::class)

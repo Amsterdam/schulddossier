@@ -17,18 +17,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @Route("/app/allegro")
  * @Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
  */
 class AllegroController extends AbstractController
 {
     /**
-     * @Route("/srveisers/{dossierId}")
+     * @Route("/app/allegro/srveisers/{dossierId}")
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @Template()
      */
-    public function allegroSrveisers(Request $request, Dossier $dossier, AllegroService $allegroService)
+    public function allegroSrveisers(Dossier $dossier, AllegroService $allegroService): array
     {
         $header = null;
         $srvEisers = null;
@@ -58,12 +57,12 @@ class AllegroController extends AbstractController
     }
 
     /**
-     * @Route("/validate/{dossierId}")
+     * @Route("/app/allegro/validate/{dossierId}")
      * @Security("is_granted('access', dossier)")
      * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function validateSendToAllegro(Request $request, Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator): JsonResponse {
+    public function validateSendToAllegro(Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator): JsonResponse {
         try {
             $allegroService->validateDossier($dossier);
         } catch (AllegroServiceException $e) {
@@ -73,7 +72,7 @@ class AllegroController extends AbstractController
     }
 
     /**
-     * @Route("/send/{dossierId}", methods={"POST"})
+     * @Route("/app/allegro/send/{dossierId}", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("dossier", options={"id"="dossierId"})
