@@ -12,11 +12,11 @@ doctrine:
     auto_mapping: true
     controller_resolver:
       auto_mapping: true
-    enable_lazy_ghost_objects: true
+    enable_lazy_ghost_objects: false
     mappings:
       FixxxSchuldhulp:
         is_bundle: false
-        type: annotation
+        type: attribute
         dir: '%kernel.project_dir%/src/Entity'
         prefix: 'GemeenteAmsterdam\FixxxSchuldhulp\Entity'
         alias: FixxxSchuldhulp

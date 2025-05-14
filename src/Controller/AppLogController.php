@@ -9,15 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-/**
- * @Security("is_granted('ROLE_USER')")
- */
+#[Security("is_granted('ROLE_USER')")]
 class AppLogController extends AbstractController
 {
-    /**
-     * @Route("/app/log/")
-     * @Security("is_granted('ROLE_USER')")
-     */
+    #[Route(path: '/app/log/')]
+    #[Security("is_granted('ROLE_USER')")]
     public function index(): \Symfony\Component\HttpFoundation\Response
     {
         $logs = $this->getDoctrine()

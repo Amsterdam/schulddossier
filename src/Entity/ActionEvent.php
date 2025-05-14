@@ -7,52 +7,49 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
 
-/**
- * @ORM\Entity
- * @ORM\Table
- * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository")
- */
+#[ORM\Table]
+#[ORM\Entity(repositoryClass: \GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository::class)]
 class ActionEvent
 {
     use ExportAble;
 
     /**
      * @var integer
-     * @ORM\Id
-     * @ORM\Column(type="bigint", nullable=false)
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
+    #[ORM\Id]
+    #[ORM\Column(type: 'bigint', nullable: false)]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private $id;
 
     /**
      * @var Dossier
-     * @ORM\ManyToOne(targetEntity="Dossier")
-     * @ORM\JoinColumn(name="dossier_id", referencedColumnName="id", nullable=true)
      */
+    #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id', nullable: true)]
+    #[ORM\ManyToOne(targetEntity: \Dossier::class)]
     private $dossier;
 
     /**
      * @var string
-     * @ORM\Column(length=255, nullable=false)
      */
+    #[ORM\Column(length: 255, nullable: false)]
     private $name;
 
     /**
      * @var string
-     * @ORM\Column(length=45, nullable=false)
      */
+    #[ORM\Column(length: 45, nullable: false)]
     private $ip;
 
     /**
      * @var array
-     * @ORM\Column(type="json", nullable=true)
      */
+    #[ORM\Column(type: 'json', nullable: true)]
     private $data;
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=false)
      */
+    #[ORM\Column(type: 'datetime', nullable: false)]
     private $datumTijd;
 
     /**

@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldeiserRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,14 +14,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 
-/**
- * @Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
- */
+#[Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
 class AppSchuldeiserController extends AbstractController
 {
-    /**
-     * @Route("/app/schuldeiser/")
-     */
+    #[Route(path: '/app/schuldeiser/')]
     public function index(Request $request, EntityManagerInterface $em, SerializerInterface $jsonSerializer)
     {
         /** @var $schuldeiserRepository SchuldeiserRepository */
@@ -34,7 +30,12 @@ class AppSchuldeiserController extends AbstractController
 
         $maxPageSize = 50;
 
-        $items = $schuldeiserRepository->search($request->query->get('q'), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize), false);
+        $items = $schuldeiserRepository->search(
+            $request->query->get('q'),
+            $request->query->getInt('page', 0),
+            $request->query->getInt('pageSize', $maxPageSize),
+            false
+        );
 
 
         return $this->render('Schuldeiser/index.html.twig', [
@@ -50,10 +51,8 @@ class AppSchuldeiserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/schuldeiser/nieuw")
-     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     */
+    #[Route(path: '/app/schuldeiser/nieuw')]
+    #[Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
     public function create(Request $request, EntityManagerInterface $em, SerializerInterface $jsonSerializer)
     {
         $schuldeiser = new Schuldeiser();
@@ -70,10 +69,16 @@ class AppSchuldeiserController extends AbstractController
             }
 
             $this->addFlash('succes', 'Schuldeiser aangemaakt');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_update', ['schuldeiserId' => $schuldeiser->getId()]);
+            return $this->redirectToRoute(
+                'gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_update',
+                ['schuldeiserId' => $schuldeiser->getId()]
+            );
         } elseif ($form->isSubmitted() && $form->isValid() === false) {
             if ($request->isXmlHttpRequest()) {
-                return new JsonResponse($jsonSerializer->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
+                return new JsonResponse(
+                    $jsonSerializer->normalize($form->getErrors(true, true)),
+                    JsonResponse::HTTP_BAD_REQUEST
+                );
             }
         }
 
@@ -82,13 +87,14 @@ class AppSchuldeiserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/schuldeiser/detail/{schuldeiserId}/bewerken")
-     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("schuldeiser", options={"id"="schuldeiserId"})
-     */
-    public function update(Request $request, EntityManagerInterface $em, Schuldeiser $schuldeiser)
-    {
+    #[Route(path: '/app/schuldeiser/detail/{schuldeiserId}/bewerken')]
+    #[Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
+    public function update(
+        Request $request,
+        EntityManagerInterface $em,
+        #[MapEntity(id: 'schuldeiserId')]
+        Schuldeiser $schuldeiser
+    ) {
         $form = $this->createForm(SchuldeiserFormType::class, $schuldeiser, []);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

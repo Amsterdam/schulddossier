@@ -7,7 +7,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Exception\AllegroServiceException;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use Psr\Log\LoggerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -16,26 +16,26 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
- */
+#[Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
 class AllegroController extends AbstractController
 {
-    /**
-     * @Route("/app/allegro/srveisers/{dossierId}")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     * @Template()
-     */
-    public function allegroSrveisers(Dossier $dossier, AllegroService $allegroService): array
-    {
+    #[Route(path: '/app/allegro/srveisers/{dossierId}')]
+    #[Security("is_granted('access', dossier)")]
+    #[Template]
+    public function allegroSrveisers(
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        AllegroService $allegroService
+    ): array {
         $header = null;
         $srvEisers = null;
         $aanvraag = null;
         $eisers = [];
         try {
-            $header = $allegroService->getSRVAanvraagHeader($dossier->getOrganisatie(),
-                $dossier->getAllegroNummer());
+            $header = $allegroService->getSRVAanvraagHeader(
+                $dossier->getOrganisatie(),
+                $dossier->getAllegroNummer()
+            );
             $aanvraag = $allegroService->getSRVAanvraag($dossier->getOrganisatie(), $header);
             $srvEisers = $allegroService->getSRVEisers($dossier, $header);
             // $sbOaverzicht = $allegroService->getSBOverzicht($dossier); Geen response
@@ -56,13 +56,15 @@ class AllegroController extends AbstractController
         ];
     }
 
-    /**
-     * @Route("/app/allegro/validate/{dossierId}")
-     * @Security("is_granted('access', dossier)")
-     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function validateSendToAllegro(Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator): JsonResponse {
+    #[Route(path: '/app/allegro/validate/{dossierId}')]
+    #[Security("is_granted('access', dossier)")]
+    #[Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
+    public function validateSendToAllegro(
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        AllegroService $allegroService,
+        TranslatorInterface $translator
+    ): JsonResponse {
         try {
             $allegroService->validateDossier($dossier);
         } catch (AllegroServiceException $e) {
@@ -71,13 +73,17 @@ class AllegroController extends AbstractController
         return new JsonResponse(['valid' => true]);
     }
 
-    /**
-     * @Route("/app/allegro/send/{dossierId}", methods={"POST"})
-     * @Security("is_granted('access', dossier)")
-     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function send(Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator, EntityManagerInterface $em, LoggerInterface $logger): JsonResponse {
+    #[Route(path: '/app/allegro/send/{dossierId}', methods: ['POST'])]
+    #[Security("is_granted('access', dossier)")]
+    #[Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
+    public function send(
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        AllegroService $allegroService,
+        TranslatorInterface $translator,
+        EntityManagerInterface $em,
+        LoggerInterface $logger
+    ): JsonResponse {
         try {
             $response = $allegroService->sendAanvraag($dossier);
 
@@ -87,14 +93,24 @@ class AllegroController extends AbstractController
             if ($response) {
                 return new JsonResponse(['send' => true]);
             } else {
-                return new JsonResponse(['send' => false, 'message' => 'Er is iets mis gegaan in het contact met allegro, probeer het later nog een keer of neem contact op met het beheer']);
+                return new JsonResponse(
+                    [
+                        'send' => false,
+                        'message' => 'Er is iets mis gegaan in het contact met allegro, probeer het later nog een keer of neem contact op met het beheer'
+                    ]
+                );
             }
         } catch (AllegroServiceException $e) {
             return new JsonResponse(['send' => false, 'message' => $translator->trans($e->getMessage())]);
         } catch (\Exception $e) {
             // Logging toevoegen
-            $logger->error($e->getMessage(),[AllegroService::LOGGING_CONTEXT]);
-            return new JsonResponse(['send' => false, 'message' => 'Er is iets mis gegaan in het contact met allegro, probeer het later nog een keer of neem contact op met het beheer']);
+            $logger->error($e->getMessage(), [AllegroService::LOGGING_CONTEXT]);
+            return new JsonResponse(
+                [
+                    'send' => false,
+                    'message' => 'Er is iets mis gegaan in het contact met allegro, probeer het later nog een keer of neem contact op met het beheer'
+                ]
+            );
         }
     }
 }

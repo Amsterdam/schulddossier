@@ -10,7 +10,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
 use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,18 +20,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-/**
- * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
- */
+#[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
 class AppGebruikerController extends AbstractController
 {
 
-    /**
-     * @Route("/app/gebruiker/")
-     * @Route("/app/gebruiker/inactive", name="gebruikers_inactive")
-     */
-    public function index(Request $request, PaginatorInterface $paginator, GebruikerRepository $repository): \Symfony\Component\HttpFoundation\Response
-    {
+    #[Route(path: '/app/gebruiker/')]
+    #[Route(path: '/app/gebruiker/inactive', name: 'gebruikers_inactive')]
+    public function index(
+        Request $request,
+        PaginatorInterface $paginator,
+        GebruikerRepository $repository
+    ): \Symfony\Component\HttpFoundation\Response {
         $inactive = 'gebruikers_inactive' === $request->get('_route');
 
         $pagination = $paginator->paginate(
@@ -49,10 +48,8 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/gebruiker/nieuw")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
-     */
+    #[Route(path: '/app/gebruiker/nieuw')]
+    #[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
     public function create(Request $request, EntityManagerInterface $em)
     {
         $gebruiker = new Gebruiker();
@@ -73,18 +70,15 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/gebruiker/detail/{gebruikerId}/bewerken")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
-     */
+    #[Route(path: '/app/gebruiker/detail/{gebruikerId}/bewerken')]
+    #[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
     public function update(
-        Request                  $request,
-        EntityManagerInterface   $em,
-        Gebruiker                $gebruiker,
+        Request $request,
+        EntityManagerInterface $em,
+        #[MapEntity(id: 'gebruikerId')]
+        Gebruiker $gebruiker,
         EventDispatcherInterface $eventDispatcher
-    )
-    {
+    ) {
         if ($this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
             if (!$gebruiker->getOrganisaties()->isEmpty() && empty(
                 array_intersect(
@@ -117,18 +111,14 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/app/gebruiker/detail/{gebruikerId}/verwijder", methods={"POST"})
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
-     */
+    #[Route(path: '/app/gebruiker/detail/{gebruikerId}/verwijder', methods: ['POST'])]
+    #[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
     public function delete(
-        Request                  $request,
-        EntityManagerInterface   $em,
-        Gebruiker                $gebruiker,
+        Request $request,
+        EntityManagerInterface $em,
+        #[MapEntity(id: 'gebruikerId')]
         EventDispatcherInterface $eventDispatcher
-    ): \Symfony\Component\HttpFoundation\RedirectResponse
-    {
+    ): RedirectResponse {
         // TODO Dit punt is in opverleg met de kredietbank uitgeschakeld om te refinen welke gegevens er moeten worden geanonimiseerd
         // TODO Weergave is ook weg gehaald in schulddossier/templates/Gebruiker/update.html.twig
         throw $this->createAccessDeniedException('Deze functionaliteit is uitgeschakeld');
@@ -157,10 +147,8 @@ class AppGebruikerController extends AbstractController
         return new RedirectResponse('/app/gebruiker');
     }
 
-    /**
-     * @Route("/app/gebruiker/download-gebruikers-csv", name="get_gebruikers_csv", methods={"GET"})
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     */
+    #[Route(path: '/app/gebruiker/download-gebruikers-csv', name: 'get_gebruikers_csv', methods: ['GET'])]
+    #[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
     public function getGebruikersCsv(GebruikerRepository $repository): StreamedResponse
     {
         $gebruikers = $repository->findAll(0, 100000);
@@ -171,7 +159,6 @@ class AppGebruikerController extends AbstractController
             fputcsv($handle, ['naam', 'e-mail', 'organisatie', 'laatste login datum', 'enabled/disabled'], ';');
 
             foreach ($gebruikers as $gebruiker) {
-
                 $lastLogin = $gebruiker->getLastLogin() !== null
                     ? $gebruiker->getLastLogin()->format('Y-m-d H:i:s')
                     : 'Nooit';
@@ -186,7 +173,11 @@ class AppGebruikerController extends AbstractController
 
                 $organisaties = implode(',', $organisatieNames);
 
-                fputcsv($handle, [$gebruiker->getNaam(), $gebruiker->getEmail(), $organisaties, $lastLogin, $isEnabled], ';');
+                fputcsv(
+                    $handle,
+                    [$gebruiker->getNaam(), $gebruiker->getEmail(), $organisaties, $lastLogin, $isEnabled],
+                    ';'
+                );
             }
             fclose($handle);
         });

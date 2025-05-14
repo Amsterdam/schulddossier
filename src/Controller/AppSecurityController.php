@@ -12,9 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AppSecurityController extends AbstractController
 {
-    /**
-     * @Route("/app/login")
-     */
+    #[Route(path: '/app/login')]
     public function login(AuthenticationUtils $authenticationUtils, \Symfony\Component\Security\Core\Security $security)
     {
         if ($security->isGranted('ROLE_USER')) {
@@ -30,18 +28,14 @@ class AppSecurityController extends AbstractController
         ]));
     }
 
-    /**
-     * @Route("/app/logout")
-     */
+    #[Route(path: '/app/logout')]
     public function logout()
     {
         //
     }
 
-    /**
-     * @Route("/app/wachtwoord-veranderen")
-     * @Security("is_granted('ROLE_USER')")
-     */
+    #[Route(path: '/app/wachtwoord-veranderen')]
+    #[Security("is_granted('ROLE_USER')")]
     public function changePassword(Request $request, EntityManagerInterface $em)
     {
         $gebruiker = $this->getUser();

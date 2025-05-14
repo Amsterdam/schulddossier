@@ -10,27 +10,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    /**
-     * @Route("/")
-     */
+    #[Route(path: '/')]
     public function index(): \Symfony\Component\HttpFoundation\Response
     {
         return $this->render('Default/index.html.twig');
     }
 
-    /**
-     * @Route("/app")
-     * @Security("is_granted('ROLE_USER')")
-     */
+    #[Route(path: '/app')]
+    #[Security("is_granted('ROLE_USER')")]
     public function appRedirect(): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
     
-    /**
-     * @Route("/app/debug")
-     * @Security("is_granted('ROLE_USER')")
-     */
+    #[Route(path: '/app/debug')]
+    #[Security("is_granted('ROLE_USER')")]
     public function debug(Request $request): \Symfony\Component\HttpFoundation\JsonResponse
     {
         return new JsonResponse([
@@ -41,9 +35,9 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/ping")
      * @return JsonResponse
      */
+    #[Route(path: '/ping')]
     public function ping(): \Symfony\Component\HttpFoundation\JsonResponse
     {
         return new JsonResponse(['status'=>'OK']);

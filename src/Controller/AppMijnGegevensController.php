@@ -14,9 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AppMijnGegevensController extends AbstractController
 {
-    /**
-     * @Route("/app/mijn-gegevens/")
-     */
+    #[Route(path: '/app/mijn-gegevens/')]
     public function index(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $gebruiker = $this->getUser();
