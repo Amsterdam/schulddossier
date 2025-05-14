@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "884f1fa3528ebd784ffe9d9f9da5bd3f",
+    "content-hash": "17065f06a2927759e670f70611af25f7",
     "packages": [
         {
             "name": "azjezz/psl",
@@ -4056,60 +4056,63 @@
         },
         {
             "name": "php-http/httplug-bundle",
-            "version": "1.34.3",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/HttplugBundle.git",
-                "reference": "87c61d27c025dd9d699a2208a6d06be58061e433"
+                "reference": "51173c3c3c8b13f873522b9f28e7b128241ba331"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/HttplugBundle/zipball/87c61d27c025dd9d699a2208a6d06be58061e433",
-                "reference": "87c61d27c025dd9d699a2208a6d06be58061e433",
+                "url": "https://api.github.com/repos/php-http/HttplugBundle/zipball/51173c3c3c8b13f873522b9f28e7b128241ba331",
+                "reference": "51173c3c3c8b13f873522b9f28e7b128241ba331",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.3 || ^8.0",
-                "php-http/client-common": "^1.9 || ^2.0",
+                "php": "^8.1",
+                "php-http/client-common": "^2.0",
                 "php-http/client-implementation": "^1.0",
                 "php-http/discovery": "^1.14",
                 "php-http/httplug": "^2.0",
                 "php-http/logger-plugin": "^1.1",
                 "php-http/message": "^1.13",
-                "php-http/message-factory": "^1.0.2",
                 "php-http/stopwatch-plugin": "^1.2",
+                "psr/http-factory-implementation": "^1.0",
                 "psr/http-message": "^1.0 || ^2.0",
-                "symfony/config": "^4.4 || ^5.0 || ^6.0 || ^7.0",
-                "symfony/dependency-injection": "^4.4 || ^5.0 || ^6.0 || ^7.0",
-                "symfony/event-dispatcher": "^4.4 || ^5.0 || ^6.0 || ^7.0",
-                "symfony/http-kernel": "^4.4 || ^5.0 || ^6.0 || ^7.0",
-                "symfony/options-resolver": "^4.4 || ^5.0 || ^6.0 || ^7.0"
+                "symfony/config": "^6.4 || ^7.1",
+                "symfony/dependency-injection": "^6.4 || ^7.1",
+                "symfony/event-dispatcher": "^6.4 || ^7.1",
+                "symfony/http-kernel": "^6.4 || ^7.1",
+                "symfony/options-resolver": "^6.4 || ^7.1"
             },
             "conflict": {
-                "php-http/cache-plugin": "<1.7.0",
+                "kriswallsmith/buzz": "<0.17",
+                "php-http/cache-plugin": "<1.7",
                 "php-http/curl-client": "<2.0",
                 "php-http/guzzle6-adapter": "<1.1",
+                "php-http/react-adapter": "<3.0",
                 "php-http/socket-client": "<2.0",
                 "php-http/throttle-plugin": "<1.1"
             },
             "require-dev": {
                 "guzzlehttp/psr7": "^1.7 || ^2.0",
-                "matthiasnoback/symfony-config-test": "^4.3 || ^5.0",
+                "matthiasnoback/symfony-config-test": "^5.2",
                 "matthiasnoback/symfony-dependency-injection-test": "^4.3.1 || ^5.0",
                 "nyholm/nsa": "^1.1",
                 "nyholm/psr7": "^1.2.1",
                 "php-http/cache-plugin": "^1.7",
                 "php-http/mock-client": "^1.2",
                 "php-http/promise": "^1.0",
-                "phpunit/phpunit": "^9.6",
-                "symfony/browser-kit": "^4.4 || ^5.0 || ^6.0 || ^7.0",
-                "symfony/cache": "^4.4 || ^5.0 || ^6.0 || ^7.0",
-                "symfony/dom-crawler": "^4.4 || ^5.0 || ^6.0 || ^7.0",
-                "symfony/framework-bundle": "^4.4 || ^5.0 || ^6.0 || ^7.0",
-                "symfony/http-foundation": "^4.4.19 || ^5.0 || ^6.0 || ^7.0",
-                "symfony/stopwatch": "^4.4 || ^5.0 || ^6.0 || ^7.0",
-                "symfony/twig-bundle": "^4.4 || ^5.0 || ^6.0 || ^7.0",
-                "symfony/web-profiler-bundle": "^4.4.19 || ^5.0 || ^6.0 || ^7.0",
+                "php-http/throttle-plugin": "^1.1",
+                "phpunit/phpunit": "^9",
+                "symfony/browser-kit": "^6.4 || ^7.1",
+                "symfony/cache": "^6.4 || ^7.1",
+                "symfony/dom-crawler": "^6.4 || ^7.1",
+                "symfony/framework-bundle": "^6.4 || ^7.1",
+                "symfony/http-foundation": "^6.4 || ^7.1",
+                "symfony/stopwatch": "^6.4 || ^7.1",
+                "symfony/twig-bundle": "^6.4 || ^7.1",
+                "symfony/web-profiler-bundle": "^6.4 || ^7.1",
                 "twig/twig": "^1.41 || ^2.10 || ^3.0"
             },
             "suggest": {
@@ -4121,10 +4124,7 @@
             "autoload": {
                 "psr-4": {
                     "Http\\HttplugBundle\\": "src/"
-                },
-                "exclude-from-classmap": [
-                    "/Tests/Resources/MyPsr18TestClient.php"
-                ]
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -4154,9 +4154,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/HttplugBundle/issues",
-                "source": "https://github.com/php-http/HttplugBundle/tree/1.34.3"
+                "source": "https://github.com/php-http/HttplugBundle/tree/2.1.0"
             },
-            "time": "2024-09-01T08:25:40+00:00"
+            "time": "2024-11-24T09:50:59+00:00"
         },
         {
             "name": "php-http/logger-plugin",
@@ -5883,41 +5883,36 @@
         },
         {
             "name": "rollerworks/password-strength-validator",
-            "version": "v1.7.3",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rollerworks/PasswordStrengthValidator.git",
-                "reference": "7ad6e573f506fe7693f83265d858f0f04ffbf97e"
+                "reference": "89f0c1d4b884db5f08d143517732f064c9f29623"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rollerworks/PasswordStrengthValidator/zipball/7ad6e573f506fe7693f83265d858f0f04ffbf97e",
-                "reference": "7ad6e573f506fe7693f83265d858f0f04ffbf97e",
+                "url": "https://api.github.com/repos/rollerworks/PasswordStrengthValidator/zipball/89f0c1d4b884db5f08d143517732f064c9f29623",
+                "reference": "89f0c1d4b884db5f08d143517732f064c9f29623",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.3",
-                "psr/container": "^1.0 || ^2.0",
-                "symfony/deprecation-contracts": "^2.4 || ^3.0",
+                "php": ">=8.2",
+                "symfony/config": "^6.0 || ^7.0",
                 "symfony/polyfill-mbstring": "^1.5.0",
-                "symfony/translation": "^4.4 || ^5.0 || ^6.0",
-                "symfony/validator": "^4.4 || ^5.0 || ^6.0"
+                "symfony/translation": "^6.0 || ^7.0",
+                "symfony/validator": "^6.0 || ^7.0"
             },
             "require-dev": {
-                "guzzlehttp/psr7": "^1.4",
-                "php-http/httplug": "^1.1",
-                "phpspec/prophecy": "^1.10.3",
-                "phpspec/prophecy-phpunit": "^2.0",
+                "phpstan/phpstan": "^1.10",
+                "phpstan/phpstan-phpunit": "^1.1",
+                "phpstan/phpstan-symfony": "^1.2",
                 "phpunit/phpunit": "^9.5",
-                "psr/log": "^1.0 || ^2.0",
-                "symfony/config": "^4.4 || ^5.0 || ^6.0",
-                "symfony/console": "^4.4 || ^5.0 || ^6.0",
-                "symfony/phpunit-bridge": "^5.3 || ^6.0"
+                "symfony/phpunit-bridge": "^6.0 || ^7.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.7-dev"
+                    "dev-main": "2.0-dev"
                 }
             },
             "autoload": {
@@ -5950,9 +5945,9 @@
             ],
             "support": {
                 "issues": "https://github.com/rollerworks/PasswordStrengthValidator/issues",
-                "source": "https://github.com/rollerworks/PasswordStrengthValidator/tree/v1.7.3"
+                "source": "https://github.com/rollerworks/PasswordStrengthValidator/tree/v2.0.3"
             },
-            "time": "2022-07-13T09:56:53+00:00"
+            "time": "2024-12-17T20:29:28+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",

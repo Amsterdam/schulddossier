@@ -1,4 +1,5 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -14,9 +15,8 @@ use Symfony\Component\Validator\Constraints\Valid;
 
 class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         $builder->add('ontstaanVanSchulden', ChoiceType::class, [
             'required' => false,
             'choices' => $this->getOntstaanVanSchuldenOptions(),
@@ -77,14 +77,15 @@ class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractTyp
         });
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('data_class', Voorlegger::class);
         $resolver->setDefault('choice_translation_domain', false);
         $resolver->setDefault('disable_group', null);
     }
 
-    private function getOntstaanVanSchuldenOptions() {
+    private function getOntstaanVanSchuldenOptions(): array
+    {
         return [
             'Overlevingsschulden' => 'OVERLEVING',
             'Compensatieschulden' => 'COMPENSATIE',
@@ -93,7 +94,8 @@ class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractTyp
         ];
     }
 
-    private function getInspanningsverplichting() {
+    private function getInspanningsverplichting(): array
+    {
         return [
             'Naar maximaal vermogen werkzaam' => 'MAXIMAAL_VERMOGEN',
             'Niet naar maximaal vermogen werkzaam, sollicitatieplicht, hogere aflossingscapaciteit verwacht' => 'HOGE_CAPACITEIT',

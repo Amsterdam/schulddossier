@@ -9,7 +9,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 
 class GkaStatusFormType extends AbstractType
 {
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('choices', [
             'open' => Voorlegger::STATUS_GKA_OPEN,
