@@ -59,7 +59,7 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $action->setIp(
             in_array($event->getActionName(), self::systemActions) ?
                 '127.0.0.1' :
-                $this->requestStack->getMasterRequest()->getClientIp()
+                $this->requestStack->getMainRequest()->getClientIp()
         );
 
         if (!empty($event->getData())) {
@@ -107,7 +107,7 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $action->setName(null === $event->forceType ? ActionEvent::DOSSIER_GEWIJZIGD : $event->forceType);
         $action->setDatumTijd($dateTime);
         $action->setDossier($dossier);
-        $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
+        $action->setIp($this->requestStack->getMainRequest()->getClientIp());
         $action->setData(
             array_merge(
                 ActionEvent::getGebruikerData($gebruiker),

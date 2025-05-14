@@ -102,7 +102,7 @@
         ]
     },
     "sensio/framework-extra-bundle": {
-        "version": "5.6",
+        "version": "6.2",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
