@@ -3,10 +3,12 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerChangePasswordFormType;
@@ -36,7 +38,7 @@ class AppSecurityController extends AbstractController
     }
 
     #[Route(path: '/app/wachtwoord-veranderen')]
-    #[Security("is_granted('ROLE_USER')")]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
     public function changePassword(Request $request, EntityManagerInterface $em)
     {
         $gebruiker = $this->getUser();

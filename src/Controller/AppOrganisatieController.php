@@ -8,12 +8,13 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\OrganisatieFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Security("is_granted('ROLE_USER')")]
+#[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
 class AppOrganisatieController extends AbstractController
 {
     #[Route(path: '/app/organisatie/')]
@@ -41,7 +42,7 @@ class AppOrganisatieController extends AbstractController
     }
 
     #[Route(path: '/app/organisatie/nieuw')]
-    #[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
     public function create(Request $request, EntityManagerInterface $em, AllegroService $allegroService)
     {
         $organisatie = new Organisatie();
@@ -71,7 +72,7 @@ class AppOrganisatieController extends AbstractController
     }
 
     #[Route(path: '/app/organisatie/detail/{organisatieId}/bewerken')]
-    #[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
     public function update(
         Request $request,
         EntityManagerInterface $em,

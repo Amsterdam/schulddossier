@@ -31,15 +31,13 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use Http\Discovery\Exception\NotFoundException;
-use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -57,6 +55,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Constraints\Valid;
@@ -65,7 +64,9 @@ use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use ZipArchive;
 
-#[Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
+#[IsGranted(attribute: new Expression(
+    "is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
+))]
 class AppDossierController extends AbstractController
 {
     /**
@@ -91,12 +92,12 @@ class AppDossierController extends AbstractController
         ];
         $section = $request->query->get(
             'section',
-            $this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser()->getType(
+            $this->getUser()?->getType() === Gebruiker::TYPE_GKA || $this->getUser()?->getType(
             ) === Gebruiker::TYPE_GKA_APPBEHEERDER ? 'gka' : 'shv'
         );
 
         if ($authChecker->isGranted('ROLE_SHV') || $authChecker->isGranted('ROLE_SHV_KEYUSER')) {
-            if ($this->getUser()->getOrganisaties()->count() === 0) {
+            if ($this->getUser()?->getOrganisaties()?->count() === 0) {
                 return $this->render('Security/accessDenied.html.twig', [
                     'message' => 'Gebruiker is niet gekoppeld aan een organisatie.',
                 ]);
@@ -108,14 +109,14 @@ class AppDossierController extends AbstractController
             'section' => $section,
             'naam' => '',
             'status' => $section2status[$section],
-            'eersteKeerVerzondenAanGKA' => ($this->getUser()->getType() === Gebruiker::TYPE_GKA || $this->getUser(
-                )->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER),
+            'eersteKeerVerzondenAanGKA' => ($this->getUser()?->getType() === Gebruiker::TYPE_GKA || $this->getUser(
+                )?->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER),
             'organisaties' => !empty($forcedOrganisaties) ? $forcedOrganisaties : $em->getRepository(
                 Organisatie::class
             )->findAll(),
-            'medewerkerOrganisatie' => $this->getUser()->getType() === Gebruiker::TYPE_SHV || $this->getUser()->getType(
-            ) === Gebruiker::TYPE_SHV_KEYUSER ? $this->getUser() : null,
-            'teamGka' => $this->getUser()->getTeamGka()
+            'medewerkerOrganisatie' => $this->getUser()?->getType() === Gebruiker::TYPE_SHV || $this->getUser(
+            )?->getType() === Gebruiker::TYPE_SHV_KEYUSER ? $this->getUser() : null,
+            'teamGka' => $this->getUser()?->getTeamGka()
         ];
 //var_dump($seachQuery['organisaties']);
         $searchForm = $this->createForm(SearchDossierFormType::class, $seachQuery, ['method' => 'GET']);
@@ -165,7 +166,9 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/prullenbak')]
-    #[Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
+    ))]
     public function indexPrullenbak(
         Request $request,
         EntityManagerInterface $em
@@ -281,7 +284,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/nieuw/{dossierId}/')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function createAddtional(
         Request $request,
         EntityManagerInterface $em,
@@ -322,7 +325,10 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/voorlegger')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(
+        attribute: new Expression("is_granted('access', subject)"),
+        subject: new Expression('args["dossier"]'),
+    )]
     public function detailVoorlegger(
         Request $request,
         EntityManagerInterface $em,
@@ -339,7 +345,7 @@ class AppDossierController extends AbstractController
 
         $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger(), [
             'disabled' => $dossier->isInPrullenbak() === true,
-            'disable_group' => $this->getUser()->getType(),
+            'disable_group' => $this->getUser()?->getType(),
         ]);
 
         $voorleggerForm->handleRequest($request);
@@ -439,7 +445,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailAlgemeen(
         Request $request,
         EntityManagerInterface $em,
@@ -482,7 +488,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/documenten/prullenbak')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailPrullenbak(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier
@@ -503,7 +509,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/documenten/overige-documenten')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailOverigeDocumenten(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -594,7 +600,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/documenten')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailDocumenten(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier
@@ -605,7 +611,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailDocument(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier,
@@ -624,7 +630,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/download')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function downloadDocument(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier,
@@ -681,7 +687,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/log')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function log(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -702,7 +708,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/schulden')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailSchulden(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -839,7 +845,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/aantekeningen')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailAantekeningen(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -882,7 +888,7 @@ class AppDossierController extends AbstractController
      * @return RedirectResponse
      */
     #[Route(path: '/app/dossier/allegro/refresh/{dossierId}')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function allegroRefresh(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier,
@@ -909,7 +915,7 @@ class AppDossierController extends AbstractController
      * @return JsonResponse
      */
     #[Route(path: '/app/dossier/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder', methods: ['POST'])]
-    #[Security('user == aantekening.getGebruiker()')]
+    #[IsGranted(attribute: new Expression('user == aantekening.getGebruiker()'))]
     public function deleteAantekening(
         Request $request,
         #[MapEntity(id: 'aantekeningId')]
@@ -930,7 +936,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/schulden/excel')]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailSchuldenExcel(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier
@@ -954,7 +960,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/status', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function changeStatus(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1000,7 +1006,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/naar-prullenbak', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function moveDocumentToPrullenbak(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1039,7 +1045,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/verwijderen', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function removeDocument(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1085,7 +1091,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/herstellen', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function restoreDocument(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1137,7 +1143,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/naar-prullenbak', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function moveToPrullenbak(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1165,7 +1171,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/verwijderen', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function remove(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1202,7 +1208,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/herstellen', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function restore(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1231,7 +1237,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/verwijderen', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function removeSchuldItem(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1272,7 +1278,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/herstellen', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function restoreSchuldItem(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1318,7 +1324,7 @@ class AppDossierController extends AbstractController
      * @return Response
      */
     #[Route(path: '/app/dossier/detail/{dossierId}/downloadPdf', methods: ['GET'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function downloadPdf(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier
@@ -1335,7 +1341,7 @@ class AppDossierController extends AbstractController
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
     #[Route(path: '/app/dossier/detail/{dossierId}/downloadCsv', methods: ['GET'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function downloadCsv(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier,

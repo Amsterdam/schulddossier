@@ -71,7 +71,7 @@ class Document
     /**
      * @var string
      */
-    #[ORM\Column(type: 'string', length: 32, nullable: false)]
+    #[ORM\Column(type: 'string', length: 32, nullable: false, name: 'md5hash')]
     private $md5Hash;
 
     /**

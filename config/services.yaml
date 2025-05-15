@@ -41,12 +41,7 @@ services:
 
   GemeenteAmsterdam\FixxxSchuldhulp\:
     resource: '../src/'
-    exclude:
-      - '../src/Migrations/'
-      - '../src/Entity/'
-      - '../src/Kernel.php'
-      - '../src/Tests/'
-
+    exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
   # Controllers
   GemeenteAmsterdam\FixxxSchuldhulp\Controller\:
     resource: '../src/Controller'

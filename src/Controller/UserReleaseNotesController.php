@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,13 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Serializer\Serializer;
 
 
-#[Security("is_granted('ROLE_USER')")]
+#[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
 class UserReleaseNotesController extends AbstractController
 {
     private $session;
@@ -26,8 +27,8 @@ class UserReleaseNotesController extends AbstractController
     }
 
     #[Route(path: '/app/versies/')]
-    #[Security("is_granted('ROLE_USER')")]
-    public function index(): \Symfony\Component\HttpFoundation\Response
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+    public function index(): Response
     {
         $finder = new Finder();
         $finder->directories()->in($this->getParameter('kernel.project_dir') . '/templates/UserReleaseNotes/');
@@ -63,9 +64,11 @@ class UserReleaseNotesController extends AbstractController
     }
 
     #[Route(path: '/app/versies/seen')]
-    #[Security("is_granted('ROLE_USER')")]
-    public function releaseNoteSeen(Request $request, Serializer $jsonSerializer): \Symfony\Component\HttpFoundation\JsonResponse
-    {
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+    public function releaseNoteSeen(
+        Request $request,
+        Serializer $jsonSerializer
+    ): JsonResponse {
 //        $seenReleaseNotes = $request->getSession()->get('seenReleaseNotes');
         $seenReleaseNotes = $this->session->get('seenReleaseNotes');
         $seenReleaseNotes["ts" . $request->query->get('ts')] = 0;
