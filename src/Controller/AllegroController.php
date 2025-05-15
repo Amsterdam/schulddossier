@@ -8,20 +8,23 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Exception\AllegroServiceException;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Bridge\Twig\Attribute\Template;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-#[Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
+#[IsGranted(attribute: new Expression(
+    "is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
+))]
 class AllegroController extends AbstractController
 {
     #[Route(path: '/app/allegro/srveisers/{dossierId}')]
-    #[Security("is_granted('access', dossier)")]
-    #[Template]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
+    #[Template('allegro/allegro_srveisers.html.twig')]
     public function allegroSrveisers(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier,
@@ -57,8 +60,10 @@ class AllegroController extends AbstractController
     }
 
     #[Route(path: '/app/allegro/validate/{dossierId}')]
-    #[Security("is_granted('access', dossier)")]
-    #[Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"
+    ))]
     public function validateSendToAllegro(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier,
@@ -74,8 +79,10 @@ class AllegroController extends AbstractController
     }
 
     #[Route(path: '/app/allegro/send/{dossierId}', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
-    #[Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"
+    ))]
     public function send(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier,

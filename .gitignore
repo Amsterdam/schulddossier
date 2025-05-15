@@ -45,3 +45,7 @@ kubycat-config.yaml
 /public/build/
 npm-debug.log
 yarn-error.log
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

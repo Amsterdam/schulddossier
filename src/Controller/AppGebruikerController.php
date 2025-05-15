@@ -11,16 +11,20 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Component\ExpressionLanguage\Expression;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
+#[IsGranted(attribute: new Expression(
+    "is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
+))]
 class AppGebruikerController extends AbstractController
 {
 
@@ -30,7 +34,7 @@ class AppGebruikerController extends AbstractController
         Request $request,
         PaginatorInterface $paginator,
         GebruikerRepository $repository
-    ): \Symfony\Component\HttpFoundation\Response {
+    ): Response {
         $inactive = 'gebruikers_inactive' === $request->get('_route');
 
         $pagination = $paginator->paginate(
@@ -49,7 +53,9 @@ class AppGebruikerController extends AbstractController
     }
 
     #[Route(path: '/app/gebruiker/nieuw')]
-    #[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
+    ))]
     public function create(Request $request, EntityManagerInterface $em)
     {
         $gebruiker = new Gebruiker();
@@ -71,7 +77,9 @@ class AppGebruikerController extends AbstractController
     }
 
     #[Route(path: '/app/gebruiker/detail/{gebruikerId}/bewerken')]
-    #[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
+    ))]
     public function update(
         Request $request,
         EntityManagerInterface $em,
@@ -112,7 +120,7 @@ class AppGebruikerController extends AbstractController
     }
 
     #[Route(path: '/app/gebruiker/detail/{gebruikerId}/verwijder', methods: ['POST'])]
-    #[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
     public function delete(
         Request $request,
         EntityManagerInterface $em,
@@ -148,7 +156,7 @@ class AppGebruikerController extends AbstractController
     }
 
     #[Route(path: '/app/gebruiker/download-gebruikers-csv', name: 'get_gebruikers_csv', methods: ['GET'])]
-    #[Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
     public function getGebruikersCsv(GebruikerRepository $repository): StreamedResponse
     {
         $gebruikers = $repository->findAll(0, 100000);

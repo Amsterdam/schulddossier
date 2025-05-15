@@ -10,14 +10,20 @@ use Symfony\Component\HttpFoundation\Response;
 class OidcController extends AbstractController
 {
     #[Route(path: '/oidc/test')]
-    public function index(): \Symfony\Component\HttpFoundation\Response
+    public function index(): Response
     {
-        return new Response('<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]) . '</body></html>');
+        return new Response(
+            '<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]
+            ) . '</body></html>'
+        );
     }
 
     #[Route(path: '/oidc/return')]
-    public function return(): \Symfony\Component\HttpFoundation\Response
+    public function return(): Response
     {
-        return new Response('<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]) . '</body></html>');
+        return new Response(
+            '<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]
+            ) . '</body></html>'
+        );
     }
 }

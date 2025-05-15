@@ -5,18 +5,21 @@ declare(strict_types=1);
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\ExpressionLanguage\Expression;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Security("is_granted('ROLE_USER')")]
+#[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
 class AppLogController extends AbstractController
 {
     #[Route(path: '/app/log/')]
-    #[Security("is_granted('ROLE_USER')")]
-    public function index(): \Symfony\Component\HttpFoundation\Response
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+    public function index(ManagerRegistry $doctrine): Response
     {
-        $logs = $this->getDoctrine()
+        $logs = $doctrine
             ->getRepository(ActionEvent::class)
             ->findBy([], ['datumTijd' => 'DESC'], 100);
 
