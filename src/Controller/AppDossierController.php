@@ -35,10 +35,9 @@ use League\Flysystem\Filesystem as FlysystemFilesystem;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -961,7 +960,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/status', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function changeStatus(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1007,7 +1006,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/naar-prullenbak', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function moveDocumentToPrullenbak(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1046,7 +1045,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/verwijderen', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function removeDocument(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1092,7 +1091,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/herstellen', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function restoreDocument(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1144,7 +1143,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/naar-prullenbak', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function moveToPrullenbak(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1172,7 +1171,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/verwijderen', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function remove(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1209,7 +1208,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/herstellen', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function restore(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1238,7 +1237,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/verwijderen', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function removeSchuldItem(
         Request $request,
         #[MapEntity(id: 'dossierId')]
@@ -1279,7 +1278,7 @@ class AppDossierController extends AbstractController
     }
 
     #[Route(path: '/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/herstellen', methods: ['POST'])]
-    #[Security("is_granted('access', dossier)")]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function restoreSchuldItem(
         Request $request,
         #[MapEntity(id: 'dossierId')]
