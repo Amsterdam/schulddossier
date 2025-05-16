@@ -8,10 +8,9 @@
     "bevacqua/dragula": "3.7.2",
     "bevacqua/horsey": "4.2.2",
     "bevacqua/rome": "2.1.22",
-    "doctrine/annotations": "^1.0",
     "doctrine/doctrine-bundle": "^2.1",
     "doctrine/doctrine-migrations-bundle": "^3.0",
-    "doctrine/orm": "^2.7",
+    "doctrine/orm": "^2.9",
     "guzzlehttp/guzzle": "^7.7.0",
     "jshjohnson/choices": "3.0.3",
     "knplabs/knp-paginator-bundle": "^6.0.0",
@@ -124,7 +123,7 @@
     "symfony": {
       "id": "01C78G17XCNVEZ49WHBEVGCP02",
       "allow-contrib": false,
-      "require": "6.4.*"
+      "require": "7.2.*"
     },
     "markei-filesystemoperations": [
       [
