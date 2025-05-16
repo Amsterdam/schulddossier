@@ -56,7 +56,8 @@
     "symfony/webpack-encore-bundle": "^2.0",
     "symfony/workflow": "*",
     "symfony/yaml": "*",
-    "twig/twig": "^3.0"
+    "twig/twig": "^3.0",
+    "symfony/maker-bundle": "^1.1"
   },
   "require-dev": {
     "doctrine/doctrine-fixtures-bundle": "^4.0.0",
@@ -64,7 +65,6 @@
     "rector/rector": "^2.0",
     "symfony/debug-bundle": "*",
     "symfony/dotenv": "*",
-    "symfony/maker-bundle": "^1.1",
     "symfony/stopwatch": "*",
     "symfony/var-dumper": "*",
     "symfony/web-profiler-bundle": "*"
