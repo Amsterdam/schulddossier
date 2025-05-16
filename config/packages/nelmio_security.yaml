@@ -3,6 +3,7 @@ nelmio_security:
   # signs/verifies all cookies
   signed_cookie:
     names: [ '*' ]
+    hash_algo: sha512
   # prevents framing of the entire site
   clickjacking:
     paths:
