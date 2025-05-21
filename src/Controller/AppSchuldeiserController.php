@@ -27,14 +27,14 @@ class AppSchuldeiserController extends AbstractController
         $schuldeiserRepository = $em->getRepository(Schuldeiser::class);
 
         if ($request->isXmlHttpRequest()) {
-            $items = $schuldeiserRepository->search($request->query->get('q'), 0, -1);
+            $items = $schuldeiserRepository->search($request->query->all('q'), 0, -1);
             return new JsonResponse($jsonSerializer->normalize($items));
         }
 
         $maxPageSize = 50;
 
         $items = $schuldeiserRepository->search(
-            $request->query->get('q'),
+            $request->query->all('q'),
             $request->query->getInt('page', 0),
             $request->query->getInt('pageSize', $maxPageSize),
             false
