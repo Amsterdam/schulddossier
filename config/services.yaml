@@ -41,12 +41,7 @@ services:
 
   GemeenteAmsterdam\FixxxSchuldhulp\:
     resource: '../src/'
-    exclude:
-      - '../src/Migrations/'
-      - '../src/Entity/'
-      - '../src/Kernel.php'
-      - '../src/Tests/'
-
+    exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
   # Controllers
   GemeenteAmsterdam\FixxxSchuldhulp\Controller\:
     resource: '../src/Controller'
@@ -168,7 +163,7 @@ services:
     arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
 
 
-  GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileListener:
+  GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileEventSubscriber:
     arguments:
       $publicDir: '%kernel.project_dir%/public'
     tags:

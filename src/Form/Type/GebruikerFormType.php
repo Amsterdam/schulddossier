@@ -8,6 +8,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 use GemeenteAmsterdam\FixxxSchuldhulp\Validator\Constraints\RequiredFieldsWhenAddingNewShvUser;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -17,7 +18,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Security\Core\Security;
 
 class GebruikerFormType extends AbstractType
 {
@@ -28,7 +28,7 @@ class GebruikerFormType extends AbstractType
         $this->security = $security;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         /** @var Gebruiker $user */
         $user = $this->security->getUser();
@@ -63,7 +63,7 @@ class GebruikerFormType extends AbstractType
             'help' => 'DB: gebruiker_organisatie.gebruiker_id gebruiker_organisatie.organisatie_id',
             'query_builder' => function (EntityRepository $repository) use ($user) {
                 $qb = $repository->createQueryBuilder('organisatie');
-                if($user->getType() === Gebruiker::TYPE_SHV_KEYUSER){
+                if ($user->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
                     $qb->andWhere('organisatie IN (:organisaties)');
                     $qb->setParameter('organisaties', $user->getOrganisaties());
                 }
@@ -77,7 +77,7 @@ class GebruikerFormType extends AbstractType
             'help' => 'DB: gebruiker.enabled'
         ]);
 
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($user) {
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($user): void {
             $gebruiker = $event->getData();
             $form = $event->getForm();
             $form->add('type', ChoiceType::class, [
@@ -86,7 +86,7 @@ class GebruikerFormType extends AbstractType
                 'choices' => Gebruiker::getTypes($user->getType())
             ]);
         });
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($user) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($user): void {
             $gebruiker = $event->getData();
             $form = $event->getForm();
             $form->add('type', ChoiceType::class, [
@@ -98,7 +98,7 @@ class GebruikerFormType extends AbstractType
         });
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('constraints', [new RequiredFieldsWhenAddingNewShvUser()]);
         $resolver->setDefault('data_class', Gebruiker::class);

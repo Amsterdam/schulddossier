@@ -1,4 +1,5 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,11 +28,10 @@ class VoorleggerFormType extends AbstractType
         private TokenStorageInterface $tokenStorage,
         private WorkflowRegistry $workflowRegistry,
         private EntityManagerInterface $em
-    )
-    {
+    ) {
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $settings = [
             'required' => true,
@@ -41,12 +41,20 @@ class VoorleggerFormType extends AbstractType
         ];
 
 
-        $builder->add('alimentatieEchtscheidingsconvenant', VoorleggerAlimentatieEchtscheidingsconvenantFormType::class, $settings);
+        $builder->add(
+            'alimentatieEchtscheidingsconvenant',
+            VoorleggerAlimentatieEchtscheidingsconvenantFormType::class,
+            $settings
+        );
         $builder->add('alimentatie', VoorleggerAlimentatieFormType::class, $settings);
         $builder->add('arbeidsovereenkomst', VoorleggerArbeidsovereenkomstFormType::class, $settings);
         $builder->add('autolastenKmWoonwerkverkeer', VoorleggerAutolastenKmWoonwerkverkeerFormType::class, $settings);
         $builder->add('autoTaxatie', VoorleggerAutoTaxatieFormType::class, $settings);
-        $builder->add('beschikkingOnderBewindstelling', VoorleggerBeschikkingOnderBewindstellingFormType::class, $settings);
+        $builder->add(
+            'beschikkingOnderBewindstelling',
+            VoorleggerBeschikkingOnderBewindstellingFormType::class,
+            $settings
+        );
         $builder->add('beschikkingUwv', VoorleggerBeschikkingUwvFormType::class, $settings);
         $builder->add('budgetbeheer', VoorleggerBudgetbeheerFormType::class, $settings);
         $builder->add('cjib', VoorleggerCjibFormType::class, $settings);
@@ -57,7 +65,11 @@ class VoorleggerFormType extends AbstractType
         $builder->add('inkomstenspecificatie', VoorleggerInkomstenspecificatieFormType::class, $settings);
         $builder->add('inzageToetsingBkr', VoorleggerInzageToetsingBkrFormType::class, $settings);
         $builder->add('kostgeld', VoorleggerKostgeldFormType::class, $settings);
-        $builder->add('kwijtscheldingGemeenteBelasting', VoorleggerKwijtscheldingGemeenteBelastingFormType::class, $settings);
+        $builder->add(
+            'kwijtscheldingGemeenteBelasting',
+            VoorleggerKwijtscheldingGemeenteBelastingFormType::class,
+            $settings
+        );
         $builder->add('legitimatie', VoorleggerLegitimatieFormType::class, $settings);
         $builder->add('meterstandenEnergie', VoorleggerMeterstandenEnergieFormType::class, $settings);
         $builder->add('ondertekendAanvraagFormulier', VoorleggerOndertekendAanvraagFormulierFormType::class, $settings);
@@ -68,38 +80,53 @@ class VoorleggerFormType extends AbstractType
         $builder->add('retourbewijsModem', VoorleggerRetourbewijsModemFormType::class, $settings);
         $builder->add('schuldenoverzicht', VoorleggerSchuldenoverzichtFormType::class, $settings);
         $builder->add('stabilisatieovereenkomst', VoorleggerStabilisatieovereenkomstFormType::class, $settings);
-        $builder->add('toelichtingAanvraagSchuldsaneringShv', VoorleggerToelichtingAanvraagSchuldsaneringShvFormType::class, $settings);
-        $builder->add('toelichtingAanvraagSchuldsaneringClient', VoorleggerToelichtingAanvraagSchuldsaneringClientFormType::class, $settings);
+        $builder->add(
+            'toelichtingAanvraagSchuldsaneringShv',
+            VoorleggerToelichtingAanvraagSchuldsaneringShvFormType::class,
+            $settings
+        );
+        $builder->add(
+            'toelichtingAanvraagSchuldsaneringClient',
+            VoorleggerToelichtingAanvraagSchuldsaneringClientFormType::class,
+            $settings
+        );
         $builder->add('verklaringWerkgever', VoorleggerVerklaringWerkgeverFormType::class, $settings);
-        $builder->add('voorlopigeTeruggaafBelastingdienst', VoorleggerVoorlopigeTeruggaafBelastingdienstFormType::class, $settings);
+        $builder->add(
+            'voorlopigeTeruggaafBelastingdienst',
+            VoorleggerVoorlopigeTeruggaafBelastingdienstFormType::class,
+            $settings
+        );
         $builder->add('vrijwaringsbewijs', VoorleggerVrijwaringsbewijsFormType::class, $settings);
         $builder->add('vtlb', VoorleggerVtlbFormType::class, $settings);
         $builder->add('waternet', VoorleggerWaternetFormType::class, $settings);
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
             /* @var $voorlegger Voorlegger */
             $this->user = $this->tokenStorage->getToken()->getUser();
             $voorlegger = $event->getData();
             $dossier = $voorlegger->getDossier();
             $user = $this->tokenStorage->getToken()->getUser();
             $gebruikers = $this->em->getRepository(Gebruiker::class)->findAllByTypeAndOrganisatieRaw(
-                    [Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER],
-                    [$dossier->getOrganisatie()]
-                );
+                [Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER],
+                [$dossier->getOrganisatie()]
+            );
             if ($this->tokenStorage->getToken() === null || $this->tokenStorage->getToken()->getUser() === null) {
                 return;
             }
 
             $choices = [];
             $data = null;
-            foreach ($gebruikers->getQuery()->getResult() as $key => $value) {
-                if ($value != $user && $value->isEnabled()){
-                    $choices[$value->getEmail()] = $value->getNaam() . ' (' .$value->getEmail() . ')';
+            foreach ($gebruikers->getQuery()->getResult() as $value) {
+                if ($value != $user && $value->isEnabled()) {
+                    $choices[$value->getEmail()] = $value->getNaam() . ' (' . $value->getEmail() . ')';
                 }
             }
-            if (empty($dossier->getOrganisatie()->getEmailAdresControle()) === false){
+            if (empty($dossier->getOrganisatie()->getEmailAdresControle()) === false) {
                 $data = $dossier->getOrganisatie()->getEmailAdresControle();
-                $choices = array($dossier->getOrganisatie()->getEmailAdresControle() => 'Controle e-mailadres (' . $dossier->getOrganisatie()->getEmailAdresControle() . ')') + $choices;
+                $choices = array(
+                        $dossier->getOrganisatie()->getEmailAdresControle(
+                        ) => 'Controle e-mailadres (' . $dossier->getOrganisatie()->getEmailAdresControle() . ')'
+                    ) + $choices;
             }
             $choices = array_flip($choices);
 
@@ -124,11 +151,10 @@ class VoorleggerFormType extends AbstractType
                 'data' => $dossier,
                 'disabled' => $dossier->isInPrullenbak() === true
             ]);
-
         });
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('data_class', Voorlegger::class);
         $resolver->setDefault('choice_translation_domain', false);

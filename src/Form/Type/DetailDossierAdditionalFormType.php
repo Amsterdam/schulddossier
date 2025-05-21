@@ -14,7 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class DetailDossierAdditionalFormType extends AbstractType
 {
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('clientTelefoonnummer', TextType::class, [
             'label' => 'Telefoonnummer *',
@@ -73,7 +73,7 @@ class DetailDossierAdditionalFormType extends AbstractType
         ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('data_class', Dossier::class);
         $resolver->setDefault('choice_translation_domain', false);

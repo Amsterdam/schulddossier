@@ -29,7 +29,8 @@ RUN docker-php-ext-install \
     soap \
     intl \
     gd \
-    xsl
+    xsl \
+    bcmath
 
 RUN docker-php-ext-configure \
     gd \
@@ -62,7 +63,7 @@ WORKDIR /var/www
 
 COPY --chown=www-data . /var/www
 
-RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
+RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts --no-dev --optimize-autoloader
 
 RUN yarn --ignore-scripts --ignore-platform
 RUN yarn encore prod
