@@ -35,7 +35,8 @@
             </thead>
             <tbody>
 {% set empty = true %}
-{% for document in dossierDocumenten if (document.schuldItem is empty or document.schuldItem.verwijderd == false) %}
+{% for document in dossierDocumenten %}
+{% if (document.schuldItem is empty or document.schuldItem.verwijderd == false) %}
 {% set empty = false %}
                 <tr>
                     <th>{{ document.document.naam }}</th>
@@ -52,6 +53,7 @@
                       </form>
                     </td>
                 </tr>
+{% endif %}
 {% endfor %}
             </tbody>
         </table>

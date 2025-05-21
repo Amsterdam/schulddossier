@@ -36,6 +36,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -69,6 +70,11 @@ use ZipArchive;
 ))]
 class AppDossierController extends AbstractController
 {
+
+    public function __construct(private ManagerRegistry $doctrine)
+    {
+    }
+
     /**
      * @throws \Exception
      */
@@ -155,7 +161,7 @@ class AppDossierController extends AbstractController
                 'reverse' => 'gemeenteamsterdam_fixxxschuldhulp_appdossier_index',
                 'reverse_params' => [
                     'section' => $seachQuery['section'],
-                    'search_dossier_form' => $request->query->get('search_dossier_form')
+                    'search_dossier_form' => $request->query->all('search_dossier_form')
                 ],
                 'page' => $request->query->getInt('page', 0),
                 'pageSize' => $maxPageSize,
@@ -693,7 +699,7 @@ class AppDossierController extends AbstractController
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier
     ): Response {
-        $logs = $this->getDoctrine()
+        $logs = $this->doctrine
             ->getRepository(ActionEventEntity::class)
             ->findBy([
                 'name' => [
@@ -1374,7 +1380,9 @@ class AppDossierController extends AbstractController
         $zipFactory = new ZipArchive();
         $zipFactory->open($zipfileLocation, ZipArchive::CREATE);
 
-        $files = $fileStorageSelector->getFileStorageForDossier()->listContents('dossier-' . $dossier->getId());
+        $files = $fileStorageSelector->getFileStorageForDossier()->listContents(
+            'dossier-' . $dossier->getId()
+        )->toArray();
 
         $dossier->getDocumenten()->map(
             function (DossierDocument $dossierDocument) use ($files, $fileStorageSelector, $zipFactory): void {
@@ -1415,7 +1423,8 @@ class AppDossierController extends AbstractController
 
         $zipFactory->close();
 
-        $response = Response::create(file_get_contents($zipfileLocation));
+
+        $response = new Response(file_get_contents($zipfileLocation));
         $response->headers->set('Content-Type', 'application/zip');
         $response->headers->set('Content-Disposition', 'attachment;filename="dossier-' . $dossier->getId() . '.zip"');
         $response->headers->set('Content-length', filesize($zipfileLocation));

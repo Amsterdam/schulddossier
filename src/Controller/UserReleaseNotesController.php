@@ -71,7 +71,7 @@ class UserReleaseNotesController extends AbstractController
     ): JsonResponse {
 //        $seenReleaseNotes = $request->getSession()->get('seenReleaseNotes');
         $seenReleaseNotes = $this->session->get('seenReleaseNotes');
-        $seenReleaseNotes["ts" . $request->query->get('ts')] = 0;
+        $seenReleaseNotes["ts" . $request->query->all('ts')] = 0;
 
 
         return new JsonResponse($jsonSerializer->normalize([
