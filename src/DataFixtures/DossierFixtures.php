@@ -17,6 +17,7 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
     /**
      * @inheritDoc
      */
+    #[Override]
     public function load(ObjectManager $manager): void
     {
         $dossiers = $this->loadDossiersJson();
@@ -48,11 +49,11 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
             $dossier->setEersteKeerVerzondenAanGKA($dossiers[$i]['verzondenGka']);
             $dossier->setInPrullenbak($dossiers[$i]['inPrullenbak']);
 
-            if($dossiers[$i]['verzondenGka']) {
-                $dossier->setAllegroNummer(834 . ($i-1) . 3879 . $i);
+            if ($dossiers[$i]['verzondenGka']) {
+                $dossier->setAllegroNummer(834 . ($i - 1) . 3879 . $i);
             }
 
-            $this->addReference($i === 0 ? 'dossier' : 'dossier'.$i, $dossier);
+            $this->addReference($i === 0 ? 'dossier' : 'dossier' . $i, $dossier);
 
             $manager->persist($dossier);
         }

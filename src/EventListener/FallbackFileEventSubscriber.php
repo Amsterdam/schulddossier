@@ -2,11 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
-class FallbackFileEventSubscriber implements \Symfony\Component\EventDispatcher\EventSubscriberInterface
+class FallbackFileEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(private readonly string $publicDir)
     {
@@ -45,6 +46,7 @@ class FallbackFileEventSubscriber implements \Symfony\Component\EventDispatcher\
             $event->setResponse($newResponse);
         }
     }
+
     /**
      * @return array<string, mixed>
      */

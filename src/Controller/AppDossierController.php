@@ -98,12 +98,17 @@ class AppDossierController extends AbstractController
         ];
         $section = $request->query->get(
             'section',
-            $this->getUser()?->getType() === Gebruiker::TYPE_GKA || $this->getUser()?->getType(
-            ) === Gebruiker::TYPE_GKA_APPBEHEERDER ? 'gka' : 'shv'
+            $this->getUser()?->getType() === Gebruiker::TYPE_GKA ||
+            $this->getUser()?->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER ?
+                'gka' :
+                'shv'
         );
 
         if ($authChecker->isGranted('ROLE_SHV') || $authChecker->isGranted('ROLE_SHV_KEYUSER')) {
-            if ($this->getUser()?->getOrganisaties()?->count() === 0) {
+            if (
+                $this->getUser()->getOrganisaties() === null ||
+                $this->getUser()->getOrganisaties()?->count() === 0
+            ) {
                 return $this->render('Security/accessDenied.html.twig', [
                     'message' => 'Gebruiker is niet gekoppeld aan een organisatie.',
                 ]);
@@ -115,13 +120,18 @@ class AppDossierController extends AbstractController
             'section' => $section,
             'naam' => '',
             'status' => $section2status[$section],
-            'eersteKeerVerzondenAanGKA' => ($this->getUser()?->getType() === Gebruiker::TYPE_GKA || $this->getUser(
-                )?->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER),
-            'organisaties' => !empty($forcedOrganisaties) ? $forcedOrganisaties : $em->getRepository(
-                Organisatie::class
-            )->findAll(),
-            'medewerkerOrganisatie' => $this->getUser()?->getType() === Gebruiker::TYPE_SHV || $this->getUser(
-            )?->getType() === Gebruiker::TYPE_SHV_KEYUSER ? $this->getUser() : null,
+            'eersteKeerVerzondenAanGKA' => (
+                $this->getUser()?->getType() === Gebruiker::TYPE_GKA ||
+                $this->getUser()?->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER
+            ),
+            'organisaties' => !empty($forcedOrganisaties) ?
+                $forcedOrganisaties :
+                $em->getRepository(Organisatie::class)->findAll(),
+            'medewerkerOrganisatie' =>
+                $this->getUser()?->getType() === Gebruiker::TYPE_SHV ||
+                $this->getUser()?->getType() === Gebruiker::TYPE_SHV_KEYUSER ?
+                    $this->getUser() :
+                    null,
             'teamGka' => $this->getUser()?->getTeamGka()
         ];
 //var_dump($seachQuery['organisaties']);

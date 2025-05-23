@@ -15,17 +15,14 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
-#[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+#[IsGranted('ROLE_USER')]
 class HelpController extends AbstractController
 {
-    private $session;
-
-    public function __construct(RequestStack $requestStack)
+    public function __construct()
     {
-        $this->session = $requestStack->getSession();
     }
 
-    #[Route(path: '/app/help/')]
+    #[Route(path: '/app/help')]
     #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
     public function index(): Response
     {
