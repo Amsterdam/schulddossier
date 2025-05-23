@@ -9,14 +9,14 @@ class TContractenLijst implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray
+     * @var ContractArray
      */
     private $Contracten;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray $Contracten
+     * @var ContractArray $Contracten
      */
     public function __construct($Contracten)
     {
@@ -24,7 +24,7 @@ class TContractenLijst implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray
+     * @return ContractArray
      */
     public function getContracten()
     {
@@ -32,7 +32,7 @@ class TContractenLijst implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray $Contracten
+     * @param ContractArray $Contracten
      * @return TContractenLijst
      */
     public function withContracten($Contracten)

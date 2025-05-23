@@ -9,7 +9,7 @@ class TAanvraag implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag
+     * @var TPersoonAanvraag
      */
     private $Aanvrager;
 
@@ -19,22 +19,22 @@ class TAanvraag implements RequestInterface
     private $MetPartner;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag
+     * @var TPersoonAanvraag
      */
     private $Partner;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
+     * @var TAdres
      */
     private $Bezoekadres;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
+     * @var TAdres
      */
     private $Postadres;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact
+     * @var TContact
      */
     private $Contact;
 
@@ -44,7 +44,7 @@ class TAanvraag implements RequestInterface
     private $CorrespondentieMail;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGezinsSituatie
+     * @var TGezinsSituatie
      */
     private $GezinsSituatie;
 
@@ -59,17 +59,17 @@ class TAanvraag implements RequestInterface
     private $ToelichtingKinderen;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen
+     * @var TInkomen
      */
     private $InkomenAanvrager;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen
+     * @var TInkomen
      */
     private $InkomenPartner;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TUitgaven
+     * @var TUitgaven
      */
     private $Uitgaven;
 
@@ -146,19 +146,19 @@ class TAanvraag implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag $Aanvrager
+     * @var TPersoonAanvraag $Aanvrager
      * @var bool $MetPartner
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag $Partner
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Bezoekadres
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Postadres
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact $Contact
+     * @var TPersoonAanvraag $Partner
+     * @var TAdres $Bezoekadres
+     * @var TAdres $Postadres
+     * @var TContact $Contact
      * @var bool $CorrespondentieMail
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGezinsSituatie $GezinsSituatie
+     * @var TGezinsSituatie $GezinsSituatie
      * @var int $AantalKinderen
      * @var string $ToelichtingKinderen
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen $InkomenAanvrager
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen $InkomenPartner
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TUitgaven $Uitgaven
+     * @var TInkomen $InkomenAanvrager
+     * @var TInkomen $InkomenPartner
+     * @var TUitgaven $Uitgaven
      * @var float $Schuldbedrag
      * @var int $Schuldeisers
      * @var string $SoortLening
@@ -206,7 +206,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag
+     * @return TPersoonAanvraag
      */
     public function getAanvrager()
     {
@@ -214,7 +214,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag $Aanvrager
+     * @param TPersoonAanvraag $Aanvrager
      * @return TAanvraag
      */
     public function withAanvrager($Aanvrager)
@@ -246,7 +246,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag
+     * @return TPersoonAanvraag
      */
     public function getPartner()
     {
@@ -254,7 +254,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag $Partner
+     * @param TPersoonAanvraag $Partner
      * @return TAanvraag
      */
     public function withPartner($Partner)
@@ -266,7 +266,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
+     * @return TAdres
      */
     public function getBezoekadres()
     {
@@ -274,7 +274,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Bezoekadres
+     * @param TAdres $Bezoekadres
      * @return TAanvraag
      */
     public function withBezoekadres($Bezoekadres)
@@ -286,7 +286,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
+     * @return TAdres
      */
     public function getPostadres()
     {
@@ -294,7 +294,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Postadres
+     * @param TAdres $Postadres
      * @return TAanvraag
      */
     public function withPostadres($Postadres)
@@ -306,7 +306,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact
+     * @return TContact
      */
     public function getContact()
     {
@@ -314,7 +314,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact $Contact
+     * @param TContact $Contact
      * @return TAanvraag
      */
     public function withContact($Contact)
@@ -346,7 +346,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGezinsSituatie
+     * @return TGezinsSituatie
      */
     public function getGezinsSituatie()
     {
@@ -354,7 +354,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGezinsSituatie $GezinsSituatie
+     * @param TGezinsSituatie $GezinsSituatie
      * @return TAanvraag
      */
     public function withGezinsSituatie($GezinsSituatie)
@@ -406,7 +406,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen
+     * @return TInkomen
      */
     public function getInkomenAanvrager()
     {
@@ -414,7 +414,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen $InkomenAanvrager
+     * @param TInkomen $InkomenAanvrager
      * @return TAanvraag
      */
     public function withInkomenAanvrager($InkomenAanvrager)
@@ -426,7 +426,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen
+     * @return TInkomen
      */
     public function getInkomenPartner()
     {
@@ -434,7 +434,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen $InkomenPartner
+     * @param TInkomen $InkomenPartner
      * @return TAanvraag
      */
     public function withInkomenPartner($InkomenPartner)
@@ -446,7 +446,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TUitgaven
+     * @return TUitgaven
      */
     public function getUitgaven()
     {
@@ -454,7 +454,7 @@ class TAanvraag implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TUitgaven $Uitgaven
+     * @param TUitgaven $Uitgaven
      * @return TAanvraag
      */
     public function withUitgaven($Uitgaven)

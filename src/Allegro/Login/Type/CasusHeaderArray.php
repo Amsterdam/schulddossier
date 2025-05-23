@@ -8,14 +8,14 @@ class CasusHeaderArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader
+     * @var TCasusHeader
      */
     private $TCasusHeader;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader $TCasusHeader
+     * @var TCasusHeader $TCasusHeader
      */
     public function __construct($TCasusHeader)
     {
@@ -23,7 +23,7 @@ class CasusHeaderArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader
+     * @return TCasusHeader
      */
     public function getTCasusHeader()
     {
@@ -31,7 +31,7 @@ class CasusHeaderArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader $TCasusHeader
+     * @param TCasusHeader $TCasusHeader
      * @return CasusHeaderArray
      */
     public function withTCasusHeader($TCasusHeader)

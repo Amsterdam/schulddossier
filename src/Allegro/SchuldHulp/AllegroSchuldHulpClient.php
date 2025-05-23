@@ -2,12 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp;
 
+use Phpro\SoapClient\Client;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzicht;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzichtResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSB;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBEisers;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBEisersResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVOverzicht;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVOverzichtResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVAanvraag;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVAanvraagResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVEisers;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVEisersResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetLijstSchuldeisers;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetLijstSchuldeisersResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceAanvraagSR;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceAanvraagSRResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceAanvraag2SR;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceAanvraag2SRResponse;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 use Phpro\SoapClient\Type\RequestInterface;
 use Phpro\SoapClient\Type\ResultInterface;
 use Phpro\SoapClient\Exception\SoapException;
 
-class AllegroSchuldHulpClient extends \Phpro\SoapClient\Client
+class AllegroSchuldHulpClient extends Client
 {
 
     /**
@@ -15,7 +34,7 @@ class AllegroSchuldHulpClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\SchuldHulpServiceGetSBOverzichtResponse
      * @throws SoapException
      */
-    public function getSBOverzicht(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzicht $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzichtResponse
+    public function getSBOverzicht(SchuldHulpServiceGetSBOverzicht $parameters) : SchuldHulpServiceGetSBOverzichtResponse
     {
         return $this->call('GetSBOverzicht', $parameters);
     }
@@ -25,7 +44,7 @@ class AllegroSchuldHulpClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\SchuldHulpServiceGetSBResponse
      * @throws SoapException
      */
-    public function getSB(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSB $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBResponse
+    public function getSB(SchuldHulpServiceGetSB $parameters) : SchuldHulpServiceGetSBResponse
     {
         return $this->call('GetSB', $parameters);
     }
@@ -35,7 +54,7 @@ class AllegroSchuldHulpClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\SchuldHulpServiceGetSBEisersResponse
      * @throws SoapException
      */
-    public function getSBEisers(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBEisers $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBEisersResponse
+    public function getSBEisers(SchuldHulpServiceGetSBEisers $parameters) : SchuldHulpServiceGetSBEisersResponse
     {
         return $this->call('GetSBEisers', $parameters);
     }
@@ -45,7 +64,7 @@ class AllegroSchuldHulpClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\SchuldHulpServiceGetSRVOverzichtResponse
      * @throws SoapException
      */
-    public function getSRVOverzicht(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVOverzicht $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVOverzichtResponse
+    public function getSRVOverzicht(SchuldHulpServiceGetSRVOverzicht $parameters) : SchuldHulpServiceGetSRVOverzichtResponse
     {
         return $this->call('GetSRVOverzicht', $parameters);
     }
@@ -55,7 +74,7 @@ class AllegroSchuldHulpClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\SchuldHulpServiceGetSRVAanvraagResponse
      * @throws SoapException
      */
-    public function getSRVAanvraag(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVAanvraag $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVAanvraagResponse
+    public function getSRVAanvraag(SchuldHulpServiceGetSRVAanvraag $parameters) : SchuldHulpServiceGetSRVAanvraagResponse
     {
         return $this->call('GetSRVAanvraag', $parameters);
     }
@@ -65,7 +84,7 @@ class AllegroSchuldHulpClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\SchuldHulpServiceGetSRVEisersResponse
      * @throws SoapException
      */
-    public function getSRVEisers(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVEisers $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVEisersResponse
+    public function getSRVEisers(SchuldHulpServiceGetSRVEisers $parameters) : SchuldHulpServiceGetSRVEisersResponse
     {
         return $this->call('GetSRVEisers', $parameters);
     }
@@ -75,7 +94,7 @@ class AllegroSchuldHulpClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\SchuldHulpServiceGetLijstSchuldeisersResponse
      * @throws SoapException
      */
-    public function getLijstSchuldeisers(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetLijstSchuldeisers $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetLijstSchuldeisersResponse
+    public function getLijstSchuldeisers(SchuldHulpServiceGetLijstSchuldeisers $parameters) : SchuldHulpServiceGetLijstSchuldeisersResponse
     {
         return $this->call('GetLijstSchuldeisers', $parameters);
     }
@@ -85,7 +104,7 @@ class AllegroSchuldHulpClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\SchuldHulpServiceAanvraagSRResponse
      * @throws SoapException
      */
-    public function aanvraagSR(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceAanvraagSR $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceAanvraagSRResponse
+    public function aanvraagSR(SchuldHulpServiceAanvraagSR $parameters) : SchuldHulpServiceAanvraagSRResponse
     {
         return $this->call('AanvraagSR', $parameters);
     }
@@ -95,7 +114,7 @@ class AllegroSchuldHulpClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\SchuldHulpServiceAanvraag2SRResponse
      * @throws SoapException
      */
-    public function aanvraag2SR(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceAanvraag2SR $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceAanvraag2SRResponse
+    public function aanvraag2SR(SchuldHulpServiceAanvraag2SR $parameters) : SchuldHulpServiceAanvraag2SRResponse
     {
         return $this->call('Aanvraag2SR', $parameters);
     }

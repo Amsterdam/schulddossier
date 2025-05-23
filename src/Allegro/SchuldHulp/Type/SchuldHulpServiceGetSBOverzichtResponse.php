@@ -9,12 +9,12 @@ class SchuldHulpServiceGetSBOverzichtResponse implements ResultInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBHeaderArray
+     * @var SBHeaderArray
      */
     private $Result;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBHeaderArray
+     * @return SBHeaderArray
      */
     public function getResult()
     {
@@ -22,7 +22,7 @@ class SchuldHulpServiceGetSBOverzichtResponse implements ResultInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBHeaderArray $Result
+     * @param SBHeaderArray $Result
      * @return SchuldHulpServiceGetSBOverzichtResponse
      */
     public function withResult($Result)

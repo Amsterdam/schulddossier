@@ -49,7 +49,7 @@ class SimpleRequestInfo implements RequestInterface
      * @var string $SQL
      * @var string $Table
      * @var string $Where
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataParameterArray $Parameters
+     * @var SimpleDataParameterArray $Parameters
      * @var int $MaxRecords
      * @var bool $IncludeSchema
      * @var bool $SimpleMode
@@ -126,7 +126,7 @@ class SimpleRequestInfo implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataParameterArray
+     * @return SimpleDataParameterArray
      */
     public function getParameters()
     {
@@ -134,7 +134,7 @@ class SimpleRequestInfo implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataParameterArray $Parameters
+     * @param SimpleDataParameterArray $Parameters
      * @return SimpleRequestInfo
      */
     public function withParameters($Parameters)

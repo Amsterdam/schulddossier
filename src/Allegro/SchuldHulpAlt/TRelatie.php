@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TRelatie
 {
 
@@ -51,7 +54,7 @@ class TRelatie
     protected $PostAdres = null;
 
     /**
-     * @var \DateTime $Geboortedatum
+     * @var DateTime $Geboortedatum
      */
     protected $Geboortedatum = null;
 
@@ -111,7 +114,7 @@ class TRelatie
     protected $IdentificatieNummer = null;
 
     /**
-     * @var \DateTime $IdentificatieGeldig
+     * @var DateTime $IdentificatieGeldig
      */
     protected $IdentificatieGeldig = null;
 
@@ -175,7 +178,7 @@ class TRelatie
      * @param string $Geslacht
      * @param TAdres $BezoekAdres
      * @param TAdres $PostAdres
-     * @param \DateTime $Geboortedatum
+     * @param DateTime $Geboortedatum
      * @param string $Geboorteplaats
      * @param int $BSN
      * @param string $Rekening
@@ -187,7 +190,7 @@ class TRelatie
      * @param string $Autorisaties
      * @param string $Identificatiebewijs
      * @param string $IdentificatieNummer
-     * @param \DateTime $IdentificatieGeldig
+     * @param DateTime $IdentificatieGeldig
      * @param KindArray $Kinderen
      * @param int $Bedrijf
      * @param string $IBAN
@@ -199,7 +202,7 @@ class TRelatie
      * @param TMedewerker $Klantmanager
      * @param string $Pincode
      */
-    public function __construct($RelatieCode, $Voornamen, $Voorletters, $Zoeknaam, $Achternaam, $Voorvoegsels, $Geslacht, $BezoekAdres, $PostAdres, \DateTime $Geboortedatum, $Geboorteplaats, $BSN, $Rekening, $Telefoon1, $Telefoon2, $Email, $BurgerlijkeStaat, $PartnerCode, $Autorisaties, $Identificatiebewijs, $IdentificatieNummer, \DateTime $IdentificatieGeldig, $Kinderen, $Bedrijf, $IBAN, $BIC, $InzakeRekening, $RekeningInzake, $RekeningInzakeIBAN, $RekeningInzakeBIC, $Klantmanager, $Pincode)
+    public function __construct($RelatieCode, $Voornamen, $Voorletters, $Zoeknaam, $Achternaam, $Voorvoegsels, $Geslacht, $BezoekAdres, $PostAdres, DateTime $Geboortedatum, $Geboorteplaats, $BSN, $Rekening, $Telefoon1, $Telefoon2, $Email, $BurgerlijkeStaat, $PartnerCode, $Autorisaties, $Identificatiebewijs, $IdentificatieNummer, DateTime $IdentificatieGeldig, $Kinderen, $Bedrijf, $IBAN, $BIC, $InzakeRekening, $RekeningInzake, $RekeningInzakeIBAN, $RekeningInzakeBIC, $Klantmanager, $Pincode)
     {
       $this->RelatieCode = $RelatieCode;
       $this->Voornamen = $Voornamen;
@@ -210,7 +213,7 @@ class TRelatie
       $this->Geslacht = $Geslacht;
       $this->BezoekAdres = $BezoekAdres;
       $this->PostAdres = $PostAdres;
-      $this->Geboortedatum = $Geboortedatum->format(\DateTime::ATOM);
+      $this->Geboortedatum = $Geboortedatum->format(DateTime::ATOM);
       $this->Geboorteplaats = $Geboorteplaats;
       $this->BSN = $BSN;
       $this->Rekening = $Rekening;
@@ -222,7 +225,7 @@ class TRelatie
       $this->Autorisaties = $Autorisaties;
       $this->Identificatiebewijs = $Identificatiebewijs;
       $this->IdentificatieNummer = $IdentificatieNummer;
-      $this->IdentificatieGeldig = $IdentificatieGeldig->format(\DateTime::ATOM);
+      $this->IdentificatieGeldig = $IdentificatieGeldig->format(DateTime::ATOM);
       $this->Kinderen = $Kinderen;
       $this->Bedrijf = $Bedrijf;
       $this->IBAN = $IBAN;
@@ -398,7 +401,7 @@ class TRelatie
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getGeboortedatum()
     {
@@ -406,20 +409,20 @@ class TRelatie
         return null;
       } else {
         try {
-          return new \DateTime($this->Geboortedatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Geboortedatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Geboortedatum
+     * @param DateTime $Geboortedatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TRelatie
      */
-    public function setGeboortedatum(\DateTime $Geboortedatum)
+    public function setGeboortedatum(DateTime $Geboortedatum)
     {
-      $this->Geboortedatum = $Geboortedatum->format(\DateTime::ATOM);
+      $this->Geboortedatum = $Geboortedatum->format(DateTime::ATOM);
       return $this;
     }
 
@@ -622,7 +625,7 @@ class TRelatie
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getIdentificatieGeldig()
     {
@@ -630,20 +633,20 @@ class TRelatie
         return null;
       } else {
         try {
-          return new \DateTime($this->IdentificatieGeldig);
-        } catch (\Exception $e) {
+          return new DateTime($this->IdentificatieGeldig);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $IdentificatieGeldig
+     * @param DateTime $IdentificatieGeldig
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TRelatie
      */
-    public function setIdentificatieGeldig(\DateTime $IdentificatieGeldig)
+    public function setIdentificatieGeldig(DateTime $IdentificatieGeldig)
     {
-      $this->IdentificatieGeldig = $IdentificatieGeldig->format(\DateTime::ATOM);
+      $this->IdentificatieGeldig = $IdentificatieGeldig->format(DateTime::ATOM);
       return $this;
     }
 

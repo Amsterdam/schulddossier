@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
 class AppLogController extends AbstractController
 {
-    #[Route(path: '/app/log/')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/log/')]
     #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
     public function index(ManagerRegistry $doctrine): Response
     {

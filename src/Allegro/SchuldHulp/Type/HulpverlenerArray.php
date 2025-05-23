@@ -9,14 +9,14 @@ class HulpverlenerArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\THulpverlener
+     * @var THulpverlener
      */
     private $THulpverlener;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\THulpverlener $THulpverlener
+     * @var THulpverlener $THulpverlener
      */
     public function __construct($THulpverlener)
     {
@@ -24,7 +24,7 @@ class HulpverlenerArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\THulpverlener
+     * @return THulpverlener
      */
     public function getTHulpverlener()
     {
@@ -32,7 +32,7 @@ class HulpverlenerArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\THulpverlener $THulpverlener
+     * @param THulpverlener $THulpverlener
      * @return HulpverlenerArray
      */
     public function withTHulpverlener($THulpverlener)

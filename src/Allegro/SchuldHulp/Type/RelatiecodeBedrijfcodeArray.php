@@ -17,7 +17,7 @@ class RelatiecodeBedrijfcodeArray implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatiecodeBedrijfcode $TRelatiecodeBedrijfcode
+     * @var TRelatiecodeBedrijfcode $TRelatiecodeBedrijfcode
      */
     public function __construct($TRelatiecodeBedrijfcode)
     {
@@ -25,7 +25,7 @@ class RelatiecodeBedrijfcodeArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatiecodeBedrijfcode
+     * @return TRelatiecodeBedrijfcode
      */
     public function getTRelatiecodeBedrijfcode()
     {
@@ -33,7 +33,7 @@ class RelatiecodeBedrijfcodeArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatiecodeBedrijfcode $TRelatiecodeBedrijfcode
+     * @param TRelatiecodeBedrijfcode $TRelatiecodeBedrijfcode
      * @return RelatiecodeBedrijfcodeArray
      */
     public function withTRelatiecodeBedrijfcode($TRelatiecodeBedrijfcode)

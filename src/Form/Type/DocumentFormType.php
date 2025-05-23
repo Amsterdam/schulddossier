@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use DateTime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,7 +26,7 @@ class DocumentFormType extends AbstractType
             /** @var $entity Document */
             $entity = $event->getData();
             if ($entity !== null && $entity->getFile() !== null) {
-                $entity->setUploadDatumTijd(new \DateTime());
+                $entity->setUploadDatumTijd(new DateTime());
                 $entity->setMd5Hash(md5($entity->getFile()->getRealPath()));
             }
         });

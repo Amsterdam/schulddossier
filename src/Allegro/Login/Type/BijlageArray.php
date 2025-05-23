@@ -8,14 +8,14 @@ class BijlageArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBijlage
+     * @var TBijlage
      */
     private $TBijlage;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBijlage $TBijlage
+     * @var TBijlage $TBijlage
      */
     public function __construct($TBijlage)
     {
@@ -23,7 +23,7 @@ class BijlageArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBijlage
+     * @return TBijlage
      */
     public function getTBijlage()
     {
@@ -31,7 +31,7 @@ class BijlageArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBijlage $TBijlage
+     * @param TBijlage $TBijlage
      * @return BijlageArray
      */
     public function withTBijlage($TBijlage)

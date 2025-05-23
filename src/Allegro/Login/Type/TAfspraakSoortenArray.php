@@ -8,14 +8,14 @@ class TAfspraakSoortenArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraakSoorten
+     * @var TAfspraakSoorten
      */
     private $TAfspraakSoorten;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraakSoorten $TAfspraakSoorten
+     * @var TAfspraakSoorten $TAfspraakSoorten
      */
     public function __construct($TAfspraakSoorten)
     {
@@ -23,7 +23,7 @@ class TAfspraakSoortenArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraakSoorten
+     * @return TAfspraakSoorten
      */
     public function getTAfspraakSoorten()
     {
@@ -31,7 +31,7 @@ class TAfspraakSoortenArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraakSoorten $TAfspraakSoorten
+     * @param TAfspraakSoorten $TAfspraakSoorten
      * @return TAfspraakSoortenArray
      */
     public function withTAfspraakSoorten($TAfspraakSoorten)

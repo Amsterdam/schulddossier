@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TKind
 {
 
@@ -21,7 +24,7 @@ class TKind
     protected $Achternaam = null;
 
     /**
-     * @var \DateTime $Geboortedatum
+     * @var DateTime $Geboortedatum
      */
     protected $Geboortedatum = null;
 
@@ -39,16 +42,16 @@ class TKind
      * @param int $UniekVolgnummer
      * @param string $Voornaam
      * @param string $Achternaam
-     * @param \DateTime $Geboortedatum
+     * @param DateTime $Geboortedatum
      * @param string $Activiteit
      * @param boolean $MeetelKind
      */
-    public function __construct($UniekVolgnummer, $Voornaam, $Achternaam, \DateTime $Geboortedatum, $Activiteit, $MeetelKind)
+    public function __construct($UniekVolgnummer, $Voornaam, $Achternaam, DateTime $Geboortedatum, $Activiteit, $MeetelKind)
     {
       $this->UniekVolgnummer = $UniekVolgnummer;
       $this->Voornaam = $Voornaam;
       $this->Achternaam = $Achternaam;
-      $this->Geboortedatum = $Geboortedatum->format(\DateTime::ATOM);
+      $this->Geboortedatum = $Geboortedatum->format(DateTime::ATOM);
       $this->Activiteit = $Activiteit;
       $this->MeetelKind = $MeetelKind;
     }
@@ -108,7 +111,7 @@ class TKind
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getGeboortedatum()
     {
@@ -116,20 +119,20 @@ class TKind
         return null;
       } else {
         try {
-          return new \DateTime($this->Geboortedatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Geboortedatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Geboortedatum
+     * @param DateTime $Geboortedatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TKind
      */
-    public function setGeboortedatum(\DateTime $Geboortedatum)
+    public function setGeboortedatum(DateTime $Geboortedatum)
     {
-      $this->Geboortedatum = $Geboortedatum->format(\DateTime::ATOM);
+      $this->Geboortedatum = $Geboortedatum->format(DateTime::ATOM);
       return $this;
     }
 

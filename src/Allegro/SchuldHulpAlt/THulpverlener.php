@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class THulpverlener
 {
 
@@ -41,7 +44,7 @@ class THulpverlener
     protected $InzageGevraagd = null;
 
     /**
-     * @var \DateTime $DatumInzageGevraagd
+     * @var DateTime $DatumInzageGevraagd
      */
     protected $DatumInzageGevraagd = null;
 
@@ -51,7 +54,7 @@ class THulpverlener
     protected $Inzage = null;
 
     /**
-     * @var \DateTime $DatumInzage
+     * @var DateTime $DatumInzage
      */
     protected $DatumInzage = null;
 
@@ -63,11 +66,11 @@ class THulpverlener
      * @param string $ContactNaam
      * @param string $SoortHulp
      * @param boolean $InzageGevraagd
-     * @param \DateTime $DatumInzageGevraagd
+     * @param DateTime $DatumInzageGevraagd
      * @param string $Inzage
-     * @param \DateTime $DatumInzage
+     * @param DateTime $DatumInzage
      */
-    public function __construct($Code, $OrganisatieCode, $OrganisatieNaam, $ContactCode, $ContactNaam, $SoortHulp, $InzageGevraagd, \DateTime $DatumInzageGevraagd, $Inzage, \DateTime $DatumInzage)
+    public function __construct($Code, $OrganisatieCode, $OrganisatieNaam, $ContactCode, $ContactNaam, $SoortHulp, $InzageGevraagd, DateTime $DatumInzageGevraagd, $Inzage, DateTime $DatumInzage)
     {
       $this->Code = $Code;
       $this->OrganisatieCode = $OrganisatieCode;
@@ -76,9 +79,9 @@ class THulpverlener
       $this->ContactNaam = $ContactNaam;
       $this->SoortHulp = $SoortHulp;
       $this->InzageGevraagd = $InzageGevraagd;
-      $this->DatumInzageGevraagd = $DatumInzageGevraagd->format(\DateTime::ATOM);
+      $this->DatumInzageGevraagd = $DatumInzageGevraagd->format(DateTime::ATOM);
       $this->Inzage = $Inzage;
-      $this->DatumInzage = $DatumInzage->format(\DateTime::ATOM);
+      $this->DatumInzage = $DatumInzage->format(DateTime::ATOM);
     }
 
     /**
@@ -208,7 +211,7 @@ class THulpverlener
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumInzageGevraagd()
     {
@@ -216,20 +219,20 @@ class THulpverlener
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumInzageGevraagd);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumInzageGevraagd);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumInzageGevraagd
+     * @param DateTime $DatumInzageGevraagd
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\THulpverlener
      */
-    public function setDatumInzageGevraagd(\DateTime $DatumInzageGevraagd)
+    public function setDatumInzageGevraagd(DateTime $DatumInzageGevraagd)
     {
-      $this->DatumInzageGevraagd = $DatumInzageGevraagd->format(\DateTime::ATOM);
+      $this->DatumInzageGevraagd = $DatumInzageGevraagd->format(DateTime::ATOM);
       return $this;
     }
 
@@ -252,7 +255,7 @@ class THulpverlener
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumInzage()
     {
@@ -260,20 +263,20 @@ class THulpverlener
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumInzage);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumInzage);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumInzage
+     * @param DateTime $DatumInzage
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\THulpverlener
      */
-    public function setDatumInzage(\DateTime $DatumInzage)
+    public function setDatumInzage(DateTime $DatumInzage)
     {
-      $this->DatumInzage = $DatumInzage->format(\DateTime::ATOM);
+      $this->DatumInzage = $DatumInzage->format(DateTime::ATOM);
       return $this;
     }
 

@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TPLAanvraag
 {
 
@@ -16,7 +19,7 @@ class TPLAanvraag
     protected $Volgnummer = null;
 
     /**
-     * @var \DateTime $DatumAanvraag
+     * @var DateTime $DatumAanvraag
      */
     protected $DatumAanvraag = null;
 
@@ -46,7 +49,7 @@ class TPLAanvraag
     protected $Status = null;
 
     /**
-     * @var \DateTime $DatumStatus
+     * @var DateTime $DatumStatus
      */
     protected $DatumStatus = null;
 
@@ -56,78 +59,78 @@ class TPLAanvraag
     protected $RedenAfwijzing = null;
 
     /**
-     * @var \DateTime $DatumStatusA
+     * @var DateTime $DatumStatusA
      */
     protected $DatumStatusA = null;
 
     /**
-     * @var \DateTime $DatumStatusB
+     * @var DateTime $DatumStatusB
      */
     protected $DatumStatusB = null;
 
     /**
-     * @var \DateTime $DatumStatusC
+     * @var DateTime $DatumStatusC
      */
     protected $DatumStatusC = null;
 
     /**
-     * @var \DateTime $DatumStatusD
+     * @var DateTime $DatumStatusD
      */
     protected $DatumStatusD = null;
 
     /**
-     * @var \DateTime $DatumStatusE
+     * @var DateTime $DatumStatusE
      */
     protected $DatumStatusE = null;
 
     /**
-     * @var \DateTime $DatumStatusAfIn
+     * @var DateTime $DatumStatusAfIn
      */
     protected $DatumStatusAfIn = null;
 
     /**
-     * @var \DateTime $DatumStatusFiat
+     * @var DateTime $DatumStatusFiat
      */
     protected $DatumStatusFiat = null;
 
     /**
      * @param int $Relatiecode
      * @param int $Volgnummer
-     * @param \DateTime $DatumAanvraag
+     * @param DateTime $DatumAanvraag
      * @param eSoortLening $SoortLening
      * @param int $MedelenerCode
      * @param string $Medewerker
      * @param float $GewenstKrediet
      * @param eStatusAanvraag $Status
-     * @param \DateTime $DatumStatus
+     * @param DateTime $DatumStatus
      * @param string $RedenAfwijzing
-     * @param \DateTime $DatumStatusA
-     * @param \DateTime $DatumStatusB
-     * @param \DateTime $DatumStatusC
-     * @param \DateTime $DatumStatusD
-     * @param \DateTime $DatumStatusE
-     * @param \DateTime $DatumStatusAfIn
-     * @param \DateTime $DatumStatusFiat
+     * @param DateTime $DatumStatusA
+     * @param DateTime $DatumStatusB
+     * @param DateTime $DatumStatusC
+     * @param DateTime $DatumStatusD
+     * @param DateTime $DatumStatusE
+     * @param DateTime $DatumStatusAfIn
+     * @param DateTime $DatumStatusFiat
      */
-    public function __construct($Relatiecode, $Volgnummer, \DateTime $DatumAanvraag, $SoortLening, $MedelenerCode, $Medewerker, $GewenstKrediet, $Status, \DateTime $DatumStatus, $RedenAfwijzing, \DateTime $DatumStatusA, \DateTime $DatumStatusB, \DateTime $DatumStatusC, \DateTime $DatumStatusD, \DateTime $DatumStatusE, \DateTime $DatumStatusAfIn, \DateTime $DatumStatusFiat)
+    public function __construct($Relatiecode, $Volgnummer, DateTime $DatumAanvraag, $SoortLening, $MedelenerCode, $Medewerker, $GewenstKrediet, $Status, DateTime $DatumStatus, $RedenAfwijzing, DateTime $DatumStatusA, DateTime $DatumStatusB, DateTime $DatumStatusC, DateTime $DatumStatusD, DateTime $DatumStatusE, DateTime $DatumStatusAfIn, DateTime $DatumStatusFiat)
     {
       $this->Relatiecode = $Relatiecode;
       $this->Volgnummer = $Volgnummer;
-      $this->DatumAanvraag = $DatumAanvraag->format(\DateTime::ATOM);
+      $this->DatumAanvraag = $DatumAanvraag->format(DateTime::ATOM);
       $this->SoortLening = $SoortLening;
       $this->MedelenerCode = $MedelenerCode;
       $this->Medewerker = $Medewerker;
       $this->GewenstKrediet = $GewenstKrediet;
       $this->Status = $Status;
-      $this->DatumStatus = $DatumStatus->format(\DateTime::ATOM);
+      $this->DatumStatus = $DatumStatus->format(DateTime::ATOM);
       $this->RedenAfwijzing = $RedenAfwijzing;
-      $this->DatumStatusA = $DatumStatusA->format(\DateTime::ATOM);
-      $this->DatumStatusB = $DatumStatusB->format(\DateTime::ATOM);
-      $this->DatumStatusC = $DatumStatusC->format(\DateTime::ATOM);
-      $this->DatumStatusD = $DatumStatusD->format(\DateTime::ATOM);
-      $this->DatumStatusE = $DatumStatusE->format(\DateTime::ATOM);
-      $this->DatumStatusAfIn = $DatumStatusAfIn->format(\DateTime::ATOM);
-      $this->DatumStatusFiat = $DatumStatusFiat->format(\DateTime::ATOM);
+      $this->DatumStatusA = $DatumStatusA->format(DateTime::ATOM);
+      $this->DatumStatusB = $DatumStatusB->format(DateTime::ATOM);
+      $this->DatumStatusC = $DatumStatusC->format(DateTime::ATOM);
+      $this->DatumStatusD = $DatumStatusD->format(DateTime::ATOM);
+      $this->DatumStatusE = $DatumStatusE->format(DateTime::ATOM);
+      $this->DatumStatusAfIn = $DatumStatusAfIn->format(DateTime::ATOM);
+      $this->DatumStatusFiat = $DatumStatusFiat->format(DateTime::ATOM);
     }
 
     /**
@@ -167,7 +170,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumAanvraag()
     {
@@ -175,20 +178,20 @@ class TPLAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumAanvraag);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumAanvraag);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumAanvraag
+     * @param DateTime $DatumAanvraag
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPLAanvraag
      */
-    public function setDatumAanvraag(\DateTime $DatumAanvraag)
+    public function setDatumAanvraag(DateTime $DatumAanvraag)
     {
-      $this->DatumAanvraag = $DatumAanvraag->format(\DateTime::ATOM);
+      $this->DatumAanvraag = $DatumAanvraag->format(DateTime::ATOM);
       return $this;
     }
 
@@ -283,7 +286,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumStatus()
     {
@@ -291,20 +294,20 @@ class TPLAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumStatus);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumStatus);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumStatus
+     * @param DateTime $DatumStatus
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPLAanvraag
      */
-    public function setDatumStatus(\DateTime $DatumStatus)
+    public function setDatumStatus(DateTime $DatumStatus)
     {
-      $this->DatumStatus = $DatumStatus->format(\DateTime::ATOM);
+      $this->DatumStatus = $DatumStatus->format(DateTime::ATOM);
       return $this;
     }
 
@@ -327,7 +330,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumStatusA()
     {
@@ -335,25 +338,25 @@ class TPLAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumStatusA);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumStatusA);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumStatusA
+     * @param DateTime $DatumStatusA
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPLAanvraag
      */
-    public function setDatumStatusA(\DateTime $DatumStatusA)
+    public function setDatumStatusA(DateTime $DatumStatusA)
     {
-      $this->DatumStatusA = $DatumStatusA->format(\DateTime::ATOM);
+      $this->DatumStatusA = $DatumStatusA->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumStatusB()
     {
@@ -361,25 +364,25 @@ class TPLAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumStatusB);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumStatusB);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumStatusB
+     * @param DateTime $DatumStatusB
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPLAanvraag
      */
-    public function setDatumStatusB(\DateTime $DatumStatusB)
+    public function setDatumStatusB(DateTime $DatumStatusB)
     {
-      $this->DatumStatusB = $DatumStatusB->format(\DateTime::ATOM);
+      $this->DatumStatusB = $DatumStatusB->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumStatusC()
     {
@@ -387,25 +390,25 @@ class TPLAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumStatusC);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumStatusC);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumStatusC
+     * @param DateTime $DatumStatusC
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPLAanvraag
      */
-    public function setDatumStatusC(\DateTime $DatumStatusC)
+    public function setDatumStatusC(DateTime $DatumStatusC)
     {
-      $this->DatumStatusC = $DatumStatusC->format(\DateTime::ATOM);
+      $this->DatumStatusC = $DatumStatusC->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumStatusD()
     {
@@ -413,25 +416,25 @@ class TPLAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumStatusD);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumStatusD);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumStatusD
+     * @param DateTime $DatumStatusD
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPLAanvraag
      */
-    public function setDatumStatusD(\DateTime $DatumStatusD)
+    public function setDatumStatusD(DateTime $DatumStatusD)
     {
-      $this->DatumStatusD = $DatumStatusD->format(\DateTime::ATOM);
+      $this->DatumStatusD = $DatumStatusD->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumStatusE()
     {
@@ -439,25 +442,25 @@ class TPLAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumStatusE);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumStatusE);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumStatusE
+     * @param DateTime $DatumStatusE
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPLAanvraag
      */
-    public function setDatumStatusE(\DateTime $DatumStatusE)
+    public function setDatumStatusE(DateTime $DatumStatusE)
     {
-      $this->DatumStatusE = $DatumStatusE->format(\DateTime::ATOM);
+      $this->DatumStatusE = $DatumStatusE->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumStatusAfIn()
     {
@@ -465,25 +468,25 @@ class TPLAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumStatusAfIn);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumStatusAfIn);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumStatusAfIn
+     * @param DateTime $DatumStatusAfIn
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPLAanvraag
      */
-    public function setDatumStatusAfIn(\DateTime $DatumStatusAfIn)
+    public function setDatumStatusAfIn(DateTime $DatumStatusAfIn)
     {
-      $this->DatumStatusAfIn = $DatumStatusAfIn->format(\DateTime::ATOM);
+      $this->DatumStatusAfIn = $DatumStatusAfIn->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumStatusFiat()
     {
@@ -491,20 +494,20 @@ class TPLAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumStatusFiat);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumStatusFiat);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumStatusFiat
+     * @param DateTime $DatumStatusFiat
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPLAanvraag
      */
-    public function setDatumStatusFiat(\DateTime $DatumStatusFiat)
+    public function setDatumStatusFiat(DateTime $DatumStatusFiat)
     {
-      $this->DatumStatusFiat = $DatumStatusFiat->format(\DateTime::ATOM);
+      $this->DatumStatusFiat = $DatumStatusFiat->format(DateTime::ATOM);
       return $this;
     }
 

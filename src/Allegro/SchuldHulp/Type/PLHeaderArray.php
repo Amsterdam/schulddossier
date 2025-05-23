@@ -9,14 +9,14 @@ class PLHeaderArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader
+     * @var TPLHeader
      */
     private $TPLHeader;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader $TPLHeader
+     * @var TPLHeader $TPLHeader
      */
     public function __construct($TPLHeader)
     {
@@ -24,7 +24,7 @@ class PLHeaderArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader
+     * @return TPLHeader
      */
     public function getTPLHeader()
     {
@@ -32,7 +32,7 @@ class PLHeaderArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader $TPLHeader
+     * @param TPLHeader $TPLHeader
      * @return PLHeaderArray
      */
     public function withTPLHeader($TPLHeader)

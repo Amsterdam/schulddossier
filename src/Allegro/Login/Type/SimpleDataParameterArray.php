@@ -8,14 +8,14 @@ class SimpleDataParameterArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataParameter
+     * @var SimpleDataParameter
      */
     private $SimpleDataParameter;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataParameter $SimpleDataParameter
+     * @var SimpleDataParameter $SimpleDataParameter
      */
     public function __construct($SimpleDataParameter)
     {
@@ -23,7 +23,7 @@ class SimpleDataParameterArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataParameter
+     * @return SimpleDataParameter
      */
     public function getSimpleDataParameter()
     {
@@ -31,7 +31,7 @@ class SimpleDataParameterArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataParameter $SimpleDataParameter
+     * @param SimpleDataParameter $SimpleDataParameter
      * @return SimpleDataParameterArray
      */
     public function withSimpleDataParameter($SimpleDataParameter)

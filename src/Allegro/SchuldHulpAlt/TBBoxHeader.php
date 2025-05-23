@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TBBoxHeader
 {
 
@@ -21,7 +24,7 @@ class TBBoxHeader
     protected $Onderwerp = null;
 
     /**
-     * @var \DateTime $Tijdstip
+     * @var DateTime $Tijdstip
      */
     protected $Tijdstip = null;
 
@@ -49,18 +52,18 @@ class TBBoxHeader
      * @param int $Code
      * @param string $AfzenderOntvanger
      * @param string $Onderwerp
-     * @param \DateTime $Tijdstip
+     * @param DateTime $Tijdstip
      * @param boolean $IndicatieOntvangen
      * @param boolean $IndicatieGelezen
      * @param boolean $IndicatieArchief
      * @param boolean $IndicatieBijlage
      */
-    public function __construct($Code, $AfzenderOntvanger, $Onderwerp, \DateTime $Tijdstip, $IndicatieOntvangen, $IndicatieGelezen, $IndicatieArchief, $IndicatieBijlage)
+    public function __construct($Code, $AfzenderOntvanger, $Onderwerp, DateTime $Tijdstip, $IndicatieOntvangen, $IndicatieGelezen, $IndicatieArchief, $IndicatieBijlage)
     {
       $this->Code = $Code;
       $this->AfzenderOntvanger = $AfzenderOntvanger;
       $this->Onderwerp = $Onderwerp;
-      $this->Tijdstip = $Tijdstip->format(\DateTime::ATOM);
+      $this->Tijdstip = $Tijdstip->format(DateTime::ATOM);
       $this->IndicatieOntvangen = $IndicatieOntvangen;
       $this->IndicatieGelezen = $IndicatieGelezen;
       $this->IndicatieArchief = $IndicatieArchief;
@@ -122,7 +125,7 @@ class TBBoxHeader
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getTijdstip()
     {
@@ -130,20 +133,20 @@ class TBBoxHeader
         return null;
       } else {
         try {
-          return new \DateTime($this->Tijdstip);
-        } catch (\Exception $e) {
+          return new DateTime($this->Tijdstip);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Tijdstip
+     * @param DateTime $Tijdstip
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBoxHeader
      */
-    public function setTijdstip(\DateTime $Tijdstip)
+    public function setTijdstip(DateTime $Tijdstip)
     {
-      $this->Tijdstip = $Tijdstip->format(\DateTime::ATOM);
+      $this->Tijdstip = $Tijdstip->format(DateTime::ATOM);
       return $this;
     }
 

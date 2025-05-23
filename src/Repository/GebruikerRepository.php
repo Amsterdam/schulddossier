@@ -2,6 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
+use DateTime;
+use DateInterval;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -252,8 +254,8 @@ class GebruikerRepository extends ServiceEntityRepository
 
     public function findActiveGebruikersInactiveForDays(int $days, ?bool $active = null)
     {
-        $limitDate = new \DateTime();
-        $limitDate->sub(new \DateInterval('P' . $days . 'D'));
+        $limitDate = new DateTime();
+        $limitDate->sub(new DateInterval('P' . $days . 'D'));
 
         $qb = $this->createQueryBuilder('g');
         $qb->where('g.lastLogin < :date');

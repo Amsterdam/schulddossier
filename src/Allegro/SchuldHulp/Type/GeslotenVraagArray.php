@@ -9,14 +9,14 @@ class GeslotenVraagArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGeslotenVraag
+     * @var TGeslotenVraag
      */
     private $TGeslotenVraag;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGeslotenVraag $TGeslotenVraag
+     * @var TGeslotenVraag $TGeslotenVraag
      */
     public function __construct($TGeslotenVraag)
     {
@@ -24,7 +24,7 @@ class GeslotenVraagArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGeslotenVraag
+     * @return TGeslotenVraag
      */
     public function getTGeslotenVraag()
     {
@@ -32,7 +32,7 @@ class GeslotenVraagArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGeslotenVraag $TGeslotenVraag
+     * @param TGeslotenVraag $TGeslotenVraag
      * @return GeslotenVraagArray
      */
     public function withTGeslotenVraag($TGeslotenVraag)

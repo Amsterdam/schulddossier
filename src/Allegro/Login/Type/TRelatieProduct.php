@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TRelatieProduct implements RequestInterface
@@ -28,12 +29,12 @@ class TRelatieProduct implements RequestInterface
     private $Status;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Startdatum;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Einddatum;
 
@@ -43,7 +44,7 @@ class TRelatieProduct implements RequestInterface
     private $Eindstatus;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
+     * @var TMedewerker
      */
     private $Medewerker;
 
@@ -59,10 +60,10 @@ class TRelatieProduct implements RequestInterface
      * @var string $Product
      * @var string $NaamProduct
      * @var string $Status
-     * @var \DateTimeInterface $Startdatum
-     * @var \DateTimeInterface $Einddatum
+     * @var DateTimeInterface $Startdatum
+     * @var DateTimeInterface $Einddatum
      * @var string $Eindstatus
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Medewerker
+     * @var TMedewerker $Medewerker
      * @var string $Team
      */
     public function __construct($Contractnummer, $Product, $NaamProduct, $Status, $Startdatum, $Einddatum, $Eindstatus, $Medewerker, $Team)
@@ -159,7 +160,7 @@ class TRelatieProduct implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum()
     {
@@ -167,7 +168,7 @@ class TRelatieProduct implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Startdatum
+     * @param DateTimeInterface $Startdatum
      * @return TRelatieProduct
      */
     public function withStartdatum($Startdatum)
@@ -179,7 +180,7 @@ class TRelatieProduct implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEinddatum()
     {
@@ -187,7 +188,7 @@ class TRelatieProduct implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Einddatum
+     * @param DateTimeInterface $Einddatum
      * @return TRelatieProduct
      */
     public function withEinddatum($Einddatum)
@@ -219,7 +220,7 @@ class TRelatieProduct implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
+     * @return TMedewerker
      */
     public function getMedewerker()
     {
@@ -227,7 +228,7 @@ class TRelatieProduct implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Medewerker
+     * @param TMedewerker $Medewerker
      * @return TRelatieProduct
      */
     public function withMedewerker($Medewerker)

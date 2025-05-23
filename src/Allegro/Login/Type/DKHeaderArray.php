@@ -8,14 +8,14 @@ class DKHeaderArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader
+     * @var TDKHeader
      */
     private $TDKHeader;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader $TDKHeader
+     * @var TDKHeader $TDKHeader
      */
     public function __construct($TDKHeader)
     {
@@ -23,7 +23,7 @@ class DKHeaderArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader
+     * @return TDKHeader
      */
     public function getTDKHeader()
     {
@@ -31,7 +31,7 @@ class DKHeaderArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader $TDKHeader
+     * @param TDKHeader $TDKHeader
      * @return DKHeaderArray
      */
     public function withTDKHeader($TDKHeader)

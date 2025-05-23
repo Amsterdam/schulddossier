@@ -8,14 +8,14 @@ class PRSAfschriftMutatieArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftMutatie
+     * @var TPRSAfschriftMutatie
      */
     private $TPRSAfschriftMutatie;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftMutatie $TPRSAfschriftMutatie
+     * @var TPRSAfschriftMutatie $TPRSAfschriftMutatie
      */
     public function __construct($TPRSAfschriftMutatie)
     {
@@ -23,7 +23,7 @@ class PRSAfschriftMutatieArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftMutatie
+     * @return TPRSAfschriftMutatie
      */
     public function getTPRSAfschriftMutatie()
     {
@@ -31,7 +31,7 @@ class PRSAfschriftMutatieArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftMutatie $TPRSAfschriftMutatie
+     * @param TPRSAfschriftMutatie $TPRSAfschriftMutatie
      * @return PRSAfschriftMutatieArray
      */
     public function withTPRSAfschriftMutatie($TPRSAfschriftMutatie)

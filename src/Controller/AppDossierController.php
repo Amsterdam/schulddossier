@@ -2,6 +2,11 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use DateTime;
+use Exception;
+use Error;
+use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent as ActionEventEntity;
@@ -76,9 +81,9 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
-    #[Route(path: '/app/dossier/')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/')]
     public function index(
         Request $request,
         EntityManagerInterface $em,
@@ -181,7 +186,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/dossier/prullenbak')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/prullenbak')]
     #[IsGranted(attribute: new Expression(
         "is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
     ))]
@@ -213,7 +218,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/dossier/nieuw')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/nieuw')]
     public function create(
         Request $request,
         EntityManagerInterface $em,
@@ -299,7 +304,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/dossier/nieuw/{dossierId}/')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/nieuw/{dossierId}/')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function createAddtional(
         Request $request,
@@ -340,7 +345,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/voorlegger')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/voorlegger')]
     #[IsGranted(
         attribute: new Expression("is_granted('access', subject)"),
         subject: new Expression('args["dossier"]'),
@@ -377,7 +382,7 @@ class AppDossierController extends AbstractController
                             $document->setMainTag('dossier-' . $dossier->getId());
                             $document->setGroep('dossier');
                             $document->setUploader($this->getUser());
-                            $document->setUploadDatumTijd(new \DateTime());
+                            $document->setUploadDatumTijd(new DateTime());
                             $dossierDocument = new DossierDocument();
                             $dossierDocument->setDocument($document);
                             $dossierDocument->setDossier($dossier);
@@ -460,7 +465,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailAlgemeen(
         Request $request,
@@ -503,7 +508,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/prullenbak')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/documenten/prullenbak')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailPrullenbak(
         #[MapEntity(id: 'dossierId')]
@@ -524,7 +529,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/overige-documenten')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/documenten/overige-documenten')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailOverigeDocumenten(
         Request $request,
@@ -574,7 +579,7 @@ class AppDossierController extends AbstractController
                     $document->setMainTag('dossier-' . $dossier->getId());
                     $document->setGroep('dossier');
                     $document->setUploader($this->getUser());
-                    $document->setUploadDatumTijd(new \DateTime());
+                    $document->setUploadDatumTijd(new DateTime());
                     $dossierDocument = new DossierDocument();
                     $dossierDocument->setDocument($document);
                     $dossierDocument->setDossier($dossier);
@@ -615,7 +620,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/documenten')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/documenten')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailDocumenten(
         #[MapEntity(id: 'dossierId')]
@@ -626,7 +631,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailDocument(
         #[MapEntity(id: 'dossierId')]
@@ -645,7 +650,7 @@ class AppDossierController extends AbstractController
         );
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/download')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/download')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function downloadDocument(
         #[MapEntity(id: 'dossierId')]
@@ -702,7 +707,7 @@ class AppDossierController extends AbstractController
         return $response;
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/log')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/log')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function log(
         Request $request,
@@ -723,7 +728,7 @@ class AppDossierController extends AbstractController
         return $this->render('Dossier/detailLogboek.html.twig', ['logs' => $logs, 'dossier' => $dossier]);
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/schulden')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/schulden')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailSchulden(
         Request $request,
@@ -750,7 +755,7 @@ class AppDossierController extends AbstractController
                             $document->setMainTag('dossier-' . $dossier->getId());
                             $document->setGroep('dossier');
                             $document->setUploader($this->getUser());
-                            $document->setUploadDatumTijd(new \DateTime());
+                            $document->setUploadDatumTijd(new DateTime());
                             $dossierDocument = new DossierDocument();
                             $dossierDocument->setDocument($document);
                             $dossierDocument->setDossier($dossier);
@@ -808,7 +813,7 @@ class AppDossierController extends AbstractController
                     $document->setMainTag('dossier-' . $dossier->getId());
                     $document->setGroep('dossier');
                     $document->setUploader($this->getUser());
-                    $document->setUploadDatumTijd(new \DateTime());
+                    $document->setUploadDatumTijd(new DateTime());
                     $dossierDocument = new DossierDocument();
                     $dossierDocument->setDocument($document);
                     $dossierDocument->setDossier($dossier);
@@ -860,7 +865,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/aantekeningen')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/aantekeningen')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailAantekeningen(
         Request $request,
@@ -903,7 +908,7 @@ class AppDossierController extends AbstractController
     /**
      * @return RedirectResponse
      */
-    #[Route(path: '/app/dossier/allegro/refresh/{dossierId}')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/allegro/refresh/{dossierId}')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function allegroRefresh(
         #[MapEntity(id: 'dossierId')]
@@ -912,7 +917,7 @@ class AppDossierController extends AbstractController
     ): RedirectResponse {
         try {
             $allegroService->updateDossier($dossier);
-        } catch (\Exception|\Error $e) {
+        } catch (Exception|Error $e) {
             $this->addFlash('error', 'Ongeldig allegro nummer of geen verbinding met allegro mogelijk.');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
         }
@@ -930,14 +935,14 @@ class AppDossierController extends AbstractController
      *
      * @return JsonResponse
      */
-    #[Route(path: '/app/dossier/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder', methods: ['POST'])]
     #[IsGranted(attribute: new Expression('user == aantekening.getGebruiker()'))]
     public function deleteAantekening(
         Request $request,
         #[MapEntity(id: 'aantekeningId')]
         Aantekening $aantekening,
         EntityManagerInterface $em
-    ): \Symfony\Component\HttpFoundation\JsonResponse {
+    ): JsonResponse {
         if ($this->isCsrfTokenValid(
                 'gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening',
                 $request->request->get('token')
@@ -951,7 +956,7 @@ class AppDossierController extends AbstractController
         return new JsonResponse([]);
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/schulden/excel')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/schulden/excel')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function detailSchuldenExcel(
         #[MapEntity(id: 'dossierId')]
@@ -975,7 +980,7 @@ class AppDossierController extends AbstractController
         return $response;
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/status', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/status', methods: ['POST'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function changeStatus(
         Request $request,
@@ -1021,7 +1026,7 @@ class AppDossierController extends AbstractController
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/naar-prullenbak', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/naar-prullenbak', methods: ['POST'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function moveDocumentToPrullenbak(
         Request $request,
@@ -1060,7 +1065,7 @@ class AppDossierController extends AbstractController
         );
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/verwijderen', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/verwijderen', methods: ['POST'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function removeDocument(
         Request $request,
@@ -1106,7 +1111,7 @@ class AppDossierController extends AbstractController
         );
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/herstellen', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/documenten/detail/{documentId}/herstellen', methods: ['POST'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function restoreDocument(
         Request $request,
@@ -1152,13 +1157,13 @@ class AppDossierController extends AbstractController
         );
     }
 
-    #[Route(path: '/app/dossier/detail/documenten/detail/dummy-html/')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/documenten/detail/dummy-html/')]
     public function dummyHTMLDocument(EntityManagerInterface $em): Response
     {
         return $this->render('Dossier/documentEmailHTML.html.twig', []);
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/naar-prullenbak', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/naar-prullenbak', methods: ['POST'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function moveToPrullenbak(
         Request $request,
@@ -1186,7 +1191,7 @@ class AppDossierController extends AbstractController
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/verwijderen', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/verwijderen', methods: ['POST'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function remove(
         Request $request,
@@ -1223,7 +1228,7 @@ class AppDossierController extends AbstractController
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/herstellen', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/herstellen', methods: ['POST'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function restore(
         Request $request,
@@ -1252,7 +1257,7 @@ class AppDossierController extends AbstractController
         );
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/verwijderen', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/verwijderen', methods: ['POST'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function removeSchuldItem(
         Request $request,
@@ -1293,7 +1298,7 @@ class AppDossierController extends AbstractController
         );
     }
 
-    #[Route(path: '/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/herstellen', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/schulden/detail/{schuldItemId}/herstellen', methods: ['POST'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function restoreSchuldItem(
         Request $request,
@@ -1339,7 +1344,7 @@ class AppDossierController extends AbstractController
      *
      * @return Response
      */
-    #[Route(path: '/app/dossier/detail/{dossierId}/downloadPdf', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/downloadPdf', methods: ['GET'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function downloadPdf(
         #[MapEntity(id: 'dossierId')]
@@ -1356,7 +1361,7 @@ class AppDossierController extends AbstractController
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
-    #[Route(path: '/app/dossier/detail/{dossierId}/downloadCsv', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/downloadCsv', methods: ['GET'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function downloadCsv(
         #[MapEntity(id: 'dossierId')]
@@ -1455,8 +1460,8 @@ class AppDossierController extends AbstractController
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
 
-        $sheet->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
-        $sheet->getPageSetup()->setPaperSize(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::PAPERSIZE_A4);
+        $sheet->getPageSetup()->setOrientation(PageSetup::ORIENTATION_LANDSCAPE);
+        $sheet->getPageSetup()->setPaperSize(PageSetup::PAPERSIZE_A4);
 
 
         $sheet->setCellValueByColumnAndRow(1, 1, 'Schuldeiser');
@@ -1490,14 +1495,14 @@ class AppDossierController extends AbstractController
             $sheet->setCellValueByColumnAndRow(
                 5,
                 $rowIndex,
-                $schuldItem->getOntstaansDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel(
+                $schuldItem->getOntstaansDatum() ? Date::PHPToExcel(
                     $schuldItem->getOntstaansDatum()
                 ) : null
             );
             $sheet->setCellValueByColumnAndRow(
                 6,
                 $rowIndex,
-                $schuldItem->getVaststelDatum() ? \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel(
+                $schuldItem->getVaststelDatum() ? Date::PHPToExcel(
                     $schuldItem->getVaststelDatum()
                 ) : null
             );

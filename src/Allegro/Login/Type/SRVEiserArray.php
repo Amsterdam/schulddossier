@@ -8,14 +8,14 @@ class SRVEiserArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVEiser
+     * @var TSRVEiser
      */
     private $TSRVEiser;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVEiser $TSRVEiser
+     * @var TSRVEiser $TSRVEiser
      */
     public function __construct($TSRVEiser)
     {
@@ -23,7 +23,7 @@ class SRVEiserArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVEiser
+     * @return TSRVEiser
      */
     public function getTSRVEiser()
     {
@@ -31,7 +31,7 @@ class SRVEiserArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVEiser $TSRVEiser
+     * @param TSRVEiser $TSRVEiser
      * @return SRVEiserArray
      */
     public function withTSRVEiser($TSRVEiser)

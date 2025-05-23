@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TBBROpdracht
 {
 
@@ -56,12 +59,12 @@ class TBBROpdracht
     protected $Maximaal = null;
 
     /**
-     * @var \DateTime $StartDatum
+     * @var DateTime $StartDatum
      */
     protected $StartDatum = null;
 
     /**
-     * @var \DateTime $VolgendeDatum
+     * @var DateTime $VolgendeDatum
      */
     protected $VolgendeDatum = null;
 
@@ -91,7 +94,7 @@ class TBBROpdracht
     protected $UniekVolgnummer = null;
 
     /**
-     * @var \DateTime $DatumLaatsteBetaling
+     * @var DateTime $DatumLaatsteBetaling
      */
     protected $DatumLaatsteBetaling = null;
 
@@ -111,17 +114,17 @@ class TBBROpdracht
      * @param int $AantalKeerPerPeriode
      * @param float $PeriodeBedrag
      * @param float $Maximaal
-     * @param \DateTime $StartDatum
-     * @param \DateTime $VolgendeDatum
+     * @param DateTime $StartDatum
+     * @param DateTime $VolgendeDatum
      * @param float $BetaaldBedrag
      * @param string $RestBetaling
      * @param string $Soort
      * @param int $NummerReservering
      * @param int $UniekVolgnummer
-     * @param \DateTime $DatumLaatsteBetaling
+     * @param DateTime $DatumLaatsteBetaling
      * @param int $Prioriteit
      */
-    public function __construct($Relatiecode, $Volgnummer, $CodeBegunstigde, $Begunstigde, $Omschrijving, $Referentie, $Periodiciteit, $AantalKeerPerPeriode, $PeriodeBedrag, $Maximaal, \DateTime $StartDatum, \DateTime $VolgendeDatum, $BetaaldBedrag, $RestBetaling, $Soort, $NummerReservering, $UniekVolgnummer, \DateTime $DatumLaatsteBetaling, $Prioriteit)
+    public function __construct($Relatiecode, $Volgnummer, $CodeBegunstigde, $Begunstigde, $Omschrijving, $Referentie, $Periodiciteit, $AantalKeerPerPeriode, $PeriodeBedrag, $Maximaal, DateTime $StartDatum, DateTime $VolgendeDatum, $BetaaldBedrag, $RestBetaling, $Soort, $NummerReservering, $UniekVolgnummer, DateTime $DatumLaatsteBetaling, $Prioriteit)
     {
       $this->Relatiecode = $Relatiecode;
       $this->Volgnummer = $Volgnummer;
@@ -133,14 +136,14 @@ class TBBROpdracht
       $this->AantalKeerPerPeriode = $AantalKeerPerPeriode;
       $this->PeriodeBedrag = $PeriodeBedrag;
       $this->Maximaal = $Maximaal;
-      $this->StartDatum = $StartDatum->format(\DateTime::ATOM);
-      $this->VolgendeDatum = $VolgendeDatum->format(\DateTime::ATOM);
+      $this->StartDatum = $StartDatum->format(DateTime::ATOM);
+      $this->VolgendeDatum = $VolgendeDatum->format(DateTime::ATOM);
       $this->BetaaldBedrag = $BetaaldBedrag;
       $this->RestBetaling = $RestBetaling;
       $this->Soort = $Soort;
       $this->NummerReservering = $NummerReservering;
       $this->UniekVolgnummer = $UniekVolgnummer;
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(DateTime::ATOM);
       $this->Prioriteit = $Prioriteit;
     }
 
@@ -325,7 +328,7 @@ class TBBROpdracht
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartDatum()
     {
@@ -333,25 +336,25 @@ class TBBROpdracht
         return null;
       } else {
         try {
-          return new \DateTime($this->StartDatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->StartDatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $StartDatum
+     * @param DateTime $StartDatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBROpdracht
      */
-    public function setStartDatum(\DateTime $StartDatum)
+    public function setStartDatum(DateTime $StartDatum)
     {
-      $this->StartDatum = $StartDatum->format(\DateTime::ATOM);
+      $this->StartDatum = $StartDatum->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getVolgendeDatum()
     {
@@ -359,20 +362,20 @@ class TBBROpdracht
         return null;
       } else {
         try {
-          return new \DateTime($this->VolgendeDatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->VolgendeDatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $VolgendeDatum
+     * @param DateTime $VolgendeDatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBROpdracht
      */
-    public function setVolgendeDatum(\DateTime $VolgendeDatum)
+    public function setVolgendeDatum(DateTime $VolgendeDatum)
     {
-      $this->VolgendeDatum = $VolgendeDatum->format(\DateTime::ATOM);
+      $this->VolgendeDatum = $VolgendeDatum->format(DateTime::ATOM);
       return $this;
     }
 
@@ -467,7 +470,7 @@ class TBBROpdracht
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumLaatsteBetaling()
     {
@@ -475,20 +478,20 @@ class TBBROpdracht
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumLaatsteBetaling);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumLaatsteBetaling);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumLaatsteBetaling
+     * @param DateTime $DatumLaatsteBetaling
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBROpdracht
      */
-    public function setDatumLaatsteBetaling(\DateTime $DatumLaatsteBetaling)
+    public function setDatumLaatsteBetaling(DateTime $DatumLaatsteBetaling)
     {
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(DateTime::ATOM);
       return $this;
     }
 

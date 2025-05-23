@@ -9,14 +9,14 @@ class DataParameterArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameter
+     * @var DataParameter
      */
     private $DataParameter;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameter $DataParameter
+     * @var DataParameter $DataParameter
      */
     public function __construct($DataParameter)
     {
@@ -24,7 +24,7 @@ class DataParameterArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameter
+     * @return DataParameter
      */
     public function getDataParameter()
     {
@@ -32,7 +32,7 @@ class DataParameterArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameter $DataParameter
+     * @param DataParameter $DataParameter
      * @return DataParameterArray
      */
     public function withDataParameter($DataParameter)

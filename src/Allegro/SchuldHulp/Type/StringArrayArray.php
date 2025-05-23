@@ -9,14 +9,14 @@ class StringArrayArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
+     * @var StringArray
      */
     private $StringArray;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $StringArray
+     * @var StringArray $StringArray
      */
     public function __construct($StringArray)
     {
@@ -24,7 +24,7 @@ class StringArrayArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
+     * @return StringArray
      */
     public function getStringArray()
     {
@@ -32,7 +32,7 @@ class StringArrayArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $StringArray
+     * @param StringArray $StringArray
      * @return StringArrayArray
      */
     public function withStringArray($StringArray)

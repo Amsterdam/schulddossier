@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TDocumentSleutel
 {
 
@@ -11,7 +14,7 @@ class TDocumentSleutel
     protected $ComponentCode = null;
 
     /**
-     * @var \DateTime $ArchiefDatum
+     * @var DateTime $ArchiefDatum
      */
     protected $ArchiefDatum = null;
 
@@ -27,14 +30,14 @@ class TDocumentSleutel
 
     /**
      * @param string $ComponentCode
-     * @param \DateTime $ArchiefDatum
+     * @param DateTime $ArchiefDatum
      * @param string $Kenmerk
      * @param int $Volgnummer
      */
-    public function __construct($ComponentCode, \DateTime $ArchiefDatum, $Kenmerk, $Volgnummer)
+    public function __construct($ComponentCode, DateTime $ArchiefDatum, $Kenmerk, $Volgnummer)
     {
       $this->ComponentCode = $ComponentCode;
-      $this->ArchiefDatum = $ArchiefDatum->format(\DateTime::ATOM);
+      $this->ArchiefDatum = $ArchiefDatum->format(DateTime::ATOM);
       $this->Kenmerk = $Kenmerk;
       $this->Volgnummer = $Volgnummer;
     }
@@ -58,7 +61,7 @@ class TDocumentSleutel
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getArchiefDatum()
     {
@@ -66,20 +69,20 @@ class TDocumentSleutel
         return null;
       } else {
         try {
-          return new \DateTime($this->ArchiefDatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->ArchiefDatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $ArchiefDatum
+     * @param DateTime $ArchiefDatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TDocumentSleutel
      */
-    public function setArchiefDatum(\DateTime $ArchiefDatum)
+    public function setArchiefDatum(DateTime $ArchiefDatum)
     {
-      $this->ArchiefDatum = $ArchiefDatum->format(\DateTime::ATOM);
+      $this->ArchiefDatum = $ArchiefDatum->format(DateTime::ATOM);
       return $this;
     }
 

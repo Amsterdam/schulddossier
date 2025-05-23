@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSAfschrift implements RequestInterface
@@ -18,7 +19,7 @@ class TPRSAfschrift implements RequestInterface
     private $VolgnummerAfschrift;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumAfschrift;
 
@@ -68,7 +69,7 @@ class TPRSAfschrift implements RequestInterface
     private $VorigSaldo;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $VorigDatumAfschift;
 
@@ -77,7 +78,7 @@ class TPRSAfschrift implements RequestInterface
      *
      * @var int $Relatiecode
      * @var int $VolgnummerAfschrift
-     * @var \DateTimeInterface $DatumAfschrift
+     * @var DateTimeInterface $DatumAfschrift
      * @var float $SaldoPrs
      * @var float $TotaalBedragBijMutaties
      * @var float $TotaalBedragAfMutaties
@@ -87,7 +88,7 @@ class TPRSAfschrift implements RequestInterface
      * @var float $HuidigPrsSaldo
      * @var float $HuidigTotaalSaldoReserveringen
      * @var float $VorigSaldo
-     * @var \DateTimeInterface $VorigDatumAfschift
+     * @var DateTimeInterface $VorigDatumAfschift
      */
     public function __construct($Relatiecode, $VolgnummerAfschrift, $DatumAfschrift, $SaldoPrs, $TotaalBedragBijMutaties, $TotaalBedragAfMutaties, $TotaalInReserveringen, $TotaalUitReserveringen, $TotaalSaldoReserveringen, $HuidigPrsSaldo, $HuidigTotaalSaldoReserveringen, $VorigSaldo, $VorigDatumAfschift)
     {
@@ -147,7 +148,7 @@ class TPRSAfschrift implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAfschrift()
     {
@@ -155,7 +156,7 @@ class TPRSAfschrift implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumAfschrift
+     * @param DateTimeInterface $DatumAfschrift
      * @return TPRSAfschrift
      */
     public function withDatumAfschrift($DatumAfschrift)
@@ -347,7 +348,7 @@ class TPRSAfschrift implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getVorigDatumAfschift()
     {
@@ -355,7 +356,7 @@ class TPRSAfschrift implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $VorigDatumAfschift
+     * @param DateTimeInterface $VorigDatumAfschift
      * @return TPRSAfschrift
      */
     public function withVorigDatumAfschift($VorigDatumAfschift)

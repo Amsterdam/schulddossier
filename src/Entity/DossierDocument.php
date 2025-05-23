@@ -52,7 +52,7 @@ class DossierDocument
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier
+     * @return Dossier
      */
     public function getDossier()
     {
@@ -60,7 +60,7 @@ class DossierDocument
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document
+     * @return Document
      */
     public function getDocument()
     {

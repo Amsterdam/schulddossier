@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -36,7 +37,7 @@ class SchuldItem
     private $aanmaker;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     #[ORM\Column(type: 'datetime', nullable: false)]
     private $aanmaakDatumTijd;
@@ -49,7 +50,7 @@ class SchuldItem
     private $bewerker;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     #[ORM\Column(type: 'datetime', nullable: false)]
     private $bewerkDatumTijd;
@@ -114,14 +115,14 @@ class SchuldItem
     private $bedragOorspronkelijk;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     #[ORM\Column(type: 'date', nullable: false)]
     #[Assert\NotBlank]
     private $vaststelDatum;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     #[ORM\Column(type: 'date', nullable: true)]
     private $ontstaansDatum;
@@ -152,9 +153,9 @@ class SchuldItem
         $this->historie = new ArrayCollection();
         $this->dossierDocumenten = new ArrayCollection();
         $this->aantekeningen = new ArrayCollection();
-        $this->aanmaakDatumTijd = new \DateTime();
-        $this->bewerkDatumTijd = new \DateTime();
-        $this->vaststelDatum = new \DateTime();
+        $this->aanmaakDatumTijd = new DateTime();
+        $this->bewerkDatumTijd = new DateTime();
+        $this->vaststelDatum = new DateTime();
         $this->verwijderd = false;
     }
 
@@ -193,7 +194,7 @@ class SchuldItem
         return $this->aanmaakDatumTijd;
     }
 
-    public function setAanmaakDatumTijd(\DateTime $aanmaakDatumTijd)
+    public function setAanmaakDatumTijd(DateTime $aanmaakDatumTijd)
     {
         $this->aanmaakDatumTijd = $aanmaakDatumTijd;
     }
@@ -213,7 +214,7 @@ class SchuldItem
         return $this->bewerkDatumTijd;
     }
 
-    public function setBewerkDatumTijd(\DateTime $bewerkDatumTijd)
+    public function setBewerkDatumTijd(DateTime $bewerkDatumTijd)
     {
         $this->bewerkDatumTijd = $bewerkDatumTijd;
     }
@@ -298,7 +299,7 @@ class SchuldItem
         return $this->vaststelDatum;
     }
 
-    public function setVaststelDatum(\DateTime $vaststelDatum)
+    public function setVaststelDatum(DateTime $vaststelDatum)
     {
         $this->vaststelDatum = $vaststelDatum;
     }
@@ -308,7 +309,7 @@ class SchuldItem
         return $this->ontstaansDatum;
     }
 
-    public function setOntstaansDatum(?\DateTime $ontstaansDatum = null)
+    public function setOntstaansDatum(?DateTime $ontstaansDatum = null)
     {
         $this->ontstaansDatum = $ontstaansDatum;
     }
@@ -376,8 +377,8 @@ class SchuldItem
 
     public function isVerlopen(): bool
     {
-        if ($this->getVaststelDatum() instanceof \DateTime){
-            $gracePeriod = (new \DateTime())->modify('-6 months');
+        if ($this->getVaststelDatum() instanceof DateTime){
+            $gracePeriod = (new DateTime())->modify('-6 months');
             return $this->getVaststelDatum() < $gracePeriod;
         }
         return false;

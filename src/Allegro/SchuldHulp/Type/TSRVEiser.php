@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSRVEiser implements RequestInterface
@@ -59,7 +60,7 @@ class TSRVEiser implements RequestInterface
     private $TerugmeldingVoorstel;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumTerugmeldingVoorstel;
 
@@ -121,7 +122,7 @@ class TSRVEiser implements RequestInterface
      * @var float $TeruggemeldBedrag
      * @var float $PrognoseVoorstel
      * @var string $TerugmeldingVoorstel
-     * @var \DateTimeInterface $DatumTerugmeldingVoorstel
+     * @var DateTimeInterface $DatumTerugmeldingVoorstel
      * @var string $IndicatieOpgaaf
      * @var string $IndicatieVoorstel
      * @var bool $IndicatieSK
@@ -357,7 +358,7 @@ class TSRVEiser implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumTerugmeldingVoorstel()
     {
@@ -365,7 +366,7 @@ class TSRVEiser implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumTerugmeldingVoorstel
+     * @param DateTimeInterface $DatumTerugmeldingVoorstel
      * @return TSRVEiser
      */
     public function withDatumTerugmeldingVoorstel($DatumTerugmeldingVoorstel)

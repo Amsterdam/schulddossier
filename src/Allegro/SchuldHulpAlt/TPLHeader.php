@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TPLHeader
 {
 
@@ -16,20 +19,20 @@ class TPLHeader
     protected $Volgnummer = null;
 
     /**
-     * @var \DateTime $Startdatum
+     * @var DateTime $Startdatum
      */
     protected $Startdatum = null;
 
     /**
      * @param int $RelatieCode
      * @param int $Volgnummer
-     * @param \DateTime $Startdatum
+     * @param DateTime $Startdatum
      */
-    public function __construct($RelatieCode, $Volgnummer, \DateTime $Startdatum)
+    public function __construct($RelatieCode, $Volgnummer, DateTime $Startdatum)
     {
       $this->RelatieCode = $RelatieCode;
       $this->Volgnummer = $Volgnummer;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
     }
 
     /**
@@ -69,7 +72,7 @@ class TPLHeader
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartdatum()
     {
@@ -77,20 +80,20 @@ class TPLHeader
         return null;
       } else {
         try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Startdatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Startdatum
+     * @param DateTime $Startdatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPLHeader
      */
-    public function setStartdatum(\DateTime $Startdatum)
+    public function setStartdatum(DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
       return $this;
     }
 

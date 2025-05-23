@@ -8,14 +8,14 @@ class LijstOpdrachtgeverArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TLijstOpdrachtgever
+     * @var TLijstOpdrachtgever
      */
     private $TLijstOpdrachtgever;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TLijstOpdrachtgever $TLijstOpdrachtgever
+     * @var TLijstOpdrachtgever $TLijstOpdrachtgever
      */
     public function __construct($TLijstOpdrachtgever)
     {
@@ -23,7 +23,7 @@ class LijstOpdrachtgeverArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TLijstOpdrachtgever
+     * @return TLijstOpdrachtgever
      */
     public function getTLijstOpdrachtgever()
     {
@@ -31,7 +31,7 @@ class LijstOpdrachtgeverArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TLijstOpdrachtgever $TLijstOpdrachtgever
+     * @param TLijstOpdrachtgever $TLijstOpdrachtgever
      * @return LijstOpdrachtgeverArray
      */
     public function withTLijstOpdrachtgever($TLijstOpdrachtgever)

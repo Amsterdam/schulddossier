@@ -8,14 +8,14 @@ class SimpleFieldInfoArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfo
+     * @var SimpleFieldInfo
      */
     private $SimpleFieldInfo;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfo $SimpleFieldInfo
+     * @var SimpleFieldInfo $SimpleFieldInfo
      */
     public function __construct($SimpleFieldInfo)
     {
@@ -23,7 +23,7 @@ class SimpleFieldInfoArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfo
+     * @return SimpleFieldInfo
      */
     public function getSimpleFieldInfo()
     {
@@ -31,7 +31,7 @@ class SimpleFieldInfoArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfo $SimpleFieldInfo
+     * @param SimpleFieldInfo $SimpleFieldInfo
      * @return SimpleFieldInfoArray
      */
     public function withSimpleFieldInfo($SimpleFieldInfo)

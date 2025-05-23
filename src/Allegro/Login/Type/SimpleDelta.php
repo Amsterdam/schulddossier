@@ -13,7 +13,7 @@ class SimpleDelta implements RequestInterface
     private $TableName;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
+     * @var StringArray
      */
     private $Fields;
 
@@ -27,8 +27,8 @@ class SimpleDelta implements RequestInterface
      * Constructor
      *
      * @var string $TableName
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $Fields
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChangeArray $Rows
+     * @var StringArray $Fields
+     * @var SimpleDeltaChangeArray $Rows
      */
     public function __construct($TableName, $Fields, $Rows)
     {
@@ -58,7 +58,7 @@ class SimpleDelta implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
+     * @return StringArray
      */
     public function getFields()
     {
@@ -66,7 +66,7 @@ class SimpleDelta implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $Fields
+     * @param StringArray $Fields
      * @return SimpleDelta
      */
     public function withFields($Fields)
@@ -78,7 +78,7 @@ class SimpleDelta implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChangeArray
+     * @return SimpleDeltaChangeArray
      */
     public function getRows()
     {
@@ -86,7 +86,7 @@ class SimpleDelta implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChangeArray $Rows
+     * @param SimpleDeltaChangeArray $Rows
      * @return SimpleDelta
      */
     public function withRows($Rows)

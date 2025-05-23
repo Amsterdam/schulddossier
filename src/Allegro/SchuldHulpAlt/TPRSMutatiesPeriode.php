@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TPRSMutatiesPeriode
 {
 
@@ -11,12 +14,12 @@ class TPRSMutatiesPeriode
     protected $Mutaties = null;
 
     /**
-     * @var \DateTime $DatumStart
+     * @var DateTime $DatumStart
      */
     protected $DatumStart = null;
 
     /**
-     * @var \DateTime $DatumEinde
+     * @var DateTime $DatumEinde
      */
     protected $DatumEinde = null;
 
@@ -41,37 +44,37 @@ class TPRSMutatiesPeriode
     protected $TotaalBij = null;
 
     /**
-     * @var \DateTime $PeriodeStart
+     * @var DateTime $PeriodeStart
      */
     protected $PeriodeStart = null;
 
     /**
-     * @var \DateTime $PeriodeEinde
+     * @var DateTime $PeriodeEinde
      */
     protected $PeriodeEinde = null;
 
     /**
      * @param PRSMutatieArray $Mutaties
-     * @param \DateTime $DatumStart
-     * @param \DateTime $DatumEinde
+     * @param DateTime $DatumStart
+     * @param DateTime $DatumEinde
      * @param float $SaldoStart
      * @param float $SaldoEinde
      * @param float $TotaalAf
      * @param float $TotaalBij
-     * @param \DateTime $PeriodeStart
-     * @param \DateTime $PeriodeEinde
+     * @param DateTime $PeriodeStart
+     * @param DateTime $PeriodeEinde
      */
-    public function __construct($Mutaties, \DateTime $DatumStart, \DateTime $DatumEinde, $SaldoStart, $SaldoEinde, $TotaalAf, $TotaalBij, \DateTime $PeriodeStart, \DateTime $PeriodeEinde)
+    public function __construct($Mutaties, DateTime $DatumStart, DateTime $DatumEinde, $SaldoStart, $SaldoEinde, $TotaalAf, $TotaalBij, DateTime $PeriodeStart, DateTime $PeriodeEinde)
     {
       $this->Mutaties = $Mutaties;
-      $this->DatumStart = $DatumStart->format(\DateTime::ATOM);
-      $this->DatumEinde = $DatumEinde->format(\DateTime::ATOM);
+      $this->DatumStart = $DatumStart->format(DateTime::ATOM);
+      $this->DatumEinde = $DatumEinde->format(DateTime::ATOM);
       $this->SaldoStart = $SaldoStart;
       $this->SaldoEinde = $SaldoEinde;
       $this->TotaalAf = $TotaalAf;
       $this->TotaalBij = $TotaalBij;
-      $this->PeriodeStart = $PeriodeStart->format(\DateTime::ATOM);
-      $this->PeriodeEinde = $PeriodeEinde->format(\DateTime::ATOM);
+      $this->PeriodeStart = $PeriodeStart->format(DateTime::ATOM);
+      $this->PeriodeEinde = $PeriodeEinde->format(DateTime::ATOM);
     }
 
     /**
@@ -93,7 +96,7 @@ class TPRSMutatiesPeriode
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumStart()
     {
@@ -101,25 +104,25 @@ class TPRSMutatiesPeriode
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumStart);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumStart);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumStart
+     * @param DateTime $DatumStart
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPRSMutatiesPeriode
      */
-    public function setDatumStart(\DateTime $DatumStart)
+    public function setDatumStart(DateTime $DatumStart)
     {
-      $this->DatumStart = $DatumStart->format(\DateTime::ATOM);
+      $this->DatumStart = $DatumStart->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumEinde()
     {
@@ -127,20 +130,20 @@ class TPRSMutatiesPeriode
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumEinde);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumEinde);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumEinde
+     * @param DateTime $DatumEinde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPRSMutatiesPeriode
      */
-    public function setDatumEinde(\DateTime $DatumEinde)
+    public function setDatumEinde(DateTime $DatumEinde)
     {
-      $this->DatumEinde = $DatumEinde->format(\DateTime::ATOM);
+      $this->DatumEinde = $DatumEinde->format(DateTime::ATOM);
       return $this;
     }
 
@@ -217,7 +220,7 @@ class TPRSMutatiesPeriode
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getPeriodeStart()
     {
@@ -225,25 +228,25 @@ class TPRSMutatiesPeriode
         return null;
       } else {
         try {
-          return new \DateTime($this->PeriodeStart);
-        } catch (\Exception $e) {
+          return new DateTime($this->PeriodeStart);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $PeriodeStart
+     * @param DateTime $PeriodeStart
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPRSMutatiesPeriode
      */
-    public function setPeriodeStart(\DateTime $PeriodeStart)
+    public function setPeriodeStart(DateTime $PeriodeStart)
     {
-      $this->PeriodeStart = $PeriodeStart->format(\DateTime::ATOM);
+      $this->PeriodeStart = $PeriodeStart->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getPeriodeEinde()
     {
@@ -251,20 +254,20 @@ class TPRSMutatiesPeriode
         return null;
       } else {
         try {
-          return new \DateTime($this->PeriodeEinde);
-        } catch (\Exception $e) {
+          return new DateTime($this->PeriodeEinde);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $PeriodeEinde
+     * @param DateTime $PeriodeEinde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPRSMutatiesPeriode
      */
-    public function setPeriodeEinde(\DateTime $PeriodeEinde)
+    public function setPeriodeEinde(DateTime $PeriodeEinde)
     {
-      $this->PeriodeEinde = $PeriodeEinde->format(\DateTime::ATOM);
+      $this->PeriodeEinde = $PeriodeEinde->format(DateTime::ATOM);
       return $this;
     }
 

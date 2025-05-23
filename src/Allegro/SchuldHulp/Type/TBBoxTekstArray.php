@@ -9,14 +9,14 @@ class TBBoxTekstArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxTekst
+     * @var TBBoxTekst
      */
     private $TBBoxTekst;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxTekst $TBBoxTekst
+     * @var TBBoxTekst $TBBoxTekst
      */
     public function __construct($TBBoxTekst)
     {
@@ -24,7 +24,7 @@ class TBBoxTekstArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxTekst
+     * @return TBBoxTekst
      */
     public function getTBBoxTekst()
     {
@@ -32,7 +32,7 @@ class TBBoxTekstArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxTekst $TBBoxTekst
+     * @param TBBoxTekst $TBBoxTekst
      * @return TBBoxTekstArray
      */
     public function withTBBoxTekst($TBBoxTekst)

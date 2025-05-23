@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TSB
 {
 
@@ -26,17 +29,17 @@ class TSB
     protected $OpdrachtgeverContact = null;
 
     /**
-     * @var \DateTime $Startdatum
+     * @var DateTime $Startdatum
      */
     protected $Startdatum = null;
 
     /**
-     * @var \DateTime $StartdatumEersteBetaling
+     * @var DateTime $StartdatumEersteBetaling
      */
     protected $StartdatumEersteBetaling = null;
 
     /**
-     * @var \DateTime $TheoEinddatum
+     * @var DateTime $TheoEinddatum
      */
     protected $TheoEinddatum = null;
 
@@ -61,7 +64,7 @@ class TSB
     protected $VTLB = null;
 
     /**
-     * @var \DateTime $DatumBerekening
+     * @var DateTime $DatumBerekening
      */
     protected $DatumBerekening = null;
 
@@ -86,7 +89,7 @@ class TSB
     protected $NettoAflosCapaciteitMaand = null;
 
     /**
-     * @var \DateTime $DatumOverzicht
+     * @var DateTime $DatumOverzicht
      */
     protected $DatumOverzicht = null;
 
@@ -111,7 +114,7 @@ class TSB
     protected $BetaaldeKosten = null;
 
     /**
-     * @var \DateTime $DatumLaatsteBetaling
+     * @var DateTime $DatumLaatsteBetaling
      */
     protected $DatumLaatsteBetaling = null;
 
@@ -125,50 +128,50 @@ class TSB
      * @param string $Medewerker
      * @param int $Opdrachtgever
      * @param int $OpdrachtgeverContact
-     * @param \DateTime $Startdatum
-     * @param \DateTime $StartdatumEersteBetaling
-     * @param \DateTime $TheoEinddatum
+     * @param DateTime $Startdatum
+     * @param DateTime $StartdatumEersteBetaling
+     * @param DateTime $TheoEinddatum
      * @param int $TotaalAantalMaanden
      * @param int $TotaalAantalMaandenVerstreken
      * @param int $TotaalAantalMaandenResterend
      * @param float $VTLB
-     * @param \DateTime $DatumBerekening
+     * @param DateTime $DatumBerekening
      * @param float $BrutoAflosCapaciteitMaand
      * @param float $KostenFinancieelBeheerMaand
      * @param float $KostenSchuldhulpverleningMaand
      * @param float $NettoAflosCapaciteitMaand
-     * @param \DateTime $DatumOverzicht
+     * @param DateTime $DatumOverzicht
      * @param int $PartnerCode
      * @param float $TotaalSchuldbedrag
      * @param float $MaximumKosten
      * @param float $BetaaldeKosten
-     * @param \DateTime $DatumLaatsteBetaling
+     * @param DateTime $DatumLaatsteBetaling
      * @param float $BedragLaatsteBetaling
      */
-    public function __construct($InfoHeader, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, \DateTime $Startdatum, \DateTime $StartdatumEersteBetaling, \DateTime $TheoEinddatum, $TotaalAantalMaanden, $TotaalAantalMaandenVerstreken, $TotaalAantalMaandenResterend, $VTLB, \DateTime $DatumBerekening, $BrutoAflosCapaciteitMaand, $KostenFinancieelBeheerMaand, $KostenSchuldhulpverleningMaand, $NettoAflosCapaciteitMaand, \DateTime $DatumOverzicht, $PartnerCode, $TotaalSchuldbedrag, $MaximumKosten, $BetaaldeKosten, \DateTime $DatumLaatsteBetaling, $BedragLaatsteBetaling)
+    public function __construct($InfoHeader, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, DateTime $Startdatum, DateTime $StartdatumEersteBetaling, DateTime $TheoEinddatum, $TotaalAantalMaanden, $TotaalAantalMaandenVerstreken, $TotaalAantalMaandenResterend, $VTLB, DateTime $DatumBerekening, $BrutoAflosCapaciteitMaand, $KostenFinancieelBeheerMaand, $KostenSchuldhulpverleningMaand, $NettoAflosCapaciteitMaand, DateTime $DatumOverzicht, $PartnerCode, $TotaalSchuldbedrag, $MaximumKosten, $BetaaldeKosten, DateTime $DatumLaatsteBetaling, $BedragLaatsteBetaling)
     {
       $this->InfoHeader = $InfoHeader;
       $this->Medewerker = $Medewerker;
       $this->Opdrachtgever = $Opdrachtgever;
       $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      $this->StartdatumEersteBetaling = $StartdatumEersteBetaling->format(\DateTime::ATOM);
-      $this->TheoEinddatum = $TheoEinddatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
+      $this->StartdatumEersteBetaling = $StartdatumEersteBetaling->format(DateTime::ATOM);
+      $this->TheoEinddatum = $TheoEinddatum->format(DateTime::ATOM);
       $this->TotaalAantalMaanden = $TotaalAantalMaanden;
       $this->TotaalAantalMaandenVerstreken = $TotaalAantalMaandenVerstreken;
       $this->TotaalAantalMaandenResterend = $TotaalAantalMaandenResterend;
       $this->VTLB = $VTLB;
-      $this->DatumBerekening = $DatumBerekening->format(\DateTime::ATOM);
+      $this->DatumBerekening = $DatumBerekening->format(DateTime::ATOM);
       $this->BrutoAflosCapaciteitMaand = $BrutoAflosCapaciteitMaand;
       $this->KostenFinancieelBeheerMaand = $KostenFinancieelBeheerMaand;
       $this->KostenSchuldhulpverleningMaand = $KostenSchuldhulpverleningMaand;
       $this->NettoAflosCapaciteitMaand = $NettoAflosCapaciteitMaand;
-      $this->DatumOverzicht = $DatumOverzicht->format(\DateTime::ATOM);
+      $this->DatumOverzicht = $DatumOverzicht->format(DateTime::ATOM);
       $this->PartnerCode = $PartnerCode;
       $this->TotaalSchuldbedrag = $TotaalSchuldbedrag;
       $this->MaximumKosten = $MaximumKosten;
       $this->BetaaldeKosten = $BetaaldeKosten;
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(DateTime::ATOM);
       $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
     }
 
@@ -245,7 +248,7 @@ class TSB
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartdatum()
     {
@@ -253,25 +256,25 @@ class TSB
         return null;
       } else {
         try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Startdatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Startdatum
+     * @param DateTime $Startdatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSB
      */
-    public function setStartdatum(\DateTime $Startdatum)
+    public function setStartdatum(DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartdatumEersteBetaling()
     {
@@ -279,25 +282,25 @@ class TSB
         return null;
       } else {
         try {
-          return new \DateTime($this->StartdatumEersteBetaling);
-        } catch (\Exception $e) {
+          return new DateTime($this->StartdatumEersteBetaling);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $StartdatumEersteBetaling
+     * @param DateTime $StartdatumEersteBetaling
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSB
      */
-    public function setStartdatumEersteBetaling(\DateTime $StartdatumEersteBetaling)
+    public function setStartdatumEersteBetaling(DateTime $StartdatumEersteBetaling)
     {
-      $this->StartdatumEersteBetaling = $StartdatumEersteBetaling->format(\DateTime::ATOM);
+      $this->StartdatumEersteBetaling = $StartdatumEersteBetaling->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getTheoEinddatum()
     {
@@ -305,20 +308,20 @@ class TSB
         return null;
       } else {
         try {
-          return new \DateTime($this->TheoEinddatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->TheoEinddatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $TheoEinddatum
+     * @param DateTime $TheoEinddatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSB
      */
-    public function setTheoEinddatum(\DateTime $TheoEinddatum)
+    public function setTheoEinddatum(DateTime $TheoEinddatum)
     {
-      $this->TheoEinddatum = $TheoEinddatum->format(\DateTime::ATOM);
+      $this->TheoEinddatum = $TheoEinddatum->format(DateTime::ATOM);
       return $this;
     }
 
@@ -395,7 +398,7 @@ class TSB
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumBerekening()
     {
@@ -403,20 +406,20 @@ class TSB
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumBerekening);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumBerekening);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumBerekening
+     * @param DateTime $DatumBerekening
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSB
      */
-    public function setDatumBerekening(\DateTime $DatumBerekening)
+    public function setDatumBerekening(DateTime $DatumBerekening)
     {
-      $this->DatumBerekening = $DatumBerekening->format(\DateTime::ATOM);
+      $this->DatumBerekening = $DatumBerekening->format(DateTime::ATOM);
       return $this;
     }
 
@@ -493,7 +496,7 @@ class TSB
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumOverzicht()
     {
@@ -501,20 +504,20 @@ class TSB
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumOverzicht);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumOverzicht);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumOverzicht
+     * @param DateTime $DatumOverzicht
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSB
      */
-    public function setDatumOverzicht(\DateTime $DatumOverzicht)
+    public function setDatumOverzicht(DateTime $DatumOverzicht)
     {
-      $this->DatumOverzicht = $DatumOverzicht->format(\DateTime::ATOM);
+      $this->DatumOverzicht = $DatumOverzicht->format(DateTime::ATOM);
       return $this;
     }
 
@@ -591,7 +594,7 @@ class TSB
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumLaatsteBetaling()
     {
@@ -599,20 +602,20 @@ class TSB
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumLaatsteBetaling);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumLaatsteBetaling);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumLaatsteBetaling
+     * @param DateTime $DatumLaatsteBetaling
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSB
      */
-    public function setDatumLaatsteBetaling(\DateTime $DatumLaatsteBetaling)
+    public function setDatumLaatsteBetaling(DateTime $DatumLaatsteBetaling)
     {
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(DateTime::ATOM);
       return $this;
     }
 

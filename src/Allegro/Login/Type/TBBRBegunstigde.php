@@ -48,7 +48,7 @@ class TBBRBegunstigde implements RequestInterface
     private $Betaalwijze;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\RekeningnummerArray
+     * @var RekeningnummerArray
      */
     private $Rekeningnummers;
 
@@ -63,7 +63,7 @@ class TBBRBegunstigde implements RequestInterface
      * @var string $OpdrachtSoortKeuze
      * @var bool $KeuzeReservering
      * @var string $Betaalwijze
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\RekeningnummerArray $Rekeningnummers
+     * @var RekeningnummerArray $Rekeningnummers
      */
     public function __construct($Achternaam, $Voorvoegsels, $Voorletters, $PlaatsnaamBezoekadres, $Relatiecode, $OpdrachtSoortKeuze, $KeuzeReservering, $Betaalwijze, $Rekeningnummers)
     {
@@ -239,7 +239,7 @@ class TBBRBegunstigde implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\RekeningnummerArray
+     * @return RekeningnummerArray
      */
     public function getRekeningnummers()
     {
@@ -247,7 +247,7 @@ class TBBRBegunstigde implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\RekeningnummerArray $Rekeningnummers
+     * @param RekeningnummerArray $Rekeningnummers
      * @return TBBRBegunstigde
      */
     public function withRekeningnummers($Rekeningnummers)

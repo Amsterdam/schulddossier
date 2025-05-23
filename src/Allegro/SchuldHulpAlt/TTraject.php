@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TTraject
 {
 
@@ -16,7 +19,7 @@ class TTraject
     protected $TrajectSoort = null;
 
     /**
-     * @var \DateTime $Startdatum
+     * @var DateTime $Startdatum
      */
     protected $Startdatum = null;
 
@@ -26,7 +29,7 @@ class TTraject
     protected $StartMedewerker = null;
 
     /**
-     * @var \DateTime $Einddatum
+     * @var DateTime $Einddatum
      */
     protected $Einddatum = null;
 
@@ -53,21 +56,21 @@ class TTraject
     /**
      * @param int $UniekTrajectNummer
      * @param TTrajectSoort $TrajectSoort
-     * @param \DateTime $Startdatum
+     * @param DateTime $Startdatum
      * @param TMedewerker $StartMedewerker
-     * @param \DateTime $Einddatum
+     * @param DateTime $Einddatum
      * @param TMedewerker $EindMedewerker
      * @param boolean $Lopend
      * @param int $Contractvolgnummer
      * @param string $ContractVolgnummerSoort
      */
-    public function __construct($UniekTrajectNummer, $TrajectSoort, \DateTime $Startdatum, $StartMedewerker, \DateTime $Einddatum, $EindMedewerker, $Lopend, $Contractvolgnummer, $ContractVolgnummerSoort)
+    public function __construct($UniekTrajectNummer, $TrajectSoort, DateTime $Startdatum, $StartMedewerker, DateTime $Einddatum, $EindMedewerker, $Lopend, $Contractvolgnummer, $ContractVolgnummerSoort)
     {
       $this->UniekTrajectNummer = $UniekTrajectNummer;
       $this->TrajectSoort = $TrajectSoort;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
       $this->StartMedewerker = $StartMedewerker;
-      $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
+      $this->Einddatum = $Einddatum->format(DateTime::ATOM);
       $this->EindMedewerker = $EindMedewerker;
       $this->Lopend = $Lopend;
       $this->Contractvolgnummer = $Contractvolgnummer;
@@ -111,7 +114,7 @@ class TTraject
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartdatum()
     {
@@ -119,20 +122,20 @@ class TTraject
         return null;
       } else {
         try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Startdatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Startdatum
+     * @param DateTime $Startdatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TTraject
      */
-    public function setStartdatum(\DateTime $Startdatum)
+    public function setStartdatum(DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
       return $this;
     }
 
@@ -155,7 +158,7 @@ class TTraject
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getEinddatum()
     {
@@ -163,20 +166,20 @@ class TTraject
         return null;
       } else {
         try {
-          return new \DateTime($this->Einddatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Einddatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Einddatum
+     * @param DateTime $Einddatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TTraject
      */
-    public function setEinddatum(\DateTime $Einddatum)
+    public function setEinddatum(DateTime $Einddatum)
     {
-      $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
+      $this->Einddatum = $Einddatum->format(DateTime::ATOM);
       return $this;
     }
 

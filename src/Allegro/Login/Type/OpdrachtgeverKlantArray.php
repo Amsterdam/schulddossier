@@ -8,14 +8,14 @@ class OpdrachtgeverKlantArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOpdrachtgeverKlant
+     * @var TOpdrachtgeverKlant
      */
     private $TOpdrachtgeverKlant;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOpdrachtgeverKlant $TOpdrachtgeverKlant
+     * @var TOpdrachtgeverKlant $TOpdrachtgeverKlant
      */
     public function __construct($TOpdrachtgeverKlant)
     {
@@ -23,7 +23,7 @@ class OpdrachtgeverKlantArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOpdrachtgeverKlant
+     * @return TOpdrachtgeverKlant
      */
     public function getTOpdrachtgeverKlant()
     {
@@ -31,7 +31,7 @@ class OpdrachtgeverKlantArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOpdrachtgeverKlant $TOpdrachtgeverKlant
+     * @param TOpdrachtgeverKlant $TOpdrachtgeverKlant
      * @return OpdrachtgeverKlantArray
      */
     public function withTOpdrachtgeverKlant($TOpdrachtgeverKlant)

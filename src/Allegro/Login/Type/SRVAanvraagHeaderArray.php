@@ -8,14 +8,14 @@ class SRVAanvraagHeaderArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader
+     * @var TSRVAanvraagHeader
      */
     private $TSRVAanvraagHeader;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader $TSRVAanvraagHeader
+     * @var TSRVAanvraagHeader $TSRVAanvraagHeader
      */
     public function __construct($TSRVAanvraagHeader)
     {
@@ -23,7 +23,7 @@ class SRVAanvraagHeaderArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader
+     * @return TSRVAanvraagHeader
      */
     public function getTSRVAanvraagHeader()
     {
@@ -31,7 +31,7 @@ class SRVAanvraagHeaderArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader $TSRVAanvraagHeader
+     * @param TSRVAanvraagHeader $TSRVAanvraagHeader
      * @return SRVAanvraagHeaderArray
      */
     public function withTSRVAanvraagHeader($TSRVAanvraagHeader)

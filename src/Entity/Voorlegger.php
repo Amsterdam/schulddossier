@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -1127,7 +1128,7 @@ class Voorlegger
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier
+     * @return Dossier
      */
     public function getDossier()
     {
@@ -1711,7 +1712,7 @@ class Voorlegger
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getEnergieBedrijfDatumOpname()
     {
@@ -1744,7 +1745,7 @@ class Voorlegger
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getWarmteBedrijfDatumOpname()
     {
@@ -1762,7 +1763,7 @@ class Voorlegger
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDrinkwaterDatumOpname()
     {
@@ -2392,9 +2393,9 @@ class Voorlegger
     }
 
     /**
-     * @param \DateTime $energieBedrijfDatumOpname
+     * @param DateTime $energieBedrijfDatumOpname
      */
-    public function setEnergieBedrijfDatumOpname(?\DateTime $energieBedrijfDatumOpname = null)
+    public function setEnergieBedrijfDatumOpname(?DateTime $energieBedrijfDatumOpname = null)
     {
         $this->energieBedrijfDatumOpname = $energieBedrijfDatumOpname;
     }
@@ -2425,9 +2426,9 @@ class Voorlegger
     }
 
     /**
-     * @param \DateTime $warmteBedrijfDatumOpname
+     * @param DateTime $warmteBedrijfDatumOpname
      */
-    public function setWarmteBedrijfDatumOpname(?\DateTime $warmteBedrijfDatumOpname = null)
+    public function setWarmteBedrijfDatumOpname(?DateTime $warmteBedrijfDatumOpname = null)
     {
         $this->warmteBedrijfDatumOpname = $warmteBedrijfDatumOpname;
     }
@@ -2443,9 +2444,9 @@ class Voorlegger
     }
 
     /**
-     * @param \DateTime $drinkwaterDatumOpname
+     * @param DateTime $drinkwaterDatumOpname
      */
-    public function setDrinkwaterDatumOpname(?\DateTime $drinkwaterDatumOpname = null)
+    public function setDrinkwaterDatumOpname(?DateTime $drinkwaterDatumOpname = null)
     {
         $this->drinkwaterDatumOpname = $drinkwaterDatumOpname;
     }
@@ -2526,9 +2527,9 @@ class Voorlegger
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getArbeidsovereenkomstEinddatum(): ?\DateTime
+    public function getArbeidsovereenkomstEinddatum(): ?DateTime
     {
         return $this->arbeidsovereenkomstEinddatum;
     }
@@ -2537,7 +2538,7 @@ class Voorlegger
      * @param \Date|null $arbeidsovereenkomstEinddatum
      * @return Voorlegger
      */
-    public function setArbeidsovereenkomstEinddatum(?\DateTime $arbeidsovereenkomstEinddatum): Voorlegger
+    public function setArbeidsovereenkomstEinddatum(?DateTime $arbeidsovereenkomstEinddatum): Voorlegger
     {
         $this->arbeidsovereenkomstEinddatum = $arbeidsovereenkomstEinddatum;
 
@@ -2545,18 +2546,18 @@ class Voorlegger
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getArbeidsovereenkomstPartnerEinddatum(): ?\DateTime
+    public function getArbeidsovereenkomstPartnerEinddatum(): ?DateTime
     {
         return $this->arbeidsovereenkomstPartnerEinddatum;
     }
 
     /**
-     * @param \DateTime|null $arbeidsovereenkomstPartnerEinddatum
+     * @param DateTime|null $arbeidsovereenkomstPartnerEinddatum
      * @return Voorlegger
      */
-    public function setArbeidsovereenkomstPartnerEinddatum(?\DateTime $arbeidsovereenkomstPartnerEinddatum): Voorlegger
+    public function setArbeidsovereenkomstPartnerEinddatum(?DateTime $arbeidsovereenkomstPartnerEinddatum): Voorlegger
     {
         $this->arbeidsovereenkomstPartnerEinddatum = $arbeidsovereenkomstPartnerEinddatum;
 

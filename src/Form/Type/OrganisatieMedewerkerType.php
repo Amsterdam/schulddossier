@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use Exception;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,7 +33,7 @@ class OrganisatieMedewerkerType extends AbstractType
      * @param TokenStorageInterface  $tokenStorage
      * @param EntityManagerInterface $entityManager
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager)
     {
@@ -55,7 +56,7 @@ class OrganisatieMedewerkerType extends AbstractType
      * @param Collection $collection
      *
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     private function transformCollectionToChoices(Collection $collection): array
     {

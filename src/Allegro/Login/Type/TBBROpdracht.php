@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBROpdracht implements RequestInterface
@@ -58,12 +59,12 @@ class TBBROpdracht implements RequestInterface
     private $Maximaal;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $StartDatum;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $VolgendeDatum;
 
@@ -93,7 +94,7 @@ class TBBROpdracht implements RequestInterface
     private $UniekVolgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumLaatsteBetaling;
 
@@ -115,14 +116,14 @@ class TBBROpdracht implements RequestInterface
      * @var int $AantalKeerPerPeriode
      * @var float $PeriodeBedrag
      * @var float $Maximaal
-     * @var \DateTimeInterface $StartDatum
-     * @var \DateTimeInterface $VolgendeDatum
+     * @var DateTimeInterface $StartDatum
+     * @var DateTimeInterface $VolgendeDatum
      * @var float $BetaaldBedrag
      * @var string $RestBetaling
      * @var string $Soort
      * @var int $NummerReservering
      * @var int $UniekVolgnummer
-     * @var \DateTimeInterface $DatumLaatsteBetaling
+     * @var DateTimeInterface $DatumLaatsteBetaling
      * @var int $Prioriteit
      */
     public function __construct($Relatiecode, $Volgnummer, $CodeBegunstigde, $Begunstigde, $Omschrijving, $Referentie, $Periodiciteit, $AantalKeerPerPeriode, $PeriodeBedrag, $Maximaal, $StartDatum, $VolgendeDatum, $BetaaldBedrag, $RestBetaling, $Soort, $NummerReservering, $UniekVolgnummer, $DatumLaatsteBetaling, $Prioriteit)
@@ -349,7 +350,7 @@ class TBBROpdracht implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartDatum()
     {
@@ -357,7 +358,7 @@ class TBBROpdracht implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $StartDatum
+     * @param DateTimeInterface $StartDatum
      * @return TBBROpdracht
      */
     public function withStartDatum($StartDatum)
@@ -369,7 +370,7 @@ class TBBROpdracht implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getVolgendeDatum()
     {
@@ -377,7 +378,7 @@ class TBBROpdracht implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $VolgendeDatum
+     * @param DateTimeInterface $VolgendeDatum
      * @return TBBROpdracht
      */
     public function withVolgendeDatum($VolgendeDatum)
@@ -489,7 +490,7 @@ class TBBROpdracht implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumLaatsteBetaling()
     {
@@ -497,7 +498,7 @@ class TBBROpdracht implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumLaatsteBetaling
+     * @param DateTimeInterface $DatumLaatsteBetaling
      * @return TBBROpdracht
      */
     public function withDatumLaatsteBetaling($DatumLaatsteBetaling)

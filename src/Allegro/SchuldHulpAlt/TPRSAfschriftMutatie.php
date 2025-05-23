@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TPRSAfschriftMutatie
 {
 
@@ -21,7 +24,7 @@ class TPRSAfschriftMutatie
     protected $ContractVolgnummer = null;
 
     /**
-     * @var \DateTime $DatumMutatie
+     * @var DateTime $DatumMutatie
      */
     protected $DatumMutatie = null;
 
@@ -64,7 +67,7 @@ class TPRSAfschriftMutatie
      * @param int $VolgnummerMutatie
      * @param int $Contractcode
      * @param int $ContractVolgnummer
-     * @param \DateTime $DatumMutatie
+     * @param DateTime $DatumMutatie
      * @param boolean $IndicatieAf
      * @param boolean $IndicatieBij
      * @param float $Bedrag
@@ -73,12 +76,12 @@ class TPRSAfschriftMutatie
      * @param string $ExtraToelichting
      * @param boolean $Reservering
      */
-    public function __construct($VolgnummerMutatie, $Contractcode, $ContractVolgnummer, \DateTime $DatumMutatie, $IndicatieAf, $IndicatieBij, $Bedrag, $Omschrijving, $Rekeningnummer, $ExtraToelichting, $Reservering)
+    public function __construct($VolgnummerMutatie, $Contractcode, $ContractVolgnummer, DateTime $DatumMutatie, $IndicatieAf, $IndicatieBij, $Bedrag, $Omschrijving, $Rekeningnummer, $ExtraToelichting, $Reservering)
     {
       $this->VolgnummerMutatie = $VolgnummerMutatie;
       $this->Contractcode = $Contractcode;
       $this->ContractVolgnummer = $ContractVolgnummer;
-      $this->DatumMutatie = $DatumMutatie->format(\DateTime::ATOM);
+      $this->DatumMutatie = $DatumMutatie->format(DateTime::ATOM);
       $this->IndicatieAf = $IndicatieAf;
       $this->IndicatieBij = $IndicatieBij;
       $this->Bedrag = $Bedrag;
@@ -143,7 +146,7 @@ class TPRSAfschriftMutatie
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumMutatie()
     {
@@ -151,20 +154,20 @@ class TPRSAfschriftMutatie
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumMutatie);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumMutatie);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumMutatie
+     * @param DateTime $DatumMutatie
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPRSAfschriftMutatie
      */
-    public function setDatumMutatie(\DateTime $DatumMutatie)
+    public function setDatumMutatie(DateTime $DatumMutatie)
     {
-      $this->DatumMutatie = $DatumMutatie->format(\DateTime::ATOM);
+      $this->DatumMutatie = $DatumMutatie->format(DateTime::ATOM);
       return $this;
     }
 

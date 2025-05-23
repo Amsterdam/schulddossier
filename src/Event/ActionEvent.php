@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Event;
 
+use DateTime;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -14,7 +15,7 @@ class ActionEvent extends Event
     const NAME = 'app.action.register';
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     private $dateTimeOfEvent;
 
@@ -39,7 +40,7 @@ class ActionEvent extends Event
         private ?Dossier $dossier = null
     )
     {
-        $this->dateTimeOfEvent = new \DateTime();
+        $this->dateTimeOfEvent = new DateTime();
     }
 
     /**
@@ -51,9 +52,9 @@ class ActionEvent extends Event
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDateTimeOfEvent(): \DateTime
+    public function getDateTimeOfEvent(): DateTime
     {
         return $this->dateTimeOfEvent;
     }

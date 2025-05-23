@@ -8,14 +8,14 @@ class SchuldArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSchuld
+     * @var TSchuld
      */
     private $TSchuld;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSchuld $TSchuld
+     * @var TSchuld $TSchuld
      */
     public function __construct($TSchuld)
     {
@@ -23,7 +23,7 @@ class SchuldArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSchuld
+     * @return TSchuld
      */
     public function getTSchuld()
     {
@@ -31,7 +31,7 @@ class SchuldArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSchuld $TSchuld
+     * @param TSchuld $TSchuld
      * @return SchuldArray
      */
     public function withTSchuld($TSchuld)

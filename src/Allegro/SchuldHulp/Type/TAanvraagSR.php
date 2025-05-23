@@ -29,7 +29,7 @@ class TAanvraagSR implements RequestInterface
     private $OorzaakSchulden;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie
+     * @var TOrganisatie
      */
     private $Bewindvoerder;
 
@@ -69,7 +69,7 @@ class TAanvraagSR implements RequestInterface
     private $HulpverlenerOvernemen;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray
+     * @var OpenVraagArray
      */
     private $OpenVragen;
 
@@ -80,7 +80,7 @@ class TAanvraagSR implements RequestInterface
     private $GeslotenVragen;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray
+     * @var SchuldArray
      */
     private $Schulden;
 
@@ -91,7 +91,7 @@ class TAanvraagSR implements RequestInterface
      * @var bool $CorrespondentieWeb
      * @var bool $NPS
      * @var string $OorzaakSchulden
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie $Bewindvoerder
+     * @var TOrganisatie $Bewindvoerder
      * @var string $ToelichtingAlgemeen
      * @var string $ToelichtingSO
      * @var string $ToelichtingAanmelding
@@ -99,9 +99,9 @@ class TAanvraagSR implements RequestInterface
      * @var bool $TotaalschuldVullen
      * @var bool $OpdrachtgeverOvernemen
      * @var bool $HulpverlenerOvernemen
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray $OpenVragen
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray $GeslotenVragen
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray $Schulden
+     * @var OpenVraagArray $OpenVragen
+     * @var GeslotenVraagArray $GeslotenVragen
+     * @var SchuldArray $Schulden
      */
     public function __construct($Bedrijfscode, $CorrespondentieWeb, $NPS, $OorzaakSchulden, $Bewindvoerder, $ToelichtingAlgemeen, $ToelichtingSO, $ToelichtingAanmelding, $ToelichtingVoorstel, $TotaalschuldVullen, $OpdrachtgeverOvernemen, $HulpverlenerOvernemen, $OpenVragen, $GeslotenVragen, $Schulden)
     {
@@ -203,7 +203,7 @@ class TAanvraagSR implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie
+     * @return TOrganisatie
      */
     public function getBewindvoerder()
     {
@@ -211,7 +211,7 @@ class TAanvraagSR implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie $Bewindvoerder
+     * @param TOrganisatie $Bewindvoerder
      * @return TAanvraagSR
      */
     public function withBewindvoerder($Bewindvoerder)
@@ -363,7 +363,7 @@ class TAanvraagSR implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray
+     * @return OpenVraagArray
      */
     public function getOpenVragen()
     {
@@ -371,7 +371,7 @@ class TAanvraagSR implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray $OpenVragen
+     * @param OpenVraagArray $OpenVragen
      * @return TAanvraagSR
      */
     public function withOpenVragen($OpenVragen)
@@ -383,7 +383,7 @@ class TAanvraagSR implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray
+     * @return GeslotenVraagArray
      */
     public function getGeslotenVragen()
     {
@@ -391,7 +391,7 @@ class TAanvraagSR implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray $GeslotenVragen
+     * @param GeslotenVraagArray $GeslotenVragen
      * @return TAanvraagSR
      */
     public function withGeslotenVragen($GeslotenVragen)
@@ -403,7 +403,7 @@ class TAanvraagSR implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray
+     * @return SchuldArray
      */
     public function getSchulden()
     {
@@ -411,7 +411,7 @@ class TAanvraagSR implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray $Schulden
+     * @param SchuldArray $Schulden
      * @return TAanvraagSR
      */
     public function withSchulden($Schulden)

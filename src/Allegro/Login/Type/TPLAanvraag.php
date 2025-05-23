@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPLAanvraag implements RequestInterface
@@ -18,7 +19,7 @@ class TPLAanvraag implements RequestInterface
     private $Volgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumAanvraag;
 
@@ -48,7 +49,7 @@ class TPLAanvraag implements RequestInterface
     private $Status;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumStatus;
 
@@ -58,37 +59,37 @@ class TPLAanvraag implements RequestInterface
     private $RedenAfwijzing;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumStatusA;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumStatusB;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumStatusC;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumStatusD;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumStatusE;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumStatusAfIn;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumStatusFiat;
 
@@ -97,21 +98,21 @@ class TPLAanvraag implements RequestInterface
      *
      * @var int $Relatiecode
      * @var int $Volgnummer
-     * @var \DateTimeInterface $DatumAanvraag
+     * @var DateTimeInterface $DatumAanvraag
      * @var string $SoortLening
      * @var int $MedelenerCode
      * @var string $Medewerker
      * @var float $GewenstKrediet
      * @var string $Status
-     * @var \DateTimeInterface $DatumStatus
+     * @var DateTimeInterface $DatumStatus
      * @var string $RedenAfwijzing
-     * @var \DateTimeInterface $DatumStatusA
-     * @var \DateTimeInterface $DatumStatusB
-     * @var \DateTimeInterface $DatumStatusC
-     * @var \DateTimeInterface $DatumStatusD
-     * @var \DateTimeInterface $DatumStatusE
-     * @var \DateTimeInterface $DatumStatusAfIn
-     * @var \DateTimeInterface $DatumStatusFiat
+     * @var DateTimeInterface $DatumStatusA
+     * @var DateTimeInterface $DatumStatusB
+     * @var DateTimeInterface $DatumStatusC
+     * @var DateTimeInterface $DatumStatusD
+     * @var DateTimeInterface $DatumStatusE
+     * @var DateTimeInterface $DatumStatusAfIn
+     * @var DateTimeInterface $DatumStatusFiat
      */
     public function __construct($Relatiecode, $Volgnummer, $DatumAanvraag, $SoortLening, $MedelenerCode, $Medewerker, $GewenstKrediet, $Status, $DatumStatus, $RedenAfwijzing, $DatumStatusA, $DatumStatusB, $DatumStatusC, $DatumStatusD, $DatumStatusE, $DatumStatusAfIn, $DatumStatusFiat)
     {
@@ -175,7 +176,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAanvraag()
     {
@@ -183,7 +184,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumAanvraag
+     * @param DateTimeInterface $DatumAanvraag
      * @return TPLAanvraag
      */
     public function withDatumAanvraag($DatumAanvraag)
@@ -295,7 +296,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatus()
     {
@@ -303,7 +304,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumStatus
+     * @param DateTimeInterface $DatumStatus
      * @return TPLAanvraag
      */
     public function withDatumStatus($DatumStatus)
@@ -335,7 +336,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusA()
     {
@@ -343,7 +344,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumStatusA
+     * @param DateTimeInterface $DatumStatusA
      * @return TPLAanvraag
      */
     public function withDatumStatusA($DatumStatusA)
@@ -355,7 +356,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusB()
     {
@@ -363,7 +364,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumStatusB
+     * @param DateTimeInterface $DatumStatusB
      * @return TPLAanvraag
      */
     public function withDatumStatusB($DatumStatusB)
@@ -375,7 +376,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusC()
     {
@@ -383,7 +384,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumStatusC
+     * @param DateTimeInterface $DatumStatusC
      * @return TPLAanvraag
      */
     public function withDatumStatusC($DatumStatusC)
@@ -395,7 +396,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusD()
     {
@@ -403,7 +404,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumStatusD
+     * @param DateTimeInterface $DatumStatusD
      * @return TPLAanvraag
      */
     public function withDatumStatusD($DatumStatusD)
@@ -415,7 +416,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusE()
     {
@@ -423,7 +424,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumStatusE
+     * @param DateTimeInterface $DatumStatusE
      * @return TPLAanvraag
      */
     public function withDatumStatusE($DatumStatusE)
@@ -435,7 +436,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusAfIn()
     {
@@ -443,7 +444,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumStatusAfIn
+     * @param DateTimeInterface $DatumStatusAfIn
      * @return TPLAanvraag
      */
     public function withDatumStatusAfIn($DatumStatusAfIn)
@@ -455,7 +456,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusFiat()
     {
@@ -463,7 +464,7 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumStatusFiat
+     * @param DateTimeInterface $DatumStatusFiat
      * @return TPLAanvraag
      */
     public function withDatumStatusFiat($DatumStatusFiat)

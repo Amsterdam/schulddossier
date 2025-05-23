@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TSRVAanvraag
 {
 
@@ -11,12 +14,12 @@ class TSRVAanvraag
     protected $InfoHeader = null;
 
     /**
-     * @var \DateTime $Startdatum
+     * @var DateTime $Startdatum
      */
     protected $Startdatum = null;
 
     /**
-     * @var \DateTime $Einddatum
+     * @var DateTime $Einddatum
      */
     protected $Einddatum = null;
 
@@ -46,7 +49,7 @@ class TSRVAanvraag
     protected $VTLB = null;
 
     /**
-     * @var \DateTime $DatumBerekening
+     * @var DateTime $DatumBerekening
      */
     protected $DatumBerekening = null;
 
@@ -86,7 +89,7 @@ class TSRVAanvraag
     protected $PartnerCode = null;
 
     /**
-     * @var \DateTime $Aanvraagdatum
+     * @var DateTime $Aanvraagdatum
      */
     protected $Aanvraagdatum = null;
 
@@ -102,14 +105,14 @@ class TSRVAanvraag
 
     /**
      * @param TSRVAanvraagHeader $InfoHeader
-     * @param \DateTime $Startdatum
-     * @param \DateTime $Einddatum
+     * @param DateTime $Startdatum
+     * @param DateTime $Einddatum
      * @param string $Eindstatus
      * @param string $Medewerker
      * @param int $Opdrachtgever
      * @param int $OpdrachtgeverContact
      * @param float $VTLB
-     * @param \DateTime $DatumBerekening
+     * @param DateTime $DatumBerekening
      * @param float $BrutoAfloscapaciteit
      * @param float $KostenFinancieelBeheer
      * @param float $KostenSchuldhulpverlening
@@ -117,21 +120,21 @@ class TSRVAanvraag
      * @param float $TotaalAangemeldeSchuld
      * @param float $TotaalTeruggemeldeSchuld
      * @param int $PartnerCode
-     * @param \DateTime $Aanvraagdatum
+     * @param DateTime $Aanvraagdatum
      * @param string $RedenOpschorting
      * @param float $ExtraInleg
      */
-    public function __construct($InfoHeader, \DateTime $Startdatum, \DateTime $Einddatum, $Eindstatus, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, $VTLB, \DateTime $DatumBerekening, $BrutoAfloscapaciteit, $KostenFinancieelBeheer, $KostenSchuldhulpverlening, $NettoAfloscapaciteit, $TotaalAangemeldeSchuld, $TotaalTeruggemeldeSchuld, $PartnerCode, \DateTime $Aanvraagdatum, $RedenOpschorting, $ExtraInleg)
+    public function __construct($InfoHeader, DateTime $Startdatum, DateTime $Einddatum, $Eindstatus, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, $VTLB, DateTime $DatumBerekening, $BrutoAfloscapaciteit, $KostenFinancieelBeheer, $KostenSchuldhulpverlening, $NettoAfloscapaciteit, $TotaalAangemeldeSchuld, $TotaalTeruggemeldeSchuld, $PartnerCode, DateTime $Aanvraagdatum, $RedenOpschorting, $ExtraInleg)
     {
       $this->InfoHeader = $InfoHeader;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
+      $this->Einddatum = $Einddatum->format(DateTime::ATOM);
       $this->Eindstatus = $Eindstatus;
       $this->Medewerker = $Medewerker;
       $this->Opdrachtgever = $Opdrachtgever;
       $this->OpdrachtgeverContact = $OpdrachtgeverContact;
       $this->VTLB = $VTLB;
-      $this->DatumBerekening = $DatumBerekening->format(\DateTime::ATOM);
+      $this->DatumBerekening = $DatumBerekening->format(DateTime::ATOM);
       $this->BrutoAfloscapaciteit = $BrutoAfloscapaciteit;
       $this->KostenFinancieelBeheer = $KostenFinancieelBeheer;
       $this->KostenSchuldhulpverlening = $KostenSchuldhulpverlening;
@@ -139,7 +142,7 @@ class TSRVAanvraag
       $this->TotaalAangemeldeSchuld = $TotaalAangemeldeSchuld;
       $this->TotaalTeruggemeldeSchuld = $TotaalTeruggemeldeSchuld;
       $this->PartnerCode = $PartnerCode;
-      $this->Aanvraagdatum = $Aanvraagdatum->format(\DateTime::ATOM);
+      $this->Aanvraagdatum = $Aanvraagdatum->format(DateTime::ATOM);
       $this->RedenOpschorting = $RedenOpschorting;
       $this->ExtraInleg = $ExtraInleg;
     }
@@ -163,7 +166,7 @@ class TSRVAanvraag
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartdatum()
     {
@@ -171,25 +174,25 @@ class TSRVAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Startdatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Startdatum
+     * @param DateTime $Startdatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSRVAanvraag
      */
-    public function setStartdatum(\DateTime $Startdatum)
+    public function setStartdatum(DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getEinddatum()
     {
@@ -197,20 +200,20 @@ class TSRVAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->Einddatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Einddatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Einddatum
+     * @param DateTime $Einddatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSRVAanvraag
      */
-    public function setEinddatum(\DateTime $Einddatum)
+    public function setEinddatum(DateTime $Einddatum)
     {
-      $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
+      $this->Einddatum = $Einddatum->format(DateTime::ATOM);
       return $this;
     }
 
@@ -305,7 +308,7 @@ class TSRVAanvraag
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumBerekening()
     {
@@ -313,20 +316,20 @@ class TSRVAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumBerekening);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumBerekening);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumBerekening
+     * @param DateTime $DatumBerekening
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSRVAanvraag
      */
-    public function setDatumBerekening(\DateTime $DatumBerekening)
+    public function setDatumBerekening(DateTime $DatumBerekening)
     {
-      $this->DatumBerekening = $DatumBerekening->format(\DateTime::ATOM);
+      $this->DatumBerekening = $DatumBerekening->format(DateTime::ATOM);
       return $this;
     }
 
@@ -457,7 +460,7 @@ class TSRVAanvraag
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getAanvraagdatum()
     {
@@ -465,20 +468,20 @@ class TSRVAanvraag
         return null;
       } else {
         try {
-          return new \DateTime($this->Aanvraagdatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Aanvraagdatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Aanvraagdatum
+     * @param DateTime $Aanvraagdatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSRVAanvraag
      */
-    public function setAanvraagdatum(\DateTime $Aanvraagdatum)
+    public function setAanvraagdatum(DateTime $Aanvraagdatum)
     {
-      $this->Aanvraagdatum = $Aanvraagdatum->format(\DateTime::ATOM);
+      $this->Aanvraagdatum = $Aanvraagdatum->format(DateTime::ATOM);
       return $this;
     }
 

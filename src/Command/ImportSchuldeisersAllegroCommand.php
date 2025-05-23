@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Command;
 
+use Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
@@ -78,7 +79,7 @@ class ImportSchuldeisersAllegroCommand extends Command
 
             return Command::SUCCESS;
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $io->error('Error with the following message occurred: ' . $e->getMessage());
             return Command::FAILURE;
         }

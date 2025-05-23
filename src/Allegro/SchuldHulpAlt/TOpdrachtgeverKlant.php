@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TOpdrachtgeverKlant
 {
 
@@ -16,7 +19,7 @@ class TOpdrachtgeverKlant
     protected $Zoeknaam = null;
 
     /**
-     * @var \DateTime $GeboorteDatum
+     * @var DateTime $GeboorteDatum
      */
     protected $GeboorteDatum = null;
 
@@ -78,7 +81,7 @@ class TOpdrachtgeverKlant
     /**
      * @param int $Relatiecode
      * @param string $Zoeknaam
-     * @param \DateTime $GeboorteDatum
+     * @param DateTime $GeboorteDatum
      * @param int $BSN
      * @param TAdres $Adres
      * @param int $CasusVolgnummer
@@ -91,11 +94,11 @@ class TOpdrachtgeverKlant
      * @param TrajectSoortArray $Trajecten
      * @param BBRVormArray $BBRVorm
      */
-    public function __construct($Relatiecode, $Zoeknaam, \DateTime $GeboorteDatum, $BSN, $Adres, $CasusVolgnummer, $AanvraagSRVolgnummer, $SRVolgnummer, $AanvraagBBRVolgnummer, $BBRVolgnummer, $CasusCrisis, $CasusFase, $Trajecten, $BBRVorm)
+    public function __construct($Relatiecode, $Zoeknaam, DateTime $GeboorteDatum, $BSN, $Adres, $CasusVolgnummer, $AanvraagSRVolgnummer, $SRVolgnummer, $AanvraagBBRVolgnummer, $BBRVolgnummer, $CasusCrisis, $CasusFase, $Trajecten, $BBRVorm)
     {
       $this->Relatiecode = $Relatiecode;
       $this->Zoeknaam = $Zoeknaam;
-      $this->GeboorteDatum = $GeboorteDatum->format(\DateTime::ATOM);
+      $this->GeboorteDatum = $GeboorteDatum->format(DateTime::ATOM);
       $this->BSN = $BSN;
       $this->Adres = $Adres;
       $this->CasusVolgnummer = $CasusVolgnummer;
@@ -146,7 +149,7 @@ class TOpdrachtgeverKlant
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getGeboorteDatum()
     {
@@ -154,20 +157,20 @@ class TOpdrachtgeverKlant
         return null;
       } else {
         try {
-          return new \DateTime($this->GeboorteDatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->GeboorteDatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $GeboorteDatum
+     * @param DateTime $GeboorteDatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TOpdrachtgeverKlant
      */
-    public function setGeboorteDatum(\DateTime $GeboorteDatum)
+    public function setGeboorteDatum(DateTime $GeboorteDatum)
     {
-      $this->GeboorteDatum = $GeboorteDatum->format(\DateTime::ATOM);
+      $this->GeboorteDatum = $GeboorteDatum->format(DateTime::ATOM);
       return $this;
     }
 

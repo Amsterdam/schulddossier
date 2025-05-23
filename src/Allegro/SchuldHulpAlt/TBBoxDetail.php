@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TBBoxDetail
 {
 
@@ -46,12 +49,12 @@ class TBBoxDetail
     protected $UniekVolgnummer = null;
 
     /**
-     * @var \DateTime $AanmaakDatum
+     * @var DateTime $AanmaakDatum
      */
     protected $AanmaakDatum = null;
 
     /**
-     * @var \DateTime $OntvangstDatum
+     * @var DateTime $OntvangstDatum
      */
     protected $OntvangstDatum = null;
 
@@ -61,7 +64,7 @@ class TBBoxDetail
     protected $Nieuw = null;
 
     /**
-     * @var \DateTime $EmailDatum
+     * @var DateTime $EmailDatum
      */
     protected $EmailDatum = null;
 
@@ -96,7 +99,7 @@ class TBBoxDetail
     protected $OntvangerRelatie = null;
 
     /**
-     * @var \DateTime $LeesDatum
+     * @var DateTime $LeesDatum
      */
     protected $LeesDatum = null;
 
@@ -111,7 +114,7 @@ class TBBoxDetail
     protected $LeesRelatie = null;
 
     /**
-     * @var \DateTime $ArchiefDatum
+     * @var DateTime $ArchiefDatum
      */
     protected $ArchiefDatum = null;
 
@@ -154,20 +157,20 @@ class TBBoxDetail
      * @param int $CodeEiserBegunstigde
      * @param int $NummerReservering
      * @param int $UniekVolgnummer
-     * @param \DateTime $AanmaakDatum
-     * @param \DateTime $OntvangstDatum
+     * @param DateTime $AanmaakDatum
+     * @param DateTime $OntvangstDatum
      * @param boolean $Nieuw
-     * @param \DateTime $EmailDatum
+     * @param DateTime $EmailDatum
      * @param TMedewerker $AanmaakMedewerker
      * @param TRelatie $AanmaakRelatie
      * @param TMedewerker $AfzenderMedewerker
      * @param TRelatie $AfzenderRelatie
      * @param TMedewerker $OntvangerMedewerker
      * @param TRelatie $OntvangerRelatie
-     * @param \DateTime $LeesDatum
+     * @param DateTime $LeesDatum
      * @param TMedewerker $LeesMedewerker
      * @param TRelatie $LeesRelatie
-     * @param \DateTime $ArchiefDatum
+     * @param DateTime $ArchiefDatum
      * @param TMedewerker $ArchiefMedewerker
      * @param TRelatie $ArchiefRelatie
      * @param string $Onderwerp
@@ -175,7 +178,7 @@ class TBBoxDetail
      * @param int $BijlagenAantal
      * @param TBBoxBijlageArray $Bijlagen
      */
-    public function __construct($Code, $Relatie, $ContractVolgnummer, $ContractSoort, $SoortOpdracht, $CodeEiserBegunstigde, $NummerReservering, $UniekVolgnummer, \DateTime $AanmaakDatum, \DateTime $OntvangstDatum, $Nieuw, \DateTime $EmailDatum, $AanmaakMedewerker, $AanmaakRelatie, $AfzenderMedewerker, $AfzenderRelatie, $OntvangerMedewerker, $OntvangerRelatie, \DateTime $LeesDatum, $LeesMedewerker, $LeesRelatie, \DateTime $ArchiefDatum, $ArchiefMedewerker, $ArchiefRelatie, $Onderwerp, $Tekst, $BijlagenAantal, $Bijlagen)
+    public function __construct($Code, $Relatie, $ContractVolgnummer, $ContractSoort, $SoortOpdracht, $CodeEiserBegunstigde, $NummerReservering, $UniekVolgnummer, DateTime $AanmaakDatum, DateTime $OntvangstDatum, $Nieuw, DateTime $EmailDatum, $AanmaakMedewerker, $AanmaakRelatie, $AfzenderMedewerker, $AfzenderRelatie, $OntvangerMedewerker, $OntvangerRelatie, DateTime $LeesDatum, $LeesMedewerker, $LeesRelatie, DateTime $ArchiefDatum, $ArchiefMedewerker, $ArchiefRelatie, $Onderwerp, $Tekst, $BijlagenAantal, $Bijlagen)
     {
       $this->Code = $Code;
       $this->Relatie = $Relatie;
@@ -185,20 +188,20 @@ class TBBoxDetail
       $this->CodeEiserBegunstigde = $CodeEiserBegunstigde;
       $this->NummerReservering = $NummerReservering;
       $this->UniekVolgnummer = $UniekVolgnummer;
-      $this->AanmaakDatum = $AanmaakDatum->format(\DateTime::ATOM);
-      $this->OntvangstDatum = $OntvangstDatum->format(\DateTime::ATOM);
+      $this->AanmaakDatum = $AanmaakDatum->format(DateTime::ATOM);
+      $this->OntvangstDatum = $OntvangstDatum->format(DateTime::ATOM);
       $this->Nieuw = $Nieuw;
-      $this->EmailDatum = $EmailDatum->format(\DateTime::ATOM);
+      $this->EmailDatum = $EmailDatum->format(DateTime::ATOM);
       $this->AanmaakMedewerker = $AanmaakMedewerker;
       $this->AanmaakRelatie = $AanmaakRelatie;
       $this->AfzenderMedewerker = $AfzenderMedewerker;
       $this->AfzenderRelatie = $AfzenderRelatie;
       $this->OntvangerMedewerker = $OntvangerMedewerker;
       $this->OntvangerRelatie = $OntvangerRelatie;
-      $this->LeesDatum = $LeesDatum->format(\DateTime::ATOM);
+      $this->LeesDatum = $LeesDatum->format(DateTime::ATOM);
       $this->LeesMedewerker = $LeesMedewerker;
       $this->LeesRelatie = $LeesRelatie;
-      $this->ArchiefDatum = $ArchiefDatum->format(\DateTime::ATOM);
+      $this->ArchiefDatum = $ArchiefDatum->format(DateTime::ATOM);
       $this->ArchiefMedewerker = $ArchiefMedewerker;
       $this->ArchiefRelatie = $ArchiefRelatie;
       $this->Onderwerp = $Onderwerp;
@@ -352,7 +355,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getAanmaakDatum()
     {
@@ -360,25 +363,25 @@ class TBBoxDetail
         return null;
       } else {
         try {
-          return new \DateTime($this->AanmaakDatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->AanmaakDatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $AanmaakDatum
+     * @param DateTime $AanmaakDatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBoxDetail
      */
-    public function setAanmaakDatum(\DateTime $AanmaakDatum)
+    public function setAanmaakDatum(DateTime $AanmaakDatum)
     {
-      $this->AanmaakDatum = $AanmaakDatum->format(\DateTime::ATOM);
+      $this->AanmaakDatum = $AanmaakDatum->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getOntvangstDatum()
     {
@@ -386,20 +389,20 @@ class TBBoxDetail
         return null;
       } else {
         try {
-          return new \DateTime($this->OntvangstDatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->OntvangstDatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $OntvangstDatum
+     * @param DateTime $OntvangstDatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBoxDetail
      */
-    public function setOntvangstDatum(\DateTime $OntvangstDatum)
+    public function setOntvangstDatum(DateTime $OntvangstDatum)
     {
-      $this->OntvangstDatum = $OntvangstDatum->format(\DateTime::ATOM);
+      $this->OntvangstDatum = $OntvangstDatum->format(DateTime::ATOM);
       return $this;
     }
 
@@ -422,7 +425,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getEmailDatum()
     {
@@ -430,20 +433,20 @@ class TBBoxDetail
         return null;
       } else {
         try {
-          return new \DateTime($this->EmailDatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->EmailDatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $EmailDatum
+     * @param DateTime $EmailDatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBoxDetail
      */
-    public function setEmailDatum(\DateTime $EmailDatum)
+    public function setEmailDatum(DateTime $EmailDatum)
     {
-      $this->EmailDatum = $EmailDatum->format(\DateTime::ATOM);
+      $this->EmailDatum = $EmailDatum->format(DateTime::ATOM);
       return $this;
     }
 
@@ -556,7 +559,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getLeesDatum()
     {
@@ -564,20 +567,20 @@ class TBBoxDetail
         return null;
       } else {
         try {
-          return new \DateTime($this->LeesDatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->LeesDatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $LeesDatum
+     * @param DateTime $LeesDatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBoxDetail
      */
-    public function setLeesDatum(\DateTime $LeesDatum)
+    public function setLeesDatum(DateTime $LeesDatum)
     {
-      $this->LeesDatum = $LeesDatum->format(\DateTime::ATOM);
+      $this->LeesDatum = $LeesDatum->format(DateTime::ATOM);
       return $this;
     }
 
@@ -618,7 +621,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getArchiefDatum()
     {
@@ -626,20 +629,20 @@ class TBBoxDetail
         return null;
       } else {
         try {
-          return new \DateTime($this->ArchiefDatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->ArchiefDatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $ArchiefDatum
+     * @param DateTime $ArchiefDatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBoxDetail
      */
-    public function setArchiefDatum(\DateTime $ArchiefDatum)
+    public function setArchiefDatum(DateTime $ArchiefDatum)
     {
-      $this->ArchiefDatum = $ArchiefDatum->format(\DateTime::ATOM);
+      $this->ArchiefDatum = $ArchiefDatum->format(DateTime::ATOM);
       return $this;
     }
 

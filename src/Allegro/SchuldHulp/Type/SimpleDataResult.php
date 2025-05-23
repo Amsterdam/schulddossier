@@ -20,7 +20,7 @@ class SimpleDataResult implements RequestInterface
     private $FieldInfo;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArrayArray
+     * @var StringArrayArray
      */
     private $Data;
 
@@ -28,8 +28,8 @@ class SimpleDataResult implements RequestInterface
      * Constructor
      *
      * @var string $TableName
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfoArray $FieldInfo
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArrayArray $Data
+     * @var SimpleFieldInfoArray $FieldInfo
+     * @var StringArrayArray $Data
      */
     public function __construct($TableName, $FieldInfo, $Data)
     {
@@ -59,7 +59,7 @@ class SimpleDataResult implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfoArray
+     * @return SimpleFieldInfoArray
      */
     public function getFieldInfo()
     {
@@ -67,7 +67,7 @@ class SimpleDataResult implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfoArray $FieldInfo
+     * @param SimpleFieldInfoArray $FieldInfo
      * @return SimpleDataResult
      */
     public function withFieldInfo($FieldInfo)
@@ -79,7 +79,7 @@ class SimpleDataResult implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArrayArray
+     * @return StringArrayArray
      */
     public function getData()
     {
@@ -87,7 +87,7 @@ class SimpleDataResult implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArrayArray $Data
+     * @param StringArrayArray $Data
      * @return SimpleDataResult
      */
     public function withData($Data)

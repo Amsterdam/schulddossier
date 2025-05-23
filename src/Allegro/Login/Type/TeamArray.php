@@ -8,14 +8,14 @@ class TeamArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTeam
+     * @var TTeam
      */
     private $TTeam;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTeam $TTeam
+     * @var TTeam $TTeam
      */
     public function __construct($TTeam)
     {
@@ -23,7 +23,7 @@ class TeamArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTeam
+     * @return TTeam
      */
     public function getTTeam()
     {
@@ -31,7 +31,7 @@ class TeamArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTeam $TTeam
+     * @param TTeam $TTeam
      * @return TeamArray
      */
     public function withTTeam($TTeam)

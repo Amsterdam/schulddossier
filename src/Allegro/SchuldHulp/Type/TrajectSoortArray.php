@@ -9,14 +9,14 @@ class TrajectSoortArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort
+     * @var TTrajectSoort
      */
     private $TTrajectSoort;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort $TTrajectSoort
+     * @var TTrajectSoort $TTrajectSoort
      */
     public function __construct($TTrajectSoort)
     {
@@ -24,7 +24,7 @@ class TrajectSoortArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort
+     * @return TTrajectSoort
      */
     public function getTTrajectSoort()
     {
@@ -32,7 +32,7 @@ class TrajectSoortArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort $TTrajectSoort
+     * @param TTrajectSoort $TTrajectSoort
      * @return TrajectSoortArray
      */
     public function withTTrajectSoort($TTrajectSoort)

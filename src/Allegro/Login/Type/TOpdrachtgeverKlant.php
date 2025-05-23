@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TOpdrachtgeverKlant implements RequestInterface
@@ -18,7 +19,7 @@ class TOpdrachtgeverKlant implements RequestInterface
     private $Zoeknaam;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $GeboorteDatum;
 
@@ -28,7 +29,7 @@ class TOpdrachtgeverKlant implements RequestInterface
     private $BSN;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
+     * @var TAdres
      */
     private $Adres;
 
@@ -68,12 +69,12 @@ class TOpdrachtgeverKlant implements RequestInterface
     private $CasusFase;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TrajectSoortArray
+     * @var TrajectSoortArray
      */
     private $Trajecten;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\BBRVormArray
+     * @var BBRVormArray
      */
     private $BBRVorm;
 
@@ -82,9 +83,9 @@ class TOpdrachtgeverKlant implements RequestInterface
      *
      * @var int $Relatiecode
      * @var string $Zoeknaam
-     * @var \DateTimeInterface $GeboorteDatum
+     * @var DateTimeInterface $GeboorteDatum
      * @var int $BSN
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $Adres
+     * @var TAdres $Adres
      * @var int $CasusVolgnummer
      * @var int $AanvraagSRVolgnummer
      * @var int $SRVolgnummer
@@ -92,8 +93,8 @@ class TOpdrachtgeverKlant implements RequestInterface
      * @var int $BBRVolgnummer
      * @var bool $CasusCrisis
      * @var string $CasusFase
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TrajectSoortArray $Trajecten
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\BBRVormArray $BBRVorm
+     * @var TrajectSoortArray $Trajecten
+     * @var BBRVormArray $BBRVorm
      */
     public function __construct($Relatiecode, $Zoeknaam, $GeboorteDatum, $BSN, $Adres, $CasusVolgnummer, $AanvraagSRVolgnummer, $SRVolgnummer, $AanvraagBBRVolgnummer, $BBRVolgnummer, $CasusCrisis, $CasusFase, $Trajecten, $BBRVorm)
     {
@@ -154,7 +155,7 @@ class TOpdrachtgeverKlant implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getGeboorteDatum()
     {
@@ -162,7 +163,7 @@ class TOpdrachtgeverKlant implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $GeboorteDatum
+     * @param DateTimeInterface $GeboorteDatum
      * @return TOpdrachtgeverKlant
      */
     public function withGeboorteDatum($GeboorteDatum)
@@ -194,7 +195,7 @@ class TOpdrachtgeverKlant implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
+     * @return TAdres
      */
     public function getAdres()
     {
@@ -202,7 +203,7 @@ class TOpdrachtgeverKlant implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $Adres
+     * @param TAdres $Adres
      * @return TOpdrachtgeverKlant
      */
     public function withAdres($Adres)
@@ -354,7 +355,7 @@ class TOpdrachtgeverKlant implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TrajectSoortArray
+     * @return TrajectSoortArray
      */
     public function getTrajecten()
     {
@@ -362,7 +363,7 @@ class TOpdrachtgeverKlant implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TrajectSoortArray $Trajecten
+     * @param TrajectSoortArray $Trajecten
      * @return TOpdrachtgeverKlant
      */
     public function withTrajecten($Trajecten)
@@ -374,7 +375,7 @@ class TOpdrachtgeverKlant implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\BBRVormArray
+     * @return BBRVormArray
      */
     public function getBBRVorm()
     {
@@ -382,7 +383,7 @@ class TOpdrachtgeverKlant implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\BBRVormArray $BBRVorm
+     * @param BBRVormArray $BBRVorm
      * @return TOpdrachtgeverKlant
      */
     public function withBBRVorm($BBRVorm)

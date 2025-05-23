@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TCasusPVAProduct
 {
 
@@ -21,7 +24,7 @@ class TCasusPVAProduct
     protected $Geactiveerd = null;
 
     /**
-     * @var \DateTime $DatumActivering
+     * @var DateTime $DatumActivering
      */
     protected $DatumActivering = null;
 
@@ -29,14 +32,14 @@ class TCasusPVAProduct
      * @param string $Naam
      * @param int $IDAanvraag
      * @param boolean $Geactiveerd
-     * @param \DateTime $DatumActivering
+     * @param DateTime $DatumActivering
      */
-    public function __construct($Naam, $IDAanvraag, $Geactiveerd, \DateTime $DatumActivering)
+    public function __construct($Naam, $IDAanvraag, $Geactiveerd, DateTime $DatumActivering)
     {
       $this->Naam = $Naam;
       $this->IDAanvraag = $IDAanvraag;
       $this->Geactiveerd = $Geactiveerd;
-      $this->DatumActivering = $DatumActivering->format(\DateTime::ATOM);
+      $this->DatumActivering = $DatumActivering->format(DateTime::ATOM);
     }
 
     /**
@@ -94,7 +97,7 @@ class TCasusPVAProduct
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumActivering()
     {
@@ -102,20 +105,20 @@ class TCasusPVAProduct
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumActivering);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumActivering);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumActivering
+     * @param DateTime $DatumActivering
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusPVAProduct
      */
-    public function setDatumActivering(\DateTime $DatumActivering)
+    public function setDatumActivering(DateTime $DatumActivering)
     {
-      $this->DatumActivering = $DatumActivering->format(\DateTime::ATOM);
+      $this->DatumActivering = $DatumActivering->format(DateTime::ATOM);
       return $this;
     }
 

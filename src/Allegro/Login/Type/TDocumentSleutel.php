@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TDocumentSleutel implements RequestInterface
@@ -13,7 +14,7 @@ class TDocumentSleutel implements RequestInterface
     private $ComponentCode;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $ArchiefDatum;
 
@@ -31,7 +32,7 @@ class TDocumentSleutel implements RequestInterface
      * Constructor
      *
      * @var string $ComponentCode
-     * @var \DateTimeInterface $ArchiefDatum
+     * @var DateTimeInterface $ArchiefDatum
      * @var string $Kenmerk
      * @var int $Volgnummer
      */
@@ -64,7 +65,7 @@ class TDocumentSleutel implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getArchiefDatum()
     {
@@ -72,7 +73,7 @@ class TDocumentSleutel implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $ArchiefDatum
+     * @param DateTimeInterface $ArchiefDatum
      * @return TDocumentSleutel
      */
     public function withArchiefDatum($ArchiefDatum)

@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPLHeader implements RequestInterface
@@ -19,7 +20,7 @@ class TPLHeader implements RequestInterface
     private $Volgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Startdatum;
 
@@ -28,7 +29,7 @@ class TPLHeader implements RequestInterface
      *
      * @var int $RelatieCode
      * @var int $Volgnummer
-     * @var \DateTimeInterface $Startdatum
+     * @var DateTimeInterface $Startdatum
      */
     public function __construct($RelatieCode, $Volgnummer, $Startdatum)
     {
@@ -78,7 +79,7 @@ class TPLHeader implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum()
     {
@@ -86,7 +87,7 @@ class TPLHeader implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Startdatum
+     * @param DateTimeInterface $Startdatum
      * @return TPLHeader
      */
     public function withStartdatum($Startdatum)

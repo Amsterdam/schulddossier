@@ -2,23 +2,24 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSMutatiesPeriode implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray
+     * @var PRSMutatieArray
      */
     private $Mutaties;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumStart;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumEinde;
 
@@ -43,27 +44,27 @@ class TPRSMutatiesPeriode implements RequestInterface
     private $TotaalBij;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $PeriodeStart;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $PeriodeEinde;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray $Mutaties
-     * @var \DateTimeInterface $DatumStart
-     * @var \DateTimeInterface $DatumEinde
+     * @var PRSMutatieArray $Mutaties
+     * @var DateTimeInterface $DatumStart
+     * @var DateTimeInterface $DatumEinde
      * @var float $SaldoStart
      * @var float $SaldoEinde
      * @var float $TotaalAf
      * @var float $TotaalBij
-     * @var \DateTimeInterface $PeriodeStart
-     * @var \DateTimeInterface $PeriodeEinde
+     * @var DateTimeInterface $PeriodeStart
+     * @var DateTimeInterface $PeriodeEinde
      */
     public function __construct($Mutaties, $DatumStart, $DatumEinde, $SaldoStart, $SaldoEinde, $TotaalAf, $TotaalBij, $PeriodeStart, $PeriodeEinde)
     {
@@ -79,7 +80,7 @@ class TPRSMutatiesPeriode implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray
+     * @return PRSMutatieArray
      */
     public function getMutaties()
     {
@@ -87,7 +88,7 @@ class TPRSMutatiesPeriode implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray $Mutaties
+     * @param PRSMutatieArray $Mutaties
      * @return TPRSMutatiesPeriode
      */
     public function withMutaties($Mutaties)
@@ -99,7 +100,7 @@ class TPRSMutatiesPeriode implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStart()
     {
@@ -107,7 +108,7 @@ class TPRSMutatiesPeriode implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumStart
+     * @param DateTimeInterface $DatumStart
      * @return TPRSMutatiesPeriode
      */
     public function withDatumStart($DatumStart)
@@ -119,7 +120,7 @@ class TPRSMutatiesPeriode implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumEinde()
     {
@@ -127,7 +128,7 @@ class TPRSMutatiesPeriode implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumEinde
+     * @param DateTimeInterface $DatumEinde
      * @return TPRSMutatiesPeriode
      */
     public function withDatumEinde($DatumEinde)
@@ -219,7 +220,7 @@ class TPRSMutatiesPeriode implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPeriodeStart()
     {
@@ -227,7 +228,7 @@ class TPRSMutatiesPeriode implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $PeriodeStart
+     * @param DateTimeInterface $PeriodeStart
      * @return TPRSMutatiesPeriode
      */
     public function withPeriodeStart($PeriodeStart)
@@ -239,7 +240,7 @@ class TPRSMutatiesPeriode implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPeriodeEinde()
     {
@@ -247,7 +248,7 @@ class TPRSMutatiesPeriode implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $PeriodeEinde
+     * @param DateTimeInterface $PeriodeEinde
      * @return TPRSMutatiesPeriode
      */
     public function withPeriodeEinde($PeriodeEinde)

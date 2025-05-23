@@ -2,13 +2,15 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use DateTime;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
 
 
-class DossierTimelineFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
+class DossierTimelineFixtures extends Fixture implements DependentFixtureInterface
 {
     public const TIMELINE_JSON_FILENAME = 'timeline.json';
 
@@ -27,7 +29,7 @@ class DossierTimelineFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture im
             $timeline->setType($dossierTimeline['type']);
             $timeline->setSubtype($dossierTimeline['subtype']);
             $timeline->setOmschrijving($dossierTimeline['omschrijving']);
-            $timeline->setDatumtijd(new \DateTime($dossierTimeline['datumtijd']));
+            $timeline->setDatumtijd(new DateTime($dossierTimeline['datumtijd']));
 
             $manager->persist($timeline);
         }

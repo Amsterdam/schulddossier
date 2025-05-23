@@ -2,6 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Normalizer;
 
+use DateTime;
+use ArrayObject;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
@@ -12,14 +14,14 @@ class DateTimeNormalizer implements NormalizerInterface, NormalizerAwareInterfac
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return $data instanceof \DateTime;
+        return $data instanceof DateTime;
     }
 
     public function normalize(
         $object,
         $format = null,
         array $context = []
-    ): array|string|int|float|bool|\ArrayObject|null {
+    ): array|string|int|float|bool|ArrayObject|null {
         /** @var $object \DateTime */
         return [
             'timestamp' => $object->format('U'),
@@ -31,7 +33,7 @@ class DateTimeNormalizer implements NormalizerInterface, NormalizerAwareInterfac
     public function getSupportedTypes(?string $format): array
     {
         return [
-            \DateTime::class => true,
+            DateTime::class => true,
         ];
     }
 

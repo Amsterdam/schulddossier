@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TPL
 {
 
@@ -21,7 +24,7 @@ class TPL
     protected $OpdrachtgeverContact = null;
 
     /**
-     * @var \DateTime $TheoEinddatum
+     * @var DateTime $TheoEinddatum
      */
     protected $TheoEinddatum = null;
 
@@ -61,7 +64,7 @@ class TPL
     protected $AantalKwartalen = null;
 
     /**
-     * @var \DateTime $DatumEersteAflossing
+     * @var DateTime $DatumEersteAflossing
      */
     protected $DatumEersteAflossing = null;
 
@@ -91,7 +94,7 @@ class TPL
     protected $EffectiefJaarpercentage = null;
 
     /**
-     * @var \DateTime $DatumLaatsteBetaling
+     * @var DateTime $DatumLaatsteBetaling
      */
     protected $DatumLaatsteBetaling = null;
 
@@ -164,7 +167,7 @@ class TPL
      * @param TPLHeader $InfoHeader
      * @param int $Opdrachtgever
      * @param int $OpdrachtgeverContact
-     * @param \DateTime $TheoEinddatum
+     * @param DateTime $TheoEinddatum
      * @param float $NettoKredietsom
      * @param float $BrutoKredietsom
      * @param float $Kredietvergoeding
@@ -172,13 +175,13 @@ class TPL
      * @param float $KwartaalTermijn
      * @param int $AantalMaanden
      * @param int $AantalKwartalen
-     * @param \DateTime $DatumEersteAflossing
+     * @param DateTime $DatumEersteAflossing
      * @param float $Betaald
      * @param float $SaldoLening
      * @param float $Achterstand
      * @param int $ResterendeLooptijd
      * @param float $EffectiefJaarpercentage
-     * @param \DateTime $DatumLaatsteBetaling
+     * @param DateTime $DatumLaatsteBetaling
      * @param float $BedragLaatsteBetaling
      * @param float $VolledigVervroegdeAflossing
      * @param string $Medewerker
@@ -193,12 +196,12 @@ class TPL
      * @param float $MaandPercentage
      * @param float $BetaaldeKredietvergoeding
      */
-    public function __construct($InfoHeader, $Opdrachtgever, $OpdrachtgeverContact, \DateTime $TheoEinddatum, $NettoKredietsom, $BrutoKredietsom, $Kredietvergoeding, $MaandTermijn, $KwartaalTermijn, $AantalMaanden, $AantalKwartalen, \DateTime $DatumEersteAflossing, $Betaald, $SaldoLening, $Achterstand, $ResterendeLooptijd, $EffectiefJaarpercentage, \DateTime $DatumLaatsteBetaling, $BedragLaatsteBetaling, $VolledigVervroegdeAflossing, $Medewerker, $MedelenerCode, $OpenstaandeVertragingsrente, $OpenstaandeKredietvergoeding, $BetaaldeVertragingsrente, $BetaaldeBoeterente, $KostenVVA, $Voorstand, $LeningSoort, $MaandPercentage, $BetaaldeKredietvergoeding)
+    public function __construct($InfoHeader, $Opdrachtgever, $OpdrachtgeverContact, DateTime $TheoEinddatum, $NettoKredietsom, $BrutoKredietsom, $Kredietvergoeding, $MaandTermijn, $KwartaalTermijn, $AantalMaanden, $AantalKwartalen, DateTime $DatumEersteAflossing, $Betaald, $SaldoLening, $Achterstand, $ResterendeLooptijd, $EffectiefJaarpercentage, DateTime $DatumLaatsteBetaling, $BedragLaatsteBetaling, $VolledigVervroegdeAflossing, $Medewerker, $MedelenerCode, $OpenstaandeVertragingsrente, $OpenstaandeKredietvergoeding, $BetaaldeVertragingsrente, $BetaaldeBoeterente, $KostenVVA, $Voorstand, $LeningSoort, $MaandPercentage, $BetaaldeKredietvergoeding)
     {
       $this->InfoHeader = $InfoHeader;
       $this->Opdrachtgever = $Opdrachtgever;
       $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      $this->TheoEinddatum = $TheoEinddatum->format(\DateTime::ATOM);
+      $this->TheoEinddatum = $TheoEinddatum->format(DateTime::ATOM);
       $this->NettoKredietsom = $NettoKredietsom;
       $this->BrutoKredietsom = $BrutoKredietsom;
       $this->Kredietvergoeding = $Kredietvergoeding;
@@ -206,13 +209,13 @@ class TPL
       $this->KwartaalTermijn = $KwartaalTermijn;
       $this->AantalMaanden = $AantalMaanden;
       $this->AantalKwartalen = $AantalKwartalen;
-      $this->DatumEersteAflossing = $DatumEersteAflossing->format(\DateTime::ATOM);
+      $this->DatumEersteAflossing = $DatumEersteAflossing->format(DateTime::ATOM);
       $this->Betaald = $Betaald;
       $this->SaldoLening = $SaldoLening;
       $this->Achterstand = $Achterstand;
       $this->ResterendeLooptijd = $ResterendeLooptijd;
       $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(DateTime::ATOM);
       $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
       $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
       $this->Medewerker = $Medewerker;
@@ -283,7 +286,7 @@ class TPL
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getTheoEinddatum()
     {
@@ -291,20 +294,20 @@ class TPL
         return null;
       } else {
         try {
-          return new \DateTime($this->TheoEinddatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->TheoEinddatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $TheoEinddatum
+     * @param DateTime $TheoEinddatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPL
      */
-    public function setTheoEinddatum(\DateTime $TheoEinddatum)
+    public function setTheoEinddatum(DateTime $TheoEinddatum)
     {
-      $this->TheoEinddatum = $TheoEinddatum->format(\DateTime::ATOM);
+      $this->TheoEinddatum = $TheoEinddatum->format(DateTime::ATOM);
       return $this;
     }
 
@@ -435,7 +438,7 @@ class TPL
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumEersteAflossing()
     {
@@ -443,20 +446,20 @@ class TPL
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumEersteAflossing);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumEersteAflossing);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumEersteAflossing
+     * @param DateTime $DatumEersteAflossing
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPL
      */
-    public function setDatumEersteAflossing(\DateTime $DatumEersteAflossing)
+    public function setDatumEersteAflossing(DateTime $DatumEersteAflossing)
     {
-      $this->DatumEersteAflossing = $DatumEersteAflossing->format(\DateTime::ATOM);
+      $this->DatumEersteAflossing = $DatumEersteAflossing->format(DateTime::ATOM);
       return $this;
     }
 
@@ -551,7 +554,7 @@ class TPL
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumLaatsteBetaling()
     {
@@ -559,20 +562,20 @@ class TPL
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumLaatsteBetaling);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumLaatsteBetaling);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumLaatsteBetaling
+     * @param DateTime $DatumLaatsteBetaling
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPL
      */
-    public function setDatumLaatsteBetaling(\DateTime $DatumLaatsteBetaling)
+    public function setDatumLaatsteBetaling(DateTime $DatumLaatsteBetaling)
     {
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(DateTime::ATOM);
       return $this;
     }
 

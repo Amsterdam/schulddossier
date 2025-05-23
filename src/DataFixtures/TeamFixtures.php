@@ -2,10 +2,11 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 
-class TeamFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
+class TeamFixtures extends Fixture
 {
     const TEAM_3_REFERENCE = 'Team 3';
 

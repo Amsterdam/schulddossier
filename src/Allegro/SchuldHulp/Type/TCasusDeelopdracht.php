@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusDeelopdracht implements RequestInterface
@@ -54,22 +55,22 @@ class TCasusDeelopdracht implements RequestInterface
     private $Toelichting;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Startdatum;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumUiterlijk;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumUitgevoerd;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumNietUitgevoerd;
 
@@ -90,10 +91,10 @@ class TCasusDeelopdracht implements RequestInterface
      * @var string $RubriekSoort
      * @var string $RubriekNaam
      * @var string $Toelichting
-     * @var \DateTimeInterface $Startdatum
-     * @var \DateTimeInterface $DatumUiterlijk
-     * @var \DateTimeInterface $DatumUitgevoerd
-     * @var \DateTimeInterface $DatumNietUitgevoerd
+     * @var DateTimeInterface $Startdatum
+     * @var DateTimeInterface $DatumUiterlijk
+     * @var DateTimeInterface $DatumUitgevoerd
+     * @var DateTimeInterface $DatumNietUitgevoerd
      * @var string $NaamLang
      */
     public function __construct($VolgnummerCasus, $VolgnummerKlantopdracht, $ToelichtingKlantopdracht, $VolgnummerDeelopdracht, $Naam, $Omschrijving, $RubriekSoort, $RubriekNaam, $Toelichting, $Startdatum, $DatumUiterlijk, $DatumUitgevoerd, $DatumNietUitgevoerd, $NaamLang)
@@ -295,7 +296,7 @@ class TCasusDeelopdracht implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum()
     {
@@ -303,7 +304,7 @@ class TCasusDeelopdracht implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Startdatum
+     * @param DateTimeInterface $Startdatum
      * @return TCasusDeelopdracht
      */
     public function withStartdatum($Startdatum)
@@ -315,7 +316,7 @@ class TCasusDeelopdracht implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumUiterlijk()
     {
@@ -323,7 +324,7 @@ class TCasusDeelopdracht implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumUiterlijk
+     * @param DateTimeInterface $DatumUiterlijk
      * @return TCasusDeelopdracht
      */
     public function withDatumUiterlijk($DatumUiterlijk)
@@ -335,7 +336,7 @@ class TCasusDeelopdracht implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumUitgevoerd()
     {
@@ -343,7 +344,7 @@ class TCasusDeelopdracht implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumUitgevoerd
+     * @param DateTimeInterface $DatumUitgevoerd
      * @return TCasusDeelopdracht
      */
     public function withDatumUitgevoerd($DatumUitgevoerd)
@@ -355,7 +356,7 @@ class TCasusDeelopdracht implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumNietUitgevoerd()
     {
@@ -363,7 +364,7 @@ class TCasusDeelopdracht implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumNietUitgevoerd
+     * @param DateTimeInterface $DatumNietUitgevoerd
      * @return TCasusDeelopdracht
      */
     public function withDatumNietUitgevoerd($DatumNietUitgevoerd)

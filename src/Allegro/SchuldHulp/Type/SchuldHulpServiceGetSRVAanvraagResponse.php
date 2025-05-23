@@ -9,12 +9,12 @@ class SchuldHulpServiceGetSRVAanvraagResponse implements ResultInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraag
+     * @var TSRVAanvraag
      */
     private $Result;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraag
+     * @return TSRVAanvraag
      */
     public function getResult()
     {
@@ -22,7 +22,7 @@ class SchuldHulpServiceGetSRVAanvraagResponse implements ResultInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraag $Result
+     * @param TSRVAanvraag $Result
      * @return SchuldHulpServiceGetSRVAanvraagResponse
      */
     public function withResult($Result)

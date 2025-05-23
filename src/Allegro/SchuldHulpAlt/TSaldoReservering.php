@@ -2,11 +2,14 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TSaldoReservering
 {
 
     /**
-     * @var \DateTime $Datum
+     * @var DateTime $Datum
      */
     protected $Datum = null;
 
@@ -26,21 +29,21 @@ class TSaldoReservering
     protected $Saldo = null;
 
     /**
-     * @param \DateTime $Datum
+     * @param DateTime $Datum
      * @param int $Volgnummer
      * @param string $Omschrijving
      * @param float $Saldo
      */
-    public function __construct(\DateTime $Datum, $Volgnummer, $Omschrijving, $Saldo)
+    public function __construct(DateTime $Datum, $Volgnummer, $Omschrijving, $Saldo)
     {
-      $this->Datum = $Datum->format(\DateTime::ATOM);
+      $this->Datum = $Datum->format(DateTime::ATOM);
       $this->Volgnummer = $Volgnummer;
       $this->Omschrijving = $Omschrijving;
       $this->Saldo = $Saldo;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatum()
     {
@@ -48,20 +51,20 @@ class TSaldoReservering
         return null;
       } else {
         try {
-          return new \DateTime($this->Datum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Datum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Datum
+     * @param DateTime $Datum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSaldoReservering
      */
-    public function setDatum(\DateTime $Datum)
+    public function setDatum(DateTime $Datum)
     {
-      $this->Datum = $Datum->format(\DateTime::ATOM);
+      $this->Datum = $Datum->format(DateTime::ATOM);
       return $this;
     }
 

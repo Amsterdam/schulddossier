@@ -8,14 +8,14 @@ class TPRSMutaties implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray
+     * @var PRSMutatieArray
      */
     private $Mutaties;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray $Mutaties
+     * @var PRSMutatieArray $Mutaties
      */
     public function __construct($Mutaties)
     {
@@ -23,7 +23,7 @@ class TPRSMutaties implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray
+     * @return PRSMutatieArray
      */
     public function getMutaties()
     {
@@ -31,7 +31,7 @@ class TPRSMutaties implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray $Mutaties
+     * @param PRSMutatieArray $Mutaties
      * @return TPRSMutaties
      */
     public function withMutaties($Mutaties)

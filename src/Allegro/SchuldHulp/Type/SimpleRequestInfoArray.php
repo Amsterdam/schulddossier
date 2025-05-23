@@ -17,7 +17,7 @@ class SimpleRequestInfoArray implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleRequestInfo $SimpleRequestInfo
+     * @var SimpleRequestInfo $SimpleRequestInfo
      */
     public function __construct($SimpleRequestInfo)
     {
@@ -25,7 +25,7 @@ class SimpleRequestInfoArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleRequestInfo
+     * @return SimpleRequestInfo
      */
     public function getSimpleRequestInfo()
     {
@@ -33,7 +33,7 @@ class SimpleRequestInfoArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleRequestInfo $SimpleRequestInfo
+     * @param SimpleRequestInfo $SimpleRequestInfo
      * @return SimpleRequestInfoArray
      */
     public function withSimpleRequestInfo($SimpleRequestInfo)

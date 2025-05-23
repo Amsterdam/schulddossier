@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TPRSMutatie
 {
 
@@ -26,7 +29,7 @@ class TPRSMutatie
     protected $ContractVolgnummer = null;
 
     /**
-     * @var \DateTime $Datum
+     * @var DateTime $Datum
      */
     protected $Datum = null;
 
@@ -60,20 +63,20 @@ class TPRSMutatie
      * @param int $UniekVolgnummer
      * @param int $ContractCode
      * @param int $ContractVolgnummer
-     * @param \DateTime $Datum
+     * @param DateTime $Datum
      * @param string $AfBij
      * @param float $Bedrag
      * @param int $VolgnummerAfschrift
      * @param string $Omschrijving
      * @param float $SaldoVoor
      */
-    public function __construct($RelatieCode, $UniekVolgnummer, $ContractCode, $ContractVolgnummer, \DateTime $Datum, $AfBij, $Bedrag, $VolgnummerAfschrift, $Omschrijving, $SaldoVoor)
+    public function __construct($RelatieCode, $UniekVolgnummer, $ContractCode, $ContractVolgnummer, DateTime $Datum, $AfBij, $Bedrag, $VolgnummerAfschrift, $Omschrijving, $SaldoVoor)
     {
       $this->RelatieCode = $RelatieCode;
       $this->UniekVolgnummer = $UniekVolgnummer;
       $this->ContractCode = $ContractCode;
       $this->ContractVolgnummer = $ContractVolgnummer;
-      $this->Datum = $Datum->format(\DateTime::ATOM);
+      $this->Datum = $Datum->format(DateTime::ATOM);
       $this->AfBij = $AfBij;
       $this->Bedrag = $Bedrag;
       $this->VolgnummerAfschrift = $VolgnummerAfschrift;
@@ -154,7 +157,7 @@ class TPRSMutatie
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatum()
     {
@@ -162,20 +165,20 @@ class TPRSMutatie
         return null;
       } else {
         try {
-          return new \DateTime($this->Datum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Datum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Datum
+     * @param DateTime $Datum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPRSMutatie
      */
-    public function setDatum(\DateTime $Datum)
+    public function setDatum(DateTime $Datum)
     {
-      $this->Datum = $Datum->format(\DateTime::ATOM);
+      $this->Datum = $Datum->format(DateTime::ATOM);
       return $this;
     }
 

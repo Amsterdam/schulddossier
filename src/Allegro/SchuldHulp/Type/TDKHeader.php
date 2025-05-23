@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TDKHeader implements RequestInterface
@@ -19,7 +20,7 @@ class TDKHeader implements RequestInterface
     private $Volgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumUitbetaling;
 
@@ -28,7 +29,7 @@ class TDKHeader implements RequestInterface
      *
      * @var int $RelatieCode
      * @var int $Volgnummer
-     * @var \DateTimeInterface $DatumUitbetaling
+     * @var DateTimeInterface $DatumUitbetaling
      */
     public function __construct($RelatieCode, $Volgnummer, $DatumUitbetaling)
     {
@@ -78,7 +79,7 @@ class TDKHeader implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumUitbetaling()
     {
@@ -86,7 +87,7 @@ class TDKHeader implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumUitbetaling
+     * @param DateTimeInterface $DatumUitbetaling
      * @return TDKHeader
      */
     public function withDatumUitbetaling($DatumUitbetaling)

@@ -9,14 +9,14 @@ class CasusPVAProductArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusPVAProduct
+     * @var TCasusPVAProduct
      */
     private $TCasusPVAProduct;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusPVAProduct $TCasusPVAProduct
+     * @var TCasusPVAProduct $TCasusPVAProduct
      */
     public function __construct($TCasusPVAProduct)
     {
@@ -24,7 +24,7 @@ class CasusPVAProductArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusPVAProduct
+     * @return TCasusPVAProduct
      */
     public function getTCasusPVAProduct()
     {
@@ -32,7 +32,7 @@ class CasusPVAProductArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusPVAProduct $TCasusPVAProduct
+     * @param TCasusPVAProduct $TCasusPVAProduct
      * @return CasusPVAProductArray
      */
     public function withTCasusPVAProduct($TCasusPVAProduct)

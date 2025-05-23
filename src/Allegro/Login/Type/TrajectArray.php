@@ -8,14 +8,14 @@ class TrajectArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTraject
+     * @var TTraject
      */
     private $TTraject;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTraject $TTraject
+     * @var TTraject $TTraject
      */
     public function __construct($TTraject)
     {
@@ -23,7 +23,7 @@ class TrajectArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTraject
+     * @return TTraject
      */
     public function getTTraject()
     {
@@ -31,7 +31,7 @@ class TrajectArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTraject $TTraject
+     * @param TTraject $TTraject
      * @return TrajectArray
      */
     public function withTTraject($TTraject)

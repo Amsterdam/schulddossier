@@ -8,12 +8,12 @@ class SimpleDeltaChange implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
+     * @var StringArray
      */
     private $OldValues;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
+     * @var StringArray
      */
     private $NewValues;
 
@@ -30,8 +30,8 @@ class SimpleDeltaChange implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $OldValues
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $NewValues
+     * @var StringArray $OldValues
+     * @var StringArray $NewValues
      * @var string $Error
      * @var string $Mode
      */
@@ -44,7 +44,7 @@ class SimpleDeltaChange implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
+     * @return StringArray
      */
     public function getOldValues()
     {
@@ -52,7 +52,7 @@ class SimpleDeltaChange implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $OldValues
+     * @param StringArray $OldValues
      * @return SimpleDeltaChange
      */
     public function withOldValues($OldValues)
@@ -64,7 +64,7 @@ class SimpleDeltaChange implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
+     * @return StringArray
      */
     public function getNewValues()
     {
@@ -72,7 +72,7 @@ class SimpleDeltaChange implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $NewValues
+     * @param StringArray $NewValues
      * @return SimpleDeltaChange
      */
     public function withNewValues($NewValues)

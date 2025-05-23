@@ -9,14 +9,14 @@ class PRSAfschriftArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPRSAfschrift
+     * @var TPRSAfschrift
      */
     private $TPRSAfschrift;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPRSAfschrift $TPRSAfschrift
+     * @var TPRSAfschrift $TPRSAfschrift
      */
     public function __construct($TPRSAfschrift)
     {
@@ -24,7 +24,7 @@ class PRSAfschriftArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPRSAfschrift
+     * @return TPRSAfschrift
      */
     public function getTPRSAfschrift()
     {
@@ -32,7 +32,7 @@ class PRSAfschriftArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPRSAfschrift $TPRSAfschrift
+     * @param TPRSAfschrift $TPRSAfschrift
      * @return PRSAfschriftArray
      */
     public function withTPRSAfschrift($TPRSAfschrift)

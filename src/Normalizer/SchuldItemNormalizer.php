@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Normalizer;
 
+use ArrayObject;
 use Symfony\Component\Form\FormErrorIterator;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
@@ -21,7 +22,7 @@ class SchuldItemNormalizer implements NormalizerInterface, NormalizerAwareInterf
         $object,
         $format = null,
         array $context = []
-    ): array|string|int|float|bool|\ArrayObject|null {
+    ): array|string|int|float|bool|ArrayObject|null {
         /** @var $object SchuldItem */
         return [
             'id' => $object->getId(),

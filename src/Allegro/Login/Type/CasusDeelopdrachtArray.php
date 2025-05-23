@@ -8,14 +8,14 @@ class CasusDeelopdrachtArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusDeelopdracht
+     * @var TCasusDeelopdracht
      */
     private $TCasusDeelopdracht;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusDeelopdracht $TCasusDeelopdracht
+     * @var TCasusDeelopdracht $TCasusDeelopdracht
      */
     public function __construct($TCasusDeelopdracht)
     {
@@ -23,7 +23,7 @@ class CasusDeelopdrachtArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusDeelopdracht
+     * @return TCasusDeelopdracht
      */
     public function getTCasusDeelopdracht()
     {
@@ -31,7 +31,7 @@ class CasusDeelopdrachtArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusDeelopdracht $TCasusDeelopdracht
+     * @param TCasusDeelopdracht $TCasusDeelopdracht
      * @return CasusDeelopdrachtArray
      */
     public function withTCasusDeelopdracht($TCasusDeelopdracht)

@@ -1,6 +1,7 @@
 <?php
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Service;
 
+use InvalidArgumentException;
 use League\Flysystem\Filesystem;
 
 class FileStorageSelector
@@ -21,8 +22,8 @@ class FileStorageSelector
 
     /**
      * @param string $groep
-     * @throws \InvalidArgumentException
-     * @return \League\Flysystem\Filesystem
+     * @throws InvalidArgumentException
+     * @return Filesystem
      */
     public function getByGroep($groep)
     {
@@ -31,11 +32,11 @@ class FileStorageSelector
             case 'dossier':
                 return $this->getFileStorageForDossier();
         }
-        throw new \InvalidArgumentException('Unknown groep "' . $groep . '"');
+        throw new InvalidArgumentException('Unknown groep "' . $groep . '"');
     }
 
     /**
-     * @return \League\Flysystem\Filesystem
+     * @return Filesystem
      */
     public function getFileStorageForDossier()
     {

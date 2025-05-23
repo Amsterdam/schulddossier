@@ -8,14 +8,14 @@ class TableRequestInfoArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TableRequestInfo
+     * @var TableRequestInfo
      */
     private $TableRequestInfo;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TableRequestInfo $TableRequestInfo
+     * @var TableRequestInfo $TableRequestInfo
      */
     public function __construct($TableRequestInfo)
     {
@@ -23,7 +23,7 @@ class TableRequestInfoArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TableRequestInfo
+     * @return TableRequestInfo
      */
     public function getTableRequestInfo()
     {
@@ -31,7 +31,7 @@ class TableRequestInfoArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TableRequestInfo $TableRequestInfo
+     * @param TableRequestInfo $TableRequestInfo
      * @return TableRequestInfoArray
      */
     public function withTableRequestInfo($TableRequestInfo)

@@ -24,7 +24,7 @@ class LoginServiceBSNNaarRelatieMetBedrijfResponse implements ResultInterface
     private $ExtraInfoOmschrijving;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\RelatiecodeBedrijfcodeArray
+     * @return RelatiecodeBedrijfcodeArray
      */
     public function getResult()
     {
@@ -32,7 +32,7 @@ class LoginServiceBSNNaarRelatieMetBedrijfResponse implements ResultInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\RelatiecodeBedrijfcodeArray $Result
+     * @param RelatiecodeBedrijfcodeArray $Result
      * @return LoginServiceBSNNaarRelatieMetBedrijfResponse
      */
     public function withResult($Result)

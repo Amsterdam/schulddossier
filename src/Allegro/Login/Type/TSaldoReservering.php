@@ -2,13 +2,14 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSaldoReservering implements RequestInterface
 {
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Datum;
 
@@ -30,7 +31,7 @@ class TSaldoReservering implements RequestInterface
     /**
      * Constructor
      *
-     * @var \DateTimeInterface $Datum
+     * @var DateTimeInterface $Datum
      * @var int $Volgnummer
      * @var string $Omschrijving
      * @var float $Saldo
@@ -44,7 +45,7 @@ class TSaldoReservering implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatum()
     {
@@ -52,7 +53,7 @@ class TSaldoReservering implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Datum
+     * @param DateTimeInterface $Datum
      * @return TSaldoReservering
      */
     public function withDatum($Datum)

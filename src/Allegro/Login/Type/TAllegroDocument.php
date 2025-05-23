@@ -8,7 +8,7 @@ class TAllegroDocument implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDocumentSleutel
+     * @var TDocumentSleutel
      */
     private $DocumentSleutel;
 
@@ -40,7 +40,7 @@ class TAllegroDocument implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDocumentSleutel $DocumentSleutel
+     * @var TDocumentSleutel $DocumentSleutel
      * @var int $Relatiecode
      * @var int $Activiteit
      * @var string $SoortActiviteit
@@ -58,7 +58,7 @@ class TAllegroDocument implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDocumentSleutel
+     * @return TDocumentSleutel
      */
     public function getDocumentSleutel()
     {
@@ -66,7 +66,7 @@ class TAllegroDocument implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDocumentSleutel $DocumentSleutel
+     * @param TDocumentSleutel $DocumentSleutel
      * @return TAllegroDocument
      */
     public function withDocumentSleutel($DocumentSleutel)

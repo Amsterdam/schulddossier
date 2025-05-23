@@ -9,14 +9,14 @@ class BBRVormArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRVorm
+     * @var TBBRVorm
      */
     private $TBBRVorm;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRVorm $TBBRVorm
+     * @var TBBRVorm $TBBRVorm
      */
     public function __construct($TBBRVorm)
     {
@@ -24,7 +24,7 @@ class BBRVormArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRVorm
+     * @return TBBRVorm
      */
     public function getTBBRVorm()
     {
@@ -32,7 +32,7 @@ class BBRVormArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRVorm $TBBRVorm
+     * @param TBBRVorm $TBBRVorm
      * @return BBRVormArray
      */
     public function withTBBRVorm($TBBRVorm)

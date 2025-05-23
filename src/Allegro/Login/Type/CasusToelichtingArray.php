@@ -8,14 +8,14 @@ class CasusToelichtingArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusToelichting
+     * @var TCasusToelichting
      */
     private $TCasusToelichting;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusToelichting $TCasusToelichting
+     * @var TCasusToelichting $TCasusToelichting
      */
     public function __construct($TCasusToelichting)
     {
@@ -23,7 +23,7 @@ class CasusToelichtingArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusToelichting
+     * @return TCasusToelichting
      */
     public function getTCasusToelichting()
     {
@@ -31,7 +31,7 @@ class CasusToelichtingArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusToelichting $TCasusToelichting
+     * @param TCasusToelichting $TCasusToelichting
      * @return CasusToelichtingArray
      */
     public function withTCasusToelichting($TCasusToelichting)

@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TCasusNotitie
 {
 
@@ -11,7 +14,7 @@ class TCasusNotitie
     protected $Volgnummer = null;
 
     /**
-     * @var \DateTime $Datum
+     * @var DateTime $Datum
      */
     protected $Datum = null;
 
@@ -32,15 +35,15 @@ class TCasusNotitie
 
     /**
      * @param int $Volgnummer
-     * @param \DateTime $Datum
+     * @param DateTime $Datum
      * @param string $Beschrijving
      * @param TMedewerker $Medewerker
      * @param boolean $PDF
      */
-    public function __construct($Volgnummer, \DateTime $Datum, $Beschrijving, $Medewerker, $PDF)
+    public function __construct($Volgnummer, DateTime $Datum, $Beschrijving, $Medewerker, $PDF)
     {
       $this->Volgnummer = $Volgnummer;
-      $this->Datum = $Datum->format(\DateTime::ATOM);
+      $this->Datum = $Datum->format(DateTime::ATOM);
       $this->Beschrijving = $Beschrijving;
       $this->Medewerker = $Medewerker;
       $this->PDF = $PDF;
@@ -65,7 +68,7 @@ class TCasusNotitie
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatum()
     {
@@ -73,20 +76,20 @@ class TCasusNotitie
         return null;
       } else {
         try {
-          return new \DateTime($this->Datum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Datum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Datum
+     * @param DateTime $Datum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusNotitie
      */
-    public function setDatum(\DateTime $Datum)
+    public function setDatum(DateTime $Datum)
     {
-      $this->Datum = $Datum->format(\DateTime::ATOM);
+      $this->Datum = $Datum->format(DateTime::ATOM);
       return $this;
     }
 

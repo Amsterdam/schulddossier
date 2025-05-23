@@ -9,14 +9,14 @@ class UitgavenArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TUitgaven
+     * @var TUitgaven
      */
     private $TUitgaven;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TUitgaven $TUitgaven
+     * @var TUitgaven $TUitgaven
      */
     public function __construct($TUitgaven)
     {
@@ -24,7 +24,7 @@ class UitgavenArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TUitgaven
+     * @return TUitgaven
      */
     public function getTUitgaven()
     {
@@ -32,7 +32,7 @@ class UitgavenArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TUitgaven $TUitgaven
+     * @param TUitgaven $TUitgaven
      * @return UitgavenArray
      */
     public function withTUitgaven($TUitgaven)

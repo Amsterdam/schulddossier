@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Command;
 
+use DateTime;
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent;
@@ -134,7 +135,7 @@ class VerwijderGebruikerVanwegeInactiviteit extends Command
     {
         $this->verwijderGebruikerUitActionEventLog($gebruiker);
         $gebruiker->setEnabled(false);
-        $gebruiker->setVerwijderd(new \DateTime());
+        $gebruiker->setVerwijderd(new DateTime());
         $gebruiker->anonymize();
 
         $this->em->persist($gebruiker);

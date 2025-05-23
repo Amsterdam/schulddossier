@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TDK
 {
 
@@ -36,7 +39,7 @@ class TDK
     protected $TheoretischeLooptijd = null;
 
     /**
-     * @var \DateTime $DatumEersteAflossing
+     * @var DateTime $DatumEersteAflossing
      */
     protected $DatumEersteAflossing = null;
 
@@ -61,7 +64,7 @@ class TDK
     protected $EffectiefJaarpercentage = null;
 
     /**
-     * @var \DateTime $DatumLaatsteBetaling
+     * @var DateTime $DatumLaatsteBetaling
      */
     protected $DatumLaatsteBetaling = null;
 
@@ -97,19 +100,19 @@ class TDK
      * @param float $Contractlimiet
      * @param float $MaandTermijn
      * @param int $TheoretischeLooptijd
-     * @param \DateTime $DatumEersteAflossing
+     * @param DateTime $DatumEersteAflossing
      * @param float $Saldo
      * @param float $Achterstand
      * @param float $VrijOpneembaar
      * @param float $EffectiefJaarpercentage
-     * @param \DateTime $DatumLaatsteBetaling
+     * @param DateTime $DatumLaatsteBetaling
      * @param float $BedragLaatsteBetaling
      * @param float $VolledigVervroegdeAflossing
      * @param string $Medewerker
      * @param int $MedelenerCode
      * @param float $Maandpercentage
      */
-    public function __construct($InfoHeader, $Opdrachtgever, $OpdrachtgeverContact, $Contractlimiet, $MaandTermijn, $TheoretischeLooptijd, \DateTime $DatumEersteAflossing, $Saldo, $Achterstand, $VrijOpneembaar, $EffectiefJaarpercentage, \DateTime $DatumLaatsteBetaling, $BedragLaatsteBetaling, $VolledigVervroegdeAflossing, $Medewerker, $MedelenerCode, $Maandpercentage)
+    public function __construct($InfoHeader, $Opdrachtgever, $OpdrachtgeverContact, $Contractlimiet, $MaandTermijn, $TheoretischeLooptijd, DateTime $DatumEersteAflossing, $Saldo, $Achterstand, $VrijOpneembaar, $EffectiefJaarpercentage, DateTime $DatumLaatsteBetaling, $BedragLaatsteBetaling, $VolledigVervroegdeAflossing, $Medewerker, $MedelenerCode, $Maandpercentage)
     {
       $this->InfoHeader = $InfoHeader;
       $this->Opdrachtgever = $Opdrachtgever;
@@ -117,12 +120,12 @@ class TDK
       $this->Contractlimiet = $Contractlimiet;
       $this->MaandTermijn = $MaandTermijn;
       $this->TheoretischeLooptijd = $TheoretischeLooptijd;
-      $this->DatumEersteAflossing = $DatumEersteAflossing->format(\DateTime::ATOM);
+      $this->DatumEersteAflossing = $DatumEersteAflossing->format(DateTime::ATOM);
       $this->Saldo = $Saldo;
       $this->Achterstand = $Achterstand;
       $this->VrijOpneembaar = $VrijOpneembaar;
       $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(DateTime::ATOM);
       $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
       $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
       $this->Medewerker = $Medewerker;
@@ -239,7 +242,7 @@ class TDK
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumEersteAflossing()
     {
@@ -247,20 +250,20 @@ class TDK
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumEersteAflossing);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumEersteAflossing);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumEersteAflossing
+     * @param DateTime $DatumEersteAflossing
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TDK
      */
-    public function setDatumEersteAflossing(\DateTime $DatumEersteAflossing)
+    public function setDatumEersteAflossing(DateTime $DatumEersteAflossing)
     {
-      $this->DatumEersteAflossing = $DatumEersteAflossing->format(\DateTime::ATOM);
+      $this->DatumEersteAflossing = $DatumEersteAflossing->format(DateTime::ATOM);
       return $this;
     }
 
@@ -337,7 +340,7 @@ class TDK
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumLaatsteBetaling()
     {
@@ -345,20 +348,20 @@ class TDK
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumLaatsteBetaling);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumLaatsteBetaling);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumLaatsteBetaling
+     * @param DateTime $DatumLaatsteBetaling
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TDK
      */
-    public function setDatumLaatsteBetaling(\DateTime $DatumLaatsteBetaling)
+    public function setDatumLaatsteBetaling(DateTime $DatumLaatsteBetaling)
     {
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(DateTime::ATOM);
       return $this;
     }
 

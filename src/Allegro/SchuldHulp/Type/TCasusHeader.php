@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusHeader implements RequestInterface
@@ -24,7 +25,7 @@ class TCasusHeader implements RequestInterface
     private $CasusCode;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Aanmaakdatum;
 
@@ -44,7 +45,7 @@ class TCasusHeader implements RequestInterface
      * @var int $Relatiecode
      * @var int $Volgnummer
      * @var string $CasusCode
-     * @var \DateTimeInterface $Aanmaakdatum
+     * @var DateTimeInterface $Aanmaakdatum
      * @var string $CasusStatus
      * @var string $CasusStatusTekst
      */
@@ -119,7 +120,7 @@ class TCasusHeader implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getAanmaakdatum()
     {
@@ -127,7 +128,7 @@ class TCasusHeader implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Aanmaakdatum
+     * @param DateTimeInterface $Aanmaakdatum
      * @return TCasusHeader
      */
     public function withAanmaakdatum($Aanmaakdatum)

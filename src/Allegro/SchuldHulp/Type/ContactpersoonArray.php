@@ -9,14 +9,14 @@ class ContactpersoonArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContactpersoon
+     * @var TContactpersoon
      */
     private $TContactpersoon;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContactpersoon $TContactpersoon
+     * @var TContactpersoon $TContactpersoon
      */
     public function __construct($TContactpersoon)
     {
@@ -24,7 +24,7 @@ class ContactpersoonArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContactpersoon
+     * @return TContactpersoon
      */
     public function getTContactpersoon()
     {
@@ -32,7 +32,7 @@ class ContactpersoonArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContactpersoon $TContactpersoon
+     * @param TContactpersoon $TContactpersoon
      * @return ContactpersoonArray
      */
     public function withTContactpersoon($TContactpersoon)

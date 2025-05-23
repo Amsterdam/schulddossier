@@ -8,14 +8,14 @@ class CasusNotitieArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusNotitie
+     * @var TCasusNotitie
      */
     private $TCasusNotitie;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusNotitie $TCasusNotitie
+     * @var TCasusNotitie $TCasusNotitie
      */
     public function __construct($TCasusNotitie)
     {
@@ -23,7 +23,7 @@ class CasusNotitieArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusNotitie
+     * @return TCasusNotitie
      */
     public function getTCasusNotitie()
     {
@@ -31,7 +31,7 @@ class CasusNotitieArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusNotitie $TCasusNotitie
+     * @param TCasusNotitie $TCasusNotitie
      * @return CasusNotitieArray
      */
     public function withTCasusNotitie($TCasusNotitie)
