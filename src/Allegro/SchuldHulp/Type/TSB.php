@@ -3,13 +3,14 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSB implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader
+     * @var TSBHeader
      */
     private $InfoHeader;
 
@@ -29,17 +30,17 @@ class TSB implements RequestInterface
     private $OpdrachtgeverContact;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Startdatum;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $StartdatumEersteBetaling;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $TheoEinddatum;
 
@@ -64,7 +65,7 @@ class TSB implements RequestInterface
     private $VTLB;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumBerekening;
 
@@ -89,7 +90,7 @@ class TSB implements RequestInterface
     private $NettoAflosCapaciteitMaand;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumOverzicht;
 
@@ -114,7 +115,7 @@ class TSB implements RequestInterface
     private $BetaaldeKosten;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumLaatsteBetaling;
 
@@ -126,28 +127,28 @@ class TSB implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader $InfoHeader
+     * @var TSBHeader $InfoHeader
      * @var string $Medewerker
      * @var int $Opdrachtgever
      * @var int $OpdrachtgeverContact
-     * @var \DateTimeInterface $Startdatum
-     * @var \DateTimeInterface $StartdatumEersteBetaling
-     * @var \DateTimeInterface $TheoEinddatum
+     * @var DateTimeInterface $Startdatum
+     * @var DateTimeInterface $StartdatumEersteBetaling
+     * @var DateTimeInterface $TheoEinddatum
      * @var int $TotaalAantalMaanden
      * @var int $TotaalAantalMaandenVerstreken
      * @var int $TotaalAantalMaandenResterend
      * @var float $VTLB
-     * @var \DateTimeInterface $DatumBerekening
+     * @var DateTimeInterface $DatumBerekening
      * @var float $BrutoAflosCapaciteitMaand
      * @var float $KostenFinancieelBeheerMaand
      * @var float $KostenSchuldhulpverleningMaand
      * @var float $NettoAflosCapaciteitMaand
-     * @var \DateTimeInterface $DatumOverzicht
+     * @var DateTimeInterface $DatumOverzicht
      * @var int $PartnerCode
      * @var float $TotaalSchuldbedrag
      * @var float $MaximumKosten
      * @var float $BetaaldeKosten
-     * @var \DateTimeInterface $DatumLaatsteBetaling
+     * @var DateTimeInterface $DatumLaatsteBetaling
      * @var float $BedragLaatsteBetaling
      */
     public function __construct($InfoHeader, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, $Startdatum, $StartdatumEersteBetaling, $TheoEinddatum, $TotaalAantalMaanden, $TotaalAantalMaandenVerstreken, $TotaalAantalMaandenResterend, $VTLB, $DatumBerekening, $BrutoAflosCapaciteitMaand, $KostenFinancieelBeheerMaand, $KostenSchuldhulpverleningMaand, $NettoAflosCapaciteitMaand, $DatumOverzicht, $PartnerCode, $TotaalSchuldbedrag, $MaximumKosten, $BetaaldeKosten, $DatumLaatsteBetaling, $BedragLaatsteBetaling)
@@ -178,7 +179,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader
+     * @return TSBHeader
      */
     public function getInfoHeader()
     {
@@ -186,7 +187,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader $InfoHeader
+     * @param TSBHeader $InfoHeader
      * @return TSB
      */
     public function withInfoHeader($InfoHeader)
@@ -258,7 +259,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum()
     {
@@ -266,7 +267,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Startdatum
+     * @param DateTimeInterface $Startdatum
      * @return TSB
      */
     public function withStartdatum($Startdatum)
@@ -278,7 +279,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatumEersteBetaling()
     {
@@ -286,7 +287,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $StartdatumEersteBetaling
+     * @param DateTimeInterface $StartdatumEersteBetaling
      * @return TSB
      */
     public function withStartdatumEersteBetaling($StartdatumEersteBetaling)
@@ -298,7 +299,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getTheoEinddatum()
     {
@@ -306,7 +307,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $TheoEinddatum
+     * @param DateTimeInterface $TheoEinddatum
      * @return TSB
      */
     public function withTheoEinddatum($TheoEinddatum)
@@ -398,7 +399,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumBerekening()
     {
@@ -406,7 +407,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumBerekening
+     * @param DateTimeInterface $DatumBerekening
      * @return TSB
      */
     public function withDatumBerekening($DatumBerekening)
@@ -498,7 +499,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumOverzicht()
     {
@@ -506,7 +507,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumOverzicht
+     * @param DateTimeInterface $DatumOverzicht
      * @return TSB
      */
     public function withDatumOverzicht($DatumOverzicht)
@@ -598,7 +599,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumLaatsteBetaling()
     {
@@ -606,7 +607,7 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumLaatsteBetaling
+     * @param DateTimeInterface $DatumLaatsteBetaling
      * @return TSB
      */
     public function withDatumLaatsteBetaling($DatumLaatsteBetaling)

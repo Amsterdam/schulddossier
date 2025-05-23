@@ -23,7 +23,7 @@ class TableRequestInfo implements RequestInterface
     private $MaxRecords;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameterArray
+     * @var DataParameterArray
      */
     private $Parameters;
 
@@ -33,7 +33,7 @@ class TableRequestInfo implements RequestInterface
      * @var string $UserFilter
      * @var bool $IncludeSchema
      * @var int $MaxRecords
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameterArray $Parameters
+     * @var DataParameterArray $Parameters
      */
     public function __construct($UserFilter, $IncludeSchema, $MaxRecords, $Parameters)
     {
@@ -104,7 +104,7 @@ class TableRequestInfo implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameterArray
+     * @return DataParameterArray
      */
     public function getParameters()
     {
@@ -112,7 +112,7 @@ class TableRequestInfo implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameterArray $Parameters
+     * @param DataParameterArray $Parameters
      * @return TableRequestInfo
      */
     public function withParameters($Parameters)

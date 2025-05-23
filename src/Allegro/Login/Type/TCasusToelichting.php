@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusToelichting implements RequestInterface
@@ -28,7 +29,7 @@ class TCasusToelichting implements RequestInterface
     private $Medewerker;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Datum;
 
@@ -54,7 +55,7 @@ class TCasusToelichting implements RequestInterface
      * @var int $Titel
      * @var string $TitelTitel
      * @var string $Medewerker
-     * @var \DateTimeInterface $Datum
+     * @var DateTimeInterface $Datum
      * @var int $SubTitel
      * @var string $SubTitelTitel
      * @var string $Tekst
@@ -152,7 +153,7 @@ class TCasusToelichting implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatum()
     {
@@ -160,7 +161,7 @@ class TCasusToelichting implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Datum
+     * @param DateTimeInterface $Datum
      * @return TCasusToelichting
      */
     public function withDatum($Datum)

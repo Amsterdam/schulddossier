@@ -9,14 +9,14 @@ class TSorteerInfoArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSorteerInfo
+     * @var TSorteerInfo
      */
     private $TSorteerInfo;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSorteerInfo $TSorteerInfo
+     * @var TSorteerInfo $TSorteerInfo
      */
     public function __construct($TSorteerInfo)
     {
@@ -24,7 +24,7 @@ class TSorteerInfoArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSorteerInfo
+     * @return TSorteerInfo
      */
     public function getTSorteerInfo()
     {
@@ -32,7 +32,7 @@ class TSorteerInfoArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSorteerInfo $TSorteerInfo
+     * @param TSorteerInfo $TSorteerInfo
      * @return TSorteerInfoArray
      */
     public function withTSorteerInfo($TSorteerInfo)

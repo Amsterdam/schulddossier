@@ -8,14 +8,14 @@ class AfspraakArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraak
+     * @var TAfspraak
      */
     private $TAfspraak;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraak $TAfspraak
+     * @var TAfspraak $TAfspraak
      */
     public function __construct($TAfspraak)
     {
@@ -23,7 +23,7 @@ class AfspraakArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraak
+     * @return TAfspraak
      */
     public function getTAfspraak()
     {
@@ -31,7 +31,7 @@ class AfspraakArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraak $TAfspraak
+     * @param TAfspraak $TAfspraak
      * @return AfspraakArray
      */
     public function withTAfspraak($TAfspraak)

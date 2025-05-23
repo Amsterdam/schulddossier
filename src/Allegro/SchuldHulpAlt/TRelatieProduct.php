@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TRelatieProduct
 {
 
@@ -26,12 +29,12 @@ class TRelatieProduct
     protected $Status = null;
 
     /**
-     * @var \DateTime $Startdatum
+     * @var DateTime $Startdatum
      */
     protected $Startdatum = null;
 
     /**
-     * @var \DateTime $Einddatum
+     * @var DateTime $Einddatum
      */
     protected $Einddatum = null;
 
@@ -55,20 +58,20 @@ class TRelatieProduct
      * @param string $Product
      * @param string $NaamProduct
      * @param string $Status
-     * @param \DateTime $Startdatum
-     * @param \DateTime $Einddatum
+     * @param DateTime $Startdatum
+     * @param DateTime $Einddatum
      * @param string $Eindstatus
      * @param TMedewerker $Medewerker
      * @param string $Team
      */
-    public function __construct($Contractnummer, $Product, $NaamProduct, $Status, \DateTime $Startdatum, \DateTime $Einddatum, $Eindstatus, $Medewerker, $Team)
+    public function __construct($Contractnummer, $Product, $NaamProduct, $Status, DateTime $Startdatum, DateTime $Einddatum, $Eindstatus, $Medewerker, $Team)
     {
       $this->Contractnummer = $Contractnummer;
       $this->Product = $Product;
       $this->NaamProduct = $NaamProduct;
       $this->Status = $Status;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
+      $this->Einddatum = $Einddatum->format(DateTime::ATOM);
       $this->Eindstatus = $Eindstatus;
       $this->Medewerker = $Medewerker;
       $this->Team = $Team;
@@ -147,7 +150,7 @@ class TRelatieProduct
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartdatum()
     {
@@ -155,25 +158,25 @@ class TRelatieProduct
         return null;
       } else {
         try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Startdatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Startdatum
+     * @param DateTime $Startdatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TRelatieProduct
      */
-    public function setStartdatum(\DateTime $Startdatum)
+    public function setStartdatum(DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getEinddatum()
     {
@@ -181,20 +184,20 @@ class TRelatieProduct
         return null;
       } else {
         try {
-          return new \DateTime($this->Einddatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Einddatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Einddatum
+     * @param DateTime $Einddatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TRelatieProduct
      */
-    public function setEinddatum(\DateTime $Einddatum)
+    public function setEinddatum(DateTime $Einddatum)
     {
-      $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
+      $this->Einddatum = $Einddatum->format(DateTime::ATOM);
       return $this;
     }
 

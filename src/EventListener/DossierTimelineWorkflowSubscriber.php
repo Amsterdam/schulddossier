@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
+use DateTime;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Workflow\Event\Event;
@@ -29,7 +30,7 @@ class DossierTimelineWorkflowSubscriber implements EventSubscriberInterface
     public function onComplete(Event $event)
     {
         $timeline = new DossierTimeline();
-        $timeline->setDatumtijd(new \DateTime());
+        $timeline->setDatumtijd(new DateTime());
         $timeline->setType(DossierTimeline::TYPE_WORKFLOW);
         $timeline->setSubtype($event->getTransition()->getName());
         $timeline->setOmschrijving('Status veranderd');

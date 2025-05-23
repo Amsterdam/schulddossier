@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use Exception;
+use Error;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Exception\AllegroServiceException;
@@ -22,7 +25,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 ))]
 class AllegroController extends AbstractController
 {
-    #[Route(path: '/app/allegro/srveisers/{dossierId}')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/allegro/srveisers/{dossierId}')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     #[Template('allegro/allegro_srveisers.html.twig')]
     public function allegroSrveisers(
@@ -43,11 +46,11 @@ class AllegroController extends AbstractController
             $srvEisers = $allegroService->getSRVEisers($dossier, $header);
             // $sbOaverzicht = $allegroService->getSBOverzicht($dossier); Geen response
             $eisers = $srvEisers->getEisers()->getTSRVEiser();
-        } catch (\Exception|\Error $e) {
+        } catch (Exception|Error $e) {
             // Geen eisers gevonden
         }
 
-        $compareDate = \DateTime::createFromFormat('Y', '2000');
+        $compareDate = DateTime::createFromFormat('Y', '2000');
 
         return [
             'dossier' => $dossier,
@@ -59,7 +62,7 @@ class AllegroController extends AbstractController
         ];
     }
 
-    #[Route(path: '/app/allegro/validate/{dossierId}')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/allegro/validate/{dossierId}')]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     #[IsGranted(attribute: new Expression(
         "is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"
@@ -78,7 +81,7 @@ class AllegroController extends AbstractController
         return new JsonResponse(['valid' => true]);
     }
 
-    #[Route(path: '/app/allegro/send/{dossierId}', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/allegro/send/{dossierId}', methods: ['POST'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     #[IsGranted(attribute: new Expression(
         "is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"
@@ -95,7 +98,7 @@ class AllegroController extends AbstractController
             $response = $allegroService->sendAanvraag($dossier);
 
             $em->flush();
-            $dossier->setSendToAllegro((new \DateTime()));
+            $dossier->setSendToAllegro((new DateTime()));
 
             if ($response) {
                 return new JsonResponse(['send' => true]);
@@ -109,7 +112,7 @@ class AllegroController extends AbstractController
             }
         } catch (AllegroServiceException $e) {
             return new JsonResponse(['send' => false, 'message' => $translator->trans($e->getMessage())]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Logging toevoegen
             $logger->error($e->getMessage(), [AllegroService::LOGGING_CONTEXT]);
             return new JsonResponse(

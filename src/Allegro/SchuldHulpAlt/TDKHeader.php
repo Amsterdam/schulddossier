@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TDKHeader
 {
 
@@ -16,20 +19,20 @@ class TDKHeader
     protected $Volgnummer = null;
 
     /**
-     * @var \DateTime $DatumUitbetaling
+     * @var DateTime $DatumUitbetaling
      */
     protected $DatumUitbetaling = null;
 
     /**
      * @param int $RelatieCode
      * @param int $Volgnummer
-     * @param \DateTime $DatumUitbetaling
+     * @param DateTime $DatumUitbetaling
      */
-    public function __construct($RelatieCode, $Volgnummer, \DateTime $DatumUitbetaling)
+    public function __construct($RelatieCode, $Volgnummer, DateTime $DatumUitbetaling)
     {
       $this->RelatieCode = $RelatieCode;
       $this->Volgnummer = $Volgnummer;
-      $this->DatumUitbetaling = $DatumUitbetaling->format(\DateTime::ATOM);
+      $this->DatumUitbetaling = $DatumUitbetaling->format(DateTime::ATOM);
     }
 
     /**
@@ -69,7 +72,7 @@ class TDKHeader
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumUitbetaling()
     {
@@ -77,20 +80,20 @@ class TDKHeader
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumUitbetaling);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumUitbetaling);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumUitbetaling
+     * @param DateTime $DatumUitbetaling
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TDKHeader
      */
-    public function setDatumUitbetaling(\DateTime $DatumUitbetaling)
+    public function setDatumUitbetaling(DateTime $DatumUitbetaling)
     {
-      $this->DatumUitbetaling = $DatumUitbetaling->format(\DateTime::ATOM);
+      $this->DatumUitbetaling = $DatumUitbetaling->format(DateTime::ATOM);
       return $this;
     }
 

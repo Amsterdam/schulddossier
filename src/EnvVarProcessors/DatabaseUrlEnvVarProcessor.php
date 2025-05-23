@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EnvVarProcessors;
 
+use Closure;
 use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureDatabase;
 use Symfony\Component\DependencyInjection\EnvVarProcessorInterface;
 
@@ -11,7 +12,7 @@ class DatabaseUrlEnvVarProcessor implements EnvVarProcessorInterface
     {
     }
 
-    public function getEnv(string $prefix, string $name, \Closure $getEnv): mixed
+    public function getEnv(string $prefix, string $name, Closure $getEnv): mixed
     {
         $env = $getEnv($name);
         $parsedUrl = parse_url($env);

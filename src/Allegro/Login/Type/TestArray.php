@@ -8,14 +8,14 @@ class TestArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTest
+     * @var TTest
      */
     private $TTest;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTest $TTest
+     * @var TTest $TTest
      */
     public function __construct($TTest)
     {
@@ -23,7 +23,7 @@ class TestArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTest
+     * @return TTest
      */
     public function getTTest()
     {
@@ -31,7 +31,7 @@ class TestArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTest $TTest
+     * @param TTest $TTest
      * @return TestArray
      */
     public function withTTest($TTest)

@@ -26,7 +26,7 @@ class UserReleaseNotesController extends AbstractController
         $this->session = $requestStack->getSession();
     }
 
-    #[Route(path: '/app/versies/')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/versies/')]
     #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
     public function index(): Response
     {
@@ -63,7 +63,7 @@ class UserReleaseNotesController extends AbstractController
         return $this->render('UserReleaseNotes/index.html.twig', ['templates' => $templates]);
     }
 
-    #[Route(path: '/app/versies/seen')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/versies/seen')]
     #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
     public function releaseNoteSeen(
         Request $request,
@@ -71,7 +71,7 @@ class UserReleaseNotesController extends AbstractController
     ): JsonResponse {
 //        $seenReleaseNotes = $request->getSession()->get('seenReleaseNotes');
         $seenReleaseNotes = $this->session->get('seenReleaseNotes');
-        $seenReleaseNotes["ts" . $request->query->get('ts')] = 0;
+        $seenReleaseNotes["ts" . $request->query->all('ts')] = 0;
 
 
         return new JsonResponse($jsonSerializer->normalize([

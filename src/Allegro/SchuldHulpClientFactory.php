@@ -13,7 +13,7 @@ use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 
 class SchuldHulpClientFactory
 {
-    public static function factory(string $wsdl, Organisatie $organisatie): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient
+    public static function factory(string $wsdl, Organisatie $organisatie): AllegroSchuldHulpClient
     {
         $handler = HttPlugHandle::createForClient(
             Client::createWithConfig(['headers' => ['User-Agent' => 'fixxx-schuldhulp/1.0']])

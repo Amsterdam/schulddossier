@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
+use Twig\Environment;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
@@ -27,7 +28,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         private LoggerInterface $logger,
         private TokenStorageInterface $tokenStorage,
         private UrlGeneratorInterface $urlGenerator,
-        private \Twig\Environment $twig,
+        private Environment $twig,
         private RequestStack $requestStack,
         private EntityManagerInterface $em
     ) {

@@ -8,14 +8,14 @@ class CasusPVAArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusPVA
+     * @var TCasusPVA
      */
     private $TCasusPVA;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusPVA $TCasusPVA
+     * @var TCasusPVA $TCasusPVA
      */
     public function __construct($TCasusPVA)
     {
@@ -23,7 +23,7 @@ class CasusPVAArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusPVA
+     * @return TCasusPVA
      */
     public function getTCasusPVA()
     {
@@ -31,7 +31,7 @@ class CasusPVAArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusPVA $TCasusPVA
+     * @param TCasusPVA $TCasusPVA
      * @return CasusPVAArray
      */
     public function withTCasusPVA($TCasusPVA)

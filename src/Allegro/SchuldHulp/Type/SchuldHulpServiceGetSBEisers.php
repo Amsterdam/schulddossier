@@ -9,14 +9,14 @@ class SchuldHulpServiceGetSBEisers implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader
+     * @var TSBHeader
      */
     private $aHeader;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader $aHeader
+     * @var TSBHeader $aHeader
      */
     public function __construct($aHeader)
     {
@@ -24,7 +24,7 @@ class SchuldHulpServiceGetSBEisers implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader
+     * @return TSBHeader
      */
     public function getAHeader()
     {
@@ -32,7 +32,7 @@ class SchuldHulpServiceGetSBEisers implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader $aHeader
+     * @param TSBHeader $aHeader
      * @return SchuldHulpServiceGetSBEisers
      */
     public function withAHeader($aHeader)

@@ -3,13 +3,14 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusInfo implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusHeader
+     * @var TCasusHeader
      */
     private $InfoHeader;
 
@@ -34,42 +35,42 @@ class TCasusInfo implements RequestInterface
     private $OpdrachtgeverContact;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumAanmelding;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumAanmeldingEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumIntake;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumIntakeEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumInventarisatie;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumInventarisatieEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumAnalyse;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumAnalyseEinde;
 
@@ -79,70 +80,70 @@ class TCasusInfo implements RequestInterface
     private $Crisis;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumCrisis;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumCrisisEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumAfwijzing;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumAfwijzingEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumStop;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumStopEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $VerwachteEinddatumIntake;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\CasusPVAArray
+     * @var CasusPVAArray
      */
     private $PVA;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusHeader $InfoHeader
+     * @var TCasusHeader $InfoHeader
      * @var string $CasusMedewerker
      * @var string $CasusTeam
      * @var int $Opdrachtgever
      * @var int $OpdrachtgeverContact
-     * @var \DateTimeInterface $DatumAanmelding
-     * @var \DateTimeInterface $DatumAanmeldingEinde
-     * @var \DateTimeInterface $DatumIntake
-     * @var \DateTimeInterface $DatumIntakeEinde
-     * @var \DateTimeInterface $DatumInventarisatie
-     * @var \DateTimeInterface $DatumInventarisatieEinde
-     * @var \DateTimeInterface $DatumAnalyse
-     * @var \DateTimeInterface $DatumAnalyseEinde
+     * @var DateTimeInterface $DatumAanmelding
+     * @var DateTimeInterface $DatumAanmeldingEinde
+     * @var DateTimeInterface $DatumIntake
+     * @var DateTimeInterface $DatumIntakeEinde
+     * @var DateTimeInterface $DatumInventarisatie
+     * @var DateTimeInterface $DatumInventarisatieEinde
+     * @var DateTimeInterface $DatumAnalyse
+     * @var DateTimeInterface $DatumAnalyseEinde
      * @var bool $Crisis
-     * @var \DateTimeInterface $DatumCrisis
-     * @var \DateTimeInterface $DatumCrisisEinde
-     * @var \DateTimeInterface $DatumAfwijzing
-     * @var \DateTimeInterface $DatumAfwijzingEinde
-     * @var \DateTimeInterface $DatumStop
-     * @var \DateTimeInterface $DatumStopEinde
-     * @var \DateTimeInterface $VerwachteEinddatumIntake
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\CasusPVAArray $PVA
+     * @var DateTimeInterface $DatumCrisis
+     * @var DateTimeInterface $DatumCrisisEinde
+     * @var DateTimeInterface $DatumAfwijzing
+     * @var DateTimeInterface $DatumAfwijzingEinde
+     * @var DateTimeInterface $DatumStop
+     * @var DateTimeInterface $DatumStopEinde
+     * @var DateTimeInterface $VerwachteEinddatumIntake
+     * @var CasusPVAArray $PVA
      */
     public function __construct($InfoHeader, $CasusMedewerker, $CasusTeam, $Opdrachtgever, $OpdrachtgeverContact, $DatumAanmelding, $DatumAanmeldingEinde, $DatumIntake, $DatumIntakeEinde, $DatumInventarisatie, $DatumInventarisatieEinde, $DatumAnalyse, $DatumAnalyseEinde, $Crisis, $DatumCrisis, $DatumCrisisEinde, $DatumAfwijzing, $DatumAfwijzingEinde, $DatumStop, $DatumStopEinde, $VerwachteEinddatumIntake, $PVA)
     {
@@ -171,7 +172,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusHeader
+     * @return TCasusHeader
      */
     public function getInfoHeader()
     {
@@ -179,7 +180,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusHeader $InfoHeader
+     * @param TCasusHeader $InfoHeader
      * @return TCasusInfo
      */
     public function withInfoHeader($InfoHeader)
@@ -271,7 +272,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAanmelding()
     {
@@ -279,7 +280,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumAanmelding
+     * @param DateTimeInterface $DatumAanmelding
      * @return TCasusInfo
      */
     public function withDatumAanmelding($DatumAanmelding)
@@ -291,7 +292,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAanmeldingEinde()
     {
@@ -299,7 +300,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumAanmeldingEinde
+     * @param DateTimeInterface $DatumAanmeldingEinde
      * @return TCasusInfo
      */
     public function withDatumAanmeldingEinde($DatumAanmeldingEinde)
@@ -311,7 +312,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumIntake()
     {
@@ -319,7 +320,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumIntake
+     * @param DateTimeInterface $DatumIntake
      * @return TCasusInfo
      */
     public function withDatumIntake($DatumIntake)
@@ -331,7 +332,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumIntakeEinde()
     {
@@ -339,7 +340,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumIntakeEinde
+     * @param DateTimeInterface $DatumIntakeEinde
      * @return TCasusInfo
      */
     public function withDatumIntakeEinde($DatumIntakeEinde)
@@ -351,7 +352,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumInventarisatie()
     {
@@ -359,7 +360,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumInventarisatie
+     * @param DateTimeInterface $DatumInventarisatie
      * @return TCasusInfo
      */
     public function withDatumInventarisatie($DatumInventarisatie)
@@ -371,7 +372,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumInventarisatieEinde()
     {
@@ -379,7 +380,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumInventarisatieEinde
+     * @param DateTimeInterface $DatumInventarisatieEinde
      * @return TCasusInfo
      */
     public function withDatumInventarisatieEinde($DatumInventarisatieEinde)
@@ -391,7 +392,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAnalyse()
     {
@@ -399,7 +400,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumAnalyse
+     * @param DateTimeInterface $DatumAnalyse
      * @return TCasusInfo
      */
     public function withDatumAnalyse($DatumAnalyse)
@@ -411,7 +412,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAnalyseEinde()
     {
@@ -419,7 +420,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumAnalyseEinde
+     * @param DateTimeInterface $DatumAnalyseEinde
      * @return TCasusInfo
      */
     public function withDatumAnalyseEinde($DatumAnalyseEinde)
@@ -451,7 +452,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumCrisis()
     {
@@ -459,7 +460,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumCrisis
+     * @param DateTimeInterface $DatumCrisis
      * @return TCasusInfo
      */
     public function withDatumCrisis($DatumCrisis)
@@ -471,7 +472,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumCrisisEinde()
     {
@@ -479,7 +480,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumCrisisEinde
+     * @param DateTimeInterface $DatumCrisisEinde
      * @return TCasusInfo
      */
     public function withDatumCrisisEinde($DatumCrisisEinde)
@@ -491,7 +492,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAfwijzing()
     {
@@ -499,7 +500,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumAfwijzing
+     * @param DateTimeInterface $DatumAfwijzing
      * @return TCasusInfo
      */
     public function withDatumAfwijzing($DatumAfwijzing)
@@ -511,7 +512,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAfwijzingEinde()
     {
@@ -519,7 +520,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumAfwijzingEinde
+     * @param DateTimeInterface $DatumAfwijzingEinde
      * @return TCasusInfo
      */
     public function withDatumAfwijzingEinde($DatumAfwijzingEinde)
@@ -531,7 +532,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStop()
     {
@@ -539,7 +540,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumStop
+     * @param DateTimeInterface $DatumStop
      * @return TCasusInfo
      */
     public function withDatumStop($DatumStop)
@@ -551,7 +552,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStopEinde()
     {
@@ -559,7 +560,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumStopEinde
+     * @param DateTimeInterface $DatumStopEinde
      * @return TCasusInfo
      */
     public function withDatumStopEinde($DatumStopEinde)
@@ -571,7 +572,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getVerwachteEinddatumIntake()
     {
@@ -579,7 +580,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $VerwachteEinddatumIntake
+     * @param DateTimeInterface $VerwachteEinddatumIntake
      * @return TCasusInfo
      */
     public function withVerwachteEinddatumIntake($VerwachteEinddatumIntake)
@@ -591,7 +592,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\CasusPVAArray
+     * @return CasusPVAArray
      */
     public function getPVA()
     {
@@ -599,7 +600,7 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\CasusPVAArray $PVA
+     * @param CasusPVAArray $PVA
      * @return TCasusInfo
      */
     public function withPVA($PVA)

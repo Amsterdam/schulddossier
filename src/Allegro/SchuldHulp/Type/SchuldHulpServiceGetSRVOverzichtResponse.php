@@ -15,7 +15,7 @@ class SchuldHulpServiceGetSRVOverzichtResponse implements ResultInterface
     private $Result;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVAanvraagHeaderArray
+     * @return SRVAanvraagHeaderArray
      */
     public function getResult()
     {
@@ -23,7 +23,7 @@ class SchuldHulpServiceGetSRVOverzichtResponse implements ResultInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVAanvraagHeaderArray $Result
+     * @param SRVAanvraagHeaderArray $Result
      * @return SchuldHulpServiceGetSRVOverzichtResponse
      */
     public function withResult($Result)

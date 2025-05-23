@@ -8,14 +8,14 @@ class AllegroDocumentArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAllegroDocument
+     * @var TAllegroDocument
      */
     private $TAllegroDocument;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAllegroDocument $TAllegroDocument
+     * @var TAllegroDocument $TAllegroDocument
      */
     public function __construct($TAllegroDocument)
     {
@@ -23,7 +23,7 @@ class AllegroDocumentArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAllegroDocument
+     * @return TAllegroDocument
      */
     public function getTAllegroDocument()
     {
@@ -31,7 +31,7 @@ class AllegroDocumentArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAllegroDocument $TAllegroDocument
+     * @param TAllegroDocument $TAllegroDocument
      * @return AllegroDocumentArray
      */
     public function withTAllegroDocument($TAllegroDocument)

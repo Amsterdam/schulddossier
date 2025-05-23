@@ -8,14 +8,14 @@ class SBHeaderArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader
+     * @var TSBHeader
      */
     private $TSBHeader;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader $TSBHeader
+     * @var TSBHeader $TSBHeader
      */
     public function __construct($TSBHeader)
     {
@@ -23,7 +23,7 @@ class SBHeaderArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader
+     * @return TSBHeader
      */
     public function getTSBHeader()
     {
@@ -31,7 +31,7 @@ class SBHeaderArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader $TSBHeader
+     * @param TSBHeader $TSBHeader
      * @return SBHeaderArray
      */
     public function withTSBHeader($TSBHeader)

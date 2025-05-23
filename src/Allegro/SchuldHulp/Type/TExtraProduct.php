@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TExtraProduct implements RequestInterface
@@ -30,7 +31,7 @@ class TExtraProduct implements RequestInterface
     private $OpdrachtgeverContact;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Startdatum;
 
@@ -55,7 +56,7 @@ class TExtraProduct implements RequestInterface
     private $UitvoerendeOrganisatieContact;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $GeschatteEinddatum;
 
@@ -67,16 +68,16 @@ class TExtraProduct implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TExtraProductHeader $InfoHeader
+     * @var TExtraProductHeader $InfoHeader
      * @var string $Medewerker
      * @var int $Opdrachtgever
      * @var int $OpdrachtgeverContact
-     * @var \DateTimeInterface $Startdatum
+     * @var DateTimeInterface $Startdatum
      * @var string $Status
      * @var string $StatusOmschrijving
      * @var int $UitvoerendeOrganisatie
      * @var int $UitvoerendeOrganisatieContact
-     * @var \DateTimeInterface $GeschatteEinddatum
+     * @var DateTimeInterface $GeschatteEinddatum
      * @var int $PartnerCode
      */
     public function __construct($InfoHeader, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, $Startdatum, $Status, $StatusOmschrijving, $UitvoerendeOrganisatie, $UitvoerendeOrganisatieContact, $GeschatteEinddatum, $PartnerCode)
@@ -95,7 +96,7 @@ class TExtraProduct implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TExtraProductHeader
+     * @return TExtraProductHeader
      */
     public function getInfoHeader()
     {
@@ -103,7 +104,7 @@ class TExtraProduct implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TExtraProductHeader $InfoHeader
+     * @param TExtraProductHeader $InfoHeader
      * @return TExtraProduct
      */
     public function withInfoHeader($InfoHeader)
@@ -175,7 +176,7 @@ class TExtraProduct implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum()
     {
@@ -183,7 +184,7 @@ class TExtraProduct implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Startdatum
+     * @param DateTimeInterface $Startdatum
      * @return TExtraProduct
      */
     public function withStartdatum($Startdatum)
@@ -275,7 +276,7 @@ class TExtraProduct implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getGeschatteEinddatum()
     {
@@ -283,7 +284,7 @@ class TExtraProduct implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $GeschatteEinddatum
+     * @param DateTimeInterface $GeschatteEinddatum
      * @return TExtraProduct
      */
     public function withGeschatteEinddatum($GeschatteEinddatum)

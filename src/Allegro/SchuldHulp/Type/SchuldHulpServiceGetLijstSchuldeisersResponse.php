@@ -9,7 +9,7 @@ class SchuldHulpServiceGetLijstSchuldeisersResponse implements ResultInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OrganisatieArray
+     * @var OrganisatieArray
      */
     private $Result;
 
@@ -24,7 +24,7 @@ class SchuldHulpServiceGetLijstSchuldeisersResponse implements ResultInterface
     private $ExtraInfoOmschrijving;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OrganisatieArray
+     * @return OrganisatieArray
      */
     public function getResult()
     {
@@ -32,7 +32,7 @@ class SchuldHulpServiceGetLijstSchuldeisersResponse implements ResultInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OrganisatieArray $Result
+     * @param OrganisatieArray $Result
      * @return SchuldHulpServiceGetLijstSchuldeisersResponse
      */
     public function withResult($Result)

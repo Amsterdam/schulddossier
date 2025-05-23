@@ -8,14 +8,14 @@ class TAanvraagLening implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldArray
+     * @var SchuldArray
      */
     private $Schulden;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldArray $Schulden
+     * @var SchuldArray $Schulden
      */
     public function __construct($Schulden)
     {
@@ -23,7 +23,7 @@ class TAanvraagLening implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldArray
+     * @return SchuldArray
      */
     public function getSchulden()
     {
@@ -31,7 +31,7 @@ class TAanvraagLening implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldArray $Schulden
+     * @param SchuldArray $Schulden
      * @return TAanvraagLening
      */
     public function withSchulden($Schulden)

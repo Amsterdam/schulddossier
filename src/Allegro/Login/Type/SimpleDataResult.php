@@ -13,12 +13,12 @@ class SimpleDataResult implements RequestInterface
     private $TableName;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfoArray
+     * @var SimpleFieldInfoArray
      */
     private $FieldInfo;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArrayArray
+     * @var StringArrayArray
      */
     private $Data;
 
@@ -26,8 +26,8 @@ class SimpleDataResult implements RequestInterface
      * Constructor
      *
      * @var string $TableName
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfoArray $FieldInfo
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArrayArray $Data
+     * @var SimpleFieldInfoArray $FieldInfo
+     * @var StringArrayArray $Data
      */
     public function __construct($TableName, $FieldInfo, $Data)
     {
@@ -57,7 +57,7 @@ class SimpleDataResult implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfoArray
+     * @return SimpleFieldInfoArray
      */
     public function getFieldInfo()
     {
@@ -65,7 +65,7 @@ class SimpleDataResult implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfoArray $FieldInfo
+     * @param SimpleFieldInfoArray $FieldInfo
      * @return SimpleDataResult
      */
     public function withFieldInfo($FieldInfo)
@@ -77,7 +77,7 @@ class SimpleDataResult implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArrayArray
+     * @return StringArrayArray
      */
     public function getData()
     {
@@ -85,7 +85,7 @@ class SimpleDataResult implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArrayArray $Data
+     * @param StringArrayArray $Data
      * @return SimpleDataResult
      */
     public function withData($Data)

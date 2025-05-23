@@ -9,14 +9,14 @@ class SchuldHulpServiceAanvraagSR implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR
+     * @var TAanvraagSR
      */
     private $aAanvraagSR;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR $aAanvraagSR
+     * @var TAanvraagSR $aAanvraagSR
      */
     public function __construct($aAanvraagSR)
     {
@@ -24,7 +24,7 @@ class SchuldHulpServiceAanvraagSR implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR
+     * @return TAanvraagSR
      */
     public function getAAanvraagSR()
     {
@@ -32,7 +32,7 @@ class SchuldHulpServiceAanvraagSR implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR $aAanvraagSR
+     * @param TAanvraagSR $aAanvraagSR
      * @return SchuldHulpServiceAanvraagSR
      */
     public function withAAanvraagSR($aAanvraagSR)

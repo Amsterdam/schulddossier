@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TCasusDeelopdracht
 {
 
@@ -51,22 +54,22 @@ class TCasusDeelopdracht
     protected $Toelichting = null;
 
     /**
-     * @var \DateTime $Startdatum
+     * @var DateTime $Startdatum
      */
     protected $Startdatum = null;
 
     /**
-     * @var \DateTime $DatumUiterlijk
+     * @var DateTime $DatumUiterlijk
      */
     protected $DatumUiterlijk = null;
 
     /**
-     * @var \DateTime $DatumUitgevoerd
+     * @var DateTime $DatumUitgevoerd
      */
     protected $DatumUitgevoerd = null;
 
     /**
-     * @var \DateTime $DatumNietUitgevoerd
+     * @var DateTime $DatumNietUitgevoerd
      */
     protected $DatumNietUitgevoerd = null;
 
@@ -85,13 +88,13 @@ class TCasusDeelopdracht
      * @param string $RubriekSoort
      * @param string $RubriekNaam
      * @param string $Toelichting
-     * @param \DateTime $Startdatum
-     * @param \DateTime $DatumUiterlijk
-     * @param \DateTime $DatumUitgevoerd
-     * @param \DateTime $DatumNietUitgevoerd
+     * @param DateTime $Startdatum
+     * @param DateTime $DatumUiterlijk
+     * @param DateTime $DatumUitgevoerd
+     * @param DateTime $DatumNietUitgevoerd
      * @param string $NaamLang
      */
-    public function __construct($VolgnummerCasus, $VolgnummerKlantopdracht, $ToelichtingKlantopdracht, $VolgnummerDeelopdracht, $Naam, $Omschrijving, $RubriekSoort, $RubriekNaam, $Toelichting, \DateTime $Startdatum, \DateTime $DatumUiterlijk, \DateTime $DatumUitgevoerd, \DateTime $DatumNietUitgevoerd, $NaamLang)
+    public function __construct($VolgnummerCasus, $VolgnummerKlantopdracht, $ToelichtingKlantopdracht, $VolgnummerDeelopdracht, $Naam, $Omschrijving, $RubriekSoort, $RubriekNaam, $Toelichting, DateTime $Startdatum, DateTime $DatumUiterlijk, DateTime $DatumUitgevoerd, DateTime $DatumNietUitgevoerd, $NaamLang)
     {
       $this->VolgnummerCasus = $VolgnummerCasus;
       $this->VolgnummerKlantopdracht = $VolgnummerKlantopdracht;
@@ -102,10 +105,10 @@ class TCasusDeelopdracht
       $this->RubriekSoort = $RubriekSoort;
       $this->RubriekNaam = $RubriekNaam;
       $this->Toelichting = $Toelichting;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      $this->DatumUiterlijk = $DatumUiterlijk->format(\DateTime::ATOM);
-      $this->DatumUitgevoerd = $DatumUitgevoerd->format(\DateTime::ATOM);
-      $this->DatumNietUitgevoerd = $DatumNietUitgevoerd->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
+      $this->DatumUiterlijk = $DatumUiterlijk->format(DateTime::ATOM);
+      $this->DatumUitgevoerd = $DatumUitgevoerd->format(DateTime::ATOM);
+      $this->DatumNietUitgevoerd = $DatumNietUitgevoerd->format(DateTime::ATOM);
       $this->NaamLang = $NaamLang;
     }
 
@@ -272,7 +275,7 @@ class TCasusDeelopdracht
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartdatum()
     {
@@ -280,25 +283,25 @@ class TCasusDeelopdracht
         return null;
       } else {
         try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Startdatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Startdatum
+     * @param DateTime $Startdatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusDeelopdracht
      */
-    public function setStartdatum(\DateTime $Startdatum)
+    public function setStartdatum(DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumUiterlijk()
     {
@@ -306,25 +309,25 @@ class TCasusDeelopdracht
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumUiterlijk);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumUiterlijk);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumUiterlijk
+     * @param DateTime $DatumUiterlijk
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusDeelopdracht
      */
-    public function setDatumUiterlijk(\DateTime $DatumUiterlijk)
+    public function setDatumUiterlijk(DateTime $DatumUiterlijk)
     {
-      $this->DatumUiterlijk = $DatumUiterlijk->format(\DateTime::ATOM);
+      $this->DatumUiterlijk = $DatumUiterlijk->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumUitgevoerd()
     {
@@ -332,25 +335,25 @@ class TCasusDeelopdracht
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumUitgevoerd);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumUitgevoerd);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumUitgevoerd
+     * @param DateTime $DatumUitgevoerd
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusDeelopdracht
      */
-    public function setDatumUitgevoerd(\DateTime $DatumUitgevoerd)
+    public function setDatumUitgevoerd(DateTime $DatumUitgevoerd)
     {
-      $this->DatumUitgevoerd = $DatumUitgevoerd->format(\DateTime::ATOM);
+      $this->DatumUitgevoerd = $DatumUitgevoerd->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumNietUitgevoerd()
     {
@@ -358,20 +361,20 @@ class TCasusDeelopdracht
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumNietUitgevoerd);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumNietUitgevoerd);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumNietUitgevoerd
+     * @param DateTime $DatumNietUitgevoerd
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusDeelopdracht
      */
-    public function setDatumNietUitgevoerd(\DateTime $DatumNietUitgevoerd)
+    public function setDatumNietUitgevoerd(DateTime $DatumNietUitgevoerd)
     {
-      $this->DatumNietUitgevoerd = $DatumNietUitgevoerd->format(\DateTime::ATOM);
+      $this->DatumNietUitgevoerd = $DatumNietUitgevoerd->format(DateTime::ATOM);
       return $this;
     }
 

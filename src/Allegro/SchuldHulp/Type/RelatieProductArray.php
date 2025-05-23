@@ -9,14 +9,14 @@ class RelatieProductArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatieProduct
+     * @var TRelatieProduct
      */
     private $TRelatieProduct;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatieProduct $TRelatieProduct
+     * @var TRelatieProduct $TRelatieProduct
      */
     public function __construct($TRelatieProduct)
     {
@@ -24,7 +24,7 @@ class RelatieProductArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatieProduct
+     * @return TRelatieProduct
      */
     public function getTRelatieProduct()
     {
@@ -32,7 +32,7 @@ class RelatieProductArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatieProduct $TRelatieProduct
+     * @param TRelatieProduct $TRelatieProduct
      * @return RelatieProductArray
      */
     public function withTRelatieProduct($TRelatieProduct)

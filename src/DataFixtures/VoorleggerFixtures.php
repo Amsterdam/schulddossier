@@ -2,18 +2,20 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 
-class VoorleggerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
+class VoorleggerFixtures extends Fixture implements DependentFixtureInterface
 {
-public const VOORLEGGERS_JSON_FILENAME = 'voorleggers.json';
+    public const VOORLEGGERS_JSON_FILENAME = 'voorleggers.json';
 
     /**
      * @inheritDoc
      */
+    #[Override]
     public function load(ObjectManager $manager): void
     {
         $voorleggers = $this->loadVoorleggersJson();
@@ -35,18 +37,18 @@ public const VOORLEGGERS_JSON_FILENAME = 'voorleggers.json';
     }
 
     private function loadVoorleggersJson()
-        {
-            $dir = explode('src/', __DIR__);
-            $file = $dir[0] . self::VOORLEGGERS_JSON_FILENAME;
-            $jsonString = file_get_contents($file);
+    {
+        $dir = explode('src/', __DIR__);
+        $file = $dir[0] . self::VOORLEGGERS_JSON_FILENAME;
+        $jsonString = file_get_contents($file);
 
-            return array_values(array_filter(json_decode($jsonString, true)));
-        }
+        return array_values(array_filter(json_decode($jsonString, true)));
+    }
 
-        public function getDependencies(): array
-        {
-            return [
-                DossierFixtures::class
-            ];
-        }
+    public function getDependencies(): array
+    {
+        return [
+            DossierFixtures::class
+        ];
+    }
 }

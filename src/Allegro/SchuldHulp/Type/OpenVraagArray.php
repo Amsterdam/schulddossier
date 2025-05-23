@@ -9,14 +9,14 @@ class OpenVraagArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag
+     * @var TOpenVraag
      */
     private $TOpenVraag;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $TOpenVraag
+     * @var TOpenVraag $TOpenVraag
      */
     public function __construct($TOpenVraag)
     {
@@ -24,7 +24,7 @@ class OpenVraagArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag
+     * @return TOpenVraag
      */
     public function getTOpenVraag()
     {
@@ -32,7 +32,7 @@ class OpenVraagArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $TOpenVraag
+     * @param TOpenVraag $TOpenVraag
      * @return OpenVraagArray
      */
     public function withTOpenVraag($TOpenVraag)

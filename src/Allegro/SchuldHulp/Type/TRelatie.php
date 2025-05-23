@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TRelatie implements RequestInterface
@@ -44,17 +45,17 @@ class TRelatie implements RequestInterface
     private $Geslacht;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
+     * @var TAdres
      */
     private $BezoekAdres;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
+     * @var TAdres
      */
     private $PostAdres;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Geboortedatum;
 
@@ -114,12 +115,12 @@ class TRelatie implements RequestInterface
     private $IdentificatieNummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $IdentificatieGeldig;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\KindArray
+     * @var KindArray
      */
     private $Kinderen;
 
@@ -159,7 +160,7 @@ class TRelatie implements RequestInterface
     private $RekeningInzakeBIC;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @var TMedewerker
      */
     private $Klantmanager;
 
@@ -178,9 +179,9 @@ class TRelatie implements RequestInterface
      * @var string $Achternaam
      * @var string $Voorvoegsels
      * @var string $Geslacht
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $BezoekAdres
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $PostAdres
-     * @var \DateTimeInterface $Geboortedatum
+     * @var TAdres $BezoekAdres
+     * @var TAdres $PostAdres
+     * @var DateTimeInterface $Geboortedatum
      * @var string $Geboorteplaats
      * @var int $BSN
      * @var string $Rekening
@@ -192,8 +193,8 @@ class TRelatie implements RequestInterface
      * @var string $Autorisaties
      * @var string $Identificatiebewijs
      * @var string $IdentificatieNummer
-     * @var \DateTimeInterface $IdentificatieGeldig
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\KindArray $Kinderen
+     * @var DateTimeInterface $IdentificatieGeldig
+     * @var KindArray $Kinderen
      * @var int $Bedrijf
      * @var string $IBAN
      * @var string $BIC
@@ -201,7 +202,7 @@ class TRelatie implements RequestInterface
      * @var string $RekeningInzake
      * @var string $RekeningInzakeIBAN
      * @var string $RekeningInzakeBIC
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Klantmanager
+     * @var TMedewerker $Klantmanager
      * @var string $Pincode
      */
     public function __construct($RelatieCode, $Voornamen, $Voorletters, $Zoeknaam, $Achternaam, $Voorvoegsels, $Geslacht, $BezoekAdres, $PostAdres, $Geboortedatum, $Geboorteplaats, $BSN, $Rekening, $Telefoon1, $Telefoon2, $Email, $BurgerlijkeStaat, $PartnerCode, $Autorisaties, $Identificatiebewijs, $IdentificatieNummer, $IdentificatieGeldig, $Kinderen, $Bedrijf, $IBAN, $BIC, $InzakeRekening, $RekeningInzake, $RekeningInzakeIBAN, $RekeningInzakeBIC, $Klantmanager, $Pincode)
@@ -381,7 +382,7 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
+     * @return TAdres
      */
     public function getBezoekAdres()
     {
@@ -389,7 +390,7 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $BezoekAdres
+     * @param TAdres $BezoekAdres
      * @return TRelatie
      */
     public function withBezoekAdres($BezoekAdres)
@@ -401,7 +402,7 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
+     * @return TAdres
      */
     public function getPostAdres()
     {
@@ -409,7 +410,7 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $PostAdres
+     * @param TAdres $PostAdres
      * @return TRelatie
      */
     public function withPostAdres($PostAdres)
@@ -421,7 +422,7 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getGeboortedatum()
     {
@@ -429,7 +430,7 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Geboortedatum
+     * @param DateTimeInterface $Geboortedatum
      * @return TRelatie
      */
     public function withGeboortedatum($Geboortedatum)
@@ -661,7 +662,7 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getIdentificatieGeldig()
     {
@@ -669,7 +670,7 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $IdentificatieGeldig
+     * @param DateTimeInterface $IdentificatieGeldig
      * @return TRelatie
      */
     public function withIdentificatieGeldig($IdentificatieGeldig)
@@ -681,7 +682,7 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\KindArray
+     * @return KindArray
      */
     public function getKinderen()
     {
@@ -689,7 +690,7 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\KindArray $Kinderen
+     * @param KindArray $Kinderen
      * @return TRelatie
      */
     public function withKinderen($Kinderen)
@@ -841,7 +842,7 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @return TMedewerker
      */
     public function getKlantmanager()
     {
@@ -849,7 +850,7 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Klantmanager
+     * @param TMedewerker $Klantmanager
      * @return TRelatie
      */
     public function withKlantmanager($Klantmanager)
