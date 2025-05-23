@@ -15,6 +15,7 @@ class AantekeningFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implem
     /**
      * @inheritDoc
      */
+    #[Override]
     public function load(ObjectManager $manager): void
     {
         $aantekening = new Aantekening();

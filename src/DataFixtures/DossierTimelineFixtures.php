@@ -11,10 +11,11 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
 class DossierTimelineFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
 {
     public const TIMELINE_JSON_FILENAME = 'timeline.json';
-    
+
     /**
      * @inheritDoc
      */
+    #[Override]
     public function load(ObjectManager $manager): void
     {
         $dossierTimelines = $this->loadDossierTimelineJson();

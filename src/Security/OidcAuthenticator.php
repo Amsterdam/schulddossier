@@ -181,8 +181,6 @@ class OidcAuthenticator extends AbstractAuthenticator implements AuthenticatorIn
             [$csrfTokenBadge]
         );
 
-        $return = $return;
-
         return $return;
     }
 

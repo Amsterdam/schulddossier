@@ -15,6 +15,7 @@ class SchuldItemFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture impleme
     /**
      * @inheritDoc
      */
+    #[Override]
     public function load(ObjectManager $manager): void
     {
         $dossier = $this->getReference('dossier', Dossier::class);

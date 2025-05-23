@@ -12,6 +12,7 @@ class TeamFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
     /**
      * @inheritDoc
      */
+    #[Override]
     public function load(ObjectManager $manager): void
     {
         foreach ([1, 2, 3] as $teamNumber) {

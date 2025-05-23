@@ -20,6 +20,7 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
     /**
      * @inheritDoc
      */
+    #[Override]
     public function load(ObjectManager $manager): void
     {
         $users = $this->loadUsersJson();
