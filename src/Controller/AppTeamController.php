@@ -5,8 +5,10 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\TeamFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\TeamRepository;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\ExpressionLanguage\Expression;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,12 +17,9 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
 class AppTeamController extends AbstractController
 {
-    #[Route(path: '/app/team/')]
-    public function index(Request $request, EntityManagerInterface $em): \Symfony\Component\HttpFoundation\Response
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/team/')]
+    public function index(Request $request, TeamRepository $repository): Response
     {
-        /** @var $repository TeamRepository */
-        $repository = $em->getRepository(Team::class);
-
         $maxPageSize = 10;
 
         $teams = $repository->findAll(
@@ -39,7 +38,7 @@ class AppTeamController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/team/nieuw')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/team/nieuw')]
     #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
     public function create(Request $request, EntityManagerInterface $em)
     {
@@ -60,7 +59,7 @@ class AppTeamController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/team/detail/{teamId}/bewerken')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/team/detail/{teamId}/bewerken')]
     #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
     public function update(
         Request $request,
