@@ -8,14 +8,14 @@ class SaldoReserveringArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSaldoReservering
+     * @var TSaldoReservering
      */
     private $TSaldoReservering;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSaldoReservering $TSaldoReservering
+     * @var TSaldoReservering $TSaldoReservering
      */
     public function __construct($TSaldoReservering)
     {
@@ -23,7 +23,7 @@ class SaldoReserveringArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSaldoReservering
+     * @return TSaldoReservering
      */
     public function getTSaldoReservering()
     {
@@ -31,7 +31,7 @@ class SaldoReserveringArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSaldoReservering $TSaldoReservering
+     * @param TSaldoReservering $TSaldoReservering
      * @return SaldoReserveringArray
      */
     public function withTSaldoReservering($TSaldoReservering)

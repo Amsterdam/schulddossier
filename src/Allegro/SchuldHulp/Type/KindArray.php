@@ -9,14 +9,14 @@ class KindArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TKind
+     * @var TKind
      */
     private $TKind;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TKind $TKind
+     * @var TKind $TKind
      */
     public function __construct($TKind)
     {
@@ -24,7 +24,7 @@ class KindArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TKind
+     * @return TKind
      */
     public function getTKind()
     {
@@ -32,7 +32,7 @@ class KindArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TKind $TKind
+     * @param TKind $TKind
      * @return KindArray
      */
     public function withTKind($TKind)

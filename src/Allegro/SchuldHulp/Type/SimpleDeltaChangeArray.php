@@ -17,7 +17,7 @@ class SimpleDeltaChangeArray implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDeltaChange $SimpleDeltaChange
+     * @var SimpleDeltaChange $SimpleDeltaChange
      */
     public function __construct($SimpleDeltaChange)
     {
@@ -25,7 +25,7 @@ class SimpleDeltaChangeArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDeltaChange
+     * @return SimpleDeltaChange
      */
     public function getSimpleDeltaChange()
     {
@@ -33,7 +33,7 @@ class SimpleDeltaChangeArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDeltaChange $SimpleDeltaChange
+     * @param SimpleDeltaChange $SimpleDeltaChange
      * @return SimpleDeltaChangeArray
      */
     public function withSimpleDeltaChange($SimpleDeltaChange)

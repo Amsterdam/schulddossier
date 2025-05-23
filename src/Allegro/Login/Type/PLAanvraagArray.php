@@ -8,14 +8,14 @@ class PLAanvraagArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPLAanvraag
+     * @var TPLAanvraag
      */
     private $TPLAanvraag;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPLAanvraag $TPLAanvraag
+     * @var TPLAanvraag $TPLAanvraag
      */
     public function __construct($TPLAanvraag)
     {
@@ -23,7 +23,7 @@ class PLAanvraagArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPLAanvraag
+     * @return TPLAanvraag
      */
     public function getTPLAanvraag()
     {
@@ -31,7 +31,7 @@ class PLAanvraagArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPLAanvraag $TPLAanvraag
+     * @param TPLAanvraag $TPLAanvraag
      * @return PLAanvraagArray
      */
     public function withTPLAanvraag($TPLAanvraag)

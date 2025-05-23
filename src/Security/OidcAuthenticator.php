@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Security;
 
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
@@ -202,7 +203,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements AuthenticatorIn
         /**
          * @var Gebruiker $gebruiker
          */
-        $current_time = new \DateTime();
+        $current_time = new DateTime();
         $gebruiker?->setLastLogin($current_time);
         $this->entityManager->flush();
 

@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBoxDetail implements RequestInterface
@@ -14,7 +15,7 @@ class TBBoxDetail implements RequestInterface
     private $Code;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     * @var TRelatie
      */
     private $Relatie;
 
@@ -49,12 +50,12 @@ class TBBoxDetail implements RequestInterface
     private $UniekVolgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $AanmaakDatum;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $OntvangstDatum;
 
@@ -64,67 +65,67 @@ class TBBoxDetail implements RequestInterface
     private $Nieuw;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $EmailDatum;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @var TMedewerker
      */
     private $AanmaakMedewerker;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     * @var TRelatie
      */
     private $AanmaakRelatie;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @var TMedewerker
      */
     private $AfzenderMedewerker;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     * @var TRelatie
      */
     private $AfzenderRelatie;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @var TMedewerker
      */
     private $OntvangerMedewerker;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     * @var TRelatie
      */
     private $OntvangerRelatie;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $LeesDatum;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @var TMedewerker
      */
     private $LeesMedewerker;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     * @var TRelatie
      */
     private $LeesRelatie;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $ArchiefDatum;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @var TMedewerker
      */
     private $ArchiefMedewerker;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     * @var TRelatie
      */
     private $ArchiefRelatie;
 
@@ -153,33 +154,33 @@ class TBBoxDetail implements RequestInterface
      * Constructor
      *
      * @var int $Code
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $Relatie
+     * @var TRelatie $Relatie
      * @var int $ContractVolgnummer
      * @var string $ContractSoort
      * @var string $SoortOpdracht
      * @var int $CodeEiserBegunstigde
      * @var int $NummerReservering
      * @var int $UniekVolgnummer
-     * @var \DateTimeInterface $AanmaakDatum
-     * @var \DateTimeInterface $OntvangstDatum
+     * @var DateTimeInterface $AanmaakDatum
+     * @var DateTimeInterface $OntvangstDatum
      * @var bool $Nieuw
-     * @var \DateTimeInterface $EmailDatum
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AanmaakMedewerker
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AanmaakRelatie
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AfzenderMedewerker
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AfzenderRelatie
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $OntvangerMedewerker
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $OntvangerRelatie
-     * @var \DateTimeInterface $LeesDatum
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $LeesMedewerker
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $LeesRelatie
-     * @var \DateTimeInterface $ArchiefDatum
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $ArchiefMedewerker
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $ArchiefRelatie
+     * @var DateTimeInterface $EmailDatum
+     * @var TMedewerker $AanmaakMedewerker
+     * @var TRelatie $AanmaakRelatie
+     * @var TMedewerker $AfzenderMedewerker
+     * @var TRelatie $AfzenderRelatie
+     * @var TMedewerker $OntvangerMedewerker
+     * @var TRelatie $OntvangerRelatie
+     * @var DateTimeInterface $LeesDatum
+     * @var TMedewerker $LeesMedewerker
+     * @var TRelatie $LeesRelatie
+     * @var DateTimeInterface $ArchiefDatum
+     * @var TMedewerker $ArchiefMedewerker
+     * @var TRelatie $ArchiefRelatie
      * @var string $Onderwerp
      * @var string $Tekst
      * @var int $BijlagenAantal
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray $Bijlagen
+     * @var TBBoxBijlageArray $Bijlagen
      */
     public function __construct($Code, $Relatie, $ContractVolgnummer, $ContractSoort, $SoortOpdracht, $CodeEiserBegunstigde, $NummerReservering, $UniekVolgnummer, $AanmaakDatum, $OntvangstDatum, $Nieuw, $EmailDatum, $AanmaakMedewerker, $AanmaakRelatie, $AfzenderMedewerker, $AfzenderRelatie, $OntvangerMedewerker, $OntvangerRelatie, $LeesDatum, $LeesMedewerker, $LeesRelatie, $ArchiefDatum, $ArchiefMedewerker, $ArchiefRelatie, $Onderwerp, $Tekst, $BijlagenAantal, $Bijlagen)
     {
@@ -234,7 +235,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     * @return TRelatie
      */
     public function getRelatie()
     {
@@ -242,7 +243,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $Relatie
+     * @param TRelatie $Relatie
      * @return TBBoxDetail
      */
     public function withRelatie($Relatie)
@@ -374,7 +375,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getAanmaakDatum()
     {
@@ -382,7 +383,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $AanmaakDatum
+     * @param DateTimeInterface $AanmaakDatum
      * @return TBBoxDetail
      */
     public function withAanmaakDatum($AanmaakDatum)
@@ -394,7 +395,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getOntvangstDatum()
     {
@@ -402,7 +403,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $OntvangstDatum
+     * @param DateTimeInterface $OntvangstDatum
      * @return TBBoxDetail
      */
     public function withOntvangstDatum($OntvangstDatum)
@@ -434,7 +435,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEmailDatum()
     {
@@ -442,7 +443,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $EmailDatum
+     * @param DateTimeInterface $EmailDatum
      * @return TBBoxDetail
      */
     public function withEmailDatum($EmailDatum)
@@ -454,7 +455,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @return TMedewerker
      */
     public function getAanmaakMedewerker()
     {
@@ -462,7 +463,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AanmaakMedewerker
+     * @param TMedewerker $AanmaakMedewerker
      * @return TBBoxDetail
      */
     public function withAanmaakMedewerker($AanmaakMedewerker)
@@ -474,7 +475,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     * @return TRelatie
      */
     public function getAanmaakRelatie()
     {
@@ -482,7 +483,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AanmaakRelatie
+     * @param TRelatie $AanmaakRelatie
      * @return TBBoxDetail
      */
     public function withAanmaakRelatie($AanmaakRelatie)
@@ -494,7 +495,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @return TMedewerker
      */
     public function getAfzenderMedewerker()
     {
@@ -502,7 +503,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AfzenderMedewerker
+     * @param TMedewerker $AfzenderMedewerker
      * @return TBBoxDetail
      */
     public function withAfzenderMedewerker($AfzenderMedewerker)
@@ -514,7 +515,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     * @return TRelatie
      */
     public function getAfzenderRelatie()
     {
@@ -522,7 +523,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AfzenderRelatie
+     * @param TRelatie $AfzenderRelatie
      * @return TBBoxDetail
      */
     public function withAfzenderRelatie($AfzenderRelatie)
@@ -534,7 +535,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @return TMedewerker
      */
     public function getOntvangerMedewerker()
     {
@@ -542,7 +543,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $OntvangerMedewerker
+     * @param TMedewerker $OntvangerMedewerker
      * @return TBBoxDetail
      */
     public function withOntvangerMedewerker($OntvangerMedewerker)
@@ -554,7 +555,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     * @return TRelatie
      */
     public function getOntvangerRelatie()
     {
@@ -562,7 +563,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $OntvangerRelatie
+     * @param TRelatie $OntvangerRelatie
      * @return TBBoxDetail
      */
     public function withOntvangerRelatie($OntvangerRelatie)
@@ -574,7 +575,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getLeesDatum()
     {
@@ -582,7 +583,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $LeesDatum
+     * @param DateTimeInterface $LeesDatum
      * @return TBBoxDetail
      */
     public function withLeesDatum($LeesDatum)
@@ -594,7 +595,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @return TMedewerker
      */
     public function getLeesMedewerker()
     {
@@ -602,7 +603,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $LeesMedewerker
+     * @param TMedewerker $LeesMedewerker
      * @return TBBoxDetail
      */
     public function withLeesMedewerker($LeesMedewerker)
@@ -614,7 +615,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     * @return TRelatie
      */
     public function getLeesRelatie()
     {
@@ -622,7 +623,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $LeesRelatie
+     * @param TRelatie $LeesRelatie
      * @return TBBoxDetail
      */
     public function withLeesRelatie($LeesRelatie)
@@ -634,7 +635,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getArchiefDatum()
     {
@@ -642,7 +643,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $ArchiefDatum
+     * @param DateTimeInterface $ArchiefDatum
      * @return TBBoxDetail
      */
     public function withArchiefDatum($ArchiefDatum)
@@ -654,7 +655,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @return TMedewerker
      */
     public function getArchiefMedewerker()
     {
@@ -662,7 +663,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $ArchiefMedewerker
+     * @param TMedewerker $ArchiefMedewerker
      * @return TBBoxDetail
      */
     public function withArchiefMedewerker($ArchiefMedewerker)
@@ -674,7 +675,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     * @return TRelatie
      */
     public function getArchiefRelatie()
     {
@@ -682,7 +683,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $ArchiefRelatie
+     * @param TRelatie $ArchiefRelatie
      * @return TBBoxDetail
      */
     public function withArchiefRelatie($ArchiefRelatie)
@@ -754,7 +755,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray
+     * @return TBBoxBijlageArray
      */
     public function getBijlagen()
     {
@@ -762,7 +763,7 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray $Bijlagen
+     * @param TBBoxBijlageArray $Bijlagen
      * @return TBBoxDetail
      */
     public function withBijlagen($Bijlagen)

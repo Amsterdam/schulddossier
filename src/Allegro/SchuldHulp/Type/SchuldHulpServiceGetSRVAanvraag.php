@@ -17,7 +17,7 @@ class SchuldHulpServiceGetSRVAanvraag implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader $aHeader
+     * @var TSRVAanvraagHeader $aHeader
      */
     public function __construct($aHeader)
     {
@@ -25,7 +25,7 @@ class SchuldHulpServiceGetSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader
+     * @return TSRVAanvraagHeader
      */
     public function getAHeader()
     {
@@ -33,7 +33,7 @@ class SchuldHulpServiceGetSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader $aHeader
+     * @param TSRVAanvraagHeader $aHeader
      * @return SchuldHulpServiceGetSRVAanvraag
      */
     public function withAHeader($aHeader)

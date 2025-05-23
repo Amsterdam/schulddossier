@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TExtraProduct
 {
 
@@ -26,7 +29,7 @@ class TExtraProduct
     protected $OpdrachtgeverContact = null;
 
     /**
-     * @var \DateTime $Startdatum
+     * @var DateTime $Startdatum
      */
     protected $Startdatum = null;
 
@@ -51,7 +54,7 @@ class TExtraProduct
     protected $UitvoerendeOrganisatieContact = null;
 
     /**
-     * @var \DateTime $GeschatteEinddatum
+     * @var DateTime $GeschatteEinddatum
      */
     protected $GeschatteEinddatum = null;
 
@@ -65,26 +68,26 @@ class TExtraProduct
      * @param string $Medewerker
      * @param int $Opdrachtgever
      * @param int $OpdrachtgeverContact
-     * @param \DateTime $Startdatum
+     * @param DateTime $Startdatum
      * @param string $Status
      * @param string $StatusOmschrijving
      * @param int $UitvoerendeOrganisatie
      * @param int $UitvoerendeOrganisatieContact
-     * @param \DateTime $GeschatteEinddatum
+     * @param DateTime $GeschatteEinddatum
      * @param int $PartnerCode
      */
-    public function __construct($InfoHeader, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, \DateTime $Startdatum, $Status, $StatusOmschrijving, $UitvoerendeOrganisatie, $UitvoerendeOrganisatieContact, \DateTime $GeschatteEinddatum, $PartnerCode)
+    public function __construct($InfoHeader, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, DateTime $Startdatum, $Status, $StatusOmschrijving, $UitvoerendeOrganisatie, $UitvoerendeOrganisatieContact, DateTime $GeschatteEinddatum, $PartnerCode)
     {
       $this->InfoHeader = $InfoHeader;
       $this->Medewerker = $Medewerker;
       $this->Opdrachtgever = $Opdrachtgever;
       $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
       $this->Status = $Status;
       $this->StatusOmschrijving = $StatusOmschrijving;
       $this->UitvoerendeOrganisatie = $UitvoerendeOrganisatie;
       $this->UitvoerendeOrganisatieContact = $UitvoerendeOrganisatieContact;
-      $this->GeschatteEinddatum = $GeschatteEinddatum->format(\DateTime::ATOM);
+      $this->GeschatteEinddatum = $GeschatteEinddatum->format(DateTime::ATOM);
       $this->PartnerCode = $PartnerCode;
     }
 
@@ -161,7 +164,7 @@ class TExtraProduct
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartdatum()
     {
@@ -169,20 +172,20 @@ class TExtraProduct
         return null;
       } else {
         try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Startdatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Startdatum
+     * @param DateTime $Startdatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TExtraProduct
      */
-    public function setStartdatum(\DateTime $Startdatum)
+    public function setStartdatum(DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+      $this->Startdatum = $Startdatum->format(DateTime::ATOM);
       return $this;
     }
 
@@ -259,7 +262,7 @@ class TExtraProduct
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getGeschatteEinddatum()
     {
@@ -267,20 +270,20 @@ class TExtraProduct
         return null;
       } else {
         try {
-          return new \DateTime($this->GeschatteEinddatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->GeschatteEinddatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $GeschatteEinddatum
+     * @param DateTime $GeschatteEinddatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TExtraProduct
      */
-    public function setGeschatteEinddatum(\DateTime $GeschatteEinddatum)
+    public function setGeschatteEinddatum(DateTime $GeschatteEinddatum)
     {
-      $this->GeschatteEinddatum = $GeschatteEinddatum->format(\DateTime::ATOM);
+      $this->GeschatteEinddatum = $GeschatteEinddatum->format(DateTime::ATOM);
       return $this;
     }
 

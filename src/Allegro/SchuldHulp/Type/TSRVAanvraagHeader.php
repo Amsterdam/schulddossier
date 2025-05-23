@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSRVAanvraagHeader implements RequestInterface
@@ -34,7 +35,7 @@ class TSRVAanvraagHeader implements RequestInterface
     private $Statustekst;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Aanvraagdatum;
 
@@ -51,7 +52,7 @@ class TSRVAanvraagHeader implements RequestInterface
      * @var bool $IsNPS
      * @var string $Status
      * @var string $Statustekst
-     * @var \DateTimeInterface $Aanvraagdatum
+     * @var DateTimeInterface $Aanvraagdatum
      * @var string $ExtraStatus
      */
     public function __construct($RelatieCode, $Volgnummer, $IsNPS, $Status, $Statustekst, $Aanvraagdatum, $ExtraStatus)
@@ -166,7 +167,7 @@ class TSRVAanvraagHeader implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getAanvraagdatum()
     {
@@ -174,7 +175,7 @@ class TSRVAanvraagHeader implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Aanvraagdatum
+     * @param DateTimeInterface $Aanvraagdatum
      * @return TSRVAanvraagHeader
      */
     public function withAanvraagdatum($Aanvraagdatum)

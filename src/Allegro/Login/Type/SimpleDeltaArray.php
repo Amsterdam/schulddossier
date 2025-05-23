@@ -8,14 +8,14 @@ class SimpleDeltaArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDelta
+     * @var SimpleDelta
      */
     private $SimpleDelta;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDelta $SimpleDelta
+     * @var SimpleDelta $SimpleDelta
      */
     public function __construct($SimpleDelta)
     {
@@ -23,7 +23,7 @@ class SimpleDeltaArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDelta
+     * @return SimpleDelta
      */
     public function getSimpleDelta()
     {
@@ -31,7 +31,7 @@ class SimpleDeltaArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDelta $SimpleDelta
+     * @param SimpleDelta $SimpleDelta
      * @return SimpleDeltaArray
      */
     public function withSimpleDelta($SimpleDelta)

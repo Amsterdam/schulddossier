@@ -16,7 +16,7 @@ class PRSAfschriftReseveringArray implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftReservering $TPRSAfschriftReservering
+     * @var TPRSAfschriftReservering $TPRSAfschriftReservering
      */
     public function __construct($TPRSAfschriftReservering)
     {
@@ -24,7 +24,7 @@ class PRSAfschriftReseveringArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftReservering
+     * @return TPRSAfschriftReservering
      */
     public function getTPRSAfschriftReservering()
     {
@@ -32,7 +32,7 @@ class PRSAfschriftReseveringArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftReservering $TPRSAfschriftReservering
+     * @param TPRSAfschriftReservering $TPRSAfschriftReservering
      * @return PRSAfschriftReseveringArray
      */
     public function withTPRSAfschriftReservering($TPRSAfschriftReservering)

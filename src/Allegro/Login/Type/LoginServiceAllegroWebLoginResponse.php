@@ -13,7 +13,7 @@ class LoginServiceAllegroWebLoginResponse implements ResultInterface
     private $Result;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\AWUserInfo
+     * @var AWUserInfo
      */
     private $aUserInfo;
 
@@ -38,7 +38,7 @@ class LoginServiceAllegroWebLoginResponse implements ResultInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\AWUserInfo
+     * @return AWUserInfo
      */
     public function getAUserInfo()
     {
@@ -46,7 +46,7 @@ class LoginServiceAllegroWebLoginResponse implements ResultInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\AWUserInfo $aUserInfo
+     * @param AWUserInfo $aUserInfo
      * @return LoginServiceAllegroWebLoginResponse
      */
     public function withAUserInfo($aUserInfo)

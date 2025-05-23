@@ -8,14 +8,14 @@ class OrganisatieArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOrganisatie
+     * @var TOrganisatie
      */
     private $TOrganisatie;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOrganisatie $TOrganisatie
+     * @var TOrganisatie $TOrganisatie
      */
     public function __construct($TOrganisatie)
     {
@@ -23,7 +23,7 @@ class OrganisatieArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOrganisatie
+     * @return TOrganisatie
      */
     public function getTOrganisatie()
     {
@@ -31,7 +31,7 @@ class OrganisatieArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOrganisatie $TOrganisatie
+     * @param TOrganisatie $TOrganisatie
      * @return OrganisatieArray
      */
     public function withTOrganisatie($TOrganisatie)

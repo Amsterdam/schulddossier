@@ -17,7 +17,7 @@ class LoginClientFactory
     public static function factory(
         string $wsdl,
         ?Organisatie $organisatie = null
-    ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient {
+    ): AllegroLoginClient {
         $handler = HttPlugHandle::createForClient(
             Client::createWithConfig(['headers' => ['User-Agent' => 'fixxx-schuldhulp/1.0']])
         );

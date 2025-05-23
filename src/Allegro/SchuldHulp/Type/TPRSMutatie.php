@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSMutatie implements RequestInterface
@@ -29,7 +30,7 @@ class TPRSMutatie implements RequestInterface
     private $ContractVolgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Datum;
 
@@ -65,7 +66,7 @@ class TPRSMutatie implements RequestInterface
      * @var int $UniekVolgnummer
      * @var int $ContractCode
      * @var int $ContractVolgnummer
-     * @var \DateTimeInterface $Datum
+     * @var DateTimeInterface $Datum
      * @var string $AfBij
      * @var float $Bedrag
      * @var int $VolgnummerAfschrift
@@ -167,7 +168,7 @@ class TPRSMutatie implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatum()
     {
@@ -175,7 +176,7 @@ class TPRSMutatie implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Datum
+     * @param DateTimeInterface $Datum
      * @return TPRSMutatie
      */
     public function withDatum($Datum)

@@ -2,13 +2,17 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use DateTime;
+use DateInterval;
+use BadMethodCallException;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager as ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 
-class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
+class GebruikerFixtures extends Fixture implements DependentFixtureInterface
 {
     public const ADMIN_USER_REFERENCE = 'admin';
     public const GKA_USER_REFERENCE = 'gka';
@@ -44,15 +48,15 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
 
             if (isset($user['last_login_interval'])) {
                 $gebruiker->setLastLogin(
-                    (new \DateTime())->sub(
-                        new \DateInterval($user['last_login_interval'])
+                    (new DateTime())->sub(
+                        new DateInterval($user['last_login_interval'])
                     )
                 );
             }
 
             try {
                 $this->addReference($user['enabled'] ? $user['type'] : 'disabled', $gebruiker);
-            } catch (\BadMethodCallException $e) {
+            } catch (BadMethodCallException $e) {
                 //Catch toegevoegd om te voorkomen dat er dubbele referenties zijn.
             }
 

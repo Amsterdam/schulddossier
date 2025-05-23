@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class THulpverlener implements RequestInterface
@@ -44,7 +45,7 @@ class THulpverlener implements RequestInterface
     private $InzageGevraagd;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumInzageGevraagd;
 
@@ -54,7 +55,7 @@ class THulpverlener implements RequestInterface
     private $Inzage;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumInzage;
 
@@ -68,9 +69,9 @@ class THulpverlener implements RequestInterface
      * @var string $ContactNaam
      * @var string $SoortHulp
      * @var bool $InzageGevraagd
-     * @var \DateTimeInterface $DatumInzageGevraagd
+     * @var DateTimeInterface $DatumInzageGevraagd
      * @var string $Inzage
-     * @var \DateTimeInterface $DatumInzage
+     * @var DateTimeInterface $DatumInzage
      */
     public function __construct($Code, $OrganisatieCode, $OrganisatieNaam, $ContactCode, $ContactNaam, $SoortHulp, $InzageGevraagd, $DatumInzageGevraagd, $Inzage, $DatumInzage)
     {
@@ -227,7 +228,7 @@ class THulpverlener implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumInzageGevraagd()
     {
@@ -235,7 +236,7 @@ class THulpverlener implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumInzageGevraagd
+     * @param DateTimeInterface $DatumInzageGevraagd
      * @return THulpverlener
      */
     public function withDatumInzageGevraagd($DatumInzageGevraagd)
@@ -267,7 +268,7 @@ class THulpverlener implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumInzage()
     {
@@ -275,7 +276,7 @@ class THulpverlener implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumInzage
+     * @param DateTimeInterface $DatumInzage
      * @return THulpverlener
      */
     public function withDatumInzage($DatumInzage)

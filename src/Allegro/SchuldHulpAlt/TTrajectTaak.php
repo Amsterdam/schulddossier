@@ -2,11 +2,14 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TTrajectTaak
 {
 
     /**
-     * @var \DateTime $StartDatum
+     * @var DateTime $StartDatum
      */
     protected $StartDatum = null;
 
@@ -31,7 +34,7 @@ class TTrajectTaak
     protected $MedewerkerUitgevoerd = null;
 
     /**
-     * @var \DateTime $DatumUitgevoerd
+     * @var DateTime $DatumUitgevoerd
      */
     protected $DatumUitgevoerd = null;
 
@@ -56,25 +59,25 @@ class TTrajectTaak
     protected $TrajectOmschrijving = null;
 
     /**
-     * @param \DateTime $StartDatum
+     * @param DateTime $StartDatum
      * @param string $Medewerker
      * @param string $Actie
      * @param string $ActieOmschrijving
      * @param string $MedewerkerUitgevoerd
-     * @param \DateTime $DatumUitgevoerd
+     * @param DateTime $DatumUitgevoerd
      * @param string $AfmeldCategorie
      * @param int $StapnummerTraject
      * @param string $TrajectCode
      * @param string $TrajectOmschrijving
      */
-    public function __construct(\DateTime $StartDatum, $Medewerker, $Actie, $ActieOmschrijving, $MedewerkerUitgevoerd, \DateTime $DatumUitgevoerd, $AfmeldCategorie, $StapnummerTraject, $TrajectCode, $TrajectOmschrijving)
+    public function __construct(DateTime $StartDatum, $Medewerker, $Actie, $ActieOmschrijving, $MedewerkerUitgevoerd, DateTime $DatumUitgevoerd, $AfmeldCategorie, $StapnummerTraject, $TrajectCode, $TrajectOmschrijving)
     {
-      $this->StartDatum = $StartDatum->format(\DateTime::ATOM);
+      $this->StartDatum = $StartDatum->format(DateTime::ATOM);
       $this->Medewerker = $Medewerker;
       $this->Actie = $Actie;
       $this->ActieOmschrijving = $ActieOmschrijving;
       $this->MedewerkerUitgevoerd = $MedewerkerUitgevoerd;
-      $this->DatumUitgevoerd = $DatumUitgevoerd->format(\DateTime::ATOM);
+      $this->DatumUitgevoerd = $DatumUitgevoerd->format(DateTime::ATOM);
       $this->AfmeldCategorie = $AfmeldCategorie;
       $this->StapnummerTraject = $StapnummerTraject;
       $this->TrajectCode = $TrajectCode;
@@ -82,7 +85,7 @@ class TTrajectTaak
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartDatum()
     {
@@ -90,20 +93,20 @@ class TTrajectTaak
         return null;
       } else {
         try {
-          return new \DateTime($this->StartDatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->StartDatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $StartDatum
+     * @param DateTime $StartDatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TTrajectTaak
      */
-    public function setStartDatum(\DateTime $StartDatum)
+    public function setStartDatum(DateTime $StartDatum)
     {
-      $this->StartDatum = $StartDatum->format(\DateTime::ATOM);
+      $this->StartDatum = $StartDatum->format(DateTime::ATOM);
       return $this;
     }
 
@@ -180,7 +183,7 @@ class TTrajectTaak
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumUitgevoerd()
     {
@@ -188,20 +191,20 @@ class TTrajectTaak
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumUitgevoerd);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumUitgevoerd);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumUitgevoerd
+     * @param DateTime $DatumUitgevoerd
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TTrajectTaak
      */
-    public function setDatumUitgevoerd(\DateTime $DatumUitgevoerd)
+    public function setDatumUitgevoerd(DateTime $DatumUitgevoerd)
     {
-      $this->DatumUitgevoerd = $DatumUitgevoerd->format(\DateTime::ATOM);
+      $this->DatumUitgevoerd = $DatumUitgevoerd->format(DateTime::ATOM);
       return $this;
     }
 

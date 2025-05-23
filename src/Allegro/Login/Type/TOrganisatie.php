@@ -18,12 +18,12 @@ class TOrganisatie implements RequestInterface
     private $Naam;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
+     * @var TAdres
      */
     private $BezoekAdres;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
+     * @var TAdres
      */
     private $PostAdres;
 
@@ -32,8 +32,8 @@ class TOrganisatie implements RequestInterface
      *
      * @var int $RelatieCode
      * @var string $Naam
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $BezoekAdres
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $PostAdres
+     * @var TAdres $BezoekAdres
+     * @var TAdres $PostAdres
      */
     public function __construct($RelatieCode, $Naam, $BezoekAdres, $PostAdres)
     {
@@ -84,7 +84,7 @@ class TOrganisatie implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
+     * @return TAdres
      */
     public function getBezoekAdres()
     {
@@ -92,7 +92,7 @@ class TOrganisatie implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $BezoekAdres
+     * @param TAdres $BezoekAdres
      * @return TOrganisatie
      */
     public function withBezoekAdres($BezoekAdres)
@@ -104,7 +104,7 @@ class TOrganisatie implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
+     * @return TAdres
      */
     public function getPostAdres()
     {
@@ -112,7 +112,7 @@ class TOrganisatie implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $PostAdres
+     * @param TAdres $PostAdres
      * @return TOrganisatie
      */
     public function withPostAdres($PostAdres)

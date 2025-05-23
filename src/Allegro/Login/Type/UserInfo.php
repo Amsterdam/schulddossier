@@ -18,12 +18,12 @@ class UserInfo implements RequestInterface
     private $UserID;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
+     * @var StringArray
      */
     private $Privileges;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\VariantArray
+     * @var VariantArray
      */
     private $Attributes;
 
@@ -37,8 +37,8 @@ class UserInfo implements RequestInterface
      *
      * @var string $SessionID
      * @var string $UserID
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $Privileges
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\VariantArray $Attributes
+     * @var StringArray $Privileges
+     * @var VariantArray $Attributes
      * @var string $UserData
      */
     public function __construct($SessionID, $UserID, $Privileges, $Attributes, $UserData)
@@ -91,7 +91,7 @@ class UserInfo implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
+     * @return StringArray
      */
     public function getPrivileges()
     {
@@ -99,7 +99,7 @@ class UserInfo implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $Privileges
+     * @param StringArray $Privileges
      * @return UserInfo
      */
     public function withPrivileges($Privileges)
@@ -111,7 +111,7 @@ class UserInfo implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\VariantArray
+     * @return VariantArray
      */
     public function getAttributes()
     {
@@ -119,7 +119,7 @@ class UserInfo implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\VariantArray $Attributes
+     * @param VariantArray $Attributes
      * @return UserInfo
      */
     public function withAttributes($Attributes)

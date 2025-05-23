@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TContactpersoon
 {
 
@@ -31,7 +34,7 @@ class TContactpersoon
     protected $Voorletters = null;
 
     /**
-     * @var \DateTime $GeboorteDatum
+     * @var DateTime $GeboorteDatum
      */
     protected $GeboorteDatum = null;
 
@@ -66,21 +69,21 @@ class TContactpersoon
      * @param string $Voorvoegsels
      * @param string $Voornaam
      * @param string $Voorletters
-     * @param \DateTime $GeboorteDatum
+     * @param DateTime $GeboorteDatum
      * @param string $Telefoon
      * @param string $Email
      * @param boolean $NogBevestigen
      * @param boolean $Actief
      * @param boolean $MagAanmelden
      */
-    public function __construct($Code, $Achternaam, $Voorvoegsels, $Voornaam, $Voorletters, \DateTime $GeboorteDatum, $Telefoon, $Email, $NogBevestigen, $Actief, $MagAanmelden)
+    public function __construct($Code, $Achternaam, $Voorvoegsels, $Voornaam, $Voorletters, DateTime $GeboorteDatum, $Telefoon, $Email, $NogBevestigen, $Actief, $MagAanmelden)
     {
       $this->Code = $Code;
       $this->Achternaam = $Achternaam;
       $this->Voorvoegsels = $Voorvoegsels;
       $this->Voornaam = $Voornaam;
       $this->Voorletters = $Voorletters;
-      $this->GeboorteDatum = $GeboorteDatum->format(\DateTime::ATOM);
+      $this->GeboorteDatum = $GeboorteDatum->format(DateTime::ATOM);
       $this->Telefoon = $Telefoon;
       $this->Email = $Email;
       $this->NogBevestigen = $NogBevestigen;
@@ -179,7 +182,7 @@ class TContactpersoon
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getGeboorteDatum()
     {
@@ -187,20 +190,20 @@ class TContactpersoon
         return null;
       } else {
         try {
-          return new \DateTime($this->GeboorteDatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->GeboorteDatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $GeboorteDatum
+     * @param DateTime $GeboorteDatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TContactpersoon
      */
-    public function setGeboorteDatum(\DateTime $GeboorteDatum)
+    public function setGeboorteDatum(DateTime $GeboorteDatum)
     {
-      $this->GeboorteDatum = $GeboorteDatum->format(\DateTime::ATOM);
+      $this->GeboorteDatum = $GeboorteDatum->format(DateTime::ATOM);
       return $this;
     }
 

@@ -2,12 +2,13 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 
-class VoorleggerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
+class VoorleggerFixtures extends Fixture implements DependentFixtureInterface
 {
     public const VOORLEGGERS_JSON_FILENAME = 'voorleggers.json';
 

@@ -8,14 +8,14 @@ class SBEiserArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBEiser
+     * @var TSBEiser
      */
     private $TSBEiser;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBEiser $TSBEiser
+     * @var TSBEiser $TSBEiser
      */
     public function __construct($TSBEiser)
     {
@@ -23,7 +23,7 @@ class SBEiserArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBEiser
+     * @return TSBEiser
      */
     public function getTSBEiser()
     {
@@ -31,7 +31,7 @@ class SBEiserArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBEiser $TSBEiser
+     * @param TSBEiser $TSBEiser
      * @return SBEiserArray
      */
     public function withTSBEiser($TSBEiser)

@@ -22,7 +22,7 @@ class HelpController extends AbstractController
     {
     }
 
-    #[Route(path: '/app/help')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/help')]
     #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
     public function index(): Response
     {

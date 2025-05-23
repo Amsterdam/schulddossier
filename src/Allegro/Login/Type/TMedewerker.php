@@ -38,7 +38,7 @@ class TMedewerker implements RequestInterface
     private $Telefoon;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TeamArray
+     * @var TeamArray
      */
     private $Teams;
 
@@ -51,7 +51,7 @@ class TMedewerker implements RequestInterface
      * @var string $Voorvoegsels
      * @var string $Voorletters
      * @var string $Telefoon
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TeamArray $Teams
+     * @var TeamArray $Teams
      */
     public function __construct($Code, $Voornaam, $Achternaam, $Voorvoegsels, $Voorletters, $Telefoon, $Teams)
     {
@@ -185,7 +185,7 @@ class TMedewerker implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TeamArray
+     * @return TeamArray
      */
     public function getTeams()
     {
@@ -193,7 +193,7 @@ class TMedewerker implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TeamArray $Teams
+     * @param TeamArray $Teams
      * @return TMedewerker
      */
     public function withTeams($Teams)

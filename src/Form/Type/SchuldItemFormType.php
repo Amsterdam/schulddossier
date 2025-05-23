@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\DataTransformer\IdToSchuldeiserTransformer;
@@ -86,7 +87,7 @@ class SchuldItemFormType extends AbstractType
         ]);
         $builder->add('vastStelDatum', DateType::class, [
             'html5' => false,
-            'attr' => ['data-decorator' => 'rome', 'data-max' => (new \DateTime('now'))->format("d-m-Y")],
+            'attr' => ['data-decorator' => 'rome', 'data-max' => (new DateTime('now'))->format("d-m-Y")],
             'format' => 'dd-MM-yyyy',
             'widget' => 'single_text',
             'label' => 'Contactdatum *',

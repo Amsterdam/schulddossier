@@ -8,14 +8,14 @@ class ContractArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContract
+     * @var TContract
      */
     private $TContract;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContract $TContract
+     * @var TContract $TContract
      */
     public function __construct($TContract)
     {
@@ -23,7 +23,7 @@ class ContractArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContract
+     * @return TContract
      */
     public function getTContract()
     {
@@ -31,7 +31,7 @@ class ContractArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContract $TContract
+     * @param TContract $TContract
      * @return ContractArray
      */
     public function withTContract($TContract)

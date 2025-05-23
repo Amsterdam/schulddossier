@@ -9,14 +9,14 @@ class Rekeningnummer2Array implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRekeningnummer
+     * @var TRekeningnummer
      */
     private $TRekeningnummer;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRekeningnummer $TRekeningnummer
+     * @var TRekeningnummer $TRekeningnummer
      */
     public function __construct($TRekeningnummer)
     {
@@ -24,7 +24,7 @@ class Rekeningnummer2Array implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRekeningnummer
+     * @return TRekeningnummer
      */
     public function getTRekeningnummer()
     {
@@ -32,7 +32,7 @@ class Rekeningnummer2Array implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRekeningnummer $TRekeningnummer
+     * @param TRekeningnummer $TRekeningnummer
      * @return Rekeningnummer2Array
      */
     public function withTRekeningnummer($TRekeningnummer)

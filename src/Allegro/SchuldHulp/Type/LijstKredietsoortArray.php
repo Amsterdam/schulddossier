@@ -17,7 +17,7 @@ class LijstKredietsoortArray implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstKredietsoort $TLijstKredietsoort
+     * @var TLijstKredietsoort $TLijstKredietsoort
      */
     public function __construct($TLijstKredietsoort)
     {
@@ -25,7 +25,7 @@ class LijstKredietsoortArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstKredietsoort
+     * @return TLijstKredietsoort
      */
     public function getTLijstKredietsoort()
     {
@@ -33,7 +33,7 @@ class LijstKredietsoortArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstKredietsoort $TLijstKredietsoort
+     * @param TLijstKredietsoort $TLijstKredietsoort
      * @return LijstKredietsoortArray
      */
     public function withTLijstKredietsoort($TLijstKredietsoort)

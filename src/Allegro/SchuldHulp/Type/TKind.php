@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TKind implements RequestInterface
@@ -24,7 +25,7 @@ class TKind implements RequestInterface
     private $Achternaam;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Geboortedatum;
 
@@ -44,7 +45,7 @@ class TKind implements RequestInterface
      * @var int $UniekVolgnummer
      * @var string $Voornaam
      * @var string $Achternaam
-     * @var \DateTimeInterface $Geboortedatum
+     * @var DateTimeInterface $Geboortedatum
      * @var string $Activiteit
      * @var bool $MeetelKind
      */
@@ -119,7 +120,7 @@ class TKind implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getGeboortedatum()
     {
@@ -127,7 +128,7 @@ class TKind implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Geboortedatum
+     * @param DateTimeInterface $Geboortedatum
      * @return TKind
      */
     public function withGeboortedatum($Geboortedatum)

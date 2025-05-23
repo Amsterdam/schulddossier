@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table]
@@ -28,7 +29,7 @@ class DossierTimeline
     private $dossier;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     #[ORM\Column(type: 'datetime', nullable: false)]
     private $datumtijd;

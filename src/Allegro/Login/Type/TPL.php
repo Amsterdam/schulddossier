@@ -2,13 +2,14 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPL implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPLHeader
+     * @var TPLHeader
      */
     private $InfoHeader;
 
@@ -23,7 +24,7 @@ class TPL implements RequestInterface
     private $OpdrachtgeverContact;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $TheoEinddatum;
 
@@ -63,7 +64,7 @@ class TPL implements RequestInterface
     private $AantalKwartalen;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumEersteAflossing;
 
@@ -93,7 +94,7 @@ class TPL implements RequestInterface
     private $EffectiefJaarpercentage;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumLaatsteBetaling;
 
@@ -165,10 +166,10 @@ class TPL implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPLHeader $InfoHeader
+     * @var TPLHeader $InfoHeader
      * @var int $Opdrachtgever
      * @var int $OpdrachtgeverContact
-     * @var \DateTimeInterface $TheoEinddatum
+     * @var DateTimeInterface $TheoEinddatum
      * @var float $NettoKredietsom
      * @var float $BrutoKredietsom
      * @var float $Kredietvergoeding
@@ -176,13 +177,13 @@ class TPL implements RequestInterface
      * @var float $KwartaalTermijn
      * @var int $AantalMaanden
      * @var int $AantalKwartalen
-     * @var \DateTimeInterface $DatumEersteAflossing
+     * @var DateTimeInterface $DatumEersteAflossing
      * @var float $Betaald
      * @var float $SaldoLening
      * @var float $Achterstand
      * @var int $ResterendeLooptijd
      * @var float $EffectiefJaarpercentage
-     * @var \DateTimeInterface $DatumLaatsteBetaling
+     * @var DateTimeInterface $DatumLaatsteBetaling
      * @var float $BedragLaatsteBetaling
      * @var float $VolledigVervroegdeAflossing
      * @var string $Medewerker
@@ -233,7 +234,7 @@ class TPL implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPLHeader
+     * @return TPLHeader
      */
     public function getInfoHeader()
     {
@@ -241,7 +242,7 @@ class TPL implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPLHeader $InfoHeader
+     * @param TPLHeader $InfoHeader
      * @return TPL
      */
     public function withInfoHeader($InfoHeader)
@@ -293,7 +294,7 @@ class TPL implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getTheoEinddatum()
     {
@@ -301,7 +302,7 @@ class TPL implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $TheoEinddatum
+     * @param DateTimeInterface $TheoEinddatum
      * @return TPL
      */
     public function withTheoEinddatum($TheoEinddatum)
@@ -453,7 +454,7 @@ class TPL implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumEersteAflossing()
     {
@@ -461,7 +462,7 @@ class TPL implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumEersteAflossing
+     * @param DateTimeInterface $DatumEersteAflossing
      * @return TPL
      */
     public function withDatumEersteAflossing($DatumEersteAflossing)
@@ -573,7 +574,7 @@ class TPL implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumLaatsteBetaling()
     {
@@ -581,7 +582,7 @@ class TPL implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumLaatsteBetaling
+     * @param DateTimeInterface $DatumLaatsteBetaling
      * @return TPL
      */
     public function withDatumLaatsteBetaling($DatumLaatsteBetaling)

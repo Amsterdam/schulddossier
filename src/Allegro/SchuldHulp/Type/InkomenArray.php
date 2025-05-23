@@ -9,14 +9,14 @@ class InkomenArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen
+     * @var TInkomen
      */
     private $TInkomen;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen $TInkomen
+     * @var TInkomen $TInkomen
      */
     public function __construct($TInkomen)
     {
@@ -24,7 +24,7 @@ class InkomenArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen
+     * @return TInkomen
      */
     public function getTInkomen()
     {
@@ -32,7 +32,7 @@ class InkomenArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen $TInkomen
+     * @param TInkomen $TInkomen
      * @return InkomenArray
      */
     public function withTInkomen($TInkomen)

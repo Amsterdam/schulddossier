@@ -8,7 +8,7 @@ class TBBoxGeadresseerde implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
+     * @var TMedewerker
      */
     private $Medewerker;
 
@@ -20,7 +20,7 @@ class TBBoxGeadresseerde implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Medewerker
+     * @var TMedewerker $Medewerker
      * @var string $Informatie
      */
     public function __construct($Medewerker, $Informatie)
@@ -30,7 +30,7 @@ class TBBoxGeadresseerde implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
+     * @return TMedewerker
      */
     public function getMedewerker()
     {
@@ -38,7 +38,7 @@ class TBBoxGeadresseerde implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Medewerker
+     * @param TMedewerker $Medewerker
      * @return TBBoxGeadresseerde
      */
     public function withMedewerker($Medewerker)

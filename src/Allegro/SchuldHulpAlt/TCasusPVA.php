@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TCasusPVA
 {
 
@@ -21,22 +24,22 @@ class TCasusPVA
     protected $TeamPVA = null;
 
     /**
-     * @var \DateTime $DatumPVA
+     * @var DateTime $DatumPVA
      */
     protected $DatumPVA = null;
 
     /**
-     * @var \DateTime $DatumPVAEinde
+     * @var DateTime $DatumPVAEinde
      */
     protected $DatumPVAEinde = null;
 
     /**
-     * @var \DateTime $DatumFiattering
+     * @var DateTime $DatumFiattering
      */
     protected $DatumFiattering = null;
 
     /**
-     * @var \DateTime $DatumFiatteringEinde
+     * @var DateTime $DatumFiatteringEinde
      */
     protected $DatumFiatteringEinde = null;
 
@@ -54,22 +57,22 @@ class TCasusPVA
      * @param int $VolgnummerPVA
      * @param string $MedewerkerPVA
      * @param string $TeamPVA
-     * @param \DateTime $DatumPVA
-     * @param \DateTime $DatumPVAEinde
-     * @param \DateTime $DatumFiattering
-     * @param \DateTime $DatumFiatteringEinde
+     * @param DateTime $DatumPVA
+     * @param DateTime $DatumPVAEinde
+     * @param DateTime $DatumFiattering
+     * @param DateTime $DatumFiatteringEinde
      * @param boolean $Gefiatteerd
      * @param CasusPVAProductArray $Producten
      */
-    public function __construct($VolgnummerPVA, $MedewerkerPVA, $TeamPVA, \DateTime $DatumPVA, \DateTime $DatumPVAEinde, \DateTime $DatumFiattering, \DateTime $DatumFiatteringEinde, $Gefiatteerd, $Producten)
+    public function __construct($VolgnummerPVA, $MedewerkerPVA, $TeamPVA, DateTime $DatumPVA, DateTime $DatumPVAEinde, DateTime $DatumFiattering, DateTime $DatumFiatteringEinde, $Gefiatteerd, $Producten)
     {
       $this->VolgnummerPVA = $VolgnummerPVA;
       $this->MedewerkerPVA = $MedewerkerPVA;
       $this->TeamPVA = $TeamPVA;
-      $this->DatumPVA = $DatumPVA->format(\DateTime::ATOM);
-      $this->DatumPVAEinde = $DatumPVAEinde->format(\DateTime::ATOM);
-      $this->DatumFiattering = $DatumFiattering->format(\DateTime::ATOM);
-      $this->DatumFiatteringEinde = $DatumFiatteringEinde->format(\DateTime::ATOM);
+      $this->DatumPVA = $DatumPVA->format(DateTime::ATOM);
+      $this->DatumPVAEinde = $DatumPVAEinde->format(DateTime::ATOM);
+      $this->DatumFiattering = $DatumFiattering->format(DateTime::ATOM);
+      $this->DatumFiatteringEinde = $DatumFiatteringEinde->format(DateTime::ATOM);
       $this->Gefiatteerd = $Gefiatteerd;
       $this->Producten = $Producten;
     }
@@ -129,7 +132,7 @@ class TCasusPVA
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumPVA()
     {
@@ -137,25 +140,25 @@ class TCasusPVA
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumPVA);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumPVA);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumPVA
+     * @param DateTime $DatumPVA
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusPVA
      */
-    public function setDatumPVA(\DateTime $DatumPVA)
+    public function setDatumPVA(DateTime $DatumPVA)
     {
-      $this->DatumPVA = $DatumPVA->format(\DateTime::ATOM);
+      $this->DatumPVA = $DatumPVA->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumPVAEinde()
     {
@@ -163,25 +166,25 @@ class TCasusPVA
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumPVAEinde);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumPVAEinde);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumPVAEinde
+     * @param DateTime $DatumPVAEinde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusPVA
      */
-    public function setDatumPVAEinde(\DateTime $DatumPVAEinde)
+    public function setDatumPVAEinde(DateTime $DatumPVAEinde)
     {
-      $this->DatumPVAEinde = $DatumPVAEinde->format(\DateTime::ATOM);
+      $this->DatumPVAEinde = $DatumPVAEinde->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumFiattering()
     {
@@ -189,25 +192,25 @@ class TCasusPVA
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumFiattering);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumFiattering);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumFiattering
+     * @param DateTime $DatumFiattering
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusPVA
      */
-    public function setDatumFiattering(\DateTime $DatumFiattering)
+    public function setDatumFiattering(DateTime $DatumFiattering)
     {
-      $this->DatumFiattering = $DatumFiattering->format(\DateTime::ATOM);
+      $this->DatumFiattering = $DatumFiattering->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumFiatteringEinde()
     {
@@ -215,20 +218,20 @@ class TCasusPVA
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumFiatteringEinde);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumFiatteringEinde);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumFiatteringEinde
+     * @param DateTime $DatumFiatteringEinde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusPVA
      */
-    public function setDatumFiatteringEinde(\DateTime $DatumFiatteringEinde)
+    public function setDatumFiatteringEinde(DateTime $DatumFiatteringEinde)
     {
-      $this->DatumFiatteringEinde = $DatumFiatteringEinde->format(\DateTime::ATOM);
+      $this->DatumFiatteringEinde = $DatumFiatteringEinde->format(DateTime::ATOM);
       return $this;
     }
 
