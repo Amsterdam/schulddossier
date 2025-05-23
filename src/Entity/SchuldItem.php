@@ -241,7 +241,7 @@ class SchuldItem
         return $this->schuldeiser;
     }
 
-    public function setSchuldeiser(Schuldeiser $schuldeiser = null)
+    public function setSchuldeiser(?Schuldeiser $schuldeiser = null)
     {
         $this->schuldeiser = $schuldeiser;
     }
@@ -251,7 +251,7 @@ class SchuldItem
         return $this->incassant;
     }
 
-    public function setIncassant(Schuldeiser $incassant = null)
+    public function setIncassant(?Schuldeiser $incassant = null)
     {
         $this->incassant = $incassant;
     }
@@ -311,7 +311,7 @@ class SchuldItem
         return $this->ontstaansDatum;
     }
 
-    public function setOntstaansDatum(\DateTime $ontstaansDatum = null)
+    public function setOntstaansDatum(?\DateTime $ontstaansDatum = null)
     {
         $this->ontstaansDatum = $ontstaansDatum;
     }

@@ -10,10 +10,9 @@ class InkomenArray
      */
     protected $TInkomen = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class InkomenArray
      */
     public function getTInkomen()
     {
-      return $this->TInkomen;
+        return $this->TInkomen;
     }
 
     /**
      * @param TInkomen[] $TInkomen
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\InkomenArray
      */
-    public function setTInkomen(array $TInkomen = null)
+    public function setTInkomen(?array $TInkomen = null)
     {
-      $this->TInkomen = $TInkomen;
-      return $this;
+        $this->TInkomen = $TInkomen;
+        return $this;
     }
 
 }

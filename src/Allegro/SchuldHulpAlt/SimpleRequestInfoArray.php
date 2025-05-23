@@ -10,10 +10,9 @@ class SimpleRequestInfoArray
      */
     protected $SimpleRequestInfo = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class SimpleRequestInfoArray
      */
     public function getSimpleRequestInfo()
     {
-      return $this->SimpleRequestInfo;
+        return $this->SimpleRequestInfo;
     }
 
     /**
      * @param SimpleRequestInfo[] $SimpleRequestInfo
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SimpleRequestInfoArray
      */
-    public function setSimpleRequestInfo(array $SimpleRequestInfo = null)
+    public function setSimpleRequestInfo(?array $SimpleRequestInfo = null)
     {
-      $this->SimpleRequestInfo = $SimpleRequestInfo;
-      return $this;
+        $this->SimpleRequestInfo = $SimpleRequestInfo;
+        return $this;
     }
 
 }

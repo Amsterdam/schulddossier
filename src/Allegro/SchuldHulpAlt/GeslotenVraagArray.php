@@ -10,10 +10,9 @@ class GeslotenVraagArray
      */
     protected $TGeslotenVraag = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class GeslotenVraagArray
      */
     public function getTGeslotenVraag()
     {
-      return $this->TGeslotenVraag;
+        return $this->TGeslotenVraag;
     }
 
     /**
      * @param TGeslotenVraag[] $TGeslotenVraag
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\GeslotenVraagArray
      */
-    public function setTGeslotenVraag(array $TGeslotenVraag = null)
+    public function setTGeslotenVraag(?array $TGeslotenVraag = null)
     {
-      $this->TGeslotenVraag = $TGeslotenVraag;
-      return $this;
+        $this->TGeslotenVraag = $TGeslotenVraag;
+        return $this;
     }
 
 }

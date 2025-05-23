@@ -10,10 +10,9 @@ class Int64Array
      */
     protected $long = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class Int64Array
      */
     public function getLong()
     {
-      return $this->long;
+        return $this->long;
     }
 
     /**
      * @param long[] $long
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\Int64Array
      */
-    public function setLong(array $long = null)
+    public function setLong(?array $long = null)
     {
-      $this->long = $long;
-      return $this;
+        $this->long = $long;
+        return $this;
     }
 
 }

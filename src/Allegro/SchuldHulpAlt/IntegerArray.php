@@ -10,10 +10,9 @@ class IntegerArray
      */
     protected $int = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class IntegerArray
      */
     public function getInt()
     {
-      return $this->int;
+        return $this->int;
     }
 
     /**
      * @param int[] $int
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\IntegerArray
      */
-    public function setInt(array $int = null)
+    public function setInt(?array $int = null)
     {
-      $this->int = $int;
-      return $this;
+        $this->int = $int;
+        return $this;
     }
 
 }

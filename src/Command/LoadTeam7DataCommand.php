@@ -18,8 +18,7 @@ class LoadTeam7DataCommand extends Command
         private readonly string $appEnv,
         private readonly EntityManagerInterface $em
 
-    )
-    {
+    ) {
         parent::__construct();
     }
 
@@ -39,7 +38,7 @@ class LoadTeam7DataCommand extends Command
         return false;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $io->title('Testdata laden voor Team 7');
@@ -65,7 +64,9 @@ class LoadTeam7DataCommand extends Command
             $pdo->commit();
         } catch (\Exception $e) {
             $pdo->rollBack();
-            $io->warning("Importeren van Team 7 test data geeft een foutmelding, de database is terug gezet naar de status toen dit commando begon.");
+            $io->warning(
+                "Importeren van Team 7 test data geeft een foutmelding, de database is terug gezet naar de status toen dit commando begon."
+            );
             $io->warning("Database foutmelding: {$e->getMessage()}");
             return Command::INVALID;
         }

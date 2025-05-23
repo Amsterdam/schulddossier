@@ -665,7 +665,7 @@ class Dossier
     /**
      * @param array $clientKinderen
      */
-    public function setClientKinderen(array $clientKinderen = null): void
+    public function setClientKinderen(?array $clientKinderen = null): void
     {
         $this->clientKinderen = $clientKinderen;
     }
@@ -708,7 +708,7 @@ class Dossier
     /**
      * @param Organisatie $organisatie
      */
-    public function setOrganisatie(Organisatie $organisatie = null)
+    public function setOrganisatie(?Organisatie $organisatie = null)
     {
         $this->organisatie = $organisatie;
     }
@@ -724,7 +724,7 @@ class Dossier
     /**
      * @param Team $teamGka
      */
-    public function setTeamGka(Team $teamGka = null)
+    public function setTeamGka(?Team $teamGka = null)
     {
         $this->teamGka = $teamGka;
     }
@@ -763,7 +763,7 @@ class Dossier
     /**
      * @param Voorlegger $voorlegger
      */
-    public function setVoorlegger(Voorlegger $voorlegger = null)
+    public function setVoorlegger(?Voorlegger $voorlegger = null)
     {
         $oldVoorlegger = $this->voorlegger;
         $this->voorlegger = $voorlegger;
@@ -1134,7 +1134,7 @@ class Dossier
 
     public static function twigAllegroStatus(string $status): string
     {
-        return isset(self::ALLEGRO_STATUS[$status]) ? self::ALLEGRO_STATUS[$status] : 'Onbekend';
+        return self::ALLEGRO_STATUS[$status] ?? 'Onbekend';
     }
 
     /**

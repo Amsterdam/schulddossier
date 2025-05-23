@@ -5,28 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class GebruikerPasswordSubscriber implements EventSubscriber
 {
     /**
-     * @var UserPasswordEncoderInterface
+     * @param UserPasswordHasherInterface $encoder
      */
-    private $encoder;
+    public function __construct(
+        private UserPasswordHasherInterface  $encoder
+    ){}
 
-    /**
-     * @param UserPasswordEncoderInterface $encoder
-     */
-    public function __construct(UserPasswordEncoderInterface $encoder)
-    {
-        $this->encoder = $encoder;
-    }
 
     /**
      * {@inheritDoc}
      * @see \Doctrine\Common\EventSubscriber::getSubscribedEvents()
      */
-    public function getSubscribedEvents()
+    public function getSubscribedEvents(): array
     {
         return ['prePersist', 'preUpdate'];
     }

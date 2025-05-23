@@ -38,7 +38,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
@@ -578,8 +578,8 @@ class AppDossierController extends AbstractController
             preg_replace("/[^A-Za-z0-9 ]/", '', $document->getOrigineleExtensie());
 
         $response = new StreamedResponse();
-        $response->headers->set('Content-Type', $filesystem->getMimetype($path));
-        $response->headers->set('Content-Length', $filesystem->getSize($path));
+        $response->headers->set('Content-Type', $filesystem->mimetype($path));
+        $response->headers->set('Content-Length', $filesystem->fileSize($path));
         $response->headers->set(
             'Content-Disposition',
             HeaderUtils::makeDisposition(
@@ -794,8 +794,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder")
-     * @Method({"POST"})
+     * @Route("/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder", methods={"POST"})
      * @Security("user == aantekening.getGebruiker()")
      * @ParamConverter("aantekening", options={"id"="aantekeningId"})
      * @param Request $request
@@ -841,8 +840,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Method("POST")
-     * @Route("/detail/{dossierId}/status")
+     * @Route("/detail/{dossierId}/status", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
@@ -874,8 +872,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/naar-prullenbak")
-     * @Method("POST")
+     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/naar-prullenbak", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
@@ -903,8 +900,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/verwijderen")
-     * @Method("POST")
+     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/verwijderen", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
@@ -936,8 +932,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/herstellen")
-     * @Method("POST")
+     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/herstellen", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
@@ -977,8 +972,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/naar-prullenbak")
-     * @Method("POST")
+     * @Route("/detail/{dossierId}/naar-prullenbak", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
@@ -998,8 +992,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/verwijderen")
-     * @Method("POST")
+     * @Route("/detail/{dossierId}/verwijderen", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
@@ -1028,8 +1021,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/herstellen")
-     * @Method("POST")
+     * @Route("/detail/{dossierId}/herstellen", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
@@ -1050,8 +1042,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/schulden/detail/{schuldItemId}/verwijderen")
-     * @Method("POST")
+     * @Route("/detail/{dossierId}/schulden/detail/{schuldItemId}/verwijderen", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
@@ -1080,8 +1071,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/schulden/detail/{schuldItemId}/herstellen")
-     * @Method("POST")
+     * @Route("/detail/{dossierId}/schulden/detail/{schuldItemId}/herstellen", methods={"POST"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("schuldItem", options={"id"="schuldItemId"})
@@ -1110,8 +1100,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/downloadPdf")
-     * @Method("GET")
+     * @Route("/detail/{dossierId}/downloadPdf", methods={"GET"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @param Dossier $dossier
@@ -1124,8 +1113,7 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/downloadCsv")
-     * @Method("GET")
+     * @Route("/detail/{dossierId}/downloadCsv", methods={"GET"})
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @param Dossier $dossier

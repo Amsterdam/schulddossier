@@ -10,10 +10,9 @@ class LijstOpdrachtgeverArray
      */
     protected $TLijstOpdrachtgever = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class LijstOpdrachtgeverArray
      */
     public function getTLijstOpdrachtgever()
     {
-      return $this->TLijstOpdrachtgever;
+        return $this->TLijstOpdrachtgever;
     }
 
     /**
      * @param TLijstOpdrachtgever[] $TLijstOpdrachtgever
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\LijstOpdrachtgeverArray
      */
-    public function setTLijstOpdrachtgever(array $TLijstOpdrachtgever = null)
+    public function setTLijstOpdrachtgever(?array $TLijstOpdrachtgever = null)
     {
-      $this->TLijstOpdrachtgever = $TLijstOpdrachtgever;
-      return $this;
+        $this->TLijstOpdrachtgever = $TLijstOpdrachtgever;
+        return $this;
     }
 
 }

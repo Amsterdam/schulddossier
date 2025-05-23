@@ -10,10 +10,9 @@ class RCHeaderArray
      */
     protected $TRCHeader = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class RCHeaderArray
      */
     public function getTRCHeader()
     {
-      return $this->TRCHeader;
+        return $this->TRCHeader;
     }
 
     /**
      * @param TRCHeader[] $TRCHeader
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\RCHeaderArray
      */
-    public function setTRCHeader(array $TRCHeader = null)
+    public function setTRCHeader(?array $TRCHeader = null)
     {
-      $this->TRCHeader = $TRCHeader;
-      return $this;
+        $this->TRCHeader = $TRCHeader;
+        return $this;
     }
 
 }

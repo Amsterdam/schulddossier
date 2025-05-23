@@ -10,10 +10,9 @@ class CasusToelichtingArray
      */
     protected $TCasusToelichting = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class CasusToelichtingArray
      */
     public function getTCasusToelichting()
     {
-      return $this->TCasusToelichting;
+        return $this->TCasusToelichting;
     }
 
     /**
      * @param TCasusToelichting[] $TCasusToelichting
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\CasusToelichtingArray
      */
-    public function setTCasusToelichting(array $TCasusToelichting = null)
+    public function setTCasusToelichting(?array $TCasusToelichting = null)
     {
-      $this->TCasusToelichting = $TCasusToelichting;
-      return $this;
+        $this->TCasusToelichting = $TCasusToelichting;
+        return $this;
     }
 
 }

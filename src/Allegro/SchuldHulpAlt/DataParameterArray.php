@@ -10,10 +10,9 @@ class DataParameterArray
      */
     protected $DataParameter = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,17 +20,17 @@ class DataParameterArray
      */
     public function getDataParameter()
     {
-      return $this->DataParameter;
+        return $this->DataParameter;
     }
 
     /**
      * @param DataParameter[] $DataParameter
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\DataParameterArray
      */
-    public function setDataParameter(array $DataParameter = null)
+    public function setDataParameter(?array $DataParameter = null)
     {
-      $this->DataParameter = $DataParameter;
-      return $this;
+        $this->DataParameter = $DataParameter;
+        return $this;
     }
 
 }

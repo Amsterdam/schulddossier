@@ -44,7 +44,7 @@ class DossierTimelineWorkflowSubscriber implements EventSubscriberInterface
         $this->em->flush();
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             'workflow.dossier_flow.completed' => 'onComplete'

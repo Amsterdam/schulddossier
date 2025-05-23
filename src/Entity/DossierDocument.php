@@ -97,7 +97,7 @@ class DossierDocument
         return $this->schuldItem;
     }
 
-    public function setSchuldItem(SchuldItem $schuldItem = null)
+    public function setSchuldItem(?SchuldItem $schuldItem = null)
     {
         if ($this->schuldItem !== $schuldItem) {
             $this->schuldItem = $schuldItem;
