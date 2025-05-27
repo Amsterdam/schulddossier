@@ -7,24 +7,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @Route("/oidc")
- */
 class OidcController extends AbstractController
 {
-    /**
-     * @Route("/test")
-     */
-    public function index(Request $request)
+    #[Route(path: '/oidc/test')]
+    public function index(): Response
     {
-        return new Response('<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]) . '</body></html>');
+        return new Response(
+            '<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]
+            ) . '</body></html>'
+        );
     }
 
-    /**
-     * @Route("/return")
-     */
-    public function return(Request $request)
+    #[Route(path: '/oidc/return')]
+    public function return(): Response
     {
-        return new Response('<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]) . '</body></html>');
+        return new Response(
+            '<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]
+            ) . '</body></html>'
+        );
     }
 }

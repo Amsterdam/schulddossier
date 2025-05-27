@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
-class FallbackFileListener
+class FallbackFileEventSubscriber implements \Symfony\Component\EventDispatcher\EventSubscriberInterface
 {
     public function __construct(private readonly string $publicDir)
     {
@@ -15,7 +15,7 @@ class FallbackFileListener
     public function onKernelResponse(ResponseEvent $event)
     {
         $response = $event->getResponse();
-        if ($response->getStatusCode() !== 404) {
+        if ($response->getStatusCode() !== \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND) {
             return;
         }
 
@@ -44,5 +44,12 @@ class FallbackFileListener
             $newResponse->headers->set('Content-Type', $mimeType);
             $event->setResponse($newResponse);
         }
+    }
+    /**
+     * @return array<string, mixed>
+     */
+    public static function getSubscribedEvents(): array
+    {
+        return [\Symfony\Component\HttpKernel\KernelEvents::RESPONSE => 'onKernelResponse'];
     }
 }

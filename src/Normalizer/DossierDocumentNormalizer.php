@@ -23,7 +23,7 @@ class DossierDocumentNormalizer implements NormalizerInterface, NormalizerAwareI
         $this->router = $router;
     }
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
         return $data instanceof DossierDocument;
     }
@@ -59,6 +59,13 @@ class DossierDocumentNormalizer implements NormalizerInterface, NormalizerAwareI
                     UrlGeneratorInterface::ABSOLUTE_URL
                 )
             ]
+        ];
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            DossierDocument::class => false,
         ];
     }
 

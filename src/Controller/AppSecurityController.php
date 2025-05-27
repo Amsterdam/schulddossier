@@ -1,21 +1,22 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerChangePasswordFormType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AppSecurityController extends AbstractController
 {
-    /**
-     * @Route("/app/login")
-     */
-    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils, \Symfony\Component\Security\Core\Security $security)
+    #[Route(path: '/app/login')]
+    public function login(AuthenticationUtils $authenticationUtils, Security $security)
     {
         if ($security->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
@@ -30,19 +31,15 @@ class AppSecurityController extends AbstractController
         ]));
     }
 
-    /**
-     * @Route("/app/logout")
-     */
-    public function logoutAction()
+    #[Route(path: '/app/logout')]
+    public function logout()
     {
         //
     }
 
-    /**
-     * @Route("/app/wachtwoord-veranderen")
-     * @Security("is_granted('ROLE_USER')")
-     */
-    public function changePasswordAction(Request $request, EntityManagerInterface $em)
+    #[Route(path: '/app/wachtwoord-veranderen')]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+    public function changePassword(Request $request, EntityManagerInterface $em)
     {
         $gebruiker = $this->getUser();
 

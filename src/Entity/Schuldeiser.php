@@ -5,94 +5,92 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldeiserRepository")
- * @ORM\Table
- */
+#[ORM\Table]
+#[ORM\Entity(repositoryClass: \GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldeiserRepository::class)]
 class Schuldeiser
 {
     /**
      * @var integer
-     * @ORM\Id
-     * @ORM\Column(type="integer", nullable=false)
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer', nullable: false)]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private $id;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank
-     * @Assert\Length(min=1, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 1, max: 255)]
     private $bedrijfsnaam;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank
-     * @Assert\Length(min=1, max=255)
-     * @Assert\Iban
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 1, max: 255)]
+    #[Assert\Iban]
     private $rekening;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $allegroCode;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
-     * @Assert\NotBlank
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
+    #[Assert\NotBlank]
     private $straat;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=25, nullable=true)
-     * @Assert\Length(min=0, max=25)
-     * @Assert\NotBlank
      */
+    #[ORM\Column(type: 'string', length: 25, nullable: true)]
+    #[Assert\Length(min: 0, max: 25)]
+    #[Assert\NotBlank]
     private $huisnummer;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=25, nullable=true)
-     * @Assert\Length(min=0, max=25)
      */
+    #[ORM\Column(type: 'string', length: 25, nullable: true)]
+    #[Assert\Length(min: 0, max: 25)]
     private $huisnummerToevoeging;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=6, nullable=true)
-     * @Assert\Length(min=0, max=6)
-     * @Assert\NotBlank
      */
+    #[ORM\Column(type: 'string', length: 6, nullable: true)]
+    #[Assert\Length(min: 0, max: 6)]
+    #[Assert\NotBlank]
     private $postcode;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
-     * @Assert\NotBlank
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
+    #[Assert\NotBlank]
     private $plaats;
 
     /**
      * @var string
-     * @ORM\Column(type="text", nullable=true)
-     * @Assert\Length(min=0, max=2048)
      */
+    #[ORM\Column(type: 'text', nullable: true)]
+    #[Assert\Length(min: 0, max: 2048)]
     private $opmerkingen;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean", nullable=false, options={"default" : true})
      */
+    #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => true])]
     private $enabled = true;
 
     public function getId()

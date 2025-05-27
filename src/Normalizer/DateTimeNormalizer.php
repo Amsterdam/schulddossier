@@ -10,7 +10,7 @@ class DateTimeNormalizer implements NormalizerInterface, NormalizerAwareInterfac
 {
     use NormalizerAwareTrait;
 
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, $format = null, array $context = []): bool
     {
         return $data instanceof \DateTime;
     }
@@ -25,6 +25,13 @@ class DateTimeNormalizer implements NormalizerInterface, NormalizerAwareInterfac
             'timestamp' => $object->format('U'),
             'iso8601' => $object->format('c'),
             'rfc2822' => $object->format('r'),
+        ];
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            \DateTime::class => true,
         ];
     }
 

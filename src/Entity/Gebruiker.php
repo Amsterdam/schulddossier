@@ -12,20 +12,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-/**
- * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
- * @ORM\Table(
- *  uniqueConstraints={
- *      @ORM\UniqueConstraint(name="uq_username", columns={"username"}),
- *      @ORM\UniqueConstraint(name="uq_email", columns={"email"})
- *  },
- *  indexes={
- *      @ORM\Index(name="idx_verwijderd_datetime", columns={"verwijderd_date_time"}),
- *  })
- * )
- * @UniqueEntity("email")
- * @UniqueEntity("username")
- */
+#[ORM\Table]
+#[ORM\Index(name: 'idx_verwijderd_datetime', columns: ['verwijderd_date_time'])]
+#[ORM\UniqueConstraint(name: 'uq_username', columns: ['username'])]
+#[ORM\UniqueConstraint(name: 'uq_email', columns: ['email'])]
+#[ORM\Entity(repositoryClass: \GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository::class)]
+#[UniqueEntity('email')]
+#[UniqueEntity('username')]
 class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthenticatedUserInterface
 {
     const TYPE_ADMIN = 'admin';
@@ -40,103 +33,102 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
 
     /**
      * @var integer
-     * @ORM\Id
-     * @ORM\Column(type="integer", nullable=false)
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer', nullable: false)]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private $id;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $username;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $password;
 
     /**
      * @var string
      * Not mapped to database
-     * @Assert\Length(min=8, groups={"password"})
      * @Rollerworks\Component\PasswordStrength\Validator\Constraints\PasswordStrength(minStrength=4, message="Een wachtwoord moet minimaal een cijfer, een speciaal karakter, hoofdletter en kleine letter bevatten en bij elkaar 8 tekens of meer zijn.", minLength=0, groups={"password"})
      */
+    #[Assert\Length(min: 8, groups: ['password'])]
     private $clearPassword;
 
     /**
      * @var \DateTime|NULL
-     * @ORM\Column(type="datetime", nullable=true)
      */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $passwordChangedDateTime;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=100, nullable=false)
-     * @Assert\NotBlank
-     * @Assert\Choice(callback="getTypesList")
      */
+    #[ORM\Column(type: 'string', length: 100, nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Choice(callback: 'getTypesList')]
     private $type;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank
-     * @Assert\Length(min=1, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 1, max: 255)]
     private $naam;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank
-     * @Assert\Email
-     * @Assert\Length(min=1, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Email]
+    #[Assert\Length(min: 1, max: 255)]
     private $email;
 
     /**
      * @var \DateTime|null
-     * @ORM\Column(type="datetime", nullable=true)
      */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $lastLogin;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=12, nullable=true)
-     * @Assert\Length(max=12, groups={"mijn-gegevens"})
      */
+    #[ORM\Column(type: 'string', length: 12, nullable: true)]
+    #[Assert\Length(max: 12, groups: ['mijn-gegevens'])]
     private $telefoonnummer;
 
     /**
      * @var Team
-     * @ORM\ManyToOne(targetEntity="Team")
-     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true)
      */
+    #[ORM\JoinColumn(name: 'team_id', referencedColumnName: 'id', nullable: true)]
+    #[ORM\ManyToOne(targetEntity: \Team::class)]
     private $teamGka;
 
     /**
      * @var Organisatie[]|ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Organisatie")
-     * @ORM\JoinTable(
-     *  joinColumns={@ORM\JoinColumn(name="gebruiker_id", referencedColumnName="id")},
-     *  inverseJoinColumns={@ORM\JoinColumn(name="organisatie_id", referencedColumnName="id")}
-     * )
      */
+    #[ORM\JoinTable]
+    #[\Doctrine\ORM\Mapping\JoinColumn(name: 'gebruiker_id', referencedColumnName: 'id')]
+    #[\Doctrine\ORM\Mapping\InverseJoinColumn(name: 'organisatie_id', referencedColumnName: 'id')]
+    #[ORM\ManyToMany(targetEntity: \Organisatie::class)]
     private $organisaties;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean", nullable=false)
      */
+    #[ORM\Column(type: 'boolean', nullable: false)]
     private $enabled;
 
     /**
      * @var \DateTime|NULL
-     * @ORM\Column(type="datetime", nullable=true)
      */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $verwijderdDateTime;
 
     public function __construct()
@@ -167,7 +159,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::eraseCredentials()
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         //
     }
@@ -286,7 +278,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
         $this->telefoonnummer = $telefoonnummer;
     }
 
-    public function getTeamGka(): Team
+    public function getTeamGka(): ?Team
     {
         return $this->teamGka;
     }

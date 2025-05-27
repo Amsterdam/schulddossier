@@ -33,9 +33,9 @@ class CreateDossierFormType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('clientNaam', TextType::class, [
             'label' => 'Achternaam *',
@@ -140,7 +140,7 @@ class CreateDossierFormType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('data_class', Dossier::class);
         $resolver->setDefault('choice_translation_domain', false);
