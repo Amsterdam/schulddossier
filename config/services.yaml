@@ -71,21 +71,6 @@ services:
     bind:
       $url: '%env(IAM_LOGOUT_URL)%'
   
-  # Services
-  GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector:
-    #lazy: true
-    arguments:
-      - '@flysystem_dossier'
-  GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion:
-    arguments:
-      - '%kernel.environment%'
-      - '%kernel.project_dir%'
-
-  GemeenteAmsterdam\FixxxSchuldhulp\EventListener\LogoutSubscriber:
-    tags:
-      - { name: kernel.event_listener, event: Symfony\Component\Security\Http\Event\LogoutEvent, dispatcher: security.event_dispatcher.app }
-    bind:
-      $url: '%env(IAM_LOGOUT_URL)%'
   
   # Services
   GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector:
@@ -122,24 +107,7 @@ services:
       - '@security.token_storage'
       - '@doctrine.orm.entity_manager'
 
-  # Serializer
-  json_serializer:
-    class: Symfony\Component\Serializer\Serializer
-    arguments:
-      0:
-        - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\DateTimeNormalizer'
-        - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\FormErrorIteratorNormalizer'
-        - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\GebruikerNormalizer'
-        - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\DossierDocumentNormalizer'
-        - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\SchuldeiserNormalizer'
-        - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\SchuldItemNormalizer'
-      1:
-        - '@json_encoder'
-    public: true
-  json_encoder:
-    class: Symfony\Component\Serializer\Encoder\JsonEncoder
-    public: false
-
+  
   # Serializer
   json_serializer:
     class: Symfony\Component\Serializer\Serializer
@@ -188,10 +156,6 @@ services:
 
   App\Controller\ImageController:
     arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
-
-  App\Controller\ImageController:
-    arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
-
 
   GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileEventSubscriber:
     arguments:
