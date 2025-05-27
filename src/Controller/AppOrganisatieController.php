@@ -19,11 +19,8 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class AppOrganisatieController extends AbstractController
 {
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/organisatie/')]
-    public function index(Request $request, EntityManagerInterface $em): Response
+    public function index(Request $request, OrganisatieRepository $repository): Response
     {
-        /** @var $repository OrganisatieRepository */
-        $repository = $em->getRepository(Organisatie::class);
-
         $maxPageSize = 10;
 
         $organisaties = $repository->findAll(
