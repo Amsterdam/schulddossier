@@ -2,13 +2,24 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Persistence\ManagerRegistry;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 
-class SchuldeiserRepository extends EntityRepository
+class SchuldeiserRepository extends ServiceEntityRepository
 {
+    /**
+     * OrganisatieRepository constructor.
+     *
+     * @param ManagerRegistry $registry
+     */
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Schuldeiser::class);
+    }
+
     public function search($q = '', $page = 0, $pageSize = 100, $showEnabledOnly = true)
     {
         $q = $q ? explode(' ', $q) : [];
@@ -54,7 +65,7 @@ class SchuldeiserRepository extends EntityRepository
         }
 
         $qb->addOrderBy('schuldeiser.enabled', 'desc')
-        ->addOrderBy('schuldeiser.bedrijfsnaam', 'asc');
+            ->addOrderBy('schuldeiser.bedrijfsnaam', 'asc');
 
         return new Paginator($qb->getQuery());
     }

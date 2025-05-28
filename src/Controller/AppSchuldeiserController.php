@@ -21,20 +21,17 @@ use Symfony\Component\Serializer\SerializerInterface;
 class AppSchuldeiserController extends AbstractController
 {
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/schuldeiser/')]
-    public function index(Request $request, EntityManagerInterface $em, SerializerInterface $jsonSerializer)
+    public function index(Request $request, SchuldeiserRepository $repository, SerializerInterface $jsonSerializer)
     {
-        /** @var $schuldeiserRepository SchuldeiserRepository */
-        $schuldeiserRepository = $em->getRepository(Schuldeiser::class);
-
         if ($request->isXmlHttpRequest()) {
-            $items = $schuldeiserRepository->search($request->query->all('q'), 0, -1);
+            $items = $repository->search($request->query->get('q'), 0, -1);
             return new JsonResponse($jsonSerializer->normalize($items));
         }
 
         $maxPageSize = 50;
 
-        $items = $schuldeiserRepository->search(
-            $request->query->all('q'),
+        $items = $repository->search(
+            $request->query->get('q'),
             $request->query->getInt('page', 0),
             $request->query->getInt('pageSize', $maxPageSize),
             false
