@@ -8,7 +8,7 @@ class TSRVEisers implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SRVEiserArray
+     * @var SRVEiserArray
      */
     private $Eisers;
 
@@ -30,7 +30,7 @@ class TSRVEisers implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SRVEiserArray $Eisers
+     * @var SRVEiserArray $Eisers
      * @var float $SomAangemeldBedrag
      * @var float $SomTeruggemeldBedrag
      * @var float $SomBerekendBedrag
@@ -44,7 +44,7 @@ class TSRVEisers implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SRVEiserArray
+     * @return SRVEiserArray
      */
     public function getEisers()
     {
@@ -52,7 +52,7 @@ class TSRVEisers implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SRVEiserArray $Eisers
+     * @param SRVEiserArray $Eisers
      * @return TSRVEisers
      */
     public function withEisers($Eisers)

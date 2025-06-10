@@ -2,15 +2,17 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 
-class SchuldeiserFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
+class SchuldeiserFixtures extends Fixture
 {
 
     /**
      * @inheritDoc
      */
+    #[Override]
     public function load(ObjectManager $manager): void
     {
         $schuldEiser = new Schuldeiser();

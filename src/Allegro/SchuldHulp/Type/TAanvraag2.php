@@ -31,7 +31,7 @@ class TAanvraag2 implements RequestInterface
     private $Partner;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGezinsSituatie
+     * @var TGezinsSituatie
      */
     private $GezinsSituatie;
 
@@ -124,10 +124,10 @@ class TAanvraag2 implements RequestInterface
      * Constructor
      *
      * @var int $Bedrijfscode
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag2Persoon $Aanvrager
+     * @var TAanvraag2Persoon $Aanvrager
      * @var bool $MetPartner
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag2Persoon $Partner
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGezinsSituatie $GezinsSituatie
+     * @var TAanvraag2Persoon $Partner
+     * @var TGezinsSituatie $GezinsSituatie
      * @var int $AantalKinderen
      * @var string $ToelichtingKinderen
      * @var float $Schuldbedrag
@@ -193,7 +193,7 @@ class TAanvraag2 implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag2Persoon
+     * @return TAanvraag2Persoon
      */
     public function getAanvrager()
     {
@@ -201,7 +201,7 @@ class TAanvraag2 implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag2Persoon $Aanvrager
+     * @param TAanvraag2Persoon $Aanvrager
      * @return TAanvraag2
      */
     public function withAanvrager($Aanvrager)
@@ -233,7 +233,7 @@ class TAanvraag2 implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag2Persoon
+     * @return TAanvraag2Persoon
      */
     public function getPartner()
     {
@@ -241,7 +241,7 @@ class TAanvraag2 implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag2Persoon $Partner
+     * @param TAanvraag2Persoon $Partner
      * @return TAanvraag2
      */
     public function withPartner($Partner)
@@ -253,7 +253,7 @@ class TAanvraag2 implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGezinsSituatie
+     * @return TGezinsSituatie
      */
     public function getGezinsSituatie()
     {
@@ -261,7 +261,7 @@ class TAanvraag2 implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGezinsSituatie $GezinsSituatie
+     * @param TGezinsSituatie $GezinsSituatie
      * @return TAanvraag2
      */
     public function withGezinsSituatie($GezinsSituatie)

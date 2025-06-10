@@ -2,6 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use Schulditem;
+use Dossier;
+use Gebruiker;
+use Schuldeiser;
+use DossierDocument;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -24,25 +30,25 @@ class SchuldItemHistorie
      * @var SchuldItem
      */
     #[ORM\JoinColumn(name: 'schuld_item_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Schulditem::class, inversedBy: 'historie')]
+    #[ORM\ManyToOne(targetEntity: Schulditem::class, inversedBy: 'historie')]
     private $schuldItem;
 
     /**
      * @var Dossier
      */
     #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Dossier::class, inversedBy: 'schuldItems')]
+    #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'schuldItems')]
     private $dossier;
 
     /**
      * @var Gebruiker
      */
     #[ORM\JoinColumn(name: 'aanmaker_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
+    #[ORM\ManyToOne(targetEntity: Gebruiker::class)]
     private $aanmaker;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     #[ORM\Column(type: 'datetime', nullable: false)]
     private $aanmaakDatumTijd;
@@ -51,11 +57,11 @@ class SchuldItemHistorie
      * @var Gebruiker
      */
     #[ORM\JoinColumn(name: 'aanmaker_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
+    #[ORM\ManyToOne(targetEntity: Gebruiker::class)]
     private $bewerker;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     #[ORM\Column(type: 'datetime', nullable: false)]
     private $bewerkDatumTijd;
@@ -70,7 +76,7 @@ class SchuldItemHistorie
      * @var Schuldeiser
      */
     #[ORM\JoinColumn(name: 'schuldeiser_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Schuldeiser::class, inversedBy: 'schuldItems', cascade: ['persist'])]
+    #[ORM\ManyToOne(targetEntity: Schuldeiser::class, inversedBy: 'schuldItems', cascade: ['persist'])]
     #[Assert\NotBlank]
     private $schuldeiser;
 
@@ -78,7 +84,7 @@ class SchuldItemHistorie
      * @var Schuldeiser
      */
     #[ORM\JoinColumn(name: 'schuldeiser_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Schuldeiser::class, inversedBy: 'schuldItems', cascade: ['persist'])]
+    #[ORM\ManyToOne(targetEntity: Schuldeiser::class, inversedBy: 'schuldItems', cascade: ['persist'])]
     private $incassant;
 
     /**
@@ -107,7 +113,7 @@ class SchuldItemHistorie
     private $bedrag;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     #[ORM\Column(type: 'date', nullable: false)]
     #[Assert\NotBlank]
@@ -116,7 +122,7 @@ class SchuldItemHistorie
     /**
      * @var DossierDocument[]|ArrayCollection
      */
-    #[ORM\OneToMany(targetEntity: \DossierDocument::class, mappedBy: 'schuldItem')]
+    #[ORM\OneToMany(targetEntity: DossierDocument::class, mappedBy: 'schuldItem')]
     #[ORM\OrderBy(['id' => 'ASC'])]
     private $dossierDocumenten;
 
@@ -124,9 +130,9 @@ class SchuldItemHistorie
     {
         $this->type = self::TYPE_CONCURRENT;
         $this->dossierDocumenten = new ArrayCollection();
-        $this->aanmaakDatumTijd = new \DateTime();
-        $this->bewerkDatumTijd = new \DateTime();
-        $this->vaststelDatum = new \DateTime();
+        $this->aanmaakDatumTijd = new DateTime();
+        $this->bewerkDatumTijd = new DateTime();
+        $this->vaststelDatum = new DateTime();
         $this->verwijderd = false;
     }
 }

@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TCasusInfo
 {
 
@@ -31,42 +34,42 @@ class TCasusInfo
     protected $OpdrachtgeverContact = null;
 
     /**
-     * @var \DateTime $DatumAanmelding
+     * @var DateTime $DatumAanmelding
      */
     protected $DatumAanmelding = null;
 
     /**
-     * @var \DateTime $DatumAanmeldingEinde
+     * @var DateTime $DatumAanmeldingEinde
      */
     protected $DatumAanmeldingEinde = null;
 
     /**
-     * @var \DateTime $DatumIntake
+     * @var DateTime $DatumIntake
      */
     protected $DatumIntake = null;
 
     /**
-     * @var \DateTime $DatumIntakeEinde
+     * @var DateTime $DatumIntakeEinde
      */
     protected $DatumIntakeEinde = null;
 
     /**
-     * @var \DateTime $DatumInventarisatie
+     * @var DateTime $DatumInventarisatie
      */
     protected $DatumInventarisatie = null;
 
     /**
-     * @var \DateTime $DatumInventarisatieEinde
+     * @var DateTime $DatumInventarisatieEinde
      */
     protected $DatumInventarisatieEinde = null;
 
     /**
-     * @var \DateTime $DatumAnalyse
+     * @var DateTime $DatumAnalyse
      */
     protected $DatumAnalyse = null;
 
     /**
-     * @var \DateTime $DatumAnalyseEinde
+     * @var DateTime $DatumAnalyseEinde
      */
     protected $DatumAnalyseEinde = null;
 
@@ -76,37 +79,37 @@ class TCasusInfo
     protected $Crisis = null;
 
     /**
-     * @var \DateTime $DatumCrisis
+     * @var DateTime $DatumCrisis
      */
     protected $DatumCrisis = null;
 
     /**
-     * @var \DateTime $DatumCrisisEinde
+     * @var DateTime $DatumCrisisEinde
      */
     protected $DatumCrisisEinde = null;
 
     /**
-     * @var \DateTime $DatumAfwijzing
+     * @var DateTime $DatumAfwijzing
      */
     protected $DatumAfwijzing = null;
 
     /**
-     * @var \DateTime $DatumAfwijzingEinde
+     * @var DateTime $DatumAfwijzingEinde
      */
     protected $DatumAfwijzingEinde = null;
 
     /**
-     * @var \DateTime $DatumStop
+     * @var DateTime $DatumStop
      */
     protected $DatumStop = null;
 
     /**
-     * @var \DateTime $DatumStopEinde
+     * @var DateTime $DatumStopEinde
      */
     protected $DatumStopEinde = null;
 
     /**
-     * @var \DateTime $VerwachteEinddatumIntake
+     * @var DateTime $VerwachteEinddatumIntake
      */
     protected $VerwachteEinddatumIntake = null;
 
@@ -121,47 +124,47 @@ class TCasusInfo
      * @param string $CasusTeam
      * @param int $Opdrachtgever
      * @param int $OpdrachtgeverContact
-     * @param \DateTime $DatumAanmelding
-     * @param \DateTime $DatumAanmeldingEinde
-     * @param \DateTime $DatumIntake
-     * @param \DateTime $DatumIntakeEinde
-     * @param \DateTime $DatumInventarisatie
-     * @param \DateTime $DatumInventarisatieEinde
-     * @param \DateTime $DatumAnalyse
-     * @param \DateTime $DatumAnalyseEinde
+     * @param DateTime $DatumAanmelding
+     * @param DateTime $DatumAanmeldingEinde
+     * @param DateTime $DatumIntake
+     * @param DateTime $DatumIntakeEinde
+     * @param DateTime $DatumInventarisatie
+     * @param DateTime $DatumInventarisatieEinde
+     * @param DateTime $DatumAnalyse
+     * @param DateTime $DatumAnalyseEinde
      * @param boolean $Crisis
-     * @param \DateTime $DatumCrisis
-     * @param \DateTime $DatumCrisisEinde
-     * @param \DateTime $DatumAfwijzing
-     * @param \DateTime $DatumAfwijzingEinde
-     * @param \DateTime $DatumStop
-     * @param \DateTime $DatumStopEinde
-     * @param \DateTime $VerwachteEinddatumIntake
+     * @param DateTime $DatumCrisis
+     * @param DateTime $DatumCrisisEinde
+     * @param DateTime $DatumAfwijzing
+     * @param DateTime $DatumAfwijzingEinde
+     * @param DateTime $DatumStop
+     * @param DateTime $DatumStopEinde
+     * @param DateTime $VerwachteEinddatumIntake
      * @param CasusPVAArray $PVA
      */
-    public function __construct($InfoHeader, $CasusMedewerker, $CasusTeam, $Opdrachtgever, $OpdrachtgeverContact, \DateTime $DatumAanmelding, \DateTime $DatumAanmeldingEinde, \DateTime $DatumIntake, \DateTime $DatumIntakeEinde, \DateTime $DatumInventarisatie, \DateTime $DatumInventarisatieEinde, \DateTime $DatumAnalyse, \DateTime $DatumAnalyseEinde, $Crisis, \DateTime $DatumCrisis, \DateTime $DatumCrisisEinde, \DateTime $DatumAfwijzing, \DateTime $DatumAfwijzingEinde, \DateTime $DatumStop, \DateTime $DatumStopEinde, \DateTime $VerwachteEinddatumIntake, $PVA)
+    public function __construct($InfoHeader, $CasusMedewerker, $CasusTeam, $Opdrachtgever, $OpdrachtgeverContact, DateTime $DatumAanmelding, DateTime $DatumAanmeldingEinde, DateTime $DatumIntake, DateTime $DatumIntakeEinde, DateTime $DatumInventarisatie, DateTime $DatumInventarisatieEinde, DateTime $DatumAnalyse, DateTime $DatumAnalyseEinde, $Crisis, DateTime $DatumCrisis, DateTime $DatumCrisisEinde, DateTime $DatumAfwijzing, DateTime $DatumAfwijzingEinde, DateTime $DatumStop, DateTime $DatumStopEinde, DateTime $VerwachteEinddatumIntake, $PVA)
     {
       $this->InfoHeader = $InfoHeader;
       $this->CasusMedewerker = $CasusMedewerker;
       $this->CasusTeam = $CasusTeam;
       $this->Opdrachtgever = $Opdrachtgever;
       $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      $this->DatumAanmelding = $DatumAanmelding->format(\DateTime::ATOM);
-      $this->DatumAanmeldingEinde = $DatumAanmeldingEinde->format(\DateTime::ATOM);
-      $this->DatumIntake = $DatumIntake->format(\DateTime::ATOM);
-      $this->DatumIntakeEinde = $DatumIntakeEinde->format(\DateTime::ATOM);
-      $this->DatumInventarisatie = $DatumInventarisatie->format(\DateTime::ATOM);
-      $this->DatumInventarisatieEinde = $DatumInventarisatieEinde->format(\DateTime::ATOM);
-      $this->DatumAnalyse = $DatumAnalyse->format(\DateTime::ATOM);
-      $this->DatumAnalyseEinde = $DatumAnalyseEinde->format(\DateTime::ATOM);
+      $this->DatumAanmelding = $DatumAanmelding->format(DateTime::ATOM);
+      $this->DatumAanmeldingEinde = $DatumAanmeldingEinde->format(DateTime::ATOM);
+      $this->DatumIntake = $DatumIntake->format(DateTime::ATOM);
+      $this->DatumIntakeEinde = $DatumIntakeEinde->format(DateTime::ATOM);
+      $this->DatumInventarisatie = $DatumInventarisatie->format(DateTime::ATOM);
+      $this->DatumInventarisatieEinde = $DatumInventarisatieEinde->format(DateTime::ATOM);
+      $this->DatumAnalyse = $DatumAnalyse->format(DateTime::ATOM);
+      $this->DatumAnalyseEinde = $DatumAnalyseEinde->format(DateTime::ATOM);
       $this->Crisis = $Crisis;
-      $this->DatumCrisis = $DatumCrisis->format(\DateTime::ATOM);
-      $this->DatumCrisisEinde = $DatumCrisisEinde->format(\DateTime::ATOM);
-      $this->DatumAfwijzing = $DatumAfwijzing->format(\DateTime::ATOM);
-      $this->DatumAfwijzingEinde = $DatumAfwijzingEinde->format(\DateTime::ATOM);
-      $this->DatumStop = $DatumStop->format(\DateTime::ATOM);
-      $this->DatumStopEinde = $DatumStopEinde->format(\DateTime::ATOM);
-      $this->VerwachteEinddatumIntake = $VerwachteEinddatumIntake->format(\DateTime::ATOM);
+      $this->DatumCrisis = $DatumCrisis->format(DateTime::ATOM);
+      $this->DatumCrisisEinde = $DatumCrisisEinde->format(DateTime::ATOM);
+      $this->DatumAfwijzing = $DatumAfwijzing->format(DateTime::ATOM);
+      $this->DatumAfwijzingEinde = $DatumAfwijzingEinde->format(DateTime::ATOM);
+      $this->DatumStop = $DatumStop->format(DateTime::ATOM);
+      $this->DatumStopEinde = $DatumStopEinde->format(DateTime::ATOM);
+      $this->VerwachteEinddatumIntake = $VerwachteEinddatumIntake->format(DateTime::ATOM);
       $this->PVA = $PVA;
     }
 
@@ -256,7 +259,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumAanmelding()
     {
@@ -264,25 +267,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumAanmelding);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumAanmelding);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumAanmelding
+     * @param DateTime $DatumAanmelding
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumAanmelding(\DateTime $DatumAanmelding)
+    public function setDatumAanmelding(DateTime $DatumAanmelding)
     {
-      $this->DatumAanmelding = $DatumAanmelding->format(\DateTime::ATOM);
+      $this->DatumAanmelding = $DatumAanmelding->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumAanmeldingEinde()
     {
@@ -290,25 +293,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumAanmeldingEinde);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumAanmeldingEinde);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumAanmeldingEinde
+     * @param DateTime $DatumAanmeldingEinde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumAanmeldingEinde(\DateTime $DatumAanmeldingEinde)
+    public function setDatumAanmeldingEinde(DateTime $DatumAanmeldingEinde)
     {
-      $this->DatumAanmeldingEinde = $DatumAanmeldingEinde->format(\DateTime::ATOM);
+      $this->DatumAanmeldingEinde = $DatumAanmeldingEinde->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumIntake()
     {
@@ -316,25 +319,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumIntake);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumIntake);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumIntake
+     * @param DateTime $DatumIntake
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumIntake(\DateTime $DatumIntake)
+    public function setDatumIntake(DateTime $DatumIntake)
     {
-      $this->DatumIntake = $DatumIntake->format(\DateTime::ATOM);
+      $this->DatumIntake = $DatumIntake->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumIntakeEinde()
     {
@@ -342,25 +345,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumIntakeEinde);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumIntakeEinde);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumIntakeEinde
+     * @param DateTime $DatumIntakeEinde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumIntakeEinde(\DateTime $DatumIntakeEinde)
+    public function setDatumIntakeEinde(DateTime $DatumIntakeEinde)
     {
-      $this->DatumIntakeEinde = $DatumIntakeEinde->format(\DateTime::ATOM);
+      $this->DatumIntakeEinde = $DatumIntakeEinde->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumInventarisatie()
     {
@@ -368,25 +371,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumInventarisatie);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumInventarisatie);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumInventarisatie
+     * @param DateTime $DatumInventarisatie
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumInventarisatie(\DateTime $DatumInventarisatie)
+    public function setDatumInventarisatie(DateTime $DatumInventarisatie)
     {
-      $this->DatumInventarisatie = $DatumInventarisatie->format(\DateTime::ATOM);
+      $this->DatumInventarisatie = $DatumInventarisatie->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumInventarisatieEinde()
     {
@@ -394,25 +397,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumInventarisatieEinde);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumInventarisatieEinde);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumInventarisatieEinde
+     * @param DateTime $DatumInventarisatieEinde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumInventarisatieEinde(\DateTime $DatumInventarisatieEinde)
+    public function setDatumInventarisatieEinde(DateTime $DatumInventarisatieEinde)
     {
-      $this->DatumInventarisatieEinde = $DatumInventarisatieEinde->format(\DateTime::ATOM);
+      $this->DatumInventarisatieEinde = $DatumInventarisatieEinde->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumAnalyse()
     {
@@ -420,25 +423,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumAnalyse);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumAnalyse);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumAnalyse
+     * @param DateTime $DatumAnalyse
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumAnalyse(\DateTime $DatumAnalyse)
+    public function setDatumAnalyse(DateTime $DatumAnalyse)
     {
-      $this->DatumAnalyse = $DatumAnalyse->format(\DateTime::ATOM);
+      $this->DatumAnalyse = $DatumAnalyse->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumAnalyseEinde()
     {
@@ -446,20 +449,20 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumAnalyseEinde);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumAnalyseEinde);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumAnalyseEinde
+     * @param DateTime $DatumAnalyseEinde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumAnalyseEinde(\DateTime $DatumAnalyseEinde)
+    public function setDatumAnalyseEinde(DateTime $DatumAnalyseEinde)
     {
-      $this->DatumAnalyseEinde = $DatumAnalyseEinde->format(\DateTime::ATOM);
+      $this->DatumAnalyseEinde = $DatumAnalyseEinde->format(DateTime::ATOM);
       return $this;
     }
 
@@ -482,7 +485,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumCrisis()
     {
@@ -490,25 +493,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumCrisis);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumCrisis);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumCrisis
+     * @param DateTime $DatumCrisis
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumCrisis(\DateTime $DatumCrisis)
+    public function setDatumCrisis(DateTime $DatumCrisis)
     {
-      $this->DatumCrisis = $DatumCrisis->format(\DateTime::ATOM);
+      $this->DatumCrisis = $DatumCrisis->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumCrisisEinde()
     {
@@ -516,25 +519,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumCrisisEinde);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumCrisisEinde);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumCrisisEinde
+     * @param DateTime $DatumCrisisEinde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumCrisisEinde(\DateTime $DatumCrisisEinde)
+    public function setDatumCrisisEinde(DateTime $DatumCrisisEinde)
     {
-      $this->DatumCrisisEinde = $DatumCrisisEinde->format(\DateTime::ATOM);
+      $this->DatumCrisisEinde = $DatumCrisisEinde->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumAfwijzing()
     {
@@ -542,25 +545,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumAfwijzing);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumAfwijzing);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumAfwijzing
+     * @param DateTime $DatumAfwijzing
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumAfwijzing(\DateTime $DatumAfwijzing)
+    public function setDatumAfwijzing(DateTime $DatumAfwijzing)
     {
-      $this->DatumAfwijzing = $DatumAfwijzing->format(\DateTime::ATOM);
+      $this->DatumAfwijzing = $DatumAfwijzing->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumAfwijzingEinde()
     {
@@ -568,25 +571,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumAfwijzingEinde);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumAfwijzingEinde);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumAfwijzingEinde
+     * @param DateTime $DatumAfwijzingEinde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumAfwijzingEinde(\DateTime $DatumAfwijzingEinde)
+    public function setDatumAfwijzingEinde(DateTime $DatumAfwijzingEinde)
     {
-      $this->DatumAfwijzingEinde = $DatumAfwijzingEinde->format(\DateTime::ATOM);
+      $this->DatumAfwijzingEinde = $DatumAfwijzingEinde->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumStop()
     {
@@ -594,25 +597,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumStop);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumStop);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumStop
+     * @param DateTime $DatumStop
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumStop(\DateTime $DatumStop)
+    public function setDatumStop(DateTime $DatumStop)
     {
-      $this->DatumStop = $DatumStop->format(\DateTime::ATOM);
+      $this->DatumStop = $DatumStop->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumStopEinde()
     {
@@ -620,25 +623,25 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumStopEinde);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumStopEinde);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumStopEinde
+     * @param DateTime $DatumStopEinde
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setDatumStopEinde(\DateTime $DatumStopEinde)
+    public function setDatumStopEinde(DateTime $DatumStopEinde)
     {
-      $this->DatumStopEinde = $DatumStopEinde->format(\DateTime::ATOM);
+      $this->DatumStopEinde = $DatumStopEinde->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getVerwachteEinddatumIntake()
     {
@@ -646,20 +649,20 @@ class TCasusInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->VerwachteEinddatumIntake);
-        } catch (\Exception $e) {
+          return new DateTime($this->VerwachteEinddatumIntake);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $VerwachteEinddatumIntake
+     * @param DateTime $VerwachteEinddatumIntake
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusInfo
      */
-    public function setVerwachteEinddatumIntake(\DateTime $VerwachteEinddatumIntake)
+    public function setVerwachteEinddatumIntake(DateTime $VerwachteEinddatumIntake)
     {
-      $this->VerwachteEinddatumIntake = $VerwachteEinddatumIntake->format(\DateTime::ATOM);
+      $this->VerwachteEinddatumIntake = $VerwachteEinddatumIntake->format(DateTime::ATOM);
       return $this;
     }
 

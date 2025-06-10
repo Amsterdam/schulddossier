@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
@@ -28,8 +29,8 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class AppGebruikerController extends AbstractController
 {
 
-    #[Route(path: '/app/gebruiker/')]
-    #[Route(path: '/app/gebruiker/inactive', name: 'gebruikers_inactive')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/inactive', name: 'gebruikers_inactive')]
     public function index(
         Request $request,
         PaginatorInterface $paginator,
@@ -52,7 +53,7 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/gebruiker/nieuw')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/nieuw')]
     #[IsGranted(attribute: new Expression(
         "is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
     ))]
@@ -76,7 +77,7 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/gebruiker/detail/{gebruikerId}/bewerken')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/detail/{gebruikerId}/bewerken')]
     #[IsGranted(attribute: new Expression(
         "is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
     ))]
@@ -119,7 +120,7 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/gebruiker/detail/{gebruikerId}/verwijder', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/detail/{gebruikerId}/verwijder', methods: ['POST'])]
     #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
     public function delete(
         Request $request,
@@ -146,7 +147,7 @@ class AppGebruikerController extends AbstractController
             ActionEvent::NAME
         );
 
-        $gebruiker->setVerwijderd(new \DateTime());
+        $gebruiker->setVerwijderd(new DateTime());
         $gebruiker->anonymize();
         $em->persist($gebruiker);
         $this->addFlash('success', 'Gebruiker verwijderd en geanonimiseerd');
@@ -155,7 +156,7 @@ class AppGebruikerController extends AbstractController
         return new RedirectResponse('/app/gebruiker');
     }
 
-    #[Route(path: '/app/gebruiker/download-gebruikers-csv', name: 'get_gebruikers_csv', methods: ['GET'])]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/download-gebruikers-csv', name: 'get_gebruikers_csv', methods: ['GET'])]
     #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
     public function getGebruikersCsv(GebruikerRepository $repository): StreamedResponse
     {

@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TTraject implements RequestInterface
@@ -13,27 +14,27 @@ class TTraject implements RequestInterface
     private $UniekTrajectNummer;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTrajectSoort
+     * @var TTrajectSoort
      */
     private $TrajectSoort;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Startdatum;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
+     * @var TMedewerker
      */
     private $StartMedewerker;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Einddatum;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
+     * @var TMedewerker
      */
     private $EindMedewerker;
 
@@ -56,11 +57,11 @@ class TTraject implements RequestInterface
      * Constructor
      *
      * @var int $UniekTrajectNummer
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTrajectSoort $TrajectSoort
-     * @var \DateTimeInterface $Startdatum
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $StartMedewerker
-     * @var \DateTimeInterface $Einddatum
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $EindMedewerker
+     * @var TTrajectSoort $TrajectSoort
+     * @var DateTimeInterface $Startdatum
+     * @var TMedewerker $StartMedewerker
+     * @var DateTimeInterface $Einddatum
+     * @var TMedewerker $EindMedewerker
      * @var bool $Lopend
      * @var int $Contractvolgnummer
      * @var string $ContractVolgnummerSoort
@@ -99,7 +100,7 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTrajectSoort
+     * @return TTrajectSoort
      */
     public function getTrajectSoort()
     {
@@ -107,7 +108,7 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTrajectSoort $TrajectSoort
+     * @param TTrajectSoort $TrajectSoort
      * @return TTraject
      */
     public function withTrajectSoort($TrajectSoort)
@@ -119,7 +120,7 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum()
     {
@@ -127,7 +128,7 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Startdatum
+     * @param DateTimeInterface $Startdatum
      * @return TTraject
      */
     public function withStartdatum($Startdatum)
@@ -139,7 +140,7 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
+     * @return TMedewerker
      */
     public function getStartMedewerker()
     {
@@ -147,7 +148,7 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $StartMedewerker
+     * @param TMedewerker $StartMedewerker
      * @return TTraject
      */
     public function withStartMedewerker($StartMedewerker)
@@ -159,7 +160,7 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEinddatum()
     {
@@ -167,7 +168,7 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Einddatum
+     * @param DateTimeInterface $Einddatum
      * @return TTraject
      */
     public function withEinddatum($Einddatum)
@@ -179,7 +180,7 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
+     * @return TMedewerker
      */
     public function getEindMedewerker()
     {
@@ -187,7 +188,7 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $EindMedewerker
+     * @param TMedewerker $EindMedewerker
      * @return TTraject
      */
     public function withEindMedewerker($EindMedewerker)

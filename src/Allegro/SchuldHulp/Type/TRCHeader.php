@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TRCHeader implements RequestInterface
@@ -19,7 +20,7 @@ class TRCHeader implements RequestInterface
     private $Volgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Ingangsdatum;
 
@@ -28,7 +29,7 @@ class TRCHeader implements RequestInterface
      *
      * @var int $Relatiecode
      * @var int $Volgnummer
-     * @var \DateTimeInterface $Ingangsdatum
+     * @var DateTimeInterface $Ingangsdatum
      */
     public function __construct($Relatiecode, $Volgnummer, $Ingangsdatum)
     {
@@ -78,7 +79,7 @@ class TRCHeader implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getIngangsdatum()
     {
@@ -86,7 +87,7 @@ class TRCHeader implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Ingangsdatum
+     * @param DateTimeInterface $Ingangsdatum
      * @return TRCHeader
      */
     public function withIngangsdatum($Ingangsdatum)

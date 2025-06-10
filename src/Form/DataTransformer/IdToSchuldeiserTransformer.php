@@ -25,7 +25,7 @@ class IdToSchuldeiserTransformer implements DataTransformerInterface
      *
      * @return mixed|string
      */
-    public function transform($schuldeiser)
+    public function transform(mixed $schuldeiser): mixed
     {
         if (null === $schuldeiser) {
             return '';
@@ -52,10 +52,12 @@ class IdToSchuldeiserTransformer implements DataTransformerInterface
             ->find($id);
 
         if (null === $schuldeiser) {
-            throw new TransformationFailedException(sprintf(
-                'An schuldeiser with number "%s" does not exist!',
-                $id
-            ));
+            throw new TransformationFailedException(
+                sprintf(
+                    'An schuldeiser with number "%s" does not exist!',
+                    $id
+                )
+            );
         }
 
         return $schuldeiser;

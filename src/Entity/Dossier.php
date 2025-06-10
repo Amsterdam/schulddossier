@@ -2,6 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
@@ -11,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Table]
-#[ORM\Entity(repositoryClass: \GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository::class)]
+#[ORM\Entity(repositoryClass: DossierRepository::class)]
 #[UniqueEntity('allegroNummer')]
 class Dossier
 {
@@ -97,7 +99,7 @@ class Dossier
     private $clientGeboortedatum;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     #[ORM\Column(type: 'date', nullable: true)]
     private $clientHuwelijksdatum;
@@ -168,7 +170,7 @@ class Dossier
     private $clientBurgelijkeStaat;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $clientBurgelijkeStaatSinds;
@@ -267,13 +269,13 @@ class Dossier
     private $allegroNummer;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $allegroSyncDate;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $sendToAllegro;
@@ -298,7 +300,7 @@ class Dossier
     private $aanmaker;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     #[ORM\Column(type: 'datetime', nullable: false)]
     private $aanmaakDatumTijd;
@@ -358,7 +360,7 @@ class Dossier
 
     public function __construct()
     {
-        $this->aanmaakDatumTijd = new \DateTime();
+        $this->aanmaakDatumTijd = new DateTime();
         $this->documenten = new ArrayCollection();
         $this->schuldItems = new ArrayCollection();
         $this->inPrullenbak = false;
@@ -396,7 +398,7 @@ class Dossier
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
     public function getClientGeboortedatum()
     {
@@ -497,7 +499,7 @@ class Dossier
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie
+     * @return Organisatie
      */
     public function getOrganisatie()
     {
@@ -505,7 +507,7 @@ class Dossier
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker
+     * @return Gebruiker
      */
     public function getMedewerkerOrganisatie()
     {
@@ -529,7 +531,7 @@ class Dossier
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker
+     * @return Gebruiker
      */
     public function getAanmaker()
     {
@@ -566,7 +568,7 @@ class Dossier
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getAanmaakDatumTijd()
     {
@@ -741,15 +743,15 @@ class Dossier
     }
 
     /**
-     * @param \DateTime $aanmaakDatumTijd
+     * @param DateTime $aanmaakDatumTijd
      */
-    public function setAanmaakDatumTijd(\DateTime $aanmaakDatumTijd)
+    public function setAanmaakDatumTijd(DateTime $aanmaakDatumTijd)
     {
         $this->aanmaakDatumTijd = $aanmaakDatumTijd;
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger
+     * @return Voorlegger
      */
     public function getVoorlegger()
     {
@@ -772,7 +774,7 @@ class Dossier
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
+     * @return DossierDocument[]|ArrayCollection
      */
     public function getDocumenten()
     {
@@ -782,7 +784,7 @@ class Dossier
     /**
      * @param string $onderwerp
      *
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
+     * @return DossierDocument[]|ArrayCollection
      */
     public function getDocumentenByOnderwerp($onderwerp)
     {
@@ -794,7 +796,7 @@ class Dossier
     /**
      * @param string $onderwerp
      *
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
+     * @return DossierDocument[]|ArrayCollection
      */
     public function getNietVerwijderdeDocumentenByOnderwerp($onderwerp, $zonderSchulditem = false)
     {
@@ -812,7 +814,7 @@ class Dossier
     /**
      * @param Array $onderwerpen
      *
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
+     * @return DossierDocument[]|ArrayCollection
      */
     public function getNietVerwijderdeDocumentenByOnderwerpen($onderwerpen)
     {
@@ -1081,18 +1083,18 @@ class Dossier
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getAllegroSyncDate(): ?\DateTime
+    public function getAllegroSyncDate(): ?DateTime
     {
         return $this->allegroSyncDate;
     }
 
     /**
-     * @param \DateTime|null $allegroSyncDate
+     * @param DateTime|null $allegroSyncDate
      * @return Dossier
      */
-    public function setAllegroSyncDate(?\DateTime $allegroSyncDate): Dossier
+    public function setAllegroSyncDate(?DateTime $allegroSyncDate): Dossier
     {
         $this->allegroSyncDate = $allegroSyncDate;
 
@@ -1143,18 +1145,18 @@ class Dossier
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getClientHuwelijksdatum(): ?\DateTime
+    public function getClientHuwelijksdatum(): ?DateTime
     {
         return $this->clientHuwelijksdatum;
     }
 
     /**
-     * @param \DateTime|null $clientHuwelijksdatum
+     * @param DateTime|null $clientHuwelijksdatum
      * @return Dossier
      */
-    public function setClientHuwelijksdatum(?\DateTime $clientHuwelijksdatum): Dossier
+    public function setClientHuwelijksdatum(?DateTime $clientHuwelijksdatum): Dossier
     {
         $this->clientHuwelijksdatum = $clientHuwelijksdatum;
 
@@ -1162,18 +1164,18 @@ class Dossier
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getSendToAllegro(): ?\DateTime
+    public function getSendToAllegro(): ?DateTime
     {
         return $this->sendToAllegro;
     }
 
     /**
-     * @param \DateTime|null $sendToAllegro
+     * @param DateTime|null $sendToAllegro
      * @return Dossier
      */
-    public function setSendToAllegro(?\DateTime $sendToAllegro): Dossier
+    public function setSendToAllegro(?DateTime $sendToAllegro): Dossier
     {
         $this->sendToAllegro = $sendToAllegro;
 
@@ -1181,18 +1183,18 @@ class Dossier
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getClientBurgelijkeStaatSinds(): ?\DateTime
+    public function getClientBurgelijkeStaatSinds(): ?DateTime
     {
         return $this->clientBurgelijkeStaatSinds;
     }
 
     /**
-     * @param \DateTime|null $clientBurgelijkeStaatSinds
+     * @param DateTime|null $clientBurgelijkeStaatSinds
      * @return Dossier
      */
-    public function setClientBurgelijkeStaatSinds(?\DateTime $clientBurgelijkeStaatSinds): Dossier
+    public function setClientBurgelijkeStaatSinds(?DateTime $clientBurgelijkeStaatSinds): Dossier
     {
         $this->clientBurgelijkeStaatSinds = $clientBurgelijkeStaatSinds;
 

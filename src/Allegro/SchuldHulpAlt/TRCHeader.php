@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TRCHeader
 {
 
@@ -16,20 +19,20 @@ class TRCHeader
     protected $Volgnummer = null;
 
     /**
-     * @var \DateTime $Ingangsdatum
+     * @var DateTime $Ingangsdatum
      */
     protected $Ingangsdatum = null;
 
     /**
      * @param int $Relatiecode
      * @param int $Volgnummer
-     * @param \DateTime $Ingangsdatum
+     * @param DateTime $Ingangsdatum
      */
-    public function __construct($Relatiecode, $Volgnummer, \DateTime $Ingangsdatum)
+    public function __construct($Relatiecode, $Volgnummer, DateTime $Ingangsdatum)
     {
       $this->Relatiecode = $Relatiecode;
       $this->Volgnummer = $Volgnummer;
-      $this->Ingangsdatum = $Ingangsdatum->format(\DateTime::ATOM);
+      $this->Ingangsdatum = $Ingangsdatum->format(DateTime::ATOM);
     }
 
     /**
@@ -69,7 +72,7 @@ class TRCHeader
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getIngangsdatum()
     {
@@ -77,20 +80,20 @@ class TRCHeader
         return null;
       } else {
         try {
-          return new \DateTime($this->Ingangsdatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Ingangsdatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Ingangsdatum
+     * @param DateTime $Ingangsdatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TRCHeader
      */
-    public function setIngangsdatum(\DateTime $Ingangsdatum)
+    public function setIngangsdatum(DateTime $Ingangsdatum)
     {
-      $this->Ingangsdatum = $Ingangsdatum->format(\DateTime::ATOM);
+      $this->Ingangsdatum = $Ingangsdatum->format(DateTime::ATOM);
       return $this;
     }
 

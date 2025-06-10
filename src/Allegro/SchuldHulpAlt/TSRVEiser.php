@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TSRVEiser
 {
 
@@ -56,7 +59,7 @@ class TSRVEiser
     protected $TerugmeldingVoorstel = null;
 
     /**
-     * @var \DateTime $DatumTerugmeldingVoorstel
+     * @var DateTime $DatumTerugmeldingVoorstel
      */
     protected $DatumTerugmeldingVoorstel = null;
 
@@ -116,7 +119,7 @@ class TSRVEiser
      * @param float $TeruggemeldBedrag
      * @param float $PrognoseVoorstel
      * @param string $TerugmeldingVoorstel
-     * @param \DateTime $DatumTerugmeldingVoorstel
+     * @param DateTime $DatumTerugmeldingVoorstel
      * @param string $IndicatieOpgaaf
      * @param string $IndicatieVoorstel
      * @param boolean $IndicatieSK
@@ -127,7 +130,7 @@ class TSRVEiser
      * @param string $NaamDeurwaarder
      * @param string $ReferentieDeurwaarder
      */
-    public function __construct($RelatieCode, $Volgnummer, $CodeEiser, $NaamEiser, $UniekVolgnummer, $Referentie, $AangemeldBedrag, $TeruggemeldBedrag, $PrognoseVoorstel, $TerugmeldingVoorstel, \DateTime $DatumTerugmeldingVoorstel, $IndicatieOpgaaf, $IndicatieVoorstel, $IndicatieSK, $CodeIncasso, $NaamIncasso, $ReferentieIncasso, $CodeDeurwaarder, $NaamDeurwaarder, $ReferentieDeurwaarder)
+    public function __construct($RelatieCode, $Volgnummer, $CodeEiser, $NaamEiser, $UniekVolgnummer, $Referentie, $AangemeldBedrag, $TeruggemeldBedrag, $PrognoseVoorstel, $TerugmeldingVoorstel, DateTime $DatumTerugmeldingVoorstel, $IndicatieOpgaaf, $IndicatieVoorstel, $IndicatieSK, $CodeIncasso, $NaamIncasso, $ReferentieIncasso, $CodeDeurwaarder, $NaamDeurwaarder, $ReferentieDeurwaarder)
     {
       $this->RelatieCode = $RelatieCode;
       $this->Volgnummer = $Volgnummer;
@@ -139,7 +142,7 @@ class TSRVEiser
       $this->TeruggemeldBedrag = $TeruggemeldBedrag;
       $this->PrognoseVoorstel = $PrognoseVoorstel;
       $this->TerugmeldingVoorstel = $TerugmeldingVoorstel;
-      $this->DatumTerugmeldingVoorstel = $DatumTerugmeldingVoorstel->format(\DateTime::ATOM);
+      $this->DatumTerugmeldingVoorstel = $DatumTerugmeldingVoorstel->format(DateTime::ATOM);
       $this->IndicatieOpgaaf = $IndicatieOpgaaf;
       $this->IndicatieVoorstel = $IndicatieVoorstel;
       $this->IndicatieSK = $IndicatieSK;
@@ -332,7 +335,7 @@ class TSRVEiser
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumTerugmeldingVoorstel()
     {
@@ -340,20 +343,20 @@ class TSRVEiser
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumTerugmeldingVoorstel);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumTerugmeldingVoorstel);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumTerugmeldingVoorstel
+     * @param DateTime $DatumTerugmeldingVoorstel
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSRVEiser
      */
-    public function setDatumTerugmeldingVoorstel(\DateTime $DatumTerugmeldingVoorstel)
+    public function setDatumTerugmeldingVoorstel(DateTime $DatumTerugmeldingVoorstel)
     {
-      $this->DatumTerugmeldingVoorstel = $DatumTerugmeldingVoorstel->format(\DateTime::ATOM);
+      $this->DatumTerugmeldingVoorstel = $DatumTerugmeldingVoorstel->format(DateTime::ATOM);
       return $this;
     }
 

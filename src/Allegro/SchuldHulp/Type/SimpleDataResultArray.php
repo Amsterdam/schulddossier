@@ -9,14 +9,14 @@ class SimpleDataResultArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataResult
+     * @var SimpleDataResult
      */
     private $SimpleDataResult;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataResult $SimpleDataResult
+     * @var SimpleDataResult $SimpleDataResult
      */
     public function __construct($SimpleDataResult)
     {
@@ -24,7 +24,7 @@ class SimpleDataResultArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataResult
+     * @return SimpleDataResult
      */
     public function getSimpleDataResult()
     {
@@ -32,7 +32,7 @@ class SimpleDataResultArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataResult $SimpleDataResult
+     * @param SimpleDataResult $SimpleDataResult
      * @return SimpleDataResultArray
      */
     public function withSimpleDataResult($SimpleDataResult)

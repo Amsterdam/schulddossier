@@ -24,6 +24,7 @@ class GebruikerPasswordSubscriber implements EventSubscriber
     }
 
 
+
     /**
      * {@inheritDoc}
      * @see \Doctrine\Common\EventSubscriber::getSubscribedEvents()

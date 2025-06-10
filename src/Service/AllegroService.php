@@ -2,6 +2,17 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Service;
 
+use DateTime;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAdres;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2Persoon;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TGezinsSituatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2SR;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\InkomenArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen;
+use Exception;
+use SoapHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzichtResponse;
+use Phpro\SoapClient\Type\ResultInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLogin;
@@ -132,11 +143,11 @@ class AllegroService
     /**
      * @param Organisatie $organisatie
      * @return Organisatie|false
-     * @throws \Exception|SoapException
+     * @throws Exception|SoapException
      */
     public function login(Organisatie $organisatie, $force = false)
     {
-        $now = new \DateTime();
+        $now = new DateTime();
         $oldestAllowedSession = clone $now;
         $oldestAllowedSession->modify(sprintf('-%s seconds', self::SESSION_TIMEOUT));
 
@@ -167,7 +178,7 @@ class AllegroService
      * @param Organisatie $organisatie
      * @param string $relatieCode
      * @return TSRVAanvraagHeader|null
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSRVAanvraagHeader(Organisatie $organisatie, string $relatieCode): ?TSRVAanvraagHeader
     {
@@ -183,7 +194,7 @@ class AllegroService
      * @param Organisatie $organisatie
      * @param TSRVAanvraagHeader $header
      * @return TSRVAanvraag|null
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSRVAanvraag(Organisatie $organisatie, TSRVAanvraagHeader $header): ?TSRVAanvraag
     {
@@ -197,7 +208,7 @@ class AllegroService
 
     /**
      * @param Dossier $dossier
-     * @throws \Exception
+     * @throws Exception
      */
     public function sendAanvraag(Dossier $dossier): bool
     {
@@ -220,7 +231,7 @@ class AllegroService
 
         $kinderen = null !== $dossier->getClientKinderen() ? count($dossier->getClientKinderen()) : 0;
 
-        $aanvragerAdres = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAdres();
+        $aanvragerAdres = new TAdres();
 
         if (null !== $dossier->getClientStraat()) {
             $aanvragerAdres->setStraat($dossier->getClientStraat());
@@ -247,7 +258,7 @@ class AllegroService
         $relatiecode = (null === $dossier->getAllegroNummer() || '' === $dossier->getAllegroNummer(
             )) ? 0 : (int)$dossier->getAllegroNummer();
 
-        $aanvrager = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2Persoon(
+        $aanvrager = new TAanvraag2Persoon(
             $relatiecode,
             $dossier->getClientBSN(), $dossier->getClientVoorletters(), $dossier->getClientNaam(),
             self::MAPPING_GESLACHT[$dossier->getClientGeslacht()],
@@ -265,7 +276,7 @@ class AllegroService
         // Partner
         $partner = null;
         if (!$dossier->getPartnerNvt()) {
-            $partner = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2Persoon(
+            $partner = new TAanvraag2Persoon(
                 0,
                 $dossier->getPartnerBSN(), $dossier->getPartnerVoorletters(), $dossier->getPartnerNaam(),
                 self::MAPPING_GESLACHT[$dossier->getPartnerGeslacht()],
@@ -278,17 +289,17 @@ class AllegroService
         ) ? 'Ja' : 'Nee';
         $kinderenInGezin = 1 >= $kinderen ? 'Ja' : 'Nee';
 
-        $gezin = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TGezinsSituatie(
+        $gezin = new TGezinsSituatie(
             $omzetting[0],
             $gemeenschapVanGoederen,
             $kinderenInGezin,
-            new \DateTime('0001-01-01T00:00:00')
+            new DateTime('0001-01-01T00:00:00')
         );
 
         $inkomen = $this->mapInkomen($dossier);
         $aanvrager->setInkomen($inkomen);
 
-        $aanvraag = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2SR(
+        $aanvraag = new TAanvraag2SR(
             $bedrijfsCode,
             $aanvrager, false, $gezin, $kinderen, $aanvraagSchuldbedrag,
             count($dossier->getSchuldItemsNotInPrullenbak()), 0, 0, 0,
@@ -325,12 +336,12 @@ class AllegroService
         return $a->getResult();
     }
 
-    private function mapInkomen(Dossier $dossier): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\InkomenArray
+    private function mapInkomen(Dossier $dossier): InkomenArray
     {
         $array = [];
 
         if ($dossier->getVoorlegger()->isBeschikkingUwvZw()) {
-            $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
+            $inkomen = new TInkomen(
                 eSoortInkomen::Uitkering,
                 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
             );
@@ -340,7 +351,7 @@ class AllegroService
         }
 
         if ($dossier->getVoorlegger()->isBeschikkingUwvWw()) {
-            $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
+            $inkomen = new TInkomen(
                 eSoortInkomen::Uitkering,
                 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
             );
@@ -350,7 +361,7 @@ class AllegroService
         }
 
         if ($dossier->getVoorlegger()->isBeschikkingUwvWia()) {
-            $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
+            $inkomen = new TInkomen(
                 eSoortInkomen::Uitkering,
                 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
             );
@@ -360,7 +371,7 @@ class AllegroService
         }
 
         if ($dossier->getVoorlegger()->isBeschikkingUwvWajong()) {
-            $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
+            $inkomen = new TInkomen(
                 eSoortInkomen::Uitkering,
                 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
             );
@@ -370,7 +381,7 @@ class AllegroService
         }
 
         if ($dossier->getVoorlegger()->isBeschikkingGemeenteAmsterdamWPI()) {
-            $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
+            $inkomen = new TInkomen(
                 eSoortInkomen::Uitkering,
                 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
             );
@@ -380,7 +391,7 @@ class AllegroService
         }
 
         if ($dossier->getVoorlegger()->isBeschikkingSVBAOW()) {
-            $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
+            $inkomen = new TInkomen(
                 eSoortInkomen::Uitkering,
                 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
             );
@@ -390,7 +401,7 @@ class AllegroService
         }
 
         if ($dossier->getVoorlegger()->isBeschikkingSVBANW()) {
-            $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
+            $inkomen = new TInkomen(
                 eSoortInkomen::Uitkering,
                 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
             );
@@ -400,7 +411,7 @@ class AllegroService
         }
 
         if ($dossier->getVoorlegger()->isBeschikkingGemeenteAmsterdamIOAW()) {
-            $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
+            $inkomen = new TInkomen(
                 eSoortInkomen::Uitkering,
                 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
             );
@@ -412,7 +423,7 @@ class AllegroService
         if (null !== $dossier->getVoorlegger()->getBeschikkingUwvOverig() && strlen(
                 $dossier->getVoorlegger()->getBeschikkingUwvOverig()
             )) {
-            $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
+            $inkomen = new TInkomen(
                 eSoortInkomen::Uitkering,
                 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
             );
@@ -424,7 +435,7 @@ class AllegroService
         if ($dossier->getVoorlegger()->isBeschikkingInkomenUitWerk()) {
             $dienstVerbandTot = null !== $dossier->getVoorlegger()->getArbeidsovereenkomstEinddatum(
             ) ? $dossier->getVoorlegger()->getArbeidsovereenkomstEinddatum()->format('Ymd') : 0;
-            $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
+            $inkomen = new TInkomen(
                 eSoortInkomen::Werk,
                 0, $dienstVerbandTot, 0, 0, 0, 0, 0, 0, 0, 0
             );
@@ -439,7 +450,7 @@ class AllegroService
             $array[] = $inkomen;
         }
 
-        $inkomenArray = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\InkomenArray();
+        $inkomenArray = new InkomenArray();
         $inkomenArray->setTInkomen($array);
 
         return $inkomenArray;
@@ -474,7 +485,7 @@ class AllegroService
             $array[] = $schuld;
         }
 
-        $schuldArray = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SchuldArray();
+        $schuldArray = new SchuldArray();
         $schuldArray->setTSchuld($array);
 
         return $schuldArray;
@@ -487,14 +498,14 @@ class AllegroService
 
     /**
      * @param Dossier $dossier
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateDossier(Dossier $dossier)
     {
         $header = $this->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer());
         $dossier->setAllegroStatus($header->getStatus());
         $dossier->setAllegroExtraStatus($header->getExtraStatus());
-        $dossier->setAllegroSyncDate((new \DateTime()));
+        $dossier->setAllegroSyncDate((new DateTime()));
         $this->em->flush();
     }
 
@@ -505,7 +516,7 @@ class AllegroService
 
     /**
      * @param Dossier $dossier
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSRVEisers(Dossier $dossier, TSRVAanvraagHeader $header): ?TSRVEisers
     {
@@ -522,7 +533,7 @@ class AllegroService
 
     /**
      * @param Dossier $dossier
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzichtResponse|\Phpro\SoapClient\Type\ResultInterface
+     * @return SchuldHulpServiceGetSBOverzichtResponse|ResultInterface
      */
     public function getSBOverzicht(Dossier $dossier)
     {
@@ -533,17 +544,17 @@ class AllegroService
 
     /**
      * @param Organisatie $organisatie
-     * @throws \Exception
+     * @throws Exception
      */
     private function setSoapHeader(Organisatie $organisatie): void
     {
         $loginSucces = $this->login($organisatie);
 
         if (!$loginSucces) {
-            throw new \Exception('Login of organisatie failed');
+            throw new Exception('Login of organisatie failed');
         }
 
-        $header = new \SoapHeader(
+        $header = new SoapHeader(
             'http://tempuri.org/',
             'ROClientIDHeader',
             ['ID' => $organisatie->getAllegroSessionId()]
@@ -606,7 +617,7 @@ class AllegroService
     /**
      * @param Organisatie $organisatie
      * @param string $searchString
-     * @throws \Exception
+     * @throws Exception
      */
     public function syncSchuldeisers(Organisatie $organisatie, $searchString = ''): array
     {

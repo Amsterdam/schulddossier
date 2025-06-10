@@ -9,14 +9,14 @@ class RCJaarrenteArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCJaarrente
+     * @var TRCJaarrente
      */
     private $TRCJaarrente;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCJaarrente $TRCJaarrente
+     * @var TRCJaarrente $TRCJaarrente
      */
     public function __construct($TRCJaarrente)
     {
@@ -24,7 +24,7 @@ class RCJaarrenteArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCJaarrente
+     * @return TRCJaarrente
      */
     public function getTRCJaarrente()
     {
@@ -32,7 +32,7 @@ class RCJaarrenteArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCJaarrente $TRCJaarrente
+     * @param TRCJaarrente $TRCJaarrente
      * @return RCJaarrenteArray
      */
     public function withTRCJaarrente($TRCJaarrente)

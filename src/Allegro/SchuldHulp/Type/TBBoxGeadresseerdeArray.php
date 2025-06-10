@@ -17,7 +17,7 @@ class TBBoxGeadresseerdeArray implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxGeadresseerde $TBBoxGeadresseerde
+     * @var TBBoxGeadresseerde $TBBoxGeadresseerde
      */
     public function __construct($TBBoxGeadresseerde)
     {
@@ -25,7 +25,7 @@ class TBBoxGeadresseerdeArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxGeadresseerde
+     * @return TBBoxGeadresseerde
      */
     public function getTBBoxGeadresseerde()
     {
@@ -33,7 +33,7 @@ class TBBoxGeadresseerdeArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxGeadresseerde $TBBoxGeadresseerde
+     * @param TBBoxGeadresseerde $TBBoxGeadresseerde
      * @return TBBoxGeadresseerdeArray
      */
     public function withTBBoxGeadresseerde($TBBoxGeadresseerde)

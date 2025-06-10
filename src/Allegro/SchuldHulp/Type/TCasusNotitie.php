@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusNotitie implements RequestInterface
@@ -14,7 +15,7 @@ class TCasusNotitie implements RequestInterface
     private $Volgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Datum;
 
@@ -24,7 +25,7 @@ class TCasusNotitie implements RequestInterface
     private $Beschrijving;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @var TMedewerker
      */
     private $Medewerker;
 
@@ -37,9 +38,9 @@ class TCasusNotitie implements RequestInterface
      * Constructor
      *
      * @var int $Volgnummer
-     * @var \DateTimeInterface $Datum
+     * @var DateTimeInterface $Datum
      * @var string $Beschrijving
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker
+     * @var TMedewerker $Medewerker
      * @var bool $PDF
      */
     public function __construct($Volgnummer, $Datum, $Beschrijving, $Medewerker, $PDF)
@@ -72,7 +73,7 @@ class TCasusNotitie implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatum()
     {
@@ -80,7 +81,7 @@ class TCasusNotitie implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Datum
+     * @param DateTimeInterface $Datum
      * @return TCasusNotitie
      */
     public function withDatum($Datum)
@@ -112,7 +113,7 @@ class TCasusNotitie implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @return TMedewerker
      */
     public function getMedewerker()
     {
@@ -120,7 +121,7 @@ class TCasusNotitie implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker
+     * @param TMedewerker $Medewerker
      * @return TCasusNotitie
      */
     public function withMedewerker($Medewerker)

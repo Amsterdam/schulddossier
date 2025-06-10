@@ -9,14 +9,14 @@ class TBBROpdrachten implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBROpdrachtArray
+     * @var BBROpdrachtArray
      */
     private $BBROpdrachten;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBROpdrachtArray $BBROpdrachten
+     * @var BBROpdrachtArray $BBROpdrachten
      */
     public function __construct($BBROpdrachten)
     {
@@ -24,7 +24,7 @@ class TBBROpdrachten implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBROpdrachtArray
+     * @return BBROpdrachtArray
      */
     public function getBBROpdrachten()
     {
@@ -32,7 +32,7 @@ class TBBROpdrachten implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBROpdrachtArray $BBROpdrachten
+     * @param BBROpdrachtArray $BBROpdrachten
      * @return TBBROpdrachten
      */
     public function withBBROpdrachten($BBROpdrachten)

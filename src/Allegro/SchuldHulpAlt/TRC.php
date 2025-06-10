@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TRC
 {
 
@@ -26,7 +29,7 @@ class TRC
     protected $RentecodeOmschrijving = null;
 
     /**
-     * @var \DateTime $TabelIngangsdatum
+     * @var DateTime $TabelIngangsdatum
      */
     protected $TabelIngangsdatum = null;
 
@@ -50,18 +53,18 @@ class TRC
      * @param string $Medewerker
      * @param int $Rentecode
      * @param string $RentecodeOmschrijving
-     * @param \DateTime $TabelIngangsdatum
+     * @param DateTime $TabelIngangsdatum
      * @param float $RentepercentagePositief
      * @param float $RentepercentageNegatief
      * @param RCJaarrenteArray $Jaarrente
      */
-    public function __construct($InfoHeader, $Medewerker, $Rentecode, $RentecodeOmschrijving, \DateTime $TabelIngangsdatum, $RentepercentagePositief, $RentepercentageNegatief, $Jaarrente)
+    public function __construct($InfoHeader, $Medewerker, $Rentecode, $RentecodeOmschrijving, DateTime $TabelIngangsdatum, $RentepercentagePositief, $RentepercentageNegatief, $Jaarrente)
     {
       $this->InfoHeader = $InfoHeader;
       $this->Medewerker = $Medewerker;
       $this->Rentecode = $Rentecode;
       $this->RentecodeOmschrijving = $RentecodeOmschrijving;
-      $this->TabelIngangsdatum = $TabelIngangsdatum->format(\DateTime::ATOM);
+      $this->TabelIngangsdatum = $TabelIngangsdatum->format(DateTime::ATOM);
       $this->RentepercentagePositief = $RentepercentagePositief;
       $this->RentepercentageNegatief = $RentepercentageNegatief;
       $this->Jaarrente = $Jaarrente;
@@ -140,7 +143,7 @@ class TRC
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getTabelIngangsdatum()
     {
@@ -148,20 +151,20 @@ class TRC
         return null;
       } else {
         try {
-          return new \DateTime($this->TabelIngangsdatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->TabelIngangsdatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $TabelIngangsdatum
+     * @param DateTime $TabelIngangsdatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TRC
      */
-    public function setTabelIngangsdatum(\DateTime $TabelIngangsdatum)
+    public function setTabelIngangsdatum(DateTime $TabelIngangsdatum)
     {
-      $this->TabelIngangsdatum = $TabelIngangsdatum->format(\DateTime::ATOM);
+      $this->TabelIngangsdatum = $TabelIngangsdatum->format(DateTime::ATOM);
       return $this;
     }
 

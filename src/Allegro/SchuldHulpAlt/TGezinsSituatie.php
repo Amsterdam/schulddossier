@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TGezinsSituatie
 {
 
@@ -26,7 +29,7 @@ class TGezinsSituatie
     protected $Kinderen = null;
 
     /**
-     * @var \DateTime $BurgerlijkeStaatSinds
+     * @var DateTime $BurgerlijkeStaatSinds
      */
     protected $BurgerlijkeStaatSinds = null;
 
@@ -34,14 +37,14 @@ class TGezinsSituatie
      * @param string $BurgerlijkeStaat
      * @param string $GemeenschapVanGoederen
      * @param string $Kinderen
-     * @param \DateTime $BurgerlijkeStaatSinds
+     * @param DateTime $BurgerlijkeStaatSinds
      */
-    public function __construct($BurgerlijkeStaat, $GemeenschapVanGoederen, $Kinderen, \DateTime $BurgerlijkeStaatSinds)
+    public function __construct($BurgerlijkeStaat, $GemeenschapVanGoederen, $Kinderen, DateTime $BurgerlijkeStaatSinds)
     {
       $this->BurgerlijkeStaat = $BurgerlijkeStaat;
       $this->GemeenschapVanGoederen = $GemeenschapVanGoederen;
       $this->Kinderen = $Kinderen;
-      $this->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds->format(\DateTime::ATOM);
+      $this->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds->format(DateTime::ATOM);
     }
 
     /**
@@ -117,7 +120,7 @@ class TGezinsSituatie
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getBurgerlijkeStaatSinds()
     {
@@ -125,20 +128,20 @@ class TGezinsSituatie
         return null;
       } else {
         try {
-          return new \DateTime($this->BurgerlijkeStaatSinds);
-        } catch (\Exception $e) {
+          return new DateTime($this->BurgerlijkeStaatSinds);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $BurgerlijkeStaatSinds
+     * @param DateTime $BurgerlijkeStaatSinds
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TGezinsSituatie
      */
-    public function setBurgerlijkeStaatSinds(\DateTime $BurgerlijkeStaatSinds)
+    public function setBurgerlijkeStaatSinds(DateTime $BurgerlijkeStaatSinds)
     {
-      $this->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds->format(\DateTime::ATOM);
+      $this->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds->format(DateTime::ATOM);
       return $this;
     }
 

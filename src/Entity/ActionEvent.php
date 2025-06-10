@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
 
 #[ORM\Table]
-#[ORM\Entity(repositoryClass: \GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository::class)]
+#[ORM\Entity(repositoryClass: ActionEventRepository::class)]
 class ActionEvent
 {
     use ExportAble;
@@ -47,7 +49,7 @@ class ActionEvent
     private $data;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     #[ORM\Column(type: 'datetime', nullable: false)]
     private $datumTijd;
@@ -85,9 +87,9 @@ class ActionEvent
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDatumTijd(): \DateTime
+    public function getDatumTijd(): DateTime
     {
         return $this->datumTijd;
     }
@@ -133,9 +135,9 @@ class ActionEvent
     }
 
     /**
-     * @param \DateTime $datumTijd
+     * @param DateTime $datumTijd
      */
-    public function setDatumTijd(\DateTime $datumTijd): void
+    public function setDatumTijd(DateTime $datumTijd): void
     {
         $this->datumTijd = $datumTijd;
     }

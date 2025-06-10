@@ -2,13 +2,14 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TDK implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader
+     * @var TDKHeader
      */
     private $InfoHeader;
 
@@ -38,7 +39,7 @@ class TDK implements RequestInterface
     private $TheoretischeLooptijd;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumEersteAflossing;
 
@@ -63,7 +64,7 @@ class TDK implements RequestInterface
     private $EffectiefJaarpercentage;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumLaatsteBetaling;
 
@@ -95,18 +96,18 @@ class TDK implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader $InfoHeader
+     * @var TDKHeader $InfoHeader
      * @var int $Opdrachtgever
      * @var int $OpdrachtgeverContact
      * @var float $Contractlimiet
      * @var float $MaandTermijn
      * @var int $TheoretischeLooptijd
-     * @var \DateTimeInterface $DatumEersteAflossing
+     * @var DateTimeInterface $DatumEersteAflossing
      * @var float $Saldo
      * @var float $Achterstand
      * @var float $VrijOpneembaar
      * @var float $EffectiefJaarpercentage
-     * @var \DateTimeInterface $DatumLaatsteBetaling
+     * @var DateTimeInterface $DatumLaatsteBetaling
      * @var float $BedragLaatsteBetaling
      * @var float $VolledigVervroegdeAflossing
      * @var string $Medewerker
@@ -135,7 +136,7 @@ class TDK implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader
+     * @return TDKHeader
      */
     public function getInfoHeader()
     {
@@ -143,7 +144,7 @@ class TDK implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader $InfoHeader
+     * @param TDKHeader $InfoHeader
      * @return TDK
      */
     public function withInfoHeader($InfoHeader)
@@ -255,7 +256,7 @@ class TDK implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumEersteAflossing()
     {
@@ -263,7 +264,7 @@ class TDK implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumEersteAflossing
+     * @param DateTimeInterface $DatumEersteAflossing
      * @return TDK
      */
     public function withDatumEersteAflossing($DatumEersteAflossing)
@@ -355,7 +356,7 @@ class TDK implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumLaatsteBetaling()
     {
@@ -363,7 +364,7 @@ class TDK implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumLaatsteBetaling
+     * @param DateTimeInterface $DatumLaatsteBetaling
      * @return TDK
      */
     public function withDatumLaatsteBetaling($DatumLaatsteBetaling)

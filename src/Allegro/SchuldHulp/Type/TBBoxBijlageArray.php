@@ -9,14 +9,14 @@ class TBBoxBijlageArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlage
+     * @var TBBoxBijlage
      */
     private $TBBoxBijlage;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlage $TBBoxBijlage
+     * @var TBBoxBijlage $TBBoxBijlage
      */
     public function __construct($TBBoxBijlage)
     {
@@ -24,7 +24,7 @@ class TBBoxBijlageArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlage
+     * @return TBBoxBijlage
      */
     public function getTBBoxBijlage()
     {
@@ -32,7 +32,7 @@ class TBBoxBijlageArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlage $TBBoxBijlage
+     * @param TBBoxBijlage $TBBoxBijlage
      * @return TBBoxBijlageArray
      */
     public function withTBBoxBijlage($TBBoxBijlage)

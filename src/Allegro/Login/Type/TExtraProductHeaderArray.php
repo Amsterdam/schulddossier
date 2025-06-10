@@ -8,14 +8,14 @@ class TExtraProductHeaderArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TExtraProductHeader
+     * @var TExtraProductHeader
      */
     private $TExtraProductHeader;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TExtraProductHeader $TExtraProductHeader
+     * @var TExtraProductHeader $TExtraProductHeader
      */
     public function __construct($TExtraProductHeader)
     {
@@ -23,7 +23,7 @@ class TExtraProductHeaderArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TExtraProductHeader
+     * @return TExtraProductHeader
      */
     public function getTExtraProductHeader()
     {
@@ -31,7 +31,7 @@ class TExtraProductHeaderArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TExtraProductHeader $TExtraProductHeader
+     * @param TExtraProductHeader $TExtraProductHeader
      * @return TExtraProductHeaderArray
      */
     public function withTExtraProductHeader($TExtraProductHeader)

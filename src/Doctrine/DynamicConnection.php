@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Doctrine;
 
+use Exception;
 use GemeenteAmsterdam\FixxxSchuldhulp\Azure\AzureDatabase;
 use Doctrine\Common\EventManager;
 use Doctrine\DBAL\Configuration;
@@ -30,7 +31,7 @@ class DynamicConnection extends Connection
         if ($azureDatabase && $this->logger && isset($params['password'])) {
             try {
                 $this->connect();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->logger->debug("DB Connection failed. Trying to invalidate cache and set password again.");
                 $newPassword = $azureDatabase->getPassword($params['password'], true);
                 $params = $this->addNewPasswordToParams($params, $newPassword);

@@ -9,14 +9,14 @@ class BBRHeaderArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRHeader
+     * @var TBBRHeader
      */
     private $TBBRHeader;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRHeader $TBBRHeader
+     * @var TBBRHeader $TBBRHeader
      */
     public function __construct($TBBRHeader)
     {
@@ -24,7 +24,7 @@ class BBRHeaderArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRHeader
+     * @return TBBRHeader
      */
     public function getTBBRHeader()
     {
@@ -32,7 +32,7 @@ class BBRHeaderArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRHeader $TBBRHeader
+     * @param TBBRHeader $TBBRHeader
      * @return BBRHeaderArray
      */
     public function withTBBRHeader($TBBRHeader)

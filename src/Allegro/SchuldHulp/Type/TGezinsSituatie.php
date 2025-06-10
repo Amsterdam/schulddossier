@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TGezinsSituatie implements RequestInterface
@@ -29,7 +30,7 @@ class TGezinsSituatie implements RequestInterface
     private $Kinderen;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $BurgerlijkeStaatSinds;
 
@@ -40,7 +41,7 @@ class TGezinsSituatie implements RequestInterface
      * @var string $GemeenschapVanGoederen
      * @var string $GemeenschapVanGoederenDetail
      * @var string $Kinderen
-     * @var \DateTimeInterface $BurgerlijkeStaatSinds
+     * @var DateTimeInterface $BurgerlijkeStaatSinds
      */
     public function __construct($BurgerlijkeStaat, $GemeenschapVanGoederen, $GemeenschapVanGoederenDetail, $Kinderen, $BurgerlijkeStaatSinds)
     {
@@ -132,7 +133,7 @@ class TGezinsSituatie implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getBurgerlijkeStaatSinds()
     {
@@ -140,7 +141,7 @@ class TGezinsSituatie implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $BurgerlijkeStaatSinds
+     * @param DateTimeInterface $BurgerlijkeStaatSinds
      * @return TGezinsSituatie
      */
     public function withBurgerlijkeStaatSinds($BurgerlijkeStaatSinds)

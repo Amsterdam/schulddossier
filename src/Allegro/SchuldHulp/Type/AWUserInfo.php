@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class AWUserInfo implements RequestInterface
@@ -24,7 +25,7 @@ class AWUserInfo implements RequestInterface
     private $Naam;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $LaatsteLogin;
 
@@ -54,7 +55,7 @@ class AWUserInfo implements RequestInterface
      * @var string $LoginType
      * @var int $RelatieCode
      * @var string $Naam
-     * @var \DateTimeInterface $LaatsteLogin
+     * @var DateTimeInterface $LaatsteLogin
      * @var string $Autorisaties
      * @var int $ExtraInfo
      * @var string $ExtraInfoOmschrijving
@@ -133,7 +134,7 @@ class AWUserInfo implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getLaatsteLogin()
     {
@@ -141,7 +142,7 @@ class AWUserInfo implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $LaatsteLogin
+     * @param DateTimeInterface $LaatsteLogin
      * @return AWUserInfo
      */
     public function withLaatsteLogin($LaatsteLogin)

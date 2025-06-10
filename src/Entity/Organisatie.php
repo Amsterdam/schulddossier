@@ -2,12 +2,15 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository;
+use Gebruiker;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Table]
-#[ORM\Entity(repositoryClass: \GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository::class)]
+#[ORM\Entity(repositoryClass: OrganisatieRepository::class)]
 class Organisatie
 {
     /**
@@ -44,7 +47,7 @@ class Organisatie
     /**
      * @var Gebruiker[]|ArrayCollection
      */
-    #[ORM\ManyToMany(targetEntity: \Gebruiker::class, mappedBy: 'organisaties')]
+    #[ORM\ManyToMany(targetEntity: Gebruiker::class, mappedBy: 'organisaties')]
     private $gebruikers;
 
     /**
@@ -68,7 +71,7 @@ class Organisatie
     private $allegroSessionId;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $allegroSessionAge;
@@ -186,18 +189,18 @@ class Organisatie
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getAllegroSessionAge(): ?\DateTime
+    public function getAllegroSessionAge(): ?DateTime
     {
         return $this->allegroSessionAge;
     }
 
     /**
-     * @param \DateTime|null $allegroSessionAge
+     * @param DateTime|null $allegroSessionAge
      * @return Organisatie
      */
-    public function setAllegroSessionAge(?\DateTime $allegroSessionAge): Organisatie
+    public function setAllegroSessionAge(?DateTime $allegroSessionAge): Organisatie
     {
         $this->allegroSessionAge = $allegroSessionAge;
 

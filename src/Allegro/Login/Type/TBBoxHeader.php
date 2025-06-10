@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBoxHeader implements RequestInterface
@@ -23,7 +24,7 @@ class TBBoxHeader implements RequestInterface
     private $Onderwerp;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Tijdstip;
 
@@ -53,7 +54,7 @@ class TBBoxHeader implements RequestInterface
      * @var int $Code
      * @var string $AfzenderOntvanger
      * @var string $Onderwerp
-     * @var \DateTimeInterface $Tijdstip
+     * @var DateTimeInterface $Tijdstip
      * @var bool $IndicatieOntvangen
      * @var bool $IndicatieGelezen
      * @var bool $IndicatieArchief
@@ -132,7 +133,7 @@ class TBBoxHeader implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getTijdstip()
     {
@@ -140,7 +141,7 @@ class TBBoxHeader implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Tijdstip
+     * @param DateTimeInterface $Tijdstip
      * @return TBBoxHeader
      */
     public function withTijdstip($Tijdstip)

@@ -3,23 +3,24 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TAfspraak implements RequestInterface
 {
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $StartTijdStip;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $EindTijdStip;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @var TMedewerker
      */
     private $Medewerker;
 
@@ -29,7 +30,7 @@ class TAfspraak implements RequestInterface
     private $Locatie;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
+     * @var TAdres
      */
     private $LocatieAdres;
 
@@ -51,11 +52,11 @@ class TAfspraak implements RequestInterface
     /**
      * Constructor
      *
-     * @var \DateTimeInterface $StartTijdStip
-     * @var \DateTimeInterface $EindTijdStip
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker
+     * @var DateTimeInterface $StartTijdStip
+     * @var DateTimeInterface $EindTijdStip
+     * @var TMedewerker $Medewerker
      * @var string $Locatie
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $LocatieAdres
+     * @var TAdres $LocatieAdres
      * @var string $LocatieSpreekkamer
      * @var string $AfspraakCode
      * @var string $AfspraakOmschrijving
@@ -73,7 +74,7 @@ class TAfspraak implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartTijdStip()
     {
@@ -81,7 +82,7 @@ class TAfspraak implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $StartTijdStip
+     * @param DateTimeInterface $StartTijdStip
      * @return TAfspraak
      */
     public function withStartTijdStip($StartTijdStip)
@@ -93,7 +94,7 @@ class TAfspraak implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEindTijdStip()
     {
@@ -101,7 +102,7 @@ class TAfspraak implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $EindTijdStip
+     * @param DateTimeInterface $EindTijdStip
      * @return TAfspraak
      */
     public function withEindTijdStip($EindTijdStip)
@@ -113,7 +114,7 @@ class TAfspraak implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
+     * @return TMedewerker
      */
     public function getMedewerker()
     {
@@ -121,7 +122,7 @@ class TAfspraak implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker
+     * @param TMedewerker $Medewerker
      * @return TAfspraak
      */
     public function withMedewerker($Medewerker)
@@ -153,7 +154,7 @@ class TAfspraak implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
+     * @return TAdres
      */
     public function getLocatieAdres()
     {
@@ -161,7 +162,7 @@ class TAfspraak implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $LocatieAdres
+     * @param TAdres $LocatieAdres
      * @return TAfspraak
      */
     public function withLocatieAdres($LocatieAdres)

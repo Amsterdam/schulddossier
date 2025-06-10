@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class OidcController extends AbstractController
 {
-    #[Route(path: '/oidc/test')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/oidc/test')]
     public function index(): Response
     {
         return new Response(
@@ -18,7 +18,7 @@ class OidcController extends AbstractController
         );
     }
 
-    #[Route(path: '/oidc/return')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/oidc/return')]
     public function return(): Response
     {
         return new Response(

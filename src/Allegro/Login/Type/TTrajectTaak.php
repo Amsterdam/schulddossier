@@ -2,13 +2,14 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TTrajectTaak implements RequestInterface
 {
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $StartDatum;
 
@@ -33,7 +34,7 @@ class TTrajectTaak implements RequestInterface
     private $MedewerkerUitgevoerd;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumUitgevoerd;
 
@@ -60,12 +61,12 @@ class TTrajectTaak implements RequestInterface
     /**
      * Constructor
      *
-     * @var \DateTimeInterface $StartDatum
+     * @var DateTimeInterface $StartDatum
      * @var string $Medewerker
      * @var string $Actie
      * @var string $ActieOmschrijving
      * @var string $MedewerkerUitgevoerd
-     * @var \DateTimeInterface $DatumUitgevoerd
+     * @var DateTimeInterface $DatumUitgevoerd
      * @var string $AfmeldCategorie
      * @var int $StapnummerTraject
      * @var string $TrajectCode
@@ -86,7 +87,7 @@ class TTrajectTaak implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartDatum()
     {
@@ -94,7 +95,7 @@ class TTrajectTaak implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $StartDatum
+     * @param DateTimeInterface $StartDatum
      * @return TTrajectTaak
      */
     public function withStartDatum($StartDatum)
@@ -186,7 +187,7 @@ class TTrajectTaak implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumUitgevoerd()
     {
@@ -194,7 +195,7 @@ class TTrajectTaak implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumUitgevoerd
+     * @param DateTimeInterface $DatumUitgevoerd
      * @return TTrajectTaak
      */
     public function withDatumUitgevoerd($DatumUitgevoerd)

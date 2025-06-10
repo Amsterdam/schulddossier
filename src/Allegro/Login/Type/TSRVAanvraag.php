@@ -2,23 +2,24 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSRVAanvraag implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader
+     * @var TSRVAanvraagHeader
      */
     private $InfoHeader;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Startdatum;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Einddatum;
 
@@ -48,7 +49,7 @@ class TSRVAanvraag implements RequestInterface
     private $VTLB;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumBerekening;
 
@@ -88,7 +89,7 @@ class TSRVAanvraag implements RequestInterface
     private $PartnerCode;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $Aanvraagdatum;
 
@@ -105,15 +106,15 @@ class TSRVAanvraag implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader $InfoHeader
-     * @var \DateTimeInterface $Startdatum
-     * @var \DateTimeInterface $Einddatum
+     * @var TSRVAanvraagHeader $InfoHeader
+     * @var DateTimeInterface $Startdatum
+     * @var DateTimeInterface $Einddatum
      * @var string $Eindstatus
      * @var string $Medewerker
      * @var int $Opdrachtgever
      * @var int $OpdrachtgeverContact
      * @var float $VTLB
-     * @var \DateTimeInterface $DatumBerekening
+     * @var DateTimeInterface $DatumBerekening
      * @var float $BrutoAfloscapaciteit
      * @var float $KostenFinancieelBeheer
      * @var float $KostenSchuldhulpverlening
@@ -121,7 +122,7 @@ class TSRVAanvraag implements RequestInterface
      * @var float $TotaalAangemeldeSchuld
      * @var float $TotaalTeruggemeldeSchuld
      * @var int $PartnerCode
-     * @var \DateTimeInterface $Aanvraagdatum
+     * @var DateTimeInterface $Aanvraagdatum
      * @var string $RedenOpschorting
      * @var float $ExtraInleg
      */
@@ -149,7 +150,7 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader
+     * @return TSRVAanvraagHeader
      */
     public function getInfoHeader()
     {
@@ -157,7 +158,7 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader $InfoHeader
+     * @param TSRVAanvraagHeader $InfoHeader
      * @return TSRVAanvraag
      */
     public function withInfoHeader($InfoHeader)
@@ -169,7 +170,7 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum()
     {
@@ -177,7 +178,7 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Startdatum
+     * @param DateTimeInterface $Startdatum
      * @return TSRVAanvraag
      */
     public function withStartdatum($Startdatum)
@@ -189,7 +190,7 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEinddatum()
     {
@@ -197,7 +198,7 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Einddatum
+     * @param DateTimeInterface $Einddatum
      * @return TSRVAanvraag
      */
     public function withEinddatum($Einddatum)
@@ -309,7 +310,7 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumBerekening()
     {
@@ -317,7 +318,7 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumBerekening
+     * @param DateTimeInterface $DatumBerekening
      * @return TSRVAanvraag
      */
     public function withDatumBerekening($DatumBerekening)
@@ -469,7 +470,7 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getAanvraagdatum()
     {
@@ -477,7 +478,7 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $Aanvraagdatum
+     * @param DateTimeInterface $Aanvraagdatum
      * @return TSRVAanvraag
      */
     public function withAanvraagdatum($Aanvraagdatum)
