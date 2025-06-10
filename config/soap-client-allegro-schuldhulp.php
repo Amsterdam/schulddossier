@@ -14,14 +14,17 @@ use Phpro\SoapClient\CodeGenerator\Assembler\ExtendAssembler;
 use Phpro\SoapClient\CodeGenerator\Assembler;
 use Phpro\SoapClient\CodeGenerator\Rules;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
-use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
-use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
+
+use Soap\ExtSoapEngine\ExtSoapEngineFactory;
+use Soap\ExtSoapEngine\ExtSoapOptions;
 
 return Config::create()
-    ->setEngine(ExtSoapEngineFactory::fromOptions(
-        ExtSoapOptions::defaults('/srv/app/doc/modified_schuldhulpservice.wsdl', [])
-            ->disableWsdlCache()
-    ))
+    ->setEngine(
+        ExtSoapEngineFactory::fromOptions(
+            ExtSoapOptions::defaults('/srv/app/doc/modified_schuldhulpservice.wsdl', [])
+                ->disableWsdlCache()
+        )
+    )
     ->setTypeDestination('src/Allegro/SchuldHulp/Type')
     ->setTypeNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type')
     ->setClientDestination('src/Allegro/SchuldHulp')
@@ -52,9 +55,10 @@ return Config::create()
     ->addRule(
         new TypenameMatchesRule(
             new MultiRule([
-                new AssembleRule(new ExtendAssembler('\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag')),
+                new AssembleRule(
+                    new ExtendAssembler('\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag')
+                ),
             ]),
             '/TAanvraag2SR/'
         )
-    )
-;
+    );

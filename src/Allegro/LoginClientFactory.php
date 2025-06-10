@@ -5,11 +5,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClassmap;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
-use Http\Adapter\Guzzle7\Client;
-use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
+use Http\Client\Common\PluginClient;
+
+use Soap\ExtSoapEngine\ExtSoapEngineFactory;
+use Soap\ExtSoapEngine\ExtSoapOptions;
+use Soap\Psr18Transport\Middleware\SoapHeaderMiddleware;
+use Soap\Psr18Transport\Psr18Transport;
+use Soap\Xml\Builder\SoapHeader;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
-use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 
 
 class LoginClientFactory
@@ -18,21 +21,37 @@ class LoginClientFactory
         string $wsdl,
         ?Organisatie $organisatie = null
     ): AllegroLoginClient {
-        $handler = HttPlugHandle::createForClient(
-            Client::createWithConfig(['headers' => ['User-Agent' => 'fixxx-schuldhulp/1.0']])
-        );
-
+        $middleware = [];
 
         if (null !== $organisatie) {
-            $handler->addMiddleware(new SessionMiddleware($organisatie));
+            $middleware[] = new SoapHeaderMiddleware(
+                new SoapHeader(
+                    'http://tempuri.org/',
+                    'ROClientIDHeader',
+                    ['ID' => $organisatie->getAllegroSessionId()]
+                )
+            );
         }
 
-        $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
+        // Create the Guzzle client with the custom stack
+        $guzzle = new \GuzzleHttp\Client([
+            'headers' => ['User-Agent' => 'fixxx-schuldhulp/1.0'],
+        ]);
+
+        // Pass the Guzzle client to Psr18Transport
+        $handler = Psr18Transport::createForClient(
+            new PluginClient(
+                $guzzle,
+                $middleware
+            )
+        );
+
+        $engine = ExtSoapEngineFactory::fromOptionsWithTransport(
             ExtSoapOptions::defaults($wsdl, [])->withClassMap(AllegroLoginClassmap::getCollection()),
             $handler
         );
-        $eventDispatcher = new EventDispatcher();
 
+        $eventDispatcher = new EventDispatcher();
         return new AllegroLoginClient($engine, $eventDispatcher);
     }
 }

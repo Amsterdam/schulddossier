@@ -195,15 +195,16 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRela
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieMetBedrijfResponse;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ROClientIDHeader;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
-use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
-use Phpro\SoapClient\Soap\ClassMap\ClassMap;
+use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMap;
+use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection;
+
 
 class AllegroLoginClassmap
 {
 
-    public static function getCollection() : ClassMapCollection
+    public static function getCollection(): ClassMapCollection
     {
-        return new ClassMapCollection([
+        return new ClassMapCollection(
             new ClassMap('TTest', TTest::class),
             new ClassMap('AWUserInfo', AWUserInfo::class),
             new ClassMap('TAdres', TAdres::class),
@@ -374,9 +375,15 @@ class AllegroLoginClassmap
             new ClassMap('LoginService___AllegroWebLogin', LoginServiceAllegroWebLogin::class),
             new ClassMap('LoginService___AllegroWebLoginResponse', LoginServiceAllegroWebLoginResponse::class),
             new ClassMap('LoginService___AllegroWebMagAanmelden', LoginServiceAllegroWebMagAanmelden::class),
-            new ClassMap('LoginService___AllegroWebMagAanmeldenResponse', LoginServiceAllegroWebMagAanmeldenResponse::class),
+            new ClassMap(
+                'LoginService___AllegroWebMagAanmeldenResponse',
+                LoginServiceAllegroWebMagAanmeldenResponse::class
+            ),
             new ClassMap('LoginService___AllegroWebLoginTijdelijk', LoginServiceAllegroWebLoginTijdelijk::class),
-            new ClassMap('LoginService___AllegroWebLoginTijdelijkResponse', LoginServiceAllegroWebLoginTijdelijkResponse::class),
+            new ClassMap(
+                'LoginService___AllegroWebLoginTijdelijkResponse',
+                LoginServiceAllegroWebLoginTijdelijkResponse::class
+            ),
             new ClassMap('LoginService___BSNNaarRelatie', LoginServiceBSNNaarRelatie::class),
             new ClassMap('LoginService___BSNNaarRelatieResponse', LoginServiceBSNNaarRelatieResponse::class),
             new ClassMap('LoginService___GenereerWachtwoord', LoginServiceGenereerWachtwoord::class),
@@ -390,13 +397,18 @@ class AllegroLoginClassmap
             new ClassMap('LoginService___CheckWachtwoord', LoginServiceCheckWachtwoord::class),
             new ClassMap('LoginService___CheckWachtwoordResponse', LoginServiceCheckWachtwoordResponse::class),
             new ClassMap('LoginService___NieuweRegistratieBSN', LoginServiceNieuweRegistratieBSN::class),
-            new ClassMap('LoginService___NieuweRegistratieBSNResponse', LoginServiceNieuweRegistratieBSNResponse::class),
+            new ClassMap(
+                'LoginService___NieuweRegistratieBSNResponse', LoginServiceNieuweRegistratieBSNResponse::class
+            ),
             new ClassMap('LoginService___Logout', LoginServiceLogout::class),
             new ClassMap('LoginService___LogoutResponse', LoginServiceLogoutResponse::class),
             new ClassMap('LoginService___BSNNaarRelatieMetBedrijf', LoginServiceBSNNaarRelatieMetBedrijf::class),
-            new ClassMap('LoginService___BSNNaarRelatieMetBedrijfResponse', LoginServiceBSNNaarRelatieMetBedrijfResponse::class),
+            new ClassMap(
+                'LoginService___BSNNaarRelatieMetBedrijfResponse',
+                LoginServiceBSNNaarRelatieMetBedrijfResponse::class
+            ),
             new ClassMap('ROClientIDHeader', ROClientIDHeader::class),
-        ]);
+        );
     }
 
 
