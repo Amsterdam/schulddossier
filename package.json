@@ -7,7 +7,7 @@
     "moment": "^2.29.4",
     "pdfjs-dist": "^4.9.155",
     "schema-utils": "^4.0.0",
-    "sortablejs": "^1.15.0",
+    "sortablejs": "^1.15.6",
     "webpack": "^5.76.2",
     "yargs": "^17.7.1",
     "yargs-parser": "^21.1.1"
