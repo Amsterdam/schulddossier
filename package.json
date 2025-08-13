@@ -8,7 +8,7 @@
     "pdfjs-dist": "^4.9.155",
     "schema-utils": "^4.0.0",
     "sortablejs": "^1.15.0",
-    "webpack": "^5.76.2",
+    "webpack": "^5.100.2",
     "yargs": "^17.7.1",
     "yargs-parser": "^21.1.1"
   },
