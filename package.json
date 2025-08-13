@@ -4,7 +4,7 @@
     "ajv": "^6.12.3",
     "glob-parent": "^6.0.2",
     "jspdf": "^2.5.1",
-    "moment": "^2.29.4",
+    "moment": "^2.30.1",
     "pdfjs-dist": "^4.9.155",
     "schema-utils": "^4.0.0",
     "sortablejs": "^1.15.0",
