@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "38d9ce255bd1a239d3b19dea029102f3",
+    "content-hash": "43056846e810c5129d038b89c512ae73",
     "packages": [
         {
             "name": "azjezz/psl",
@@ -4430,16 +4430,16 @@
         },
         {
             "name": "php-soap/encoding",
-            "version": "0.21.0",
+            "version": "0.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-soap/encoding.git",
-                "reference": "5d8e02033e9f7d25672eeafdb5a6a6141726edb1"
+                "reference": "fdc265c46e6a9025d4650784a49143c03c4dbc86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-soap/encoding/zipball/5d8e02033e9f7d25672eeafdb5a6a6141726edb1",
-                "reference": "5d8e02033e9f7d25672eeafdb5a6a6141726edb1",
+                "url": "https://api.github.com/repos/php-soap/encoding/zipball/fdc265c46e6a9025d4650784a49143c03c4dbc86",
+                "reference": "fdc265c46e6a9025d4650784a49143c03c4dbc86",
                 "shasum": ""
             },
             "require": {
@@ -4447,7 +4447,7 @@
                 "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
                 "php-soap/engine": "^2.14",
                 "php-soap/wsdl": "^1.12",
-                "php-soap/wsdl-reader": "~0.20",
+                "php-soap/wsdl-reader": "~0.26",
                 "php-soap/xml": "^1.8",
                 "veewee/reflecta": "~0.11",
                 "veewee/xml": "^3.3"
@@ -4480,7 +4480,7 @@
             "description": "SOAP encoding and decoding package",
             "support": {
                 "issues": "https://github.com/php-soap/encoding/issues",
-                "source": "https://github.com/php-soap/encoding/tree/0.21.0"
+                "source": "https://github.com/php-soap/encoding/tree/0.22.0"
             },
             "funding": [
                 {
@@ -4488,7 +4488,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-07-17T12:33:17+00:00"
+            "time": "2025-09-26T08:27:32+00:00"
         },
         {
             "name": "php-soap/engine",
@@ -4997,16 +4997,16 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-            "version": "1.29.12",
+            "version": "1.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "7c06eed662cce7ecab88f6f9f7626b443f5285df"
+                "reference": "2f39286e0136673778b7a142b3f0d141e43d1714"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/7c06eed662cce7ecab88f6f9f7626b443f5285df",
-                "reference": "7c06eed662cce7ecab88f6f9f7626b443f5285df",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/2f39286e0136673778b7a142b3f0d141e43d1714",
+                "reference": "2f39286e0136673778b7a142b3f0d141e43d1714",
                 "shasum": ""
             },
             "require": {
@@ -5097,9 +5097,9 @@
             ],
             "support": {
                 "issues": "https://github.com/PHPOffice/PhpSpreadsheet/issues",
-                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/1.29.12"
+                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/1.30.0"
             },
-            "time": "2025-07-23T04:40:30+00:00"
+            "time": "2025-08-10T06:28:02+00:00"
         },
         {
             "name": "phpro/soap-client",
