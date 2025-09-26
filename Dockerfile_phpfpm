@@ -3,45 +3,45 @@ FROM php:8.4-fpm-alpine
 COPY certificates/adp_rootca.crt /usr/local/share/ca-certificates/adp_rootca.crt
 RUN update-ca-certificates --fresh
 
-RUN apk update && apk upgrade  
+RUN apk update && apk upgrade
 
 RUN apk add \
-    icu-dev \
-    postgresql-dev \
-    libzip-dev \
-    libxml2-dev \
-    libmcrypt-dev \
-    zlib-dev \
     freetype-dev \
-    libpng-dev \
-    libjpeg-turbo-dev \
-    jpeg-dev \
-    libreoffice \
+    icu-dev \
     imagemagick-dev \
+    jpeg-dev \
+    libjpeg-turbo-dev \
+    libmcrypt-dev \
+    libpng-dev \
+    libreoffice \
+    libxml2-dev \
     libxslt \
     libxslt-dev \
-    yarn
+    libzip-dev \
+    postgresql-dev \
+    yarn \
+    zlib-dev
 
 RUN docker-php-ext-install \
-    pdo_pgsql \
-    opcache \
-    zip \
-    soap \
-    intl \
+    bcmath \
     gd \
+    intl \
+    opcache \
+    pdo_pgsql \
+    soap \
     xsl \
-    bcmath
+    zip
 
 RUN docker-php-ext-configure \
     gd \
     --with-freetype \
-    --with-jpeg 
+    --with-jpeg
 
 RUN docker-php-ext-enable xsl
 
 RUN apk add --no-cache --virtual .build-deps \
-    build-base  \
-    autoconf
+    autoconf \
+    build-base
 
 RUN apk del -f .build-deps
 

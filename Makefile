@@ -56,7 +56,7 @@ composer-install:
 	docker run --rm -v .:/app -u 1000:1000 composer install
 
 composer-update:
-	docker run --rm -v .:/app -u 1000:1000 composer update --lock
+	docker run --rm -v .:/app -u 1000:1000 composer update --lock --ignore-platform-req=ext-bcmath --ignore-platform-req=ext-intl --ignore-platform-req=ext-soap --ignore-platform-req=ext-xsl
 
 npm-install:
 	docker run --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm install"
@@ -66,4 +66,3 @@ npm-run-dev:
 
 npm-watch:
 	docker run -it --init --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm run watch"
-

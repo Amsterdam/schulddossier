@@ -7,7 +7,7 @@ services:
     environment:
       - TZ=Europe/Amsterdam
     image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/schulddossier-phpfpm}:${VERSION:-latest}
-    
+
   schulddossier-nginx:
     build:
       context: .
