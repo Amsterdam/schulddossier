@@ -3,7 +3,7 @@
     "@bevacqua/rome": "^3.0.4",
     "ajv": "^6.12.3",
     "glob-parent": "^6.0.2",
-    "jspdf": "^2.5.1",
+    "jspdf": "^3.0.3",
     "moment": "^2.29.4",
     "pdfjs-dist": "^4.9.155",
     "schema-utils": "^4.0.0",
