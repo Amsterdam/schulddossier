@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions;
 
+use Doctrine\ORM\Query\SqlWalker;
+use Doctrine\ORM\Query\Parser;
+use Doctrine\ORM\Query\AST\ASTException;
+use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
 use Doctrine\ORM\Query\AST\Node;
 use Doctrine\ORM\Query\Lexer;
@@ -28,12 +32,12 @@ class FullTextSearch extends FunctionNode
     protected $partialSearchPhrase;
 
     /**
-     * @param \Doctrine\ORM\Query\SqlWalker $sqlWalker
+     * @param SqlWalker $sqlWalker
      *
      * @return string
-     * @throws \Doctrine\ORM\Query\AST\ASTException
+     * @throws ASTException
      */
-    public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker): string
+    public function getSql(SqlWalker $sqlWalker): string
     {
         $field = $this->field->dispatch($sqlWalker);
         $searchPhrase = $this->fullTextSearchPhrase->dispatch($sqlWalker);
@@ -43,12 +47,12 @@ class FullTextSearch extends FunctionNode
     }
 
     /**
-     * @param \Doctrine\ORM\Query\Parser $parser
+     * @param Parser $parser
      *
      * @return void
-     * @throws \Doctrine\ORM\Query\QueryException
+     * @throws QueryException
      */
-    public function parse(\Doctrine\ORM\Query\Parser $parser): void
+    public function parse(Parser $parser): void
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);

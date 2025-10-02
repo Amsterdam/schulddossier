@@ -20,20 +20,17 @@ use Symfony\Component\Serializer\SerializerInterface;
 ))]
 class AppSchuldeiserController extends AbstractController
 {
-    #[Route(path: '/app/schuldeiser/')]
-    public function index(Request $request, EntityManagerInterface $em, SerializerInterface $jsonSerializer)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/schuldeiser/')]
+    public function index(Request $request, SchuldeiserRepository $repository, SerializerInterface $jsonSerializer)
     {
-        /** @var $schuldeiserRepository SchuldeiserRepository */
-        $schuldeiserRepository = $em->getRepository(Schuldeiser::class);
-
         if ($request->isXmlHttpRequest()) {
-            $items = $schuldeiserRepository->search($request->query->get('q'), 0, -1);
+            $items = $repository->search($request->query->get('q'), 0, -1);
             return new JsonResponse($jsonSerializer->normalize($items));
         }
 
         $maxPageSize = 50;
 
-        $items = $schuldeiserRepository->search(
+        $items = $repository->search(
             $request->query->get('q'),
             $request->query->getInt('page', 0),
             $request->query->getInt('pageSize', $maxPageSize),
@@ -54,7 +51,7 @@ class AppSchuldeiserController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/schuldeiser/nieuw')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/schuldeiser/nieuw')]
     #[IsGranted(attribute: new Expression(
         "is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"
     ))]
@@ -92,7 +89,7 @@ class AppSchuldeiserController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/app/schuldeiser/detail/{schuldeiserId}/bewerken')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/schuldeiser/detail/{schuldeiserId}/bewerken')]
     #[IsGranted(attribute: new Expression(
         "is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"
     ))]

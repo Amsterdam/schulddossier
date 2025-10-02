@@ -15,7 +15,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerChangePasswordFormType;
 
 class AppSecurityController extends AbstractController
 {
-    #[Route(path: '/app/login')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/login')]
     public function login(AuthenticationUtils $authenticationUtils, Security $security)
     {
         if ($security->isGranted('ROLE_USER')) {
@@ -31,13 +31,13 @@ class AppSecurityController extends AbstractController
         ]));
     }
 
-    #[Route(path: '/app/logout')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/logout')]
     public function logout()
     {
         //
     }
 
-    #[Route(path: '/app/wachtwoord-veranderen')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/wachtwoord-veranderen')]
     #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
     public function changePassword(Request $request, EntityManagerInterface $em)
     {

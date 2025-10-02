@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TExtraProductHeader implements RequestInterface
@@ -23,7 +24,7 @@ class TExtraProductHeader implements RequestInterface
     private $Omschrijving;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $AanvraagDatum;
 
@@ -33,7 +34,7 @@ class TExtraProductHeader implements RequestInterface
      * @var int $Relatiecode
      * @var int $Volgnummer
      * @var string $Omschrijving
-     * @var \DateTimeInterface $AanvraagDatum
+     * @var DateTimeInterface $AanvraagDatum
      */
     public function __construct($Relatiecode, $Volgnummer, $Omschrijving, $AanvraagDatum)
     {
@@ -104,7 +105,7 @@ class TExtraProductHeader implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getAanvraagDatum()
     {
@@ -112,7 +113,7 @@ class TExtraProductHeader implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $AanvraagDatum
+     * @param DateTimeInterface $AanvraagDatum
      * @return TExtraProductHeader
      */
     public function withAanvraagDatum($AanvraagDatum)

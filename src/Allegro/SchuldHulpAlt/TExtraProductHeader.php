@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TExtraProductHeader
 {
 
@@ -21,7 +24,7 @@ class TExtraProductHeader
     protected $Omschrijving = null;
 
     /**
-     * @var \DateTime $AanvraagDatum
+     * @var DateTime $AanvraagDatum
      */
     protected $AanvraagDatum = null;
 
@@ -29,14 +32,14 @@ class TExtraProductHeader
      * @param int $Relatiecode
      * @param int $Volgnummer
      * @param string $Omschrijving
-     * @param \DateTime $AanvraagDatum
+     * @param DateTime $AanvraagDatum
      */
-    public function __construct($Relatiecode, $Volgnummer, $Omschrijving, \DateTime $AanvraagDatum)
+    public function __construct($Relatiecode, $Volgnummer, $Omschrijving, DateTime $AanvraagDatum)
     {
       $this->Relatiecode = $Relatiecode;
       $this->Volgnummer = $Volgnummer;
       $this->Omschrijving = $Omschrijving;
-      $this->AanvraagDatum = $AanvraagDatum->format(\DateTime::ATOM);
+      $this->AanvraagDatum = $AanvraagDatum->format(DateTime::ATOM);
     }
 
     /**
@@ -94,7 +97,7 @@ class TExtraProductHeader
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getAanvraagDatum()
     {
@@ -102,20 +105,20 @@ class TExtraProductHeader
         return null;
       } else {
         try {
-          return new \DateTime($this->AanvraagDatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->AanvraagDatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $AanvraagDatum
+     * @param DateTime $AanvraagDatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TExtraProductHeader
      */
-    public function setAanvraagDatum(\DateTime $AanvraagDatum)
+    public function setAanvraagDatum(DateTime $AanvraagDatum)
     {
-      $this->AanvraagDatum = $AanvraagDatum->format(\DateTime::ATOM);
+      $this->AanvraagDatum = $AanvraagDatum->format(DateTime::ATOM);
       return $this;
     }
 

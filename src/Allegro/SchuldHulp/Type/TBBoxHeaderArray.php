@@ -9,14 +9,14 @@ class TBBoxHeaderArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxHeader
+     * @var TBBoxHeader
      */
     private $TBBoxHeader;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxHeader $TBBoxHeader
+     * @var TBBoxHeader $TBBoxHeader
      */
     public function __construct($TBBoxHeader)
     {
@@ -24,7 +24,7 @@ class TBBoxHeaderArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxHeader
+     * @return TBBoxHeader
      */
     public function getTBBoxHeader()
     {
@@ -32,7 +32,7 @@ class TBBoxHeaderArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxHeader $TBBoxHeader
+     * @param TBBoxHeader $TBBoxHeader
      * @return TBBoxHeaderArray
      */
     public function withTBBoxHeader($TBBoxHeader)

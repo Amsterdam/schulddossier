@@ -16,7 +16,7 @@ class ApplicationVersion
 
     /**
      * @param string $env
-     * @param string  $path
+     * @param string $path
      */
     public function __construct($env, $path)
     {
@@ -46,21 +46,23 @@ class ApplicationVersion
         }
         return $versionFile;
     }
+
     public function getVersionId()
     {
         $versionFile = self::getVersionFile();
         if (file_exists($versionFile)) {
-            return substr(trim(file_get_contents($versionFile)), 0, 7);
+            return trim(file_get_contents($versionFile));
         } else {
             return '0000';
         }
     }
+
     public function getVersionDate()
     {
         $versionFile = self::getVersionFile();
         if (file_exists($versionFile)) {
             $versionFile = self::getVersionFile();
-            return date ("y-m-d", filemtime($versionFile));
+            return date("d-M-Y", filemtime($versionFile));
         }
         return '';
     }

@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Command;
 
+use Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -62,7 +63,7 @@ class LoadTeam7DataCommand extends Command
                 $statements++;
             }
             $pdo->commit();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $pdo->rollBack();
             $io->warning(
                 "Importeren van Team 7 test data geeft een foutmelding, de database is terug gezet naar de status toen dit commando begon."

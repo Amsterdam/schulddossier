@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TCasusToelichting
 {
 
@@ -26,7 +29,7 @@ class TCasusToelichting
     protected $Medewerker = null;
 
     /**
-     * @var \DateTime $Datum
+     * @var DateTime $Datum
      */
     protected $Datum = null;
 
@@ -50,18 +53,18 @@ class TCasusToelichting
      * @param int $Titel
      * @param string $TitelTitel
      * @param string $Medewerker
-     * @param \DateTime $Datum
+     * @param DateTime $Datum
      * @param int $SubTitel
      * @param string $SubTitelTitel
      * @param string $Tekst
      */
-    public function __construct($VolgnummerCasus, $Titel, $TitelTitel, $Medewerker, \DateTime $Datum, $SubTitel, $SubTitelTitel, $Tekst)
+    public function __construct($VolgnummerCasus, $Titel, $TitelTitel, $Medewerker, DateTime $Datum, $SubTitel, $SubTitelTitel, $Tekst)
     {
       $this->VolgnummerCasus = $VolgnummerCasus;
       $this->Titel = $Titel;
       $this->TitelTitel = $TitelTitel;
       $this->Medewerker = $Medewerker;
-      $this->Datum = $Datum->format(\DateTime::ATOM);
+      $this->Datum = $Datum->format(DateTime::ATOM);
       $this->SubTitel = $SubTitel;
       $this->SubTitelTitel = $SubTitelTitel;
       $this->Tekst = $Tekst;
@@ -140,7 +143,7 @@ class TCasusToelichting
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatum()
     {
@@ -148,20 +151,20 @@ class TCasusToelichting
         return null;
       } else {
         try {
-          return new \DateTime($this->Datum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Datum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Datum
+     * @param DateTime $Datum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusToelichting
      */
-    public function setDatum(\DateTime $Datum)
+    public function setDatum(DateTime $Datum)
     {
-      $this->Datum = $Datum->format(\DateTime::ATOM);
+      $this->Datum = $Datum->format(DateTime::ATOM);
       return $this;
     }
 

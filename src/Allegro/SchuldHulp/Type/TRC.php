@@ -3,13 +3,14 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TRC implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader
+     * @var TRCHeader
      */
     private $InfoHeader;
 
@@ -29,7 +30,7 @@ class TRC implements RequestInterface
     private $RentecodeOmschrijving;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $TabelIngangsdatum;
 
@@ -44,21 +45,21 @@ class TRC implements RequestInterface
     private $RentepercentageNegatief;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\RCJaarrenteArray
+     * @var RCJaarrenteArray
      */
     private $Jaarrente;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader $InfoHeader
+     * @var TRCHeader $InfoHeader
      * @var string $Medewerker
      * @var int $Rentecode
      * @var string $RentecodeOmschrijving
-     * @var \DateTimeInterface $TabelIngangsdatum
+     * @var DateTimeInterface $TabelIngangsdatum
      * @var float $RentepercentagePositief
      * @var float $RentepercentageNegatief
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\RCJaarrenteArray $Jaarrente
+     * @var RCJaarrenteArray $Jaarrente
      */
     public function __construct($InfoHeader, $Medewerker, $Rentecode, $RentecodeOmschrijving, $TabelIngangsdatum, $RentepercentagePositief, $RentepercentageNegatief, $Jaarrente)
     {
@@ -73,7 +74,7 @@ class TRC implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader
+     * @return TRCHeader
      */
     public function getInfoHeader()
     {
@@ -81,7 +82,7 @@ class TRC implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader $InfoHeader
+     * @param TRCHeader $InfoHeader
      * @return TRC
      */
     public function withInfoHeader($InfoHeader)
@@ -153,7 +154,7 @@ class TRC implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getTabelIngangsdatum()
     {
@@ -161,7 +162,7 @@ class TRC implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $TabelIngangsdatum
+     * @param DateTimeInterface $TabelIngangsdatum
      * @return TRC
      */
     public function withTabelIngangsdatum($TabelIngangsdatum)
@@ -213,7 +214,7 @@ class TRC implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\RCJaarrenteArray
+     * @return RCJaarrenteArray
      */
     public function getJaarrente()
     {
@@ -221,7 +222,7 @@ class TRC implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\RCJaarrenteArray $Jaarrente
+     * @param RCJaarrenteArray $Jaarrente
      * @return TRC
      */
     public function withJaarrente($Jaarrente)

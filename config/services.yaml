@@ -71,6 +71,7 @@ services:
     bind:
       $url: '%env(IAM_LOGOUT_URL)%'
   
+  
   # Services
   GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector:
     #lazy: true
@@ -106,12 +107,7 @@ services:
       - '@security.token_storage'
       - '@doctrine.orm.entity_manager'
 
-  app.form.type.change_status:
-    class: GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType
-    arguments:
-      - '@security.token_storage'
-      - '@Symfony\Component\Workflow\Registry'
-
+  
   # Serializer
   json_serializer:
     class: Symfony\Component\Serializer\Serializer
@@ -158,10 +154,8 @@ services:
   doctrine.dbal.connection_factory:
     class: GemeenteAmsterdam\FixxxSchuldhulp\Doctrine\DynamicConnectionFactory
 
-
   App\Controller\ImageController:
     arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
-
 
   GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileEventSubscriber:
     arguments:

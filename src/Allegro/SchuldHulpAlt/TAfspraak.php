@@ -2,16 +2,19 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TAfspraak
 {
 
     /**
-     * @var \DateTime $StartTijdStip
+     * @var DateTime $StartTijdStip
      */
     protected $StartTijdStip = null;
 
     /**
-     * @var \DateTime $EindTijdStip
+     * @var DateTime $EindTijdStip
      */
     protected $EindTijdStip = null;
 
@@ -46,8 +49,8 @@ class TAfspraak
     protected $AfspraakOmschrijving = null;
 
     /**
-     * @param \DateTime $StartTijdStip
-     * @param \DateTime $EindTijdStip
+     * @param DateTime $StartTijdStip
+     * @param DateTime $EindTijdStip
      * @param TMedewerker $Medewerker
      * @param string $Locatie
      * @param TAdres $LocatieAdres
@@ -55,10 +58,10 @@ class TAfspraak
      * @param string $AfspraakCode
      * @param string $AfspraakOmschrijving
      */
-    public function __construct(\DateTime $StartTijdStip, \DateTime $EindTijdStip, $Medewerker, $Locatie, $LocatieAdres, $LocatieSpreekkamer, $AfspraakCode, $AfspraakOmschrijving)
+    public function __construct(DateTime $StartTijdStip, DateTime $EindTijdStip, $Medewerker, $Locatie, $LocatieAdres, $LocatieSpreekkamer, $AfspraakCode, $AfspraakOmschrijving)
     {
-      $this->StartTijdStip = $StartTijdStip->format(\DateTime::ATOM);
-      $this->EindTijdStip = $EindTijdStip->format(\DateTime::ATOM);
+      $this->StartTijdStip = $StartTijdStip->format(DateTime::ATOM);
+      $this->EindTijdStip = $EindTijdStip->format(DateTime::ATOM);
       $this->Medewerker = $Medewerker;
       $this->Locatie = $Locatie;
       $this->LocatieAdres = $LocatieAdres;
@@ -68,7 +71,7 @@ class TAfspraak
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getStartTijdStip()
     {
@@ -76,25 +79,25 @@ class TAfspraak
         return null;
       } else {
         try {
-          return new \DateTime($this->StartTijdStip);
-        } catch (\Exception $e) {
+          return new DateTime($this->StartTijdStip);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $StartTijdStip
+     * @param DateTime $StartTijdStip
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAfspraak
      */
-    public function setStartTijdStip(\DateTime $StartTijdStip)
+    public function setStartTijdStip(DateTime $StartTijdStip)
     {
-      $this->StartTijdStip = $StartTijdStip->format(\DateTime::ATOM);
+      $this->StartTijdStip = $StartTijdStip->format(DateTime::ATOM);
       return $this;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getEindTijdStip()
     {
@@ -102,20 +105,20 @@ class TAfspraak
         return null;
       } else {
         try {
-          return new \DateTime($this->EindTijdStip);
-        } catch (\Exception $e) {
+          return new DateTime($this->EindTijdStip);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $EindTijdStip
+     * @param DateTime $EindTijdStip
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAfspraak
      */
-    public function setEindTijdStip(\DateTime $EindTijdStip)
+    public function setEindTijdStip(DateTime $EindTijdStip)
     {
-      $this->EindTijdStip = $EindTijdStip->format(\DateTime::ATOM);
+      $this->EindTijdStip = $EindTijdStip->format(DateTime::ATOM);
       return $this;
     }
 

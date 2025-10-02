@@ -2,12 +2,37 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login;
 
+use Phpro\SoapClient\Client;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLogin;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLoginResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebMagAanmelden;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebMagAanmeldenResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLoginTijdelijk;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLoginTijdelijkResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceGenereerWachtwoord;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceGenereerWachtwoordResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratieResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceActiveerRegistratie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceActiveerRegistratieResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuwContact;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuwContactResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceCheckWachtwoord;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceCheckWachtwoordResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratieBSN;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratieBSNResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceLogout;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceLogoutResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieMetBedrijf;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieMetBedrijfResponse;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 use Phpro\SoapClient\Type\RequestInterface;
 use Phpro\SoapClient\Type\ResultInterface;
 use Phpro\SoapClient\Exception\SoapException;
 
-class AllegroLoginClient extends \Phpro\SoapClient\Client
+class AllegroLoginClient extends Client
 {
 
     /**
@@ -15,7 +40,7 @@ class AllegroLoginClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\LoginServiceAllegroWebLoginResponse
      * @throws SoapException
      */
-    public function allegroWebLogin(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLogin $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLoginResponse
+    public function allegroWebLogin(LoginServiceAllegroWebLogin $parameters) : LoginServiceAllegroWebLoginResponse
     {
         return $this->call('AllegroWebLogin', $parameters);
     }
@@ -25,7 +50,7 @@ class AllegroLoginClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\LoginServiceAllegroWebMagAanmeldenResponse
      * @throws SoapException
      */
-    public function allegroWebMagAanmelden(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebMagAanmelden $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebMagAanmeldenResponse
+    public function allegroWebMagAanmelden(LoginServiceAllegroWebMagAanmelden $parameters) : LoginServiceAllegroWebMagAanmeldenResponse
     {
         return $this->call('AllegroWebMagAanmelden', $parameters);
     }
@@ -35,7 +60,7 @@ class AllegroLoginClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\LoginServiceAllegroWebLoginTijdelijkResponse
      * @throws SoapException
      */
-    public function allegroWebLoginTijdelijk(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLoginTijdelijk $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLoginTijdelijkResponse
+    public function allegroWebLoginTijdelijk(LoginServiceAllegroWebLoginTijdelijk $parameters) : LoginServiceAllegroWebLoginTijdelijkResponse
     {
         return $this->call('AllegroWebLoginTijdelijk', $parameters);
     }
@@ -45,7 +70,7 @@ class AllegroLoginClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\LoginServiceBSNNaarRelatieResponse
      * @throws SoapException
      */
-    public function bSNNaarRelatie(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatie $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieResponse
+    public function bSNNaarRelatie(LoginServiceBSNNaarRelatie $parameters) : LoginServiceBSNNaarRelatieResponse
     {
         return $this->call('BSNNaarRelatie', $parameters);
     }
@@ -55,7 +80,7 @@ class AllegroLoginClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\LoginServiceGenereerWachtwoordResponse
      * @throws SoapException
      */
-    public function genereerWachtwoord(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceGenereerWachtwoord $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceGenereerWachtwoordResponse
+    public function genereerWachtwoord(LoginServiceGenereerWachtwoord $parameters) : LoginServiceGenereerWachtwoordResponse
     {
         return $this->call('GenereerWachtwoord', $parameters);
     }
@@ -65,7 +90,7 @@ class AllegroLoginClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\LoginServiceNieuweRegistratieResponse
      * @throws SoapException
      */
-    public function nieuweRegistratie(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratie $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratieResponse
+    public function nieuweRegistratie(LoginServiceNieuweRegistratie $parameters) : LoginServiceNieuweRegistratieResponse
     {
         return $this->call('NieuweRegistratie', $parameters);
     }
@@ -75,7 +100,7 @@ class AllegroLoginClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\LoginServiceActiveerRegistratieResponse
      * @throws SoapException
      */
-    public function activeerRegistratie(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceActiveerRegistratie $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceActiveerRegistratieResponse
+    public function activeerRegistratie(LoginServiceActiveerRegistratie $parameters) : LoginServiceActiveerRegistratieResponse
     {
         return $this->call('ActiveerRegistratie', $parameters);
     }
@@ -85,7 +110,7 @@ class AllegroLoginClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\LoginServiceNieuwContactResponse
      * @throws SoapException
      */
-    public function nieuwContact(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuwContact $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuwContactResponse
+    public function nieuwContact(LoginServiceNieuwContact $parameters) : LoginServiceNieuwContactResponse
     {
         return $this->call('NieuwContact', $parameters);
     }
@@ -95,7 +120,7 @@ class AllegroLoginClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\LoginServiceCheckWachtwoordResponse
      * @throws SoapException
      */
-    public function checkWachtwoord(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceCheckWachtwoord $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceCheckWachtwoordResponse
+    public function checkWachtwoord(LoginServiceCheckWachtwoord $parameters) : LoginServiceCheckWachtwoordResponse
     {
         return $this->call('CheckWachtwoord', $parameters);
     }
@@ -105,7 +130,7 @@ class AllegroLoginClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\LoginServiceNieuweRegistratieBSNResponse
      * @throws SoapException
      */
-    public function nieuweRegistratieBSN(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratieBSN $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratieBSNResponse
+    public function nieuweRegistratieBSN(LoginServiceNieuweRegistratieBSN $parameters) : LoginServiceNieuweRegistratieBSNResponse
     {
         return $this->call('NieuweRegistratieBSN', $parameters);
     }
@@ -115,7 +140,7 @@ class AllegroLoginClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\LoginServiceLogoutResponse
      * @throws SoapException
      */
-    public function logout(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceLogout $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceLogoutResponse
+    public function logout(LoginServiceLogout $parameters) : LoginServiceLogoutResponse
     {
         return $this->call('Logout', $parameters);
     }
@@ -125,7 +150,7 @@ class AllegroLoginClient extends \Phpro\SoapClient\Client
      * @return ResultInterface|Type\LoginServiceBSNNaarRelatieMetBedrijfResponse
      * @throws SoapException
      */
-    public function bSNNaarRelatieMetBedrijf(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieMetBedrijf $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieMetBedrijfResponse
+    public function bSNNaarRelatieMetBedrijf(LoginServiceBSNNaarRelatieMetBedrijf $parameters) : LoginServiceBSNNaarRelatieMetBedrijfResponse
     {
         return $this->call('BSNNaarRelatieMetBedrijf', $parameters);
     }

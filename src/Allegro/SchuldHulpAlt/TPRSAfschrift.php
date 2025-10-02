@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TPRSAfschrift
 {
 
@@ -16,7 +19,7 @@ class TPRSAfschrift
     protected $VolgnummerAfschrift = null;
 
     /**
-     * @var \DateTime $DatumAfschrift
+     * @var DateTime $DatumAfschrift
      */
     protected $DatumAfschrift = null;
 
@@ -66,14 +69,14 @@ class TPRSAfschrift
     protected $VorigSaldo = null;
 
     /**
-     * @var \DateTime $VorigDatumAfschift
+     * @var DateTime $VorigDatumAfschift
      */
     protected $VorigDatumAfschift = null;
 
     /**
      * @param int $Relatiecode
      * @param int $VolgnummerAfschrift
-     * @param \DateTime $DatumAfschrift
+     * @param DateTime $DatumAfschrift
      * @param float $SaldoPrs
      * @param float $TotaalBedragBijMutaties
      * @param float $TotaalBedragAfMutaties
@@ -83,13 +86,13 @@ class TPRSAfschrift
      * @param float $HuidigPrsSaldo
      * @param float $HuidigTotaalSaldoReserveringen
      * @param float $VorigSaldo
-     * @param \DateTime $VorigDatumAfschift
+     * @param DateTime $VorigDatumAfschift
      */
-    public function __construct($Relatiecode, $VolgnummerAfschrift, \DateTime $DatumAfschrift, $SaldoPrs, $TotaalBedragBijMutaties, $TotaalBedragAfMutaties, $TotaalInReserveringen, $TotaalUitReserveringen, $TotaalSaldoReserveringen, $HuidigPrsSaldo, $HuidigTotaalSaldoReserveringen, $VorigSaldo, \DateTime $VorigDatumAfschift)
+    public function __construct($Relatiecode, $VolgnummerAfschrift, DateTime $DatumAfschrift, $SaldoPrs, $TotaalBedragBijMutaties, $TotaalBedragAfMutaties, $TotaalInReserveringen, $TotaalUitReserveringen, $TotaalSaldoReserveringen, $HuidigPrsSaldo, $HuidigTotaalSaldoReserveringen, $VorigSaldo, DateTime $VorigDatumAfschift)
     {
       $this->Relatiecode = $Relatiecode;
       $this->VolgnummerAfschrift = $VolgnummerAfschrift;
-      $this->DatumAfschrift = $DatumAfschrift->format(\DateTime::ATOM);
+      $this->DatumAfschrift = $DatumAfschrift->format(DateTime::ATOM);
       $this->SaldoPrs = $SaldoPrs;
       $this->TotaalBedragBijMutaties = $TotaalBedragBijMutaties;
       $this->TotaalBedragAfMutaties = $TotaalBedragAfMutaties;
@@ -99,7 +102,7 @@ class TPRSAfschrift
       $this->HuidigPrsSaldo = $HuidigPrsSaldo;
       $this->HuidigTotaalSaldoReserveringen = $HuidigTotaalSaldoReserveringen;
       $this->VorigSaldo = $VorigSaldo;
-      $this->VorigDatumAfschift = $VorigDatumAfschift->format(\DateTime::ATOM);
+      $this->VorigDatumAfschift = $VorigDatumAfschift->format(DateTime::ATOM);
     }
 
     /**
@@ -139,7 +142,7 @@ class TPRSAfschrift
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDatumAfschrift()
     {
@@ -147,20 +150,20 @@ class TPRSAfschrift
         return null;
       } else {
         try {
-          return new \DateTime($this->DatumAfschrift);
-        } catch (\Exception $e) {
+          return new DateTime($this->DatumAfschrift);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $DatumAfschrift
+     * @param DateTime $DatumAfschrift
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPRSAfschrift
      */
-    public function setDatumAfschrift(\DateTime $DatumAfschrift)
+    public function setDatumAfschrift(DateTime $DatumAfschrift)
     {
-      $this->DatumAfschrift = $DatumAfschrift->format(\DateTime::ATOM);
+      $this->DatumAfschrift = $DatumAfschrift->format(DateTime::ATOM);
       return $this;
     }
 
@@ -327,7 +330,7 @@ class TPRSAfschrift
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getVorigDatumAfschift()
     {
@@ -335,20 +338,20 @@ class TPRSAfschrift
         return null;
       } else {
         try {
-          return new \DateTime($this->VorigDatumAfschift);
-        } catch (\Exception $e) {
+          return new DateTime($this->VorigDatumAfschift);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $VorigDatumAfschift
+     * @param DateTime $VorigDatumAfschift
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TPRSAfschrift
      */
-    public function setVorigDatumAfschift(\DateTime $VorigDatumAfschift)
+    public function setVorigDatumAfschift(DateTime $VorigDatumAfschift)
     {
-      $this->VorigDatumAfschift = $VorigDatumAfschift->format(\DateTime::ATOM);
+      $this->VorigDatumAfschift = $VorigDatumAfschift->format(DateTime::ATOM);
       return $this;
     }
 

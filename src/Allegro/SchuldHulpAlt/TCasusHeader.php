@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TCasusHeader
 {
 
@@ -21,7 +24,7 @@ class TCasusHeader
     protected $CasusCode = null;
 
     /**
-     * @var \DateTime $Aanmaakdatum
+     * @var DateTime $Aanmaakdatum
      */
     protected $Aanmaakdatum = null;
 
@@ -39,16 +42,16 @@ class TCasusHeader
      * @param int $Relatiecode
      * @param int $Volgnummer
      * @param string $CasusCode
-     * @param \DateTime $Aanmaakdatum
+     * @param DateTime $Aanmaakdatum
      * @param eCasusStatus $CasusStatus
      * @param string $CasusStatusTekst
      */
-    public function __construct($Relatiecode, $Volgnummer, $CasusCode, \DateTime $Aanmaakdatum, $CasusStatus, $CasusStatusTekst)
+    public function __construct($Relatiecode, $Volgnummer, $CasusCode, DateTime $Aanmaakdatum, $CasusStatus, $CasusStatusTekst)
     {
       $this->Relatiecode = $Relatiecode;
       $this->Volgnummer = $Volgnummer;
       $this->CasusCode = $CasusCode;
-      $this->Aanmaakdatum = $Aanmaakdatum->format(\DateTime::ATOM);
+      $this->Aanmaakdatum = $Aanmaakdatum->format(DateTime::ATOM);
       $this->CasusStatus = $CasusStatus;
       $this->CasusStatusTekst = $CasusStatusTekst;
     }
@@ -108,7 +111,7 @@ class TCasusHeader
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getAanmaakdatum()
     {
@@ -116,20 +119,20 @@ class TCasusHeader
         return null;
       } else {
         try {
-          return new \DateTime($this->Aanmaakdatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Aanmaakdatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Aanmaakdatum
+     * @param DateTime $Aanmaakdatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TCasusHeader
      */
-    public function setAanmaakdatum(\DateTime $Aanmaakdatum)
+    public function setAanmaakdatum(DateTime $Aanmaakdatum)
     {
-      $this->Aanmaakdatum = $Aanmaakdatum->format(\DateTime::ATOM);
+      $this->Aanmaakdatum = $Aanmaakdatum->format(DateTime::ATOM);
       return $this;
     }
 

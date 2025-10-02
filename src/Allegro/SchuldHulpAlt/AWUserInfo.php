@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class AWUserInfo extends UserInfo
 {
 
@@ -21,7 +24,7 @@ class AWUserInfo extends UserInfo
     protected $Naam = null;
 
     /**
-     * @var \DateTime $LaatsteLogin
+     * @var DateTime $LaatsteLogin
      */
     protected $LaatsteLogin = null;
 
@@ -54,19 +57,19 @@ class AWUserInfo extends UserInfo
      * @param string $LoginType
      * @param int $RelatieCode
      * @param string $Naam
-     * @param \DateTime $LaatsteLogin
+     * @param DateTime $LaatsteLogin
      * @param string $Autorisaties
      * @param int $ExtraInfo
      * @param string $ExtraInfoOmschrijving
      * @param boolean $WachtwoordWijzigen
      */
-    public function __construct($SessionID, $UserID, $Privileges, $Attributes, $UserData, $LoginType, $RelatieCode, $Naam, \DateTime $LaatsteLogin, $Autorisaties, $ExtraInfo, $ExtraInfoOmschrijving, $WachtwoordWijzigen)
+    public function __construct($SessionID, $UserID, $Privileges, $Attributes, $UserData, $LoginType, $RelatieCode, $Naam, DateTime $LaatsteLogin, $Autorisaties, $ExtraInfo, $ExtraInfoOmschrijving, $WachtwoordWijzigen)
     {
       parent::__construct($SessionID, $UserID, $Privileges, $Attributes, $UserData);
       $this->LoginType = $LoginType;
       $this->RelatieCode = $RelatieCode;
       $this->Naam = $Naam;
-      $this->LaatsteLogin = $LaatsteLogin->format(\DateTime::ATOM);
+      $this->LaatsteLogin = $LaatsteLogin->format(DateTime::ATOM);
       $this->Autorisaties = $Autorisaties;
       $this->ExtraInfo = $ExtraInfo;
       $this->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
@@ -128,7 +131,7 @@ class AWUserInfo extends UserInfo
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getLaatsteLogin()
     {
@@ -136,20 +139,20 @@ class AWUserInfo extends UserInfo
         return null;
       } else {
         try {
-          return new \DateTime($this->LaatsteLogin);
-        } catch (\Exception $e) {
+          return new DateTime($this->LaatsteLogin);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $LaatsteLogin
+     * @param DateTime $LaatsteLogin
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\AWUserInfo
      */
-    public function setLaatsteLogin(\DateTime $LaatsteLogin)
+    public function setLaatsteLogin(DateTime $LaatsteLogin)
     {
-      $this->LaatsteLogin = $LaatsteLogin->format(\DateTime::ATOM);
+      $this->LaatsteLogin = $LaatsteLogin->format(DateTime::ATOM);
       return $this;
     }
 

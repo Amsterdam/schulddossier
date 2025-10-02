@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
+use DateTime;
+use Exception;
+
 class TSRVAanvraagHeader
 {
 
@@ -31,7 +34,7 @@ class TSRVAanvraagHeader
     protected $Statustekst = null;
 
     /**
-     * @var \DateTime $Aanvraagdatum
+     * @var DateTime $Aanvraagdatum
      */
     protected $Aanvraagdatum = null;
 
@@ -46,17 +49,17 @@ class TSRVAanvraagHeader
      * @param boolean $IsNPS
      * @param string $Status
      * @param string $Statustekst
-     * @param \DateTime $Aanvraagdatum
+     * @param DateTime $Aanvraagdatum
      * @param string $ExtraStatus
      */
-    public function __construct($RelatieCode, $Volgnummer, $IsNPS, $Status, $Statustekst, \DateTime $Aanvraagdatum, $ExtraStatus)
+    public function __construct($RelatieCode, $Volgnummer, $IsNPS, $Status, $Statustekst, DateTime $Aanvraagdatum, $ExtraStatus)
     {
       $this->RelatieCode = $RelatieCode;
       $this->Volgnummer = $Volgnummer;
       $this->IsNPS = $IsNPS;
       $this->Status = $Status;
       $this->Statustekst = $Statustekst;
-      $this->Aanvraagdatum = $Aanvraagdatum->format(\DateTime::ATOM);
+      $this->Aanvraagdatum = $Aanvraagdatum->format(DateTime::ATOM);
       $this->ExtraStatus = $ExtraStatus;
     }
 
@@ -151,7 +154,7 @@ class TSRVAanvraagHeader
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getAanvraagdatum()
     {
@@ -159,20 +162,20 @@ class TSRVAanvraagHeader
         return null;
       } else {
         try {
-          return new \DateTime($this->Aanvraagdatum);
-        } catch (\Exception $e) {
+          return new DateTime($this->Aanvraagdatum);
+        } catch (Exception $e) {
           return false;
         }
       }
     }
 
     /**
-     * @param \DateTime $Aanvraagdatum
+     * @param DateTime $Aanvraagdatum
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSRVAanvraagHeader
      */
-    public function setAanvraagdatum(\DateTime $Aanvraagdatum)
+    public function setAanvraagdatum(DateTime $Aanvraagdatum)
     {
-      $this->Aanvraagdatum = $Aanvraagdatum->format(\DateTime::ATOM);
+      $this->Aanvraagdatum = $Aanvraagdatum->format(DateTime::ATOM);
       return $this;
     }
 

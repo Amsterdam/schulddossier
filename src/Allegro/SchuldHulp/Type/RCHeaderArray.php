@@ -9,14 +9,14 @@ class RCHeaderArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader
+     * @var TRCHeader
      */
     private $TRCHeader;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader $TRCHeader
+     * @var TRCHeader $TRCHeader
      */
     public function __construct($TRCHeader)
     {
@@ -24,7 +24,7 @@ class RCHeaderArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader
+     * @return TRCHeader
      */
     public function getTRCHeader()
     {
@@ -32,7 +32,7 @@ class RCHeaderArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader $TRCHeader
+     * @param TRCHeader $TRCHeader
      * @return RCHeaderArray
      */
     public function withTRCHeader($TRCHeader)

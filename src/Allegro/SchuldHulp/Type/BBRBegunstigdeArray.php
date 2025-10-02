@@ -9,14 +9,14 @@ class BBRBegunstigdeArray implements RequestInterface
 {
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRBegunstigde
+     * @var TBBRBegunstigde
      */
     private $TBBRBegunstigde;
 
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRBegunstigde $TBBRBegunstigde
+     * @var TBBRBegunstigde $TBBRBegunstigde
      */
     public function __construct($TBBRBegunstigde)
     {
@@ -24,7 +24,7 @@ class BBRBegunstigdeArray implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRBegunstigde
+     * @return TBBRBegunstigde
      */
     public function getTBBRBegunstigde()
     {
@@ -32,7 +32,7 @@ class BBRBegunstigdeArray implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRBegunstigde $TBBRBegunstigde
+     * @param TBBRBegunstigde $TBBRBegunstigde
      * @return BBRBegunstigdeArray
      */
     public function withTBBRBegunstigde($TBBRBegunstigde)

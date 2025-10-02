@@ -3,6 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusPVA implements RequestInterface
@@ -24,22 +25,22 @@ class TCasusPVA implements RequestInterface
     private $TeamPVA;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumPVA;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumPVAEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumFiattering;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private $DatumFiatteringEinde;
 
@@ -60,12 +61,12 @@ class TCasusPVA implements RequestInterface
      * @var int $VolgnummerPVA
      * @var string $MedewerkerPVA
      * @var string $TeamPVA
-     * @var \DateTimeInterface $DatumPVA
-     * @var \DateTimeInterface $DatumPVAEinde
-     * @var \DateTimeInterface $DatumFiattering
-     * @var \DateTimeInterface $DatumFiatteringEinde
+     * @var DateTimeInterface $DatumPVA
+     * @var DateTimeInterface $DatumPVAEinde
+     * @var DateTimeInterface $DatumFiattering
+     * @var DateTimeInterface $DatumFiatteringEinde
      * @var bool $Gefiatteerd
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\CasusPVAProductArray $Producten
+     * @var CasusPVAProductArray $Producten
      */
     public function __construct($VolgnummerPVA, $MedewerkerPVA, $TeamPVA, $DatumPVA, $DatumPVAEinde, $DatumFiattering, $DatumFiatteringEinde, $Gefiatteerd, $Producten)
     {
@@ -141,7 +142,7 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumPVA()
     {
@@ -149,7 +150,7 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumPVA
+     * @param DateTimeInterface $DatumPVA
      * @return TCasusPVA
      */
     public function withDatumPVA($DatumPVA)
@@ -161,7 +162,7 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumPVAEinde()
     {
@@ -169,7 +170,7 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumPVAEinde
+     * @param DateTimeInterface $DatumPVAEinde
      * @return TCasusPVA
      */
     public function withDatumPVAEinde($DatumPVAEinde)
@@ -181,7 +182,7 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumFiattering()
     {
@@ -189,7 +190,7 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumFiattering
+     * @param DateTimeInterface $DatumFiattering
      * @return TCasusPVA
      */
     public function withDatumFiattering($DatumFiattering)
@@ -201,7 +202,7 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumFiatteringEinde()
     {
@@ -209,7 +210,7 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @param \DateTimeInterface $DatumFiatteringEinde
+     * @param DateTimeInterface $DatumFiatteringEinde
      * @return TCasusPVA
      */
     public function withDatumFiatteringEinde($DatumFiatteringEinde)
@@ -241,7 +242,7 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\CasusPVAProductArray
+     * @return CasusPVAProductArray
      */
     public function getProducten()
     {
@@ -249,7 +250,7 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\CasusPVAProductArray $Producten
+     * @param CasusPVAProductArray $Producten
      * @return TCasusPVA
      */
     public function withProducten($Producten)
