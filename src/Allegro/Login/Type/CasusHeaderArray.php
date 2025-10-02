@@ -2,46 +2,49 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class CasusHeaderArray implements RequestInterface
+class CasusHeaderArray
 {
-
     /**
-     * @var TCasusHeader
-     */
-    private $TCasusHeader;
-
-    /**
-     * Constructor
+     * TCasusHeader bevat :
+     *  - Relatiecode
+     *  - Volgnummer
+     *  - Aanmaakdatum
+     *  - CasusStatus
+     *  * Aanmelding (aanmelding 'in progress')
+     *  * Aanmelding voltooid (aanmelding voltooid)
+     *  * Inventarisatie (inventarisatie bezig)
+     *  * Analyse (analyse bezig)
+     *  * Plan Van Aanpak (plan van aanpak bezig)
+     *  * Fiattering (fiattering bezig)
+     *  * Slapend (laatste plan van aanpak gefiatteerd)
+     *  * Crisis (crisis)
+     *  * Afwijzing (casus zit in afwijzingsfase)
+     *  * Einde (casus zit in beeindigingsfase)
+     *  * Inactief (casus niet meer actief)
+     *  * Geen status
      *
-     * @var TCasusHeader $TCasusHeader
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader>
      */
-    public function __construct($TCasusHeader)
-    {
-        $this->TCasusHeader = $TCasusHeader;
-    }
+    private array $TCasusHeader;
 
     /**
-     * @return TCasusHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader>
      */
-    public function getTCasusHeader()
+    public function getTCasusHeader() : array
     {
         return $this->TCasusHeader;
     }
 
     /**
-     * @param TCasusHeader $TCasusHeader
-     * @return CasusHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader> $TCasusHeader
+     * @return static
      */
-    public function withTCasusHeader($TCasusHeader)
+    public function withTCasusHeader(array $TCasusHeader) : static
     {
         $new = clone $this;
         $new->TCasusHeader = $TCasusHeader;
 
         return $new;
     }
-
-
 }
 

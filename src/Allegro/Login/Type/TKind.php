@@ -2,75 +2,51 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use DateTimeInterface;
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TKind implements RequestInterface
+class TKind
 {
-
     /**
      * @var int
      */
-    private $UniekVolgnummer;
+    private int $UniekVolgnummer;
 
     /**
      * @var string
      */
-    private $Voornaam;
+    private string $Voornaam;
 
     /**
      * @var string
      */
-    private $Achternaam;
+    private string $Achternaam;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $Geboortedatum;
+    private \DateTimeInterface $Geboortedatum;
 
     /**
      * @var string
      */
-    private $Activiteit;
+    private string $Activiteit;
 
     /**
      * @var bool
      */
-    private $MeetelKind;
-
-    /**
-     * Constructor
-     *
-     * @var int $UniekVolgnummer
-     * @var string $Voornaam
-     * @var string $Achternaam
-     * @var DateTimeInterface $Geboortedatum
-     * @var string $Activiteit
-     * @var bool $MeetelKind
-     */
-    public function __construct($UniekVolgnummer, $Voornaam, $Achternaam, $Geboortedatum, $Activiteit, $MeetelKind)
-    {
-        $this->UniekVolgnummer = $UniekVolgnummer;
-        $this->Voornaam = $Voornaam;
-        $this->Achternaam = $Achternaam;
-        $this->Geboortedatum = $Geboortedatum;
-        $this->Activiteit = $Activiteit;
-        $this->MeetelKind = $MeetelKind;
-    }
+    private bool $MeetelKind;
 
     /**
      * @return int
      */
-    public function getUniekVolgnummer()
+    public function getUniekVolgnummer() : int
     {
         return $this->UniekVolgnummer;
     }
 
     /**
      * @param int $UniekVolgnummer
-     * @return TKind
+     * @return static
      */
-    public function withUniekVolgnummer($UniekVolgnummer)
+    public function withUniekVolgnummer(int $UniekVolgnummer) : static
     {
         $new = clone $this;
         $new->UniekVolgnummer = $UniekVolgnummer;
@@ -81,16 +57,16 @@ class TKind implements RequestInterface
     /**
      * @return string
      */
-    public function getVoornaam()
+    public function getVoornaam() : string
     {
         return $this->Voornaam;
     }
 
     /**
      * @param string $Voornaam
-     * @return TKind
+     * @return static
      */
-    public function withVoornaam($Voornaam)
+    public function withVoornaam(string $Voornaam) : static
     {
         $new = clone $this;
         $new->Voornaam = $Voornaam;
@@ -101,16 +77,16 @@ class TKind implements RequestInterface
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam() : string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TKind
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam) : static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -119,18 +95,18 @@ class TKind implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getGeboortedatum()
+    public function getGeboortedatum() : \DateTimeInterface
     {
         return $this->Geboortedatum;
     }
 
     /**
-     * @param DateTimeInterface $Geboortedatum
-     * @return TKind
+     * @param \DateTimeInterface $Geboortedatum
+     * @return static
      */
-    public function withGeboortedatum($Geboortedatum)
+    public function withGeboortedatum(\DateTimeInterface $Geboortedatum) : static
     {
         $new = clone $this;
         $new->Geboortedatum = $Geboortedatum;
@@ -141,16 +117,16 @@ class TKind implements RequestInterface
     /**
      * @return string
      */
-    public function getActiviteit()
+    public function getActiviteit() : string
     {
         return $this->Activiteit;
     }
 
     /**
      * @param string $Activiteit
-     * @return TKind
+     * @return static
      */
-    public function withActiviteit($Activiteit)
+    public function withActiviteit(string $Activiteit) : static
     {
         $new = clone $this;
         $new->Activiteit = $Activiteit;
@@ -161,23 +137,21 @@ class TKind implements RequestInterface
     /**
      * @return bool
      */
-    public function getMeetelKind()
+    public function getMeetelKind() : bool
     {
         return $this->MeetelKind;
     }
 
     /**
      * @param bool $MeetelKind
-     * @return TKind
+     * @return static
      */
-    public function withMeetelKind($MeetelKind)
+    public function withMeetelKind(bool $MeetelKind) : static
     {
         $new = clone $this;
         $new->MeetelKind = $MeetelKind;
 
         return $new;
     }
-
-
 }
 

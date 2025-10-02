@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBoxGeadresseerde implements RequestInterface
+class TBBoxGeadresseerde
 {
-
     /**
-     * @var TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
      */
-    private $Medewerker;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Medewerker;
 
     /**
      * @var string
      */
-    private $Informatie;
+    private string $Informatie;
 
     /**
-     * Constructor
-     *
-     * @var TMedewerker $Medewerker
-     * @var string $Informatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
      */
-    public function __construct($Medewerker, $Informatie)
-    {
-        $this->Medewerker = $Medewerker;
-        $this->Informatie = $Informatie;
-    }
-
-    /**
-     * @return TMedewerker
-     */
-    public function getMedewerker()
+    public function getMedewerker() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
     {
         return $this->Medewerker;
     }
 
     /**
-     * @param TMedewerker $Medewerker
-     * @return TBBoxGeadresseerde
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Medewerker
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Medewerker) : static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -52,23 +37,21 @@ class TBBoxGeadresseerde implements RequestInterface
     /**
      * @return string
      */
-    public function getInformatie()
+    public function getInformatie() : string
     {
         return $this->Informatie;
     }
 
     /**
      * @param string $Informatie
-     * @return TBBoxGeadresseerde
+     * @return static
      */
-    public function withInformatie($Informatie)
+    public function withInformatie(string $Informatie) : static
     {
         $new = clone $this;
         $new->Informatie = $Informatie;
 
         return $new;
     }
-
-
 }
 

@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class VariantArray implements RequestInterface
+class VariantArray
 {
+    /**
+     * @var array<int<0,max>, mixed>
+     */
+    private array $anyType;
 
     /**
-     * @var mixed
+     * @return array<int<0,max>, mixed>
      */
-    private $anyType;
-
-    /**
-     * Constructor
-     *
-     * @var mixed $anyType
-     */
-    public function __construct($anyType)
-    {
-        $this->anyType = $anyType;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAnyType()
+    public function getAnyType() : array
     {
         return $this->anyType;
     }
 
     /**
-     * @param mixed $anyType
-     * @return VariantArray
+     * @param array<int<0,max>, mixed> $anyType
+     * @return static
      */
-    public function withAnyType($anyType)
+    public function withAnyType(array $anyType) : static
     {
         $new = clone $this;
         $new->anyType = $anyType;
 
         return $new;
     }
-
-
 }
 

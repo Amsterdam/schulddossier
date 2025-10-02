@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAfspraakSoortenArray implements RequestInterface
+class TAfspraakSoortenArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraakSoorten>
+     */
+    private array $TAfspraakSoorten;
 
     /**
-     * @var TAfspraakSoorten
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraakSoorten>
      */
-    private $TAfspraakSoorten;
-
-    /**
-     * Constructor
-     *
-     * @var TAfspraakSoorten $TAfspraakSoorten
-     */
-    public function __construct($TAfspraakSoorten)
-    {
-        $this->TAfspraakSoorten = $TAfspraakSoorten;
-    }
-
-    /**
-     * @return TAfspraakSoorten
-     */
-    public function getTAfspraakSoorten()
+    public function getTAfspraakSoorten() : array
     {
         return $this->TAfspraakSoorten;
     }
 
     /**
-     * @param TAfspraakSoorten $TAfspraakSoorten
-     * @return TAfspraakSoortenArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraakSoorten> $TAfspraakSoorten
+     * @return static
      */
-    public function withTAfspraakSoorten($TAfspraakSoorten)
+    public function withTAfspraakSoorten(array $TAfspraakSoorten) : static
     {
         $new = clone $this;
         $new->TAfspraakSoorten = $TAfspraakSoorten;
 
         return $new;
     }
-
-
 }
 

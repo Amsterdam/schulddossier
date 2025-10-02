@@ -2,173 +2,121 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use DateTimeInterface;
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSRVEiser implements RequestInterface
+class TSRVEiser
 {
+    /**
+     * @var int
+     */
+    private int $RelatieCode;
 
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $Volgnummer;
 
     /**
      * @var int
      */
-    private $Volgnummer;
-
-    /**
-     * @var int
-     */
-    private $CodeEiser;
+    private int $CodeEiser;
 
     /**
      * @var string
      */
-    private $NaamEiser;
+    private string $NaamEiser;
 
     /**
      * @var int
      */
-    private $UniekVolgnummer;
+    private int $UniekVolgnummer;
 
     /**
      * @var string
      */
-    private $Referentie;
+    private string $Referentie;
 
     /**
      * @var float
      */
-    private $AangemeldBedrag;
+    private float $AangemeldBedrag;
 
     /**
      * @var float
      */
-    private $TeruggemeldBedrag;
+    private float $TeruggemeldBedrag;
 
     /**
      * @var float
      */
-    private $PrognoseVoorstel;
+    private float $PrognoseVoorstel;
 
     /**
      * @var string
      */
-    private $TerugmeldingVoorstel;
+    private string $TerugmeldingVoorstel;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumTerugmeldingVoorstel;
-
-    /**
-     * @var string
-     */
-    private $IndicatieOpgaaf;
+    private \DateTimeInterface $DatumTerugmeldingVoorstel;
 
     /**
      * @var string
      */
-    private $IndicatieVoorstel;
+    private string $IndicatieOpgaaf;
+
+    /**
+     * @var string
+     */
+    private string $IndicatieVoorstel;
 
     /**
      * @var bool
      */
-    private $IndicatieSK;
+    private bool $IndicatieSK;
 
     /**
      * @var int
      */
-    private $CodeIncasso;
+    private int $CodeIncasso;
 
     /**
      * @var string
      */
-    private $NaamIncasso;
+    private string $NaamIncasso;
 
     /**
      * @var string
      */
-    private $ReferentieIncasso;
+    private string $ReferentieIncasso;
 
     /**
      * @var int
      */
-    private $CodeDeurwaarder;
+    private int $CodeDeurwaarder;
 
     /**
      * @var string
      */
-    private $NaamDeurwaarder;
+    private string $NaamDeurwaarder;
 
     /**
      * @var string
      */
-    private $ReferentieDeurwaarder;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var int $Volgnummer
-     * @var int $CodeEiser
-     * @var string $NaamEiser
-     * @var int $UniekVolgnummer
-     * @var string $Referentie
-     * @var float $AangemeldBedrag
-     * @var float $TeruggemeldBedrag
-     * @var float $PrognoseVoorstel
-     * @var string $TerugmeldingVoorstel
-     * @var DateTimeInterface $DatumTerugmeldingVoorstel
-     * @var string $IndicatieOpgaaf
-     * @var string $IndicatieVoorstel
-     * @var bool $IndicatieSK
-     * @var int $CodeIncasso
-     * @var string $NaamIncasso
-     * @var string $ReferentieIncasso
-     * @var int $CodeDeurwaarder
-     * @var string $NaamDeurwaarder
-     * @var string $ReferentieDeurwaarder
-     */
-    public function __construct($RelatieCode, $Volgnummer, $CodeEiser, $NaamEiser, $UniekVolgnummer, $Referentie, $AangemeldBedrag, $TeruggemeldBedrag, $PrognoseVoorstel, $TerugmeldingVoorstel, $DatumTerugmeldingVoorstel, $IndicatieOpgaaf, $IndicatieVoorstel, $IndicatieSK, $CodeIncasso, $NaamIncasso, $ReferentieIncasso, $CodeDeurwaarder, $NaamDeurwaarder, $ReferentieDeurwaarder)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->Volgnummer = $Volgnummer;
-        $this->CodeEiser = $CodeEiser;
-        $this->NaamEiser = $NaamEiser;
-        $this->UniekVolgnummer = $UniekVolgnummer;
-        $this->Referentie = $Referentie;
-        $this->AangemeldBedrag = $AangemeldBedrag;
-        $this->TeruggemeldBedrag = $TeruggemeldBedrag;
-        $this->PrognoseVoorstel = $PrognoseVoorstel;
-        $this->TerugmeldingVoorstel = $TerugmeldingVoorstel;
-        $this->DatumTerugmeldingVoorstel = $DatumTerugmeldingVoorstel;
-        $this->IndicatieOpgaaf = $IndicatieOpgaaf;
-        $this->IndicatieVoorstel = $IndicatieVoorstel;
-        $this->IndicatieSK = $IndicatieSK;
-        $this->CodeIncasso = $CodeIncasso;
-        $this->NaamIncasso = $NaamIncasso;
-        $this->ReferentieIncasso = $ReferentieIncasso;
-        $this->CodeDeurwaarder = $CodeDeurwaarder;
-        $this->NaamDeurwaarder = $NaamDeurwaarder;
-        $this->ReferentieDeurwaarder = $ReferentieDeurwaarder;
-    }
+    private string $ReferentieDeurwaarder;
 
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode() : int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TSRVEiser
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode) : static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -179,16 +127,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer() : int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TSRVEiser
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer) : static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -199,16 +147,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return int
      */
-    public function getCodeEiser()
+    public function getCodeEiser() : int
     {
         return $this->CodeEiser;
     }
 
     /**
      * @param int $CodeEiser
-     * @return TSRVEiser
+     * @return static
      */
-    public function withCodeEiser($CodeEiser)
+    public function withCodeEiser(int $CodeEiser) : static
     {
         $new = clone $this;
         $new->CodeEiser = $CodeEiser;
@@ -219,16 +167,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return string
      */
-    public function getNaamEiser()
+    public function getNaamEiser() : string
     {
         return $this->NaamEiser;
     }
 
     /**
      * @param string $NaamEiser
-     * @return TSRVEiser
+     * @return static
      */
-    public function withNaamEiser($NaamEiser)
+    public function withNaamEiser(string $NaamEiser) : static
     {
         $new = clone $this;
         $new->NaamEiser = $NaamEiser;
@@ -239,16 +187,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return int
      */
-    public function getUniekVolgnummer()
+    public function getUniekVolgnummer() : int
     {
         return $this->UniekVolgnummer;
     }
 
     /**
      * @param int $UniekVolgnummer
-     * @return TSRVEiser
+     * @return static
      */
-    public function withUniekVolgnummer($UniekVolgnummer)
+    public function withUniekVolgnummer(int $UniekVolgnummer) : static
     {
         $new = clone $this;
         $new->UniekVolgnummer = $UniekVolgnummer;
@@ -259,16 +207,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return string
      */
-    public function getReferentie()
+    public function getReferentie() : string
     {
         return $this->Referentie;
     }
 
     /**
      * @param string $Referentie
-     * @return TSRVEiser
+     * @return static
      */
-    public function withReferentie($Referentie)
+    public function withReferentie(string $Referentie) : static
     {
         $new = clone $this;
         $new->Referentie = $Referentie;
@@ -279,16 +227,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return float
      */
-    public function getAangemeldBedrag()
+    public function getAangemeldBedrag() : float
     {
         return $this->AangemeldBedrag;
     }
 
     /**
      * @param float $AangemeldBedrag
-     * @return TSRVEiser
+     * @return static
      */
-    public function withAangemeldBedrag($AangemeldBedrag)
+    public function withAangemeldBedrag(float $AangemeldBedrag) : static
     {
         $new = clone $this;
         $new->AangemeldBedrag = $AangemeldBedrag;
@@ -299,16 +247,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return float
      */
-    public function getTeruggemeldBedrag()
+    public function getTeruggemeldBedrag() : float
     {
         return $this->TeruggemeldBedrag;
     }
 
     /**
      * @param float $TeruggemeldBedrag
-     * @return TSRVEiser
+     * @return static
      */
-    public function withTeruggemeldBedrag($TeruggemeldBedrag)
+    public function withTeruggemeldBedrag(float $TeruggemeldBedrag) : static
     {
         $new = clone $this;
         $new->TeruggemeldBedrag = $TeruggemeldBedrag;
@@ -319,16 +267,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return float
      */
-    public function getPrognoseVoorstel()
+    public function getPrognoseVoorstel() : float
     {
         return $this->PrognoseVoorstel;
     }
 
     /**
      * @param float $PrognoseVoorstel
-     * @return TSRVEiser
+     * @return static
      */
-    public function withPrognoseVoorstel($PrognoseVoorstel)
+    public function withPrognoseVoorstel(float $PrognoseVoorstel) : static
     {
         $new = clone $this;
         $new->PrognoseVoorstel = $PrognoseVoorstel;
@@ -339,16 +287,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return string
      */
-    public function getTerugmeldingVoorstel()
+    public function getTerugmeldingVoorstel() : string
     {
         return $this->TerugmeldingVoorstel;
     }
 
     /**
      * @param string $TerugmeldingVoorstel
-     * @return TSRVEiser
+     * @return static
      */
-    public function withTerugmeldingVoorstel($TerugmeldingVoorstel)
+    public function withTerugmeldingVoorstel(string $TerugmeldingVoorstel) : static
     {
         $new = clone $this;
         $new->TerugmeldingVoorstel = $TerugmeldingVoorstel;
@@ -357,18 +305,18 @@ class TSRVEiser implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumTerugmeldingVoorstel()
+    public function getDatumTerugmeldingVoorstel() : \DateTimeInterface
     {
         return $this->DatumTerugmeldingVoorstel;
     }
 
     /**
-     * @param DateTimeInterface $DatumTerugmeldingVoorstel
-     * @return TSRVEiser
+     * @param \DateTimeInterface $DatumTerugmeldingVoorstel
+     * @return static
      */
-    public function withDatumTerugmeldingVoorstel($DatumTerugmeldingVoorstel)
+    public function withDatumTerugmeldingVoorstel(\DateTimeInterface $DatumTerugmeldingVoorstel) : static
     {
         $new = clone $this;
         $new->DatumTerugmeldingVoorstel = $DatumTerugmeldingVoorstel;
@@ -379,16 +327,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return string
      */
-    public function getIndicatieOpgaaf()
+    public function getIndicatieOpgaaf() : string
     {
         return $this->IndicatieOpgaaf;
     }
 
     /**
      * @param string $IndicatieOpgaaf
-     * @return TSRVEiser
+     * @return static
      */
-    public function withIndicatieOpgaaf($IndicatieOpgaaf)
+    public function withIndicatieOpgaaf(string $IndicatieOpgaaf) : static
     {
         $new = clone $this;
         $new->IndicatieOpgaaf = $IndicatieOpgaaf;
@@ -399,16 +347,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return string
      */
-    public function getIndicatieVoorstel()
+    public function getIndicatieVoorstel() : string
     {
         return $this->IndicatieVoorstel;
     }
 
     /**
      * @param string $IndicatieVoorstel
-     * @return TSRVEiser
+     * @return static
      */
-    public function withIndicatieVoorstel($IndicatieVoorstel)
+    public function withIndicatieVoorstel(string $IndicatieVoorstel) : static
     {
         $new = clone $this;
         $new->IndicatieVoorstel = $IndicatieVoorstel;
@@ -419,16 +367,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return bool
      */
-    public function getIndicatieSK()
+    public function getIndicatieSK() : bool
     {
         return $this->IndicatieSK;
     }
 
     /**
      * @param bool $IndicatieSK
-     * @return TSRVEiser
+     * @return static
      */
-    public function withIndicatieSK($IndicatieSK)
+    public function withIndicatieSK(bool $IndicatieSK) : static
     {
         $new = clone $this;
         $new->IndicatieSK = $IndicatieSK;
@@ -439,16 +387,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return int
      */
-    public function getCodeIncasso()
+    public function getCodeIncasso() : int
     {
         return $this->CodeIncasso;
     }
 
     /**
      * @param int $CodeIncasso
-     * @return TSRVEiser
+     * @return static
      */
-    public function withCodeIncasso($CodeIncasso)
+    public function withCodeIncasso(int $CodeIncasso) : static
     {
         $new = clone $this;
         $new->CodeIncasso = $CodeIncasso;
@@ -459,16 +407,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return string
      */
-    public function getNaamIncasso()
+    public function getNaamIncasso() : string
     {
         return $this->NaamIncasso;
     }
 
     /**
      * @param string $NaamIncasso
-     * @return TSRVEiser
+     * @return static
      */
-    public function withNaamIncasso($NaamIncasso)
+    public function withNaamIncasso(string $NaamIncasso) : static
     {
         $new = clone $this;
         $new->NaamIncasso = $NaamIncasso;
@@ -479,16 +427,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return string
      */
-    public function getReferentieIncasso()
+    public function getReferentieIncasso() : string
     {
         return $this->ReferentieIncasso;
     }
 
     /**
      * @param string $ReferentieIncasso
-     * @return TSRVEiser
+     * @return static
      */
-    public function withReferentieIncasso($ReferentieIncasso)
+    public function withReferentieIncasso(string $ReferentieIncasso) : static
     {
         $new = clone $this;
         $new->ReferentieIncasso = $ReferentieIncasso;
@@ -499,16 +447,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return int
      */
-    public function getCodeDeurwaarder()
+    public function getCodeDeurwaarder() : int
     {
         return $this->CodeDeurwaarder;
     }
 
     /**
      * @param int $CodeDeurwaarder
-     * @return TSRVEiser
+     * @return static
      */
-    public function withCodeDeurwaarder($CodeDeurwaarder)
+    public function withCodeDeurwaarder(int $CodeDeurwaarder) : static
     {
         $new = clone $this;
         $new->CodeDeurwaarder = $CodeDeurwaarder;
@@ -519,16 +467,16 @@ class TSRVEiser implements RequestInterface
     /**
      * @return string
      */
-    public function getNaamDeurwaarder()
+    public function getNaamDeurwaarder() : string
     {
         return $this->NaamDeurwaarder;
     }
 
     /**
      * @param string $NaamDeurwaarder
-     * @return TSRVEiser
+     * @return static
      */
-    public function withNaamDeurwaarder($NaamDeurwaarder)
+    public function withNaamDeurwaarder(string $NaamDeurwaarder) : static
     {
         $new = clone $this;
         $new->NaamDeurwaarder = $NaamDeurwaarder;
@@ -539,23 +487,21 @@ class TSRVEiser implements RequestInterface
     /**
      * @return string
      */
-    public function getReferentieDeurwaarder()
+    public function getReferentieDeurwaarder() : string
     {
         return $this->ReferentieDeurwaarder;
     }
 
     /**
      * @param string $ReferentieDeurwaarder
-     * @return TSRVEiser
+     * @return static
      */
-    public function withReferentieDeurwaarder($ReferentieDeurwaarder)
+    public function withReferentieDeurwaarder(string $ReferentieDeurwaarder) : static
     {
         $new = clone $this;
         $new->ReferentieDeurwaarder = $ReferentieDeurwaarder;
 
         return $new;
     }
-
-
 }
 

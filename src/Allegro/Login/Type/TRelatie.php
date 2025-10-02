@@ -2,257 +2,181 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use DateTimeInterface;
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TRelatie implements RequestInterface
+class TRelatie
 {
+    /**
+     * @var int
+     */
+    private int $RelatieCode;
+
+    /**
+     * @var string
+     */
+    private string $Voornamen;
+
+    /**
+     * @var string
+     */
+    private string $Voorletters;
+
+    /**
+     * @var string
+     */
+    private string $Zoeknaam;
+
+    /**
+     * @var string
+     */
+    private string $Achternaam;
+
+    /**
+     * @var string
+     */
+    private string $Voorvoegsels;
+
+    /**
+     * @var string
+     */
+    private string $Geslacht;
+
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $BezoekAdres;
+
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $PostAdres;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $Geboortedatum;
+
+    /**
+     * @var string
+     */
+    private string $Geboorteplaats;
 
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $BSN;
 
     /**
      * @var string
      */
-    private $Voornamen;
+    private string $Rekening;
 
     /**
      * @var string
      */
-    private $Voorletters;
+    private string $Telefoon1;
 
     /**
      * @var string
      */
-    private $Zoeknaam;
+    private string $Telefoon2;
 
     /**
      * @var string
      */
-    private $Achternaam;
+    private string $Email;
 
     /**
      * @var string
      */
-    private $Voorvoegsels;
-
-    /**
-     * @var string
-     */
-    private $Geslacht;
-
-    /**
-     * @var TAdres
-     */
-    private $BezoekAdres;
-
-    /**
-     * @var TAdres
-     */
-    private $PostAdres;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $Geboortedatum;
-
-    /**
-     * @var string
-     */
-    private $Geboorteplaats;
+    private string $BurgerlijkeStaat;
 
     /**
      * @var int
      */
-    private $BSN;
+    private int $PartnerCode;
 
     /**
      * @var string
      */
-    private $Rekening;
+    private string $Autorisaties;
 
     /**
      * @var string
      */
-    private $Telefoon1;
+    private string $Identificatiebewijs;
 
     /**
      * @var string
      */
-    private $Telefoon2;
+    private string $IdentificatieNummer;
 
     /**
-     * @var string
+     * @var \DateTimeInterface
      */
-    private $Email;
+    private \DateTimeInterface $IdentificatieGeldig;
 
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\KindArray
      */
-    private $BurgerlijkeStaat;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\KindArray $Kinderen;
 
     /**
      * @var int
      */
-    private $PartnerCode;
+    private int $Bedrijf;
 
     /**
      * @var string
      */
-    private $Autorisaties;
+    private string $IBAN;
 
     /**
      * @var string
      */
-    private $Identificatiebewijs;
-
-    /**
-     * @var string
-     */
-    private $IdentificatieNummer;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $IdentificatieGeldig;
-
-    /**
-     * @var KindArray
-     */
-    private $Kinderen;
-
-    /**
-     * @var int
-     */
-    private $Bedrijf;
-
-    /**
-     * @var string
-     */
-    private $IBAN;
-
-    /**
-     * @var string
-     */
-    private $BIC;
+    private string $BIC;
 
     /**
      * @var bool
      */
-    private $InzakeRekening;
+    private bool $InzakeRekening;
 
     /**
      * @var string
      */
-    private $RekeningInzake;
+    private string $RekeningInzake;
 
     /**
      * @var string
      */
-    private $RekeningInzakeIBAN;
+    private string $RekeningInzakeIBAN;
 
     /**
      * @var string
      */
-    private $RekeningInzakeBIC;
+    private string $RekeningInzakeBIC;
 
     /**
-     * @var TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
      */
-    private $Klantmanager;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Klantmanager;
 
     /**
      * @var string
      */
-    private $Pincode;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var string $Voornamen
-     * @var string $Voorletters
-     * @var string $Zoeknaam
-     * @var string $Achternaam
-     * @var string $Voorvoegsels
-     * @var string $Geslacht
-     * @var TAdres $BezoekAdres
-     * @var TAdres $PostAdres
-     * @var DateTimeInterface $Geboortedatum
-     * @var string $Geboorteplaats
-     * @var int $BSN
-     * @var string $Rekening
-     * @var string $Telefoon1
-     * @var string $Telefoon2
-     * @var string $Email
-     * @var string $BurgerlijkeStaat
-     * @var int $PartnerCode
-     * @var string $Autorisaties
-     * @var string $Identificatiebewijs
-     * @var string $IdentificatieNummer
-     * @var DateTimeInterface $IdentificatieGeldig
-     * @var KindArray $Kinderen
-     * @var int $Bedrijf
-     * @var string $IBAN
-     * @var string $BIC
-     * @var bool $InzakeRekening
-     * @var string $RekeningInzake
-     * @var string $RekeningInzakeIBAN
-     * @var string $RekeningInzakeBIC
-     * @var TMedewerker $Klantmanager
-     * @var string $Pincode
-     */
-    public function __construct($RelatieCode, $Voornamen, $Voorletters, $Zoeknaam, $Achternaam, $Voorvoegsels, $Geslacht, $BezoekAdres, $PostAdres, $Geboortedatum, $Geboorteplaats, $BSN, $Rekening, $Telefoon1, $Telefoon2, $Email, $BurgerlijkeStaat, $PartnerCode, $Autorisaties, $Identificatiebewijs, $IdentificatieNummer, $IdentificatieGeldig, $Kinderen, $Bedrijf, $IBAN, $BIC, $InzakeRekening, $RekeningInzake, $RekeningInzakeIBAN, $RekeningInzakeBIC, $Klantmanager, $Pincode)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->Voornamen = $Voornamen;
-        $this->Voorletters = $Voorletters;
-        $this->Zoeknaam = $Zoeknaam;
-        $this->Achternaam = $Achternaam;
-        $this->Voorvoegsels = $Voorvoegsels;
-        $this->Geslacht = $Geslacht;
-        $this->BezoekAdres = $BezoekAdres;
-        $this->PostAdres = $PostAdres;
-        $this->Geboortedatum = $Geboortedatum;
-        $this->Geboorteplaats = $Geboorteplaats;
-        $this->BSN = $BSN;
-        $this->Rekening = $Rekening;
-        $this->Telefoon1 = $Telefoon1;
-        $this->Telefoon2 = $Telefoon2;
-        $this->Email = $Email;
-        $this->BurgerlijkeStaat = $BurgerlijkeStaat;
-        $this->PartnerCode = $PartnerCode;
-        $this->Autorisaties = $Autorisaties;
-        $this->Identificatiebewijs = $Identificatiebewijs;
-        $this->IdentificatieNummer = $IdentificatieNummer;
-        $this->IdentificatieGeldig = $IdentificatieGeldig;
-        $this->Kinderen = $Kinderen;
-        $this->Bedrijf = $Bedrijf;
-        $this->IBAN = $IBAN;
-        $this->BIC = $BIC;
-        $this->InzakeRekening = $InzakeRekening;
-        $this->RekeningInzake = $RekeningInzake;
-        $this->RekeningInzakeIBAN = $RekeningInzakeIBAN;
-        $this->RekeningInzakeBIC = $RekeningInzakeBIC;
-        $this->Klantmanager = $Klantmanager;
-        $this->Pincode = $Pincode;
-    }
+    private string $Pincode;
 
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode() : int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TRelatie
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode) : static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -263,16 +187,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getVoornamen()
+    public function getVoornamen() : string
     {
         return $this->Voornamen;
     }
 
     /**
      * @param string $Voornamen
-     * @return TRelatie
+     * @return static
      */
-    public function withVoornamen($Voornamen)
+    public function withVoornamen(string $Voornamen) : static
     {
         $new = clone $this;
         $new->Voornamen = $Voornamen;
@@ -283,16 +207,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getVoorletters()
+    public function getVoorletters() : string
     {
         return $this->Voorletters;
     }
 
     /**
      * @param string $Voorletters
-     * @return TRelatie
+     * @return static
      */
-    public function withVoorletters($Voorletters)
+    public function withVoorletters(string $Voorletters) : static
     {
         $new = clone $this;
         $new->Voorletters = $Voorletters;
@@ -303,16 +227,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getZoeknaam()
+    public function getZoeknaam() : string
     {
         return $this->Zoeknaam;
     }
 
     /**
      * @param string $Zoeknaam
-     * @return TRelatie
+     * @return static
      */
-    public function withZoeknaam($Zoeknaam)
+    public function withZoeknaam(string $Zoeknaam) : static
     {
         $new = clone $this;
         $new->Zoeknaam = $Zoeknaam;
@@ -323,16 +247,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam() : string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TRelatie
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam) : static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -343,16 +267,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getVoorvoegsels()
+    public function getVoorvoegsels() : string
     {
         return $this->Voorvoegsels;
     }
 
     /**
      * @param string $Voorvoegsels
-     * @return TRelatie
+     * @return static
      */
-    public function withVoorvoegsels($Voorvoegsels)
+    public function withVoorvoegsels(string $Voorvoegsels) : static
     {
         $new = clone $this;
         $new->Voorvoegsels = $Voorvoegsels;
@@ -363,16 +287,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getGeslacht()
+    public function getGeslacht() : string
     {
         return $this->Geslacht;
     }
 
     /**
      * @param string $Geslacht
-     * @return TRelatie
+     * @return static
      */
-    public function withGeslacht($Geslacht)
+    public function withGeslacht(string $Geslacht) : static
     {
         $new = clone $this;
         $new->Geslacht = $Geslacht;
@@ -381,18 +305,18 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @return TAdres
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
      */
-    public function getBezoekAdres()
+    public function getBezoekAdres() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
     {
         return $this->BezoekAdres;
     }
 
     /**
-     * @param TAdres $BezoekAdres
-     * @return TRelatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $BezoekAdres
+     * @return static
      */
-    public function withBezoekAdres($BezoekAdres)
+    public function withBezoekAdres(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $BezoekAdres) : static
     {
         $new = clone $this;
         $new->BezoekAdres = $BezoekAdres;
@@ -401,18 +325,18 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @return TAdres
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
      */
-    public function getPostAdres()
+    public function getPostAdres() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
     {
         return $this->PostAdres;
     }
 
     /**
-     * @param TAdres $PostAdres
-     * @return TRelatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $PostAdres
+     * @return static
      */
-    public function withPostAdres($PostAdres)
+    public function withPostAdres(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $PostAdres) : static
     {
         $new = clone $this;
         $new->PostAdres = $PostAdres;
@@ -421,18 +345,18 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getGeboortedatum()
+    public function getGeboortedatum() : \DateTimeInterface
     {
         return $this->Geboortedatum;
     }
 
     /**
-     * @param DateTimeInterface $Geboortedatum
-     * @return TRelatie
+     * @param \DateTimeInterface $Geboortedatum
+     * @return static
      */
-    public function withGeboortedatum($Geboortedatum)
+    public function withGeboortedatum(\DateTimeInterface $Geboortedatum) : static
     {
         $new = clone $this;
         $new->Geboortedatum = $Geboortedatum;
@@ -443,16 +367,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getGeboorteplaats()
+    public function getGeboorteplaats() : string
     {
         return $this->Geboorteplaats;
     }
 
     /**
      * @param string $Geboorteplaats
-     * @return TRelatie
+     * @return static
      */
-    public function withGeboorteplaats($Geboorteplaats)
+    public function withGeboorteplaats(string $Geboorteplaats) : static
     {
         $new = clone $this;
         $new->Geboorteplaats = $Geboorteplaats;
@@ -463,16 +387,16 @@ class TRelatie implements RequestInterface
     /**
      * @return int
      */
-    public function getBSN()
+    public function getBSN() : int
     {
         return $this->BSN;
     }
 
     /**
      * @param int $BSN
-     * @return TRelatie
+     * @return static
      */
-    public function withBSN($BSN)
+    public function withBSN(int $BSN) : static
     {
         $new = clone $this;
         $new->BSN = $BSN;
@@ -483,16 +407,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getRekening()
+    public function getRekening() : string
     {
         return $this->Rekening;
     }
 
     /**
      * @param string $Rekening
-     * @return TRelatie
+     * @return static
      */
-    public function withRekening($Rekening)
+    public function withRekening(string $Rekening) : static
     {
         $new = clone $this;
         $new->Rekening = $Rekening;
@@ -503,16 +427,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getTelefoon1()
+    public function getTelefoon1() : string
     {
         return $this->Telefoon1;
     }
 
     /**
      * @param string $Telefoon1
-     * @return TRelatie
+     * @return static
      */
-    public function withTelefoon1($Telefoon1)
+    public function withTelefoon1(string $Telefoon1) : static
     {
         $new = clone $this;
         $new->Telefoon1 = $Telefoon1;
@@ -523,16 +447,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getTelefoon2()
+    public function getTelefoon2() : string
     {
         return $this->Telefoon2;
     }
 
     /**
      * @param string $Telefoon2
-     * @return TRelatie
+     * @return static
      */
-    public function withTelefoon2($Telefoon2)
+    public function withTelefoon2(string $Telefoon2) : static
     {
         $new = clone $this;
         $new->Telefoon2 = $Telefoon2;
@@ -543,16 +467,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail() : string
     {
         return $this->Email;
     }
 
     /**
      * @param string $Email
-     * @return TRelatie
+     * @return static
      */
-    public function withEmail($Email)
+    public function withEmail(string $Email) : static
     {
         $new = clone $this;
         $new->Email = $Email;
@@ -563,16 +487,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getBurgerlijkeStaat()
+    public function getBurgerlijkeStaat() : string
     {
         return $this->BurgerlijkeStaat;
     }
 
     /**
      * @param string $BurgerlijkeStaat
-     * @return TRelatie
+     * @return static
      */
-    public function withBurgerlijkeStaat($BurgerlijkeStaat)
+    public function withBurgerlijkeStaat(string $BurgerlijkeStaat) : static
     {
         $new = clone $this;
         $new->BurgerlijkeStaat = $BurgerlijkeStaat;
@@ -583,16 +507,16 @@ class TRelatie implements RequestInterface
     /**
      * @return int
      */
-    public function getPartnerCode()
+    public function getPartnerCode() : int
     {
         return $this->PartnerCode;
     }
 
     /**
      * @param int $PartnerCode
-     * @return TRelatie
+     * @return static
      */
-    public function withPartnerCode($PartnerCode)
+    public function withPartnerCode(int $PartnerCode) : static
     {
         $new = clone $this;
         $new->PartnerCode = $PartnerCode;
@@ -603,16 +527,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getAutorisaties()
+    public function getAutorisaties() : string
     {
         return $this->Autorisaties;
     }
 
     /**
      * @param string $Autorisaties
-     * @return TRelatie
+     * @return static
      */
-    public function withAutorisaties($Autorisaties)
+    public function withAutorisaties(string $Autorisaties) : static
     {
         $new = clone $this;
         $new->Autorisaties = $Autorisaties;
@@ -623,16 +547,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getIdentificatiebewijs()
+    public function getIdentificatiebewijs() : string
     {
         return $this->Identificatiebewijs;
     }
 
     /**
      * @param string $Identificatiebewijs
-     * @return TRelatie
+     * @return static
      */
-    public function withIdentificatiebewijs($Identificatiebewijs)
+    public function withIdentificatiebewijs(string $Identificatiebewijs) : static
     {
         $new = clone $this;
         $new->Identificatiebewijs = $Identificatiebewijs;
@@ -643,16 +567,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getIdentificatieNummer()
+    public function getIdentificatieNummer() : string
     {
         return $this->IdentificatieNummer;
     }
 
     /**
      * @param string $IdentificatieNummer
-     * @return TRelatie
+     * @return static
      */
-    public function withIdentificatieNummer($IdentificatieNummer)
+    public function withIdentificatieNummer(string $IdentificatieNummer) : static
     {
         $new = clone $this;
         $new->IdentificatieNummer = $IdentificatieNummer;
@@ -661,18 +585,18 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getIdentificatieGeldig()
+    public function getIdentificatieGeldig() : \DateTimeInterface
     {
         return $this->IdentificatieGeldig;
     }
 
     /**
-     * @param DateTimeInterface $IdentificatieGeldig
-     * @return TRelatie
+     * @param \DateTimeInterface $IdentificatieGeldig
+     * @return static
      */
-    public function withIdentificatieGeldig($IdentificatieGeldig)
+    public function withIdentificatieGeldig(\DateTimeInterface $IdentificatieGeldig) : static
     {
         $new = clone $this;
         $new->IdentificatieGeldig = $IdentificatieGeldig;
@@ -681,18 +605,18 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @return KindArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\KindArray
      */
-    public function getKinderen()
+    public function getKinderen() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\KindArray
     {
         return $this->Kinderen;
     }
 
     /**
-     * @param KindArray $Kinderen
-     * @return TRelatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\KindArray $Kinderen
+     * @return static
      */
-    public function withKinderen($Kinderen)
+    public function withKinderen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\KindArray $Kinderen) : static
     {
         $new = clone $this;
         $new->Kinderen = $Kinderen;
@@ -703,16 +627,16 @@ class TRelatie implements RequestInterface
     /**
      * @return int
      */
-    public function getBedrijf()
+    public function getBedrijf() : int
     {
         return $this->Bedrijf;
     }
 
     /**
      * @param int $Bedrijf
-     * @return TRelatie
+     * @return static
      */
-    public function withBedrijf($Bedrijf)
+    public function withBedrijf(int $Bedrijf) : static
     {
         $new = clone $this;
         $new->Bedrijf = $Bedrijf;
@@ -723,16 +647,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getIBAN()
+    public function getIBAN() : string
     {
         return $this->IBAN;
     }
 
     /**
      * @param string $IBAN
-     * @return TRelatie
+     * @return static
      */
-    public function withIBAN($IBAN)
+    public function withIBAN(string $IBAN) : static
     {
         $new = clone $this;
         $new->IBAN = $IBAN;
@@ -743,16 +667,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getBIC()
+    public function getBIC() : string
     {
         return $this->BIC;
     }
 
     /**
      * @param string $BIC
-     * @return TRelatie
+     * @return static
      */
-    public function withBIC($BIC)
+    public function withBIC(string $BIC) : static
     {
         $new = clone $this;
         $new->BIC = $BIC;
@@ -763,16 +687,16 @@ class TRelatie implements RequestInterface
     /**
      * @return bool
      */
-    public function getInzakeRekening()
+    public function getInzakeRekening() : bool
     {
         return $this->InzakeRekening;
     }
 
     /**
      * @param bool $InzakeRekening
-     * @return TRelatie
+     * @return static
      */
-    public function withInzakeRekening($InzakeRekening)
+    public function withInzakeRekening(bool $InzakeRekening) : static
     {
         $new = clone $this;
         $new->InzakeRekening = $InzakeRekening;
@@ -783,16 +707,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getRekeningInzake()
+    public function getRekeningInzake() : string
     {
         return $this->RekeningInzake;
     }
 
     /**
      * @param string $RekeningInzake
-     * @return TRelatie
+     * @return static
      */
-    public function withRekeningInzake($RekeningInzake)
+    public function withRekeningInzake(string $RekeningInzake) : static
     {
         $new = clone $this;
         $new->RekeningInzake = $RekeningInzake;
@@ -803,16 +727,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getRekeningInzakeIBAN()
+    public function getRekeningInzakeIBAN() : string
     {
         return $this->RekeningInzakeIBAN;
     }
 
     /**
      * @param string $RekeningInzakeIBAN
-     * @return TRelatie
+     * @return static
      */
-    public function withRekeningInzakeIBAN($RekeningInzakeIBAN)
+    public function withRekeningInzakeIBAN(string $RekeningInzakeIBAN) : static
     {
         $new = clone $this;
         $new->RekeningInzakeIBAN = $RekeningInzakeIBAN;
@@ -823,16 +747,16 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getRekeningInzakeBIC()
+    public function getRekeningInzakeBIC() : string
     {
         return $this->RekeningInzakeBIC;
     }
 
     /**
      * @param string $RekeningInzakeBIC
-     * @return TRelatie
+     * @return static
      */
-    public function withRekeningInzakeBIC($RekeningInzakeBIC)
+    public function withRekeningInzakeBIC(string $RekeningInzakeBIC) : static
     {
         $new = clone $this;
         $new->RekeningInzakeBIC = $RekeningInzakeBIC;
@@ -841,18 +765,18 @@ class TRelatie implements RequestInterface
     }
 
     /**
-     * @return TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
      */
-    public function getKlantmanager()
+    public function getKlantmanager() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
     {
         return $this->Klantmanager;
     }
 
     /**
-     * @param TMedewerker $Klantmanager
-     * @return TRelatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Klantmanager
+     * @return static
      */
-    public function withKlantmanager($Klantmanager)
+    public function withKlantmanager(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Klantmanager) : static
     {
         $new = clone $this;
         $new->Klantmanager = $Klantmanager;
@@ -863,23 +787,21 @@ class TRelatie implements RequestInterface
     /**
      * @return string
      */
-    public function getPincode()
+    public function getPincode() : string
     {
         return $this->Pincode;
     }
 
     /**
      * @param string $Pincode
-     * @return TRelatie
+     * @return static
      */
-    public function withPincode($Pincode)
+    public function withPincode(string $Pincode) : static
     {
         $new = clone $this;
         $new->Pincode = $Pincode;
 
         return $new;
     }
-
-
 }
 

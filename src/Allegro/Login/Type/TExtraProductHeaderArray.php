@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TExtraProductHeaderArray implements RequestInterface
+class TExtraProductHeaderArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TExtraProductHeader>
+     */
+    private array $TExtraProductHeader;
 
     /**
-     * @var TExtraProductHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TExtraProductHeader>
      */
-    private $TExtraProductHeader;
-
-    /**
-     * Constructor
-     *
-     * @var TExtraProductHeader $TExtraProductHeader
-     */
-    public function __construct($TExtraProductHeader)
-    {
-        $this->TExtraProductHeader = $TExtraProductHeader;
-    }
-
-    /**
-     * @return TExtraProductHeader
-     */
-    public function getTExtraProductHeader()
+    public function getTExtraProductHeader() : array
     {
         return $this->TExtraProductHeader;
     }
 
     /**
-     * @param TExtraProductHeader $TExtraProductHeader
-     * @return TExtraProductHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TExtraProductHeader> $TExtraProductHeader
+     * @return static
      */
-    public function withTExtraProductHeader($TExtraProductHeader)
+    public function withTExtraProductHeader(array $TExtraProductHeader) : static
     {
         $new = clone $this;
         $new->TExtraProductHeader = $TExtraProductHeader;
 
         return $new;
     }
-
-
 }
 

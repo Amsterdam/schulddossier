@@ -2,47 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class PRSAfschriftReseveringArray implements RequestInterface
+class PRSAfschriftReseveringArray
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftReservering
-     */
-    private $TPRSAfschriftReservering;
-
-    /**
-     * Constructor
+     * tbv. PRS Online Afschrift reserveringen
      *
-     * @var TPRSAfschriftReservering $TPRSAfschriftReservering
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftReservering>
      */
-    public function __construct($TPRSAfschriftReservering)
-    {
-        $this->TPRSAfschriftReservering = $TPRSAfschriftReservering;
-    }
+    private array $TPRSAfschriftReservering;
 
     /**
-     * @return TPRSAfschriftReservering
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftReservering>
      */
-    public function getTPRSAfschriftReservering()
+    public function getTPRSAfschriftReservering() : array
     {
         return $this->TPRSAfschriftReservering;
     }
 
     /**
-     * @param TPRSAfschriftReservering $TPRSAfschriftReservering
-     * @return PRSAfschriftReseveringArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftReservering> $TPRSAfschriftReservering
+     * @return static
      */
-    public function withTPRSAfschriftReservering($TPRSAfschriftReservering)
+    public function withTPRSAfschriftReservering(array $TPRSAfschriftReservering) : static
     {
         $new = clone $this;
         $new->TPRSAfschriftReservering = $TPRSAfschriftReservering;
 
         return $new;
     }
-
-
 }
 

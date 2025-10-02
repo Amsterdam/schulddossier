@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBoxGeadresseerdeArray implements RequestInterface
+class TBBoxGeadresseerdeArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxGeadresseerde>
+     */
+    private array $TBBoxGeadresseerde;
 
     /**
-     * @var TBBoxGeadresseerde
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxGeadresseerde>
      */
-    private $TBBoxGeadresseerde;
-
-    /**
-     * Constructor
-     *
-     * @var TBBoxGeadresseerde $TBBoxGeadresseerde
-     */
-    public function __construct($TBBoxGeadresseerde)
-    {
-        $this->TBBoxGeadresseerde = $TBBoxGeadresseerde;
-    }
-
-    /**
-     * @return TBBoxGeadresseerde
-     */
-    public function getTBBoxGeadresseerde()
+    public function getTBBoxGeadresseerde() : array
     {
         return $this->TBBoxGeadresseerde;
     }
 
     /**
-     * @param TBBoxGeadresseerde $TBBoxGeadresseerde
-     * @return TBBoxGeadresseerdeArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxGeadresseerde> $TBBoxGeadresseerde
+     * @return static
      */
-    public function withTBBoxGeadresseerde($TBBoxGeadresseerde)
+    public function withTBBoxGeadresseerde(array $TBBoxGeadresseerde) : static
     {
         $new = clone $this;
         $new->TBBoxGeadresseerde = $TBBoxGeadresseerde;
 
         return $new;
     }
-
-
 }
 

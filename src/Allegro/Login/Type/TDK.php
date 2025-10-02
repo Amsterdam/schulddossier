@@ -2,152 +2,106 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use DateTimeInterface;
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TDK implements RequestInterface
+class TDK
 {
-
     /**
-     * @var TDKHeader
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader
      */
-    private $InfoHeader;
-
-    /**
-     * @var int
-     */
-    private $Opdrachtgever;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader $InfoHeader;
 
     /**
      * @var int
      */
-    private $OpdrachtgeverContact;
-
-    /**
-     * @var float
-     */
-    private $Contractlimiet;
-
-    /**
-     * @var float
-     */
-    private $MaandTermijn;
+    private int $Opdrachtgever;
 
     /**
      * @var int
      */
-    private $TheoretischeLooptijd;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumEersteAflossing;
+    private int $OpdrachtgeverContact;
 
     /**
      * @var float
      */
-    private $Saldo;
+    private float $Contractlimiet;
 
     /**
      * @var float
      */
-    private $Achterstand;
+    private float $MaandTermijn;
+
+    /**
+     * @var int
+     */
+    private int $TheoretischeLooptijd;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $DatumEersteAflossing;
 
     /**
      * @var float
      */
-    private $VrijOpneembaar;
+    private float $Saldo;
 
     /**
      * @var float
      */
-    private $EffectiefJaarpercentage;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumLaatsteBetaling;
+    private float $Achterstand;
 
     /**
      * @var float
      */
-    private $BedragLaatsteBetaling;
+    private float $VrijOpneembaar;
 
     /**
      * @var float
      */
-    private $VolledigVervroegdeAflossing;
+    private float $EffectiefJaarpercentage;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $DatumLaatsteBetaling;
+
+    /**
+     * @var float
+     */
+    private float $BedragLaatsteBetaling;
+
+    /**
+     * @var float
+     */
+    private float $VolledigVervroegdeAflossing;
 
     /**
      * @var string
      */
-    private $Medewerker;
+    private string $Medewerker;
 
     /**
      * @var int
      */
-    private $MedelenerCode;
+    private int $MedelenerCode;
 
     /**
      * @var float
      */
-    private $Maandpercentage;
+    private float $Maandpercentage;
 
     /**
-     * Constructor
-     *
-     * @var TDKHeader $InfoHeader
-     * @var int $Opdrachtgever
-     * @var int $OpdrachtgeverContact
-     * @var float $Contractlimiet
-     * @var float $MaandTermijn
-     * @var int $TheoretischeLooptijd
-     * @var DateTimeInterface $DatumEersteAflossing
-     * @var float $Saldo
-     * @var float $Achterstand
-     * @var float $VrijOpneembaar
-     * @var float $EffectiefJaarpercentage
-     * @var DateTimeInterface $DatumLaatsteBetaling
-     * @var float $BedragLaatsteBetaling
-     * @var float $VolledigVervroegdeAflossing
-     * @var string $Medewerker
-     * @var int $MedelenerCode
-     * @var float $Maandpercentage
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader
      */
-    public function __construct($InfoHeader, $Opdrachtgever, $OpdrachtgeverContact, $Contractlimiet, $MaandTermijn, $TheoretischeLooptijd, $DatumEersteAflossing, $Saldo, $Achterstand, $VrijOpneembaar, $EffectiefJaarpercentage, $DatumLaatsteBetaling, $BedragLaatsteBetaling, $VolledigVervroegdeAflossing, $Medewerker, $MedelenerCode, $Maandpercentage)
-    {
-        $this->InfoHeader = $InfoHeader;
-        $this->Opdrachtgever = $Opdrachtgever;
-        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-        $this->Contractlimiet = $Contractlimiet;
-        $this->MaandTermijn = $MaandTermijn;
-        $this->TheoretischeLooptijd = $TheoretischeLooptijd;
-        $this->DatumEersteAflossing = $DatumEersteAflossing;
-        $this->Saldo = $Saldo;
-        $this->Achterstand = $Achterstand;
-        $this->VrijOpneembaar = $VrijOpneembaar;
-        $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
-        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling;
-        $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
-        $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
-        $this->Medewerker = $Medewerker;
-        $this->MedelenerCode = $MedelenerCode;
-        $this->Maandpercentage = $Maandpercentage;
-    }
-
-    /**
-     * @return TDKHeader
-     */
-    public function getInfoHeader()
+    public function getInfoHeader() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader
     {
         return $this->InfoHeader;
     }
 
     /**
-     * @param TDKHeader $InfoHeader
-     * @return TDK
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader $InfoHeader
+     * @return static
      */
-    public function withInfoHeader($InfoHeader)
+    public function withInfoHeader(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader $InfoHeader) : static
     {
         $new = clone $this;
         $new->InfoHeader = $InfoHeader;
@@ -158,16 +112,16 @@ class TDK implements RequestInterface
     /**
      * @return int
      */
-    public function getOpdrachtgever()
+    public function getOpdrachtgever() : int
     {
         return $this->Opdrachtgever;
     }
 
     /**
      * @param int $Opdrachtgever
-     * @return TDK
+     * @return static
      */
-    public function withOpdrachtgever($Opdrachtgever)
+    public function withOpdrachtgever(int $Opdrachtgever) : static
     {
         $new = clone $this;
         $new->Opdrachtgever = $Opdrachtgever;
@@ -178,16 +132,16 @@ class TDK implements RequestInterface
     /**
      * @return int
      */
-    public function getOpdrachtgeverContact()
+    public function getOpdrachtgeverContact() : int
     {
         return $this->OpdrachtgeverContact;
     }
 
     /**
      * @param int $OpdrachtgeverContact
-     * @return TDK
+     * @return static
      */
-    public function withOpdrachtgeverContact($OpdrachtgeverContact)
+    public function withOpdrachtgeverContact(int $OpdrachtgeverContact) : static
     {
         $new = clone $this;
         $new->OpdrachtgeverContact = $OpdrachtgeverContact;
@@ -198,16 +152,16 @@ class TDK implements RequestInterface
     /**
      * @return float
      */
-    public function getContractlimiet()
+    public function getContractlimiet() : float
     {
         return $this->Contractlimiet;
     }
 
     /**
      * @param float $Contractlimiet
-     * @return TDK
+     * @return static
      */
-    public function withContractlimiet($Contractlimiet)
+    public function withContractlimiet(float $Contractlimiet) : static
     {
         $new = clone $this;
         $new->Contractlimiet = $Contractlimiet;
@@ -218,16 +172,16 @@ class TDK implements RequestInterface
     /**
      * @return float
      */
-    public function getMaandTermijn()
+    public function getMaandTermijn() : float
     {
         return $this->MaandTermijn;
     }
 
     /**
      * @param float $MaandTermijn
-     * @return TDK
+     * @return static
      */
-    public function withMaandTermijn($MaandTermijn)
+    public function withMaandTermijn(float $MaandTermijn) : static
     {
         $new = clone $this;
         $new->MaandTermijn = $MaandTermijn;
@@ -238,16 +192,16 @@ class TDK implements RequestInterface
     /**
      * @return int
      */
-    public function getTheoretischeLooptijd()
+    public function getTheoretischeLooptijd() : int
     {
         return $this->TheoretischeLooptijd;
     }
 
     /**
      * @param int $TheoretischeLooptijd
-     * @return TDK
+     * @return static
      */
-    public function withTheoretischeLooptijd($TheoretischeLooptijd)
+    public function withTheoretischeLooptijd(int $TheoretischeLooptijd) : static
     {
         $new = clone $this;
         $new->TheoretischeLooptijd = $TheoretischeLooptijd;
@@ -256,18 +210,18 @@ class TDK implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumEersteAflossing()
+    public function getDatumEersteAflossing() : \DateTimeInterface
     {
         return $this->DatumEersteAflossing;
     }
 
     /**
-     * @param DateTimeInterface $DatumEersteAflossing
-     * @return TDK
+     * @param \DateTimeInterface $DatumEersteAflossing
+     * @return static
      */
-    public function withDatumEersteAflossing($DatumEersteAflossing)
+    public function withDatumEersteAflossing(\DateTimeInterface $DatumEersteAflossing) : static
     {
         $new = clone $this;
         $new->DatumEersteAflossing = $DatumEersteAflossing;
@@ -278,16 +232,16 @@ class TDK implements RequestInterface
     /**
      * @return float
      */
-    public function getSaldo()
+    public function getSaldo() : float
     {
         return $this->Saldo;
     }
 
     /**
      * @param float $Saldo
-     * @return TDK
+     * @return static
      */
-    public function withSaldo($Saldo)
+    public function withSaldo(float $Saldo) : static
     {
         $new = clone $this;
         $new->Saldo = $Saldo;
@@ -298,16 +252,16 @@ class TDK implements RequestInterface
     /**
      * @return float
      */
-    public function getAchterstand()
+    public function getAchterstand() : float
     {
         return $this->Achterstand;
     }
 
     /**
      * @param float $Achterstand
-     * @return TDK
+     * @return static
      */
-    public function withAchterstand($Achterstand)
+    public function withAchterstand(float $Achterstand) : static
     {
         $new = clone $this;
         $new->Achterstand = $Achterstand;
@@ -318,16 +272,16 @@ class TDK implements RequestInterface
     /**
      * @return float
      */
-    public function getVrijOpneembaar()
+    public function getVrijOpneembaar() : float
     {
         return $this->VrijOpneembaar;
     }
 
     /**
      * @param float $VrijOpneembaar
-     * @return TDK
+     * @return static
      */
-    public function withVrijOpneembaar($VrijOpneembaar)
+    public function withVrijOpneembaar(float $VrijOpneembaar) : static
     {
         $new = clone $this;
         $new->VrijOpneembaar = $VrijOpneembaar;
@@ -338,16 +292,16 @@ class TDK implements RequestInterface
     /**
      * @return float
      */
-    public function getEffectiefJaarpercentage()
+    public function getEffectiefJaarpercentage() : float
     {
         return $this->EffectiefJaarpercentage;
     }
 
     /**
      * @param float $EffectiefJaarpercentage
-     * @return TDK
+     * @return static
      */
-    public function withEffectiefJaarpercentage($EffectiefJaarpercentage)
+    public function withEffectiefJaarpercentage(float $EffectiefJaarpercentage) : static
     {
         $new = clone $this;
         $new->EffectiefJaarpercentage = $EffectiefJaarpercentage;
@@ -356,18 +310,18 @@ class TDK implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumLaatsteBetaling()
+    public function getDatumLaatsteBetaling() : \DateTimeInterface
     {
         return $this->DatumLaatsteBetaling;
     }
 
     /**
-     * @param DateTimeInterface $DatumLaatsteBetaling
-     * @return TDK
+     * @param \DateTimeInterface $DatumLaatsteBetaling
+     * @return static
      */
-    public function withDatumLaatsteBetaling($DatumLaatsteBetaling)
+    public function withDatumLaatsteBetaling(\DateTimeInterface $DatumLaatsteBetaling) : static
     {
         $new = clone $this;
         $new->DatumLaatsteBetaling = $DatumLaatsteBetaling;
@@ -378,16 +332,16 @@ class TDK implements RequestInterface
     /**
      * @return float
      */
-    public function getBedragLaatsteBetaling()
+    public function getBedragLaatsteBetaling() : float
     {
         return $this->BedragLaatsteBetaling;
     }
 
     /**
      * @param float $BedragLaatsteBetaling
-     * @return TDK
+     * @return static
      */
-    public function withBedragLaatsteBetaling($BedragLaatsteBetaling)
+    public function withBedragLaatsteBetaling(float $BedragLaatsteBetaling) : static
     {
         $new = clone $this;
         $new->BedragLaatsteBetaling = $BedragLaatsteBetaling;
@@ -398,16 +352,16 @@ class TDK implements RequestInterface
     /**
      * @return float
      */
-    public function getVolledigVervroegdeAflossing()
+    public function getVolledigVervroegdeAflossing() : float
     {
         return $this->VolledigVervroegdeAflossing;
     }
 
     /**
      * @param float $VolledigVervroegdeAflossing
-     * @return TDK
+     * @return static
      */
-    public function withVolledigVervroegdeAflossing($VolledigVervroegdeAflossing)
+    public function withVolledigVervroegdeAflossing(float $VolledigVervroegdeAflossing) : static
     {
         $new = clone $this;
         $new->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
@@ -418,16 +372,16 @@ class TDK implements RequestInterface
     /**
      * @return string
      */
-    public function getMedewerker()
+    public function getMedewerker() : string
     {
         return $this->Medewerker;
     }
 
     /**
      * @param string $Medewerker
-     * @return TDK
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(string $Medewerker) : static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -438,16 +392,16 @@ class TDK implements RequestInterface
     /**
      * @return int
      */
-    public function getMedelenerCode()
+    public function getMedelenerCode() : int
     {
         return $this->MedelenerCode;
     }
 
     /**
      * @param int $MedelenerCode
-     * @return TDK
+     * @return static
      */
-    public function withMedelenerCode($MedelenerCode)
+    public function withMedelenerCode(int $MedelenerCode) : static
     {
         $new = clone $this;
         $new->MedelenerCode = $MedelenerCode;
@@ -458,23 +412,21 @@ class TDK implements RequestInterface
     /**
      * @return float
      */
-    public function getMaandpercentage()
+    public function getMaandpercentage() : float
     {
         return $this->Maandpercentage;
     }
 
     /**
      * @param float $Maandpercentage
-     * @return TDK
+     * @return static
      */
-    public function withMaandpercentage($Maandpercentage)
+    public function withMaandpercentage(float $Maandpercentage) : static
     {
         $new = clone $this;
         $new->Maandpercentage = $Maandpercentage;
 
         return $new;
     }
-
-
 }
 

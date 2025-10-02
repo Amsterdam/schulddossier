@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class AllegroDocumentArray implements RequestInterface
+class AllegroDocumentArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAllegroDocument>
+     */
+    private array $TAllegroDocument;
 
     /**
-     * @var TAllegroDocument
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAllegroDocument>
      */
-    private $TAllegroDocument;
-
-    /**
-     * Constructor
-     *
-     * @var TAllegroDocument $TAllegroDocument
-     */
-    public function __construct($TAllegroDocument)
-    {
-        $this->TAllegroDocument = $TAllegroDocument;
-    }
-
-    /**
-     * @return TAllegroDocument
-     */
-    public function getTAllegroDocument()
+    public function getTAllegroDocument() : array
     {
         return $this->TAllegroDocument;
     }
 
     /**
-     * @param TAllegroDocument $TAllegroDocument
-     * @return AllegroDocumentArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAllegroDocument> $TAllegroDocument
+     * @return static
      */
-    public function withTAllegroDocument($TAllegroDocument)
+    public function withTAllegroDocument(array $TAllegroDocument) : static
     {
         $new = clone $this;
         $new->TAllegroDocument = $TAllegroDocument;
 
         return $new;
     }
-
-
 }
 

@@ -2,61 +2,41 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use DateTimeInterface;
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TCasusPVAProduct implements RequestInterface
+class TCasusPVAProduct
 {
-
     /**
      * @var string
      */
-    private $Naam;
+    private string $Naam;
 
     /**
      * @var int
      */
-    private $IDAanvraag;
+    private int $IDAanvraag;
 
     /**
      * @var bool
      */
-    private $Geactiveerd;
+    private bool $Geactiveerd;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumActivering;
-
-    /**
-     * Constructor
-     *
-     * @var string $Naam
-     * @var int $IDAanvraag
-     * @var bool $Geactiveerd
-     * @var DateTimeInterface $DatumActivering
-     */
-    public function __construct($Naam, $IDAanvraag, $Geactiveerd, $DatumActivering)
-    {
-        $this->Naam = $Naam;
-        $this->IDAanvraag = $IDAanvraag;
-        $this->Geactiveerd = $Geactiveerd;
-        $this->DatumActivering = $DatumActivering;
-    }
+    private \DateTimeInterface $DatumActivering;
 
     /**
      * @return string
      */
-    public function getNaam()
+    public function getNaam() : string
     {
         return $this->Naam;
     }
 
     /**
      * @param string $Naam
-     * @return TCasusPVAProduct
+     * @return static
      */
-    public function withNaam($Naam)
+    public function withNaam(string $Naam) : static
     {
         $new = clone $this;
         $new->Naam = $Naam;
@@ -67,16 +47,16 @@ class TCasusPVAProduct implements RequestInterface
     /**
      * @return int
      */
-    public function getIDAanvraag()
+    public function getIDAanvraag() : int
     {
         return $this->IDAanvraag;
     }
 
     /**
      * @param int $IDAanvraag
-     * @return TCasusPVAProduct
+     * @return static
      */
-    public function withIDAanvraag($IDAanvraag)
+    public function withIDAanvraag(int $IDAanvraag) : static
     {
         $new = clone $this;
         $new->IDAanvraag = $IDAanvraag;
@@ -87,16 +67,16 @@ class TCasusPVAProduct implements RequestInterface
     /**
      * @return bool
      */
-    public function getGeactiveerd()
+    public function getGeactiveerd() : bool
     {
         return $this->Geactiveerd;
     }
 
     /**
      * @param bool $Geactiveerd
-     * @return TCasusPVAProduct
+     * @return static
      */
-    public function withGeactiveerd($Geactiveerd)
+    public function withGeactiveerd(bool $Geactiveerd) : static
     {
         $new = clone $this;
         $new->Geactiveerd = $Geactiveerd;
@@ -105,25 +85,23 @@ class TCasusPVAProduct implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumActivering()
+    public function getDatumActivering() : \DateTimeInterface
     {
         return $this->DatumActivering;
     }
 
     /**
-     * @param DateTimeInterface $DatumActivering
-     * @return TCasusPVAProduct
+     * @param \DateTimeInterface $DatumActivering
+     * @return static
      */
-    public function withDatumActivering($DatumActivering)
+    public function withDatumActivering(\DateTimeInterface $DatumActivering) : static
     {
         $new = clone $this;
         $new->DatumActivering = $DatumActivering;
 
         return $new;
     }
-
-
 }
 

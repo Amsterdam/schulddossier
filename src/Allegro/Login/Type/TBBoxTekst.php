@@ -2,60 +2,41 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBoxTekst implements RequestInterface
+class TBBoxTekst
 {
-
     /**
      * @var int
      */
-    private $Code;
+    private int $Code;
 
     /**
      * @var string
      */
-    private $Naam;
+    private string $Naam;
 
     /**
      * @var string
      */
-    private $Onderwerp;
+    private string $Onderwerp;
 
     /**
      * @var string
      */
-    private $Tekst;
-
-    /**
-     * Constructor
-     *
-     * @var int $Code
-     * @var string $Naam
-     * @var string $Onderwerp
-     * @var string $Tekst
-     */
-    public function __construct($Code, $Naam, $Onderwerp, $Tekst)
-    {
-        $this->Code = $Code;
-        $this->Naam = $Naam;
-        $this->Onderwerp = $Onderwerp;
-        $this->Tekst = $Tekst;
-    }
+    private string $Tekst;
 
     /**
      * @return int
      */
-    public function getCode()
+    public function getCode() : int
     {
         return $this->Code;
     }
 
     /**
      * @param int $Code
-     * @return TBBoxTekst
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(int $Code) : static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -66,16 +47,16 @@ class TBBoxTekst implements RequestInterface
     /**
      * @return string
      */
-    public function getNaam()
+    public function getNaam() : string
     {
         return $this->Naam;
     }
 
     /**
      * @param string $Naam
-     * @return TBBoxTekst
+     * @return static
      */
-    public function withNaam($Naam)
+    public function withNaam(string $Naam) : static
     {
         $new = clone $this;
         $new->Naam = $Naam;
@@ -86,16 +67,16 @@ class TBBoxTekst implements RequestInterface
     /**
      * @return string
      */
-    public function getOnderwerp()
+    public function getOnderwerp() : string
     {
         return $this->Onderwerp;
     }
 
     /**
      * @param string $Onderwerp
-     * @return TBBoxTekst
+     * @return static
      */
-    public function withOnderwerp($Onderwerp)
+    public function withOnderwerp(string $Onderwerp) : static
     {
         $new = clone $this;
         $new->Onderwerp = $Onderwerp;
@@ -106,23 +87,21 @@ class TBBoxTekst implements RequestInterface
     /**
      * @return string
      */
-    public function getTekst()
+    public function getTekst() : string
     {
         return $this->Tekst;
     }
 
     /**
      * @param string $Tekst
-     * @return TBBoxTekst
+     * @return static
      */
-    public function withTekst($Tekst)
+    public function withTekst(string $Tekst) : static
     {
         $new = clone $this;
         $new->Tekst = $Tekst;
 
         return $new;
     }
-
-
 }
 

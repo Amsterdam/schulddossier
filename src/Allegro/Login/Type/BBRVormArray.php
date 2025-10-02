@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class BBRVormArray implements RequestInterface
+class BBRVormArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBRVorm>
+     */
+    private array $TBBRVorm;
 
     /**
-     * @var TBBRVorm
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBRVorm>
      */
-    private $TBBRVorm;
-
-    /**
-     * Constructor
-     *
-     * @var TBBRVorm $TBBRVorm
-     */
-    public function __construct($TBBRVorm)
-    {
-        $this->TBBRVorm = $TBBRVorm;
-    }
-
-    /**
-     * @return TBBRVorm
-     */
-    public function getTBBRVorm()
+    public function getTBBRVorm() : array
     {
         return $this->TBBRVorm;
     }
 
     /**
-     * @param TBBRVorm $TBBRVorm
-     * @return BBRVormArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBRVorm> $TBBRVorm
+     * @return static
      */
-    public function withTBBRVorm($TBBRVorm)
+    public function withTBBRVorm(array $TBBRVorm) : static
     {
         $new = clone $this;
         $new->TBBRVorm = $TBBRVorm;
 
         return $new;
     }
-
-
 }
 

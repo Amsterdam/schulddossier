@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class BBRBegunstigdeArray implements RequestInterface
+class BBRBegunstigdeArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBRBegunstigde>
+     */
+    private array $TBBRBegunstigde;
 
     /**
-     * @var TBBRBegunstigde
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBRBegunstigde>
      */
-    private $TBBRBegunstigde;
-
-    /**
-     * Constructor
-     *
-     * @var TBBRBegunstigde $TBBRBegunstigde
-     */
-    public function __construct($TBBRBegunstigde)
-    {
-        $this->TBBRBegunstigde = $TBBRBegunstigde;
-    }
-
-    /**
-     * @return TBBRBegunstigde
-     */
-    public function getTBBRBegunstigde()
+    public function getTBBRBegunstigde() : array
     {
         return $this->TBBRBegunstigde;
     }
 
     /**
-     * @param TBBRBegunstigde $TBBRBegunstigde
-     * @return BBRBegunstigdeArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBRBegunstigde> $TBBRBegunstigde
+     * @return static
      */
-    public function withTBBRBegunstigde($TBBRBegunstigde)
+    public function withTBBRBegunstigde(array $TBBRBegunstigde) : static
     {
         $new = clone $this;
         $new->TBBRBegunstigde = $TBBRBegunstigde;
 
         return $new;
     }
-
-
 }
 

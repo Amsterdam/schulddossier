@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class BijlageArray implements RequestInterface
+class BijlageArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBijlage>
+     */
+    private array $TBijlage;
 
     /**
-     * @var TBijlage
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBijlage>
      */
-    private $TBijlage;
-
-    /**
-     * Constructor
-     *
-     * @var TBijlage $TBijlage
-     */
-    public function __construct($TBijlage)
-    {
-        $this->TBijlage = $TBijlage;
-    }
-
-    /**
-     * @return TBijlage
-     */
-    public function getTBijlage()
+    public function getTBijlage() : array
     {
         return $this->TBijlage;
     }
 
     /**
-     * @param TBijlage $TBijlage
-     * @return BijlageArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBijlage> $TBijlage
+     * @return static
      */
-    public function withTBijlage($TBijlage)
+    public function withTBijlage(array $TBijlage) : static
     {
         $new = clone $this;
         $new->TBijlage = $TBijlage;
 
         return $new;
     }
-
-
 }
 

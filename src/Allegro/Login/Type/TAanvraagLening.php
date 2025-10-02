@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAanvraagLening implements RequestInterface
+class TAanvraagLening extends TAanvraag
 {
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldArray
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldArray $Schulden;
 
     /**
-     * @var SchuldArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldArray
      */
-    private $Schulden;
-
-    /**
-     * Constructor
-     *
-     * @var SchuldArray $Schulden
-     */
-    public function __construct($Schulden)
-    {
-        $this->Schulden = $Schulden;
-    }
-
-    /**
-     * @return SchuldArray
-     */
-    public function getSchulden()
+    public function getSchulden() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldArray
     {
         return $this->Schulden;
     }
 
     /**
-     * @param SchuldArray $Schulden
-     * @return TAanvraagLening
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldArray $Schulden
+     * @return static
      */
-    public function withSchulden($Schulden)
+    public function withSchulden(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldArray $Schulden) : static
     {
         $new = clone $this;
         $new->Schulden = $Schulden;
 
         return $new;
     }
-
-
 }
 

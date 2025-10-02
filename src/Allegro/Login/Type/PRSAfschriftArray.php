@@ -2,46 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class PRSAfschriftArray implements RequestInterface
+class PRSAfschriftArray
 {
-
     /**
-     * @var TPRSAfschrift
-     */
-    private $TPRSAfschrift;
-
-    /**
-     * Constructor
+     * Tbv. PRS Online Afschriften
      *
-     * @var TPRSAfschrift $TPRSAfschrift
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschrift>
      */
-    public function __construct($TPRSAfschrift)
-    {
-        $this->TPRSAfschrift = $TPRSAfschrift;
-    }
+    private array $TPRSAfschrift;
 
     /**
-     * @return TPRSAfschrift
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschrift>
      */
-    public function getTPRSAfschrift()
+    public function getTPRSAfschrift() : array
     {
         return $this->TPRSAfschrift;
     }
 
     /**
-     * @param TPRSAfschrift $TPRSAfschrift
-     * @return PRSAfschriftArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschrift> $TPRSAfschrift
+     * @return static
      */
-    public function withTPRSAfschrift($TPRSAfschrift)
+    public function withTPRSAfschrift(array $TPRSAfschrift) : static
     {
         $new = clone $this;
         $new->TPRSAfschrift = $TPRSAfschrift;
 
         return $new;
     }
-
-
 }
 

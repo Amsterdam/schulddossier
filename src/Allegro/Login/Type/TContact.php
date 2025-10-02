@@ -2,53 +2,36 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TContact implements RequestInterface
+class TContact
 {
+    /**
+     * @var string
+     */
+    private string $TelefoonThuis;
 
     /**
      * @var string
      */
-    private $TelefoonThuis;
+    private string $TelefoonMobiel;
 
     /**
      * @var string
      */
-    private $TelefoonMobiel;
-
-    /**
-     * @var string
-     */
-    private $EmailAdres;
-
-    /**
-     * Constructor
-     *
-     * @var string $TelefoonThuis
-     * @var string $TelefoonMobiel
-     * @var string $EmailAdres
-     */
-    public function __construct($TelefoonThuis, $TelefoonMobiel, $EmailAdres)
-    {
-        $this->TelefoonThuis = $TelefoonThuis;
-        $this->TelefoonMobiel = $TelefoonMobiel;
-        $this->EmailAdres = $EmailAdres;
-    }
+    private string $EmailAdres;
 
     /**
      * @return string
      */
-    public function getTelefoonThuis()
+    public function getTelefoonThuis() : string
     {
         return $this->TelefoonThuis;
     }
 
     /**
      * @param string $TelefoonThuis
-     * @return TContact
+     * @return static
      */
-    public function withTelefoonThuis($TelefoonThuis)
+    public function withTelefoonThuis(string $TelefoonThuis) : static
     {
         $new = clone $this;
         $new->TelefoonThuis = $TelefoonThuis;
@@ -59,16 +42,16 @@ class TContact implements RequestInterface
     /**
      * @return string
      */
-    public function getTelefoonMobiel()
+    public function getTelefoonMobiel() : string
     {
         return $this->TelefoonMobiel;
     }
 
     /**
      * @param string $TelefoonMobiel
-     * @return TContact
+     * @return static
      */
-    public function withTelefoonMobiel($TelefoonMobiel)
+    public function withTelefoonMobiel(string $TelefoonMobiel) : static
     {
         $new = clone $this;
         $new->TelefoonMobiel = $TelefoonMobiel;
@@ -79,23 +62,21 @@ class TContact implements RequestInterface
     /**
      * @return string
      */
-    public function getEmailAdres()
+    public function getEmailAdres() : string
     {
         return $this->EmailAdres;
     }
 
     /**
      * @param string $EmailAdres
-     * @return TContact
+     * @return static
      */
-    public function withEmailAdres($EmailAdres)
+    public function withEmailAdres(string $EmailAdres) : static
     {
         $new = clone $this;
         $new->EmailAdres = $EmailAdres;
 
         return $new;
     }
-
-
 }
 

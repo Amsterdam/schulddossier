@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class StringArrayArray implements RequestInterface
+class StringArrayArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray>
+     */
+    private array $StringArray;
 
     /**
-     * @var StringArray
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray>
      */
-    private $StringArray;
-
-    /**
-     * Constructor
-     *
-     * @var StringArray $StringArray
-     */
-    public function __construct($StringArray)
-    {
-        $this->StringArray = $StringArray;
-    }
-
-    /**
-     * @return StringArray
-     */
-    public function getStringArray()
+    public function getStringArray() : array
     {
         return $this->StringArray;
     }
 
     /**
-     * @param StringArray $StringArray
-     * @return StringArrayArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray> $StringArray
+     * @return static
      */
-    public function withStringArray($StringArray)
+    public function withStringArray(array $StringArray) : static
     {
         $new = clone $this;
         $new->StringArray = $StringArray;
 
         return $new;
     }
-
-
 }
 

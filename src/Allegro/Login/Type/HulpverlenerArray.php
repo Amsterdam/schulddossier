@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class HulpverlenerArray implements RequestInterface
+class HulpverlenerArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\THulpverlener>
+     */
+    private array $THulpverlener;
 
     /**
-     * @var THulpverlener
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\THulpverlener>
      */
-    private $THulpverlener;
-
-    /**
-     * Constructor
-     *
-     * @var THulpverlener $THulpverlener
-     */
-    public function __construct($THulpverlener)
-    {
-        $this->THulpverlener = $THulpverlener;
-    }
-
-    /**
-     * @return THulpverlener
-     */
-    public function getTHulpverlener()
+    public function getTHulpverlener() : array
     {
         return $this->THulpverlener;
     }
 
     /**
-     * @param THulpverlener $THulpverlener
-     * @return HulpverlenerArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\THulpverlener> $THulpverlener
+     * @return static
      */
-    public function withTHulpverlener($THulpverlener)
+    public function withTHulpverlener(array $THulpverlener) : static
     {
         $new = clone $this;
         $new->THulpverlener = $THulpverlener;
 
         return $new;
     }
-
-
 }
 

@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SRVAanvraagHeaderArray implements RequestInterface
+class SRVAanvraagHeaderArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader>
+     */
+    private array $TSRVAanvraagHeader;
 
     /**
-     * @var TSRVAanvraagHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader>
      */
-    private $TSRVAanvraagHeader;
-
-    /**
-     * Constructor
-     *
-     * @var TSRVAanvraagHeader $TSRVAanvraagHeader
-     */
-    public function __construct($TSRVAanvraagHeader)
-    {
-        $this->TSRVAanvraagHeader = $TSRVAanvraagHeader;
-    }
-
-    /**
-     * @return TSRVAanvraagHeader
-     */
-    public function getTSRVAanvraagHeader()
+    public function getTSRVAanvraagHeader() : array
     {
         return $this->TSRVAanvraagHeader;
     }
 
     /**
-     * @param TSRVAanvraagHeader $TSRVAanvraagHeader
-     * @return SRVAanvraagHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader> $TSRVAanvraagHeader
+     * @return static
      */
-    public function withTSRVAanvraagHeader($TSRVAanvraagHeader)
+    public function withTSRVAanvraagHeader(array $TSRVAanvraagHeader) : static
     {
         $new = clone $this;
         $new->TSRVAanvraagHeader = $TSRVAanvraagHeader;
 
         return $new;
     }
-
-
 }
 

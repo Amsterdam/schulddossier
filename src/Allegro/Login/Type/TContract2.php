@@ -2,60 +2,41 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TContract2 implements RequestInterface
+class TContract2
 {
+    /**
+     * @var int
+     */
+    private int $ContractCode;
 
     /**
      * @var int
      */
-    private $ContractCode;
-
-    /**
-     * @var int
-     */
-    private $ContractVolgnummer;
+    private int $ContractVolgnummer;
 
     /**
      * @var string
      */
-    private $ContractSoort;
+    private string $ContractSoort;
 
     /**
      * @var string
      */
-    private $ContractVolgnrSoort;
-
-    /**
-     * Constructor
-     *
-     * @var int $ContractCode
-     * @var int $ContractVolgnummer
-     * @var string $ContractSoort
-     * @var string $ContractVolgnrSoort
-     */
-    public function __construct($ContractCode, $ContractVolgnummer, $ContractSoort, $ContractVolgnrSoort)
-    {
-        $this->ContractCode = $ContractCode;
-        $this->ContractVolgnummer = $ContractVolgnummer;
-        $this->ContractSoort = $ContractSoort;
-        $this->ContractVolgnrSoort = $ContractVolgnrSoort;
-    }
+    private string $ContractVolgnrSoort;
 
     /**
      * @return int
      */
-    public function getContractCode()
+    public function getContractCode() : int
     {
         return $this->ContractCode;
     }
 
     /**
      * @param int $ContractCode
-     * @return TContract2
+     * @return static
      */
-    public function withContractCode($ContractCode)
+    public function withContractCode(int $ContractCode) : static
     {
         $new = clone $this;
         $new->ContractCode = $ContractCode;
@@ -66,16 +47,16 @@ class TContract2 implements RequestInterface
     /**
      * @return int
      */
-    public function getContractVolgnummer()
+    public function getContractVolgnummer() : int
     {
         return $this->ContractVolgnummer;
     }
 
     /**
      * @param int $ContractVolgnummer
-     * @return TContract2
+     * @return static
      */
-    public function withContractVolgnummer($ContractVolgnummer)
+    public function withContractVolgnummer(int $ContractVolgnummer) : static
     {
         $new = clone $this;
         $new->ContractVolgnummer = $ContractVolgnummer;
@@ -86,16 +67,16 @@ class TContract2 implements RequestInterface
     /**
      * @return string
      */
-    public function getContractSoort()
+    public function getContractSoort() : string
     {
         return $this->ContractSoort;
     }
 
     /**
      * @param string $ContractSoort
-     * @return TContract2
+     * @return static
      */
-    public function withContractSoort($ContractSoort)
+    public function withContractSoort(string $ContractSoort) : static
     {
         $new = clone $this;
         $new->ContractSoort = $ContractSoort;
@@ -106,23 +87,21 @@ class TContract2 implements RequestInterface
     /**
      * @return string
      */
-    public function getContractVolgnrSoort()
+    public function getContractVolgnrSoort() : string
     {
         return $this->ContractVolgnrSoort;
     }
 
     /**
      * @param string $ContractVolgnrSoort
-     * @return TContract2
+     * @return static
      */
-    public function withContractVolgnrSoort($ContractVolgnrSoort)
+    public function withContractVolgnrSoort(string $ContractVolgnrSoort) : static
     {
         $new = clone $this;
         $new->ContractVolgnrSoort = $ContractVolgnrSoort;
 
         return $new;
     }
-
-
 }
 

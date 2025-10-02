@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SBHeaderArray implements RequestInterface
+class SBHeaderArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader>
+     */
+    private array $TSBHeader;
 
     /**
-     * @var TSBHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader>
      */
-    private $TSBHeader;
-
-    /**
-     * Constructor
-     *
-     * @var TSBHeader $TSBHeader
-     */
-    public function __construct($TSBHeader)
-    {
-        $this->TSBHeader = $TSBHeader;
-    }
-
-    /**
-     * @return TSBHeader
-     */
-    public function getTSBHeader()
+    public function getTSBHeader() : array
     {
         return $this->TSBHeader;
     }
 
     /**
-     * @param TSBHeader $TSBHeader
-     * @return SBHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader> $TSBHeader
+     * @return static
      */
-    public function withTSBHeader($TSBHeader)
+    public function withTSBHeader(array $TSBHeader) : static
     {
         $new = clone $this;
         $new->TSBHeader = $TSBHeader;
 
         return $new;
     }
-
-
 }
 

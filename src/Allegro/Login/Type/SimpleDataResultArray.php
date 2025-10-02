@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleDataResultArray implements RequestInterface
+class SimpleDataResultArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataResult>
+     */
+    private array $SimpleDataResult;
 
     /**
-     * @var SimpleDataResult
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataResult>
      */
-    private $SimpleDataResult;
-
-    /**
-     * Constructor
-     *
-     * @var SimpleDataResult $SimpleDataResult
-     */
-    public function __construct($SimpleDataResult)
-    {
-        $this->SimpleDataResult = $SimpleDataResult;
-    }
-
-    /**
-     * @return SimpleDataResult
-     */
-    public function getSimpleDataResult()
+    public function getSimpleDataResult() : array
     {
         return $this->SimpleDataResult;
     }
 
     /**
-     * @param SimpleDataResult $SimpleDataResult
-     * @return SimpleDataResultArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataResult> $SimpleDataResult
+     * @return static
      */
-    public function withSimpleDataResult($SimpleDataResult)
+    public function withSimpleDataResult(array $SimpleDataResult) : static
     {
         $new = clone $this;
         $new->SimpleDataResult = $SimpleDataResult;
 
         return $new;
     }
-
-
 }
 

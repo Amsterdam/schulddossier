@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPRSMutaties implements RequestInterface
+class TPRSMutaties
 {
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray $Mutaties;
 
     /**
-     * @var PRSMutatieArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray
      */
-    private $Mutaties;
-
-    /**
-     * Constructor
-     *
-     * @var PRSMutatieArray $Mutaties
-     */
-    public function __construct($Mutaties)
-    {
-        $this->Mutaties = $Mutaties;
-    }
-
-    /**
-     * @return PRSMutatieArray
-     */
-    public function getMutaties()
+    public function getMutaties() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray
     {
         return $this->Mutaties;
     }
 
     /**
-     * @param PRSMutatieArray $Mutaties
-     * @return TPRSMutaties
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray $Mutaties
+     * @return static
      */
-    public function withMutaties($Mutaties)
+    public function withMutaties(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray $Mutaties) : static
     {
         $new = clone $this;
         $new->Mutaties = $Mutaties;
 
         return $new;
     }
-
-
 }
 

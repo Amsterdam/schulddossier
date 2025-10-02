@@ -2,61 +2,41 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use DateTimeInterface;
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSaldoReservering implements RequestInterface
+class TSaldoReservering
 {
-
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $Datum;
+    private \DateTimeInterface $Datum;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
      * @var float
      */
-    private $Saldo;
+    private float $Saldo;
 
     /**
-     * Constructor
-     *
-     * @var DateTimeInterface $Datum
-     * @var int $Volgnummer
-     * @var string $Omschrijving
-     * @var float $Saldo
+     * @return \DateTimeInterface
      */
-    public function __construct($Datum, $Volgnummer, $Omschrijving, $Saldo)
-    {
-        $this->Datum = $Datum;
-        $this->Volgnummer = $Volgnummer;
-        $this->Omschrijving = $Omschrijving;
-        $this->Saldo = $Saldo;
-    }
-
-    /**
-     * @return DateTimeInterface
-     */
-    public function getDatum()
+    public function getDatum() : \DateTimeInterface
     {
         return $this->Datum;
     }
 
     /**
-     * @param DateTimeInterface $Datum
-     * @return TSaldoReservering
+     * @param \DateTimeInterface $Datum
+     * @return static
      */
-    public function withDatum($Datum)
+    public function withDatum(\DateTimeInterface $Datum) : static
     {
         $new = clone $this;
         $new->Datum = $Datum;
@@ -67,16 +47,16 @@ class TSaldoReservering implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer() : int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TSaldoReservering
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer) : static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -87,16 +67,16 @@ class TSaldoReservering implements RequestInterface
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving() : string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TSaldoReservering
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving) : static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -107,23 +87,21 @@ class TSaldoReservering implements RequestInterface
     /**
      * @return float
      */
-    public function getSaldo()
+    public function getSaldo() : float
     {
         return $this->Saldo;
     }
 
     /**
      * @param float $Saldo
-     * @return TSaldoReservering
+     * @return static
      */
-    public function withSaldo($Saldo)
+    public function withSaldo(float $Saldo) : static
     {
         $new = clone $this;
         $new->Saldo = $Saldo;
 
         return $new;
     }
-
-
 }
 

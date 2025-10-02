@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleDeltaChangeArray implements RequestInterface
+class SimpleDeltaChangeArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChange>
+     */
+    private array $SimpleDeltaChange;
 
     /**
-     * @var SimpleDeltaChange
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChange>
      */
-    private $SimpleDeltaChange;
-
-    /**
-     * Constructor
-     *
-     * @var SimpleDeltaChange $SimpleDeltaChange
-     */
-    public function __construct($SimpleDeltaChange)
-    {
-        $this->SimpleDeltaChange = $SimpleDeltaChange;
-    }
-
-    /**
-     * @return SimpleDeltaChange
-     */
-    public function getSimpleDeltaChange()
+    public function getSimpleDeltaChange() : array
     {
         return $this->SimpleDeltaChange;
     }
 
     /**
-     * @param SimpleDeltaChange $SimpleDeltaChange
-     * @return SimpleDeltaChangeArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChange> $SimpleDeltaChange
+     * @return static
      */
-    public function withSimpleDeltaChange($SimpleDeltaChange)
+    public function withSimpleDeltaChange(array $SimpleDeltaChange) : static
     {
         $new = clone $this;
         $new->SimpleDeltaChange = $SimpleDeltaChange;
 
         return $new;
     }
-
-
 }
 

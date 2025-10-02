@@ -2,96 +2,66 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use DateTimeInterface;
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TCasusPVA implements RequestInterface
+class TCasusPVA
 {
-
     /**
      * @var int
      */
-    private $VolgnummerPVA;
+    private int $VolgnummerPVA;
 
     /**
      * @var string
      */
-    private $MedewerkerPVA;
+    private string $MedewerkerPVA;
 
     /**
      * @var string
      */
-    private $TeamPVA;
+    private string $TeamPVA;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumPVA;
+    private \DateTimeInterface $DatumPVA;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumPVAEinde;
+    private \DateTimeInterface $DatumPVAEinde;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumFiattering;
+    private \DateTimeInterface $DatumFiattering;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumFiatteringEinde;
+    private \DateTimeInterface $DatumFiatteringEinde;
 
     /**
      * @var bool
      */
-    private $Gefiatteerd;
+    private bool $Gefiatteerd;
 
     /**
-     * @var CasusPVAProductArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAProductArray
      */
-    private $Producten;
-
-    /**
-     * Constructor
-     *
-     * @var int $VolgnummerPVA
-     * @var string $MedewerkerPVA
-     * @var string $TeamPVA
-     * @var DateTimeInterface $DatumPVA
-     * @var DateTimeInterface $DatumPVAEinde
-     * @var DateTimeInterface $DatumFiattering
-     * @var DateTimeInterface $DatumFiatteringEinde
-     * @var bool $Gefiatteerd
-     * @var CasusPVAProductArray $Producten
-     */
-    public function __construct($VolgnummerPVA, $MedewerkerPVA, $TeamPVA, $DatumPVA, $DatumPVAEinde, $DatumFiattering, $DatumFiatteringEinde, $Gefiatteerd, $Producten)
-    {
-        $this->VolgnummerPVA = $VolgnummerPVA;
-        $this->MedewerkerPVA = $MedewerkerPVA;
-        $this->TeamPVA = $TeamPVA;
-        $this->DatumPVA = $DatumPVA;
-        $this->DatumPVAEinde = $DatumPVAEinde;
-        $this->DatumFiattering = $DatumFiattering;
-        $this->DatumFiatteringEinde = $DatumFiatteringEinde;
-        $this->Gefiatteerd = $Gefiatteerd;
-        $this->Producten = $Producten;
-    }
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAProductArray $Producten;
 
     /**
      * @return int
      */
-    public function getVolgnummerPVA()
+    public function getVolgnummerPVA() : int
     {
         return $this->VolgnummerPVA;
     }
 
     /**
      * @param int $VolgnummerPVA
-     * @return TCasusPVA
+     * @return static
      */
-    public function withVolgnummerPVA($VolgnummerPVA)
+    public function withVolgnummerPVA(int $VolgnummerPVA) : static
     {
         $new = clone $this;
         $new->VolgnummerPVA = $VolgnummerPVA;
@@ -102,16 +72,16 @@ class TCasusPVA implements RequestInterface
     /**
      * @return string
      */
-    public function getMedewerkerPVA()
+    public function getMedewerkerPVA() : string
     {
         return $this->MedewerkerPVA;
     }
 
     /**
      * @param string $MedewerkerPVA
-     * @return TCasusPVA
+     * @return static
      */
-    public function withMedewerkerPVA($MedewerkerPVA)
+    public function withMedewerkerPVA(string $MedewerkerPVA) : static
     {
         $new = clone $this;
         $new->MedewerkerPVA = $MedewerkerPVA;
@@ -122,16 +92,16 @@ class TCasusPVA implements RequestInterface
     /**
      * @return string
      */
-    public function getTeamPVA()
+    public function getTeamPVA() : string
     {
         return $this->TeamPVA;
     }
 
     /**
      * @param string $TeamPVA
-     * @return TCasusPVA
+     * @return static
      */
-    public function withTeamPVA($TeamPVA)
+    public function withTeamPVA(string $TeamPVA) : static
     {
         $new = clone $this;
         $new->TeamPVA = $TeamPVA;
@@ -140,18 +110,18 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumPVA()
+    public function getDatumPVA() : \DateTimeInterface
     {
         return $this->DatumPVA;
     }
 
     /**
-     * @param DateTimeInterface $DatumPVA
-     * @return TCasusPVA
+     * @param \DateTimeInterface $DatumPVA
+     * @return static
      */
-    public function withDatumPVA($DatumPVA)
+    public function withDatumPVA(\DateTimeInterface $DatumPVA) : static
     {
         $new = clone $this;
         $new->DatumPVA = $DatumPVA;
@@ -160,18 +130,18 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumPVAEinde()
+    public function getDatumPVAEinde() : \DateTimeInterface
     {
         return $this->DatumPVAEinde;
     }
 
     /**
-     * @param DateTimeInterface $DatumPVAEinde
-     * @return TCasusPVA
+     * @param \DateTimeInterface $DatumPVAEinde
+     * @return static
      */
-    public function withDatumPVAEinde($DatumPVAEinde)
+    public function withDatumPVAEinde(\DateTimeInterface $DatumPVAEinde) : static
     {
         $new = clone $this;
         $new->DatumPVAEinde = $DatumPVAEinde;
@@ -180,18 +150,18 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumFiattering()
+    public function getDatumFiattering() : \DateTimeInterface
     {
         return $this->DatumFiattering;
     }
 
     /**
-     * @param DateTimeInterface $DatumFiattering
-     * @return TCasusPVA
+     * @param \DateTimeInterface $DatumFiattering
+     * @return static
      */
-    public function withDatumFiattering($DatumFiattering)
+    public function withDatumFiattering(\DateTimeInterface $DatumFiattering) : static
     {
         $new = clone $this;
         $new->DatumFiattering = $DatumFiattering;
@@ -200,18 +170,18 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumFiatteringEinde()
+    public function getDatumFiatteringEinde() : \DateTimeInterface
     {
         return $this->DatumFiatteringEinde;
     }
 
     /**
-     * @param DateTimeInterface $DatumFiatteringEinde
-     * @return TCasusPVA
+     * @param \DateTimeInterface $DatumFiatteringEinde
+     * @return static
      */
-    public function withDatumFiatteringEinde($DatumFiatteringEinde)
+    public function withDatumFiatteringEinde(\DateTimeInterface $DatumFiatteringEinde) : static
     {
         $new = clone $this;
         $new->DatumFiatteringEinde = $DatumFiatteringEinde;
@@ -222,16 +192,16 @@ class TCasusPVA implements RequestInterface
     /**
      * @return bool
      */
-    public function getGefiatteerd()
+    public function getGefiatteerd() : bool
     {
         return $this->Gefiatteerd;
     }
 
     /**
      * @param bool $Gefiatteerd
-     * @return TCasusPVA
+     * @return static
      */
-    public function withGefiatteerd($Gefiatteerd)
+    public function withGefiatteerd(bool $Gefiatteerd) : static
     {
         $new = clone $this;
         $new->Gefiatteerd = $Gefiatteerd;
@@ -240,25 +210,23 @@ class TCasusPVA implements RequestInterface
     }
 
     /**
-     * @return CasusPVAProductArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAProductArray
      */
-    public function getProducten()
+    public function getProducten() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAProductArray
     {
         return $this->Producten;
     }
 
     /**
-     * @param CasusPVAProductArray $Producten
-     * @return TCasusPVA
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAProductArray $Producten
+     * @return static
      */
-    public function withProducten($Producten)
+    public function withProducten(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAProductArray $Producten) : static
     {
         $new = clone $this;
         $new->Producten = $Producten;
 
         return $new;
     }
-
-
 }
 

@@ -2,194 +2,136 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use DateTimeInterface;
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSB implements RequestInterface
+class TSB
 {
-
     /**
-     * @var TSBHeader
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader
      */
-    private $InfoHeader;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader $InfoHeader;
 
     /**
      * @var string
      */
-    private $Medewerker;
+    private string $Medewerker;
 
     /**
      * @var int
      */
-    private $Opdrachtgever;
+    private int $Opdrachtgever;
 
     /**
      * @var int
      */
-    private $OpdrachtgeverContact;
+    private int $OpdrachtgeverContact;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $Startdatum;
+    private \DateTimeInterface $Startdatum;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $StartdatumEersteBetaling;
+    private \DateTimeInterface $StartdatumEersteBetaling;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $TheoEinddatum;
-
-    /**
-     * @var int
-     */
-    private $TotaalAantalMaanden;
+    private \DateTimeInterface $TheoEinddatum;
 
     /**
      * @var int
      */
-    private $TotaalAantalMaandenVerstreken;
+    private int $TotaalAantalMaanden;
 
     /**
      * @var int
      */
-    private $TotaalAantalMaandenResterend;
-
-    /**
-     * @var float
-     */
-    private $VTLB;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumBerekening;
-
-    /**
-     * @var float
-     */
-    private $BrutoAflosCapaciteitMaand;
-
-    /**
-     * @var float
-     */
-    private $KostenFinancieelBeheerMaand;
-
-    /**
-     * @var float
-     */
-    private $KostenSchuldhulpverleningMaand;
-
-    /**
-     * @var float
-     */
-    private $NettoAflosCapaciteitMaand;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumOverzicht;
+    private int $TotaalAantalMaandenVerstreken;
 
     /**
      * @var int
      */
-    private $PartnerCode;
+    private int $TotaalAantalMaandenResterend;
 
     /**
      * @var float
      */
-    private $TotaalSchuldbedrag;
+    private float $VTLB;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $DatumBerekening;
 
     /**
      * @var float
      */
-    private $MaximumKosten;
+    private float $BrutoAflosCapaciteitMaand;
 
     /**
      * @var float
      */
-    private $BetaaldeKosten;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumLaatsteBetaling;
+    private float $KostenFinancieelBeheerMaand;
 
     /**
      * @var float
      */
-    private $BedragLaatsteBetaling;
+    private float $KostenSchuldhulpverleningMaand;
 
     /**
-     * Constructor
-     *
-     * @var TSBHeader $InfoHeader
-     * @var string $Medewerker
-     * @var int $Opdrachtgever
-     * @var int $OpdrachtgeverContact
-     * @var DateTimeInterface $Startdatum
-     * @var DateTimeInterface $StartdatumEersteBetaling
-     * @var DateTimeInterface $TheoEinddatum
-     * @var int $TotaalAantalMaanden
-     * @var int $TotaalAantalMaandenVerstreken
-     * @var int $TotaalAantalMaandenResterend
-     * @var float $VTLB
-     * @var DateTimeInterface $DatumBerekening
-     * @var float $BrutoAflosCapaciteitMaand
-     * @var float $KostenFinancieelBeheerMaand
-     * @var float $KostenSchuldhulpverleningMaand
-     * @var float $NettoAflosCapaciteitMaand
-     * @var DateTimeInterface $DatumOverzicht
-     * @var int $PartnerCode
-     * @var float $TotaalSchuldbedrag
-     * @var float $MaximumKosten
-     * @var float $BetaaldeKosten
-     * @var DateTimeInterface $DatumLaatsteBetaling
-     * @var float $BedragLaatsteBetaling
+     * @var float
      */
-    public function __construct($InfoHeader, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, $Startdatum, $StartdatumEersteBetaling, $TheoEinddatum, $TotaalAantalMaanden, $TotaalAantalMaandenVerstreken, $TotaalAantalMaandenResterend, $VTLB, $DatumBerekening, $BrutoAflosCapaciteitMaand, $KostenFinancieelBeheerMaand, $KostenSchuldhulpverleningMaand, $NettoAflosCapaciteitMaand, $DatumOverzicht, $PartnerCode, $TotaalSchuldbedrag, $MaximumKosten, $BetaaldeKosten, $DatumLaatsteBetaling, $BedragLaatsteBetaling)
-    {
-        $this->InfoHeader = $InfoHeader;
-        $this->Medewerker = $Medewerker;
-        $this->Opdrachtgever = $Opdrachtgever;
-        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-        $this->Startdatum = $Startdatum;
-        $this->StartdatumEersteBetaling = $StartdatumEersteBetaling;
-        $this->TheoEinddatum = $TheoEinddatum;
-        $this->TotaalAantalMaanden = $TotaalAantalMaanden;
-        $this->TotaalAantalMaandenVerstreken = $TotaalAantalMaandenVerstreken;
-        $this->TotaalAantalMaandenResterend = $TotaalAantalMaandenResterend;
-        $this->VTLB = $VTLB;
-        $this->DatumBerekening = $DatumBerekening;
-        $this->BrutoAflosCapaciteitMaand = $BrutoAflosCapaciteitMaand;
-        $this->KostenFinancieelBeheerMaand = $KostenFinancieelBeheerMaand;
-        $this->KostenSchuldhulpverleningMaand = $KostenSchuldhulpverleningMaand;
-        $this->NettoAflosCapaciteitMaand = $NettoAflosCapaciteitMaand;
-        $this->DatumOverzicht = $DatumOverzicht;
-        $this->PartnerCode = $PartnerCode;
-        $this->TotaalSchuldbedrag = $TotaalSchuldbedrag;
-        $this->MaximumKosten = $MaximumKosten;
-        $this->BetaaldeKosten = $BetaaldeKosten;
-        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling;
-        $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
-    }
+    private float $NettoAflosCapaciteitMaand;
 
     /**
-     * @return TSBHeader
+     * @var \DateTimeInterface
      */
-    public function getInfoHeader()
+    private \DateTimeInterface $DatumOverzicht;
+
+    /**
+     * @var int
+     */
+    private int $PartnerCode;
+
+    /**
+     * @var float
+     */
+    private float $TotaalSchuldbedrag;
+
+    /**
+     * @var float
+     */
+    private float $MaximumKosten;
+
+    /**
+     * @var float
+     */
+    private float $BetaaldeKosten;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $DatumLaatsteBetaling;
+
+    /**
+     * @var float
+     */
+    private float $BedragLaatsteBetaling;
+
+    /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader
+     */
+    public function getInfoHeader() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader
     {
         return $this->InfoHeader;
     }
 
     /**
-     * @param TSBHeader $InfoHeader
-     * @return TSB
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader $InfoHeader
+     * @return static
      */
-    public function withInfoHeader($InfoHeader)
+    public function withInfoHeader(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader $InfoHeader) : static
     {
         $new = clone $this;
         $new->InfoHeader = $InfoHeader;
@@ -200,16 +142,16 @@ class TSB implements RequestInterface
     /**
      * @return string
      */
-    public function getMedewerker()
+    public function getMedewerker() : string
     {
         return $this->Medewerker;
     }
 
     /**
      * @param string $Medewerker
-     * @return TSB
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(string $Medewerker) : static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -220,16 +162,16 @@ class TSB implements RequestInterface
     /**
      * @return int
      */
-    public function getOpdrachtgever()
+    public function getOpdrachtgever() : int
     {
         return $this->Opdrachtgever;
     }
 
     /**
      * @param int $Opdrachtgever
-     * @return TSB
+     * @return static
      */
-    public function withOpdrachtgever($Opdrachtgever)
+    public function withOpdrachtgever(int $Opdrachtgever) : static
     {
         $new = clone $this;
         $new->Opdrachtgever = $Opdrachtgever;
@@ -240,16 +182,16 @@ class TSB implements RequestInterface
     /**
      * @return int
      */
-    public function getOpdrachtgeverContact()
+    public function getOpdrachtgeverContact() : int
     {
         return $this->OpdrachtgeverContact;
     }
 
     /**
      * @param int $OpdrachtgeverContact
-     * @return TSB
+     * @return static
      */
-    public function withOpdrachtgeverContact($OpdrachtgeverContact)
+    public function withOpdrachtgeverContact(int $OpdrachtgeverContact) : static
     {
         $new = clone $this;
         $new->OpdrachtgeverContact = $OpdrachtgeverContact;
@@ -258,18 +200,18 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getStartdatum()
+    public function getStartdatum() : \DateTimeInterface
     {
         return $this->Startdatum;
     }
 
     /**
-     * @param DateTimeInterface $Startdatum
-     * @return TSB
+     * @param \DateTimeInterface $Startdatum
+     * @return static
      */
-    public function withStartdatum($Startdatum)
+    public function withStartdatum(\DateTimeInterface $Startdatum) : static
     {
         $new = clone $this;
         $new->Startdatum = $Startdatum;
@@ -278,18 +220,18 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getStartdatumEersteBetaling()
+    public function getStartdatumEersteBetaling() : \DateTimeInterface
     {
         return $this->StartdatumEersteBetaling;
     }
 
     /**
-     * @param DateTimeInterface $StartdatumEersteBetaling
-     * @return TSB
+     * @param \DateTimeInterface $StartdatumEersteBetaling
+     * @return static
      */
-    public function withStartdatumEersteBetaling($StartdatumEersteBetaling)
+    public function withStartdatumEersteBetaling(\DateTimeInterface $StartdatumEersteBetaling) : static
     {
         $new = clone $this;
         $new->StartdatumEersteBetaling = $StartdatumEersteBetaling;
@@ -298,18 +240,18 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getTheoEinddatum()
+    public function getTheoEinddatum() : \DateTimeInterface
     {
         return $this->TheoEinddatum;
     }
 
     /**
-     * @param DateTimeInterface $TheoEinddatum
-     * @return TSB
+     * @param \DateTimeInterface $TheoEinddatum
+     * @return static
      */
-    public function withTheoEinddatum($TheoEinddatum)
+    public function withTheoEinddatum(\DateTimeInterface $TheoEinddatum) : static
     {
         $new = clone $this;
         $new->TheoEinddatum = $TheoEinddatum;
@@ -320,16 +262,16 @@ class TSB implements RequestInterface
     /**
      * @return int
      */
-    public function getTotaalAantalMaanden()
+    public function getTotaalAantalMaanden() : int
     {
         return $this->TotaalAantalMaanden;
     }
 
     /**
      * @param int $TotaalAantalMaanden
-     * @return TSB
+     * @return static
      */
-    public function withTotaalAantalMaanden($TotaalAantalMaanden)
+    public function withTotaalAantalMaanden(int $TotaalAantalMaanden) : static
     {
         $new = clone $this;
         $new->TotaalAantalMaanden = $TotaalAantalMaanden;
@@ -340,16 +282,16 @@ class TSB implements RequestInterface
     /**
      * @return int
      */
-    public function getTotaalAantalMaandenVerstreken()
+    public function getTotaalAantalMaandenVerstreken() : int
     {
         return $this->TotaalAantalMaandenVerstreken;
     }
 
     /**
      * @param int $TotaalAantalMaandenVerstreken
-     * @return TSB
+     * @return static
      */
-    public function withTotaalAantalMaandenVerstreken($TotaalAantalMaandenVerstreken)
+    public function withTotaalAantalMaandenVerstreken(int $TotaalAantalMaandenVerstreken) : static
     {
         $new = clone $this;
         $new->TotaalAantalMaandenVerstreken = $TotaalAantalMaandenVerstreken;
@@ -360,16 +302,16 @@ class TSB implements RequestInterface
     /**
      * @return int
      */
-    public function getTotaalAantalMaandenResterend()
+    public function getTotaalAantalMaandenResterend() : int
     {
         return $this->TotaalAantalMaandenResterend;
     }
 
     /**
      * @param int $TotaalAantalMaandenResterend
-     * @return TSB
+     * @return static
      */
-    public function withTotaalAantalMaandenResterend($TotaalAantalMaandenResterend)
+    public function withTotaalAantalMaandenResterend(int $TotaalAantalMaandenResterend) : static
     {
         $new = clone $this;
         $new->TotaalAantalMaandenResterend = $TotaalAantalMaandenResterend;
@@ -380,16 +322,16 @@ class TSB implements RequestInterface
     /**
      * @return float
      */
-    public function getVTLB()
+    public function getVTLB() : float
     {
         return $this->VTLB;
     }
 
     /**
      * @param float $VTLB
-     * @return TSB
+     * @return static
      */
-    public function withVTLB($VTLB)
+    public function withVTLB(float $VTLB) : static
     {
         $new = clone $this;
         $new->VTLB = $VTLB;
@@ -398,18 +340,18 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumBerekening()
+    public function getDatumBerekening() : \DateTimeInterface
     {
         return $this->DatumBerekening;
     }
 
     /**
-     * @param DateTimeInterface $DatumBerekening
-     * @return TSB
+     * @param \DateTimeInterface $DatumBerekening
+     * @return static
      */
-    public function withDatumBerekening($DatumBerekening)
+    public function withDatumBerekening(\DateTimeInterface $DatumBerekening) : static
     {
         $new = clone $this;
         $new->DatumBerekening = $DatumBerekening;
@@ -420,16 +362,16 @@ class TSB implements RequestInterface
     /**
      * @return float
      */
-    public function getBrutoAflosCapaciteitMaand()
+    public function getBrutoAflosCapaciteitMaand() : float
     {
         return $this->BrutoAflosCapaciteitMaand;
     }
 
     /**
      * @param float $BrutoAflosCapaciteitMaand
-     * @return TSB
+     * @return static
      */
-    public function withBrutoAflosCapaciteitMaand($BrutoAflosCapaciteitMaand)
+    public function withBrutoAflosCapaciteitMaand(float $BrutoAflosCapaciteitMaand) : static
     {
         $new = clone $this;
         $new->BrutoAflosCapaciteitMaand = $BrutoAflosCapaciteitMaand;
@@ -440,16 +382,16 @@ class TSB implements RequestInterface
     /**
      * @return float
      */
-    public function getKostenFinancieelBeheerMaand()
+    public function getKostenFinancieelBeheerMaand() : float
     {
         return $this->KostenFinancieelBeheerMaand;
     }
 
     /**
      * @param float $KostenFinancieelBeheerMaand
-     * @return TSB
+     * @return static
      */
-    public function withKostenFinancieelBeheerMaand($KostenFinancieelBeheerMaand)
+    public function withKostenFinancieelBeheerMaand(float $KostenFinancieelBeheerMaand) : static
     {
         $new = clone $this;
         $new->KostenFinancieelBeheerMaand = $KostenFinancieelBeheerMaand;
@@ -460,16 +402,16 @@ class TSB implements RequestInterface
     /**
      * @return float
      */
-    public function getKostenSchuldhulpverleningMaand()
+    public function getKostenSchuldhulpverleningMaand() : float
     {
         return $this->KostenSchuldhulpverleningMaand;
     }
 
     /**
      * @param float $KostenSchuldhulpverleningMaand
-     * @return TSB
+     * @return static
      */
-    public function withKostenSchuldhulpverleningMaand($KostenSchuldhulpverleningMaand)
+    public function withKostenSchuldhulpverleningMaand(float $KostenSchuldhulpverleningMaand) : static
     {
         $new = clone $this;
         $new->KostenSchuldhulpverleningMaand = $KostenSchuldhulpverleningMaand;
@@ -480,16 +422,16 @@ class TSB implements RequestInterface
     /**
      * @return float
      */
-    public function getNettoAflosCapaciteitMaand()
+    public function getNettoAflosCapaciteitMaand() : float
     {
         return $this->NettoAflosCapaciteitMaand;
     }
 
     /**
      * @param float $NettoAflosCapaciteitMaand
-     * @return TSB
+     * @return static
      */
-    public function withNettoAflosCapaciteitMaand($NettoAflosCapaciteitMaand)
+    public function withNettoAflosCapaciteitMaand(float $NettoAflosCapaciteitMaand) : static
     {
         $new = clone $this;
         $new->NettoAflosCapaciteitMaand = $NettoAflosCapaciteitMaand;
@@ -498,18 +440,18 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumOverzicht()
+    public function getDatumOverzicht() : \DateTimeInterface
     {
         return $this->DatumOverzicht;
     }
 
     /**
-     * @param DateTimeInterface $DatumOverzicht
-     * @return TSB
+     * @param \DateTimeInterface $DatumOverzicht
+     * @return static
      */
-    public function withDatumOverzicht($DatumOverzicht)
+    public function withDatumOverzicht(\DateTimeInterface $DatumOverzicht) : static
     {
         $new = clone $this;
         $new->DatumOverzicht = $DatumOverzicht;
@@ -520,16 +462,16 @@ class TSB implements RequestInterface
     /**
      * @return int
      */
-    public function getPartnerCode()
+    public function getPartnerCode() : int
     {
         return $this->PartnerCode;
     }
 
     /**
      * @param int $PartnerCode
-     * @return TSB
+     * @return static
      */
-    public function withPartnerCode($PartnerCode)
+    public function withPartnerCode(int $PartnerCode) : static
     {
         $new = clone $this;
         $new->PartnerCode = $PartnerCode;
@@ -540,16 +482,16 @@ class TSB implements RequestInterface
     /**
      * @return float
      */
-    public function getTotaalSchuldbedrag()
+    public function getTotaalSchuldbedrag() : float
     {
         return $this->TotaalSchuldbedrag;
     }
 
     /**
      * @param float $TotaalSchuldbedrag
-     * @return TSB
+     * @return static
      */
-    public function withTotaalSchuldbedrag($TotaalSchuldbedrag)
+    public function withTotaalSchuldbedrag(float $TotaalSchuldbedrag) : static
     {
         $new = clone $this;
         $new->TotaalSchuldbedrag = $TotaalSchuldbedrag;
@@ -560,16 +502,16 @@ class TSB implements RequestInterface
     /**
      * @return float
      */
-    public function getMaximumKosten()
+    public function getMaximumKosten() : float
     {
         return $this->MaximumKosten;
     }
 
     /**
      * @param float $MaximumKosten
-     * @return TSB
+     * @return static
      */
-    public function withMaximumKosten($MaximumKosten)
+    public function withMaximumKosten(float $MaximumKosten) : static
     {
         $new = clone $this;
         $new->MaximumKosten = $MaximumKosten;
@@ -580,16 +522,16 @@ class TSB implements RequestInterface
     /**
      * @return float
      */
-    public function getBetaaldeKosten()
+    public function getBetaaldeKosten() : float
     {
         return $this->BetaaldeKosten;
     }
 
     /**
      * @param float $BetaaldeKosten
-     * @return TSB
+     * @return static
      */
-    public function withBetaaldeKosten($BetaaldeKosten)
+    public function withBetaaldeKosten(float $BetaaldeKosten) : static
     {
         $new = clone $this;
         $new->BetaaldeKosten = $BetaaldeKosten;
@@ -598,18 +540,18 @@ class TSB implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumLaatsteBetaling()
+    public function getDatumLaatsteBetaling() : \DateTimeInterface
     {
         return $this->DatumLaatsteBetaling;
     }
 
     /**
-     * @param DateTimeInterface $DatumLaatsteBetaling
-     * @return TSB
+     * @param \DateTimeInterface $DatumLaatsteBetaling
+     * @return static
      */
-    public function withDatumLaatsteBetaling($DatumLaatsteBetaling)
+    public function withDatumLaatsteBetaling(\DateTimeInterface $DatumLaatsteBetaling) : static
     {
         $new = clone $this;
         $new->DatumLaatsteBetaling = $DatumLaatsteBetaling;
@@ -620,23 +562,21 @@ class TSB implements RequestInterface
     /**
      * @return float
      */
-    public function getBedragLaatsteBetaling()
+    public function getBedragLaatsteBetaling() : float
     {
         return $this->BedragLaatsteBetaling;
     }
 
     /**
      * @param float $BedragLaatsteBetaling
-     * @return TSB
+     * @return static
      */
-    public function withBedragLaatsteBetaling($BedragLaatsteBetaling)
+    public function withBedragLaatsteBetaling(float $BedragLaatsteBetaling) : static
     {
         $new = clone $this;
         $new->BedragLaatsteBetaling = $BedragLaatsteBetaling;
 
         return $new;
     }
-
-
 }
 

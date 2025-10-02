@@ -2,46 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class PRSAfschriftMutatieArray implements RequestInterface
+class PRSAfschriftMutatieArray
 {
-
     /**
-     * @var TPRSAfschriftMutatie
-     */
-    private $TPRSAfschriftMutatie;
-
-    /**
-     * Constructor
+     * tbv. PRS Online Afschrift mutaties
      *
-     * @var TPRSAfschriftMutatie $TPRSAfschriftMutatie
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftMutatie>
      */
-    public function __construct($TPRSAfschriftMutatie)
-    {
-        $this->TPRSAfschriftMutatie = $TPRSAfschriftMutatie;
-    }
+    private array $TPRSAfschriftMutatie;
 
     /**
-     * @return TPRSAfschriftMutatie
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftMutatie>
      */
-    public function getTPRSAfschriftMutatie()
+    public function getTPRSAfschriftMutatie() : array
     {
         return $this->TPRSAfschriftMutatie;
     }
 
     /**
-     * @param TPRSAfschriftMutatie $TPRSAfschriftMutatie
-     * @return PRSAfschriftMutatieArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftMutatie> $TPRSAfschriftMutatie
+     * @return static
      */
-    public function withTPRSAfschriftMutatie($TPRSAfschriftMutatie)
+    public function withTPRSAfschriftMutatie(array $TPRSAfschriftMutatie) : static
     {
         $new = clone $this;
         $new->TPRSAfschriftMutatie = $TPRSAfschriftMutatie;
 
         return $new;
     }
-
-
 }
 

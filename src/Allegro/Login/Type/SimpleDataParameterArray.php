@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleDataParameterArray implements RequestInterface
+class SimpleDataParameterArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataParameter>
+     */
+    private array $SimpleDataParameter;
 
     /**
-     * @var SimpleDataParameter
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataParameter>
      */
-    private $SimpleDataParameter;
-
-    /**
-     * Constructor
-     *
-     * @var SimpleDataParameter $SimpleDataParameter
-     */
-    public function __construct($SimpleDataParameter)
-    {
-        $this->SimpleDataParameter = $SimpleDataParameter;
-    }
-
-    /**
-     * @return SimpleDataParameter
-     */
-    public function getSimpleDataParameter()
+    public function getSimpleDataParameter() : array
     {
         return $this->SimpleDataParameter;
     }
 
     /**
-     * @param SimpleDataParameter $SimpleDataParameter
-     * @return SimpleDataParameterArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataParameter> $SimpleDataParameter
+     * @return static
      */
-    public function withSimpleDataParameter($SimpleDataParameter)
+    public function withSimpleDataParameter(array $SimpleDataParameter) : static
     {
         $new = clone $this;
         $new->SimpleDataParameter = $SimpleDataParameter;
 
         return $new;
     }
-
-
 }
 

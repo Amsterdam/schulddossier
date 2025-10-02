@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class DKHeaderArray implements RequestInterface
+class DKHeaderArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader>
+     */
+    private array $TDKHeader;
 
     /**
-     * @var TDKHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader>
      */
-    private $TDKHeader;
-
-    /**
-     * Constructor
-     *
-     * @var TDKHeader $TDKHeader
-     */
-    public function __construct($TDKHeader)
-    {
-        $this->TDKHeader = $TDKHeader;
-    }
-
-    /**
-     * @return TDKHeader
-     */
-    public function getTDKHeader()
+    public function getTDKHeader() : array
     {
         return $this->TDKHeader;
     }
 
     /**
-     * @param TDKHeader $TDKHeader
-     * @return DKHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader> $TDKHeader
+     * @return static
      */
-    public function withTDKHeader($TDKHeader)
+    public function withTDKHeader(array $TDKHeader) : static
     {
         $new = clone $this;
         $new->TDKHeader = $TDKHeader;
 
         return $new;
     }
-
-
 }
 

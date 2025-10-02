@@ -2,60 +2,41 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TableRequestInfo implements RequestInterface
+class TableRequestInfo
 {
-
     /**
      * @var string
      */
-    private $UserFilter;
+    private string $UserFilter;
 
     /**
      * @var bool
      */
-    private $IncludeSchema;
+    private bool $IncludeSchema;
 
     /**
      * @var int
      */
-    private $MaxRecords;
+    private int $MaxRecords;
 
     /**
-     * @var DataParameterArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameterArray
      */
-    private $Parameters;
-
-    /**
-     * Constructor
-     *
-     * @var string $UserFilter
-     * @var bool $IncludeSchema
-     * @var int $MaxRecords
-     * @var DataParameterArray $Parameters
-     */
-    public function __construct($UserFilter, $IncludeSchema, $MaxRecords, $Parameters)
-    {
-        $this->UserFilter = $UserFilter;
-        $this->IncludeSchema = $IncludeSchema;
-        $this->MaxRecords = $MaxRecords;
-        $this->Parameters = $Parameters;
-    }
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameterArray $Parameters;
 
     /**
      * @return string
      */
-    public function getUserFilter()
+    public function getUserFilter() : string
     {
         return $this->UserFilter;
     }
 
     /**
      * @param string $UserFilter
-     * @return TableRequestInfo
+     * @return static
      */
-    public function withUserFilter($UserFilter)
+    public function withUserFilter(string $UserFilter) : static
     {
         $new = clone $this;
         $new->UserFilter = $UserFilter;
@@ -66,16 +47,16 @@ class TableRequestInfo implements RequestInterface
     /**
      * @return bool
      */
-    public function getIncludeSchema()
+    public function getIncludeSchema() : bool
     {
         return $this->IncludeSchema;
     }
 
     /**
      * @param bool $IncludeSchema
-     * @return TableRequestInfo
+     * @return static
      */
-    public function withIncludeSchema($IncludeSchema)
+    public function withIncludeSchema(bool $IncludeSchema) : static
     {
         $new = clone $this;
         $new->IncludeSchema = $IncludeSchema;
@@ -86,16 +67,16 @@ class TableRequestInfo implements RequestInterface
     /**
      * @return int
      */
-    public function getMaxRecords()
+    public function getMaxRecords() : int
     {
         return $this->MaxRecords;
     }
 
     /**
      * @param int $MaxRecords
-     * @return TableRequestInfo
+     * @return static
      */
-    public function withMaxRecords($MaxRecords)
+    public function withMaxRecords(int $MaxRecords) : static
     {
         $new = clone $this;
         $new->MaxRecords = $MaxRecords;
@@ -104,25 +85,23 @@ class TableRequestInfo implements RequestInterface
     }
 
     /**
-     * @return DataParameterArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameterArray
      */
-    public function getParameters()
+    public function getParameters() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameterArray
     {
         return $this->Parameters;
     }
 
     /**
-     * @param DataParameterArray $Parameters
-     * @return TableRequestInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameterArray $Parameters
+     * @return static
      */
-    public function withParameters($Parameters)
+    public function withParameters(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameterArray $Parameters) : static
     {
         $new = clone $this;
         $new->Parameters = $Parameters;
 
         return $new;
     }
-
-
 }
 

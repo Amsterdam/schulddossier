@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class OpdrachtgeverKlantArray implements RequestInterface
+class OpdrachtgeverKlantArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOpdrachtgeverKlant>
+     */
+    private array $TOpdrachtgeverKlant;
 
     /**
-     * @var TOpdrachtgeverKlant
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOpdrachtgeverKlant>
      */
-    private $TOpdrachtgeverKlant;
-
-    /**
-     * Constructor
-     *
-     * @var TOpdrachtgeverKlant $TOpdrachtgeverKlant
-     */
-    public function __construct($TOpdrachtgeverKlant)
-    {
-        $this->TOpdrachtgeverKlant = $TOpdrachtgeverKlant;
-    }
-
-    /**
-     * @return TOpdrachtgeverKlant
-     */
-    public function getTOpdrachtgeverKlant()
+    public function getTOpdrachtgeverKlant() : array
     {
         return $this->TOpdrachtgeverKlant;
     }
 
     /**
-     * @param TOpdrachtgeverKlant $TOpdrachtgeverKlant
-     * @return OpdrachtgeverKlantArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOpdrachtgeverKlant> $TOpdrachtgeverKlant
+     * @return static
      */
-    public function withTOpdrachtgeverKlant($TOpdrachtgeverKlant)
+    public function withTOpdrachtgeverKlant(array $TOpdrachtgeverKlant) : static
     {
         $new = clone $this;
         $new->TOpdrachtgeverKlant = $TOpdrachtgeverKlant;
 
         return $new;
     }
-
-
 }
 

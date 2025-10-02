@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class Int64Array implements RequestInterface
+class Int64Array
 {
+    /**
+     * @var array<int<0,max>, int>
+     */
+    private array $long;
 
     /**
-     * @var int
+     * @return array<int<0,max>, int>
      */
-    private $long;
-
-    /**
-     * Constructor
-     *
-     * @var int $long
-     */
-    public function __construct($long)
-    {
-        $this->long = $long;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLong()
+    public function getLong() : array
     {
         return $this->long;
     }
 
     /**
-     * @param int $long
-     * @return Int64Array
+     * @param array<int<0,max>, int> $long
+     * @return static
      */
-    public function withLong($long)
+    public function withLong(array $long) : static
     {
         $new = clone $this;
         $new->long = $long;
 
         return $new;
     }
-
-
 }
 

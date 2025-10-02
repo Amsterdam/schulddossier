@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TTest implements RequestInterface
+class TTest
 {
-
     /**
      * @var string
      */
-    private $Veld1;
+    private string $Veld1;
 
     /**
      * @var int
      */
-    private $Veld2;
-
-    /**
-     * Constructor
-     *
-     * @var string $Veld1
-     * @var int $Veld2
-     */
-    public function __construct($Veld1, $Veld2)
-    {
-        $this->Veld1 = $Veld1;
-        $this->Veld2 = $Veld2;
-    }
+    private int $Veld2;
 
     /**
      * @return string
      */
-    public function getVeld1()
+    public function getVeld1() : string
     {
         return $this->Veld1;
     }
 
     /**
      * @param string $Veld1
-     * @return TTest
+     * @return static
      */
-    public function withVeld1($Veld1)
+    public function withVeld1(string $Veld1) : static
     {
         $new = clone $this;
         $new->Veld1 = $Veld1;
@@ -52,23 +37,21 @@ class TTest implements RequestInterface
     /**
      * @return int
      */
-    public function getVeld2()
+    public function getVeld2() : int
     {
         return $this->Veld2;
     }
 
     /**
      * @param int $Veld2
-     * @return TTest
+     * @return static
      */
-    public function withVeld2($Veld2)
+    public function withVeld2(int $Veld2) : static
     {
         $new = clone $this;
         $new->Veld2 = $Veld2;
 
         return $new;
     }
-
-
 }
 

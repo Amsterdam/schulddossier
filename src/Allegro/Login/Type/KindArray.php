@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class KindArray implements RequestInterface
+class KindArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TKind>
+     */
+    private array $TKind;
 
     /**
-     * @var TKind
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TKind>
      */
-    private $TKind;
-
-    /**
-     * Constructor
-     *
-     * @var TKind $TKind
-     */
-    public function __construct($TKind)
-    {
-        $this->TKind = $TKind;
-    }
-
-    /**
-     * @return TKind
-     */
-    public function getTKind()
+    public function getTKind() : array
     {
         return $this->TKind;
     }
 
     /**
-     * @param TKind $TKind
-     * @return KindArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TKind> $TKind
+     * @return static
      */
-    public function withTKind($TKind)
+    public function withTKind(array $TKind) : static
     {
         $new = clone $this;
         $new->TKind = $TKind;
 
         return $new;
     }
-
-
 }
 

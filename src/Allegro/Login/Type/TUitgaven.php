@@ -2,123 +2,91 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TUitgaven implements RequestInterface
+class TUitgaven
 {
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\EWoningSoort
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\EWoningSoort $WoningSoort;
+
+    /**
+     * @var float
+     */
+    private float $Kostgeld;
+
+    /**
+     * @var float
+     */
+    private float $Huur;
+
+    /**
+     * @var float
+     */
+    private float $Huurtoeslag;
+
+    /**
+     * @var float
+     */
+    private float $MaandHypotheek;
+
+    /**
+     * @var float
+     */
+    private float $MaandTeruggave;
+
+    /**
+     * @var float
+     */
+    private float $SaldoHypotheek;
+
+    /**
+     * @var float
+     */
+    private float $WOZWaarde;
+
+    /**
+     * @var float
+     */
+    private float $Zorgpremie;
+
+    /**
+     * @var float
+     */
+    private float $Zorgtoeslag;
+
+    /**
+     * @var float
+     */
+    private float $KinderAlimentatieBedrag;
+
+    /**
+     * @var float
+     */
+    private float $PartnerAlimentatieBedrag;
 
     /**
      * @var string
      */
-    private $WoningSoort;
-
-    /**
-     * @var float
-     */
-    private $Kostgeld;
-
-    /**
-     * @var float
-     */
-    private $Huur;
-
-    /**
-     * @var float
-     */
-    private $Huurtoeslag;
-
-    /**
-     * @var float
-     */
-    private $MaandHypotheek;
-
-    /**
-     * @var float
-     */
-    private $MaandTeruggave;
-
-    /**
-     * @var float
-     */
-    private $SaldoHypotheek;
-
-    /**
-     * @var float
-     */
-    private $WOZWaarde;
-
-    /**
-     * @var float
-     */
-    private $Zorgpremie;
-
-    /**
-     * @var float
-     */
-    private $Zorgtoeslag;
-
-    /**
-     * @var float
-     */
-    private $KinderAlimentatieBedrag;
-
-    /**
-     * @var float
-     */
-    private $PartnerAlimentatieBedrag;
+    private string $OverigUitgaven;
 
     /**
      * @var string
      */
-    private $OverigUitgaven;
+    private string $Toelichting;
 
     /**
-     * Constructor
-     *
-     * @var string $WoningSoort
-     * @var float $Kostgeld
-     * @var float $Huur
-     * @var float $Huurtoeslag
-     * @var float $MaandHypotheek
-     * @var float $MaandTeruggave
-     * @var float $SaldoHypotheek
-     * @var float $WOZWaarde
-     * @var float $Zorgpremie
-     * @var float $Zorgtoeslag
-     * @var float $KinderAlimentatieBedrag
-     * @var float $PartnerAlimentatieBedrag
-     * @var string $OverigUitgaven
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\EWoningSoort
      */
-    public function __construct($WoningSoort, $Kostgeld, $Huur, $Huurtoeslag, $MaandHypotheek, $MaandTeruggave, $SaldoHypotheek, $WOZWaarde, $Zorgpremie, $Zorgtoeslag, $KinderAlimentatieBedrag, $PartnerAlimentatieBedrag, $OverigUitgaven)
-    {
-        $this->WoningSoort = $WoningSoort;
-        $this->Kostgeld = $Kostgeld;
-        $this->Huur = $Huur;
-        $this->Huurtoeslag = $Huurtoeslag;
-        $this->MaandHypotheek = $MaandHypotheek;
-        $this->MaandTeruggave = $MaandTeruggave;
-        $this->SaldoHypotheek = $SaldoHypotheek;
-        $this->WOZWaarde = $WOZWaarde;
-        $this->Zorgpremie = $Zorgpremie;
-        $this->Zorgtoeslag = $Zorgtoeslag;
-        $this->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
-        $this->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
-        $this->OverigUitgaven = $OverigUitgaven;
-    }
-
-    /**
-     * @return string
-     */
-    public function getWoningSoort()
+    public function getWoningSoort() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\EWoningSoort
     {
         return $this->WoningSoort;
     }
 
     /**
-     * @param string $WoningSoort
-     * @return TUitgaven
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\EWoningSoort $WoningSoort
+     * @return static
      */
-    public function withWoningSoort($WoningSoort)
+    public function withWoningSoort(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\EWoningSoort $WoningSoort) : static
     {
         $new = clone $this;
         $new->WoningSoort = $WoningSoort;
@@ -129,16 +97,16 @@ class TUitgaven implements RequestInterface
     /**
      * @return float
      */
-    public function getKostgeld()
+    public function getKostgeld() : float
     {
         return $this->Kostgeld;
     }
 
     /**
      * @param float $Kostgeld
-     * @return TUitgaven
+     * @return static
      */
-    public function withKostgeld($Kostgeld)
+    public function withKostgeld(float $Kostgeld) : static
     {
         $new = clone $this;
         $new->Kostgeld = $Kostgeld;
@@ -149,16 +117,16 @@ class TUitgaven implements RequestInterface
     /**
      * @return float
      */
-    public function getHuur()
+    public function getHuur() : float
     {
         return $this->Huur;
     }
 
     /**
      * @param float $Huur
-     * @return TUitgaven
+     * @return static
      */
-    public function withHuur($Huur)
+    public function withHuur(float $Huur) : static
     {
         $new = clone $this;
         $new->Huur = $Huur;
@@ -169,16 +137,16 @@ class TUitgaven implements RequestInterface
     /**
      * @return float
      */
-    public function getHuurtoeslag()
+    public function getHuurtoeslag() : float
     {
         return $this->Huurtoeslag;
     }
 
     /**
      * @param float $Huurtoeslag
-     * @return TUitgaven
+     * @return static
      */
-    public function withHuurtoeslag($Huurtoeslag)
+    public function withHuurtoeslag(float $Huurtoeslag) : static
     {
         $new = clone $this;
         $new->Huurtoeslag = $Huurtoeslag;
@@ -189,16 +157,16 @@ class TUitgaven implements RequestInterface
     /**
      * @return float
      */
-    public function getMaandHypotheek()
+    public function getMaandHypotheek() : float
     {
         return $this->MaandHypotheek;
     }
 
     /**
      * @param float $MaandHypotheek
-     * @return TUitgaven
+     * @return static
      */
-    public function withMaandHypotheek($MaandHypotheek)
+    public function withMaandHypotheek(float $MaandHypotheek) : static
     {
         $new = clone $this;
         $new->MaandHypotheek = $MaandHypotheek;
@@ -209,16 +177,16 @@ class TUitgaven implements RequestInterface
     /**
      * @return float
      */
-    public function getMaandTeruggave()
+    public function getMaandTeruggave() : float
     {
         return $this->MaandTeruggave;
     }
 
     /**
      * @param float $MaandTeruggave
-     * @return TUitgaven
+     * @return static
      */
-    public function withMaandTeruggave($MaandTeruggave)
+    public function withMaandTeruggave(float $MaandTeruggave) : static
     {
         $new = clone $this;
         $new->MaandTeruggave = $MaandTeruggave;
@@ -229,16 +197,16 @@ class TUitgaven implements RequestInterface
     /**
      * @return float
      */
-    public function getSaldoHypotheek()
+    public function getSaldoHypotheek() : float
     {
         return $this->SaldoHypotheek;
     }
 
     /**
      * @param float $SaldoHypotheek
-     * @return TUitgaven
+     * @return static
      */
-    public function withSaldoHypotheek($SaldoHypotheek)
+    public function withSaldoHypotheek(float $SaldoHypotheek) : static
     {
         $new = clone $this;
         $new->SaldoHypotheek = $SaldoHypotheek;
@@ -249,16 +217,16 @@ class TUitgaven implements RequestInterface
     /**
      * @return float
      */
-    public function getWOZWaarde()
+    public function getWOZWaarde() : float
     {
         return $this->WOZWaarde;
     }
 
     /**
      * @param float $WOZWaarde
-     * @return TUitgaven
+     * @return static
      */
-    public function withWOZWaarde($WOZWaarde)
+    public function withWOZWaarde(float $WOZWaarde) : static
     {
         $new = clone $this;
         $new->WOZWaarde = $WOZWaarde;
@@ -269,16 +237,16 @@ class TUitgaven implements RequestInterface
     /**
      * @return float
      */
-    public function getZorgpremie()
+    public function getZorgpremie() : float
     {
         return $this->Zorgpremie;
     }
 
     /**
      * @param float $Zorgpremie
-     * @return TUitgaven
+     * @return static
      */
-    public function withZorgpremie($Zorgpremie)
+    public function withZorgpremie(float $Zorgpremie) : static
     {
         $new = clone $this;
         $new->Zorgpremie = $Zorgpremie;
@@ -289,16 +257,16 @@ class TUitgaven implements RequestInterface
     /**
      * @return float
      */
-    public function getZorgtoeslag()
+    public function getZorgtoeslag() : float
     {
         return $this->Zorgtoeslag;
     }
 
     /**
      * @param float $Zorgtoeslag
-     * @return TUitgaven
+     * @return static
      */
-    public function withZorgtoeslag($Zorgtoeslag)
+    public function withZorgtoeslag(float $Zorgtoeslag) : static
     {
         $new = clone $this;
         $new->Zorgtoeslag = $Zorgtoeslag;
@@ -309,16 +277,16 @@ class TUitgaven implements RequestInterface
     /**
      * @return float
      */
-    public function getKinderAlimentatieBedrag()
+    public function getKinderAlimentatieBedrag() : float
     {
         return $this->KinderAlimentatieBedrag;
     }
 
     /**
      * @param float $KinderAlimentatieBedrag
-     * @return TUitgaven
+     * @return static
      */
-    public function withKinderAlimentatieBedrag($KinderAlimentatieBedrag)
+    public function withKinderAlimentatieBedrag(float $KinderAlimentatieBedrag) : static
     {
         $new = clone $this;
         $new->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
@@ -329,16 +297,16 @@ class TUitgaven implements RequestInterface
     /**
      * @return float
      */
-    public function getPartnerAlimentatieBedrag()
+    public function getPartnerAlimentatieBedrag() : float
     {
         return $this->PartnerAlimentatieBedrag;
     }
 
     /**
      * @param float $PartnerAlimentatieBedrag
-     * @return TUitgaven
+     * @return static
      */
-    public function withPartnerAlimentatieBedrag($PartnerAlimentatieBedrag)
+    public function withPartnerAlimentatieBedrag(float $PartnerAlimentatieBedrag) : static
     {
         $new = clone $this;
         $new->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
@@ -349,16 +317,16 @@ class TUitgaven implements RequestInterface
     /**
      * @return string
      */
-    public function getOverigUitgaven()
+    public function getOverigUitgaven() : string
     {
         return $this->OverigUitgaven;
     }
 
     /**
      * @param string $OverigUitgaven
-     * @return TUitgaven
+     * @return static
      */
-    public function withOverigUitgaven($OverigUitgaven)
+    public function withOverigUitgaven(string $OverigUitgaven) : static
     {
         $new = clone $this;
         $new->OverigUitgaven = $OverigUitgaven;
@@ -366,6 +334,24 @@ class TUitgaven implements RequestInterface
         return $new;
     }
 
+    /**
+     * @return string
+     */
+    public function getToelichting() : string
+    {
+        return $this->Toelichting;
+    }
 
+    /**
+     * @param string $Toelichting
+     * @return static
+     */
+    public function withToelichting(string $Toelichting) : static
+    {
+        $new = clone $this;
+        $new->Toelichting = $Toelichting;
+
+        return $new;
+    }
 }
 

@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class IntegerArray implements RequestInterface
+class IntegerArray
 {
+    /**
+     * @var array<int<0,max>, int>
+     */
+    private array $int;
 
     /**
-     * @var int
+     * @return array<int<0,max>, int>
      */
-    private $int;
-
-    /**
-     * Constructor
-     *
-     * @var int $int
-     */
-    public function __construct($int)
-    {
-        $this->int = $int;
-    }
-
-    /**
-     * @return int
-     */
-    public function getInt()
+    public function getInt() : array
     {
         return $this->int;
     }
 
     /**
-     * @param int $int
-     * @return IntegerArray
+     * @param array<int<0,max>, int> $int
+     * @return static
      */
-    public function withInt($int)
+    public function withInt(array $int) : static
     {
         $new = clone $this;
         $new->int = $int;
 
         return $new;
     }
-
-
 }
 

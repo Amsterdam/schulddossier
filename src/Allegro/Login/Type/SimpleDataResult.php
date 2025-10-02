@@ -2,53 +2,36 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleDataResult implements RequestInterface
+class SimpleDataResult
 {
-
     /**
      * @var string
      */
-    private $TableName;
+    private string $TableName;
 
     /**
-     * @var SimpleFieldInfoArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfoArray
      */
-    private $FieldInfo;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfoArray $FieldInfo;
 
     /**
-     * @var StringArrayArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArrayArray
      */
-    private $Data;
-
-    /**
-     * Constructor
-     *
-     * @var string $TableName
-     * @var SimpleFieldInfoArray $FieldInfo
-     * @var StringArrayArray $Data
-     */
-    public function __construct($TableName, $FieldInfo, $Data)
-    {
-        $this->TableName = $TableName;
-        $this->FieldInfo = $FieldInfo;
-        $this->Data = $Data;
-    }
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArrayArray $Data;
 
     /**
      * @return string
      */
-    public function getTableName()
+    public function getTableName() : string
     {
         return $this->TableName;
     }
 
     /**
      * @param string $TableName
-     * @return SimpleDataResult
+     * @return static
      */
-    public function withTableName($TableName)
+    public function withTableName(string $TableName) : static
     {
         $new = clone $this;
         $new->TableName = $TableName;
@@ -57,18 +40,18 @@ class SimpleDataResult implements RequestInterface
     }
 
     /**
-     * @return SimpleFieldInfoArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfoArray
      */
-    public function getFieldInfo()
+    public function getFieldInfo() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfoArray
     {
         return $this->FieldInfo;
     }
 
     /**
-     * @param SimpleFieldInfoArray $FieldInfo
-     * @return SimpleDataResult
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfoArray $FieldInfo
+     * @return static
      */
-    public function withFieldInfo($FieldInfo)
+    public function withFieldInfo(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfoArray $FieldInfo) : static
     {
         $new = clone $this;
         $new->FieldInfo = $FieldInfo;
@@ -77,25 +60,23 @@ class SimpleDataResult implements RequestInterface
     }
 
     /**
-     * @return StringArrayArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArrayArray
      */
-    public function getData()
+    public function getData() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArrayArray
     {
         return $this->Data;
     }
 
     /**
-     * @param StringArrayArray $Data
-     * @return SimpleDataResult
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArrayArray $Data
+     * @return static
      */
-    public function withData($Data)
+    public function withData(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArrayArray $Data) : static
     {
         $new = clone $this;
         $new->Data = $Data;
 
         return $new;
     }
-
-
 }
 

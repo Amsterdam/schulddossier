@@ -2,60 +2,41 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleDeltaChange implements RequestInterface
+class SimpleDeltaChange
 {
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $OldValues;
 
     /**
-     * @var StringArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
      */
-    private $OldValues;
-
-    /**
-     * @var StringArray
-     */
-    private $NewValues;
-
-    /**
-     * @var string
-     */
-    private $Error;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $NewValues;
 
     /**
      * @var string
      */
-    private $Mode;
+    private string $Error;
 
     /**
-     * Constructor
-     *
-     * @var StringArray $OldValues
-     * @var StringArray $NewValues
-     * @var string $Error
-     * @var string $Mode
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataMode
      */
-    public function __construct($OldValues, $NewValues, $Error, $Mode)
-    {
-        $this->OldValues = $OldValues;
-        $this->NewValues = $NewValues;
-        $this->Error = $Error;
-        $this->Mode = $Mode;
-    }
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataMode $Mode;
 
     /**
-     * @return StringArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
      */
-    public function getOldValues()
+    public function getOldValues() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
     {
         return $this->OldValues;
     }
 
     /**
-     * @param StringArray $OldValues
-     * @return SimpleDeltaChange
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $OldValues
+     * @return static
      */
-    public function withOldValues($OldValues)
+    public function withOldValues(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $OldValues) : static
     {
         $new = clone $this;
         $new->OldValues = $OldValues;
@@ -64,18 +45,18 @@ class SimpleDeltaChange implements RequestInterface
     }
 
     /**
-     * @return StringArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
      */
-    public function getNewValues()
+    public function getNewValues() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
     {
         return $this->NewValues;
     }
 
     /**
-     * @param StringArray $NewValues
-     * @return SimpleDeltaChange
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $NewValues
+     * @return static
      */
-    public function withNewValues($NewValues)
+    public function withNewValues(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $NewValues) : static
     {
         $new = clone $this;
         $new->NewValues = $NewValues;
@@ -86,16 +67,16 @@ class SimpleDeltaChange implements RequestInterface
     /**
      * @return string
      */
-    public function getError()
+    public function getError() : string
     {
         return $this->Error;
     }
 
     /**
      * @param string $Error
-     * @return SimpleDeltaChange
+     * @return static
      */
-    public function withError($Error)
+    public function withError(string $Error) : static
     {
         $new = clone $this;
         $new->Error = $Error;
@@ -104,25 +85,23 @@ class SimpleDeltaChange implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataMode
      */
-    public function getMode()
+    public function getMode() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataMode
     {
         return $this->Mode;
     }
 
     /**
-     * @param string $Mode
-     * @return SimpleDeltaChange
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataMode $Mode
+     * @return static
      */
-    public function withMode($Mode)
+    public function withMode(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataMode $Mode) : static
     {
         $new = clone $this;
         $new->Mode = $Mode;
 
         return $new;
     }
-
-
 }
 

@@ -2,53 +2,36 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TTeam implements RequestInterface
+class TTeam
 {
-
     /**
      * @var string
      */
-    private $Team;
+    private string $Team;
 
     /**
      * @var int
      */
-    private $Code;
+    private int $Code;
 
     /**
      * @var bool
      */
-    private $Standaard;
-
-    /**
-     * Constructor
-     *
-     * @var string $Team
-     * @var int $Code
-     * @var bool $Standaard
-     */
-    public function __construct($Team, $Code, $Standaard)
-    {
-        $this->Team = $Team;
-        $this->Code = $Code;
-        $this->Standaard = $Standaard;
-    }
+    private bool $Standaard;
 
     /**
      * @return string
      */
-    public function getTeam()
+    public function getTeam() : string
     {
         return $this->Team;
     }
 
     /**
      * @param string $Team
-     * @return TTeam
+     * @return static
      */
-    public function withTeam($Team)
+    public function withTeam(string $Team) : static
     {
         $new = clone $this;
         $new->Team = $Team;
@@ -59,16 +42,16 @@ class TTeam implements RequestInterface
     /**
      * @return int
      */
-    public function getCode()
+    public function getCode() : int
     {
         return $this->Code;
     }
 
     /**
      * @param int $Code
-     * @return TTeam
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(int $Code) : static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -79,23 +62,21 @@ class TTeam implements RequestInterface
     /**
      * @return bool
      */
-    public function getStandaard()
+    public function getStandaard() : bool
     {
         return $this->Standaard;
     }
 
     /**
      * @param bool $Standaard
-     * @return TTeam
+     * @return static
      */
-    public function withStandaard($Standaard)
+    public function withStandaard(bool $Standaard) : static
     {
         $new = clone $this;
         $new->Standaard = $Standaard;
 
         return $new;
     }
-
-
 }
 

@@ -2,89 +2,61 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use DateTimeInterface;
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAfspraak implements RequestInterface
+class TAfspraak
 {
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $StartTijdStip;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $StartTijdStip;
+    private \DateTimeInterface $EindTijdStip;
 
     /**
-     * @var DateTimeInterface
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
      */
-    private $EindTijdStip;
-
-    /**
-     * @var TMedewerker
-     */
-    private $Medewerker;
-
-    /**
-     * @var string
-     */
-    private $Locatie;
-
-    /**
-     * @var TAdres
-     */
-    private $LocatieAdres;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Medewerker;
 
     /**
      * @var string
      */
-    private $LocatieSpreekkamer;
+    private string $Locatie;
+
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $LocatieAdres;
 
     /**
      * @var string
      */
-    private $AfspraakCode;
+    private string $LocatieSpreekkamer;
 
     /**
      * @var string
      */
-    private $AfspraakOmschrijving;
+    private string $AfspraakCode;
 
     /**
-     * Constructor
-     *
-     * @var DateTimeInterface $StartTijdStip
-     * @var DateTimeInterface $EindTijdStip
-     * @var TMedewerker $Medewerker
-     * @var string $Locatie
-     * @var TAdres $LocatieAdres
-     * @var string $LocatieSpreekkamer
-     * @var string $AfspraakCode
-     * @var string $AfspraakOmschrijving
+     * @var string
      */
-    public function __construct($StartTijdStip, $EindTijdStip, $Medewerker, $Locatie, $LocatieAdres, $LocatieSpreekkamer, $AfspraakCode, $AfspraakOmschrijving)
-    {
-        $this->StartTijdStip = $StartTijdStip;
-        $this->EindTijdStip = $EindTijdStip;
-        $this->Medewerker = $Medewerker;
-        $this->Locatie = $Locatie;
-        $this->LocatieAdres = $LocatieAdres;
-        $this->LocatieSpreekkamer = $LocatieSpreekkamer;
-        $this->AfspraakCode = $AfspraakCode;
-        $this->AfspraakOmschrijving = $AfspraakOmschrijving;
-    }
+    private string $AfspraakOmschrijving;
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getStartTijdStip()
+    public function getStartTijdStip() : \DateTimeInterface
     {
         return $this->StartTijdStip;
     }
 
     /**
-     * @param DateTimeInterface $StartTijdStip
-     * @return TAfspraak
+     * @param \DateTimeInterface $StartTijdStip
+     * @return static
      */
-    public function withStartTijdStip($StartTijdStip)
+    public function withStartTijdStip(\DateTimeInterface $StartTijdStip) : static
     {
         $new = clone $this;
         $new->StartTijdStip = $StartTijdStip;
@@ -93,18 +65,18 @@ class TAfspraak implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getEindTijdStip()
+    public function getEindTijdStip() : \DateTimeInterface
     {
         return $this->EindTijdStip;
     }
 
     /**
-     * @param DateTimeInterface $EindTijdStip
-     * @return TAfspraak
+     * @param \DateTimeInterface $EindTijdStip
+     * @return static
      */
-    public function withEindTijdStip($EindTijdStip)
+    public function withEindTijdStip(\DateTimeInterface $EindTijdStip) : static
     {
         $new = clone $this;
         $new->EindTijdStip = $EindTijdStip;
@@ -113,18 +85,18 @@ class TAfspraak implements RequestInterface
     }
 
     /**
-     * @return TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
      */
-    public function getMedewerker()
+    public function getMedewerker() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
     {
         return $this->Medewerker;
     }
 
     /**
-     * @param TMedewerker $Medewerker
-     * @return TAfspraak
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Medewerker
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker $Medewerker) : static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -135,16 +107,16 @@ class TAfspraak implements RequestInterface
     /**
      * @return string
      */
-    public function getLocatie()
+    public function getLocatie() : string
     {
         return $this->Locatie;
     }
 
     /**
      * @param string $Locatie
-     * @return TAfspraak
+     * @return static
      */
-    public function withLocatie($Locatie)
+    public function withLocatie(string $Locatie) : static
     {
         $new = clone $this;
         $new->Locatie = $Locatie;
@@ -153,18 +125,18 @@ class TAfspraak implements RequestInterface
     }
 
     /**
-     * @return TAdres
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
      */
-    public function getLocatieAdres()
+    public function getLocatieAdres() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres
     {
         return $this->LocatieAdres;
     }
 
     /**
-     * @param TAdres $LocatieAdres
-     * @return TAfspraak
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $LocatieAdres
+     * @return static
      */
-    public function withLocatieAdres($LocatieAdres)
+    public function withLocatieAdres(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres $LocatieAdres) : static
     {
         $new = clone $this;
         $new->LocatieAdres = $LocatieAdres;
@@ -175,16 +147,16 @@ class TAfspraak implements RequestInterface
     /**
      * @return string
      */
-    public function getLocatieSpreekkamer()
+    public function getLocatieSpreekkamer() : string
     {
         return $this->LocatieSpreekkamer;
     }
 
     /**
      * @param string $LocatieSpreekkamer
-     * @return TAfspraak
+     * @return static
      */
-    public function withLocatieSpreekkamer($LocatieSpreekkamer)
+    public function withLocatieSpreekkamer(string $LocatieSpreekkamer) : static
     {
         $new = clone $this;
         $new->LocatieSpreekkamer = $LocatieSpreekkamer;
@@ -195,16 +167,16 @@ class TAfspraak implements RequestInterface
     /**
      * @return string
      */
-    public function getAfspraakCode()
+    public function getAfspraakCode() : string
     {
         return $this->AfspraakCode;
     }
 
     /**
      * @param string $AfspraakCode
-     * @return TAfspraak
+     * @return static
      */
-    public function withAfspraakCode($AfspraakCode)
+    public function withAfspraakCode(string $AfspraakCode) : static
     {
         $new = clone $this;
         $new->AfspraakCode = $AfspraakCode;
@@ -215,23 +187,21 @@ class TAfspraak implements RequestInterface
     /**
      * @return string
      */
-    public function getAfspraakOmschrijving()
+    public function getAfspraakOmschrijving() : string
     {
         return $this->AfspraakOmschrijving;
     }
 
     /**
      * @param string $AfspraakOmschrijving
-     * @return TAfspraak
+     * @return static
      */
-    public function withAfspraakOmschrijving($AfspraakOmschrijving)
+    public function withAfspraakOmschrijving(string $AfspraakOmschrijving) : static
     {
         $new = clone $this;
         $new->AfspraakOmschrijving = $AfspraakOmschrijving;
 
         return $new;
     }
-
-
 }
 

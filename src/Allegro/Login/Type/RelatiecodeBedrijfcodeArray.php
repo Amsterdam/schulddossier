@@ -2,47 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class RelatiecodeBedrijfcodeArray implements RequestInterface
+class RelatiecodeBedrijfcodeArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRelatiecodeBedrijfcode>
+     */
+    private array $TRelatiecodeBedrijfcode;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRelatiecodeBedrijfcode
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRelatiecodeBedrijfcode>
      */
-    private $TRelatiecodeBedrijfcode;
-
-    /**
-     * Constructor
-     *
-     * @var TRelatiecodeBedrijfcode $TRelatiecodeBedrijfcode
-     */
-    public function __construct($TRelatiecodeBedrijfcode)
-    {
-        $this->TRelatiecodeBedrijfcode = $TRelatiecodeBedrijfcode;
-    }
-
-    /**
-     * @return TRelatiecodeBedrijfcode
-     */
-    public function getTRelatiecodeBedrijfcode()
+    public function getTRelatiecodeBedrijfcode() : array
     {
         return $this->TRelatiecodeBedrijfcode;
     }
 
     /**
-     * @param TRelatiecodeBedrijfcode $TRelatiecodeBedrijfcode
-     * @return RelatiecodeBedrijfcodeArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRelatiecodeBedrijfcode> $TRelatiecodeBedrijfcode
+     * @return static
      */
-    public function withTRelatiecodeBedrijfcode($TRelatiecodeBedrijfcode)
+    public function withTRelatiecodeBedrijfcode(array $TRelatiecodeBedrijfcode) : static
     {
         $new = clone $this;
         $new->TRelatiecodeBedrijfcode = $TRelatiecodeBedrijfcode;
 
         return $new;
     }
-
-
 }
 

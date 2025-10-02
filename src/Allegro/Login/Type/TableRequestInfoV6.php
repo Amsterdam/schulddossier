@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TableRequestInfoV6 implements RequestInterface
+class TableRequestInfoV6 extends TableRequestInfo
 {
-
     /**
      * @var string
      */
-    private $Sql;
-
-    /**
-     * Constructor
-     *
-     * @var string $Sql
-     */
-    public function __construct($Sql)
-    {
-        $this->Sql = $Sql;
-    }
+    private string $Sql;
 
     /**
      * @return string
      */
-    public function getSql()
+    public function getSql() : string
     {
         return $this->Sql;
     }
 
     /**
      * @param string $Sql
-     * @return TableRequestInfoV6
+     * @return static
      */
-    public function withSql($Sql)
+    public function withSql(string $Sql) : static
     {
         $new = clone $this;
         $new->Sql = $Sql;
 
         return $new;
     }
-
-
 }
 

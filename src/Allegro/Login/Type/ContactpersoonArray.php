@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class ContactpersoonArray implements RequestInterface
+class ContactpersoonArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContactpersoon>
+     */
+    private array $TContactpersoon;
 
     /**
-     * @var TContactpersoon
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContactpersoon>
      */
-    private $TContactpersoon;
-
-    /**
-     * Constructor
-     *
-     * @var TContactpersoon $TContactpersoon
-     */
-    public function __construct($TContactpersoon)
-    {
-        $this->TContactpersoon = $TContactpersoon;
-    }
-
-    /**
-     * @return TContactpersoon
-     */
-    public function getTContactpersoon()
+    public function getTContactpersoon() : array
     {
         return $this->TContactpersoon;
     }
 
     /**
-     * @param TContactpersoon $TContactpersoon
-     * @return ContactpersoonArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContactpersoon> $TContactpersoon
+     * @return static
      */
-    public function withTContactpersoon($TContactpersoon)
+    public function withTContactpersoon(array $TContactpersoon) : static
     {
         $new = clone $this;
         $new->TContactpersoon = $TContactpersoon;
 
         return $new;
     }
-
-
 }
 

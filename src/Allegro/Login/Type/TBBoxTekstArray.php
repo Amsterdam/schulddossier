@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBoxTekstArray implements RequestInterface
+class TBBoxTekstArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxTekst>
+     */
+    private array $TBBoxTekst;
 
     /**
-     * @var TBBoxTekst
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxTekst>
      */
-    private $TBBoxTekst;
-
-    /**
-     * Constructor
-     *
-     * @var TBBoxTekst $TBBoxTekst
-     */
-    public function __construct($TBBoxTekst)
-    {
-        $this->TBBoxTekst = $TBBoxTekst;
-    }
-
-    /**
-     * @return TBBoxTekst
-     */
-    public function getTBBoxTekst()
+    public function getTBBoxTekst() : array
     {
         return $this->TBBoxTekst;
     }
 
     /**
-     * @param TBBoxTekst $TBBoxTekst
-     * @return TBBoxTekstArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxTekst> $TBBoxTekst
+     * @return static
      */
-    public function withTBBoxTekst($TBBoxTekst)
+    public function withTBBoxTekst(array $TBBoxTekst) : static
     {
         $new = clone $this;
         $new->TBBoxTekst = $TBBoxTekst;
 
         return $new;
     }
-
-
 }
 

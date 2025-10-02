@@ -2,46 +2,35 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TestArray implements RequestInterface
+class TestArray
 {
-
     /**
-     * @var TTest
-     */
-    private $TTest;
-
-    /**
-     * Constructor
+     * Struct met 2 properties:
+     *  1) Veld1 van het type WideString
+     *  2) Veld2 van het type Integer
      *
-     * @var TTest $TTest
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTest>
      */
-    public function __construct($TTest)
-    {
-        $this->TTest = $TTest;
-    }
+    private array $TTest;
 
     /**
-     * @return TTest
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTest>
      */
-    public function getTTest()
+    public function getTTest() : array
     {
         return $this->TTest;
     }
 
     /**
-     * @param TTest $TTest
-     * @return TestArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTest> $TTest
+     * @return static
      */
-    public function withTTest($TTest)
+    public function withTTest(array $TTest) : static
     {
         $new = clone $this;
         $new->TTest = $TTest;
 
         return $new;
     }
-
-
 }
 

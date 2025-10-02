@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SBEiserArray implements RequestInterface
+class SBEiserArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBEiser>
+     */
+    private array $TSBEiser;
 
     /**
-     * @var TSBEiser
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBEiser>
      */
-    private $TSBEiser;
-
-    /**
-     * Constructor
-     *
-     * @var TSBEiser $TSBEiser
-     */
-    public function __construct($TSBEiser)
-    {
-        $this->TSBEiser = $TSBEiser;
-    }
-
-    /**
-     * @return TSBEiser
-     */
-    public function getTSBEiser()
+    public function getTSBEiser() : array
     {
         return $this->TSBEiser;
     }
 
     /**
-     * @param TSBEiser $TSBEiser
-     * @return SBEiserArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBEiser> $TSBEiser
+     * @return static
      */
-    public function withTSBEiser($TSBEiser)
+    public function withTSBEiser(array $TSBEiser) : static
     {
         $new = clone $this;
         $new->TSBEiser = $TSBEiser;
 
         return $new;
     }
-
-
 }
 

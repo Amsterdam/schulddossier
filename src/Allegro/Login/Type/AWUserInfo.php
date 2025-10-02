@@ -2,89 +2,61 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use DateTimeInterface;
-use Phpro\SoapClient\Type\RequestInterface;
-
-class AWUserInfo implements RequestInterface
+class AWUserInfo extends UserInfo
 {
-
     /**
      * @var string
      */
-    private $LoginType;
+    private string $LoginType;
 
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $RelatieCode;
 
     /**
      * @var string
      */
-    private $Naam;
+    private string $Naam;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $LaatsteLogin;
+    private \DateTimeInterface $LaatsteLogin;
 
     /**
      * @var string
      */
-    private $Autorisaties;
+    private string $Autorisaties;
 
     /**
      * @var int
      */
-    private $ExtraInfo;
+    private int $ExtraInfo;
 
     /**
      * @var string
      */
-    private $ExtraInfoOmschrijving;
+    private string $ExtraInfoOmschrijving;
 
     /**
      * @var bool
      */
-    private $WachtwoordWijzigen;
-
-    /**
-     * Constructor
-     *
-     * @var string $LoginType
-     * @var int $RelatieCode
-     * @var string $Naam
-     * @var DateTimeInterface $LaatsteLogin
-     * @var string $Autorisaties
-     * @var int $ExtraInfo
-     * @var string $ExtraInfoOmschrijving
-     * @var bool $WachtwoordWijzigen
-     */
-    public function __construct($LoginType, $RelatieCode, $Naam, $LaatsteLogin, $Autorisaties, $ExtraInfo, $ExtraInfoOmschrijving, $WachtwoordWijzigen)
-    {
-        $this->LoginType = $LoginType;
-        $this->RelatieCode = $RelatieCode;
-        $this->Naam = $Naam;
-        $this->LaatsteLogin = $LaatsteLogin;
-        $this->Autorisaties = $Autorisaties;
-        $this->ExtraInfo = $ExtraInfo;
-        $this->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
-        $this->WachtwoordWijzigen = $WachtwoordWijzigen;
-    }
+    private bool $WachtwoordWijzigen;
 
     /**
      * @return string
      */
-    public function getLoginType()
+    public function getLoginType() : string
     {
         return $this->LoginType;
     }
 
     /**
      * @param string $LoginType
-     * @return AWUserInfo
+     * @return static
      */
-    public function withLoginType($LoginType)
+    public function withLoginType(string $LoginType) : static
     {
         $new = clone $this;
         $new->LoginType = $LoginType;
@@ -95,16 +67,16 @@ class AWUserInfo implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode() : int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return AWUserInfo
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode) : static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -115,16 +87,16 @@ class AWUserInfo implements RequestInterface
     /**
      * @return string
      */
-    public function getNaam()
+    public function getNaam() : string
     {
         return $this->Naam;
     }
 
     /**
      * @param string $Naam
-     * @return AWUserInfo
+     * @return static
      */
-    public function withNaam($Naam)
+    public function withNaam(string $Naam) : static
     {
         $new = clone $this;
         $new->Naam = $Naam;
@@ -133,18 +105,18 @@ class AWUserInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getLaatsteLogin()
+    public function getLaatsteLogin() : \DateTimeInterface
     {
         return $this->LaatsteLogin;
     }
 
     /**
-     * @param DateTimeInterface $LaatsteLogin
-     * @return AWUserInfo
+     * @param \DateTimeInterface $LaatsteLogin
+     * @return static
      */
-    public function withLaatsteLogin($LaatsteLogin)
+    public function withLaatsteLogin(\DateTimeInterface $LaatsteLogin) : static
     {
         $new = clone $this;
         $new->LaatsteLogin = $LaatsteLogin;
@@ -155,16 +127,16 @@ class AWUserInfo implements RequestInterface
     /**
      * @return string
      */
-    public function getAutorisaties()
+    public function getAutorisaties() : string
     {
         return $this->Autorisaties;
     }
 
     /**
      * @param string $Autorisaties
-     * @return AWUserInfo
+     * @return static
      */
-    public function withAutorisaties($Autorisaties)
+    public function withAutorisaties(string $Autorisaties) : static
     {
         $new = clone $this;
         $new->Autorisaties = $Autorisaties;
@@ -175,16 +147,16 @@ class AWUserInfo implements RequestInterface
     /**
      * @return int
      */
-    public function getExtraInfo()
+    public function getExtraInfo() : int
     {
         return $this->ExtraInfo;
     }
 
     /**
      * @param int $ExtraInfo
-     * @return AWUserInfo
+     * @return static
      */
-    public function withExtraInfo($ExtraInfo)
+    public function withExtraInfo(int $ExtraInfo) : static
     {
         $new = clone $this;
         $new->ExtraInfo = $ExtraInfo;
@@ -195,16 +167,16 @@ class AWUserInfo implements RequestInterface
     /**
      * @return string
      */
-    public function getExtraInfoOmschrijving()
+    public function getExtraInfoOmschrijving() : string
     {
         return $this->ExtraInfoOmschrijving;
     }
 
     /**
      * @param string $ExtraInfoOmschrijving
-     * @return AWUserInfo
+     * @return static
      */
-    public function withExtraInfoOmschrijving($ExtraInfoOmschrijving)
+    public function withExtraInfoOmschrijving(string $ExtraInfoOmschrijving) : static
     {
         $new = clone $this;
         $new->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
@@ -215,23 +187,21 @@ class AWUserInfo implements RequestInterface
     /**
      * @return bool
      */
-    public function getWachtwoordWijzigen()
+    public function getWachtwoordWijzigen() : bool
     {
         return $this->WachtwoordWijzigen;
     }
 
     /**
      * @param bool $WachtwoordWijzigen
-     * @return AWUserInfo
+     * @return static
      */
-    public function withWachtwoordWijzigen($WachtwoordWijzigen)
+    public function withWachtwoordWijzigen(bool $WachtwoordWijzigen) : static
     {
         $new = clone $this;
         $new->WachtwoordWijzigen = $WachtwoordWijzigen;
 
         return $new;
     }
-
-
 }
 

@@ -2,54 +2,36 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleDelta implements RequestInterface
+class SimpleDelta
 {
-
     /**
      * @var string
      */
-    private $TableName;
+    private string $TableName;
 
     /**
-     * @var StringArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
      */
-    private $Fields;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $Fields;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChangeArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChangeArray
      */
-    private $Rows;
-
-    /**
-     * Constructor
-     *
-     * @var string $TableName
-     * @var StringArray $Fields
-     * @var SimpleDeltaChangeArray $Rows
-     */
-    public function __construct($TableName, $Fields, $Rows)
-    {
-        $this->TableName = $TableName;
-        $this->Fields = $Fields;
-        $this->Rows = $Rows;
-    }
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChangeArray $Rows;
 
     /**
      * @return string
      */
-    public function getTableName()
+    public function getTableName() : string
     {
         return $this->TableName;
     }
 
     /**
      * @param string $TableName
-     * @return SimpleDelta
+     * @return static
      */
-    public function withTableName($TableName)
+    public function withTableName(string $TableName) : static
     {
         $new = clone $this;
         $new->TableName = $TableName;
@@ -58,18 +40,18 @@ class SimpleDelta implements RequestInterface
     }
 
     /**
-     * @return StringArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
      */
-    public function getFields()
+    public function getFields() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray
     {
         return $this->Fields;
     }
 
     /**
-     * @param StringArray $Fields
-     * @return SimpleDelta
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $Fields
+     * @return static
      */
-    public function withFields($Fields)
+    public function withFields(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray $Fields) : static
     {
         $new = clone $this;
         $new->Fields = $Fields;
@@ -78,25 +60,23 @@ class SimpleDelta implements RequestInterface
     }
 
     /**
-     * @return SimpleDeltaChangeArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChangeArray
      */
-    public function getRows()
+    public function getRows() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChangeArray
     {
         return $this->Rows;
     }
 
     /**
-     * @param SimpleDeltaChangeArray $Rows
-     * @return SimpleDelta
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChangeArray $Rows
+     * @return static
      */
-    public function withRows($Rows)
+    public function withRows(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChangeArray $Rows) : static
     {
         $new = clone $this;
         $new->Rows = $Rows;
 
         return $new;
     }
-
-
 }
 

@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBoxBijlageArray implements RequestInterface
+class TBBoxBijlageArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxBijlage>
+     */
+    private array $TBBoxBijlage;
 
     /**
-     * @var TBBoxBijlage
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxBijlage>
      */
-    private $TBBoxBijlage;
-
-    /**
-     * Constructor
-     *
-     * @var TBBoxBijlage $TBBoxBijlage
-     */
-    public function __construct($TBBoxBijlage)
-    {
-        $this->TBBoxBijlage = $TBBoxBijlage;
-    }
-
-    /**
-     * @return TBBoxBijlage
-     */
-    public function getTBBoxBijlage()
+    public function getTBBoxBijlage() : array
     {
         return $this->TBBoxBijlage;
     }
 
     /**
-     * @param TBBoxBijlage $TBBoxBijlage
-     * @return TBBoxBijlageArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxBijlage> $TBBoxBijlage
+     * @return static
      */
-    public function withTBBoxBijlage($TBBoxBijlage)
+    public function withTBBoxBijlage(array $TBBoxBijlage) : static
     {
         $new = clone $this;
         $new->TBBoxBijlage = $TBBoxBijlage;
 
         return $new;
     }
-
-
 }
 

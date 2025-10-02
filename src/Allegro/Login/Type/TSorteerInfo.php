@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSorteerInfo implements RequestInterface
+class TSorteerInfo
 {
-
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\EVeldSortering
      */
-    private $Veld;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\EVeldSortering $Veld;
 
     /**
      * @var bool
      */
-    private $Oplopend;
+    private bool $Oplopend;
 
     /**
-     * Constructor
-     *
-     * @var string $Veld
-     * @var bool $Oplopend
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\EVeldSortering
      */
-    public function __construct($Veld, $Oplopend)
-    {
-        $this->Veld = $Veld;
-        $this->Oplopend = $Oplopend;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVeld()
+    public function getVeld() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\EVeldSortering
     {
         return $this->Veld;
     }
 
     /**
-     * @param string $Veld
-     * @return TSorteerInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\EVeldSortering $Veld
+     * @return static
      */
-    public function withVeld($Veld)
+    public function withVeld(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\EVeldSortering $Veld) : static
     {
         $new = clone $this;
         $new->Veld = $Veld;
@@ -52,23 +37,21 @@ class TSorteerInfo implements RequestInterface
     /**
      * @return bool
      */
-    public function getOplopend()
+    public function getOplopend() : bool
     {
         return $this->Oplopend;
     }
 
     /**
      * @param bool $Oplopend
-     * @return TSorteerInfo
+     * @return static
      */
-    public function withOplopend($Oplopend)
+    public function withOplopend(bool $Oplopend) : static
     {
         $new = clone $this;
         $new->Oplopend = $Oplopend;
 
         return $new;
     }
-
-
 }
 

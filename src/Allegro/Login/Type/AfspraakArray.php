@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class AfspraakArray implements RequestInterface
+class AfspraakArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraak>
+     */
+    private array $TAfspraak;
 
     /**
-     * @var TAfspraak
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraak>
      */
-    private $TAfspraak;
-
-    /**
-     * Constructor
-     *
-     * @var TAfspraak $TAfspraak
-     */
-    public function __construct($TAfspraak)
-    {
-        $this->TAfspraak = $TAfspraak;
-    }
-
-    /**
-     * @return TAfspraak
-     */
-    public function getTAfspraak()
+    public function getTAfspraak() : array
     {
         return $this->TAfspraak;
     }
 
     /**
-     * @param TAfspraak $TAfspraak
-     * @return AfspraakArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraak> $TAfspraak
+     * @return static
      */
-    public function withTAfspraak($TAfspraak)
+    public function withTAfspraak(array $TAfspraak) : static
     {
         $new = clone $this;
         $new->TAfspraak = $TAfspraak;
 
         return $new;
     }
-
-
 }
 

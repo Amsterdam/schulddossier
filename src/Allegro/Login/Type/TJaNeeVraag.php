@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TJaNeeVraag implements RequestInterface
+class TJaNeeVraag
 {
-
     /**
      * @var string
      */
-    private $Vraag;
+    private string $Vraag;
 
     /**
      * @var bool
      */
-    private $Antwoord;
-
-    /**
-     * Constructor
-     *
-     * @var string $Vraag
-     * @var bool $Antwoord
-     */
-    public function __construct($Vraag, $Antwoord)
-    {
-        $this->Vraag = $Vraag;
-        $this->Antwoord = $Antwoord;
-    }
+    private bool $Antwoord;
 
     /**
      * @return string
      */
-    public function getVraag()
+    public function getVraag() : string
     {
         return $this->Vraag;
     }
 
     /**
      * @param string $Vraag
-     * @return TJaNeeVraag
+     * @return static
      */
-    public function withVraag($Vraag)
+    public function withVraag(string $Vraag) : static
     {
         $new = clone $this;
         $new->Vraag = $Vraag;
@@ -52,23 +37,21 @@ class TJaNeeVraag implements RequestInterface
     /**
      * @return bool
      */
-    public function getAntwoord()
+    public function getAntwoord() : bool
     {
         return $this->Antwoord;
     }
 
     /**
      * @param bool $Antwoord
-     * @return TJaNeeVraag
+     * @return static
      */
-    public function withAntwoord($Antwoord)
+    public function withAntwoord(bool $Antwoord) : static
     {
         $new = clone $this;
         $new->Antwoord = $Antwoord;
 
         return $new;
     }
-
-
 }
 

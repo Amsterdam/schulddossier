@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class StringArray implements RequestInterface
+class StringArray
 {
+    /**
+     * @var array<int<0,max>, string>
+     */
+    private array $string;
 
     /**
-     * @var string
+     * @return array<int<0,max>, string>
      */
-    private $string;
-
-    /**
-     * Constructor
-     *
-     * @var string $string
-     */
-    public function __construct($string)
-    {
-        $this->string = $string;
-    }
-
-    /**
-     * @return string
-     */
-    public function getString()
+    public function getString() : array
     {
         return $this->string;
     }
 
     /**
-     * @param string $string
-     * @return StringArray
+     * @param array<int<0,max>, string> $string
+     * @return static
      */
-    public function withString($string)
+    public function withString(array $string) : static
     {
         $new = clone $this;
         $new->string = $string;
 
         return $new;
     }
-
-
 }
 

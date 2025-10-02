@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class ContractArray implements RequestInterface
+class ContractArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContract>
+     */
+    private array $TContract;
 
     /**
-     * @var TContract
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContract>
      */
-    private $TContract;
-
-    /**
-     * Constructor
-     *
-     * @var TContract $TContract
-     */
-    public function __construct($TContract)
-    {
-        $this->TContract = $TContract;
-    }
-
-    /**
-     * @return TContract
-     */
-    public function getTContract()
+    public function getTContract() : array
     {
         return $this->TContract;
     }
 
     /**
-     * @param TContract $TContract
-     * @return ContractArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContract> $TContract
+     * @return static
      */
-    public function withTContract($TContract)
+    public function withTContract(array $TContract) : static
     {
         $new = clone $this;
         $new->TContract = $TContract;
 
         return $new;
     }
-
-
 }
 

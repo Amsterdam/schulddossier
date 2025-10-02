@@ -2,103 +2,71 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use DateTimeInterface;
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPRSMutatie implements RequestInterface
+class TPRSMutatie
 {
+    /**
+     * @var int
+     */
+    private int $RelatieCode;
 
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $UniekVolgnummer;
 
     /**
      * @var int
      */
-    private $UniekVolgnummer;
+    private int $ContractCode;
 
     /**
      * @var int
      */
-    private $ContractCode;
+    private int $ContractVolgnummer;
 
     /**
-     * @var int
+     * @var \DateTimeInterface
      */
-    private $ContractVolgnummer;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $Datum;
+    private \DateTimeInterface $Datum;
 
     /**
      * @var string
      */
-    private $AfBij;
+    private string $AfBij;
 
     /**
      * @var float
      */
-    private $Bedrag;
+    private float $Bedrag;
 
     /**
      * @var int
      */
-    private $VolgnummerAfschrift;
+    private int $VolgnummerAfschrift;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
      * @var float
      */
-    private $SaldoVoor;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var int $UniekVolgnummer
-     * @var int $ContractCode
-     * @var int $ContractVolgnummer
-     * @var DateTimeInterface $Datum
-     * @var string $AfBij
-     * @var float $Bedrag
-     * @var int $VolgnummerAfschrift
-     * @var string $Omschrijving
-     * @var float $SaldoVoor
-     */
-    public function __construct($RelatieCode, $UniekVolgnummer, $ContractCode, $ContractVolgnummer, $Datum, $AfBij, $Bedrag, $VolgnummerAfschrift, $Omschrijving, $SaldoVoor)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->UniekVolgnummer = $UniekVolgnummer;
-        $this->ContractCode = $ContractCode;
-        $this->ContractVolgnummer = $ContractVolgnummer;
-        $this->Datum = $Datum;
-        $this->AfBij = $AfBij;
-        $this->Bedrag = $Bedrag;
-        $this->VolgnummerAfschrift = $VolgnummerAfschrift;
-        $this->Omschrijving = $Omschrijving;
-        $this->SaldoVoor = $SaldoVoor;
-    }
+    private float $SaldoVoor;
 
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode() : int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode) : static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -109,16 +77,16 @@ class TPRSMutatie implements RequestInterface
     /**
      * @return int
      */
-    public function getUniekVolgnummer()
+    public function getUniekVolgnummer() : int
     {
         return $this->UniekVolgnummer;
     }
 
     /**
      * @param int $UniekVolgnummer
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withUniekVolgnummer($UniekVolgnummer)
+    public function withUniekVolgnummer(int $UniekVolgnummer) : static
     {
         $new = clone $this;
         $new->UniekVolgnummer = $UniekVolgnummer;
@@ -129,16 +97,16 @@ class TPRSMutatie implements RequestInterface
     /**
      * @return int
      */
-    public function getContractCode()
+    public function getContractCode() : int
     {
         return $this->ContractCode;
     }
 
     /**
      * @param int $ContractCode
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withContractCode($ContractCode)
+    public function withContractCode(int $ContractCode) : static
     {
         $new = clone $this;
         $new->ContractCode = $ContractCode;
@@ -149,16 +117,16 @@ class TPRSMutatie implements RequestInterface
     /**
      * @return int
      */
-    public function getContractVolgnummer()
+    public function getContractVolgnummer() : int
     {
         return $this->ContractVolgnummer;
     }
 
     /**
      * @param int $ContractVolgnummer
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withContractVolgnummer($ContractVolgnummer)
+    public function withContractVolgnummer(int $ContractVolgnummer) : static
     {
         $new = clone $this;
         $new->ContractVolgnummer = $ContractVolgnummer;
@@ -167,18 +135,18 @@ class TPRSMutatie implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatum()
+    public function getDatum() : \DateTimeInterface
     {
         return $this->Datum;
     }
 
     /**
-     * @param DateTimeInterface $Datum
-     * @return TPRSMutatie
+     * @param \DateTimeInterface $Datum
+     * @return static
      */
-    public function withDatum($Datum)
+    public function withDatum(\DateTimeInterface $Datum) : static
     {
         $new = clone $this;
         $new->Datum = $Datum;
@@ -189,16 +157,16 @@ class TPRSMutatie implements RequestInterface
     /**
      * @return string
      */
-    public function getAfBij()
+    public function getAfBij() : string
     {
         return $this->AfBij;
     }
 
     /**
      * @param string $AfBij
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withAfBij($AfBij)
+    public function withAfBij(string $AfBij) : static
     {
         $new = clone $this;
         $new->AfBij = $AfBij;
@@ -209,16 +177,16 @@ class TPRSMutatie implements RequestInterface
     /**
      * @return float
      */
-    public function getBedrag()
+    public function getBedrag() : float
     {
         return $this->Bedrag;
     }
 
     /**
      * @param float $Bedrag
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withBedrag($Bedrag)
+    public function withBedrag(float $Bedrag) : static
     {
         $new = clone $this;
         $new->Bedrag = $Bedrag;
@@ -229,16 +197,16 @@ class TPRSMutatie implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummerAfschrift()
+    public function getVolgnummerAfschrift() : int
     {
         return $this->VolgnummerAfschrift;
     }
 
     /**
      * @param int $VolgnummerAfschrift
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withVolgnummerAfschrift($VolgnummerAfschrift)
+    public function withVolgnummerAfschrift(int $VolgnummerAfschrift) : static
     {
         $new = clone $this;
         $new->VolgnummerAfschrift = $VolgnummerAfschrift;
@@ -249,16 +217,16 @@ class TPRSMutatie implements RequestInterface
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving() : string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving) : static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -269,23 +237,21 @@ class TPRSMutatie implements RequestInterface
     /**
      * @return float
      */
-    public function getSaldoVoor()
+    public function getSaldoVoor() : float
     {
         return $this->SaldoVoor;
     }
 
     /**
      * @param float $SaldoVoor
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withSaldoVoor($SaldoVoor)
+    public function withSaldoVoor(float $SaldoVoor) : static
     {
         $new = clone $this;
         $new->SaldoVoor = $SaldoVoor;
 
         return $new;
     }
-
-
 }
 

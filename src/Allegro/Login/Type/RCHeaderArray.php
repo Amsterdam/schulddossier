@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class RCHeaderArray implements RequestInterface
+class RCHeaderArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRCHeader>
+     */
+    private array $TRCHeader;
 
     /**
-     * @var TRCHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRCHeader>
      */
-    private $TRCHeader;
-
-    /**
-     * Constructor
-     *
-     * @var TRCHeader $TRCHeader
-     */
-    public function __construct($TRCHeader)
-    {
-        $this->TRCHeader = $TRCHeader;
-    }
-
-    /**
-     * @return TRCHeader
-     */
-    public function getTRCHeader()
+    public function getTRCHeader() : array
     {
         return $this->TRCHeader;
     }
 
     /**
-     * @param TRCHeader $TRCHeader
-     * @return RCHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRCHeader> $TRCHeader
+     * @return static
      */
-    public function withTRCHeader($TRCHeader)
+    public function withTRCHeader(array $TRCHeader) : static
     {
         $new = clone $this;
         $new->TRCHeader = $TRCHeader;
 
         return $new;
     }
-
-
 }
 

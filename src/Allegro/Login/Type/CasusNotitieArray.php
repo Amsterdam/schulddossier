@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class CasusNotitieArray implements RequestInterface
+class CasusNotitieArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusNotitie>
+     */
+    private array $TCasusNotitie;
 
     /**
-     * @var TCasusNotitie
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusNotitie>
      */
-    private $TCasusNotitie;
-
-    /**
-     * Constructor
-     *
-     * @var TCasusNotitie $TCasusNotitie
-     */
-    public function __construct($TCasusNotitie)
-    {
-        $this->TCasusNotitie = $TCasusNotitie;
-    }
-
-    /**
-     * @return TCasusNotitie
-     */
-    public function getTCasusNotitie()
+    public function getTCasusNotitie() : array
     {
         return $this->TCasusNotitie;
     }
 
     /**
-     * @param TCasusNotitie $TCasusNotitie
-     * @return CasusNotitieArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusNotitie> $TCasusNotitie
+     * @return static
      */
-    public function withTCasusNotitie($TCasusNotitie)
+    public function withTCasusNotitie(array $TCasusNotitie) : static
     {
         $new = clone $this;
         $new->TCasusNotitie = $TCasusNotitie;
 
         return $new;
     }
-
-
 }
 

@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SaldoReserveringArray implements RequestInterface
+class SaldoReserveringArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSaldoReservering>
+     */
+    private array $TSaldoReservering;
 
     /**
-     * @var TSaldoReservering
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSaldoReservering>
      */
-    private $TSaldoReservering;
-
-    /**
-     * Constructor
-     *
-     * @var TSaldoReservering $TSaldoReservering
-     */
-    public function __construct($TSaldoReservering)
-    {
-        $this->TSaldoReservering = $TSaldoReservering;
-    }
-
-    /**
-     * @return TSaldoReservering
-     */
-    public function getTSaldoReservering()
+    public function getTSaldoReservering() : array
     {
         return $this->TSaldoReservering;
     }
 
     /**
-     * @param TSaldoReservering $TSaldoReservering
-     * @return SaldoReserveringArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSaldoReservering> $TSaldoReservering
+     * @return static
      */
-    public function withTSaldoReservering($TSaldoReservering)
+    public function withTSaldoReservering(array $TSaldoReservering) : static
     {
         $new = clone $this;
         $new->TSaldoReservering = $TSaldoReservering;
 
         return $new;
     }
-
-
 }
 

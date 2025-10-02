@@ -2,187 +2,149 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use DateTimeInterface;
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TCasusInfo implements RequestInterface
+class TCasusInfo
 {
-
     /**
-     * @var TCasusHeader
+     * TCasusHeader bevat :
+     *  - Relatiecode
+     *  - Volgnummer
+     *  - Aanmaakdatum
+     *  - CasusStatus
+     *  * Aanmelding (aanmelding 'in progress')
+     *  * Aanmelding voltooid (aanmelding voltooid)
+     *  * Inventarisatie (inventarisatie bezig)
+     *  * Analyse (analyse bezig)
+     *  * Plan Van Aanpak (plan van aanpak bezig)
+     *  * Fiattering (fiattering bezig)
+     *  * Slapend (laatste plan van aanpak gefiatteerd)
+     *  * Crisis (crisis)
+     *  * Afwijzing (casus zit in afwijzingsfase)
+     *  * Einde (casus zit in beeindigingsfase)
+     *  * Inactief (casus niet meer actief)
+     *  * Geen status
+     *
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader
      */
-    private $InfoHeader;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader $InfoHeader;
 
     /**
      * @var string
      */
-    private $CasusMedewerker;
+    private string $CasusMedewerker;
 
     /**
      * @var string
      */
-    private $CasusTeam;
+    private string $CasusTeam;
 
     /**
      * @var int
      */
-    private $Opdrachtgever;
+    private int $Opdrachtgever;
 
     /**
      * @var int
      */
-    private $OpdrachtgeverContact;
+    private int $OpdrachtgeverContact;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumAanmelding;
+    private \DateTimeInterface $DatumAanmelding;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumAanmeldingEinde;
+    private \DateTimeInterface $DatumAanmeldingEinde;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumIntake;
+    private \DateTimeInterface $DatumIntake;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumIntakeEinde;
+    private \DateTimeInterface $DatumIntakeEinde;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumInventarisatie;
+    private \DateTimeInterface $DatumInventarisatie;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumInventarisatieEinde;
+    private \DateTimeInterface $DatumInventarisatieEinde;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumAnalyse;
+    private \DateTimeInterface $DatumAnalyse;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumAnalyseEinde;
+    private \DateTimeInterface $DatumAnalyseEinde;
 
     /**
      * @var bool
      */
-    private $Crisis;
+    private bool $Crisis;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumCrisis;
+    private \DateTimeInterface $DatumCrisis;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumCrisisEinde;
+    private \DateTimeInterface $DatumCrisisEinde;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumAfwijzing;
+    private \DateTimeInterface $DatumAfwijzing;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumAfwijzingEinde;
+    private \DateTimeInterface $DatumAfwijzingEinde;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumStop;
+    private \DateTimeInterface $DatumStop;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumStopEinde;
+    private \DateTimeInterface $DatumStopEinde;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $VerwachteEinddatumIntake;
+    private \DateTimeInterface $VerwachteEinddatumIntake;
 
     /**
-     * @var CasusPVAArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAArray
      */
-    private $PVA;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAArray $PVA;
 
     /**
-     * Constructor
-     *
-     * @var TCasusHeader $InfoHeader
-     * @var string $CasusMedewerker
-     * @var string $CasusTeam
-     * @var int $Opdrachtgever
-     * @var int $OpdrachtgeverContact
-     * @var DateTimeInterface $DatumAanmelding
-     * @var DateTimeInterface $DatumAanmeldingEinde
-     * @var DateTimeInterface $DatumIntake
-     * @var DateTimeInterface $DatumIntakeEinde
-     * @var DateTimeInterface $DatumInventarisatie
-     * @var DateTimeInterface $DatumInventarisatieEinde
-     * @var DateTimeInterface $DatumAnalyse
-     * @var DateTimeInterface $DatumAnalyseEinde
-     * @var bool $Crisis
-     * @var DateTimeInterface $DatumCrisis
-     * @var DateTimeInterface $DatumCrisisEinde
-     * @var DateTimeInterface $DatumAfwijzing
-     * @var DateTimeInterface $DatumAfwijzingEinde
-     * @var DateTimeInterface $DatumStop
-     * @var DateTimeInterface $DatumStopEinde
-     * @var DateTimeInterface $VerwachteEinddatumIntake
-     * @var CasusPVAArray $PVA
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader
      */
-    public function __construct($InfoHeader, $CasusMedewerker, $CasusTeam, $Opdrachtgever, $OpdrachtgeverContact, $DatumAanmelding, $DatumAanmeldingEinde, $DatumIntake, $DatumIntakeEinde, $DatumInventarisatie, $DatumInventarisatieEinde, $DatumAnalyse, $DatumAnalyseEinde, $Crisis, $DatumCrisis, $DatumCrisisEinde, $DatumAfwijzing, $DatumAfwijzingEinde, $DatumStop, $DatumStopEinde, $VerwachteEinddatumIntake, $PVA)
-    {
-        $this->InfoHeader = $InfoHeader;
-        $this->CasusMedewerker = $CasusMedewerker;
-        $this->CasusTeam = $CasusTeam;
-        $this->Opdrachtgever = $Opdrachtgever;
-        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-        $this->DatumAanmelding = $DatumAanmelding;
-        $this->DatumAanmeldingEinde = $DatumAanmeldingEinde;
-        $this->DatumIntake = $DatumIntake;
-        $this->DatumIntakeEinde = $DatumIntakeEinde;
-        $this->DatumInventarisatie = $DatumInventarisatie;
-        $this->DatumInventarisatieEinde = $DatumInventarisatieEinde;
-        $this->DatumAnalyse = $DatumAnalyse;
-        $this->DatumAnalyseEinde = $DatumAnalyseEinde;
-        $this->Crisis = $Crisis;
-        $this->DatumCrisis = $DatumCrisis;
-        $this->DatumCrisisEinde = $DatumCrisisEinde;
-        $this->DatumAfwijzing = $DatumAfwijzing;
-        $this->DatumAfwijzingEinde = $DatumAfwijzingEinde;
-        $this->DatumStop = $DatumStop;
-        $this->DatumStopEinde = $DatumStopEinde;
-        $this->VerwachteEinddatumIntake = $VerwachteEinddatumIntake;
-        $this->PVA = $PVA;
-    }
-
-    /**
-     * @return TCasusHeader
-     */
-    public function getInfoHeader()
+    public function getInfoHeader() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader
     {
         return $this->InfoHeader;
     }
 
     /**
-     * @param TCasusHeader $InfoHeader
-     * @return TCasusInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader $InfoHeader
+     * @return static
      */
-    public function withInfoHeader($InfoHeader)
+    public function withInfoHeader(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader $InfoHeader) : static
     {
         $new = clone $this;
         $new->InfoHeader = $InfoHeader;
@@ -193,16 +155,16 @@ class TCasusInfo implements RequestInterface
     /**
      * @return string
      */
-    public function getCasusMedewerker()
+    public function getCasusMedewerker() : string
     {
         return $this->CasusMedewerker;
     }
 
     /**
      * @param string $CasusMedewerker
-     * @return TCasusInfo
+     * @return static
      */
-    public function withCasusMedewerker($CasusMedewerker)
+    public function withCasusMedewerker(string $CasusMedewerker) : static
     {
         $new = clone $this;
         $new->CasusMedewerker = $CasusMedewerker;
@@ -213,16 +175,16 @@ class TCasusInfo implements RequestInterface
     /**
      * @return string
      */
-    public function getCasusTeam()
+    public function getCasusTeam() : string
     {
         return $this->CasusTeam;
     }
 
     /**
      * @param string $CasusTeam
-     * @return TCasusInfo
+     * @return static
      */
-    public function withCasusTeam($CasusTeam)
+    public function withCasusTeam(string $CasusTeam) : static
     {
         $new = clone $this;
         $new->CasusTeam = $CasusTeam;
@@ -233,16 +195,16 @@ class TCasusInfo implements RequestInterface
     /**
      * @return int
      */
-    public function getOpdrachtgever()
+    public function getOpdrachtgever() : int
     {
         return $this->Opdrachtgever;
     }
 
     /**
      * @param int $Opdrachtgever
-     * @return TCasusInfo
+     * @return static
      */
-    public function withOpdrachtgever($Opdrachtgever)
+    public function withOpdrachtgever(int $Opdrachtgever) : static
     {
         $new = clone $this;
         $new->Opdrachtgever = $Opdrachtgever;
@@ -253,16 +215,16 @@ class TCasusInfo implements RequestInterface
     /**
      * @return int
      */
-    public function getOpdrachtgeverContact()
+    public function getOpdrachtgeverContact() : int
     {
         return $this->OpdrachtgeverContact;
     }
 
     /**
      * @param int $OpdrachtgeverContact
-     * @return TCasusInfo
+     * @return static
      */
-    public function withOpdrachtgeverContact($OpdrachtgeverContact)
+    public function withOpdrachtgeverContact(int $OpdrachtgeverContact) : static
     {
         $new = clone $this;
         $new->OpdrachtgeverContact = $OpdrachtgeverContact;
@@ -271,18 +233,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumAanmelding()
+    public function getDatumAanmelding() : \DateTimeInterface
     {
         return $this->DatumAanmelding;
     }
 
     /**
-     * @param DateTimeInterface $DatumAanmelding
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumAanmelding
+     * @return static
      */
-    public function withDatumAanmelding($DatumAanmelding)
+    public function withDatumAanmelding(\DateTimeInterface $DatumAanmelding) : static
     {
         $new = clone $this;
         $new->DatumAanmelding = $DatumAanmelding;
@@ -291,18 +253,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumAanmeldingEinde()
+    public function getDatumAanmeldingEinde() : \DateTimeInterface
     {
         return $this->DatumAanmeldingEinde;
     }
 
     /**
-     * @param DateTimeInterface $DatumAanmeldingEinde
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumAanmeldingEinde
+     * @return static
      */
-    public function withDatumAanmeldingEinde($DatumAanmeldingEinde)
+    public function withDatumAanmeldingEinde(\DateTimeInterface $DatumAanmeldingEinde) : static
     {
         $new = clone $this;
         $new->DatumAanmeldingEinde = $DatumAanmeldingEinde;
@@ -311,18 +273,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumIntake()
+    public function getDatumIntake() : \DateTimeInterface
     {
         return $this->DatumIntake;
     }
 
     /**
-     * @param DateTimeInterface $DatumIntake
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumIntake
+     * @return static
      */
-    public function withDatumIntake($DatumIntake)
+    public function withDatumIntake(\DateTimeInterface $DatumIntake) : static
     {
         $new = clone $this;
         $new->DatumIntake = $DatumIntake;
@@ -331,18 +293,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumIntakeEinde()
+    public function getDatumIntakeEinde() : \DateTimeInterface
     {
         return $this->DatumIntakeEinde;
     }
 
     /**
-     * @param DateTimeInterface $DatumIntakeEinde
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumIntakeEinde
+     * @return static
      */
-    public function withDatumIntakeEinde($DatumIntakeEinde)
+    public function withDatumIntakeEinde(\DateTimeInterface $DatumIntakeEinde) : static
     {
         $new = clone $this;
         $new->DatumIntakeEinde = $DatumIntakeEinde;
@@ -351,18 +313,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumInventarisatie()
+    public function getDatumInventarisatie() : \DateTimeInterface
     {
         return $this->DatumInventarisatie;
     }
 
     /**
-     * @param DateTimeInterface $DatumInventarisatie
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumInventarisatie
+     * @return static
      */
-    public function withDatumInventarisatie($DatumInventarisatie)
+    public function withDatumInventarisatie(\DateTimeInterface $DatumInventarisatie) : static
     {
         $new = clone $this;
         $new->DatumInventarisatie = $DatumInventarisatie;
@@ -371,18 +333,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumInventarisatieEinde()
+    public function getDatumInventarisatieEinde() : \DateTimeInterface
     {
         return $this->DatumInventarisatieEinde;
     }
 
     /**
-     * @param DateTimeInterface $DatumInventarisatieEinde
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumInventarisatieEinde
+     * @return static
      */
-    public function withDatumInventarisatieEinde($DatumInventarisatieEinde)
+    public function withDatumInventarisatieEinde(\DateTimeInterface $DatumInventarisatieEinde) : static
     {
         $new = clone $this;
         $new->DatumInventarisatieEinde = $DatumInventarisatieEinde;
@@ -391,18 +353,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumAnalyse()
+    public function getDatumAnalyse() : \DateTimeInterface
     {
         return $this->DatumAnalyse;
     }
 
     /**
-     * @param DateTimeInterface $DatumAnalyse
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumAnalyse
+     * @return static
      */
-    public function withDatumAnalyse($DatumAnalyse)
+    public function withDatumAnalyse(\DateTimeInterface $DatumAnalyse) : static
     {
         $new = clone $this;
         $new->DatumAnalyse = $DatumAnalyse;
@@ -411,18 +373,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumAnalyseEinde()
+    public function getDatumAnalyseEinde() : \DateTimeInterface
     {
         return $this->DatumAnalyseEinde;
     }
 
     /**
-     * @param DateTimeInterface $DatumAnalyseEinde
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumAnalyseEinde
+     * @return static
      */
-    public function withDatumAnalyseEinde($DatumAnalyseEinde)
+    public function withDatumAnalyseEinde(\DateTimeInterface $DatumAnalyseEinde) : static
     {
         $new = clone $this;
         $new->DatumAnalyseEinde = $DatumAnalyseEinde;
@@ -433,16 +395,16 @@ class TCasusInfo implements RequestInterface
     /**
      * @return bool
      */
-    public function getCrisis()
+    public function getCrisis() : bool
     {
         return $this->Crisis;
     }
 
     /**
      * @param bool $Crisis
-     * @return TCasusInfo
+     * @return static
      */
-    public function withCrisis($Crisis)
+    public function withCrisis(bool $Crisis) : static
     {
         $new = clone $this;
         $new->Crisis = $Crisis;
@@ -451,18 +413,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumCrisis()
+    public function getDatumCrisis() : \DateTimeInterface
     {
         return $this->DatumCrisis;
     }
 
     /**
-     * @param DateTimeInterface $DatumCrisis
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumCrisis
+     * @return static
      */
-    public function withDatumCrisis($DatumCrisis)
+    public function withDatumCrisis(\DateTimeInterface $DatumCrisis) : static
     {
         $new = clone $this;
         $new->DatumCrisis = $DatumCrisis;
@@ -471,18 +433,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumCrisisEinde()
+    public function getDatumCrisisEinde() : \DateTimeInterface
     {
         return $this->DatumCrisisEinde;
     }
 
     /**
-     * @param DateTimeInterface $DatumCrisisEinde
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumCrisisEinde
+     * @return static
      */
-    public function withDatumCrisisEinde($DatumCrisisEinde)
+    public function withDatumCrisisEinde(\DateTimeInterface $DatumCrisisEinde) : static
     {
         $new = clone $this;
         $new->DatumCrisisEinde = $DatumCrisisEinde;
@@ -491,18 +453,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumAfwijzing()
+    public function getDatumAfwijzing() : \DateTimeInterface
     {
         return $this->DatumAfwijzing;
     }
 
     /**
-     * @param DateTimeInterface $DatumAfwijzing
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumAfwijzing
+     * @return static
      */
-    public function withDatumAfwijzing($DatumAfwijzing)
+    public function withDatumAfwijzing(\DateTimeInterface $DatumAfwijzing) : static
     {
         $new = clone $this;
         $new->DatumAfwijzing = $DatumAfwijzing;
@@ -511,18 +473,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumAfwijzingEinde()
+    public function getDatumAfwijzingEinde() : \DateTimeInterface
     {
         return $this->DatumAfwijzingEinde;
     }
 
     /**
-     * @param DateTimeInterface $DatumAfwijzingEinde
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumAfwijzingEinde
+     * @return static
      */
-    public function withDatumAfwijzingEinde($DatumAfwijzingEinde)
+    public function withDatumAfwijzingEinde(\DateTimeInterface $DatumAfwijzingEinde) : static
     {
         $new = clone $this;
         $new->DatumAfwijzingEinde = $DatumAfwijzingEinde;
@@ -531,18 +493,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumStop()
+    public function getDatumStop() : \DateTimeInterface
     {
         return $this->DatumStop;
     }
 
     /**
-     * @param DateTimeInterface $DatumStop
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumStop
+     * @return static
      */
-    public function withDatumStop($DatumStop)
+    public function withDatumStop(\DateTimeInterface $DatumStop) : static
     {
         $new = clone $this;
         $new->DatumStop = $DatumStop;
@@ -551,18 +513,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumStopEinde()
+    public function getDatumStopEinde() : \DateTimeInterface
     {
         return $this->DatumStopEinde;
     }
 
     /**
-     * @param DateTimeInterface $DatumStopEinde
-     * @return TCasusInfo
+     * @param \DateTimeInterface $DatumStopEinde
+     * @return static
      */
-    public function withDatumStopEinde($DatumStopEinde)
+    public function withDatumStopEinde(\DateTimeInterface $DatumStopEinde) : static
     {
         $new = clone $this;
         $new->DatumStopEinde = $DatumStopEinde;
@@ -571,18 +533,18 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getVerwachteEinddatumIntake()
+    public function getVerwachteEinddatumIntake() : \DateTimeInterface
     {
         return $this->VerwachteEinddatumIntake;
     }
 
     /**
-     * @param DateTimeInterface $VerwachteEinddatumIntake
-     * @return TCasusInfo
+     * @param \DateTimeInterface $VerwachteEinddatumIntake
+     * @return static
      */
-    public function withVerwachteEinddatumIntake($VerwachteEinddatumIntake)
+    public function withVerwachteEinddatumIntake(\DateTimeInterface $VerwachteEinddatumIntake) : static
     {
         $new = clone $this;
         $new->VerwachteEinddatumIntake = $VerwachteEinddatumIntake;
@@ -591,25 +553,23 @@ class TCasusInfo implements RequestInterface
     }
 
     /**
-     * @return CasusPVAArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAArray
      */
-    public function getPVA()
+    public function getPVA() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAArray
     {
         return $this->PVA;
     }
 
     /**
-     * @param CasusPVAArray $PVA
-     * @return TCasusInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAArray $PVA
+     * @return static
      */
-    public function withPVA($PVA)
+    public function withPVA(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAArray $PVA) : static
     {
         $new = clone $this;
         $new->PVA = $PVA;
 
         return $new;
     }
-
-
 }
 

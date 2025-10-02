@@ -2,53 +2,38 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBijlage implements RequestInterface
+class TBijlage
 {
-
     /**
-     * @var string
-     */
-    private $Soort;
-
-    /**
-     * @var string
-     */
-    private $Extension;
-
-    /**
-     * @var string
-     */
-    private $Bijlage;
-
-    /**
-     * Constructor
+     * AW_aSoortDocument in AllegroWebPortierConst
      *
-     * @var string $Soort
-     * @var string $Extension
-     * @var string $Bijlage
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ESoortDocument
      */
-    public function __construct($Soort, $Extension, $Bijlage)
-    {
-        $this->Soort = $Soort;
-        $this->Extension = $Extension;
-        $this->Bijlage = $Bijlage;
-    }
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ESoortDocument $Soort;
 
     /**
-     * @return string
+     * @var string
      */
-    public function getSoort()
+    private string $Extension;
+
+    /**
+     * @var mixed
+     */
+    private mixed $Bijlage;
+
+    /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ESoortDocument
+     */
+    public function getSoort() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ESoortDocument
     {
         return $this->Soort;
     }
 
     /**
-     * @param string $Soort
-     * @return TBijlage
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ESoortDocument $Soort
+     * @return static
      */
-    public function withSoort($Soort)
+    public function withSoort(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ESoortDocument $Soort) : static
     {
         $new = clone $this;
         $new->Soort = $Soort;
@@ -59,16 +44,16 @@ class TBijlage implements RequestInterface
     /**
      * @return string
      */
-    public function getExtension()
+    public function getExtension() : string
     {
         return $this->Extension;
     }
 
     /**
      * @param string $Extension
-     * @return TBijlage
+     * @return static
      */
-    public function withExtension($Extension)
+    public function withExtension(string $Extension) : static
     {
         $new = clone $this;
         $new->Extension = $Extension;
@@ -77,25 +62,23 @@ class TBijlage implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getBijlage()
+    public function getBijlage() : mixed
     {
         return $this->Bijlage;
     }
 
     /**
-     * @param string $Bijlage
-     * @return TBijlage
+     * @param mixed $Bijlage
+     * @return static
      */
-    public function withBijlage($Bijlage)
+    public function withBijlage(mixed $Bijlage) : static
     {
         $new = clone $this;
         $new->Bijlage = $Bijlage;
 
         return $new;
     }
-
-
 }
 

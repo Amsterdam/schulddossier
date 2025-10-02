@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class CasusDeelopdrachtArray implements RequestInterface
+class CasusDeelopdrachtArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusDeelopdracht>
+     */
+    private array $TCasusDeelopdracht;
 
     /**
-     * @var TCasusDeelopdracht
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusDeelopdracht>
      */
-    private $TCasusDeelopdracht;
-
-    /**
-     * Constructor
-     *
-     * @var TCasusDeelopdracht $TCasusDeelopdracht
-     */
-    public function __construct($TCasusDeelopdracht)
-    {
-        $this->TCasusDeelopdracht = $TCasusDeelopdracht;
-    }
-
-    /**
-     * @return TCasusDeelopdracht
-     */
-    public function getTCasusDeelopdracht()
+    public function getTCasusDeelopdracht() : array
     {
         return $this->TCasusDeelopdracht;
     }
 
     /**
-     * @param TCasusDeelopdracht $TCasusDeelopdracht
-     * @return CasusDeelopdrachtArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusDeelopdracht> $TCasusDeelopdracht
+     * @return static
      */
-    public function withTCasusDeelopdracht($TCasusDeelopdracht)
+    public function withTCasusDeelopdracht(array $TCasusDeelopdracht) : static
     {
         $new = clone $this;
         $new->TCasusDeelopdracht = $TCasusDeelopdracht;
 
         return $new;
     }
-
-
 }
 

@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SchuldArray implements RequestInterface
+class SchuldArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSchuld>
+     */
+    private array $TSchuld;
 
     /**
-     * @var TSchuld
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSchuld>
      */
-    private $TSchuld;
-
-    /**
-     * Constructor
-     *
-     * @var TSchuld $TSchuld
-     */
-    public function __construct($TSchuld)
-    {
-        $this->TSchuld = $TSchuld;
-    }
-
-    /**
-     * @return TSchuld
-     */
-    public function getTSchuld()
+    public function getTSchuld() : array
     {
         return $this->TSchuld;
     }
 
     /**
-     * @param TSchuld $TSchuld
-     * @return SchuldArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSchuld> $TSchuld
+     * @return static
      */
-    public function withTSchuld($TSchuld)
+    public function withTSchuld(array $TSchuld) : static
     {
         $new = clone $this;
         $new->TSchuld = $TSchuld;
 
         return $new;
     }
-
-
 }
 

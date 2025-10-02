@@ -2,67 +2,51 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSchuld implements RequestInterface
+class TSchuld
 {
-
     /**
      * @var string
      */
-    private $Naam;
+    private string $Naam;
 
     /**
      * @var float
      */
-    private $Schuld;
+    private float $Schuld;
 
     /**
-     * @var bool
+     * @var null | bool
      */
-    private $Studieschuld;
+    private ?bool $Studieschuld = null;
+
+    /**
+     * @var null | string
+     */
+    private ?string $Referentie = null;
 
     /**
      * @var string
      */
-    private $Referentie;
+    private string $Omschrijving;
 
     /**
-     * @var string
+     * @var int
      */
-    private $Omschrijving;
-
-    /**
-     * Constructor
-     *
-     * @var string $Naam
-     * @var float $Schuld
-     * @var bool $Studieschuld
-     * @var string $Referentie
-     * @var string $Omschrijving
-     */
-    public function __construct($Naam, $Schuld, $Studieschuld, $Referentie, $Omschrijving)
-    {
-        $this->Naam = $Naam;
-        $this->Schuld = $Schuld;
-        $this->Studieschuld = $Studieschuld;
-        $this->Referentie = $Referentie;
-        $this->Omschrijving = $Omschrijving;
-    }
+    private int $CodeEiser;
 
     /**
      * @return string
      */
-    public function getNaam()
+    public function getNaam() : string
     {
         return $this->Naam;
     }
 
     /**
      * @param string $Naam
-     * @return TSchuld
+     * @return static
      */
-    public function withNaam($Naam)
+    public function withNaam(string $Naam) : static
     {
         $new = clone $this;
         $new->Naam = $Naam;
@@ -73,16 +57,16 @@ class TSchuld implements RequestInterface
     /**
      * @return float
      */
-    public function getSchuld()
+    public function getSchuld() : float
     {
         return $this->Schuld;
     }
 
     /**
      * @param float $Schuld
-     * @return TSchuld
+     * @return static
      */
-    public function withSchuld($Schuld)
+    public function withSchuld(float $Schuld) : static
     {
         $new = clone $this;
         $new->Schuld = $Schuld;
@@ -91,18 +75,18 @@ class TSchuld implements RequestInterface
     }
 
     /**
-     * @return bool
+     * @return null | bool
      */
-    public function getStudieschuld()
+    public function getStudieschuld() : ?bool
     {
         return $this->Studieschuld;
     }
 
     /**
-     * @param bool $Studieschuld
-     * @return TSchuld
+     * @param null | bool $Studieschuld
+     * @return static
      */
-    public function withStudieschuld($Studieschuld)
+    public function withStudieschuld(?bool $Studieschuld) : static
     {
         $new = clone $this;
         $new->Studieschuld = $Studieschuld;
@@ -111,18 +95,18 @@ class TSchuld implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getReferentie()
+    public function getReferentie() : ?string
     {
         return $this->Referentie;
     }
 
     /**
-     * @param string $Referentie
-     * @return TSchuld
+     * @param null | string $Referentie
+     * @return static
      */
-    public function withReferentie($Referentie)
+    public function withReferentie(?string $Referentie) : static
     {
         $new = clone $this;
         $new->Referentie = $Referentie;
@@ -133,16 +117,16 @@ class TSchuld implements RequestInterface
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving() : string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TSchuld
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving) : static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -150,6 +134,24 @@ class TSchuld implements RequestInterface
         return $new;
     }
 
+    /**
+     * @return int
+     */
+    public function getCodeEiser() : int
+    {
+        return $this->CodeEiser;
+    }
 
+    /**
+     * @param int $CodeEiser
+     * @return static
+     */
+    public function withCodeEiser(int $CodeEiser) : static
+    {
+        $new = clone $this;
+        $new->CodeEiser = $CodeEiser;
+
+        return $new;
+    }
 }
 

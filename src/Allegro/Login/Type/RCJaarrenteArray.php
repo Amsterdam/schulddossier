@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class RCJaarrenteArray implements RequestInterface
+class RCJaarrenteArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRCJaarrente>
+     */
+    private array $TRCJaarrente;
 
     /**
-     * @var TRCJaarrente
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRCJaarrente>
      */
-    private $TRCJaarrente;
-
-    /**
-     * Constructor
-     *
-     * @var TRCJaarrente $TRCJaarrente
-     */
-    public function __construct($TRCJaarrente)
-    {
-        $this->TRCJaarrente = $TRCJaarrente;
-    }
-
-    /**
-     * @return TRCJaarrente
-     */
-    public function getTRCJaarrente()
+    public function getTRCJaarrente() : array
     {
         return $this->TRCJaarrente;
     }
 
     /**
-     * @param TRCJaarrente $TRCJaarrente
-     * @return RCJaarrenteArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRCJaarrente> $TRCJaarrente
+     * @return static
      */
-    public function withTRCJaarrente($TRCJaarrente)
+    public function withTRCJaarrente(array $TRCJaarrente) : static
     {
         $new = clone $this;
         $new->TRCJaarrente = $TRCJaarrente;
 
         return $new;
     }
-
-
 }
 

@@ -2,53 +2,36 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TLijstOpdrachtgever implements RequestInterface
+class TLijstOpdrachtgever
 {
-
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $RelatieCode;
 
     /**
      * @var string
      */
-    private $Naam;
+    private string $Naam;
 
     /**
      * @var string
      */
-    private $Vestigingsplaats;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var string $Naam
-     * @var string $Vestigingsplaats
-     */
-    public function __construct($RelatieCode, $Naam, $Vestigingsplaats)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->Naam = $Naam;
-        $this->Vestigingsplaats = $Vestigingsplaats;
-    }
+    private string $Vestigingsplaats;
 
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode() : int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TLijstOpdrachtgever
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode) : static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -59,16 +42,16 @@ class TLijstOpdrachtgever implements RequestInterface
     /**
      * @return string
      */
-    public function getNaam()
+    public function getNaam() : string
     {
         return $this->Naam;
     }
 
     /**
      * @param string $Naam
-     * @return TLijstOpdrachtgever
+     * @return static
      */
-    public function withNaam($Naam)
+    public function withNaam(string $Naam) : static
     {
         $new = clone $this;
         $new->Naam = $Naam;
@@ -79,23 +62,21 @@ class TLijstOpdrachtgever implements RequestInterface
     /**
      * @return string
      */
-    public function getVestigingsplaats()
+    public function getVestigingsplaats() : string
     {
         return $this->Vestigingsplaats;
     }
 
     /**
      * @param string $Vestigingsplaats
-     * @return TLijstOpdrachtgever
+     * @return static
      */
-    public function withVestigingsplaats($Vestigingsplaats)
+    public function withVestigingsplaats(string $Vestigingsplaats) : static
     {
         $new = clone $this;
         $new->Vestigingsplaats = $Vestigingsplaats;
 
         return $new;
     }
-
-
 }
 

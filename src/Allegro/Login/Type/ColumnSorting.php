@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class ColumnSorting implements RequestInterface
+class ColumnSorting
 {
-
     /**
      * @var string
      */
-    private $FieldName;
+    private string $FieldName;
 
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ColumnSortDirection
      */
-    private $SortDirection;
-
-    /**
-     * Constructor
-     *
-     * @var string $FieldName
-     * @var string $SortDirection
-     */
-    public function __construct($FieldName, $SortDirection)
-    {
-        $this->FieldName = $FieldName;
-        $this->SortDirection = $SortDirection;
-    }
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ColumnSortDirection $SortDirection;
 
     /**
      * @return string
      */
-    public function getFieldName()
+    public function getFieldName() : string
     {
         return $this->FieldName;
     }
 
     /**
      * @param string $FieldName
-     * @return ColumnSorting
+     * @return static
      */
-    public function withFieldName($FieldName)
+    public function withFieldName(string $FieldName) : static
     {
         $new = clone $this;
         $new->FieldName = $FieldName;
@@ -50,25 +35,23 @@ class ColumnSorting implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ColumnSortDirection
      */
-    public function getSortDirection()
+    public function getSortDirection() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ColumnSortDirection
     {
         return $this->SortDirection;
     }
 
     /**
-     * @param string $SortDirection
-     * @return ColumnSorting
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ColumnSortDirection $SortDirection
+     * @return static
      */
-    public function withSortDirection($SortDirection)
+    public function withSortDirection(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ColumnSortDirection $SortDirection) : static
     {
         $new = clone $this;
         $new->SortDirection = $SortDirection;
 
         return $new;
     }
-
-
 }
 

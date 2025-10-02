@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TOpenVraag implements RequestInterface
+class TOpenVraag
 {
+    /**
+     * @var string
+     */
+    private string $Vraag;
 
     /**
      * @var string
      */
-    private $Vraag;
-
-    /**
-     * @var string
-     */
-    private $Antwoord;
-
-    /**
-     * Constructor
-     *
-     * @var string $Vraag
-     * @var string $Antwoord
-     */
-    public function __construct($Vraag, $Antwoord)
-    {
-        $this->Vraag = $Vraag;
-        $this->Antwoord = $Antwoord;
-    }
+    private string $Antwoord;
 
     /**
      * @return string
      */
-    public function getVraag()
+    public function getVraag() : string
     {
         return $this->Vraag;
     }
 
     /**
      * @param string $Vraag
-     * @return TOpenVraag
+     * @return static
      */
-    public function withVraag($Vraag)
+    public function withVraag(string $Vraag) : static
     {
         $new = clone $this;
         $new->Vraag = $Vraag;
@@ -52,23 +37,21 @@ class TOpenVraag implements RequestInterface
     /**
      * @return string
      */
-    public function getAntwoord()
+    public function getAntwoord() : string
     {
         return $this->Antwoord;
     }
 
     /**
      * @param string $Antwoord
-     * @return TOpenVraag
+     * @return static
      */
-    public function withAntwoord($Antwoord)
+    public function withAntwoord(string $Antwoord) : static
     {
         $new = clone $this;
         $new->Antwoord = $Antwoord;
 
         return $new;
     }
-
-
 }
 

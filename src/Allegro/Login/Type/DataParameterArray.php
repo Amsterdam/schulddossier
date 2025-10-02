@@ -2,46 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class DataParameterArray implements RequestInterface
+class DataParameterArray
 {
+    /**
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameter>
+     */
+    private array $DataParameter;
 
     /**
-     * @var DataParameter
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameter>
      */
-    private $DataParameter;
-
-    /**
-     * Constructor
-     *
-     * @var DataParameter $DataParameter
-     */
-    public function __construct($DataParameter)
-    {
-        $this->DataParameter = $DataParameter;
-    }
-
-    /**
-     * @return DataParameter
-     */
-    public function getDataParameter()
+    public function getDataParameter() : array
     {
         return $this->DataParameter;
     }
 
     /**
-     * @param DataParameter $DataParameter
-     * @return DataParameterArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameter> $DataParameter
+     * @return static
      */
-    public function withDataParameter($DataParameter)
+    public function withDataParameter(array $DataParameter) : static
     {
         $new = clone $this;
         $new->DataParameter = $DataParameter;
 
         return $new;
     }
-
-
 }
 

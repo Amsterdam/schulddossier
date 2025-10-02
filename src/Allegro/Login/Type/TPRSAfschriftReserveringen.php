@@ -2,47 +2,31 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
 
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPRSAfschriftReserveringen implements RequestInterface
+class TPRSAfschriftReserveringen
 {
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSAfschriftReseveringArray
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSAfschriftReseveringArray $AfschriftReserveringen;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSAfschriftReseveringArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSAfschriftReseveringArray
      */
-    private $AfschriftReserveringen;
-
-    /**
-     * Constructor
-     *
-     * @var PRSAfschriftReseveringArray $AfschriftReserveringen
-     */
-    public function __construct($AfschriftReserveringen)
-    {
-        $this->AfschriftReserveringen = $AfschriftReserveringen;
-    }
-
-    /**
-     * @return PRSAfschriftReseveringArray
-     */
-    public function getAfschriftReserveringen()
+    public function getAfschriftReserveringen() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSAfschriftReseveringArray
     {
         return $this->AfschriftReserveringen;
     }
 
     /**
-     * @param PRSAfschriftReseveringArray $AfschriftReserveringen
-     * @return TPRSAfschriftReserveringen
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSAfschriftReseveringArray $AfschriftReserveringen
+     * @return static
      */
-    public function withAfschriftReserveringen($AfschriftReserveringen)
+    public function withAfschriftReserveringen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSAfschriftReseveringArray $AfschriftReserveringen) : static
     {
         $new = clone $this;
         $new->AfschriftReserveringen = $AfschriftReserveringen;
 
         return $new;
     }
-
-
 }
 
