@@ -2,83 +2,83 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TDocument implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $ContractVolgnummer;
+
+    /**
+     * @var string
+     */
+    private string $Achternaam;
+
+    /**
+     * @var string
+     */
+    private string $Geslacht;
 
     /**
      * @var int
      */
-    private $ContractVolgnummer;
-
-    /**
-     * @var string
-     */
-    private $Achternaam;
-
-    /**
-     * @var string
-     */
-    private $Geslacht;
+    private int $Geboortedatum;
 
     /**
      * @var int
      */
-    private $Geboortedatum;
+    private int $BSN;
 
     /**
-     * @var int
+     * AW_aSoortDocument in AllegroWebPortierConst
+     *
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument
      */
-    private $BSN;
-
-    /**
-     * @var string
-     */
-    private $SoortDocument;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument $SoortDocument;
 
     /**
      * @var string
      */
-    private $Onderwerp;
+    private string $Onderwerp;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
      * @var string
      */
-    private $DocumentNaam;
+    private string $DocumentNaam;
 
     /**
-     * @var string
+     * @var mixed
      */
-    private $Document;
+    private mixed $Document;
 
     /**
      * Constructor
      *
-     * @var int $Relatiecode
-     * @var int $ContractVolgnummer
-     * @var string $Achternaam
-     * @var string $Geslacht
-     * @var int $Geboortedatum
-     * @var int $BSN
-     * @var string $SoortDocument
-     * @var string $Onderwerp
-     * @var string $Omschrijving
-     * @var string $DocumentNaam
-     * @var string $Document
+     * @param int $Relatiecode
+     * @param int $ContractVolgnummer
+     * @param string $Achternaam
+     * @param string $Geslacht
+     * @param int $Geboortedatum
+     * @param int $BSN
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument $SoortDocument
+     * @param string $Onderwerp
+     * @param string $Omschrijving
+     * @param string $DocumentNaam
+     * @param mixed $Document
      */
-    public function __construct($Relatiecode, $ContractVolgnummer, $Achternaam, $Geslacht, $Geboortedatum, $BSN, $SoortDocument, $Onderwerp, $Omschrijving, $DocumentNaam, $Document)
+    public function __construct(int $Relatiecode, int $ContractVolgnummer, string $Achternaam, string $Geslacht, int $Geboortedatum, int $BSN, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument $SoortDocument, string $Onderwerp, string $Omschrijving, string $DocumentNaam, mixed $Document)
     {
         $this->Relatiecode = $Relatiecode;
         $this->ContractVolgnummer = $ContractVolgnummer;
@@ -96,16 +96,16 @@ class TDocument implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode() : int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TDocument
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode) : static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -116,16 +116,16 @@ class TDocument implements RequestInterface
     /**
      * @return int
      */
-    public function getContractVolgnummer()
+    public function getContractVolgnummer() : int
     {
         return $this->ContractVolgnummer;
     }
 
     /**
      * @param int $ContractVolgnummer
-     * @return TDocument
+     * @return static
      */
-    public function withContractVolgnummer($ContractVolgnummer)
+    public function withContractVolgnummer(int $ContractVolgnummer) : static
     {
         $new = clone $this;
         $new->ContractVolgnummer = $ContractVolgnummer;
@@ -136,16 +136,16 @@ class TDocument implements RequestInterface
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam() : string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TDocument
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam) : static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -156,16 +156,16 @@ class TDocument implements RequestInterface
     /**
      * @return string
      */
-    public function getGeslacht()
+    public function getGeslacht() : string
     {
         return $this->Geslacht;
     }
 
     /**
      * @param string $Geslacht
-     * @return TDocument
+     * @return static
      */
-    public function withGeslacht($Geslacht)
+    public function withGeslacht(string $Geslacht) : static
     {
         $new = clone $this;
         $new->Geslacht = $Geslacht;
@@ -176,16 +176,16 @@ class TDocument implements RequestInterface
     /**
      * @return int
      */
-    public function getGeboortedatum()
+    public function getGeboortedatum() : int
     {
         return $this->Geboortedatum;
     }
 
     /**
      * @param int $Geboortedatum
-     * @return TDocument
+     * @return static
      */
-    public function withGeboortedatum($Geboortedatum)
+    public function withGeboortedatum(int $Geboortedatum) : static
     {
         $new = clone $this;
         $new->Geboortedatum = $Geboortedatum;
@@ -196,16 +196,16 @@ class TDocument implements RequestInterface
     /**
      * @return int
      */
-    public function getBSN()
+    public function getBSN() : int
     {
         return $this->BSN;
     }
 
     /**
      * @param int $BSN
-     * @return TDocument
+     * @return static
      */
-    public function withBSN($BSN)
+    public function withBSN(int $BSN) : static
     {
         $new = clone $this;
         $new->BSN = $BSN;
@@ -214,18 +214,18 @@ class TDocument implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument
      */
-    public function getSoortDocument()
+    public function getSoortDocument() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument
     {
         return $this->SoortDocument;
     }
 
     /**
-     * @param string $SoortDocument
-     * @return TDocument
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument $SoortDocument
+     * @return static
      */
-    public function withSoortDocument($SoortDocument)
+    public function withSoortDocument(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument $SoortDocument) : static
     {
         $new = clone $this;
         $new->SoortDocument = $SoortDocument;
@@ -236,16 +236,16 @@ class TDocument implements RequestInterface
     /**
      * @return string
      */
-    public function getOnderwerp()
+    public function getOnderwerp() : string
     {
         return $this->Onderwerp;
     }
 
     /**
      * @param string $Onderwerp
-     * @return TDocument
+     * @return static
      */
-    public function withOnderwerp($Onderwerp)
+    public function withOnderwerp(string $Onderwerp) : static
     {
         $new = clone $this;
         $new->Onderwerp = $Onderwerp;
@@ -256,16 +256,16 @@ class TDocument implements RequestInterface
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving() : string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TDocument
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving) : static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -276,16 +276,16 @@ class TDocument implements RequestInterface
     /**
      * @return string
      */
-    public function getDocumentNaam()
+    public function getDocumentNaam() : string
     {
         return $this->DocumentNaam;
     }
 
     /**
      * @param string $DocumentNaam
-     * @return TDocument
+     * @return static
      */
-    public function withDocumentNaam($DocumentNaam)
+    public function withDocumentNaam(string $DocumentNaam) : static
     {
         $new = clone $this;
         $new->DocumentNaam = $DocumentNaam;
@@ -294,25 +294,23 @@ class TDocument implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getDocument()
+    public function getDocument() : mixed
     {
         return $this->Document;
     }
 
     /**
-     * @param string $Document
-     * @return TDocument
+     * @param mixed $Document
+     * @return static
      */
-    public function withDocument($Document)
+    public function withDocument(mixed $Document) : static
     {
         $new = clone $this;
         $new->Document = $Document;
 
         return $new;
     }
-
-
 }
 

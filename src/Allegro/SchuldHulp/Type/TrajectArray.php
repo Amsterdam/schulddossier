@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TrajectArray implements RequestInterface
 {
-
     /**
-     * @var TTraject
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTraject>
      */
-    private $TTraject;
+    private array $TTraject;
 
     /**
      * Constructor
      *
-     * @var TTraject $TTraject
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTraject> $TTraject
      */
-    public function __construct($TTraject)
+    public function __construct(array $TTraject)
     {
         $this->TTraject = $TTraject;
     }
 
     /**
-     * @return TTraject
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTraject>
      */
-    public function getTTraject()
+    public function getTTraject() : array
     {
         return $this->TTraject;
     }
 
     /**
-     * @param TTraject $TTraject
-     * @return TrajectArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTraject> $TTraject
+     * @return static
      */
-    public function withTTraject($TTraject)
+    public function withTTraject(array $TTraject) : static
     {
         $new = clone $this;
         $new->TTraject = $TTraject;
 
         return $new;
     }
-
-
 }
 

@@ -2,29 +2,27 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TLijstKredietsoort implements RequestInterface
 {
+    /**
+     * @var string
+     */
+    private string $Code;
 
     /**
      * @var string
      */
-    private $Code;
-
-    /**
-     * @var string
-     */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
      * Constructor
      *
-     * @var string $Code
-     * @var string $Omschrijving
+     * @param string $Code
+     * @param string $Omschrijving
      */
-    public function __construct($Code, $Omschrijving)
+    public function __construct(string $Code, string $Omschrijving)
     {
         $this->Code = $Code;
         $this->Omschrijving = $Omschrijving;
@@ -33,16 +31,16 @@ class TLijstKredietsoort implements RequestInterface
     /**
      * @return string
      */
-    public function getCode()
+    public function getCode() : string
     {
         return $this->Code;
     }
 
     /**
      * @param string $Code
-     * @return TLijstKredietsoort
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(string $Code) : static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -53,23 +51,21 @@ class TLijstKredietsoort implements RequestInterface
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving() : string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TLijstKredietsoort
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving) : static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
 
         return $new;
     }
-
-
 }
 

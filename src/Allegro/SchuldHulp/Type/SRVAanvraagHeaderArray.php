@@ -2,48 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SRVAanvraagHeaderArray implements RequestInterface
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader>
      */
-    private $TSRVAanvraagHeader;
+    private array $TSRVAanvraagHeader;
 
     /**
      * Constructor
      *
-     * @var TSRVAanvraagHeader $TSRVAanvraagHeader
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader> $TSRVAanvraagHeader
      */
-    public function __construct($TSRVAanvraagHeader)
+    public function __construct(array $TSRVAanvraagHeader)
     {
         $this->TSRVAanvraagHeader = $TSRVAanvraagHeader;
     }
 
     /**
-     * @return TSRVAanvraagHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader>
      */
-    public function getTSRVAanvraagHeader()
+    public function getTSRVAanvraagHeader() : array
     {
         return $this->TSRVAanvraagHeader;
     }
 
     /**
-     * @param TSRVAanvraagHeader $TSRVAanvraagHeader
-     * @return SRVAanvraagHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader> $TSRVAanvraagHeader
+     * @return static
      */
-    public function withTSRVAanvraagHeader($TSRVAanvraagHeader)
+    public function withTSRVAanvraagHeader(array $TSRVAanvraagHeader) : static
     {
         $new = clone $this;
         $new->TSRVAanvraagHeader = $TSRVAanvraagHeader;
 
         return $new;
     }
-
-
 }
 

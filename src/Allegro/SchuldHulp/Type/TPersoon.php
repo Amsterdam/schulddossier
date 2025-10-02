@@ -2,65 +2,63 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPersoon implements RequestInterface
 {
+    /**
+     * @var string
+     */
+    private string $Voornamen;
 
     /**
      * @var string
      */
-    private $Voornamen;
+    private string $Achternaam;
 
     /**
      * @var string
      */
-    private $Achternaam;
-
-    /**
-     * @var string
-     */
-    private $Voorvoegsels;
+    private string $Voorvoegsels;
 
     /**
      * @var int
      */
-    private $BSN;
+    private int $BSN;
 
     /**
      * @var int
      */
-    private $Geboortedatum;
+    private int $Geboortedatum;
 
     /**
      * @var string
      */
-    private $Geslacht;
+    private string $Geslacht;
 
     /**
      * @var string
      */
-    private $Ondernemer;
+    private string $Ondernemer;
 
     /**
      * @var string
      */
-    private $SoortOndernemer;
+    private string $SoortOndernemer;
 
     /**
      * Constructor
      *
-     * @var string $Voornamen
-     * @var string $Achternaam
-     * @var string $Voorvoegsels
-     * @var int $BSN
-     * @var int $Geboortedatum
-     * @var string $Geslacht
-     * @var string $Ondernemer
-     * @var string $SoortOndernemer
+     * @param string $Voornamen
+     * @param string $Achternaam
+     * @param string $Voorvoegsels
+     * @param int $BSN
+     * @param int $Geboortedatum
+     * @param string $Geslacht
+     * @param string $Ondernemer
+     * @param string $SoortOndernemer
      */
-    public function __construct($Voornamen, $Achternaam, $Voorvoegsels, $BSN, $Geboortedatum, $Geslacht, $Ondernemer, $SoortOndernemer)
+    public function __construct(string $Voornamen, string $Achternaam, string $Voorvoegsels, int $BSN, int $Geboortedatum, string $Geslacht, string $Ondernemer, string $SoortOndernemer)
     {
         $this->Voornamen = $Voornamen;
         $this->Achternaam = $Achternaam;
@@ -75,16 +73,16 @@ class TPersoon implements RequestInterface
     /**
      * @return string
      */
-    public function getVoornamen()
+    public function getVoornamen() : string
     {
         return $this->Voornamen;
     }
 
     /**
      * @param string $Voornamen
-     * @return TPersoon
+     * @return static
      */
-    public function withVoornamen($Voornamen)
+    public function withVoornamen(string $Voornamen) : static
     {
         $new = clone $this;
         $new->Voornamen = $Voornamen;
@@ -95,16 +93,16 @@ class TPersoon implements RequestInterface
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam() : string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TPersoon
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam) : static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -115,16 +113,16 @@ class TPersoon implements RequestInterface
     /**
      * @return string
      */
-    public function getVoorvoegsels()
+    public function getVoorvoegsels() : string
     {
         return $this->Voorvoegsels;
     }
 
     /**
      * @param string $Voorvoegsels
-     * @return TPersoon
+     * @return static
      */
-    public function withVoorvoegsels($Voorvoegsels)
+    public function withVoorvoegsels(string $Voorvoegsels) : static
     {
         $new = clone $this;
         $new->Voorvoegsels = $Voorvoegsels;
@@ -135,16 +133,16 @@ class TPersoon implements RequestInterface
     /**
      * @return int
      */
-    public function getBSN()
+    public function getBSN() : int
     {
         return $this->BSN;
     }
 
     /**
      * @param int $BSN
-     * @return TPersoon
+     * @return static
      */
-    public function withBSN($BSN)
+    public function withBSN(int $BSN) : static
     {
         $new = clone $this;
         $new->BSN = $BSN;
@@ -155,16 +153,16 @@ class TPersoon implements RequestInterface
     /**
      * @return int
      */
-    public function getGeboortedatum()
+    public function getGeboortedatum() : int
     {
         return $this->Geboortedatum;
     }
 
     /**
      * @param int $Geboortedatum
-     * @return TPersoon
+     * @return static
      */
-    public function withGeboortedatum($Geboortedatum)
+    public function withGeboortedatum(int $Geboortedatum) : static
     {
         $new = clone $this;
         $new->Geboortedatum = $Geboortedatum;
@@ -175,16 +173,16 @@ class TPersoon implements RequestInterface
     /**
      * @return string
      */
-    public function getGeslacht()
+    public function getGeslacht() : string
     {
         return $this->Geslacht;
     }
 
     /**
      * @param string $Geslacht
-     * @return TPersoon
+     * @return static
      */
-    public function withGeslacht($Geslacht)
+    public function withGeslacht(string $Geslacht) : static
     {
         $new = clone $this;
         $new->Geslacht = $Geslacht;
@@ -195,16 +193,16 @@ class TPersoon implements RequestInterface
     /**
      * @return string
      */
-    public function getOndernemer()
+    public function getOndernemer() : string
     {
         return $this->Ondernemer;
     }
 
     /**
      * @param string $Ondernemer
-     * @return TPersoon
+     * @return static
      */
-    public function withOndernemer($Ondernemer)
+    public function withOndernemer(string $Ondernemer) : static
     {
         $new = clone $this;
         $new->Ondernemer = $Ondernemer;
@@ -215,23 +213,21 @@ class TPersoon implements RequestInterface
     /**
      * @return string
      */
-    public function getSoortOndernemer()
+    public function getSoortOndernemer() : string
     {
         return $this->SoortOndernemer;
     }
 
     /**
      * @param string $SoortOndernemer
-     * @return TPersoon
+     * @return static
      */
-    public function withSoortOndernemer($SoortOndernemer)
+    public function withSoortOndernemer(string $SoortOndernemer) : static
     {
         $new = clone $this;
         $new->SoortOndernemer = $SoortOndernemer;
 
         return $new;
     }
-
-
 }
 

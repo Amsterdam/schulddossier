@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class OpenVraagArray implements RequestInterface
 {
-
     /**
-     * @var TOpenVraag
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag>
      */
-    private $TOpenVraag;
+    private array $TOpenVraag;
 
     /**
      * Constructor
      *
-     * @var TOpenVraag $TOpenVraag
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag> $TOpenVraag
      */
-    public function __construct($TOpenVraag)
+    public function __construct(array $TOpenVraag)
     {
         $this->TOpenVraag = $TOpenVraag;
     }
 
     /**
-     * @return TOpenVraag
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag>
      */
-    public function getTOpenVraag()
+    public function getTOpenVraag() : array
     {
         return $this->TOpenVraag;
     }
 
     /**
-     * @param TOpenVraag $TOpenVraag
-     * @return OpenVraagArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag> $TOpenVraag
+     * @return static
      */
-    public function withTOpenVraag($TOpenVraag)
+    public function withTOpenVraag(array $TOpenVraag) : static
     {
         $new = clone $this;
         $new->TOpenVraag = $TOpenVraag;
 
         return $new;
     }
-
-
 }
 

@@ -2,96 +2,105 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSAfschrift implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $VolgnummerAfschrift;
 
     /**
-     * @var int
+     * @var \DateTimeInterface
      */
-    private $VolgnummerAfschrift;
+    private \DateTimeInterface $DatumAfschrift;
 
     /**
-     * @var DateTimeInterface
+     * Saldo Prs op moment vervaardiging afschrift
+     *
+     * @var float
      */
-    private $DatumAfschrift;
+    private float $SaldoPrs;
+
+    /**
+     * Conform vervaardiging afschrift
+     *
+     * @var float
+     */
+    private float $TotaalBedragBijMutaties;
+
+    /**
+     * Conform vervaardiging afschrift
+     *
+     * @var float
+     */
+    private float $TotaalBedragAfMutaties;
+
+    /**
+     * Conform vervaardiging afschrift
+     *
+     * @var float
+     */
+    private float $TotaalInReserveringen;
+
+    /**
+     * Conform vervaardiging afschrift
+     *
+     * @var float
+     */
+    private float $TotaalUitReserveringen;
+
+    /**
+     * Totaal saldo reserveringen op moment vervaardiging afschrift
+     *
+     * @var float
+     */
+    private float $TotaalSaldoReserveringen;
 
     /**
      * @var float
      */
-    private $SaldoPrs;
+    private float $HuidigPrsSaldo;
 
     /**
      * @var float
      */
-    private $TotaalBedragBijMutaties;
+    private float $HuidigTotaalSaldoReserveringen;
 
     /**
      * @var float
      */
-    private $TotaalBedragAfMutaties;
+    private float $VorigSaldo;
 
     /**
-     * @var float
+     * @var \DateTimeInterface
      */
-    private $TotaalInReserveringen;
-
-    /**
-     * @var float
-     */
-    private $TotaalUitReserveringen;
-
-    /**
-     * @var float
-     */
-    private $TotaalSaldoReserveringen;
-
-    /**
-     * @var float
-     */
-    private $HuidigPrsSaldo;
-
-    /**
-     * @var float
-     */
-    private $HuidigTotaalSaldoReserveringen;
-
-    /**
-     * @var float
-     */
-    private $VorigSaldo;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $VorigDatumAfschift;
+    private \DateTimeInterface $VorigDatumAfschift;
 
     /**
      * Constructor
      *
-     * @var int $Relatiecode
-     * @var int $VolgnummerAfschrift
-     * @var DateTimeInterface $DatumAfschrift
-     * @var float $SaldoPrs
-     * @var float $TotaalBedragBijMutaties
-     * @var float $TotaalBedragAfMutaties
-     * @var float $TotaalInReserveringen
-     * @var float $TotaalUitReserveringen
-     * @var float $TotaalSaldoReserveringen
-     * @var float $HuidigPrsSaldo
-     * @var float $HuidigTotaalSaldoReserveringen
-     * @var float $VorigSaldo
-     * @var DateTimeInterface $VorigDatumAfschift
+     * @param int $Relatiecode
+     * @param int $VolgnummerAfschrift
+     * @param \DateTimeInterface $DatumAfschrift
+     * @param float $SaldoPrs
+     * @param float $TotaalBedragBijMutaties
+     * @param float $TotaalBedragAfMutaties
+     * @param float $TotaalInReserveringen
+     * @param float $TotaalUitReserveringen
+     * @param float $TotaalSaldoReserveringen
+     * @param float $HuidigPrsSaldo
+     * @param float $HuidigTotaalSaldoReserveringen
+     * @param float $VorigSaldo
+     * @param \DateTimeInterface $VorigDatumAfschift
      */
-    public function __construct($Relatiecode, $VolgnummerAfschrift, $DatumAfschrift, $SaldoPrs, $TotaalBedragBijMutaties, $TotaalBedragAfMutaties, $TotaalInReserveringen, $TotaalUitReserveringen, $TotaalSaldoReserveringen, $HuidigPrsSaldo, $HuidigTotaalSaldoReserveringen, $VorigSaldo, $VorigDatumAfschift)
+    public function __construct(int $Relatiecode, int $VolgnummerAfschrift, \DateTimeInterface $DatumAfschrift, float $SaldoPrs, float $TotaalBedragBijMutaties, float $TotaalBedragAfMutaties, float $TotaalInReserveringen, float $TotaalUitReserveringen, float $TotaalSaldoReserveringen, float $HuidigPrsSaldo, float $HuidigTotaalSaldoReserveringen, float $VorigSaldo, \DateTimeInterface $VorigDatumAfschift)
     {
         $this->Relatiecode = $Relatiecode;
         $this->VolgnummerAfschrift = $VolgnummerAfschrift;
@@ -111,16 +120,16 @@ class TPRSAfschrift implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode() : int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TPRSAfschrift
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode) : static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -131,16 +140,16 @@ class TPRSAfschrift implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummerAfschrift()
+    public function getVolgnummerAfschrift() : int
     {
         return $this->VolgnummerAfschrift;
     }
 
     /**
      * @param int $VolgnummerAfschrift
-     * @return TPRSAfschrift
+     * @return static
      */
-    public function withVolgnummerAfschrift($VolgnummerAfschrift)
+    public function withVolgnummerAfschrift(int $VolgnummerAfschrift) : static
     {
         $new = clone $this;
         $new->VolgnummerAfschrift = $VolgnummerAfschrift;
@@ -149,18 +158,18 @@ class TPRSAfschrift implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumAfschrift()
+    public function getDatumAfschrift() : \DateTimeInterface
     {
         return $this->DatumAfschrift;
     }
 
     /**
-     * @param DateTimeInterface $DatumAfschrift
-     * @return TPRSAfschrift
+     * @param \DateTimeInterface $DatumAfschrift
+     * @return static
      */
-    public function withDatumAfschrift($DatumAfschrift)
+    public function withDatumAfschrift(\DateTimeInterface $DatumAfschrift) : static
     {
         $new = clone $this;
         $new->DatumAfschrift = $DatumAfschrift;
@@ -171,16 +180,16 @@ class TPRSAfschrift implements RequestInterface
     /**
      * @return float
      */
-    public function getSaldoPrs()
+    public function getSaldoPrs() : float
     {
         return $this->SaldoPrs;
     }
 
     /**
      * @param float $SaldoPrs
-     * @return TPRSAfschrift
+     * @return static
      */
-    public function withSaldoPrs($SaldoPrs)
+    public function withSaldoPrs(float $SaldoPrs) : static
     {
         $new = clone $this;
         $new->SaldoPrs = $SaldoPrs;
@@ -191,16 +200,16 @@ class TPRSAfschrift implements RequestInterface
     /**
      * @return float
      */
-    public function getTotaalBedragBijMutaties()
+    public function getTotaalBedragBijMutaties() : float
     {
         return $this->TotaalBedragBijMutaties;
     }
 
     /**
      * @param float $TotaalBedragBijMutaties
-     * @return TPRSAfschrift
+     * @return static
      */
-    public function withTotaalBedragBijMutaties($TotaalBedragBijMutaties)
+    public function withTotaalBedragBijMutaties(float $TotaalBedragBijMutaties) : static
     {
         $new = clone $this;
         $new->TotaalBedragBijMutaties = $TotaalBedragBijMutaties;
@@ -211,16 +220,16 @@ class TPRSAfschrift implements RequestInterface
     /**
      * @return float
      */
-    public function getTotaalBedragAfMutaties()
+    public function getTotaalBedragAfMutaties() : float
     {
         return $this->TotaalBedragAfMutaties;
     }
 
     /**
      * @param float $TotaalBedragAfMutaties
-     * @return TPRSAfschrift
+     * @return static
      */
-    public function withTotaalBedragAfMutaties($TotaalBedragAfMutaties)
+    public function withTotaalBedragAfMutaties(float $TotaalBedragAfMutaties) : static
     {
         $new = clone $this;
         $new->TotaalBedragAfMutaties = $TotaalBedragAfMutaties;
@@ -231,16 +240,16 @@ class TPRSAfschrift implements RequestInterface
     /**
      * @return float
      */
-    public function getTotaalInReserveringen()
+    public function getTotaalInReserveringen() : float
     {
         return $this->TotaalInReserveringen;
     }
 
     /**
      * @param float $TotaalInReserveringen
-     * @return TPRSAfschrift
+     * @return static
      */
-    public function withTotaalInReserveringen($TotaalInReserveringen)
+    public function withTotaalInReserveringen(float $TotaalInReserveringen) : static
     {
         $new = clone $this;
         $new->TotaalInReserveringen = $TotaalInReserveringen;
@@ -251,16 +260,16 @@ class TPRSAfschrift implements RequestInterface
     /**
      * @return float
      */
-    public function getTotaalUitReserveringen()
+    public function getTotaalUitReserveringen() : float
     {
         return $this->TotaalUitReserveringen;
     }
 
     /**
      * @param float $TotaalUitReserveringen
-     * @return TPRSAfschrift
+     * @return static
      */
-    public function withTotaalUitReserveringen($TotaalUitReserveringen)
+    public function withTotaalUitReserveringen(float $TotaalUitReserveringen) : static
     {
         $new = clone $this;
         $new->TotaalUitReserveringen = $TotaalUitReserveringen;
@@ -271,16 +280,16 @@ class TPRSAfschrift implements RequestInterface
     /**
      * @return float
      */
-    public function getTotaalSaldoReserveringen()
+    public function getTotaalSaldoReserveringen() : float
     {
         return $this->TotaalSaldoReserveringen;
     }
 
     /**
      * @param float $TotaalSaldoReserveringen
-     * @return TPRSAfschrift
+     * @return static
      */
-    public function withTotaalSaldoReserveringen($TotaalSaldoReserveringen)
+    public function withTotaalSaldoReserveringen(float $TotaalSaldoReserveringen) : static
     {
         $new = clone $this;
         $new->TotaalSaldoReserveringen = $TotaalSaldoReserveringen;
@@ -291,16 +300,16 @@ class TPRSAfschrift implements RequestInterface
     /**
      * @return float
      */
-    public function getHuidigPrsSaldo()
+    public function getHuidigPrsSaldo() : float
     {
         return $this->HuidigPrsSaldo;
     }
 
     /**
      * @param float $HuidigPrsSaldo
-     * @return TPRSAfschrift
+     * @return static
      */
-    public function withHuidigPrsSaldo($HuidigPrsSaldo)
+    public function withHuidigPrsSaldo(float $HuidigPrsSaldo) : static
     {
         $new = clone $this;
         $new->HuidigPrsSaldo = $HuidigPrsSaldo;
@@ -311,16 +320,16 @@ class TPRSAfschrift implements RequestInterface
     /**
      * @return float
      */
-    public function getHuidigTotaalSaldoReserveringen()
+    public function getHuidigTotaalSaldoReserveringen() : float
     {
         return $this->HuidigTotaalSaldoReserveringen;
     }
 
     /**
      * @param float $HuidigTotaalSaldoReserveringen
-     * @return TPRSAfschrift
+     * @return static
      */
-    public function withHuidigTotaalSaldoReserveringen($HuidigTotaalSaldoReserveringen)
+    public function withHuidigTotaalSaldoReserveringen(float $HuidigTotaalSaldoReserveringen) : static
     {
         $new = clone $this;
         $new->HuidigTotaalSaldoReserveringen = $HuidigTotaalSaldoReserveringen;
@@ -331,16 +340,16 @@ class TPRSAfschrift implements RequestInterface
     /**
      * @return float
      */
-    public function getVorigSaldo()
+    public function getVorigSaldo() : float
     {
         return $this->VorigSaldo;
     }
 
     /**
      * @param float $VorigSaldo
-     * @return TPRSAfschrift
+     * @return static
      */
-    public function withVorigSaldo($VorigSaldo)
+    public function withVorigSaldo(float $VorigSaldo) : static
     {
         $new = clone $this;
         $new->VorigSaldo = $VorigSaldo;
@@ -349,25 +358,23 @@ class TPRSAfschrift implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getVorigDatumAfschift()
+    public function getVorigDatumAfschift() : \DateTimeInterface
     {
         return $this->VorigDatumAfschift;
     }
 
     /**
-     * @param DateTimeInterface $VorigDatumAfschift
-     * @return TPRSAfschrift
+     * @param \DateTimeInterface $VorigDatumAfschift
+     * @return static
      */
-    public function withVorigDatumAfschift($VorigDatumAfschift)
+    public function withVorigDatumAfschift(\DateTimeInterface $VorigDatumAfschift) : static
     {
         $new = clone $this;
         $new->VorigDatumAfschift = $VorigDatumAfschift;
 
         return $new;
     }
-
-
 }
 

@@ -2,40 +2,38 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\ResultInterface;
 
 class SchuldHulpServiceAanvraagSRResponse implements ResultInterface
 {
-
     /**
      * @var bool
      */
-    private $Result;
+    private bool $Result;
 
     /**
      * @var int
      */
-    private $ExtraInfo;
+    private int $ExtraInfo;
 
     /**
      * @var string
      */
-    private $ExtraInfoOmschrijving;
+    private string $ExtraInfoOmschrijving;
 
     /**
      * @return bool
      */
-    public function getResult()
+    public function getResult() : bool
     {
         return $this->Result;
     }
 
     /**
      * @param bool $Result
-     * @return SchuldHulpServiceAanvraagSRResponse
+     * @return static
      */
-    public function withResult($Result)
+    public function withResult(bool $Result) : static
     {
         $new = clone $this;
         $new->Result = $Result;
@@ -46,16 +44,16 @@ class SchuldHulpServiceAanvraagSRResponse implements ResultInterface
     /**
      * @return int
      */
-    public function getExtraInfo()
+    public function getExtraInfo() : int
     {
         return $this->ExtraInfo;
     }
 
     /**
      * @param int $ExtraInfo
-     * @return SchuldHulpServiceAanvraagSRResponse
+     * @return static
      */
-    public function withExtraInfo($ExtraInfo)
+    public function withExtraInfo(int $ExtraInfo) : static
     {
         $new = clone $this;
         $new->ExtraInfo = $ExtraInfo;
@@ -66,23 +64,21 @@ class SchuldHulpServiceAanvraagSRResponse implements ResultInterface
     /**
      * @return string
      */
-    public function getExtraInfoOmschrijving()
+    public function getExtraInfoOmschrijving() : string
     {
         return $this->ExtraInfoOmschrijving;
     }
 
     /**
      * @param string $ExtraInfoOmschrijving
-     * @return SchuldHulpServiceAanvraagSRResponse
+     * @return static
      */
-    public function withExtraInfoOmschrijving($ExtraInfoOmschrijving)
+    public function withExtraInfoOmschrijving(string $ExtraInfoOmschrijving) : static
     {
         $new = clone $this;
         $new->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
 
         return $new;
     }
-
-
 }
 

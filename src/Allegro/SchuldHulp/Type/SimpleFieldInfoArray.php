@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SimpleFieldInfoArray implements RequestInterface
 {
-
     /**
-     * @var SimpleFieldInfo
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfo>
      */
-    private $SimpleFieldInfo;
+    private array $SimpleFieldInfo;
 
     /**
      * Constructor
      *
-     * @var SimpleFieldInfo $SimpleFieldInfo
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfo> $SimpleFieldInfo
      */
-    public function __construct($SimpleFieldInfo)
+    public function __construct(array $SimpleFieldInfo)
     {
         $this->SimpleFieldInfo = $SimpleFieldInfo;
     }
 
     /**
-     * @return SimpleFieldInfo
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfo>
      */
-    public function getSimpleFieldInfo()
+    public function getSimpleFieldInfo() : array
     {
         return $this->SimpleFieldInfo;
     }
 
     /**
-     * @param SimpleFieldInfo $SimpleFieldInfo
-     * @return SimpleFieldInfoArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfo> $SimpleFieldInfo
+     * @return static
      */
-    public function withSimpleFieldInfo($SimpleFieldInfo)
+    public function withSimpleFieldInfo(array $SimpleFieldInfo) : static
     {
         $new = clone $this;
         $new->SimpleFieldInfo = $SimpleFieldInfo;
 
         return $new;
     }
-
-
 }
 

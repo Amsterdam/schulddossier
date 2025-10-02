@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class BBRHeaderArray implements RequestInterface
 {
-
     /**
-     * @var TBBRHeader
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRHeader>
      */
-    private $TBBRHeader;
+    private array $TBBRHeader;
 
     /**
      * Constructor
      *
-     * @var TBBRHeader $TBBRHeader
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRHeader> $TBBRHeader
      */
-    public function __construct($TBBRHeader)
+    public function __construct(array $TBBRHeader)
     {
         $this->TBBRHeader = $TBBRHeader;
     }
 
     /**
-     * @return TBBRHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRHeader>
      */
-    public function getTBBRHeader()
+    public function getTBBRHeader() : array
     {
         return $this->TBBRHeader;
     }
 
     /**
-     * @param TBBRHeader $TBBRHeader
-     * @return BBRHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRHeader> $TBBRHeader
+     * @return static
      */
-    public function withTBBRHeader($TBBRHeader)
+    public function withTBBRHeader(array $TBBRHeader) : static
     {
         $new = clone $this;
         $new->TBBRHeader = $TBBRHeader;
 
         return $new;
     }
-
-
 }
 

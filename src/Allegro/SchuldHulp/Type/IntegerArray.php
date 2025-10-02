@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class IntegerArray implements RequestInterface
 {
-
     /**
-     * @var int
+     * @var array<int<0,max>, int>
      */
-    private $int;
+    private array $int;
 
     /**
      * Constructor
      *
-     * @var int $int
+     * @param array<int<0,max>, int> $int
      */
-    public function __construct($int)
+    public function __construct(array $int)
     {
         $this->int = $int;
     }
 
     /**
-     * @return int
+     * @return array<int<0,max>, int>
      */
-    public function getInt()
+    public function getInt() : array
     {
         return $this->int;
     }
 
     /**
-     * @param int $int
-     * @return IntegerArray
+     * @param array<int<0,max>, int> $int
+     * @return static
      */
-    public function withInt($int)
+    public function withInt(array $int) : static
     {
         $new = clone $this;
         $new->int = $int;
 
         return $new;
     }
-
-
 }
 

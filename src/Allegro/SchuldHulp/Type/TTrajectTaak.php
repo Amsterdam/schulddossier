@@ -2,78 +2,75 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TTrajectTaak implements RequestInterface
 {
-
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $StartDatum;
-
-    /**
-     * @var string
-     */
-    private $Medewerker;
+    private \DateTimeInterface $StartDatum;
 
     /**
      * @var string
      */
-    private $Actie;
+    private string $Medewerker;
 
     /**
      * @var string
      */
-    private $ActieOmschrijving;
+    private string $Actie;
 
     /**
      * @var string
      */
-    private $MedewerkerUitgevoerd;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumUitgevoerd;
+    private string $ActieOmschrijving;
 
     /**
      * @var string
      */
-    private $AfmeldCategorie;
+    private string $MedewerkerUitgevoerd;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $DatumUitgevoerd;
+
+    /**
+     * @var string
+     */
+    private string $AfmeldCategorie;
 
     /**
      * @var int
      */
-    private $StapnummerTraject;
+    private int $StapnummerTraject;
 
     /**
      * @var string
      */
-    private $TrajectCode;
+    private string $TrajectCode;
 
     /**
      * @var string
      */
-    private $TrajectOmschrijving;
+    private string $TrajectOmschrijving;
 
     /**
      * Constructor
      *
-     * @var DateTimeInterface $StartDatum
-     * @var string $Medewerker
-     * @var string $Actie
-     * @var string $ActieOmschrijving
-     * @var string $MedewerkerUitgevoerd
-     * @var DateTimeInterface $DatumUitgevoerd
-     * @var string $AfmeldCategorie
-     * @var int $StapnummerTraject
-     * @var string $TrajectCode
-     * @var string $TrajectOmschrijving
+     * @param \DateTimeInterface $StartDatum
+     * @param string $Medewerker
+     * @param string $Actie
+     * @param string $ActieOmschrijving
+     * @param string $MedewerkerUitgevoerd
+     * @param \DateTimeInterface $DatumUitgevoerd
+     * @param string $AfmeldCategorie
+     * @param int $StapnummerTraject
+     * @param string $TrajectCode
+     * @param string $TrajectOmschrijving
      */
-    public function __construct($StartDatum, $Medewerker, $Actie, $ActieOmschrijving, $MedewerkerUitgevoerd, $DatumUitgevoerd, $AfmeldCategorie, $StapnummerTraject, $TrajectCode, $TrajectOmschrijving)
+    public function __construct(\DateTimeInterface $StartDatum, string $Medewerker, string $Actie, string $ActieOmschrijving, string $MedewerkerUitgevoerd, \DateTimeInterface $DatumUitgevoerd, string $AfmeldCategorie, int $StapnummerTraject, string $TrajectCode, string $TrajectOmschrijving)
     {
         $this->StartDatum = $StartDatum;
         $this->Medewerker = $Medewerker;
@@ -88,18 +85,18 @@ class TTrajectTaak implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getStartDatum()
+    public function getStartDatum() : \DateTimeInterface
     {
         return $this->StartDatum;
     }
 
     /**
-     * @param DateTimeInterface $StartDatum
-     * @return TTrajectTaak
+     * @param \DateTimeInterface $StartDatum
+     * @return static
      */
-    public function withStartDatum($StartDatum)
+    public function withStartDatum(\DateTimeInterface $StartDatum) : static
     {
         $new = clone $this;
         $new->StartDatum = $StartDatum;
@@ -110,16 +107,16 @@ class TTrajectTaak implements RequestInterface
     /**
      * @return string
      */
-    public function getMedewerker()
+    public function getMedewerker() : string
     {
         return $this->Medewerker;
     }
 
     /**
      * @param string $Medewerker
-     * @return TTrajectTaak
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(string $Medewerker) : static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -130,16 +127,16 @@ class TTrajectTaak implements RequestInterface
     /**
      * @return string
      */
-    public function getActie()
+    public function getActie() : string
     {
         return $this->Actie;
     }
 
     /**
      * @param string $Actie
-     * @return TTrajectTaak
+     * @return static
      */
-    public function withActie($Actie)
+    public function withActie(string $Actie) : static
     {
         $new = clone $this;
         $new->Actie = $Actie;
@@ -150,16 +147,16 @@ class TTrajectTaak implements RequestInterface
     /**
      * @return string
      */
-    public function getActieOmschrijving()
+    public function getActieOmschrijving() : string
     {
         return $this->ActieOmschrijving;
     }
 
     /**
      * @param string $ActieOmschrijving
-     * @return TTrajectTaak
+     * @return static
      */
-    public function withActieOmschrijving($ActieOmschrijving)
+    public function withActieOmschrijving(string $ActieOmschrijving) : static
     {
         $new = clone $this;
         $new->ActieOmschrijving = $ActieOmschrijving;
@@ -170,16 +167,16 @@ class TTrajectTaak implements RequestInterface
     /**
      * @return string
      */
-    public function getMedewerkerUitgevoerd()
+    public function getMedewerkerUitgevoerd() : string
     {
         return $this->MedewerkerUitgevoerd;
     }
 
     /**
      * @param string $MedewerkerUitgevoerd
-     * @return TTrajectTaak
+     * @return static
      */
-    public function withMedewerkerUitgevoerd($MedewerkerUitgevoerd)
+    public function withMedewerkerUitgevoerd(string $MedewerkerUitgevoerd) : static
     {
         $new = clone $this;
         $new->MedewerkerUitgevoerd = $MedewerkerUitgevoerd;
@@ -188,18 +185,18 @@ class TTrajectTaak implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumUitgevoerd()
+    public function getDatumUitgevoerd() : \DateTimeInterface
     {
         return $this->DatumUitgevoerd;
     }
 
     /**
-     * @param DateTimeInterface $DatumUitgevoerd
-     * @return TTrajectTaak
+     * @param \DateTimeInterface $DatumUitgevoerd
+     * @return static
      */
-    public function withDatumUitgevoerd($DatumUitgevoerd)
+    public function withDatumUitgevoerd(\DateTimeInterface $DatumUitgevoerd) : static
     {
         $new = clone $this;
         $new->DatumUitgevoerd = $DatumUitgevoerd;
@@ -210,16 +207,16 @@ class TTrajectTaak implements RequestInterface
     /**
      * @return string
      */
-    public function getAfmeldCategorie()
+    public function getAfmeldCategorie() : string
     {
         return $this->AfmeldCategorie;
     }
 
     /**
      * @param string $AfmeldCategorie
-     * @return TTrajectTaak
+     * @return static
      */
-    public function withAfmeldCategorie($AfmeldCategorie)
+    public function withAfmeldCategorie(string $AfmeldCategorie) : static
     {
         $new = clone $this;
         $new->AfmeldCategorie = $AfmeldCategorie;
@@ -230,16 +227,16 @@ class TTrajectTaak implements RequestInterface
     /**
      * @return int
      */
-    public function getStapnummerTraject()
+    public function getStapnummerTraject() : int
     {
         return $this->StapnummerTraject;
     }
 
     /**
      * @param int $StapnummerTraject
-     * @return TTrajectTaak
+     * @return static
      */
-    public function withStapnummerTraject($StapnummerTraject)
+    public function withStapnummerTraject(int $StapnummerTraject) : static
     {
         $new = clone $this;
         $new->StapnummerTraject = $StapnummerTraject;
@@ -250,16 +247,16 @@ class TTrajectTaak implements RequestInterface
     /**
      * @return string
      */
-    public function getTrajectCode()
+    public function getTrajectCode() : string
     {
         return $this->TrajectCode;
     }
 
     /**
      * @param string $TrajectCode
-     * @return TTrajectTaak
+     * @return static
      */
-    public function withTrajectCode($TrajectCode)
+    public function withTrajectCode(string $TrajectCode) : static
     {
         $new = clone $this;
         $new->TrajectCode = $TrajectCode;
@@ -270,23 +267,21 @@ class TTrajectTaak implements RequestInterface
     /**
      * @return string
      */
-    public function getTrajectOmschrijving()
+    public function getTrajectOmschrijving() : string
     {
         return $this->TrajectOmschrijving;
     }
 
     /**
      * @param string $TrajectOmschrijving
-     * @return TTrajectTaak
+     * @return static
      */
-    public function withTrajectOmschrijving($TrajectOmschrijving)
+    public function withTrajectOmschrijving(string $TrajectOmschrijving) : static
     {
         $new = clone $this;
         $new->TrajectOmschrijving = $TrajectOmschrijving;
 
         return $new;
     }
-
-
 }
 

@@ -2,41 +2,39 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SimpleDeltaChange implements RequestInterface
 {
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $OldValues;
 
     /**
-     * @var StringArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
      */
-    private $OldValues;
-
-    /**
-     * @var StringArray
-     */
-    private $NewValues;
-
-    /**
-     * @var string
-     */
-    private $Error;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $NewValues;
 
     /**
      * @var string
      */
-    private $Mode;
+    private string $Error;
+
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataMode
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataMode $Mode;
 
     /**
      * Constructor
      *
-     * @var StringArray $OldValues
-     * @var StringArray $NewValues
-     * @var string $Error
-     * @var string $Mode
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $OldValues
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $NewValues
+     * @param string $Error
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataMode $Mode
      */
-    public function __construct($OldValues, $NewValues, $Error, $Mode)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $OldValues, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $NewValues, string $Error, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataMode $Mode)
     {
         $this->OldValues = $OldValues;
         $this->NewValues = $NewValues;
@@ -45,18 +43,18 @@ class SimpleDeltaChange implements RequestInterface
     }
 
     /**
-     * @return StringArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
      */
-    public function getOldValues()
+    public function getOldValues() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
     {
         return $this->OldValues;
     }
 
     /**
-     * @param StringArray $OldValues
-     * @return SimpleDeltaChange
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $OldValues
+     * @return static
      */
-    public function withOldValues($OldValues)
+    public function withOldValues(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $OldValues) : static
     {
         $new = clone $this;
         $new->OldValues = $OldValues;
@@ -65,18 +63,18 @@ class SimpleDeltaChange implements RequestInterface
     }
 
     /**
-     * @return StringArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
      */
-    public function getNewValues()
+    public function getNewValues() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
     {
         return $this->NewValues;
     }
 
     /**
-     * @param StringArray $NewValues
-     * @return SimpleDeltaChange
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $NewValues
+     * @return static
      */
-    public function withNewValues($NewValues)
+    public function withNewValues(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $NewValues) : static
     {
         $new = clone $this;
         $new->NewValues = $NewValues;
@@ -87,16 +85,16 @@ class SimpleDeltaChange implements RequestInterface
     /**
      * @return string
      */
-    public function getError()
+    public function getError() : string
     {
         return $this->Error;
     }
 
     /**
      * @param string $Error
-     * @return SimpleDeltaChange
+     * @return static
      */
-    public function withError($Error)
+    public function withError(string $Error) : static
     {
         $new = clone $this;
         $new->Error = $Error;
@@ -105,25 +103,23 @@ class SimpleDeltaChange implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataMode
      */
-    public function getMode()
+    public function getMode() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataMode
     {
         return $this->Mode;
     }
 
     /**
-     * @param string $Mode
-     * @return SimpleDeltaChange
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataMode $Mode
+     * @return static
      */
-    public function withMode($Mode)
+    public function withMode(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataMode $Mode) : static
     {
         $new = clone $this;
         $new->Mode = $Mode;
 
         return $new;
     }
-
-
 }
 

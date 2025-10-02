@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class ROClientIDHeader implements RequestInterface
 {
-
     /**
-     * @var string
+     * @var null | string
      */
-    private $ID;
+    private ?string $ID = null;
 
     /**
      * Constructor
      *
-     * @var string $ID
+     * @param null | string $ID
      */
-    public function __construct($ID)
+    public function __construct(?string $ID)
     {
         $this->ID = $ID;
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getID()
+    public function getID() : ?string
     {
         return $this->ID;
     }
 
     /**
-     * @param string $ID
-     * @return ROClientIDHeader
+     * @param null | string $ID
+     * @return static
      */
-    public function withID($ID)
+    public function withID(?string $ID) : static
     {
         $new = clone $this;
         $new->ID = $ID;
 
         return $new;
     }
-
-
 }
 

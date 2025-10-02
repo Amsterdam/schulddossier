@@ -2,47 +2,45 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBoxBijlage implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $Code;
 
     /**
      * @var int
      */
-    private $Code;
+    private int $UniekVolgnummer;
+
+    /**
+     * @var mixed
+     */
+    private mixed $Bijlage;
 
     /**
      * @var int
      */
-    private $UniekVolgnummer;
+    private int $BijlageSize;
 
     /**
      * @var string
      */
-    private $Bijlage;
-
-    /**
-     * @var int
-     */
-    private $BijlageSize;
-
-    /**
-     * @var string
-     */
-    private $BijlageNaam;
+    private string $BijlageNaam;
 
     /**
      * Constructor
      *
-     * @var int $Code
-     * @var int $UniekVolgnummer
-     * @var string $Bijlage
-     * @var int $BijlageSize
-     * @var string $BijlageNaam
+     * @param int $Code
+     * @param int $UniekVolgnummer
+     * @param mixed $Bijlage
+     * @param int $BijlageSize
+     * @param string $BijlageNaam
      */
-    public function __construct($Code, $UniekVolgnummer, $Bijlage, $BijlageSize, $BijlageNaam)
+    public function __construct(int $Code, int $UniekVolgnummer, mixed $Bijlage, int $BijlageSize, string $BijlageNaam)
     {
         $this->Code = $Code;
         $this->UniekVolgnummer = $UniekVolgnummer;
@@ -54,16 +52,16 @@ class TBBoxBijlage implements RequestInterface
     /**
      * @return int
      */
-    public function getCode()
+    public function getCode() : int
     {
         return $this->Code;
     }
 
     /**
      * @param int $Code
-     * @return TBBoxBijlage
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(int $Code) : static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -74,16 +72,16 @@ class TBBoxBijlage implements RequestInterface
     /**
      * @return int
      */
-    public function getUniekVolgnummer()
+    public function getUniekVolgnummer() : int
     {
         return $this->UniekVolgnummer;
     }
 
     /**
      * @param int $UniekVolgnummer
-     * @return TBBoxBijlage
+     * @return static
      */
-    public function withUniekVolgnummer($UniekVolgnummer)
+    public function withUniekVolgnummer(int $UniekVolgnummer) : static
     {
         $new = clone $this;
         $new->UniekVolgnummer = $UniekVolgnummer;
@@ -92,18 +90,18 @@ class TBBoxBijlage implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getBijlage()
+    public function getBijlage() : mixed
     {
         return $this->Bijlage;
     }
 
     /**
-     * @param string $Bijlage
-     * @return TBBoxBijlage
+     * @param mixed $Bijlage
+     * @return static
      */
-    public function withBijlage($Bijlage)
+    public function withBijlage(mixed $Bijlage) : static
     {
         $new = clone $this;
         $new->Bijlage = $Bijlage;
@@ -114,16 +112,16 @@ class TBBoxBijlage implements RequestInterface
     /**
      * @return int
      */
-    public function getBijlageSize()
+    public function getBijlageSize() : int
     {
         return $this->BijlageSize;
     }
 
     /**
      * @param int $BijlageSize
-     * @return TBBoxBijlage
+     * @return static
      */
-    public function withBijlageSize($BijlageSize)
+    public function withBijlageSize(int $BijlageSize) : static
     {
         $new = clone $this;
         $new->BijlageSize = $BijlageSize;
@@ -134,23 +132,21 @@ class TBBoxBijlage implements RequestInterface
     /**
      * @return string
      */
-    public function getBijlageNaam()
+    public function getBijlageNaam() : string
     {
         return $this->BijlageNaam;
     }
 
     /**
      * @param string $BijlageNaam
-     * @return TBBoxBijlage
+     * @return static
      */
-    public function withBijlageNaam($BijlageNaam)
+    public function withBijlageNaam(string $BijlageNaam) : static
     {
         $new = clone $this;
         $new->BijlageNaam = $BijlageNaam;
 
         return $new;
     }
-
-
 }
 

@@ -2,40 +2,38 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\ResultInterface;
 
 class SchuldHulpServiceAanvraag2SRResponse implements ResultInterface
 {
-
     /**
      * @var bool
      */
-    private $Result;
+    private bool $Result;
 
     /**
      * @var int
      */
-    private $ExtraInfo;
+    private int $ExtraInfo;
 
     /**
      * @var string
      */
-    private $ExtraInfoOmschrijving;
+    private string $ExtraInfoOmschrijving;
 
     /**
      * @return bool
      */
-    public function getResult()
+    public function getResult() : bool
     {
         return $this->Result;
     }
 
     /**
      * @param bool $Result
-     * @return SchuldHulpServiceAanvraag2SRResponse
+     * @return static
      */
-    public function withResult($Result)
+    public function withResult(bool $Result) : static
     {
         $new = clone $this;
         $new->Result = $Result;
@@ -46,16 +44,16 @@ class SchuldHulpServiceAanvraag2SRResponse implements ResultInterface
     /**
      * @return int
      */
-    public function getExtraInfo()
+    public function getExtraInfo() : int
     {
         return $this->ExtraInfo;
     }
 
     /**
      * @param int $ExtraInfo
-     * @return SchuldHulpServiceAanvraag2SRResponse
+     * @return static
      */
-    public function withExtraInfo($ExtraInfo)
+    public function withExtraInfo(int $ExtraInfo) : static
     {
         $new = clone $this;
         $new->ExtraInfo = $ExtraInfo;
@@ -66,23 +64,21 @@ class SchuldHulpServiceAanvraag2SRResponse implements ResultInterface
     /**
      * @return string
      */
-    public function getExtraInfoOmschrijving()
+    public function getExtraInfoOmschrijving() : string
     {
         return $this->ExtraInfoOmschrijving;
     }
 
     /**
      * @param string $ExtraInfoOmschrijving
-     * @return SchuldHulpServiceAanvraag2SRResponse
+     * @return static
      */
-    public function withExtraInfoOmschrijving($ExtraInfoOmschrijving)
+    public function withExtraInfoOmschrijving(string $ExtraInfoOmschrijving) : static
     {
         $new = clone $this;
         $new->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
 
         return $new;
     }
-
-
 }
 

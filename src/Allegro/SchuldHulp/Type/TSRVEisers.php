@@ -2,41 +2,39 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSRVEisers implements RequestInterface
 {
-
     /**
-     * @var SRVEiserArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVEiserArray
      */
-    private $Eisers;
-
-    /**
-     * @var float
-     */
-    private $SomAangemeldBedrag;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVEiserArray $Eisers;
 
     /**
      * @var float
      */
-    private $SomTeruggemeldBedrag;
+    private float $SomAangemeldBedrag;
 
     /**
      * @var float
      */
-    private $SomBerekendBedrag;
+    private float $SomTeruggemeldBedrag;
+
+    /**
+     * @var float
+     */
+    private float $SomBerekendBedrag;
 
     /**
      * Constructor
      *
-     * @var SRVEiserArray $Eisers
-     * @var float $SomAangemeldBedrag
-     * @var float $SomTeruggemeldBedrag
-     * @var float $SomBerekendBedrag
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVEiserArray $Eisers
+     * @param float $SomAangemeldBedrag
+     * @param float $SomTeruggemeldBedrag
+     * @param float $SomBerekendBedrag
      */
-    public function __construct($Eisers, $SomAangemeldBedrag, $SomTeruggemeldBedrag, $SomBerekendBedrag)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVEiserArray $Eisers, float $SomAangemeldBedrag, float $SomTeruggemeldBedrag, float $SomBerekendBedrag)
     {
         $this->Eisers = $Eisers;
         $this->SomAangemeldBedrag = $SomAangemeldBedrag;
@@ -45,18 +43,18 @@ class TSRVEisers implements RequestInterface
     }
 
     /**
-     * @return SRVEiserArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVEiserArray
      */
-    public function getEisers()
+    public function getEisers() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVEiserArray
     {
         return $this->Eisers;
     }
 
     /**
-     * @param SRVEiserArray $Eisers
-     * @return TSRVEisers
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVEiserArray $Eisers
+     * @return static
      */
-    public function withEisers($Eisers)
+    public function withEisers(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVEiserArray $Eisers) : static
     {
         $new = clone $this;
         $new->Eisers = $Eisers;
@@ -67,16 +65,16 @@ class TSRVEisers implements RequestInterface
     /**
      * @return float
      */
-    public function getSomAangemeldBedrag()
+    public function getSomAangemeldBedrag() : float
     {
         return $this->SomAangemeldBedrag;
     }
 
     /**
      * @param float $SomAangemeldBedrag
-     * @return TSRVEisers
+     * @return static
      */
-    public function withSomAangemeldBedrag($SomAangemeldBedrag)
+    public function withSomAangemeldBedrag(float $SomAangemeldBedrag) : static
     {
         $new = clone $this;
         $new->SomAangemeldBedrag = $SomAangemeldBedrag;
@@ -87,16 +85,16 @@ class TSRVEisers implements RequestInterface
     /**
      * @return float
      */
-    public function getSomTeruggemeldBedrag()
+    public function getSomTeruggemeldBedrag() : float
     {
         return $this->SomTeruggemeldBedrag;
     }
 
     /**
      * @param float $SomTeruggemeldBedrag
-     * @return TSRVEisers
+     * @return static
      */
-    public function withSomTeruggemeldBedrag($SomTeruggemeldBedrag)
+    public function withSomTeruggemeldBedrag(float $SomTeruggemeldBedrag) : static
     {
         $new = clone $this;
         $new->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
@@ -107,23 +105,21 @@ class TSRVEisers implements RequestInterface
     /**
      * @return float
      */
-    public function getSomBerekendBedrag()
+    public function getSomBerekendBedrag() : float
     {
         return $this->SomBerekendBedrag;
     }
 
     /**
      * @param float $SomBerekendBedrag
-     * @return TSRVEisers
+     * @return static
      */
-    public function withSomBerekendBedrag($SomBerekendBedrag)
+    public function withSomBerekendBedrag(float $SomBerekendBedrag) : static
     {
         $new = clone $this;
         $new->SomBerekendBedrag = $SomBerekendBedrag;
 
         return $new;
     }
-
-
 }
 

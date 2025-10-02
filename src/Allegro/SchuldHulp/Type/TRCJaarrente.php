@@ -2,35 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TRCJaarrente implements RequestInterface
 {
-
     /**
      * @var int
      */
-    private $Jaar;
+    private int $Jaar;
 
     /**
      * @var float
      */
-    private $RentePositief;
+    private float $RentePositief;
 
     /**
      * @var float
      */
-    private $RenteNegatief;
+    private float $RenteNegatief;
 
     /**
      * Constructor
      *
-     * @var int $Jaar
-     * @var float $RentePositief
-     * @var float $RenteNegatief
+     * @param int $Jaar
+     * @param float $RentePositief
+     * @param float $RenteNegatief
      */
-    public function __construct($Jaar, $RentePositief, $RenteNegatief)
+    public function __construct(int $Jaar, float $RentePositief, float $RenteNegatief)
     {
         $this->Jaar = $Jaar;
         $this->RentePositief = $RentePositief;
@@ -40,16 +38,16 @@ class TRCJaarrente implements RequestInterface
     /**
      * @return int
      */
-    public function getJaar()
+    public function getJaar() : int
     {
         return $this->Jaar;
     }
 
     /**
      * @param int $Jaar
-     * @return TRCJaarrente
+     * @return static
      */
-    public function withJaar($Jaar)
+    public function withJaar(int $Jaar) : static
     {
         $new = clone $this;
         $new->Jaar = $Jaar;
@@ -60,16 +58,16 @@ class TRCJaarrente implements RequestInterface
     /**
      * @return float
      */
-    public function getRentePositief()
+    public function getRentePositief() : float
     {
         return $this->RentePositief;
     }
 
     /**
      * @param float $RentePositief
-     * @return TRCJaarrente
+     * @return static
      */
-    public function withRentePositief($RentePositief)
+    public function withRentePositief(float $RentePositief) : static
     {
         $new = clone $this;
         $new->RentePositief = $RentePositief;
@@ -80,23 +78,21 @@ class TRCJaarrente implements RequestInterface
     /**
      * @return float
      */
-    public function getRenteNegatief()
+    public function getRenteNegatief() : float
     {
         return $this->RenteNegatief;
     }
 
     /**
      * @param float $RenteNegatief
-     * @return TRCJaarrente
+     * @return static
      */
-    public function withRenteNegatief($RenteNegatief)
+    public function withRenteNegatief(float $RenteNegatief) : static
     {
         $new = clone $this;
         $new->RenteNegatief = $RenteNegatief;
 
         return $new;
     }
-
-
 }
 

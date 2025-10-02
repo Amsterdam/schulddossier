@@ -2,36 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TDKHeader implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $RelatieCode;
 
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $Volgnummer;
 
     /**
-     * @var int
+     * @var \DateTimeInterface
      */
-    private $Volgnummer;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumUitbetaling;
+    private \DateTimeInterface $DatumUitbetaling;
 
     /**
      * Constructor
      *
-     * @var int $RelatieCode
-     * @var int $Volgnummer
-     * @var DateTimeInterface $DatumUitbetaling
+     * @param int $RelatieCode
+     * @param int $Volgnummer
+     * @param \DateTimeInterface $DatumUitbetaling
      */
-    public function __construct($RelatieCode, $Volgnummer, $DatumUitbetaling)
+    public function __construct(int $RelatieCode, int $Volgnummer, \DateTimeInterface $DatumUitbetaling)
     {
         $this->RelatieCode = $RelatieCode;
         $this->Volgnummer = $Volgnummer;
@@ -41,16 +38,16 @@ class TDKHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode() : int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TDKHeader
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode) : static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -61,16 +58,16 @@ class TDKHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer() : int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TDKHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer) : static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -79,25 +76,23 @@ class TDKHeader implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumUitbetaling()
+    public function getDatumUitbetaling() : \DateTimeInterface
     {
         return $this->DatumUitbetaling;
     }
 
     /**
-     * @param DateTimeInterface $DatumUitbetaling
-     * @return TDKHeader
+     * @param \DateTimeInterface $DatumUitbetaling
+     * @return static
      */
-    public function withDatumUitbetaling($DatumUitbetaling)
+    public function withDatumUitbetaling(\DateTimeInterface $DatumUitbetaling) : static
     {
         $new = clone $this;
         $new->DatumUitbetaling = $DatumUitbetaling;
 
         return $new;
     }
-
-
 }
 

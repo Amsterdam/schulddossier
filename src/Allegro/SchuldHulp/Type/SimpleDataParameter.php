@@ -2,35 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SimpleDataParameter implements RequestInterface
 {
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType $DataType;
 
     /**
      * @var string
      */
-    private $DataType;
+    private string $Name;
 
     /**
      * @var string
      */
-    private $Name;
-
-    /**
-     * @var string
-     */
-    private $Value;
+    private string $Value;
 
     /**
      * Constructor
      *
-     * @var string $DataType
-     * @var string $Name
-     * @var string $Value
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType $DataType
+     * @param string $Name
+     * @param string $Value
      */
-    public function __construct($DataType, $Name, $Value)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType $DataType, string $Name, string $Value)
     {
         $this->DataType = $DataType;
         $this->Name = $Name;
@@ -38,18 +36,18 @@ class SimpleDataParameter implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType
      */
-    public function getDataType()
+    public function getDataType() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType
     {
         return $this->DataType;
     }
 
     /**
-     * @param string $DataType
-     * @return SimpleDataParameter
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType $DataType
+     * @return static
      */
-    public function withDataType($DataType)
+    public function withDataType(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType $DataType) : static
     {
         $new = clone $this;
         $new->DataType = $DataType;
@@ -60,16 +58,16 @@ class SimpleDataParameter implements RequestInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->Name;
     }
 
     /**
      * @param string $Name
-     * @return SimpleDataParameter
+     * @return static
      */
-    public function withName($Name)
+    public function withName(string $Name) : static
     {
         $new = clone $this;
         $new->Name = $Name;
@@ -80,23 +78,21 @@ class SimpleDataParameter implements RequestInterface
     /**
      * @return string
      */
-    public function getValue()
+    public function getValue() : string
     {
         return $this->Value;
     }
 
     /**
      * @param string $Value
-     * @return SimpleDataParameter
+     * @return static
      */
-    public function withValue($Value)
+    public function withValue(string $Value) : static
     {
         $new = clone $this;
         $new->Value = $Value;
 
         return $new;
     }
-
-
 }
 

@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class PLHeaderArray implements RequestInterface
 {
-
     /**
-     * @var TPLHeader
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader>
      */
-    private $TPLHeader;
+    private array $TPLHeader;
 
     /**
      * Constructor
      *
-     * @var TPLHeader $TPLHeader
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader> $TPLHeader
      */
-    public function __construct($TPLHeader)
+    public function __construct(array $TPLHeader)
     {
         $this->TPLHeader = $TPLHeader;
     }
 
     /**
-     * @return TPLHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader>
      */
-    public function getTPLHeader()
+    public function getTPLHeader() : array
     {
         return $this->TPLHeader;
     }
 
     /**
-     * @param TPLHeader $TPLHeader
-     * @return PLHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader> $TPLHeader
+     * @return static
      */
-    public function withTPLHeader($TPLHeader)
+    public function withTPLHeader(array $TPLHeader) : static
     {
         $new = clone $this;
         $new->TPLHeader = $TPLHeader;
 
         return $new;
     }
-
-
 }
 

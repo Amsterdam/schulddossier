@@ -2,204 +2,201 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPL implements RequestInterface
 {
-
     /**
-     * @var TPLHeader
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader
      */
-    private $InfoHeader;
-
-    /**
-     * @var int
-     */
-    private $Opdrachtgever;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader $InfoHeader;
 
     /**
      * @var int
      */
-    private $OpdrachtgeverContact;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $TheoEinddatum;
-
-    /**
-     * @var float
-     */
-    private $NettoKredietsom;
-
-    /**
-     * @var float
-     */
-    private $BrutoKredietsom;
-
-    /**
-     * @var float
-     */
-    private $Kredietvergoeding;
-
-    /**
-     * @var float
-     */
-    private $MaandTermijn;
-
-    /**
-     * @var float
-     */
-    private $KwartaalTermijn;
+    private int $Opdrachtgever;
 
     /**
      * @var int
      */
-    private $AantalMaanden;
+    private int $OpdrachtgeverContact;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $TheoEinddatum;
+
+    /**
+     * @var float
+     */
+    private float $NettoKredietsom;
+
+    /**
+     * @var float
+     */
+    private float $BrutoKredietsom;
+
+    /**
+     * @var float
+     */
+    private float $Kredietvergoeding;
+
+    /**
+     * @var float
+     */
+    private float $MaandTermijn;
+
+    /**
+     * @var float
+     */
+    private float $KwartaalTermijn;
 
     /**
      * @var int
      */
-    private $AantalKwartalen;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumEersteAflossing;
-
-    /**
-     * @var float
-     */
-    private $Betaald;
-
-    /**
-     * @var float
-     */
-    private $SaldoLening;
-
-    /**
-     * @var float
-     */
-    private $Achterstand;
+    private int $AantalMaanden;
 
     /**
      * @var int
      */
-    private $ResterendeLooptijd;
+    private int $AantalKwartalen;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $DatumEersteAflossing;
 
     /**
      * @var float
      */
-    private $EffectiefJaarpercentage;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumLaatsteBetaling;
+    private float $Betaald;
 
     /**
      * @var float
      */
-    private $BedragLaatsteBetaling;
+    private float $SaldoLening;
 
     /**
      * @var float
      */
-    private $VolledigVervroegdeAflossing;
+    private float $Achterstand;
+
+    /**
+     * @var int
+     */
+    private int $ResterendeLooptijd;
+
+    /**
+     * @var float
+     */
+    private float $EffectiefJaarpercentage;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $DatumLaatsteBetaling;
+
+    /**
+     * @var float
+     */
+    private float $BedragLaatsteBetaling;
+
+    /**
+     * @var float
+     */
+    private float $VolledigVervroegdeAflossing;
 
     /**
      * @var string
      */
-    private $Medewerker;
+    private string $Medewerker;
 
     /**
      * @var int
      */
-    private $MedelenerCode;
+    private int $MedelenerCode;
 
     /**
      * @var float
      */
-    private $OpenstaandeVertragingsrente;
+    private float $OpenstaandeVertragingsrente;
 
     /**
      * @var float
      */
-    private $OpenstaandeKredietvergoeding;
+    private float $OpenstaandeKredietvergoeding;
 
     /**
      * @var float
      */
-    private $BetaaldeVertragingsrente;
+    private float $BetaaldeVertragingsrente;
 
     /**
      * @var float
      */
-    private $BetaaldeBoeterente;
+    private float $BetaaldeBoeterente;
 
     /**
      * @var float
      */
-    private $KostenVVA;
+    private float $KostenVVA;
 
     /**
      * @var float
      */
-    private $Voorstand;
+    private float $Voorstand;
 
     /**
      * @var string
      */
-    private $LeningSoort;
+    private string $LeningSoort;
 
     /**
      * @var float
      */
-    private $MaandPercentage;
+    private float $MaandPercentage;
 
     /**
      * @var float
      */
-    private $BetaaldeKredietvergoeding;
+    private float $BetaaldeKredietvergoeding;
 
     /**
      * Constructor
      *
-     * @var TPLHeader $InfoHeader
-     * @var int $Opdrachtgever
-     * @var int $OpdrachtgeverContact
-     * @var DateTimeInterface $TheoEinddatum
-     * @var float $NettoKredietsom
-     * @var float $BrutoKredietsom
-     * @var float $Kredietvergoeding
-     * @var float $MaandTermijn
-     * @var float $KwartaalTermijn
-     * @var int $AantalMaanden
-     * @var int $AantalKwartalen
-     * @var DateTimeInterface $DatumEersteAflossing
-     * @var float $Betaald
-     * @var float $SaldoLening
-     * @var float $Achterstand
-     * @var int $ResterendeLooptijd
-     * @var float $EffectiefJaarpercentage
-     * @var DateTimeInterface $DatumLaatsteBetaling
-     * @var float $BedragLaatsteBetaling
-     * @var float $VolledigVervroegdeAflossing
-     * @var string $Medewerker
-     * @var int $MedelenerCode
-     * @var float $OpenstaandeVertragingsrente
-     * @var float $OpenstaandeKredietvergoeding
-     * @var float $BetaaldeVertragingsrente
-     * @var float $BetaaldeBoeterente
-     * @var float $KostenVVA
-     * @var float $Voorstand
-     * @var string $LeningSoort
-     * @var float $MaandPercentage
-     * @var float $BetaaldeKredietvergoeding
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader $InfoHeader
+     * @param int $Opdrachtgever
+     * @param int $OpdrachtgeverContact
+     * @param \DateTimeInterface $TheoEinddatum
+     * @param float $NettoKredietsom
+     * @param float $BrutoKredietsom
+     * @param float $Kredietvergoeding
+     * @param float $MaandTermijn
+     * @param float $KwartaalTermijn
+     * @param int $AantalMaanden
+     * @param int $AantalKwartalen
+     * @param \DateTimeInterface $DatumEersteAflossing
+     * @param float $Betaald
+     * @param float $SaldoLening
+     * @param float $Achterstand
+     * @param int $ResterendeLooptijd
+     * @param float $EffectiefJaarpercentage
+     * @param \DateTimeInterface $DatumLaatsteBetaling
+     * @param float $BedragLaatsteBetaling
+     * @param float $VolledigVervroegdeAflossing
+     * @param string $Medewerker
+     * @param int $MedelenerCode
+     * @param float $OpenstaandeVertragingsrente
+     * @param float $OpenstaandeKredietvergoeding
+     * @param float $BetaaldeVertragingsrente
+     * @param float $BetaaldeBoeterente
+     * @param float $KostenVVA
+     * @param float $Voorstand
+     * @param string $LeningSoort
+     * @param float $MaandPercentage
+     * @param float $BetaaldeKredietvergoeding
      */
-    public function __construct($InfoHeader, $Opdrachtgever, $OpdrachtgeverContact, $TheoEinddatum, $NettoKredietsom, $BrutoKredietsom, $Kredietvergoeding, $MaandTermijn, $KwartaalTermijn, $AantalMaanden, $AantalKwartalen, $DatumEersteAflossing, $Betaald, $SaldoLening, $Achterstand, $ResterendeLooptijd, $EffectiefJaarpercentage, $DatumLaatsteBetaling, $BedragLaatsteBetaling, $VolledigVervroegdeAflossing, $Medewerker, $MedelenerCode, $OpenstaandeVertragingsrente, $OpenstaandeKredietvergoeding, $BetaaldeVertragingsrente, $BetaaldeBoeterente, $KostenVVA, $Voorstand, $LeningSoort, $MaandPercentage, $BetaaldeKredietvergoeding)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader $InfoHeader, int $Opdrachtgever, int $OpdrachtgeverContact, \DateTimeInterface $TheoEinddatum, float $NettoKredietsom, float $BrutoKredietsom, float $Kredietvergoeding, float $MaandTermijn, float $KwartaalTermijn, int $AantalMaanden, int $AantalKwartalen, \DateTimeInterface $DatumEersteAflossing, float $Betaald, float $SaldoLening, float $Achterstand, int $ResterendeLooptijd, float $EffectiefJaarpercentage, \DateTimeInterface $DatumLaatsteBetaling, float $BedragLaatsteBetaling, float $VolledigVervroegdeAflossing, string $Medewerker, int $MedelenerCode, float $OpenstaandeVertragingsrente, float $OpenstaandeKredietvergoeding, float $BetaaldeVertragingsrente, float $BetaaldeBoeterente, float $KostenVVA, float $Voorstand, string $LeningSoort, float $MaandPercentage, float $BetaaldeKredietvergoeding)
     {
         $this->InfoHeader = $InfoHeader;
         $this->Opdrachtgever = $Opdrachtgever;
@@ -235,18 +232,18 @@ class TPL implements RequestInterface
     }
 
     /**
-     * @return TPLHeader
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader
      */
-    public function getInfoHeader()
+    public function getInfoHeader() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader
     {
         return $this->InfoHeader;
     }
 
     /**
-     * @param TPLHeader $InfoHeader
-     * @return TPL
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader $InfoHeader
+     * @return static
      */
-    public function withInfoHeader($InfoHeader)
+    public function withInfoHeader(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader $InfoHeader) : static
     {
         $new = clone $this;
         $new->InfoHeader = $InfoHeader;
@@ -257,16 +254,16 @@ class TPL implements RequestInterface
     /**
      * @return int
      */
-    public function getOpdrachtgever()
+    public function getOpdrachtgever() : int
     {
         return $this->Opdrachtgever;
     }
 
     /**
      * @param int $Opdrachtgever
-     * @return TPL
+     * @return static
      */
-    public function withOpdrachtgever($Opdrachtgever)
+    public function withOpdrachtgever(int $Opdrachtgever) : static
     {
         $new = clone $this;
         $new->Opdrachtgever = $Opdrachtgever;
@@ -277,16 +274,16 @@ class TPL implements RequestInterface
     /**
      * @return int
      */
-    public function getOpdrachtgeverContact()
+    public function getOpdrachtgeverContact() : int
     {
         return $this->OpdrachtgeverContact;
     }
 
     /**
      * @param int $OpdrachtgeverContact
-     * @return TPL
+     * @return static
      */
-    public function withOpdrachtgeverContact($OpdrachtgeverContact)
+    public function withOpdrachtgeverContact(int $OpdrachtgeverContact) : static
     {
         $new = clone $this;
         $new->OpdrachtgeverContact = $OpdrachtgeverContact;
@@ -295,18 +292,18 @@ class TPL implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getTheoEinddatum()
+    public function getTheoEinddatum() : \DateTimeInterface
     {
         return $this->TheoEinddatum;
     }
 
     /**
-     * @param DateTimeInterface $TheoEinddatum
-     * @return TPL
+     * @param \DateTimeInterface $TheoEinddatum
+     * @return static
      */
-    public function withTheoEinddatum($TheoEinddatum)
+    public function withTheoEinddatum(\DateTimeInterface $TheoEinddatum) : static
     {
         $new = clone $this;
         $new->TheoEinddatum = $TheoEinddatum;
@@ -317,16 +314,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getNettoKredietsom()
+    public function getNettoKredietsom() : float
     {
         return $this->NettoKredietsom;
     }
 
     /**
      * @param float $NettoKredietsom
-     * @return TPL
+     * @return static
      */
-    public function withNettoKredietsom($NettoKredietsom)
+    public function withNettoKredietsom(float $NettoKredietsom) : static
     {
         $new = clone $this;
         $new->NettoKredietsom = $NettoKredietsom;
@@ -337,16 +334,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getBrutoKredietsom()
+    public function getBrutoKredietsom() : float
     {
         return $this->BrutoKredietsom;
     }
 
     /**
      * @param float $BrutoKredietsom
-     * @return TPL
+     * @return static
      */
-    public function withBrutoKredietsom($BrutoKredietsom)
+    public function withBrutoKredietsom(float $BrutoKredietsom) : static
     {
         $new = clone $this;
         $new->BrutoKredietsom = $BrutoKredietsom;
@@ -357,16 +354,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getKredietvergoeding()
+    public function getKredietvergoeding() : float
     {
         return $this->Kredietvergoeding;
     }
 
     /**
      * @param float $Kredietvergoeding
-     * @return TPL
+     * @return static
      */
-    public function withKredietvergoeding($Kredietvergoeding)
+    public function withKredietvergoeding(float $Kredietvergoeding) : static
     {
         $new = clone $this;
         $new->Kredietvergoeding = $Kredietvergoeding;
@@ -377,16 +374,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getMaandTermijn()
+    public function getMaandTermijn() : float
     {
         return $this->MaandTermijn;
     }
 
     /**
      * @param float $MaandTermijn
-     * @return TPL
+     * @return static
      */
-    public function withMaandTermijn($MaandTermijn)
+    public function withMaandTermijn(float $MaandTermijn) : static
     {
         $new = clone $this;
         $new->MaandTermijn = $MaandTermijn;
@@ -397,16 +394,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getKwartaalTermijn()
+    public function getKwartaalTermijn() : float
     {
         return $this->KwartaalTermijn;
     }
 
     /**
      * @param float $KwartaalTermijn
-     * @return TPL
+     * @return static
      */
-    public function withKwartaalTermijn($KwartaalTermijn)
+    public function withKwartaalTermijn(float $KwartaalTermijn) : static
     {
         $new = clone $this;
         $new->KwartaalTermijn = $KwartaalTermijn;
@@ -417,16 +414,16 @@ class TPL implements RequestInterface
     /**
      * @return int
      */
-    public function getAantalMaanden()
+    public function getAantalMaanden() : int
     {
         return $this->AantalMaanden;
     }
 
     /**
      * @param int $AantalMaanden
-     * @return TPL
+     * @return static
      */
-    public function withAantalMaanden($AantalMaanden)
+    public function withAantalMaanden(int $AantalMaanden) : static
     {
         $new = clone $this;
         $new->AantalMaanden = $AantalMaanden;
@@ -437,16 +434,16 @@ class TPL implements RequestInterface
     /**
      * @return int
      */
-    public function getAantalKwartalen()
+    public function getAantalKwartalen() : int
     {
         return $this->AantalKwartalen;
     }
 
     /**
      * @param int $AantalKwartalen
-     * @return TPL
+     * @return static
      */
-    public function withAantalKwartalen($AantalKwartalen)
+    public function withAantalKwartalen(int $AantalKwartalen) : static
     {
         $new = clone $this;
         $new->AantalKwartalen = $AantalKwartalen;
@@ -455,18 +452,18 @@ class TPL implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumEersteAflossing()
+    public function getDatumEersteAflossing() : \DateTimeInterface
     {
         return $this->DatumEersteAflossing;
     }
 
     /**
-     * @param DateTimeInterface $DatumEersteAflossing
-     * @return TPL
+     * @param \DateTimeInterface $DatumEersteAflossing
+     * @return static
      */
-    public function withDatumEersteAflossing($DatumEersteAflossing)
+    public function withDatumEersteAflossing(\DateTimeInterface $DatumEersteAflossing) : static
     {
         $new = clone $this;
         $new->DatumEersteAflossing = $DatumEersteAflossing;
@@ -477,16 +474,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getBetaald()
+    public function getBetaald() : float
     {
         return $this->Betaald;
     }
 
     /**
      * @param float $Betaald
-     * @return TPL
+     * @return static
      */
-    public function withBetaald($Betaald)
+    public function withBetaald(float $Betaald) : static
     {
         $new = clone $this;
         $new->Betaald = $Betaald;
@@ -497,16 +494,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getSaldoLening()
+    public function getSaldoLening() : float
     {
         return $this->SaldoLening;
     }
 
     /**
      * @param float $SaldoLening
-     * @return TPL
+     * @return static
      */
-    public function withSaldoLening($SaldoLening)
+    public function withSaldoLening(float $SaldoLening) : static
     {
         $new = clone $this;
         $new->SaldoLening = $SaldoLening;
@@ -517,16 +514,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getAchterstand()
+    public function getAchterstand() : float
     {
         return $this->Achterstand;
     }
 
     /**
      * @param float $Achterstand
-     * @return TPL
+     * @return static
      */
-    public function withAchterstand($Achterstand)
+    public function withAchterstand(float $Achterstand) : static
     {
         $new = clone $this;
         $new->Achterstand = $Achterstand;
@@ -537,16 +534,16 @@ class TPL implements RequestInterface
     /**
      * @return int
      */
-    public function getResterendeLooptijd()
+    public function getResterendeLooptijd() : int
     {
         return $this->ResterendeLooptijd;
     }
 
     /**
      * @param int $ResterendeLooptijd
-     * @return TPL
+     * @return static
      */
-    public function withResterendeLooptijd($ResterendeLooptijd)
+    public function withResterendeLooptijd(int $ResterendeLooptijd) : static
     {
         $new = clone $this;
         $new->ResterendeLooptijd = $ResterendeLooptijd;
@@ -557,16 +554,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getEffectiefJaarpercentage()
+    public function getEffectiefJaarpercentage() : float
     {
         return $this->EffectiefJaarpercentage;
     }
 
     /**
      * @param float $EffectiefJaarpercentage
-     * @return TPL
+     * @return static
      */
-    public function withEffectiefJaarpercentage($EffectiefJaarpercentage)
+    public function withEffectiefJaarpercentage(float $EffectiefJaarpercentage) : static
     {
         $new = clone $this;
         $new->EffectiefJaarpercentage = $EffectiefJaarpercentage;
@@ -575,18 +572,18 @@ class TPL implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumLaatsteBetaling()
+    public function getDatumLaatsteBetaling() : \DateTimeInterface
     {
         return $this->DatumLaatsteBetaling;
     }
 
     /**
-     * @param DateTimeInterface $DatumLaatsteBetaling
-     * @return TPL
+     * @param \DateTimeInterface $DatumLaatsteBetaling
+     * @return static
      */
-    public function withDatumLaatsteBetaling($DatumLaatsteBetaling)
+    public function withDatumLaatsteBetaling(\DateTimeInterface $DatumLaatsteBetaling) : static
     {
         $new = clone $this;
         $new->DatumLaatsteBetaling = $DatumLaatsteBetaling;
@@ -597,16 +594,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getBedragLaatsteBetaling()
+    public function getBedragLaatsteBetaling() : float
     {
         return $this->BedragLaatsteBetaling;
     }
 
     /**
      * @param float $BedragLaatsteBetaling
-     * @return TPL
+     * @return static
      */
-    public function withBedragLaatsteBetaling($BedragLaatsteBetaling)
+    public function withBedragLaatsteBetaling(float $BedragLaatsteBetaling) : static
     {
         $new = clone $this;
         $new->BedragLaatsteBetaling = $BedragLaatsteBetaling;
@@ -617,16 +614,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getVolledigVervroegdeAflossing()
+    public function getVolledigVervroegdeAflossing() : float
     {
         return $this->VolledigVervroegdeAflossing;
     }
 
     /**
      * @param float $VolledigVervroegdeAflossing
-     * @return TPL
+     * @return static
      */
-    public function withVolledigVervroegdeAflossing($VolledigVervroegdeAflossing)
+    public function withVolledigVervroegdeAflossing(float $VolledigVervroegdeAflossing) : static
     {
         $new = clone $this;
         $new->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
@@ -637,16 +634,16 @@ class TPL implements RequestInterface
     /**
      * @return string
      */
-    public function getMedewerker()
+    public function getMedewerker() : string
     {
         return $this->Medewerker;
     }
 
     /**
      * @param string $Medewerker
-     * @return TPL
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(string $Medewerker) : static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -657,16 +654,16 @@ class TPL implements RequestInterface
     /**
      * @return int
      */
-    public function getMedelenerCode()
+    public function getMedelenerCode() : int
     {
         return $this->MedelenerCode;
     }
 
     /**
      * @param int $MedelenerCode
-     * @return TPL
+     * @return static
      */
-    public function withMedelenerCode($MedelenerCode)
+    public function withMedelenerCode(int $MedelenerCode) : static
     {
         $new = clone $this;
         $new->MedelenerCode = $MedelenerCode;
@@ -677,16 +674,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getOpenstaandeVertragingsrente()
+    public function getOpenstaandeVertragingsrente() : float
     {
         return $this->OpenstaandeVertragingsrente;
     }
 
     /**
      * @param float $OpenstaandeVertragingsrente
-     * @return TPL
+     * @return static
      */
-    public function withOpenstaandeVertragingsrente($OpenstaandeVertragingsrente)
+    public function withOpenstaandeVertragingsrente(float $OpenstaandeVertragingsrente) : static
     {
         $new = clone $this;
         $new->OpenstaandeVertragingsrente = $OpenstaandeVertragingsrente;
@@ -697,16 +694,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getOpenstaandeKredietvergoeding()
+    public function getOpenstaandeKredietvergoeding() : float
     {
         return $this->OpenstaandeKredietvergoeding;
     }
 
     /**
      * @param float $OpenstaandeKredietvergoeding
-     * @return TPL
+     * @return static
      */
-    public function withOpenstaandeKredietvergoeding($OpenstaandeKredietvergoeding)
+    public function withOpenstaandeKredietvergoeding(float $OpenstaandeKredietvergoeding) : static
     {
         $new = clone $this;
         $new->OpenstaandeKredietvergoeding = $OpenstaandeKredietvergoeding;
@@ -717,16 +714,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getBetaaldeVertragingsrente()
+    public function getBetaaldeVertragingsrente() : float
     {
         return $this->BetaaldeVertragingsrente;
     }
 
     /**
      * @param float $BetaaldeVertragingsrente
-     * @return TPL
+     * @return static
      */
-    public function withBetaaldeVertragingsrente($BetaaldeVertragingsrente)
+    public function withBetaaldeVertragingsrente(float $BetaaldeVertragingsrente) : static
     {
         $new = clone $this;
         $new->BetaaldeVertragingsrente = $BetaaldeVertragingsrente;
@@ -737,16 +734,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getBetaaldeBoeterente()
+    public function getBetaaldeBoeterente() : float
     {
         return $this->BetaaldeBoeterente;
     }
 
     /**
      * @param float $BetaaldeBoeterente
-     * @return TPL
+     * @return static
      */
-    public function withBetaaldeBoeterente($BetaaldeBoeterente)
+    public function withBetaaldeBoeterente(float $BetaaldeBoeterente) : static
     {
         $new = clone $this;
         $new->BetaaldeBoeterente = $BetaaldeBoeterente;
@@ -757,16 +754,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getKostenVVA()
+    public function getKostenVVA() : float
     {
         return $this->KostenVVA;
     }
 
     /**
      * @param float $KostenVVA
-     * @return TPL
+     * @return static
      */
-    public function withKostenVVA($KostenVVA)
+    public function withKostenVVA(float $KostenVVA) : static
     {
         $new = clone $this;
         $new->KostenVVA = $KostenVVA;
@@ -777,16 +774,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getVoorstand()
+    public function getVoorstand() : float
     {
         return $this->Voorstand;
     }
 
     /**
      * @param float $Voorstand
-     * @return TPL
+     * @return static
      */
-    public function withVoorstand($Voorstand)
+    public function withVoorstand(float $Voorstand) : static
     {
         $new = clone $this;
         $new->Voorstand = $Voorstand;
@@ -797,16 +794,16 @@ class TPL implements RequestInterface
     /**
      * @return string
      */
-    public function getLeningSoort()
+    public function getLeningSoort() : string
     {
         return $this->LeningSoort;
     }
 
     /**
      * @param string $LeningSoort
-     * @return TPL
+     * @return static
      */
-    public function withLeningSoort($LeningSoort)
+    public function withLeningSoort(string $LeningSoort) : static
     {
         $new = clone $this;
         $new->LeningSoort = $LeningSoort;
@@ -817,16 +814,16 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getMaandPercentage()
+    public function getMaandPercentage() : float
     {
         return $this->MaandPercentage;
     }
 
     /**
      * @param float $MaandPercentage
-     * @return TPL
+     * @return static
      */
-    public function withMaandPercentage($MaandPercentage)
+    public function withMaandPercentage(float $MaandPercentage) : static
     {
         $new = clone $this;
         $new->MaandPercentage = $MaandPercentage;
@@ -837,23 +834,21 @@ class TPL implements RequestInterface
     /**
      * @return float
      */
-    public function getBetaaldeKredietvergoeding()
+    public function getBetaaldeKredietvergoeding() : float
     {
         return $this->BetaaldeKredietvergoeding;
     }
 
     /**
      * @param float $BetaaldeKredietvergoeding
-     * @return TPL
+     * @return static
      */
-    public function withBetaaldeKredietvergoeding($BetaaldeKredietvergoeding)
+    public function withBetaaldeKredietvergoeding(float $BetaaldeKredietvergoeding) : static
     {
         $new = clone $this;
         $new->BetaaldeKredietvergoeding = $BetaaldeKredietvergoeding;
 
         return $new;
     }
-
-
 }
 

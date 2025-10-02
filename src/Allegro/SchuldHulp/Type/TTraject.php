@@ -2,72 +2,69 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TTraject implements RequestInterface
 {
-
     /**
      * @var int
      */
-    private $UniekTrajectNummer;
+    private int $UniekTrajectNummer;
 
     /**
-     * @var TTrajectSoort
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort
      */
-    private $TrajectSoort;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort $TrajectSoort;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $Startdatum;
+    private \DateTimeInterface $Startdatum;
 
     /**
-     * @var TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    private $StartMedewerker;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $StartMedewerker;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $Einddatum;
+    private \DateTimeInterface $Einddatum;
 
     /**
-     * @var TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    private $EindMedewerker;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $EindMedewerker;
 
     /**
      * @var bool
      */
-    private $Lopend;
+    private bool $Lopend;
 
     /**
      * @var int
      */
-    private $Contractvolgnummer;
+    private int $Contractvolgnummer;
 
     /**
      * @var string
      */
-    private $ContractVolgnummerSoort;
+    private string $ContractVolgnummerSoort;
 
     /**
      * Constructor
      *
-     * @var int $UniekTrajectNummer
-     * @var TTrajectSoort $TrajectSoort
-     * @var DateTimeInterface $Startdatum
-     * @var TMedewerker $StartMedewerker
-     * @var DateTimeInterface $Einddatum
-     * @var TMedewerker $EindMedewerker
-     * @var bool $Lopend
-     * @var int $Contractvolgnummer
-     * @var string $ContractVolgnummerSoort
+     * @param int $UniekTrajectNummer
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort $TrajectSoort
+     * @param \DateTimeInterface $Startdatum
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $StartMedewerker
+     * @param \DateTimeInterface $Einddatum
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $EindMedewerker
+     * @param bool $Lopend
+     * @param int $Contractvolgnummer
+     * @param string $ContractVolgnummerSoort
      */
-    public function __construct($UniekTrajectNummer, $TrajectSoort, $Startdatum, $StartMedewerker, $Einddatum, $EindMedewerker, $Lopend, $Contractvolgnummer, $ContractVolgnummerSoort)
+    public function __construct(int $UniekTrajectNummer, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort $TrajectSoort, \DateTimeInterface $Startdatum, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $StartMedewerker, \DateTimeInterface $Einddatum, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $EindMedewerker, bool $Lopend, int $Contractvolgnummer, string $ContractVolgnummerSoort)
     {
         $this->UniekTrajectNummer = $UniekTrajectNummer;
         $this->TrajectSoort = $TrajectSoort;
@@ -83,16 +80,16 @@ class TTraject implements RequestInterface
     /**
      * @return int
      */
-    public function getUniekTrajectNummer()
+    public function getUniekTrajectNummer() : int
     {
         return $this->UniekTrajectNummer;
     }
 
     /**
      * @param int $UniekTrajectNummer
-     * @return TTraject
+     * @return static
      */
-    public function withUniekTrajectNummer($UniekTrajectNummer)
+    public function withUniekTrajectNummer(int $UniekTrajectNummer) : static
     {
         $new = clone $this;
         $new->UniekTrajectNummer = $UniekTrajectNummer;
@@ -101,18 +98,18 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @return TTrajectSoort
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort
      */
-    public function getTrajectSoort()
+    public function getTrajectSoort() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort
     {
         return $this->TrajectSoort;
     }
 
     /**
-     * @param TTrajectSoort $TrajectSoort
-     * @return TTraject
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort $TrajectSoort
+     * @return static
      */
-    public function withTrajectSoort($TrajectSoort)
+    public function withTrajectSoort(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort $TrajectSoort) : static
     {
         $new = clone $this;
         $new->TrajectSoort = $TrajectSoort;
@@ -121,18 +118,18 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getStartdatum()
+    public function getStartdatum() : \DateTimeInterface
     {
         return $this->Startdatum;
     }
 
     /**
-     * @param DateTimeInterface $Startdatum
-     * @return TTraject
+     * @param \DateTimeInterface $Startdatum
+     * @return static
      */
-    public function withStartdatum($Startdatum)
+    public function withStartdatum(\DateTimeInterface $Startdatum) : static
     {
         $new = clone $this;
         $new->Startdatum = $Startdatum;
@@ -141,18 +138,18 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @return TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    public function getStartMedewerker()
+    public function getStartMedewerker() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
     {
         return $this->StartMedewerker;
     }
 
     /**
-     * @param TMedewerker $StartMedewerker
-     * @return TTraject
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $StartMedewerker
+     * @return static
      */
-    public function withStartMedewerker($StartMedewerker)
+    public function withStartMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $StartMedewerker) : static
     {
         $new = clone $this;
         $new->StartMedewerker = $StartMedewerker;
@@ -161,18 +158,18 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getEinddatum()
+    public function getEinddatum() : \DateTimeInterface
     {
         return $this->Einddatum;
     }
 
     /**
-     * @param DateTimeInterface $Einddatum
-     * @return TTraject
+     * @param \DateTimeInterface $Einddatum
+     * @return static
      */
-    public function withEinddatum($Einddatum)
+    public function withEinddatum(\DateTimeInterface $Einddatum) : static
     {
         $new = clone $this;
         $new->Einddatum = $Einddatum;
@@ -181,18 +178,18 @@ class TTraject implements RequestInterface
     }
 
     /**
-     * @return TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    public function getEindMedewerker()
+    public function getEindMedewerker() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
     {
         return $this->EindMedewerker;
     }
 
     /**
-     * @param TMedewerker $EindMedewerker
-     * @return TTraject
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $EindMedewerker
+     * @return static
      */
-    public function withEindMedewerker($EindMedewerker)
+    public function withEindMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $EindMedewerker) : static
     {
         $new = clone $this;
         $new->EindMedewerker = $EindMedewerker;
@@ -203,16 +200,16 @@ class TTraject implements RequestInterface
     /**
      * @return bool
      */
-    public function getLopend()
+    public function getLopend() : bool
     {
         return $this->Lopend;
     }
 
     /**
      * @param bool $Lopend
-     * @return TTraject
+     * @return static
      */
-    public function withLopend($Lopend)
+    public function withLopend(bool $Lopend) : static
     {
         $new = clone $this;
         $new->Lopend = $Lopend;
@@ -223,16 +220,16 @@ class TTraject implements RequestInterface
     /**
      * @return int
      */
-    public function getContractvolgnummer()
+    public function getContractvolgnummer() : int
     {
         return $this->Contractvolgnummer;
     }
 
     /**
      * @param int $Contractvolgnummer
-     * @return TTraject
+     * @return static
      */
-    public function withContractvolgnummer($Contractvolgnummer)
+    public function withContractvolgnummer(int $Contractvolgnummer) : static
     {
         $new = clone $this;
         $new->Contractvolgnummer = $Contractvolgnummer;
@@ -243,23 +240,21 @@ class TTraject implements RequestInterface
     /**
      * @return string
      */
-    public function getContractVolgnummerSoort()
+    public function getContractVolgnummerSoort() : string
     {
         return $this->ContractVolgnummerSoort;
     }
 
     /**
      * @param string $ContractVolgnummerSoort
-     * @return TTraject
+     * @return static
      */
-    public function withContractVolgnummerSoort($ContractVolgnummerSoort)
+    public function withContractVolgnummerSoort(string $ContractVolgnummerSoort) : static
     {
         $new = clone $this;
         $new->ContractVolgnummerSoort = $ContractVolgnummerSoort;
 
         return $new;
     }
-
-
 }
 

@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TableRequestInfoArray implements RequestInterface
 {
-
     /**
-     * @var TableRequestInfo
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TableRequestInfo>
      */
-    private $TableRequestInfo;
+    private array $TableRequestInfo;
 
     /**
      * Constructor
      *
-     * @var TableRequestInfo $TableRequestInfo
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TableRequestInfo> $TableRequestInfo
      */
-    public function __construct($TableRequestInfo)
+    public function __construct(array $TableRequestInfo)
     {
         $this->TableRequestInfo = $TableRequestInfo;
     }
 
     /**
-     * @return TableRequestInfo
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TableRequestInfo>
      */
-    public function getTableRequestInfo()
+    public function getTableRequestInfo() : array
     {
         return $this->TableRequestInfo;
     }
 
     /**
-     * @param TableRequestInfo $TableRequestInfo
-     * @return TableRequestInfoArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TableRequestInfo> $TableRequestInfo
+     * @return static
      */
-    public function withTableRequestInfo($TableRequestInfo)
+    public function withTableRequestInfo(array $TableRequestInfo) : static
     {
         $new = clone $this;
         $new->TableRequestInfo = $TableRequestInfo;
 
         return $new;
     }
-
-
 }
 

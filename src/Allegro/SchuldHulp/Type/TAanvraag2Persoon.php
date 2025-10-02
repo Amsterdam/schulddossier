@@ -2,120 +2,117 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TAanvraag2Persoon implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $BSN;
+
+    /**
+     * @var string
+     */
+    private string $Voornamen;
+
+    /**
+     * @var null | string
+     */
+    private ?string $Voorletters = null;
+
+    /**
+     * @var null | string
+     */
+    private ?string $Voorvoegsels = null;
+
+    /**
+     * @var string
+     */
+    private string $Achternaam;
+
+    /**
+     * @var string
+     */
+    private string $Geslacht;
 
     /**
      * @var int
      */
-    private $BSN;
+    private int $Geboortedatum;
 
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ENationaliteit
      */
-    private $Voornamen;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ENationaliteit $Nationaliteit;
 
     /**
-     * @var string
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\Rekeningnummer2Array
      */
-    private $Voorletters;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\Rekeningnummer2Array $Rekeningnummers = null;
 
     /**
-     * @var string
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
      */
-    private $Voorvoegsels;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Bezoekadres = null;
 
     /**
-     * @var string
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
      */
-    private $Achternaam;
-
-    /**
-     * @var string
-     */
-    private $Geslacht;
-
-    /**
-     * @var int
-     */
-    private $Geboortedatum;
-
-    /**
-     * @var string
-     */
-    private $Nationaliteit;
-
-    /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\Rekeningnummer2Array
-     */
-    private $Rekeningnummers;
-
-    /**
-     * @var TAdres
-     */
-    private $Bezoekadres;
-
-    /**
-     * @var TAdres
-     */
-    private $Postadres;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Postadres = null;
 
     /**
      * @var bool
      */
-    private $CorrespondentieMail;
+    private bool $CorrespondentieMail;
 
     /**
      * @var bool
      */
-    private $CorrespondentieWeb;
+    private bool $CorrespondentieWeb;
 
     /**
-     * @var TContact
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact
      */
-    private $Contact;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact $Contact = null;
 
     /**
-     * @var InkomenArray
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\InkomenArray
      */
-    private $Inkomen;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\InkomenArray $Inkomen = null;
 
     /**
-     * @var UitgavenArray
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\UitgavenArray
      */
-    private $Uitgaven;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\UitgavenArray $Uitgaven = null;
 
     /**
      * Constructor
      *
-     * @var int $Relatiecode
-     * @var int $BSN
-     * @var string $Voornamen
-     * @var string $Voorletters
-     * @var string $Voorvoegsels
-     * @var string $Achternaam
-     * @var string $Geslacht
-     * @var int $Geboortedatum
-     * @var string $Nationaliteit
-     * @var Rekeningnummer2Array $Rekeningnummers
-     * @var TAdres $Bezoekadres
-     * @var TAdres $Postadres
-     * @var bool $CorrespondentieMail
-     * @var bool $CorrespondentieWeb
-     * @var TContact $Contact
-     * @var InkomenArray $Inkomen
-     * @var UitgavenArray $Uitgaven
+     * @param int $Relatiecode
+     * @param int $BSN
+     * @param string $Voornamen
+     * @param null | string $Voorletters
+     * @param null | string $Voorvoegsels
+     * @param string $Achternaam
+     * @param string $Geslacht
+     * @param int $Geboortedatum
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ENationaliteit $Nationaliteit
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\Rekeningnummer2Array $Rekeningnummers
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Bezoekadres
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Postadres
+     * @param bool $CorrespondentieMail
+     * @param bool $CorrespondentieWeb
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact $Contact
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\InkomenArray $Inkomen
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\UitgavenArray $Uitgaven
      */
-    public function __construct($Relatiecode, $BSN, $Voornamen, $Voorletters, $Voorvoegsels, $Achternaam, $Geslacht, $Geboortedatum, $Nationaliteit, $Rekeningnummers, $Bezoekadres, $Postadres, $CorrespondentieMail, $CorrespondentieWeb, $Contact, $Inkomen, $Uitgaven)
+    public function __construct(int $Relatiecode, int $BSN, string $Voornamen, ?string $Voorletters, ?string $Voorvoegsels, string $Achternaam, string $Geslacht, int $Geboortedatum, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ENationaliteit $Nationaliteit, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\Rekeningnummer2Array $Rekeningnummers, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Bezoekadres, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Postadres, bool $CorrespondentieMail, bool $CorrespondentieWeb, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact $Contact, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\InkomenArray $Inkomen, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\UitgavenArray $Uitgaven)
     {
         $this->Relatiecode = $Relatiecode;
         $this->BSN = $BSN;
@@ -139,16 +136,16 @@ class TAanvraag2Persoon implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode() : int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode) : static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -159,16 +156,16 @@ class TAanvraag2Persoon implements RequestInterface
     /**
      * @return int
      */
-    public function getBSN()
+    public function getBSN() : int
     {
         return $this->BSN;
     }
 
     /**
      * @param int $BSN
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withBSN($BSN)
+    public function withBSN(int $BSN) : static
     {
         $new = clone $this;
         $new->BSN = $BSN;
@@ -179,16 +176,16 @@ class TAanvraag2Persoon implements RequestInterface
     /**
      * @return string
      */
-    public function getVoornamen()
+    public function getVoornamen() : string
     {
         return $this->Voornamen;
     }
 
     /**
      * @param string $Voornamen
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withVoornamen($Voornamen)
+    public function withVoornamen(string $Voornamen) : static
     {
         $new = clone $this;
         $new->Voornamen = $Voornamen;
@@ -197,18 +194,18 @@ class TAanvraag2Persoon implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getVoorletters()
+    public function getVoorletters() : ?string
     {
         return $this->Voorletters;
     }
 
     /**
-     * @param string $Voorletters
-     * @return TAanvraag2Persoon
+     * @param null | string $Voorletters
+     * @return static
      */
-    public function withVoorletters($Voorletters)
+    public function withVoorletters(?string $Voorletters) : static
     {
         $new = clone $this;
         $new->Voorletters = $Voorletters;
@@ -217,18 +214,18 @@ class TAanvraag2Persoon implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getVoorvoegsels()
+    public function getVoorvoegsels() : ?string
     {
         return $this->Voorvoegsels;
     }
 
     /**
-     * @param string $Voorvoegsels
-     * @return TAanvraag2Persoon
+     * @param null | string $Voorvoegsels
+     * @return static
      */
-    public function withVoorvoegsels($Voorvoegsels)
+    public function withVoorvoegsels(?string $Voorvoegsels) : static
     {
         $new = clone $this;
         $new->Voorvoegsels = $Voorvoegsels;
@@ -239,16 +236,16 @@ class TAanvraag2Persoon implements RequestInterface
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam() : string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam) : static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -259,16 +256,16 @@ class TAanvraag2Persoon implements RequestInterface
     /**
      * @return string
      */
-    public function getGeslacht()
+    public function getGeslacht() : string
     {
         return $this->Geslacht;
     }
 
     /**
      * @param string $Geslacht
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withGeslacht($Geslacht)
+    public function withGeslacht(string $Geslacht) : static
     {
         $new = clone $this;
         $new->Geslacht = $Geslacht;
@@ -279,16 +276,16 @@ class TAanvraag2Persoon implements RequestInterface
     /**
      * @return int
      */
-    public function getGeboortedatum()
+    public function getGeboortedatum() : int
     {
         return $this->Geboortedatum;
     }
 
     /**
      * @param int $Geboortedatum
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withGeboortedatum($Geboortedatum)
+    public function withGeboortedatum(int $Geboortedatum) : static
     {
         $new = clone $this;
         $new->Geboortedatum = $Geboortedatum;
@@ -297,18 +294,18 @@ class TAanvraag2Persoon implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ENationaliteit
      */
-    public function getNationaliteit()
+    public function getNationaliteit() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ENationaliteit
     {
         return $this->Nationaliteit;
     }
 
     /**
-     * @param string $Nationaliteit
-     * @return TAanvraag2Persoon
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ENationaliteit $Nationaliteit
+     * @return static
      */
-    public function withNationaliteit($Nationaliteit)
+    public function withNationaliteit(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ENationaliteit $Nationaliteit) : static
     {
         $new = clone $this;
         $new->Nationaliteit = $Nationaliteit;
@@ -317,18 +314,18 @@ class TAanvraag2Persoon implements RequestInterface
     }
 
     /**
-     * @return Rekeningnummer2Array
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\Rekeningnummer2Array
      */
-    public function getRekeningnummers()
+    public function getRekeningnummers() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\Rekeningnummer2Array
     {
         return $this->Rekeningnummers;
     }
 
     /**
-     * @param Rekeningnummer2Array $Rekeningnummers
-     * @return TAanvraag2Persoon
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\Rekeningnummer2Array $Rekeningnummers
+     * @return static
      */
-    public function withRekeningnummers($Rekeningnummers)
+    public function withRekeningnummers(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\Rekeningnummer2Array $Rekeningnummers) : static
     {
         $new = clone $this;
         $new->Rekeningnummers = $Rekeningnummers;
@@ -337,18 +334,18 @@ class TAanvraag2Persoon implements RequestInterface
     }
 
     /**
-     * @return TAdres
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
      */
-    public function getBezoekadres()
+    public function getBezoekadres() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
     {
         return $this->Bezoekadres;
     }
 
     /**
-     * @param TAdres $Bezoekadres
-     * @return TAanvraag2Persoon
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Bezoekadres
+     * @return static
      */
-    public function withBezoekadres($Bezoekadres)
+    public function withBezoekadres(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Bezoekadres) : static
     {
         $new = clone $this;
         $new->Bezoekadres = $Bezoekadres;
@@ -357,18 +354,18 @@ class TAanvraag2Persoon implements RequestInterface
     }
 
     /**
-     * @return TAdres
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
      */
-    public function getPostadres()
+    public function getPostadres() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
     {
         return $this->Postadres;
     }
 
     /**
-     * @param TAdres $Postadres
-     * @return TAanvraag2Persoon
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Postadres
+     * @return static
      */
-    public function withPostadres($Postadres)
+    public function withPostadres(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Postadres) : static
     {
         $new = clone $this;
         $new->Postadres = $Postadres;
@@ -379,16 +376,16 @@ class TAanvraag2Persoon implements RequestInterface
     /**
      * @return bool
      */
-    public function getCorrespondentieMail()
+    public function getCorrespondentieMail() : bool
     {
         return $this->CorrespondentieMail;
     }
 
     /**
      * @param bool $CorrespondentieMail
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withCorrespondentieMail($CorrespondentieMail)
+    public function withCorrespondentieMail(bool $CorrespondentieMail) : static
     {
         $new = clone $this;
         $new->CorrespondentieMail = $CorrespondentieMail;
@@ -399,16 +396,16 @@ class TAanvraag2Persoon implements RequestInterface
     /**
      * @return bool
      */
-    public function getCorrespondentieWeb()
+    public function getCorrespondentieWeb() : bool
     {
         return $this->CorrespondentieWeb;
     }
 
     /**
      * @param bool $CorrespondentieWeb
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withCorrespondentieWeb($CorrespondentieWeb)
+    public function withCorrespondentieWeb(bool $CorrespondentieWeb) : static
     {
         $new = clone $this;
         $new->CorrespondentieWeb = $CorrespondentieWeb;
@@ -417,18 +414,18 @@ class TAanvraag2Persoon implements RequestInterface
     }
 
     /**
-     * @return TContact
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact
      */
-    public function getContact()
+    public function getContact() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact
     {
         return $this->Contact;
     }
 
     /**
-     * @param TContact $Contact
-     * @return TAanvraag2Persoon
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact $Contact
+     * @return static
      */
-    public function withContact($Contact)
+    public function withContact(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact $Contact) : static
     {
         $new = clone $this;
         $new->Contact = $Contact;
@@ -437,18 +434,18 @@ class TAanvraag2Persoon implements RequestInterface
     }
 
     /**
-     * @return InkomenArray
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\InkomenArray
      */
-    public function getInkomen()
+    public function getInkomen() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\InkomenArray
     {
         return $this->Inkomen;
     }
 
     /**
-     * @param InkomenArray $Inkomen
-     * @return TAanvraag2Persoon
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\InkomenArray $Inkomen
+     * @return static
      */
-    public function withInkomen($Inkomen)
+    public function withInkomen(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\InkomenArray $Inkomen) : static
     {
         $new = clone $this;
         $new->Inkomen = $Inkomen;
@@ -457,25 +454,23 @@ class TAanvraag2Persoon implements RequestInterface
     }
 
     /**
-     * @return UitgavenArray
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\UitgavenArray
      */
-    public function getUitgaven()
+    public function getUitgaven() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\UitgavenArray
     {
         return $this->Uitgaven;
     }
 
     /**
-     * @param UitgavenArray $Uitgaven
-     * @return TAanvraag2Persoon
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\UitgavenArray $Uitgaven
+     * @return static
      */
-    public function withUitgaven($Uitgaven)
+    public function withUitgaven(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\UitgavenArray $Uitgaven) : static
     {
         $new = clone $this;
         $new->Uitgaven = $Uitgaven;
 
         return $new;
     }
-
-
 }
 

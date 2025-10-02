@@ -2,48 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSAfschriftMutaties implements RequestInterface
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftMutatieArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftMutatieArray
      */
-    private $AfschriftMutaties;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftMutatieArray $AfschriftMutaties;
 
     /**
      * Constructor
      *
-     * @var PRSAfschriftMutatieArray $AfschriftMutaties
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftMutatieArray $AfschriftMutaties
      */
-    public function __construct($AfschriftMutaties)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftMutatieArray $AfschriftMutaties)
     {
         $this->AfschriftMutaties = $AfschriftMutaties;
     }
 
     /**
-     * @return PRSAfschriftMutatieArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftMutatieArray
      */
-    public function getAfschriftMutaties()
+    public function getAfschriftMutaties() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftMutatieArray
     {
         return $this->AfschriftMutaties;
     }
 
     /**
-     * @param PRSAfschriftMutatieArray $AfschriftMutaties
-     * @return TPRSAfschriftMutaties
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftMutatieArray $AfschriftMutaties
+     * @return static
      */
-    public function withAfschriftMutaties($AfschriftMutaties)
+    public function withAfschriftMutaties(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftMutatieArray $AfschriftMutaties) : static
     {
         $new = clone $this;
         $new->AfschriftMutaties = $AfschriftMutaties;
 
         return $new;
     }
-
-
 }
 

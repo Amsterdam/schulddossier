@@ -2,42 +2,39 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TExtraProductHeader implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Relatiecode;
-
-    /**
-     * @var int
-     */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $AanvraagDatum;
+    private \DateTimeInterface $AanvraagDatum;
 
     /**
      * Constructor
      *
-     * @var int $Relatiecode
-     * @var int $Volgnummer
-     * @var string $Omschrijving
-     * @var DateTimeInterface $AanvraagDatum
+     * @param int $Relatiecode
+     * @param int $Volgnummer
+     * @param string $Omschrijving
+     * @param \DateTimeInterface $AanvraagDatum
      */
-    public function __construct($Relatiecode, $Volgnummer, $Omschrijving, $AanvraagDatum)
+    public function __construct(int $Relatiecode, int $Volgnummer, string $Omschrijving, \DateTimeInterface $AanvraagDatum)
     {
         $this->Relatiecode = $Relatiecode;
         $this->Volgnummer = $Volgnummer;
@@ -48,16 +45,16 @@ class TExtraProductHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode() : int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TExtraProductHeader
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode) : static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -68,16 +65,16 @@ class TExtraProductHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer() : int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TExtraProductHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer) : static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -88,16 +85,16 @@ class TExtraProductHeader implements RequestInterface
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving() : string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TExtraProductHeader
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving) : static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -106,25 +103,23 @@ class TExtraProductHeader implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getAanvraagDatum()
+    public function getAanvraagDatum() : \DateTimeInterface
     {
         return $this->AanvraagDatum;
     }
 
     /**
-     * @param DateTimeInterface $AanvraagDatum
-     * @return TExtraProductHeader
+     * @param \DateTimeInterface $AanvraagDatum
+     * @return static
      */
-    public function withAanvraagDatum($AanvraagDatum)
+    public function withAanvraagDatum(\DateTimeInterface $AanvraagDatum) : static
     {
         $new = clone $this;
         $new->AanvraagDatum = $AanvraagDatum;
 
         return $new;
     }
-
-
 }
 

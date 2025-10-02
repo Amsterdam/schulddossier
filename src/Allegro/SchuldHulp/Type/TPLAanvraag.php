@@ -2,120 +2,117 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPLAanvraag implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Volgnummer;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $DatumAanvraag;
+
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortLening
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortLening $SoortLening;
 
     /**
      * @var int
      */
-    private $Volgnummer;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumAanvraag;
+    private int $MedelenerCode;
 
     /**
      * @var string
      */
-    private $SoortLening;
-
-    /**
-     * @var int
-     */
-    private $MedelenerCode;
-
-    /**
-     * @var string
-     */
-    private $Medewerker;
+    private string $Medewerker;
 
     /**
      * @var float
      */
-    private $GewenstKrediet;
+    private float $GewenstKrediet;
+
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EStatusAanvraag
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EStatusAanvraag $Status;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $DatumStatus;
 
     /**
      * @var string
      */
-    private $Status;
+    private string $RedenAfwijzing;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumStatus;
+    private \DateTimeInterface $DatumStatusA;
 
     /**
-     * @var string
+     * @var \DateTimeInterface
      */
-    private $RedenAfwijzing;
+    private \DateTimeInterface $DatumStatusB;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumStatusA;
+    private \DateTimeInterface $DatumStatusC;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumStatusB;
+    private \DateTimeInterface $DatumStatusD;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumStatusC;
+    private \DateTimeInterface $DatumStatusE;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumStatusD;
+    private \DateTimeInterface $DatumStatusAfIn;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumStatusE;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumStatusAfIn;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumStatusFiat;
+    private \DateTimeInterface $DatumStatusFiat;
 
     /**
      * Constructor
      *
-     * @var int $Relatiecode
-     * @var int $Volgnummer
-     * @var DateTimeInterface $DatumAanvraag
-     * @var string $SoortLening
-     * @var int $MedelenerCode
-     * @var string $Medewerker
-     * @var float $GewenstKrediet
-     * @var string $Status
-     * @var DateTimeInterface $DatumStatus
-     * @var string $RedenAfwijzing
-     * @var DateTimeInterface $DatumStatusA
-     * @var DateTimeInterface $DatumStatusB
-     * @var DateTimeInterface $DatumStatusC
-     * @var DateTimeInterface $DatumStatusD
-     * @var DateTimeInterface $DatumStatusE
-     * @var DateTimeInterface $DatumStatusAfIn
-     * @var DateTimeInterface $DatumStatusFiat
+     * @param int $Relatiecode
+     * @param int $Volgnummer
+     * @param \DateTimeInterface $DatumAanvraag
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortLening $SoortLening
+     * @param int $MedelenerCode
+     * @param string $Medewerker
+     * @param float $GewenstKrediet
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EStatusAanvraag $Status
+     * @param \DateTimeInterface $DatumStatus
+     * @param string $RedenAfwijzing
+     * @param \DateTimeInterface $DatumStatusA
+     * @param \DateTimeInterface $DatumStatusB
+     * @param \DateTimeInterface $DatumStatusC
+     * @param \DateTimeInterface $DatumStatusD
+     * @param \DateTimeInterface $DatumStatusE
+     * @param \DateTimeInterface $DatumStatusAfIn
+     * @param \DateTimeInterface $DatumStatusFiat
      */
-    public function __construct($Relatiecode, $Volgnummer, $DatumAanvraag, $SoortLening, $MedelenerCode, $Medewerker, $GewenstKrediet, $Status, $DatumStatus, $RedenAfwijzing, $DatumStatusA, $DatumStatusB, $DatumStatusC, $DatumStatusD, $DatumStatusE, $DatumStatusAfIn, $DatumStatusFiat)
+    public function __construct(int $Relatiecode, int $Volgnummer, \DateTimeInterface $DatumAanvraag, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortLening $SoortLening, int $MedelenerCode, string $Medewerker, float $GewenstKrediet, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EStatusAanvraag $Status, \DateTimeInterface $DatumStatus, string $RedenAfwijzing, \DateTimeInterface $DatumStatusA, \DateTimeInterface $DatumStatusB, \DateTimeInterface $DatumStatusC, \DateTimeInterface $DatumStatusD, \DateTimeInterface $DatumStatusE, \DateTimeInterface $DatumStatusAfIn, \DateTimeInterface $DatumStatusFiat)
     {
         $this->Relatiecode = $Relatiecode;
         $this->Volgnummer = $Volgnummer;
@@ -139,16 +136,16 @@ class TPLAanvraag implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode() : int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode) : static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -159,16 +156,16 @@ class TPLAanvraag implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer() : int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer) : static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -177,18 +174,18 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumAanvraag()
+    public function getDatumAanvraag() : \DateTimeInterface
     {
         return $this->DatumAanvraag;
     }
 
     /**
-     * @param DateTimeInterface $DatumAanvraag
-     * @return TPLAanvraag
+     * @param \DateTimeInterface $DatumAanvraag
+     * @return static
      */
-    public function withDatumAanvraag($DatumAanvraag)
+    public function withDatumAanvraag(\DateTimeInterface $DatumAanvraag) : static
     {
         $new = clone $this;
         $new->DatumAanvraag = $DatumAanvraag;
@@ -197,18 +194,18 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortLening
      */
-    public function getSoortLening()
+    public function getSoortLening() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortLening
     {
         return $this->SoortLening;
     }
 
     /**
-     * @param string $SoortLening
-     * @return TPLAanvraag
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortLening $SoortLening
+     * @return static
      */
-    public function withSoortLening($SoortLening)
+    public function withSoortLening(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortLening $SoortLening) : static
     {
         $new = clone $this;
         $new->SoortLening = $SoortLening;
@@ -219,16 +216,16 @@ class TPLAanvraag implements RequestInterface
     /**
      * @return int
      */
-    public function getMedelenerCode()
+    public function getMedelenerCode() : int
     {
         return $this->MedelenerCode;
     }
 
     /**
      * @param int $MedelenerCode
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withMedelenerCode($MedelenerCode)
+    public function withMedelenerCode(int $MedelenerCode) : static
     {
         $new = clone $this;
         $new->MedelenerCode = $MedelenerCode;
@@ -239,16 +236,16 @@ class TPLAanvraag implements RequestInterface
     /**
      * @return string
      */
-    public function getMedewerker()
+    public function getMedewerker() : string
     {
         return $this->Medewerker;
     }
 
     /**
      * @param string $Medewerker
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(string $Medewerker) : static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -259,16 +256,16 @@ class TPLAanvraag implements RequestInterface
     /**
      * @return float
      */
-    public function getGewenstKrediet()
+    public function getGewenstKrediet() : float
     {
         return $this->GewenstKrediet;
     }
 
     /**
      * @param float $GewenstKrediet
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withGewenstKrediet($GewenstKrediet)
+    public function withGewenstKrediet(float $GewenstKrediet) : static
     {
         $new = clone $this;
         $new->GewenstKrediet = $GewenstKrediet;
@@ -277,18 +274,18 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EStatusAanvraag
      */
-    public function getStatus()
+    public function getStatus() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EStatusAanvraag
     {
         return $this->Status;
     }
 
     /**
-     * @param string $Status
-     * @return TPLAanvraag
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EStatusAanvraag $Status
+     * @return static
      */
-    public function withStatus($Status)
+    public function withStatus(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EStatusAanvraag $Status) : static
     {
         $new = clone $this;
         $new->Status = $Status;
@@ -297,18 +294,18 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumStatus()
+    public function getDatumStatus() : \DateTimeInterface
     {
         return $this->DatumStatus;
     }
 
     /**
-     * @param DateTimeInterface $DatumStatus
-     * @return TPLAanvraag
+     * @param \DateTimeInterface $DatumStatus
+     * @return static
      */
-    public function withDatumStatus($DatumStatus)
+    public function withDatumStatus(\DateTimeInterface $DatumStatus) : static
     {
         $new = clone $this;
         $new->DatumStatus = $DatumStatus;
@@ -319,16 +316,16 @@ class TPLAanvraag implements RequestInterface
     /**
      * @return string
      */
-    public function getRedenAfwijzing()
+    public function getRedenAfwijzing() : string
     {
         return $this->RedenAfwijzing;
     }
 
     /**
      * @param string $RedenAfwijzing
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withRedenAfwijzing($RedenAfwijzing)
+    public function withRedenAfwijzing(string $RedenAfwijzing) : static
     {
         $new = clone $this;
         $new->RedenAfwijzing = $RedenAfwijzing;
@@ -337,18 +334,18 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumStatusA()
+    public function getDatumStatusA() : \DateTimeInterface
     {
         return $this->DatumStatusA;
     }
 
     /**
-     * @param DateTimeInterface $DatumStatusA
-     * @return TPLAanvraag
+     * @param \DateTimeInterface $DatumStatusA
+     * @return static
      */
-    public function withDatumStatusA($DatumStatusA)
+    public function withDatumStatusA(\DateTimeInterface $DatumStatusA) : static
     {
         $new = clone $this;
         $new->DatumStatusA = $DatumStatusA;
@@ -357,18 +354,18 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumStatusB()
+    public function getDatumStatusB() : \DateTimeInterface
     {
         return $this->DatumStatusB;
     }
 
     /**
-     * @param DateTimeInterface $DatumStatusB
-     * @return TPLAanvraag
+     * @param \DateTimeInterface $DatumStatusB
+     * @return static
      */
-    public function withDatumStatusB($DatumStatusB)
+    public function withDatumStatusB(\DateTimeInterface $DatumStatusB) : static
     {
         $new = clone $this;
         $new->DatumStatusB = $DatumStatusB;
@@ -377,18 +374,18 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumStatusC()
+    public function getDatumStatusC() : \DateTimeInterface
     {
         return $this->DatumStatusC;
     }
 
     /**
-     * @param DateTimeInterface $DatumStatusC
-     * @return TPLAanvraag
+     * @param \DateTimeInterface $DatumStatusC
+     * @return static
      */
-    public function withDatumStatusC($DatumStatusC)
+    public function withDatumStatusC(\DateTimeInterface $DatumStatusC) : static
     {
         $new = clone $this;
         $new->DatumStatusC = $DatumStatusC;
@@ -397,18 +394,18 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumStatusD()
+    public function getDatumStatusD() : \DateTimeInterface
     {
         return $this->DatumStatusD;
     }
 
     /**
-     * @param DateTimeInterface $DatumStatusD
-     * @return TPLAanvraag
+     * @param \DateTimeInterface $DatumStatusD
+     * @return static
      */
-    public function withDatumStatusD($DatumStatusD)
+    public function withDatumStatusD(\DateTimeInterface $DatumStatusD) : static
     {
         $new = clone $this;
         $new->DatumStatusD = $DatumStatusD;
@@ -417,18 +414,18 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumStatusE()
+    public function getDatumStatusE() : \DateTimeInterface
     {
         return $this->DatumStatusE;
     }
 
     /**
-     * @param DateTimeInterface $DatumStatusE
-     * @return TPLAanvraag
+     * @param \DateTimeInterface $DatumStatusE
+     * @return static
      */
-    public function withDatumStatusE($DatumStatusE)
+    public function withDatumStatusE(\DateTimeInterface $DatumStatusE) : static
     {
         $new = clone $this;
         $new->DatumStatusE = $DatumStatusE;
@@ -437,18 +434,18 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumStatusAfIn()
+    public function getDatumStatusAfIn() : \DateTimeInterface
     {
         return $this->DatumStatusAfIn;
     }
 
     /**
-     * @param DateTimeInterface $DatumStatusAfIn
-     * @return TPLAanvraag
+     * @param \DateTimeInterface $DatumStatusAfIn
+     * @return static
      */
-    public function withDatumStatusAfIn($DatumStatusAfIn)
+    public function withDatumStatusAfIn(\DateTimeInterface $DatumStatusAfIn) : static
     {
         $new = clone $this;
         $new->DatumStatusAfIn = $DatumStatusAfIn;
@@ -457,25 +454,23 @@ class TPLAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumStatusFiat()
+    public function getDatumStatusFiat() : \DateTimeInterface
     {
         return $this->DatumStatusFiat;
     }
 
     /**
-     * @param DateTimeInterface $DatumStatusFiat
-     * @return TPLAanvraag
+     * @param \DateTimeInterface $DatumStatusFiat
+     * @return static
      */
-    public function withDatumStatusFiat($DatumStatusFiat)
+    public function withDatumStatusFiat(\DateTimeInterface $DatumStatusFiat) : static
     {
         $new = clone $this;
         $new->DatumStatusFiat = $DatumStatusFiat;
 
         return $new;
     }
-
-
 }
 

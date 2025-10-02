@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class RelatieProductArray implements RequestInterface
 {
-
     /**
-     * @var TRelatieProduct
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatieProduct>
      */
-    private $TRelatieProduct;
+    private array $TRelatieProduct;
 
     /**
      * Constructor
      *
-     * @var TRelatieProduct $TRelatieProduct
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatieProduct> $TRelatieProduct
      */
-    public function __construct($TRelatieProduct)
+    public function __construct(array $TRelatieProduct)
     {
         $this->TRelatieProduct = $TRelatieProduct;
     }
 
     /**
-     * @return TRelatieProduct
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatieProduct>
      */
-    public function getTRelatieProduct()
+    public function getTRelatieProduct() : array
     {
         return $this->TRelatieProduct;
     }
 
     /**
-     * @param TRelatieProduct $TRelatieProduct
-     * @return RelatieProductArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatieProduct> $TRelatieProduct
+     * @return static
      */
-    public function withTRelatieProduct($TRelatieProduct)
+    public function withTRelatieProduct(array $TRelatieProduct) : static
     {
         $new = clone $this;
         $new->TRelatieProduct = $TRelatieProduct;
 
         return $new;
     }
-
-
 }
 

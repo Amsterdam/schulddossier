@@ -2,35 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TTeam implements RequestInterface
 {
-
     /**
      * @var string
      */
-    private $Team;
+    private string $Team;
 
     /**
      * @var int
      */
-    private $Code;
+    private int $Code;
 
     /**
      * @var bool
      */
-    private $Standaard;
+    private bool $Standaard;
 
     /**
      * Constructor
      *
-     * @var string $Team
-     * @var int $Code
-     * @var bool $Standaard
+     * @param string $Team
+     * @param int $Code
+     * @param bool $Standaard
      */
-    public function __construct($Team, $Code, $Standaard)
+    public function __construct(string $Team, int $Code, bool $Standaard)
     {
         $this->Team = $Team;
         $this->Code = $Code;
@@ -40,16 +38,16 @@ class TTeam implements RequestInterface
     /**
      * @return string
      */
-    public function getTeam()
+    public function getTeam() : string
     {
         return $this->Team;
     }
 
     /**
      * @param string $Team
-     * @return TTeam
+     * @return static
      */
-    public function withTeam($Team)
+    public function withTeam(string $Team) : static
     {
         $new = clone $this;
         $new->Team = $Team;
@@ -60,16 +58,16 @@ class TTeam implements RequestInterface
     /**
      * @return int
      */
-    public function getCode()
+    public function getCode() : int
     {
         return $this->Code;
     }
 
     /**
      * @param int $Code
-     * @return TTeam
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(int $Code) : static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -80,23 +78,21 @@ class TTeam implements RequestInterface
     /**
      * @return bool
      */
-    public function getStandaard()
+    public function getStandaard() : bool
     {
         return $this->Standaard;
     }
 
     /**
      * @param bool $Standaard
-     * @return TTeam
+     * @return static
      */
-    public function withStandaard($Standaard)
+    public function withStandaard(bool $Standaard) : static
     {
         $new = clone $this;
         $new->Standaard = $Standaard;
 
         return $new;
     }
-
-
 }
 

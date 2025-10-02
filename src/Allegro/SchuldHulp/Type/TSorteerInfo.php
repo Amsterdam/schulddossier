@@ -2,47 +2,45 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSorteerInfo implements RequestInterface
 {
-
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EVeldSortering
      */
-    private $Veld;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EVeldSortering $Veld;
 
     /**
      * @var bool
      */
-    private $Oplopend;
+    private bool $Oplopend;
 
     /**
      * Constructor
      *
-     * @var string $Veld
-     * @var bool $Oplopend
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EVeldSortering $Veld
+     * @param bool $Oplopend
      */
-    public function __construct($Veld, $Oplopend)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EVeldSortering $Veld, bool $Oplopend)
     {
         $this->Veld = $Veld;
         $this->Oplopend = $Oplopend;
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EVeldSortering
      */
-    public function getVeld()
+    public function getVeld() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EVeldSortering
     {
         return $this->Veld;
     }
 
     /**
-     * @param string $Veld
-     * @return TSorteerInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EVeldSortering $Veld
+     * @return static
      */
-    public function withVeld($Veld)
+    public function withVeld(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EVeldSortering $Veld) : static
     {
         $new = clone $this;
         $new->Veld = $Veld;
@@ -53,23 +51,21 @@ class TSorteerInfo implements RequestInterface
     /**
      * @return bool
      */
-    public function getOplopend()
+    public function getOplopend() : bool
     {
         return $this->Oplopend;
     }
 
     /**
      * @param bool $Oplopend
-     * @return TSorteerInfo
+     * @return static
      */
-    public function withOplopend($Oplopend)
+    public function withOplopend(bool $Oplopend) : static
     {
         $new = clone $this;
         $new->Oplopend = $Oplopend;
 
         return $new;
     }
-
-
 }
 

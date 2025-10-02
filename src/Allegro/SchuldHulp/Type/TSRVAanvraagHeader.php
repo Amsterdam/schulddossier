@@ -2,60 +2,57 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSRVAanvraagHeader implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $RelatieCode;
 
     /**
      * @var int
      */
-    private $RelatieCode;
-
-    /**
-     * @var int
-     */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var bool
      */
-    private $IsNPS;
+    private bool $IsNPS;
 
     /**
      * @var string
      */
-    private $Status;
+    private string $Status;
 
     /**
      * @var string
      */
-    private $Statustekst;
+    private string $Statustekst;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $Aanvraagdatum;
+    private \DateTimeInterface $Aanvraagdatum;
 
     /**
      * @var string
      */
-    private $ExtraStatus;
+    private string $ExtraStatus;
 
     /**
      * Constructor
      *
-     * @var int $RelatieCode
-     * @var int $Volgnummer
-     * @var bool $IsNPS
-     * @var string $Status
-     * @var string $Statustekst
-     * @var DateTimeInterface $Aanvraagdatum
-     * @var string $ExtraStatus
+     * @param int $RelatieCode
+     * @param int $Volgnummer
+     * @param bool $IsNPS
+     * @param string $Status
+     * @param string $Statustekst
+     * @param \DateTimeInterface $Aanvraagdatum
+     * @param string $ExtraStatus
      */
-    public function __construct($RelatieCode, $Volgnummer, $IsNPS, $Status, $Statustekst, $Aanvraagdatum, $ExtraStatus)
+    public function __construct(int $RelatieCode, int $Volgnummer, bool $IsNPS, string $Status, string $Statustekst, \DateTimeInterface $Aanvraagdatum, string $ExtraStatus)
     {
         $this->RelatieCode = $RelatieCode;
         $this->Volgnummer = $Volgnummer;
@@ -69,16 +66,16 @@ class TSRVAanvraagHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode() : int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TSRVAanvraagHeader
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode) : static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -89,16 +86,16 @@ class TSRVAanvraagHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer() : int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TSRVAanvraagHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer) : static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -109,16 +106,16 @@ class TSRVAanvraagHeader implements RequestInterface
     /**
      * @return bool
      */
-    public function getIsNPS()
+    public function getIsNPS() : bool
     {
         return $this->IsNPS;
     }
 
     /**
      * @param bool $IsNPS
-     * @return TSRVAanvraagHeader
+     * @return static
      */
-    public function withIsNPS($IsNPS)
+    public function withIsNPS(bool $IsNPS) : static
     {
         $new = clone $this;
         $new->IsNPS = $IsNPS;
@@ -129,16 +126,16 @@ class TSRVAanvraagHeader implements RequestInterface
     /**
      * @return string
      */
-    public function getStatus()
+    public function getStatus() : string
     {
         return $this->Status;
     }
 
     /**
      * @param string $Status
-     * @return TSRVAanvraagHeader
+     * @return static
      */
-    public function withStatus($Status)
+    public function withStatus(string $Status) : static
     {
         $new = clone $this;
         $new->Status = $Status;
@@ -149,16 +146,16 @@ class TSRVAanvraagHeader implements RequestInterface
     /**
      * @return string
      */
-    public function getStatustekst()
+    public function getStatustekst() : string
     {
         return $this->Statustekst;
     }
 
     /**
      * @param string $Statustekst
-     * @return TSRVAanvraagHeader
+     * @return static
      */
-    public function withStatustekst($Statustekst)
+    public function withStatustekst(string $Statustekst) : static
     {
         $new = clone $this;
         $new->Statustekst = $Statustekst;
@@ -167,18 +164,18 @@ class TSRVAanvraagHeader implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getAanvraagdatum()
+    public function getAanvraagdatum() : \DateTimeInterface
     {
         return $this->Aanvraagdatum;
     }
 
     /**
-     * @param DateTimeInterface $Aanvraagdatum
-     * @return TSRVAanvraagHeader
+     * @param \DateTimeInterface $Aanvraagdatum
+     * @return static
      */
-    public function withAanvraagdatum($Aanvraagdatum)
+    public function withAanvraagdatum(\DateTimeInterface $Aanvraagdatum) : static
     {
         $new = clone $this;
         $new->Aanvraagdatum = $Aanvraagdatum;
@@ -189,23 +186,21 @@ class TSRVAanvraagHeader implements RequestInterface
     /**
      * @return string
      */
-    public function getExtraStatus()
+    public function getExtraStatus() : string
     {
         return $this->ExtraStatus;
     }
 
     /**
      * @param string $ExtraStatus
-     * @return TSRVAanvraagHeader
+     * @return static
      */
-    public function withExtraStatus($ExtraStatus)
+    public function withExtraStatus(string $ExtraStatus) : static
     {
         $new = clone $this;
         $new->ExtraStatus = $ExtraStatus;
 
         return $new;
     }
-
-
 }
 

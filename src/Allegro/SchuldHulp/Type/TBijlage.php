@@ -2,35 +2,35 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TBijlage implements RequestInterface
 {
+    /**
+     * AW_aSoortDocument in AllegroWebPortierConst
+     *
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument $Soort;
 
     /**
      * @var string
      */
-    private $Soort;
+    private string $Extension;
 
     /**
-     * @var string
+     * @var mixed
      */
-    private $Extension;
-
-    /**
-     * @var string
-     */
-    private $Bijlage;
+    private mixed $Bijlage;
 
     /**
      * Constructor
      *
-     * @var string $Soort
-     * @var string $Extension
-     * @var string $Bijlage
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument $Soort
+     * @param string $Extension
+     * @param mixed $Bijlage
      */
-    public function __construct($Soort, $Extension, $Bijlage)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument $Soort, string $Extension, mixed $Bijlage)
     {
         $this->Soort = $Soort;
         $this->Extension = $Extension;
@@ -38,18 +38,18 @@ class TBijlage implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument
      */
-    public function getSoort()
+    public function getSoort() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument
     {
         return $this->Soort;
     }
 
     /**
-     * @param string $Soort
-     * @return TBijlage
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument $Soort
+     * @return static
      */
-    public function withSoort($Soort)
+    public function withSoort(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortDocument $Soort) : static
     {
         $new = clone $this;
         $new->Soort = $Soort;
@@ -60,16 +60,16 @@ class TBijlage implements RequestInterface
     /**
      * @return string
      */
-    public function getExtension()
+    public function getExtension() : string
     {
         return $this->Extension;
     }
 
     /**
      * @param string $Extension
-     * @return TBijlage
+     * @return static
      */
-    public function withExtension($Extension)
+    public function withExtension(string $Extension) : static
     {
         $new = clone $this;
         $new->Extension = $Extension;
@@ -78,25 +78,23 @@ class TBijlage implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getBijlage()
+    public function getBijlage() : mixed
     {
         return $this->Bijlage;
     }
 
     /**
-     * @param string $Bijlage
-     * @return TBijlage
+     * @param mixed $Bijlage
+     * @return static
      */
-    public function withBijlage($Bijlage)
+    public function withBijlage(mixed $Bijlage) : static
     {
         $new = clone $this;
         $new->Bijlage = $Bijlage;
 
         return $new;
     }
-
-
 }
 

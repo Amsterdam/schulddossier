@@ -2,187 +2,183 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBoxDetail implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $Code;
+
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $Relatie;
 
     /**
      * @var int
      */
-    private $Code;
-
-    /**
-     * @var TRelatie
-     */
-    private $Relatie;
-
-    /**
-     * @var int
-     */
-    private $ContractVolgnummer;
+    private int $ContractVolgnummer;
 
     /**
      * @var string
      */
-    private $ContractSoort;
+    private string $ContractSoort;
 
     /**
      * @var string
      */
-    private $SoortOpdracht;
+    private string $SoortOpdracht;
 
     /**
      * @var int
      */
-    private $CodeEiserBegunstigde;
+    private int $CodeEiserBegunstigde;
 
     /**
      * @var int
      */
-    private $NummerReservering;
+    private int $NummerReservering;
 
     /**
      * @var int
      */
-    private $UniekVolgnummer;
+    private int $UniekVolgnummer;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $AanmaakDatum;
+    private \DateTimeInterface $AanmaakDatum;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $OntvangstDatum;
+    private \DateTimeInterface $OntvangstDatum;
 
     /**
      * @var bool
      */
-    private $Nieuw;
+    private bool $Nieuw;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $EmailDatum;
+    private \DateTimeInterface $EmailDatum;
 
     /**
-     * @var TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    private $AanmaakMedewerker;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AanmaakMedewerker;
 
     /**
-     * @var TRelatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
      */
-    private $AanmaakRelatie;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AanmaakRelatie;
 
     /**
-     * @var TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    private $AfzenderMedewerker;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AfzenderMedewerker;
 
     /**
-     * @var TRelatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
      */
-    private $AfzenderRelatie;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AfzenderRelatie;
 
     /**
-     * @var TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    private $OntvangerMedewerker;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $OntvangerMedewerker;
 
     /**
-     * @var TRelatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
      */
-    private $OntvangerRelatie;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $OntvangerRelatie;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $LeesDatum;
+    private \DateTimeInterface $LeesDatum;
 
     /**
-     * @var TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    private $LeesMedewerker;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $LeesMedewerker;
 
     /**
-     * @var TRelatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
      */
-    private $LeesRelatie;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $LeesRelatie;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $ArchiefDatum;
+    private \DateTimeInterface $ArchiefDatum;
 
     /**
-     * @var TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    private $ArchiefMedewerker;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $ArchiefMedewerker;
 
     /**
-     * @var TRelatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
      */
-    private $ArchiefRelatie;
-
-    /**
-     * @var string
-     */
-    private $Onderwerp;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $ArchiefRelatie;
 
     /**
      * @var string
      */
-    private $Tekst;
+    private string $Onderwerp;
+
+    /**
+     * @var string
+     */
+    private string $Tekst;
 
     /**
      * @var int
      */
-    private $BijlagenAantal;
+    private int $BijlagenAantal;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray
      */
-    private $Bijlagen;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray $Bijlagen;
 
     /**
      * Constructor
      *
-     * @var int $Code
-     * @var TRelatie $Relatie
-     * @var int $ContractVolgnummer
-     * @var string $ContractSoort
-     * @var string $SoortOpdracht
-     * @var int $CodeEiserBegunstigde
-     * @var int $NummerReservering
-     * @var int $UniekVolgnummer
-     * @var DateTimeInterface $AanmaakDatum
-     * @var DateTimeInterface $OntvangstDatum
-     * @var bool $Nieuw
-     * @var DateTimeInterface $EmailDatum
-     * @var TMedewerker $AanmaakMedewerker
-     * @var TRelatie $AanmaakRelatie
-     * @var TMedewerker $AfzenderMedewerker
-     * @var TRelatie $AfzenderRelatie
-     * @var TMedewerker $OntvangerMedewerker
-     * @var TRelatie $OntvangerRelatie
-     * @var DateTimeInterface $LeesDatum
-     * @var TMedewerker $LeesMedewerker
-     * @var TRelatie $LeesRelatie
-     * @var DateTimeInterface $ArchiefDatum
-     * @var TMedewerker $ArchiefMedewerker
-     * @var TRelatie $ArchiefRelatie
-     * @var string $Onderwerp
-     * @var string $Tekst
-     * @var int $BijlagenAantal
-     * @var TBBoxBijlageArray $Bijlagen
+     * @param int $Code
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $Relatie
+     * @param int $ContractVolgnummer
+     * @param string $ContractSoort
+     * @param string $SoortOpdracht
+     * @param int $CodeEiserBegunstigde
+     * @param int $NummerReservering
+     * @param int $UniekVolgnummer
+     * @param \DateTimeInterface $AanmaakDatum
+     * @param \DateTimeInterface $OntvangstDatum
+     * @param bool $Nieuw
+     * @param \DateTimeInterface $EmailDatum
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AanmaakMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AanmaakRelatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AfzenderMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AfzenderRelatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $OntvangerMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $OntvangerRelatie
+     * @param \DateTimeInterface $LeesDatum
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $LeesMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $LeesRelatie
+     * @param \DateTimeInterface $ArchiefDatum
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $ArchiefMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $ArchiefRelatie
+     * @param string $Onderwerp
+     * @param string $Tekst
+     * @param int $BijlagenAantal
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray $Bijlagen
      */
-    public function __construct($Code, $Relatie, $ContractVolgnummer, $ContractSoort, $SoortOpdracht, $CodeEiserBegunstigde, $NummerReservering, $UniekVolgnummer, $AanmaakDatum, $OntvangstDatum, $Nieuw, $EmailDatum, $AanmaakMedewerker, $AanmaakRelatie, $AfzenderMedewerker, $AfzenderRelatie, $OntvangerMedewerker, $OntvangerRelatie, $LeesDatum, $LeesMedewerker, $LeesRelatie, $ArchiefDatum, $ArchiefMedewerker, $ArchiefRelatie, $Onderwerp, $Tekst, $BijlagenAantal, $Bijlagen)
+    public function __construct(int $Code, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $Relatie, int $ContractVolgnummer, string $ContractSoort, string $SoortOpdracht, int $CodeEiserBegunstigde, int $NummerReservering, int $UniekVolgnummer, \DateTimeInterface $AanmaakDatum, \DateTimeInterface $OntvangstDatum, bool $Nieuw, \DateTimeInterface $EmailDatum, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AanmaakMedewerker, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AanmaakRelatie, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AfzenderMedewerker, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AfzenderRelatie, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $OntvangerMedewerker, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $OntvangerRelatie, \DateTimeInterface $LeesDatum, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $LeesMedewerker, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $LeesRelatie, \DateTimeInterface $ArchiefDatum, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $ArchiefMedewerker, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $ArchiefRelatie, string $Onderwerp, string $Tekst, int $BijlagenAantal, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray $Bijlagen)
     {
         $this->Code = $Code;
         $this->Relatie = $Relatie;
@@ -217,16 +213,16 @@ class TBBoxDetail implements RequestInterface
     /**
      * @return int
      */
-    public function getCode()
+    public function getCode() : int
     {
         return $this->Code;
     }
 
     /**
      * @param int $Code
-     * @return TBBoxDetail
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(int $Code) : static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -235,18 +231,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return TRelatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
      */
-    public function getRelatie()
+    public function getRelatie() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
     {
         return $this->Relatie;
     }
 
     /**
-     * @param TRelatie $Relatie
-     * @return TBBoxDetail
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $Relatie
+     * @return static
      */
-    public function withRelatie($Relatie)
+    public function withRelatie(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $Relatie) : static
     {
         $new = clone $this;
         $new->Relatie = $Relatie;
@@ -257,16 +253,16 @@ class TBBoxDetail implements RequestInterface
     /**
      * @return int
      */
-    public function getContractVolgnummer()
+    public function getContractVolgnummer() : int
     {
         return $this->ContractVolgnummer;
     }
 
     /**
      * @param int $ContractVolgnummer
-     * @return TBBoxDetail
+     * @return static
      */
-    public function withContractVolgnummer($ContractVolgnummer)
+    public function withContractVolgnummer(int $ContractVolgnummer) : static
     {
         $new = clone $this;
         $new->ContractVolgnummer = $ContractVolgnummer;
@@ -277,16 +273,16 @@ class TBBoxDetail implements RequestInterface
     /**
      * @return string
      */
-    public function getContractSoort()
+    public function getContractSoort() : string
     {
         return $this->ContractSoort;
     }
 
     /**
      * @param string $ContractSoort
-     * @return TBBoxDetail
+     * @return static
      */
-    public function withContractSoort($ContractSoort)
+    public function withContractSoort(string $ContractSoort) : static
     {
         $new = clone $this;
         $new->ContractSoort = $ContractSoort;
@@ -297,16 +293,16 @@ class TBBoxDetail implements RequestInterface
     /**
      * @return string
      */
-    public function getSoortOpdracht()
+    public function getSoortOpdracht() : string
     {
         return $this->SoortOpdracht;
     }
 
     /**
      * @param string $SoortOpdracht
-     * @return TBBoxDetail
+     * @return static
      */
-    public function withSoortOpdracht($SoortOpdracht)
+    public function withSoortOpdracht(string $SoortOpdracht) : static
     {
         $new = clone $this;
         $new->SoortOpdracht = $SoortOpdracht;
@@ -317,16 +313,16 @@ class TBBoxDetail implements RequestInterface
     /**
      * @return int
      */
-    public function getCodeEiserBegunstigde()
+    public function getCodeEiserBegunstigde() : int
     {
         return $this->CodeEiserBegunstigde;
     }
 
     /**
      * @param int $CodeEiserBegunstigde
-     * @return TBBoxDetail
+     * @return static
      */
-    public function withCodeEiserBegunstigde($CodeEiserBegunstigde)
+    public function withCodeEiserBegunstigde(int $CodeEiserBegunstigde) : static
     {
         $new = clone $this;
         $new->CodeEiserBegunstigde = $CodeEiserBegunstigde;
@@ -337,16 +333,16 @@ class TBBoxDetail implements RequestInterface
     /**
      * @return int
      */
-    public function getNummerReservering()
+    public function getNummerReservering() : int
     {
         return $this->NummerReservering;
     }
 
     /**
      * @param int $NummerReservering
-     * @return TBBoxDetail
+     * @return static
      */
-    public function withNummerReservering($NummerReservering)
+    public function withNummerReservering(int $NummerReservering) : static
     {
         $new = clone $this;
         $new->NummerReservering = $NummerReservering;
@@ -357,16 +353,16 @@ class TBBoxDetail implements RequestInterface
     /**
      * @return int
      */
-    public function getUniekVolgnummer()
+    public function getUniekVolgnummer() : int
     {
         return $this->UniekVolgnummer;
     }
 
     /**
      * @param int $UniekVolgnummer
-     * @return TBBoxDetail
+     * @return static
      */
-    public function withUniekVolgnummer($UniekVolgnummer)
+    public function withUniekVolgnummer(int $UniekVolgnummer) : static
     {
         $new = clone $this;
         $new->UniekVolgnummer = $UniekVolgnummer;
@@ -375,18 +371,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getAanmaakDatum()
+    public function getAanmaakDatum() : \DateTimeInterface
     {
         return $this->AanmaakDatum;
     }
 
     /**
-     * @param DateTimeInterface $AanmaakDatum
-     * @return TBBoxDetail
+     * @param \DateTimeInterface $AanmaakDatum
+     * @return static
      */
-    public function withAanmaakDatum($AanmaakDatum)
+    public function withAanmaakDatum(\DateTimeInterface $AanmaakDatum) : static
     {
         $new = clone $this;
         $new->AanmaakDatum = $AanmaakDatum;
@@ -395,18 +391,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getOntvangstDatum()
+    public function getOntvangstDatum() : \DateTimeInterface
     {
         return $this->OntvangstDatum;
     }
 
     /**
-     * @param DateTimeInterface $OntvangstDatum
-     * @return TBBoxDetail
+     * @param \DateTimeInterface $OntvangstDatum
+     * @return static
      */
-    public function withOntvangstDatum($OntvangstDatum)
+    public function withOntvangstDatum(\DateTimeInterface $OntvangstDatum) : static
     {
         $new = clone $this;
         $new->OntvangstDatum = $OntvangstDatum;
@@ -417,16 +413,16 @@ class TBBoxDetail implements RequestInterface
     /**
      * @return bool
      */
-    public function getNieuw()
+    public function getNieuw() : bool
     {
         return $this->Nieuw;
     }
 
     /**
      * @param bool $Nieuw
-     * @return TBBoxDetail
+     * @return static
      */
-    public function withNieuw($Nieuw)
+    public function withNieuw(bool $Nieuw) : static
     {
         $new = clone $this;
         $new->Nieuw = $Nieuw;
@@ -435,18 +431,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getEmailDatum()
+    public function getEmailDatum() : \DateTimeInterface
     {
         return $this->EmailDatum;
     }
 
     /**
-     * @param DateTimeInterface $EmailDatum
-     * @return TBBoxDetail
+     * @param \DateTimeInterface $EmailDatum
+     * @return static
      */
-    public function withEmailDatum($EmailDatum)
+    public function withEmailDatum(\DateTimeInterface $EmailDatum) : static
     {
         $new = clone $this;
         $new->EmailDatum = $EmailDatum;
@@ -455,18 +451,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    public function getAanmaakMedewerker()
+    public function getAanmaakMedewerker() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
     {
         return $this->AanmaakMedewerker;
     }
 
     /**
-     * @param TMedewerker $AanmaakMedewerker
-     * @return TBBoxDetail
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AanmaakMedewerker
+     * @return static
      */
-    public function withAanmaakMedewerker($AanmaakMedewerker)
+    public function withAanmaakMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AanmaakMedewerker) : static
     {
         $new = clone $this;
         $new->AanmaakMedewerker = $AanmaakMedewerker;
@@ -475,18 +471,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return TRelatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
      */
-    public function getAanmaakRelatie()
+    public function getAanmaakRelatie() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
     {
         return $this->AanmaakRelatie;
     }
 
     /**
-     * @param TRelatie $AanmaakRelatie
-     * @return TBBoxDetail
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AanmaakRelatie
+     * @return static
      */
-    public function withAanmaakRelatie($AanmaakRelatie)
+    public function withAanmaakRelatie(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AanmaakRelatie) : static
     {
         $new = clone $this;
         $new->AanmaakRelatie = $AanmaakRelatie;
@@ -495,18 +491,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    public function getAfzenderMedewerker()
+    public function getAfzenderMedewerker() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
     {
         return $this->AfzenderMedewerker;
     }
 
     /**
-     * @param TMedewerker $AfzenderMedewerker
-     * @return TBBoxDetail
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AfzenderMedewerker
+     * @return static
      */
-    public function withAfzenderMedewerker($AfzenderMedewerker)
+    public function withAfzenderMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AfzenderMedewerker) : static
     {
         $new = clone $this;
         $new->AfzenderMedewerker = $AfzenderMedewerker;
@@ -515,18 +511,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return TRelatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
      */
-    public function getAfzenderRelatie()
+    public function getAfzenderRelatie() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
     {
         return $this->AfzenderRelatie;
     }
 
     /**
-     * @param TRelatie $AfzenderRelatie
-     * @return TBBoxDetail
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AfzenderRelatie
+     * @return static
      */
-    public function withAfzenderRelatie($AfzenderRelatie)
+    public function withAfzenderRelatie(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AfzenderRelatie) : static
     {
         $new = clone $this;
         $new->AfzenderRelatie = $AfzenderRelatie;
@@ -535,18 +531,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    public function getOntvangerMedewerker()
+    public function getOntvangerMedewerker() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
     {
         return $this->OntvangerMedewerker;
     }
 
     /**
-     * @param TMedewerker $OntvangerMedewerker
-     * @return TBBoxDetail
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $OntvangerMedewerker
+     * @return static
      */
-    public function withOntvangerMedewerker($OntvangerMedewerker)
+    public function withOntvangerMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $OntvangerMedewerker) : static
     {
         $new = clone $this;
         $new->OntvangerMedewerker = $OntvangerMedewerker;
@@ -555,18 +551,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return TRelatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
      */
-    public function getOntvangerRelatie()
+    public function getOntvangerRelatie() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
     {
         return $this->OntvangerRelatie;
     }
 
     /**
-     * @param TRelatie $OntvangerRelatie
-     * @return TBBoxDetail
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $OntvangerRelatie
+     * @return static
      */
-    public function withOntvangerRelatie($OntvangerRelatie)
+    public function withOntvangerRelatie(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $OntvangerRelatie) : static
     {
         $new = clone $this;
         $new->OntvangerRelatie = $OntvangerRelatie;
@@ -575,18 +571,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getLeesDatum()
+    public function getLeesDatum() : \DateTimeInterface
     {
         return $this->LeesDatum;
     }
 
     /**
-     * @param DateTimeInterface $LeesDatum
-     * @return TBBoxDetail
+     * @param \DateTimeInterface $LeesDatum
+     * @return static
      */
-    public function withLeesDatum($LeesDatum)
+    public function withLeesDatum(\DateTimeInterface $LeesDatum) : static
     {
         $new = clone $this;
         $new->LeesDatum = $LeesDatum;
@@ -595,18 +591,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    public function getLeesMedewerker()
+    public function getLeesMedewerker() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
     {
         return $this->LeesMedewerker;
     }
 
     /**
-     * @param TMedewerker $LeesMedewerker
-     * @return TBBoxDetail
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $LeesMedewerker
+     * @return static
      */
-    public function withLeesMedewerker($LeesMedewerker)
+    public function withLeesMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $LeesMedewerker) : static
     {
         $new = clone $this;
         $new->LeesMedewerker = $LeesMedewerker;
@@ -615,18 +611,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return TRelatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
      */
-    public function getLeesRelatie()
+    public function getLeesRelatie() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
     {
         return $this->LeesRelatie;
     }
 
     /**
-     * @param TRelatie $LeesRelatie
-     * @return TBBoxDetail
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $LeesRelatie
+     * @return static
      */
-    public function withLeesRelatie($LeesRelatie)
+    public function withLeesRelatie(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $LeesRelatie) : static
     {
         $new = clone $this;
         $new->LeesRelatie = $LeesRelatie;
@@ -635,18 +631,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getArchiefDatum()
+    public function getArchiefDatum() : \DateTimeInterface
     {
         return $this->ArchiefDatum;
     }
 
     /**
-     * @param DateTimeInterface $ArchiefDatum
-     * @return TBBoxDetail
+     * @param \DateTimeInterface $ArchiefDatum
+     * @return static
      */
-    public function withArchiefDatum($ArchiefDatum)
+    public function withArchiefDatum(\DateTimeInterface $ArchiefDatum) : static
     {
         $new = clone $this;
         $new->ArchiefDatum = $ArchiefDatum;
@@ -655,18 +651,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    public function getArchiefMedewerker()
+    public function getArchiefMedewerker() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
     {
         return $this->ArchiefMedewerker;
     }
 
     /**
-     * @param TMedewerker $ArchiefMedewerker
-     * @return TBBoxDetail
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $ArchiefMedewerker
+     * @return static
      */
-    public function withArchiefMedewerker($ArchiefMedewerker)
+    public function withArchiefMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $ArchiefMedewerker) : static
     {
         $new = clone $this;
         $new->ArchiefMedewerker = $ArchiefMedewerker;
@@ -675,18 +671,18 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return TRelatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
      */
-    public function getArchiefRelatie()
+    public function getArchiefRelatie() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie
     {
         return $this->ArchiefRelatie;
     }
 
     /**
-     * @param TRelatie $ArchiefRelatie
-     * @return TBBoxDetail
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $ArchiefRelatie
+     * @return static
      */
-    public function withArchiefRelatie($ArchiefRelatie)
+    public function withArchiefRelatie(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $ArchiefRelatie) : static
     {
         $new = clone $this;
         $new->ArchiefRelatie = $ArchiefRelatie;
@@ -697,16 +693,16 @@ class TBBoxDetail implements RequestInterface
     /**
      * @return string
      */
-    public function getOnderwerp()
+    public function getOnderwerp() : string
     {
         return $this->Onderwerp;
     }
 
     /**
      * @param string $Onderwerp
-     * @return TBBoxDetail
+     * @return static
      */
-    public function withOnderwerp($Onderwerp)
+    public function withOnderwerp(string $Onderwerp) : static
     {
         $new = clone $this;
         $new->Onderwerp = $Onderwerp;
@@ -717,16 +713,16 @@ class TBBoxDetail implements RequestInterface
     /**
      * @return string
      */
-    public function getTekst()
+    public function getTekst() : string
     {
         return $this->Tekst;
     }
 
     /**
      * @param string $Tekst
-     * @return TBBoxDetail
+     * @return static
      */
-    public function withTekst($Tekst)
+    public function withTekst(string $Tekst) : static
     {
         $new = clone $this;
         $new->Tekst = $Tekst;
@@ -737,16 +733,16 @@ class TBBoxDetail implements RequestInterface
     /**
      * @return int
      */
-    public function getBijlagenAantal()
+    public function getBijlagenAantal() : int
     {
         return $this->BijlagenAantal;
     }
 
     /**
      * @param int $BijlagenAantal
-     * @return TBBoxDetail
+     * @return static
      */
-    public function withBijlagenAantal($BijlagenAantal)
+    public function withBijlagenAantal(int $BijlagenAantal) : static
     {
         $new = clone $this;
         $new->BijlagenAantal = $BijlagenAantal;
@@ -755,25 +751,23 @@ class TBBoxDetail implements RequestInterface
     }
 
     /**
-     * @return TBBoxBijlageArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray
      */
-    public function getBijlagen()
+    public function getBijlagen() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray
     {
         return $this->Bijlagen;
     }
 
     /**
-     * @param TBBoxBijlageArray $Bijlagen
-     * @return TBBoxDetail
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray $Bijlagen
+     * @return static
      */
-    public function withBijlagen($Bijlagen)
+    public function withBijlagen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray $Bijlagen) : static
     {
         $new = clone $this;
         $new->Bijlagen = $Bijlagen;
 
         return $new;
     }
-
-
 }
 

@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class CasusPVAArray implements RequestInterface
 {
-
     /**
-     * @var TCasusPVA
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusPVA>
      */
-    private $TCasusPVA;
+    private array $TCasusPVA;
 
     /**
      * Constructor
      *
-     * @var TCasusPVA $TCasusPVA
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusPVA> $TCasusPVA
      */
-    public function __construct($TCasusPVA)
+    public function __construct(array $TCasusPVA)
     {
         $this->TCasusPVA = $TCasusPVA;
     }
 
     /**
-     * @return TCasusPVA
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusPVA>
      */
-    public function getTCasusPVA()
+    public function getTCasusPVA() : array
     {
         return $this->TCasusPVA;
     }
 
     /**
-     * @param TCasusPVA $TCasusPVA
-     * @return CasusPVAArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusPVA> $TCasusPVA
+     * @return static
      */
-    public function withTCasusPVA($TCasusPVA)
+    public function withTCasusPVA(array $TCasusPVA) : static
     {
         $new = clone $this;
         $new->TCasusPVA = $TCasusPVA;
 
         return $new;
     }
-
-
 }
 

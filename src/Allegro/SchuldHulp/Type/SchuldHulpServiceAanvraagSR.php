@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SchuldHulpServiceAanvraagSR implements RequestInterface
 {
-
     /**
-     * @var TAanvraagSR
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR
      */
-    private $aAanvraagSR;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR $aAanvraagSR;
 
     /**
      * Constructor
      *
-     * @var TAanvraagSR $aAanvraagSR
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR $aAanvraagSR
      */
-    public function __construct($aAanvraagSR)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR $aAanvraagSR)
     {
         $this->aAanvraagSR = $aAanvraagSR;
     }
 
     /**
-     * @return TAanvraagSR
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR
      */
-    public function getAAanvraagSR()
+    public function getAAanvraagSR() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR
     {
         return $this->aAanvraagSR;
     }
 
     /**
-     * @param TAanvraagSR $aAanvraagSR
-     * @return SchuldHulpServiceAanvraagSR
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR $aAanvraagSR
+     * @return static
      */
-    public function withAAanvraagSR($aAanvraagSR)
+    public function withAAanvraagSR(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR $aAanvraagSR) : static
     {
         $new = clone $this;
         $new->aAanvraagSR = $aAanvraagSR;
 
         return $new;
     }
-
-
 }
 

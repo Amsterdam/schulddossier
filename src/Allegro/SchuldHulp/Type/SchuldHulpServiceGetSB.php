@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SchuldHulpServiceGetSB implements RequestInterface
 {
-
     /**
-     * @var TSBHeader
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader
      */
-    private $aHeader;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader $aHeader;
 
     /**
      * Constructor
      *
-     * @var TSBHeader $aHeader
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader $aHeader
      */
-    public function __construct($aHeader)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader $aHeader)
     {
         $this->aHeader = $aHeader;
     }
 
     /**
-     * @return TSBHeader
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader
      */
-    public function getAHeader()
+    public function getAHeader() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader
     {
         return $this->aHeader;
     }
 
     /**
-     * @param TSBHeader $aHeader
-     * @return SchuldHulpServiceGetSB
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader $aHeader
+     * @return static
      */
-    public function withAHeader($aHeader)
+    public function withAHeader(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader $aHeader) : static
     {
         $new = clone $this;
         $new->aHeader = $aHeader;
 
         return $new;
     }
-
-
 }
 

@@ -2,36 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TRCHeader implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Volgnummer;
 
     /**
-     * @var int
+     * @var \DateTimeInterface
      */
-    private $Volgnummer;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $Ingangsdatum;
+    private \DateTimeInterface $Ingangsdatum;
 
     /**
      * Constructor
      *
-     * @var int $Relatiecode
-     * @var int $Volgnummer
-     * @var DateTimeInterface $Ingangsdatum
+     * @param int $Relatiecode
+     * @param int $Volgnummer
+     * @param \DateTimeInterface $Ingangsdatum
      */
-    public function __construct($Relatiecode, $Volgnummer, $Ingangsdatum)
+    public function __construct(int $Relatiecode, int $Volgnummer, \DateTimeInterface $Ingangsdatum)
     {
         $this->Relatiecode = $Relatiecode;
         $this->Volgnummer = $Volgnummer;
@@ -41,16 +38,16 @@ class TRCHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode() : int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TRCHeader
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode) : static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -61,16 +58,16 @@ class TRCHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer() : int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TRCHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer) : static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -79,25 +76,23 @@ class TRCHeader implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getIngangsdatum()
+    public function getIngangsdatum() : \DateTimeInterface
     {
         return $this->Ingangsdatum;
     }
 
     /**
-     * @param DateTimeInterface $Ingangsdatum
-     * @return TRCHeader
+     * @param \DateTimeInterface $Ingangsdatum
+     * @return static
      */
-    public function withIngangsdatum($Ingangsdatum)
+    public function withIngangsdatum(\DateTimeInterface $Ingangsdatum) : static
     {
         $new = clone $this;
         $new->Ingangsdatum = $Ingangsdatum;
 
         return $new;
     }
-
-
 }
 

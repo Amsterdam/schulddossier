@@ -1,30 +1,27 @@
 <?php
 
-use Phpro\SoapClient\CodeGenerator\Rules\AssembleRule;
+use Phpro\SoapClient\CodeGenerator\Assembler\ConstructorAssembler;
+use Phpro\SoapClient\CodeGenerator\Assembler\ConstructorAssemblerOptions;
+use Phpro\SoapClient\CodeGenerator\Assembler\ExtendAssembler;
 use Phpro\SoapClient\CodeGenerator\Assembler\GetterAssembler;
 use Phpro\SoapClient\CodeGenerator\Assembler\GetterAssemblerOptions;
 use Phpro\SoapClient\CodeGenerator\Assembler\ImmutableSetterAssembler;
-use Phpro\SoapClient\CodeGenerator\Rules\TypenameMatchesRule;
-use Phpro\SoapClient\CodeGenerator\Rules\MultiRule;
 use Phpro\SoapClient\CodeGenerator\Assembler\RequestAssembler;
-use Phpro\SoapClient\CodeGenerator\Assembler\ConstructorAssembler;
-use Phpro\SoapClient\CodeGenerator\Assembler\ConstructorAssemblerOptions;
 use Phpro\SoapClient\CodeGenerator\Assembler\ResultAssembler;
-use Phpro\SoapClient\CodeGenerator\Assembler\ExtendAssembler;
-use Phpro\SoapClient\CodeGenerator\Assembler;
-use Phpro\SoapClient\CodeGenerator\Rules;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
-
-use Soap\ExtSoapEngine\ExtSoapEngineFactory;
-use Soap\ExtSoapEngine\ExtSoapOptions;
+use Phpro\SoapClient\CodeGenerator\Rules\AssembleRule;
+use Phpro\SoapClient\CodeGenerator\Rules\MultiRule;
+use Phpro\SoapClient\CodeGenerator\Rules\TypenameMatchesRule;
+use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Phpro\SoapClient\Soap\EngineOptions;
+use Soap\Wsdl\Loader\FlatteningLoader;
+use Soap\Wsdl\Loader\StreamWrapperLoader;
 
 return Config::create()
-    ->setEngine(
-        ExtSoapEngineFactory::fromOptions(
-            ExtSoapOptions::defaults('/srv/app/doc/modified_schuldhulpservice.wsdl', [])
-                ->disableWsdlCache()
-        )
-    )
+    ->setEngine($engine = DefaultEngineFactory::create(
+        EngineOptions::defaults('doc/modified_schuldhulpservice.wsdl')
+            ->withWsdlLoader(new FlatteningLoader(new StreamWrapperLoader()))
+    ))
     ->setTypeDestination('src/Allegro/SchuldHulp/Type')
     ->setTypeNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type')
     ->setClientDestination('src/Allegro/SchuldHulp')

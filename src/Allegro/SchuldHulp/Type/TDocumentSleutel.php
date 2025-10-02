@@ -2,42 +2,39 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TDocumentSleutel implements RequestInterface
 {
+    /**
+     * @var string
+     */
+    private string $ComponentCode;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $ArchiefDatum;
 
     /**
      * @var string
      */
-    private $ComponentCode;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $ArchiefDatum;
-
-    /**
-     * @var string
-     */
-    private $Kenmerk;
+    private string $Kenmerk;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * Constructor
      *
-     * @var string $ComponentCode
-     * @var DateTimeInterface $ArchiefDatum
-     * @var string $Kenmerk
-     * @var int $Volgnummer
+     * @param string $ComponentCode
+     * @param \DateTimeInterface $ArchiefDatum
+     * @param string $Kenmerk
+     * @param int $Volgnummer
      */
-    public function __construct($ComponentCode, $ArchiefDatum, $Kenmerk, $Volgnummer)
+    public function __construct(string $ComponentCode, \DateTimeInterface $ArchiefDatum, string $Kenmerk, int $Volgnummer)
     {
         $this->ComponentCode = $ComponentCode;
         $this->ArchiefDatum = $ArchiefDatum;
@@ -48,16 +45,16 @@ class TDocumentSleutel implements RequestInterface
     /**
      * @return string
      */
-    public function getComponentCode()
+    public function getComponentCode() : string
     {
         return $this->ComponentCode;
     }
 
     /**
      * @param string $ComponentCode
-     * @return TDocumentSleutel
+     * @return static
      */
-    public function withComponentCode($ComponentCode)
+    public function withComponentCode(string $ComponentCode) : static
     {
         $new = clone $this;
         $new->ComponentCode = $ComponentCode;
@@ -66,18 +63,18 @@ class TDocumentSleutel implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getArchiefDatum()
+    public function getArchiefDatum() : \DateTimeInterface
     {
         return $this->ArchiefDatum;
     }
 
     /**
-     * @param DateTimeInterface $ArchiefDatum
-     * @return TDocumentSleutel
+     * @param \DateTimeInterface $ArchiefDatum
+     * @return static
      */
-    public function withArchiefDatum($ArchiefDatum)
+    public function withArchiefDatum(\DateTimeInterface $ArchiefDatum) : static
     {
         $new = clone $this;
         $new->ArchiefDatum = $ArchiefDatum;
@@ -88,16 +85,16 @@ class TDocumentSleutel implements RequestInterface
     /**
      * @return string
      */
-    public function getKenmerk()
+    public function getKenmerk() : string
     {
         return $this->Kenmerk;
     }
 
     /**
      * @param string $Kenmerk
-     * @return TDocumentSleutel
+     * @return static
      */
-    public function withKenmerk($Kenmerk)
+    public function withKenmerk(string $Kenmerk) : static
     {
         $new = clone $this;
         $new->Kenmerk = $Kenmerk;
@@ -108,23 +105,21 @@ class TDocumentSleutel implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer() : int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TDocumentSleutel
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer) : static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
 
         return $new;
     }
-
-
 }
 

@@ -2,41 +2,39 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TOrganisatie implements RequestInterface
 {
-
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $RelatieCode;
 
     /**
      * @var string
      */
-    private $Naam;
+    private string $Naam;
 
     /**
-     * @var TAdres
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
      */
-    private $BezoekAdres;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $BezoekAdres = null;
 
     /**
-     * @var TAdres
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
      */
-    private $PostAdres;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $PostAdres = null;
 
     /**
      * Constructor
      *
-     * @var int $RelatieCode
-     * @var string $Naam
-     * @var TAdres $BezoekAdres
-     * @var TAdres $PostAdres
+     * @param int $RelatieCode
+     * @param string $Naam
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $BezoekAdres
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $PostAdres
      */
-    public function __construct($RelatieCode, $Naam, $BezoekAdres, $PostAdres)
+    public function __construct(int $RelatieCode, string $Naam, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $BezoekAdres, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $PostAdres)
     {
         $this->RelatieCode = $RelatieCode;
         $this->Naam = $Naam;
@@ -47,16 +45,16 @@ class TOrganisatie implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode() : int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TOrganisatie
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode) : static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -67,16 +65,16 @@ class TOrganisatie implements RequestInterface
     /**
      * @return string
      */
-    public function getNaam()
+    public function getNaam() : string
     {
         return $this->Naam;
     }
 
     /**
      * @param string $Naam
-     * @return TOrganisatie
+     * @return static
      */
-    public function withNaam($Naam)
+    public function withNaam(string $Naam) : static
     {
         $new = clone $this;
         $new->Naam = $Naam;
@@ -85,18 +83,18 @@ class TOrganisatie implements RequestInterface
     }
 
     /**
-     * @return TAdres
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
      */
-    public function getBezoekAdres()
+    public function getBezoekAdres() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
     {
         return $this->BezoekAdres;
     }
 
     /**
-     * @param TAdres $BezoekAdres
-     * @return TOrganisatie
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $BezoekAdres
+     * @return static
      */
-    public function withBezoekAdres($BezoekAdres)
+    public function withBezoekAdres(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $BezoekAdres) : static
     {
         $new = clone $this;
         $new->BezoekAdres = $BezoekAdres;
@@ -105,25 +103,23 @@ class TOrganisatie implements RequestInterface
     }
 
     /**
-     * @return TAdres
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
      */
-    public function getPostAdres()
+    public function getPostAdres() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
     {
         return $this->PostAdres;
     }
 
     /**
-     * @param TAdres $PostAdres
-     * @return TOrganisatie
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $PostAdres
+     * @return static
      */
-    public function withPostAdres($PostAdres)
+    public function withPostAdres(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $PostAdres) : static
     {
         $new = clone $this;
         $new->PostAdres = $PostAdres;
 
         return $new;
     }
-
-
 }
 

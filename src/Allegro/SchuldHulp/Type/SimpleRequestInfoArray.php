@@ -2,48 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SimpleRequestInfoArray implements RequestInterface
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleRequestInfo
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleRequestInfo>
      */
-    private $SimpleRequestInfo;
+    private array $SimpleRequestInfo;
 
     /**
      * Constructor
      *
-     * @var SimpleRequestInfo $SimpleRequestInfo
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleRequestInfo> $SimpleRequestInfo
      */
-    public function __construct($SimpleRequestInfo)
+    public function __construct(array $SimpleRequestInfo)
     {
         $this->SimpleRequestInfo = $SimpleRequestInfo;
     }
 
     /**
-     * @return SimpleRequestInfo
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleRequestInfo>
      */
-    public function getSimpleRequestInfo()
+    public function getSimpleRequestInfo() : array
     {
         return $this->SimpleRequestInfo;
     }
 
     /**
-     * @param SimpleRequestInfo $SimpleRequestInfo
-     * @return SimpleRequestInfoArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleRequestInfo> $SimpleRequestInfo
+     * @return static
      */
-    public function withSimpleRequestInfo($SimpleRequestInfo)
+    public function withSimpleRequestInfo(array $SimpleRequestInfo) : static
     {
         $new = clone $this;
         $new->SimpleRequestInfo = $SimpleRequestInfo;
 
         return $new;
     }
-
-
 }
 

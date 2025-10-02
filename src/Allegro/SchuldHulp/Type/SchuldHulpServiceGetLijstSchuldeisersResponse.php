@@ -2,40 +2,38 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\ResultInterface;
 
 class SchuldHulpServiceGetLijstSchuldeisersResponse implements ResultInterface
 {
-
     /**
-     * @var OrganisatieArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OrganisatieArray
      */
-    private $Result;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OrganisatieArray $Result;
 
     /**
      * @var int
      */
-    private $ExtraInfo;
+    private int $ExtraInfo;
 
     /**
      * @var string
      */
-    private $ExtraInfoOmschrijving;
+    private string $ExtraInfoOmschrijving;
 
     /**
-     * @return OrganisatieArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OrganisatieArray
      */
-    public function getResult()
+    public function getResult() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OrganisatieArray
     {
         return $this->Result;
     }
 
     /**
-     * @param OrganisatieArray $Result
-     * @return SchuldHulpServiceGetLijstSchuldeisersResponse
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OrganisatieArray $Result
+     * @return static
      */
-    public function withResult($Result)
+    public function withResult(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OrganisatieArray $Result) : static
     {
         $new = clone $this;
         $new->Result = $Result;
@@ -46,16 +44,16 @@ class SchuldHulpServiceGetLijstSchuldeisersResponse implements ResultInterface
     /**
      * @return int
      */
-    public function getExtraInfo()
+    public function getExtraInfo() : int
     {
         return $this->ExtraInfo;
     }
 
     /**
      * @param int $ExtraInfo
-     * @return SchuldHulpServiceGetLijstSchuldeisersResponse
+     * @return static
      */
-    public function withExtraInfo($ExtraInfo)
+    public function withExtraInfo(int $ExtraInfo) : static
     {
         $new = clone $this;
         $new->ExtraInfo = $ExtraInfo;
@@ -66,23 +64,21 @@ class SchuldHulpServiceGetLijstSchuldeisersResponse implements ResultInterface
     /**
      * @return string
      */
-    public function getExtraInfoOmschrijving()
+    public function getExtraInfoOmschrijving() : string
     {
         return $this->ExtraInfoOmschrijving;
     }
 
     /**
      * @param string $ExtraInfoOmschrijving
-     * @return SchuldHulpServiceGetLijstSchuldeisersResponse
+     * @return static
      */
-    public function withExtraInfoOmschrijving($ExtraInfoOmschrijving)
+    public function withExtraInfoOmschrijving(string $ExtraInfoOmschrijving) : static
     {
         $new = clone $this;
         $new->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
 
         return $new;
     }
-
-
 }
 

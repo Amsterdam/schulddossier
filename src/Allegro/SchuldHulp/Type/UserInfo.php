@@ -2,47 +2,45 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class UserInfo implements RequestInterface
 {
+    /**
+     * @var string
+     */
+    private string $SessionID;
 
     /**
      * @var string
      */
-    private $SessionID;
+    private string $UserID;
 
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
      */
-    private $UserID;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $Privileges;
 
     /**
-     * @var StringArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\VariantArray
      */
-    private $Privileges;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\VariantArray $Attributes;
 
     /**
-     * @var VariantArray
+     * @var mixed
      */
-    private $Attributes;
-
-    /**
-     * @var string
-     */
-    private $UserData;
+    private mixed $UserData;
 
     /**
      * Constructor
      *
-     * @var string $SessionID
-     * @var string $UserID
-     * @var StringArray $Privileges
-     * @var VariantArray $Attributes
-     * @var string $UserData
+     * @param string $SessionID
+     * @param string $UserID
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $Privileges
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\VariantArray $Attributes
+     * @param mixed $UserData
      */
-    public function __construct($SessionID, $UserID, $Privileges, $Attributes, $UserData)
+    public function __construct(string $SessionID, string $UserID, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $Privileges, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\VariantArray $Attributes, mixed $UserData)
     {
         $this->SessionID = $SessionID;
         $this->UserID = $UserID;
@@ -54,16 +52,16 @@ class UserInfo implements RequestInterface
     /**
      * @return string
      */
-    public function getSessionID()
+    public function getSessionID() : string
     {
         return $this->SessionID;
     }
 
     /**
      * @param string $SessionID
-     * @return UserInfo
+     * @return static
      */
-    public function withSessionID($SessionID)
+    public function withSessionID(string $SessionID) : static
     {
         $new = clone $this;
         $new->SessionID = $SessionID;
@@ -74,16 +72,16 @@ class UserInfo implements RequestInterface
     /**
      * @return string
      */
-    public function getUserID()
+    public function getUserID() : string
     {
         return $this->UserID;
     }
 
     /**
      * @param string $UserID
-     * @return UserInfo
+     * @return static
      */
-    public function withUserID($UserID)
+    public function withUserID(string $UserID) : static
     {
         $new = clone $this;
         $new->UserID = $UserID;
@@ -92,18 +90,18 @@ class UserInfo implements RequestInterface
     }
 
     /**
-     * @return StringArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
      */
-    public function getPrivileges()
+    public function getPrivileges() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
     {
         return $this->Privileges;
     }
 
     /**
-     * @param StringArray $Privileges
-     * @return UserInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $Privileges
+     * @return static
      */
-    public function withPrivileges($Privileges)
+    public function withPrivileges(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $Privileges) : static
     {
         $new = clone $this;
         $new->Privileges = $Privileges;
@@ -112,18 +110,18 @@ class UserInfo implements RequestInterface
     }
 
     /**
-     * @return VariantArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\VariantArray
      */
-    public function getAttributes()
+    public function getAttributes() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\VariantArray
     {
         return $this->Attributes;
     }
 
     /**
-     * @param VariantArray $Attributes
-     * @return UserInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\VariantArray $Attributes
+     * @return static
      */
-    public function withAttributes($Attributes)
+    public function withAttributes(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\VariantArray $Attributes) : static
     {
         $new = clone $this;
         $new->Attributes = $Attributes;
@@ -132,25 +130,23 @@ class UserInfo implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getUserData()
+    public function getUserData() : mixed
     {
         return $this->UserData;
     }
 
     /**
-     * @param string $UserData
-     * @return UserInfo
+     * @param mixed $UserData
+     * @return static
      */
-    public function withUserData($UserData)
+    public function withUserData(mixed $UserData) : static
     {
         $new = clone $this;
         $new->UserData = $UserData;
 
         return $new;
     }
-
-
 }
 

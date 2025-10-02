@@ -2,35 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSBHeader implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $RelatieCode;
 
     /**
      * @var int
      */
-    private $RelatieCode;
-
-    /**
-     * @var int
-     */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var bool
      */
-    private $IsNPS;
+    private bool $IsNPS;
 
     /**
      * Constructor
      *
-     * @var int $RelatieCode
-     * @var int $Volgnummer
-     * @var bool $IsNPS
+     * @param int $RelatieCode
+     * @param int $Volgnummer
+     * @param bool $IsNPS
      */
-    public function __construct($RelatieCode, $Volgnummer, $IsNPS)
+    public function __construct(int $RelatieCode, int $Volgnummer, bool $IsNPS)
     {
         $this->RelatieCode = $RelatieCode;
         $this->Volgnummer = $Volgnummer;
@@ -40,16 +38,16 @@ class TSBHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode() : int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TSBHeader
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode) : static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -60,16 +58,16 @@ class TSBHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer() : int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TSBHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer) : static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -80,23 +78,21 @@ class TSBHeader implements RequestInterface
     /**
      * @return bool
      */
-    public function getIsNPS()
+    public function getIsNPS() : bool
     {
         return $this->IsNPS;
     }
 
     /**
      * @param bool $IsNPS
-     * @return TSBHeader
+     * @return static
      */
-    public function withIsNPS($IsNPS)
+    public function withIsNPS(bool $IsNPS) : static
     {
         $new = clone $this;
         $new->IsNPS = $IsNPS;
 
         return $new;
     }
-
-
 }
 

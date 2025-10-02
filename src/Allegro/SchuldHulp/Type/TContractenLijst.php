@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TContractenLijst implements RequestInterface
 {
-
     /**
-     * @var ContractArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray
      */
-    private $Contracten;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray $Contracten;
 
     /**
      * Constructor
      *
-     * @var ContractArray $Contracten
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray $Contracten
      */
-    public function __construct($Contracten)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray $Contracten)
     {
         $this->Contracten = $Contracten;
     }
 
     /**
-     * @return ContractArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray
      */
-    public function getContracten()
+    public function getContracten() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray
     {
         return $this->Contracten;
     }
 
     /**
-     * @param ContractArray $Contracten
-     * @return TContractenLijst
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray $Contracten
+     * @return static
      */
-    public function withContracten($Contracten)
+    public function withContracten(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray $Contracten) : static
     {
         $new = clone $this;
         $new->Contracten = $Contracten;
 
         return $new;
     }
-
-
 }
 

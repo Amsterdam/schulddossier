@@ -2,36 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPLHeader implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $RelatieCode;
 
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $Volgnummer;
 
     /**
-     * @var int
+     * @var \DateTimeInterface
      */
-    private $Volgnummer;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $Startdatum;
+    private \DateTimeInterface $Startdatum;
 
     /**
      * Constructor
      *
-     * @var int $RelatieCode
-     * @var int $Volgnummer
-     * @var DateTimeInterface $Startdatum
+     * @param int $RelatieCode
+     * @param int $Volgnummer
+     * @param \DateTimeInterface $Startdatum
      */
-    public function __construct($RelatieCode, $Volgnummer, $Startdatum)
+    public function __construct(int $RelatieCode, int $Volgnummer, \DateTimeInterface $Startdatum)
     {
         $this->RelatieCode = $RelatieCode;
         $this->Volgnummer = $Volgnummer;
@@ -41,16 +38,16 @@ class TPLHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode() : int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TPLHeader
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode) : static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -61,16 +58,16 @@ class TPLHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer() : int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TPLHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer) : static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -79,25 +76,23 @@ class TPLHeader implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getStartdatum()
+    public function getStartdatum() : \DateTimeInterface
     {
         return $this->Startdatum;
     }
 
     /**
-     * @param DateTimeInterface $Startdatum
-     * @return TPLHeader
+     * @param \DateTimeInterface $Startdatum
+     * @return static
      */
-    public function withStartdatum($Startdatum)
+    public function withStartdatum(\DateTimeInterface $Startdatum) : static
     {
         $new = clone $this;
         $new->Startdatum = $Startdatum;
 
         return $new;
     }
-
-
 }
 

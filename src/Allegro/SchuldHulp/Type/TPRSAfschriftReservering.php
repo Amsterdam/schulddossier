@@ -2,35 +2,35 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSAfschriftReservering implements RequestInterface
 {
-
     /**
      * @var int
      */
-    private $VolgnummerReservering;
+    private int $VolgnummerReservering;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
+     * Het saldo van de reservering op datum vervaardiging afschrift.
+     *
      * @var float
      */
-    private $Saldo;
+    private float $Saldo;
 
     /**
      * Constructor
      *
-     * @var int $VolgnummerReservering
-     * @var string $Omschrijving
-     * @var float $Saldo
+     * @param int $VolgnummerReservering
+     * @param string $Omschrijving
+     * @param float $Saldo
      */
-    public function __construct($VolgnummerReservering, $Omschrijving, $Saldo)
+    public function __construct(int $VolgnummerReservering, string $Omschrijving, float $Saldo)
     {
         $this->VolgnummerReservering = $VolgnummerReservering;
         $this->Omschrijving = $Omschrijving;
@@ -40,16 +40,16 @@ class TPRSAfschriftReservering implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummerReservering()
+    public function getVolgnummerReservering() : int
     {
         return $this->VolgnummerReservering;
     }
 
     /**
      * @param int $VolgnummerReservering
-     * @return TPRSAfschriftReservering
+     * @return static
      */
-    public function withVolgnummerReservering($VolgnummerReservering)
+    public function withVolgnummerReservering(int $VolgnummerReservering) : static
     {
         $new = clone $this;
         $new->VolgnummerReservering = $VolgnummerReservering;
@@ -60,16 +60,16 @@ class TPRSAfschriftReservering implements RequestInterface
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving() : string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TPRSAfschriftReservering
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving) : static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -80,23 +80,21 @@ class TPRSAfschriftReservering implements RequestInterface
     /**
      * @return float
      */
-    public function getSaldo()
+    public function getSaldo() : float
     {
         return $this->Saldo;
     }
 
     /**
      * @param float $Saldo
-     * @return TPRSAfschriftReservering
+     * @return static
      */
-    public function withSaldo($Saldo)
+    public function withSaldo(float $Saldo) : static
     {
         $new = clone $this;
         $new->Saldo = $Saldo;
 
         return $new;
     }
-
-
 }
 

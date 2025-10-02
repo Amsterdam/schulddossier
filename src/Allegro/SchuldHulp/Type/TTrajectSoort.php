@@ -2,29 +2,27 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TTrajectSoort implements RequestInterface
 {
-
     /**
      * @var string
      */
-    private $Trajectnaam;
+    private string $Trajectnaam;
 
     /**
      * @var int
      */
-    private $Trajectcodes;
+    private int $Trajectcodes;
 
     /**
      * Constructor
      *
-     * @var string $Trajectnaam
-     * @var int $Trajectcodes
+     * @param string $Trajectnaam
+     * @param int $Trajectcodes
      */
-    public function __construct($Trajectnaam, $Trajectcodes)
+    public function __construct(string $Trajectnaam, int $Trajectcodes)
     {
         $this->Trajectnaam = $Trajectnaam;
         $this->Trajectcodes = $Trajectcodes;
@@ -33,16 +31,16 @@ class TTrajectSoort implements RequestInterface
     /**
      * @return string
      */
-    public function getTrajectnaam()
+    public function getTrajectnaam() : string
     {
         return $this->Trajectnaam;
     }
 
     /**
      * @param string $Trajectnaam
-     * @return TTrajectSoort
+     * @return static
      */
-    public function withTrajectnaam($Trajectnaam)
+    public function withTrajectnaam(string $Trajectnaam) : static
     {
         $new = clone $this;
         $new->Trajectnaam = $Trajectnaam;
@@ -53,23 +51,21 @@ class TTrajectSoort implements RequestInterface
     /**
      * @return int
      */
-    public function getTrajectcodes()
+    public function getTrajectcodes() : int
     {
         return $this->Trajectcodes;
     }
 
     /**
      * @param int $Trajectcodes
-     * @return TTrajectSoort
+     * @return static
      */
-    public function withTrajectcodes($Trajectcodes)
+    public function withTrajectcodes(int $Trajectcodes) : static
     {
         $new = clone $this;
         $new->Trajectcodes = $Trajectcodes;
 
         return $new;
     }
-
-
 }
 

@@ -2,84 +2,81 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TContactpersoon implements RequestInterface
 {
-
     /**
      * @var int
      */
-    private $Code;
+    private int $Code;
 
     /**
      * @var string
      */
-    private $Achternaam;
+    private string $Achternaam;
 
     /**
      * @var string
      */
-    private $Voorvoegsels;
+    private string $Voorvoegsels;
 
     /**
      * @var string
      */
-    private $Voornaam;
+    private string $Voornaam;
 
     /**
      * @var string
      */
-    private $Voorletters;
+    private string $Voorletters;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $GeboorteDatum;
-
-    /**
-     * @var string
-     */
-    private $Telefoon;
+    private \DateTimeInterface $GeboorteDatum;
 
     /**
      * @var string
      */
-    private $Email;
+    private string $Telefoon;
+
+    /**
+     * @var string
+     */
+    private string $Email;
 
     /**
      * @var bool
      */
-    private $NogBevestigen;
+    private bool $NogBevestigen;
 
     /**
      * @var bool
      */
-    private $Actief;
+    private bool $Actief;
 
     /**
      * @var bool
      */
-    private $MagAanmelden;
+    private bool $MagAanmelden;
 
     /**
      * Constructor
      *
-     * @var int $Code
-     * @var string $Achternaam
-     * @var string $Voorvoegsels
-     * @var string $Voornaam
-     * @var string $Voorletters
-     * @var DateTimeInterface $GeboorteDatum
-     * @var string $Telefoon
-     * @var string $Email
-     * @var bool $NogBevestigen
-     * @var bool $Actief
-     * @var bool $MagAanmelden
+     * @param int $Code
+     * @param string $Achternaam
+     * @param string $Voorvoegsels
+     * @param string $Voornaam
+     * @param string $Voorletters
+     * @param \DateTimeInterface $GeboorteDatum
+     * @param string $Telefoon
+     * @param string $Email
+     * @param bool $NogBevestigen
+     * @param bool $Actief
+     * @param bool $MagAanmelden
      */
-    public function __construct($Code, $Achternaam, $Voorvoegsels, $Voornaam, $Voorletters, $GeboorteDatum, $Telefoon, $Email, $NogBevestigen, $Actief, $MagAanmelden)
+    public function __construct(int $Code, string $Achternaam, string $Voorvoegsels, string $Voornaam, string $Voorletters, \DateTimeInterface $GeboorteDatum, string $Telefoon, string $Email, bool $NogBevestigen, bool $Actief, bool $MagAanmelden)
     {
         $this->Code = $Code;
         $this->Achternaam = $Achternaam;
@@ -97,16 +94,16 @@ class TContactpersoon implements RequestInterface
     /**
      * @return int
      */
-    public function getCode()
+    public function getCode() : int
     {
         return $this->Code;
     }
 
     /**
      * @param int $Code
-     * @return TContactpersoon
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(int $Code) : static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -117,16 +114,16 @@ class TContactpersoon implements RequestInterface
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam() : string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TContactpersoon
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam) : static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -137,16 +134,16 @@ class TContactpersoon implements RequestInterface
     /**
      * @return string
      */
-    public function getVoorvoegsels()
+    public function getVoorvoegsels() : string
     {
         return $this->Voorvoegsels;
     }
 
     /**
      * @param string $Voorvoegsels
-     * @return TContactpersoon
+     * @return static
      */
-    public function withVoorvoegsels($Voorvoegsels)
+    public function withVoorvoegsels(string $Voorvoegsels) : static
     {
         $new = clone $this;
         $new->Voorvoegsels = $Voorvoegsels;
@@ -157,16 +154,16 @@ class TContactpersoon implements RequestInterface
     /**
      * @return string
      */
-    public function getVoornaam()
+    public function getVoornaam() : string
     {
         return $this->Voornaam;
     }
 
     /**
      * @param string $Voornaam
-     * @return TContactpersoon
+     * @return static
      */
-    public function withVoornaam($Voornaam)
+    public function withVoornaam(string $Voornaam) : static
     {
         $new = clone $this;
         $new->Voornaam = $Voornaam;
@@ -177,16 +174,16 @@ class TContactpersoon implements RequestInterface
     /**
      * @return string
      */
-    public function getVoorletters()
+    public function getVoorletters() : string
     {
         return $this->Voorletters;
     }
 
     /**
      * @param string $Voorletters
-     * @return TContactpersoon
+     * @return static
      */
-    public function withVoorletters($Voorletters)
+    public function withVoorletters(string $Voorletters) : static
     {
         $new = clone $this;
         $new->Voorletters = $Voorletters;
@@ -195,18 +192,18 @@ class TContactpersoon implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getGeboorteDatum()
+    public function getGeboorteDatum() : \DateTimeInterface
     {
         return $this->GeboorteDatum;
     }
 
     /**
-     * @param DateTimeInterface $GeboorteDatum
-     * @return TContactpersoon
+     * @param \DateTimeInterface $GeboorteDatum
+     * @return static
      */
-    public function withGeboorteDatum($GeboorteDatum)
+    public function withGeboorteDatum(\DateTimeInterface $GeboorteDatum) : static
     {
         $new = clone $this;
         $new->GeboorteDatum = $GeboorteDatum;
@@ -217,16 +214,16 @@ class TContactpersoon implements RequestInterface
     /**
      * @return string
      */
-    public function getTelefoon()
+    public function getTelefoon() : string
     {
         return $this->Telefoon;
     }
 
     /**
      * @param string $Telefoon
-     * @return TContactpersoon
+     * @return static
      */
-    public function withTelefoon($Telefoon)
+    public function withTelefoon(string $Telefoon) : static
     {
         $new = clone $this;
         $new->Telefoon = $Telefoon;
@@ -237,16 +234,16 @@ class TContactpersoon implements RequestInterface
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail() : string
     {
         return $this->Email;
     }
 
     /**
      * @param string $Email
-     * @return TContactpersoon
+     * @return static
      */
-    public function withEmail($Email)
+    public function withEmail(string $Email) : static
     {
         $new = clone $this;
         $new->Email = $Email;
@@ -257,16 +254,16 @@ class TContactpersoon implements RequestInterface
     /**
      * @return bool
      */
-    public function getNogBevestigen()
+    public function getNogBevestigen() : bool
     {
         return $this->NogBevestigen;
     }
 
     /**
      * @param bool $NogBevestigen
-     * @return TContactpersoon
+     * @return static
      */
-    public function withNogBevestigen($NogBevestigen)
+    public function withNogBevestigen(bool $NogBevestigen) : static
     {
         $new = clone $this;
         $new->NogBevestigen = $NogBevestigen;
@@ -277,16 +274,16 @@ class TContactpersoon implements RequestInterface
     /**
      * @return bool
      */
-    public function getActief()
+    public function getActief() : bool
     {
         return $this->Actief;
     }
 
     /**
      * @param bool $Actief
-     * @return TContactpersoon
+     * @return static
      */
-    public function withActief($Actief)
+    public function withActief(bool $Actief) : static
     {
         $new = clone $this;
         $new->Actief = $Actief;
@@ -297,23 +294,21 @@ class TContactpersoon implements RequestInterface
     /**
      * @return bool
      */
-    public function getMagAanmelden()
+    public function getMagAanmelden() : bool
     {
         return $this->MagAanmelden;
     }
 
     /**
      * @param bool $MagAanmelden
-     * @return TContactpersoon
+     * @return static
      */
-    public function withMagAanmelden($MagAanmelden)
+    public function withMagAanmelden(bool $MagAanmelden) : static
     {
         $new = clone $this;
         $new->MagAanmelden = $MagAanmelden;
 
         return $new;
     }
-
-
 }
 

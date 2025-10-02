@@ -2,48 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class LijstOpdrachtgeverArray implements RequestInterface
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstOpdrachtgever
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstOpdrachtgever>
      */
-    private $TLijstOpdrachtgever;
+    private array $TLijstOpdrachtgever;
 
     /**
      * Constructor
      *
-     * @var TLijstOpdrachtgever $TLijstOpdrachtgever
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstOpdrachtgever> $TLijstOpdrachtgever
      */
-    public function __construct($TLijstOpdrachtgever)
+    public function __construct(array $TLijstOpdrachtgever)
     {
         $this->TLijstOpdrachtgever = $TLijstOpdrachtgever;
     }
 
     /**
-     * @return TLijstOpdrachtgever
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstOpdrachtgever>
      */
-    public function getTLijstOpdrachtgever()
+    public function getTLijstOpdrachtgever() : array
     {
         return $this->TLijstOpdrachtgever;
     }
 
     /**
-     * @param TLijstOpdrachtgever $TLijstOpdrachtgever
-     * @return LijstOpdrachtgeverArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstOpdrachtgever> $TLijstOpdrachtgever
+     * @return static
      */
-    public function withTLijstOpdrachtgever($TLijstOpdrachtgever)
+    public function withTLijstOpdrachtgever(array $TLijstOpdrachtgever) : static
     {
         $new = clone $this;
         $new->TLijstOpdrachtgever = $TLijstOpdrachtgever;
 
         return $new;
     }
-
-
 }
 

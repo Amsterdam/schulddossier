@@ -2,29 +2,27 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class ColumnSorting implements RequestInterface
 {
-
     /**
      * @var string
      */
-    private $FieldName;
+    private string $FieldName;
 
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSortDirection
      */
-    private $SortDirection;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSortDirection $SortDirection;
 
     /**
      * Constructor
      *
-     * @var string $FieldName
-     * @var string $SortDirection
+     * @param string $FieldName
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSortDirection $SortDirection
      */
-    public function __construct($FieldName, $SortDirection)
+    public function __construct(string $FieldName, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSortDirection $SortDirection)
     {
         $this->FieldName = $FieldName;
         $this->SortDirection = $SortDirection;
@@ -33,16 +31,16 @@ class ColumnSorting implements RequestInterface
     /**
      * @return string
      */
-    public function getFieldName()
+    public function getFieldName() : string
     {
         return $this->FieldName;
     }
 
     /**
      * @param string $FieldName
-     * @return ColumnSorting
+     * @return static
      */
-    public function withFieldName($FieldName)
+    public function withFieldName(string $FieldName) : static
     {
         $new = clone $this;
         $new->FieldName = $FieldName;
@@ -51,25 +49,23 @@ class ColumnSorting implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSortDirection
      */
-    public function getSortDirection()
+    public function getSortDirection() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSortDirection
     {
         return $this->SortDirection;
     }
 
     /**
-     * @param string $SortDirection
-     * @return ColumnSorting
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSortDirection $SortDirection
+     * @return static
      */
-    public function withSortDirection($SortDirection)
+    public function withSortDirection(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSortDirection $SortDirection) : static
     {
         $new = clone $this;
         $new->SortDirection = $SortDirection;
 
         return $new;
     }
-
-
 }
 

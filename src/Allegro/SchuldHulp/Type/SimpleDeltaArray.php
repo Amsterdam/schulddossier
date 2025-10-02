@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SimpleDeltaArray implements RequestInterface
 {
-
     /**
-     * @var SimpleDelta
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDelta>
      */
-    private $SimpleDelta;
+    private array $SimpleDelta;
 
     /**
      * Constructor
      *
-     * @var SimpleDelta $SimpleDelta
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDelta> $SimpleDelta
      */
-    public function __construct($SimpleDelta)
+    public function __construct(array $SimpleDelta)
     {
         $this->SimpleDelta = $SimpleDelta;
     }
 
     /**
-     * @return SimpleDelta
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDelta>
      */
-    public function getSimpleDelta()
+    public function getSimpleDelta() : array
     {
         return $this->SimpleDelta;
     }
 
     /**
-     * @param SimpleDelta $SimpleDelta
-     * @return SimpleDeltaArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDelta> $SimpleDelta
+     * @return static
      */
-    public function withSimpleDelta($SimpleDelta)
+    public function withSimpleDelta(array $SimpleDelta) : static
     {
         $new = clone $this;
         $new->SimpleDelta = $SimpleDelta;
 
         return $new;
     }
-
-
 }
 

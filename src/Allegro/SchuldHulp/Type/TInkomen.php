@@ -2,155 +2,153 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TInkomen implements RequestInterface
 {
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortInkomen
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortInkomen $SoortInkomen;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $SoortInkomen;
+    private ?string $Beroep = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $Beroep;
-
-    /**
-     * @var string
-     */
-    private $Werkgever;
-
-    /**
-     * @var int
-     */
-    private $WerkzaamSinds;
-
-    /**
-     * @var string
-     */
-    private $VastDienstverband;
+    private ?string $Werkgever = null;
 
     /**
      * @var int
      */
-    private $DienstVerbandTot;
+    private int $WerkzaamSinds;
+
+    /**
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg
+     */
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg $VastDienstverband = null;
+
+    /**
+     * @var int
+     */
+    private int $DienstVerbandTot;
 
     /**
      * @var float
      */
-    private $Loon;
+    private float $Loon;
 
     /**
-     * @var string
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
      */
-    private $LoonPeriode;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $LoonPeriode = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $SoortUitkering;
+    private ?string $SoortUitkering = null;
 
     /**
-     * @var string
+     * @var null | string
      */
-    private $UitkeringsInstantie;
-
-    /**
-     * @var float
-     */
-    private $Uitkering;
-
-    /**
-     * @var string
-     */
-    private $UitkeringPeriode;
+    private ?string $UitkeringsInstantie = null;
 
     /**
      * @var float
      */
-    private $Pensioen;
+    private float $Uitkering;
 
     /**
-     * @var string
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
      */
-    private $PensioenPeriode;
-
-    /**
-     * @var float
-     */
-    private $KGB;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $UitkeringPeriode = null;
 
     /**
      * @var float
      */
-    private $Vrijwilligers;
+    private float $Pensioen;
 
     /**
-     * @var string
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
      */
-    private $VrijwilligersPeriode;
-
-    /**
-     * @var float
-     */
-    private $KinderAlimentatieBedrag;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $PensioenPeriode = null;
 
     /**
      * @var float
      */
-    private $PartnerAlimentatieBedrag;
-
-    /**
-     * @var string
-     */
-    private $OverigInkomen;
+    private float $KGB;
 
     /**
      * @var float
      */
-    private $OverigInkomenBedrag;
+    private float $Vrijwilligers;
 
     /**
-     * @var string
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
      */
-    private $OverigInkomenPeriode;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $VrijwilligersPeriode = null;
 
     /**
-     * @var string
+     * @var float
      */
-    private $Toelichting;
+    private float $KinderAlimentatieBedrag;
+
+    /**
+     * @var float
+     */
+    private float $PartnerAlimentatieBedrag;
+
+    /**
+     * @var null | string
+     */
+    private ?string $OverigInkomen = null;
+
+    /**
+     * @var float
+     */
+    private float $OverigInkomenBedrag;
+
+    /**
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
+     */
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $OverigInkomenPeriode = null;
+
+    /**
+     * @var null | string
+     */
+    private ?string $Toelichting = null;
 
     /**
      * Constructor
      *
-     * @var string $SoortInkomen
-     * @var string $Beroep
-     * @var string $Werkgever
-     * @var int $WerkzaamSinds
-     * @var string $VastDienstverband
-     * @var int $DienstVerbandTot
-     * @var float $Loon
-     * @var string $LoonPeriode
-     * @var string $SoortUitkering
-     * @var string $UitkeringsInstantie
-     * @var float $Uitkering
-     * @var string $UitkeringPeriode
-     * @var float $Pensioen
-     * @var string $PensioenPeriode
-     * @var float $KGB
-     * @var float $Vrijwilligers
-     * @var string $VrijwilligersPeriode
-     * @var float $KinderAlimentatieBedrag
-     * @var float $PartnerAlimentatieBedrag
-     * @var string $OverigInkomen
-     * @var float $OverigInkomenBedrag
-     * @var string $OverigInkomenPeriode
-     * @var string $Toelichting
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortInkomen $SoortInkomen
+     * @param null | string $Beroep
+     * @param null | string $Werkgever
+     * @param int $WerkzaamSinds
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg $VastDienstverband
+     * @param int $DienstVerbandTot
+     * @param float $Loon
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $LoonPeriode
+     * @param null | string $SoortUitkering
+     * @param null | string $UitkeringsInstantie
+     * @param float $Uitkering
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $UitkeringPeriode
+     * @param float $Pensioen
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $PensioenPeriode
+     * @param float $KGB
+     * @param float $Vrijwilligers
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $VrijwilligersPeriode
+     * @param float $KinderAlimentatieBedrag
+     * @param float $PartnerAlimentatieBedrag
+     * @param null | string $OverigInkomen
+     * @param float $OverigInkomenBedrag
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $OverigInkomenPeriode
+     * @param null | string $Toelichting
      */
-    public function __construct($SoortInkomen, $Beroep, $Werkgever, $WerkzaamSinds, $VastDienstverband, $DienstVerbandTot, $Loon, $LoonPeriode, $SoortUitkering, $UitkeringsInstantie, $Uitkering, $UitkeringPeriode, $Pensioen, $PensioenPeriode, $KGB, $Vrijwilligers, $VrijwilligersPeriode, $KinderAlimentatieBedrag, $PartnerAlimentatieBedrag, $OverigInkomen, $OverigInkomenBedrag, $OverigInkomenPeriode, $Toelichting)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortInkomen $SoortInkomen, ?string $Beroep, ?string $Werkgever, int $WerkzaamSinds, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg $VastDienstverband, int $DienstVerbandTot, float $Loon, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $LoonPeriode, ?string $SoortUitkering, ?string $UitkeringsInstantie, float $Uitkering, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $UitkeringPeriode, float $Pensioen, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $PensioenPeriode, float $KGB, float $Vrijwilligers, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $VrijwilligersPeriode, float $KinderAlimentatieBedrag, float $PartnerAlimentatieBedrag, ?string $OverigInkomen, float $OverigInkomenBedrag, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $OverigInkomenPeriode, ?string $Toelichting)
     {
         $this->SoortInkomen = $SoortInkomen;
         $this->Beroep = $Beroep;
@@ -178,18 +176,18 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortInkomen
      */
-    public function getSoortInkomen()
+    public function getSoortInkomen() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortInkomen
     {
         return $this->SoortInkomen;
     }
 
     /**
-     * @param string $SoortInkomen
-     * @return TInkomen
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortInkomen $SoortInkomen
+     * @return static
      */
-    public function withSoortInkomen($SoortInkomen)
+    public function withSoortInkomen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ESoortInkomen $SoortInkomen) : static
     {
         $new = clone $this;
         $new->SoortInkomen = $SoortInkomen;
@@ -198,18 +196,18 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getBeroep()
+    public function getBeroep() : ?string
     {
         return $this->Beroep;
     }
 
     /**
-     * @param string $Beroep
-     * @return TInkomen
+     * @param null | string $Beroep
+     * @return static
      */
-    public function withBeroep($Beroep)
+    public function withBeroep(?string $Beroep) : static
     {
         $new = clone $this;
         $new->Beroep = $Beroep;
@@ -218,18 +216,18 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getWerkgever()
+    public function getWerkgever() : ?string
     {
         return $this->Werkgever;
     }
 
     /**
-     * @param string $Werkgever
-     * @return TInkomen
+     * @param null | string $Werkgever
+     * @return static
      */
-    public function withWerkgever($Werkgever)
+    public function withWerkgever(?string $Werkgever) : static
     {
         $new = clone $this;
         $new->Werkgever = $Werkgever;
@@ -240,16 +238,16 @@ class TInkomen implements RequestInterface
     /**
      * @return int
      */
-    public function getWerkzaamSinds()
+    public function getWerkzaamSinds() : int
     {
         return $this->WerkzaamSinds;
     }
 
     /**
      * @param int $WerkzaamSinds
-     * @return TInkomen
+     * @return static
      */
-    public function withWerkzaamSinds($WerkzaamSinds)
+    public function withWerkzaamSinds(int $WerkzaamSinds) : static
     {
         $new = clone $this;
         $new->WerkzaamSinds = $WerkzaamSinds;
@@ -258,18 +256,18 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg
      */
-    public function getVastDienstverband()
+    public function getVastDienstverband() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg
     {
         return $this->VastDienstverband;
     }
 
     /**
-     * @param string $VastDienstverband
-     * @return TInkomen
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg $VastDienstverband
+     * @return static
      */
-    public function withVastDienstverband($VastDienstverband)
+    public function withVastDienstverband(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg $VastDienstverband) : static
     {
         $new = clone $this;
         $new->VastDienstverband = $VastDienstverband;
@@ -280,16 +278,16 @@ class TInkomen implements RequestInterface
     /**
      * @return int
      */
-    public function getDienstVerbandTot()
+    public function getDienstVerbandTot() : int
     {
         return $this->DienstVerbandTot;
     }
 
     /**
      * @param int $DienstVerbandTot
-     * @return TInkomen
+     * @return static
      */
-    public function withDienstVerbandTot($DienstVerbandTot)
+    public function withDienstVerbandTot(int $DienstVerbandTot) : static
     {
         $new = clone $this;
         $new->DienstVerbandTot = $DienstVerbandTot;
@@ -300,16 +298,16 @@ class TInkomen implements RequestInterface
     /**
      * @return float
      */
-    public function getLoon()
+    public function getLoon() : float
     {
         return $this->Loon;
     }
 
     /**
      * @param float $Loon
-     * @return TInkomen
+     * @return static
      */
-    public function withLoon($Loon)
+    public function withLoon(float $Loon) : static
     {
         $new = clone $this;
         $new->Loon = $Loon;
@@ -318,18 +316,18 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
      */
-    public function getLoonPeriode()
+    public function getLoonPeriode() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
     {
         return $this->LoonPeriode;
     }
 
     /**
-     * @param string $LoonPeriode
-     * @return TInkomen
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $LoonPeriode
+     * @return static
      */
-    public function withLoonPeriode($LoonPeriode)
+    public function withLoonPeriode(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $LoonPeriode) : static
     {
         $new = clone $this;
         $new->LoonPeriode = $LoonPeriode;
@@ -338,18 +336,18 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getSoortUitkering()
+    public function getSoortUitkering() : ?string
     {
         return $this->SoortUitkering;
     }
 
     /**
-     * @param string $SoortUitkering
-     * @return TInkomen
+     * @param null | string $SoortUitkering
+     * @return static
      */
-    public function withSoortUitkering($SoortUitkering)
+    public function withSoortUitkering(?string $SoortUitkering) : static
     {
         $new = clone $this;
         $new->SoortUitkering = $SoortUitkering;
@@ -358,18 +356,18 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getUitkeringsInstantie()
+    public function getUitkeringsInstantie() : ?string
     {
         return $this->UitkeringsInstantie;
     }
 
     /**
-     * @param string $UitkeringsInstantie
-     * @return TInkomen
+     * @param null | string $UitkeringsInstantie
+     * @return static
      */
-    public function withUitkeringsInstantie($UitkeringsInstantie)
+    public function withUitkeringsInstantie(?string $UitkeringsInstantie) : static
     {
         $new = clone $this;
         $new->UitkeringsInstantie = $UitkeringsInstantie;
@@ -380,16 +378,16 @@ class TInkomen implements RequestInterface
     /**
      * @return float
      */
-    public function getUitkering()
+    public function getUitkering() : float
     {
         return $this->Uitkering;
     }
 
     /**
      * @param float $Uitkering
-     * @return TInkomen
+     * @return static
      */
-    public function withUitkering($Uitkering)
+    public function withUitkering(float $Uitkering) : static
     {
         $new = clone $this;
         $new->Uitkering = $Uitkering;
@@ -398,18 +396,18 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
      */
-    public function getUitkeringPeriode()
+    public function getUitkeringPeriode() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
     {
         return $this->UitkeringPeriode;
     }
 
     /**
-     * @param string $UitkeringPeriode
-     * @return TInkomen
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $UitkeringPeriode
+     * @return static
      */
-    public function withUitkeringPeriode($UitkeringPeriode)
+    public function withUitkeringPeriode(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $UitkeringPeriode) : static
     {
         $new = clone $this;
         $new->UitkeringPeriode = $UitkeringPeriode;
@@ -420,16 +418,16 @@ class TInkomen implements RequestInterface
     /**
      * @return float
      */
-    public function getPensioen()
+    public function getPensioen() : float
     {
         return $this->Pensioen;
     }
 
     /**
      * @param float $Pensioen
-     * @return TInkomen
+     * @return static
      */
-    public function withPensioen($Pensioen)
+    public function withPensioen(float $Pensioen) : static
     {
         $new = clone $this;
         $new->Pensioen = $Pensioen;
@@ -438,18 +436,18 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
      */
-    public function getPensioenPeriode()
+    public function getPensioenPeriode() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
     {
         return $this->PensioenPeriode;
     }
 
     /**
-     * @param string $PensioenPeriode
-     * @return TInkomen
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $PensioenPeriode
+     * @return static
      */
-    public function withPensioenPeriode($PensioenPeriode)
+    public function withPensioenPeriode(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $PensioenPeriode) : static
     {
         $new = clone $this;
         $new->PensioenPeriode = $PensioenPeriode;
@@ -460,16 +458,16 @@ class TInkomen implements RequestInterface
     /**
      * @return float
      */
-    public function getKGB()
+    public function getKGB() : float
     {
         return $this->KGB;
     }
 
     /**
      * @param float $KGB
-     * @return TInkomen
+     * @return static
      */
-    public function withKGB($KGB)
+    public function withKGB(float $KGB) : static
     {
         $new = clone $this;
         $new->KGB = $KGB;
@@ -480,16 +478,16 @@ class TInkomen implements RequestInterface
     /**
      * @return float
      */
-    public function getVrijwilligers()
+    public function getVrijwilligers() : float
     {
         return $this->Vrijwilligers;
     }
 
     /**
      * @param float $Vrijwilligers
-     * @return TInkomen
+     * @return static
      */
-    public function withVrijwilligers($Vrijwilligers)
+    public function withVrijwilligers(float $Vrijwilligers) : static
     {
         $new = clone $this;
         $new->Vrijwilligers = $Vrijwilligers;
@@ -498,18 +496,18 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
      */
-    public function getVrijwilligersPeriode()
+    public function getVrijwilligersPeriode() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
     {
         return $this->VrijwilligersPeriode;
     }
 
     /**
-     * @param string $VrijwilligersPeriode
-     * @return TInkomen
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $VrijwilligersPeriode
+     * @return static
      */
-    public function withVrijwilligersPeriode($VrijwilligersPeriode)
+    public function withVrijwilligersPeriode(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $VrijwilligersPeriode) : static
     {
         $new = clone $this;
         $new->VrijwilligersPeriode = $VrijwilligersPeriode;
@@ -520,16 +518,16 @@ class TInkomen implements RequestInterface
     /**
      * @return float
      */
-    public function getKinderAlimentatieBedrag()
+    public function getKinderAlimentatieBedrag() : float
     {
         return $this->KinderAlimentatieBedrag;
     }
 
     /**
      * @param float $KinderAlimentatieBedrag
-     * @return TInkomen
+     * @return static
      */
-    public function withKinderAlimentatieBedrag($KinderAlimentatieBedrag)
+    public function withKinderAlimentatieBedrag(float $KinderAlimentatieBedrag) : static
     {
         $new = clone $this;
         $new->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
@@ -540,16 +538,16 @@ class TInkomen implements RequestInterface
     /**
      * @return float
      */
-    public function getPartnerAlimentatieBedrag()
+    public function getPartnerAlimentatieBedrag() : float
     {
         return $this->PartnerAlimentatieBedrag;
     }
 
     /**
      * @param float $PartnerAlimentatieBedrag
-     * @return TInkomen
+     * @return static
      */
-    public function withPartnerAlimentatieBedrag($PartnerAlimentatieBedrag)
+    public function withPartnerAlimentatieBedrag(float $PartnerAlimentatieBedrag) : static
     {
         $new = clone $this;
         $new->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
@@ -558,18 +556,18 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getOverigInkomen()
+    public function getOverigInkomen() : ?string
     {
         return $this->OverigInkomen;
     }
 
     /**
-     * @param string $OverigInkomen
-     * @return TInkomen
+     * @param null | string $OverigInkomen
+     * @return static
      */
-    public function withOverigInkomen($OverigInkomen)
+    public function withOverigInkomen(?string $OverigInkomen) : static
     {
         $new = clone $this;
         $new->OverigInkomen = $OverigInkomen;
@@ -580,16 +578,16 @@ class TInkomen implements RequestInterface
     /**
      * @return float
      */
-    public function getOverigInkomenBedrag()
+    public function getOverigInkomenBedrag() : float
     {
         return $this->OverigInkomenBedrag;
     }
 
     /**
      * @param float $OverigInkomenBedrag
-     * @return TInkomen
+     * @return static
      */
-    public function withOverigInkomenBedrag($OverigInkomenBedrag)
+    public function withOverigInkomenBedrag(float $OverigInkomenBedrag) : static
     {
         $new = clone $this;
         $new->OverigInkomenBedrag = $OverigInkomenBedrag;
@@ -598,18 +596,18 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
      */
-    public function getOverigInkomenPeriode()
+    public function getOverigInkomenPeriode() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode
     {
         return $this->OverigInkomenPeriode;
     }
 
     /**
-     * @param string $OverigInkomenPeriode
-     * @return TInkomen
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $OverigInkomenPeriode
+     * @return static
      */
-    public function withOverigInkomenPeriode($OverigInkomenPeriode)
+    public function withOverigInkomenPeriode(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EPeriode $OverigInkomenPeriode) : static
     {
         $new = clone $this;
         $new->OverigInkomenPeriode = $OverigInkomenPeriode;
@@ -618,25 +616,23 @@ class TInkomen implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getToelichting()
+    public function getToelichting() : ?string
     {
         return $this->Toelichting;
     }
 
     /**
-     * @param string $Toelichting
-     * @return TInkomen
+     * @param null | string $Toelichting
+     * @return static
      */
-    public function withToelichting($Toelichting)
+    public function withToelichting(?string $Toelichting) : static
     {
         $new = clone $this;
         $new->Toelichting = $Toelichting;
 
         return $new;
     }
-
-
 }
 

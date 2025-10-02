@@ -2,60 +2,57 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SimpleRequestInfo implements RequestInterface
 {
+    /**
+     * @var string
+     */
+    private string $SQL;
 
     /**
      * @var string
      */
-    private $SQL;
+    private string $Table;
 
     /**
      * @var string
      */
-    private $Table;
+    private string $Where;
 
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray
      */
-    private $Where;
-
-    /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray
-     */
-    private $Parameters;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray $Parameters;
 
     /**
      * @var int
      */
-    private $MaxRecords;
+    private int $MaxRecords;
 
     /**
      * @var bool
      */
-    private $IncludeSchema;
+    private bool $IncludeSchema;
 
     /**
      * @var bool
      */
-    private $SimpleMode;
+    private bool $SimpleMode;
 
     /**
      * Constructor
      *
-     * @var string $SQL
-     * @var string $Table
-     * @var string $Where
-     * @var SimpleDataParameterArray $Parameters
-     * @var int $MaxRecords
-     * @var bool $IncludeSchema
-     * @var bool $SimpleMode
+     * @param string $SQL
+     * @param string $Table
+     * @param string $Where
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray $Parameters
+     * @param int $MaxRecords
+     * @param bool $IncludeSchema
+     * @param bool $SimpleMode
      */
-    public function __construct($SQL, $Table, $Where, $Parameters, $MaxRecords, $IncludeSchema, $SimpleMode)
+    public function __construct(string $SQL, string $Table, string $Where, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray $Parameters, int $MaxRecords, bool $IncludeSchema, bool $SimpleMode)
     {
         $this->SQL = $SQL;
         $this->Table = $Table;
@@ -69,16 +66,16 @@ class SimpleRequestInfo implements RequestInterface
     /**
      * @return string
      */
-    public function getSQL()
+    public function getSQL() : string
     {
         return $this->SQL;
     }
 
     /**
      * @param string $SQL
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withSQL($SQL)
+    public function withSQL(string $SQL) : static
     {
         $new = clone $this;
         $new->SQL = $SQL;
@@ -89,16 +86,16 @@ class SimpleRequestInfo implements RequestInterface
     /**
      * @return string
      */
-    public function getTable()
+    public function getTable() : string
     {
         return $this->Table;
     }
 
     /**
      * @param string $Table
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withTable($Table)
+    public function withTable(string $Table) : static
     {
         $new = clone $this;
         $new->Table = $Table;
@@ -109,16 +106,16 @@ class SimpleRequestInfo implements RequestInterface
     /**
      * @return string
      */
-    public function getWhere()
+    public function getWhere() : string
     {
         return $this->Where;
     }
 
     /**
      * @param string $Where
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withWhere($Where)
+    public function withWhere(string $Where) : static
     {
         $new = clone $this;
         $new->Where = $Where;
@@ -127,18 +124,18 @@ class SimpleRequestInfo implements RequestInterface
     }
 
     /**
-     * @return SimpleDataParameterArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray
      */
-    public function getParameters()
+    public function getParameters() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray
     {
         return $this->Parameters;
     }
 
     /**
-     * @param SimpleDataParameterArray $Parameters
-     * @return SimpleRequestInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray $Parameters
+     * @return static
      */
-    public function withParameters($Parameters)
+    public function withParameters(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray $Parameters) : static
     {
         $new = clone $this;
         $new->Parameters = $Parameters;
@@ -149,16 +146,16 @@ class SimpleRequestInfo implements RequestInterface
     /**
      * @return int
      */
-    public function getMaxRecords()
+    public function getMaxRecords() : int
     {
         return $this->MaxRecords;
     }
 
     /**
      * @param int $MaxRecords
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withMaxRecords($MaxRecords)
+    public function withMaxRecords(int $MaxRecords) : static
     {
         $new = clone $this;
         $new->MaxRecords = $MaxRecords;
@@ -169,16 +166,16 @@ class SimpleRequestInfo implements RequestInterface
     /**
      * @return bool
      */
-    public function getIncludeSchema()
+    public function getIncludeSchema() : bool
     {
         return $this->IncludeSchema;
     }
 
     /**
      * @param bool $IncludeSchema
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withIncludeSchema($IncludeSchema)
+    public function withIncludeSchema(bool $IncludeSchema) : static
     {
         $new = clone $this;
         $new->IncludeSchema = $IncludeSchema;
@@ -189,23 +186,21 @@ class SimpleRequestInfo implements RequestInterface
     /**
      * @return bool
      */
-    public function getSimpleMode()
+    public function getSimpleMode() : bool
     {
         return $this->SimpleMode;
     }
 
     /**
      * @param bool $SimpleMode
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withSimpleMode($SimpleMode)
+    public function withSimpleMode(bool $SimpleMode) : static
     {
         $new = clone $this;
         $new->SimpleMode = $SimpleMode;
 
         return $new;
     }
-
-
 }
 

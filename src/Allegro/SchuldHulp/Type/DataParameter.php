@@ -2,29 +2,27 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class DataParameter implements RequestInterface
 {
-
     /**
      * @var string
      */
-    private $Name;
+    private string $Name;
 
     /**
      * @var mixed
      */
-    private $Value;
+    private mixed $Value;
 
     /**
      * Constructor
      *
-     * @var string $Name
-     * @var mixed $Value
+     * @param string $Name
+     * @param mixed $Value
      */
-    public function __construct($Name, $Value)
+    public function __construct(string $Name, mixed $Value)
     {
         $this->Name = $Name;
         $this->Value = $Value;
@@ -33,16 +31,16 @@ class DataParameter implements RequestInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->Name;
     }
 
     /**
      * @param string $Name
-     * @return DataParameter
+     * @return static
      */
-    public function withName($Name)
+    public function withName(string $Name) : static
     {
         $new = clone $this;
         $new->Name = $Name;
@@ -53,23 +51,21 @@ class DataParameter implements RequestInterface
     /**
      * @return mixed
      */
-    public function getValue()
+    public function getValue() : mixed
     {
         return $this->Value;
     }
 
     /**
      * @param mixed $Value
-     * @return DataParameter
+     * @return static
      */
-    public function withValue($Value)
+    public function withValue(mixed $Value) : static
     {
         $new = clone $this;
         $new->Value = $Value;
 
         return $new;
     }
-
-
 }
 

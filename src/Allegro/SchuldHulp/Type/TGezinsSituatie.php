@@ -2,48 +2,45 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TGezinsSituatie implements RequestInterface
 {
+    /**
+     * @var string
+     */
+    private string $BurgerlijkeStaat;
 
     /**
      * @var string
      */
-    private $BurgerlijkeStaat;
+    private string $GemeenschapVanGoederen;
+
+    /**
+     * @var null | string
+     */
+    private ?string $GemeenschapVanGoederenDetail = null;
 
     /**
      * @var string
      */
-    private $GemeenschapVanGoederen;
+    private string $Kinderen;
 
     /**
-     * @var string
+     * @var \DateTimeInterface
      */
-    private $GemeenschapVanGoederenDetail;
-
-    /**
-     * @var string
-     */
-    private $Kinderen;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $BurgerlijkeStaatSinds;
+    private \DateTimeInterface $BurgerlijkeStaatSinds;
 
     /**
      * Constructor
      *
-     * @var string $BurgerlijkeStaat
-     * @var string $GemeenschapVanGoederen
-     * @var string $GemeenschapVanGoederenDetail
-     * @var string $Kinderen
-     * @var DateTimeInterface $BurgerlijkeStaatSinds
+     * @param string $BurgerlijkeStaat
+     * @param string $GemeenschapVanGoederen
+     * @param null | string $GemeenschapVanGoederenDetail
+     * @param string $Kinderen
+     * @param \DateTimeInterface $BurgerlijkeStaatSinds
      */
-    public function __construct($BurgerlijkeStaat, $GemeenschapVanGoederen, $GemeenschapVanGoederenDetail, $Kinderen, $BurgerlijkeStaatSinds)
+    public function __construct(string $BurgerlijkeStaat, string $GemeenschapVanGoederen, ?string $GemeenschapVanGoederenDetail, string $Kinderen, \DateTimeInterface $BurgerlijkeStaatSinds)
     {
         $this->BurgerlijkeStaat = $BurgerlijkeStaat;
         $this->GemeenschapVanGoederen = $GemeenschapVanGoederen;
@@ -55,16 +52,16 @@ class TGezinsSituatie implements RequestInterface
     /**
      * @return string
      */
-    public function getBurgerlijkeStaat()
+    public function getBurgerlijkeStaat() : string
     {
         return $this->BurgerlijkeStaat;
     }
 
     /**
      * @param string $BurgerlijkeStaat
-     * @return TGezinsSituatie
+     * @return static
      */
-    public function withBurgerlijkeStaat($BurgerlijkeStaat)
+    public function withBurgerlijkeStaat(string $BurgerlijkeStaat) : static
     {
         $new = clone $this;
         $new->BurgerlijkeStaat = $BurgerlijkeStaat;
@@ -75,16 +72,16 @@ class TGezinsSituatie implements RequestInterface
     /**
      * @return string
      */
-    public function getGemeenschapVanGoederen()
+    public function getGemeenschapVanGoederen() : string
     {
         return $this->GemeenschapVanGoederen;
     }
 
     /**
      * @param string $GemeenschapVanGoederen
-     * @return TGezinsSituatie
+     * @return static
      */
-    public function withGemeenschapVanGoederen($GemeenschapVanGoederen)
+    public function withGemeenschapVanGoederen(string $GemeenschapVanGoederen) : static
     {
         $new = clone $this;
         $new->GemeenschapVanGoederen = $GemeenschapVanGoederen;
@@ -93,18 +90,18 @@ class TGezinsSituatie implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getGemeenschapVanGoederenDetail()
+    public function getGemeenschapVanGoederenDetail() : ?string
     {
         return $this->GemeenschapVanGoederenDetail;
     }
 
     /**
-     * @param string $GemeenschapVanGoederenDetail
-     * @return TGezinsSituatie
+     * @param null | string $GemeenschapVanGoederenDetail
+     * @return static
      */
-    public function withGemeenschapVanGoederenDetail($GemeenschapVanGoederenDetail)
+    public function withGemeenschapVanGoederenDetail(?string $GemeenschapVanGoederenDetail) : static
     {
         $new = clone $this;
         $new->GemeenschapVanGoederenDetail = $GemeenschapVanGoederenDetail;
@@ -115,16 +112,16 @@ class TGezinsSituatie implements RequestInterface
     /**
      * @return string
      */
-    public function getKinderen()
+    public function getKinderen() : string
     {
         return $this->Kinderen;
     }
 
     /**
      * @param string $Kinderen
-     * @return TGezinsSituatie
+     * @return static
      */
-    public function withKinderen($Kinderen)
+    public function withKinderen(string $Kinderen) : static
     {
         $new = clone $this;
         $new->Kinderen = $Kinderen;
@@ -133,25 +130,23 @@ class TGezinsSituatie implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getBurgerlijkeStaatSinds()
+    public function getBurgerlijkeStaatSinds() : \DateTimeInterface
     {
         return $this->BurgerlijkeStaatSinds;
     }
 
     /**
-     * @param DateTimeInterface $BurgerlijkeStaatSinds
-     * @return TGezinsSituatie
+     * @param \DateTimeInterface $BurgerlijkeStaatSinds
+     * @return static
      */
-    public function withBurgerlijkeStaatSinds($BurgerlijkeStaatSinds)
+    public function withBurgerlijkeStaatSinds(\DateTimeInterface $BurgerlijkeStaatSinds) : static
     {
         $new = clone $this;
         $new->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds;
 
         return $new;
     }
-
-
 }
 

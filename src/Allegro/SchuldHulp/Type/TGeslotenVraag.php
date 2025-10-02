@@ -2,29 +2,27 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TGeslotenVraag implements RequestInterface
 {
-
     /**
      * @var string
      */
-    private $Vraag;
+    private string $Vraag;
 
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg
      */
-    private $Antwoord;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg $Antwoord;
 
     /**
      * Constructor
      *
-     * @var string $Vraag
-     * @var string $Antwoord
+     * @param string $Vraag
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg $Antwoord
      */
-    public function __construct($Vraag, $Antwoord)
+    public function __construct(string $Vraag, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg $Antwoord)
     {
         $this->Vraag = $Vraag;
         $this->Antwoord = $Antwoord;
@@ -33,16 +31,16 @@ class TGeslotenVraag implements RequestInterface
     /**
      * @return string
      */
-    public function getVraag()
+    public function getVraag() : string
     {
         return $this->Vraag;
     }
 
     /**
      * @param string $Vraag
-     * @return TGeslotenVraag
+     * @return static
      */
-    public function withVraag($Vraag)
+    public function withVraag(string $Vraag) : static
     {
         $new = clone $this;
         $new->Vraag = $Vraag;
@@ -51,25 +49,23 @@ class TGeslotenVraag implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg
      */
-    public function getAntwoord()
+    public function getAntwoord() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg
     {
         return $this->Antwoord;
     }
 
     /**
-     * @param string $Antwoord
-     * @return TGeslotenVraag
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg $Antwoord
+     * @return static
      */
-    public function withAntwoord($Antwoord)
+    public function withAntwoord(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\EJaNeeLeeg $Antwoord) : static
     {
         $new = clone $this;
         $new->Antwoord = $Antwoord;
 
         return $new;
     }
-
-
 }
 

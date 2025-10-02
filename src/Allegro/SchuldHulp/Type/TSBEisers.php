@@ -2,53 +2,51 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSBEisers implements RequestInterface
 {
-
     /**
-     * @var SBEiserArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBEiserArray
      */
-    private $Eisers;
-
-    /**
-     * @var float
-     */
-    private $SomTeruggemeldBedrag;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBEiserArray $Eisers;
 
     /**
      * @var float
      */
-    private $SomBerekendBedrag;
+    private float $SomTeruggemeldBedrag;
 
     /**
      * @var float
      */
-    private $SomGereserveerdBedrag;
+    private float $SomBerekendBedrag;
 
     /**
      * @var float
      */
-    private $SomDoorbetaaldBedrag;
+    private float $SomGereserveerdBedrag;
 
     /**
      * @var float
      */
-    private $SomPrognoseRestschuld;
+    private float $SomDoorbetaaldBedrag;
+
+    /**
+     * @var float
+     */
+    private float $SomPrognoseRestschuld;
 
     /**
      * Constructor
      *
-     * @var SBEiserArray $Eisers
-     * @var float $SomTeruggemeldBedrag
-     * @var float $SomBerekendBedrag
-     * @var float $SomGereserveerdBedrag
-     * @var float $SomDoorbetaaldBedrag
-     * @var float $SomPrognoseRestschuld
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBEiserArray $Eisers
+     * @param float $SomTeruggemeldBedrag
+     * @param float $SomBerekendBedrag
+     * @param float $SomGereserveerdBedrag
+     * @param float $SomDoorbetaaldBedrag
+     * @param float $SomPrognoseRestschuld
      */
-    public function __construct($Eisers, $SomTeruggemeldBedrag, $SomBerekendBedrag, $SomGereserveerdBedrag, $SomDoorbetaaldBedrag, $SomPrognoseRestschuld)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBEiserArray $Eisers, float $SomTeruggemeldBedrag, float $SomBerekendBedrag, float $SomGereserveerdBedrag, float $SomDoorbetaaldBedrag, float $SomPrognoseRestschuld)
     {
         $this->Eisers = $Eisers;
         $this->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
@@ -59,18 +57,18 @@ class TSBEisers implements RequestInterface
     }
 
     /**
-     * @return SBEiserArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBEiserArray
      */
-    public function getEisers()
+    public function getEisers() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBEiserArray
     {
         return $this->Eisers;
     }
 
     /**
-     * @param SBEiserArray $Eisers
-     * @return TSBEisers
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBEiserArray $Eisers
+     * @return static
      */
-    public function withEisers($Eisers)
+    public function withEisers(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBEiserArray $Eisers) : static
     {
         $new = clone $this;
         $new->Eisers = $Eisers;
@@ -81,16 +79,16 @@ class TSBEisers implements RequestInterface
     /**
      * @return float
      */
-    public function getSomTeruggemeldBedrag()
+    public function getSomTeruggemeldBedrag() : float
     {
         return $this->SomTeruggemeldBedrag;
     }
 
     /**
      * @param float $SomTeruggemeldBedrag
-     * @return TSBEisers
+     * @return static
      */
-    public function withSomTeruggemeldBedrag($SomTeruggemeldBedrag)
+    public function withSomTeruggemeldBedrag(float $SomTeruggemeldBedrag) : static
     {
         $new = clone $this;
         $new->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
@@ -101,16 +99,16 @@ class TSBEisers implements RequestInterface
     /**
      * @return float
      */
-    public function getSomBerekendBedrag()
+    public function getSomBerekendBedrag() : float
     {
         return $this->SomBerekendBedrag;
     }
 
     /**
      * @param float $SomBerekendBedrag
-     * @return TSBEisers
+     * @return static
      */
-    public function withSomBerekendBedrag($SomBerekendBedrag)
+    public function withSomBerekendBedrag(float $SomBerekendBedrag) : static
     {
         $new = clone $this;
         $new->SomBerekendBedrag = $SomBerekendBedrag;
@@ -121,16 +119,16 @@ class TSBEisers implements RequestInterface
     /**
      * @return float
      */
-    public function getSomGereserveerdBedrag()
+    public function getSomGereserveerdBedrag() : float
     {
         return $this->SomGereserveerdBedrag;
     }
 
     /**
      * @param float $SomGereserveerdBedrag
-     * @return TSBEisers
+     * @return static
      */
-    public function withSomGereserveerdBedrag($SomGereserveerdBedrag)
+    public function withSomGereserveerdBedrag(float $SomGereserveerdBedrag) : static
     {
         $new = clone $this;
         $new->SomGereserveerdBedrag = $SomGereserveerdBedrag;
@@ -141,16 +139,16 @@ class TSBEisers implements RequestInterface
     /**
      * @return float
      */
-    public function getSomDoorbetaaldBedrag()
+    public function getSomDoorbetaaldBedrag() : float
     {
         return $this->SomDoorbetaaldBedrag;
     }
 
     /**
      * @param float $SomDoorbetaaldBedrag
-     * @return TSBEisers
+     * @return static
      */
-    public function withSomDoorbetaaldBedrag($SomDoorbetaaldBedrag)
+    public function withSomDoorbetaaldBedrag(float $SomDoorbetaaldBedrag) : static
     {
         $new = clone $this;
         $new->SomDoorbetaaldBedrag = $SomDoorbetaaldBedrag;
@@ -161,23 +159,21 @@ class TSBEisers implements RequestInterface
     /**
      * @return float
      */
-    public function getSomPrognoseRestschuld()
+    public function getSomPrognoseRestschuld() : float
     {
         return $this->SomPrognoseRestschuld;
     }
 
     /**
      * @param float $SomPrognoseRestschuld
-     * @return TSBEisers
+     * @return static
      */
-    public function withSomPrognoseRestschuld($SomPrognoseRestschuld)
+    public function withSomPrognoseRestschuld(float $SomPrognoseRestschuld) : static
     {
         $new = clone $this;
         $new->SomPrognoseRestschuld = $SomPrognoseRestschuld;
 
         return $new;
     }
-
-
 }
 

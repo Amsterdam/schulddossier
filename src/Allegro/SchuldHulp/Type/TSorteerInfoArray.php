@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSorteerInfoArray implements RequestInterface
 {
-
     /**
-     * @var TSorteerInfo
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSorteerInfo>
      */
-    private $TSorteerInfo;
+    private array $TSorteerInfo;
 
     /**
      * Constructor
      *
-     * @var TSorteerInfo $TSorteerInfo
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSorteerInfo> $TSorteerInfo
      */
-    public function __construct($TSorteerInfo)
+    public function __construct(array $TSorteerInfo)
     {
         $this->TSorteerInfo = $TSorteerInfo;
     }
 
     /**
-     * @return TSorteerInfo
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSorteerInfo>
      */
-    public function getTSorteerInfo()
+    public function getTSorteerInfo() : array
     {
         return $this->TSorteerInfo;
     }
 
     /**
-     * @param TSorteerInfo $TSorteerInfo
-     * @return TSorteerInfoArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSorteerInfo> $TSorteerInfo
+     * @return static
      */
-    public function withTSorteerInfo($TSorteerInfo)
+    public function withTSorteerInfo(array $TSorteerInfo) : static
     {
         $new = clone $this;
         $new->TSorteerInfo = $TSorteerInfo;
 
         return $new;
     }
-
-
 }
 

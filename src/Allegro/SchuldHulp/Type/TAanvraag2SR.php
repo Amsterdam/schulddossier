@@ -2,97 +2,94 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 use \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag;
 
 class TAanvraag2SR extends TAanvraag implements RequestInterface
 {
+    /**
+     * @var bool
+     */
+    private bool $NPS;
+
+    /**
+     * @var null | string
+     */
+    private ?string $OorzaakSchulden = null;
+
+    /**
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie
+     */
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie $Bewindvoerder = null;
+
+    /**
+     * @var null | string
+     */
+    private ?string $ToelichtingAlgemeen = null;
+
+    /**
+     * @var null | string
+     */
+    private ?string $ToelichtingSO = null;
+
+    /**
+     * @var null | string
+     */
+    private ?string $ToelichtingAanmelding = null;
+
+    /**
+     * @var null | string
+     */
+    private ?string $ToelichtingVoorstel = null;
 
     /**
      * @var bool
      */
-    private $NPS;
-
-    /**
-     * @var string
-     */
-    private $OorzaakSchulden;
-
-    /**
-     * @var TOrganisatie
-     */
-    private $Bewindvoerder;
-
-    /**
-     * @var string
-     */
-    private $ToelichtingAlgemeen;
-
-    /**
-     * @var string
-     */
-    private $ToelichtingSO;
-
-    /**
-     * @var string
-     */
-    private $ToelichtingAanmelding;
-
-    /**
-     * @var string
-     */
-    private $ToelichtingVoorstel;
+    private bool $TotaalschuldVullen;
 
     /**
      * @var bool
      */
-    private $TotaalschuldVullen;
+    private bool $OpdrachtgeverOvernemen;
 
     /**
      * @var bool
      */
-    private $OpdrachtgeverOvernemen;
+    private bool $HulpverlenerOvernemen;
 
     /**
-     * @var bool
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray
      */
-    private $HulpverlenerOvernemen;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray $OpenVragen = null;
 
     /**
-     * @var OpenVraagArray
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray
      */
-    private $OpenVragen;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray $GeslotenVragen = null;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray
+     * @var null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray
      */
-    private $GeslotenVragen;
-
-    /**
-     * @var SchuldArray
-     */
-    private $Schulden;
+    private ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray $Schulden = null;
 
     /**
      * Constructor
      *
-     * @var bool $NPS
-     * @var string $OorzaakSchulden
-     * @var TOrganisatie $Bewindvoerder
-     * @var string $ToelichtingAlgemeen
-     * @var string $ToelichtingSO
-     * @var string $ToelichtingAanmelding
-     * @var string $ToelichtingVoorstel
-     * @var bool $TotaalschuldVullen
-     * @var bool $OpdrachtgeverOvernemen
-     * @var bool $HulpverlenerOvernemen
-     * @var OpenVraagArray $OpenVragen
-     * @var GeslotenVraagArray $GeslotenVragen
-     * @var SchuldArray $Schulden
+     * @param bool $NPS
+     * @param null | string $OorzaakSchulden
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie $Bewindvoerder
+     * @param null | string $ToelichtingAlgemeen
+     * @param null | string $ToelichtingSO
+     * @param null | string $ToelichtingAanmelding
+     * @param null | string $ToelichtingVoorstel
+     * @param bool $TotaalschuldVullen
+     * @param bool $OpdrachtgeverOvernemen
+     * @param bool $HulpverlenerOvernemen
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray $OpenVragen
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray $GeslotenVragen
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray $Schulden
      */
-    public function __construct($NPS, $OorzaakSchulden, $Bewindvoerder, $ToelichtingAlgemeen, $ToelichtingSO, $ToelichtingAanmelding, $ToelichtingVoorstel, $TotaalschuldVullen, $OpdrachtgeverOvernemen, $HulpverlenerOvernemen, $OpenVragen, $GeslotenVragen, $Schulden)
+    public function __construct(bool $NPS, ?string $OorzaakSchulden, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie $Bewindvoerder, ?string $ToelichtingAlgemeen, ?string $ToelichtingSO, ?string $ToelichtingAanmelding, ?string $ToelichtingVoorstel, bool $TotaalschuldVullen, bool $OpdrachtgeverOvernemen, bool $HulpverlenerOvernemen, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray $OpenVragen, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray $GeslotenVragen, ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray $Schulden)
     {
         $this->NPS = $NPS;
         $this->OorzaakSchulden = $OorzaakSchulden;
@@ -112,16 +109,16 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     /**
      * @return bool
      */
-    public function getNPS()
+    public function getNPS() : bool
     {
         return $this->NPS;
     }
 
     /**
      * @param bool $NPS
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withNPS($NPS)
+    public function withNPS(bool $NPS) : static
     {
         $new = clone $this;
         $new->NPS = $NPS;
@@ -130,18 +127,18 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getOorzaakSchulden()
+    public function getOorzaakSchulden() : ?string
     {
         return $this->OorzaakSchulden;
     }
 
     /**
-     * @param string $OorzaakSchulden
-     * @return TAanvraag2SR
+     * @param null | string $OorzaakSchulden
+     * @return static
      */
-    public function withOorzaakSchulden($OorzaakSchulden)
+    public function withOorzaakSchulden(?string $OorzaakSchulden) : static
     {
         $new = clone $this;
         $new->OorzaakSchulden = $OorzaakSchulden;
@@ -150,18 +147,18 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     }
 
     /**
-     * @return TOrganisatie
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie
      */
-    public function getBewindvoerder()
+    public function getBewindvoerder() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie
     {
         return $this->Bewindvoerder;
     }
 
     /**
-     * @param TOrganisatie $Bewindvoerder
-     * @return TAanvraag2SR
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie $Bewindvoerder
+     * @return static
      */
-    public function withBewindvoerder($Bewindvoerder)
+    public function withBewindvoerder(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie $Bewindvoerder) : static
     {
         $new = clone $this;
         $new->Bewindvoerder = $Bewindvoerder;
@@ -170,18 +167,18 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getToelichtingAlgemeen()
+    public function getToelichtingAlgemeen() : ?string
     {
         return $this->ToelichtingAlgemeen;
     }
 
     /**
-     * @param string $ToelichtingAlgemeen
-     * @return TAanvraag2SR
+     * @param null | string $ToelichtingAlgemeen
+     * @return static
      */
-    public function withToelichtingAlgemeen($ToelichtingAlgemeen)
+    public function withToelichtingAlgemeen(?string $ToelichtingAlgemeen) : static
     {
         $new = clone $this;
         $new->ToelichtingAlgemeen = $ToelichtingAlgemeen;
@@ -190,18 +187,18 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getToelichtingSO()
+    public function getToelichtingSO() : ?string
     {
         return $this->ToelichtingSO;
     }
 
     /**
-     * @param string $ToelichtingSO
-     * @return TAanvraag2SR
+     * @param null | string $ToelichtingSO
+     * @return static
      */
-    public function withToelichtingSO($ToelichtingSO)
+    public function withToelichtingSO(?string $ToelichtingSO) : static
     {
         $new = clone $this;
         $new->ToelichtingSO = $ToelichtingSO;
@@ -210,18 +207,18 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getToelichtingAanmelding()
+    public function getToelichtingAanmelding() : ?string
     {
         return $this->ToelichtingAanmelding;
     }
 
     /**
-     * @param string $ToelichtingAanmelding
-     * @return TAanvraag2SR
+     * @param null | string $ToelichtingAanmelding
+     * @return static
      */
-    public function withToelichtingAanmelding($ToelichtingAanmelding)
+    public function withToelichtingAanmelding(?string $ToelichtingAanmelding) : static
     {
         $new = clone $this;
         $new->ToelichtingAanmelding = $ToelichtingAanmelding;
@@ -230,18 +227,18 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getToelichtingVoorstel()
+    public function getToelichtingVoorstel() : ?string
     {
         return $this->ToelichtingVoorstel;
     }
 
     /**
-     * @param string $ToelichtingVoorstel
-     * @return TAanvraag2SR
+     * @param null | string $ToelichtingVoorstel
+     * @return static
      */
-    public function withToelichtingVoorstel($ToelichtingVoorstel)
+    public function withToelichtingVoorstel(?string $ToelichtingVoorstel) : static
     {
         $new = clone $this;
         $new->ToelichtingVoorstel = $ToelichtingVoorstel;
@@ -252,16 +249,16 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     /**
      * @return bool
      */
-    public function getTotaalschuldVullen()
+    public function getTotaalschuldVullen() : bool
     {
         return $this->TotaalschuldVullen;
     }
 
     /**
      * @param bool $TotaalschuldVullen
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withTotaalschuldVullen($TotaalschuldVullen)
+    public function withTotaalschuldVullen(bool $TotaalschuldVullen) : static
     {
         $new = clone $this;
         $new->TotaalschuldVullen = $TotaalschuldVullen;
@@ -272,16 +269,16 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     /**
      * @return bool
      */
-    public function getOpdrachtgeverOvernemen()
+    public function getOpdrachtgeverOvernemen() : bool
     {
         return $this->OpdrachtgeverOvernemen;
     }
 
     /**
      * @param bool $OpdrachtgeverOvernemen
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withOpdrachtgeverOvernemen($OpdrachtgeverOvernemen)
+    public function withOpdrachtgeverOvernemen(bool $OpdrachtgeverOvernemen) : static
     {
         $new = clone $this;
         $new->OpdrachtgeverOvernemen = $OpdrachtgeverOvernemen;
@@ -292,16 +289,16 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     /**
      * @return bool
      */
-    public function getHulpverlenerOvernemen()
+    public function getHulpverlenerOvernemen() : bool
     {
         return $this->HulpverlenerOvernemen;
     }
 
     /**
      * @param bool $HulpverlenerOvernemen
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withHulpverlenerOvernemen($HulpverlenerOvernemen)
+    public function withHulpverlenerOvernemen(bool $HulpverlenerOvernemen) : static
     {
         $new = clone $this;
         $new->HulpverlenerOvernemen = $HulpverlenerOvernemen;
@@ -310,18 +307,18 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     }
 
     /**
-     * @return OpenVraagArray
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray
      */
-    public function getOpenVragen()
+    public function getOpenVragen() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray
     {
         return $this->OpenVragen;
     }
 
     /**
-     * @param OpenVraagArray $OpenVragen
-     * @return TAanvraag2SR
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray $OpenVragen
+     * @return static
      */
-    public function withOpenVragen($OpenVragen)
+    public function withOpenVragen(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray $OpenVragen) : static
     {
         $new = clone $this;
         $new->OpenVragen = $OpenVragen;
@@ -330,18 +327,18 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     }
 
     /**
-     * @return GeslotenVraagArray
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray
      */
-    public function getGeslotenVragen()
+    public function getGeslotenVragen() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray
     {
         return $this->GeslotenVragen;
     }
 
     /**
-     * @param GeslotenVraagArray $GeslotenVragen
-     * @return TAanvraag2SR
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray $GeslotenVragen
+     * @return static
      */
-    public function withGeslotenVragen($GeslotenVragen)
+    public function withGeslotenVragen(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray $GeslotenVragen) : static
     {
         $new = clone $this;
         $new->GeslotenVragen = $GeslotenVragen;
@@ -350,25 +347,23 @@ class TAanvraag2SR extends TAanvraag implements RequestInterface
     }
 
     /**
-     * @return SchuldArray
+     * @return null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray
      */
-    public function getSchulden()
+    public function getSchulden() : ?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray
     {
         return $this->Schulden;
     }
 
     /**
-     * @param SchuldArray $Schulden
-     * @return TAanvraag2SR
+     * @param null | \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray $Schulden
+     * @return static
      */
-    public function withSchulden($Schulden)
+    public function withSchulden(?\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray $Schulden) : static
     {
         $new = clone $this;
         $new->Schulden = $Schulden;
 
         return $new;
     }
-
-
 }
 

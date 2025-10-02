@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBROpdrachten implements RequestInterface
 {
-
     /**
-     * @var BBROpdrachtArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBROpdrachtArray
      */
-    private $BBROpdrachten;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBROpdrachtArray $BBROpdrachten;
 
     /**
      * Constructor
      *
-     * @var BBROpdrachtArray $BBROpdrachten
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBROpdrachtArray $BBROpdrachten
      */
-    public function __construct($BBROpdrachten)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBROpdrachtArray $BBROpdrachten)
     {
         $this->BBROpdrachten = $BBROpdrachten;
     }
 
     /**
-     * @return BBROpdrachtArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBROpdrachtArray
      */
-    public function getBBROpdrachten()
+    public function getBBROpdrachten() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBROpdrachtArray
     {
         return $this->BBROpdrachten;
     }
 
     /**
-     * @param BBROpdrachtArray $BBROpdrachten
-     * @return TBBROpdrachten
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBROpdrachtArray $BBROpdrachten
+     * @return static
      */
-    public function withBBROpdrachten($BBROpdrachten)
+    public function withBBROpdrachten(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBROpdrachtArray $BBROpdrachten) : static
     {
         $new = clone $this;
         $new->BBROpdrachten = $BBROpdrachten;
 
         return $new;
     }
-
-
 }
 

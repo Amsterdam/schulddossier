@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class GeslotenVraagArray implements RequestInterface
 {
-
     /**
-     * @var TGeslotenVraag
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGeslotenVraag>
      */
-    private $TGeslotenVraag;
+    private array $TGeslotenVraag;
 
     /**
      * Constructor
      *
-     * @var TGeslotenVraag $TGeslotenVraag
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGeslotenVraag> $TGeslotenVraag
      */
-    public function __construct($TGeslotenVraag)
+    public function __construct(array $TGeslotenVraag)
     {
         $this->TGeslotenVraag = $TGeslotenVraag;
     }
 
     /**
-     * @return TGeslotenVraag
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGeslotenVraag>
      */
-    public function getTGeslotenVraag()
+    public function getTGeslotenVraag() : array
     {
         return $this->TGeslotenVraag;
     }
 
     /**
-     * @param TGeslotenVraag $TGeslotenVraag
-     * @return GeslotenVraagArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGeslotenVraag> $TGeslotenVraag
+     * @return static
      */
-    public function withTGeslotenVraag($TGeslotenVraag)
+    public function withTGeslotenVraag(array $TGeslotenVraag) : static
     {
         $new = clone $this;
         $new->TGeslotenVraag = $TGeslotenVraag;
 
         return $new;
     }
-
-
 }
 

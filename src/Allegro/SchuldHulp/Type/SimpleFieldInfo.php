@@ -2,35 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SimpleFieldInfo implements RequestInterface
 {
-
     /**
      * @var string
      */
-    private $Name;
+    private string $Name;
 
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType
      */
-    private $DataType;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType $DataType;
 
     /**
      * @var bool
      */
-    private $Hidden;
+    private bool $Hidden;
 
     /**
      * Constructor
      *
-     * @var string $Name
-     * @var string $DataType
-     * @var bool $Hidden
+     * @param string $Name
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType $DataType
+     * @param bool $Hidden
      */
-    public function __construct($Name, $DataType, $Hidden)
+    public function __construct(string $Name, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType $DataType, bool $Hidden)
     {
         $this->Name = $Name;
         $this->DataType = $DataType;
@@ -40,16 +38,16 @@ class SimpleFieldInfo implements RequestInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->Name;
     }
 
     /**
      * @param string $Name
-     * @return SimpleFieldInfo
+     * @return static
      */
-    public function withName($Name)
+    public function withName(string $Name) : static
     {
         $new = clone $this;
         $new->Name = $Name;
@@ -58,18 +56,18 @@ class SimpleFieldInfo implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType
      */
-    public function getDataType()
+    public function getDataType() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType
     {
         return $this->DataType;
     }
 
     /**
-     * @param string $DataType
-     * @return SimpleFieldInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType $DataType
+     * @return static
      */
-    public function withDataType($DataType)
+    public function withDataType(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataType $DataType) : static
     {
         $new = clone $this;
         $new->DataType = $DataType;
@@ -80,23 +78,21 @@ class SimpleFieldInfo implements RequestInterface
     /**
      * @return bool
      */
-    public function getHidden()
+    public function getHidden() : bool
     {
         return $this->Hidden;
     }
 
     /**
      * @param bool $Hidden
-     * @return SimpleFieldInfo
+     * @return static
      */
-    public function withHidden($Hidden)
+    public function withHidden(bool $Hidden) : static
     {
         $new = clone $this;
         $new->Hidden = $Hidden;
 
         return $new;
     }
-
-
 }
 

@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TeamArray implements RequestInterface
 {
-
     /**
-     * @var TTeam
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTeam>
      */
-    private $TTeam;
+    private array $TTeam;
 
     /**
      * Constructor
      *
-     * @var TTeam $TTeam
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTeam> $TTeam
      */
-    public function __construct($TTeam)
+    public function __construct(array $TTeam)
     {
         $this->TTeam = $TTeam;
     }
 
     /**
-     * @return TTeam
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTeam>
      */
-    public function getTTeam()
+    public function getTTeam() : array
     {
         return $this->TTeam;
     }
 
     /**
-     * @param TTeam $TTeam
-     * @return TeamArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTeam> $TTeam
+     * @return static
      */
-    public function withTTeam($TTeam)
+    public function withTTeam(array $TTeam) : static
     {
         $new = clone $this;
         $new->TTeam = $TTeam;
 
         return $new;
     }
-
-
 }
 

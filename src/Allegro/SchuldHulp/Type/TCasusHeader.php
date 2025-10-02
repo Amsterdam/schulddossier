@@ -2,54 +2,51 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusHeader implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Relatiecode;
-
-    /**
-     * @var int
-     */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var string
      */
-    private $CasusCode;
+    private string $CasusCode;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $Aanmaakdatum;
+    private \DateTimeInterface $Aanmaakdatum;
+
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ECasusStatus
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ECasusStatus $CasusStatus;
 
     /**
      * @var string
      */
-    private $CasusStatus;
-
-    /**
-     * @var string
-     */
-    private $CasusStatusTekst;
+    private string $CasusStatusTekst;
 
     /**
      * Constructor
      *
-     * @var int $Relatiecode
-     * @var int $Volgnummer
-     * @var string $CasusCode
-     * @var DateTimeInterface $Aanmaakdatum
-     * @var string $CasusStatus
-     * @var string $CasusStatusTekst
+     * @param int $Relatiecode
+     * @param int $Volgnummer
+     * @param string $CasusCode
+     * @param \DateTimeInterface $Aanmaakdatum
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ECasusStatus $CasusStatus
+     * @param string $CasusStatusTekst
      */
-    public function __construct($Relatiecode, $Volgnummer, $CasusCode, $Aanmaakdatum, $CasusStatus, $CasusStatusTekst)
+    public function __construct(int $Relatiecode, int $Volgnummer, string $CasusCode, \DateTimeInterface $Aanmaakdatum, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ECasusStatus $CasusStatus, string $CasusStatusTekst)
     {
         $this->Relatiecode = $Relatiecode;
         $this->Volgnummer = $Volgnummer;
@@ -62,16 +59,16 @@ class TCasusHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode() : int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TCasusHeader
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode) : static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -82,16 +79,16 @@ class TCasusHeader implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer() : int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TCasusHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer) : static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -102,16 +99,16 @@ class TCasusHeader implements RequestInterface
     /**
      * @return string
      */
-    public function getCasusCode()
+    public function getCasusCode() : string
     {
         return $this->CasusCode;
     }
 
     /**
      * @param string $CasusCode
-     * @return TCasusHeader
+     * @return static
      */
-    public function withCasusCode($CasusCode)
+    public function withCasusCode(string $CasusCode) : static
     {
         $new = clone $this;
         $new->CasusCode = $CasusCode;
@@ -120,18 +117,18 @@ class TCasusHeader implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getAanmaakdatum()
+    public function getAanmaakdatum() : \DateTimeInterface
     {
         return $this->Aanmaakdatum;
     }
 
     /**
-     * @param DateTimeInterface $Aanmaakdatum
-     * @return TCasusHeader
+     * @param \DateTimeInterface $Aanmaakdatum
+     * @return static
      */
-    public function withAanmaakdatum($Aanmaakdatum)
+    public function withAanmaakdatum(\DateTimeInterface $Aanmaakdatum) : static
     {
         $new = clone $this;
         $new->Aanmaakdatum = $Aanmaakdatum;
@@ -140,18 +137,18 @@ class TCasusHeader implements RequestInterface
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ECasusStatus
      */
-    public function getCasusStatus()
+    public function getCasusStatus() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ECasusStatus
     {
         return $this->CasusStatus;
     }
 
     /**
-     * @param string $CasusStatus
-     * @return TCasusHeader
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ECasusStatus $CasusStatus
+     * @return static
      */
-    public function withCasusStatus($CasusStatus)
+    public function withCasusStatus(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ECasusStatus $CasusStatus) : static
     {
         $new = clone $this;
         $new->CasusStatus = $CasusStatus;
@@ -162,23 +159,21 @@ class TCasusHeader implements RequestInterface
     /**
      * @return string
      */
-    public function getCasusStatusTekst()
+    public function getCasusStatusTekst() : string
     {
         return $this->CasusStatusTekst;
     }
 
     /**
      * @param string $CasusStatusTekst
-     * @return TCasusHeader
+     * @return static
      */
-    public function withCasusStatusTekst($CasusStatusTekst)
+    public function withCasusStatusTekst(string $CasusStatusTekst) : static
     {
         $new = clone $this;
         $new->CasusStatusTekst = $CasusStatusTekst;
 
         return $new;
     }
-
-
 }
 

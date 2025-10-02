@@ -2,42 +2,39 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TableRequestInfo implements RequestInterface
 {
-
     /**
      * @var string
      */
-    private $UserFilter;
+    private string $UserFilter;
 
     /**
      * @var bool
      */
-    private $IncludeSchema;
+    private bool $IncludeSchema;
 
     /**
      * @var int
      */
-    private $MaxRecords;
+    private int $MaxRecords;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameterArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameterArray
      */
-    private $Parameters;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameterArray $Parameters;
 
     /**
      * Constructor
      *
-     * @var string $UserFilter
-     * @var bool $IncludeSchema
-     * @var int $MaxRecords
-     * @var DataParameterArray $Parameters
+     * @param string $UserFilter
+     * @param bool $IncludeSchema
+     * @param int $MaxRecords
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameterArray $Parameters
      */
-    public function __construct($UserFilter, $IncludeSchema, $MaxRecords, $Parameters)
+    public function __construct(string $UserFilter, bool $IncludeSchema, int $MaxRecords, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameterArray $Parameters)
     {
         $this->UserFilter = $UserFilter;
         $this->IncludeSchema = $IncludeSchema;
@@ -48,16 +45,16 @@ class TableRequestInfo implements RequestInterface
     /**
      * @return string
      */
-    public function getUserFilter()
+    public function getUserFilter() : string
     {
         return $this->UserFilter;
     }
 
     /**
      * @param string $UserFilter
-     * @return TableRequestInfo
+     * @return static
      */
-    public function withUserFilter($UserFilter)
+    public function withUserFilter(string $UserFilter) : static
     {
         $new = clone $this;
         $new->UserFilter = $UserFilter;
@@ -68,16 +65,16 @@ class TableRequestInfo implements RequestInterface
     /**
      * @return bool
      */
-    public function getIncludeSchema()
+    public function getIncludeSchema() : bool
     {
         return $this->IncludeSchema;
     }
 
     /**
      * @param bool $IncludeSchema
-     * @return TableRequestInfo
+     * @return static
      */
-    public function withIncludeSchema($IncludeSchema)
+    public function withIncludeSchema(bool $IncludeSchema) : static
     {
         $new = clone $this;
         $new->IncludeSchema = $IncludeSchema;
@@ -88,16 +85,16 @@ class TableRequestInfo implements RequestInterface
     /**
      * @return int
      */
-    public function getMaxRecords()
+    public function getMaxRecords() : int
     {
         return $this->MaxRecords;
     }
 
     /**
      * @param int $MaxRecords
-     * @return TableRequestInfo
+     * @return static
      */
-    public function withMaxRecords($MaxRecords)
+    public function withMaxRecords(int $MaxRecords) : static
     {
         $new = clone $this;
         $new->MaxRecords = $MaxRecords;
@@ -106,25 +103,23 @@ class TableRequestInfo implements RequestInterface
     }
 
     /**
-     * @return DataParameterArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameterArray
      */
-    public function getParameters()
+    public function getParameters() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameterArray
     {
         return $this->Parameters;
     }
 
     /**
-     * @param DataParameterArray $Parameters
-     * @return TableRequestInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameterArray $Parameters
+     * @return static
      */
-    public function withParameters($Parameters)
+    public function withParameters(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameterArray $Parameters) : static
     {
         $new = clone $this;
         $new->Parameters = $Parameters;
 
         return $new;
     }
-
-
 }
 

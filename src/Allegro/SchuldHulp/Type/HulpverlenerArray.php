@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class HulpverlenerArray implements RequestInterface
 {
-
     /**
-     * @var THulpverlener
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\THulpverlener>
      */
-    private $THulpverlener;
+    private array $THulpverlener;
 
     /**
      * Constructor
      *
-     * @var THulpverlener $THulpverlener
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\THulpverlener> $THulpverlener
      */
-    public function __construct($THulpverlener)
+    public function __construct(array $THulpverlener)
     {
         $this->THulpverlener = $THulpverlener;
     }
 
     /**
-     * @return THulpverlener
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\THulpverlener>
      */
-    public function getTHulpverlener()
+    public function getTHulpverlener() : array
     {
         return $this->THulpverlener;
     }
 
     /**
-     * @param THulpverlener $THulpverlener
-     * @return HulpverlenerArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\THulpverlener> $THulpverlener
+     * @return static
      */
-    public function withTHulpverlener($THulpverlener)
+    public function withTHulpverlener(array $THulpverlener) : static
     {
         $new = clone $this;
         $new->THulpverlener = $THulpverlener;
 
         return $new;
     }
-
-
 }
 

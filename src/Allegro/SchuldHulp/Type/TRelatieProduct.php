@@ -2,72 +2,69 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TRelatieProduct implements RequestInterface
 {
+    /**
+     * @var string
+     */
+    private string $Contractnummer;
 
     /**
      * @var string
      */
-    private $Contractnummer;
+    private string $Product;
 
     /**
      * @var string
      */
-    private $Product;
+    private string $NaamProduct;
 
     /**
      * @var string
      */
-    private $NaamProduct;
+    private string $Status;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $Startdatum;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $Einddatum;
 
     /**
      * @var string
      */
-    private $Status;
+    private string $Eindstatus;
 
     /**
-     * @var DateTimeInterface
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    private $Startdatum;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $Einddatum;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker;
 
     /**
      * @var string
      */
-    private $Eindstatus;
-
-    /**
-     * @var TMedewerker
-     */
-    private $Medewerker;
-
-    /**
-     * @var string
-     */
-    private $Team;
+    private string $Team;
 
     /**
      * Constructor
      *
-     * @var string $Contractnummer
-     * @var string $Product
-     * @var string $NaamProduct
-     * @var string $Status
-     * @var DateTimeInterface $Startdatum
-     * @var DateTimeInterface $Einddatum
-     * @var string $Eindstatus
-     * @var TMedewerker $Medewerker
-     * @var string $Team
+     * @param string $Contractnummer
+     * @param string $Product
+     * @param string $NaamProduct
+     * @param string $Status
+     * @param \DateTimeInterface $Startdatum
+     * @param \DateTimeInterface $Einddatum
+     * @param string $Eindstatus
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker
+     * @param string $Team
      */
-    public function __construct($Contractnummer, $Product, $NaamProduct, $Status, $Startdatum, $Einddatum, $Eindstatus, $Medewerker, $Team)
+    public function __construct(string $Contractnummer, string $Product, string $NaamProduct, string $Status, \DateTimeInterface $Startdatum, \DateTimeInterface $Einddatum, string $Eindstatus, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker, string $Team)
     {
         $this->Contractnummer = $Contractnummer;
         $this->Product = $Product;
@@ -83,16 +80,16 @@ class TRelatieProduct implements RequestInterface
     /**
      * @return string
      */
-    public function getContractnummer()
+    public function getContractnummer() : string
     {
         return $this->Contractnummer;
     }
 
     /**
      * @param string $Contractnummer
-     * @return TRelatieProduct
+     * @return static
      */
-    public function withContractnummer($Contractnummer)
+    public function withContractnummer(string $Contractnummer) : static
     {
         $new = clone $this;
         $new->Contractnummer = $Contractnummer;
@@ -103,16 +100,16 @@ class TRelatieProduct implements RequestInterface
     /**
      * @return string
      */
-    public function getProduct()
+    public function getProduct() : string
     {
         return $this->Product;
     }
 
     /**
      * @param string $Product
-     * @return TRelatieProduct
+     * @return static
      */
-    public function withProduct($Product)
+    public function withProduct(string $Product) : static
     {
         $new = clone $this;
         $new->Product = $Product;
@@ -123,16 +120,16 @@ class TRelatieProduct implements RequestInterface
     /**
      * @return string
      */
-    public function getNaamProduct()
+    public function getNaamProduct() : string
     {
         return $this->NaamProduct;
     }
 
     /**
      * @param string $NaamProduct
-     * @return TRelatieProduct
+     * @return static
      */
-    public function withNaamProduct($NaamProduct)
+    public function withNaamProduct(string $NaamProduct) : static
     {
         $new = clone $this;
         $new->NaamProduct = $NaamProduct;
@@ -143,16 +140,16 @@ class TRelatieProduct implements RequestInterface
     /**
      * @return string
      */
-    public function getStatus()
+    public function getStatus() : string
     {
         return $this->Status;
     }
 
     /**
      * @param string $Status
-     * @return TRelatieProduct
+     * @return static
      */
-    public function withStatus($Status)
+    public function withStatus(string $Status) : static
     {
         $new = clone $this;
         $new->Status = $Status;
@@ -161,18 +158,18 @@ class TRelatieProduct implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getStartdatum()
+    public function getStartdatum() : \DateTimeInterface
     {
         return $this->Startdatum;
     }
 
     /**
-     * @param DateTimeInterface $Startdatum
-     * @return TRelatieProduct
+     * @param \DateTimeInterface $Startdatum
+     * @return static
      */
-    public function withStartdatum($Startdatum)
+    public function withStartdatum(\DateTimeInterface $Startdatum) : static
     {
         $new = clone $this;
         $new->Startdatum = $Startdatum;
@@ -181,18 +178,18 @@ class TRelatieProduct implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getEinddatum()
+    public function getEinddatum() : \DateTimeInterface
     {
         return $this->Einddatum;
     }
 
     /**
-     * @param DateTimeInterface $Einddatum
-     * @return TRelatieProduct
+     * @param \DateTimeInterface $Einddatum
+     * @return static
      */
-    public function withEinddatum($Einddatum)
+    public function withEinddatum(\DateTimeInterface $Einddatum) : static
     {
         $new = clone $this;
         $new->Einddatum = $Einddatum;
@@ -203,16 +200,16 @@ class TRelatieProduct implements RequestInterface
     /**
      * @return string
      */
-    public function getEindstatus()
+    public function getEindstatus() : string
     {
         return $this->Eindstatus;
     }
 
     /**
      * @param string $Eindstatus
-     * @return TRelatieProduct
+     * @return static
      */
-    public function withEindstatus($Eindstatus)
+    public function withEindstatus(string $Eindstatus) : static
     {
         $new = clone $this;
         $new->Eindstatus = $Eindstatus;
@@ -221,18 +218,18 @@ class TRelatieProduct implements RequestInterface
     }
 
     /**
-     * @return TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    public function getMedewerker()
+    public function getMedewerker() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
     {
         return $this->Medewerker;
     }
 
     /**
-     * @param TMedewerker $Medewerker
-     * @return TRelatieProduct
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker) : static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -243,23 +240,21 @@ class TRelatieProduct implements RequestInterface
     /**
      * @return string
      */
-    public function getTeam()
+    public function getTeam() : string
     {
         return $this->Team;
     }
 
     /**
      * @param string $Team
-     * @return TRelatieProduct
+     * @return static
      */
-    public function withTeam($Team)
+    public function withTeam(string $Team) : static
     {
         $new = clone $this;
         $new->Team = $Team;
 
         return $new;
     }
-
-
 }
 

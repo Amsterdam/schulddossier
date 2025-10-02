@@ -2,37 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\ResultInterface;
 
 class SchuldHulpServiceGetSRVEisersResponse implements ResultInterface
 {
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEisers
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEisers $Result;
 
     /**
-     * @var TSRVEisers
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEisers
      */
-    private $Result;
-
-    /**
-     * @return TSRVEisers
-     */
-    public function getResult()
+    public function getResult() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEisers
     {
         return $this->Result;
     }
 
     /**
-     * @param TSRVEisers $Result
-     * @return SchuldHulpServiceGetSRVEisersResponse
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEisers $Result
+     * @return static
      */
-    public function withResult($Result)
+    public function withResult(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEisers $Result) : static
     {
         $new = clone $this;
         $new->Result = $Result;
 
         return $new;
     }
-
-
 }
 

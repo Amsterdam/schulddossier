@@ -2,29 +2,27 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBRVorm implements RequestInterface
 {
+    /**
+     * @var string
+     */
+    private string $BBRVormCode;
 
     /**
      * @var string
      */
-    private $BBRVormCode;
-
-    /**
-     * @var string
-     */
-    private $BBRVormOmschrijving;
+    private string $BBRVormOmschrijving;
 
     /**
      * Constructor
      *
-     * @var string $BBRVormCode
-     * @var string $BBRVormOmschrijving
+     * @param string $BBRVormCode
+     * @param string $BBRVormOmschrijving
      */
-    public function __construct($BBRVormCode, $BBRVormOmschrijving)
+    public function __construct(string $BBRVormCode, string $BBRVormOmschrijving)
     {
         $this->BBRVormCode = $BBRVormCode;
         $this->BBRVormOmschrijving = $BBRVormOmschrijving;
@@ -33,16 +31,16 @@ class TBBRVorm implements RequestInterface
     /**
      * @return string
      */
-    public function getBBRVormCode()
+    public function getBBRVormCode() : string
     {
         return $this->BBRVormCode;
     }
 
     /**
      * @param string $BBRVormCode
-     * @return TBBRVorm
+     * @return static
      */
-    public function withBBRVormCode($BBRVormCode)
+    public function withBBRVormCode(string $BBRVormCode) : static
     {
         $new = clone $this;
         $new->BBRVormCode = $BBRVormCode;
@@ -53,23 +51,21 @@ class TBBRVorm implements RequestInterface
     /**
      * @return string
      */
-    public function getBBRVormOmschrijving()
+    public function getBBRVormOmschrijving() : string
     {
         return $this->BBRVormOmschrijving;
     }
 
     /**
      * @param string $BBRVormOmschrijving
-     * @return TBBRVorm
+     * @return static
      */
-    public function withBBRVormOmschrijving($BBRVormOmschrijving)
+    public function withBBRVormOmschrijving(string $BBRVormOmschrijving) : static
     {
         $new = clone $this;
         $new->BBRVormOmschrijving = $BBRVormOmschrijving;
 
         return $new;
     }
-
-
 }
 

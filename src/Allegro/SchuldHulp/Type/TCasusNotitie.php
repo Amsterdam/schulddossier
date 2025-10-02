@@ -2,48 +2,45 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusNotitie implements RequestInterface
 {
-
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $Datum;
+    private \DateTimeInterface $Datum;
 
     /**
      * @var string
      */
-    private $Beschrijving;
+    private string $Beschrijving;
 
     /**
-     * @var TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    private $Medewerker;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker;
 
     /**
      * @var bool
      */
-    private $PDF;
+    private bool $PDF;
 
     /**
      * Constructor
      *
-     * @var int $Volgnummer
-     * @var DateTimeInterface $Datum
-     * @var string $Beschrijving
-     * @var TMedewerker $Medewerker
-     * @var bool $PDF
+     * @param int $Volgnummer
+     * @param \DateTimeInterface $Datum
+     * @param string $Beschrijving
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker
+     * @param bool $PDF
      */
-    public function __construct($Volgnummer, $Datum, $Beschrijving, $Medewerker, $PDF)
+    public function __construct(int $Volgnummer, \DateTimeInterface $Datum, string $Beschrijving, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker, bool $PDF)
     {
         $this->Volgnummer = $Volgnummer;
         $this->Datum = $Datum;
@@ -55,16 +52,16 @@ class TCasusNotitie implements RequestInterface
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer() : int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TCasusNotitie
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer) : static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -73,18 +70,18 @@ class TCasusNotitie implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatum()
+    public function getDatum() : \DateTimeInterface
     {
         return $this->Datum;
     }
 
     /**
-     * @param DateTimeInterface $Datum
-     * @return TCasusNotitie
+     * @param \DateTimeInterface $Datum
+     * @return static
      */
-    public function withDatum($Datum)
+    public function withDatum(\DateTimeInterface $Datum) : static
     {
         $new = clone $this;
         $new->Datum = $Datum;
@@ -95,16 +92,16 @@ class TCasusNotitie implements RequestInterface
     /**
      * @return string
      */
-    public function getBeschrijving()
+    public function getBeschrijving() : string
     {
         return $this->Beschrijving;
     }
 
     /**
      * @param string $Beschrijving
-     * @return TCasusNotitie
+     * @return static
      */
-    public function withBeschrijving($Beschrijving)
+    public function withBeschrijving(string $Beschrijving) : static
     {
         $new = clone $this;
         $new->Beschrijving = $Beschrijving;
@@ -113,18 +110,18 @@ class TCasusNotitie implements RequestInterface
     }
 
     /**
-     * @return TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
-    public function getMedewerker()
+    public function getMedewerker() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
     {
         return $this->Medewerker;
     }
 
     /**
-     * @param TMedewerker $Medewerker
-     * @return TCasusNotitie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker) : static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -135,23 +132,21 @@ class TCasusNotitie implements RequestInterface
     /**
      * @return bool
      */
-    public function getPDF()
+    public function getPDF() : bool
     {
         return $this->PDF;
     }
 
     /**
      * @param bool $PDF
-     * @return TCasusNotitie
+     * @return static
      */
-    public function withPDF($PDF)
+    public function withPDF(bool $PDF) : static
     {
         $new = clone $this;
         $new->PDF = $PDF;
 
         return $new;
     }
-
-
 }
 

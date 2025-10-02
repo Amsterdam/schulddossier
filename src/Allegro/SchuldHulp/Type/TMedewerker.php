@@ -2,59 +2,57 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TMedewerker implements RequestInterface
 {
+    /**
+     * @var string
+     */
+    private string $Code;
 
     /**
      * @var string
      */
-    private $Code;
+    private string $Voornaam;
 
     /**
      * @var string
      */
-    private $Voornaam;
+    private string $Achternaam;
 
     /**
      * @var string
      */
-    private $Achternaam;
+    private string $Voorvoegsels;
 
     /**
      * @var string
      */
-    private $Voorvoegsels;
+    private string $Voorletters;
 
     /**
      * @var string
      */
-    private $Voorletters;
+    private string $Telefoon;
 
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TeamArray
      */
-    private $Telefoon;
-
-    /**
-     * @var TeamArray
-     */
-    private $Teams;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TeamArray $Teams;
 
     /**
      * Constructor
      *
-     * @var string $Code
-     * @var string $Voornaam
-     * @var string $Achternaam
-     * @var string $Voorvoegsels
-     * @var string $Voorletters
-     * @var string $Telefoon
-     * @var TeamArray $Teams
+     * @param string $Code
+     * @param string $Voornaam
+     * @param string $Achternaam
+     * @param string $Voorvoegsels
+     * @param string $Voorletters
+     * @param string $Telefoon
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TeamArray $Teams
      */
-    public function __construct($Code, $Voornaam, $Achternaam, $Voorvoegsels, $Voorletters, $Telefoon, $Teams)
+    public function __construct(string $Code, string $Voornaam, string $Achternaam, string $Voorvoegsels, string $Voorletters, string $Telefoon, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TeamArray $Teams)
     {
         $this->Code = $Code;
         $this->Voornaam = $Voornaam;
@@ -68,16 +66,16 @@ class TMedewerker implements RequestInterface
     /**
      * @return string
      */
-    public function getCode()
+    public function getCode() : string
     {
         return $this->Code;
     }
 
     /**
      * @param string $Code
-     * @return TMedewerker
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(string $Code) : static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -88,16 +86,16 @@ class TMedewerker implements RequestInterface
     /**
      * @return string
      */
-    public function getVoornaam()
+    public function getVoornaam() : string
     {
         return $this->Voornaam;
     }
 
     /**
      * @param string $Voornaam
-     * @return TMedewerker
+     * @return static
      */
-    public function withVoornaam($Voornaam)
+    public function withVoornaam(string $Voornaam) : static
     {
         $new = clone $this;
         $new->Voornaam = $Voornaam;
@@ -108,16 +106,16 @@ class TMedewerker implements RequestInterface
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam() : string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TMedewerker
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam) : static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -128,16 +126,16 @@ class TMedewerker implements RequestInterface
     /**
      * @return string
      */
-    public function getVoorvoegsels()
+    public function getVoorvoegsels() : string
     {
         return $this->Voorvoegsels;
     }
 
     /**
      * @param string $Voorvoegsels
-     * @return TMedewerker
+     * @return static
      */
-    public function withVoorvoegsels($Voorvoegsels)
+    public function withVoorvoegsels(string $Voorvoegsels) : static
     {
         $new = clone $this;
         $new->Voorvoegsels = $Voorvoegsels;
@@ -148,16 +146,16 @@ class TMedewerker implements RequestInterface
     /**
      * @return string
      */
-    public function getVoorletters()
+    public function getVoorletters() : string
     {
         return $this->Voorletters;
     }
 
     /**
      * @param string $Voorletters
-     * @return TMedewerker
+     * @return static
      */
-    public function withVoorletters($Voorletters)
+    public function withVoorletters(string $Voorletters) : static
     {
         $new = clone $this;
         $new->Voorletters = $Voorletters;
@@ -168,16 +166,16 @@ class TMedewerker implements RequestInterface
     /**
      * @return string
      */
-    public function getTelefoon()
+    public function getTelefoon() : string
     {
         return $this->Telefoon;
     }
 
     /**
      * @param string $Telefoon
-     * @return TMedewerker
+     * @return static
      */
-    public function withTelefoon($Telefoon)
+    public function withTelefoon(string $Telefoon) : static
     {
         $new = clone $this;
         $new->Telefoon = $Telefoon;
@@ -186,25 +184,23 @@ class TMedewerker implements RequestInterface
     }
 
     /**
-     * @return TeamArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TeamArray
      */
-    public function getTeams()
+    public function getTeams() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TeamArray
     {
         return $this->Teams;
     }
 
     /**
-     * @param TeamArray $Teams
-     * @return TMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TeamArray $Teams
+     * @return static
      */
-    public function withTeams($Teams)
+    public function withTeams(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TeamArray $Teams) : static
     {
         $new = clone $this;
         $new->Teams = $Teams;
 
         return $new;
     }
-
-
 }
 

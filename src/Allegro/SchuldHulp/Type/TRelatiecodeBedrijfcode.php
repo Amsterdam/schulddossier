@@ -2,35 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TRelatiecodeBedrijfcode implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Relatiecode;
-
-    /**
-     * @var int
-     */
-    private $Bedrijfscode;
+    private int $Bedrijfscode;
 
     /**
      * @var string
      */
-    private $Bedrijfsnaam;
+    private string $Bedrijfsnaam;
 
     /**
      * Constructor
      *
-     * @var int $Relatiecode
-     * @var int $Bedrijfscode
-     * @var string $Bedrijfsnaam
+     * @param int $Relatiecode
+     * @param int $Bedrijfscode
+     * @param string $Bedrijfsnaam
      */
-    public function __construct($Relatiecode, $Bedrijfscode, $Bedrijfsnaam)
+    public function __construct(int $Relatiecode, int $Bedrijfscode, string $Bedrijfsnaam)
     {
         $this->Relatiecode = $Relatiecode;
         $this->Bedrijfscode = $Bedrijfscode;
@@ -40,16 +38,16 @@ class TRelatiecodeBedrijfcode implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode() : int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TRelatiecodeBedrijfcode
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode) : static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -60,16 +58,16 @@ class TRelatiecodeBedrijfcode implements RequestInterface
     /**
      * @return int
      */
-    public function getBedrijfscode()
+    public function getBedrijfscode() : int
     {
         return $this->Bedrijfscode;
     }
 
     /**
      * @param int $Bedrijfscode
-     * @return TRelatiecodeBedrijfcode
+     * @return static
      */
-    public function withBedrijfscode($Bedrijfscode)
+    public function withBedrijfscode(int $Bedrijfscode) : static
     {
         $new = clone $this;
         $new->Bedrijfscode = $Bedrijfscode;
@@ -80,23 +78,21 @@ class TRelatiecodeBedrijfcode implements RequestInterface
     /**
      * @return string
      */
-    public function getBedrijfsnaam()
+    public function getBedrijfsnaam() : string
     {
         return $this->Bedrijfsnaam;
     }
 
     /**
      * @param string $Bedrijfsnaam
-     * @return TRelatiecodeBedrijfcode
+     * @return static
      */
-    public function withBedrijfsnaam($Bedrijfsnaam)
+    public function withBedrijfsnaam(string $Bedrijfsnaam) : static
     {
         $new = clone $this;
         $new->Bedrijfsnaam = $Bedrijfsnaam;
 
         return $new;
     }
-
-
 }
 

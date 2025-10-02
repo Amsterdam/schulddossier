@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class CasusNotitieArray implements RequestInterface
 {
-
     /**
-     * @var TCasusNotitie
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusNotitie>
      */
-    private $TCasusNotitie;
+    private array $TCasusNotitie;
 
     /**
      * Constructor
      *
-     * @var TCasusNotitie $TCasusNotitie
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusNotitie> $TCasusNotitie
      */
-    public function __construct($TCasusNotitie)
+    public function __construct(array $TCasusNotitie)
     {
         $this->TCasusNotitie = $TCasusNotitie;
     }
 
     /**
-     * @return TCasusNotitie
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusNotitie>
      */
-    public function getTCasusNotitie()
+    public function getTCasusNotitie() : array
     {
         return $this->TCasusNotitie;
     }
 
     /**
-     * @param TCasusNotitie $TCasusNotitie
-     * @return CasusNotitieArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusNotitie> $TCasusNotitie
+     * @return static
      */
-    public function withTCasusNotitie($TCasusNotitie)
+    public function withTCasusNotitie(array $TCasusNotitie) : static
     {
         $new = clone $this;
         $new->TCasusNotitie = $TCasusNotitie;
 
         return $new;
     }
-
-
 }
 

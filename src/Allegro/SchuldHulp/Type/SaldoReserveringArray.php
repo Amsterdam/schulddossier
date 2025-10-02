@@ -2,48 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SaldoReserveringArray implements RequestInterface
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSaldoReservering
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSaldoReservering>
      */
-    private $TSaldoReservering;
+    private array $TSaldoReservering;
 
     /**
      * Constructor
      *
-     * @var TSaldoReservering $TSaldoReservering
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSaldoReservering> $TSaldoReservering
      */
-    public function __construct($TSaldoReservering)
+    public function __construct(array $TSaldoReservering)
     {
         $this->TSaldoReservering = $TSaldoReservering;
     }
 
     /**
-     * @return TSaldoReservering
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSaldoReservering>
      */
-    public function getTSaldoReservering()
+    public function getTSaldoReservering() : array
     {
         return $this->TSaldoReservering;
     }
 
     /**
-     * @param TSaldoReservering $TSaldoReservering
-     * @return SaldoReserveringArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSaldoReservering> $TSaldoReservering
+     * @return static
      */
-    public function withTSaldoReservering($TSaldoReservering)
+    public function withTSaldoReservering(array $TSaldoReservering) : static
     {
         $new = clone $this;
         $new->TSaldoReservering = $TSaldoReservering;
 
         return $new;
     }
-
-
 }
 

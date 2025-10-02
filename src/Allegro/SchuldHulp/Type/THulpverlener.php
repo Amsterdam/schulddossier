@@ -2,78 +2,75 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class THulpverlener implements RequestInterface
 {
+    /**
+     * @var int
+     */
+    private int $Code;
 
     /**
      * @var int
      */
-    private $Code;
+    private int $OrganisatieCode;
+
+    /**
+     * @var string
+     */
+    private string $OrganisatieNaam;
 
     /**
      * @var int
      */
-    private $OrganisatieCode;
+    private int $ContactCode;
 
     /**
      * @var string
      */
-    private $OrganisatieNaam;
-
-    /**
-     * @var int
-     */
-    private $ContactCode;
+    private string $ContactNaam;
 
     /**
      * @var string
      */
-    private $ContactNaam;
-
-    /**
-     * @var string
-     */
-    private $SoortHulp;
+    private string $SoortHulp;
 
     /**
      * @var bool
      */
-    private $InzageGevraagd;
+    private bool $InzageGevraagd;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumInzageGevraagd;
+    private \DateTimeInterface $DatumInzageGevraagd;
 
     /**
      * @var string
      */
-    private $Inzage;
+    private string $Inzage;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $DatumInzage;
+    private \DateTimeInterface $DatumInzage;
 
     /**
      * Constructor
      *
-     * @var int $Code
-     * @var int $OrganisatieCode
-     * @var string $OrganisatieNaam
-     * @var int $ContactCode
-     * @var string $ContactNaam
-     * @var string $SoortHulp
-     * @var bool $InzageGevraagd
-     * @var DateTimeInterface $DatumInzageGevraagd
-     * @var string $Inzage
-     * @var DateTimeInterface $DatumInzage
+     * @param int $Code
+     * @param int $OrganisatieCode
+     * @param string $OrganisatieNaam
+     * @param int $ContactCode
+     * @param string $ContactNaam
+     * @param string $SoortHulp
+     * @param bool $InzageGevraagd
+     * @param \DateTimeInterface $DatumInzageGevraagd
+     * @param string $Inzage
+     * @param \DateTimeInterface $DatumInzage
      */
-    public function __construct($Code, $OrganisatieCode, $OrganisatieNaam, $ContactCode, $ContactNaam, $SoortHulp, $InzageGevraagd, $DatumInzageGevraagd, $Inzage, $DatumInzage)
+    public function __construct(int $Code, int $OrganisatieCode, string $OrganisatieNaam, int $ContactCode, string $ContactNaam, string $SoortHulp, bool $InzageGevraagd, \DateTimeInterface $DatumInzageGevraagd, string $Inzage, \DateTimeInterface $DatumInzage)
     {
         $this->Code = $Code;
         $this->OrganisatieCode = $OrganisatieCode;
@@ -90,16 +87,16 @@ class THulpverlener implements RequestInterface
     /**
      * @return int
      */
-    public function getCode()
+    public function getCode() : int
     {
         return $this->Code;
     }
 
     /**
      * @param int $Code
-     * @return THulpverlener
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(int $Code) : static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -110,16 +107,16 @@ class THulpverlener implements RequestInterface
     /**
      * @return int
      */
-    public function getOrganisatieCode()
+    public function getOrganisatieCode() : int
     {
         return $this->OrganisatieCode;
     }
 
     /**
      * @param int $OrganisatieCode
-     * @return THulpverlener
+     * @return static
      */
-    public function withOrganisatieCode($OrganisatieCode)
+    public function withOrganisatieCode(int $OrganisatieCode) : static
     {
         $new = clone $this;
         $new->OrganisatieCode = $OrganisatieCode;
@@ -130,16 +127,16 @@ class THulpverlener implements RequestInterface
     /**
      * @return string
      */
-    public function getOrganisatieNaam()
+    public function getOrganisatieNaam() : string
     {
         return $this->OrganisatieNaam;
     }
 
     /**
      * @param string $OrganisatieNaam
-     * @return THulpverlener
+     * @return static
      */
-    public function withOrganisatieNaam($OrganisatieNaam)
+    public function withOrganisatieNaam(string $OrganisatieNaam) : static
     {
         $new = clone $this;
         $new->OrganisatieNaam = $OrganisatieNaam;
@@ -150,16 +147,16 @@ class THulpverlener implements RequestInterface
     /**
      * @return int
      */
-    public function getContactCode()
+    public function getContactCode() : int
     {
         return $this->ContactCode;
     }
 
     /**
      * @param int $ContactCode
-     * @return THulpverlener
+     * @return static
      */
-    public function withContactCode($ContactCode)
+    public function withContactCode(int $ContactCode) : static
     {
         $new = clone $this;
         $new->ContactCode = $ContactCode;
@@ -170,16 +167,16 @@ class THulpverlener implements RequestInterface
     /**
      * @return string
      */
-    public function getContactNaam()
+    public function getContactNaam() : string
     {
         return $this->ContactNaam;
     }
 
     /**
      * @param string $ContactNaam
-     * @return THulpverlener
+     * @return static
      */
-    public function withContactNaam($ContactNaam)
+    public function withContactNaam(string $ContactNaam) : static
     {
         $new = clone $this;
         $new->ContactNaam = $ContactNaam;
@@ -190,16 +187,16 @@ class THulpverlener implements RequestInterface
     /**
      * @return string
      */
-    public function getSoortHulp()
+    public function getSoortHulp() : string
     {
         return $this->SoortHulp;
     }
 
     /**
      * @param string $SoortHulp
-     * @return THulpverlener
+     * @return static
      */
-    public function withSoortHulp($SoortHulp)
+    public function withSoortHulp(string $SoortHulp) : static
     {
         $new = clone $this;
         $new->SoortHulp = $SoortHulp;
@@ -210,16 +207,16 @@ class THulpverlener implements RequestInterface
     /**
      * @return bool
      */
-    public function getInzageGevraagd()
+    public function getInzageGevraagd() : bool
     {
         return $this->InzageGevraagd;
     }
 
     /**
      * @param bool $InzageGevraagd
-     * @return THulpverlener
+     * @return static
      */
-    public function withInzageGevraagd($InzageGevraagd)
+    public function withInzageGevraagd(bool $InzageGevraagd) : static
     {
         $new = clone $this;
         $new->InzageGevraagd = $InzageGevraagd;
@@ -228,18 +225,18 @@ class THulpverlener implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumInzageGevraagd()
+    public function getDatumInzageGevraagd() : \DateTimeInterface
     {
         return $this->DatumInzageGevraagd;
     }
 
     /**
-     * @param DateTimeInterface $DatumInzageGevraagd
-     * @return THulpverlener
+     * @param \DateTimeInterface $DatumInzageGevraagd
+     * @return static
      */
-    public function withDatumInzageGevraagd($DatumInzageGevraagd)
+    public function withDatumInzageGevraagd(\DateTimeInterface $DatumInzageGevraagd) : static
     {
         $new = clone $this;
         $new->DatumInzageGevraagd = $DatumInzageGevraagd;
@@ -250,16 +247,16 @@ class THulpverlener implements RequestInterface
     /**
      * @return string
      */
-    public function getInzage()
+    public function getInzage() : string
     {
         return $this->Inzage;
     }
 
     /**
      * @param string $Inzage
-     * @return THulpverlener
+     * @return static
      */
-    public function withInzage($Inzage)
+    public function withInzage(string $Inzage) : static
     {
         $new = clone $this;
         $new->Inzage = $Inzage;
@@ -268,25 +265,23 @@ class THulpverlener implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumInzage()
+    public function getDatumInzage() : \DateTimeInterface
     {
         return $this->DatumInzage;
     }
 
     /**
-     * @param DateTimeInterface $DatumInzage
-     * @return THulpverlener
+     * @param \DateTimeInterface $DatumInzage
+     * @return static
      */
-    public function withDatumInzage($DatumInzage)
+    public function withDatumInzage(\DateTimeInterface $DatumInzage) : static
     {
         $new = clone $this;
         $new->DatumInzage = $DatumInzage;
 
         return $new;
     }
-
-
 }
 

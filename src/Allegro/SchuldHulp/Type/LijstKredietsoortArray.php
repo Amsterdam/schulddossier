@@ -2,48 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class LijstKredietsoortArray implements RequestInterface
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstKredietsoort
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstKredietsoort>
      */
-    private $TLijstKredietsoort;
+    private array $TLijstKredietsoort;
 
     /**
      * Constructor
      *
-     * @var TLijstKredietsoort $TLijstKredietsoort
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstKredietsoort> $TLijstKredietsoort
      */
-    public function __construct($TLijstKredietsoort)
+    public function __construct(array $TLijstKredietsoort)
     {
         $this->TLijstKredietsoort = $TLijstKredietsoort;
     }
 
     /**
-     * @return TLijstKredietsoort
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstKredietsoort>
      */
-    public function getTLijstKredietsoort()
+    public function getTLijstKredietsoort() : array
     {
         return $this->TLijstKredietsoort;
     }
 
     /**
-     * @param TLijstKredietsoort $TLijstKredietsoort
-     * @return LijstKredietsoortArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstKredietsoort> $TLijstKredietsoort
+     * @return static
      */
-    public function withTLijstKredietsoort($TLijstKredietsoort)
+    public function withTLijstKredietsoort(array $TLijstKredietsoort) : static
     {
         $new = clone $this;
         $new->TLijstKredietsoort = $TLijstKredietsoort;
 
         return $new;
     }
-
-
 }
 

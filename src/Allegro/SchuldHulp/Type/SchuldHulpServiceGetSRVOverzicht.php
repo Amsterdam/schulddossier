@@ -2,23 +2,21 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SchuldHulpServiceGetSRVOverzicht implements RequestInterface
 {
-
     /**
      * @var int
      */
-    private $aRelatieCode;
+    private int $aRelatieCode;
 
     /**
      * Constructor
      *
-     * @var int $aRelatieCode
+     * @param int $aRelatieCode
      */
-    public function __construct($aRelatieCode)
+    public function __construct(int $aRelatieCode)
     {
         $this->aRelatieCode = $aRelatieCode;
     }
@@ -26,23 +24,21 @@ class SchuldHulpServiceGetSRVOverzicht implements RequestInterface
     /**
      * @return int
      */
-    public function getARelatieCode()
+    public function getARelatieCode() : int
     {
         return $this->aRelatieCode;
     }
 
     /**
      * @param int $aRelatieCode
-     * @return SchuldHulpServiceGetSRVOverzicht
+     * @return static
      */
-    public function withARelatieCode($aRelatieCode)
+    public function withARelatieCode(int $aRelatieCode) : static
     {
         $new = clone $this;
         $new->aRelatieCode = $aRelatieCode;
 
         return $new;
     }
-
-
 }
 

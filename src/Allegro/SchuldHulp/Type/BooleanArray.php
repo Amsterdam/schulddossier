@@ -2,47 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class BooleanArray implements RequestInterface
 {
-
     /**
-     * @var bool
+     * @var array<int<0,max>, bool>
      */
-    private $boolean;
+    private array $boolean;
 
     /**
      * Constructor
      *
-     * @var bool $boolean
+     * @param array<int<0,max>, bool> $boolean
      */
-    public function __construct($boolean)
+    public function __construct(array $boolean)
     {
         $this->boolean = $boolean;
     }
 
     /**
-     * @return bool
+     * @return array<int<0,max>, bool>
      */
-    public function getBoolean()
+    public function getBoolean() : array
     {
         return $this->boolean;
     }
 
     /**
-     * @param bool $boolean
-     * @return BooleanArray
+     * @param array<int<0,max>, bool> $boolean
+     * @return static
      */
-    public function withBoolean($boolean)
+    public function withBoolean(array $boolean) : static
     {
         $new = clone $this;
         $new->boolean = $boolean;
 
         return $new;
     }
-
-
 }
 

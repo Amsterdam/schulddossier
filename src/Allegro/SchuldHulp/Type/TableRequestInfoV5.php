@@ -2,35 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TableRequestInfoV5 implements RequestInterface
 {
-
     /**
      * @var mixed
      */
-    private $WhereClause;
+    private mixed $WhereClause;
 
     /**
-     * @var StringArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
      */
-    private $DynamicSelectFieldNames;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $DynamicSelectFieldNames;
 
     /**
-     * @var ColumnSorting
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSorting
      */
-    private $Sorting;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSorting $Sorting;
 
     /**
      * Constructor
      *
-     * @var mixed $WhereClause
-     * @var StringArray $DynamicSelectFieldNames
-     * @var ColumnSorting $Sorting
+     * @param mixed $WhereClause
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $DynamicSelectFieldNames
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSorting $Sorting
      */
-    public function __construct($WhereClause, $DynamicSelectFieldNames, $Sorting)
+    public function __construct(mixed $WhereClause, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $DynamicSelectFieldNames, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSorting $Sorting)
     {
         $this->WhereClause = $WhereClause;
         $this->DynamicSelectFieldNames = $DynamicSelectFieldNames;
@@ -40,16 +38,16 @@ class TableRequestInfoV5 implements RequestInterface
     /**
      * @return mixed
      */
-    public function getWhereClause()
+    public function getWhereClause() : mixed
     {
         return $this->WhereClause;
     }
 
     /**
      * @param mixed $WhereClause
-     * @return TableRequestInfoV5
+     * @return static
      */
-    public function withWhereClause($WhereClause)
+    public function withWhereClause(mixed $WhereClause) : static
     {
         $new = clone $this;
         $new->WhereClause = $WhereClause;
@@ -58,18 +56,18 @@ class TableRequestInfoV5 implements RequestInterface
     }
 
     /**
-     * @return StringArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
      */
-    public function getDynamicSelectFieldNames()
+    public function getDynamicSelectFieldNames() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
     {
         return $this->DynamicSelectFieldNames;
     }
 
     /**
-     * @param StringArray $DynamicSelectFieldNames
-     * @return TableRequestInfoV5
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $DynamicSelectFieldNames
+     * @return static
      */
-    public function withDynamicSelectFieldNames($DynamicSelectFieldNames)
+    public function withDynamicSelectFieldNames(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $DynamicSelectFieldNames) : static
     {
         $new = clone $this;
         $new->DynamicSelectFieldNames = $DynamicSelectFieldNames;
@@ -78,25 +76,23 @@ class TableRequestInfoV5 implements RequestInterface
     }
 
     /**
-     * @return ColumnSorting
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSorting
      */
-    public function getSorting()
+    public function getSorting() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSorting
     {
         return $this->Sorting;
     }
 
     /**
-     * @param ColumnSorting $Sorting
-     * @return TableRequestInfoV5
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSorting $Sorting
+     * @return static
      */
-    public function withSorting($Sorting)
+    public function withSorting(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSorting $Sorting) : static
     {
         $new = clone $this;
         $new->Sorting = $Sorting;
 
         return $new;
     }
-
-
 }
 

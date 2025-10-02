@@ -2,48 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SimpleDataParameterArray implements RequestInterface
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameter
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameter>
      */
-    private $SimpleDataParameter;
+    private array $SimpleDataParameter;
 
     /**
      * Constructor
      *
-     * @var SimpleDataParameter $SimpleDataParameter
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameter> $SimpleDataParameter
      */
-    public function __construct($SimpleDataParameter)
+    public function __construct(array $SimpleDataParameter)
     {
         $this->SimpleDataParameter = $SimpleDataParameter;
     }
 
     /**
-     * @return SimpleDataParameter
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameter>
      */
-    public function getSimpleDataParameter()
+    public function getSimpleDataParameter() : array
     {
         return $this->SimpleDataParameter;
     }
 
     /**
-     * @param SimpleDataParameter $SimpleDataParameter
-     * @return SimpleDataParameterArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameter> $SimpleDataParameter
+     * @return static
      */
-    public function withSimpleDataParameter($SimpleDataParameter)
+    public function withSimpleDataParameter(array $SimpleDataParameter) : static
     {
         $new = clone $this;
         $new->SimpleDataParameter = $SimpleDataParameter;
 
         return $new;
     }
-
-
 }
 

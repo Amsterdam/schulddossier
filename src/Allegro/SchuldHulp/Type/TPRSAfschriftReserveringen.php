@@ -2,48 +2,43 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSAfschriftReserveringen implements RequestInterface
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftReseveringArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftReseveringArray
      */
-    private $AfschriftReserveringen;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftReseveringArray $AfschriftReserveringen;
 
     /**
      * Constructor
      *
-     * @var PRSAfschriftReseveringArray $AfschriftReserveringen
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftReseveringArray $AfschriftReserveringen
      */
-    public function __construct($AfschriftReserveringen)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftReseveringArray $AfschriftReserveringen)
     {
         $this->AfschriftReserveringen = $AfschriftReserveringen;
     }
 
     /**
-     * @return PRSAfschriftReseveringArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftReseveringArray
      */
-    public function getAfschriftReserveringen()
+    public function getAfschriftReserveringen() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftReseveringArray
     {
         return $this->AfschriftReserveringen;
     }
 
     /**
-     * @param PRSAfschriftReseveringArray $AfschriftReserveringen
-     * @return TPRSAfschriftReserveringen
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftReseveringArray $AfschriftReserveringen
+     * @return static
      */
-    public function withAfschriftReserveringen($AfschriftReserveringen)
+    public function withAfschriftReserveringen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSAfschriftReseveringArray $AfschriftReserveringen) : static
     {
         $new = clone $this;
         $new->AfschriftReserveringen = $AfschriftReserveringen;
 
         return $new;
     }
-
-
 }
 

@@ -2,133 +2,129 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSRVAanvraag implements RequestInterface
 {
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader
+     */
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader $InfoHeader;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader
+     * @var \DateTimeInterface
      */
-    private $InfoHeader;
+    private \DateTimeInterface $Startdatum;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
-    private $Startdatum;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $Einddatum;
-
-    /**
-     * @var string
-     */
-    private $Eindstatus;
+    private \DateTimeInterface $Einddatum;
 
     /**
      * @var string
      */
-    private $Medewerker;
-
-    /**
-     * @var int
-     */
-    private $Opdrachtgever;
-
-    /**
-     * @var int
-     */
-    private $OpdrachtgeverContact;
-
-    /**
-     * @var float
-     */
-    private $VTLB;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $DatumBerekening;
-
-    /**
-     * @var float
-     */
-    private $BrutoAfloscapaciteit;
-
-    /**
-     * @var float
-     */
-    private $KostenFinancieelBeheer;
-
-    /**
-     * @var float
-     */
-    private $KostenSchuldhulpverlening;
-
-    /**
-     * @var float
-     */
-    private $NettoAfloscapaciteit;
-
-    /**
-     * @var float
-     */
-    private $TotaalAangemeldeSchuld;
-
-    /**
-     * @var float
-     */
-    private $TotaalTeruggemeldeSchuld;
-
-    /**
-     * @var int
-     */
-    private $PartnerCode;
-
-    /**
-     * @var DateTimeInterface
-     */
-    private $Aanvraagdatum;
+    private string $Eindstatus;
 
     /**
      * @var string
      */
-    private $RedenOpschorting;
+    private string $Medewerker;
+
+    /**
+     * @var int
+     */
+    private int $Opdrachtgever;
+
+    /**
+     * @var int
+     */
+    private int $OpdrachtgeverContact;
 
     /**
      * @var float
      */
-    private $ExtraInleg;
+    private float $VTLB;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $DatumBerekening;
+
+    /**
+     * @var float
+     */
+    private float $BrutoAfloscapaciteit;
+
+    /**
+     * @var float
+     */
+    private float $KostenFinancieelBeheer;
+
+    /**
+     * @var float
+     */
+    private float $KostenSchuldhulpverlening;
+
+    /**
+     * @var float
+     */
+    private float $NettoAfloscapaciteit;
+
+    /**
+     * @var float
+     */
+    private float $TotaalAangemeldeSchuld;
+
+    /**
+     * @var float
+     */
+    private float $TotaalTeruggemeldeSchuld;
+
+    /**
+     * @var int
+     */
+    private int $PartnerCode;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $Aanvraagdatum;
+
+    /**
+     * @var string
+     */
+    private string $RedenOpschorting;
+
+    /**
+     * @var float
+     */
+    private float $ExtraInleg;
 
     /**
      * Constructor
      *
-     * @var TSRVAanvraagHeader $InfoHeader
-     * @var DateTimeInterface $Startdatum
-     * @var DateTimeInterface $Einddatum
-     * @var string $Eindstatus
-     * @var string $Medewerker
-     * @var int $Opdrachtgever
-     * @var int $OpdrachtgeverContact
-     * @var float $VTLB
-     * @var DateTimeInterface $DatumBerekening
-     * @var float $BrutoAfloscapaciteit
-     * @var float $KostenFinancieelBeheer
-     * @var float $KostenSchuldhulpverlening
-     * @var float $NettoAfloscapaciteit
-     * @var float $TotaalAangemeldeSchuld
-     * @var float $TotaalTeruggemeldeSchuld
-     * @var int $PartnerCode
-     * @var DateTimeInterface $Aanvraagdatum
-     * @var string $RedenOpschorting
-     * @var float $ExtraInleg
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader $InfoHeader
+     * @param \DateTimeInterface $Startdatum
+     * @param \DateTimeInterface $Einddatum
+     * @param string $Eindstatus
+     * @param string $Medewerker
+     * @param int $Opdrachtgever
+     * @param int $OpdrachtgeverContact
+     * @param float $VTLB
+     * @param \DateTimeInterface $DatumBerekening
+     * @param float $BrutoAfloscapaciteit
+     * @param float $KostenFinancieelBeheer
+     * @param float $KostenSchuldhulpverlening
+     * @param float $NettoAfloscapaciteit
+     * @param float $TotaalAangemeldeSchuld
+     * @param float $TotaalTeruggemeldeSchuld
+     * @param int $PartnerCode
+     * @param \DateTimeInterface $Aanvraagdatum
+     * @param string $RedenOpschorting
+     * @param float $ExtraInleg
      */
-    public function __construct($InfoHeader, $Startdatum, $Einddatum, $Eindstatus, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, $VTLB, $DatumBerekening, $BrutoAfloscapaciteit, $KostenFinancieelBeheer, $KostenSchuldhulpverlening, $NettoAfloscapaciteit, $TotaalAangemeldeSchuld, $TotaalTeruggemeldeSchuld, $PartnerCode, $Aanvraagdatum, $RedenOpschorting, $ExtraInleg)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader $InfoHeader, \DateTimeInterface $Startdatum, \DateTimeInterface $Einddatum, string $Eindstatus, string $Medewerker, int $Opdrachtgever, int $OpdrachtgeverContact, float $VTLB, \DateTimeInterface $DatumBerekening, float $BrutoAfloscapaciteit, float $KostenFinancieelBeheer, float $KostenSchuldhulpverlening, float $NettoAfloscapaciteit, float $TotaalAangemeldeSchuld, float $TotaalTeruggemeldeSchuld, int $PartnerCode, \DateTimeInterface $Aanvraagdatum, string $RedenOpschorting, float $ExtraInleg)
     {
         $this->InfoHeader = $InfoHeader;
         $this->Startdatum = $Startdatum;
@@ -152,18 +148,18 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @return TSRVAanvraagHeader
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader
      */
-    public function getInfoHeader()
+    public function getInfoHeader() : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader
     {
         return $this->InfoHeader;
     }
 
     /**
-     * @param TSRVAanvraagHeader $InfoHeader
-     * @return TSRVAanvraag
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader $InfoHeader
+     * @return static
      */
-    public function withInfoHeader($InfoHeader)
+    public function withInfoHeader(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader $InfoHeader) : static
     {
         $new = clone $this;
         $new->InfoHeader = $InfoHeader;
@@ -172,18 +168,18 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getStartdatum()
+    public function getStartdatum() : \DateTimeInterface
     {
         return $this->Startdatum;
     }
 
     /**
-     * @param DateTimeInterface $Startdatum
-     * @return TSRVAanvraag
+     * @param \DateTimeInterface $Startdatum
+     * @return static
      */
-    public function withStartdatum($Startdatum)
+    public function withStartdatum(\DateTimeInterface $Startdatum) : static
     {
         $new = clone $this;
         $new->Startdatum = $Startdatum;
@@ -192,18 +188,18 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getEinddatum()
+    public function getEinddatum() : \DateTimeInterface
     {
         return $this->Einddatum;
     }
 
     /**
-     * @param DateTimeInterface $Einddatum
-     * @return TSRVAanvraag
+     * @param \DateTimeInterface $Einddatum
+     * @return static
      */
-    public function withEinddatum($Einddatum)
+    public function withEinddatum(\DateTimeInterface $Einddatum) : static
     {
         $new = clone $this;
         $new->Einddatum = $Einddatum;
@@ -214,16 +210,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return string
      */
-    public function getEindstatus()
+    public function getEindstatus() : string
     {
         return $this->Eindstatus;
     }
 
     /**
      * @param string $Eindstatus
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withEindstatus($Eindstatus)
+    public function withEindstatus(string $Eindstatus) : static
     {
         $new = clone $this;
         $new->Eindstatus = $Eindstatus;
@@ -234,16 +230,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return string
      */
-    public function getMedewerker()
+    public function getMedewerker() : string
     {
         return $this->Medewerker;
     }
 
     /**
      * @param string $Medewerker
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(string $Medewerker) : static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -254,16 +250,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return int
      */
-    public function getOpdrachtgever()
+    public function getOpdrachtgever() : int
     {
         return $this->Opdrachtgever;
     }
 
     /**
      * @param int $Opdrachtgever
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withOpdrachtgever($Opdrachtgever)
+    public function withOpdrachtgever(int $Opdrachtgever) : static
     {
         $new = clone $this;
         $new->Opdrachtgever = $Opdrachtgever;
@@ -274,16 +270,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return int
      */
-    public function getOpdrachtgeverContact()
+    public function getOpdrachtgeverContact() : int
     {
         return $this->OpdrachtgeverContact;
     }
 
     /**
      * @param int $OpdrachtgeverContact
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withOpdrachtgeverContact($OpdrachtgeverContact)
+    public function withOpdrachtgeverContact(int $OpdrachtgeverContact) : static
     {
         $new = clone $this;
         $new->OpdrachtgeverContact = $OpdrachtgeverContact;
@@ -294,16 +290,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return float
      */
-    public function getVTLB()
+    public function getVTLB() : float
     {
         return $this->VTLB;
     }
 
     /**
      * @param float $VTLB
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withVTLB($VTLB)
+    public function withVTLB(float $VTLB) : static
     {
         $new = clone $this;
         $new->VTLB = $VTLB;
@@ -312,18 +308,18 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getDatumBerekening()
+    public function getDatumBerekening() : \DateTimeInterface
     {
         return $this->DatumBerekening;
     }
 
     /**
-     * @param DateTimeInterface $DatumBerekening
-     * @return TSRVAanvraag
+     * @param \DateTimeInterface $DatumBerekening
+     * @return static
      */
-    public function withDatumBerekening($DatumBerekening)
+    public function withDatumBerekening(\DateTimeInterface $DatumBerekening) : static
     {
         $new = clone $this;
         $new->DatumBerekening = $DatumBerekening;
@@ -334,16 +330,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return float
      */
-    public function getBrutoAfloscapaciteit()
+    public function getBrutoAfloscapaciteit() : float
     {
         return $this->BrutoAfloscapaciteit;
     }
 
     /**
      * @param float $BrutoAfloscapaciteit
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withBrutoAfloscapaciteit($BrutoAfloscapaciteit)
+    public function withBrutoAfloscapaciteit(float $BrutoAfloscapaciteit) : static
     {
         $new = clone $this;
         $new->BrutoAfloscapaciteit = $BrutoAfloscapaciteit;
@@ -354,16 +350,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return float
      */
-    public function getKostenFinancieelBeheer()
+    public function getKostenFinancieelBeheer() : float
     {
         return $this->KostenFinancieelBeheer;
     }
 
     /**
      * @param float $KostenFinancieelBeheer
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withKostenFinancieelBeheer($KostenFinancieelBeheer)
+    public function withKostenFinancieelBeheer(float $KostenFinancieelBeheer) : static
     {
         $new = clone $this;
         $new->KostenFinancieelBeheer = $KostenFinancieelBeheer;
@@ -374,16 +370,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return float
      */
-    public function getKostenSchuldhulpverlening()
+    public function getKostenSchuldhulpverlening() : float
     {
         return $this->KostenSchuldhulpverlening;
     }
 
     /**
      * @param float $KostenSchuldhulpverlening
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withKostenSchuldhulpverlening($KostenSchuldhulpverlening)
+    public function withKostenSchuldhulpverlening(float $KostenSchuldhulpverlening) : static
     {
         $new = clone $this;
         $new->KostenSchuldhulpverlening = $KostenSchuldhulpverlening;
@@ -394,16 +390,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return float
      */
-    public function getNettoAfloscapaciteit()
+    public function getNettoAfloscapaciteit() : float
     {
         return $this->NettoAfloscapaciteit;
     }
 
     /**
      * @param float $NettoAfloscapaciteit
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withNettoAfloscapaciteit($NettoAfloscapaciteit)
+    public function withNettoAfloscapaciteit(float $NettoAfloscapaciteit) : static
     {
         $new = clone $this;
         $new->NettoAfloscapaciteit = $NettoAfloscapaciteit;
@@ -414,16 +410,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return float
      */
-    public function getTotaalAangemeldeSchuld()
+    public function getTotaalAangemeldeSchuld() : float
     {
         return $this->TotaalAangemeldeSchuld;
     }
 
     /**
      * @param float $TotaalAangemeldeSchuld
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withTotaalAangemeldeSchuld($TotaalAangemeldeSchuld)
+    public function withTotaalAangemeldeSchuld(float $TotaalAangemeldeSchuld) : static
     {
         $new = clone $this;
         $new->TotaalAangemeldeSchuld = $TotaalAangemeldeSchuld;
@@ -434,16 +430,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return float
      */
-    public function getTotaalTeruggemeldeSchuld()
+    public function getTotaalTeruggemeldeSchuld() : float
     {
         return $this->TotaalTeruggemeldeSchuld;
     }
 
     /**
      * @param float $TotaalTeruggemeldeSchuld
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withTotaalTeruggemeldeSchuld($TotaalTeruggemeldeSchuld)
+    public function withTotaalTeruggemeldeSchuld(float $TotaalTeruggemeldeSchuld) : static
     {
         $new = clone $this;
         $new->TotaalTeruggemeldeSchuld = $TotaalTeruggemeldeSchuld;
@@ -454,16 +450,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return int
      */
-    public function getPartnerCode()
+    public function getPartnerCode() : int
     {
         return $this->PartnerCode;
     }
 
     /**
      * @param int $PartnerCode
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withPartnerCode($PartnerCode)
+    public function withPartnerCode(int $PartnerCode) : static
     {
         $new = clone $this;
         $new->PartnerCode = $PartnerCode;
@@ -472,18 +468,18 @@ class TSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
-    public function getAanvraagdatum()
+    public function getAanvraagdatum() : \DateTimeInterface
     {
         return $this->Aanvraagdatum;
     }
 
     /**
-     * @param DateTimeInterface $Aanvraagdatum
-     * @return TSRVAanvraag
+     * @param \DateTimeInterface $Aanvraagdatum
+     * @return static
      */
-    public function withAanvraagdatum($Aanvraagdatum)
+    public function withAanvraagdatum(\DateTimeInterface $Aanvraagdatum) : static
     {
         $new = clone $this;
         $new->Aanvraagdatum = $Aanvraagdatum;
@@ -494,16 +490,16 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return string
      */
-    public function getRedenOpschorting()
+    public function getRedenOpschorting() : string
     {
         return $this->RedenOpschorting;
     }
 
     /**
      * @param string $RedenOpschorting
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withRedenOpschorting($RedenOpschorting)
+    public function withRedenOpschorting(string $RedenOpschorting) : static
     {
         $new = clone $this;
         $new->RedenOpschorting = $RedenOpschorting;
@@ -514,23 +510,21 @@ class TSRVAanvraag implements RequestInterface
     /**
      * @return float
      */
-    public function getExtraInleg()
+    public function getExtraInleg() : float
     {
         return $this->ExtraInleg;
     }
 
     /**
      * @param float $ExtraInleg
-     * @return TSRVAanvraag
+     * @return static
      */
-    public function withExtraInleg($ExtraInleg)
+    public function withExtraInleg(float $ExtraInleg) : static
     {
         $new = clone $this;
         $new->ExtraInleg = $ExtraInleg;
 
         return $new;
     }
-
-
 }
 
