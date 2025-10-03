@@ -2,157 +2,156 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login;
 
-use Phpro\SoapClient\Caller\Caller;
+use Phpro\SoapClient\Client;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLogin;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLoginResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebMagAanmelden;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebMagAanmeldenResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLoginTijdelijk;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLoginTijdelijkResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceGenereerWachtwoord;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceGenereerWachtwoordResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratieResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceActiveerRegistratie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceActiveerRegistratieResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuwContact;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuwContactResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceCheckWachtwoord;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceCheckWachtwoordResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratieBSN;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratieBSNResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceLogout;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceLogoutResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieMetBedrijf;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieMetBedrijfResponse;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
+use Phpro\SoapClient\Type\RequestInterface;
 use Phpro\SoapClient\Type\ResultInterface;
 use Phpro\SoapClient\Exception\SoapException;
-use Phpro\SoapClient\Type\RequestInterface;
 
-class AllegroLoginClient
+class AllegroLoginClient extends Client
 {
-    /**
-     * @var Caller
-     */
-    private $caller;
 
-    public function __construct(\Phpro\SoapClient\Caller\Caller $caller)
+    /**
+     * @param RequestInterface|Type\LoginServiceAllegroWebLogin $parameters
+     * @return ResultInterface|Type\LoginServiceAllegroWebLoginResponse
+     * @throws SoapException
+     */
+    public function allegroWebLogin(LoginServiceAllegroWebLogin $parameters): LoginServiceAllegroWebLoginResponse
     {
-        $this->caller = $caller;
+        return $this->call('AllegroWebLogin', $parameters);
     }
 
     /**
-     * @param RequestInterface & Type\SchuldHulpServiceGetSBOverzicht $parameters
-     * @return ResultInterface & Type\SchuldHulpServiceGetSBOverzichtResponse
+     * @param RequestInterface|Type\LoginServiceAllegroWebMagAanmelden $parameters
+     * @return ResultInterface|Type\LoginServiceAllegroWebMagAanmeldenResponse
      * @throws SoapException
      */
-    public function getSBOverzicht(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSBOverzicht $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSBOverzichtResponse
+    public function allegroWebMagAanmelden(LoginServiceAllegroWebMagAanmelden $parameters): LoginServiceAllegroWebMagAanmeldenResponse
     {
-        $response = ($this->caller)('GetSBOverzicht', $parameters);
-
-        \Psl\Type\instance_of(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSBOverzichtResponse::class)->assert($response);
-        \Psl\Type\instance_of(\Phpro\SoapClient\Type\ResultInterface::class)->assert($response);
-
-        return $response;
+        return $this->call('AllegroWebMagAanmelden', $parameters);
     }
 
     /**
-     * @param RequestInterface & Type\SchuldHulpServiceGetSB $parameters
-     * @return ResultInterface & Type\SchuldHulpServiceGetSBResponse
+     * @param RequestInterface|Type\LoginServiceAllegroWebLoginTijdelijk $parameters
+     * @return ResultInterface|Type\LoginServiceAllegroWebLoginTijdelijkResponse
      * @throws SoapException
      */
-    public function getSB(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSB $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSBResponse
+    public function allegroWebLoginTijdelijk(LoginServiceAllegroWebLoginTijdelijk $parameters): LoginServiceAllegroWebLoginTijdelijkResponse
     {
-        $response = ($this->caller)('GetSB', $parameters);
-
-        \Psl\Type\instance_of(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSBResponse::class)->assert($response);
-        \Psl\Type\instance_of(\Phpro\SoapClient\Type\ResultInterface::class)->assert($response);
-
-        return $response;
+        return $this->call('AllegroWebLoginTijdelijk', $parameters);
     }
 
     /**
-     * @param RequestInterface & Type\SchuldHulpServiceGetSBEisers $parameters
-     * @return ResultInterface & Type\SchuldHulpServiceGetSBEisersResponse
+     * @param RequestInterface|Type\LoginServiceBSNNaarRelatie $parameters
+     * @return ResultInterface|Type\LoginServiceBSNNaarRelatieResponse
      * @throws SoapException
      */
-    public function getSBEisers(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSBEisers $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSBEisersResponse
+    public function bSNNaarRelatie(LoginServiceBSNNaarRelatie $parameters): LoginServiceBSNNaarRelatieResponse
     {
-        $response = ($this->caller)('GetSBEisers', $parameters);
-
-        \Psl\Type\instance_of(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSBEisersResponse::class)->assert($response);
-        \Psl\Type\instance_of(\Phpro\SoapClient\Type\ResultInterface::class)->assert($response);
-
-        return $response;
+        return $this->call('BSNNaarRelatie', $parameters);
     }
 
     /**
-     * @param RequestInterface & Type\SchuldHulpServiceGetSRVOverzicht $parameters
-     * @return ResultInterface & Type\SchuldHulpServiceGetSRVOverzichtResponse
+     * @param RequestInterface|Type\LoginServiceGenereerWachtwoord $parameters
+     * @return ResultInterface|Type\LoginServiceGenereerWachtwoordResponse
      * @throws SoapException
      */
-    public function getSRVOverzicht(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSRVOverzicht $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSRVOverzichtResponse
+    public function genereerWachtwoord(LoginServiceGenereerWachtwoord $parameters): LoginServiceGenereerWachtwoordResponse
     {
-        $response = ($this->caller)('GetSRVOverzicht', $parameters);
-
-        \Psl\Type\instance_of(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSRVOverzichtResponse::class)->assert($response);
-        \Psl\Type\instance_of(\Phpro\SoapClient\Type\ResultInterface::class)->assert($response);
-
-        return $response;
+        return $this->call('GenereerWachtwoord', $parameters);
     }
 
     /**
-     * @param RequestInterface & Type\SchuldHulpServiceGetSRVAanvraag $parameters
-     * @return ResultInterface & Type\SchuldHulpServiceGetSRVAanvraagResponse
+     * @param RequestInterface|Type\LoginServiceNieuweRegistratie $parameters
+     * @return ResultInterface|Type\LoginServiceNieuweRegistratieResponse
      * @throws SoapException
      */
-    public function getSRVAanvraag(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSRVAanvraag $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSRVAanvraagResponse
+    public function nieuweRegistratie(LoginServiceNieuweRegistratie $parameters): LoginServiceNieuweRegistratieResponse
     {
-        $response = ($this->caller)('GetSRVAanvraag', $parameters);
-
-        \Psl\Type\instance_of(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSRVAanvraagResponse::class)->assert($response);
-        \Psl\Type\instance_of(\Phpro\SoapClient\Type\ResultInterface::class)->assert($response);
-
-        return $response;
+        return $this->call('NieuweRegistratie', $parameters);
     }
 
     /**
-     * @param RequestInterface & Type\SchuldHulpServiceGetSRVEisers $parameters
-     * @return ResultInterface & Type\SchuldHulpServiceGetSRVEisersResponse
+     * @param RequestInterface|Type\LoginServiceActiveerRegistratie $parameters
+     * @return ResultInterface|Type\LoginServiceActiveerRegistratieResponse
      * @throws SoapException
      */
-    public function getSRVEisers(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSRVEisers $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSRVEisersResponse
+    public function activeerRegistratie(LoginServiceActiveerRegistratie $parameters): LoginServiceActiveerRegistratieResponse
     {
-        $response = ($this->caller)('GetSRVEisers', $parameters);
-
-        \Psl\Type\instance_of(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetSRVEisersResponse::class)->assert($response);
-        \Psl\Type\instance_of(\Phpro\SoapClient\Type\ResultInterface::class)->assert($response);
-
-        return $response;
+        return $this->call('ActiveerRegistratie', $parameters);
     }
 
     /**
-     * @param RequestInterface & Type\SchuldHulpServiceGetLijstSchuldeisers $parameters
-     * @return ResultInterface & Type\SchuldHulpServiceGetLijstSchuldeisersResponse
+     * @param RequestInterface|Type\LoginServiceNieuwContact $parameters
+     * @return ResultInterface|Type\LoginServiceNieuwContactResponse
      * @throws SoapException
      */
-    public function getLijstSchuldeisers(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetLijstSchuldeisers $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetLijstSchuldeisersResponse
+    public function nieuwContact(LoginServiceNieuwContact $parameters): LoginServiceNieuwContactResponse
     {
-        $response = ($this->caller)('GetLijstSchuldeisers', $parameters);
-
-        \Psl\Type\instance_of(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceGetLijstSchuldeisersResponse::class)->assert($response);
-        \Psl\Type\instance_of(\Phpro\SoapClient\Type\ResultInterface::class)->assert($response);
-
-        return $response;
+        return $this->call('NieuwContact', $parameters);
     }
 
     /**
-     * @param RequestInterface & Type\SchuldHulpServiceAanvraagSR $parameters
-     * @return ResultInterface & Type\SchuldHulpServiceAanvraagSRResponse
+     * @param RequestInterface|Type\LoginServiceCheckWachtwoord $parameters
+     * @return ResultInterface|Type\LoginServiceCheckWachtwoordResponse
      * @throws SoapException
      */
-    public function aanvraagSR(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceAanvraagSR $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceAanvraagSRResponse
+    public function checkWachtwoord(LoginServiceCheckWachtwoord $parameters): LoginServiceCheckWachtwoordResponse
     {
-        $response = ($this->caller)('AanvraagSR', $parameters);
-
-        \Psl\Type\instance_of(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceAanvraagSRResponse::class)->assert($response);
-        \Psl\Type\instance_of(\Phpro\SoapClient\Type\ResultInterface::class)->assert($response);
-
-        return $response;
+        return $this->call('CheckWachtwoord', $parameters);
     }
 
     /**
-     * @param RequestInterface & Type\SchuldHulpServiceAanvraag2SR $parameters
-     * @return ResultInterface & Type\SchuldHulpServiceAanvraag2SRResponse
+     * @param RequestInterface|Type\LoginServiceNieuweRegistratieBSN $parameters
+     * @return ResultInterface|Type\LoginServiceNieuweRegistratieBSNResponse
      * @throws SoapException
      */
-    public function aanvraag2SR(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceAanvraag2SR $parameters) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceAanvraag2SRResponse
+    public function nieuweRegistratieBSN(LoginServiceNieuweRegistratieBSN $parameters): LoginServiceNieuweRegistratieBSNResponse
     {
-        $response = ($this->caller)('Aanvraag2SR', $parameters);
+        return $this->call('NieuweRegistratieBSN', $parameters);
+    }
 
-        \Psl\Type\instance_of(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldHulpServiceAanvraag2SRResponse::class)->assert($response);
-        \Psl\Type\instance_of(\Phpro\SoapClient\Type\ResultInterface::class)->assert($response);
+    /**
+     * @param RequestInterface|Type\LoginServiceLogout $parameters
+     * @return ResultInterface|Type\LoginServiceLogoutResponse
+     * @throws SoapException
+     */
+    public function logout(LoginServiceLogout $parameters): LoginServiceLogoutResponse
+    {
+        return $this->call('Logout', $parameters);
+    }
 
-        return $response;
+    /**
+     * @param RequestInterface|Type\LoginServiceBSNNaarRelatieMetBedrijf $parameters
+     * @return ResultInterface|Type\LoginServiceBSNNaarRelatieMetBedrijfResponse
+     * @throws SoapException
+     */
+    public function bSNNaarRelatieMetBedrijf(LoginServiceBSNNaarRelatieMetBedrijf $parameters): LoginServiceBSNNaarRelatieMetBedrijfResponse
+    {
+        return $this->call('BSNNaarRelatieMetBedrijf', $parameters);
     }
 }
-

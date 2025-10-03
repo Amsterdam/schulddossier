@@ -19,7 +19,7 @@ class AllegroLoginClientFactory
      *
      * @param non-empty-string $wsdl
      */
-    public static function factory(string $wsdl) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient
+    public static function factory(string $wsdl): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient
     {
         $engine = DefaultEngineFactory::create(
             EngineOptions::defaults($wsdl)
@@ -28,14 +28,14 @@ class AllegroLoginClientFactory
                         ->addClassMapCollection(AllegroLoginClassmap::types())
                         ->addBackedEnumClassMapCollection(AllegroLoginClassmap::enums())
                 )
-                // If you want to enable WSDL caching:
-                // ->withCache() 
-                // If you want to use Alternate HTTP settings:
-                // ->withWsdlLoader()
-                // ->withTransport()
-                // If you want specific SOAP setting:
-                // ->withWsdlParserContext()
-                // ->withWsdlServiceSelectionCriteria()
+            // If you want to enable WSDL caching:
+            // ->withCache()
+            // If you want to use Alternate HTTP settings:
+            // ->withWsdlLoader()
+            // ->withTransport()
+            // If you want specific SOAP setting:
+            // ->withWsdlParserContext()
+            // ->withWsdlServiceSelectionCriteria()
         );
 
         $eventDispatcher = new EventDispatcher();
@@ -44,4 +44,3 @@ class AllegroLoginClientFactory
         return new AllegroLoginClient($caller);
     }
 }
-

@@ -2,242 +2,411 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login;
 
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type;
-use Soap\Encoding\ClassMap\ClassMapCollection;
-use Soap\Encoding\ClassMap\ClassMap;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTest;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\AWUserInfo;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAdres;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRelatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusInfo;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusPVA;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusPVAProduct;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraag;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVEiser;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSB;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBEiser;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVEisers;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBEisers;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPLHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPL;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSMutatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSMutaties;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDK;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBRHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBROpdracht;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBROpdrachten;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSaldoReservering;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSMutatiesPeriode;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSaldoReserveringen;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPersoon;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAanmelding;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContact;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TGezinsSituatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TJaNeeVraag;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOpenVraag;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraak;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTeam;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TKind;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TProductExtra;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOrganisatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTrajectTaak;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContract;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContractenLijst;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschrift;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftMutatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftReservering;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriften;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftMutaties;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPRSAfschriftReserveringen;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusDeelopdracht;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\THulpverlener;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContactpersoon;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TExtraProductHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TExtraProduct;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusToelichting;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TOpdrachtgeverKlant;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTrajectSoort;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTraject;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBRVorm;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusNotitie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPersoonAanvraag;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAanvraag;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TInkomen;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TUitgaven;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDocument;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBijlage;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRelatieProduct;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAanvraagLening;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAanvraagDK;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TLijstOpdrachtgever;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TLijstKredietsoort;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSchuld;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAllegroDocument;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDocumentSleutel;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPLAanvraag;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRCHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRC;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRCJaarrente;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxDetail;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxBijlage;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxGeadresseerde;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxTekst;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSorteerInfo;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBRBegunstigde;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraakSoorten;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContract2;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRelatiecodeBedrijfcode;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TableRequestInfo;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameter;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleRequestInfo;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataParameter;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataResult;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfo;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDelta;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChange;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\UserInfo;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TableRequestInfoV5;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ColumnSorting;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TableRequestInfoV6;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataResultEx;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TestArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\IntegerArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusHeaderArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusPVAProductArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\BooleanArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SRVAanvraagHeaderArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SRVEiserArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SBEiserArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SBHeaderArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PLHeaderArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSMutatieArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DKHeaderArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\BBRHeaderArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\BBROpdrachtArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SaldoReserveringArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TeamArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\KindArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TrajectTaakArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\OrganisatieArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\AfspraakArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ContractArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSAfschriftArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSAfschriftMutatieArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSAfschriftReseveringArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusDeelopdrachtArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\HulpverlenerArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ContactpersoonArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TExtraProductHeaderArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusToelichtingArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TrajectSoortArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\OpdrachtgeverKlantArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TrajectArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\BBRVormArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\CasusNotitieArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\BijlageArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\RelatieProductArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LijstOpdrachtgeverArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LijstKredietsoortArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SchuldArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\AllegroDocumentArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PLAanvraagArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\RCJaarrenteArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\RCHeaderArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxHeaderArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxBijlageArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxGeadresseerdeArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxTekstArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\Int64Array;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSorteerInfoArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\BBRBegunstigdeArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraakSoortenArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContract2Array;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\RekeningnummerArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\RelatiecodeBedrijfcodeArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TableRequestInfoArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameterArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleRequestInfoArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataParameterArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDataResultArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleFieldInfoArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\StringArrayArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChangeArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\VariantArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLogin;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLoginResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebMagAanmelden;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebMagAanmeldenResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLoginTijdelijk;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLoginTijdelijkResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceGenereerWachtwoord;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceGenereerWachtwoordResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratieResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceActiveerRegistratie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceActiveerRegistratieResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuwContact;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuwContactResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceCheckWachtwoord;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceCheckWachtwoordResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratieBSN;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceNieuweRegistratieBSNResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceLogout;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceLogoutResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieMetBedrijf;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceBSNNaarRelatieMetBedrijfResponse;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\ROClientIDHeader;
+use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMap;
+use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection;
 
 class AllegroLoginClassmap
 {
-    public static function types() : \Soap\Encoding\ClassMap\ClassMapCollection
-    {
-        return new ClassMapCollection(
-            new ClassMap('http://tempuri.org/', 'TTest', Type\TTest::class),
-            new ClassMap('http://tempuri.org/', 'AWUserInfo', Type\AWUserInfo::class),
-            new ClassMap('http://tempuri.org/', 'TAdres', Type\TAdres::class),
-            new ClassMap('http://tempuri.org/', 'TRelatie', Type\TRelatie::class),
-            new ClassMap('http://tempuri.org/', 'TCasusHeader', Type\TCasusHeader::class),
-            new ClassMap('http://tempuri.org/', 'TCasusInfo', Type\TCasusInfo::class),
-            new ClassMap('http://tempuri.org/', 'TCasusPVA', Type\TCasusPVA::class),
-            new ClassMap('http://tempuri.org/', 'TCasusPVAProduct', Type\TCasusPVAProduct::class),
-            new ClassMap('http://tempuri.org/', 'TSRVAanvraag', Type\TSRVAanvraag::class),
-            new ClassMap('http://tempuri.org/', 'TSRVEiser', Type\TSRVEiser::class),
-            new ClassMap('http://tempuri.org/', 'TMedewerker', Type\TMedewerker::class),
-            new ClassMap('http://tempuri.org/', 'TSB', Type\TSB::class),
-            new ClassMap('http://tempuri.org/', 'TSBEiser', Type\TSBEiser::class),
-            new ClassMap('http://tempuri.org/', 'TSRVAanvraagHeader', Type\TSRVAanvraagHeader::class),
-            new ClassMap('http://tempuri.org/', 'TSBHeader', Type\TSBHeader::class),
-            new ClassMap('http://tempuri.org/', 'TSRVEisers', Type\TSRVEisers::class),
-            new ClassMap('http://tempuri.org/', 'TSBEisers', Type\TSBEisers::class),
-            new ClassMap('http://tempuri.org/', 'TPLHeader', Type\TPLHeader::class),
-            new ClassMap('http://tempuri.org/', 'TPL', Type\TPL::class),
-            new ClassMap('http://tempuri.org/', 'TPRSMutatie', Type\TPRSMutatie::class),
-            new ClassMap('http://tempuri.org/', 'TPRSMutaties', Type\TPRSMutaties::class),
-            new ClassMap('http://tempuri.org/', 'TDKHeader', Type\TDKHeader::class),
-            new ClassMap('http://tempuri.org/', 'TDK', Type\TDK::class),
-            new ClassMap('http://tempuri.org/', 'TBBRHeader', Type\TBBRHeader::class),
-            new ClassMap('http://tempuri.org/', 'TBBROpdracht', Type\TBBROpdracht::class),
-            new ClassMap('http://tempuri.org/', 'TBBROpdrachten', Type\TBBROpdrachten::class),
-            new ClassMap('http://tempuri.org/', 'TSaldoReservering', Type\TSaldoReservering::class),
-            new ClassMap('http://tempuri.org/', 'TPRSMutatiesPeriode', Type\TPRSMutatiesPeriode::class),
-            new ClassMap('http://tempuri.org/', 'TSaldoReserveringen', Type\TSaldoReserveringen::class),
-            new ClassMap('http://tempuri.org/', 'TPersoon', Type\TPersoon::class),
-            new ClassMap('http://tempuri.org/', 'TAanmelding', Type\TAanmelding::class),
-            new ClassMap('http://tempuri.org/', 'TContact', Type\TContact::class),
-            new ClassMap('http://tempuri.org/', 'TGezinsSituatie', Type\TGezinsSituatie::class),
-            new ClassMap('http://tempuri.org/', 'TJaNeeVraag', Type\TJaNeeVraag::class),
-            new ClassMap('http://tempuri.org/', 'TOpenVraag', Type\TOpenVraag::class),
-            new ClassMap('http://tempuri.org/', 'TAfspraak', Type\TAfspraak::class),
-            new ClassMap('http://tempuri.org/', 'TTeam', Type\TTeam::class),
-            new ClassMap('http://tempuri.org/', 'TKind', Type\TKind::class),
-            new ClassMap('http://tempuri.org/', 'TProductExtra', Type\TProductExtra::class),
-            new ClassMap('http://tempuri.org/', 'TOrganisatie', Type\TOrganisatie::class),
-            new ClassMap('http://tempuri.org/', 'TTrajectTaak', Type\TTrajectTaak::class),
-            new ClassMap('http://tempuri.org/', 'TContract', Type\TContract::class),
-            new ClassMap('http://tempuri.org/', 'TContractenLijst', Type\TContractenLijst::class),
-            new ClassMap('http://tempuri.org/', 'TPRSAfschrift', Type\TPRSAfschrift::class),
-            new ClassMap('http://tempuri.org/', 'TPRSAfschriftMutatie', Type\TPRSAfschriftMutatie::class),
-            new ClassMap('http://tempuri.org/', 'TPRSAfschriftReservering', Type\TPRSAfschriftReservering::class),
-            new ClassMap('http://tempuri.org/', 'TPRSAfschriften', Type\TPRSAfschriften::class),
-            new ClassMap('http://tempuri.org/', 'TPRSAfschriftMutaties', Type\TPRSAfschriftMutaties::class),
-            new ClassMap('http://tempuri.org/', 'TPRSAfschriftReserveringen', Type\TPRSAfschriftReserveringen::class),
-            new ClassMap('http://tempuri.org/', 'TCasusDeelopdracht', Type\TCasusDeelopdracht::class),
-            new ClassMap('http://tempuri.org/', 'THulpverlener', Type\THulpverlener::class),
-            new ClassMap('http://tempuri.org/', 'TContactpersoon', Type\TContactpersoon::class),
-            new ClassMap('http://tempuri.org/', 'TExtraProductHeader', Type\TExtraProductHeader::class),
-            new ClassMap('http://tempuri.org/', 'TExtraProduct', Type\TExtraProduct::class),
-            new ClassMap('http://tempuri.org/', 'TCasusToelichting', Type\TCasusToelichting::class),
-            new ClassMap('http://tempuri.org/', 'TOpdrachtgeverKlant', Type\TOpdrachtgeverKlant::class),
-            new ClassMap('http://tempuri.org/', 'TTrajectSoort', Type\TTrajectSoort::class),
-            new ClassMap('http://tempuri.org/', 'TTraject', Type\TTraject::class),
-            new ClassMap('http://tempuri.org/', 'TBBRVorm', Type\TBBRVorm::class),
-            new ClassMap('http://tempuri.org/', 'TCasusNotitie', Type\TCasusNotitie::class),
-            new ClassMap('http://tempuri.org/', 'TPersoonAanvraag', Type\TPersoonAanvraag::class),
-            new ClassMap('http://tempuri.org/', 'TAanvraag', Type\TAanvraag::class),
-            new ClassMap('http://tempuri.org/', 'TInkomen', Type\TInkomen::class),
-            new ClassMap('http://tempuri.org/', 'TUitgaven', Type\TUitgaven::class),
-            new ClassMap('http://tempuri.org/', 'TDocument', Type\TDocument::class),
-            new ClassMap('http://tempuri.org/', 'TBijlage', Type\TBijlage::class),
-            new ClassMap('http://tempuri.org/', 'TRelatieProduct', Type\TRelatieProduct::class),
-            new ClassMap('http://tempuri.org/', 'TAanvraagLening', Type\TAanvraagLening::class),
-            new ClassMap('http://tempuri.org/', 'TAanvraagDK', Type\TAanvraagDK::class),
-            new ClassMap('http://tempuri.org/', 'TLijstOpdrachtgever', Type\TLijstOpdrachtgever::class),
-            new ClassMap('http://tempuri.org/', 'TLijstKredietsoort', Type\TLijstKredietsoort::class),
-            new ClassMap('http://tempuri.org/', 'TSchuld', Type\TSchuld::class),
-            new ClassMap('http://tempuri.org/', 'TAllegroDocument', Type\TAllegroDocument::class),
-            new ClassMap('http://tempuri.org/', 'TDocumentSleutel', Type\TDocumentSleutel::class),
-            new ClassMap('http://tempuri.org/', 'TPLAanvraag', Type\TPLAanvraag::class),
-            new ClassMap('http://tempuri.org/', 'TRCHeader', Type\TRCHeader::class),
-            new ClassMap('http://tempuri.org/', 'TRC', Type\TRC::class),
-            new ClassMap('http://tempuri.org/', 'TRCJaarrente', Type\TRCJaarrente::class),
-            new ClassMap('http://tempuri.org/', 'TBBoxHeader', Type\TBBoxHeader::class),
-            new ClassMap('http://tempuri.org/', 'TBBoxDetail', Type\TBBoxDetail::class),
-            new ClassMap('http://tempuri.org/', 'TBBoxBijlage', Type\TBBoxBijlage::class),
-            new ClassMap('http://tempuri.org/', 'TBBoxGeadresseerde', Type\TBBoxGeadresseerde::class),
-            new ClassMap('http://tempuri.org/', 'TBBoxTekst', Type\TBBoxTekst::class),
-            new ClassMap('http://tempuri.org/', 'TSorteerInfo', Type\TSorteerInfo::class),
-            new ClassMap('http://tempuri.org/', 'TBBRBegunstigde', Type\TBBRBegunstigde::class),
-            new ClassMap('http://tempuri.org/', 'TAfspraakSoorten', Type\TAfspraakSoorten::class),
-            new ClassMap('http://tempuri.org/', 'TContract2', Type\TContract2::class),
-            new ClassMap('http://tempuri.org/', 'TRelatiecodeBedrijfcode', Type\TRelatiecodeBedrijfcode::class),
-            new ClassMap('http://tempuri.org/', 'TRekeningnummer', Type\TRekeningnummer::class),
-            new ClassMap('http://tempuri.org/', 'TAanvraag2Persoon', Type\TAanvraag2Persoon::class),
-            new ClassMap('http://tempuri.org/', 'TAanvraag2', Type\TAanvraag2::class),
-            new ClassMap('http://tempuri.org/', 'TAanvraag2Lening', Type\TAanvraag2Lening::class),
-            new ClassMap('http://tempuri.org/', 'TAanvraag2DK', Type\TAanvraag2DK::class),
-            new ClassMap('http://tempuri.org/', 'TAanvraag2SR', Type\TAanvraag2SR::class),
-            new ClassMap('http://tempuri.org/', 'TAanvraagSR', Type\TAanvraagSR::class),
-            new ClassMap('http://tempuri.org/', 'TGeslotenVraag', Type\TGeslotenVraag::class),
-            new ClassMap('http://tempuri.org/', 'TableRequestInfo', Type\TableRequestInfo::class),
-            new ClassMap('http://tempuri.org/', 'DataParameter', Type\DataParameter::class),
-            new ClassMap('http://tempuri.org/', 'SimpleRequestInfo', Type\SimpleRequestInfo::class),
-            new ClassMap('http://tempuri.org/', 'SimpleDataParameter', Type\SimpleDataParameter::class),
-            new ClassMap('http://tempuri.org/', 'SimpleDataResult', Type\SimpleDataResult::class),
-            new ClassMap('http://tempuri.org/', 'SimpleFieldInfo', Type\SimpleFieldInfo::class),
-            new ClassMap('http://tempuri.org/', 'SimpleDelta', Type\SimpleDelta::class),
-            new ClassMap('http://tempuri.org/', 'SimpleDeltaChange', Type\SimpleDeltaChange::class),
-            new ClassMap('http://tempuri.org/', 'UserInfo', Type\UserInfo::class),
-            new ClassMap('http://tempuri.org/', 'TableRequestInfoV5', Type\TableRequestInfoV5::class),
-            new ClassMap('http://tempuri.org/', 'ColumnSorting', Type\ColumnSorting::class),
-            new ClassMap('http://tempuri.org/', 'TableRequestInfoV6', Type\TableRequestInfoV6::class),
-            new ClassMap('http://tempuri.org/', 'SimpleDataResultEx', Type\SimpleDataResultEx::class),
-            new ClassMap('http://tempuri.org/', 'TestArray', Type\TestArray::class),
-            new ClassMap('http://tempuri.org/', 'IntegerArray', Type\IntegerArray::class),
-            new ClassMap('http://tempuri.org/', 'CasusHeaderArray', Type\CasusHeaderArray::class),
-            new ClassMap('http://tempuri.org/', 'CasusPVAArray', Type\CasusPVAArray::class),
-            new ClassMap('http://tempuri.org/', 'CasusPVAProductArray', Type\CasusPVAProductArray::class),
-            new ClassMap('http://tempuri.org/', 'BooleanArray', Type\BooleanArray::class),
-            new ClassMap('http://tempuri.org/', 'SRVAanvraagHeaderArray', Type\SRVAanvraagHeaderArray::class),
-            new ClassMap('http://tempuri.org/', 'SRVEiserArray', Type\SRVEiserArray::class),
-            new ClassMap('http://tempuri.org/', 'SBEiserArray', Type\SBEiserArray::class),
-            new ClassMap('http://tempuri.org/', 'SBHeaderArray', Type\SBHeaderArray::class),
-            new ClassMap('http://tempuri.org/', 'PLHeaderArray', Type\PLHeaderArray::class),
-            new ClassMap('http://tempuri.org/', 'PRSMutatieArray', Type\PRSMutatieArray::class),
-            new ClassMap('http://tempuri.org/', 'DKHeaderArray', Type\DKHeaderArray::class),
-            new ClassMap('http://tempuri.org/', 'BBRHeaderArray', Type\BBRHeaderArray::class),
-            new ClassMap('http://tempuri.org/', 'BBROpdrachtArray', Type\BBROpdrachtArray::class),
-            new ClassMap('http://tempuri.org/', 'SaldoReserveringArray', Type\SaldoReserveringArray::class),
-            new ClassMap('http://tempuri.org/', 'TeamArray', Type\TeamArray::class),
-            new ClassMap('http://tempuri.org/', 'KindArray', Type\KindArray::class),
-            new ClassMap('http://tempuri.org/', 'TrajectTaakArray', Type\TrajectTaakArray::class),
-            new ClassMap('http://tempuri.org/', 'OrganisatieArray', Type\OrganisatieArray::class),
-            new ClassMap('http://tempuri.org/', 'AfspraakArray', Type\AfspraakArray::class),
-            new ClassMap('http://tempuri.org/', 'ContractArray', Type\ContractArray::class),
-            new ClassMap('http://tempuri.org/', 'PRSAfschriftArray', Type\PRSAfschriftArray::class),
-            new ClassMap('http://tempuri.org/', 'PRSAfschriftMutatieArray', Type\PRSAfschriftMutatieArray::class),
-            new ClassMap('http://tempuri.org/', 'PRSAfschriftReseveringArray', Type\PRSAfschriftReseveringArray::class),
-            new ClassMap('http://tempuri.org/', 'CasusDeelopdrachtArray', Type\CasusDeelopdrachtArray::class),
-            new ClassMap('http://tempuri.org/', 'HulpverlenerArray', Type\HulpverlenerArray::class),
-            new ClassMap('http://tempuri.org/', 'ContactpersoonArray', Type\ContactpersoonArray::class),
-            new ClassMap('http://tempuri.org/', 'TExtraProductHeaderArray', Type\TExtraProductHeaderArray::class),
-            new ClassMap('http://tempuri.org/', 'CasusToelichtingArray', Type\CasusToelichtingArray::class),
-            new ClassMap('http://tempuri.org/', 'TrajectSoortArray', Type\TrajectSoortArray::class),
-            new ClassMap('http://tempuri.org/', 'OpdrachtgeverKlantArray', Type\OpdrachtgeverKlantArray::class),
-            new ClassMap('http://tempuri.org/', 'TrajectArray', Type\TrajectArray::class),
-            new ClassMap('http://tempuri.org/', 'BBRVormArray', Type\BBRVormArray::class),
-            new ClassMap('http://tempuri.org/', 'CasusNotitieArray', Type\CasusNotitieArray::class),
-            new ClassMap('http://tempuri.org/', 'BijlageArray', Type\BijlageArray::class),
-            new ClassMap('http://tempuri.org/', 'RelatieProductArray', Type\RelatieProductArray::class),
-            new ClassMap('http://tempuri.org/', 'LijstOpdrachtgeverArray', Type\LijstOpdrachtgeverArray::class),
-            new ClassMap('http://tempuri.org/', 'LijstKredietsoortArray', Type\LijstKredietsoortArray::class),
-            new ClassMap('http://tempuri.org/', 'SchuldArray', Type\SchuldArray::class),
-            new ClassMap('http://tempuri.org/', 'AllegroDocumentArray', Type\AllegroDocumentArray::class),
-            new ClassMap('http://tempuri.org/', 'PLAanvraagArray', Type\PLAanvraagArray::class),
-            new ClassMap('http://tempuri.org/', 'RCJaarrenteArray', Type\RCJaarrenteArray::class),
-            new ClassMap('http://tempuri.org/', 'RCHeaderArray', Type\RCHeaderArray::class),
-            new ClassMap('http://tempuri.org/', 'TBBoxHeaderArray', Type\TBBoxHeaderArray::class),
-            new ClassMap('http://tempuri.org/', 'TBBoxBijlageArray', Type\TBBoxBijlageArray::class),
-            new ClassMap('http://tempuri.org/', 'TBBoxGeadresseerdeArray', Type\TBBoxGeadresseerdeArray::class),
-            new ClassMap('http://tempuri.org/', 'TBBoxTekstArray', Type\TBBoxTekstArray::class),
-            new ClassMap('http://tempuri.org/', 'Int64Array', Type\Int64Array::class),
-            new ClassMap('http://tempuri.org/', 'TSorteerInfoArray', Type\TSorteerInfoArray::class),
-            new ClassMap('http://tempuri.org/', 'BBRBegunstigdeArray', Type\BBRBegunstigdeArray::class),
-            new ClassMap('http://tempuri.org/', 'TAfspraakSoortenArray', Type\TAfspraakSoortenArray::class),
-            new ClassMap('http://tempuri.org/', 'TContract2Array', Type\TContract2Array::class),
-            new ClassMap('http://tempuri.org/', 'RekeningnummerArray', Type\RekeningnummerArray::class),
-            new ClassMap('http://tempuri.org/', 'RelatiecodeBedrijfcodeArray', Type\RelatiecodeBedrijfcodeArray::class),
-            new ClassMap('http://tempuri.org/', 'Rekeningnummer2Array', Type\Rekeningnummer2Array::class),
-            new ClassMap('http://tempuri.org/', 'InkomenArray', Type\InkomenArray::class),
-            new ClassMap('http://tempuri.org/', 'UitgavenArray', Type\UitgavenArray::class),
-            new ClassMap('http://tempuri.org/', 'OpenVraagArray', Type\OpenVraagArray::class),
-            new ClassMap('http://tempuri.org/', 'GeslotenVraagArray', Type\GeslotenVraagArray::class),
-            new ClassMap('http://tempuri.org/', 'StringArray', Type\StringArray::class),
-            new ClassMap('http://tempuri.org/', 'TableRequestInfoArray', Type\TableRequestInfoArray::class),
-            new ClassMap('http://tempuri.org/', 'DataParameterArray', Type\DataParameterArray::class),
-            new ClassMap('http://tempuri.org/', 'SimpleRequestInfoArray', Type\SimpleRequestInfoArray::class),
-            new ClassMap('http://tempuri.org/', 'SimpleDataParameterArray', Type\SimpleDataParameterArray::class),
-            new ClassMap('http://tempuri.org/', 'SimpleDataResultArray', Type\SimpleDataResultArray::class),
-            new ClassMap('http://tempuri.org/', 'SimpleFieldInfoArray', Type\SimpleFieldInfoArray::class),
-            new ClassMap('http://tempuri.org/', 'StringArrayArray', Type\StringArrayArray::class),
-            new ClassMap('http://tempuri.org/', 'SimpleDeltaArray', Type\SimpleDeltaArray::class),
-            new ClassMap('http://tempuri.org/', 'SimpleDeltaChangeArray', Type\SimpleDeltaChangeArray::class),
-            new ClassMap('http://tempuri.org/', 'VariantArray', Type\VariantArray::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetSBOverzicht', Type\SchuldHulpServiceGetSBOverzicht::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetSBOverzichtResponse', Type\SchuldHulpServiceGetSBOverzichtResponse::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetSB', Type\SchuldHulpServiceGetSB::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetSBResponse', Type\SchuldHulpServiceGetSBResponse::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetSBEisers', Type\SchuldHulpServiceGetSBEisers::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetSBEisersResponse', Type\SchuldHulpServiceGetSBEisersResponse::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetSRVOverzicht', Type\SchuldHulpServiceGetSRVOverzicht::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetSRVOverzichtResponse', Type\SchuldHulpServiceGetSRVOverzichtResponse::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetSRVAanvraag', Type\SchuldHulpServiceGetSRVAanvraag::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetSRVAanvraagResponse', Type\SchuldHulpServiceGetSRVAanvraagResponse::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetSRVEisers', Type\SchuldHulpServiceGetSRVEisers::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetSRVEisersResponse', Type\SchuldHulpServiceGetSRVEisersResponse::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetLijstSchuldeisers', Type\SchuldHulpServiceGetLijstSchuldeisers::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___GetLijstSchuldeisersResponse', Type\SchuldHulpServiceGetLijstSchuldeisersResponse::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___AanvraagSR', Type\SchuldHulpServiceAanvraagSR::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___AanvraagSRResponse', Type\SchuldHulpServiceAanvraagSRResponse::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___Aanvraag2SR', Type\SchuldHulpServiceAanvraag2SR::class),
-            new ClassMap('http://tempuri.org/', 'SchuldHulpService___Aanvraag2SRResponse', Type\SchuldHulpServiceAanvraag2SRResponse::class),
-            new ClassMap('http://tempuri.org/', 'ROClientIDHeader', Type\ROClientIDHeader::class),
-        );
-    }
 
-    public static function enums() : \Soap\Encoding\ClassMap\ClassMapCollection
+    public static function getCollection(): ClassMapCollection
     {
         return new ClassMapCollection(
-            new ClassMap('http://tempuri.org/', 'eCasusStatus', Type\ECasusStatus::class),
-            new ClassMap('http://tempuri.org/', 'eJaNeeLeeg', Type\EJaNeeLeeg::class),
-            new ClassMap('http://tempuri.org/', 'eWelkAdres', Type\EWelkAdres::class),
-            new ClassMap('http://tempuri.org/', 'eSoortRelatie', Type\ESoortRelatie::class),
-            new ClassMap('http://tempuri.org/', 'eWelkEmailAdres', Type\EWelkEmailAdres::class),
-            new ClassMap('http://tempuri.org/', 'eContractSoort', Type\EContractSoort::class),
-            new ClassMap('http://tempuri.org/', 'eWelkeRekening', Type\EWelkeRekening::class),
-            new ClassMap('http://tempuri.org/', 'eSoortDocument', Type\ESoortDocument::class),
-            new ClassMap('http://tempuri.org/', 'eSoortInkomen', Type\ESoortInkomen::class),
-            new ClassMap('http://tempuri.org/', 'eJaNee', Type\EJaNee::class),
-            new ClassMap('http://tempuri.org/', 'ePeriode', Type\EPeriode::class),
-            new ClassMap('http://tempuri.org/', 'eWoningSoort', Type\EWoningSoort::class),
-            new ClassMap('http://tempuri.org/', 'eNationaliteit', Type\ENationaliteit::class),
-            new ClassMap('http://tempuri.org/', 'eSoortLening', Type\ESoortLening::class),
-            new ClassMap('http://tempuri.org/', 'eStatusAanvraag', Type\EStatusAanvraag::class),
-            new ClassMap('http://tempuri.org/', 'eOntvangenVerzonden', Type\EOntvangenVerzonden::class),
-            new ClassMap('http://tempuri.org/', 'eVeldSortering', Type\EVeldSortering::class),
-            new ClassMap('http://tempuri.org/', 'eSoortOpdracht', Type\ESoortOpdracht::class),
-            new ClassMap('http://tempuri.org/', 'SimpleDataType', Type\SimpleDataType::class),
-            new ClassMap('http://tempuri.org/', 'SimpleDataMode', Type\SimpleDataMode::class),
-            new ClassMap('http://tempuri.org/', 'ColumnSortDirection', Type\ColumnSortDirection::class),
+            new ClassMap('TTest', TTest::class),
+            new ClassMap('AWUserInfo', AWUserInfo::class),
+            new ClassMap('TAdres', TAdres::class),
+            new ClassMap('TRelatie', TRelatie::class),
+            new ClassMap('TCasusHeader', TCasusHeader::class),
+            new ClassMap('TCasusInfo', TCasusInfo::class),
+            new ClassMap('TCasusPVA', TCasusPVA::class),
+            new ClassMap('TCasusPVAProduct', TCasusPVAProduct::class),
+            new ClassMap('TSRVAanvraag', TSRVAanvraag::class),
+            new ClassMap('TSRVEiser', TSRVEiser::class),
+            new ClassMap('TMedewerker', TMedewerker::class),
+            new ClassMap('TSB', TSB::class),
+            new ClassMap('TSBEiser', TSBEiser::class),
+            new ClassMap('TSRVAanvraagHeader', TSRVAanvraagHeader::class),
+            new ClassMap('TSBHeader', TSBHeader::class),
+            new ClassMap('TSRVEisers', TSRVEisers::class),
+            new ClassMap('TSBEisers', TSBEisers::class),
+            new ClassMap('TPLHeader', TPLHeader::class),
+            new ClassMap('TPL', TPL::class),
+            new ClassMap('TPRSMutatie', TPRSMutatie::class),
+            new ClassMap('TPRSMutaties', TPRSMutaties::class),
+            new ClassMap('TDKHeader', TDKHeader::class),
+            new ClassMap('TDK', TDK::class),
+            new ClassMap('TBBRHeader', TBBRHeader::class),
+            new ClassMap('TBBROpdracht', TBBROpdracht::class),
+            new ClassMap('TBBROpdrachten', TBBROpdrachten::class),
+            new ClassMap('TSaldoReservering', TSaldoReservering::class),
+            new ClassMap('TPRSMutatiesPeriode', TPRSMutatiesPeriode::class),
+            new ClassMap('TSaldoReserveringen', TSaldoReserveringen::class),
+            new ClassMap('TPersoon', TPersoon::class),
+            new ClassMap('TAanmelding', TAanmelding::class),
+            new ClassMap('TContact', TContact::class),
+            new ClassMap('TGezinsSituatie', TGezinsSituatie::class),
+            new ClassMap('TJaNeeVraag', TJaNeeVraag::class),
+            new ClassMap('TOpenVraag', TOpenVraag::class),
+            new ClassMap('TAfspraak', TAfspraak::class),
+            new ClassMap('TTeam', TTeam::class),
+            new ClassMap('TKind', TKind::class),
+            new ClassMap('TProductExtra', TProductExtra::class),
+            new ClassMap('TOrganisatie', TOrganisatie::class),
+            new ClassMap('TTrajectTaak', TTrajectTaak::class),
+            new ClassMap('TContract', TContract::class),
+            new ClassMap('TContractenLijst', TContractenLijst::class),
+            new ClassMap('TPRSAfschrift', TPRSAfschrift::class),
+            new ClassMap('TPRSAfschriftMutatie', TPRSAfschriftMutatie::class),
+            new ClassMap('TPRSAfschriftReservering', TPRSAfschriftReservering::class),
+            new ClassMap('TPRSAfschriften', TPRSAfschriften::class),
+            new ClassMap('TPRSAfschriftMutaties', TPRSAfschriftMutaties::class),
+            new ClassMap('TPRSAfschriftReserveringen', TPRSAfschriftReserveringen::class),
+            new ClassMap('TCasusDeelopdracht', TCasusDeelopdracht::class),
+            new ClassMap('THulpverlener', THulpverlener::class),
+            new ClassMap('TContactpersoon', TContactpersoon::class),
+            new ClassMap('TExtraProductHeader', TExtraProductHeader::class),
+            new ClassMap('TExtraProduct', TExtraProduct::class),
+            new ClassMap('TCasusToelichting', TCasusToelichting::class),
+            new ClassMap('TOpdrachtgeverKlant', TOpdrachtgeverKlant::class),
+            new ClassMap('TTrajectSoort', TTrajectSoort::class),
+            new ClassMap('TTraject', TTraject::class),
+            new ClassMap('TBBRVorm', TBBRVorm::class),
+            new ClassMap('TCasusNotitie', TCasusNotitie::class),
+            new ClassMap('TPersoonAanvraag', TPersoonAanvraag::class),
+            new ClassMap('TAanvraag', TAanvraag::class),
+            new ClassMap('TInkomen', TInkomen::class),
+            new ClassMap('TUitgaven', TUitgaven::class),
+            new ClassMap('TDocument', TDocument::class),
+            new ClassMap('TBijlage', TBijlage::class),
+            new ClassMap('TRelatieProduct', TRelatieProduct::class),
+            new ClassMap('TAanvraagLening', TAanvraagLening::class),
+            new ClassMap('TAanvraagDK', TAanvraagDK::class),
+            new ClassMap('TLijstOpdrachtgever', TLijstOpdrachtgever::class),
+            new ClassMap('TLijstKredietsoort', TLijstKredietsoort::class),
+            new ClassMap('TSchuld', TSchuld::class),
+            new ClassMap('TAllegroDocument', TAllegroDocument::class),
+            new ClassMap('TDocumentSleutel', TDocumentSleutel::class),
+            new ClassMap('TPLAanvraag', TPLAanvraag::class),
+            new ClassMap('TRCHeader', TRCHeader::class),
+            new ClassMap('TRC', TRC::class),
+            new ClassMap('TRCJaarrente', TRCJaarrente::class),
+            new ClassMap('TBBoxHeader', TBBoxHeader::class),
+            new ClassMap('TBBoxDetail', TBBoxDetail::class),
+            new ClassMap('TBBoxBijlage', TBBoxBijlage::class),
+            new ClassMap('TBBoxGeadresseerde', TBBoxGeadresseerde::class),
+            new ClassMap('TBBoxTekst', TBBoxTekst::class),
+            new ClassMap('TSorteerInfo', TSorteerInfo::class),
+            new ClassMap('TBBRBegunstigde', TBBRBegunstigde::class),
+            new ClassMap('TAfspraakSoorten', TAfspraakSoorten::class),
+            new ClassMap('TContract2', TContract2::class),
+            new ClassMap('TRelatiecodeBedrijfcode', TRelatiecodeBedrijfcode::class),
+            new ClassMap('TableRequestInfo', TableRequestInfo::class),
+            new ClassMap('DataParameter', DataParameter::class),
+            new ClassMap('SimpleRequestInfo', SimpleRequestInfo::class),
+            new ClassMap('SimpleDataParameter', SimpleDataParameter::class),
+            new ClassMap('SimpleDataResult', SimpleDataResult::class),
+            new ClassMap('SimpleFieldInfo', SimpleFieldInfo::class),
+            new ClassMap('SimpleDelta', SimpleDelta::class),
+            new ClassMap('SimpleDeltaChange', SimpleDeltaChange::class),
+            new ClassMap('UserInfo', UserInfo::class),
+            new ClassMap('TableRequestInfoV5', TableRequestInfoV5::class),
+            new ClassMap('ColumnSorting', ColumnSorting::class),
+            new ClassMap('TableRequestInfoV6', TableRequestInfoV6::class),
+            new ClassMap('SimpleDataResultEx', SimpleDataResultEx::class),
+            new ClassMap('TestArray', TestArray::class),
+            new ClassMap('IntegerArray', IntegerArray::class),
+            new ClassMap('CasusHeaderArray', CasusHeaderArray::class),
+            new ClassMap('CasusPVAArray', CasusPVAArray::class),
+            new ClassMap('CasusPVAProductArray', CasusPVAProductArray::class),
+            new ClassMap('BooleanArray', BooleanArray::class),
+            new ClassMap('SRVAanvraagHeaderArray', SRVAanvraagHeaderArray::class),
+            new ClassMap('SRVEiserArray', SRVEiserArray::class),
+            new ClassMap('SBEiserArray', SBEiserArray::class),
+            new ClassMap('SBHeaderArray', SBHeaderArray::class),
+            new ClassMap('PLHeaderArray', PLHeaderArray::class),
+            new ClassMap('PRSMutatieArray', PRSMutatieArray::class),
+            new ClassMap('DKHeaderArray', DKHeaderArray::class),
+            new ClassMap('BBRHeaderArray', BBRHeaderArray::class),
+            new ClassMap('BBROpdrachtArray', BBROpdrachtArray::class),
+            new ClassMap('SaldoReserveringArray', SaldoReserveringArray::class),
+            new ClassMap('TeamArray', TeamArray::class),
+            new ClassMap('KindArray', KindArray::class),
+            new ClassMap('TrajectTaakArray', TrajectTaakArray::class),
+            new ClassMap('OrganisatieArray', OrganisatieArray::class),
+            new ClassMap('AfspraakArray', AfspraakArray::class),
+            new ClassMap('ContractArray', ContractArray::class),
+            new ClassMap('PRSAfschriftArray', PRSAfschriftArray::class),
+            new ClassMap('PRSAfschriftMutatieArray', PRSAfschriftMutatieArray::class),
+            new ClassMap('PRSAfschriftReseveringArray', PRSAfschriftReseveringArray::class),
+            new ClassMap('CasusDeelopdrachtArray', CasusDeelopdrachtArray::class),
+            new ClassMap('HulpverlenerArray', HulpverlenerArray::class),
+            new ClassMap('ContactpersoonArray', ContactpersoonArray::class),
+            new ClassMap('TExtraProductHeaderArray', TExtraProductHeaderArray::class),
+            new ClassMap('CasusToelichtingArray', CasusToelichtingArray::class),
+            new ClassMap('TrajectSoortArray', TrajectSoortArray::class),
+            new ClassMap('OpdrachtgeverKlantArray', OpdrachtgeverKlantArray::class),
+            new ClassMap('TrajectArray', TrajectArray::class),
+            new ClassMap('BBRVormArray', BBRVormArray::class),
+            new ClassMap('CasusNotitieArray', CasusNotitieArray::class),
+            new ClassMap('BijlageArray', BijlageArray::class),
+            new ClassMap('RelatieProductArray', RelatieProductArray::class),
+            new ClassMap('LijstOpdrachtgeverArray', LijstOpdrachtgeverArray::class),
+            new ClassMap('LijstKredietsoortArray', LijstKredietsoortArray::class),
+            new ClassMap('SchuldArray', SchuldArray::class),
+            new ClassMap('AllegroDocumentArray', AllegroDocumentArray::class),
+            new ClassMap('PLAanvraagArray', PLAanvraagArray::class),
+            new ClassMap('RCJaarrenteArray', RCJaarrenteArray::class),
+            new ClassMap('RCHeaderArray', RCHeaderArray::class),
+            new ClassMap('TBBoxHeaderArray', TBBoxHeaderArray::class),
+            new ClassMap('TBBoxBijlageArray', TBBoxBijlageArray::class),
+            new ClassMap('TBBoxGeadresseerdeArray', TBBoxGeadresseerdeArray::class),
+            new ClassMap('TBBoxTekstArray', TBBoxTekstArray::class),
+            new ClassMap('Int64Array', Int64Array::class),
+            new ClassMap('TSorteerInfoArray', TSorteerInfoArray::class),
+            new ClassMap('BBRBegunstigdeArray', BBRBegunstigdeArray::class),
+            new ClassMap('TAfspraakSoortenArray', TAfspraakSoortenArray::class),
+            new ClassMap('TContract2Array', TContract2Array::class),
+            new ClassMap('RekeningnummerArray', RekeningnummerArray::class),
+            new ClassMap('RelatiecodeBedrijfcodeArray', RelatiecodeBedrijfcodeArray::class),
+            new ClassMap('StringArray', StringArray::class),
+            new ClassMap('TableRequestInfoArray', TableRequestInfoArray::class),
+            new ClassMap('DataParameterArray', DataParameterArray::class),
+            new ClassMap('SimpleRequestInfoArray', SimpleRequestInfoArray::class),
+            new ClassMap('SimpleDataParameterArray', SimpleDataParameterArray::class),
+            new ClassMap('SimpleDataResultArray', SimpleDataResultArray::class),
+            new ClassMap('SimpleFieldInfoArray', SimpleFieldInfoArray::class),
+            new ClassMap('StringArrayArray', StringArrayArray::class),
+            new ClassMap('SimpleDeltaArray', SimpleDeltaArray::class),
+            new ClassMap('SimpleDeltaChangeArray', SimpleDeltaChangeArray::class),
+            new ClassMap('VariantArray', VariantArray::class),
+            new ClassMap('LoginService___AllegroWebLogin', LoginServiceAllegroWebLogin::class),
+            new ClassMap('LoginService___AllegroWebLoginResponse', LoginServiceAllegroWebLoginResponse::class),
+            new ClassMap('LoginService___AllegroWebMagAanmelden', LoginServiceAllegroWebMagAanmelden::class),
+            new ClassMap(
+                'LoginService___AllegroWebMagAanmeldenResponse',
+                LoginServiceAllegroWebMagAanmeldenResponse::class
+            ),
+            new ClassMap('LoginService___AllegroWebLoginTijdelijk', LoginServiceAllegroWebLoginTijdelijk::class),
+            new ClassMap(
+                'LoginService___AllegroWebLoginTijdelijkResponse',
+                LoginServiceAllegroWebLoginTijdelijkResponse::class
+            ),
+            new ClassMap('LoginService___BSNNaarRelatie', LoginServiceBSNNaarRelatie::class),
+            new ClassMap('LoginService___BSNNaarRelatieResponse', LoginServiceBSNNaarRelatieResponse::class),
+            new ClassMap('LoginService___GenereerWachtwoord', LoginServiceGenereerWachtwoord::class),
+            new ClassMap('LoginService___GenereerWachtwoordResponse', LoginServiceGenereerWachtwoordResponse::class),
+            new ClassMap('LoginService___NieuweRegistratie', LoginServiceNieuweRegistratie::class),
+            new ClassMap('LoginService___NieuweRegistratieResponse', LoginServiceNieuweRegistratieResponse::class),
+            new ClassMap('LoginService___ActiveerRegistratie', LoginServiceActiveerRegistratie::class),
+            new ClassMap('LoginService___ActiveerRegistratieResponse', LoginServiceActiveerRegistratieResponse::class),
+            new ClassMap('LoginService___NieuwContact', LoginServiceNieuwContact::class),
+            new ClassMap('LoginService___NieuwContactResponse', LoginServiceNieuwContactResponse::class),
+            new ClassMap('LoginService___CheckWachtwoord', LoginServiceCheckWachtwoord::class),
+            new ClassMap('LoginService___CheckWachtwoordResponse', LoginServiceCheckWachtwoordResponse::class),
+            new ClassMap('LoginService___NieuweRegistratieBSN', LoginServiceNieuweRegistratieBSN::class),
+            new ClassMap(
+                'LoginService___NieuweRegistratieBSNResponse',
+                LoginServiceNieuweRegistratieBSNResponse::class
+            ),
+            new ClassMap('LoginService___Logout', LoginServiceLogout::class),
+            new ClassMap('LoginService___LogoutResponse', LoginServiceLogoutResponse::class),
+            new ClassMap('LoginService___BSNNaarRelatieMetBedrijf', LoginServiceBSNNaarRelatieMetBedrijf::class),
+            new ClassMap(
+                'LoginService___BSNNaarRelatieMetBedrijfResponse',
+                LoginServiceBSNNaarRelatieMetBedrijfResponse::class
+            ),
+            new ClassMap('ROClientIDHeader', ROClientIDHeader::class),
         );
     }
 }
-
