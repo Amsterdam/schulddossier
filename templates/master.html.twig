@@ -47,7 +47,7 @@
             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}">
                 <div class="header__title">
                   <strong>{% block page_title %}Schulddossier{% endblock %}</strong>
-                  {% if app_version.getEnv == 'dev' or app_version.getEnv == 'acceptance' %}<span>{{ app_version.getEnv }}: {% if app.user %}{{ app.user.userName }} / {{ app.user.getType }} / {% endif %}{{ app_version.getVersionId }}</span>{% endif %}
+                  {% if app_version.getEnv == 'dev' or app_version.getEnv == 'acceptance' %}<span>{{ app_version.getEnv }}: {% if app.user %}{{ app.user.userName }} / {{ app.user.getType }} / {% endif %}{{ app_version.getVersionId }} (Ruben was here!)</span>{% endif %}
                   {% if app_version.getEnv == 'production' %}<!-- {{ app_version.getEnv }}: {% if app.user %}{{ app.user.userName }} / {{ app.user.getType }} / {% endif %}{{ app_version.getVersionId }} -->{% endif %}
                 </div>
             </a>
