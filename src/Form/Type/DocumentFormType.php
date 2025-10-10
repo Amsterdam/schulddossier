@@ -21,7 +21,7 @@ class DocumentFormType extends AbstractType
         $builder->add('file', FileType::class, [
             'required' => true,
             'attr' => [
-                'accept' => '.png,.jpeg,.jpg,.pdf,.gif,.bmp,.tiff,.txt,.doc,.docx,.xls,.xlsx,.pdf',
+                'accept' => '.png,.jpeg,.jpg,.pdf,.gif,.bmp,.tiff,.txt,.doc,.docx,.xls,.xlsx',
             ],
             'constraints' => [
                 new File([
