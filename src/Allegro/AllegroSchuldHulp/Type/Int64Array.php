@@ -1,0 +1,32 @@
+<?php
+
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
+
+class Int64Array
+{
+    /**
+     * @var int
+     */
+    private $long;
+
+    /**
+     * @return int
+     */
+    public function getLong()
+    {
+        return $this->long;
+    }
+
+    /**
+     * @param int $long
+     * @return Int64Array
+     */
+    public function withLong($long)
+    {
+        $new = clone $this;
+        $new->long = $long;
+
+        return $new;
+    }
+}
+

@@ -1,0 +1,32 @@
+<?php
+
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
+
+class BooleanArray
+{
+    /**
+     * @var bool
+     */
+    private $boolean;
+
+    /**
+     * @return bool
+     */
+    public function getBoolean()
+    {
+        return $this->boolean;
+    }
+
+    /**
+     * @param bool $boolean
+     * @return BooleanArray
+     */
+    public function withBoolean($boolean)
+    {
+        $new = clone $this;
+        $new->boolean = $boolean;
+
+        return $new;
+    }
+}
+

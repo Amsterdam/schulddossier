@@ -1,0 +1,32 @@
+<?php
+
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
+
+class VariantArray
+{
+    /**
+     * @var mixed
+     */
+    private $anyType;
+
+    /**
+     * @return mixed
+     */
+    public function getAnyType()
+    {
+        return $this->anyType;
+    }
+
+    /**
+     * @param mixed $anyType
+     * @return VariantArray
+     */
+    public function withAnyType($anyType)
+    {
+        $new = clone $this;
+        $new->anyType = $anyType;
+
+        return $new;
+    }
+}
+
