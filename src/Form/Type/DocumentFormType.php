@@ -28,7 +28,6 @@ class DocumentFormType extends AbstractType
                     'mimeTypes' => [
                         'image/png',
                         'image/jpeg',
-                        'image/jpg',
                         'image/gif',
                         'image/bmp',
                         'image/tiff',
