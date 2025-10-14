@@ -38,7 +38,7 @@ class DocumentFormType extends AbstractType
                         'application/msword',
                         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                     ],
-                    'mimeTypesMessage' => 'U kunt alleen PDF, Word, Excel of afbeeldingen uploaden.',
+                    'mimeTypesMessage' => 'U kunt alleen PDF, Word, Excel of afbeeldingen (png, jpg, jpeg, bmp, gif, en tiff) uploaden.',
                 ]),
             ],
 
