@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAfspraak implements RequestInterface
+class TAfspraak
 {
-
     /**
      * @var \DateTimeInterface
      */
@@ -47,30 +43,6 @@ class TAfspraak implements RequestInterface
      * @var string
      */
     private $AfspraakOmschrijving;
-
-    /**
-     * Constructor
-     *
-     * @var \DateTimeInterface $StartTijdStip
-     * @var \DateTimeInterface $EindTijdStip
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker
-     * @var string $Locatie
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $LocatieAdres
-     * @var string $LocatieSpreekkamer
-     * @var string $AfspraakCode
-     * @var string $AfspraakOmschrijving
-     */
-    public function __construct($StartTijdStip, $EindTijdStip, $Medewerker, $Locatie, $LocatieAdres, $LocatieSpreekkamer, $AfspraakCode, $AfspraakOmschrijving)
-    {
-        $this->StartTijdStip = $StartTijdStip;
-        $this->EindTijdStip = $EindTijdStip;
-        $this->Medewerker = $Medewerker;
-        $this->Locatie = $Locatie;
-        $this->LocatieAdres = $LocatieAdres;
-        $this->LocatieSpreekkamer = $LocatieSpreekkamer;
-        $this->AfspraakCode = $AfspraakCode;
-        $this->AfspraakOmschrijving = $AfspraakOmschrijving;
-    }
 
     /**
      * @return \DateTimeInterface
@@ -231,7 +203,5 @@ class TAfspraak implements RequestInterface
 
         return $new;
     }
-
-
 }
 

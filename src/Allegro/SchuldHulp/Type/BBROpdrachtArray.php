@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class BBROpdrachtArray implements RequestInterface
+class BBROpdrachtArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBROpdracht
      */
     private $TBBROpdracht;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBROpdracht $TBBROpdracht
-     */
-    public function __construct($TBBROpdracht)
-    {
-        $this->TBBROpdracht = $TBBROpdracht;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBROpdracht
@@ -42,7 +28,5 @@ class BBROpdrachtArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

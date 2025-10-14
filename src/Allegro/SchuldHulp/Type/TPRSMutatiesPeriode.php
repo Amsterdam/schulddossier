@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPRSMutatiesPeriode implements RequestInterface
+class TPRSMutatiesPeriode
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSMutatieArray
      */
@@ -52,32 +48,6 @@ class TPRSMutatiesPeriode implements RequestInterface
      * @var \DateTimeInterface
      */
     private $PeriodeEinde;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSMutatieArray $Mutaties
-     * @var \DateTimeInterface $DatumStart
-     * @var \DateTimeInterface $DatumEinde
-     * @var float $SaldoStart
-     * @var float $SaldoEinde
-     * @var float $TotaalAf
-     * @var float $TotaalBij
-     * @var \DateTimeInterface $PeriodeStart
-     * @var \DateTimeInterface $PeriodeEinde
-     */
-    public function __construct($Mutaties, $DatumStart, $DatumEinde, $SaldoStart, $SaldoEinde, $TotaalAf, $TotaalBij, $PeriodeStart, $PeriodeEinde)
-    {
-        $this->Mutaties = $Mutaties;
-        $this->DatumStart = $DatumStart;
-        $this->DatumEinde = $DatumEinde;
-        $this->SaldoStart = $SaldoStart;
-        $this->SaldoEinde = $SaldoEinde;
-        $this->TotaalAf = $TotaalAf;
-        $this->TotaalBij = $TotaalBij;
-        $this->PeriodeStart = $PeriodeStart;
-        $this->PeriodeEinde = $PeriodeEinde;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSMutatieArray
@@ -258,7 +228,5 @@ class TPRSMutatiesPeriode implements RequestInterface
 
         return $new;
     }
-
-
 }
 

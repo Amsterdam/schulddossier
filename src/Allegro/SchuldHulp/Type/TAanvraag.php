@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAanvraag implements RequestInterface
+class TAanvraag
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag
      */
@@ -142,68 +138,6 @@ class TAanvraag implements RequestInterface
      * @var bool
      */
     private $CollectieveBorgstelling;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag $Aanvrager
-     * @var bool $MetPartner
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag $Partner
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Bezoekadres
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Postadres
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact $Contact
-     * @var bool $CorrespondentieMail
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGezinsSituatie $GezinsSituatie
-     * @var int $AantalKinderen
-     * @var string $ToelichtingKinderen
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen $InkomenAanvrager
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen $InkomenPartner
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TUitgaven $Uitgaven
-     * @var float $Schuldbedrag
-     * @var int $Schuldeisers
-     * @var string $SoortLening
-     * @var float $GewenstKrediet
-     * @var float $GewenstAflossing
-     * @var string $Bestedingsdoel
-     * @var string $Indiener
-     * @var string $HulpverlenerNaam
-     * @var int $OpdrachtgeverCode
-     * @var string $Contactpersoon
-     * @var string $KredietSoort
-     * @var bool $Borgstelling
-     * @var string $Toelichting
-     * @var bool $CollectieveBorgstelling
-     */
-    public function __construct($Aanvrager, $MetPartner, $Partner, $Bezoekadres, $Postadres, $Contact, $CorrespondentieMail, $GezinsSituatie, $AantalKinderen, $ToelichtingKinderen, $InkomenAanvrager, $InkomenPartner, $Uitgaven, $Schuldbedrag, $Schuldeisers, $SoortLening, $GewenstKrediet, $GewenstAflossing, $Bestedingsdoel, $Indiener, $HulpverlenerNaam, $OpdrachtgeverCode, $Contactpersoon, $KredietSoort, $Borgstelling, $Toelichting, $CollectieveBorgstelling)
-    {
-        $this->Aanvrager = $Aanvrager;
-        $this->MetPartner = $MetPartner;
-        $this->Partner = $Partner;
-        $this->Bezoekadres = $Bezoekadres;
-        $this->Postadres = $Postadres;
-        $this->Contact = $Contact;
-        $this->CorrespondentieMail = $CorrespondentieMail;
-        $this->GezinsSituatie = $GezinsSituatie;
-        $this->AantalKinderen = $AantalKinderen;
-        $this->ToelichtingKinderen = $ToelichtingKinderen;
-        $this->InkomenAanvrager = $InkomenAanvrager;
-        $this->InkomenPartner = $InkomenPartner;
-        $this->Uitgaven = $Uitgaven;
-        $this->Schuldbedrag = $Schuldbedrag;
-        $this->Schuldeisers = $Schuldeisers;
-        $this->SoortLening = $SoortLening;
-        $this->GewenstKrediet = $GewenstKrediet;
-        $this->GewenstAflossing = $GewenstAflossing;
-        $this->Bestedingsdoel = $Bestedingsdoel;
-        $this->Indiener = $Indiener;
-        $this->HulpverlenerNaam = $HulpverlenerNaam;
-        $this->OpdrachtgeverCode = $OpdrachtgeverCode;
-        $this->Contactpersoon = $Contactpersoon;
-        $this->KredietSoort = $KredietSoort;
-        $this->Borgstelling = $Borgstelling;
-        $this->Toelichting = $Toelichting;
-        $this->CollectieveBorgstelling = $CollectieveBorgstelling;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag
@@ -744,7 +678,5 @@ class TAanvraag implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -53,7 +53,7 @@ fixtures:
 	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh -c "php bin/console doc:fix:load  --no-interaction --purge-with-truncate"
 
 composer-install:
-	docker run --rm -v .:/app -u 1000:1000 composer install
+	docker run --rm -v .:/app -u 1000:1000 composer install --ignore-platform-req=ext-bcmath --ignore-platform-req=ext-intl --ignore-platform-req=ext-soap --ignore-platform-req=ext-xsl
 
 composer-update:
 	docker run --rm -v .:/app -u 1000:1000 composer update --lock
@@ -66,4 +66,3 @@ npm-run-dev:
 
 npm-watch:
 	docker run -it --init --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm run watch"
-

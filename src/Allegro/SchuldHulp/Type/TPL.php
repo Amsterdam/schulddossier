@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPL implements RequestInterface
+class TPL
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader
      */
@@ -162,76 +158,6 @@ class TPL implements RequestInterface
      * @var float
      */
     private $BetaaldeKredietvergoeding;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader $InfoHeader
-     * @var int $Opdrachtgever
-     * @var int $OpdrachtgeverContact
-     * @var \DateTimeInterface $TheoEinddatum
-     * @var float $NettoKredietsom
-     * @var float $BrutoKredietsom
-     * @var float $Kredietvergoeding
-     * @var float $MaandTermijn
-     * @var float $KwartaalTermijn
-     * @var int $AantalMaanden
-     * @var int $AantalKwartalen
-     * @var \DateTimeInterface $DatumEersteAflossing
-     * @var float $Betaald
-     * @var float $SaldoLening
-     * @var float $Achterstand
-     * @var int $ResterendeLooptijd
-     * @var float $EffectiefJaarpercentage
-     * @var \DateTimeInterface $DatumLaatsteBetaling
-     * @var float $BedragLaatsteBetaling
-     * @var float $VolledigVervroegdeAflossing
-     * @var string $Medewerker
-     * @var int $MedelenerCode
-     * @var float $OpenstaandeVertragingsrente
-     * @var float $OpenstaandeKredietvergoeding
-     * @var float $BetaaldeVertragingsrente
-     * @var float $BetaaldeBoeterente
-     * @var float $KostenVVA
-     * @var float $Voorstand
-     * @var string $LeningSoort
-     * @var float $MaandPercentage
-     * @var float $BetaaldeKredietvergoeding
-     */
-    public function __construct($InfoHeader, $Opdrachtgever, $OpdrachtgeverContact, $TheoEinddatum, $NettoKredietsom, $BrutoKredietsom, $Kredietvergoeding, $MaandTermijn, $KwartaalTermijn, $AantalMaanden, $AantalKwartalen, $DatumEersteAflossing, $Betaald, $SaldoLening, $Achterstand, $ResterendeLooptijd, $EffectiefJaarpercentage, $DatumLaatsteBetaling, $BedragLaatsteBetaling, $VolledigVervroegdeAflossing, $Medewerker, $MedelenerCode, $OpenstaandeVertragingsrente, $OpenstaandeKredietvergoeding, $BetaaldeVertragingsrente, $BetaaldeBoeterente, $KostenVVA, $Voorstand, $LeningSoort, $MaandPercentage, $BetaaldeKredietvergoeding)
-    {
-        $this->InfoHeader = $InfoHeader;
-        $this->Opdrachtgever = $Opdrachtgever;
-        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-        $this->TheoEinddatum = $TheoEinddatum;
-        $this->NettoKredietsom = $NettoKredietsom;
-        $this->BrutoKredietsom = $BrutoKredietsom;
-        $this->Kredietvergoeding = $Kredietvergoeding;
-        $this->MaandTermijn = $MaandTermijn;
-        $this->KwartaalTermijn = $KwartaalTermijn;
-        $this->AantalMaanden = $AantalMaanden;
-        $this->AantalKwartalen = $AantalKwartalen;
-        $this->DatumEersteAflossing = $DatumEersteAflossing;
-        $this->Betaald = $Betaald;
-        $this->SaldoLening = $SaldoLening;
-        $this->Achterstand = $Achterstand;
-        $this->ResterendeLooptijd = $ResterendeLooptijd;
-        $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
-        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling;
-        $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
-        $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
-        $this->Medewerker = $Medewerker;
-        $this->MedelenerCode = $MedelenerCode;
-        $this->OpenstaandeVertragingsrente = $OpenstaandeVertragingsrente;
-        $this->OpenstaandeKredietvergoeding = $OpenstaandeKredietvergoeding;
-        $this->BetaaldeVertragingsrente = $BetaaldeVertragingsrente;
-        $this->BetaaldeBoeterente = $BetaaldeBoeterente;
-        $this->KostenVVA = $KostenVVA;
-        $this->Voorstand = $Voorstand;
-        $this->LeningSoort = $LeningSoort;
-        $this->MaandPercentage = $MaandPercentage;
-        $this->BetaaldeKredietvergoeding = $BetaaldeKredietvergoeding;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLHeader
@@ -852,7 +778,5 @@ class TPL implements RequestInterface
 
         return $new;
     }
-
-
 }
 

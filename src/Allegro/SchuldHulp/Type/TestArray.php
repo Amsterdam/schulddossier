@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TestArray implements RequestInterface
+class TestArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTest
      */
     private $TTest;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTest $TTest
-     */
-    public function __construct($TTest)
-    {
-        $this->TTest = $TTest;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTest
@@ -42,7 +28,5 @@ class TestArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

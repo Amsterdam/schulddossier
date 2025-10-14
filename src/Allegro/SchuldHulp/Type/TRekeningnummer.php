@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TRekeningnummer implements RequestInterface
+class TRekeningnummer
 {
-
     /**
      * @var int
      */
@@ -42,28 +38,6 @@ class TRekeningnummer implements RequestInterface
      * @var bool
      */
     private $Geblokkeerd;
-
-    /**
-     * Constructor
-     *
-     * @var int $Volgnummer
-     * @var string $IBAN
-     * @var string $BIC
-     * @var string $Bank
-     * @var string $Omschrijving
-     * @var bool $Buitenland
-     * @var bool $Geblokkeerd
-     */
-    public function __construct($Volgnummer, $IBAN, $BIC, $Bank, $Omschrijving, $Buitenland, $Geblokkeerd)
-    {
-        $this->Volgnummer = $Volgnummer;
-        $this->IBAN = $IBAN;
-        $this->BIC = $BIC;
-        $this->Bank = $Bank;
-        $this->Omschrijving = $Omschrijving;
-        $this->Buitenland = $Buitenland;
-        $this->Geblokkeerd = $Geblokkeerd;
-    }
 
     /**
      * @return int
@@ -204,7 +178,5 @@ class TRekeningnummer implements RequestInterface
 
         return $new;
     }
-
-
 }
 

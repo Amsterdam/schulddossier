@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class IntegerArray implements RequestInterface
+class IntegerArray
 {
-
     /**
      * @var int
      */
     private $int;
-
-    /**
-     * Constructor
-     *
-     * @var int $int
-     */
-    public function __construct($int)
-    {
-        $this->int = $int;
-    }
 
     /**
      * @return int
@@ -42,7 +28,5 @@ class IntegerArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

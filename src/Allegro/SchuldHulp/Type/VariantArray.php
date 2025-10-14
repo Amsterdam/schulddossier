@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class VariantArray implements RequestInterface
+class VariantArray
 {
-
     /**
      * @var mixed
      */
     private $anyType;
-
-    /**
-     * Constructor
-     *
-     * @var mixed $anyType
-     */
-    public function __construct($anyType)
-    {
-        $this->anyType = $anyType;
-    }
 
     /**
      * @return mixed
@@ -42,7 +28,5 @@ class VariantArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

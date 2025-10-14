@@ -2,15 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSRVAanvraag implements RequestInterface
+class TSRVAanvraag
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader
      */
     private $InfoHeader;
 
@@ -103,52 +98,6 @@ class TSRVAanvraag implements RequestInterface
      * @var float
      */
     private $ExtraInleg;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader $InfoHeader
-     * @var \DateTimeInterface $Startdatum
-     * @var \DateTimeInterface $Einddatum
-     * @var string $Eindstatus
-     * @var string $Medewerker
-     * @var int $Opdrachtgever
-     * @var int $OpdrachtgeverContact
-     * @var float $VTLB
-     * @var \DateTimeInterface $DatumBerekening
-     * @var float $BrutoAfloscapaciteit
-     * @var float $KostenFinancieelBeheer
-     * @var float $KostenSchuldhulpverlening
-     * @var float $NettoAfloscapaciteit
-     * @var float $TotaalAangemeldeSchuld
-     * @var float $TotaalTeruggemeldeSchuld
-     * @var int $PartnerCode
-     * @var \DateTimeInterface $Aanvraagdatum
-     * @var string $RedenOpschorting
-     * @var float $ExtraInleg
-     */
-    public function __construct($InfoHeader, $Startdatum, $Einddatum, $Eindstatus, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, $VTLB, $DatumBerekening, $BrutoAfloscapaciteit, $KostenFinancieelBeheer, $KostenSchuldhulpverlening, $NettoAfloscapaciteit, $TotaalAangemeldeSchuld, $TotaalTeruggemeldeSchuld, $PartnerCode, $Aanvraagdatum, $RedenOpschorting, $ExtraInleg)
-    {
-        $this->InfoHeader = $InfoHeader;
-        $this->Startdatum = $Startdatum;
-        $this->Einddatum = $Einddatum;
-        $this->Eindstatus = $Eindstatus;
-        $this->Medewerker = $Medewerker;
-        $this->Opdrachtgever = $Opdrachtgever;
-        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-        $this->VTLB = $VTLB;
-        $this->DatumBerekening = $DatumBerekening;
-        $this->BrutoAfloscapaciteit = $BrutoAfloscapaciteit;
-        $this->KostenFinancieelBeheer = $KostenFinancieelBeheer;
-        $this->KostenSchuldhulpverlening = $KostenSchuldhulpverlening;
-        $this->NettoAfloscapaciteit = $NettoAfloscapaciteit;
-        $this->TotaalAangemeldeSchuld = $TotaalAangemeldeSchuld;
-        $this->TotaalTeruggemeldeSchuld = $TotaalTeruggemeldeSchuld;
-        $this->PartnerCode = $PartnerCode;
-        $this->Aanvraagdatum = $Aanvraagdatum;
-        $this->RedenOpschorting = $RedenOpschorting;
-        $this->ExtraInleg = $ExtraInleg;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader
@@ -529,7 +478,5 @@ class TSRVAanvraag implements RequestInterface
 
         return $new;
     }
-
-
 }
 

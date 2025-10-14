@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAanmelding implements RequestInterface
+class TAanmelding
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoon
      */
@@ -142,68 +138,6 @@ class TAanmelding implements RequestInterface
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag
      */
     private $OpenVraag10;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoon $Aanvrager
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoon $Partner
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGezinsSituatie $GezinsSituatie
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Adres
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact $Contact
-     * @var string $Waarom
-     * @var string $Crisis
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TJaNeeVraag $JaNeeVraag1
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TJaNeeVraag $JaNeeVraag2
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TJaNeeVraag $JaNeeVraag3
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TJaNeeVraag $JaNeeVraag4
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TJaNeeVraag $JaNeeVraag5
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TJaNeeVraag $JaNeeVraag6
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TJaNeeVraag $JaNeeVraag7
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TJaNeeVraag $JaNeeVraag8
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TJaNeeVraag $JaNeeVraag9
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TJaNeeVraag $JaNeeVraag10
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $OpenVraag1
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $OpenVraag2
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $OpenVraag3
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $OpenVraag4
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $OpenVraag5
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $OpenVraag6
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $OpenVraag7
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $OpenVraag8
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $OpenVraag9
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $OpenVraag10
-     */
-    public function __construct($Aanvrager, $Partner, $GezinsSituatie, $Adres, $Contact, $Waarom, $Crisis, $JaNeeVraag1, $JaNeeVraag2, $JaNeeVraag3, $JaNeeVraag4, $JaNeeVraag5, $JaNeeVraag6, $JaNeeVraag7, $JaNeeVraag8, $JaNeeVraag9, $JaNeeVraag10, $OpenVraag1, $OpenVraag2, $OpenVraag3, $OpenVraag4, $OpenVraag5, $OpenVraag6, $OpenVraag7, $OpenVraag8, $OpenVraag9, $OpenVraag10)
-    {
-        $this->Aanvrager = $Aanvrager;
-        $this->Partner = $Partner;
-        $this->GezinsSituatie = $GezinsSituatie;
-        $this->Adres = $Adres;
-        $this->Contact = $Contact;
-        $this->Waarom = $Waarom;
-        $this->Crisis = $Crisis;
-        $this->JaNeeVraag1 = $JaNeeVraag1;
-        $this->JaNeeVraag2 = $JaNeeVraag2;
-        $this->JaNeeVraag3 = $JaNeeVraag3;
-        $this->JaNeeVraag4 = $JaNeeVraag4;
-        $this->JaNeeVraag5 = $JaNeeVraag5;
-        $this->JaNeeVraag6 = $JaNeeVraag6;
-        $this->JaNeeVraag7 = $JaNeeVraag7;
-        $this->JaNeeVraag8 = $JaNeeVraag8;
-        $this->JaNeeVraag9 = $JaNeeVraag9;
-        $this->JaNeeVraag10 = $JaNeeVraag10;
-        $this->OpenVraag1 = $OpenVraag1;
-        $this->OpenVraag2 = $OpenVraag2;
-        $this->OpenVraag3 = $OpenVraag3;
-        $this->OpenVraag4 = $OpenVraag4;
-        $this->OpenVraag5 = $OpenVraag5;
-        $this->OpenVraag6 = $OpenVraag6;
-        $this->OpenVraag7 = $OpenVraag7;
-        $this->OpenVraag8 = $OpenVraag8;
-        $this->OpenVraag9 = $OpenVraag9;
-        $this->OpenVraag10 = $OpenVraag10;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoon
@@ -744,7 +678,5 @@ class TAanmelding implements RequestInterface
 
         return $new;
     }
-
-
 }
 

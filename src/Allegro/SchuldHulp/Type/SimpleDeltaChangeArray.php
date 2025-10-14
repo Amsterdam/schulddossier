@@ -2,27 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleDeltaChangeArray implements RequestInterface
+class SimpleDeltaChangeArray
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDeltaChange
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDeltaChange
      */
     private $SimpleDeltaChange;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDeltaChange $SimpleDeltaChange
-     */
-    public function __construct($SimpleDeltaChange)
-    {
-        $this->SimpleDeltaChange = $SimpleDeltaChange;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDeltaChange
@@ -43,7 +28,5 @@ class SimpleDeltaChangeArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

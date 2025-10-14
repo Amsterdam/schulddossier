@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBRVorm implements RequestInterface
+class TBBRVorm
 {
-
     /**
      * @var string
      */
@@ -17,18 +13,6 @@ class TBBRVorm implements RequestInterface
      * @var string
      */
     private $BBRVormOmschrijving;
-
-    /**
-     * Constructor
-     *
-     * @var string $BBRVormCode
-     * @var string $BBRVormOmschrijving
-     */
-    public function __construct($BBRVormCode, $BBRVormOmschrijving)
-    {
-        $this->BBRVormCode = $BBRVormCode;
-        $this->BBRVormOmschrijving = $BBRVormOmschrijving;
-    }
 
     /**
      * @return string
@@ -69,7 +53,5 @@ class TBBRVorm implements RequestInterface
 
         return $new;
     }
-
-
 }
 

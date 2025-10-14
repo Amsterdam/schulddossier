@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TRCJaarrente implements RequestInterface
+class TRCJaarrente
 {
-
     /**
      * @var int
      */
@@ -22,20 +18,6 @@ class TRCJaarrente implements RequestInterface
      * @var float
      */
     private $RenteNegatief;
-
-    /**
-     * Constructor
-     *
-     * @var int $Jaar
-     * @var float $RentePositief
-     * @var float $RenteNegatief
-     */
-    public function __construct($Jaar, $RentePositief, $RenteNegatief)
-    {
-        $this->Jaar = $Jaar;
-        $this->RentePositief = $RentePositief;
-        $this->RenteNegatief = $RenteNegatief;
-    }
 
     /**
      * @return int
@@ -96,7 +78,5 @@ class TRCJaarrente implements RequestInterface
 
         return $new;
     }
-
-
 }
 

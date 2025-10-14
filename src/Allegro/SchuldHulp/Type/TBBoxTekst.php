@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBoxTekst implements RequestInterface
+class TBBoxTekst
 {
-
     /**
      * @var int
      */
@@ -27,22 +23,6 @@ class TBBoxTekst implements RequestInterface
      * @var string
      */
     private $Tekst;
-
-    /**
-     * Constructor
-     *
-     * @var int $Code
-     * @var string $Naam
-     * @var string $Onderwerp
-     * @var string $Tekst
-     */
-    public function __construct($Code, $Naam, $Onderwerp, $Tekst)
-    {
-        $this->Code = $Code;
-        $this->Naam = $Naam;
-        $this->Onderwerp = $Onderwerp;
-        $this->Tekst = $Tekst;
-    }
 
     /**
      * @return int
@@ -123,7 +103,5 @@ class TBBoxTekst implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPLAanvraag implements RequestInterface
+class TPLAanvraag
 {
-
     /**
      * @var int
      */
@@ -92,48 +88,6 @@ class TPLAanvraag implements RequestInterface
      * @var \DateTimeInterface
      */
     private $DatumStatusFiat;
-
-    /**
-     * Constructor
-     *
-     * @var int $Relatiecode
-     * @var int $Volgnummer
-     * @var \DateTimeInterface $DatumAanvraag
-     * @var string $SoortLening
-     * @var int $MedelenerCode
-     * @var string $Medewerker
-     * @var float $GewenstKrediet
-     * @var string $Status
-     * @var \DateTimeInterface $DatumStatus
-     * @var string $RedenAfwijzing
-     * @var \DateTimeInterface $DatumStatusA
-     * @var \DateTimeInterface $DatumStatusB
-     * @var \DateTimeInterface $DatumStatusC
-     * @var \DateTimeInterface $DatumStatusD
-     * @var \DateTimeInterface $DatumStatusE
-     * @var \DateTimeInterface $DatumStatusAfIn
-     * @var \DateTimeInterface $DatumStatusFiat
-     */
-    public function __construct($Relatiecode, $Volgnummer, $DatumAanvraag, $SoortLening, $MedelenerCode, $Medewerker, $GewenstKrediet, $Status, $DatumStatus, $RedenAfwijzing, $DatumStatusA, $DatumStatusB, $DatumStatusC, $DatumStatusD, $DatumStatusE, $DatumStatusAfIn, $DatumStatusFiat)
-    {
-        $this->Relatiecode = $Relatiecode;
-        $this->Volgnummer = $Volgnummer;
-        $this->DatumAanvraag = $DatumAanvraag;
-        $this->SoortLening = $SoortLening;
-        $this->MedelenerCode = $MedelenerCode;
-        $this->Medewerker = $Medewerker;
-        $this->GewenstKrediet = $GewenstKrediet;
-        $this->Status = $Status;
-        $this->DatumStatus = $DatumStatus;
-        $this->RedenAfwijzing = $RedenAfwijzing;
-        $this->DatumStatusA = $DatumStatusA;
-        $this->DatumStatusB = $DatumStatusB;
-        $this->DatumStatusC = $DatumStatusC;
-        $this->DatumStatusD = $DatumStatusD;
-        $this->DatumStatusE = $DatumStatusE;
-        $this->DatumStatusAfIn = $DatumStatusAfIn;
-        $this->DatumStatusFiat = $DatumStatusFiat;
-    }
 
     /**
      * @return int
@@ -474,7 +428,5 @@ class TPLAanvraag implements RequestInterface
 
         return $new;
     }
-
-
 }
 

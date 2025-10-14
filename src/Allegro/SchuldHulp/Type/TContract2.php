@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TContract2 implements RequestInterface
+class TContract2
 {
-
     /**
      * @var int
      */
@@ -27,22 +23,6 @@ class TContract2 implements RequestInterface
      * @var string
      */
     private $ContractVolgnrSoort;
-
-    /**
-     * Constructor
-     *
-     * @var int $ContractCode
-     * @var int $ContractVolgnummer
-     * @var string $ContractSoort
-     * @var string $ContractVolgnrSoort
-     */
-    public function __construct($ContractCode, $ContractVolgnummer, $ContractSoort, $ContractVolgnrSoort)
-    {
-        $this->ContractCode = $ContractCode;
-        $this->ContractVolgnummer = $ContractVolgnummer;
-        $this->ContractSoort = $ContractSoort;
-        $this->ContractVolgnrSoort = $ContractVolgnrSoort;
-    }
 
     /**
      * @return int
@@ -123,7 +103,5 @@ class TContract2 implements RequestInterface
 
         return $new;
     }
-
-
 }
 

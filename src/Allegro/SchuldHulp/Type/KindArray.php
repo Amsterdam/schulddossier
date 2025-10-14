@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class KindArray implements RequestInterface
+class KindArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TKind
      */
     private $TKind;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TKind $TKind
-     */
-    public function __construct($TKind)
-    {
-        $this->TKind = $TKind;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TKind
@@ -42,7 +28,5 @@ class KindArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

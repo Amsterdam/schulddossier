@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSBEiser implements RequestInterface
+class TSBEiser
 {
-
     /**
      * @var int
      */
@@ -92,48 +88,6 @@ class TSBEiser implements RequestInterface
      * @var string
      */
     private $ReferentieDeurwaarder;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var int $Volgnummer
-     * @var int $CodeEiser
-     * @var string $NaamEiser
-     * @var int $UniekVolgnummer
-     * @var string $Referentie
-     * @var float $TeruggemeldBedrag
-     * @var float $BerekendBedrag
-     * @var float $GereserveerdBedrag
-     * @var float $DoorbetaaldBedrag
-     * @var float $PrognoseRestschuld
-     * @var int $CodeIncasso
-     * @var string $NaamIncasso
-     * @var string $ReferentieIncasso
-     * @var int $CodeDeurwaarder
-     * @var string $NaamDeurwaarder
-     * @var string $ReferentieDeurwaarder
-     */
-    public function __construct($RelatieCode, $Volgnummer, $CodeEiser, $NaamEiser, $UniekVolgnummer, $Referentie, $TeruggemeldBedrag, $BerekendBedrag, $GereserveerdBedrag, $DoorbetaaldBedrag, $PrognoseRestschuld, $CodeIncasso, $NaamIncasso, $ReferentieIncasso, $CodeDeurwaarder, $NaamDeurwaarder, $ReferentieDeurwaarder)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->Volgnummer = $Volgnummer;
-        $this->CodeEiser = $CodeEiser;
-        $this->NaamEiser = $NaamEiser;
-        $this->UniekVolgnummer = $UniekVolgnummer;
-        $this->Referentie = $Referentie;
-        $this->TeruggemeldBedrag = $TeruggemeldBedrag;
-        $this->BerekendBedrag = $BerekendBedrag;
-        $this->GereserveerdBedrag = $GereserveerdBedrag;
-        $this->DoorbetaaldBedrag = $DoorbetaaldBedrag;
-        $this->PrognoseRestschuld = $PrognoseRestschuld;
-        $this->CodeIncasso = $CodeIncasso;
-        $this->NaamIncasso = $NaamIncasso;
-        $this->ReferentieIncasso = $ReferentieIncasso;
-        $this->CodeDeurwaarder = $CodeDeurwaarder;
-        $this->NaamDeurwaarder = $NaamDeurwaarder;
-        $this->ReferentieDeurwaarder = $ReferentieDeurwaarder;
-    }
 
     /**
      * @return int
@@ -474,7 +428,5 @@ class TSBEiser implements RequestInterface
 
         return $new;
     }
-
-
 }
 

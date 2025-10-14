@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TRC implements RequestInterface
+class TRC
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader
      */
@@ -47,30 +43,6 @@ class TRC implements RequestInterface
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\RCJaarrenteArray
      */
     private $Jaarrente;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader $InfoHeader
-     * @var string $Medewerker
-     * @var int $Rentecode
-     * @var string $RentecodeOmschrijving
-     * @var \DateTimeInterface $TabelIngangsdatum
-     * @var float $RentepercentagePositief
-     * @var float $RentepercentageNegatief
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\RCJaarrenteArray $Jaarrente
-     */
-    public function __construct($InfoHeader, $Medewerker, $Rentecode, $RentecodeOmschrijving, $TabelIngangsdatum, $RentepercentagePositief, $RentepercentageNegatief, $Jaarrente)
-    {
-        $this->InfoHeader = $InfoHeader;
-        $this->Medewerker = $Medewerker;
-        $this->Rentecode = $Rentecode;
-        $this->RentecodeOmschrijving = $RentecodeOmschrijving;
-        $this->TabelIngangsdatum = $TabelIngangsdatum;
-        $this->RentepercentagePositief = $RentepercentagePositief;
-        $this->RentepercentageNegatief = $RentepercentageNegatief;
-        $this->Jaarrente = $Jaarrente;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader
@@ -231,7 +203,5 @@ class TRC implements RequestInterface
 
         return $new;
     }
-
-
 }
 

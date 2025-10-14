@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class AWUserInfo implements RequestInterface
+class AWUserInfo
 {
-
     /**
      * @var string
      */
@@ -47,30 +43,6 @@ class AWUserInfo implements RequestInterface
      * @var bool
      */
     private $WachtwoordWijzigen;
-
-    /**
-     * Constructor
-     *
-     * @var string $LoginType
-     * @var int $RelatieCode
-     * @var string $Naam
-     * @var \DateTimeInterface $LaatsteLogin
-     * @var string $Autorisaties
-     * @var int $ExtraInfo
-     * @var string $ExtraInfoOmschrijving
-     * @var bool $WachtwoordWijzigen
-     */
-    public function __construct($LoginType, $RelatieCode, $Naam, $LaatsteLogin, $Autorisaties, $ExtraInfo, $ExtraInfoOmschrijving, $WachtwoordWijzigen)
-    {
-        $this->LoginType = $LoginType;
-        $this->RelatieCode = $RelatieCode;
-        $this->Naam = $Naam;
-        $this->LaatsteLogin = $LaatsteLogin;
-        $this->Autorisaties = $Autorisaties;
-        $this->ExtraInfo = $ExtraInfo;
-        $this->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
-        $this->WachtwoordWijzigen = $WachtwoordWijzigen;
-    }
 
     /**
      * @return string
@@ -231,7 +203,5 @@ class AWUserInfo implements RequestInterface
 
         return $new;
     }
-
-
 }
 

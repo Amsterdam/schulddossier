@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TRelatie implements RequestInterface
+class TRelatie
 {
-
     /**
      * @var int
      */
@@ -167,78 +163,6 @@ class TRelatie implements RequestInterface
      * @var string
      */
     private $Pincode;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var string $Voornamen
-     * @var string $Voorletters
-     * @var string $Zoeknaam
-     * @var string $Achternaam
-     * @var string $Voorvoegsels
-     * @var string $Geslacht
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $BezoekAdres
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $PostAdres
-     * @var \DateTimeInterface $Geboortedatum
-     * @var string $Geboorteplaats
-     * @var int $BSN
-     * @var string $Rekening
-     * @var string $Telefoon1
-     * @var string $Telefoon2
-     * @var string $Email
-     * @var string $BurgerlijkeStaat
-     * @var int $PartnerCode
-     * @var string $Autorisaties
-     * @var string $Identificatiebewijs
-     * @var string $IdentificatieNummer
-     * @var \DateTimeInterface $IdentificatieGeldig
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\KindArray $Kinderen
-     * @var int $Bedrijf
-     * @var string $IBAN
-     * @var string $BIC
-     * @var bool $InzakeRekening
-     * @var string $RekeningInzake
-     * @var string $RekeningInzakeIBAN
-     * @var string $RekeningInzakeBIC
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Klantmanager
-     * @var string $Pincode
-     */
-    public function __construct($RelatieCode, $Voornamen, $Voorletters, $Zoeknaam, $Achternaam, $Voorvoegsels, $Geslacht, $BezoekAdres, $PostAdres, $Geboortedatum, $Geboorteplaats, $BSN, $Rekening, $Telefoon1, $Telefoon2, $Email, $BurgerlijkeStaat, $PartnerCode, $Autorisaties, $Identificatiebewijs, $IdentificatieNummer, $IdentificatieGeldig, $Kinderen, $Bedrijf, $IBAN, $BIC, $InzakeRekening, $RekeningInzake, $RekeningInzakeIBAN, $RekeningInzakeBIC, $Klantmanager, $Pincode)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->Voornamen = $Voornamen;
-        $this->Voorletters = $Voorletters;
-        $this->Zoeknaam = $Zoeknaam;
-        $this->Achternaam = $Achternaam;
-        $this->Voorvoegsels = $Voorvoegsels;
-        $this->Geslacht = $Geslacht;
-        $this->BezoekAdres = $BezoekAdres;
-        $this->PostAdres = $PostAdres;
-        $this->Geboortedatum = $Geboortedatum;
-        $this->Geboorteplaats = $Geboorteplaats;
-        $this->BSN = $BSN;
-        $this->Rekening = $Rekening;
-        $this->Telefoon1 = $Telefoon1;
-        $this->Telefoon2 = $Telefoon2;
-        $this->Email = $Email;
-        $this->BurgerlijkeStaat = $BurgerlijkeStaat;
-        $this->PartnerCode = $PartnerCode;
-        $this->Autorisaties = $Autorisaties;
-        $this->Identificatiebewijs = $Identificatiebewijs;
-        $this->IdentificatieNummer = $IdentificatieNummer;
-        $this->IdentificatieGeldig = $IdentificatieGeldig;
-        $this->Kinderen = $Kinderen;
-        $this->Bedrijf = $Bedrijf;
-        $this->IBAN = $IBAN;
-        $this->BIC = $BIC;
-        $this->InzakeRekening = $InzakeRekening;
-        $this->RekeningInzake = $RekeningInzake;
-        $this->RekeningInzakeIBAN = $RekeningInzakeIBAN;
-        $this->RekeningInzakeBIC = $RekeningInzakeBIC;
-        $this->Klantmanager = $Klantmanager;
-        $this->Pincode = $Pincode;
-    }
 
     /**
      * @return int
@@ -879,7 +803,5 @@ class TRelatie implements RequestInterface
 
         return $new;
     }
-
-
 }
 

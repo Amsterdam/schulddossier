@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TKind implements RequestInterface
+class TKind
 {
-
     /**
      * @var int
      */
@@ -37,26 +33,6 @@ class TKind implements RequestInterface
      * @var bool
      */
     private $MeetelKind;
-
-    /**
-     * Constructor
-     *
-     * @var int $UniekVolgnummer
-     * @var string $Voornaam
-     * @var string $Achternaam
-     * @var \DateTimeInterface $Geboortedatum
-     * @var string $Activiteit
-     * @var bool $MeetelKind
-     */
-    public function __construct($UniekVolgnummer, $Voornaam, $Achternaam, $Geboortedatum, $Activiteit, $MeetelKind)
-    {
-        $this->UniekVolgnummer = $UniekVolgnummer;
-        $this->Voornaam = $Voornaam;
-        $this->Achternaam = $Achternaam;
-        $this->Geboortedatum = $Geboortedatum;
-        $this->Activiteit = $Activiteit;
-        $this->MeetelKind = $MeetelKind;
-    }
 
     /**
      * @return int
@@ -177,7 +153,5 @@ class TKind implements RequestInterface
 
         return $new;
     }
-
-
 }
 

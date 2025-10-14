@@ -2,20 +2,15 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleDataResult implements RequestInterface
+class SimpleDataResult
 {
-
     /**
      * @var string
      */
     private $TableName;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfoArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfoArray
      */
     private $FieldInfo;
 
@@ -23,20 +18,6 @@ class SimpleDataResult implements RequestInterface
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArrayArray
      */
     private $Data;
-
-    /**
-     * Constructor
-     *
-     * @var string $TableName
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfoArray $FieldInfo
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArrayArray $Data
-     */
-    public function __construct($TableName, $FieldInfo, $Data)
-    {
-        $this->TableName = $TableName;
-        $this->FieldInfo = $FieldInfo;
-        $this->Data = $Data;
-    }
 
     /**
      * @return string
@@ -97,7 +78,5 @@ class SimpleDataResult implements RequestInterface
 
         return $new;
     }
-
-
 }
 

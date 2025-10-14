@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TContact implements RequestInterface
+class TContact
 {
-
     /**
      * @var string
      */
@@ -22,20 +18,6 @@ class TContact implements RequestInterface
      * @var string
      */
     private $EmailAdres;
-
-    /**
-     * Constructor
-     *
-     * @var string $TelefoonThuis
-     * @var string $TelefoonMobiel
-     * @var string $EmailAdres
-     */
-    public function __construct($TelefoonThuis, $TelefoonMobiel, $EmailAdres)
-    {
-        $this->TelefoonThuis = $TelefoonThuis;
-        $this->TelefoonMobiel = $TelefoonMobiel;
-        $this->EmailAdres = $EmailAdres;
-    }
 
     /**
      * @return string
@@ -96,7 +78,5 @@ class TContact implements RequestInterface
 
         return $new;
     }
-
-
 }
 

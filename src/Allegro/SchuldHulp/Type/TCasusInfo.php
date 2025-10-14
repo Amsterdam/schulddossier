@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TCasusInfo implements RequestInterface
+class TCasusInfo
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusHeader
      */
@@ -117,58 +113,6 @@ class TCasusInfo implements RequestInterface
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\CasusPVAArray
      */
     private $PVA;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusHeader $InfoHeader
-     * @var string $CasusMedewerker
-     * @var string $CasusTeam
-     * @var int $Opdrachtgever
-     * @var int $OpdrachtgeverContact
-     * @var \DateTimeInterface $DatumAanmelding
-     * @var \DateTimeInterface $DatumAanmeldingEinde
-     * @var \DateTimeInterface $DatumIntake
-     * @var \DateTimeInterface $DatumIntakeEinde
-     * @var \DateTimeInterface $DatumInventarisatie
-     * @var \DateTimeInterface $DatumInventarisatieEinde
-     * @var \DateTimeInterface $DatumAnalyse
-     * @var \DateTimeInterface $DatumAnalyseEinde
-     * @var bool $Crisis
-     * @var \DateTimeInterface $DatumCrisis
-     * @var \DateTimeInterface $DatumCrisisEinde
-     * @var \DateTimeInterface $DatumAfwijzing
-     * @var \DateTimeInterface $DatumAfwijzingEinde
-     * @var \DateTimeInterface $DatumStop
-     * @var \DateTimeInterface $DatumStopEinde
-     * @var \DateTimeInterface $VerwachteEinddatumIntake
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\CasusPVAArray $PVA
-     */
-    public function __construct($InfoHeader, $CasusMedewerker, $CasusTeam, $Opdrachtgever, $OpdrachtgeverContact, $DatumAanmelding, $DatumAanmeldingEinde, $DatumIntake, $DatumIntakeEinde, $DatumInventarisatie, $DatumInventarisatieEinde, $DatumAnalyse, $DatumAnalyseEinde, $Crisis, $DatumCrisis, $DatumCrisisEinde, $DatumAfwijzing, $DatumAfwijzingEinde, $DatumStop, $DatumStopEinde, $VerwachteEinddatumIntake, $PVA)
-    {
-        $this->InfoHeader = $InfoHeader;
-        $this->CasusMedewerker = $CasusMedewerker;
-        $this->CasusTeam = $CasusTeam;
-        $this->Opdrachtgever = $Opdrachtgever;
-        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-        $this->DatumAanmelding = $DatumAanmelding;
-        $this->DatumAanmeldingEinde = $DatumAanmeldingEinde;
-        $this->DatumIntake = $DatumIntake;
-        $this->DatumIntakeEinde = $DatumIntakeEinde;
-        $this->DatumInventarisatie = $DatumInventarisatie;
-        $this->DatumInventarisatieEinde = $DatumInventarisatieEinde;
-        $this->DatumAnalyse = $DatumAnalyse;
-        $this->DatumAnalyseEinde = $DatumAnalyseEinde;
-        $this->Crisis = $Crisis;
-        $this->DatumCrisis = $DatumCrisis;
-        $this->DatumCrisisEinde = $DatumCrisisEinde;
-        $this->DatumAfwijzing = $DatumAfwijzing;
-        $this->DatumAfwijzingEinde = $DatumAfwijzingEinde;
-        $this->DatumStop = $DatumStop;
-        $this->DatumStopEinde = $DatumStopEinde;
-        $this->VerwachteEinddatumIntake = $VerwachteEinddatumIntake;
-        $this->PVA = $PVA;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusHeader
@@ -609,7 +553,5 @@ class TCasusInfo implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAllegroDocument implements RequestInterface
+class TAllegroDocument
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TDocumentSleutel
      */
@@ -37,26 +33,6 @@ class TAllegroDocument implements RequestInterface
      * @var string
      */
     private $Omschrijving;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TDocumentSleutel $DocumentSleutel
-     * @var int $Relatiecode
-     * @var int $Activiteit
-     * @var string $SoortActiviteit
-     * @var string $Onderwerp
-     * @var string $Omschrijving
-     */
-    public function __construct($DocumentSleutel, $Relatiecode, $Activiteit, $SoortActiviteit, $Onderwerp, $Omschrijving)
-    {
-        $this->DocumentSleutel = $DocumentSleutel;
-        $this->Relatiecode = $Relatiecode;
-        $this->Activiteit = $Activiteit;
-        $this->SoortActiviteit = $SoortActiviteit;
-        $this->Onderwerp = $Onderwerp;
-        $this->Omschrijving = $Omschrijving;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TDocumentSleutel
@@ -177,7 +153,5 @@ class TAllegroDocument implements RequestInterface
 
         return $new;
     }
-
-
 }
 

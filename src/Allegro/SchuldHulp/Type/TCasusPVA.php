@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TCasusPVA implements RequestInterface
+class TCasusPVA
 {
-
     /**
      * @var int
      */
@@ -49,36 +45,9 @@ class TCasusPVA implements RequestInterface
     private $Gefiatteerd;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\CasusPVAProductArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\CasusPVAProductArray
      */
     private $Producten;
-
-    /**
-     * Constructor
-     *
-     * @var int $VolgnummerPVA
-     * @var string $MedewerkerPVA
-     * @var string $TeamPVA
-     * @var \DateTimeInterface $DatumPVA
-     * @var \DateTimeInterface $DatumPVAEinde
-     * @var \DateTimeInterface $DatumFiattering
-     * @var \DateTimeInterface $DatumFiatteringEinde
-     * @var bool $Gefiatteerd
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\CasusPVAProductArray $Producten
-     */
-    public function __construct($VolgnummerPVA, $MedewerkerPVA, $TeamPVA, $DatumPVA, $DatumPVAEinde, $DatumFiattering, $DatumFiatteringEinde, $Gefiatteerd, $Producten)
-    {
-        $this->VolgnummerPVA = $VolgnummerPVA;
-        $this->MedewerkerPVA = $MedewerkerPVA;
-        $this->TeamPVA = $TeamPVA;
-        $this->DatumPVA = $DatumPVA;
-        $this->DatumPVAEinde = $DatumPVAEinde;
-        $this->DatumFiattering = $DatumFiattering;
-        $this->DatumFiatteringEinde = $DatumFiatteringEinde;
-        $this->Gefiatteerd = $Gefiatteerd;
-        $this->Producten = $Producten;
-    }
 
     /**
      * @return int
@@ -259,7 +228,5 @@ class TCasusPVA implements RequestInterface
 
         return $new;
     }
-
-
 }
 

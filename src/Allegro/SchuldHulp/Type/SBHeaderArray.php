@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SBHeaderArray implements RequestInterface
+class SBHeaderArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader
      */
     private $TSBHeader;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader $TSBHeader
-     */
-    public function __construct($TSBHeader)
-    {
-        $this->TSBHeader = $TSBHeader;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader
@@ -42,7 +28,5 @@ class SBHeaderArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

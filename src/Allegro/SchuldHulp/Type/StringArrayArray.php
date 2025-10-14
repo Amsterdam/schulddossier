@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class StringArrayArray implements RequestInterface
+class StringArrayArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
      */
     private $StringArray;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $StringArray
-     */
-    public function __construct($StringArray)
-    {
-        $this->StringArray = $StringArray;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
@@ -42,7 +28,5 @@ class StringArrayArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

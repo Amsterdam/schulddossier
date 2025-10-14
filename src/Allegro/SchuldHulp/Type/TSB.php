@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSB implements RequestInterface
+class TSB
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader
      */
@@ -122,60 +118,6 @@ class TSB implements RequestInterface
      * @var float
      */
     private $BedragLaatsteBetaling;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader $InfoHeader
-     * @var string $Medewerker
-     * @var int $Opdrachtgever
-     * @var int $OpdrachtgeverContact
-     * @var \DateTimeInterface $Startdatum
-     * @var \DateTimeInterface $StartdatumEersteBetaling
-     * @var \DateTimeInterface $TheoEinddatum
-     * @var int $TotaalAantalMaanden
-     * @var int $TotaalAantalMaandenVerstreken
-     * @var int $TotaalAantalMaandenResterend
-     * @var float $VTLB
-     * @var \DateTimeInterface $DatumBerekening
-     * @var float $BrutoAflosCapaciteitMaand
-     * @var float $KostenFinancieelBeheerMaand
-     * @var float $KostenSchuldhulpverleningMaand
-     * @var float $NettoAflosCapaciteitMaand
-     * @var \DateTimeInterface $DatumOverzicht
-     * @var int $PartnerCode
-     * @var float $TotaalSchuldbedrag
-     * @var float $MaximumKosten
-     * @var float $BetaaldeKosten
-     * @var \DateTimeInterface $DatumLaatsteBetaling
-     * @var float $BedragLaatsteBetaling
-     */
-    public function __construct($InfoHeader, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, $Startdatum, $StartdatumEersteBetaling, $TheoEinddatum, $TotaalAantalMaanden, $TotaalAantalMaandenVerstreken, $TotaalAantalMaandenResterend, $VTLB, $DatumBerekening, $BrutoAflosCapaciteitMaand, $KostenFinancieelBeheerMaand, $KostenSchuldhulpverleningMaand, $NettoAflosCapaciteitMaand, $DatumOverzicht, $PartnerCode, $TotaalSchuldbedrag, $MaximumKosten, $BetaaldeKosten, $DatumLaatsteBetaling, $BedragLaatsteBetaling)
-    {
-        $this->InfoHeader = $InfoHeader;
-        $this->Medewerker = $Medewerker;
-        $this->Opdrachtgever = $Opdrachtgever;
-        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-        $this->Startdatum = $Startdatum;
-        $this->StartdatumEersteBetaling = $StartdatumEersteBetaling;
-        $this->TheoEinddatum = $TheoEinddatum;
-        $this->TotaalAantalMaanden = $TotaalAantalMaanden;
-        $this->TotaalAantalMaandenVerstreken = $TotaalAantalMaandenVerstreken;
-        $this->TotaalAantalMaandenResterend = $TotaalAantalMaandenResterend;
-        $this->VTLB = $VTLB;
-        $this->DatumBerekening = $DatumBerekening;
-        $this->BrutoAflosCapaciteitMaand = $BrutoAflosCapaciteitMaand;
-        $this->KostenFinancieelBeheerMaand = $KostenFinancieelBeheerMaand;
-        $this->KostenSchuldhulpverleningMaand = $KostenSchuldhulpverleningMaand;
-        $this->NettoAflosCapaciteitMaand = $NettoAflosCapaciteitMaand;
-        $this->DatumOverzicht = $DatumOverzicht;
-        $this->PartnerCode = $PartnerCode;
-        $this->TotaalSchuldbedrag = $TotaalSchuldbedrag;
-        $this->MaximumKosten = $MaximumKosten;
-        $this->BetaaldeKosten = $BetaaldeKosten;
-        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling;
-        $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSBHeader
@@ -636,7 +578,5 @@ class TSB implements RequestInterface
 
         return $new;
     }
-
-
 }
 

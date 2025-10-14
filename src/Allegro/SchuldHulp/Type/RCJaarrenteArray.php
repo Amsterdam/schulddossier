@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class RCJaarrenteArray implements RequestInterface
+class RCJaarrenteArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCJaarrente
      */
     private $TRCJaarrente;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCJaarrente $TRCJaarrente
-     */
-    public function __construct($TRCJaarrente)
-    {
-        $this->TRCJaarrente = $TRCJaarrente;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCJaarrente
@@ -42,7 +28,5 @@ class RCJaarrenteArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

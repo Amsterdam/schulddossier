@@ -2,15 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSaldoReserveringen implements RequestInterface
+class TSaldoReserveringen
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SaldoReserveringArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SaldoReserveringArray
      */
     private $SaldoReserveringen;
 
@@ -18,18 +13,6 @@ class TSaldoReserveringen implements RequestInterface
      * @var float
      */
     private $Totaal;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SaldoReserveringArray $SaldoReserveringen
-     * @var float $Totaal
-     */
-    public function __construct($SaldoReserveringen, $Totaal)
-    {
-        $this->SaldoReserveringen = $SaldoReserveringen;
-        $this->Totaal = $Totaal;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SaldoReserveringArray
@@ -70,7 +53,5 @@ class TSaldoReserveringen implements RequestInterface
 
         return $new;
     }
-
-
 }
 

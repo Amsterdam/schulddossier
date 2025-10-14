@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class OpenVraagArray implements RequestInterface
+class OpenVraagArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag
      */
     private $TOpenVraag;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag $TOpenVraag
-     */
-    public function __construct($TOpenVraag)
-    {
-        $this->TOpenVraag = $TOpenVraag;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOpenVraag
@@ -42,7 +28,5 @@ class OpenVraagArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBRBegunstigde implements RequestInterface
+class TBBRBegunstigde
 {
-
     /**
      * @var string
      */
@@ -49,36 +45,9 @@ class TBBRBegunstigde implements RequestInterface
     private $Betaalwijze;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\RekeningnummerArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\RekeningnummerArray
      */
     private $Rekeningnummers;
-
-    /**
-     * Constructor
-     *
-     * @var string $Achternaam
-     * @var string $Voorvoegsels
-     * @var string $Voorletters
-     * @var string $PlaatsnaamBezoekadres
-     * @var int $Relatiecode
-     * @var string $OpdrachtSoortKeuze
-     * @var bool $KeuzeReservering
-     * @var string $Betaalwijze
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\RekeningnummerArray $Rekeningnummers
-     */
-    public function __construct($Achternaam, $Voorvoegsels, $Voorletters, $PlaatsnaamBezoekadres, $Relatiecode, $OpdrachtSoortKeuze, $KeuzeReservering, $Betaalwijze, $Rekeningnummers)
-    {
-        $this->Achternaam = $Achternaam;
-        $this->Voorvoegsels = $Voorvoegsels;
-        $this->Voorletters = $Voorletters;
-        $this->PlaatsnaamBezoekadres = $PlaatsnaamBezoekadres;
-        $this->Relatiecode = $Relatiecode;
-        $this->OpdrachtSoortKeuze = $OpdrachtSoortKeuze;
-        $this->KeuzeReservering = $KeuzeReservering;
-        $this->Betaalwijze = $Betaalwijze;
-        $this->Rekeningnummers = $Rekeningnummers;
-    }
 
     /**
      * @return string
@@ -259,7 +228,5 @@ class TBBRBegunstigde implements RequestInterface
 
         return $new;
     }
-
-
 }
 

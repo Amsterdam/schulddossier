@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TableRequestInfoV5 implements RequestInterface
+class TableRequestInfoV5
 {
-
     /**
      * @var mixed
      */
@@ -22,20 +18,6 @@ class TableRequestInfoV5 implements RequestInterface
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSorting
      */
     private $Sorting;
-
-    /**
-     * Constructor
-     *
-     * @var mixed $WhereClause
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $DynamicSelectFieldNames
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ColumnSorting $Sorting
-     */
-    public function __construct($WhereClause, $DynamicSelectFieldNames, $Sorting)
-    {
-        $this->WhereClause = $WhereClause;
-        $this->DynamicSelectFieldNames = $DynamicSelectFieldNames;
-        $this->Sorting = $Sorting;
-    }
 
     /**
      * @return mixed
@@ -96,7 +78,5 @@ class TableRequestInfoV5 implements RequestInterface
 
         return $new;
     }
-
-
 }
 

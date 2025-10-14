@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class PLAanvraagArray implements RequestInterface
+class PLAanvraagArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLAanvraag
      */
     private $TPLAanvraag;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLAanvraag $TPLAanvraag
-     */
-    public function __construct($TPLAanvraag)
-    {
-        $this->TPLAanvraag = $TPLAanvraag;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPLAanvraag
@@ -42,7 +28,5 @@ class PLAanvraagArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

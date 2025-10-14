@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TDK implements RequestInterface
+class TDK
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TDKHeader
      */
@@ -92,48 +88,6 @@ class TDK implements RequestInterface
      * @var float
      */
     private $Maandpercentage;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TDKHeader $InfoHeader
-     * @var int $Opdrachtgever
-     * @var int $OpdrachtgeverContact
-     * @var float $Contractlimiet
-     * @var float $MaandTermijn
-     * @var int $TheoretischeLooptijd
-     * @var \DateTimeInterface $DatumEersteAflossing
-     * @var float $Saldo
-     * @var float $Achterstand
-     * @var float $VrijOpneembaar
-     * @var float $EffectiefJaarpercentage
-     * @var \DateTimeInterface $DatumLaatsteBetaling
-     * @var float $BedragLaatsteBetaling
-     * @var float $VolledigVervroegdeAflossing
-     * @var string $Medewerker
-     * @var int $MedelenerCode
-     * @var float $Maandpercentage
-     */
-    public function __construct($InfoHeader, $Opdrachtgever, $OpdrachtgeverContact, $Contractlimiet, $MaandTermijn, $TheoretischeLooptijd, $DatumEersteAflossing, $Saldo, $Achterstand, $VrijOpneembaar, $EffectiefJaarpercentage, $DatumLaatsteBetaling, $BedragLaatsteBetaling, $VolledigVervroegdeAflossing, $Medewerker, $MedelenerCode, $Maandpercentage)
-    {
-        $this->InfoHeader = $InfoHeader;
-        $this->Opdrachtgever = $Opdrachtgever;
-        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-        $this->Contractlimiet = $Contractlimiet;
-        $this->MaandTermijn = $MaandTermijn;
-        $this->TheoretischeLooptijd = $TheoretischeLooptijd;
-        $this->DatumEersteAflossing = $DatumEersteAflossing;
-        $this->Saldo = $Saldo;
-        $this->Achterstand = $Achterstand;
-        $this->VrijOpneembaar = $VrijOpneembaar;
-        $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
-        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling;
-        $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
-        $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
-        $this->Medewerker = $Medewerker;
-        $this->MedelenerCode = $MedelenerCode;
-        $this->Maandpercentage = $Maandpercentage;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TDKHeader
@@ -474,7 +428,5 @@ class TDK implements RequestInterface
 
         return $new;
     }
-
-
 }
 

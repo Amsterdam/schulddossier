@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleDelta implements RequestInterface
+class SimpleDelta
 {
-
     /**
      * @var string
      */
@@ -19,24 +15,9 @@ class SimpleDelta implements RequestInterface
     private $Fields;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDeltaChangeArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDeltaChangeArray
      */
     private $Rows;
-
-    /**
-     * Constructor
-     *
-     * @var string $TableName
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $Fields
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDeltaChangeArray $Rows
-     */
-    public function __construct($TableName, $Fields, $Rows)
-    {
-        $this->TableName = $TableName;
-        $this->Fields = $Fields;
-        $this->Rows = $Rows;
-    }
 
     /**
      * @return string
@@ -97,7 +78,5 @@ class SimpleDelta implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TTeam implements RequestInterface
+class TTeam
 {
-
     /**
      * @var string
      */
@@ -22,20 +18,6 @@ class TTeam implements RequestInterface
      * @var bool
      */
     private $Standaard;
-
-    /**
-     * Constructor
-     *
-     * @var string $Team
-     * @var int $Code
-     * @var bool $Standaard
-     */
-    public function __construct($Team, $Code, $Standaard)
-    {
-        $this->Team = $Team;
-        $this->Code = $Code;
-        $this->Standaard = $Standaard;
-    }
 
     /**
      * @return string
@@ -96,7 +78,5 @@ class TTeam implements RequestInterface
 
         return $new;
     }
-
-
 }
 

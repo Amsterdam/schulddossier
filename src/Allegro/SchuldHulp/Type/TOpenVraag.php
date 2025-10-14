@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TOpenVraag implements RequestInterface
+class TOpenVraag
 {
-
     /**
      * @var string
      */
@@ -17,18 +13,6 @@ class TOpenVraag implements RequestInterface
      * @var string
      */
     private $Antwoord;
-
-    /**
-     * Constructor
-     *
-     * @var string $Vraag
-     * @var string $Antwoord
-     */
-    public function __construct($Vraag, $Antwoord)
-    {
-        $this->Vraag = $Vraag;
-        $this->Antwoord = $Antwoord;
-    }
 
     /**
      * @return string
@@ -69,7 +53,5 @@ class TOpenVraag implements RequestInterface
 
         return $new;
     }
-
-
 }
 

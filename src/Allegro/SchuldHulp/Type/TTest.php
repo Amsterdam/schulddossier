@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TTest implements RequestInterface
+class TTest
 {
-
     /**
      * @var string
      */
@@ -17,18 +13,6 @@ class TTest implements RequestInterface
      * @var int
      */
     private $Veld2;
-
-    /**
-     * Constructor
-     *
-     * @var string $Veld1
-     * @var int $Veld2
-     */
-    public function __construct($Veld1, $Veld2)
-    {
-        $this->Veld1 = $Veld1;
-        $this->Veld2 = $Veld2;
-    }
 
     /**
      * @return string
@@ -69,7 +53,5 @@ class TTest implements RequestInterface
 
         return $new;
     }
-
-
 }
 

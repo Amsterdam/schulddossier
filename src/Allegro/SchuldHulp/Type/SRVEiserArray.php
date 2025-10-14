@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SRVEiserArray implements RequestInterface
+class SRVEiserArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEiser
      */
     private $TSRVEiser;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEiser $TSRVEiser
-     */
-    public function __construct($TSRVEiser)
-    {
-        $this->TSRVEiser = $TSRVEiser;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEiser
@@ -42,7 +28,5 @@ class SRVEiserArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

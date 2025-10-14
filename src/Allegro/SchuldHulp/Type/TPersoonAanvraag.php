@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPersoonAanvraag implements RequestInterface
+class TPersoonAanvraag
 {
-
     /**
      * @var int
      */
@@ -67,38 +63,6 @@ class TPersoonAanvraag implements RequestInterface
      * @var string
      */
     private $Voorletters;
-
-    /**
-     * Constructor
-     *
-     * @var int $Relatiecode
-     * @var string $Voornamen
-     * @var string $Achternaam
-     * @var string $Voorvoegsels
-     * @var string $Geslacht
-     * @var int $Geboortedatum
-     * @var int $BSN
-     * @var string $Nationaliteit
-     * @var string $RekeningIBAN
-     * @var string $RekeningBIC
-     * @var string $RekeningBank
-     * @var string $Voorletters
-     */
-    public function __construct($Relatiecode, $Voornamen, $Achternaam, $Voorvoegsels, $Geslacht, $Geboortedatum, $BSN, $Nationaliteit, $RekeningIBAN, $RekeningBIC, $RekeningBank, $Voorletters)
-    {
-        $this->Relatiecode = $Relatiecode;
-        $this->Voornamen = $Voornamen;
-        $this->Achternaam = $Achternaam;
-        $this->Voorvoegsels = $Voorvoegsels;
-        $this->Geslacht = $Geslacht;
-        $this->Geboortedatum = $Geboortedatum;
-        $this->BSN = $BSN;
-        $this->Nationaliteit = $Nationaliteit;
-        $this->RekeningIBAN = $RekeningIBAN;
-        $this->RekeningBIC = $RekeningBIC;
-        $this->RekeningBank = $RekeningBank;
-        $this->Voorletters = $Voorletters;
-    }
 
     /**
      * @return int
@@ -339,7 +303,5 @@ class TPersoonAanvraag implements RequestInterface
 
         return $new;
     }
-
-
 }
 

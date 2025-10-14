@@ -2,27 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class LijstKredietsoortArray implements RequestInterface
+class LijstKredietsoortArray
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstKredietsoort
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstKredietsoort
      */
     private $TLijstKredietsoort;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstKredietsoort $TLijstKredietsoort
-     */
-    public function __construct($TLijstKredietsoort)
-    {
-        $this->TLijstKredietsoort = $TLijstKredietsoort;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TLijstKredietsoort
@@ -43,7 +28,5 @@ class LijstKredietsoortArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

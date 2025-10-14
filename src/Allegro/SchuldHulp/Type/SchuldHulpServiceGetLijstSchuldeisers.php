@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SchuldHulpServiceGetLijstSchuldeisers implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -16,7 +14,7 @@ class SchuldHulpServiceGetLijstSchuldeisers implements RequestInterface
     /**
      * Constructor
      *
-     * @var string $aZoekargument
+     * @param string $aZoekargument
      */
     public function __construct($aZoekargument)
     {
@@ -42,7 +40,5 @@ class SchuldHulpServiceGetLijstSchuldeisers implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleFieldInfoArray implements RequestInterface
+class SimpleFieldInfoArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfo
      */
     private $SimpleFieldInfo;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfo $SimpleFieldInfo
-     */
-    public function __construct($SimpleFieldInfo)
-    {
-        $this->SimpleFieldInfo = $SimpleFieldInfo;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleFieldInfo
@@ -42,7 +28,5 @@ class SimpleFieldInfoArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

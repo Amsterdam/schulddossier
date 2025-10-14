@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TGezinsSituatie implements RequestInterface
+class TGezinsSituatie
 {
-
     /**
      * @var string
      */
@@ -32,24 +28,6 @@ class TGezinsSituatie implements RequestInterface
      * @var \DateTimeInterface
      */
     private $BurgerlijkeStaatSinds;
-
-    /**
-     * Constructor
-     *
-     * @var string $BurgerlijkeStaat
-     * @var string $GemeenschapVanGoederen
-     * @var string $GemeenschapVanGoederenDetail
-     * @var string $Kinderen
-     * @var \DateTimeInterface $BurgerlijkeStaatSinds
-     */
-    public function __construct($BurgerlijkeStaat, $GemeenschapVanGoederen, $GemeenschapVanGoederenDetail, $Kinderen, $BurgerlijkeStaatSinds)
-    {
-        $this->BurgerlijkeStaat = $BurgerlijkeStaat;
-        $this->GemeenschapVanGoederen = $GemeenschapVanGoederen;
-        $this->GemeenschapVanGoederenDetail = $GemeenschapVanGoederenDetail;
-        $this->Kinderen = $Kinderen;
-        $this->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds;
-    }
 
     /**
      * @return string
@@ -150,7 +128,5 @@ class TGezinsSituatie implements RequestInterface
 
         return $new;
     }
-
-
 }
 

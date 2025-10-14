@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSRVEiser implements RequestInterface
+class TSRVEiser
 {
-
     /**
      * @var int
      */
@@ -107,54 +103,6 @@ class TSRVEiser implements RequestInterface
      * @var string
      */
     private $ReferentieDeurwaarder;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var int $Volgnummer
-     * @var int $CodeEiser
-     * @var string $NaamEiser
-     * @var int $UniekVolgnummer
-     * @var string $Referentie
-     * @var float $AangemeldBedrag
-     * @var float $TeruggemeldBedrag
-     * @var float $PrognoseVoorstel
-     * @var string $TerugmeldingVoorstel
-     * @var \DateTimeInterface $DatumTerugmeldingVoorstel
-     * @var string $IndicatieOpgaaf
-     * @var string $IndicatieVoorstel
-     * @var bool $IndicatieSK
-     * @var int $CodeIncasso
-     * @var string $NaamIncasso
-     * @var string $ReferentieIncasso
-     * @var int $CodeDeurwaarder
-     * @var string $NaamDeurwaarder
-     * @var string $ReferentieDeurwaarder
-     */
-    public function __construct($RelatieCode, $Volgnummer, $CodeEiser, $NaamEiser, $UniekVolgnummer, $Referentie, $AangemeldBedrag, $TeruggemeldBedrag, $PrognoseVoorstel, $TerugmeldingVoorstel, $DatumTerugmeldingVoorstel, $IndicatieOpgaaf, $IndicatieVoorstel, $IndicatieSK, $CodeIncasso, $NaamIncasso, $ReferentieIncasso, $CodeDeurwaarder, $NaamDeurwaarder, $ReferentieDeurwaarder)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->Volgnummer = $Volgnummer;
-        $this->CodeEiser = $CodeEiser;
-        $this->NaamEiser = $NaamEiser;
-        $this->UniekVolgnummer = $UniekVolgnummer;
-        $this->Referentie = $Referentie;
-        $this->AangemeldBedrag = $AangemeldBedrag;
-        $this->TeruggemeldBedrag = $TeruggemeldBedrag;
-        $this->PrognoseVoorstel = $PrognoseVoorstel;
-        $this->TerugmeldingVoorstel = $TerugmeldingVoorstel;
-        $this->DatumTerugmeldingVoorstel = $DatumTerugmeldingVoorstel;
-        $this->IndicatieOpgaaf = $IndicatieOpgaaf;
-        $this->IndicatieVoorstel = $IndicatieVoorstel;
-        $this->IndicatieSK = $IndicatieSK;
-        $this->CodeIncasso = $CodeIncasso;
-        $this->NaamIncasso = $NaamIncasso;
-        $this->ReferentieIncasso = $ReferentieIncasso;
-        $this->CodeDeurwaarder = $CodeDeurwaarder;
-        $this->NaamDeurwaarder = $NaamDeurwaarder;
-        $this->ReferentieDeurwaarder = $ReferentieDeurwaarder;
-    }
 
     /**
      * @return int
@@ -555,7 +503,5 @@ class TSRVEiser implements RequestInterface
 
         return $new;
     }
-
-
 }
 

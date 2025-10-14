@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class RekeningnummerArray implements RequestInterface
+class RekeningnummerArray
 {
-
     /**
      * @var string
      */
     private $string;
-
-    /**
-     * Constructor
-     *
-     * @var string $string
-     */
-    public function __construct($string)
-    {
-        $this->string = $string;
-    }
 
     /**
      * @return string
@@ -42,7 +28,5 @@ class RekeningnummerArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

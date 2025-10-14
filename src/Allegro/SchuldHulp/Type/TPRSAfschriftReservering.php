@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPRSAfschriftReservering implements RequestInterface
+class TPRSAfschriftReservering
 {
-
     /**
      * @var int
      */
@@ -22,20 +18,6 @@ class TPRSAfschriftReservering implements RequestInterface
      * @var float
      */
     private $Saldo;
-
-    /**
-     * Constructor
-     *
-     * @var int $VolgnummerReservering
-     * @var string $Omschrijving
-     * @var float $Saldo
-     */
-    public function __construct($VolgnummerReservering, $Omschrijving, $Saldo)
-    {
-        $this->VolgnummerReservering = $VolgnummerReservering;
-        $this->Omschrijving = $Omschrijving;
-        $this->Saldo = $Saldo;
-    }
 
     /**
      * @return int
@@ -96,7 +78,5 @@ class TPRSAfschriftReservering implements RequestInterface
 
         return $new;
     }
-
-
 }
 

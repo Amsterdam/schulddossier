@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPRSMutatie implements RequestInterface
+class TPRSMutatie
 {
-
     /**
      * @var int
      */
@@ -57,34 +53,6 @@ class TPRSMutatie implements RequestInterface
      * @var float
      */
     private $SaldoVoor;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var int $UniekVolgnummer
-     * @var int $ContractCode
-     * @var int $ContractVolgnummer
-     * @var \DateTimeInterface $Datum
-     * @var string $AfBij
-     * @var float $Bedrag
-     * @var int $VolgnummerAfschrift
-     * @var string $Omschrijving
-     * @var float $SaldoVoor
-     */
-    public function __construct($RelatieCode, $UniekVolgnummer, $ContractCode, $ContractVolgnummer, $Datum, $AfBij, $Bedrag, $VolgnummerAfschrift, $Omschrijving, $SaldoVoor)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->UniekVolgnummer = $UniekVolgnummer;
-        $this->ContractCode = $ContractCode;
-        $this->ContractVolgnummer = $ContractVolgnummer;
-        $this->Datum = $Datum;
-        $this->AfBij = $AfBij;
-        $this->Bedrag = $Bedrag;
-        $this->VolgnummerAfschrift = $VolgnummerAfschrift;
-        $this->Omschrijving = $Omschrijving;
-        $this->SaldoVoor = $SaldoVoor;
-    }
 
     /**
      * @return int
@@ -285,7 +253,5 @@ class TPRSMutatie implements RequestInterface
 
         return $new;
     }
-
-
 }
 

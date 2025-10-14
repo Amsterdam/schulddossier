@@ -2,27 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class CasusToelichtingArray implements RequestInterface
+class CasusToelichtingArray
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusToelichting
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusToelichting
      */
     private $TCasusToelichting;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusToelichting $TCasusToelichting
-     */
-    public function __construct($TCasusToelichting)
-    {
-        $this->TCasusToelichting = $TCasusToelichting;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusToelichting
@@ -43,7 +28,5 @@ class CasusToelichtingArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

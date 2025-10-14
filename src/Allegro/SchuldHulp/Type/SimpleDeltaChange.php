@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleDeltaChange implements RequestInterface
+class SimpleDeltaChange
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
      */
@@ -27,22 +23,6 @@ class SimpleDeltaChange implements RequestInterface
      * @var string
      */
     private $Mode;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $OldValues
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $NewValues
-     * @var string $Error
-     * @var string $Mode
-     */
-    public function __construct($OldValues, $NewValues, $Error, $Mode)
-    {
-        $this->OldValues = $OldValues;
-        $this->NewValues = $NewValues;
-        $this->Error = $Error;
-        $this->Mode = $Mode;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray
@@ -123,7 +103,5 @@ class SimpleDeltaChange implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class AllegroDocumentArray implements RequestInterface
+class AllegroDocumentArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAllegroDocument
      */
     private $TAllegroDocument;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAllegroDocument $TAllegroDocument
-     */
-    public function __construct($TAllegroDocument)
-    {
-        $this->TAllegroDocument = $TAllegroDocument;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAllegroDocument
@@ -42,7 +28,5 @@ class AllegroDocumentArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBoxBijlage implements RequestInterface
+class TBBoxBijlage
 {
-
     /**
      * @var int
      */
@@ -32,24 +28,6 @@ class TBBoxBijlage implements RequestInterface
      * @var string
      */
     private $BijlageNaam;
-
-    /**
-     * Constructor
-     *
-     * @var int $Code
-     * @var int $UniekVolgnummer
-     * @var string $Bijlage
-     * @var int $BijlageSize
-     * @var string $BijlageNaam
-     */
-    public function __construct($Code, $UniekVolgnummer, $Bijlage, $BijlageSize, $BijlageNaam)
-    {
-        $this->Code = $Code;
-        $this->UniekVolgnummer = $UniekVolgnummer;
-        $this->Bijlage = $Bijlage;
-        $this->BijlageSize = $BijlageSize;
-        $this->BijlageNaam = $BijlageNaam;
-    }
 
     /**
      * @return int
@@ -150,7 +128,5 @@ class TBBoxBijlage implements RequestInterface
 
         return $new;
     }
-
-
 }
 

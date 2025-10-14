@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TRCHeader implements RequestInterface
+class TRCHeader
 {
-
     /**
      * @var int
      */
@@ -22,20 +18,6 @@ class TRCHeader implements RequestInterface
      * @var \DateTimeInterface
      */
     private $Ingangsdatum;
-
-    /**
-     * Constructor
-     *
-     * @var int $Relatiecode
-     * @var int $Volgnummer
-     * @var \DateTimeInterface $Ingangsdatum
-     */
-    public function __construct($Relatiecode, $Volgnummer, $Ingangsdatum)
-    {
-        $this->Relatiecode = $Relatiecode;
-        $this->Volgnummer = $Volgnummer;
-        $this->Ingangsdatum = $Ingangsdatum;
-    }
 
     /**
      * @return int
@@ -96,7 +78,5 @@ class TRCHeader implements RequestInterface
 
         return $new;
     }
-
-
 }
 

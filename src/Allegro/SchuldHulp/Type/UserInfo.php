@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class UserInfo implements RequestInterface
+class UserInfo
 {
-
     /**
      * @var string
      */
@@ -32,24 +28,6 @@ class UserInfo implements RequestInterface
      * @var string
      */
     private $UserData;
-
-    /**
-     * Constructor
-     *
-     * @var string $SessionID
-     * @var string $UserID
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\StringArray $Privileges
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\VariantArray $Attributes
-     * @var string $UserData
-     */
-    public function __construct($SessionID, $UserID, $Privileges, $Attributes, $UserData)
-    {
-        $this->SessionID = $SessionID;
-        $this->UserID = $UserID;
-        $this->Privileges = $Privileges;
-        $this->Attributes = $Attributes;
-        $this->UserData = $UserData;
-    }
 
     /**
      * @return string
@@ -150,7 +128,5 @@ class UserInfo implements RequestInterface
 
         return $new;
     }
-
-
 }
 

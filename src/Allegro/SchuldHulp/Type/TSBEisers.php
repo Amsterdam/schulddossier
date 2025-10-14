@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSBEisers implements RequestInterface
+class TSBEisers
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBEiserArray
      */
@@ -37,26 +33,6 @@ class TSBEisers implements RequestInterface
      * @var float
      */
     private $SomPrognoseRestschuld;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBEiserArray $Eisers
-     * @var float $SomTeruggemeldBedrag
-     * @var float $SomBerekendBedrag
-     * @var float $SomGereserveerdBedrag
-     * @var float $SomDoorbetaaldBedrag
-     * @var float $SomPrognoseRestschuld
-     */
-    public function __construct($Eisers, $SomTeruggemeldBedrag, $SomBerekendBedrag, $SomGereserveerdBedrag, $SomDoorbetaaldBedrag, $SomPrognoseRestschuld)
-    {
-        $this->Eisers = $Eisers;
-        $this->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
-        $this->SomBerekendBedrag = $SomBerekendBedrag;
-        $this->SomGereserveerdBedrag = $SomGereserveerdBedrag;
-        $this->SomDoorbetaaldBedrag = $SomDoorbetaaldBedrag;
-        $this->SomPrognoseRestschuld = $SomPrognoseRestschuld;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SBEiserArray
@@ -177,7 +153,5 @@ class TSBEisers implements RequestInterface
 
         return $new;
     }
-
-
 }
 

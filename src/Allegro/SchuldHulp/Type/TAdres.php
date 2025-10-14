@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAdres implements RequestInterface
+class TAdres
 {
-
     /**
      * @var string
      */
@@ -47,30 +43,6 @@ class TAdres implements RequestInterface
      * @var string
      */
     private $LandNaam;
-
-    /**
-     * Constructor
-     *
-     * @var string $Straat
-     * @var string $Huisnr
-     * @var string $HuisnrToev
-     * @var string $Postcode
-     * @var int $PC
-     * @var string $PL
-     * @var string $Woonplaats
-     * @var string $LandNaam
-     */
-    public function __construct($Straat, $Huisnr, $HuisnrToev, $Postcode, $PC, $PL, $Woonplaats, $LandNaam)
-    {
-        $this->Straat = $Straat;
-        $this->Huisnr = $Huisnr;
-        $this->HuisnrToev = $HuisnrToev;
-        $this->Postcode = $Postcode;
-        $this->PC = $PC;
-        $this->PL = $PL;
-        $this->Woonplaats = $Woonplaats;
-        $this->LandNaam = $LandNaam;
-    }
 
     /**
      * @return string
@@ -231,7 +203,5 @@ class TAdres implements RequestInterface
 
         return $new;
     }
-
-
 }
 

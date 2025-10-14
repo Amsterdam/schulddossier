@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSorteerInfoArray implements RequestInterface
+class TSorteerInfoArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSorteerInfo
      */
     private $TSorteerInfo;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSorteerInfo $TSorteerInfo
-     */
-    public function __construct($TSorteerInfo)
-    {
-        $this->TSorteerInfo = $TSorteerInfo;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSorteerInfo
@@ -42,7 +28,5 @@ class TSorteerInfoArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

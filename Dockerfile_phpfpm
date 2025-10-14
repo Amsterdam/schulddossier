@@ -23,18 +23,19 @@ RUN apk add \
     yarn
 
 RUN docker-php-ext-install \
-    pdo_pgsql \
-    opcache \
-    zip \
-    soap \
-    intl \
+    bcmath \
     gd \
-    xsl
+    intl \
+    opcache \
+    pdo_pgsql \
+    soap \
+    xsl \
+    zip
 
 RUN docker-php-ext-configure \
     gd \
     --with-freetype \
-    --with-jpeg 
+    --with-jpeg
 
 RUN docker-php-ext-enable xsl
 
@@ -62,7 +63,7 @@ WORKDIR /var/www
 
 COPY --chown=www-data . /var/www
 
-RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
+RUN composer install --prefer-dist --no-progress --no-scripts --optimize-autoloader
 
 RUN yarn --ignore-scripts --ignore-platform
 RUN yarn encore prod

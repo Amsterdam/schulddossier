@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class RCHeaderArray implements RequestInterface
+class RCHeaderArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader
      */
     private $TRCHeader;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader $TRCHeader
-     */
-    public function __construct($TRCHeader)
-    {
-        $this->TRCHeader = $TRCHeader;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader
@@ -42,7 +28,5 @@ class RCHeaderArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

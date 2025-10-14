@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TCasusNotitie implements RequestInterface
+class TCasusNotitie
 {
-
     /**
      * @var int
      */
@@ -32,24 +28,6 @@ class TCasusNotitie implements RequestInterface
      * @var bool
      */
     private $PDF;
-
-    /**
-     * Constructor
-     *
-     * @var int $Volgnummer
-     * @var \DateTimeInterface $Datum
-     * @var string $Beschrijving
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker
-     * @var bool $PDF
-     */
-    public function __construct($Volgnummer, $Datum, $Beschrijving, $Medewerker, $PDF)
-    {
-        $this->Volgnummer = $Volgnummer;
-        $this->Datum = $Datum;
-        $this->Beschrijving = $Beschrijving;
-        $this->Medewerker = $Medewerker;
-        $this->PDF = $PDF;
-    }
 
     /**
      * @return int
@@ -150,7 +128,5 @@ class TCasusNotitie implements RequestInterface
 
         return $new;
     }
-
-
 }
 

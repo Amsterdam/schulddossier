@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TCasusPVAProduct implements RequestInterface
+class TCasusPVAProduct
 {
-
     /**
      * @var string
      */
@@ -27,22 +23,6 @@ class TCasusPVAProduct implements RequestInterface
      * @var \DateTimeInterface
      */
     private $DatumActivering;
-
-    /**
-     * Constructor
-     *
-     * @var string $Naam
-     * @var int $IDAanvraag
-     * @var bool $Geactiveerd
-     * @var \DateTimeInterface $DatumActivering
-     */
-    public function __construct($Naam, $IDAanvraag, $Geactiveerd, $DatumActivering)
-    {
-        $this->Naam = $Naam;
-        $this->IDAanvraag = $IDAanvraag;
-        $this->Geactiveerd = $Geactiveerd;
-        $this->DatumActivering = $DatumActivering;
-    }
 
     /**
      * @return string
@@ -123,7 +103,5 @@ class TCasusPVAProduct implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSorteerInfo implements RequestInterface
+class TSorteerInfo
 {
-
     /**
      * @var string
      */
@@ -17,18 +13,6 @@ class TSorteerInfo implements RequestInterface
      * @var bool
      */
     private $Oplopend;
-
-    /**
-     * Constructor
-     *
-     * @var string $Veld
-     * @var bool $Oplopend
-     */
-    public function __construct($Veld, $Oplopend)
-    {
-        $this->Veld = $Veld;
-        $this->Oplopend = $Oplopend;
-    }
 
     /**
      * @return string
@@ -69,7 +53,5 @@ class TSorteerInfo implements RequestInterface
 
         return $new;
     }
-
-
 }
 

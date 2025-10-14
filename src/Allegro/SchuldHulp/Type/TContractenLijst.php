@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TContractenLijst implements RequestInterface
+class TContractenLijst
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray
      */
     private $Contracten;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray $Contracten
-     */
-    public function __construct($Contracten)
-    {
-        $this->Contracten = $Contracten;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\ContractArray
@@ -42,7 +28,5 @@ class TContractenLijst implements RequestInterface
 
         return $new;
     }
-
-
 }
 

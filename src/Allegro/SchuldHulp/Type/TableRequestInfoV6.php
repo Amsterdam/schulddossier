@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TableRequestInfoV6 implements RequestInterface
+class TableRequestInfoV6
 {
-
     /**
      * @var string
      */
     private $Sql;
-
-    /**
-     * Constructor
-     *
-     * @var string $Sql
-     */
-    public function __construct($Sql)
-    {
-        $this->Sql = $Sql;
-    }
 
     /**
      * @return string
@@ -42,7 +28,5 @@ class TableRequestInfoV6 implements RequestInterface
 
         return $new;
     }
-
-
 }
 

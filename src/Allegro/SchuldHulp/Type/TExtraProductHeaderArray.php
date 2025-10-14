@@ -2,27 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TExtraProductHeaderArray implements RequestInterface
+class TExtraProductHeaderArray
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TExtraProductHeader
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TExtraProductHeader
      */
     private $TExtraProductHeader;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TExtraProductHeader $TExtraProductHeader
-     */
-    public function __construct($TExtraProductHeader)
-    {
-        $this->TExtraProductHeader = $TExtraProductHeader;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TExtraProductHeader
@@ -43,7 +28,5 @@ class TExtraProductHeaderArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

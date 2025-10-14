@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SchuldHulpServiceGetSRVOverzicht implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -16,7 +14,7 @@ class SchuldHulpServiceGetSRVOverzicht implements RequestInterface
     /**
      * Constructor
      *
-     * @var int $aRelatieCode
+     * @param int $aRelatieCode
      */
     public function __construct($aRelatieCode)
     {
@@ -42,7 +40,5 @@ class SchuldHulpServiceGetSRVOverzicht implements RequestInterface
 
         return $new;
     }
-
-
 }
 

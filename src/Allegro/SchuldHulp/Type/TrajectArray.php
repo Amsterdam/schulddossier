@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TrajectArray implements RequestInterface
+class TrajectArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTraject
      */
     private $TTraject;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTraject $TTraject
-     */
-    public function __construct($TTraject)
-    {
-        $this->TTraject = $TTraject;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTraject
@@ -42,7 +28,5 @@ class TrajectArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

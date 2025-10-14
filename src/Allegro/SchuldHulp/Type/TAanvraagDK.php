@@ -2,19 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAanvraagDK implements RequestInterface
+class TAanvraagDK
 {
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-    }
-
-
 }
 

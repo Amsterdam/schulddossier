@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TTrajectTaak implements RequestInterface
+class TTrajectTaak
 {
-
     /**
      * @var \DateTimeInterface
      */
@@ -57,34 +53,6 @@ class TTrajectTaak implements RequestInterface
      * @var string
      */
     private $TrajectOmschrijving;
-
-    /**
-     * Constructor
-     *
-     * @var \DateTimeInterface $StartDatum
-     * @var string $Medewerker
-     * @var string $Actie
-     * @var string $ActieOmschrijving
-     * @var string $MedewerkerUitgevoerd
-     * @var \DateTimeInterface $DatumUitgevoerd
-     * @var string $AfmeldCategorie
-     * @var int $StapnummerTraject
-     * @var string $TrajectCode
-     * @var string $TrajectOmschrijving
-     */
-    public function __construct($StartDatum, $Medewerker, $Actie, $ActieOmschrijving, $MedewerkerUitgevoerd, $DatumUitgevoerd, $AfmeldCategorie, $StapnummerTraject, $TrajectCode, $TrajectOmschrijving)
-    {
-        $this->StartDatum = $StartDatum;
-        $this->Medewerker = $Medewerker;
-        $this->Actie = $Actie;
-        $this->ActieOmschrijving = $ActieOmschrijving;
-        $this->MedewerkerUitgevoerd = $MedewerkerUitgevoerd;
-        $this->DatumUitgevoerd = $DatumUitgevoerd;
-        $this->AfmeldCategorie = $AfmeldCategorie;
-        $this->StapnummerTraject = $StapnummerTraject;
-        $this->TrajectCode = $TrajectCode;
-        $this->TrajectOmschrijving = $TrajectOmschrijving;
-    }
 
     /**
      * @return \DateTimeInterface
@@ -285,7 +253,5 @@ class TTrajectTaak implements RequestInterface
 
         return $new;
     }
-
-
 }
 

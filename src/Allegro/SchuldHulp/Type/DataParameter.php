@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class DataParameter implements RequestInterface
+class DataParameter
 {
-
     /**
      * @var string
      */
@@ -17,18 +13,6 @@ class DataParameter implements RequestInterface
      * @var mixed
      */
     private $Value;
-
-    /**
-     * Constructor
-     *
-     * @var string $Name
-     * @var mixed $Value
-     */
-    public function __construct($Name, $Value)
-    {
-        $this->Name = $Name;
-        $this->Value = $Value;
-    }
 
     /**
      * @return string
@@ -69,7 +53,5 @@ class DataParameter implements RequestInterface
 
         return $new;
     }
-
-
 }
 

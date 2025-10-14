@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TTraject implements RequestInterface
+class TTraject
 {
-
     /**
      * @var int
      */
@@ -52,32 +48,6 @@ class TTraject implements RequestInterface
      * @var string
      */
     private $ContractVolgnummerSoort;
-
-    /**
-     * Constructor
-     *
-     * @var int $UniekTrajectNummer
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TTrajectSoort $TrajectSoort
-     * @var \DateTimeInterface $Startdatum
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $StartMedewerker
-     * @var \DateTimeInterface $Einddatum
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $EindMedewerker
-     * @var bool $Lopend
-     * @var int $Contractvolgnummer
-     * @var string $ContractVolgnummerSoort
-     */
-    public function __construct($UniekTrajectNummer, $TrajectSoort, $Startdatum, $StartMedewerker, $Einddatum, $EindMedewerker, $Lopend, $Contractvolgnummer, $ContractVolgnummerSoort)
-    {
-        $this->UniekTrajectNummer = $UniekTrajectNummer;
-        $this->TrajectSoort = $TrajectSoort;
-        $this->Startdatum = $Startdatum;
-        $this->StartMedewerker = $StartMedewerker;
-        $this->Einddatum = $Einddatum;
-        $this->EindMedewerker = $EindMedewerker;
-        $this->Lopend = $Lopend;
-        $this->Contractvolgnummer = $Contractvolgnummer;
-        $this->ContractVolgnummerSoort = $ContractVolgnummerSoort;
-    }
 
     /**
      * @return int
@@ -258,7 +228,5 @@ class TTraject implements RequestInterface
 
         return $new;
     }
-
-
 }
 

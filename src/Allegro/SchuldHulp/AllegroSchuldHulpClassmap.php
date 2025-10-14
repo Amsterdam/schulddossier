@@ -8,10 +8,9 @@ use Phpro\SoapClient\Soap\ClassMap\ClassMap;
 
 class AllegroSchuldHulpClassmap
 {
-
-    public static function getCollection() : \Phpro\SoapClient\Soap\ClassMap\ClassMapCollection
+    public static function getCollection(): ClassMapCollection
     {
-        return new ClassMapCollection([
+        return new ClassMapCollection(
             new ClassMap('TTest', Type\TTest::class),
             new ClassMap('AWUserInfo', Type\AWUserInfo::class),
             new ClassMap('TAdres', Type\TAdres::class),
@@ -211,9 +210,6 @@ class AllegroSchuldHulpClassmap
             new ClassMap('SchuldHulpService___Aanvraag2SR', Type\SchuldHulpServiceAanvraag2SR::class),
             new ClassMap('SchuldHulpService___Aanvraag2SRResponse', Type\SchuldHulpServiceAanvraag2SRResponse::class),
             new ClassMap('ROClientIDHeader', Type\ROClientIDHeader::class),
-        ]);
+        );
     }
-
-
 }
-

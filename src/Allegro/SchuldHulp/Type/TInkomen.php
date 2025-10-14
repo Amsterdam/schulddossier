@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TInkomen implements RequestInterface
+class TInkomen
 {
-
     /**
      * @var string
      */
@@ -122,60 +118,6 @@ class TInkomen implements RequestInterface
      * @var string
      */
     private $Toelichting;
-
-    /**
-     * Constructor
-     *
-     * @var string $SoortInkomen
-     * @var string $Beroep
-     * @var string $Werkgever
-     * @var int $WerkzaamSinds
-     * @var string $VastDienstverband
-     * @var int $DienstVerbandTot
-     * @var float $Loon
-     * @var string $LoonPeriode
-     * @var string $SoortUitkering
-     * @var string $UitkeringsInstantie
-     * @var float $Uitkering
-     * @var string $UitkeringPeriode
-     * @var float $Pensioen
-     * @var string $PensioenPeriode
-     * @var float $KGB
-     * @var float $Vrijwilligers
-     * @var string $VrijwilligersPeriode
-     * @var float $KinderAlimentatieBedrag
-     * @var float $PartnerAlimentatieBedrag
-     * @var string $OverigInkomen
-     * @var float $OverigInkomenBedrag
-     * @var string $OverigInkomenPeriode
-     * @var string $Toelichting
-     */
-    public function __construct($SoortInkomen, $Beroep, $Werkgever, $WerkzaamSinds, $VastDienstverband, $DienstVerbandTot, $Loon, $LoonPeriode, $SoortUitkering, $UitkeringsInstantie, $Uitkering, $UitkeringPeriode, $Pensioen, $PensioenPeriode, $KGB, $Vrijwilligers, $VrijwilligersPeriode, $KinderAlimentatieBedrag, $PartnerAlimentatieBedrag, $OverigInkomen, $OverigInkomenBedrag, $OverigInkomenPeriode, $Toelichting)
-    {
-        $this->SoortInkomen = $SoortInkomen;
-        $this->Beroep = $Beroep;
-        $this->Werkgever = $Werkgever;
-        $this->WerkzaamSinds = $WerkzaamSinds;
-        $this->VastDienstverband = $VastDienstverband;
-        $this->DienstVerbandTot = $DienstVerbandTot;
-        $this->Loon = $Loon;
-        $this->LoonPeriode = $LoonPeriode;
-        $this->SoortUitkering = $SoortUitkering;
-        $this->UitkeringsInstantie = $UitkeringsInstantie;
-        $this->Uitkering = $Uitkering;
-        $this->UitkeringPeriode = $UitkeringPeriode;
-        $this->Pensioen = $Pensioen;
-        $this->PensioenPeriode = $PensioenPeriode;
-        $this->KGB = $KGB;
-        $this->Vrijwilligers = $Vrijwilligers;
-        $this->VrijwilligersPeriode = $VrijwilligersPeriode;
-        $this->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
-        $this->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
-        $this->OverigInkomen = $OverigInkomen;
-        $this->OverigInkomenBedrag = $OverigInkomenBedrag;
-        $this->OverigInkomenPeriode = $OverigInkomenPeriode;
-        $this->Toelichting = $Toelichting;
-    }
 
     /**
      * @return string
@@ -636,7 +578,5 @@ class TInkomen implements RequestInterface
 
         return $new;
     }
-
-
 }
 

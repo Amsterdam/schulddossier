@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class Int64Array implements RequestInterface
+class Int64Array
 {
-
     /**
      * @var int
      */
     private $long;
-
-    /**
-     * Constructor
-     *
-     * @var int $long
-     */
-    public function __construct($long)
-    {
-        $this->long = $long;
-    }
 
     /**
      * @return int
@@ -42,7 +28,5 @@ class Int64Array implements RequestInterface
 
         return $new;
     }
-
-
 }
 

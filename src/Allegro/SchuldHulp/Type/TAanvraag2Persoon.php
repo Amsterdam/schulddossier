@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAanvraag2Persoon implements RequestInterface
+class TAanvraag2Persoon
 {
-
     /**
      * @var int
      */
@@ -54,8 +50,7 @@ class TAanvraag2Persoon implements RequestInterface
     private $Nationaliteit;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\Rekeningnummer2Array
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\Rekeningnummer2Array
      */
     private $Rekeningnummers;
 
@@ -93,48 +88,6 @@ class TAanvraag2Persoon implements RequestInterface
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\UitgavenArray
      */
     private $Uitgaven;
-
-    /**
-     * Constructor
-     *
-     * @var int $Relatiecode
-     * @var int $BSN
-     * @var string $Voornamen
-     * @var string $Voorletters
-     * @var string $Voorvoegsels
-     * @var string $Achternaam
-     * @var string $Geslacht
-     * @var int $Geboortedatum
-     * @var string $Nationaliteit
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\Rekeningnummer2Array $Rekeningnummers
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Bezoekadres
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Postadres
-     * @var bool $CorrespondentieMail
-     * @var bool $CorrespondentieWeb
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContact $Contact
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\InkomenArray $Inkomen
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\UitgavenArray $Uitgaven
-     */
-    public function __construct($Relatiecode, $BSN, $Voornamen, $Voorletters, $Voorvoegsels, $Achternaam, $Geslacht, $Geboortedatum, $Nationaliteit, $Rekeningnummers, $Bezoekadres, $Postadres, $CorrespondentieMail, $CorrespondentieWeb, $Contact, $Inkomen, $Uitgaven)
-    {
-        $this->Relatiecode = $Relatiecode;
-        $this->BSN = $BSN;
-        $this->Voornamen = $Voornamen;
-        $this->Voorletters = $Voorletters;
-        $this->Voorvoegsels = $Voorvoegsels;
-        $this->Achternaam = $Achternaam;
-        $this->Geslacht = $Geslacht;
-        $this->Geboortedatum = $Geboortedatum;
-        $this->Nationaliteit = $Nationaliteit;
-        $this->Rekeningnummers = $Rekeningnummers;
-        $this->Bezoekadres = $Bezoekadres;
-        $this->Postadres = $Postadres;
-        $this->CorrespondentieMail = $CorrespondentieMail;
-        $this->CorrespondentieWeb = $CorrespondentieWeb;
-        $this->Contact = $Contact;
-        $this->Inkomen = $Inkomen;
-        $this->Uitgaven = $Uitgaven;
-    }
 
     /**
      * @return int
@@ -475,7 +428,5 @@ class TAanvraag2Persoon implements RequestInterface
 
         return $new;
     }
-
-
 }
 

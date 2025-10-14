@@ -2,13 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-use \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag;
-
-class TAanvraag2SR extends \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag implements RequestInterface
+class TAanvraag2SR
 {
-
     /**
      * @var bool
      */
@@ -65,8 +60,7 @@ class TAanvraag2SR extends \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp
     private $OpenVragen;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray
      */
     private $GeslotenVragen;
 
@@ -74,40 +68,6 @@ class TAanvraag2SR extends \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray
      */
     private $Schulden;
-
-    /**
-     * Constructor
-     *
-     * @var bool $NPS
-     * @var string $OorzaakSchulden
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie $Bewindvoerder
-     * @var string $ToelichtingAlgemeen
-     * @var string $ToelichtingSO
-     * @var string $ToelichtingAanmelding
-     * @var string $ToelichtingVoorstel
-     * @var bool $TotaalschuldVullen
-     * @var bool $OpdrachtgeverOvernemen
-     * @var bool $HulpverlenerOvernemen
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray $OpenVragen
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray $GeslotenVragen
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray $Schulden
-     */
-    public function __construct($NPS, $OorzaakSchulden, $Bewindvoerder, $ToelichtingAlgemeen, $ToelichtingSO, $ToelichtingAanmelding, $ToelichtingVoorstel, $TotaalschuldVullen, $OpdrachtgeverOvernemen, $HulpverlenerOvernemen, $OpenVragen, $GeslotenVragen, $Schulden)
-    {
-        $this->NPS = $NPS;
-        $this->OorzaakSchulden = $OorzaakSchulden;
-        $this->Bewindvoerder = $Bewindvoerder;
-        $this->ToelichtingAlgemeen = $ToelichtingAlgemeen;
-        $this->ToelichtingSO = $ToelichtingSO;
-        $this->ToelichtingAanmelding = $ToelichtingAanmelding;
-        $this->ToelichtingVoorstel = $ToelichtingVoorstel;
-        $this->TotaalschuldVullen = $TotaalschuldVullen;
-        $this->OpdrachtgeverOvernemen = $OpdrachtgeverOvernemen;
-        $this->HulpverlenerOvernemen = $HulpverlenerOvernemen;
-        $this->OpenVragen = $OpenVragen;
-        $this->GeslotenVragen = $GeslotenVragen;
-        $this->Schulden = $Schulden;
-    }
 
     /**
      * @return bool
@@ -368,7 +328,5 @@ class TAanvraag2SR extends \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp
 
         return $new;
     }
-
-
 }
 

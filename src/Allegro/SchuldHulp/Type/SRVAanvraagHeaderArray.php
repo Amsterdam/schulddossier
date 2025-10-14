@@ -2,27 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SRVAanvraagHeaderArray implements RequestInterface
+class SRVAanvraagHeaderArray
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader
      */
     private $TSRVAanvraagHeader;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader $TSRVAanvraagHeader
-     */
-    public function __construct($TSRVAanvraagHeader)
-    {
-        $this->TSRVAanvraagHeader = $TSRVAanvraagHeader;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVAanvraagHeader
@@ -43,7 +28,5 @@ class SRVAanvraagHeaderArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

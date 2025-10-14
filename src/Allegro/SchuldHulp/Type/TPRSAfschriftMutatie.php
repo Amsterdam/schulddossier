@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPRSAfschriftMutatie implements RequestInterface
+class TPRSAfschriftMutatie
 {
-
     /**
      * @var int
      */
@@ -62,36 +58,6 @@ class TPRSAfschriftMutatie implements RequestInterface
      * @var bool
      */
     private $Reservering;
-
-    /**
-     * Constructor
-     *
-     * @var int $VolgnummerMutatie
-     * @var int $Contractcode
-     * @var int $ContractVolgnummer
-     * @var \DateTimeInterface $DatumMutatie
-     * @var bool $IndicatieAf
-     * @var bool $IndicatieBij
-     * @var float $Bedrag
-     * @var string $Omschrijving
-     * @var string $Rekeningnummer
-     * @var string $ExtraToelichting
-     * @var bool $Reservering
-     */
-    public function __construct($VolgnummerMutatie, $Contractcode, $ContractVolgnummer, $DatumMutatie, $IndicatieAf, $IndicatieBij, $Bedrag, $Omschrijving, $Rekeningnummer, $ExtraToelichting, $Reservering)
-    {
-        $this->VolgnummerMutatie = $VolgnummerMutatie;
-        $this->Contractcode = $Contractcode;
-        $this->ContractVolgnummer = $ContractVolgnummer;
-        $this->DatumMutatie = $DatumMutatie;
-        $this->IndicatieAf = $IndicatieAf;
-        $this->IndicatieBij = $IndicatieBij;
-        $this->Bedrag = $Bedrag;
-        $this->Omschrijving = $Omschrijving;
-        $this->Rekeningnummer = $Rekeningnummer;
-        $this->ExtraToelichting = $ExtraToelichting;
-        $this->Reservering = $Reservering;
-    }
 
     /**
      * @return int
@@ -312,7 +278,5 @@ class TPRSAfschriftMutatie implements RequestInterface
 
         return $new;
     }
-
-
 }
 

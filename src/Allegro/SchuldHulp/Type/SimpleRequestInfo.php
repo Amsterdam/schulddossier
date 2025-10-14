@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleRequestInfo implements RequestInterface
+class SimpleRequestInfo
 {
-
     /**
      * @var string
      */
@@ -24,8 +20,7 @@ class SimpleRequestInfo implements RequestInterface
     private $Where;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray
      */
     private $Parameters;
 
@@ -43,28 +38,6 @@ class SimpleRequestInfo implements RequestInterface
      * @var bool
      */
     private $SimpleMode;
-
-    /**
-     * Constructor
-     *
-     * @var string $SQL
-     * @var string $Table
-     * @var string $Where
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameterArray $Parameters
-     * @var int $MaxRecords
-     * @var bool $IncludeSchema
-     * @var bool $SimpleMode
-     */
-    public function __construct($SQL, $Table, $Where, $Parameters, $MaxRecords, $IncludeSchema, $SimpleMode)
-    {
-        $this->SQL = $SQL;
-        $this->Table = $Table;
-        $this->Where = $Where;
-        $this->Parameters = $Parameters;
-        $this->MaxRecords = $MaxRecords;
-        $this->IncludeSchema = $IncludeSchema;
-        $this->SimpleMode = $SimpleMode;
-    }
 
     /**
      * @return string
@@ -205,7 +178,5 @@ class SimpleRequestInfo implements RequestInterface
 
         return $new;
     }
-
-
 }
 

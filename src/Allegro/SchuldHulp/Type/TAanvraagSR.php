@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAanvraagSR implements RequestInterface
+class TAanvraagSR
 {
-
     /**
      * @var int
      */
@@ -74,8 +70,7 @@ class TAanvraagSR implements RequestInterface
     private $OpenVragen;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray
      */
     private $GeslotenVragen;
 
@@ -83,44 +78,6 @@ class TAanvraagSR implements RequestInterface
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray
      */
     private $Schulden;
-
-    /**
-     * Constructor
-     *
-     * @var int $Bedrijfscode
-     * @var bool $CorrespondentieWeb
-     * @var bool $NPS
-     * @var string $OorzaakSchulden
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TOrganisatie $Bewindvoerder
-     * @var string $ToelichtingAlgemeen
-     * @var string $ToelichtingSO
-     * @var string $ToelichtingAanmelding
-     * @var string $ToelichtingVoorstel
-     * @var bool $TotaalschuldVullen
-     * @var bool $OpdrachtgeverOvernemen
-     * @var bool $HulpverlenerOvernemen
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\OpenVraagArray $OpenVragen
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\GeslotenVraagArray $GeslotenVragen
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldArray $Schulden
-     */
-    public function __construct($Bedrijfscode, $CorrespondentieWeb, $NPS, $OorzaakSchulden, $Bewindvoerder, $ToelichtingAlgemeen, $ToelichtingSO, $ToelichtingAanmelding, $ToelichtingVoorstel, $TotaalschuldVullen, $OpdrachtgeverOvernemen, $HulpverlenerOvernemen, $OpenVragen, $GeslotenVragen, $Schulden)
-    {
-        $this->Bedrijfscode = $Bedrijfscode;
-        $this->CorrespondentieWeb = $CorrespondentieWeb;
-        $this->NPS = $NPS;
-        $this->OorzaakSchulden = $OorzaakSchulden;
-        $this->Bewindvoerder = $Bewindvoerder;
-        $this->ToelichtingAlgemeen = $ToelichtingAlgemeen;
-        $this->ToelichtingSO = $ToelichtingSO;
-        $this->ToelichtingAanmelding = $ToelichtingAanmelding;
-        $this->ToelichtingVoorstel = $ToelichtingVoorstel;
-        $this->TotaalschuldVullen = $TotaalschuldVullen;
-        $this->OpdrachtgeverOvernemen = $OpdrachtgeverOvernemen;
-        $this->HulpverlenerOvernemen = $HulpverlenerOvernemen;
-        $this->OpenVragen = $OpenVragen;
-        $this->GeslotenVragen = $GeslotenVragen;
-        $this->Schulden = $Schulden;
-    }
 
     /**
      * @return int
@@ -421,7 +378,5 @@ class TAanvraagSR implements RequestInterface
 
         return $new;
     }
-
-
 }
 

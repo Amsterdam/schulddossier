@@ -2,27 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleDataParameterArray implements RequestInterface
+class SimpleDataParameterArray
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameter
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameter
      */
     private $SimpleDataParameter;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameter $SimpleDataParameter
-     */
-    public function __construct($SimpleDataParameter)
-    {
-        $this->SimpleDataParameter = $SimpleDataParameter;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SimpleDataParameter
@@ -43,7 +28,5 @@ class SimpleDataParameterArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

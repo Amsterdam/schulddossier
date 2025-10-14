@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TCasusToelichting implements RequestInterface
+class TCasusToelichting
 {
-
     /**
      * @var int
      */
@@ -47,30 +43,6 @@ class TCasusToelichting implements RequestInterface
      * @var string
      */
     private $Tekst;
-
-    /**
-     * Constructor
-     *
-     * @var int $VolgnummerCasus
-     * @var int $Titel
-     * @var string $TitelTitel
-     * @var string $Medewerker
-     * @var \DateTimeInterface $Datum
-     * @var int $SubTitel
-     * @var string $SubTitelTitel
-     * @var string $Tekst
-     */
-    public function __construct($VolgnummerCasus, $Titel, $TitelTitel, $Medewerker, $Datum, $SubTitel, $SubTitelTitel, $Tekst)
-    {
-        $this->VolgnummerCasus = $VolgnummerCasus;
-        $this->Titel = $Titel;
-        $this->TitelTitel = $TitelTitel;
-        $this->Medewerker = $Medewerker;
-        $this->Datum = $Datum;
-        $this->SubTitel = $SubTitel;
-        $this->SubTitelTitel = $SubTitelTitel;
-        $this->Tekst = $Tekst;
-    }
 
     /**
      * @return int
@@ -231,7 +203,5 @@ class TCasusToelichting implements RequestInterface
 
         return $new;
     }
-
-
 }
 

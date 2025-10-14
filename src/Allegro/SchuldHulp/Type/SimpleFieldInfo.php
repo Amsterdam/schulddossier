@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class SimpleFieldInfo implements RequestInterface
+class SimpleFieldInfo
 {
-
     /**
      * @var string
      */
@@ -22,20 +18,6 @@ class SimpleFieldInfo implements RequestInterface
      * @var bool
      */
     private $Hidden;
-
-    /**
-     * Constructor
-     *
-     * @var string $Name
-     * @var string $DataType
-     * @var bool $Hidden
-     */
-    public function __construct($Name, $DataType, $Hidden)
-    {
-        $this->Name = $Name;
-        $this->DataType = $DataType;
-        $this->Hidden = $Hidden;
-    }
 
     /**
      * @return string
@@ -96,7 +78,5 @@ class SimpleFieldInfo implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBoxDetail implements RequestInterface
+class TBBoxDetail
 {
-
     /**
      * @var int
      */
@@ -144,74 +140,9 @@ class TBBoxDetail implements RequestInterface
     private $BijlagenAantal;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray
      */
     private $Bijlagen;
-
-    /**
-     * Constructor
-     *
-     * @var int $Code
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $Relatie
-     * @var int $ContractVolgnummer
-     * @var string $ContractSoort
-     * @var string $SoortOpdracht
-     * @var int $CodeEiserBegunstigde
-     * @var int $NummerReservering
-     * @var int $UniekVolgnummer
-     * @var \DateTimeInterface $AanmaakDatum
-     * @var \DateTimeInterface $OntvangstDatum
-     * @var bool $Nieuw
-     * @var \DateTimeInterface $EmailDatum
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AanmaakMedewerker
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AanmaakRelatie
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $AfzenderMedewerker
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $AfzenderRelatie
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $OntvangerMedewerker
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $OntvangerRelatie
-     * @var \DateTimeInterface $LeesDatum
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $LeesMedewerker
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $LeesRelatie
-     * @var \DateTimeInterface $ArchiefDatum
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $ArchiefMedewerker
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatie $ArchiefRelatie
-     * @var string $Onderwerp
-     * @var string $Tekst
-     * @var int $BijlagenAantal
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxBijlageArray $Bijlagen
-     */
-    public function __construct($Code, $Relatie, $ContractVolgnummer, $ContractSoort, $SoortOpdracht, $CodeEiserBegunstigde, $NummerReservering, $UniekVolgnummer, $AanmaakDatum, $OntvangstDatum, $Nieuw, $EmailDatum, $AanmaakMedewerker, $AanmaakRelatie, $AfzenderMedewerker, $AfzenderRelatie, $OntvangerMedewerker, $OntvangerRelatie, $LeesDatum, $LeesMedewerker, $LeesRelatie, $ArchiefDatum, $ArchiefMedewerker, $ArchiefRelatie, $Onderwerp, $Tekst, $BijlagenAantal, $Bijlagen)
-    {
-        $this->Code = $Code;
-        $this->Relatie = $Relatie;
-        $this->ContractVolgnummer = $ContractVolgnummer;
-        $this->ContractSoort = $ContractSoort;
-        $this->SoortOpdracht = $SoortOpdracht;
-        $this->CodeEiserBegunstigde = $CodeEiserBegunstigde;
-        $this->NummerReservering = $NummerReservering;
-        $this->UniekVolgnummer = $UniekVolgnummer;
-        $this->AanmaakDatum = $AanmaakDatum;
-        $this->OntvangstDatum = $OntvangstDatum;
-        $this->Nieuw = $Nieuw;
-        $this->EmailDatum = $EmailDatum;
-        $this->AanmaakMedewerker = $AanmaakMedewerker;
-        $this->AanmaakRelatie = $AanmaakRelatie;
-        $this->AfzenderMedewerker = $AfzenderMedewerker;
-        $this->AfzenderRelatie = $AfzenderRelatie;
-        $this->OntvangerMedewerker = $OntvangerMedewerker;
-        $this->OntvangerRelatie = $OntvangerRelatie;
-        $this->LeesDatum = $LeesDatum;
-        $this->LeesMedewerker = $LeesMedewerker;
-        $this->LeesRelatie = $LeesRelatie;
-        $this->ArchiefDatum = $ArchiefDatum;
-        $this->ArchiefMedewerker = $ArchiefMedewerker;
-        $this->ArchiefRelatie = $ArchiefRelatie;
-        $this->Onderwerp = $Onderwerp;
-        $this->Tekst = $Tekst;
-        $this->BijlagenAantal = $BijlagenAantal;
-        $this->Bijlagen = $Bijlagen;
-    }
 
     /**
      * @return int
@@ -772,7 +703,5 @@ class TBBoxDetail implements RequestInterface
 
         return $new;
     }
-
-
 }
 

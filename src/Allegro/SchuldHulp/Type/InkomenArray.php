@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class InkomenArray implements RequestInterface
+class InkomenArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen
      */
     private $TInkomen;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen $TInkomen
-     */
-    public function __construct($TInkomen)
-    {
-        $this->TInkomen = $TInkomen;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TInkomen
@@ -42,7 +28,5 @@ class InkomenArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

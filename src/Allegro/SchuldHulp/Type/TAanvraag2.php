@@ -2,20 +2,15 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAanvraag2 implements RequestInterface
+class TAanvraag2
 {
-
     /**
      * @var int
      */
     private $Bedrijfscode;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag2Persoon
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag2Persoon
      */
     private $Aanvrager;
 
@@ -25,8 +20,7 @@ class TAanvraag2 implements RequestInterface
     private $MetPartner;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag2Persoon
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag2Persoon
      */
     private $Partner;
 
@@ -119,58 +113,6 @@ class TAanvraag2 implements RequestInterface
      * @var string
      */
     private $OverigeGegevens;
-
-    /**
-     * Constructor
-     *
-     * @var int $Bedrijfscode
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag2Persoon $Aanvrager
-     * @var bool $MetPartner
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag2Persoon $Partner
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGezinsSituatie $GezinsSituatie
-     * @var int $AantalKinderen
-     * @var string $ToelichtingKinderen
-     * @var float $Schuldbedrag
-     * @var int $Schuldeisers
-     * @var string $SoortLening
-     * @var float $GewenstKrediet
-     * @var float $GewenstAflossing
-     * @var string $Bestedingsdoel
-     * @var string $Indiener
-     * @var string $HulpverlenerNaam
-     * @var int $OpdrachtgeverCode
-     * @var string $Contactpersoon
-     * @var string $KredietSoort
-     * @var bool $Borgstelling
-     * @var string $Toelichting
-     * @var bool $CollectieveBorgstelling
-     * @var string $OverigeGegevens
-     */
-    public function __construct($Bedrijfscode, $Aanvrager, $MetPartner, $Partner, $GezinsSituatie, $AantalKinderen, $ToelichtingKinderen, $Schuldbedrag, $Schuldeisers, $SoortLening, $GewenstKrediet, $GewenstAflossing, $Bestedingsdoel, $Indiener, $HulpverlenerNaam, $OpdrachtgeverCode, $Contactpersoon, $KredietSoort, $Borgstelling, $Toelichting, $CollectieveBorgstelling, $OverigeGegevens)
-    {
-        $this->Bedrijfscode = $Bedrijfscode;
-        $this->Aanvrager = $Aanvrager;
-        $this->MetPartner = $MetPartner;
-        $this->Partner = $Partner;
-        $this->GezinsSituatie = $GezinsSituatie;
-        $this->AantalKinderen = $AantalKinderen;
-        $this->ToelichtingKinderen = $ToelichtingKinderen;
-        $this->Schuldbedrag = $Schuldbedrag;
-        $this->Schuldeisers = $Schuldeisers;
-        $this->SoortLening = $SoortLening;
-        $this->GewenstKrediet = $GewenstKrediet;
-        $this->GewenstAflossing = $GewenstAflossing;
-        $this->Bestedingsdoel = $Bestedingsdoel;
-        $this->Indiener = $Indiener;
-        $this->HulpverlenerNaam = $HulpverlenerNaam;
-        $this->OpdrachtgeverCode = $OpdrachtgeverCode;
-        $this->Contactpersoon = $Contactpersoon;
-        $this->KredietSoort = $KredietSoort;
-        $this->Borgstelling = $Borgstelling;
-        $this->Toelichting = $Toelichting;
-        $this->CollectieveBorgstelling = $CollectieveBorgstelling;
-        $this->OverigeGegevens = $OverigeGegevens;
-    }
 
     /**
      * @return int
@@ -611,7 +553,5 @@ class TAanvraag2 implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,15 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\ResultInterface;
 
 class SchuldHulpServiceGetSRVOverzichtResponse implements ResultInterface
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVAanvraagHeaderArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVAanvraagHeaderArray
      */
     private $Result;
 
@@ -33,7 +30,5 @@ class SchuldHulpServiceGetSRVOverzichtResponse implements ResultInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TDocument implements RequestInterface
+class TDocument
 {
-
     /**
      * @var int
      */
@@ -62,36 +58,6 @@ class TDocument implements RequestInterface
      * @var string
      */
     private $Document;
-
-    /**
-     * Constructor
-     *
-     * @var int $Relatiecode
-     * @var int $ContractVolgnummer
-     * @var string $Achternaam
-     * @var string $Geslacht
-     * @var int $Geboortedatum
-     * @var int $BSN
-     * @var string $SoortDocument
-     * @var string $Onderwerp
-     * @var string $Omschrijving
-     * @var string $DocumentNaam
-     * @var string $Document
-     */
-    public function __construct($Relatiecode, $ContractVolgnummer, $Achternaam, $Geslacht, $Geboortedatum, $BSN, $SoortDocument, $Onderwerp, $Omschrijving, $DocumentNaam, $Document)
-    {
-        $this->Relatiecode = $Relatiecode;
-        $this->ContractVolgnummer = $ContractVolgnummer;
-        $this->Achternaam = $Achternaam;
-        $this->Geslacht = $Geslacht;
-        $this->Geboortedatum = $Geboortedatum;
-        $this->BSN = $BSN;
-        $this->SoortDocument = $SoortDocument;
-        $this->Onderwerp = $Onderwerp;
-        $this->Omschrijving = $Omschrijving;
-        $this->DocumentNaam = $DocumentNaam;
-        $this->Document = $Document;
-    }
 
     /**
      * @return int
@@ -312,7 +278,5 @@ class TDocument implements RequestInterface
 
         return $new;
     }
-
-
 }
 

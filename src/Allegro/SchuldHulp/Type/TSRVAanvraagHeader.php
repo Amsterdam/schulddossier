@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSRVAanvraagHeader implements RequestInterface
+class TSRVAanvraagHeader
 {
-
     /**
      * @var int
      */
@@ -42,28 +38,6 @@ class TSRVAanvraagHeader implements RequestInterface
      * @var string
      */
     private $ExtraStatus;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var int $Volgnummer
-     * @var bool $IsNPS
-     * @var string $Status
-     * @var string $Statustekst
-     * @var \DateTimeInterface $Aanvraagdatum
-     * @var string $ExtraStatus
-     */
-    public function __construct($RelatieCode, $Volgnummer, $IsNPS, $Status, $Statustekst, $Aanvraagdatum, $ExtraStatus)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->Volgnummer = $Volgnummer;
-        $this->IsNPS = $IsNPS;
-        $this->Status = $Status;
-        $this->Statustekst = $Statustekst;
-        $this->Aanvraagdatum = $Aanvraagdatum;
-        $this->ExtraStatus = $ExtraStatus;
-    }
 
     /**
      * @return int
@@ -204,7 +178,5 @@ class TSRVAanvraagHeader implements RequestInterface
 
         return $new;
     }
-
-
 }
 

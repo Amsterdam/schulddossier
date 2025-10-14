@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class ColumnSorting implements RequestInterface
+class ColumnSorting
 {
-
     /**
      * @var string
      */
@@ -17,18 +13,6 @@ class ColumnSorting implements RequestInterface
      * @var string
      */
     private $SortDirection;
-
-    /**
-     * Constructor
-     *
-     * @var string $FieldName
-     * @var string $SortDirection
-     */
-    public function __construct($FieldName, $SortDirection)
-    {
-        $this->FieldName = $FieldName;
-        $this->SortDirection = $SortDirection;
-    }
 
     /**
      * @return string
@@ -69,7 +53,5 @@ class ColumnSorting implements RequestInterface
 
         return $new;
     }
-
-
 }
 

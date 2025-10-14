@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TContactpersoon implements RequestInterface
+class TContactpersoon
 {
-
     /**
      * @var int
      */
@@ -62,36 +58,6 @@ class TContactpersoon implements RequestInterface
      * @var bool
      */
     private $MagAanmelden;
-
-    /**
-     * Constructor
-     *
-     * @var int $Code
-     * @var string $Achternaam
-     * @var string $Voorvoegsels
-     * @var string $Voornaam
-     * @var string $Voorletters
-     * @var \DateTimeInterface $GeboorteDatum
-     * @var string $Telefoon
-     * @var string $Email
-     * @var bool $NogBevestigen
-     * @var bool $Actief
-     * @var bool $MagAanmelden
-     */
-    public function __construct($Code, $Achternaam, $Voorvoegsels, $Voornaam, $Voorletters, $GeboorteDatum, $Telefoon, $Email, $NogBevestigen, $Actief, $MagAanmelden)
-    {
-        $this->Code = $Code;
-        $this->Achternaam = $Achternaam;
-        $this->Voorvoegsels = $Voorvoegsels;
-        $this->Voornaam = $Voornaam;
-        $this->Voorletters = $Voorletters;
-        $this->GeboorteDatum = $GeboorteDatum;
-        $this->Telefoon = $Telefoon;
-        $this->Email = $Email;
-        $this->NogBevestigen = $NogBevestigen;
-        $this->Actief = $Actief;
-        $this->MagAanmelden = $MagAanmelden;
-    }
 
     /**
      * @return int
@@ -312,7 +278,5 @@ class TContactpersoon implements RequestInterface
 
         return $new;
     }
-
-
 }
 

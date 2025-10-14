@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TMedewerker implements RequestInterface
+class TMedewerker
 {
-
     /**
      * @var string
      */
@@ -42,28 +38,6 @@ class TMedewerker implements RequestInterface
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TeamArray
      */
     private $Teams;
-
-    /**
-     * Constructor
-     *
-     * @var string $Code
-     * @var string $Voornaam
-     * @var string $Achternaam
-     * @var string $Voorvoegsels
-     * @var string $Voorletters
-     * @var string $Telefoon
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TeamArray $Teams
-     */
-    public function __construct($Code, $Voornaam, $Achternaam, $Voorvoegsels, $Voorletters, $Telefoon, $Teams)
-    {
-        $this->Code = $Code;
-        $this->Voornaam = $Voornaam;
-        $this->Achternaam = $Achternaam;
-        $this->Voorvoegsels = $Voorvoegsels;
-        $this->Voorletters = $Voorletters;
-        $this->Telefoon = $Telefoon;
-        $this->Teams = $Teams;
-    }
 
     /**
      * @return string
@@ -204,7 +178,5 @@ class TMedewerker implements RequestInterface
 
         return $new;
     }
-
-
 }
 

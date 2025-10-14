@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TAfspraakSoorten implements RequestInterface
+class TAfspraakSoorten
 {
-
     /**
      * @var string
      */
@@ -17,18 +13,6 @@ class TAfspraakSoorten implements RequestInterface
      * @var string
      */
     private $Omschrijving;
-
-    /**
-     * Constructor
-     *
-     * @var string $Code
-     * @var string $Omschrijving
-     */
-    public function __construct($Code, $Omschrijving)
-    {
-        $this->Code = $Code;
-        $this->Omschrijving = $Omschrijving;
-    }
 
     /**
      * @return string
@@ -69,7 +53,5 @@ class TAfspraakSoorten implements RequestInterface
 
         return $new;
     }
-
-
 }
 

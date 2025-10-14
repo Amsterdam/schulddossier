@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class ContactpersoonArray implements RequestInterface
+class ContactpersoonArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContactpersoon
      */
     private $TContactpersoon;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContactpersoon $TContactpersoon
-     */
-    public function __construct($TContactpersoon)
-    {
-        $this->TContactpersoon = $TContactpersoon;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TContactpersoon
@@ -42,7 +28,5 @@ class ContactpersoonArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

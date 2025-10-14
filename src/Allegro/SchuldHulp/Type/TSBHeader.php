@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSBHeader implements RequestInterface
+class TSBHeader
 {
-
     /**
      * @var int
      */
@@ -22,20 +18,6 @@ class TSBHeader implements RequestInterface
      * @var bool
      */
     private $IsNPS;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var int $Volgnummer
-     * @var bool $IsNPS
-     */
-    public function __construct($RelatieCode, $Volgnummer, $IsNPS)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->Volgnummer = $Volgnummer;
-        $this->IsNPS = $IsNPS;
-    }
 
     /**
      * @return int
@@ -96,7 +78,5 @@ class TSBHeader implements RequestInterface
 
         return $new;
     }
-
-
 }
 

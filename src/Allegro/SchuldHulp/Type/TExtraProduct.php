@@ -2,15 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TExtraProduct implements RequestInterface
+class TExtraProduct
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TExtraProductHeader
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TExtraProductHeader
      */
     private $InfoHeader;
 
@@ -63,36 +58,6 @@ class TExtraProduct implements RequestInterface
      * @var int
      */
     private $PartnerCode;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TExtraProductHeader $InfoHeader
-     * @var string $Medewerker
-     * @var int $Opdrachtgever
-     * @var int $OpdrachtgeverContact
-     * @var \DateTimeInterface $Startdatum
-     * @var string $Status
-     * @var string $StatusOmschrijving
-     * @var int $UitvoerendeOrganisatie
-     * @var int $UitvoerendeOrganisatieContact
-     * @var \DateTimeInterface $GeschatteEinddatum
-     * @var int $PartnerCode
-     */
-    public function __construct($InfoHeader, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, $Startdatum, $Status, $StatusOmschrijving, $UitvoerendeOrganisatie, $UitvoerendeOrganisatieContact, $GeschatteEinddatum, $PartnerCode)
-    {
-        $this->InfoHeader = $InfoHeader;
-        $this->Medewerker = $Medewerker;
-        $this->Opdrachtgever = $Opdrachtgever;
-        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-        $this->Startdatum = $Startdatum;
-        $this->Status = $Status;
-        $this->StatusOmschrijving = $StatusOmschrijving;
-        $this->UitvoerendeOrganisatie = $UitvoerendeOrganisatie;
-        $this->UitvoerendeOrganisatieContact = $UitvoerendeOrganisatieContact;
-        $this->GeschatteEinddatum = $GeschatteEinddatum;
-        $this->PartnerCode = $PartnerCode;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TExtraProductHeader
@@ -313,7 +278,5 @@ class TExtraProduct implements RequestInterface
 
         return $new;
     }
-
-
 }
 

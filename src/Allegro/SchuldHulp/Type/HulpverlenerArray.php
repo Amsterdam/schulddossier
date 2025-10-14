@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class HulpverlenerArray implements RequestInterface
+class HulpverlenerArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\THulpverlener
      */
     private $THulpverlener;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\THulpverlener $THulpverlener
-     */
-    public function __construct($THulpverlener)
-    {
-        $this->THulpverlener = $THulpverlener;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\THulpverlener
@@ -42,7 +28,5 @@ class HulpverlenerArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

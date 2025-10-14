@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TCasusDeelopdracht implements RequestInterface
+class TCasusDeelopdracht
 {
-
     /**
      * @var int
      */
@@ -77,42 +73,6 @@ class TCasusDeelopdracht implements RequestInterface
      * @var string
      */
     private $NaamLang;
-
-    /**
-     * Constructor
-     *
-     * @var int $VolgnummerCasus
-     * @var int $VolgnummerKlantopdracht
-     * @var string $ToelichtingKlantopdracht
-     * @var int $VolgnummerDeelopdracht
-     * @var string $Naam
-     * @var string $Omschrijving
-     * @var string $RubriekSoort
-     * @var string $RubriekNaam
-     * @var string $Toelichting
-     * @var \DateTimeInterface $Startdatum
-     * @var \DateTimeInterface $DatumUiterlijk
-     * @var \DateTimeInterface $DatumUitgevoerd
-     * @var \DateTimeInterface $DatumNietUitgevoerd
-     * @var string $NaamLang
-     */
-    public function __construct($VolgnummerCasus, $VolgnummerKlantopdracht, $ToelichtingKlantopdracht, $VolgnummerDeelopdracht, $Naam, $Omschrijving, $RubriekSoort, $RubriekNaam, $Toelichting, $Startdatum, $DatumUiterlijk, $DatumUitgevoerd, $DatumNietUitgevoerd, $NaamLang)
-    {
-        $this->VolgnummerCasus = $VolgnummerCasus;
-        $this->VolgnummerKlantopdracht = $VolgnummerKlantopdracht;
-        $this->ToelichtingKlantopdracht = $ToelichtingKlantopdracht;
-        $this->VolgnummerDeelopdracht = $VolgnummerDeelopdracht;
-        $this->Naam = $Naam;
-        $this->Omschrijving = $Omschrijving;
-        $this->RubriekSoort = $RubriekSoort;
-        $this->RubriekNaam = $RubriekNaam;
-        $this->Toelichting = $Toelichting;
-        $this->Startdatum = $Startdatum;
-        $this->DatumUiterlijk = $DatumUiterlijk;
-        $this->DatumUitgevoerd = $DatumUitgevoerd;
-        $this->DatumNietUitgevoerd = $DatumNietUitgevoerd;
-        $this->NaamLang = $NaamLang;
-    }
 
     /**
      * @return int
@@ -393,7 +353,5 @@ class TCasusDeelopdracht implements RequestInterface
 
         return $new;
     }
-
-
 }
 

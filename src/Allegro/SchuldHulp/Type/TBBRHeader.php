@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBRHeader implements RequestInterface
+class TBBRHeader
 {
-
     /**
      * @var int
      */
@@ -57,34 +53,6 @@ class TBBRHeader implements RequestInterface
      * @var string
      */
     private $Team;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var int $Volgnummer
-     * @var string $Medewerker
-     * @var int $Opdrachtgever
-     * @var int $OpdrachtgeverContact
-     * @var string $VormCode
-     * @var string $VormNaam
-     * @var string $ProductNaam
-     * @var string $ProductOmschrijving
-     * @var string $Team
-     */
-    public function __construct($RelatieCode, $Volgnummer, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, $VormCode, $VormNaam, $ProductNaam, $ProductOmschrijving, $Team)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->Volgnummer = $Volgnummer;
-        $this->Medewerker = $Medewerker;
-        $this->Opdrachtgever = $Opdrachtgever;
-        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-        $this->VormCode = $VormCode;
-        $this->VormNaam = $VormNaam;
-        $this->ProductNaam = $ProductNaam;
-        $this->ProductOmschrijving = $ProductOmschrijving;
-        $this->Team = $Team;
-    }
 
     /**
      * @return int
@@ -285,7 +253,5 @@ class TBBRHeader implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TRelatieProduct implements RequestInterface
+class TRelatieProduct
 {
-
     /**
      * @var string
      */
@@ -52,32 +48,6 @@ class TRelatieProduct implements RequestInterface
      * @var string
      */
     private $Team;
-
-    /**
-     * Constructor
-     *
-     * @var string $Contractnummer
-     * @var string $Product
-     * @var string $NaamProduct
-     * @var string $Status
-     * @var \DateTimeInterface $Startdatum
-     * @var \DateTimeInterface $Einddatum
-     * @var string $Eindstatus
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker
-     * @var string $Team
-     */
-    public function __construct($Contractnummer, $Product, $NaamProduct, $Status, $Startdatum, $Einddatum, $Eindstatus, $Medewerker, $Team)
-    {
-        $this->Contractnummer = $Contractnummer;
-        $this->Product = $Product;
-        $this->NaamProduct = $NaamProduct;
-        $this->Status = $Status;
-        $this->Startdatum = $Startdatum;
-        $this->Einddatum = $Einddatum;
-        $this->Eindstatus = $Eindstatus;
-        $this->Medewerker = $Medewerker;
-        $this->Team = $Team;
-    }
 
     /**
      * @return string
@@ -258,7 +228,5 @@ class TRelatieProduct implements RequestInterface
 
         return $new;
     }
-
-
 }
 

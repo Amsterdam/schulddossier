@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TableRequestInfoArray implements RequestInterface
+class TableRequestInfoArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TableRequestInfo
      */
     private $TableRequestInfo;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TableRequestInfo $TableRequestInfo
-     */
-    public function __construct($TableRequestInfo)
-    {
-        $this->TableRequestInfo = $TableRequestInfo;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TableRequestInfo
@@ -42,7 +28,5 @@ class TableRequestInfoArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

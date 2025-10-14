@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBROpdracht implements RequestInterface
+class TBBROpdracht
 {
-
     /**
      * @var int
      */
@@ -102,52 +98,6 @@ class TBBROpdracht implements RequestInterface
      * @var int
      */
     private $Prioriteit;
-
-    /**
-     * Constructor
-     *
-     * @var int $Relatiecode
-     * @var int $Volgnummer
-     * @var int $CodeBegunstigde
-     * @var string $Begunstigde
-     * @var string $Omschrijving
-     * @var string $Referentie
-     * @var string $Periodiciteit
-     * @var int $AantalKeerPerPeriode
-     * @var float $PeriodeBedrag
-     * @var float $Maximaal
-     * @var \DateTimeInterface $StartDatum
-     * @var \DateTimeInterface $VolgendeDatum
-     * @var float $BetaaldBedrag
-     * @var string $RestBetaling
-     * @var string $Soort
-     * @var int $NummerReservering
-     * @var int $UniekVolgnummer
-     * @var \DateTimeInterface $DatumLaatsteBetaling
-     * @var int $Prioriteit
-     */
-    public function __construct($Relatiecode, $Volgnummer, $CodeBegunstigde, $Begunstigde, $Omschrijving, $Referentie, $Periodiciteit, $AantalKeerPerPeriode, $PeriodeBedrag, $Maximaal, $StartDatum, $VolgendeDatum, $BetaaldBedrag, $RestBetaling, $Soort, $NummerReservering, $UniekVolgnummer, $DatumLaatsteBetaling, $Prioriteit)
-    {
-        $this->Relatiecode = $Relatiecode;
-        $this->Volgnummer = $Volgnummer;
-        $this->CodeBegunstigde = $CodeBegunstigde;
-        $this->Begunstigde = $Begunstigde;
-        $this->Omschrijving = $Omschrijving;
-        $this->Referentie = $Referentie;
-        $this->Periodiciteit = $Periodiciteit;
-        $this->AantalKeerPerPeriode = $AantalKeerPerPeriode;
-        $this->PeriodeBedrag = $PeriodeBedrag;
-        $this->Maximaal = $Maximaal;
-        $this->StartDatum = $StartDatum;
-        $this->VolgendeDatum = $VolgendeDatum;
-        $this->BetaaldBedrag = $BetaaldBedrag;
-        $this->RestBetaling = $RestBetaling;
-        $this->Soort = $Soort;
-        $this->NummerReservering = $NummerReservering;
-        $this->UniekVolgnummer = $UniekVolgnummer;
-        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling;
-        $this->Prioriteit = $Prioriteit;
-    }
 
     /**
      * @return int
@@ -528,7 +478,5 @@ class TBBROpdracht implements RequestInterface
 
         return $new;
     }
-
-
 }
 

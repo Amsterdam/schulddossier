@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSaldoReservering implements RequestInterface
+class TSaldoReservering
 {
-
     /**
      * @var \DateTimeInterface
      */
@@ -27,22 +23,6 @@ class TSaldoReservering implements RequestInterface
      * @var float
      */
     private $Saldo;
-
-    /**
-     * Constructor
-     *
-     * @var \DateTimeInterface $Datum
-     * @var int $Volgnummer
-     * @var string $Omschrijving
-     * @var float $Saldo
-     */
-    public function __construct($Datum, $Volgnummer, $Omschrijving, $Saldo)
-    {
-        $this->Datum = $Datum;
-        $this->Volgnummer = $Volgnummer;
-        $this->Omschrijving = $Omschrijving;
-        $this->Saldo = $Saldo;
-    }
 
     /**
      * @return \DateTimeInterface
@@ -123,7 +103,5 @@ class TSaldoReservering implements RequestInterface
 
         return $new;
     }
-
-
 }
 

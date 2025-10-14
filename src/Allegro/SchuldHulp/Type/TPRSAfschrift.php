@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPRSAfschrift implements RequestInterface
+class TPRSAfschrift
 {
-
     /**
      * @var int
      */
@@ -72,40 +68,6 @@ class TPRSAfschrift implements RequestInterface
      * @var \DateTimeInterface
      */
     private $VorigDatumAfschift;
-
-    /**
-     * Constructor
-     *
-     * @var int $Relatiecode
-     * @var int $VolgnummerAfschrift
-     * @var \DateTimeInterface $DatumAfschrift
-     * @var float $SaldoPrs
-     * @var float $TotaalBedragBijMutaties
-     * @var float $TotaalBedragAfMutaties
-     * @var float $TotaalInReserveringen
-     * @var float $TotaalUitReserveringen
-     * @var float $TotaalSaldoReserveringen
-     * @var float $HuidigPrsSaldo
-     * @var float $HuidigTotaalSaldoReserveringen
-     * @var float $VorigSaldo
-     * @var \DateTimeInterface $VorigDatumAfschift
-     */
-    public function __construct($Relatiecode, $VolgnummerAfschrift, $DatumAfschrift, $SaldoPrs, $TotaalBedragBijMutaties, $TotaalBedragAfMutaties, $TotaalInReserveringen, $TotaalUitReserveringen, $TotaalSaldoReserveringen, $HuidigPrsSaldo, $HuidigTotaalSaldoReserveringen, $VorigSaldo, $VorigDatumAfschift)
-    {
-        $this->Relatiecode = $Relatiecode;
-        $this->VolgnummerAfschrift = $VolgnummerAfschrift;
-        $this->DatumAfschrift = $DatumAfschrift;
-        $this->SaldoPrs = $SaldoPrs;
-        $this->TotaalBedragBijMutaties = $TotaalBedragBijMutaties;
-        $this->TotaalBedragAfMutaties = $TotaalBedragAfMutaties;
-        $this->TotaalInReserveringen = $TotaalInReserveringen;
-        $this->TotaalUitReserveringen = $TotaalUitReserveringen;
-        $this->TotaalSaldoReserveringen = $TotaalSaldoReserveringen;
-        $this->HuidigPrsSaldo = $HuidigPrsSaldo;
-        $this->HuidigTotaalSaldoReserveringen = $HuidigTotaalSaldoReserveringen;
-        $this->VorigSaldo = $VorigSaldo;
-        $this->VorigDatumAfschift = $VorigDatumAfschift;
-    }
 
     /**
      * @return int
@@ -366,7 +328,5 @@ class TPRSAfschrift implements RequestInterface
 
         return $new;
     }
-
-
 }
 

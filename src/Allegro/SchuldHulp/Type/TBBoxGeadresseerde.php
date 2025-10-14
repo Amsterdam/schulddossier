@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBBoxGeadresseerde implements RequestInterface
+class TBBoxGeadresseerde
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
      */
@@ -17,18 +13,6 @@ class TBBoxGeadresseerde implements RequestInterface
      * @var string
      */
     private $Informatie;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker $Medewerker
-     * @var string $Informatie
-     */
-    public function __construct($Medewerker, $Informatie)
-    {
-        $this->Medewerker = $Medewerker;
-        $this->Informatie = $Informatie;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TMedewerker
@@ -69,7 +53,5 @@ class TBBoxGeadresseerde implements RequestInterface
 
         return $new;
     }
-
-
 }
 

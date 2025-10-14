@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TExtraProductHeader implements RequestInterface
+class TExtraProductHeader
 {
-
     /**
      * @var int
      */
@@ -27,22 +23,6 @@ class TExtraProductHeader implements RequestInterface
      * @var \DateTimeInterface
      */
     private $AanvraagDatum;
-
-    /**
-     * Constructor
-     *
-     * @var int $Relatiecode
-     * @var int $Volgnummer
-     * @var string $Omschrijving
-     * @var \DateTimeInterface $AanvraagDatum
-     */
-    public function __construct($Relatiecode, $Volgnummer, $Omschrijving, $AanvraagDatum)
-    {
-        $this->Relatiecode = $Relatiecode;
-        $this->Volgnummer = $Volgnummer;
-        $this->Omschrijving = $Omschrijving;
-        $this->AanvraagDatum = $AanvraagDatum;
-    }
 
     /**
      * @return int
@@ -123,7 +103,5 @@ class TExtraProductHeader implements RequestInterface
 
         return $new;
     }
-
-
 }
 

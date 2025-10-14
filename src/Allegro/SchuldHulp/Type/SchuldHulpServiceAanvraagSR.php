@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SchuldHulpServiceAanvraagSR implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR
      */
@@ -16,7 +14,7 @@ class SchuldHulpServiceAanvraagSR implements RequestInterface
     /**
      * Constructor
      *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR $aAanvraagSR
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraagSR $aAanvraagSR
      */
     public function __construct($aAanvraagSR)
     {
@@ -42,7 +40,5 @@ class SchuldHulpServiceAanvraagSR implements RequestInterface
 
         return $new;
     }
-
-
 }
 

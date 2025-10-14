@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPersoon implements RequestInterface
+class TPersoon
 {
-
     /**
      * @var string
      */
@@ -47,30 +43,6 @@ class TPersoon implements RequestInterface
      * @var string
      */
     private $SoortOndernemer;
-
-    /**
-     * Constructor
-     *
-     * @var string $Voornamen
-     * @var string $Achternaam
-     * @var string $Voorvoegsels
-     * @var int $BSN
-     * @var int $Geboortedatum
-     * @var string $Geslacht
-     * @var string $Ondernemer
-     * @var string $SoortOndernemer
-     */
-    public function __construct($Voornamen, $Achternaam, $Voorvoegsels, $BSN, $Geboortedatum, $Geslacht, $Ondernemer, $SoortOndernemer)
-    {
-        $this->Voornamen = $Voornamen;
-        $this->Achternaam = $Achternaam;
-        $this->Voorvoegsels = $Voorvoegsels;
-        $this->BSN = $BSN;
-        $this->Geboortedatum = $Geboortedatum;
-        $this->Geslacht = $Geslacht;
-        $this->Ondernemer = $Ondernemer;
-        $this->SoortOndernemer = $SoortOndernemer;
-    }
 
     /**
      * @return string
@@ -231,7 +203,5 @@ class TPersoon implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,27 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class RelatiecodeBedrijfcodeArray implements RequestInterface
+class RelatiecodeBedrijfcodeArray
 {
-
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatiecodeBedrijfcode
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatiecodeBedrijfcode
      */
     private $TRelatiecodeBedrijfcode;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatiecodeBedrijfcode $TRelatiecodeBedrijfcode
-     */
-    public function __construct($TRelatiecodeBedrijfcode)
-    {
-        $this->TRelatiecodeBedrijfcode = $TRelatiecodeBedrijfcode;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatiecodeBedrijfcode
@@ -43,7 +28,5 @@ class RelatiecodeBedrijfcodeArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

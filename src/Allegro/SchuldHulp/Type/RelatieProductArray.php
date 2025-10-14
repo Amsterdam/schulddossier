@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class RelatieProductArray implements RequestInterface
+class RelatieProductArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatieProduct
      */
     private $TRelatieProduct;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatieProduct $TRelatieProduct
-     */
-    public function __construct($TRelatieProduct)
-    {
-        $this->TRelatieProduct = $TRelatieProduct;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRelatieProduct
@@ -42,7 +28,5 @@ class RelatieProductArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

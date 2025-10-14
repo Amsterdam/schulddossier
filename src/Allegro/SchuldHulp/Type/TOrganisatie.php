@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TOrganisatie implements RequestInterface
+class TOrganisatie
 {
-
     /**
      * @var int
      */
@@ -27,22 +23,6 @@ class TOrganisatie implements RequestInterface
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres
      */
     private $PostAdres;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var string $Naam
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $BezoekAdres
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $PostAdres
-     */
-    public function __construct($RelatieCode, $Naam, $BezoekAdres, $PostAdres)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->Naam = $Naam;
-        $this->BezoekAdres = $BezoekAdres;
-        $this->PostAdres = $PostAdres;
-    }
 
     /**
      * @return int
@@ -123,7 +103,5 @@ class TOrganisatie implements RequestInterface
 
         return $new;
     }
-
-
 }
 

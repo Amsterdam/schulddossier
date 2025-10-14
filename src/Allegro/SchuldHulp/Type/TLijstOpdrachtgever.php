@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TLijstOpdrachtgever implements RequestInterface
+class TLijstOpdrachtgever
 {
-
     /**
      * @var int
      */
@@ -22,20 +18,6 @@ class TLijstOpdrachtgever implements RequestInterface
      * @var string
      */
     private $Vestigingsplaats;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var string $Naam
-     * @var string $Vestigingsplaats
-     */
-    public function __construct($RelatieCode, $Naam, $Vestigingsplaats)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->Naam = $Naam;
-        $this->Vestigingsplaats = $Vestigingsplaats;
-    }
 
     /**
      * @return int
@@ -96,7 +78,5 @@ class TLijstOpdrachtgever implements RequestInterface
 
         return $new;
     }
-
-
 }
 

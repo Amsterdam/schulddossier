@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TableRequestInfo implements RequestInterface
+class TableRequestInfo
 {
-
     /**
      * @var string
      */
@@ -24,26 +20,9 @@ class TableRequestInfo implements RequestInterface
     private $MaxRecords;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameterArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameterArray
      */
     private $Parameters;
-
-    /**
-     * Constructor
-     *
-     * @var string $UserFilter
-     * @var bool $IncludeSchema
-     * @var int $MaxRecords
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\DataParameterArray $Parameters
-     */
-    public function __construct($UserFilter, $IncludeSchema, $MaxRecords, $Parameters)
-    {
-        $this->UserFilter = $UserFilter;
-        $this->IncludeSchema = $IncludeSchema;
-        $this->MaxRecords = $MaxRecords;
-        $this->Parameters = $Parameters;
-    }
 
     /**
      * @return string
@@ -124,7 +103,5 @@ class TableRequestInfo implements RequestInterface
 
         return $new;
     }
-
-
 }
 

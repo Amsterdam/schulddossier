@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TPLHeader implements RequestInterface
+class TPLHeader
 {
-
     /**
      * @var int
      */
@@ -22,20 +18,6 @@ class TPLHeader implements RequestInterface
      * @var \DateTimeInterface
      */
     private $Startdatum;
-
-    /**
-     * Constructor
-     *
-     * @var int $RelatieCode
-     * @var int $Volgnummer
-     * @var \DateTimeInterface $Startdatum
-     */
-    public function __construct($RelatieCode, $Volgnummer, $Startdatum)
-    {
-        $this->RelatieCode = $RelatieCode;
-        $this->Volgnummer = $Volgnummer;
-        $this->Startdatum = $Startdatum;
-    }
 
     /**
      * @return int
@@ -96,7 +78,5 @@ class TPLHeader implements RequestInterface
 
         return $new;
     }
-
-
 }
 

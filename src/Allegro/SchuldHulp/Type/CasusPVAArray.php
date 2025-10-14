@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class CasusPVAArray implements RequestInterface
+class CasusPVAArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusPVA
      */
     private $TCasusPVA;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusPVA $TCasusPVA
-     */
-    public function __construct($TCasusPVA)
-    {
-        $this->TCasusPVA = $TCasusPVA;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusPVA
@@ -42,7 +28,5 @@ class CasusPVAArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 

@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TOpdrachtgeverKlant implements RequestInterface
+class TOpdrachtgeverKlant
 {
-
     /**
      * @var int
      */
@@ -69,8 +65,7 @@ class TOpdrachtgeverKlant implements RequestInterface
     private $CasusFase;
 
     /**
-     * @var
-     * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TrajectSoortArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TrajectSoortArray
      */
     private $Trajecten;
 
@@ -78,42 +73,6 @@ class TOpdrachtgeverKlant implements RequestInterface
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBRVormArray
      */
     private $BBRVorm;
-
-    /**
-     * Constructor
-     *
-     * @var int $Relatiecode
-     * @var string $Zoeknaam
-     * @var \DateTimeInterface $GeboorteDatum
-     * @var int $BSN
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAdres $Adres
-     * @var int $CasusVolgnummer
-     * @var int $AanvraagSRVolgnummer
-     * @var int $SRVolgnummer
-     * @var int $AanvraagBBRVolgnummer
-     * @var int $BBRVolgnummer
-     * @var bool $CasusCrisis
-     * @var string $CasusFase
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TrajectSoortArray $Trajecten
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\BBRVormArray $BBRVorm
-     */
-    public function __construct($Relatiecode, $Zoeknaam, $GeboorteDatum, $BSN, $Adres, $CasusVolgnummer, $AanvraagSRVolgnummer, $SRVolgnummer, $AanvraagBBRVolgnummer, $BBRVolgnummer, $CasusCrisis, $CasusFase, $Trajecten, $BBRVorm)
-    {
-        $this->Relatiecode = $Relatiecode;
-        $this->Zoeknaam = $Zoeknaam;
-        $this->GeboorteDatum = $GeboorteDatum;
-        $this->BSN = $BSN;
-        $this->Adres = $Adres;
-        $this->CasusVolgnummer = $CasusVolgnummer;
-        $this->AanvraagSRVolgnummer = $AanvraagSRVolgnummer;
-        $this->SRVolgnummer = $SRVolgnummer;
-        $this->AanvraagBBRVolgnummer = $AanvraagBBRVolgnummer;
-        $this->BBRVolgnummer = $BBRVolgnummer;
-        $this->CasusCrisis = $CasusCrisis;
-        $this->CasusFase = $CasusFase;
-        $this->Trajecten = $Trajecten;
-        $this->BBRVorm = $BBRVorm;
-    }
 
     /**
      * @return int
@@ -394,7 +353,5 @@ class TOpdrachtgeverKlant implements RequestInterface
 
         return $new;
     }
-
-
 }
 

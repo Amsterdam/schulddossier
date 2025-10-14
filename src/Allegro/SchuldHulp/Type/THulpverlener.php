@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class THulpverlener implements RequestInterface
+class THulpverlener
 {
-
     /**
      * @var int
      */
@@ -57,34 +53,6 @@ class THulpverlener implements RequestInterface
      * @var \DateTimeInterface
      */
     private $DatumInzage;
-
-    /**
-     * Constructor
-     *
-     * @var int $Code
-     * @var int $OrganisatieCode
-     * @var string $OrganisatieNaam
-     * @var int $ContactCode
-     * @var string $ContactNaam
-     * @var string $SoortHulp
-     * @var bool $InzageGevraagd
-     * @var \DateTimeInterface $DatumInzageGevraagd
-     * @var string $Inzage
-     * @var \DateTimeInterface $DatumInzage
-     */
-    public function __construct($Code, $OrganisatieCode, $OrganisatieNaam, $ContactCode, $ContactNaam, $SoortHulp, $InzageGevraagd, $DatumInzageGevraagd, $Inzage, $DatumInzage)
-    {
-        $this->Code = $Code;
-        $this->OrganisatieCode = $OrganisatieCode;
-        $this->OrganisatieNaam = $OrganisatieNaam;
-        $this->ContactCode = $ContactCode;
-        $this->ContactNaam = $ContactNaam;
-        $this->SoortHulp = $SoortHulp;
-        $this->InzageGevraagd = $InzageGevraagd;
-        $this->DatumInzageGevraagd = $DatumInzageGevraagd;
-        $this->Inzage = $Inzage;
-        $this->DatumInzage = $DatumInzage;
-    }
 
     /**
      * @return int
@@ -285,7 +253,5 @@ class THulpverlener implements RequestInterface
 
         return $new;
     }
-
-
 }
 

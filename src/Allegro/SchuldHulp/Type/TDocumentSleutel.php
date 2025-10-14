@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TDocumentSleutel implements RequestInterface
+class TDocumentSleutel
 {
-
     /**
      * @var string
      */
@@ -27,22 +23,6 @@ class TDocumentSleutel implements RequestInterface
      * @var int
      */
     private $Volgnummer;
-
-    /**
-     * Constructor
-     *
-     * @var string $ComponentCode
-     * @var \DateTimeInterface $ArchiefDatum
-     * @var string $Kenmerk
-     * @var int $Volgnummer
-     */
-    public function __construct($ComponentCode, $ArchiefDatum, $Kenmerk, $Volgnummer)
-    {
-        $this->ComponentCode = $ComponentCode;
-        $this->ArchiefDatum = $ArchiefDatum;
-        $this->Kenmerk = $Kenmerk;
-        $this->Volgnummer = $Volgnummer;
-    }
 
     /**
      * @return string
@@ -123,7 +103,5 @@ class TDocumentSleutel implements RequestInterface
 
         return $new;
     }
-
-
 }
 

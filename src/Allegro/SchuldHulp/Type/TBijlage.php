@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TBijlage implements RequestInterface
+class TBijlage
 {
-
     /**
      * @var string
      */
@@ -22,20 +18,6 @@ class TBijlage implements RequestInterface
      * @var string
      */
     private $Bijlage;
-
-    /**
-     * Constructor
-     *
-     * @var string $Soort
-     * @var string $Extension
-     * @var string $Bijlage
-     */
-    public function __construct($Soort, $Extension, $Bijlage)
-    {
-        $this->Soort = $Soort;
-        $this->Extension = $Extension;
-        $this->Bijlage = $Bijlage;
-    }
 
     /**
      * @return string
@@ -96,7 +78,5 @@ class TBijlage implements RequestInterface
 
         return $new;
     }
-
-
 }
 

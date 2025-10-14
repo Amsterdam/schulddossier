@@ -1,49 +1,43 @@
 <?php
 
 use Phpro\SoapClient\CodeGenerator\Assembler;
-use Phpro\SoapClient\CodeGenerator\Rules;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
-use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
-use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
+use Phpro\SoapClient\CodeGenerator\Rules;
+use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Soap\ExtSoapEngine\ExtSoapOptions;
 
 return Config::create()
-    ->setEngine(ExtSoapEngineFactory::fromOptions(
-        ExtSoapOptions::defaults('/srv/app/doc/modified_schuldhulpservice.wsdl', [])
+    ->setEngine($engine = DefaultEngineFactory::create(
+        ExtSoapOptions::defaults('doc/modified_schuldhulpservice.wsdl', [])
             ->disableWsdlCache()
     ))
-    ->setTypeDestination('src/Allegro/SchuldHulp/Type')
+    ->setTypeDestination('src/Allegro/AllegroSchuldHulp/Type')
     ->setTypeNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type')
-    ->setClientDestination('src/Allegro/SchuldHulp')
+    ->setClientDestination('src/Allegro/AllegroSchuldHulp')
     ->setClientName('AllegroSchuldHulpClient')
     ->setClientNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp')
-    ->setClassMapDestination('src/Allegro/SchuldHulp')
+    ->setClassMapDestination('src/Allegro/AllegroSchuldHulp')
     ->setClassMapName('AllegroSchuldHulpClassmap')
     ->setClassMapNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp')
     ->addRule(new Rules\AssembleRule(new Assembler\GetterAssembler(new Assembler\GetterAssemblerOptions())))
-    ->addRule(new Rules\AssembleRule(new Assembler\ImmutableSetterAssembler()))
+    ->addRule(new Rules\AssembleRule(new Assembler\ImmutableSetterAssembler(
+        new Assembler\ImmutableSetterAssemblerOptions()
+    )))
     ->addRule(
-        new Rules\TypenameMatchesRule(
+        new Rules\IsRequestRule(
+            $engine->getMetadata(),
             new Rules\MultiRule([
                 new Rules\AssembleRule(new Assembler\RequestAssembler()),
                 new Rules\AssembleRule(new Assembler\ConstructorAssembler(new Assembler\ConstructorAssemblerOptions())),
-            ]),
-            '/(?<!Response)$/i'
+            ])
         )
     )
     ->addRule(
-        new Rules\TypenameMatchesRule(
+        new Rules\IsResultRule(
+            $engine->getMetadata(),
             new Rules\MultiRule([
                 new Rules\AssembleRule(new Assembler\ResultAssembler()),
-            ]),
-            '/Response$/i'
-        )
-    )
-    ->addRule(
-        new Rules\TypenameMatchesRule(
-            new Rules\MultiRule([
-                new Rules\AssembleRule(new Assembler\ExtendAssembler('\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag')),
-            ]),
-            '/TAanvraag2SR/'
+            ])
         )
     )
 ;

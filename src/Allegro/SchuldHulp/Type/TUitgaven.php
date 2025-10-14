@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TUitgaven implements RequestInterface
+class TUitgaven
 {
-
     /**
      * @var string
      */
@@ -77,42 +73,6 @@ class TUitgaven implements RequestInterface
      * @var string
      */
     private $Toelichting;
-
-    /**
-     * Constructor
-     *
-     * @var string $WoningSoort
-     * @var float $Kostgeld
-     * @var float $Huur
-     * @var float $Huurtoeslag
-     * @var float $MaandHypotheek
-     * @var float $MaandTeruggave
-     * @var float $SaldoHypotheek
-     * @var float $WOZWaarde
-     * @var float $Zorgpremie
-     * @var float $Zorgtoeslag
-     * @var float $KinderAlimentatieBedrag
-     * @var float $PartnerAlimentatieBedrag
-     * @var string $OverigUitgaven
-     * @var string $Toelichting
-     */
-    public function __construct($WoningSoort, $Kostgeld, $Huur, $Huurtoeslag, $MaandHypotheek, $MaandTeruggave, $SaldoHypotheek, $WOZWaarde, $Zorgpremie, $Zorgtoeslag, $KinderAlimentatieBedrag, $PartnerAlimentatieBedrag, $OverigUitgaven, $Toelichting)
-    {
-        $this->WoningSoort = $WoningSoort;
-        $this->Kostgeld = $Kostgeld;
-        $this->Huur = $Huur;
-        $this->Huurtoeslag = $Huurtoeslag;
-        $this->MaandHypotheek = $MaandHypotheek;
-        $this->MaandTeruggave = $MaandTeruggave;
-        $this->SaldoHypotheek = $SaldoHypotheek;
-        $this->WOZWaarde = $WOZWaarde;
-        $this->Zorgpremie = $Zorgpremie;
-        $this->Zorgtoeslag = $Zorgtoeslag;
-        $this->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
-        $this->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
-        $this->OverigUitgaven = $OverigUitgaven;
-        $this->Toelichting = $Toelichting;
-    }
 
     /**
      * @return string
@@ -393,7 +353,5 @@ class TUitgaven implements RequestInterface
 
         return $new;
     }
-
-
 }
 

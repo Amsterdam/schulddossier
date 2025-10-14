@@ -2,12 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class TSRVEisers implements RequestInterface
+class TSRVEisers
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVEiserArray
      */
@@ -27,22 +23,6 @@ class TSRVEisers implements RequestInterface
      * @var float
      */
     private $SomBerekendBedrag;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVEiserArray $Eisers
-     * @var float $SomAangemeldBedrag
-     * @var float $SomTeruggemeldBedrag
-     * @var float $SomBerekendBedrag
-     */
-    public function __construct($Eisers, $SomAangemeldBedrag, $SomTeruggemeldBedrag, $SomBerekendBedrag)
-    {
-        $this->Eisers = $Eisers;
-        $this->SomAangemeldBedrag = $SomAangemeldBedrag;
-        $this->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
-        $this->SomBerekendBedrag = $SomBerekendBedrag;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SRVEiserArray
@@ -123,7 +103,5 @@ class TSRVEisers implements RequestInterface
 
         return $new;
     }
-
-
 }
 

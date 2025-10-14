@@ -2,26 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
-use Phpro\SoapClient\Type\RequestInterface;
-
-class PRSMutatieArray implements RequestInterface
+class PRSMutatieArray
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPRSMutatie
      */
     private $TPRSMutatie;
-
-    /**
-     * Constructor
-     *
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPRSMutatie $TPRSMutatie
-     */
-    public function __construct($TPRSMutatie)
-    {
-        $this->TPRSMutatie = $TPRSMutatie;
-    }
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPRSMutatie
@@ -42,7 +28,5 @@ class PRSMutatieArray implements RequestInterface
 
         return $new;
     }
-
-
 }
 
