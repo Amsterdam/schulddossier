@@ -3,12 +3,12 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
-use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection;
-use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMap;
+use Phpro\SoapClient\Soap\ClassMap\ClassMapCollection;
+use Phpro\SoapClient\Soap\ClassMap\ClassMap;
 
 class AllegroSchuldHulpClassmap
 {
-    public static function getCollection() : ClassMapCollection
+    public static function getCollection(): ClassMapCollection
     {
         return new ClassMapCollection(
             new ClassMap('TTest', Type\TTest::class),

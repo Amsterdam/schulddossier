@@ -12,13 +12,13 @@ class AantekeningFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implem
     /**
      * @inheritDoc
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $aantekening = new Aantekening();
 
         $dossier = $this->getReference('dossier');
         $schulditem = $this->getReference('schulditem');
-        $gebruiker = $this->getReference(GebruikerFixtures::ADMIN_USER_REFERENCE);
+        $gebruiker = $this->getReference(GebruikerFixtures::ADMIN_USER_REFERENCE, GebruikerFixtures::class);
 
         $aantekening->setDossier($dossier);
         $aantekening->setTekst('Dit is een aantekening');
@@ -30,7 +30,7 @@ class AantekeningFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implem
         $manager->flush();
     }
 
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             DossierFixtures::class,

@@ -12,7 +12,7 @@ use Phpro\SoapClient\Caller\EngineCaller;
 
 class AllegroSchuldHulpClientFactory
 {
-    public static function factory(string $wsdl) : AllegroSchuldHulpClient
+    public static function factory(string $wsdl): AllegroSchuldHulpClient
     {
         $engine = DefaultEngineFactory::create(
             ExtSoapOptions::defaults($wsdl, [])
