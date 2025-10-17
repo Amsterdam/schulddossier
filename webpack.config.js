@@ -61,10 +61,21 @@ Encore
     .enableSassLoader()
 
     // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
+    .enableTypeScriptLoader()
 
     // uncomment if you use React
-    //.enableReactPreset()
+    .enableReactPreset()
+
+
+    .addAliases({
+        '~/components': require('path').resolve(__dirname, 'assets/react/components'),
+        '~/contexts': require('path').resolve(__dirname, 'assets/react/contexts'),
+        '~/controllers': require('path').resolve(__dirname, 'assets/react/controllers'),
+        '~/hooks': require('path').resolve(__dirname, 'assets/react/hooks'),
+        '~/layouts': require('path').resolve(__dirname, 'assets/react/layouts'),
+        '~/types': require('path').resolve(__dirname, 'assets/react/types'),
+        '~/utils': require('path').resolve(__dirname, 'assets/react/utils'),
+    })
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
@@ -77,7 +88,7 @@ Encore
         to: './images/[path][name].[hash:8].[ext]',
         pattern: /envelop.*$/
     })
-// })
-;
+    // })
+    ;
 
 module.exports = Encore.getWebpackConfig();

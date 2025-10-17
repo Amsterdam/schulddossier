@@ -15,15 +15,23 @@
   "devDependencies": {
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.27.1",
     "@hotwired/stimulus": "^3.2.1",
     "@symfony/stimulus-bridge": "^3.2.2",
+    "@symfony/ux-react": "file:vendor/symfony/ux-react/assets",
     "@symfony/webpack-encore": "^4.3.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.1",
     "core-js": "^3.31.0",
     "file-loader": "^6.0.0",
     "json5": "^2.2.3",
     "loader-utils": "^3.2.1",
+    "react": "^18.0",
+    "react-dom": "^18.0",
     "sass": "^1.63.5",
     "sass-loader": "^13.0.0",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
     "webpack-cli": "^5.1.4",
     "webpack-notifier": "^1.15.0"
   },
@@ -31,6 +39,6 @@
     "dev": "encore dev",
     "watch": "encore dev --watch",
     "build": "encore production",
-    "postinstall": "rm -fr ./public/vendor && mkdir -p ./public/vendor/moment && cp -R ./node_modules/moment ./public/vendor/moment && cp -R ./node_modules/@bevacqua ./public/vendor/bevacqua"
+    "postinstall": "mkdir -p ./public/vendor/moment && cp -R ./node_modules/moment ./public/vendor/moment && cp -R ./node_modules/@bevacqua ./public/vendor/bevacqua"
   }
 }

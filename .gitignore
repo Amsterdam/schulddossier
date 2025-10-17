@@ -1,27 +1,22 @@
-# css
+# CSS
 .sass-cache
-
-# Components
-components/
-
-# IDE
-.buildpath
-.project
-.settings/
-.idea
-.idea/*
-
-# OS
-.DS_Store
-Thumbs.db
-__MACOSX
 
 # Composer
 composer.phar
 
 # Docker
 docker-compose.override.yml
-docker-compose-dev.override.yml
+docker-compose-dev.override.
+
+# Kubernetes
+kubycat-config.yaml
+
+# PHP SOAP
+config/soap-client-allegro-login.php
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
 
 ###> symfony/framework-bundle ###
 .env
@@ -30,22 +25,10 @@ docker-compose-dev.override.yml
 /vendor/
 /public/vendor/
 ###< symfony/framework-bundle ###
-/public/scss/.sass-cache
 
-config/soap-client-allegro-login.php
-
-# Yarn
-/node_modules/
-npm-debug.log
-yarn-error.log
-
-kubycat-config.yaml
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
 npm-debug.log
 yarn-error.log
-
-###> phpstan/phpstan ###
-phpstan.neon
-###< phpstan/phpstan ###
+###< symfony/webpack-encore-bundle ###

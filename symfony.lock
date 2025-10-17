@@ -8,15 +8,6 @@
             "ref": "87424683adc81d7dc305eefec1fced883084aab9"
         }
     },
-    "doctrine/deprecations": {
-        "version": "1.1",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "1.0",
-            "ref": "87424683adc81d7dc305eefec1fced883084aab9"
-        }
-    },
     "doctrine/doctrine-bundle": {
         "version": "2.7",
         "recipe": {
@@ -232,6 +223,21 @@
             "config/packages/security.yaml"
         ]
     },
+    "symfony/stimulus-bundle": {
+        "version": "2.30",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.20",
+            "ref": "c30f782a8910ae9f12e7a1399db607d172d23da6"
+        },
+        "files": [
+            "assets/bootstrap.js",
+            "assets/controllers.json",
+            "assets/controllers/csrf_protection_controller.js",
+            "assets/controllers/hello_controller.js"
+        ]
+    },
     "symfony/translation": {
         "version": "5.4",
         "recipe": {
@@ -256,6 +262,18 @@
         "files": [
             "config/packages/twig.yaml",
             "templates/base.html.twig"
+        ]
+    },
+    "symfony/ux-react": {
+        "version": "2.30",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.9",
+            "ref": "e970076b31d602ae6e2106cf91a82c7e1f7ddff2"
+        },
+        "files": [
+            "assets/react/controllers/Hello.jsx"
         ]
     },
     "symfony/validator": {
