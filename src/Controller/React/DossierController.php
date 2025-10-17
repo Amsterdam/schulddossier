@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller\React;
 
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class DossierController extends AbstractController
