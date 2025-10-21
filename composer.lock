@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "azjezz/psl",
-            "version": "3.3.0",
+            "version": "4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/azjezz/psl.git",
-                "reference": "78078f2c505473d2a28319ffe426b2a82ac76790"
+                "reference": "a06f6c7effa31552082710d90bdf07ec8f55fafe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/azjezz/psl/zipball/78078f2c505473d2a28319ffe426b2a82ac76790",
-                "reference": "78078f2c505473d2a28319ffe426b2a82ac76790",
+                "url": "https://api.github.com/repos/azjezz/psl/zipball/a06f6c7effa31552082710d90bdf07ec8f55fafe",
+                "reference": "a06f6c7effa31552082710d90bdf07ec8f55fafe",
                 "shasum": ""
             },
             "require": {
@@ -26,17 +26,15 @@
                 "ext-json": "*",
                 "ext-mbstring": "*",
                 "ext-sodium": "*",
-                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
-                "revolt/event-loop": "^1.0.6"
+                "php": "~8.3.0 || ~8.4.0",
+                "revolt/event-loop": "^1.0.7"
             },
             "require-dev": {
-                "carthage-software/mago": "~0.13.1",
+                "carthage-software/mago": "^1.0.0-beta.27",
+                "infection/infection": "^0.31.2",
                 "php-coveralls/php-coveralls": "^2.7.0",
-                "php-standard-library/psalm-plugin": "^2.3.0",
-                "phpbench/phpbench": "^1.2.15",
-                "phpunit/phpunit": "^9.6.18",
-                "roave/infection-static-analysis-plugin": "^1.36.0",
-                "vimeo/psalm": "^6.0.0"
+                "phpbench/phpbench": "^1.4.0",
+                "phpunit/phpunit": "^9.6.22"
             },
             "suggest": {
                 "php-standard-library/phpstan-extension": "PHPStan integration",
@@ -70,7 +68,7 @@
             "description": "PHP Standard Library",
             "support": {
                 "issues": "https://github.com/azjezz/psl/issues",
-                "source": "https://github.com/azjezz/psl/tree/3.3.0"
+                "source": "https://github.com/azjezz/psl/tree/4.0.1"
             },
             "funding": [
                 {
@@ -78,7 +76,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-03T00:07:00+00:00"
+            "time": "2025-10-09T11:33:21+00:00"
         },
         {
             "name": "bevacqua/dragula",
@@ -1862,20 +1860,20 @@
         },
         {
             "name": "ezyang/htmlpurifier",
-            "version": "v4.18.0",
+            "version": "v4.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "cb56001e54359df7ae76dc522d08845dc741621b"
+                "reference": "b287d2a16aceffbf6e0295559b39662612b77fcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/cb56001e54359df7ae76dc522d08845dc741621b",
-                "reference": "cb56001e54359df7ae76dc522d08845dc741621b",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/b287d2a16aceffbf6e0295559b39662612b77fcf",
+                "reference": "b287d2a16aceffbf6e0295559b39662612b77fcf",
                 "shasum": ""
             },
             "require": {
-                "php": "~5.6.0 || ~7.0.0 || ~7.1.0 || ~7.2.0 || ~7.3.0 || ~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0"
+                "php": "~5.6.0 || ~7.0.0 || ~7.1.0 || ~7.2.0 || ~7.3.0 || ~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0"
             },
             "require-dev": {
                 "cerdic/css-tidy": "^1.7 || ^2.0",
@@ -1917,9 +1915,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ezyang/htmlpurifier/issues",
-                "source": "https://github.com/ezyang/htmlpurifier/tree/v4.18.0"
+                "source": "https://github.com/ezyang/htmlpurifier/tree/v4.19.0"
             },
-            "time": "2024-11-01T03:51:45+00:00"
+            "time": "2025-10-17T16:34:55+00:00"
         },
         {
             "name": "friendsofphp/proxy-manager-lts",
@@ -2778,16 +2776,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.30.0",
+            "version": "3.30.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "2203e3151755d874bb2943649dae1eb8533ac93e"
+                "reference": "c139fd65c1f796b926f4aec0df37f6caa959a8da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/2203e3151755d874bb2943649dae1eb8533ac93e",
-                "reference": "2203e3151755d874bb2943649dae1eb8533ac93e",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/c139fd65c1f796b926f4aec0df37f6caa959a8da",
+                "reference": "c139fd65c1f796b926f4aec0df37f6caa959a8da",
                 "shasum": ""
             },
             "require": {
@@ -2855,9 +2853,9 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.30.0"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.30.1"
             },
-            "time": "2025-06-25T13:29:59+00:00"
+            "time": "2025-10-20T15:35:26+00:00"
         },
         {
             "name": "league/flysystem-local",
@@ -4376,28 +4374,30 @@
         },
         {
             "name": "php-soap/cached-engine",
-            "version": "0.3.0",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-soap/cached-engine.git",
-                "reference": "ee2e09904680dbfe766a6f6fbf791284a4c85df9"
+                "reference": "ec1cfc298b626bbc6fa27217772c91d035885989"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-soap/cached-engine/zipball/ee2e09904680dbfe766a6f6fbf791284a4c85df9",
-                "reference": "ee2e09904680dbfe766a6f6fbf791284a4c85df9",
+                "url": "https://api.github.com/repos/php-soap/cached-engine/zipball/ec1cfc298b626bbc6fa27217772c91d035885989",
+                "reference": "ec1cfc298b626bbc6fa27217772c91d035885989",
                 "shasum": ""
             },
             "require": {
-                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
-                "php-soap/engine": "^2.13.0",
+                "azjezz/psl": "^3.0 || ^4.0",
+                "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+                "php-soap/engine": "^2.16.0",
                 "psr/cache": "^3.0",
                 "psr/cache-implementation": "^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^10.0",
+                "php-cs-fixer/shim": "~3.88.0",
+                "phpunit/phpunit": "~12.3.0",
                 "symfony/cache": "^7.0 || ^6.4",
-                "vimeo/psalm": "^5.26"
+                "vimeo/psalm": "~6.13.0"
             },
             "type": "library",
             "autoload": {
@@ -4418,7 +4418,7 @@
             "description": "A cache decorator for php-soap/engine",
             "support": {
                 "issues": "https://github.com/php-soap/cached-engine/issues",
-                "source": "https://github.com/php-soap/cached-engine/tree/0.3.0"
+                "source": "https://github.com/php-soap/cached-engine/tree/0.4.0"
             },
             "funding": [
                 {
@@ -4426,40 +4426,41 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-10-25T07:18:15+00:00"
+            "time": "2025-10-20T09:32:56+00:00"
         },
         {
             "name": "php-soap/encoding",
-            "version": "0.22.0",
+            "version": "0.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-soap/encoding.git",
-                "reference": "fdc265c46e6a9025d4650784a49143c03c4dbc86"
+                "reference": "ddb611ecf0528a575bcd6cdd8c6a318b8657e6b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-soap/encoding/zipball/fdc265c46e6a9025d4650784a49143c03c4dbc86",
-                "reference": "fdc265c46e6a9025d4650784a49143c03c4dbc86",
+                "url": "https://api.github.com/repos/php-soap/encoding/zipball/ddb611ecf0528a575bcd6cdd8c6a318b8657e6b8",
+                "reference": "ddb611ecf0528a575bcd6cdd8c6a318b8657e6b8",
                 "shasum": ""
             },
             "require": {
-                "azjezz/psl": "^3.0",
-                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
-                "php-soap/engine": "^2.14",
-                "php-soap/wsdl": "^1.12",
-                "php-soap/wsdl-reader": "~0.26",
-                "php-soap/xml": "^1.8",
+                "azjezz/psl": "^3.0 || ^4.0",
+                "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+                "php-soap/engine": "^2.16",
+                "php-soap/wsdl": "^1.14",
+                "php-soap/wsdl-reader": "^0.27",
+                "php-soap/xml": "^1.9",
                 "veewee/reflecta": "~0.11",
                 "veewee/xml": "^3.3"
             },
             "require-dev": {
                 "guzzlehttp/guzzle": "^7.8",
-                "php-soap/engine-integration-tests": "^1.9",
-                "php-soap/psr18-transport": "^1.7",
+                "php-cs-fixer/shim": "~3.88",
+                "php-soap/engine-integration-tests": "^1.10",
+                "php-soap/psr18-transport": "^1.8",
                 "php-standard-library/psalm-plugin": "^2.3",
-                "phpunit/phpunit": "^10.5",
+                "phpunit/phpunit": "~12.4",
                 "symfony/var-dumper": "^7.0 || ^6.4",
-                "vimeo/psalm": "^5.26"
+                "vimeo/psalm": "~6.13"
             },
             "type": "library",
             "autoload": {
@@ -4480,7 +4481,7 @@
             "description": "SOAP encoding and decoding package",
             "support": {
                 "issues": "https://github.com/php-soap/encoding/issues",
-                "source": "https://github.com/php-soap/encoding/tree/0.22.0"
+                "source": "https://github.com/php-soap/encoding/tree/0.23.0"
             },
             "funding": [
                 {
@@ -4488,31 +4489,32 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-09-26T08:27:32+00:00"
+            "time": "2025-10-20T12:17:42+00:00"
         },
         {
             "name": "php-soap/engine",
-            "version": "2.15.0",
+            "version": "2.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-soap/engine.git",
-                "reference": "c19daa91254f64513c87bbafb257eb2da55cefca"
+                "reference": "d1611b15decdab5047f990a29517cbb5161a4759"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-soap/engine/zipball/c19daa91254f64513c87bbafb257eb2da55cefca",
-                "reference": "c19daa91254f64513c87bbafb257eb2da55cefca",
+                "url": "https://api.github.com/repos/php-soap/engine/zipball/d1611b15decdab5047f990a29517cbb5161a4759",
+                "reference": "d1611b15decdab5047f990a29517cbb5161a4759",
                 "shasum": ""
             },
             "require": {
-                "azjezz/psl": "^3.0",
-                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
-                "php-soap/xml": "^1.8.0"
+                "azjezz/psl": "^3.0 || ^4.0",
+                "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+                "php-soap/xml": "^1.9.0"
             },
             "require-dev": {
+                "php-cs-fixer/shim": "^3.88",
                 "php-standard-library/psalm-plugin": "^2.2",
-                "phpunit/phpunit": "^10.5",
-                "vimeo/psalm": "^5.26"
+                "phpunit/phpunit": "^12.3",
+                "vimeo/psalm": "^6.13"
             },
             "type": "library",
             "autoload": {
@@ -4533,7 +4535,7 @@
             "description": "SOAP engine design",
             "support": {
                 "issues": "https://github.com/php-soap/engine/issues",
-                "source": "https://github.com/php-soap/engine/tree/2.15.0"
+                "source": "https://github.com/php-soap/engine/tree/2.16.0"
             },
             "funding": [
                 {
@@ -4541,35 +4543,37 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-01-03T09:16:20+00:00"
+            "time": "2025-10-20T09:14:20+00:00"
         },
         {
             "name": "php-soap/ext-soap-engine",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-soap/ext-soap-engine.git",
-                "reference": "b11e1949f4654f27f997b6e2bb44c1bd14735340"
+                "reference": "fceff9e54c0849fea0da5c24ffc7e560f177705c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-soap/ext-soap-engine/zipball/b11e1949f4654f27f997b6e2bb44c1bd14735340",
-                "reference": "b11e1949f4654f27f997b6e2bb44c1bd14735340",
+                "url": "https://api.github.com/repos/php-soap/ext-soap-engine/zipball/fceff9e54c0849fea0da5c24ffc7e560f177705c",
+                "reference": "fceff9e54c0849fea0da5c24ffc7e560f177705c",
                 "shasum": ""
             },
             "require": {
-                "azjezz/psl": "^3.0",
+                "azjezz/psl": "^3.0 || ^4.0",
                 "ext-dom": "*",
                 "ext-soap": "*",
-                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
-                "php-soap/engine": "^2.13",
-                "php-soap/wsdl": "^1.12",
+                "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+                "php-soap/engine": "^2.16",
+                "php-soap/wsdl": "^1.14",
                 "symfony/options-resolver": "^5.4 || ^6.0 || ^7.0"
             },
             "require-dev": {
-                "php-soap/engine-integration-tests": "^1.9",
-                "php-soap/xml": "^1.8",
-                "phpunit/phpunit": "^10.0.19"
+                "php-cs-fixer/shim": "~3.88",
+                "php-soap/engine-integration-tests": "^1.10",
+                "php-soap/xml": "^1.9",
+                "phpunit/phpunit": "~12.3",
+                "vimeo/psalm": "~6.13"
             },
             "type": "library",
             "autoload": {
@@ -4590,7 +4594,7 @@
             "description": "An ext-soap engine implementation",
             "support": {
                 "issues": "https://github.com/php-soap/ext-soap-engine/issues",
-                "source": "https://github.com/php-soap/ext-soap-engine/tree/1.7.0"
+                "source": "https://github.com/php-soap/ext-soap-engine/tree/1.8.0"
             },
             "funding": [
                 {
@@ -4598,30 +4602,30 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-10-25T08:37:25+00:00"
+            "time": "2025-10-20T10:55:56+00:00"
         },
         {
             "name": "php-soap/psr18-transport",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-soap/psr18-transport.git",
-                "reference": "1c0a42924ac39d8fadb9e4196f5f7b5e8e68d0a9"
+                "reference": "fee4be6b02bd2d0fb3886c98d72b2ae97564cee4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-soap/psr18-transport/zipball/1c0a42924ac39d8fadb9e4196f5f7b5e8e68d0a9",
-                "reference": "1c0a42924ac39d8fadb9e4196f5f7b5e8e68d0a9",
+                "url": "https://api.github.com/repos/php-soap/psr18-transport/zipball/fee4be6b02bd2d0fb3886c98d72b2ae97564cee4",
+                "reference": "fee4be6b02bd2d0fb3886c98d72b2ae97564cee4",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
-                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
+                "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
                 "php-http/client-common": "^2.3",
                 "php-http/discovery": "^1.12",
-                "php-soap/engine": "^2.13",
-                "php-soap/wsdl": "^1.12",
-                "php-soap/xml": "^1.8",
+                "php-soap/engine": "^2.16",
+                "php-soap/wsdl": "^1.14",
+                "php-soap/xml": "^1.9",
                 "psr/http-client-implementation": "^1.0",
                 "psr/http-factory-implementation": "^1.0",
                 "psr/http-message": "^1.0.1|^2.0",
@@ -4632,10 +4636,12 @@
                 "ext-soap": "*",
                 "guzzlehttp/guzzle": "^7.5",
                 "nyholm/psr7": "^1.5",
+                "php-cs-fixer/shim": "~3.88",
                 "php-http/mock-client": "^1.5",
-                "php-soap/engine-integration-tests": "^1.9",
+                "php-soap/engine-integration-tests": "^1.10",
                 "php-soap/ext-soap-engine": "^1.7",
-                "phpunit/phpunit": "^10.0"
+                "phpunit/phpunit": "~12.3",
+                "vimeo/psalm": "~6.13"
             },
             "type": "library",
             "autoload": {
@@ -4656,7 +4662,7 @@
             "description": "PSR-18 HTTP Client transport for SOAP",
             "support": {
                 "issues": "https://github.com/php-soap/psr18-transport/issues",
-                "source": "https://github.com/php-soap/psr18-transport/tree/1.7.0"
+                "source": "https://github.com/php-soap/psr18-transport/tree/1.8.0"
             },
             "funding": [
                 {
@@ -4664,36 +4670,37 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-10-25T08:43:55+00:00"
+            "time": "2025-10-20T10:43:29+00:00"
         },
         {
             "name": "php-soap/wsdl",
-            "version": "1.13.0",
+            "version": "1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-soap/wsdl.git",
-                "reference": "0c5a1afe7ab648c227ed23a612b8c69509a22eb4"
+                "reference": "ddc4b5fbd212567be32ab1c82067fdc6e2e04c2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-soap/wsdl/zipball/0c5a1afe7ab648c227ed23a612b8c69509a22eb4",
-                "reference": "0c5a1afe7ab648c227ed23a612b8c69509a22eb4",
+                "url": "https://api.github.com/repos/php-soap/wsdl/zipball/ddc4b5fbd212567be32ab1c82067fdc6e2e04c2e",
+                "reference": "ddc4b5fbd212567be32ab1c82067fdc6e2e04c2e",
                 "shasum": ""
             },
             "require": {
-                "azjezz/psl": "^3.0",
+                "azjezz/psl": "^3.0 || ^4.0",
                 "ext-dom": "*",
                 "league/uri": "^7.0",
                 "league/uri-components": "^7.0",
-                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
-                "php-soap/xml": "^1.8",
+                "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+                "php-soap/xml": "^1.9",
                 "symfony/console": "^5.4 || ^6.0 || ^7.0",
                 "veewee/xml": "~3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^10.5",
+                "php-cs-fixer/shim": "^3.88",
+                "phpunit/phpunit": "^12.3",
                 "psalm/plugin-symfony": "^5.0",
-                "vimeo/psalm": "^5.26.0"
+                "vimeo/psalm": "^6.13"
             },
             "bin": [
                 "bin/wsdl"
@@ -4717,7 +4724,7 @@
             "description": "Deals with WSDLs",
             "support": {
                 "issues": "https://github.com/php-soap/wsdl/issues",
-                "source": "https://github.com/php-soap/wsdl/tree/1.13.0"
+                "source": "https://github.com/php-soap/wsdl/tree/1.14.0"
             },
             "funding": [
                 {
@@ -4725,42 +4732,43 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-01-24T10:35:01+00:00"
+            "time": "2025-10-20T09:20:51+00:00"
         },
         {
             "name": "php-soap/wsdl-reader",
-            "version": "0.26.0",
+            "version": "0.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-soap/wsdl-reader.git",
-                "reference": "f4ebc7bbb86a104ed668cc08660e11ef23e2cd1a"
+                "reference": "2f9b31312d216f6ebbfcda36fd2acb905d6ca8e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-soap/wsdl-reader/zipball/f4ebc7bbb86a104ed668cc08660e11ef23e2cd1a",
-                "reference": "f4ebc7bbb86a104ed668cc08660e11ef23e2cd1a",
+                "url": "https://api.github.com/repos/php-soap/wsdl-reader/zipball/2f9b31312d216f6ebbfcda36fd2acb905d6ca8e2",
+                "reference": "2f9b31312d216f6ebbfcda36fd2acb905d6ca8e2",
                 "shasum": ""
             },
             "require": {
-                "azjezz/psl": "^3.0",
+                "azjezz/psl": "^3.0 || ^4.0",
                 "ext-dom": "*",
-                "goetas-webservices/xsd-reader": "^0.4.8",
-                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
-                "php-soap/engine": "^2.13",
-                "php-soap/wsdl": "^1.10",
-                "php-soap/xml": "^1.8.0",
+                "goetas-webservices/xsd-reader": "^0.4.11",
+                "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+                "php-soap/engine": "^2.16",
+                "php-soap/wsdl": "^1.14",
+                "php-soap/xml": "^1.9.0",
                 "php-tui/php-tui": "^0.2.1",
                 "symfony/console": "^5.4 || ^6.0 || ^7.0",
                 "veewee/xml": "^3.0",
                 "webmozart/assert": "^1.11"
             },
             "require-dev": {
-                "php-soap/engine-integration-tests": "^1.5.0",
+                "php-cs-fixer/shim": "~3.88.0",
+                "php-soap/engine-integration-tests": "^1.10.0",
                 "php-standard-library/psalm-plugin": "^2.2",
-                "phpunit/phpunit": "^10.1",
+                "phpunit/phpunit": "~12.4.0",
                 "psalm/plugin-symfony": "^5.0",
                 "symfony/var-dumper": "^6.1 || ^7.0",
-                "vimeo/psalm": "^5.26"
+                "vimeo/psalm": "~6.13.0"
             },
             "type": "library",
             "autoload": {
@@ -4781,7 +4789,7 @@
             "description": "A WSDL reader in PHP",
             "support": {
                 "issues": "https://github.com/php-soap/wsdl-reader/issues",
-                "source": "https://github.com/php-soap/wsdl-reader/tree/0.26.0"
+                "source": "https://github.com/php-soap/wsdl-reader/tree/0.27.0"
             },
             "funding": [
                 {
@@ -4789,29 +4797,31 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-09-03T09:04:50+00:00"
+            "time": "2025-10-20T11:34:46+00:00"
         },
         {
             "name": "php-soap/xml",
-            "version": "1.8.0",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-soap/xml.git",
-                "reference": "7aa20a359f67b18dc3bdb0f52c9065cc54492bc3"
+                "reference": "c7f702640b97bcd608ef6bc2d2300d20775f0191"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-soap/xml/zipball/7aa20a359f67b18dc3bdb0f52c9065cc54492bc3",
-                "reference": "7aa20a359f67b18dc3bdb0f52c9065cc54492bc3",
+                "url": "https://api.github.com/repos/php-soap/xml/zipball/c7f702640b97bcd608ef6bc2d2300d20775f0191",
+                "reference": "c7f702640b97bcd608ef6bc2d2300d20775f0191",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
-                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
-                "veewee/xml": "^3.0"
+                "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+                "veewee/xml": "^3.4"
             },
             "require-dev": {
-                "phpunit/phpunit": "^10.0"
+                "php-cs-fixer/shim": "^3.88",
+                "phpunit/phpunit": "~12.3",
+                "vimeo/psalm": "~6.13"
             },
             "type": "library",
             "autoload": {
@@ -4832,7 +4842,7 @@
             "description": "XML wrappers for SOAP",
             "support": {
                 "issues": "https://github.com/php-soap/xml/issues",
-                "source": "https://github.com/php-soap/xml/tree/1.8.0"
+                "source": "https://github.com/php-soap/xml/tree/1.9.0"
             },
             "funding": [
                 {
@@ -4840,7 +4850,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-10-25T06:49:38+00:00"
+            "time": "2025-10-20T09:03:44+00:00"
         },
         {
             "name": "php-tui/cassowary",
@@ -5103,22 +5113,22 @@
         },
         {
             "name": "phpro/soap-client",
-            "version": "4.2.0",
+            "version": "4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpro/soap-client.git",
-                "reference": "d37e0db7ffb618964e13ba84ed7e9a5d5874c2a3"
+                "reference": "190b722194ded0cffb2a17dd91c47919d488f721"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpro/soap-client/zipball/d37e0db7ffb618964e13ba84ed7e9a5d5874c2a3",
-                "reference": "d37e0db7ffb618964e13ba84ed7e9a5d5874c2a3",
+                "url": "https://api.github.com/repos/phpro/soap-client/zipball/190b722194ded0cffb2a17dd91c47919d488f721",
+                "reference": "190b722194ded0cffb2a17dd91c47919d488f721",
                 "shasum": ""
             },
             "require": {
-                "azjezz/psl": "^3.0",
+                "azjezz/psl": "^3.0 || ^4.0",
                 "laminas/laminas-code": "^4.14.0",
-                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
+                "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
                 "php-soap/cached-engine": "~0.3",
                 "php-soap/encoding": "~0.15",
                 "php-soap/engine": "^2.14.0",
@@ -5136,12 +5146,12 @@
                 "nyholm/psr7": "^1.5",
                 "php-http/vcr-plugin": "^1.2",
                 "php-parallel-lint/php-parallel-lint": "^1.3",
-                "phpro/grumphp-shim": "^2.9",
+                "phpro/grumphp-shim": "^2.17",
                 "phpspec/phpspec": "~7.2",
                 "phpspec/prophecy-phpunit": "^2.0.1",
-                "phpstan/phpstan": "^1.12.7",
-                "phpunit/phpunit": "~10.5.37",
-                "squizlabs/php_codesniffer": "^3.7.1",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "~12.4",
+                "squizlabs/php_codesniffer": "^4.0",
                 "symfony/cache": "^6.4 || ^7.0"
             },
             "bin": [
@@ -5169,7 +5179,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpro/soap-client/issues",
-                "source": "https://github.com/phpro/soap-client/tree/4.2.0"
+                "source": "https://github.com/phpro/soap-client/tree/4.3.0"
             },
             "funding": [
                 {
@@ -5177,7 +5187,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-03-28T12:48:32+00:00"
+            "time": "2025-10-21T07:13:44+00:00"
         },
         {
             "name": "phpseclib/phpseclib",
@@ -11809,28 +11819,28 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.11.0",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozarts/assert.git",
-                "reference": "11cb2199493b2f8a3b53e7f19068fc6aac760991"
+                "reference": "541057574806f942c94662b817a50f63f7345360"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozarts/assert/zipball/11cb2199493b2f8a3b53e7f19068fc6aac760991",
-                "reference": "11cb2199493b2f8a3b53e7f19068fc6aac760991",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/541057574806f942c94662b817a50f63f7345360",
+                "reference": "541057574806f942c94662b817a50f63f7345360",
                 "shasum": ""
             },
             "require": {
                 "ext-ctype": "*",
+                "ext-date": "*",
+                "ext-filter": "*",
                 "php": "^7.2 || ^8.0"
             },
-            "conflict": {
-                "phpstan/phpstan": "<0.12.20",
-                "vimeo/psalm": "<4.6.1 || 4.6.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.5.13"
+            "suggest": {
+                "ext-intl": "",
+                "ext-simplexml": "",
+                "ext-spl": ""
             },
             "type": "library",
             "extra": {
@@ -11861,24 +11871,24 @@
             ],
             "support": {
                 "issues": "https://github.com/webmozarts/assert/issues",
-                "source": "https://github.com/webmozarts/assert/tree/1.11.0"
+                "source": "https://github.com/webmozarts/assert/tree/1.12.0"
             },
-            "time": "2022-06-03T18:03:27+00:00"
+            "time": "2025-10-20T12:43:39+00:00"
         }
     ],
     "packages-dev": [
         {
             "name": "doctrine/data-fixtures",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/data-fixtures.git",
-                "reference": "f161e20f04ba5440a09330e156b40f04dd70d47f"
+                "reference": "7a615ba135e45d67674bb623d90f34f6c7b6bd97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/f161e20f04ba5440a09330e156b40f04dd70d47f",
-                "reference": "f161e20f04ba5440a09330e156b40f04dd70d47f",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/7a615ba135e45d67674bb623d90f34f6c7b6bd97",
+                "reference": "7a615ba135e45d67674bb623d90f34f6c7b6bd97",
                 "shasum": ""
             },
             "require": {
@@ -11892,14 +11902,14 @@
                 "doctrine/phpcr-odm": "<1.3.0"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^13",
+                "doctrine/coding-standard": "^14",
                 "doctrine/dbal": "^3.5 || ^4",
                 "doctrine/mongodb-odm": "^1.3.0 || ^2.0.0",
                 "doctrine/orm": "^2.14 || ^3",
                 "ext-sqlite3": "*",
                 "fig/log-test": "^1",
-                "phpstan/phpstan": "2.1.17",
-                "phpunit/phpunit": "10.5.45",
+                "phpstan/phpstan": "2.1.31",
+                "phpunit/phpunit": "10.5.45 || 12.4.0",
                 "symfony/cache": "^6.4 || ^7",
                 "symfony/var-exporter": "^6.4 || ^7"
             },
@@ -11932,7 +11942,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/data-fixtures/issues",
-                "source": "https://github.com/doctrine/data-fixtures/tree/2.1.0"
+                "source": "https://github.com/doctrine/data-fixtures/tree/2.2.0"
             },
             "funding": [
                 {
@@ -11948,24 +11958,24 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-07-08T17:48:20+00:00"
+            "time": "2025-10-17T20:06:20+00:00"
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
-            "version": "4.2.0",
+            "version": "4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
-                "reference": "cd58d7738fe1fea1dbfd3e3f3bb421ee92d45e10"
+                "reference": "11941deb6f2899b91e8b8680b07ffe63899d864b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/cd58d7738fe1fea1dbfd3e3f3bb421ee92d45e10",
-                "reference": "cd58d7738fe1fea1dbfd3e3f3bb421ee92d45e10",
+                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/11941deb6f2899b91e8b8680b07ffe63899d864b",
+                "reference": "11941deb6f2899b91e8b8680b07ffe63899d864b",
                 "shasum": ""
             },
             "require": {
-                "doctrine/data-fixtures": "^2.0",
+                "doctrine/data-fixtures": "^2.2",
                 "doctrine/doctrine-bundle": "^2.2 || ^3.0",
                 "doctrine/orm": "^2.14.0 || ^3.0",
                 "doctrine/persistence": "^2.4 || ^3.0 || ^4.0",
@@ -12018,7 +12028,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/DoctrineFixturesBundle/issues",
-                "source": "https://github.com/doctrine/DoctrineFixturesBundle/tree/4.2.0"
+                "source": "https://github.com/doctrine/DoctrineFixturesBundle/tree/4.3.0"
             },
             "funding": [
                 {
@@ -12034,7 +12044,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-10-12T16:50:54+00:00"
+            "time": "2025-10-20T06:18:40+00:00"
         },
         {
             "name": "phpstan/phpstan",
