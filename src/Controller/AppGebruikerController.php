@@ -9,6 +9,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
+use GemeenteAmsterdam\FixxxSchuldhulp\Traits\FilterAble;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Component\ExpressionLanguage\Expression;
@@ -27,6 +28,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 ))]
 class AppGebruikerController extends AbstractController
 {
+    use FilterAble;
 
     #[Route(path: '/app/gebruiker/')]
     #[Route(path: '/app/gebruiker/inactive', name: 'gebruikers_inactive')]
@@ -36,6 +38,10 @@ class AppGebruikerController extends AbstractController
         GebruikerRepository $repository
     ): Response {
         $inactive = 'gebruikers_inactive' === $request->get('_route');
+
+        if ($this->containsForbiddenFilterFields($request)) {
+            return new RedirectResponse($this->generateUnfilteredUrl($request));
+        }
 
         $pagination = $paginator->paginate(
             $repository->generatePaginationQueryForUser($this->getUser(), $inactive, false),
