@@ -62,10 +62,12 @@ COPY --chown=www-data . /var/www
 RUN mkdir -p /var/www/var/cache \
     && mkdir -p /var/www/public/localworkingstorage/dossier
 
-RUN composer install --prefer-dist --no-progress --no-scripts
+RUN composer install --prefer-dist --no-progress --no-scripts --optimize-autoloader
 
 RUN yarn --ignore-scripts
 RUN yarn encore prod
 RUN yarn run postinstall
+
+RUN composer dump-autoload --classmap-authoritative
 
 CMD ["/var/www/docker-entrypoint_phpfpm.sh"]
