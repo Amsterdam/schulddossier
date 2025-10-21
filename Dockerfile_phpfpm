@@ -6,38 +6,38 @@ RUN update-ca-certificates --fresh
 RUN apk update && apk upgrade
 
 RUN apk add \
-    icu-dev \
-    postgresql-dev \
-    libzip-dev \
-    libxml2-dev \
-    libmcrypt-dev \
-    zlib-dev \
     freetype-dev \
-    libpng-dev \
-    libjpeg-turbo-dev \
-    jpeg-dev \
-    libreoffice \
+    icu-dev \
     imagemagick-dev \
+    jpeg-dev \
+    libjpeg-turbo-dev \
+    libmcrypt-dev \
+    libpng-dev \
+    libreoffice \
+    libxml2-dev \
     libxslt \
     libxslt-dev \
-    yarn
+    libzip-dev \
+    postgresql-dev \
+    yarn \
+    zlib-dev
 
 RUN docker-php-ext-install \
-    pdo_pgsql \
-    opcache \
-    zip \
-    soap \
-    intl \
+    bcmath \
     gd \
+    intl \
+    opcache \
+    pdo_pgsql \
+    soap \
     xsl \
-    bcmath
+    zip
 
 RUN docker-php-ext-configure \
     gd \
     --with-freetype \
     --with-jpeg
 
-RUN docker-php-ext-enable xsl
+RUN docker-php-ext-enable bcmath intl soap xsl
 
 RUN apk add --no-cache --virtual .build-deps \
     build-base  \
@@ -52,16 +52,17 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN php -r "unlink('composer-setup.php');"
 
-RUN chown www-data: /var/www
+RUN chown -fR www-data: /var/www
+
 USER www-data
+
 WORKDIR /var/www
+COPY --chown=www-data . /var/www
 
 RUN mkdir -p /var/www/var/cache \
     && mkdir -p /var/www/public/localworkingstorage/dossier
 
-COPY --chown=www-data . /var/www
-
-RUN composer install --prefer-dist --no-progress --no-scripts --optimize-autoloader
+RUN composer install --prefer-dist --no-progress --no-scripts
 
 RUN yarn --ignore-scripts
 RUN yarn encore prod

@@ -6,7 +6,7 @@ composer.phar
 
 # Docker
 docker-compose.override.yml
-docker-compose-dev.override.
+docker-compose-dev.override.yml
 
 # Kubernetes
 kubycat-config.yaml
@@ -18,8 +18,17 @@ config/soap-client-allegro-login.php
 phpstan.neon
 ###< phpstan/phpstan ###
 
+###> phpunit/phpunit ###
+/phpunit.xml
+/.phpunit.cache/
+###< phpunit/phpunit ###
+
 ###> symfony/framework-bundle ###
-.env
+/.env
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
 /vendor/
