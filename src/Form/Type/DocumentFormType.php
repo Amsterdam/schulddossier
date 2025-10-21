@@ -11,6 +11,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class DocumentFormType extends AbstractType
 {
@@ -21,6 +22,28 @@ class DocumentFormType extends AbstractType
         ]);
         $builder->add('file', FileType::class, [
             'required' => true,
+            'attr' => [
+                'accept' => '.png,.jpeg,.jpg,.pdf,.gif,.bmp,.tiff,.txt,.doc,.docx,.xls,.xlsx',
+            ],
+            'constraints' => [
+                new File([
+                    'mimeTypes' => [
+                        'image/png',
+                        'image/jpeg',
+                        'image/gif',
+                        'image/bmp',
+                        'image/tiff',
+                        'text/plain',
+                        'application/vnd.ms-excel',
+                        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                        'application/pdf',
+                        'application/msword',
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                    ],
+                    'mimeTypesMessage' => 'U kunt alleen PDF, Word, Excel of afbeeldingen (png, jpg, jpeg, bmp, gif, en tiff) uploaden.',
+                ]),
+            ],
+
         ]);
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event): void {
             /** @var $entity Document */
