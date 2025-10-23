@@ -1,5 +1,4 @@
 security:
-
   #encoders:
   #  GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker:
   #    algorithm: bcrypt
@@ -28,7 +27,7 @@ security:
     #
     # (Un)comment the following lines to enable/disable OIDC login instead of local login
     app:
-      pattern: ^/app
+      pattern: ^/(app|dossiers)
       security: true
       stateless: false
       provider: database

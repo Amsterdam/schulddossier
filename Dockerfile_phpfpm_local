@@ -6,38 +6,38 @@ RUN update-ca-certificates --fresh
 RUN apk update && apk upgrade
 
 RUN apk add \
-    icu-dev \
-    postgresql-dev \
-    libzip-dev \
-    libxml2-dev \
-    libmcrypt-dev \
-    zlib-dev \
     freetype-dev \
-    libpng-dev \
-    libjpeg-turbo-dev \
-    jpeg-dev \
-    libreoffice \
+    icu-dev \
     imagemagick-dev \
+    jpeg-dev \
+    libjpeg-turbo-dev \
+    libmcrypt-dev \
+    libpng-dev \
+    libreoffice \
+    libxml2-dev \
     libxslt \
     libxslt-dev \
-    yarn
+    libzip-dev \
+    postgresql-dev \
+    yarn \
+    zlib-dev
 
 RUN docker-php-ext-install \
-    pdo_pgsql \
-    opcache \
-    zip \
-    soap \
-    intl \
+    bcmath \
     gd \
+    intl \
+    opcache \
+    pdo_pgsql \
+    soap \
     xsl \
-    bcmath
+    zip
 
 RUN docker-php-ext-configure \
     gd \
     --with-freetype \
-    --with-jpeg 
+    --with-jpeg
 
-RUN docker-php-ext-enable xsl
+RUN docker-php-ext-enable bcmath intl soap xsl
 
 RUN apk add --no-cache --virtual .build-deps \
     build-base  \
@@ -50,9 +50,9 @@ COPY docker-phpfpm/www.conf /usr/local/etc/php-fpm.d
 
 # Install dependencies and xdebug in one layer
 RUN apk --no-cache add pcre-dev ${PHPIZE_DEPS} \
-  && apk add --update linux-headers \
-  && pecl install xdebug-3.4.2 && docker-php-ext-enable xdebug \
-  && apk del pcre-dev ${PHPIZE_DEPS}
+    && apk add --update linux-headers \
+    && pecl install xdebug-3.4.2 && docker-php-ext-enable xdebug \
+    && apk del pcre-dev ${PHPIZE_DEPS}
 
 # Copy the Xdebug configuration file
 COPY ./docker-phpfpm/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
@@ -61,21 +61,22 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN php -r "unlink('composer-setup.php');"
 
-RUN chown www-data: /var/www
+RUN chown -fR www-data: /var/www
 
 USER www-data
 
-RUN mkdir -p /var/www/var/cache
-RUN mkdir -p /var/www/public/localworkingstorage/dossier
-
 WORKDIR /var/www
-
 COPY --chown=www-data . /var/www
 
-RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts --optimize-autoloader
+RUN mkdir -p /var/www/var/cache \
+    && mkdir -p /var/www/public/localworkingstorage/dossier
 
-RUN yarn --ignore-scripts --ignore-platform
-RUN yarn encore prod
+RUN composer install --prefer-dist --no-progress --no-scripts --optimize-autoloader
+
+RUN yarn --ignore-scripts
+RUN yarn encore dev
 RUN yarn run postinstall
+
+RUN composer dump-autoload --classmap-authoritative
 
 CMD ["/var/www/docker-entrypoint_phpfpm.sh"]
