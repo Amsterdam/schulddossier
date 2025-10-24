@@ -1,16 +1,41 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "sourceMap": true,
-    "moduleResolution": "node",
-    "lib": [
-      "dom",
-      "es2015",
-      "es2016"
-    ],
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
-    "target": "es6",
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "~/*": [
+        "./assets/react/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ],
+    "resolveJsonModule": true,
+    "rootDir": "./",
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ESNext",
+    "types": [
+      "node"
+    ]
   },
+  "display": "Node 22",
   "include": [
     "assets/**/*"
   ]
