@@ -1,0 +1,113 @@
+/* stylelint-disable selector-class-pattern */
+
+/**
+ * @license EUPL-1.2+
+ * Copyright Gemeente Amsterdam
+ */
+
+.ams-app-navigation {
+	display: grid;
+	grid-template-rows: 88px 1fr;
+	align-items: flex-start;
+	min-inline-size: 114px;
+	max-block-size: 0;
+	overflow: hidden;
+	background-color: var(--ams-app-navigation-background-color);
+
+	&.ams-app-navigation--open {
+		max-block-size: 100dvh;
+	}
+
+	@media screen and (width >= 68rem) {
+		max-block-size: initial;
+		overflow: initial;
+	}
+
+	@supports (grid-template-rows: subgrid) {
+		grid-template-rows: subgrid;
+	}
+}
+
+.ams-app-navigation__menu {
+	inset-block-start: var(--ams-app-navigation-menu-inline-block-start);
+	display: flex;
+	flex-direction: row;
+	grid-row-start: 2;
+	block-size: 0;
+	padding-block: 0;
+	padding-inline: var(--ams-grid-padding-inline);
+	margin-block: 0;
+	overflow-x: auto;
+	list-style: none;
+
+	.ams-app-navigation--open & {
+		block-size: auto;
+	}
+
+	@media screen and (width >= 68rem) {
+		position: sticky;
+		flex-direction: column;
+		block-size: initial;
+		padding-block: 0;
+		padding-inline: 0;
+	}
+
+	@supports (grid-template-rows: subgrid) {
+		grid-row-start: content-start;
+	}
+}
+
+.ams-app__menu-toggle {
+	@media screen and (width >= 68rem) {
+		display: none;
+	}
+}
+
+.ams-app-navigation__chevron {
+	.ams-app-navigation__menu-item--open & {
+		rotate: 180deg;
+	}
+}
+
+.ams-app-navigation__label {
+	flex-grow: 1;
+	text-align: start;
+}
+
+.ams-app-navigation__link--active {
+  font-weight: var(--ams-app-navigation-menu-link-font-weight);
+}
+
+.ams-app-navigation__link {
+	display: flex;
+	flex-direction: column;
+	column-gap: var(--ams-space-m);
+	align-items: center;
+	justify-content: center;
+	padding-block: var(--ams-space-s);
+	padding-inline: var(--ams-space-m);
+	margin-block: 0;
+	margin-inline: 0;
+	font-family: var(--ams-app-navigation-menu-link-font-family);
+	font-size: var(--ams-app-navigation-menu-link-font-size);
+	line-height: var(--ams-app-navigation-menu-link-line-height);
+	color: var(--ams-app-navigation-menu-link-color);
+	text-decoration-line: var(--ams-app-navigation-menu-link-text-decoration-line);
+	text-decoration-thickness: var(--ams-app-navigation-menu-link-text-decoration-thickness);
+	text-underline-offset: var(--ams-app-navigation-menu-link-text-underline-offset);
+	outline-offset: var(--ams-app-navigation-menu-link-outline-offset);
+	border-inline-end: 4px solid var(--ams-app-navigation-background-color);
+
+	.ams-icon {
+		align-self: initial;
+	}
+
+	&:hover {
+		background-color: var(--ams-app-navigation-menu-link-hover-background-color);
+		border-inline-end-color: var(--ams-color-interactive-hover);
+	}
+
+	/* &[aria-current="page"] {
+		border-inline-end-color: var(--ams-color-interactive-inverse);
+	} */
+}
