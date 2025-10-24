@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 
 import {
   CallToActionLink,
@@ -19,7 +19,7 @@ import {
   Table,
 } from "@amsterdam/design-system-react";
 import { TrashBinIcon } from "@amsterdam/design-system-react-icons";
-import { debounce } from "lodash";
+import { debounce, throttle } from "lodash";
 
 import { DossiersInterface } from "../../types/dossier.types";
 import { PaginationInterface } from "~/types/pagination.types";
@@ -38,7 +38,8 @@ const ALL_STATUSES = [
   { label: "Afgesloten", value: "afgesloten_gka" },
 ];
 
-const DEBOUNCE_DELAY = 1000;
+const DEBOUNCED_SEARCH_INPUT_DELAY = 3000;
+const THROTTLED_REQUEST_DELAY = 1000;
 
 const PAGE_SIZES = [10, 25, 50];
 
@@ -55,6 +56,9 @@ export default function Dossiers({
     document.location.search = `?${searchParams.toString()}`;
   };
 
+  const throttledRequestHandler = useMemo(() => throttle(updateUrlSearchParams, THROTTLED_REQUEST_DELAY, { trailing: true }), []);
+
+  useEffect(() => () => throttledRequestHandler.cancel(), []);
 
   /*
   ** Setting current page and size of pages.
@@ -77,12 +81,14 @@ export default function Dossiers({
 
 
   /*
-  ** Setting search filter with debounce.
+  ** Setting search filter with a debounce.
   */
 
   const [search, setSearch] = useState<string>(searchParams.get("search") || "");
 
-  const searchHandler = (value: string) => {
+  const searchHandler = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
+    throttledRequestHandler.cancel();
+
     setSearch(value);
 
     if (value) {
@@ -94,9 +100,9 @@ export default function Dossiers({
     updateUrlSearchParams();
   };
 
-  const debouncedSearchHandler = useMemo(() => debounce(searchHandler, DEBOUNCE_DELAY), []);
+  const debouncedInputHandler = useMemo(() => debounce(searchHandler, DEBOUNCED_SEARCH_INPUT_DELAY, { leading: true }), []);
 
-  useEffect(() => () => debouncedSearchHandler.cancel(), []);
+  useEffect(() => () => debouncedInputHandler.cancel(), []);
 
 
   /*
@@ -158,30 +164,23 @@ export default function Dossiers({
 
       <Grid.Cell span={{ narrow: 4, medium: 8, wide: 9 }}>
         <Column>
-          <Row alignVertical="center">
-            <SearchField onSubmit={(event) => {
-              event.preventDefault();
-              searchHandler(event.currentTarget.search.value);
-            }}>
+          <SearchField>
+            <Column gap="small">
               <Label htmlFor="dossiers-zoeken">Dossiers zoeken</Label>
-              <SearchField.Input
-                id="dossiers-zoeken"
-                name="search"
-                placeholder="Zoek op naam of dossier nr."
-                defaultValue={search}
-              />
-              <SearchField.Button />
-            </SearchField>
-            {/* <Field>
-              <Label htmlFor="dossiers-zoeken">Dossiers zoeken</Label>
-              <TextInput
-                id="dossiers-zoeken"
-                placeholder="Zoek op naam of dossier nr."
-                value={search}
-                onChange={searchHandler}
-              />
-            </Field> */}
-          </Row>
+
+              <Row gap="none">
+                <SearchField.Input
+                  id="dossiers-zoeken"
+                  name="search"
+                  onChange={searchHandler}
+                  placeholder="Zoek op naam of dossier nr."
+                  size={50}
+                  value={search}
+                />
+                <SearchField.Button />
+              </Row>
+            </Column>
+          </SearchField>
 
           {
             (dossiers?.length > 0)
