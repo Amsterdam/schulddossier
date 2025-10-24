@@ -188,12 +188,12 @@ export default function Dossiers({
                 <Table>
                   <Table.Header>
                     <Table.Row>
-                      <Table.HeaderCell>Naam</Table.HeaderCell>
-                      <Table.HeaderCell>Organisatie</Table.HeaderCell>
-                      <Table.HeaderCell>SHV-er / Bewindvoerder dossier nr.</Table.HeaderCell>
-                      <Table.HeaderCell>GKA dossier nr.</Table.HeaderCell>
-                      <Table.HeaderCell>Aangemaakt</Table.HeaderCell>
-                      <Table.HeaderCell>Status</Table.HeaderCell>
+                      <Table.HeaderCell title="Naam van de cliënt">Naam</Table.HeaderCell>
+                      <Table.HeaderCell title="Behandelende organisatie">Organisatie</Table.HeaderCell>
+                      <Table.HeaderCell title="Dossiernummer van schuldhulpverlener of bewindvoerder (samen: “Regas”)">Regas-nr.</Table.HeaderCell>
+                      <Table.HeaderCell title="Dossiernummer van de Gemeentelijke Kredietbank Amsterdam (GKA) in de Allegro Basis-applicatie">Allegro-nr.</Table.HeaderCell>
+                      <Table.HeaderCell title="Datum waarop het dossier is aangemaakt">Aangemaakt</Table.HeaderCell>
+                      <Table.HeaderCell title="Huidige status van het dossier">Status</Table.HeaderCell>
                     </Table.Row>
                   </Table.Header>
 
@@ -201,12 +201,12 @@ export default function Dossiers({
                     {dossiers.map((dossier: DossiersInterface) => {
                       return (
                         <Table.Row key={dossier.id}>
-                          <Table.Cell>{`${dossier.clientVoorletters}. ${dossier.clientNaam}`}</Table.Cell>
-                          <Table.Cell>{dossier.organisatie}</Table.Cell>
-                          <Table.Cell>{dossier.regasNummer}</Table.Cell>
-                          <Table.Cell>{dossier.allegroNummer}</Table.Cell>
-                          <Table.Cell>{dossier.aanmaakDatumTijd}</Table.Cell>
-                          <Table.Cell>
+                          <Table.Cell style={{ minWidth: 90, maxWidth: 180 }} width="26%">{`${dossier.clientVoorletters}. ${dossier.clientNaam}`}</Table.Cell>
+                          <Table.Cell style={{ width: "100%" }} width="25%">{dossier.organisatie}</Table.Cell>
+                          <Table.Cell width="8%">{dossier.regasNummer}</Table.Cell>
+                          <Table.Cell width="8%">{dossier.allegroNummer}</Table.Cell>
+                          <Table.Cell title={dossier.aanmaakDatumTijd} width="8%">{dossier.aanmaakDatumTijd.split(" ")[0].split("-").reverse().join("-")}</Table.Cell>
+                          <Table.Cell style={{ minWidth: 140 }} width="25%">
                             {
                               ALL_STATUSES
                                 .find(
