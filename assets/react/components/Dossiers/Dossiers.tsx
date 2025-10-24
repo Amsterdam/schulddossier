@@ -149,6 +149,23 @@ export default function Dossiers({
     updateUrlSearchParams();
   };
 
+  useEffect(() => {
+    console.log(statusFilter.join(","));
+    console.log(SUBSET_ARCHIVED.join(","));
+
+    const subsets = [
+      { id: "archive", stringifiedItems: SUBSET_ARCHIVED.join(",") },
+      { id: "gka", stringifiedItems: SUBSET_GKA.join(",") },
+      { id: "shv", stringifiedItems: SUBSET_SHV.join(",") },
+    ];
+
+    for (const subset of subsets) {
+      if (subset.stringifiedItems === statusFilter.join(",")) {
+        setPhase(subset.id);
+      }
+    }
+  }, []);
+
   return (
     <>
       <Grid.Cell span="all">
@@ -261,14 +278,14 @@ export default function Dossiers({
           </Field>
 
           <Field>
-            <Label htmlFor="dossiers-fase">Fase dossiers</Label>
+            <Label htmlFor="dossiers-fase">Fase van dossier</Label>
             <Select
               aria-describedby="dossiers-fase-description"
               id="dossiers-fase"
               value={phase}
               onChange={e => selectPhase(e.target.value)}
             >
-              <Select.Option value="all">Alle dossiers</Select.Option>
+              <Select.Option value="all">- geen fase gekozen -</Select.Option>
               <Select.Option value="shv">Dossiers bij SHV-er/Bewindvoerder</Select.Option>
               <Select.Option value="gka">Dossiers bij GKA</Select.Option>
               <Select.Option value="archive">Afgeronde dossiers</Select.Option>
