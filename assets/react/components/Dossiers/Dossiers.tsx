@@ -155,8 +155,8 @@ export default function Dossiers({
         <Row align="between" wrap={true}>
           <Heading level={1}>Dossiers</Heading>
 
-          <Row>
-            <StandaloneLink icon={TrashBinIcon}>Prullenbak</StandaloneLink>
+          <Row alignVertical="center">
+            <StandaloneLink href="/dossiers/prullenbak" icon={TrashBinIcon}>Prullenbak</StandaloneLink>
             <CallToActionLink href="/dossier/nieuw">Nieuw dossier</CallToActionLink>
           </Row>
         </Row>
@@ -242,9 +242,7 @@ export default function Dossiers({
         <Column>
           <Field>
             <Label htmlFor="dossiers-medewerker">Medewerker</Label>
-            <Select
-              id="dossiers-medewerker"
-            >
+            <Select id="dossiers-medewerker">
               <Select.Option value="Alle medewerkers">Alle medewerkers</Select.Option>
               <Select.Option value="Optie 1">Optie 1</Select.Option>
               <Select.Option value="Optie 2">Optie 2</Select.Option>
@@ -254,9 +252,7 @@ export default function Dossiers({
 
           <Field>
             <Label htmlFor="dossiers-team">Team</Label>
-            <Select
-              id="dossiers-team"
-            >
+            <Select id="dossiers-team">
               <Select.Option value="GKA Team 1">GKA Team 1</Select.Option>
               <Select.Option value="GKA Team 2">GKA Team 2</Select.Option>
               <Select.Option value="GKA Team 3">GKA Team 3</Select.Option>
@@ -265,10 +261,7 @@ export default function Dossiers({
           </Field>
 
           <Field>
-            <Label htmlFor="dossiers-fase">Fase selecteren</Label>
-            <Paragraph id="dossiers-fase-description">
-              Selecteer een groep statussen
-            </Paragraph>
+            <Label htmlFor="dossiers-fase">Fase dossiers</Label>
             <Select
               aria-describedby="dossiers-fase-description"
               id="dossiers-fase"
@@ -283,8 +276,8 @@ export default function Dossiers({
           </Field>
 
           <FieldSet
-            id="fieldset-f"
-            aria-labelledby="fieldset-f"
+            id="fieldset-status"
+            aria-labelledby="fieldset-status"
             legend="Status"
           >
             <Column gap="x-small">
