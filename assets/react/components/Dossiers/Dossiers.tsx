@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   CallToActionLink,
@@ -19,10 +19,12 @@ import {
   Table,
 } from "@amsterdam/design-system-react";
 import { TrashBinIcon } from "@amsterdam/design-system-react-icons";
-import { debounce, throttle } from "lodash";
+import { throttle } from "lodash";
 
 import { DossiersInterface } from "../../types/dossier.types";
+import { MedewerkerInterface } from "~/types/medewerker.types";
 import { PaginationInterface } from "~/types/pagination.types";
+import { TeamInterface } from "~/types/team.types";
 
 const SUBSET_SHV = ["bezig_shv", "compleet_shv", "gecontroleerd_shv", "verzonden_shv"];
 const SUBSET_GKA = ["verzonden_shv", "compleet_gka", "dossier_gecontroleerd_gka"];
@@ -38,23 +40,30 @@ const ALL_STATUSES = [
   { label: "Afgesloten", value: "afgesloten_gka" },
 ];
 
-const DEBOUNCED_SEARCH_INPUT_DELAY = 3000;
 const THROTTLED_REQUEST_DELAY = 1000;
 
 const PAGE_SIZES = [10, 25, 50];
 
 export default function Dossiers({
   dossiers,
+  gkaTeams,
+  medewerkers,
   pagination
 }: Readonly<{
   dossiers: DossiersInterface[];
+  gkaTeams: TeamInterface[],
+  medewerkers: MedewerkerInterface[],
   pagination: PaginationInterface;
 }>) {
   const searchParams = new URLSearchParams(document.location.search);
 
   const updateUrlSearchParams = () => {
-    document.location.search = `?${searchParams.toString()}`;
+    document.location.search = searchParams.toString();
   };
+
+  const resetToPage1 = () => {
+    searchParams.delete("page");
+  }
 
   const throttledRequestHandler = useMemo(() => throttle(updateUrlSearchParams, THROTTLED_REQUEST_DELAY, { trailing: true }), []);
 
@@ -74,19 +83,23 @@ export default function Dossiers({
       searchParams.set("pageSize", size.toString());
     }
 
-    searchParams.set("page", "1");
-
+    resetToPage1();
     updateUrlSearchParams();
   };
 
 
   /*
-  ** Setting search filter with a debounce.
+  ** Setting search filter.
   */
 
   const [search, setSearch] = useState<string>(searchParams.get("search") || "");
 
-  const searchHandler = ({ currentTarget: { value } }: ChangeEvent<HTMLInputElement>) => {
+  const searchHandler = (event: any) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const value = (form.elements.namedItem('search') as HTMLInputElement).value;
+
     throttledRequestHandler.cancel();
 
     setSearch(value);
@@ -97,13 +110,9 @@ export default function Dossiers({
       searchParams.delete("search");
     }
 
+    resetToPage1();
     updateUrlSearchParams();
   };
-
-  const debouncedInputHandler = useMemo(() => debounce(searchHandler, DEBOUNCED_SEARCH_INPUT_DELAY, { leading: true }), []);
-
-  useEffect(() => () => debouncedInputHandler.cancel(), []);
-
 
   /*
   ** Setting section and status filter.
@@ -130,6 +139,7 @@ export default function Dossiers({
         searchParams.delete("statusFilter");
     }
 
+    resetToPage1();
     updateUrlSearchParams();
   };
 
@@ -146,13 +156,11 @@ export default function Dossiers({
       searchParams.delete("statusFilter");
     }
 
+    resetToPage1();
     updateUrlSearchParams();
   };
 
   useEffect(() => {
-    console.log(statusFilter.join(","));
-    console.log(SUBSET_ARCHIVED.join(","));
-
     const subsets = [
       { id: "archive", stringifiedItems: SUBSET_ARCHIVED.join(",") },
       { id: "gka", stringifiedItems: SUBSET_GKA.join(",") },
@@ -165,6 +173,61 @@ export default function Dossiers({
       }
     }
   }, []);
+
+  /*
+  ** Setting medewerker filter.
+  */
+
+  const [medewerker, setMedewerker] = useState<string>(searchParams.get("medewerkerId") || "all");
+  const selectMedewerker = (value: string) => {
+    setMedewerker(value);
+
+    if (value === "all") {
+      searchParams.delete("medewerkerId");
+    } else {
+      searchParams.set("medewerkerId", value);
+    }
+
+    resetToPage1();
+    updateUrlSearchParams();
+  };
+
+  /*
+  ** Setting team filter.
+  */
+
+  const [team, setTeam] = useState<string>(searchParams.get("teamId") || "all");
+  const selectTeam = (value: string) => {
+    setTeam(value);
+
+    if (value === "all") {
+      searchParams.delete("teamId");
+    } else {
+      searchParams.set("teamId", value);
+    }
+
+    resetToPage1();
+    updateUrlSearchParams();
+  };
+
+  /*
+  ** Setting page filter.
+  */
+
+  const linkTemplate = useMemo(() => {
+    return (pageNumber: number) => {
+      const updatedSearchParams = new URLSearchParams(searchParams.toString());
+
+      if (pageNumber === 1) {
+        updatedSearchParams.delete("page");
+      } else {
+        updatedSearchParams.set("page", pageNumber.toString());
+      }
+
+      const queryString = updatedSearchParams.toString();
+      return queryString ? `?${queryString}` : "";
+    };
+  }, [searchParams.toString()]);
 
   return (
     <>
@@ -181,7 +244,7 @@ export default function Dossiers({
 
       <Grid.Cell span={{ narrow: 4, medium: 8, wide: 9 }}>
         <Column>
-          <SearchField>
+          <SearchField onSubmit={searchHandler}>
             <Column gap="small">
               <Label htmlFor="dossiers-zoeken">Dossiers zoeken</Label>
 
@@ -189,12 +252,12 @@ export default function Dossiers({
                 <SearchField.Input
                   id="dossiers-zoeken"
                   name="search"
-                  onChange={searchHandler}
+                  onChange={e => setSearch(e.target.value)}
                   placeholder="Zoek op naam of dossier nr."
                   size={50}
                   value={search}
                 />
-                <SearchField.Button />
+                <SearchField.Button type="submit" />
               </Row>
             </Column>
           </SearchField>
@@ -244,7 +307,7 @@ export default function Dossiers({
 
           {pagination.numberOfPages > 1 && (
             <Pagination
-              linkTemplate={(pageNumber: number) => "?page=" + pageNumber}
+              linkTemplate={linkTemplate}
               page={currentPage}
               totalPages={pagination.numberOfPages}
             />
@@ -259,21 +322,33 @@ export default function Dossiers({
         <Column>
           <Field>
             <Label htmlFor="dossiers-medewerker">Medewerker</Label>
-            <Select id="dossiers-medewerker">
-              <Select.Option value="Alle medewerkers">Alle medewerkers</Select.Option>
-              <Select.Option value="Optie 1">Optie 1</Select.Option>
-              <Select.Option value="Optie 2">Optie 2</Select.Option>
-              <Select.Option value="Optie 3">Optie 3</Select.Option>
+            <Select
+              id="dossiers-medewerker"
+              value={medewerker}
+              onChange={e => selectMedewerker(e.target.value)}
+            >
+              <Select.Option value="all">Alle medewerkers</Select.Option>
+              {medewerkers.map((medewerker: { id: string, naam: string }) => {
+                return (
+                  <Select.Option key={medewerker.id} value={medewerker.id}>{medewerker.naam}</Select.Option>
+                )
+              })}
             </Select>
           </Field>
 
           <Field>
             <Label htmlFor="dossiers-team">Team</Label>
-            <Select id="dossiers-team">
-              <Select.Option value="GKA Team 1">GKA Team 1</Select.Option>
-              <Select.Option value="GKA Team 2">GKA Team 2</Select.Option>
-              <Select.Option value="GKA Team 3">GKA Team 3</Select.Option>
-              <Select.Option value="GKA Team 4">GKA Team 4</Select.Option>
+            <Select
+              id="dossiers-team"
+              value={team}
+              onChange={e => selectTeam(e.target.value)}
+            >
+              <Select.Option value="all">Alle teams</Select.Option>
+              {gkaTeams.map((team: { id: string, naam: string }) => {
+                return (
+                  <Select.Option key={team.id} value={team.id}>{team.naam}</Select.Option>
+                )
+              })}
             </Select>
           </Field>
 
@@ -285,7 +360,7 @@ export default function Dossiers({
               value={phase}
               onChange={e => selectPhase(e.target.value)}
             >
-              <Select.Option value="all">- geen fase gekozen -</Select.Option>
+              <Select.Option value="all">Alle fases</Select.Option>
               <Select.Option value="shv">Dossiers bij SHV-er/Bewindvoerder</Select.Option>
               <Select.Option value="gka">Dossiers bij GKA</Select.Option>
               <Select.Option value="archive">Afgeronde dossiers</Select.Option>
