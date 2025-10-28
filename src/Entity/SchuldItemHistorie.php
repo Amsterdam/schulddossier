@@ -14,110 +14,110 @@ class SchuldItemHistorie
 {
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    #[ORM\Id]
-    #[ORM\Column(type: 'integer', nullable: false)]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private $id;
 
     /**
      * @var SchuldItem
+     * @ORM\ManyToOne(targetEntity="Schulditem", inversedBy="historie")
+     * @ORM\JoinColumn(name="schuld_item_id", referencedColumnName="id", nullable=false)
      */
-    #[ORM\JoinColumn(name: 'schuld_item_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Schulditem::class, inversedBy: 'historie')]
     private $schuldItem;
 
     /**
      * @var Dossier
+     * @ORM\ManyToOne(targetEntity="Dossier", inversedBy="schuldItems")
+     * @ORM\JoinColumn(name="dossier_id", referencedColumnName="id", nullable=false)
      */
-    #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Dossier::class, inversedBy: 'schuldItems')]
     private $dossier;
 
     /**
      * @var Gebruiker
+     * @ORM\ManyToOne(targetEntity="Gebruiker")
+     * @ORM\JoinColumn(name="aanmaker_id", referencedColumnName="id", nullable=false)
      */
-    #[ORM\JoinColumn(name: 'aanmaker_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
     private $aanmaker;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=false)
      */
-    #[ORM\Column(type: 'datetime', nullable: false)]
     private $aanmaakDatumTijd;
 
     /**
      * @var Gebruiker
+     * @ORM\ManyToOne(targetEntity="Gebruiker")
+     * @ORM\JoinColumn(name="aanmaker_id", referencedColumnName="id", nullable=false)
      */
-    #[ORM\JoinColumn(name: 'aanmaker_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
     private $bewerker;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=false)
      */
-    #[ORM\Column(type: 'datetime', nullable: false)]
     private $bewerkDatumTijd;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=false)
      */
-    #[ORM\Column(type: 'boolean', nullable: false)]
     private $verwijderd;
 
     /**
      * @var Schuldeiser
+     * @ORM\ManyToOne(targetEntity="Schuldeiser", inversedBy="schuldItems", cascade={"persist"})
+     * @ORM\JoinColumn(name="schuldeiser_id", referencedColumnName="id")
+     * @Assert\NotBlank
      */
-    #[ORM\JoinColumn(name: 'schuldeiser_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Schuldeiser::class, inversedBy: 'schuldItems', cascade: ['persist'])]
-    #[Assert\NotBlank]
     private $schuldeiser;
 
     /**
      * @var Schuldeiser
+     * @ORM\ManyToOne(targetEntity="Schuldeiser", inversedBy="schuldItems", cascade={"persist"})
+     * @ORM\JoinColumn(name="schuldeiser_id", referencedColumnName="id")
      */
-    #[ORM\JoinColumn(name: 'schuldeiser_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Schuldeiser::class, inversedBy: 'schuldItems', cascade: ['persist'])]
     private $incassant;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length(min=1, max=255)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 1, max: 255)]
     private $referentie;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=15, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Choice(choices={"concurrent", "preferent"})
      */
-    #[ORM\Column(type: 'string', length: 15, nullable: false)]
-    #[Assert\NotBlank]
-    #[Assert\Choice(choices: ['concurrent', 'preferent'])]
     private $type;
 
     /**
      * @var float
+     * @ORM\Column(type="decimal", precision=8, scale=2, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
-    #[ORM\Column(type: 'decimal', precision: 8, scale: 2, nullable: true)]
-    #[Assert\NotBlank]
-    #[Assert\Type('numeric')]
-    #[Assert\Range(min: -100000, max: 100000)]
     private $bedrag;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="date", nullable=false)
+     * @Assert\NotBlank
      */
-    #[ORM\Column(type: 'date', nullable: false)]
-    #[Assert\NotBlank]
     private $vaststelDatum;
 
     /**
      * @var DossierDocument[]|ArrayCollection
+     * @ORM\OneToMany(targetEntity="DossierDocument", mappedBy="schuldItem")
+     * @ORM\OrderBy({"id"="ASC"})
      */
-    #[ORM\OneToMany(targetEntity: \DossierDocument::class, mappedBy: 'schuldItem')]
-    #[ORM\OrderBy(['id' => 'ASC'])]
     private $dossierDocumenten;
 
     public function __construct()

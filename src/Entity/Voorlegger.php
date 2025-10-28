@@ -6,8 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Table]
-#[ORM\Entity]
+/**
+ * @ORM\Entity
+ * @ORM\Table
+ */
 class Voorlegger
 {
     use ExportAble;
@@ -23,980 +25,1017 @@ class Voorlegger
 
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    #[ORM\Id]
-    #[ORM\Column]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private $id;
 
     /**
      * @var Dossier
+     * @ORM\OneToOne(targetEntity="Dossier", inversedBy="voorlegger", orphanRemoval=true)
+     * @ORM\JoinColumn(name="dossier_id", referencedColumnName="id", nullable=false)
      */
-    #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\OneToOne(targetEntity: \Dossier::class, inversedBy: 'voorlegger', orphanRemoval: true)]
     private $dossier;
 
     // ---
+
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $legitimatieOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $legitimatieOntvangenGka;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $vtlbOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $vtlbOntvangenGka;
 
     /**
      * @var float
+     * @ORM\Column(type="decimal", precision=8, scale=2, nullable=true)
+     * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
-    #[ORM\Column(type: 'decimal', precision: 8, scale: 2, nullable: true)]
-    #[Assert\Type('numeric')]
-    #[Assert\Range(min: -100000, max: 100000)]
     private $vtlbBedrag;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $inkomstenspecificatieOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $inkomstenspecificatieOntvangenGka;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $arbeidsovereenkomstOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $arbeidsovereenkomstOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $arbeidsovereenkomstNvt;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Assert\Length(min: 0, max: 255)]
     private $arbeidsovereenkomstWerkgever = null;
 
     /**
      * @var \Date|null
+     * @ORM\Column(type="date", nullable=true)
      */
-    #[ORM\Column(type: 'date', nullable: true)]
     private $arbeidsovereenkomstEinddatum;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     * @Assert\Choice(callback="getContractOpties")
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Assert\Length(min: 0, max: 255)]
-    #[Assert\Choice(callback: 'getContractOpties')]
     private $arbeidsovereenkomstContract;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Assert\Length(min: 0, max: 255)]
     private $arbeidsovereenkomstPartnerWerkgever = null;
 
     /**
      * @var \Date|null
+     * @ORM\Column(type="date", nullable=true)
      */
-    #[ORM\Column(type: 'date', nullable: true)]
     private $arbeidsovereenkomstPartnerEinddatum;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     * @Assert\Choice(callback="getContractOpties")
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Assert\Length(min: 0, max: 255)]
-    #[Assert\Choice(callback: 'getContractOpties')]
     private $arbeidsovereenkomstPartnerContract;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $beschikkingUwvOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $beschikkingUwvOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $beschikkingUwvNvt;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $beschikkingInkomenUitWerk;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $beschikkingUwvZw;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $beschikkingUwvWw;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $beschikkingUwvWia;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $beschikkingUwvWajong;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $beschikkingGemeenteAmsterdamWPI;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $beschikkingSVBAOW;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $beschikkingSVBANW;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $beschikkingGemeenteAmsterdamIOAW;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Assert\Length(min: 0, max: 255)]
     private $beschikkingUwvOverig;
 
     // ---
+
     /**
      * @var integer|null
+     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Length(min=0, max=255)
      */
-    #[ORM\Column(type: 'integer', nullable: true)]
-    #[Assert\Length(min: 0, max: 255)]
     private ?int $verloningsDag;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $voorlopigeTeruggaafBelastingdienstOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $voorlopigeTeruggaafBelastingdienstOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $voorlopigeTeruggaafBelastingdienstNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $alimentatieOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $alimentatieOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $alimentatieNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $kostgeldOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $kostgeldOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $kostgeldNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $toeslagenOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $toeslagenOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $toeslagenNvt;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $toeslagenHuur;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $toeslagenZorg;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $toeslagenKinderopvang;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $toeslagenKindgebondenBudget;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $huurspecificatieOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $huurspecificatieOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $huurspecificatieNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $polisbladZorgverzekeringOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $polisbladZorgverzekeringOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $polisbladZorgverzekeringNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $alimentatieEchtscheidingsconvenantOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $alimentatieEchtscheidingsconvenantOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $alimentatieEchtscheidingsconvenantNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $overeenkomstKinderopvangOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $overeenkomstKinderopvangOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $overeenkomstKinderopvangNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $kwijtscheldingGemeenteBelastingOntvangenShv;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $kwijtscheldingGemeenteBelastingNvt;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $kwijtscheldingGemeenteBelasting;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $corrigerenGemeenteBelastingOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $corrigerenGemeenteBelasting;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $corrigerenGemeenteBelastingNvt;
 
     // ---
+
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $autoNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $autoTaxatieOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $autoTaxatieOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $autoTaxatieNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $autolastenKmWoonwerkverkeerOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $autolastenKmWoonwerkverkeerOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $autolastenKmWoonwerkverkeerNvt;
 
     /**
      * @var integer
+     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("numeric")
      */
-    #[ORM\Column(type: 'integer', nullable: true)]
-    #[Assert\Type('numeric')]
     private $autolastenKmWoonwerkverkeer;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $verklaringWerkgeverOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $verklaringWerkgeverOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $verklaringWerkgeverNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $vrijwaringsbewijsOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $vrijwaringsbewijsOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $vrijwaringsbewijsNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $schuldenoverzichtOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $schuldenoverzichtOntvangenGka;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $vorderingenOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $vorderingenOntvangenGka;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $inzageToetsingBkrOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $inzageToetsingBkrOntvangenGka;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $stabilisatieovereenkomstOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $stabilisatieovereenkomstOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $stabilisatieovereenkomstNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $cjibOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $cjibOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $cjib;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $cjibNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $meterstandenEnergieOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $meterstandenEnergieOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $meterstandenEnergieNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $waternetOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $waternetOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $waternetNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $retourbewijsModemOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $retourbewijsModemOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $retourbewijsModemNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $toelichtingAanvraagSchuldsaneringClientOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $toelichtingAanvraagSchuldsaneringClientOntvangenGka;
 
     // ---
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Assert\Length(min: 0, max: 255)]
     private $ontstaanVanSchulden;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Assert\Length(min: 0, max: 255)]
     private $inspanningsverplichting;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $toelichtingAanvraagSchuldsaneringShvOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $toelichtingAanvraagSchuldsaneringShvOntvangenGka;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $beschikkingOnderBewindstellingOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $beschikkingOnderBewindstellingOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $beschikkingOnderBewindstellingNvt;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $budgetbeheerOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $budgetbeheerOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $budgetbeheerNvt;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $budgetbeheerPlangroep;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $budgetbeheerCav;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $budgetbeheerFibu;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $budgetbeheerOverig;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $gereserveerdeGeldenOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $gereserveerdeGeldenOntvangenGka;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $gereserveerdeGeldenNvt;
 
     /**
      * @var float
+     * @ORM\Column(type="decimal", nullable=true, precision=8, scale=2)
+     * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
-    #[ORM\Column(type: 'decimal', nullable: true, precision: 8, scale: 2)]
-    #[Assert\Type('numeric')]
-    #[Assert\Range(min: -100000, max: 100000)]
     private $gereserveerdeGelden;
 
     // ---
+
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $ondertekendAanvraagFormulierOntvangenShv;
 
     /**
      * @var integer
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $ondertekendAanvraagFormulierOntvangenGka;
 
     // ---
+
     /**
      * @var string
+     * @ORM\Column(type="text", nullable=true)
      */
-    #[ORM\Column(type: 'text', nullable: true)]
     private $aanvullendeInformatie;
 
     // ---
+
     /**
      * @var string
+     * @ORM\Column(type="string", length=125, nullable=true)
+     * @Assert\Length(min=0, max=125)
      */
-    #[ORM\Column(type: 'string', length: 125, nullable: true)]
-    #[Assert\Length(min: 0, max: 125)]
     private $energieBedrijf;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=25, nullable=true)
+     * @Assert\Length(min=0, max=25)
      */
-    #[ORM\Column(type: 'string', length: 25, nullable: true)]
-    #[Assert\Length(min: 0, max: 25)]
     private $energieBedrijfKlantnummer;
 
     /**
      * @var \Date
+     * @ORM\Column(type="date", nullable=true)
      */
-    #[ORM\Column(type: 'date', nullable: true)]
     private $energieBedrijfDatumOpname;
 
     /**
      * @var int
+     * @ORM\Column(type="bigint", nullable=true)
+     * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
-    #[ORM\Column(type: 'bigint', nullable: true)]
-    #[Assert\Type('numeric')]
-    #[Assert\Range(min: -100000, max: 100000)]
     private $energieBedrijfT1;
 
     /**
      * @var int
+     * @ORM\Column(type="bigint", nullable=true)
+     * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
-    #[ORM\Column(type: 'bigint', nullable: true)]
-    #[Assert\Type('numeric')]
-    #[Assert\Range(min: -100000, max: 100000)]
     private $energieBedrijfT2;
 
     /**
      * @var float
+     * @ORM\Column(type="float", nullable=true)
+     * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
-    #[ORM\Column(type: 'float', nullable: true)]
-    #[Assert\Type('numeric')]
-    #[Assert\Range(min: -100000, max: 100000)]
     private $energieBedrijfGas;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=125, nullable=true)
+     * @Assert\Length(min=0, max=125)
      */
-    #[ORM\Column(type: 'string', length: 125, nullable: true)]
-    #[Assert\Length(min: 0, max: 125)]
     private $warmteBedrijf;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=25, nullable=true)
+     * @Assert\Length(min=0, max=25)
      */
-    #[ORM\Column(type: 'string', length: 25, nullable: true)]
-    #[Assert\Length(min: 0, max: 25)]
     private $warmteBedrijfKlantnummer;
 
     /**
      * @var \Date
+     * @ORM\Column(type="date", nullable=true)
      */
-    #[ORM\Column(type: 'date', nullable: true)]
     private $warmteBedrijfDatumOpname;
 
     /**
      * @var float
+     * @ORM\Column(type="float", nullable=true)
+     * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
-    #[ORM\Column(type: 'float', nullable: true)]
-    #[Assert\Type('numeric')]
-    #[Assert\Range(min: -100000, max: 100000)]
     private $warmteBedrijfOpname;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=25, nullable=true)
+     * @Assert\Length(min=0, max=25)
      */
-    #[ORM\Column(type: 'string', length: 25, nullable: true)]
-    #[Assert\Length(min: 0, max: 25)]
     private $drinkwaterKlantnummer;
 
     /**
      * @var \Date
+     * @ORM\Column(type="date", nullable=true)
+
      */
-    #[ORM\Column(type: 'date', nullable: true)]
     private $drinkwaterDatumOpname;
 
     /**
      * @var float
+     * @ORM\Column(type="float", nullable=true)
+     * @Assert\Type("numeric")
+     * @Assert\Range(min=-100000, max=100000)
      */
-    #[ORM\Column(type: 'float', nullable: true)]
-    #[Assert\Type('numeric')]
-    #[Assert\Range(min: -100000, max: 100000)]
     private $drinkwaterOpname;
 
     /**
      * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true, options={"default" : false})
      */
-    #[ORM\Column(type: 'boolean', nullable: true, options: ['default' => false])]
     private $aangifteBelastingdienst;
 
     /**
      * @var integer|null
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $aangifteBelastingdienstShv;
 
     /**
      * @var integer|null
+     * @ORM\Column(type="smallint", nullable=true)
      */
-    #[ORM\Column(type: 'smallint', nullable: true)]
     private $aangifteBelastingdienstGka;
 
     /**
      * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $aangifteBelastingdienstNvt;
 
     /**
      * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $jongerenSchuldenvrijeStart;
 
     /**
      * @var string|null
+     * @ORM\Column(type="string", length=125, nullable=true)
+     * @Assert\Length(min=0, max=125)
      */
-    #[ORM\Column(type: 'string', length: 125, nullable: true)]
-    #[Assert\Length(min: 0, max: 125)]
     private ?string $jssAdviseurNaam;
 
     /**
      * @var string|null
+     * @ORM\Column(type="string", length=125, nullable=true)
+     * @Assert\Length(min=0, max=125)
      */
-    #[ORM\Column(type: 'string', length: 125, nullable: true)]
-    #[Assert\Length(min: 0, max: 125)]
     private ?string $jssAdviseurTelefoon;
 
     /**
      * @var string|null
+     * @ORM\Column(type="string", length=125, nullable=true)
+     * @Assert\Length(min=0, max=125)
      */
-    #[ORM\Column(type: 'string', length: 125, nullable: true)]
-    #[Assert\Length(min: 0, max: 125)]
     private ?string $jssAdviseurEmail;
 
     /**
      * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $kindregeling;
 
     /**
      * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $saneringsKrediet;
 
     /**
      * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $principebeslissing;
 
     /**
      * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $schuldenOpDeWerkvloer;
 
     /**
      * @var boolean|null
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    #[ORM\Column(type: 'boolean', nullable: true)]
     private $herfinancering;
 
     // ---
@@ -1788,7 +1827,7 @@ class Voorlegger
     /**
      * @param Dossier $dossier
      */
-    public function setDossier(?Dossier $dossier = null)
+    public function setDossier(Dossier $dossier = null)
     {
         $oldDossier = $this->dossier;
         $this->dossier = $dossier;
@@ -2394,7 +2433,7 @@ class Voorlegger
     /**
      * @param \DateTime $energieBedrijfDatumOpname
      */
-    public function setEnergieBedrijfDatumOpname(?\DateTime $energieBedrijfDatumOpname = null)
+    public function setEnergieBedrijfDatumOpname(\DateTime $energieBedrijfDatumOpname = null)
     {
         $this->energieBedrijfDatumOpname = $energieBedrijfDatumOpname;
     }
@@ -2427,7 +2466,7 @@ class Voorlegger
     /**
      * @param \DateTime $warmteBedrijfDatumOpname
      */
-    public function setWarmteBedrijfDatumOpname(?\DateTime $warmteBedrijfDatumOpname = null)
+    public function setWarmteBedrijfDatumOpname(\DateTime $warmteBedrijfDatumOpname = null)
     {
         $this->warmteBedrijfDatumOpname = $warmteBedrijfDatumOpname;
     }
@@ -2445,7 +2484,7 @@ class Voorlegger
     /**
      * @param \DateTime $drinkwaterDatumOpname
      */
-    public function setDrinkwaterDatumOpname(?\DateTime $drinkwaterDatumOpname = null)
+    public function setDrinkwaterDatumOpname(\DateTime $drinkwaterDatumOpname = null)
     {
         $this->drinkwaterDatumOpname = $drinkwaterDatumOpname;
     }

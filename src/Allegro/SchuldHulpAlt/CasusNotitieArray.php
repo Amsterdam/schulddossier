@@ -10,9 +10,10 @@ class CasusNotitieArray
      */
     protected $TCasusNotitie = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class CasusNotitieArray
      */
     public function getTCasusNotitie()
     {
-        return $this->TCasusNotitie;
+      return $this->TCasusNotitie;
     }
 
     /**
      * @param TCasusNotitie[] $TCasusNotitie
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\CasusNotitieArray
      */
-    public function setTCasusNotitie(?array $TCasusNotitie = null)
+    public function setTCasusNotitie(array $TCasusNotitie = null)
     {
-        $this->TCasusNotitie = $TCasusNotitie;
-        return $this;
+      $this->TCasusNotitie = $TCasusNotitie;
+      return $this;
     }
 
 }

@@ -21,7 +21,7 @@ class ChangeDossierClientType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -181,10 +181,10 @@ class ChangeDossierClientType extends AbstractType
             'required' => false,
             'help' => 'DB: dossier.client_kinderen'
         ]);
-    }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
+
+    }
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults([
             'data_class' => Dossier::class,
         ]);

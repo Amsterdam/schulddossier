@@ -4,9 +4,12 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Table]
-#[ORM\Index(name: 'idx_dossier_timeline', columns: ['dossier_id', 'type', 'subtype'])]
-#[ORM\Entity]
+/**
+ * @ORM\Entity
+ * @ORM\Table(
+ *  indexes={@ORM\Index(name="idx_dossier_timeline", columns={"dossier_id", "type", "subtype"})}
+ * )
+ */
 class DossierTimeline
 {
     const TYPE_OPERATION = 'operation';
@@ -14,54 +17,54 @@ class DossierTimeline
 
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    #[ORM\Id]
-    #[ORM\Column(type: 'integer', nullable: false)]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private $id;
 
     /**
      * @var Dossier
+     * @ORM\ManyToOne(targetEntity="Dossier", inversedBy="timeline")
+     * @ORM\JoinColumn(name="dossier_id", referencedColumnName="id", nullable=false)
      */
-    #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Dossier::class, inversedBy: 'timeline')]
     private $dossier;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=false)
      */
-    #[ORM\Column(type: 'datetime', nullable: false)]
     private $datumtijd;
 
     /**
      * @var Gebruiker
+     * @ORM\ManyToOne(targetEntity="Gebruiker")
+     * @ORM\JoinColumn(name="gebruiker_id", referencedColumnName="id", nullable=true)
      */
-    #[ORM\JoinColumn(name: 'gebruiker_id', referencedColumnName: 'id', nullable: true)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
     private $gebruiker;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=50, nullable=false)
      */
-    #[ORM\Column(type: 'string', length: 50, nullable: false)]
     private $type;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=125, nullable=true)
      */
-    #[ORM\Column(type: 'string', length: 125, nullable: true)]
     private $subtype;
 
     /**
      * @var string
+     * @ORM\Column(type="text", nullable=true)
      */
-    #[ORM\Column(type: 'text', nullable: true)]
     private $omschrijving;
 
     /**
      * @var array
+     * @ORM\Column(type="json", nullable=true)
      */
-    #[ORM\Column(type: 'json', nullable: true)]
     private $data;
 
     public function getId()

@@ -10,9 +10,10 @@ class TrajectSoortArray
      */
     protected $TTrajectSoort = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class TrajectSoortArray
      */
     public function getTTrajectSoort()
     {
-        return $this->TTrajectSoort;
+      return $this->TTrajectSoort;
     }
 
     /**
      * @param TTrajectSoort[] $TTrajectSoort
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TrajectSoortArray
      */
-    public function setTTrajectSoort(?array $TTrajectSoort = null)
+    public function setTTrajectSoort(array $TTrajectSoort = null)
     {
-        $this->TTrajectSoort = $TTrajectSoort;
-        return $this;
+      $this->TTrajectSoort = $TTrajectSoort;
+      return $this;
     }
 
 }

@@ -4,9 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 
 class SchuldItemFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
@@ -15,11 +12,11 @@ class SchuldItemFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture impleme
     /**
      * @inheritDoc
      */
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $manager)
     {
-        $dossier = $this->getReference('dossier', Dossier::class);
-        $gebruiker = $this->getReference(GebruikerFixtures::SHV_USER_REFERENCE, Gebruiker::class);
-        $schuldeiser = $this->getReference('schuldeiser', Schuldeiser::class);
+        $dossier = $this->getReference('dossier');
+        $gebruiker = $this->getReference(GebruikerFixtures::SHV_USER_REFERENCE);
+        $schuldeiser = $this->getReference('schuldeiser');
 
         $schuldItem = new SchuldItem();
 
@@ -37,7 +34,7 @@ class SchuldItemFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture impleme
         $manager->flush();
     }
 
-    public function getDependencies(): array
+    public function getDependencies()
     {
         return [
             DossierFixtures::class,

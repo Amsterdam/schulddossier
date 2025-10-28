@@ -12,7 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SchuldeiserFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('bedrijfsnaam', TextType::class, [
             'label' => 'Bedrijfsnaam *',
@@ -64,7 +64,7 @@ class SchuldeiserFormType extends AbstractType
         ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('data_class', Schuldeiser::class);
         $resolver->setDefault('choice_translation_domain', false);

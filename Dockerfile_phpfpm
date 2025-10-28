@@ -1,4 +1,4 @@
-FROM php:8.4-fpm-alpine
+FROM php:8.2-fpm-alpine
 
 COPY certificates/adp_rootca.crt /usr/local/share/ca-certificates/adp_rootca.crt
 RUN update-ca-certificates --fresh
@@ -29,8 +29,7 @@ RUN docker-php-ext-install \
     soap \
     intl \
     gd \
-    xsl \
-    bcmath
+    xsl
 
 RUN docker-php-ext-configure \
     gd \
@@ -63,7 +62,7 @@ WORKDIR /var/www
 
 COPY --chown=www-data . /var/www
 
-RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts --optimize-autoloader
+RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
 
 RUN yarn --ignore-scripts --ignore-platform
 RUN yarn encore prod

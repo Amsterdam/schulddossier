@@ -7,25 +7,28 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 
-#[ORM\Table]
-#[ORM\UniqueConstraint(name: 'uq_file', columns: ['groep', 'directory', 'bestandsnaam'])]
-#[ORM\Entity]
+/**
+ * @ORM\Entity
+ * @ORM\Table(uniqueConstraints={
+ *  @ORM\UniqueConstraint(name="uq_file", columns={"groep", "directory", "bestandsnaam"})
+ * })
+ */
 class Document
 {
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    #[ORM\Id]
-    #[ORM\Column(type: 'integer', nullable: false)]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private $id;
 
     /**
      * @var File
      * Not mapped to database
+     * @Assert\NotBlank
+     * @Assert\File
      */
-    #[Assert\NotBlank]
-    #[Assert\File]
     private $file;
 
     /**
@@ -36,66 +39,66 @@ class Document
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private $origineleBestandsnaam;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=15, nullable=false)
      */
-    #[ORM\Column(type: 'string', length: 15, nullable: false)]
     private $origineleExtensie;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(min=1, max=255)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 1, max: 255)]
     private $naam;
 
     /**
      * @var Gebruiker
+     * @ORM\ManyToOne(targetEntity="Gebruiker")
+     * @ORM\JoinColumn(name="gebruiker_id", referencedColumnName="id", nullable=false)
      */
-    #[ORM\JoinColumn(name: 'gebruiker_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
     private $uploader;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=false)
+     * @Assert\NotBlank
      */
-    #[ORM\Column(type: 'datetime', nullable: false)]
-    #[Assert\NotBlank]
     private $uploadDatumTijd;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=32, nullable=false)
      */
-    #[ORM\Column(type: 'string', length: 32, nullable: false, name: 'md5hash')]
     private $md5Hash;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private $groep;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=1024, nullable=false)
      */
-    #[ORM\Column(type: 'string', length: 1024, nullable: false)]
     private $directory;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private $bestandsnaam;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=false)
      */
-    #[ORM\Column(type: 'boolean', nullable: false)]
     private $inPrullenbak;
 
     public function __construct()

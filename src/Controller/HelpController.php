@@ -1,33 +1,34 @@
 <?php
-
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
-use _HumbugBox6e20aa8b1e92\Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
-#[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+/**
+ * @Route("/app/help")
+ * @Security("is_granted('ROLE_USER')")
+ */
 class HelpController extends AbstractController
 {
     private $session;
 
-    public function __construct(RequestStack $requestStack)
+    public function __construct(SessionInterface $session)
     {
-        $this->session = $requestStack->getSession();
+        $this->session = $session;
     }
-
-    #[Route(path: '/app/help/')]
-    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
-    public function index(): Response
+    /**
+     * @Route("/")
+     * @Security("is_granted('ROLE_USER')")
+     */
+    public function indexAction(Request $request)
     {
         return $this->render('Help/index.html.twig');
     }

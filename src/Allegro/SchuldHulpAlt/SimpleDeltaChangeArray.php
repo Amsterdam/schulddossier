@@ -10,9 +10,10 @@ class SimpleDeltaChangeArray
      */
     protected $SimpleDeltaChange = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class SimpleDeltaChangeArray
      */
     public function getSimpleDeltaChange()
     {
-        return $this->SimpleDeltaChange;
+      return $this->SimpleDeltaChange;
     }
 
     /**
      * @param SimpleDeltaChange[] $SimpleDeltaChange
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SimpleDeltaChangeArray
      */
-    public function setSimpleDeltaChange(?array $SimpleDeltaChange = null)
+    public function setSimpleDeltaChange(array $SimpleDeltaChange = null)
     {
-        $this->SimpleDeltaChange = $SimpleDeltaChange;
-        return $this;
+      $this->SimpleDeltaChange = $SimpleDeltaChange;
+      return $this;
     }
 
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -27,7 +26,7 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
         $this->featureflagHerfinanciering = $featureflagHerfinanciering;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('ondertekendAanvraagFormulierOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
@@ -41,34 +40,28 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             'required' => false,
             'label' => 'Jongeren Schuldenvrije Start (JSS)',
             'help' => 'DB: voorlegger.jongeren_schuldenvrije_start',
-            'constraints' => [
-                new Callback(function ($value, ExecutionContextInterface $executionContext): void {
-                    /**
-                     * @var Voorlegger $voorlegger
-                     */
-                    $voorlegger = $executionContext->getRoot()->getData();
+            'constraints' => [new Callback(function($value, ExecutionContextInterface $executionContext) {
+                /**
+                 * @var Voorlegger $voorlegger
+                 */
+                $voorlegger = $executionContext->getRoot()->getData();
 
-                    if (!$voorlegger->getJongerenSchuldenvrijeStart() && ($voorlegger->getJssAdviseurEmail(
-                            ) || $voorlegger->getJssAdviseurNaam() || $voorlegger->getJssAdviseurTelefoon())) {
-                        $voorlegger->setJssAdviseurEmail(null);
-                        $voorlegger->setJssAdviseurNaam(null);
-                        $voorlegger->setJssAdviseurTelefoon(null);
+                if (!$voorlegger->getJongerenSchuldenvrijeStart() && ($voorlegger->getJssAdviseurEmail() || $voorlegger->getJssAdviseurNaam() || $voorlegger->getJssAdviseurTelefoon())) {
+                    $voorlegger->setJssAdviseurEmail(null);
+                    $voorlegger->setJssAdviseurNaam(null);
+                    $voorlegger->setJssAdviseurTelefoon(null);
 
-                        $executionContext->buildViolation(
-                            'De JSS velden dienen alleen ingevuld te worden bij Jongeren Schuldenvrije Start.'
-                        )
-                            ->atPath('jongerenSchuldenvrijeStart')
-                            ->addViolation();
-                    }
+                    $executionContext->buildViolation('De JSS velden dienen alleen ingevuld te worden bij Jongeren Schuldenvrije Start.')
+                        ->atPath('jongerenSchuldenvrijeStart')
+                        ->addViolation();
+                }
 
-                    if ($voorlegger->getJongerenSchuldenvrijeStart() && (!$voorlegger->getJssAdviseurEmail(
-                            ) || !$voorlegger->getJssAdviseurNaam() || !$voorlegger->getJssAdviseurTelefoon())) {
-                        $executionContext->buildViolation('Vul alle JSS velden in.')
-                            ->atPath('jongerenSchuldenvrijeStart')
-                            ->addViolation();
-                    }
-                })
-            ]
+                if ($voorlegger->getJongerenSchuldenvrijeStart() && (!$voorlegger->getJssAdviseurEmail() || !$voorlegger->getJssAdviseurNaam() || !$voorlegger->getJssAdviseurTelefoon())) {
+                    $executionContext->buildViolation('Vul alle JSS velden in.')
+                        ->atPath('jongerenSchuldenvrijeStart')
+                        ->addViolation();
+                }
+            })]
         ]);
         $builder->add('jssAdviseurNaam', TextType::class, [
             'required' => false,
@@ -138,7 +131,7 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             ]
         ]);
 
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
             unset($data['file']['__name__']);
             unset($data['removeFile']['__name__']);
@@ -153,7 +146,7 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
         }
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('data_class', Voorlegger::class);
         $resolver->setDefault('choice_translation_domain', false);

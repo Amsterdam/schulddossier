@@ -1,7 +1,6 @@
 server {
     listen 8080 default;
     server_name schulddossier.amsterdam.nl;
-    server_tokens off;
 
     root /var/www/public;
     index index.php;
@@ -52,13 +51,6 @@ server {
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param PATH_INFO $fastcgi_path_info;
         fastcgi_param HTTPS on;
-
-        fastcgi_hide_header Cache-Control;
-        add_header Cache-Control "private, max-age=0, no-cache" always;
-
-        fastcgi_hide_header Pragma;
-        add_header Pragma "no-cache";
-
         internal;
     }
 

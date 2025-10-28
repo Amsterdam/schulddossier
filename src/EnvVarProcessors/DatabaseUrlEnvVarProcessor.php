@@ -7,11 +7,9 @@ use Symfony\Component\DependencyInjection\EnvVarProcessorInterface;
 
 class DatabaseUrlEnvVarProcessor implements EnvVarProcessorInterface
 {
-    public function __construct(private AzureDatabase $azureDatabase)
-    {
-    }
+    public function __construct(private AzureDatabase $azureDatabase){}
 
-    public function getEnv(string $prefix, string $name, \Closure $getEnv): mixed
+    public function getEnv(string $prefix, string $name, \Closure $getEnv)
     {
         $env = $getEnv($name);
         $parsedUrl = parse_url($env);
@@ -22,7 +20,7 @@ class DatabaseUrlEnvVarProcessor implements EnvVarProcessorInterface
         return str_replace($fakePassword, $newPassword, $env);
     }
 
-    public static function getProvidedTypes(): array
+    public static function getProvidedTypes()
     {
         return [
             'dburl' => 'string',

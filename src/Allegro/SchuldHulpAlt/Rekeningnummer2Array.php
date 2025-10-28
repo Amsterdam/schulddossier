@@ -10,9 +10,10 @@ class Rekeningnummer2Array
      */
     protected $TRekeningnummer = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class Rekeningnummer2Array
      */
     public function getTRekeningnummer()
     {
-        return $this->TRekeningnummer;
+      return $this->TRekeningnummer;
     }
 
     /**
      * @param TRekeningnummer[] $TRekeningnummer
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\Rekeningnummer2Array
      */
-    public function setTRekeningnummer(?array $TRekeningnummer = null)
+    public function setTRekeningnummer(array $TRekeningnummer = null)
     {
-        $this->TRekeningnummer = $TRekeningnummer;
-        return $this;
+      $this->TRekeningnummer = $TRekeningnummer;
+      return $this;
     }
 
 }

@@ -10,9 +10,10 @@ class TableRequestInfoArray
      */
     protected $TableRequestInfo = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class TableRequestInfoArray
      */
     public function getTableRequestInfo()
     {
-        return $this->TableRequestInfo;
+      return $this->TableRequestInfo;
     }
 
     /**
      * @param TableRequestInfo[] $TableRequestInfo
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TableRequestInfoArray
      */
-    public function setTableRequestInfo(?array $TableRequestInfo = null)
+    public function setTableRequestInfo(array $TableRequestInfo = null)
     {
-        $this->TableRequestInfo = $TableRequestInfo;
-        return $this;
+      $this->TableRequestInfo = $TableRequestInfo;
+      return $this;
     }
 
 }

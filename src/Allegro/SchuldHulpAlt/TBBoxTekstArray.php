@@ -10,9 +10,10 @@ class TBBoxTekstArray
      */
     protected $TBBoxTekst = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class TBBoxTekstArray
      */
     public function getTBBoxTekst()
     {
-        return $this->TBBoxTekst;
+      return $this->TBBoxTekst;
     }
 
     /**
      * @param TBBoxTekst[] $TBBoxTekst
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBoxTekstArray
      */
-    public function setTBBoxTekst(?array $TBBoxTekst = null)
+    public function setTBBoxTekst(array $TBBoxTekst = null)
     {
-        $this->TBBoxTekst = $TBBoxTekst;
-        return $this;
+      $this->TBBoxTekst = $TBBoxTekst;
+      return $this;
     }
 
 }

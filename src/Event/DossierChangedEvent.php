@@ -10,23 +10,45 @@ class DossierChangedEvent extends Event
 {
     const NAME = 'app.dossier.changed';
 
-    public function __construct(
-        public Dossier $dossier {
-            get {
-                return $this->dossier;
-            }
-        },
-        public Gebruiker $gebruiker {
-            get {
-                return $this->gebruiker;
-            }
-        },
-        public ?string $forceType = null {
-            get {
-                return $this->forceType;
-            }
-        }
-    )
+    /**
+     * @var Dossier
+     */
+    private $dossier;
+
+    /**
+     * @var Gebruiker
+     */
+    private $gebruiker;
+
+    /**
+     * @var string|null
+     */
+    private $forceType;
+
+
+    /**
+     * @param Dossier $dossier
+     * @param Gebruiker $gebruiker
+     */
+    public function __construct(Dossier $dossier, Gebruiker $gebruiker, string $forceType = null)
     {
+        $this->dossier = $dossier;
+        $this->gebruiker = $gebruiker;
+        $this->forceType = $forceType;
+    }
+
+    public function getDossier()
+    {
+        return $this->dossier;
+    }
+
+    public function getGebruiker()
+    {
+        return $this->gebruiker;
+    }
+    
+    public function getForceType(): ?string
+    {
+        return $this->forceType;
     }
 }

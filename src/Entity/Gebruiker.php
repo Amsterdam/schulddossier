@@ -4,22 +4,27 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
 use Serializable;
 use Symfony\Component\Security\Core\User\EquatableInterface;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-#[ORM\Table]
-#[ORM\Index(name: 'idx_verwijderd_datetime', columns: ['verwijderd_date_time'])]
-#[ORM\UniqueConstraint(name: 'uq_username', columns: ['username'])]
-#[ORM\UniqueConstraint(name: 'uq_email', columns: ['email'])]
-#[ORM\Entity(repositoryClass: \GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository::class)]
-#[UniqueEntity('email')]
-#[UniqueEntity('username')]
-class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthenticatedUserInterface
+/**
+ * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
+ * @ORM\Table(
+ *  uniqueConstraints={
+ *      @ORM\UniqueConstraint(name="uq_username", columns={"username"}),
+ *      @ORM\UniqueConstraint(name="uq_email", columns={"email"})
+ *  },
+ *  indexes={
+ *      @ORM\Index(name="idx_verwijderd_datetime", columns={"verwijderd_date_time"}),
+ *  })
+ * )
+ * @UniqueEntity("email")
+ * @UniqueEntity("username")
+ */
+class Gebruiker implements UserInterface, \Serializable, EquatableInterface
 {
     const TYPE_ADMIN = 'admin';
 
@@ -33,102 +38,103 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
 
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    #[ORM\Id]
-    #[ORM\Column(type: 'integer', nullable: false)]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $username;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $password;
 
     /**
      * @var string
      * Not mapped to database
+     * @Assert\Length(min=8, groups={"password"})
      * @Rollerworks\Component\PasswordStrength\Validator\Constraints\PasswordStrength(minStrength=4, message="Een wachtwoord moet minimaal een cijfer, een speciaal karakter, hoofdletter en kleine letter bevatten en bij elkaar 8 tekens of meer zijn.", minLength=0, groups={"password"})
      */
-    #[Assert\Length(min: 8, groups: ['password'])]
     private $clearPassword;
 
     /**
      * @var \DateTime|NULL
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    #[ORM\Column(type: 'datetime', nullable: true)]
     private $passwordChangedDateTime;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=100, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Choice(callback="getTypesList")
      */
-    #[ORM\Column(type: 'string', length: 100, nullable: false)]
-    #[Assert\NotBlank]
-    #[Assert\Choice(callback: 'getTypesList')]
     private $type;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length(min=1, max=255)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 1, max: 255)]
     private $naam;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Email
+     * @Assert\Length(min=1, max=255)
      */
-    #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    #[Assert\NotBlank]
-    #[Assert\Email]
-    #[Assert\Length(min: 1, max: 255)]
     private $email;
 
     /**
      * @var \DateTime|null
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    #[ORM\Column(type: 'datetime', nullable: true)]
     private $lastLogin;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=12, nullable=true)
+     * @Assert\Length(max=12, groups={"mijn-gegevens"})
      */
-    #[ORM\Column(type: 'string', length: 12, nullable: true)]
-    #[Assert\Length(max: 12, groups: ['mijn-gegevens'])]
     private $telefoonnummer;
 
     /**
      * @var Team
+     * @ORM\ManyToOne(targetEntity="Team")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true)
      */
-    #[ORM\JoinColumn(name: 'team_id', referencedColumnName: 'id', nullable: true)]
-    #[ORM\ManyToOne(targetEntity: \Team::class)]
     private $teamGka;
 
     /**
      * @var Organisatie[]|ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Organisatie")
+     * @ORM\JoinTable(
+     *  joinColumns={@ORM\JoinColumn(name="gebruiker_id", referencedColumnName="id")},
+     *  inverseJoinColumns={@ORM\JoinColumn(name="organisatie_id", referencedColumnName="id")}
+     * )
      */
-    #[ORM\JoinTable]
-    #[\Doctrine\ORM\Mapping\JoinColumn(name: 'gebruiker_id', referencedColumnName: 'id')]
-    #[\Doctrine\ORM\Mapping\InverseJoinColumn(name: 'organisatie_id', referencedColumnName: 'id')]
-    #[ORM\ManyToMany(targetEntity: \Organisatie::class)]
     private $organisaties;
 
     /**
      * @var boolean
+     * @ORM\Column(type="boolean", nullable=false)
      */
-    #[ORM\Column(type: 'boolean', nullable: false)]
     private $enabled;
 
     /**
      * @var \DateTime|NULL
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    #[ORM\Column(type: 'datetime', nullable: true)]
     private $verwijderdDateTime;
 
     public function __construct()
@@ -141,7 +147,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getRoles()
      */
-    public function getRoles(): array
+    public function getRoles()
     {
         return ['ROLE_USER', 'ROLE_' . strtoupper($this->getType())];
     }
@@ -150,7 +156,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getSalt()
      */
-    public function getSalt(): ?string
+    public function getSalt()
     {
         return null;
     }
@@ -159,7 +165,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::eraseCredentials()
      */
-    public function eraseCredentials(): void
+    public function eraseCredentials()
     {
         //
     }
@@ -168,12 +174,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getUsername()
      */
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-
-    public function getUserIdentifier(): string
+    public function getUsername()
     {
         return $this->username;
     }
@@ -182,7 +183,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getPassword()
      */
-    public function getPassword(): ?string
+    public function getPassword()
     {
         return $this->password;
     }
@@ -246,7 +247,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
     /**
      * @param \DateTime $passwordChangedDateTime
      */
-    public function setPasswordChangedDateTime(?\DateTime $passwordChangedDateTime)
+    public function setPasswordChangedDateTime(\DateTime $passwordChangedDateTime = null)
     {
         $this->passwordChangedDateTime = $passwordChangedDateTime;
     }
@@ -278,22 +279,22 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
         $this->telefoonnummer = $telefoonnummer;
     }
 
-    public function getTeamGka(): ?Team
+    public function getTeamGka()
     {
         return $this->teamGka;
     }
 
-    public function setTeamGka(?Team $teamGka = null): void
+    public function setTeamGka(Team $teamGka = null)
     {
         $this->teamGka = $teamGka;
     }
 
-    public function getOrganisaties(): PersistentCollection|array
+    public function getOrganisaties()
     {
         return $this->organisaties;
     }
 
-    public function addOrganisatie(Organisatie $organisatie): void
+    public function addOrganisatie(Organisatie $organisatie)
     {
         if ($this->hasOrganisatie($organisatie) === false) {
             $this->organisaties->add($organisatie);
@@ -394,7 +395,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      *
      * @return string[]
      */
-    public static function getTypes(?string $type = null)
+    public static function getTypes(string $type = null)
     {
         $defaultTypes = [];
         switch ($type) {
@@ -448,29 +449,27 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
         return array_search($type, array_merge(...array_values(self::getTypes('ALL_TYPES'))));
     }
 
-    /**
-     * The equality comparison should neither be done by referential equality
-     * nor by comparing identities (i.e. getId() === getId()).
-     *
-     * However, you do not need to compare every attribute, but only those that
-     * are relevant for assessing whether re-authentication is required.
-     *
-     * @return bool
-     */
-    public function isEqualTo(UserInterface $user): bool
+    public function isEqualTo(UserInterface $user)
     {
         /* @var $user Gebruiker */
-        if (
-            $user->getId() !== $this->getId() ||
-            $user->getEmail() !== $this->getEmail() ||
-            $user->getTelefoonnummer() !== $this->getTelefoonnummer() ||
-            $user->getUserIdentifier() !== $this->getUserIdentifier() ||
-            $user->getType() !== $this->getType() ||
-            $user->isEnabled() !== $this->isEnabled()
-        ) {
+        if ($user->getId() !== $this->getId()) {
             return false;
         }
-
+        if ($user->getEmail() !== $this->getEmail()) {
+            return false;
+        }
+        if ($user->getTelefoonnummer() !== $this->getTelefoonnummer()) {
+            return false;
+        }
+        if ($user->getUsername() !== $this->getUsername()) {
+            return false;
+        }
+        if ($user->getType() !== $this->getType()) {
+            return false;
+        }
+        if ($user->isEnabled() !== $this->isEnabled()) {
+            return false;
+        }
         return true;
     }
 
@@ -588,7 +587,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
         return $this;
     }
 
-    public function anonymize(): void
+    public function anonymize()
     {
         $uniqueSuffix = uniqid();
         $this->setUsername("geanonimiseerd-" . $uniqueSuffix);

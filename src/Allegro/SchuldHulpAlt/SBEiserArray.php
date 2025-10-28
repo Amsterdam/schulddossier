@@ -10,9 +10,10 @@ class SBEiserArray
      */
     protected $TSBEiser = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class SBEiserArray
      */
     public function getTSBEiser()
     {
-        return $this->TSBEiser;
+      return $this->TSBEiser;
     }
 
     /**
      * @param TSBEiser[] $TSBEiser
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SBEiserArray
      */
-    public function setTSBEiser(?array $TSBEiser = null)
+    public function setTSBEiser(array $TSBEiser = null)
     {
-        $this->TSBEiser = $TSBEiser;
-        return $this;
+      $this->TSBEiser = $TSBEiser;
+      return $this;
     }
 
 }

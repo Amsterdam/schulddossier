@@ -10,9 +10,10 @@ class VariantArray
      */
     protected $anyType = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class VariantArray
      */
     public function getAnyType()
     {
-        return $this->anyType;
+      return $this->anyType;
     }
 
     /**
      * @param anyType[] $anyType
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\VariantArray
      */
-    public function setAnyType(?array $anyType = null)
+    public function setAnyType(array $anyType = null)
     {
-        $this->anyType = $anyType;
-        return $this;
+      $this->anyType = $anyType;
+      return $this;
     }
 
 }

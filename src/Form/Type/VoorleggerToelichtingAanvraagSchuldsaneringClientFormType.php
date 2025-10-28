@@ -1,5 +1,4 @@
 <?php
-
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -14,7 +13,7 @@ use Symfony\Component\Validator\Constraints\Valid;
 
 class VoorleggerToelichtingAanvraagSchuldsaneringClientFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('toelichtingAanvraagSchuldsaneringClientOntvangenShv', ShvStatusFormType::class, [
             'required' => true,
@@ -52,7 +51,7 @@ class VoorleggerToelichtingAanvraagSchuldsaneringClientFormType extends Abstract
             ]
         ]);
 
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
             unset($data['file']['__name__']);
             unset($data['removeFile']['__name__']);
@@ -60,7 +59,7 @@ class VoorleggerToelichtingAanvraagSchuldsaneringClientFormType extends Abstract
         });
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('data_class', Voorlegger::class);
         $resolver->setDefault('choice_translation_domain', false);

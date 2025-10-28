@@ -3,10 +3,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Persistence\ObjectManager as ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 
 class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
 {
@@ -20,11 +17,11 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
     /**
      * @inheritDoc
      */
-    public function load(ObjectManager $manager): void
+    public function load(\Doctrine\Persistence\ObjectManager $manager)
     {
         $users = $this->loadUsersJson();
 
-        $schuldhulpverlener = $this->getReference('schuldhulpverlener', Organisatie::class);
+        $schuldhulpverlener = $this->getReference('schuldhulpverlener');
 
         foreach ($users as $user) {
             $gebruiker = new Gebruiker();
@@ -38,7 +35,7 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
             if ($gebruiker->isSchuldhulpverlener()) {
                 $gebruiker->addOrganisatie($schuldhulpverlener);
             } else {
-                $gebruiker->setTeamGka($this->getReference(TeamFixtures::TEAM_3_REFERENCE, Team::class));
+                $gebruiker->setTeamGka($this->getReference(TeamFixtures::TEAM_3_REFERENCE));
             }
 
             if (isset($user['last_login_interval'])) {
@@ -70,7 +67,7 @@ class GebruikerFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implemen
         return array_values(array_filter(json_decode($jsonString, true)));
     }
 
-    public function getDependencies(): array
+    public function getDependencies()
     {
         return [
             OrganisatieFixtures::class,

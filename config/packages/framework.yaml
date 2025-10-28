@@ -1,53 +1,46 @@
 framework:
-  secret: '%env(APP_SECRET)%'
-  default_locale: nl
-  #csrf_protection: true
-  http_method_override: false
-  handle_all_throwables: true
+    secret: '%env(APP_SECRET)%'
+    default_locale: nl
+    #csrf_protection: true
+    #http_method_override: true
 
+    session:
+        handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+        cookie_lifetime: 0
+        gc_maxlifetime: 28800
 
-  annotations:
-    enabled: false
+    #esi: true
+    #fragments: true
+    php_errors:
+        log: true
 
-  session:
-    handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
-    cookie_lifetime: 0
-    gc_maxlifetime: 28800
-    cookie_secure: auto
-    cookie_samesite: lax
+    cache:
+        # Put the unique name of your app here: the prefix seed
+        # is used to compute stable namespaces for cache keys.
+        #prefix_seed: your_vendor_name/app_name
 
-  #esi: true
-  #fragments: true
-  php_errors:
-    log: true
+        # The app cache caches to the filesystem by default.
+        # Other options include:
 
-  cache:
-  # Put the unique name of your app here: the prefix seed
-  # is used to compute stable namespaces for cache keys.
-  #prefix_seed: your_vendor_name/app_name
+        # Redis
+        #app: cache.adapter.redis
+        #default_redis_provider: redis://localhost
 
-  # The app cache caches to the filesystem by default.
-  # Other options include:
-
-  # Redis
-  #app: cache.adapter.redis
-  #default_redis_provider: redis://localhost
-
-  # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
-  #app: cache.adapter.apcu
-
-  #assets:
-  #    version_strategy: 'app.asset.my_versioning_strategy'
+        # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
+        #app: cache.adapter.apcu
+        
+    #assets:
+    #    version_strategy: 'app.asset.my_versioning_strategy'
 
 services:
+    
+    app.asset.my_versioning_strategy:
+        class: Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy
+        arguments:
+            - !service { class: GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion, factory: 'GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion::getEnvVersion', arguments: ['%kernel.environment%','%kernel.project_dir%'] }
 
-  app.asset.my_versioning_strategy:
-    class: Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy
-    arguments:
-      - !service { class: GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion, factory: 'GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion::getEnvVersion', arguments: [ '%kernel.environment%','%kernel.project_dir%' ] }
 
-
-  Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
-    arguments:
-      - '%env(dburl:DATABASE_URL)%'
-      - { lock_mode: 1 }
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
+        arguments:
+            - '%env(dburl:DATABASE_URL)%'
+            - { lock_mode: 1 }

@@ -23,16 +23,13 @@ class DossierDocumentNormalizer implements NormalizerInterface, NormalizerAwareI
         $this->router = $router;
     }
 
-    public function supportsNormalization($data, $format = null, array $context = []): bool
+    public function supportsNormalization($data, $format = null)
     {
         return $data instanceof DossierDocument;
     }
 
-    public function normalize(
-        $object,
-        $format = null,
-        array $context = []
-    ): array|string|int|float|bool|\ArrayObject|null {
+    public function normalize($object, $format = null, array $context = [])
+    {
         /** @var $object DossierDocument */
         return [
             'id' => $object->getId(),
@@ -47,25 +44,10 @@ class DossierDocumentNormalizer implements NormalizerInterface, NormalizerAwareI
                 'naam' => $object->getDocument()->getNaam(),
                 'origineleBestandsnaam' => $object->getDocument()->getOrigineleBestandsnaam(),
                 'origineleExtensie' => $object->getDocument()->getOrigineleExtensie(),
-                'uploadDatumTijd' => $this->normalizer->normalize(
-                    $object->getDocument()->getUploadDatumTijd(),
-                    $format,
-                    $context
-                ),
+                'uploadDatumTijd' => $this->normalizer->normalize($object->getDocument()->getUploadDatumTijd(), $format, $context),
                 'uploader' => $this->normalizer->normalize($object->getDocument()->getUploader(), $format, $context),
-                'url' => $this->router->generate(
-                    'gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument',
-                    ['dossierId' => $object->getDossier()->getId(), 'documentId' => $object->getDocument()->getId()],
-                    UrlGeneratorInterface::ABSOLUTE_URL
-                )
+                'url' => $this->router->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', ['dossierId' => $object->getDossier()->getId(), 'documentId' => $object->getDocument()->getId()], UrlGeneratorInterface::ABSOLUTE_URL)
             ]
-        ];
-    }
-
-    public function getSupportedTypes(?string $format): array
-    {
-        return [
-            DossierDocument::class => false,
         ];
     }
 

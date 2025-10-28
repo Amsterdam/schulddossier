@@ -10,9 +10,10 @@ class OpdrachtgeverKlantArray
      */
     protected $TOpdrachtgeverKlant = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class OpdrachtgeverKlantArray
      */
     public function getTOpdrachtgeverKlant()
     {
-        return $this->TOpdrachtgeverKlant;
+      return $this->TOpdrachtgeverKlant;
     }
 
     /**
      * @param TOpdrachtgeverKlant[] $TOpdrachtgeverKlant
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\OpdrachtgeverKlantArray
      */
-    public function setTOpdrachtgeverKlant(?array $TOpdrachtgeverKlant = null)
+    public function setTOpdrachtgeverKlant(array $TOpdrachtgeverKlant = null)
     {
-        $this->TOpdrachtgeverKlant = $TOpdrachtgeverKlant;
-        return $this;
+      $this->TOpdrachtgeverKlant = $TOpdrachtgeverKlant;
+      return $this;
     }
 
 }

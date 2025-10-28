@@ -10,9 +10,10 @@ class SRVAanvraagHeaderArray
      */
     protected $TSRVAanvraagHeader = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class SRVAanvraagHeaderArray
      */
     public function getTSRVAanvraagHeader()
     {
-        return $this->TSRVAanvraagHeader;
+      return $this->TSRVAanvraagHeader;
     }
 
     /**
      * @param TSRVAanvraagHeader[] $TSRVAanvraagHeader
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SRVAanvraagHeaderArray
      */
-    public function setTSRVAanvraagHeader(?array $TSRVAanvraagHeader = null)
+    public function setTSRVAanvraagHeader(array $TSRVAanvraagHeader = null)
     {
-        $this->TSRVAanvraagHeader = $TSRVAanvraagHeader;
-        return $this;
+      $this->TSRVAanvraagHeader = $TSRVAanvraagHeader;
+      return $this;
     }
 
 }

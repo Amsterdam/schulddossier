@@ -11,7 +11,7 @@ class SchuldeiserFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
     /**
      * @inheritDoc
      */
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $manager)
     {
         $schuldEiser = new Schuldeiser();
 

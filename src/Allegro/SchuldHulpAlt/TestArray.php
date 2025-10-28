@@ -10,9 +10,10 @@ class TestArray
      */
     protected $TTest = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class TestArray
      */
     public function getTTest()
     {
-        return $this->TTest;
+      return $this->TTest;
     }
 
     /**
      * @param TTest[] $TTest
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TestArray
      */
-    public function setTTest(?array $TTest = null)
+    public function setTTest(array $TTest = null)
     {
-        $this->TTest = $TTest;
-        return $this;
+      $this->TTest = $TTest;
+      return $this;
     }
 
 }

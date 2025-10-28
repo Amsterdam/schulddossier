@@ -6,9 +6,6 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use DateTime;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 
 class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
 {
@@ -17,19 +14,19 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
     /**
      * @inheritDoc
      */
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $manager)
     {
         $dossiers = $this->loadDossiersJson();
-        $schuldhulpverlener = $this->getReference('schuldhulpverlener', Organisatie::class);
+        $schuldhulpverlener = $this->getReference('schuldhulpverlener');
 
         for ($i = 0; $i < 11; $i++) {
             $aanmaker = ($i % 2) === 0 ? GebruikerFixtures::SHV_USER_REFERENCE : GebruikerFixtures::SHV_KEYUSER_USER_REFERENCE;
 
             $dossier = new Dossier();
-            $dossier->setTeamGka($this->getReference('Team 3', Team::class));
+            $dossier->setTeamGka($this->getReference('Team 3'));
             $dossier->setOrganisatie($schuldhulpverlener);
             $dossier->setRegasNummer(($i + 2) . 634638 . $i);
-            $dossier->setMedewerkerOrganisatie($this->getReference($aanmaker, Gebruiker::class));
+            $dossier->setMedewerkerOrganisatie($this->getReference($aanmaker));
             $dossier->setClientVoorletters($dossiers[$i]['voorletters']);
             $dossier->setClientNaam($dossiers[$i]['naam']);
             $dossier->setClientGeslacht($dossiers[$i]['geslacht']);
@@ -42,7 +39,7 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
             $dossier->setClientPostcode('1018PB');
             $dossier->setClientWoonplaats('Amsterdam');
             $dossier->setPartnerNvt(true);
-            $dossier->setAanmaker($this->getReference($aanmaker, Gebruiker::class));
+            $dossier->setAanmaker($this->getReference($aanmaker));
             $dossier->setDossierTemplate('v1');
             $dossier->setStatus($dossiers[$i]['status']);
             $dossier->setEersteKeerVerzondenAanGKA($dossiers[$i]['verzondenGka']);
@@ -69,7 +66,7 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
         return array_values(array_filter(json_decode($jsonString, true)));
     }
 
-    public function getDependencies(): array
+    public function getDependencies()
     {
         return [
             TeamFixtures::class,

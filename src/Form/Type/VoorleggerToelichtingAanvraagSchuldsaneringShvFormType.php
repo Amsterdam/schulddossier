@@ -1,5 +1,4 @@
 <?php
-
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -15,8 +14,9 @@ use Symfony\Component\Validator\Constraints\Valid;
 
 class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder->add('ontstaanVanSchulden', ChoiceType::class, [
             'required' => false,
             'choices' => $this->getOntstaanVanSchuldenOptions(),
@@ -69,7 +69,7 @@ class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractTyp
             ]
         ]);
 
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
             unset($data['file']['__name__']);
             unset($data['removeFile']['__name__']);
@@ -77,15 +77,14 @@ class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractTyp
         });
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('data_class', Voorlegger::class);
         $resolver->setDefault('choice_translation_domain', false);
         $resolver->setDefault('disable_group', null);
     }
 
-    private function getOntstaanVanSchuldenOptions(): array
-    {
+    private function getOntstaanVanSchuldenOptions() {
         return [
             'Overlevingsschulden' => 'OVERLEVING',
             'Compensatieschulden' => 'COMPENSATIE',
@@ -94,8 +93,7 @@ class VoorleggerToelichtingAanvraagSchuldsaneringShvFormType extends AbstractTyp
         ];
     }
 
-    private function getInspanningsverplichting(): array
-    {
+    private function getInspanningsverplichting() {
         return [
             'Naar maximaal vermogen werkzaam' => 'MAXIMAAL_VERMOGEN',
             'Niet naar maximaal vermogen werkzaam, sollicitatieplicht, hogere aflossingscapaciteit verwacht' => 'HOGE_CAPACITEIT',

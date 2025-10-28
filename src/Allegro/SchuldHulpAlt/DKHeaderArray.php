@@ -10,9 +10,10 @@ class DKHeaderArray
      */
     protected $TDKHeader = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class DKHeaderArray
      */
     public function getTDKHeader()
     {
-        return $this->TDKHeader;
+      return $this->TDKHeader;
     }
 
     /**
      * @param TDKHeader[] $TDKHeader
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\DKHeaderArray
      */
-    public function setTDKHeader(?array $TDKHeader = null)
+    public function setTDKHeader(array $TDKHeader = null)
     {
-        $this->TDKHeader = $TDKHeader;
-        return $this;
+      $this->TDKHeader = $TDKHeader;
+      return $this;
     }
 
 }

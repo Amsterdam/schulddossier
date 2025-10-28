@@ -10,9 +10,10 @@ class SimpleDeltaArray
      */
     protected $SimpleDelta = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class SimpleDeltaArray
      */
     public function getSimpleDelta()
     {
-        return $this->SimpleDelta;
+      return $this->SimpleDelta;
     }
 
     /**
      * @param SimpleDelta[] $SimpleDelta
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SimpleDeltaArray
      */
-    public function setSimpleDelta(?array $SimpleDelta = null)
+    public function setSimpleDelta(array $SimpleDelta = null)
     {
-        $this->SimpleDelta = $SimpleDelta;
-        return $this;
+      $this->SimpleDelta = $SimpleDelta;
+      return $this;
     }
 
 }

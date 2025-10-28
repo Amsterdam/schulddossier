@@ -31,7 +31,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
     }
 
     /**
-     * @param Request $request
+     * @param Request               $request
      * @param AccessDeniedException $accessDeniedException
      *
      * @return string|Response
@@ -39,7 +39,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function handle(Request $request, AccessDeniedException $accessDeniedException): ?Response
+    public function handle(Request $request, AccessDeniedException $accessDeniedException)
     {
         /** @var Gebruiker $user */
         $user = $this->tokenStorage->getToken()->getUser();
@@ -49,7 +49,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
                 'message' => 'Gebruikerstype is onbekend. [' . $user->getEmail() . ']',
             ]), Response::HTTP_FORBIDDEN);
         }
-
+        
         return new Response($accessDeniedException->getMessage(), Response::HTTP_FORBIDDEN);
     }
 }

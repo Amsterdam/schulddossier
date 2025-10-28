@@ -10,9 +10,10 @@ class StringArray
      */
     protected $string = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class StringArray
      */
     public function getString()
     {
-        return $this->string;
+      return $this->string;
     }
 
     /**
      * @param string[] $string
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\StringArray
      */
-    public function setString(?array $string = null)
+    public function setString(array $string = null)
     {
-        $this->string = $string;
-        return $this;
+      $this->string = $string;
+      return $this;
     }
 
 }

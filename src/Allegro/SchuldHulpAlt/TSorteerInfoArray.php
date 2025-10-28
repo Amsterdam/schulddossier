@@ -10,9 +10,10 @@ class TSorteerInfoArray
      */
     protected $TSorteerInfo = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class TSorteerInfoArray
      */
     public function getTSorteerInfo()
     {
-        return $this->TSorteerInfo;
+      return $this->TSorteerInfo;
     }
 
     /**
      * @param TSorteerInfo[] $TSorteerInfo
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TSorteerInfoArray
      */
-    public function setTSorteerInfo(?array $TSorteerInfo = null)
+    public function setTSorteerInfo(array $TSorteerInfo = null)
     {
-        $this->TSorteerInfo = $TSorteerInfo;
-        return $this;
+      $this->TSorteerInfo = $TSorteerInfo;
+      return $this;
     }
 
 }

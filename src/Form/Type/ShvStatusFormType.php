@@ -1,5 +1,4 @@
 <?php
-
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -9,7 +8,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 
 class ShvStatusFormType extends AbstractType
 {
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('choices', [
             'open' => Voorlegger::STATUS_SHV_OPEN,
@@ -24,7 +23,7 @@ class ShvStatusFormType extends AbstractType
         $resolver->setDefault('required', true);
     }
 
-    public function getParent(): ?string
+    public function getParent()
     {
         return ChoiceType::class;
     }

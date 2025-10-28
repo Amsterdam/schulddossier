@@ -1,5 +1,4 @@
 <?php
-
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -9,7 +8,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 
 class GkaStatusFormType extends AbstractType
 {
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('choices', [
             'open' => Voorlegger::STATUS_GKA_OPEN,
@@ -22,7 +21,7 @@ class GkaStatusFormType extends AbstractType
         $resolver->setDefault('required', true);
     }
 
-    public function getParent(): ?string
+    public function getParent()
     {
         return ChoiceType::class;
     }

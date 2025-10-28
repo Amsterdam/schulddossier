@@ -30,6 +30,10 @@ docker-compose-dev.override.yml
 /vendor/
 /public/vendor/
 ###< symfony/framework-bundle ###
+
+###> symfony/web-server-bundle ###
+.web-server-pid
+###< symfony/web-server-bundle ###
 /public/scss/.sass-cache
 
 config/soap-client-allegro-login.php
@@ -45,7 +49,3 @@ kubycat-config.yaml
 /public/build/
 npm-debug.log
 yarn-error.log
-
-###> phpstan/phpstan ###
-phpstan.neon
-###< phpstan/phpstan ###
