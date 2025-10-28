@@ -9,6 +9,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
+use GemeenteAmsterdam\FixxxSchuldhulp\Traits\FilterAble;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -27,6 +28,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 class AppGebruikerController extends AbstractController
 {
+    use FilterAble;
 
     /**
      * @Route("/")
@@ -35,6 +37,10 @@ class AppGebruikerController extends AbstractController
     public function indexAction(Request $request, PaginatorInterface $paginator, GebruikerRepository $repository)
     {
         $inactive = 'gebruikers_inactive' === $request->get('_route');
+
+        if ($this->containsForbiddenFilterFields($request)) {
+            return new RedirectResponse($this->generateUnfilteredUrl($request));
+        }
 
         $pagination = $paginator->paginate(
             $repository->generatePaginationQueryForUser($this->getUser(), $inactive, false),
