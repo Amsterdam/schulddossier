@@ -1,0 +1,37 @@
+:root {
+  --ams-app-background-color: var(--ams-color-background);
+  --ams-app-max-inline-size: 120rem;
+  --ams-app-navigation-background-color: var(--ams-color-interactive);
+  --ams-app-navigation-inline-size: 7rem;
+  --ams-app-navigation-expanded-inline-size: 15rem;
+  --ams-app-navigation-menu-inline-block-start: var(--ams-space-m);
+  --ams-app-navigation-menu-link-color: var(--ams-color-interactive-inverse);
+  --ams-app-navigation-menu-link-font-family: var(--ams-typography-font-family);
+  --ams-app-navigation-menu-link-font-size: var(--ams-typography-body-text-font-size);
+  --ams-app-navigation-menu-link-text-decoration-thickness: var(--ams-links-text-decoration-thickness);
+  --ams-app-navigation-menu-item-menu-link-text-decoration-thickness: var(--ams-links-text-decoration-thickness);
+  --ams-app-navigation-menu-link-background-color: var(--ams-color-interactive);
+  --ams-app-navigation-menu-link-font-weight: var(--ams-typography-body-text-bold-font-weight);
+  --ams-app-navigation-menu-link-line-height: var(--ams-typography-body-text-small-line-height);
+  --ams-app-navigation-menu-link-outline-offset: var(--ams-focus-outline-offset);
+  --ams-app-navigation-menu-link-text-decoration-line: var(--ams-links-subtle-text-decoration-line);
+  --ams-app-navigation-menu-link-text-underline-offset: var(--ams-links-text-underline-offset);
+  --ams-app-navigation-menu-link-hover-background-color: var(--ams-color-interactive-hover);
+  --ams-app-navigation-menu-link-hover-text-decoration-line: var(--ams-links-subtle-hover-text-decoration-line);
+  --ams-app-navigation-menu-item-menu-link-background-color: var(--ams-color-background);
+  --ams-app-navigation-menu-item-menu-link-color: var(--ams-color-interactive);
+  --ams-app-navigation-menu-item-menu-link-text-decoration-line: var(--ams-links-subtle-text-decoration-line);
+  --ams-app-navigation-menu-item-menu-link-padding-block: var(--ams-space-xs);
+  --ams-app-navigation-menu-item-menu-link-hover-text-decoration-line: var(--ams-links-subtle-hover-text-decoration-line);
+  --ams-app-navigation-menu-item-menu-link-hover-color: var(--ams-color-interactive-hover);
+  --ams-app-navigation-menu-item-menu-link-current-page-border-inline-end-color: var(--ams-color-interactive);
+  --ams-app-navigation-menu-item-menu-link-current-page-hover-border-inline-end-color: var(--ams-color-interactive-hover);
+}
+
+body {
+  display: grid;
+  min-height: 100dvh;
+  margin-block: 0;
+  margin-inline: 0;
+  font-family: var(--ams-typography-font-family);
+}

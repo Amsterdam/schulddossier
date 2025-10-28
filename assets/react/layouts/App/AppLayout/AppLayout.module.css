@@ -1,0 +1,40 @@
+.app {
+  display: grid;
+  grid-template-areas:
+    "skiplink"
+    "header"
+    "navigation"
+    "content"
+    "footer";
+  grid-template-rows: auto auto auto 1fr auto;
+
+  > header {
+    grid-area: header;
+  }
+
+  > footer {
+    grid-area: footer;
+  }
+
+  @media screen and (width >= 68rem) {
+    grid-template-areas:
+      "skiplink skiplink"
+      "navigation header"
+      "navigation content"
+      "navigation footer";
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: auto 1fr;
+  }
+}
+
+.skiplink {
+  grid-area: skiplink;
+}
+
+.navigation {
+  grid-area: navigation;
+}
+
+.content {
+  grid-area: content;
+}

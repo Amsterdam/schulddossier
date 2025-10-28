@@ -1,7 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'React/base.html.twig' %}
+
+{% block title %}Dossiers - {{ parent() }}{% endblock %}
 
 {% block body %}
-  <div {{ react_component('Dossiers', {fullName: 'Dagobert Duck'}, {permanent: true}) }}>
+  <div {{ react_component('DossiersPage', {
+    dossiers,
+    gkaTeams,
+    medewerkers,
+    pagination,
+  }) }}>
       Loading...
   </div>
 {% endblock %}

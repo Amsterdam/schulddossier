@@ -1,5 +1,18 @@
 {
+  "name": "schulddossier",
+  "private": true,
+  "scripts": {
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production",
+    "postinstall": "mkdir -p ./public/vendor/moment && cp -R ./node_modules/moment ./public/vendor/moment && cp -R ./node_modules/@bevacqua ./public/vendor/bevacqua"
+  },
   "dependencies": {
+    "@amsterdam/design-system-assets": "^1.1.0",
+    "@amsterdam/design-system-css": "^2.0.1",
+    "@amsterdam/design-system-react": "^2.0.2",
+    "@amsterdam/design-system-react-icons": "^1.1.0",
+    "@amsterdam/design-system-tokens": "^2.0.0",
     "@bevacqua/rome": "^3.0.4",
     "ajv": "^6.12.3",
     "glob-parent": "^6.0.2",
@@ -20,12 +33,16 @@
     "@symfony/stimulus-bridge": "^3.2.2",
     "@symfony/ux-react": "file:vendor/symfony/ux-react/assets",
     "@symfony/webpack-encore": "^4.3.0",
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^24.9.1",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.1",
+    "clsx": "^2.1.1",
     "core-js": "^3.31.0",
     "file-loader": "^6.0.0",
     "json5": "^2.2.3",
     "loader-utils": "^3.2.1",
+    "lodash": "^4.17.21",
     "react": "^18.0",
     "react-dom": "^18.0",
     "sass": "^1.63.5",
@@ -34,11 +51,5 @@
     "typescript": "^5.9.3",
     "webpack-cli": "^5.1.4",
     "webpack-notifier": "^1.15.0"
-  },
-  "scripts": {
-    "dev": "encore dev",
-    "watch": "encore dev --watch",
-    "build": "encore production",
-    "postinstall": "mkdir -p ./public/vendor/moment && cp -R ./node_modules/moment ./public/vendor/moment && cp -R ./node_modules/@bevacqua ./public/vendor/bevacqua"
   }
 }

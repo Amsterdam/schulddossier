@@ -71,7 +71,7 @@ COPY --chown=www-data . /var/www
 RUN mkdir -p /var/www/var/cache \
     && mkdir -p /var/www/public/localworkingstorage/dossier
 
-RUN composer install --prefer-dist --no-progress --no-scripts --optimize-autoloader
+RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts --optimize-autoloader
 
 RUN yarn --ignore-scripts
 RUN yarn encore dev
