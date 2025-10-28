@@ -6,58 +6,60 @@ use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Table]
-#[ORM\Entity]
+/**
+ * @ORM\Entity
+ * @ORM\Table
+ */
 class Aantekening
 {
     use ExportAble;
     /**
      * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="bigint", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    #[ORM\Id]
-    #[ORM\Column(type: 'bigint', nullable: false)]
-    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private $id;
 
     /**
      * @var Dossier
+     * @ORM\ManyToOne(targetEntity="Dossier", inversedBy="aantekeningen")
+     * @ORM\JoinColumn(name="dossier_id", referencedColumnName="id", nullable=false)
      */
-    #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Dossier::class, inversedBy: 'aantekeningen')]
     private $dossier;
 
     /**
      * @var string
+     * @ORM\Column(length=255, nullable=false)
      */
-    #[ORM\Column(length: 255, nullable: false)]
     private $onderwerp;
 
     /**
      * @var SchuldItem
+     * @ORM\ManyToOne(targetEntity="SchuldItem", inversedBy="aantekeningen")
+     * @ORM\JoinColumn(name="schuld_item_id", referencedColumnName="id", nullable=true)
      */
-    #[ORM\JoinColumn(name: 'schuld_item_id', referencedColumnName: 'id', nullable: true)]
-    #[ORM\ManyToOne(targetEntity: \SchuldItem::class, inversedBy: 'aantekeningen')]
     private $schuldItem;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=false)
      */
-    #[ORM\Column(type: 'datetime', nullable: false)]
     private $datumTijd;
 
     /**
      * @var Gebruiker
+     * @ORM\ManyToOne(targetEntity="Gebruiker")
+     * @ORM\JoinColumn(name="gebruiker_id", referencedColumnName="id", nullable=false)
      */
-    #[ORM\JoinColumn(name: 'gebruiker_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
     private $gebruiker;
 
     /**
      * @var string
+     * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(min=1, max=20480)
+     * @Assert\NotBlank
      */
-    #[ORM\Column(type: 'text', nullable: true)]
-    #[Assert\Length(min: 1, max: 20480)]
-    #[Assert\NotBlank]
     private $tekst;
 
     public function __construct()

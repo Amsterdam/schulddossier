@@ -4,8 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
-use Override;
 
 class OrganisatieFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
 {
@@ -14,8 +12,7 @@ class OrganisatieFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
     /**
      * @inheritDoc
      */
-    #[Override]
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $manager)
     {
         $fictionalOrganisations = $this->loadOrganisatiesJson();
 
@@ -23,7 +20,7 @@ class OrganisatieFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
             $organisatie = new Organisatie();
             $organisatie->setNaam($org['naam']);
             $organisatie->setEmailAdresControle($org['email']);
-            $organisatie->setStandaardGkaTeam($this->getReference($org['teamGka'], Team::class));
+            $organisatie->setStandaardGkaTeam($this->getReference($org['teamGka']));
             $this->addReference($org['reference'], $organisatie);
 
             $manager->persist($organisatie);
@@ -41,8 +38,8 @@ class OrganisatieFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
         return array_values(array_filter(json_decode($jsonString, true)));
     }
 
-    public function getDependencies(): array
-    {
+    public function getDependencies()
+        {
             return [
                 TeamFixtures::class
             ];

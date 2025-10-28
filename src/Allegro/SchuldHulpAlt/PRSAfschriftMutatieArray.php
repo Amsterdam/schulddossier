@@ -10,9 +10,10 @@ class PRSAfschriftMutatieArray
      */
     protected $TPRSAfschriftMutatie = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class PRSAfschriftMutatieArray
      */
     public function getTPRSAfschriftMutatie()
     {
-        return $this->TPRSAfschriftMutatie;
+      return $this->TPRSAfschriftMutatie;
     }
 
     /**
      * @param TPRSAfschriftMutatie[] $TPRSAfschriftMutatie
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\PRSAfschriftMutatieArray
      */
-    public function setTPRSAfschriftMutatie(?array $TPRSAfschriftMutatie = null)
+    public function setTPRSAfschriftMutatie(array $TPRSAfschriftMutatie = null)
     {
-        $this->TPRSAfschriftMutatie = $TPRSAfschriftMutatie;
-        return $this;
+      $this->TPRSAfschriftMutatie = $TPRSAfschriftMutatie;
+      return $this;
     }
 
 }

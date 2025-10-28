@@ -10,9 +10,10 @@ class PRSAfschriftArray
      */
     protected $TPRSAfschrift = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class PRSAfschriftArray
      */
     public function getTPRSAfschrift()
     {
-        return $this->TPRSAfschrift;
+      return $this->TPRSAfschrift;
     }
 
     /**
      * @param TPRSAfschrift[] $TPRSAfschrift
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\PRSAfschriftArray
      */
-    public function setTPRSAfschrift(?array $TPRSAfschrift = null)
+    public function setTPRSAfschrift(array $TPRSAfschrift = null)
     {
-        $this->TPRSAfschrift = $TPRSAfschrift;
-        return $this;
+      $this->TPRSAfschrift = $TPRSAfschrift;
+      return $this;
     }
 
 }

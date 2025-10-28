@@ -11,15 +11,6 @@
             "config/routes/annotations.yaml"
         ]
     },
-    "doctrine/deprecations": {
-        "version": "1.1",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "1.0",
-            "ref": "87424683adc81d7dc305eefec1fced883084aab9"
-        }
-    },
     "doctrine/doctrine-bundle": {
         "version": "2.7",
         "recipe": {
@@ -98,16 +89,16 @@
             "config/packages/httplug.yaml"
         ]
     },
-    "phpstan/phpstan": {
-        "version": "2.1",
+    "sensio/framework-extra-bundle": {
+        "version": "5.6",
         "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
+            "repo": "github.com/symfony/recipes",
             "branch": "main",
-            "version": "1.0",
-            "ref": "5e490cc197fb6bb1ae22e5abbc531ddc633b6767"
+            "version": "5.2",
+            "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
         },
         "files": [
-            "phpstan.dist.neon"
+            "config/packages/sensio_framework_extra.yaml"
         ]
     },
     "symfony/console": {
@@ -274,6 +265,15 @@
             "config/routes/web_profiler.yaml"
         ]
     },
+    "symfony/web-server-bundle": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.3",
+            "ref": "dae9b39fd6717970be7601101ce5aa960bf53d9a"
+        }
+    },
     "symfony/webpack-encore-bundle": {
         "version": "2.0",
         "recipe": {
@@ -303,6 +303,18 @@
         },
         "files": [
             "config/packages/workflow.yaml"
+        ]
+    },
+    "twig/extensions": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "a86723ee8d8b2f9437c8ce60a5546a1c267da5ed"
+        },
+        "files": [
+            "config/packages/twig_extensions.yaml"
         ]
     }
 }

@@ -59,7 +59,7 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $action->setIp(
             in_array($event->getActionName(), self::systemActions) ?
                 '127.0.0.1' :
-                $this->requestStack->getMainRequest()->getClientIp()
+                $this->requestStack->getMasterRequest()->getClientIp()
         );
 
         if (!empty($event->getData())) {
@@ -97,17 +97,17 @@ class ActionEventSubscriber implements EventSubscriberInterface
     public function registerDossierChange(DossierChangedEvent $event): void
     {
         /** @var Gebruiker $gebruiker */
-        $gebruiker = $event->gebruiker;
+        $gebruiker = $event->getGebruiker();
         /** @var Dossier $dossier */
-        $dossier = $event->dossier;
+        $dossier = $event->getDossier();
         $action = new ActionEventEntity();
 
         $dateTime = new \DateTime();
 
-        $action->setName(null === $event->forceType ? ActionEvent::DOSSIER_GEWIJZIGD : $event->forceType);
+        $action->setName(null === $event->getForceType() ? ActionEvent::DOSSIER_GEWIJZIGD : $event->getForceType());
         $action->setDatumTijd($dateTime);
         $action->setDossier($dossier);
-        $action->setIp($this->requestStack->getMainRequest()->getClientIp());
+        $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
         $action->setData(
             array_merge(
                 ActionEvent::getGebruikerData($gebruiker),

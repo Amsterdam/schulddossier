@@ -10,9 +10,10 @@ class ContactpersoonArray
      */
     protected $TContactpersoon = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class ContactpersoonArray
      */
     public function getTContactpersoon()
     {
-        return $this->TContactpersoon;
+      return $this->TContactpersoon;
     }
 
     /**
      * @param TContactpersoon[] $TContactpersoon
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\ContactpersoonArray
      */
-    public function setTContactpersoon(?array $TContactpersoon = null)
+    public function setTContactpersoon(array $TContactpersoon = null)
     {
-        $this->TContactpersoon = $TContactpersoon;
-        return $this;
+      $this->TContactpersoon = $TContactpersoon;
+      return $this;
     }
 
 }

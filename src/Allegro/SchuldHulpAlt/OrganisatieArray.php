@@ -10,9 +10,10 @@ class OrganisatieArray
      */
     protected $TOrganisatie = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class OrganisatieArray
      */
     public function getTOrganisatie()
     {
-        return $this->TOrganisatie;
+      return $this->TOrganisatie;
     }
 
     /**
      * @param TOrganisatie[] $TOrganisatie
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\OrganisatieArray
      */
-    public function setTOrganisatie(?array $TOrganisatie = null)
+    public function setTOrganisatie(array $TOrganisatie = null)
     {
-        $this->TOrganisatie = $TOrganisatie;
-        return $this;
+      $this->TOrganisatie = $TOrganisatie;
+      return $this;
     }
 
 }

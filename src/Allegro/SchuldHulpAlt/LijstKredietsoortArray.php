@@ -10,9 +10,10 @@ class LijstKredietsoortArray
      */
     protected $TLijstKredietsoort = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class LijstKredietsoortArray
      */
     public function getTLijstKredietsoort()
     {
-        return $this->TLijstKredietsoort;
+      return $this->TLijstKredietsoort;
     }
 
     /**
      * @param TLijstKredietsoort[] $TLijstKredietsoort
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\LijstKredietsoortArray
      */
-    public function setTLijstKredietsoort(?array $TLijstKredietsoort = null)
+    public function setTLijstKredietsoort(array $TLijstKredietsoort = null)
     {
-        $this->TLijstKredietsoort = $TLijstKredietsoort;
-        return $this;
+      $this->TLijstKredietsoort = $TLijstKredietsoort;
+      return $this;
     }
 
 }

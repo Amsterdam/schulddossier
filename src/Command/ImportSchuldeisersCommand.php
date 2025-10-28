@@ -18,14 +18,10 @@ class ImportSchuldeisersCommand extends ContainerAwareCommand
      */
     private $importedSchuldeisers = [];
 
-    protected function configure(): void
+    protected function configure()
     {
         $this->setName('app:import:schuldeiser');
-        $this->addArgument(
-            'fieldList',
-            InputArgument::REQUIRED,
-            'Volgorde van de kolommen gescheiden met komma\'s, de volgende kolommen moeten worden gedefinieerd: bedrijfsnaam,rekening,allegroCode,straat,huisnummer,huisnummerToevoeging,postcode,plaats'
-        );
+        $this->addArgument('fieldList', InputArgument::REQUIRED, 'Volgorde van de kolommen gescheiden met komma\'s, de volgende kolommen moeten worden gedefinieerd: bedrijfsnaam,rekening,allegroCode,straat,huisnummer,huisnummerToevoeging,postcode,plaats');
         $this->addArgument('file', InputArgument::REQUIRED, 'Locatie van CSV bestand');
         $this->addOption('skipFirstRow', null, InputOption::VALUE_NONE);
         $this->addOption('semicolon', null, InputOption::VALUE_NONE);
@@ -35,16 +31,7 @@ class ImportSchuldeisersCommand extends ContainerAwareCommand
     {
         $delimiter = $input->getOption('semicolon') ? ';' : ',';
 
-        $expectedFields = [
-            'bedrijfsnaam',
-            'rekening',
-            'allegroCode',
-            'straat',
-            'huisnummer',
-            'huisnummerToevoeging',
-            'postcode',
-            'plaats'
-        ];
+        $expectedFields = ['bedrijfsnaam', 'rekening', 'allegroCode', 'straat', 'huisnummer', 'huisnummerToevoeging', 'postcode', 'plaats'];
         $fieldList = explode(',', $input->getArgument('fieldList'));
         foreach ($expectedFields as $expectedField) {
             if (in_array($expectedField, $fieldList, true) === false) {

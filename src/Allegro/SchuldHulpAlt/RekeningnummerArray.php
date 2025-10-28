@@ -10,9 +10,10 @@ class RekeningnummerArray
      */
     protected $string = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class RekeningnummerArray
      */
     public function getString()
     {
-        return $this->string;
+      return $this->string;
     }
 
     /**
      * @param string[] $string
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\RekeningnummerArray
      */
-    public function setString(?array $string = null)
+    public function setString(array $string = null)
     {
-        $this->string = $string;
-        return $this;
+      $this->string = $string;
+      return $this;
     }
 
 }

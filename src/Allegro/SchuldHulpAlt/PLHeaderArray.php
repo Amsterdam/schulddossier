@@ -10,9 +10,10 @@ class PLHeaderArray
      */
     protected $TPLHeader = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class PLHeaderArray
      */
     public function getTPLHeader()
     {
-        return $this->TPLHeader;
+      return $this->TPLHeader;
     }
 
     /**
      * @param TPLHeader[] $TPLHeader
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\PLHeaderArray
      */
-    public function setTPLHeader(?array $TPLHeader = null)
+    public function setTPLHeader(array $TPLHeader = null)
     {
-        $this->TPLHeader = $TPLHeader;
-        return $this;
+      $this->TPLHeader = $TPLHeader;
+      return $this;
     }
 
 }

@@ -10,9 +10,10 @@ class TAfspraakSoortenArray
      */
     protected $TAfspraakSoorten = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class TAfspraakSoortenArray
      */
     public function getTAfspraakSoorten()
     {
-        return $this->TAfspraakSoorten;
+      return $this->TAfspraakSoorten;
     }
 
     /**
      * @param TAfspraakSoorten[] $TAfspraakSoorten
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAfspraakSoortenArray
      */
-    public function setTAfspraakSoorten(?array $TAfspraakSoorten = null)
+    public function setTAfspraakSoorten(array $TAfspraakSoorten = null)
     {
-        $this->TAfspraakSoorten = $TAfspraakSoorten;
-        return $this;
+      $this->TAfspraakSoorten = $TAfspraakSoorten;
+      return $this;
     }
 
 }

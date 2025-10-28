@@ -10,9 +10,10 @@ class CasusDeelopdrachtArray
      */
     protected $TCasusDeelopdracht = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class CasusDeelopdrachtArray
      */
     public function getTCasusDeelopdracht()
     {
-        return $this->TCasusDeelopdracht;
+      return $this->TCasusDeelopdracht;
     }
 
     /**
      * @param TCasusDeelopdracht[] $TCasusDeelopdracht
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\CasusDeelopdrachtArray
      */
-    public function setTCasusDeelopdracht(?array $TCasusDeelopdracht = null)
+    public function setTCasusDeelopdracht(array $TCasusDeelopdracht = null)
     {
-        $this->TCasusDeelopdracht = $TCasusDeelopdracht;
-        return $this;
+      $this->TCasusDeelopdracht = $TCasusDeelopdracht;
+      return $this;
     }
 
 }

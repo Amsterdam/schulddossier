@@ -10,9 +10,10 @@ class TeamArray
      */
     protected $TTeam = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class TeamArray
      */
     public function getTTeam()
     {
-        return $this->TTeam;
+      return $this->TTeam;
     }
 
     /**
      * @param TTeam[] $TTeam
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TeamArray
      */
-    public function setTTeam(?array $TTeam = null)
+    public function setTTeam(array $TTeam = null)
     {
-        $this->TTeam = $TTeam;
-        return $this;
+      $this->TTeam = $TTeam;
+      return $this;
     }
 
 }

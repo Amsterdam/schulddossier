@@ -10,9 +10,10 @@ class BBROpdrachtArray
      */
     protected $TBBROpdracht = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class BBROpdrachtArray
      */
     public function getTBBROpdracht()
     {
-        return $this->TBBROpdracht;
+      return $this->TBBROpdracht;
     }
 
     /**
      * @param TBBROpdracht[] $TBBROpdracht
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\BBROpdrachtArray
      */
-    public function setTBBROpdracht(?array $TBBROpdracht = null)
+    public function setTBBROpdracht(array $TBBROpdracht = null)
     {
-        $this->TBBROpdracht = $TBBROpdracht;
-        return $this;
+      $this->TBBROpdracht = $TBBROpdracht;
+      return $this;
     }
 
 }

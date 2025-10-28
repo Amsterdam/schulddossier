@@ -10,9 +10,10 @@ class BijlageArray
      */
     protected $TBijlage = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class BijlageArray
      */
     public function getTBijlage()
     {
-        return $this->TBijlage;
+      return $this->TBijlage;
     }
 
     /**
      * @param TBijlage[] $TBijlage
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\BijlageArray
      */
-    public function setTBijlage(?array $TBijlage = null)
+    public function setTBijlage(array $TBijlage = null)
     {
-        $this->TBijlage = $TBijlage;
-        return $this;
+      $this->TBijlage = $TBijlage;
+      return $this;
     }
 
 }

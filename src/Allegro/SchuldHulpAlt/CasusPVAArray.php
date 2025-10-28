@@ -10,9 +10,10 @@ class CasusPVAArray
      */
     protected $TCasusPVA = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class CasusPVAArray
      */
     public function getTCasusPVA()
     {
-        return $this->TCasusPVA;
+      return $this->TCasusPVA;
     }
 
     /**
      * @param TCasusPVA[] $TCasusPVA
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\CasusPVAArray
      */
-    public function setTCasusPVA(?array $TCasusPVA = null)
+    public function setTCasusPVA(array $TCasusPVA = null)
     {
-        $this->TCasusPVA = $TCasusPVA;
-        return $this;
+      $this->TCasusPVA = $TCasusPVA;
+      return $this;
     }
 
 }

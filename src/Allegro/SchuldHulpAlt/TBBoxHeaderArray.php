@@ -10,9 +10,10 @@ class TBBoxHeaderArray
      */
     protected $TBBoxHeader = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class TBBoxHeaderArray
      */
     public function getTBBoxHeader()
     {
-        return $this->TBBoxHeader;
+      return $this->TBBoxHeader;
     }
 
     /**
      * @param TBBoxHeader[] $TBBoxHeader
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TBBoxHeaderArray
      */
-    public function setTBBoxHeader(?array $TBBoxHeader = null)
+    public function setTBBoxHeader(array $TBBoxHeader = null)
     {
-        $this->TBBoxHeader = $TBBoxHeader;
-        return $this;
+      $this->TBBoxHeader = $TBBoxHeader;
+      return $this;
     }
 
 }

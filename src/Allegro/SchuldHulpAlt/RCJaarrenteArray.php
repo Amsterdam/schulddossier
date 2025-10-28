@@ -10,9 +10,10 @@ class RCJaarrenteArray
      */
     protected $TRCJaarrente = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class RCJaarrenteArray
      */
     public function getTRCJaarrente()
     {
-        return $this->TRCJaarrente;
+      return $this->TRCJaarrente;
     }
 
     /**
      * @param TRCJaarrente[] $TRCJaarrente
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\RCJaarrenteArray
      */
-    public function setTRCJaarrente(?array $TRCJaarrente = null)
+    public function setTRCJaarrente(array $TRCJaarrente = null)
     {
-        $this->TRCJaarrente = $TRCJaarrente;
-        return $this;
+      $this->TRCJaarrente = $TRCJaarrente;
+      return $this;
     }
 
 }

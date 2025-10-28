@@ -10,9 +10,10 @@ class UitgavenArray
      */
     protected $TUitgaven = null;
 
-
+    
     public function __construct()
     {
+    
     }
 
     /**
@@ -20,17 +21,17 @@ class UitgavenArray
      */
     public function getTUitgaven()
     {
-        return $this->TUitgaven;
+      return $this->TUitgaven;
     }
 
     /**
      * @param TUitgaven[] $TUitgaven
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\UitgavenArray
      */
-    public function setTUitgaven(?array $TUitgaven = null)
+    public function setTUitgaven(array $TUitgaven = null)
     {
-        $this->TUitgaven = $TUitgaven;
-        return $this;
+      $this->TUitgaven = $TUitgaven;
+      return $this;
     }
 
 }
