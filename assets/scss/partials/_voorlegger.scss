@@ -4,25 +4,32 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 20px;
-    & > * {
+
+    &>* {
       width: 47%;
     }
+
     .col-1-1 {
       width: 100%;
     }
+
     .col-1-2 {
       width: 47%;
     }
+
     &.row-max-height {
       overflow-y: auto;
       max-height: 400px;
     }
   }
-  .button, button {
+
+  .button,
+  button {
     line-height: 38px;
     font-size: $fs-default;
     padding: 0 25px;
   }
+
   &:before {
     content: '';
     position: absolute;
@@ -32,6 +39,7 @@
     background-color: $borderColor2;
     top: 100px;
   }
+
   &:after {
     content: '';
     position: absolute;
@@ -46,6 +54,7 @@
 .voorlegger-header {
   display: flex;
   position: relative;
+
   .naam {
     a {
       font-size: $fontSize;
@@ -55,6 +64,7 @@
       width: 100%;
       height: 40px;
     }
+
     span {
       font-size: $fontSize;
       margin-right: auto;
@@ -64,6 +74,7 @@
       height: 40px;
       font-style: italic;
     }
+
     strong {
       display: inline-block;
       max-width: 210px;
@@ -81,9 +92,11 @@
     top: 10px;
     width: 26px;
     height: 26px;
+
     input {
       opacity: 0;
     }
+
     //&:hover input {
     //  opacity: 1;
     //}
@@ -94,10 +107,12 @@
       margin: 0;
 
     }
-    input[type=checkbox]:checked + span {
+
+    input[type=checkbox]:checked+span {
       display: block;
       opacity: 1;
     }
+
     span {
       opacity: .3;
       pointer-events: none;
@@ -111,6 +126,7 @@
       text-align: center;
       transition: opacity .3s;
       font-weight: 700;
+
       &:before {
         content: '';
         position: absolute;
@@ -122,30 +138,37 @@
         border-radius: 50%;
       }
     }
+
     label {
       padding: 0;
       font-size: 0;
 
     }
   }
+
   &.status-nvt {
+
     .status-container,
     .voortgang {
       opacity: 0;
       pointer-events: none;
     }
+
     .naam {
       opacity: .3;
     }
+
     .nvt {
       position: absolute;
       right: 0;
     }
 
   }
+
   a {
     text-decoration: none;
   }
+
   .voortgang {
     position: absolute;
     pointer-events: none;
@@ -158,6 +181,7 @@
     margin-left: 10px;
     @extend .icon-document;
     background-repeat: no-repeat;
+
     &:before {
       content: '';
       position: absolute;
@@ -168,6 +192,7 @@
       background-color: $colorBgDark;
       border-radius: 50%;
     }
+
     span {
       position: absolute;
       top: 12px;
@@ -179,20 +204,25 @@
       text-align: center;
     }
   }
+
   .status-container {
     padding: 0 0 0 1rem;
     order: 5;
   }
+
   &:hover,
   .active & {
     .nvt span {
       //opacity: 1;
     }
   }
+
   &:hover {
     background: white;
   }
+
   transition: transform .4s $transitionEaseDefault;
+
   &.hide {
     transform: translateY(-100%);
   }
@@ -212,19 +242,23 @@
   .label-widget {
     align-items: center;
     padding: 1rem 0;
-    > label {
+
+    >label {
       padding: 0 2rem 0 0;
       flex-basis: 40%;
     }
+
     .status {
       margin: 0;
     }
   }
+
   .form-row {
     border-top: 1px solid $lightColor;
     border-bottom: 1px solid $lightColor;
   }
-  .form-row + .form-row {
+
+  .form-row+.form-row {
     margin-top: calc(-#{$lineHeight} - 1px);
   }
 
@@ -251,15 +285,18 @@
     transform: translate(0, 0);
     transition: transform .4s $transitionEaseDefault;
   }
+
   .document-header {
     width: 100%;
     margin: 0;
     background-color: transparent;
     display: block;
   }
+
   &.splitter-active .document-container {
     transform: translate($pdfSplitterWidth, 0);
   }
+
   &.modal-active .document-container {
     z-index: 200;
   }
@@ -306,17 +343,20 @@
 
   //border: none !important;
   margin-bottom: -1px;
-  .dossier > & .dossier__voorlegger__body {
+
+  .dossier>& .dossier__voorlegger__body {
     pointer-events: auto;
     opacity: 1;
     transform: scale(1, 1);
     z-index: 2;
     border-color: transparent;
     left: 442px;
+
     .dossier__voorlegger__sectie {
       background-color: transparent;
     }
   }
+
   .nvt-toggle {
     opacity: .3;
     cursor: pointer;
@@ -325,6 +365,7 @@
     top: 10px;
     width: 26px;
     height: 26px;
+
     span {
       position: absolute;
       top: 0;
@@ -335,6 +376,7 @@
       line-height: 18px;
       text-align: center;
       transition: opacity .3s;
+
       &:before {
         content: '';
         position: absolute;
@@ -347,30 +389,37 @@
       }
     }
   }
+
   &.hide {
     height: 0;
     border-color: transparent;
     overflow: hidden;
   }
+
   &.status-nvt {
+
     .status-container,
     .voortgang {
       opacity: 0;
       pointer-events: none;
     }
+
     .naam a {
       opacity: .3;
     }
+
     .nvt-toggle {
       position: absolute;
       right: 0;
       opacity: 1;
     }
   }
+
   .nvt-input {
     position: absolute;
     top: 42px;
     right: calc(10% + 85px);
+
     label {
       display: block;
       width: 0;
@@ -378,20 +427,22 @@
       opacity: 0;
 
     }
+
     .label-widget:before {
       content: 'N.v.t.';
       display: inline;
     }
-    .status {
 
-    }
+    .status {}
 
   }
+
   &.nvt {
     .nvt-input {
       right: 10%;
     }
   }
+
   &.invalid .dossier__voorlegger__header * {
     //color: red !important;
   }
@@ -412,36 +463,40 @@
   padding: 1px 1px 1px 15px;
   //width: 381px;
   margin-right: 20px;
-  a {
 
-  }
+  a {}
+
   &:hover a:before {
     background-color: rgba(#000, .1);
   }
+
   &:hover {
     border-top: 1px solid black;
     background: $lightColor3;
     z-index: 5;
   }
+
   .drop-over & {
     border: 2px dashed black !important;
     padding: 0 0 0 14px;
   }
-  .activate & {
-    &:before {
 
-    }
+  .activate & {
+    &:before {}
   }
+
   .bedrag {
     position: absolute;
     right: 50px;
     pointer-events: none;
 
   }
+
   .voortgang {
     right: 50px;
   }
-  .bedrag + .voortgang {
+
+  .bedrag+.voortgang {
     right: 10px;
   }
 }
@@ -464,16 +519,18 @@
   border: 1px solid #000;
   padding: 1px;
 
-  .dossier > &,
+  .dossier>&,
   .active & {
     pointer-events: auto;
     opacity: 1;
     transform: scale(1, 1);
     z-index: 3;
   }
-  .dossier > & {
+
+  .dossier>& {
     z-index: 2;
     border-color: transparent;
+
     .dossier__voorlegger__sectie {
       background-color: transparent;
     }
@@ -493,6 +550,7 @@
   top: 0;
   padding-top: 295px;
   pointer-events: none;
+
   &:before {
     content: '';
     width: 432px;
@@ -504,12 +562,14 @@
     z-index: 1;
     box-shadow: $boxShadowDefault inset;
   }
-  & > .nav-internal {
+
+  &>.nav-internal {
     position: absolute;
     top: 258px;
     left: 50px;
   }
-  & > * {
+
+  &>* {
     pointer-events: auto;
   }
 }
@@ -539,6 +599,7 @@
     top: 2px;
     height: 40px;
   }
+
   .dossier__voorlegger__header {
     border-width: 1px;
     border-color: black;
@@ -547,6 +608,7 @@
     background-color: white;
     margin-right: 0;
   }
+
   .voorlegger-header {
     margin-right: 21px;
   }
@@ -567,10 +629,12 @@
   vertical-align: middle;
   flex-direction: column;
   justify-content: center;
+
   h3 {
     font-size: 26px;
     padding-right: 85px;
   }
+
   hr {
     height: 1px;
     position: absolute;
@@ -581,11 +645,13 @@
     border-bottom: 1px $brandColor1 solid;
 
   }
+
   .status-container {
     position: absolute;
     right: 10%;
     top: 42px;
   }
+
   .hide {
     position: absolute;
     width: 0;
@@ -593,9 +659,11 @@
     visibility: hidden;
     pointer-events: none;
   }
+
   .status-result__label {
     display: inline;
   }
+
   .status-result__container {
     right: 10%;
     left: auto;
@@ -610,19 +678,23 @@
   padding: 20px calc(10% - 17px) 40px 10%;
   overflow-y: auto;
   height: calc(100vh - 260px);
+
   h4 {
-    margin-top: 40px;
-    margin-bottom: 20px;
+    margin-block-start: 1.5em;
+    margin-block-end: .5em;
   }
-  & > *:nth-last-child(1),
-  & > *:nth-last-child(2) {
+
+  &>*:nth-last-child(1),
+  &>*:nth-last-child(2) {
     label {
       //display: none;
     }
+
     .label-widget {
       display: block;
       //width: 100%;
     }
+
     .aantekening-form-row {
       margin: 0;
     }
@@ -638,6 +710,7 @@
 
 .dossier__voorlegger__sectie__close {
   text-decoration: none;
+
   &:before {
     content: '×';
     position: absolute;
@@ -661,37 +734,45 @@
   padding-left: 60px;
   padding-top: 120px;
   max-width: 375px;
+
   p {
     margin: 0;
   }
+
   .nav-internal--breadcrumb {
     position: absolute;
     top: 68px;
     left: 35px;
     margin: 0;
     background: transparent;
+
     a {
       background: none;
     }
+
     .icon-arrow-right {
       font-size: 12px
     }
   }
+
   .nav-internal.actions {
     margin: 20px 0 0;
     position: relative;
     left: 0;
     top: 0;
+
     .nav {
       position: absolute;
       right: auto;
       left: 0;
     }
+
     .nav-toggle {
       position: relative;
       z-index: 101;
       padding: 0;
     }
+
     .nav-open {
       z-index: 102;
       position: relative;
@@ -705,6 +786,7 @@
   h1 {
     margin-bottom: 0;
   }
+
   .page-toggle {
     width: 412px;
     position: absolute;
@@ -731,10 +813,12 @@
     font-size: $fs-large;
     margin-bottom: 10px;
   }
-  h3  {
+
+  h3 {
     margin-bottom: 10px;
   }
 }
+
 .dossier__dashboard__default,
 .dossier__dashboard__messages {
   float: left;
@@ -744,6 +828,7 @@
     margin-bottom: 20px;
   }
 }
+
 .dossier__dashboard__default {
   width: 55%;
   margin-left: calc(7.5% - 25px);
@@ -755,28 +840,34 @@
   margin-right: calc(7.5% - 25px);
   margin-left: 25px;
 }
+
 .dossier__dashboard__well--line {
   border: 1px $borderColor2 solid;
   padding: 20px;
   margin-bottom: 50px;
-  & > *:last-child {
+
+  &>*:last-child {
     margin-bottom: 0;
   }
 
 }
+
 .srv__dashboard__well--line {
   border: 1px $borderColor2 solid;
   padding: 20px;
   margin-bottom: 50px;
   margin-top: 50px;
-  & > *:last-child {
+
+  &>*:last-child {
     margin-bottom: 0;
   }
 
 }
+
 .dossier__dashboard__well__header {
   margin-top: -33px;
   margin-left: -10px;
+
   span {
     background-color: #f8f8f8;
     padding: 0 10px;
@@ -786,6 +877,7 @@
 .srv__dashboard__well__header {
   margin-top: -33px;
   margin-left: -10px;
+
   span {
     background-color: #ffffff;
     padding: 0 10px;
@@ -796,11 +888,13 @@
   position: absolute;
   right: 5px;
   top: 55px;
+
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
+
   li {
     display: inline-block;
     margin-right: 10px;
@@ -815,10 +909,12 @@
   border-color: #000;
   color: #000;
   pointer-events: auto;
+
   .in-progress & {
     pointer-events: none;
     border-color: grey !important;
   }
+
   .in-progress &:before {
     content: '';
     @extend .icon-spinner-transparent;
@@ -833,6 +929,7 @@
     bottom: 0;
 
   }
+
   &:hover {
     border-color: #000;
     background-color: #000;
@@ -850,12 +947,14 @@
   pointer-events: none;
   color: grey;
   transition: background-color .3s, border-color .3s;
+
   .create-form-changed & {
     background-color: $brandColor1;
     pointer-events: auto;
     border-color: $brandColor1;
     color: #fff;
   }
+
   &:hover {
     cursor: pointer;
     border-color: #000;
@@ -889,6 +988,7 @@
     cursor: pointer;
 
   }
+
   &.secondary {
     background: #fff;
     border-color: #000;
@@ -896,6 +996,7 @@
     pointer-events: auto;
     cursor: pointer;
   }
+
   .form-changed & {
     background: #fff;
     color: grey;
@@ -905,6 +1006,7 @@
     transition: all .3s;
     margin: 0;
   }
+
   &:hover {
     cursor: pointer;
     border-color: #000;
@@ -930,8 +1032,10 @@
     right: 0;
     opacity: 0;
     background-color: #fff;
+
     &.show {
       opacity: 1;
+
       .status-result__container {
         pointer-events: auto;
       }
@@ -955,6 +1059,7 @@
   z-index: 100;
   white-space: nowrap;
   cursor: pointer;
+
   &:before {
     content: '!';
     display: inline-block;
@@ -973,6 +1078,7 @@
     font-weight: bold;
     background-color: $colorBgDark;
   }
+
   &:hover:after {
     content: attr(data-message);
     position: absolute;
@@ -989,6 +1095,7 @@
     min-width: 100px;
   }
 }
+
 .dossier__deleted__message {
   color: $brandColor1;
   margin: 0;
@@ -998,7 +1105,7 @@
 
 .dl_bold {
   dt {
-    font-weight: bold!important;
+    font-weight: bold !important;
   }
 }
 

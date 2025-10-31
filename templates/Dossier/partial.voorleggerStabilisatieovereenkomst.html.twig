@@ -40,6 +40,8 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <p>Stuur de stabilisatieovereenkomst voor de zorgverzekering. Zorg dat er geen datum op staat. Soms is er eerder een stabilisatie overeenkomst naar de schuldeiser gestuurd.</p>
+                <p>Indien deze termijn is verlopen dan kan het voorkomen dat de schuldeiser weigert. Stuur dan een toelichting aan de Kredietbank met de reden waarom het niet gelukt is om binnen de termijn een aanvraag SK in te dienen.</p>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Stabilisatieovereenkomst'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}
