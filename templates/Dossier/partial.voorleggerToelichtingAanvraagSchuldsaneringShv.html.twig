@@ -37,13 +37,34 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <p>De beantwoording van de vragen <b>‘Hoe zijn de schulden ontstaan?’</b> en <b>‘Welke inspanningsverplichting wordt nu verricht?’</b> is noodzakelijk voor de Kredietbank in verband met de communicatie via het SKP met de schuldeisers. Bewindvoerders die niet zijn aangesloten op Schulddossier, gebruiken hiervoor de papieren versie.</p>
+                <ul>
+                    <li>Beschrijf de <u>leefsituatie</u> van de Amsterdammer. Belangrijk is om de mate van stabiliteit van de leefsituatie te schetsen. Benoem onder andere:
+                        <ul>
+                            <li>De gezinssituatie;
+                            <li>De burgerlijke staat;
+                            <li>Eventuele kinderen, of deze minder- of meerderjarig zijn, in- of uitwonend, studerend of werkend;
+                            <li>De woonsituatie;
+                            <li>De inkomenssituatie;
+                            <li>De arbeidssituatie. Indien bij een (echt)paar één van beiden niet werkt en/of er geldt een vrijstelling van de sollicitatieplicht in de participatiewet, licht dit dan toe.
+                        </ul>
+                    </li>
+                    <li>Beschrijf kort de <u>oorzaak</u> van de financiële problemen. Wanneer zijn de problemen ontstaan wat ligt eraan ten grondslag? Als er sprake is van fraudeschulden, laat de Amsterdammer of de schuldhulpverlener een aparte toelichting schrijven gericht aan de desbetreffende schuldeiser.</li>
+                    <li>Is er sprake van immateriële problematiek en staat dit in relatie tot de financiële situatie van de Amsterdammer? Neem dit dan ook mee in de toelichting.</li>
+                    <li>Beschrijf de <u>interventies</u> die zijn ingezet/afgerond gericht op een duurzame schuldenvrije toekomst, zoals bijvoorbeeld de inzet van een maatje, psychosociale hulp, budgetbegeleiding, budgetcursus, budgetbeheer, beschermingsbewind etcetera.</li>
+                    <li>Beschrijf het toekomstig financieel perspectief van de Amsterdammer. Heb hierbij ook aandacht voor het arbeidsperspectief en de mogelijk ingezette interventies hierin (voorbeeld opleiding of re-integratietrajecten). Schuldeisers hechten veel belang aan deze informatie bij de beoordeling van het voorstel.</li>
+                    <li>Deel de toelichting met de Amsterdammer en toets of de Amsterdammer zich er prettig bij voelt om de opgenomen informatie te delen met de schuldeiser. De Amsterdammer bepaalt wat er wel en niet wordt gedeeld over zijn/haar persoonlijke situatie.</li>
+                    <li>Onderteken de toelichting, let daarbij ook op de juiste datum.</li>
+                    <li>Zorg dat deze gegevens actueel blijven. Dus bij een wijziging moet de toelichting worden aangepast.</li>
+                </ul>
+
                 <div class="warning-text">
                     Let op: onderstaande vragen zijn <u>verplicht</u>
                 </div>
                 <div>
                     <h4>Hoe zijn de schulden ontstaan? <span style="color:red;">*</span></h4>
                     <div class="input-choice">
-                        {{ form_row(form.ontstaanVanSchulden) }}
+                    {{ form_row(form.ontstaanVanSchulden) }}
                         {% if app.user.type == 'admin' %}
                             {{ form_help(form.ontstaanVanSchulden) }}
                         {% endif %}

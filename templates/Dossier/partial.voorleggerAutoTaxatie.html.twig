@@ -39,6 +39,17 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <p>Als de Amsterdammer eigenaar is van een voertuig, wordt het voertuig aangemerkt als onderdeel van zijn of haar vermogen. Een auto mag alleen behouden blijven onder twee hoofdvoorwaarden:</p>
+                <ul>
+                    <li>Als de auto om <b>medische redenen</b> noodzakelijk is.</li>
+                    <li>Als de auto noodzakelijk is voor <b>inkomensverwerving</b>.</li>
+                </ul>
+                <p>Kijk daarom of de auto echt nodig is om inkomen te verdienen, of dat er een medische reden voor het gebruik is. Als de auto niet strikt noodzakelijk is, dan moet de auto worden verkocht en de opbrengst wordt ingezet voor de boedel ten gunste van de schuldeisers.</p>
+                <p>Wanneer de noodzaak is aangetoond, mag de auto behouden worden en hoeft de waarde van de auto in beginsel niet aan de boedel vergoed te worden.</p>
+                <h4>Medische noodzaak</h4>
+                <p>De Amsterdammer moet met documenten laten zien dat de auto om medische redenen nodig is, bijvoorbeeld met een medische indicatie.</p>
+                <h4>Kentekenbewijs</h4>
+                <p>Voeg een kopie van het kentekenbewijs mee i.v.m. de waardebepaling van de auto.</p>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Auto taxatie'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}

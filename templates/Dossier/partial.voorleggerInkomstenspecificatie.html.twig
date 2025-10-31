@@ -37,6 +37,19 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <p>Het inkomen is op orde en alle voorliggende financiële voorzieningen zijn aangevraagd. De schuldhulpverlener moet hierop toezien. Cliënt heeft minimaal een inkomen op sociaal minimum.</p>
+                <ul>
+                    <li>Vink aan om wat voor inkomen het gaat;</li>
+                    <li>Voeg de recente loonstroken of uitkeringsspecificaties toe
+                        <ul>
+                            <li>Bij een maandbetaling: de laatste drie maanden.</li>
+                            <li>Bij een vierwekenbetaling: de laatste vier periodes.</li>
+                            <li>Bij een weekbetaling: de laatste dertien weken.</li>
+                            <li>Bij een PW-uitkering: één uitkeringsspecificatie.</li>
+                        </ul>
+                    </li>
+                    <li>Voeg de recente loonstroken of uitkeringsspecificaties van de (toeslag)partner toe. Ook wanneer de partner niet meegaat in de schuldregeling (samenwonend stel) dan worden de inkomsten en uitgaven van de partner toegevoegd.</li>
+                </ul>
                 {{ form_row(form.beschikkingInkomenUitWerk) }}
                 {% if app.user.type == 'admin' %}
                     {{ form_help(form.beschikkingInkomenUitWerk) }}

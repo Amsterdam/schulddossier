@@ -40,6 +40,17 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <ul>
+                    <li>Voeg een motivatie vanuit de werkgever toe waarom de auto noodzakelijk is.</li>
+                    <li>Geef het aantal woon-werk kilometers op.</li>
+                    <li>Wanneer woon-werkverkeer minder is dan 10km per dag, dan wordt er geen rekening mee gehouden in de berekening van het VTLB, tenzij er bijzondere omstandigheden zijn. Zie de richtlijnen zoals opgenomen in het meest recente VTLB-rapport van de Werkgroep Rekenmethode VTLB en Recofa.</li>
+                </ul>
+                <p>Wij hanteren hierbij een maximale waarde van € 3.350, in lijn met het bedrag dat ook door gemeentelijke heffingen wordt gebruikt om te beoordelen of iemand in aanmerking komt voor kwijtschelding. In alle gevallen mag de auto niet meer waard zijn dan € 3.350,-. Indien dit wel het geval is moet de meerwaarde als boedel worden ingelegd voor de schuldeisers.</p>
+                <h4>Leaseauto van de werkgever</h4>
+                <p>Controleer de loonstrook of er sprake is van fiscale bijtelling. Is deze er? Dan is er sprake van privégebruik van de auto.</p>
+                <p>Het is belangrijk dat het privégebruik gestopt wordt. Vraag een ‘verklaring geen privé-gebruik’ aan bij de Belastingdienst. Deze wijziging kan alleen aan het begin van een kalenderjaar, waarbij het ingaat in het volgende kalenderjaar. Voeg daarom ook een pro-forma loonstrook toe zonder de fiscale bijtelling.</p>
+                <h4>Private lease</h4>
+                <p>Er wordt rekening gehouden met een eventuele kilometervergoeding die door de werkgever wordt betaald. Bekijk of de kilometervergoeding in verhouding staat tot het leasebedrag. Als de kilometervergoeding niet volstaat dan dient de Amsterdammer in overleg te treden met de leasemaatschappij over een mogelijke beëindiging of inruil voor een goedkoper contract. Lukt dit niet, dan mag er bij uitzondering een correctie plaatsvinden, maar alleen als dit ook door een spaarsaldo weer bij de schuldeisers wordt aangevuld (denk aan vakantiegeld, regeling langer laten lopen of vergoeding van werkgever).</p>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Verklaring werkgever'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}
