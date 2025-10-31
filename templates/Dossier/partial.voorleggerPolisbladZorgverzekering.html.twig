@@ -20,7 +20,7 @@
                     <span>{{ dossierDocumenten|length }}</span>
                 </div>
             {% endif %}
-            {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': true} %}
+            {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
         </div>
 
     </div>
@@ -35,7 +35,7 @@
                 <div class="nvt-input hide">
                     {{ form_row(form.polisbladZorgverzekeringNvt) }}
                 </div>
-                {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': true} %}
+                {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
                 <h3>{{ title }}</h3>
                 <hr>
             </div>
