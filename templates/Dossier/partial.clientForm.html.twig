@@ -1,5 +1,6 @@
 <h4>Cliënt</h4>
-<p>Voeg een geldig legitimatiebewijs (identiteitsbewijs of paspoort) van cliënt en evt. partner of kopie voor- en achterzijde verblijfsvergunning(en) (handtekening + foto zichtbaar). Het BSNnummer moet duidelijk te zien zijn. Vul in dit tabblad de volledige gegevens in. Een Nederlands rijbewijs is ook een geldig legitimatiebewijs. Voor de uitbetaling van het krediet verzoekt de Kredietbank om een geldig legitimatiebewijs, bijvoorbeeld een identiteitskaart of een paspoort. Vul in dit tabblad de volledige gegevens in.</p>
+<p>Voeg een geldig legitimatiebewijs (identiteitsbewijs of paspoort) van cliënt en evt. partner of kopie voor- en achterzijde verblijfsvergunning(en) (handtekening + foto zichtbaar). Het BSNnummer moet duidelijk te zien zijn. Vul in dit tabblad de volledige gegevens in.</p>
+<p>Een Nederlands rijbewijs is ook een geldig legitimatiebewijs. Voor de uitbetaling van het krediet verzoekt de Kredietbank om een geldig legitimatiebewijs, bijvoorbeeld een identiteitskaart of een paspoort.</p>
 {{ form_row(form.clientGeslacht, {'attr': {'form_row_class': 'form-row__wide', 'class': 'radio-group radio-group__horizontal'}}) }}
 {% if app.user.type == 'admin' %}
     {{ form_help(form.clientGeslacht) }}
@@ -20,6 +21,7 @@
 {% if app.user.type == 'admin' %}
     {{ form_help(form.clientBSN) }}
 {% endif %}
+<p>Voer bij ‘banknaam’ de organisatie in waar de Amsterdammer bankiert. Ten tijde van de aanvraag mag de Amsterdammer niet rood staan. De mogelijkheid om maximaal 500 euro rood te staan mag er wel zijn. Er mag bij deze bank <strong>géén lopende lening of creditcard</strong> zijn.</p>
 {{ form_row(form.clientBanknaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
 {% if app.user.type == 'admin' %}
     {{ form_help(form.clientBanknaam) }}
@@ -50,6 +52,7 @@
 {% if app.user.type == 'admin' %}
     {{ form_help(form.partnerBSN) }}
 {% endif %}
+<p>Voer bij ‘banknaam’ de organisatie in waar de Amsterdammer bankiert. Ten tijde van de aanvraag mag de Amsterdammer niet rood staan. De mogelijkheid om maximaal 500 euro rood te staan mag er wel zijn. Er mag bij deze bank <strong>géén lopende lening of creditcard</strong> zijn.</p>
 {{ form_row(form.partnerBanknaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
 {% if app.user.type == 'admin' %}
     {{ form_help(form.partnerBanknaam) }}

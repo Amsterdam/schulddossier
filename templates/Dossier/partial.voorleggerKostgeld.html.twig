@@ -40,6 +40,8 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <p>Het gaat hierbij om kostgeld dat ontvangen wordt.</p>
+                <p>Bij het vaststellen en ontvangen van kostgeld hanteert de Kredietbank de richtlijnen zoals opgenomen in het meest recente VTLB-rapport (Vrij te laten bedrag), opgesteld door de Werkgroep Rekenmethode VTLB van Recofa. Voor verdere toelichting kun je het actuele rapport raadplegen via de website van Bureau Wsnp. Wij adviseren je om dit rapport zelf ook te raadplegen voor meer achtergrondinformatie en verduidelijking.</p>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kostgeld'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}

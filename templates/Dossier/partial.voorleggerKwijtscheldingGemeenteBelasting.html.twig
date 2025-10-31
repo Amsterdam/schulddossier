@@ -40,6 +40,9 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <p>Er zijn twee mogelijkheden, waarvan één moet worden aangevinkt.</p>
+                <p>De schuldhulpverlener kan toetsen of de klant in aanmerking komt voor kwijtschelding. Is er sprake van kwijtschelding, vink dan 'Kwijtschelding' aan. Moet er een correctie plaatsvinden, vink dan 'Correctie GKA' aan.</p>
+                <p>Aanslagen van de gemeentebelasting en waterschapsbelasting van hetzelfde jaar behoren tot de vaste lasten.</p>
                 {{ form_row(form.kwijtscheldingGemeenteBelasting) }}
                 {% if app.user.type == 'admin' %}
                     {{ form_help(form.kwijtscheldingGemeenteBelasting) }}
