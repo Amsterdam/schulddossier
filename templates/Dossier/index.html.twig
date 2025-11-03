@@ -89,6 +89,7 @@
                     <th style="width: 75px;">Schuldhulpverlener/Bewindvoerder dossiernr.</th>
                     <th style="width: 75px;">GKA dossiernr.</th>
                     <th>Aangemaakt</th>
+                    <th>Indiendatum</th>
                     <th style="width: 150px;">Status</th>
                 </tr>
                 </thead>
@@ -109,6 +110,9 @@
                         </td>
                         <td class="datum">
                             {{ dossier.aanmaakDatumTijd|date('d-m-Y') }}
+                        </td>
+                          <td class="datum">
+                            {{ dossier.indienDatumTijd|date('d-m-Y') }}
                         </td>
                         <td>{{ dossier.status|trans }}</td>
                     </tr>
