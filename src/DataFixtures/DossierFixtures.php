@@ -46,7 +46,7 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
             $dossier->setInPrullenbak($dossiers[$i]['inPrullenbak']);
 
 
-            if($dossiers[$i]['verzondenGka']) {
+            if($dossiers[$i]['verzondenGka'] === 'true') {
                 $dossier->setAllegroNummer(834 . ($i-1) . 3879 . $i);
                 $dossier->setIndienDatumTijd(new DateTime('now'));
             }
