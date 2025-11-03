@@ -306,6 +306,12 @@ class Dossier
     private $aanmaakDatumTijd;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $indienDatumTijd;
+
+    /**
      * @var Voorlegger
      * @ORM\OneToOne(targetEntity="Voorlegger", mappedBy="dossier", orphanRemoval=true, cascade={"persist", "remove"})
      * @Assert\Valid
@@ -750,6 +756,22 @@ class Dossier
     public function setAanmaakDatumTijd(\DateTime $aanmaakDatumTijd)
     {
         $this->aanmaakDatumTijd = $aanmaakDatumTijd;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getIndienDatumTijd(): ?\DateTime
+    {
+        return $this->indienDatumTijd;
+    }
+
+    /**
+     * @param \DateTime|null $indienDatumTijd
+     */
+    public function setIndienDatumTijd(?\DateTime $indienDatumTijd)
+    {
+        $this->indienDatumTijd = $indienDatumTijd;
     }
 
     /**
