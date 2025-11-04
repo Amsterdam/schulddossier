@@ -41,6 +41,6 @@
     src:url(https://www.amsterdam.nl/views/core/fonts/AmsterdamSans/eot/AmsterdamSans-ExtraBold.eot?#iefix) format("eot"),url(https://www.amsterdam.nl/views/core/fonts/AmsterdamSans/woff2/AmsterdamSans-ExtraBold.woff2) format("woff2"),url(https://www.amsterdam.nl/views/core/fonts/AmsterdamSans/woff/AmsterdamSans-ExtraBold.woff) format("woff")
 }
 
-body{
+body, input[type="date"] {
     font-family:amsterdam sans,arial,sans-serif
 }
