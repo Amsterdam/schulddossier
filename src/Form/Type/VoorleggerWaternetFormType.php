@@ -37,12 +37,10 @@ class VoorleggerWaternetFormType extends AbstractType
             'help' => 'DB: voorlegger.drinkwater_klantnummer'
         ]);
         $builder->add('drinkwaterDatumOpname', DateType::class, [
-            'required' => false,
-            'html5' => false,
-            'attr' => ['data-decorator' => 'rome'],
-            'format' => 'dd-MM-yyyy',
-            'widget' => 'single_text',
             'label' => "Datum opname",
+            'required' => false,
+            'html5' => true,
+            'widget' => 'single_text',
             'help' => 'DB: voorlegger.drinkwater_datum_opname'
         ]);
         $builder->add('drinkwaterOpname', NumberType::class, [

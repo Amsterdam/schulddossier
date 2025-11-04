@@ -406,7 +406,6 @@
           li.innerHTML = newInput.trim();
           li.appendChild(a);
           itemList.appendChild(li);
-          decorators['rome'].call(li.querySelector('input[type="text"]'));
         },
         _remove = function (e) {
           e && e.preventDefault();
@@ -418,14 +417,8 @@
             form && form.dataset.changer && changers[form.dataset.changer].call(form, e);
           }
         };
-      for(var i = 0; i < inputList.length; i++){
-        decorators['rome'].call(inputList[i]);
-      }
-
       add.addEventListener('click', _add);
       self.addEventListener('click', _remove);
-
-
     },
     'lazy-load-document-thumb': function () {
       var self = this,
@@ -960,35 +953,6 @@
       }
     },
 
-    'rome': function () {
-      if (typeof rome != 'function' || this.tagName != 'INPUT') return;
-      var datepicker = rome(this, {
-        'inputFormat': 'DD-MM-YYYY',
-        'appendTo': 'parent',
-        'time': false,
-        'max': this.getAttribute('data-max'),
-        'moment': {
-          'locale': 'nl'
-        }
-      });
-      datepicker.on('data', function () {
-        if (!this.associated) return;
-        var changer = _closest(this.associated, '[data-changer]');
-        helpers.trigger(this.associated, 'input');
-        changer && changers[changer.dataset.changer].call(changer);
-      });
-      datepicker.on('show', function(){
-        var row = _closest(this.associated, '.form-row'),
-          widget = _closest(this.associated, '.label-widget');
-        this.container.style.left =  this.associated.offsetLeft + 'px';
-        this.container.style.top = widget ? widget.offsetHeight + 'px' : this.associated.offsetHeight + 'px';
-        row && row.classList.add('rome-active');
-      });
-      datepicker.on('hide', function(){
-        var row = _closest(this.associated, '.form-row');
-        row && row.classList.remove('rome-active');
-      });
-    },
     'select-condition': function () {
       if (this.tagName !== 'SELECT') return;
       if (!this.dataset.field) return;

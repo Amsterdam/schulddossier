@@ -59,9 +59,7 @@ class CreateDossierFormType extends AbstractType
         $builder->add('clientGeboortedatum', DateType::class, [
             'label' => 'Geboortedatum',
             'required' => false,
-            'html5' => false,
-            'attr' => ['data-decorator' => 'rome'],
-            'format' => 'dd-MM-yyyy',
+            'html5' => true,
             'widget' => 'single_text',
         ]);
 
@@ -101,9 +99,7 @@ class CreateDossierFormType extends AbstractType
         $builder->add('partnerGeboortedatum', DateType::class, [
             'label' => 'Geboortedatum',
             'required' => false,
-            'html5' => false,
-            'attr' => ['data-decorator' => 'rome'],
-            'format' => 'dd-MM-yyyy',
+            'html5' => true,
             'widget' => 'single_text',
         ]);
 

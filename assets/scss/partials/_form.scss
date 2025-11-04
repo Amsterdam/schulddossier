@@ -263,9 +263,6 @@ form {
   .voorlegger & .form-row__checkbox--right .label-widget {
       top: -37px;
   }
-  .form-row.rome-active {
-    z-index: 2;
-  }
   [data-unit] {
     position: relative;
     &:after {

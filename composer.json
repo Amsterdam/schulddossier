@@ -4,9 +4,6 @@
     "require": {
         "php": "^8.2",
         "ext-iconv": "*",
-        "bevacqua/dragula": "3.7.2",
-        "bevacqua/horsey": "4.2.2",
-        "bevacqua/rome": "2.1.22",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.1",
         "doctrine/doctrine-migrations-bundle": "^3.0",
@@ -136,9 +133,6 @@
             ["mirror", "vendor/mozilla/pdf.js", "public/vendor/mozilla/pdf.js", null, {"delete": true}],
             ["mirror", "vendor/mrrio/jspdf", "public/vendor/mrrio/jspdf", null, {"delete": true}],
             ["mirror", "vendor/jshjohnson/choices", "public/vendor/jshjohnson/choices", null, {"delete": true}],
-            ["mirror", "vendor/bevacqua/horsey", "public/vendor/bevacqua/horsey", null, {"delete": true}],
-            ["mirror", "vendor/bevacqua/rome", "public/vendor/bevacqua/rome", null, {"delete": true}],
-            ["mirror", "vendor/bevacqua/dragula", "public/vendor/bevacqua/dragula", null, {"delete": true}],
             ["mirror", "vendor/moment/moment", "public/vendor/moment/moment", null, {"delete": true}]
         ]
     },
@@ -176,39 +170,6 @@
                 "version": "3.0.3",
                 "dist": {
                     "url": "https://github.com/jshjohnson/Choices/archive/v3.0.3.zip",
-                    "type": "zip"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "bevacqua/horsey",
-                "version": "4.2.2",
-                "dist": {
-                    "url": "https://github.com/bevacqua/horsey/archive/v4.2.2.zip",
-                    "type": "zip"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "bevacqua/rome",
-                "version": "2.1.22",
-                "dist": {
-                    "url": "https://github.com/bevacqua/rome/archive/v2.1.22.zip",
-                    "type": "zip"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "bevacqua/dragula",
-                "version": "3.7.2",
-                "dist": {
-                    "url": "https://github.com/bevacqua/dragula/archive/v3.7.2.zip",
                     "type": "zip"
                 }
             }
