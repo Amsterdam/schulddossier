@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@bevacqua/rome": "^3.0.4",
     "ajv": "^6.12.3",
     "glob-parent": "^6.0.2",
     "jspdf": "^2.5.1",
@@ -31,6 +30,6 @@
     "dev": "encore dev",
     "watch": "encore dev --watch",
     "build": "encore production",
-    "postinstall": "rm -fr ./public/vendor && mkdir -p ./public/vendor/moment && cp -R ./node_modules/moment ./public/vendor/moment && cp -R ./node_modules/@bevacqua ./public/vendor/bevacqua"
+    "postinstall": "rm -fr ./public/vendor && mkdir -p ./public/vendor/moment && cp -R ./node_modules/moment ./public/vendor/moment"
   }
 }
