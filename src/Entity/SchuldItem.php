@@ -157,7 +157,6 @@ class SchuldItem
         $this->aantekeningen = new ArrayCollection();
         $this->aanmaakDatumTijd = new \DateTime();
         $this->bewerkDatumTijd = new \DateTime();
-        $this->vaststelDatum = new \DateTime();
         $this->verwijderd = false;
     }
 

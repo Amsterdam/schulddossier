@@ -118,7 +118,7 @@
                             {% else %}
                             {{ form_row(form.bedrag) }}
                             {% endif %}
-                            {{ form_row(form.vastStelDatum) }}
+                            {{ form_row(form.vastStelDatum, {'attr': {'data-validator': 'required'}}) }}
                             {{ form_row(form.type) }}
                             {% if not schuldItem.verwijderd %}
                             {{ form_row(form.referentie, {'attr': {'data-validator': 'required'}}) }}
