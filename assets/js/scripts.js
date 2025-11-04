@@ -1801,9 +1801,14 @@
               options.callback.call(request, request.responseText);
             }
           } else {
-            if (options.error && typeof (options.error) == 'function') {
-              options.error.call(request, request.responseText);
-            }
+            alert(
+              'Er is een fout opgetreden:' 
+              + '\n' 
+              + '- Vul het formulier nogmaals in en bekijk of alle verplichte velden correct zijn ingevuld' 
+              + '\n\n' 
+              + 'Bij aanhoudende fout, neem contact op met de beheerder van de applicatie.'
+            );
+            location.reload();
           }
           _decorate();
         }
