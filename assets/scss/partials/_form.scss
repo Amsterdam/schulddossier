@@ -702,13 +702,15 @@ form {
         text-decoration: underline;
       }
       &:after {
-        content: "\Aof sleep pagina's hier naartoe";
+        content: "\A of sleep pagina's hier naartoe.\A Deze bestanden zijn toegestaan:\A .pdf, .doc(x), .xls(x), .png, .jp(e)g, .tiff ";
         line-height: 2;
       }
     }
     &.has-file {
-      .drop-area:before {
-        display: none;
+      .drop-area {
+        &:before, &:after {
+          display: none;
+        }
       }
     }
     input[type="text"] {
