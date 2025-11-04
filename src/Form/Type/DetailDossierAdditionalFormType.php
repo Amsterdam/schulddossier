@@ -58,9 +58,7 @@ class DetailDossierAdditionalFormType extends AbstractType
         $builder->add('clientBurgelijkeStaatSinds', DateType::class, [
             'label' => 'Burgerlijke staat sinds',
             'required' => false,
-            'html5' => false,
-            'attr' => ['data-decorator' => 'rome'],
-            'format' => 'dd-MM-yyyy',
+            'html5' => true,
             'widget' => 'single_text',
         ]);
 
