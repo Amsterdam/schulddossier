@@ -22,6 +22,12 @@ p, ol, ul, dl, figure, details {
 	margin-bottom: $lineHeight
 }
 
+details>summary {
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
 img {
   vertical-align: top;
 	max-width: 100%;
