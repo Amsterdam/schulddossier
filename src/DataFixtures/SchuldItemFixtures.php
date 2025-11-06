@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
+use DateTime;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
@@ -27,6 +28,7 @@ class SchuldItemFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture impleme
         $schuldItem->setReferentie('Referentie schuld');
         $schuldItem->setAanmaker($gebruiker);
         $schuldItem->setBewerker($gebruiker);
+        $schuldItem->setVaststelDatum(new \DateTime('now'));
 
         $this->addReference('schulditem', $schuldItem);
 
