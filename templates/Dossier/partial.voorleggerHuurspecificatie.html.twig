@@ -40,14 +40,17 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
-                <p>Stuur de meest recente huurspecificatie met de servicekosten mee.</p>
-                <p>De servicekosten worden los van de kale huur ingevoerd. De servicekosten die opgevoerd mogen worden bestaan uit:</p>
-                <ul>
-                    <li>Elektraverbruik algemene ruimten;</li>
-                    <li>Schoonmaak algemene ruimten;</li>
-                    <li>Huismeester/wijkbeheerder/complexbeheerder;</li>
-                    <li>Onderhoud dienst- en recreatieruimten (bij seniorencomplexen).</li>
-                </ul>
+                {{ tools.details_widget({
+                    title: "Toelichting",
+                    value: "<p>Stuur de meest recente huurspecificatie met de servicekosten mee.</p>
+                            <p>De servicekosten worden los van de kale huur ingevoerd. De servicekosten die opgevoerd mogen worden bestaan uit:</p>
+                            <ul>
+                                <li>Elektraverbruik algemene ruimten;</li>
+                                <li>Schoonmaak algemene ruimten;</li>
+                                <li>Huismeester/wijkbeheerder/complexbeheerder;</li>
+                                <li>Onderhoud dienst- en recreatieruimten (bij seniorencomplexen).</li>
+                            </ul>"
+                }) }}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Huurspecificatie'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}

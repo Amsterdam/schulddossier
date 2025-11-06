@@ -39,9 +39,12 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
-                <p>Wanneer er sprake is van schulden bij de huidige energieleverancier of drinkwaterbedrijf, vul dan de meterstanden in Schulddossier in. Let op: deze mogen niet ouder zijn dan één maand. Het is raadzaam om de meterstanden op te nemen voordat je de aanvraag verstuurt. Een foto van de meterstanden kan als bijlage worden geüpload, maar dit is niet voldoende – de standen moeten ook handmatig worden ingevuld.</p>
-                <p>Heeft de Amsterdammer een slimme meter? Vermeld dit dan duidelijk in de aanvraag.</p>
-                <p>Indien er schulden bij Waternet openstaan op twee adressen (een huidig en een oud adres), vermeld dit dan duidelijk en geef beide klantnummers op, zodat per adres inzichtelijk is welke schuld daarbij hoort.</p>
+                {{ tools.details_widget({
+                    title: "Toelichting",
+                    value: "<p>Wanneer er sprake is van schulden bij de huidige energieleverancier of drinkwaterbedrijf, vul dan de meterstanden in Schulddossier in. Let op: deze mogen niet ouder zijn dan één maand. Het is raadzaam om de meterstanden op te nemen voordat je de aanvraag verstuurt. Een foto van de meterstanden kan als bijlage worden geüpload, maar dit is niet voldoende – de standen moeten ook handmatig worden ingevuld.</p>
+                            <p>Heeft de Amsterdammer een slimme meter? Vermeld dit dan duidelijk in de aanvraag.</p>
+                            <p>Indien er schulden bij Waternet openstaan op twee adressen (een huidig en een oud adres), vermeld dit dan duidelijk en geef beide klantnummers op, zodat per adres inzichtelijk is welke schuld daarbij hoort.</p>"
+                }) }}
                 {{ form_row(form.drinkwaterKlantnummer) }}
                 {% if app.user.type == 'admin' %}
                     {{ form_help(form.drinkwaterKlantnummer) }}
