@@ -1,4 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
+{% from 'html.macros.html.twig' import details as detailsMacro %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('inkomstenspecificatie') %}
 
 <div class="dossier__item
@@ -37,7 +38,7 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
-                {{ tools.details_widget({
+                {{ detailsMacro({
                     title: "Toelichting",
                     value: "<p>Het inkomen is op orde en alle voorliggende financiële voorzieningen zijn aangevraagd. De schuldhulpverlener moet hierop toezien. Cliënt heeft minimaal een inkomen op sociaal minimum.</p>
                             <ul>

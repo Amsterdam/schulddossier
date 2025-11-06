@@ -1,4 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
+{% from 'html.macros.html.twig' import details as detailsMacro %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('gereserveerdeGelden') %}
 
 <div class="dossier__item {{ dossier.voorlegger.gereserveerdeGeldenNvt ? ' status-nvt' }}
@@ -39,7 +40,7 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
-                {{ tools.details_widget({
+                {{ detailsMacro({
                     title: "Toelichting",
                     value: "<p>Bij het indienen van een aanvraag voor een schuldregeling moet het aanwezige vermogen of spaargeld worden opgegeven, omdat dit wordt ingezet in het aanbod aan de schuldeisers. De NVVK hanteert als vuistregel dat maximaal het VTLB wordt vrijgelaten, aangevuld met eventuele toeslagen. Dit betekent dat je bij het indienen moet bekijken welk bedrag je nog nodig hebt om de vaste lasten en noodzakelijke uitgaven tot de volgende betaling of uitkering te kunnen voldoen.</p>
                             <p>Zie voor meer informatie: <i>Notitie NVVK februari 2025 – Het vaststellen van in te leggen banksaldi bij start schuldregeling.</i></p>

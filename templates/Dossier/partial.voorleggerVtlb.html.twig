@@ -1,4 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
+{% from 'html.macros.html.twig' import details as detailsMacro %}
 
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('vtlb') %}
 
@@ -38,7 +39,7 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
-                {{ tools.details_widget({
+                {{ detailsMacro({
                     title: "Toelichting",
                     value: "<p>Heeft de Amsterdammer een PW-uitkering? Voeg dan de VTLB-berekening toe. In alle andere gevallen wanneer een VTLB-berekening aanwezig is kan dit toegevoegd worden. Zie voor de berekening het VTLB-rapport, opgesteld door de Werkgroep Rekenmethode VTLB van Recofa. Het actuele VTLB-rapport is beschikbaar op de website van Bureau Wsnp.</p>"
                 }) }}

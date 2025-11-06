@@ -1,6 +1,7 @@
 {% import 'partial.macros.html.twig' as tools %}
+{% from 'html.macros.html.twig' import details as detailsMacro %}
 
-{{ tools.details_widget({
+{{ detailsMacro({
     title: "Toelichting",
     value: "<p>Voeg een geldig legitimatiebewijs (identiteitsbewijs of paspoort) van cliënt en evt. partner of kopie voor- en achterzijde verblijfsvergunning(en) (handtekening + foto zichtbaar). Het BSNnummer moet duidelijk te zien zijn. Vul in dit tabblad de volledige gegevens in.</p><p>Een Nederlands rijbewijs is ook een geldig legitimatiebewijs. Voor de uitbetaling van het krediet verzoekt de Kredietbank om een geldig legitimatiebewijs, bijvoorbeeld een identiteitskaart of een paspoort.</p>"
 }) }}
