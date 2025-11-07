@@ -50,9 +50,7 @@ class ChangeDossierClientType extends AbstractType
         $builder->add('clientGeboortedatum', DateType::class, [
             'label' => 'Geboortedatum',
             'required' => false,
-            'html5' => false,
-            'attr' => ['data-decorator' => 'rome'],
-            'format' => 'dd-MM-yyyy',
+            'html5' => true,
             'widget' => 'single_text',
             'help' => 'DB: dossier.client_geboortedatum'
         ]);
@@ -99,9 +97,7 @@ class ChangeDossierClientType extends AbstractType
         $builder->add('partnerGeboortedatum', DateType::class, [
             'label' => 'Geboortedatum',
             'required' => false,
-            'html5' => false,
-            'attr' => ['data-decorator' => 'rome'],
-            'format' => 'dd-MM-yyyy',
+            'html5' => true,
             'widget' => 'single_text',
             'help' => 'DB: dossier.partner_geboortedatum'
         ]);
@@ -166,9 +162,7 @@ class ChangeDossierClientType extends AbstractType
         $builder->add('clientBurgelijkeStaatSinds', DateType::class, [
             'label' => 'Burgerlijke staat sinds',
             'required' => false,
-            'html5' => false,
-            'attr' => ['data-decorator' => 'rome'],
-            'format' => 'dd-MM-yyyy',
+            'html5' => true,
             'widget' => 'single_text',
             'help' => 'DB: dossier.client_burgelijke_staat_sinds'
         ]);

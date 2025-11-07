@@ -1,4 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
+{% from 'html.macros.html.twig' import details as detailsMacro %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('toelichtingAanvraagSchuldsaneringClient') %}
 
 <div class="dossier__item
@@ -37,6 +38,18 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                {{ detailsMacro({    
+                    class: "explanation",
+                    title: "Toelichting",
+                    value: "<p>Als de klant een toelichting heeft op het ontstaan van de schulden, kan deze worden toegevoegd. Het is echter niet verplicht dat de klant een toelichting aanlevert.</p>
+                            <ul>
+                                <li>Adviseer de Amsterdammer om geen medische (detail)informatie te verstrekken.</li>
+                                <li>Richtlijn voor de lengte van de toelichting is ongeveer 1 A4.</li>
+                                <li>Vraag de Amsterdammer om zoveel mogelijk volgordelijk, per periode de toelichting op te bouwen.</li>
+                                <li>Fraudeschulden hoeven niet toegelicht te worden in de toelichting. De betreffende schuldeisers worden apart aangeschreven.</li>
+                                <li>Let erop dat de toelichting van de Amsterdammer het MSNP-traject niet belemmert, bijvoorbeeld door geen verwijten te maken richting schuldeisers.</li>
+                            </ul>"
+                }) }}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Toelichting aanvraag schuldsanering cliënt'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}

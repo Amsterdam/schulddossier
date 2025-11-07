@@ -7,33 +7,6 @@
     "content-hash": "9ccc3cc24850953bcd19fcf660bb79a0",
     "packages": [
         {
-            "name": "bevacqua/dragula",
-            "version": "3.7.2",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/bevacqua/dragula/archive/v3.7.2.zip"
-            },
-            "type": "library"
-        },
-        {
-            "name": "bevacqua/horsey",
-            "version": "4.2.2",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/bevacqua/horsey/archive/v4.2.2.zip"
-            },
-            "type": "library"
-        },
-        {
-            "name": "bevacqua/rome",
-            "version": "2.1.22",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/bevacqua/rome/archive/v2.1.22.zip"
-            },
-            "type": "library"
-        },
-        {
             "name": "clue/stream-filter",
             "version": "v1.6.0",
             "source": {

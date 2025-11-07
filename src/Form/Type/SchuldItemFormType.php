@@ -82,21 +82,21 @@ class SchuldItemFormType extends AbstractType
             'help' => 'DB: schuld_item.bedrag_oorspronkelijk'
         ]);
         $builder->add('vastStelDatum', DateType::class, [
-            'html5' => false,
-            'attr' => ['data-decorator' => 'rome', 'data-max' => (new \DateTime('now'))->format("d-m-Y")],
-            'format' => 'dd-MM-yyyy',
-            'widget' => 'single_text',
             'label' => 'Contactdatum *',
             'required' => true,
+            'html5' => true,
+            'widget' => 'single_text',
+            'attr' => [
+                'max' => (new \DateTime())->format('Y-m-d'), // today
+                'placeholder' => 'jjjj-mm-dd',
+            ],
             'help' => 'DB: schuld_item.vaststel_datum'
         ]);
         $builder->add('ontstaansDatum', DateType::class, [
-            'html5' => false,
-            'attr' => ['data-decorator' => 'rome'],
-            'format' => 'dd-MM-yyyy',
-            'widget' => 'single_text',
             'label' => 'Ontstaansdatum',
             'required' => false,
+            'html5' => true,
+            'widget' => 'single_text',
             'help' => 'DB: schuld_item.ontstaans_datum'
         ]);
         $builder->add('file', CollectionType::class, [

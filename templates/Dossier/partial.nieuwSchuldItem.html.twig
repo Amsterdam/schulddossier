@@ -61,7 +61,7 @@
                                 {% if app.user.type == 'admin' %}
                                     {{ form_help(createForm.bedrag) }}
                                 {% endif %}
-                                {{ form_row(createForm.vastStelDatum) }}
+                                {{ form_row(createForm.vastStelDatum, {'attr': {'data-validator': 'required'}}) }}
                                 {% if app.user.type == 'admin' %}
                                     {{ form_help(createForm.vastStelDatum) }}
                                 {% endif %}

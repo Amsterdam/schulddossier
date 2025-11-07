@@ -1,4 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
+{% from 'html.macros.html.twig' import details as detailsMacro %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('arbeidsovereenkomst') %}
 
 <div class="dossier__item {{ dossier.voorlegger.arbeidsovereenkomstNvt ? ' status-nvt' }}
@@ -43,6 +44,11 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                {{ detailsMacro({    
+                    class: "explanation",
+                    title: "Toelichting",
+                    value: "<p>Voeg het meest recente arbeidscontract toe. Eindigt het contract binnen drie maanden, informeer dan bij de werkgever of er sprake is van een intentie tot verlenging. Loopt het contract binnen zes weken af, voeg dan bij de aanvraag een intentieverklaring van de werkgever toe.</p>"
+                }) }}
                 {{ form_row(form.arbeidsovereenkomstWerkgever) }}
                 {% if app.user.type == 'admin' %}
                     {{ form_help(form.arbeidsovereenkomstWerkgever) }}

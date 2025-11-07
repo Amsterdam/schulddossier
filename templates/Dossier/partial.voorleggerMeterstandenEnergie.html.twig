@@ -1,4 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
+{% from 'html.macros.html.twig' import details as detailsMacro %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('meterstandenEnergie') %}
 
 <div class="dossier__item {{ dossier.voorlegger.meterstandenEnergieNvt ? ' status-nvt' }}
@@ -40,7 +41,13 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
-                Alleen invullen indien er een achterstand is bij de huidige leverancier.
+                {{ detailsMacro({    
+                    class: "explanation",
+                    title: "Toelichting",
+                    value: "<p>Wanneer er sprake is van schulden bij de huidige energieleverancier of drinkwaterbedrijf, vul dan de meterstanden in Schulddossier in. Let op: deze mogen niet ouder zijn dan één maand. Het is raadzaam om de meterstanden op te nemen voordat je de aanvraag verstuurt. Een foto van de meterstanden kan als bijlage worden geüpload, maar dit is niet voldoende – de standen moeten ook handmatig worden ingevuld.</p>
+                            <p>Heeft de Amsterdammer een slimme meter? Vermeld dit dan duidelijk in de aanvraag.</p>"
+                }) }}
+                <p class="explanation">Alleen invullen indien er een achterstand is bij de huidige leverancier.</p>
                 {{ form_row(form.energieBedrijf) }}
                 {% if app.user.type == 'admin' %}
                     {{ form_help(form.energieBedrijf) }}
