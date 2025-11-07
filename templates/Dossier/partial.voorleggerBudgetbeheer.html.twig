@@ -40,6 +40,7 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <p class="explanation">Vink aan welke organisatie het budgetbeheer uitvoert.</p>
                 {{ form_row(form.budgetbeheerPlangroep) }}
                 {% if app.user.type == 'admin' %}
                     {{ form_help(form.budgetbeheerPlangroep) }}

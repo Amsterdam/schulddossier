@@ -36,20 +36,21 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <p>De volmacht dient ondertekend te zijn door de Amsterdammer.</p>
                 <h4>Producten</h4>
                 <div>
-                    <div class="warning-text">
+                    <p class="explanation">
                         Let op: per dossier mag er maar één van de onderstaande producten worden aangevinkt.
-                    </div>
+                    </p>
                 </div>
                 {{ form_row(form.jongerenSchuldenvrijeStart) }}
                 {% if app.user.type == 'admin' %}
                     {{ form_help(form.jongerenSchuldenvrijeStart) }}
                 {% endif %}
                 <div class="dossier__voorlegger__sectie_jss_informatie">
-                    <div class="warning-text">
+                    <p class="explanation">
                         Let op: alleen invullen bij JSS (verplicht)
-                    </div>
+                    </p>
                     {{ form_row(form.jssAdviseurNaam) }}
                     {% if app.user.type == 'admin' %}
                         {{ form_help(form.jssAdviseurNaam) }}
@@ -81,12 +82,12 @@
                         {{ form_help(form.herfinanciering) }}
                     {% endif %}
                 {% endif %}
-                
+
                 <h4>Schulden op de werkvloer</h4>
                 <div>
-                    <div class="warning-text">
+                    <p class="explanation">
                         Alleen voor medewerkers van Gemeente Amsterdam en Pantar of werkzaam via een uitzendbureau voor Gemeente Amsterdam. Deze regel moet in combinatie met een van de bovenstaande producten worden geselecteerd.
-                    </div>
+                    </p>
                     <div class="input-choice">
                         {{ form_row(form.schuldenOpDeWerkvloer) }}
                         {% if app.user.type == 'admin' %}

@@ -41,6 +41,8 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <p class="explanation">Voeg de beschikking toe bij de aanvraag.</p>
+                <p class="explanation">De kosten van de bewindvoerder worden niet opgenomen in het VTLB, omdat na toekenning van de sanering hiervoor bijzondere bijstand kan worden aangevraagd.</p>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Beschikking onderbewindstelling'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}

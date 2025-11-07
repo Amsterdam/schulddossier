@@ -1,0 +1,18 @@
+$explanation-color: $colorBgDark;
+
+.explanation {
+    color: $explanation-color;
+    font-size: $fs-x-small;
+}
+
+details.explanation {
+    > div {
+        border: 1px dotted $explanation-color;
+        padding: 1.5em;
+        color: inherit;
+    }
+}
+
+p.explanation {
+    @extend .explanation;
+}

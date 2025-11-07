@@ -1,0 +1,6 @@
+{% macro details(args) %}
+  <details class={{ args.class|default('')  }}>
+    <summary>{{ args.title }}</summary>
+     <div>{{ args.value|raw }}</div>
+  </details>
+{% endmacro %}
