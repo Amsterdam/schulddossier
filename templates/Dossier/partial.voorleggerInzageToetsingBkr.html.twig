@@ -36,6 +36,8 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                <p class="explanation">Een BKR-overzicht mag bestaan uit een gewaarmerkt exemplaar of een volledige online uitdraai. Let op: een screenshot wordt niet geaccepteerd<p>
+                <p class="explanation">Het BKR-overzicht dient jonger te zijn dan 6 maanden. Bij een BKR-toetsing, als de schuld is afgelost, moet er ook een einddatum vermeld staan bij het BKR. Een online BKR-inzage is ook toegestaan, zolang deze volledig is en alle relevante gegevens bevat. Let er daarbij op dat het overzicht in één document wordt aangeleverd en niet uit losse pagina’s bestaat.</p>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Inzage toetsing BKR'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}

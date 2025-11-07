@@ -1,4 +1,5 @@
 {% import 'partial.macros.html.twig' as tools %}
+{% from 'html.macros.html.twig' import details as detailsMacro %}
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('gereserveerdeGelden') %}
 
 <div class="dossier__item {{ dossier.voorlegger.gereserveerdeGeldenNvt ? ' status-nvt' }}
@@ -39,6 +40,17 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
+                {{ detailsMacro({    
+                    class: "explanation",
+                    title: "Toelichting",
+                    value: "<p>Bij het indienen van een aanvraag voor een schuldregeling moet het aanwezige vermogen of spaargeld worden opgegeven, omdat dit wordt ingezet in het aanbod aan de schuldeisers. De NVVK hanteert als vuistregel dat maximaal het VTLB wordt vrijgelaten, aangevuld met eventuele toeslagen. Dit betekent dat je bij het indienen moet bekijken welk bedrag je nog nodig hebt om de vaste lasten en noodzakelijke uitgaven tot de volgende betaling of uitkering te kunnen voldoen.</p>
+                            <p>Zie voor meer informatie: <i>Notitie NVVK februari 2025 – Het vaststellen van in te leggen banksaldi bij start schuldregeling.</i></p>
+                            <h4>Spaargeld op naam van kinderen</h4>
+                            <p>Minderjarige kinderen kunnen een eigen vermogen hebben zoals bijvoorbeeld eigen spaargeld, bezittingen of schulden (negatief vermogen zoals bijvoorbeeld een niet betaalde telefoonrekening). De wet legt dit vast in ‘alle ingezetenen zijn rechtsbevoegd’ (art 1:1 Burgerlijk Wetboek). Iedereen heeft eigen rechten en verplichtingen. Niet alleen meerderjarigen, maar ook minderjarigen.</p>
+                            <p>Minderjarige kinderen zijn echter handelingsonbekwaam. Handelingsonbekwaam wil zeggen dat een kind niet altijd alleen geldige rechtshandelingen kan verrichten en zelfstandig verplichtingen kan aangaan. Hiermee worden kinderen beschermd tegen kwaadwillende meerderjarigen of commerciële partijen. De wettelijk vertegenwoordigers doen dat ter bescherming van hun kinderen. Let op de uitdrukking ‘vertegenwoordigen’. Ouders of andere vertegenwoordigers (voogdij!) treden namens het kind op.</p>
+                            <p>Ouders hebben toegang tot de bankrekening van hun kinderen. Desondanks mogen ouders bankrekeningen van hun kinderen niet zomaar leeghalen. Zij zijn de bewindvoerder van het vermogen van hun kinderen (art 1:245 BW). Niet de rechthebbenden! Zij moeten over hun bewind rekening en verantwoording afleggen. Het gebruiken van het vermogen van het kind voor de schulden van de ouders is dan ook geen goed bewindvoerderschap.”</p>
+                            <p>Indien ouders geld op de spaarrekening van hun kinderen hebben gestort in plaats van vaste lasten of schulden te betalen, moet dit worden opgegeven als spaargeld.</p>"
+                }) }}
                 {{ form_row(form.gereserveerdeGelden, {'attr': {'data-unit': '€', 'data-validator': 'float'}}) }}
                 {% if app.user.type == 'admin' %}
                     {{ form_help(form.gereserveerdeGelden) }}
