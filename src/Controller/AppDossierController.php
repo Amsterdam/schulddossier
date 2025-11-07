@@ -100,7 +100,6 @@ class AppDossierController extends AbstractController
             }
             $forcedOrganisaties = $this->getUser()->getOrganisaties();
         }
-//        var_dump($section);
         $seachQuery = [
             'section' => $section,
             'naam' => '',
@@ -110,7 +109,6 @@ class AppDossierController extends AbstractController
             'medewerkerOrganisatie' => $this->getUser()->getType() === Gebruiker::TYPE_SHV || $this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER ? $this->getUser() : null,
             'teamGka' => $this->getUser()->getTeamGka()
         ];
-//var_dump($seachQuery['organisaties']);
         $searchForm = $this->createForm(SearchDossierFormType::class, $seachQuery, ['method' => 'GET']);
         if ($section === 'search') {
             $searchForm->handleRequest($request);
