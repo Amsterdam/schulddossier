@@ -441,6 +441,7 @@ class Voorlegger
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
+     * @Assert\Choice(choices={"ja", "nee", "onbekend"})
      */
     private $kwijtscheldingGemeenteBelasting;
 
