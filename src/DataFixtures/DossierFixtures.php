@@ -45,8 +45,10 @@ class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements
             $dossier->setEersteKeerVerzondenAanGKA($dossiers[$i]['verzondenGka']);
             $dossier->setInPrullenbak($dossiers[$i]['inPrullenbak']);
 
-            if($dossiers[$i]['verzondenGka']) {
+
+            if($dossiers[$i]['verzondenGka'] === 'true') {
                 $dossier->setAllegroNummer(834 . ($i-1) . 3879 . $i);
+                $dossier->setIndiendatumTijd(new DateTime('now'));
             }
 
             $this->addReference($i === 0 ? 'dossier' : 'dossier'.$i, $dossier);
