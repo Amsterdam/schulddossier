@@ -40,7 +40,7 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
-                <p>Voeg de meest recente beschikking van het UWV bij WW/ZW/WIA/WGA/IVA/WAO/Wajong.</p>
+                <p class="explanation">Voeg de meest recente beschikking van het UWV bij WW/ZW/WIA/WGA/IVA/WAO/Wajong.</p>
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Beschikking UWV'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}
