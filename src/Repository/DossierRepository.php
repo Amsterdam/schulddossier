@@ -76,10 +76,11 @@ class DossierRepository extends EntityRepository
         if ($orderBy === 'default') {
             $qb->orderBy('dossier.aanmaakDatumTijd', 'DESC');
         } elseif ($orderBy === 'gka-verzenddatum') {
-            $qb->leftJoin('dossier.timeline', 'timeline_verzenden_shv', Join::WITH, 'timeline_verzenden_shv.type = :timeline_verzenden_shv_type AND timeline_verzenden_shv.subtype = :timeline_verzenden_shv_subtype');
-            $qb->setParameter('timeline_verzenden_shv_type', DossierTimeline::TYPE_WORKFLOW);
-            $qb->setParameter('timeline_verzenden_shv_subtype', 'verzenden_shv');
-            $qb->orderBy('timeline_verzenden_shv.datumtijd', 'DESC');
+            // $qb->leftJoin('dossier.timeline', 'timeline_verzenden_shv', Join::WITH, 'timeline_verzenden_shv.type = :timeline_verzenden_shv_type AND timeline_verzenden_shv.subtype = :timeline_verzenden_shv_subtype');
+            // $qb->setParameter('timeline_verzenden_shv_type', DossierTimeline::TYPE_WORKFLOW);
+            // $qb->setParameter('timeline_verzenden_shv_subtype', 'verzenden_shv');
+            // $qb->orderBy('timeline_verzenden_shv.datumtijd', 'DESC');
+            $qb->orderBy('dossier.indienDatumTijd', 'DESC');
         }
 
         if ($query['naam'] !== null) {
