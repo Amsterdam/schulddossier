@@ -438,8 +438,10 @@ class Voorlegger
     private $kwijtscheldingGemeenteBelastingNvt;
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
+     * @Assert\Choice(choices={"ja", "nee", "onbekend"})
      */
     private $kwijtscheldingGemeenteBelasting;
 
@@ -450,12 +452,6 @@ class Voorlegger
      * @ORM\Column(type="smallint", nullable=true)
      */
     private $corrigerenGemeenteBelastingOntvangenGka;
-
-    /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $corrigerenGemeenteBelasting;
 
     /**
      * @var boolean
@@ -1087,10 +1083,8 @@ class Voorlegger
         $this->overeenkomstKinderopvangNvt = false;
         $this->kwijtscheldingGemeenteBelastingOntvangenShv = self::STATUS_SHV_OPEN;
         $this->kwijtscheldingGemeenteBelastingNvt = false;
-        $this->kwijtscheldingGemeenteBelasting = false;
         $this->corrigerenGemeenteBelastingOntvangenGka = false;
         $this->corrigerenGemeenteBelastingNvt = false;
-        $this->corrigerenGemeenteBelasting = false;
         $this->autoNvt = false;
         $this->autoTaxatieOntvangenShv = self::STATUS_SHV_OPEN;
         $this->autoTaxatieOntvangenGka = false;
@@ -1424,7 +1418,7 @@ class Voorlegger
         return $this->kwijtscheldingGemeenteBelastingNvt;
     }
 
-    public function isKwijtscheldingGemeenteBelasting()
+    public function getKwijtscheldingGemeenteBelasting()
     {
         return $this->kwijtscheldingGemeenteBelasting;
     }
@@ -1437,11 +1431,6 @@ class Voorlegger
     public function isCorrigerenGemeenteBelastingNvt()
     {
         return $this->corrigerenGemeenteBelastingNvt;
-    }
-
-    public function isCorrigerenGemeenteBelasting()
-    {
-        return $this->corrigerenGemeenteBelasting;
     }
 
     public function isAutoNvt()
@@ -2118,11 +2107,6 @@ class Voorlegger
     public function setCorrigerenGemeenteBelastingNvt($corrigerenGemeenteBelastingNvt)
     {
         $this->corrigerenGemeenteBelastingNvt = $corrigerenGemeenteBelastingNvt;
-    }
-
-    public function setCorrigerenGemeenteBelasting($corrigerenGemeenteBelasting)
-    {
-        $this->corrigerenGemeenteBelasting = $corrigerenGemeenteBelasting;
     }
 
     public function setAutoNvt($autoNvt)

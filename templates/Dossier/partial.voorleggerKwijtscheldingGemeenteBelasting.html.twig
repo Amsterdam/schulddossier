@@ -47,10 +47,6 @@
                 {% if app.user.type == 'admin' %}
                     {{ form_help(form.kwijtscheldingGemeenteBelasting) }}
                 {% endif %}
-                {{ form_row(form.corrigerenGemeenteBelasting) }}
-                {% if app.user.type == 'admin' %}
-                    {{ form_help(form.corrigerenGemeenteBelasting) }}
-                {% endif %}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Kwijtschelding gemeentebelasting'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
                 <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}
