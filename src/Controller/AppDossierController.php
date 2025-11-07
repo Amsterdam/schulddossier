@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent as ActionEventEntity;
@@ -329,18 +330,25 @@ class AppDossierController extends AbstractController
                 }
             }
 
+            
             $subForm = $voorleggerForm->get('cdst');
+        
             if (!is_null($subForm['transition']->getData())) {
-                $workflow->apply($dossier, $subForm['transition']->getData());
                 if ($subForm['transition']->getData() === 'verzenden_shv') {
                     $dossier->setEersteKeerVerzondenAanGKA(true);
+                    $dossier->setIndienDatumTijd(new DateTime('now'));
                 }
                 $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
-                if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
-                    $this->addFlash('success', 'De status is gewijzigd. Mail is verzonden naar ' . $request->get('voorlegger_form')['controleerGebruiker']);
-                } else {
-                    $this->addFlash('success', 'De status is gewijzigd');
-                }
+                $workflow->apply($dossier, $subForm['transition']->getData());
+            
+                // TODO: This code is never reached, because workflow apply return the method. 
+                // Nevertheless it would be nice to give the user feedback about an update. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-580
+
+                // if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
+                //     $this->addFlash('success', 'De status is gewijzigd. Mail is verzonden naar ' . $request->get('voorlegger_form')['controleerGebruiker']);
+                // } else {
+                //     $this->addFlash('success', 'De status is gewijzigd');
+                // }
             }
 
             $em->flush();
