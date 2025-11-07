@@ -19,11 +19,11 @@ final class Version20251103152009 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE dossier ADD indien_datum_tijd TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL');
+        $this->addSql('ALTER TABLE dossier ADD indiendatum_tijd TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE dossier DROP indien_datum_tijd');
+        $this->addSql('ALTER TABLE dossier DROP indiendatum_tijd');
     }
 }
