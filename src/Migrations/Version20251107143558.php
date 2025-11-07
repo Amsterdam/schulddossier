@@ -50,6 +50,10 @@ final class Version20251107143558 extends AbstractMigration
         $this->addSql('ALTER INDEX idx_ee455a469c92a3df RENAME TO idx_367a5dc79c92a3df');
         $this->addSql('ALTER INDEX idx_6dd12c19296cd8ae RENAME TO idx_28d92139296cd8ae');
         $this->addSql('ALTER TABLE voorlegger ADD corrigeren_gemeente_belasting BOOLEAN DEFAULT NULL');
+        // Convert string values back to boolean before altering the column type
+        $this->addSql("UPDATE voorlegger SET kwijtschelding_gemeente_belasting = 'true' WHERE kwijtschelding_gemeente_belasting = 'ja'");
+        $this->addSql("UPDATE voorlegger SET kwijtschelding_gemeente_belasting = 'false' WHERE kwijtschelding_gemeente_belasting = 'nee'");
+        $this->addSql("UPDATE voorlegger SET kwijtschelding_gemeente_belasting = NULL WHERE kwijtschelding_gemeente_belasting = 'onbekend'");
         $this->addSql('ALTER TABLE voorlegger ALTER kwijtschelding_gemeente_belasting TYPE BOOLEAN');
         $this->addSql('ALTER INDEX idx_3d48e0379445f818 RENAME TO idx_3d48e0373f310e50');
         $this->addSql('ALTER INDEX idx_3d48e037bd53d44e RENAME TO idx_3d48e0373e6b6494');
