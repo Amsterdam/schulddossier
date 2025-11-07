@@ -1,7 +1,6 @@
 {% macro details(args) %}
-  <details>
+  <details class={{ args.class|default('')  }}>
     <summary>{{ args.title }}</summary>
-    <!-- Make sure the value has its own markup (HTML-tags) -->
-    {{ args.value|raw }}
+     <div>{{ args.value|raw }}</div>
   </details>
 {% endmacro %}
