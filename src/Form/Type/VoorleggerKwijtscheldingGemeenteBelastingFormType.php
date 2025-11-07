@@ -32,11 +32,6 @@ class VoorleggerKwijtscheldingGemeenteBelastingFormType extends AbstractType
             'label' => 'Kwijtschelding (SHV-er/Bewindvoerder)',
             'help' => 'DB: voorlegger.kwijtschelding_gemeente_belasting'
         ]);
-        $builder->add('corrigerenGemeenteBelasting', CheckboxType::class, [
-            'required' => false,
-            'label' => 'Corrigeren (GKA)',
-            'help' => 'DB: voorlegger.corrigeren_gemeente_belasting'
-        ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
             'entry_type' => DocumentFormType::class,
