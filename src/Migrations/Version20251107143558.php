@@ -22,6 +22,7 @@ final class Version20251107143558 extends AbstractMigration
         // Map "true" to "ja" and "false" to "nee" in kwijtschelding_gemeente_belasting
         $this->addSql("UPDATE voorlegger SET kwijtschelding_gemeente_belasting = 'ja' WHERE kwijtschelding_gemeente_belasting = 'true'");
         $this->addSql("UPDATE voorlegger SET kwijtschelding_gemeente_belasting = 'nee' WHERE kwijtschelding_gemeente_belasting = 'false'");
+        $this->addSql("UPDATE voorlegger SET kwijtschelding_gemeente_belasting = 'onbekend' WHERE kwijtschelding_gemeente_belasting IS NULL");
 
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('DROP SEQUENCE thumbnail_id_seq CASCADE');
