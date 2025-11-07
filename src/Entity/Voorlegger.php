@@ -438,8 +438,9 @@ class Voorlegger
     private $kwijtscheldingGemeenteBelastingNvt;
 
     /**
-     * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=0, max=255)
      */
     private $kwijtscheldingGemeenteBelasting;
 
@@ -1081,7 +1082,6 @@ class Voorlegger
         $this->overeenkomstKinderopvangNvt = false;
         $this->kwijtscheldingGemeenteBelastingOntvangenShv = self::STATUS_SHV_OPEN;
         $this->kwijtscheldingGemeenteBelastingNvt = false;
-        $this->kwijtscheldingGemeenteBelasting = false;
         $this->corrigerenGemeenteBelastingOntvangenGka = false;
         $this->corrigerenGemeenteBelastingNvt = false;
         $this->autoNvt = false;
@@ -1417,7 +1417,7 @@ class Voorlegger
         return $this->kwijtscheldingGemeenteBelastingNvt;
     }
 
-    public function isKwijtscheldingGemeenteBelasting()
+    public function getKwijtscheldingGemeenteBelasting()
     {
         return $this->kwijtscheldingGemeenteBelasting;
     }

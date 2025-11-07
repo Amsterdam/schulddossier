@@ -2,6 +2,7 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,10 +28,12 @@ class VoorleggerKwijtscheldingGemeenteBelastingFormType extends AbstractType
             'required' => true,
             'disabled' => $options['disable_group'] === 'shv'
         ]);
-        $builder->add('kwijtscheldingGemeenteBelasting', CheckboxType::class, [
+        $builder->add('kwijtscheldingGemeenteBelasting', ChoiceType::class, [
             'required' => false,
-            'label' => 'Kwijtschelding (SHV-er/Bewindvoerder)',
-            'help' => 'DB: voorlegger.kwijtschelding_gemeente_belasting'
+            'choices' => $this->getKwijtscheldingGemeenteBelasting(),
+            'empty_data' => null,
+            'placeholder' => 'Selecteer een optie',
+            'help' => 'DB: voorlegger.kwijtscheldingGemeenteBelasting'
         ]);
         $builder->add('file', CollectionType::class, [
             'mapped' => false,
@@ -73,5 +76,14 @@ class VoorleggerKwijtscheldingGemeenteBelastingFormType extends AbstractType
         $resolver->setDefault('data_class', Voorlegger::class);
         $resolver->setDefault('choice_translation_domain', false);
         $resolver->setDefault('disable_group', null);
+    }
+
+    private function getKwijtscheldingGemeenteBelasting()
+    {
+        return [
+            'Ja' => 'ja',
+            'Nee' => 'nee',
+            'Onbekend' => 'onbekend',
+        ];
     }
 }
