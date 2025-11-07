@@ -761,7 +761,7 @@ class Dossier
     /**
      * @return \DateTime|null
      */
-    public function getIndiendatumTijd(): ?\DateTime
+    public function getindiendatumTijd(): ?\DateTime
     {
         return $this->indiendatumTijd;
     }
