@@ -329,10 +329,8 @@ class AppDossierController extends AbstractController
                     $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
                 }
             }
-
             
             $subForm = $voorleggerForm->get('cdst');
-        
             if (!is_null($subForm['transition']->getData())) {
                 if ($subForm['transition']->getData() === 'verzenden_shv') {
                     $dossier->setEersteKeerVerzondenAanGKA(true);
