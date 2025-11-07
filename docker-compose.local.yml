@@ -7,7 +7,7 @@ services:
     environment:
       - TZ=Europe/Amsterdam
     image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/schulddossier-phpfpm}:${VERSION:-latest}
-    
+
   schulddossier-nginx:
     build:
       context: .
@@ -22,3 +22,9 @@ services:
     image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/schulddossier-nginx}:${VERSION:-latest}
     depends_on:
       - schulddossier-phpfpm
+
+  schulddossier-proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile_proxy
+    image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/schulddossier-proxy}:${VERSION:-latest}
