@@ -309,7 +309,7 @@ class Dossier
      * @var \DateTime
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $indienDatumTijd;
+    private $indiendatumTijd;
 
     /**
      * @var Voorlegger
@@ -761,17 +761,17 @@ class Dossier
     /**
      * @return \DateTime|null
      */
-    public function getIndienDatumTijd(): ?\DateTime
+    public function getindiendatumTijd(): ?\DateTime
     {
-        return $this->indienDatumTijd;
+        return $this->indiendatumTijd;
     }
 
     /**
-     * @param \DateTime|null $indienDatumTijd
+     * @param \DateTime|null $indiendatumTijd
      */
-    public function setIndienDatumTijd(?\DateTime $indienDatumTijd)
+    public function setIndiendatumTijd(?\DateTime $indiendatumTijd)
     {
-        $this->indienDatumTijd = $indienDatumTijd;
+        $this->indiendatumTijd = $indiendatumTijd;
     }
 
     /**

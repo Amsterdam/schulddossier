@@ -76,7 +76,7 @@ class DossierRepository extends EntityRepository
         if ($orderBy === 'default') {
             $qb->orderBy('dossier.aanmaakDatumTijd', 'DESC');
         } elseif ($orderBy === 'gka-verzenddatum') {
-            $qb->orderBy('dossier.indienDatumTijd', 'DESC');
+            $qb->orderBy('dossier.indiendatumTijd', 'DESC');
         }
 
         if ($query['naam'] !== null) {

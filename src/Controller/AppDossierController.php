@@ -332,7 +332,7 @@ class AppDossierController extends AbstractController
             if (!is_null($subForm['transition']->getData())) {
                 if ($subForm['transition']->getData() === 'verzenden_shv') {
                     $dossier->setEersteKeerVerzondenAanGKA(true);
-                    $dossier->setIndienDatumTijd(new DateTime('now'));
+                    $dossier->setIndiendatumTijd(new DateTime('now'));
                 }
                 $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
                 $workflow->apply($dossier, $subForm['transition']->getData());
