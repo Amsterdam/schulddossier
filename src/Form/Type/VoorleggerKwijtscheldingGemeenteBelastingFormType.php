@@ -83,7 +83,7 @@ class VoorleggerKwijtscheldingGemeenteBelastingFormType extends AbstractType
         return [
             'Ja' => 'ja',
             'Nee' => 'nee',
-            'Onbekend' => 'onbekend',
+            'Niet van toepassing' => 'nvt',
         ];
     }
 }
