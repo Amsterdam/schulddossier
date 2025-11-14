@@ -38,11 +38,7 @@
             <div class="dossier__voorlegger__sectie__body">
                 <p class="explanation">De volmacht dient ondertekend te zijn door de Amsterdammer.</p>
                 <h4>Producten</h4>
-                <div>
-                    <p class="explanation">
-                        Let op: per dossier mag er maar één van de onderstaande producten worden aangevinkt.
-                    </p>
-                </div>
+                <p class="explanation"><strong>Let op!</strong> Per dossier mag er maar één van de onderstaande producten worden aangevinkt.</p>
                 {{ form_row(form.jongerenSchuldenvrijeStart) }}
                 {% if app.user.type == 'admin' %}
                     {{ form_help(form.jongerenSchuldenvrijeStart) }}

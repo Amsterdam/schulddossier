@@ -605,23 +605,17 @@
 }
 
 .dossier__voorlegger__sectie__body {
-  //position: absolute;
   bottom: 0;
   padding: 20px calc(10% - 17px) 40px 10%;
   overflow-y: auto;
   height: calc(100vh - 260px);
-  h4 {
-    margin-top: 40px;
-    margin-bottom: 20px;
+  h4, ol, p, ul {
+    margin: revert;
   }
   & > *:nth-last-child(1),
   & > *:nth-last-child(2) {
-    label {
-      //display: none;
-    }
     .label-widget {
       display: block;
-      //width: 100%;
     }
     .aantekening-form-row {
       margin: 0;
