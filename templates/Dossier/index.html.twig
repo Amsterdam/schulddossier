@@ -8,6 +8,15 @@
 
 {% block document %}
 
+{% if "now"|date("Y-m-d") < "2025-12-01" %}
+    <div class="announcement">
+        <h4 class"title"><strong>Een nieuwe versie van Schulddossier is live </strong></h4>
+        <span class="message">In bestaande dossiers moet het item <b>'Kwijtschelding Belasting'</b> mogelijk opnieuw ingevuld worden.
+        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}">Bekijk versies</a> voor een toelichting.   
+        </span>
+    </div>
+{% endif %}
+
     <div class="document well">
         {{ form_start(searchForm, {'attr': {}}) }}
         <div class="document-header">
