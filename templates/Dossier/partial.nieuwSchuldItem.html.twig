@@ -1,3 +1,5 @@
+{% from 'html.macros.html.twig' import details as detailsMacro %}
+
 <div class="dossier__item">
     <div class="dossier__voorlegger__body" id="schuldItem-nieuw" data-decorator="droppable">
         {{ form_start(createForm, {'attr': {'data-submitter': 'save', 'data-form-changed-selector': 'create-form-changed', 'data-result-selector': '.dossier', 'data-submitter-callback': '#schulditem-nieuw', 'data-changer': 'change', 'autocomplete': 'off'}}) }}
@@ -12,6 +14,17 @@
 
                 <div id="nieuwe-schuld-toevoegen" class="">
                     <div class="schulditem-body">
+                        {{ detailsMacro({
+                            class: "explanation",
+                            title: "Toelichting",
+                            value: "<p>Schuldopgaven mogen niet ouder zijn dan zes maanden.</p>
+                                    <p>Bij oudere opgaven: neem telefonisch contact op met de schuldeiser, het incassobureau of de gerechtsdeurwaarder, controleer of de schuld nog openstaat en noteer de contactdatum en het actuele schuldbedrag, indien bekend.</p>
+                                    <ul>
+                                        <li>De volledige schuldpositie dient aangeleverd te worden, ook de gegevens van de eventuele deurwaarder of het incassobureau.</li>
+                                        <li>Als er geen opgave van de schuldeiser beschikbaar is, kan een notitie worden toegevoegd met daarin de vermelding dat de schuld in behandeling is bij schuldeiser, incassobureau of gerechtsdeurwaarder X, inclusief het adres, telefoonnummer, mailadres en dossiernummer.</li>
+                                        <li>Wanneer er sprake is van schulden bij Waternet, energieleveranciers, zorgverzekeraars en Ziggo vermeld dan het klantnummer op de specificaties van de deurwaarders en de incassobureaus.</li>
+                                    </ul>"
+                        }) }}
                         <div class="columns select-autocomplete" data-decorator="schuldeiser-autocomplete" data-required="true">
                             <div class="column">
                                 <label for="schuldeiser-helper-{{ createForm.schuldeiser.vars.id }}">Schuldeiser *</label>

@@ -40,7 +40,7 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
-                {{ detailsMacro({    
+                {{ detailsMacro({
                     class: "explanation",
                     title: "Toelichting",
                     value: "<p>Als de Amsterdammer eigenaar is van een voertuig, wordt het voertuig aangemerkt als onderdeel van zijn of haar vermogen. Een auto mag alleen behouden blijven onder twee hoofdvoorwaarden:</p>
@@ -48,12 +48,10 @@
                                 <li>Als de auto om <b>medische redenen</b> noodzakelijk is.</li>
                                 <li>Als de auto noodzakelijk is voor <b>inkomensverwerving</b>.</li>
                             </ul>
-                            <p>Kijk daarom of de auto echt nodig is om inkomen te verdienen, of dat er een medische reden voor het gebruik is. Als de auto niet strikt noodzakelijk is, dan moet de auto worden verkocht en de opbrengst wordt ingezet voor de boedel ten gunste van de schuldeisers.</p>
-                            <p>Wanneer de noodzaak is aangetoond, mag de auto behouden worden en hoeft de waarde van de auto in beginsel niet aan de boedel vergoed te worden.</p>
-                            <h4>Medische noodzaak</h4>
-                            <p>De Amsterdammer moet met documenten laten zien dat de auto om medische redenen nodig is, bijvoorbeeld met een medische indicatie.</p>
+                            <p>Kijk daarom of de auto echt nodig is om inkomen te verdienen, of dat er een medische reden voor het gebruik is. Schuldhulpverlener beoordeelt noodzaak behoud auto.</p>
+                            <p>Zie de richtlijnen in het actuele VTLB-rapport op de website van Bureau Wsnp.</p>
                             <h4>Kentekenbewijs</h4>
-                            <p>Voeg een kopie van het kentekenbewijs mee i.v.m. de waardebepaling van de auto.</p>"
+                            <p>Voeg een kopie van het kentekenbewijs mee i.v.m. de waardebepaling van de auto. De maximale waarde van de auto is €3.350 (zelfde grens als bij gemeentelijke kwijtschelding). Is de auto meer waard, dan wordt de meerwaarde toegevoegd aan de boedel voor de schuldeisers.</p>"
                 }) }}
                 {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Auto taxatie'} only %}
                 {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
