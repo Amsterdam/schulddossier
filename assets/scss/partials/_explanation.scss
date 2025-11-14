@@ -1,18 +1,34 @@
 $explanation-color: $colorBgDark;
 
-.explanation {
+%explanation {
     color: $explanation-color;
     font-size: $fs-x-small;
 }
 
-details.explanation {
-    > div {
-        border: 1px dotted $explanation-color;
-        padding: 1.5em;
-        color: inherit;
-    }
-}
+.explanation {
+    @extend %explanation;
 
-p.explanation {
-    @extend .explanation;
+    @at-root details#{&} {
+        >div {
+            border: 1px dotted $explanation-color;
+            padding: 1.5em;
+            color: inherit;
+
+            >:first-child {
+                margin-block-start: 0;
+            }
+
+            >:last-child {
+                margin-block-end: 0;
+            }
+        }
+    }
+
+    h4,
+    ol,
+    p,
+    ul {
+        color: inherit;
+        font-size: inherit;
+    }
 }
