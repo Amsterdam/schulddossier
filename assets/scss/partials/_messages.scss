@@ -1,9 +1,12 @@
+$messageBackgroundColor: #FFF;
+$messageBorderColor: #CCC;
+
 .flash-message {
   width: 500px;
   margin: 10px auto;
   display: flex;
-  border: 1px solid #CCC;
-  background-color: #FFF;
+  border: 1px solid $messageBorderColor;
+  background-color: $messageBackgroundColor;
   &.flash-type-success {
     border-color: #72C82E;
     color: #155724;
@@ -29,3 +32,16 @@
     color: #72C82E;
   }
 }
+
+.announcement {
+  background-color: $messageBackgroundColor;
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  border: 1px solid $messageBorderColor;
+
+  .message {
+    text-align: left;
+  }
+}
+
+  
