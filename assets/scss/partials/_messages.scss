@@ -38,9 +38,17 @@ $messageBorderColor: #CCC;
   margin-bottom: 1.5rem;
   padding: 1.2rem;
   border: 1px solid $messageBorderColor;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 
-  .message {
-    text-align: left;
+  h4.title{
+    font-size: $fs-default;
+  }
+
+  .message{
+    color: $colorBgDark ;
+    font-size: $fs-x-small;
   }
 }
 
