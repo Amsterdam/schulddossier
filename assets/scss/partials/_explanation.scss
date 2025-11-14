@@ -1,18 +1,29 @@
 $explanationColor: $colorBgDark;
+$explanationBorderWidth: 3px;
 
-%explanation {
-    color: $explanationColor;
-    font-size: $fs-x-small;
+%explanationBorderInlineStart {
+    border-inline-start: $explanationBorderWidth solid $borderColor;
+    padding-inline-start: calc(1em - $explanationBorderWidth);
 }
 
 .explanation {
-    @extend %explanation;
+    color: $explanationColor;
+    font-size: $fs-x-small;
 
     @at-root details#{&} {
+        >summary {
+            margin-block-end: 0;
+
+            &::marker {
+                color: $borderColor;
+            }
+        }
+
         >div {
-            border: 1px dotted $explanationColor;
-            padding: 1.5em;
+            @extend %explanationBorderInlineStart;
+
             color: inherit;
+            margin-block-start: 1em;
 
             >:first-child {
                 margin-block-start: 0;
@@ -22,6 +33,10 @@ $explanationColor: $colorBgDark;
                 margin-block-end: 0;
             }
         }
+    }
+
+    @at-root div#{&}, h4#{&}, ol#{&}, p#{&},span#{&}, ul#{&} {
+        @extend %explanationBorderInlineStart;
     }
 
     h4,
