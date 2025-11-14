@@ -81,9 +81,9 @@ class VoorleggerKwijtscheldingGemeenteBelastingFormType extends AbstractType
     private function getKwijtscheldingGemeenteBelasting()
     {
         return [
-            'Ja' => 'ja',
-            'Nee' => 'nee',
-            'Niet van toepassing' => 'nvt',
+            'JA, de klant heeft of komt waarschijnlijk in aanmerking voor kwijtschelding' => 'ja',
+            'NEE, de klant heeft geen recht of komt waarschijnlijk niet in aanmerking' => 'nee',
+            'Niet van toepassing, de klant ontvangt geen eigen aanslag (bijv. huurt een kamer)' => 'nvt',
         ];
     }
 }

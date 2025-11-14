@@ -1,7 +1,7 @@
-$explanation-color: $colorBgDark;
+$explanationColor: $colorBgDark;
 
 %explanation {
-    color: $explanation-color;
+    color: $explanationColor;
     font-size: $fs-x-small;
 }
 
@@ -10,7 +10,7 @@ $explanation-color: $colorBgDark;
 
     @at-root details#{&} {
         >div {
-            border: 1px dotted $explanation-color;
+            border: 1px dotted $explanationColor;
             padding: 1.5em;
             color: inherit;
 
