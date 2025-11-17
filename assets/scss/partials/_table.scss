@@ -9,6 +9,11 @@
     overflow: hidden;
     th {
       text-align: left;
+      
+      i {
+        color: $borderColor2;
+        border-color: $borderColor2;
+      }
     }
 
     th,
@@ -107,3 +112,4 @@
     }
   }
 }
+
