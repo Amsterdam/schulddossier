@@ -6,18 +6,28 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClassmap;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use Http\Adapter\Guzzle7\Client;
-use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
+use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 
 class LoginClientFactory
 {
-    public static function factory(string $wsdl, Organisatie $organisatie = null): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient
-    {
+    public static function factory(
+        string $wsdl,
+        ?Organisatie $organisatie = null,
+        ?string $proxyHost = null,
+        ?string $proxyPort = null
+    ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient {
+        $config = ['headers' => ['User-Agent' => 'fixxx-schuldhulp/1.0']];
+
+        if (null !== $proxyHost && null !== $proxyPort) {
+            $config['proxy'] = 'http://' . $proxyHost . ':' . $proxyPort;
+        }
+
         $handler = HttPlugHandle::createForClient(
-            Client::createWithConfig(['headers' => ['User-Agent' => 'fixxx-schuldhulp/1.0']])
+            Client::createWithConfig($config)
         );
 
 
