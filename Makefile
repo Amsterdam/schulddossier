@@ -40,6 +40,9 @@ update-chart:
 clean:
 	$(dc) down -v --remove-orphans
 
+clean-local:
+	rm -Rf node_modules public/{build,vendor,var} var vendor
+
 reset:
 	kubectl delete deployment schulddossier-phpfpm-schulddossier && kubectl delete deployment schulddossier-nginx-schulddossier && kubectl delete ingress schulddossier-nginx-internal-schulddossier && helm uninstall schulddossier
 
@@ -53,17 +56,16 @@ fixtures:
 	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh -c "php bin/console doc:fix:load  --no-interaction --purge-with-truncate"
 
 composer-install:
-	docker run --rm -v .:/app -u 1000:1000 composer install
+	docker run --rm -v .:/app -u 1000:1000 composer install --no-scripts
 
 composer-update:
 	docker run --rm -v .:/app -u 1000:1000 composer update --lock
 
 npm-install:
-	docker run --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm install"
+	docker run --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm ci --no-audit --no-fund"
 
 npm-run-dev:
-	docker run --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm run dev && /usr/local/bin/npm run css:build"
+	docker run --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm run dev && /usr/local/bin/npm run css:build"
 
 npm-watch:
-	docker run -it --init --rm -v .:/app -w /app -u 1000:1000 node:18 sh -c "/usr/local/bin/npm run watch"
-
+	docker run -it --init --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm run watch"

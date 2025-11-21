@@ -20,7 +20,8 @@ RUN apk add \
     imagemagick-dev \
     libxslt \
     libxslt-dev \
-    yarn
+    nodejs \
+    npm
 
 RUN docker-php-ext-install \
     pdo_pgsql \
@@ -34,7 +35,7 @@ RUN docker-php-ext-install \
 RUN docker-php-ext-configure \
     gd \
     --with-freetype \
-    --with-jpeg 
+    --with-jpeg
 
 RUN docker-php-ext-enable xsl
 
@@ -64,8 +65,8 @@ COPY --chown=www-data . /var/www
 
 RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
 
-RUN yarn --ignore-scripts --ignore-platform
-RUN yarn encore prod
-RUN yarn run postinstall
+RUN npm ci --no-audit --no-fund --ignore-scripts
+RUN npm build
+RUN npm run postinstall
 
 CMD ["/var/www/docker-entrypoint_phpfpm.sh"]
