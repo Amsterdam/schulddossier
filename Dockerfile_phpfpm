@@ -66,7 +66,7 @@ COPY --chown=www-data . /var/www
 RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
 
 RUN npm ci --no-audit --no-fund --ignore-scripts
-RUN npm build
+RUN npm run build
 RUN npm run postinstall
 
 CMD ["/var/www/docker-entrypoint_phpfpm.sh"]
