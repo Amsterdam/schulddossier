@@ -62,7 +62,7 @@ composer-update:
 	docker run --rm -v .:/app -u 1000:1000 composer update --lock
 
 npm-install:
-	docker run --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm ci --no-audit --no-fund"
+	docker run --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm install --no-audit --no-fund"
 
 npm-run-dev:
 	docker run --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm run dev && /usr/local/bin/npm run css:build"
