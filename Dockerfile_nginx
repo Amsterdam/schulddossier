@@ -6,7 +6,8 @@ RUN update-ca-certificates --fresh
 RUN apk update && apk upgrade
 
 RUN apk add \
-    yarn
+    nodejs \
+    npm
 
 COPY docker-nginx/default.template /tmp/default.template
 
@@ -22,14 +23,13 @@ RUN mkdir /var/www && \
 COPY --chown=nginx ./public /var/www/public
 
 COPY --chown=nginx ./package.json /var/www/package.json
-COPY --chown=nginx ./yarn.lock /var/www/yarn.lock
-
+COPY --chown=nginx ./package-lock.json /var/www/package-lock.json
 
 USER nginx
 WORKDIR /var/www
 
-RUN yarn --ignore-scripts --ignore-platform
-RUN yarn run postinstall
+RUN npm ci --no-audit --no-fund --ignore-scripts
+RUN npm run postinstall
 
 CMD exec nginx -g 'daemon off;'
 
