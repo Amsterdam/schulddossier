@@ -161,9 +161,9 @@
     height: calc($actionSize + $gap);
     justify-content: space-between;
     position: absolute;
-    right: 0;
+    right: -1px;
     top: -1px;
-    width: calc($actionSize * 2 + $gap * 3);
+    width: calc($actionSize * 2 + $gap * 3 + 1px);
 
     a.bestand {
       margin: 0;
