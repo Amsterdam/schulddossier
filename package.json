@@ -1,35 +1,40 @@
 {
-  "dependencies": {
-    "ajv": "^6.12.3",
-    "glob-parent": "^6.0.2",
-    "jspdf": "^2.5.1",
-    "moment": "^2.29.4",
-    "pdfjs-dist": "^4.9.155",
-    "schema-utils": "^4.0.0",
-    "sortablejs": "^1.15.0",
-    "webpack": "^5.76.2",
-    "yargs": "^17.7.1",
-    "yargs-parser": "^21.1.1"
+  "engines": {
+    "node": "22",
+    "npm": "11"
   },
-  "devDependencies": {
-    "@babel/core": "^7.22.5",
-    "@babel/preset-env": "^7.22.5",
-    "@hotwired/stimulus": "^3.2.1",
-    "@symfony/stimulus-bridge": "^3.2.2",
-    "@symfony/webpack-encore": "^4.3.0",
-    "core-js": "^3.31.0",
-    "file-loader": "^6.0.0",
-    "json5": "^2.2.3",
-    "loader-utils": "^3.2.1",
-    "sass": "^1.63.5",
-    "sass-loader": "^13.0.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-notifier": "^1.15.0"
-  },
+  "packageManager": "npm@11.6.2+sha512.ee22b335fcbc95662cdf3ab8a053daf045d9cf9c6df6040d28965abb707512b2c16fa6c5eec049d34c74f78f390cebd14f697919eadb97756564d4f9eccc4954",
   "scripts": {
     "dev": "encore dev",
     "watch": "encore dev --watch",
     "build": "encore production",
     "postinstall": "rm -fr ./public/vendor && mkdir -p ./public/vendor/moment && cp -R ./node_modules/moment ./public/vendor/moment"
+  },
+  "dependencies": {
+    "ajv": "^6.12.6",
+    "glob-parent": "^6.0.2",
+    "jspdf": "^3.0.4",
+    "moment": "^2.30.1",
+    "pdfjs-dist": "^4.10.38",
+    "schema-utils": "^4.3.3",
+    "sortablejs": "^1.15.6",
+    "webpack": "^5.103.0",
+    "yargs": "^17.7.2",
+    "yargs-parser": "^21.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "@hotwired/stimulus": "^3.2.2",
+    "@symfony/stimulus-bridge": "^3.2.3",
+    "@symfony/webpack-encore": "^4.7.0",
+    "core-js": "^3.47.0",
+    "file-loader": "^6.2.0",
+    "json5": "^2.2.3",
+    "loader-utils": "^3.3.1",
+    "sass": "^1.94.2",
+    "sass-loader": "^13.3.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-notifier": "^1.15.0"
   }
 }
