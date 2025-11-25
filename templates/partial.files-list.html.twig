@@ -2,6 +2,21 @@
     <ul class="bestanden">
         {% for dossierDocument in dossierDocumenten if dossierDocument.document.inPrullenbak == false %}
             <li>
+                <span class="bestand">
+                    <span class="bestand-actions">
+                        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_downloaddocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
+                        title="Download ‟{{ dossierDocument.document.naam }}″"
+                        class="bestand bestand-action bestand-type-{{ dossierDocument.document.origineleExtensie|lower }}">
+                        </a>
+
+                        <a title="Open ‟{{ dossierDocument.document.naam }}″ in een nieuw tabblad."
+                        class="bestand bestand-action bestand-action-zoom bestand-type-{{ dossierDocument.document.origineleExtensie|lower }}"
+                        data-handler="open-file"
+                        data-href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_downloaddocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}">
+                        </a>
+                    </span>
+                </span>
+
                 {#{% if dossierDocument.document.origineleExtensie|lower == 'pdf' %}#}
                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
                    class="bestand-zoom" title="Bekijk deze {{ dossierDocument.document.origineleExtensie|lower }}"
@@ -12,14 +27,6 @@
                     <span class="bestand-naam">{{ dossierDocument.document.naam }}</span>
                 </a>
                 {#{% endif %}#}
-
-
-
-                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_downloaddocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
-                   title="{{ dossierDocument.document.naam }}"
-                   class="bestand bestand-type-{{ dossierDocument.document.origineleExtensie|lower }}">
-
-                </a>
 
                 {% if removeFile is defined %}
                     {% do removeFile.setRendered() %}

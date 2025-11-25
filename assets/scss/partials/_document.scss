@@ -152,6 +152,46 @@
     }
   }
 
+  .bestand-actions {
+    $gap: 2px;
+    $actionSize: 3rem;
+
+    align-items: center;
+    display: flex;
+    height: calc($actionSize + $gap);
+    justify-content: space-between;
+    position: absolute;
+    right: 0;
+    top: -1px;
+    width: calc($actionSize * 2 + $gap * 3);
+
+    a.bestand {
+      margin: 0;
+
+      &-action {
+        border: 1px solid transparent;
+        height: $actionSize;
+        width: $actionSize;
+      }
+
+      &-action-zoom:before {
+        @extend .icon-zoom_black !optional;
+      }
+
+      &:hover:before {
+        background-color: rgba(#fff, 1);
+        cursor: pointer;
+      }
+
+      &:before {
+        background-color: rgba(#fff, .8);
+        padding: 1px;
+        position: relative;
+        transition: none;
+        z-index: 3;
+      }
+    }
+  }
 }
 
 a.bestand {
