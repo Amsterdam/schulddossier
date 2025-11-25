@@ -307,7 +307,7 @@
 
       var href = this.dataset.href || this.getAttribute('href');
 
-      window.open(href, '_blank');
+      window.open(href, '_blank', 'noopener,noreferrer');
     },
     'prepare-pdf': function (e) {
       e && e.preventDefault();
