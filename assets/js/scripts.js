@@ -302,6 +302,13 @@
 
       files.removeChild(container);
     },
+    'open-file': function (e) {
+      e && e.preventDefault();
+
+      var href = this.dataset.href || this.getAttribute('href');
+
+      window.open(href, '_blank', 'noopener,noreferrer');
+    },
     'prepare-pdf': function (e) {
       e && e.preventDefault();
 
@@ -1802,10 +1809,10 @@
             }
           } else {
             alert(
-              'Er is een fout opgetreden:' 
-              + '\n' 
-              + '- Vul het formulier nogmaals in en bekijk of alle verplichte velden correct zijn ingevuld' 
-              + '\n\n' 
+              'Er is een fout opgetreden:'
+              + '\n'
+              + '- Vul het formulier nogmaals in en bekijk of alle verplichte velden correct zijn ingevuld'
+              + '\n\n'
               + 'Bij aanhoudende fout, neem contact op met de beheerder van de applicatie.'
             );
             location.reload();
