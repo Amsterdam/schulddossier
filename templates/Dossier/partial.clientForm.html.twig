@@ -28,7 +28,7 @@
 {% if app.user.type == 'admin' %}
     {{ form_help(form.clientBSN) }}
 {% endif %}
-<p class="explanation">Voer bij <q>banknaam</q> de organisatie in waar de Amsterdammer bankiert. Ten tijde van de aanvraag mag de Amsterdammer niet rood staan. De mogelijkheid om maximaal 500 euro rood te staan mag er wel zijn. Er mag bij deze bank <strong>géén lopende lening of creditcard</strong> zijn.</p>
+<p class="explanation">Voer bij ‘banknaam’ de organisatie in waar de Amsterdammer bankiert. Ten tijde van de aanvraag mag de Amsterdammer niet rood staan. De mogelijkheid om maximaal 500 euro rood te staan mag er wel zijn. Er mag bij deze bank <strong>géén lopende lening of creditcard</strong> zijn.</p>
 {{ form_row(form.clientBanknaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
 {% if app.user.type == 'admin' %}
     {{ form_help(form.clientBanknaam) }}
@@ -59,7 +59,7 @@
 {% if app.user.type == 'admin' %}
     {{ form_help(form.partnerBSN) }}
 {% endif %}
-<p class="explanation">Voer bij <q>banknaam</q> de organisatie in waar de Amsterdammer bankiert. Ten tijde van de aanvraag mag de Amsterdammer niet rood staan. De mogelijkheid om maximaal 500 euro rood te staan mag er wel zijn. Er mag bij deze bank <strong>géén lopende lening of creditcard</strong> zijn.</p>
+<p class="explanation">Voer bij ‘banknaam’ de organisatie in waar de Amsterdammer bankiert. Ten tijde van de aanvraag mag de Amsterdammer niet rood staan. De mogelijkheid om maximaal 500 euro rood te staan mag er wel zijn. Er mag bij deze bank <strong>géén lopende lening of creditcard</strong> zijn.</p>
 {{ form_row(form.partnerBanknaam, {'attr': {'form_row_class': 'form-row__wide'}}) }}
 {% if app.user.type == 'admin' %}
     {{ form_help(form.partnerBanknaam) }}
