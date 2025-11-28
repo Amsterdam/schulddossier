@@ -1,176 +1,178 @@
 parameters:
-    locale: 'nl'
-    swift_auth_url: '%env(SWIFT_AUTH_URL)%'
-    swift_region: '%env(SWIFT_REGION)%'
-    swift_user_name: '%env(SWIFT_USER_NAME)%' 
-    swift_user_domain_id: '%env(SWIFT_USER_DOMAIN_ID)%' 
-    swift_user_password: '%env(SWIFT_USER_PASSWORD)%' 
-    swift_project_id: '%env(SWIFT_PROJECT_ID)%' 
-    swift_container_prefix: '%env(SWIFT_CONTAINER_PREFIX)%'
-    swift_temp_url_key: '%env(SWIFT_TEMP_URL_KEY)%'
-    swift_external_domain: '%env(SWIFT_EXTERNAL_DOMAIN)%'
-    swift_public_url: 'https://%swift_project_id%.%swift_external_domain%'
-    app_mail_from: '%env(APP_NOTIFICATIE_FROM)%'
-    keycloak_version: '21'
-    azureSubscriptionId: '%env(AZURE_SUBSCRIPTION_ID)%'
-    azureResourceGroup: '%env(AZURE_RESOURCE_GROUP)%'
-    fileStorageAccount: '%env(AZURE_STORAGE_FILE_ACCOUNT)%'
-    fileContainer: '%env(AZURE_STORAGE_FILE_CONTAINER)%'
-    azureAuthorityHost: '%env(AZURE_AUTHORITY_HOST)%'
-    azureTenantId: '%env(AZURE_TENANT_ID)%'
-    azureClientId: '%env(AZURE_CLIENT_ID)%'
-    azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
-    featureflag_herfinanciering: '%env(FEATUREFLAG_HERFINANCIERING)%'
+  locale: 'nl'
+  swift_auth_url: '%env(SWIFT_AUTH_URL)%'
+  swift_region: '%env(SWIFT_REGION)%'
+  swift_user_name: '%env(SWIFT_USER_NAME)%'
+  swift_user_domain_id: '%env(SWIFT_USER_DOMAIN_ID)%'
+  swift_user_password: '%env(SWIFT_USER_PASSWORD)%'
+  swift_project_id: '%env(SWIFT_PROJECT_ID)%'
+  swift_container_prefix: '%env(SWIFT_CONTAINER_PREFIX)%'
+  swift_temp_url_key: '%env(SWIFT_TEMP_URL_KEY)%'
+  swift_external_domain: '%env(SWIFT_EXTERNAL_DOMAIN)%'
+  swift_public_url: 'https://%swift_project_id%.%swift_external_domain%'
+  app_mail_from: '%env(APP_NOTIFICATIE_FROM)%'
+  keycloak_version: '21'
+  azureSubscriptionId: '%env(AZURE_SUBSCRIPTION_ID)%'
+  azureResourceGroup: '%env(AZURE_RESOURCE_GROUP)%'
+  fileStorageAccount: '%env(AZURE_STORAGE_FILE_ACCOUNT)%'
+  fileContainer: '%env(AZURE_STORAGE_FILE_CONTAINER)%'
+  azureAuthorityHost: '%env(AZURE_AUTHORITY_HOST)%'
+  azureTenantId: '%env(AZURE_TENANT_ID)%'
+  azureClientId: '%env(AZURE_CLIENT_ID)%'
+  azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
+  featureflag_herfinanciering: '%env(FEATUREFLAG_HERFINANCIERING)%'
 
 
 
 services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        bind:
-            $allegroEndpoint: '%env(ALLEGRO_ENDPOINT)%'
-            $allegroOnbekendeSchuldeiser: '%env(ALLEGRO_ONBEKENDE_SCHULDEISER)%'
-            string $azureAuthorityHost: '%env(AZURE_AUTHORITY_HOST)%'
-            string $azureTenantId: '%env(AZURE_TENANT_ID)%'
-            string $azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
-            string $azureClientId: '%env(AZURE_CLIENT_ID)%'
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+      # Vanuit WSL uitgevoerd: hostname -I | awk '{print $1}'
+      $proxyHostIp: '%env(PROXY_HOST_IP)%'
+      $proxyPort: '%env(PROXY_HOST_PORT)%'
+      $allegroEndpoint: '%env(ALLEGRO_ENDPOINT)%'
+      $allegroOnbekendeSchuldeiser: '%env(ALLEGRO_ONBEKENDE_SCHULDEISER)%'
+      string $azureAuthorityHost: '%env(AZURE_AUTHORITY_HOST)%'
+      string $azureTenantId: '%env(AZURE_TENANT_ID)%'
+      string $azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
+      string $azureClientId: '%env(AZURE_CLIENT_ID)%'
 
-    GemeenteAmsterdam\FixxxSchuldhulp\:
-        resource: '../src/'
-        exclude:
-            - '../src/Migrations/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-            - '../src/Tests/'
+  GemeenteAmsterdam\FixxxSchuldhulp\:
+    resource: '../src/'
+    exclude:
+      - '../src/Migrations/'
+      - '../src/Entity/'
+      - '../src/Kernel.php'
+      - '../src/Tests/'
 
-    # Controllers
-    GemeenteAmsterdam\FixxxSchuldhulp\Controller\:
-        resource: '../src/Controller'
-        tags: ['controller.service_arguments']
+  # Controllers
+  GemeenteAmsterdam\FixxxSchuldhulp\Controller\:
+    resource: '../src/Controller'
+    tags: [ 'controller.service_arguments' ]
 
-    # Doctrine EventListeners
-    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\GebruikerPasswordSubscriber:
-        arguments:
-            - '@security.user_password_encoder.generic'
-        tags:
-            - name: doctrine.event_subscriber
-              connection: default
-    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\DocumentUploadSubscriber:
-        tags:
-            - name: doctrine.event_subscriber
-              connection: default
-    # Symfony EventListeners
-    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\MailNotitificationSubscriber:
-        arguments:
-            - '@mailer'
-            - '%env(APP_NOTIFICATIE_FROM)%'
-            - '%env(APP_ENV)%'
-    
-    # Services
-    GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector:
-        #lazy: true
-        arguments:
-            - '@flysystem_dossier'
-    GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion:
-        arguments:
-            - '%kernel.environment%'
-            - '%kernel.project_dir%'
+  # Doctrine EventListeners
+  GemeenteAmsterdam\FixxxSchuldhulp\EventListener\GebruikerPasswordSubscriber:
+    arguments:
+      - '@security.user_password_encoder.generic'
+    tags:
+      - name: doctrine.event_subscriber
+        connection: default
+  GemeenteAmsterdam\FixxxSchuldhulp\EventListener\DocumentUploadSubscriber:
+    tags:
+      - name: doctrine.event_subscriber
+        connection: default
+  # Symfony EventListeners
+  GemeenteAmsterdam\FixxxSchuldhulp\EventListener\MailNotitificationSubscriber:
+    arguments:
+      - '@mailer'
+      - '%env(APP_NOTIFICATIE_FROM)%'
+      - '%env(APP_ENV)%'
 
-    GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\:
-        resource: '../src/Form/Type'
+  # Services
+  GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector:
+    #lazy: true
+    arguments:
+      - '@flysystem_dossier'
+  GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion:
+    arguments:
+      - '%kernel.environment%'
+      - '%kernel.project_dir%'
 
-    app.form.type.search:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType
-        arguments:
-            - '@security.authorization_checker'
-            - '@security.token_storage'
+  GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\:
+    resource: '../src/Form/Type'
 
-    app.form.type.create:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType
-        arguments:
-            - '@GemeenteAmsterdam\FixxxSchuldhulp\Form\Event\TransformMedewerkerOrganisatie'
+  app.form.type.search:
+    class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType
+    arguments:
+      - '@security.authorization_checker'
+      - '@security.token_storage'
 
-    app.form.ondertekendaanvraagform:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerOndertekendAanvraagFormulierFormType
-        arguments:
-            - '%featureflag_herfinanciering%'
+  app.form.type.create:
+    class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\CreateDossierFormType
+    arguments:
+      - '@GemeenteAmsterdam\FixxxSchuldhulp\Form\Event\TransformMedewerkerOrganisatie'
 
-    app.form.type.employeetype:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\OrganisatieMedewerkerType
-        arguments:
-            - '@security.token_storage'
-            - '@doctrine.orm.entity_manager'
+  app.form.ondertekendaanvraagform:
+    class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerOndertekendAanvraagFormulierFormType
+    arguments:
+      - '%featureflag_herfinanciering%'
 
-    app.form.type.change_status:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType
-        arguments:
-            - '@security.token_storage'
-            - '@Symfony\Component\Workflow\Registry'
-    
-    # Serializer
-    json_serializer:
-        class: Symfony\Component\Serializer\Serializer
-        arguments:
-            0:
-                - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\DateTimeNormalizer'
-                - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\FormErrorIteratorNormalizer'
-                - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\GebruikerNormalizer'
-                - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\DossierDocumentNormalizer'
-                - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\SchuldeiserNormalizer'
-                - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\SchuldItemNormalizer'
-            1:
-                - '@json_encoder'
-        public: true
-    json_encoder:
-        class: Symfony\Component\Serializer\Encoder\JsonEncoder
-        public: false
+  app.form.type.employeetype:
+    class: GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\OrganisatieMedewerkerType
+    arguments:
+      - '@security.token_storage'
+      - '@doctrine.orm.entity_manager'
 
-    # Flysystem
-    flysystem_local_adapter_dossier:
-        class: League\Flysystem\Adapter\Local
-        lazy: true
-        arguments:
-            - '%kernel.project_dir%/var/data/dossiers/'
-    flysystem_dossier:
-        class: League\Flysystem\Filesystem
-        lazy: true
-        arguments:
-            - '@flysystem_local_adapter_dossier'
-            
-    # Security
-    GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator:
-        bind:
-            $clientId: '%env(IAM_CLIENT_ID)%'
-            $clientSecret: '%env(IAM_CLIENT_SECRET)%'
-            $baseUrl: '%env(IAM_URL)%'
+  app.form.type.change_status:
+    class: GemeenteAmsterdam\FixxxSchuldhulp\Form\ChangeDossierStatusType
+    arguments:
+      - '@security.token_storage'
+      - '@Symfony\Component\Workflow\Registry'
 
-    GemeenteAmsterdam\FixxxSchuldhulp\Security\LogoutSuccessHandler:
-        bind:
-            $url: '%env(IAM_LOGOUT_URL)%'
-            $keycloakVersion: '%keycloak_version%'
+  # Serializer
+  json_serializer:
+    class: Symfony\Component\Serializer\Serializer
+    arguments:
+      0:
+        - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\DateTimeNormalizer'
+        - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\FormErrorIteratorNormalizer'
+        - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\GebruikerNormalizer'
+        - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\DossierDocumentNormalizer'
+        - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\SchuldeiserNormalizer'
+        - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\SchuldItemNormalizer'
+      1:
+        - '@json_encoder'
+    public: true
+  json_encoder:
+    class: Symfony\Component\Serializer\Encoder\JsonEncoder
+    public: false
 
+  # Flysystem
+  flysystem_local_adapter_dossier:
+    class: League\Flysystem\Adapter\Local
+    lazy: true
+    arguments:
+      - '%kernel.project_dir%/var/data/dossiers/'
+  flysystem_dossier:
+    class: League\Flysystem\Filesystem
+    lazy: true
+    arguments:
+      - '@flysystem_local_adapter_dossier'
 
-    GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SchuldHulpService:
-        arguments:
-            -
-                location: '%env(ALLEGRO_ENDPOINT)%?service=SchuldHulpService'
-            - '%kernel.project_dir%/doc/modified_schuldhulpservice.wsdl'
+  # Security
+  GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator:
+    bind:
+      $clientId: '%env(IAM_CLIENT_ID)%'
+      $clientSecret: '%env(IAM_CLIENT_SECRET)%'
+      $baseUrl: '%env(IAM_URL)%'
 
-    doctrine.dbal.connection_factory:
-        class: GemeenteAmsterdam\FixxxSchuldhulp\Doctrine\DynamicConnectionFactory
+  GemeenteAmsterdam\FixxxSchuldhulp\Security\LogoutSuccessHandler:
+    bind:
+      $url: '%env(IAM_LOGOUT_URL)%'
+      $keycloakVersion: '%keycloak_version%'
 
 
-    App\Controller\ImageController:
-        arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
+  GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SchuldHulpService:
+    arguments:
+      - location: '%env(ALLEGRO_ENDPOINT)%?service=SchuldHulpService'
+      - '%kernel.project_dir%/doc/modified_schuldhulpservice.wsdl'
+
+  doctrine.dbal.connection_factory:
+    class: GemeenteAmsterdam\FixxxSchuldhulp\Doctrine\DynamicConnectionFactory
 
 
-    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileListener:
-        arguments:
-            $publicDir: '%kernel.project_dir%/public'
-        tags:
-            - { name: 'kernel.event_listener', event: 'kernel.response' }
+  App\Controller\ImageController:
+    arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
 
-#Commands
-    GemeenteAmsterdam\FixxxSchuldhulp\Command\LoadTeam7DataCommand:
-        $appEnv:         '%env(APP_ENV)%'
+
+  GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileListener:
+    arguments:
+      $publicDir: '%kernel.project_dir%/public'
+    tags:
+      - { name: 'kernel.event_listener', event: 'kernel.response' }
+
+  #Commands
+  GemeenteAmsterdam\FixxxSchuldhulp\Command\LoadTeam7DataCommand:
+    $appEnv: '%env(APP_ENV)%'
