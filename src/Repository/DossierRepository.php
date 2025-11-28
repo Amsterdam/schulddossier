@@ -73,11 +73,8 @@ class DossierRepository extends EntityRepository
         $qb->setFirstResult($page * $pageSize);
         $qb->setMaxResults($pageSize);
 
-        if ($orderBy === 'default') {
-            $qb->orderBy('dossier.aanmaakDatumTijd', 'DESC');
-        } elseif ($orderBy === 'gka-verzenddatum') {
-            $qb->orderBy('dossier.indiendatumTijd', 'DESC');
-        }
+        $qb->orderBy('dossier.indiendatumTijd', 'DESC');
+        $qb->addOrderBy('dossier.aanmaakDatumTijd', 'DESC');
 
         if ($query['naam'] !== null) {
             $qb->andWhere('FULLTEXTSEARCH(dossier.clientNaam, :searchPhrase, :searchPhrase) = TRUE');

@@ -69,6 +69,7 @@
                         <h2>Overige</h2>
                         {% include 'Dossier/partial.voorleggerOverigeDocumenten.html.twig' with {'form': voorleggerForm.overigeDocumenten, 'dossier': dossier, 'title': 'Overige documenten'} only %}
                         {% include 'Dossier/partial.voorleggerCorrespondentie.html.twig' with {'form': voorleggerForm.correspondentie, 'dossier': dossier, 'title': 'Correspondentie van GKA'} only %}
+                        {% include 'Dossier/partial.voorleggerDwangakkoord.html.twig' with {'form': voorleggerForm.dwangakkoord, 'dossier': dossier, 'title': 'Dwangakkoord'} only %}
 
 
                     </div>
