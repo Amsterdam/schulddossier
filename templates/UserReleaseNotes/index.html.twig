@@ -33,7 +33,7 @@
         <div class="accordion__list release-notes">
         {% for tmpl in templates %}
             <div class="accordion release-note" data-release-note-id="{{ tmpl.id }}" data-listen-class="accordion-active" data-url="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_releasenoteseen', {'ts': tmpl.id }) }}">
-                <a href="#" class="accordion__header" data-handler="accordion" data-container=".accordion">
+                <a href="#release{{ tmpl.id }}" class="accordion__header" data-handler="accordion" data-container=".accordion">
                     <h2>{% include 'UserReleaseNotes/' ~ tmpl.title %}</h2>
                     <span class="release-notes__nieuw__icon"></span>
                 </a>
