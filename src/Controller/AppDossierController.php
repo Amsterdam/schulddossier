@@ -113,16 +113,13 @@ class AppDossierController extends AbstractController
         if ($section === 'search') {
             $searchForm->handleRequest($request);
         }
-        $orderBy = 'default';
-        if ($section === 'gka') {
-            $orderBy = 'gka-verzenddatum';
-        }
+     
         // if user is from a shv limit his search results on the user organisaties
         if ($authChecker->isGranted('ROLE_SHV') || $authChecker->isGranted('ROLE_SHV_KEYUSER')) {
             $seachQuery['organisaties'] = $forcedOrganisaties;
         }
 
-        $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize), $orderBy);
+        $dossiers = $repository->search($searchForm->getData(), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
 
         if ($seachQuery['section'] === 'shv' || $seachQuery['section'] === 'gka') {
             $seachQuery['status'] = [];

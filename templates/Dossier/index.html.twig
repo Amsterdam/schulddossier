@@ -8,11 +8,20 @@
 
 {% block document %}
 
-{% if "now"|date("Y-m-d") < "2025-12-01"|date("Y-m-d") %}
+{% if "now"|date("Y-m-d") < "2025-12-19"|date("Y-m-d") %}
+{% set releaseDate = '25-11-28' %}
     <div class="announcement">
-        <h4 class="title"><strong>Een nieuwe versie van Schulddossier is live </strong></h4>
+        <h4 class="title">Versie 8.1.0 van Schulddossier is live ({{ releaseDate|date("d-m-Y") }})</h4>
+        <span class="message"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}#release{{ releaseDate }}">Bekijk versies</a> voor een toelichting.</span>
+    </div>
+{% endif %}
+
+{% if "now"|date("Y-m-d") < "2025-12-01"|date("Y-m-d") %}
+{% set releaseDate = '25-11-18' %}
+    <div class="announcement">
+        <h4 class="title">Versie 8.0.1 van Schulddossier is live ({{ releaseDate|date("d-m-Y") }})</h4>
         <span class="message">In bestaande dossiers moet het item <b>'Kwijtschelding Belasting'</b> mogelijk opnieuw ingevuld worden.
-        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}">Bekijk versies</a> voor een toelichting.   
+        <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}#release{{ releaseDate }}">Bekijk versies</a> voor een toelichting.
         </span>
     </div>
 {% endif %}
@@ -95,10 +104,12 @@
                 <tr>
                     <th>Naam</th>
                     <th>Organisatie</th>
-                    <th style="width: 75px;">Schuldhulpverlener/Bewindvoerder dossiernr.</th>
-                    <th style="width: 75px;">GKA dossiernr.</th>
-                    <th>Aangemaakt</th>
-                    <th>Indiendatum</th>
+                    <th title="Dossiernummer van de opvoerder van het dossier (Schuldhulpverlener of Bewindvoerder)" style="width: 75px;">SHV/BW dossiernr.</th>
+                    <th title="Dossiernummer van de Kredietbank" style="width: 75px;">GKA dossiernr.</th>
+                    <th title="Datum dat het dossier is aangemaakt"><span class="nowrap">Aangemaakt&nbsp;&nbsp;
+                        <i title="Als het dossier geen indiendatum heeft, wordt de tabel gesorteerd op aanmaakdatum in aflopende volgorde" class="icon-arrow-up"></i></span></th>
+                    <th title="Datum dat het dossier is verzonden naar de Kredietbank"><span class="nowrap">Indiendatum&nbsp;&nbsp;
+                        <i title="De tabel wordt gesorteerd op indiendatum in aflopende volgorde" class="icon-arrow-up"></i></span></th>
                     <th style="width: 150px;">Status</th>
                 </tr>
                 </thead>

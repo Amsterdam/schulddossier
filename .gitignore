@@ -38,14 +38,8 @@ docker-compose-dev.override.yml
 
 config/soap-client-allegro-login.php
 
-# Yarn
-/node_modules/
-npm-debug.log
-yarn-error.log
-
 kubycat-config.yaml
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
 npm-debug.log
-yarn-error.log
