@@ -108,24 +108,29 @@ class AllegroService
      */
     private $onbekendeSchuldeiser;
 
-    private string $proxyHostIp;
-    private string $proxyPort;
+    /**
+     * @var ?string
+     */
+    private ?string $proxyHostIp;
+
+    /**
+     * @var ?string
+     */
+    private ?string $proxyPort;
 
 
     public function __construct(
         string $allegroEndpoint,
-        ?string $proxyHostIp = null,
-        ?string $proxyPort = null,
         EntityManagerInterface $em,
         SchuldHulpService $altService,
         LoggerInterface $logger,
         EventDispatcherInterface $eventDispatcher,
         Security $security,
-        $allegroOnbekendeSchuldeiser
+        $allegroOnbekendeSchuldeiser,
+        ?string $proxyHostIp = null,
+        ?string $proxyPort = null,
     ) {
         $this->loginWsdl = sprintf('%s?service=LoginService', $allegroEndpoint);
-        $this->proxyHostIp = $proxyHostIp;
-        $this->proxyPort = $proxyPort;
         $this->schuldHulpWsdl = sprintf('%s?service=SchuldHulpService', $allegroEndpoint);
         $this->altService = $altService;
         $this->logger = $logger;
@@ -133,6 +138,8 @@ class AllegroService
         $this->security = $security;
         $this->em = $em;
         $this->onbekendeSchuldeiser = (string)$allegroOnbekendeSchuldeiser;
+        $this->proxyHostIp = $proxyHostIp;
+        $this->proxyPort = $proxyPort;
     }
 
     /**

@@ -1,4 +1,3 @@
-version: '3.5'
 services:
   schulddossier-phpfpm:
     build:
@@ -28,3 +27,7 @@ services:
       context: .
       dockerfile: Dockerfile_proxy
     image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/schulddossier-proxy}:${VERSION:-latest}
+    pull_policy: never
+    restart: unless-stopped
+    depends_on:
+      - schulddossier-phpfpm

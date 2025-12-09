@@ -29,7 +29,6 @@ services:
     autowire: true
     autoconfigure: true
     bind:
-      # Vanuit WSL uitgevoerd: hostname -I | awk '{print $1}'
       $proxyHostIp: '%env(PROXY_HOST_IP)%'
       $proxyPort: '%env(PROXY_HOST_PORT)%'
       $allegroEndpoint: '%env(ALLEGRO_ENDPOINT)%'
