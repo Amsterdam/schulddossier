@@ -37,8 +37,17 @@ class LoginClientFactory
             $handler->addMiddleware(new SessionMiddleware($organisatie));
         }
 
+        $streamContext = stream_context_create([
+            'http' => [
+                'proxy' => 'tcp://' . $proxyHost . ':' . $proxyPort,
+                'request_fulluri' => true,
+            ],
+        ]);
+
         $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
-            ExtSoapOptions::defaults($wsdl, [])->withClassMap(AllegroLoginClassmap::getCollection()),
+            ExtSoapOptions::defaults($wsdl, ['stream_context' => $streamContext])->withClassMap(
+                AllegroLoginClassmap::getCollection()
+            ),
             $handler
         );
         $eventDispatcher = new EventDispatcher();
