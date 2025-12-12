@@ -24,6 +24,8 @@ class LoginClientFactory
 
         if (null !== $proxyHost && null !== $proxyPort) {
             $config['proxy'] = 'http://' . $proxyHost . ':' . $proxyPort;
+            $config['proxy_host'] = $proxyHost;
+            $config['proxy_port'] = $proxyPort;
         }
 
         $handler = HttPlugHandle::createForClient(
