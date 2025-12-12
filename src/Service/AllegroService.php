@@ -111,12 +111,12 @@ class AllegroService
     /**
      * @var ?string
      */
-    private ?string $proxyHostIp;
+    private $proxyHostIp;
 
     /**
      * @var ?string
      */
-    private ?string $proxyPort;
+    private $proxyPort;
 
 
     public function __construct(
