@@ -3,9 +3,7 @@ FROM nginx:stable-alpine
 COPY certificates/adp_rootca.crt /usr/local/share/ca-certificates/adp_rootca.crt
 RUN update-ca-certificates --fresh
 
-RUN apk update && apk upgrade
-
-RUN apk add \
+RUN apk add --no-cache \
     nodejs \
     npm
 
