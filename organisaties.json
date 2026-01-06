@@ -7,6 +7,13 @@
     "reference": "schuldhulpverlener"
   },
   {
+    "id": 1,
+    "naam": "Doras",
+    "email": "kredietbank.salmagundi@amsterdam.nl",
+    "teamGka": "Team 3",
+    "reference": "doras"
+  },
+  {
     "id": 2,
     "naam": "Puttanesca Bewindvoerding",
     "email": "puttanesca@bewindvoerding.nl",
@@ -18,13 +25,6 @@
     "naam": "Arrabiata Schuldhulpbureau",
     "email": "arrabiata@bewindvoerding.nl",
     "teamGka": "Team 1",
-    "reference": "organisatie"
-  },
-  {
-    "id": 1,
-    "naam": "Doras",
-    "email": "kredietbank.salmagundi@amsterdam.nl",
-    "teamGka": "Team 3",
     "reference": "organisatie"
   }
 ]
