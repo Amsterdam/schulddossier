@@ -13,16 +13,35 @@ use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 
 class SchuldHulpClientFactory
 {
-    public static function factory(string $wsdl, Organisatie $organisatie): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient
+    public static function factory(
+        string $wsdl, 
+        Organisatie $organisatie, 
+        ?string $proxyHost = null, 
+        ?string $proxyPort = null
+    ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient
     {
+        $config = ['headers' => ['User-Agent' => 'fixxx-schuldhulp/1.0']];
+
+        if (null !== $proxyHost && null !== $proxyPort) {
+            $config['proxy'] = 'http://' . $proxyHost . ':' . $proxyPort;
+        }
+
         $handler = HttPlugHandle::createForClient(
-            Client::createWithConfig(['headers' => ['User-Agent' => 'fixxx-schuldhulp/1.0']])
+            Client::createWithConfig($config)
         );
 
         $handler->addMiddleware(new SessionMiddleware($organisatie));
 
+        $streamContext = stream_context_create([
+            'http' => [
+                'proxy' => 'tcp://' . $proxyHost . ':' . $proxyPort,
+                'request_fulluri' => true,
+            ],
+        ]);
+
+
         $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
-            ExtSoapOptions::defaults($wsdl, [])->withClassMap(AllegroSchuldHulpClassmap::getCollection()),
+            ExtSoapOptions::defaults($wsdl, ['stream_context' => $streamContext])->withClassMap(AllegroSchuldHulpClassmap::getCollection()),
             $handler
         );
         $eventDispatcher = new EventDispatcher();
