@@ -21,19 +21,8 @@ class LoginClientFactory
 
         $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHost, $proxyPort);
 
-        $extSoapOptionsArray = [];
-
-        if (null !== $proxyHost && null !== $proxyPort) {
-            $streamContext = stream_context_create([
-                'http' => [
-                    'proxy' => 'tcp://' . $proxyHost . ':' . $proxyPort,
-                    'request_fulluri' => true,
-                ],
-            ]);
-
-            $extSoapOptionsArray['stream_context'] = $streamContext;
-        }
-
+        $extSoapOptionsArray = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
+    
         $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
             ExtSoapOptions::defaults($wsdl, $extSoapOptionsArray)->withClassMap(
                 AllegroLoginClassmap::getCollection()

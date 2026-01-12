@@ -22,13 +22,7 @@ class SchuldHulpClientFactory
 
         $extSoapOptions = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
 
-        $streamContext = stream_context_create([
-            'http' => [
-                'proxy' => 'tcp://' . $proxyHost . ':' . $proxyPort,
-                'request_fulluri' => true,
-            ],
-        ]);
-
+        $extSoapOptions = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
 
         $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
             ExtSoapOptions::defaults($wsdl, $extSoapOptions)->withClassMap(AllegroSchuldHulpClassmap::getCollection()),
