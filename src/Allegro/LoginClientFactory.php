@@ -19,12 +19,8 @@ class LoginClientFactory
         ?string $proxyHost = null,
         ?string $proxyPort = null
     ): AllegroLoginClient {
-        $config = ['headers' => ['User-Agent' => 'fixxx-schuldhulp/1.0']];
-
-        if (null !== $proxyHost && null !== $proxyPort) {
-            $config['proxy'] = 'http://' . $proxyHost . ':' . $proxyPort;
-        }
-
+        $config = AllegroHelper::createSoapClientConfig($proxyHost, $proxyPort);
+       
         $handler = HttPlugHandle::createForClient(
             Client::createWithConfig($config)
         );
@@ -33,19 +29,8 @@ class LoginClientFactory
             $handler->addMiddleware(new SessionMiddleware($organisatie));
         }
 
-        $extSoapOptionsArray = [];
-
-        if (null !== $proxyHost && null !== $proxyPort) {
-            $streamContext = stream_context_create([
-                'http' => [
-                    'proxy' => 'tcp://' . $proxyHost . ':' . $proxyPort,
-                    'request_fulluri' => true,
-                ],
-            ]);
-
-            $extSoapOptionsArray['stream_context'] = $streamContext;
-        }
-
+        $extSoapOptionsArray = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
+    
         $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
             ExtSoapOptions::defaults($wsdl, $extSoapOptionsArray)->withClassMap(
                 AllegroLoginClassmap::getCollection()

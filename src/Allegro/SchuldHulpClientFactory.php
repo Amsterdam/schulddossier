@@ -20,28 +20,18 @@ class SchuldHulpClientFactory
         ?string $proxyPort = null
     ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient
     {
-        $config = ['headers' => ['User-Agent' => 'fixxx-schuldhulp/1.0']];
-
-        if (null !== $proxyHost && null !== $proxyPort) {
-            $config['proxy'] = 'http://' . $proxyHost . ':' . $proxyPort;
-        }
-
+        $config = AllegroHelper::createSoapClientConfig($proxyHost, $proxyPort);
+       
         $handler = HttPlugHandle::createForClient(
             Client::createWithConfig($config)
         );
 
         $handler->addMiddleware(new SessionMiddleware($organisatie));
 
-        $streamContext = stream_context_create([
-            'http' => [
-                'proxy' => 'tcp://' . $proxyHost . ':' . $proxyPort,
-                'request_fulluri' => true,
-            ],
-        ]);
-
+        $extSoapOptions = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
 
         $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
-            ExtSoapOptions::defaults($wsdl, ['stream_context' => $streamContext])->withClassMap(AllegroSchuldHulpClassmap::getCollection()),
+            ExtSoapOptions::defaults($wsdl, $extSoapOptions)->withClassMap(AllegroSchuldHulpClassmap::getCollection()),
             $handler
         );
         $eventDispatcher = new EventDispatcher();
