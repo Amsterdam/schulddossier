@@ -185,7 +185,8 @@ class AllegroService
     public function getSRVAanvraagHeader(Organisatie $organisatie, string $relatieCode): ?TSRVAanvraagHeader
     {
         $organisatie = $this->login($organisatie);
-        $response = $this->getSchuldHulpService($organisatie)->getSRVOverzicht(
+        $schuldhulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyPort);
+        $response = $schuldhulpService->getSRVOverzicht(
             (new SchuldHulpServiceGetSRVOverzicht($relatieCode))
         );
 
@@ -201,7 +202,8 @@ class AllegroService
     public function getSRVAanvraag(Organisatie $organisatie, TSRVAanvraagHeader $header): ?TSRVAanvraag
     {
         $organisatie = $this->login($organisatie);
-        $response = $this->getSchuldHulpService($organisatie)->getSRVAanvraag(
+        $schuldhulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyPort);
+        $response = $schuldhulpService->getSRVAanvraag(
             (new SchuldHulpServiceGetSRVAanvraag($header))
         );
 
@@ -223,7 +225,6 @@ class AllegroService
         $aanvraagSchuldbedrag = $dossier->getSumSchuldItemsNotInPrullenbak();
 
         $huisnummer = explode(' ', $dossier->getClientHuisnummer());
-//
         $omzetting = isset(
             self::MAPPING_BURGERLIJKE_STAAT[$dossier->getClientBurgelijkeStaat()]
         ) ? self::MAPPING_BURGERLIJKE_STAAT[$dossier->getClientBurgelijkeStaat()] : [
@@ -539,7 +540,9 @@ class AllegroService
      */
     public function getSRVEisers(Dossier $dossier, TSRVAanvraagHeader $header): ?TSRVEisers
     {
-        return $this->getSchuldHulpService($dossier->getOrganisatie())->getSRVEisers(
+        $schuldhulpService = $this->getSchuldHulpService($dossier->getOrganisatie(), $this->proxyHostIp, $this->proxyPort);
+        
+        return $schuldhulpService->getSRVEisers(
             (new SchuldHulpServiceGetSRVEisers(
                 (new TSRVAanvraagHeader(
                     $header->getRelatieCode(),
@@ -548,17 +551,6 @@ class AllegroService
                 ))
             ))
         )->getResult();
-    }
-
-    /**
-     * @param Dossier $dossier
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzichtResponse|\Phpro\SoapClient\Type\ResultInterface
-     */
-    public function getSBOverzicht(Dossier $dossier)
-    {
-        return $this->getSchuldHulpService($dossier->getOrganisatie())->getSBOverzicht(
-            (new SchuldHulpServiceGetSBOverzicht($dossier->getAllegroNummer()))
-        );
     }
 
     /**
