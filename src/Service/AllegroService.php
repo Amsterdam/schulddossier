@@ -493,9 +493,18 @@ class AllegroService
         return $schuldArray;
     }
 
-    private function getSchuldHulpService(Organisatie $organisatie): AllegroSchuldHulpClient
+    private function getSchuldHulpService(
+            Organisatie $organisatie,
+            ?string $proxyHost = null,
+            ?string $proxyPort = null
+        ): AllegroSchuldHulpClient
     {
-        return SchuldHulpClientFactory::factory($this->schuldHulpWsdl, $organisatie);
+        return SchuldHulpClientFactory::factory(
+            $this->schuldHulpWsdl, 
+            $organisatie,
+            $proxyHost,
+            $proxyPort
+        );
     }
 
     /**
@@ -633,7 +642,8 @@ class AllegroService
     {
         $organisatie = $this->login($organisatie);
         $parameters = new SchuldHulpServiceGetLijstSchuldeisers($searchString);
-        $response = $this->getSchuldHulpService($organisatie)->getLijstSchuldeisers($parameters);
+        $schuldhulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyPort);
+        $response = $schuldhulpService->getLijstSchuldeisers($parameters);
         $statistics = ['created' => 0, 'updated' => 0];
 
         if (null === $response->getResult()->getTOrganisatie()) {
