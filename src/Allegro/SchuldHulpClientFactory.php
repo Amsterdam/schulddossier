@@ -20,13 +20,7 @@ class SchuldHulpClientFactory
         ?string $proxyPort = null
     ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient
     {
-        $config = AllegroHelper::createSoapClientConfig($proxyHost, $proxyPort);
-       
-        $handler = HttPlugHandle::createForClient(
-            Client::createWithConfig($config)
-        );
-
-        $handler->addMiddleware(new SessionMiddleware($organisatie));
+        $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHost, $proxyPort);
 
         $extSoapOptions = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
 

@@ -2,6 +2,11 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro;
 
+use Http\Adapter\Guzzle7\Client;
+use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
+use Phpro\SoapClient\Soap\Handler\HandlerInterface;
+
 class AllegroHelper
 {
     /**
@@ -51,5 +56,32 @@ class AllegroHelper
         }
 
         return $config;
+    }
+
+    /**
+     * Creates a SOAP client handler with optional proxy and session middleware.
+     *
+     * @param Organisatie|null $organisatie The organization for session middleware.
+     * @param string|null $proxyHost The proxy host (IP or domain).
+     * @param string|null $proxyPort The proxy port.
+     * @return HandlerInterface The configured SOAP client handler.
+     */
+    public static function createSoapClientHandler(
+        ?Organisatie $organisatie = null,
+        ?string $proxyHost = null, 
+        ?string $proxyPort = null
+    ) : HandlerInterface
+    {
+        $config = AllegroHelper::createSoapClientConfig($proxyHost, $proxyPort);
+       
+        $handler = HttPlugHandle::createForClient(
+            Client::createWithConfig($config)
+        );
+        
+        if (null !== $organisatie) {
+            $handler->addMiddleware(new SessionMiddleware($organisatie));
+        }
+
+        return $handler;
     }
 }

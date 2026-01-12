@@ -19,17 +19,10 @@ class LoginClientFactory
         ?string $proxyHost = null,
         ?string $proxyPort = null
     ): AllegroLoginClient {
-        $config = AllegroHelper::createSoapClientConfig($proxyHost, $proxyPort);
-       
-        $handler = HttPlugHandle::createForClient(
-            Client::createWithConfig($config)
-        );
-
-        if (null !== $organisatie) {
-            $handler->addMiddleware(new SessionMiddleware($organisatie));
-        }
-
+ 
         $extSoapOptionsArray = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
+    
+        $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHost, $proxyPort);
     
         $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
             ExtSoapOptions::defaults($wsdl, $extSoapOptionsArray)->withClassMap(
