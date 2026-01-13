@@ -17,11 +17,12 @@ class AllegroHelper
      * @return array The SOAP options array.
      */
     public static function createSoapOptionsArray(
-        ?string $proxyHost = null, 
+        ?string $proxyHost = null,
         ?string $proxyPort = null
     ): array
     {
         $soapOptionsArray = [];
+
         if (isset($proxyHost, $proxyPort)) {
             $streamContext = stream_context_create([
                 'http' => [
@@ -36,7 +37,7 @@ class AllegroHelper
         return $soapOptionsArray;
     }
 
- 
+
      /**
      * Creates a SOAP client configuration array with optional proxy settings.
      *
@@ -45,7 +46,7 @@ class AllegroHelper
      * @return array The SOAP client configuration array.
      */
     public static function createSoapClientConfig(
-        ?string $proxyHost = null, 
+        ?string $proxyHost = null,
         ?string $proxyPort = null
     ): array
     {
@@ -68,16 +69,16 @@ class AllegroHelper
      */
     public static function createSoapClientHandler(
         ?Organisatie $organisatie = null,
-        ?string $proxyHost = null, 
+        ?string $proxyHost = null,
         ?string $proxyPort = null
     ) : HandlerInterface
     {
         $config = AllegroHelper::createSoapClientConfig($proxyHost, $proxyPort);
-       
+
         $handler = HttPlugHandle::createForClient(
             Client::createWithConfig($config)
         );
-        
+
         if (isset($organisatie)) {
             $handler->addMiddleware(new SessionMiddleware($organisatie));
         }

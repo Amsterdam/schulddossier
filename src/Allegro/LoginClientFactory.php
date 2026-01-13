@@ -5,10 +5,8 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClassmap;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
-use Http\Adapter\Guzzle7\Client;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
-use Phpro\SoapClient\Soap\Handler\HttPlugHandle;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class LoginClientFactory
@@ -19,11 +17,10 @@ class LoginClientFactory
         ?string $proxyHost = null,
         ?string $proxyPort = null
     ): AllegroLoginClient {
- 
         $extSoapOptionsArray = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
-    
+
         $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHost, $proxyPort);
-    
+
         $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
             ExtSoapOptions::defaults($wsdl, $extSoapOptionsArray)->withClassMap(
                 AllegroLoginClassmap::getCollection()
