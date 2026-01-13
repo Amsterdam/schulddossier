@@ -78,7 +78,7 @@ class AllegroHelper
             Client::createWithConfig($config)
         );
         
-        if (null !== $organisatie) {
+        if (isset($organisatie)) {
             $handler->addMiddleware(new SessionMiddleware($organisatie));
         }
 
