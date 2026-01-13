@@ -30,7 +30,7 @@ class AllegroHelper
                 ],
             ]);
 
-           $soapOptionsArray['stream_context'] = $streamContext;
+            $soapOptionsArray['stream_context'] = $streamContext;
         }
 
         return $soapOptionsArray;
