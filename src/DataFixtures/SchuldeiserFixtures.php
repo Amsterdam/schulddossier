@@ -36,6 +36,19 @@ class SchuldeiserFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
         $this->addReference('schuldeiser', $schuldeiser);
 
         $manager->persist($schuldeiser);
+
+        $schuldeiser = new Schuldeiser();
+
+        $schuldeiser->setRekening('');
+        $schuldeiser->setBedrijfsnaam("aaa - test allegro export");
+        $schuldeiser->setEnabled(true);
+        $schuldeiser->setHuisnummer(1);
+        $schuldeiser->setPlaats('Amsterdam');
+        $schuldeiser->setPostcode('1000AA');
+        $schuldeiser->setStraat('Amstel');
+
+        $manager->persist($schuldeiser);
+
         $manager->flush();
     }
 }
