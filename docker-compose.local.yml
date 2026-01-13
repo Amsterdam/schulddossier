@@ -6,8 +6,8 @@ services:
     environment:
       - TZ=Europe/Amsterdam
     image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/schulddossier-phpfpm}:${VERSION:-latest}
-    pull_policy: never
-    restart: unless-stopped
+    pull_policy: never # @TODO remove when done with testing with Proxy.
+    restart: on-failure:5
 
   schulddossier-nginx:
     build:
@@ -21,17 +21,18 @@ services:
       - FASTCGI_PASS=schulddossier-phpfpm:9000
       - TZ=Europe/Amsterdam
     image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/schulddossier-nginx}:${VERSION:-latest}
-    pull_policy: never
-    restart: unless-stopped
+    pull_policy: never # @TODO remove when done with testing with Proxy.
+    restart: on-failure:5
     depends_on:
       - schulddossier-phpfpm
 
+  # @TODO remove when Proxy is no longer needed.
   schulddossier-proxy:
     build:
       context: .
       dockerfile: Dockerfile_proxy
     image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/schulddossier-proxy}:${VERSION:-latest}
     pull_policy: never
-    restart: unless-stopped
+    restart: on-failure:5
     depends_on:
       - schulddossier-phpfpm
