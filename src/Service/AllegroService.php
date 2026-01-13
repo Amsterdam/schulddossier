@@ -636,39 +636,59 @@ class AllegroService
         $parameters = new SchuldHulpServiceGetLijstSchuldeisers($searchString);
         $schuldhulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyPort);
         $response = $schuldhulpService->getLijstSchuldeisers($parameters);
-        $statistics = ['created' => 0, 'updated' => 0];
-
-        if (null === $response->getResult()->getTOrganisatie()) {
+        /** @var TOrganisatie[] $allegroSchuldeisers */
+        $allegroSchuldeisers = $response->getResult()->getTOrganisatie();
+       
+        $statistics = ['created' => 0, 'updated' => 0, 'made-inactive' => 0];
+        if (!isset($allegroSchuldeisers)) {
             return $statistics;
         }
 
         $repo = $this->em->getRepository(Schuldeiser::class);
 
-        foreach ($response->getResult()->getTOrganisatie() as $organisatie) {
+
+        foreach ($allegroSchuldeisers as $organisatie) {
             /**
              * @var TOrganisatie $organisatie
              */
             $eiser = $repo->findOneBy(['allegroCode' => $organisatie->getRelatieCode()]);
 
+            // Add schuldeiser
             if (null === $eiser) {
                 $statistics['created']++;
                 $eiser = new Schuldeiser();
                 $eiser->setAllegroCode($organisatie->getRelatieCode());
-                $eiser->setEnabled(true);
                 $eiser->setRekening('');
+                $eiser->setEnabled(true);
                 $this->em->persist($eiser);
             } else {
                 $statistics['updated']++;
             }
 
+            // update schuldeiser 
             $adres = $organisatie->getPostAdres();
-
+            $eiser->setEnabled(true);
             $eiser->setBedrijfsnaam($organisatie->getNaam());
             $eiser->setPlaats($adres->getWoonplaats());
             $eiser->setHuisnummer($adres->getHuisnr());
             $eiser->setHuisnummerToevoeging($adres->getHuisnrToev());
             $eiser->setPostcode(substr(strtoupper(str_replace(' ', '', $adres->getPostcode())), 0, 6));
             $eiser->setStraat($adres->getStraat());
+        }
+
+        // disable schuldeiser, if is not part of the list
+        $activeSchuldeisers = $repo->findBy(['enabled'  => true]);
+
+        foreach ($activeSchuldeisers as $activeSchuldeiser) {
+            $existsInAllegro = array_filter(
+        $allegroSchuldeisers,
+    fn($allegroSchuldeiser) => $allegroSchuldeiser->getRelatieCode() === $activeSchuldeiser->getAllegroCode()
+             );
+
+            if (empty($existsInAllegro)) {
+                $activeSchuldeiser->setEnabled(false);
+                $statistics['made-inactive']++;
+            } 
         }
 
         $this->em->flush();
