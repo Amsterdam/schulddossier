@@ -36,7 +36,7 @@ class AllegroHelper
         return $soapOptionsArray;
     }
 
-     /**
+    /**
      * Creates a SOAP client configuration array with optional proxy settings.
      *
      * @param string|null $proxyHost The proxy host (IP or domain).
