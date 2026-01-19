@@ -25,7 +25,7 @@ class SchuldeiserFormType extends AbstractType
             'required' => false,
             'help' => 'DB: schuldeiser.enabled',
             'attr' => [
-            'disabled' => 'disabled',
+                'disabled' => 'disabled',
             ],
         ]);
 
