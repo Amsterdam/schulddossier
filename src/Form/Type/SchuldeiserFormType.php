@@ -24,6 +24,9 @@ class SchuldeiserFormType extends AbstractType
             'label' => 'Actief',
             'required' => false,
             'help' => 'DB: schuldeiser.enabled',
+            'attr' => [
+            'disabled' => 'disabled',
+            ],
         ]);
 
         $builder->add('rekening', TextType::class, [
