@@ -22,8 +22,6 @@ class SchuldHulpClientFactory
 
         $extSoapOptions = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
 
-        $extSoapOptions = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
-
         $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
             ExtSoapOptions::defaults($wsdl, $extSoapOptions)->withClassMap(AllegroSchuldHulpClassmap::getCollection()),
             $handler
