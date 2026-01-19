@@ -641,26 +641,27 @@ class AllegroService
 
         $schulddossierSchuldeisers = $this->em->getRepository(Schuldeiser::class);
 
-        foreach ($allegroSchuldeisers as $organisatie) {
+        foreach ($allegroSchuldeisers as $allegroSchuldeiser) {
             /**
-             * @var TOrganisatie $organisatie
+             * @var TOrganisatie $allegroSchuldeiser
              */
-            $eiser = $schulddossierSchuldeisers->findOneBy(['allegroCode' => $organisatie->getRelatieCode()]);
+            $eiser = $schulddossierSchuldeisers->findOneBy(['allegroCode' => $allegroSchuldeiser->getRelatieCode()]);
 
             if (null === $eiser) {
 
                 // Add schuldeiser
-                $statistics['created']++;
                 $eiser = new Schuldeiser();
-                $eiser->setAllegroCode($organisatie->getRelatieCode());
+                $eiser->setAllegroCode($allegroSchuldeiser->getRelatieCode());
                 $eiser->setRekening('');
                 $eiser->setEnabled(true);
-                $eiser = $this->updateSchuldeiser($eiser, $organisatie);
+                $eiser = $this->updateSchuldeiser($eiser, $allegroSchuldeiser);
+                $statistics['created']++;
                 $this->em->persist($eiser);
             } else {
+
                 // update schuldeiser
+                $eiser = $this->updateSchuldeiser($eiser, $allegroSchuldeiser);
                 $statistics['updated']++;
-                $eiser = $this->updateSchuldeiser($eiser, $organisatie);
             }
 
             foreach ($schulddossierSchuldeisers as $schulddossierSchuldeiser) {
@@ -670,11 +671,13 @@ class AllegroService
                 );
 
                 if (empty($existsInAllegro)) {
+
                     // disable schuldeisers which are not exported from allegro
                     $schulddossierSchuldeiser->setEnabled(false);
                     $statistics['made-inactive']++;
                 } else {
                     if (!$schulddossierSchuldeiser->isEnabled) {
+
                         // enable schuldeisers which are exported from allegro
                         $schulddossierSchuldeiser->setEnabled(true);
                         $statistics['made-active']++;
@@ -707,12 +710,12 @@ class AllegroService
 
     private function updateSchuldeiser(
         Schuldeiser $schuldeiser, 
-        TOrganisatie $organisatie
+        TOrganisatie $allegroSchuldeiser
         ): Schuldeiser
     {
 
-        $adres = $organisatie->getPostAdres();
-        $schuldeiser->setBedrijfsnaam($organisatie->getNaam());
+        $adres = $allegroSchuldeiser->getPostAdres();
+        $schuldeiser->setBedrijfsnaam($allegroSchuldeiser->getNaam());
         $schuldeiser->setPlaats($adres->getWoonplaats());
         $schuldeiser->setHuisnummer($adres->getHuisnr());
         $schuldeiser->setHuisnummerToevoeging($adres->getHuisnrToev());
