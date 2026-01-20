@@ -20,7 +20,7 @@ class LoginClientFactory
         $extSoapOptionsArray = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
 
         $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHost, $proxyPort);
-    
+
         $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
             ExtSoapOptions::defaults($wsdl, $extSoapOptionsArray)->withClassMap(
                 AllegroLoginClassmap::getCollection()
