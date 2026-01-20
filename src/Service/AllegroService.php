@@ -806,6 +806,11 @@ class AllegroService
         return $statistics;
     }
 
+    /**
+     * @param Organisatie $organisatie
+     * @param string $searchString
+     * @return TOrganisatie[] Array of TOrganisatie objects
+     */
     private function getAllegroSchuldeisers(
         Organisatie $organisatie, 
         $searchString = ''
@@ -823,6 +828,13 @@ class AllegroService
         
     }
 
+    /**
+     * Updates the given Schuldeiser with data from the provided TOrganisatie.
+     *
+     * @param Schuldeiser $schuldeiser The Schuldeiser object to update.
+     * @param TOrganisatie $allegroSchuldeiser The TOrganisatie object containing the updated data.
+     * @return Schuldeiser The updated Schuldeiser object.
+     */
     private function updateSchuldeiser(
         Schuldeiser $schuldeiser, 
         TOrganisatie $allegroSchuldeiser
