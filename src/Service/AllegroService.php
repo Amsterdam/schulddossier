@@ -698,7 +698,7 @@ class AllegroService
     private function getAllegroSchuldeisers(
         Organisatie $organisatie, 
         $searchString = ''
-        ):array
+        ): array
     {
 
         $organisatie = $this->login($organisatie);
