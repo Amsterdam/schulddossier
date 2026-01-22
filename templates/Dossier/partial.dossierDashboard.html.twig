@@ -179,7 +179,7 @@
                        class="button secondary">Vernieuwen <i class="icon-reload"></i></a>
                     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_allegrosrveisers', {'dossierId': dossier.id}) }}"
                        class="button secondary">Uitgebreide status</a>
-                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_GKA') or is_granted('ROLE_GKA_APPBEHEERDER') %}
+                    {% if is_granted('ROLE_ADMIN') %}
                         <a id="send_to_allegro" class="button {% if dossier.sendToAllegro is null %}secondary{% else %}grey{% endif %}">Exporteren</a>
                     {% endif %}
                 </div>
