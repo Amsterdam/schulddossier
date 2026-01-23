@@ -84,9 +84,8 @@ class SyncDossierWithAllegroCommand extends Command
             return Command::FAILURE;
         }
 
-        try {
-            foreach ($dossiers as $dossier) {
-                $header = null;
+        foreach ($dossiers as $dossier) {
+            $header = null;
                 try {
                     $header = $this->service->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer());
                 } catch (Exception $e) {
@@ -96,10 +95,18 @@ class SyncDossierWithAllegroCommand extends Command
                 $dossierCanBeUpdatedWithAllegro = $this->service->isDossierInSyncWithAllegro($dossier, $header);
 
                 if ($dossierCanBeUpdatedWithAllegro) {
-                    $this->service->updateDossier($dossier, $header);
-                }
+                    try {
+                        $this->service->updateDossier($dossier, $header);
+                    } catch (Exception $e) {
+                        $io->error('Error: could not update dossier. ' . $e->getMessage());
+                    }
 
-                $this->eventDispatcher->dispatch(new DossierSyncedWithAllegroEvent($dossier, new Gebruiker()), DossierSyncedWithAllegroEvent::NAME);
+                    try {
+                        $this->eventDispatcher->dispatch(new DossierSyncedWithAllegroEvent($dossier, new Gebruiker()), DossierSyncedWithAllegroEvent::NAME);
+                    } catch (Exception $e) {
+                        $io->error('Error: could not send e-mail notification. ' . $e->getMessage());
+                    }
+                }
 
                 $io->info('The dossier with ID ' . $dossier->getId() . ' ' . ($dossierCanBeUpdatedWithAllegro ? 'has' : 'has NOT') . ' been updated with new Allegro (' . $dossier->getAllegroNummer() . ') data.');
             }
@@ -107,10 +114,5 @@ class SyncDossierWithAllegroCommand extends Command
             $io->success('Job completed successfully');
 
             return Command::SUCCESS;
-        } catch (Exception $e) {
-            $io->error('Error with the following message occurred: ' . $e->getMessage());
-
-            return Command::FAILURE;
-        }
     }
 }
