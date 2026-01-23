@@ -8,7 +8,6 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebL
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetLijstSchuldeisers;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzicht;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVAanvraag;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVEisers;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSRVOverzicht;
@@ -632,47 +631,110 @@ class AllegroService
      */
     public function syncSchuldeisers(Organisatie $organisatie, $searchString = ''): array
     {
+        /** @var TOrganisatie[] $allegroSchuldeisers */
+        $allegroSchuldeisers = $this->getAllegroSchuldeisers($organisatie, $searchString);
+
+        $statistics = ['created' => 0, 'updated' => 0, 'made-inactive' => 0, 'made-active' => 0];
+        if (!isset($allegroSchuldeisers)) {
+            return $statistics;
+        }
+
+        $schulddossierSchuldeisers = $this->em->getRepository(Schuldeiser::class);
+
+        foreach ($allegroSchuldeisers as $allegroSchuldeiser) {
+            /**
+             * @var TOrganisatie $allegroSchuldeiser
+             */
+            $eiser = $schulddossierSchuldeisers->findOneBy(['allegroCode' => $allegroSchuldeiser->getRelatieCode()]);
+
+            if (null === $eiser) {
+
+                // Add schuldeiser
+                $eiser = new Schuldeiser();
+                $eiser->setAllegroCode($allegroSchuldeiser->getRelatieCode());
+                $eiser->setRekening('');
+                $eiser->setEnabled(true);
+                $eiser = $this->updateSchuldeiser($eiser, $allegroSchuldeiser);
+                $statistics['created']++;
+                $this->em->persist($eiser);
+            } else {
+
+                // update schuldeiser
+                $eiser = $this->updateSchuldeiser($eiser, $allegroSchuldeiser);
+                $statistics['updated']++;
+            }
+
+            foreach ($schulddossierSchuldeisers as $schulddossierSchuldeiser) {
+                $existsInAllegro = array_filter(
+                    $allegroSchuldeisers,
+                    fn($allegroSchuldeiser) => $allegroSchuldeiser->getRelatieCode() === $schulddossierSchuldeiser->getAllegroCode()
+                );
+
+                if (empty($existsInAllegro)) {
+
+                    // disable schuldeisers which are not exported from allegro
+                    $schulddossierSchuldeiser->setEnabled(false);
+                    $statistics['made-inactive']++;
+                } else {
+                    if (!$schulddossierSchuldeiser->isEnabled) {
+
+                        // enable schuldeisers which are exported from allegro
+                        $schulddossierSchuldeiser->setEnabled(true);
+                        $statistics['made-active']++;
+                    }
+                }
+            }
+
+            $this->em->flush();
+        }
+        return $statistics;
+    }
+
+    /**
+     * @param Organisatie $organisatie
+     * @param string $searchString
+     * @return TOrganisatie[] Array of TOrganisatie objects
+     */
+    private function getAllegroSchuldeisers(
+        Organisatie $organisatie, 
+        $searchString = ''
+        ): array
+    {
+
         $organisatie = $this->login($organisatie);
         $parameters = new SchuldHulpServiceGetLijstSchuldeisers($searchString);
         $schuldhulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyPort);
         $response = $schuldhulpService->getLijstSchuldeisers($parameters);
-        $statistics = ['created' => 0, 'updated' => 0];
 
-        if (null === $response->getResult()->getTOrganisatie()) {
-            return $statistics;
-        }
+        /** @var TOrganisatie[] $allegroSchuldeisers */
+        $allegroSchuldeisers = $response->getResult()->getTOrganisatie();
 
-        $repo = $this->em->getRepository(Schuldeiser::class);
+        return $allegroSchuldeisers;
+        
+    }
 
-        foreach ($response->getResult()->getTOrganisatie() as $organisatie) {
-            /**
-             * @var TOrganisatie $organisatie
-             */
-            $eiser = $repo->findOneBy(['allegroCode' => $organisatie->getRelatieCode()]);
+    /**
+     * Updates the given Schuldeiser with data from the provided TOrganisatie.
+     *
+     * @param Schuldeiser $schuldeiser The Schuldeiser object to update.
+     * @param TOrganisatie $allegroSchuldeiser The TOrganisatie object containing the updated data.
+     * @return Schuldeiser The updated Schuldeiser object.
+     */
+    private function updateSchuldeiser(
+        Schuldeiser $schuldeiser, 
+        TOrganisatie $allegroSchuldeiser
+        ): Schuldeiser
+    {
 
-            if (null === $eiser) {
-                $statistics['created']++;
-                $eiser = new Schuldeiser();
-                $eiser->setAllegroCode($organisatie->getRelatieCode());
-                $eiser->setEnabled(true);
-                $eiser->setRekening('');
-                $this->em->persist($eiser);
-            } else {
-                $statistics['updated']++;
-            }
+        $adres = $allegroSchuldeiser->getPostAdres();
+        $schuldeiser->setBedrijfsnaam($allegroSchuldeiser->getNaam());
+        $schuldeiser->setPlaats($adres->getWoonplaats());
+        $schuldeiser->setHuisnummer($adres->getHuisnr());
+        $schuldeiser->setHuisnummerToevoeging($adres->getHuisnrToev());
+        $schuldeiser->setPostcode(substr(strtoupper(str_replace(' ', '', $adres->getPostcode())), 0, 6));
+        $schuldeiser->setStraat($adres->getStraat());
 
-            $adres = $organisatie->getPostAdres();
-
-            $eiser->setBedrijfsnaam($organisatie->getNaam());
-            $eiser->setPlaats($adres->getWoonplaats());
-            $eiser->setHuisnummer($adres->getHuisnr());
-            $eiser->setHuisnummerToevoeging($adres->getHuisnrToev());
-            $eiser->setPostcode(substr(strtoupper(str_replace(' ', '', $adres->getPostcode())), 0, 6));
-            $eiser->setStraat($adres->getStraat());
-        }
-
-        $this->em->flush();
-
-        return $statistics;
+        return $schuldeiser;
     }
 }
+

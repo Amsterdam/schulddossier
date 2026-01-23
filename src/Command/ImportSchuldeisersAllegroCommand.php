@@ -71,7 +71,9 @@ class ImportSchuldeisersAllegroCommand extends Command
                 ['Action', 'Value'],
                 [
                     ['Created', $statistics['created']],
-                    ['Updated', $statistics['updated']]
+                    ['Updated', $statistics['updated']],
+                    ['Made inactive', $statistics['made-inactive']],
+                    ['Made active', $statistics['made-active']]
                 ]
             );
             $io->success('Job completed successfully');
