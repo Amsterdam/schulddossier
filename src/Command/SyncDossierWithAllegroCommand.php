@@ -74,12 +74,7 @@ class SyncDossierWithAllegroCommand extends Command
         }
 
         $dossierRepository = $this->em->getRepository(Dossier::class);
-        $dossiers = $dossierRepository->findBy([
-            'status' => ['verzonden_shv', 'compleet_gka', 'dossier_gecontroleerd_gka'],
-        ]);
-        $dossiers = array_filter($dossiers, function ($dossier) {
-            return $dossier->getAllegroNummer() !== null;
-        });
+        $dossiers = $dossierRepository->findInAllegroAndWithStatus(['verzonden_shv', 'compleet_gka', 'dossier_gecontroleerd_gka']);
 
         try {
             $this->service->login($allegroId);

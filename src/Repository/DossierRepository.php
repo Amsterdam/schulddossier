@@ -54,6 +54,16 @@ class DossierRepository extends EntityRepository
         return new Paginator($qb->getQuery());
     }
 
+    public function findInAllegroAndWithStatus($statuses)
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.status IN (:statuses)')
+            ->andWhere('d.allegroNummer IS NOT NULL')
+            ->setParameter('statuses', $statuses)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function search($query, $page = 0, $pageSize = 100, $orderBy = 'default')
     {
         $query = array_merge([
