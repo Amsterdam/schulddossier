@@ -621,12 +621,16 @@ class AllegroService
      * @param Dossier $dossier
      * @throws \Exception
      */
-    public function updateDossier(Dossier $dossier)
+    public function updateDossier(Dossier $dossier, TSRVAanvraagHeader $header = null)
     {
-        $header = $this->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer());
+        if (!isset($header)) {
+            $header = $this->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer());
+        }
+
         $dossier->setAllegroStatus($header->getStatus());
         $dossier->setAllegroExtraStatus($header->getExtraStatus());
         $dossier->setAllegroSyncDate((new \DateTime()));
+
         $this->em->flush();
     }
 
@@ -634,23 +638,13 @@ class AllegroService
      * @param Dossier $dossier
      * @throws \Exception
      */
-    public function isDossierInSyncWithAllegro(Dossier $dossier)
+    public function isDossierInSyncWithAllegro(Dossier $dossier, TSRVAanvraagHeader $header = null)
     {
-        $header = null;
-        try {
-            $header = $this->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer());
-        } catch (Exception $e) {
-            $this->logger->error(
-                sprintf('Failed to fetch Allegro SRV Aanvraag Header for dossier %s: %s', $dossier->getId(), $e->getMessage()),
-                [AllegroService::LOGGING_CONTEXT]
-            );
-        }
-
-        // TODO: refactor to use setters directly (updateDossier) after Allegro FT is available again.
         $currentStatus = $dossier->getAllegroStatus();
         $currentExtraStatus = $dossier->getAllegroExtraStatus();
-        $incomingStatus = $header ? $header->getStatus() : null;
-        $incomingExtraStatus =  $header ? $header->getExtraStatus() : null;
+
+        $incomingStatus = $header?->getStatus();
+        $incomingExtraStatus = $header?->getExtraStatus();
 
         return $currentStatus !== $incomingStatus || $currentExtraStatus !== $incomingExtraStatus;
     }

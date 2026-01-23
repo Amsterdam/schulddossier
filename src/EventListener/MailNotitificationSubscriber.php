@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedCorrespondentie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierSyncedWithAllegroEvent;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -243,13 +244,13 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function notifyDossierSyncedWithAllegro(Event $event)
+    public function notifyDossierSyncedWithAllegro(DossierChangedEvent $event)
     {
         /** @var $dossier Dossier */
-        $dossier = $event->getSubject();
+        $dossier = $event->getDossier();
 
         if ($dossier->getMedewerkerOrganisatie() !== null && empty($dossier->getMedewerkerOrganisatie()->getEmail()) === false) {
-            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerOrganisatie()->getEmail(), 'notifyDossierSyncedWithAllegro.html.twig', [
+            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerOrganisatie()->getEmail(), 'mails/notifyDossierSyncedWithAllegro.html.twig', [
                 'dossier' => $dossier
             ]);
         } else {

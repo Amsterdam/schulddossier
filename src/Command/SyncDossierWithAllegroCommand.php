@@ -74,32 +74,39 @@ class SyncDossierWithAllegroCommand extends Command
         }
 
         $dossierRepository = $this->em->getRepository(Dossier::class);
-
         $dossiers = $dossierRepository->findBy([
             'status' => ['verzonden_shv', 'compleet_gka', 'dossier_gecontroleerd_gka'],
         ]);
-
-        // Filter dossiers with non-null allegroNummer
         $dossiers = array_filter($dossiers, function ($dossier) {
             return $dossier->getAllegroNummer() !== null;
         });
 
         try {
-            // TODO: re-enable login when Allegro FT is back online.
-            // if ($allegroId && !$this->service->login($allegroId)) {
-            //     $io->error('Could not login with Allegro credentials belonging to Organisation id ' . $allegroId->getId());
+            $this->service->login($allegroId);
+        } catch (Exception $e) {
+            $io->error('Could not login to Allegro: ' . $e->getMessage());
 
-            //     return Command::FAILURE;
-            // }
+            return Command::FAILURE;
+        }
 
+        try {
             foreach ($dossiers as $dossier) {
-                $dossierCanBeUpdatedWithAllegro = $this->service->isDossierInSyncWithAllegro($dossier);
+                $header = null;
+                try {
+                    $header = $this->service->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer());
+                } catch (Exception $e) {
+                    $io->error('Error: failed to fetch SRV Aanvraag Header. ' . $e->getMessage());
+                }
 
-                // TODO: can't get the eventDispatcher to work; wrong type of Event and mailer does not function locally?
-                // $this->eventDispatcher->dispatch(new DossierSyncedWithAllegroEvent($dossier, new Gebruiker()), DossierSyncedWithAllegroEvent::NAME);
+                $dossierCanBeUpdatedWithAllegro = $this->service->isDossierInSyncWithAllegro($dossier, $header);
 
-                $io->info('Dossier ID: ' . $dossier->getId() . ' | Allegro Nummer: ' . $dossier->getAllegroNummer() . ' | Allegro Status: ' . $dossier->getAllegroStatus() . ' | Allegro Extra Status: ' . $dossier->getAllegroExtraStatus());
-                $io->info('The dossier with ID ' . $dossier->getId() . ' ' . ($dossierCanBeUpdatedWithAllegro ? 'has' : 'has NOT') . ' been updated with new Allegro data.');
+                if ($dossierCanBeUpdatedWithAllegro) {
+                    $this->service->updateDossier($dossier, $header);
+                }
+
+                $this->eventDispatcher->dispatch(new DossierSyncedWithAllegroEvent($dossier, new Gebruiker()), DossierSyncedWithAllegroEvent::NAME);
+
+                $io->info('The dossier with ID ' . $dossier->getId() . ' ' . ($dossierCanBeUpdatedWithAllegro ? 'has' : 'has NOT') . ' been updated with new Allegro (' . $dossier->getAllegroNummer() . ') data.');
             }
 
             $io->success('Job completed successfully');
