@@ -538,6 +538,25 @@ class AppDossierController extends AbstractController
     }
 
     /**
+     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/view")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("document", options={"id"="documentId"})
+     */
+    public function detailDocumentViewAction(
+        Request                $request,
+        Dossier                $dossier,
+        Document               $document,
+        FileStorageSelector    $fileStorageSelector
+    ): Response
+    {
+        $this->checkDocumentAccess($dossier, $document);
+
+        return $this->render('Dossier/documentView.html.twig', ['dossierDocumenten' => $dossier->getDocumenten()]);
+
+    }
+
+    /**
      * @Route("/detail/{dossierId}/documenten/detail/{documentId}/download")
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})

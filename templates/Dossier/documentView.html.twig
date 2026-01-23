@@ -1,0 +1,19 @@
+{% extends 'master.html.twig' %}
+
+{% block document %}
+
+	{% for dossierDocument in dossierDocumenten if dossierDocument.document.inPrullenbak == false %}
+
+
+		<a
+			href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}" class="bestand-zoom" title="Bekijk deze {{ dossierDocument.document.origineleExtensie|lower }}" data-handler="bestand" target="_blank">
+			{#{{ dossierDocument.document.naam }}#}
+			<i class="icon-document" data-extension="{{ dossierDocument.document.origineleExtensie|lower }}"></i>
+			<span class="bestand-naam">{{ dossierDocument.document.naam }}</span>
+		</a>
+
+		{% include 'Dossier/partial.documentViewer.html.twig' %}
+
+	{% endfor %}
+
+{% endblock %}
