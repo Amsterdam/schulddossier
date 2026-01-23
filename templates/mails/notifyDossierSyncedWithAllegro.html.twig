@@ -1,0 +1,26 @@
+{% block subject -%}
+    Dossier goedgekeurd (Schulddossier) [{{ dossier.id }}]
+{%- endblock  %}
+
+{% block html -%}
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{{ block('subject') }}</title>
+    </head>
+    <body>
+        <p>Hallo {{ dossier.getMedewerkerOrganisatie.getNaam }},</p>
+        <p>Een door jouw beheerd dossier heeft een statuswijziging gekregen vanuit de GKA.</p>
+        <p>&nbsp;</p>
+        <p><a href="{{ url('gemeenteamsterdam_fixxxschuldhulp_allegro_allegrosrveisers', {'dossierId': dossier.getId}) }}">Open dossier</a>
+    </body>
+</html>
+{%- endblock %}
+
+{% block txt -%}
+Hallo {{ dossier.getMedewerkerOrganisatie().getNaam() }},
+
+Een door jouw beheerd dossier heeft een statuswijziging gekregen vanuit de GKA.
+
+{{ url('gemeenteamsterdam_fixxxschuldhulp_allegro_allegrosrveisers', {'dossierId': dossier.getId()}) }}
+{%- endblock %}

@@ -8,23 +8,19 @@ use Exception;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
-use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
-use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierSyncedWithAllegroEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
-use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\Security\Core\User\User;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 #[AsCommand(
     name: 'app:allegro:sync:check',
-    description: 'Commando om Dossiers te synchroniseren met hun tegenhanger in Allegro (GKA) en vervolgens te kijken of er een verschil is.',
+    description: 'Commando om dossiers te synchroniseren met Allegro wanneer er een statuswijziging heeft plaatsgevonden',
 )]
 class SyncDossierWithAllegroCommand extends Command
 {
@@ -41,7 +37,7 @@ class SyncDossierWithAllegroCommand extends Command
     public function __construct(
         EntityManagerInterface $em,
         AllegroService $service,
-        private readonly EventDispatcherInterface $eventDispatcher,
+        private readonly EventDispatcherInterface $eventDispatcher
     )
     {
         $this->em = $em;
@@ -99,7 +95,8 @@ class SyncDossierWithAllegroCommand extends Command
             foreach ($dossiers as $dossier) {
                 $dossierCanBeUpdatedWithAllegro = $this->service->isDossierInSyncWithAllegro($dossier);
 
-                $this->eventDispatcher->dispatch(new DossierSyncedWithAllegroEvent($dossier, new Gebruiker()));
+                // TODO: can't get the eventDispatcher to work; wrong type of Event and mailer does not function locally?
+                // $this->eventDispatcher->dispatch(new DossierSyncedWithAllegroEvent($dossier, new Gebruiker()), DossierSyncedWithAllegroEvent::NAME);
 
                 $io->info('Dossier ID: ' . $dossier->getId() . ' | Allegro Nummer: ' . $dossier->getAllegroNummer() . ' | Allegro Status: ' . $dossier->getAllegroStatus() . ' | Allegro Extra Status: ' . $dossier->getAllegroExtraStatus());
                 $io->info('The dossier with ID ' . $dossier->getId() . ' ' . ($dossierCanBeUpdatedWithAllegro ? 'has' : 'has NOT') . ' been updated with new Allegro data.');

@@ -249,9 +249,8 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         $dossier = $event->getSubject();
 
         if ($dossier->getMedewerkerOrganisatie() !== null && empty($dossier->getMedewerkerOrganisatie()->getEmail()) === false) {
-            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerOrganisatie()->getEmail(), 'mails/notifyGoedkeurenGka.html.twig', [
-                'dossier' => $dossier,
-                'tokenStorage' => $this->tokenStorage
+            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerOrganisatie()->getEmail(), 'notifyDossierSyncedWithAllegro.html.twig', [
+                'dossier' => $dossier
             ]);
         } else {
             $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
