@@ -2,6 +2,7 @@ $fileIconHeight: 150px;
 $fileIconWidth: 120px;
 $fileActionIconHeight: 3rem;
 $fileActionIconWidth: 3rem;
+$baseMargin: 5px;
 
 .document-container {
   max-width: $maxContentWidth;
@@ -13,10 +14,6 @@ $fileActionIconWidth: 3rem;
 }
 .document-container__wide {
   max-width: $maxContentWideWidth;
-}
-
-.pdf-splitter.animatable ~ .document-container {
-  //transition: padding .3s;
 }
 
 .document {
@@ -129,7 +126,7 @@ $fileActionIconWidth: 3rem;
   display: inline-block;
   width: $fileIconWidth;
   height: $fileIconHeight;
-  margin: 5px;
+  margin: $baseMargin;
   background-color: rgba($brandColor2, 0);
   transition: background-color .3s;
   i {
@@ -231,7 +228,7 @@ div.bestand-action-list{
 .bestand-action-list-item{
   width: $fileActionIconWidth;
   height: $fileActionIconHeight;
-  margin: 5px;
+  margin: $baseMargin;
 
   >.bestand-action-list-item-download{
     opacity: 0;
@@ -318,7 +315,6 @@ div.bestand-action-list{
       bottom: 31%;
       font-style: normal;
       font-weight: bold;
-      //top: 50%;
       line-height: 11px;
       padding: 2px 0;
       overflow: hidden;
@@ -381,7 +377,7 @@ div.bestand-action-list{
     border: 1px solid #000;
     left: 0;
     top: 0;
-    margin: -5px;
+    margin: -$baseMargin;
     z-index: 99;
     &:before {
       background-image: url('../../images/ico_undo.svg');
