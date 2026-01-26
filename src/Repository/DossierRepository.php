@@ -4,9 +4,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions\Levenshtein;
 
@@ -54,7 +52,7 @@ class DossierRepository extends EntityRepository
         return new Paginator($qb->getQuery());
     }
 
-    public function findInAllegroAndWithStatus($statuses)
+    public function findByAllegroNumberAndWithStatuses($statuses)
     {
         return $this->createQueryBuilder('d')
             ->where('d.status IN (:statuses)')

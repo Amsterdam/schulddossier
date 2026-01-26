@@ -9,7 +9,6 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierSyncedWithAllegroEvent;
-use GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -24,24 +23,18 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 )]
 class SyncDossierWithAllegroCommand extends Command
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    private EntityManagerInterface $em;
-
-    /**
-     * @var AllegroService
-     */
-    private AllegroService $service;
-
     public function __construct(
-        EntityManagerInterface $em,
-        AllegroService $service,
-        private readonly EventDispatcherInterface $eventDispatcher
+        private EntityManagerInterface $em,
+        private AllegroService $service,
+        private AllegroCommandHelper $allegroCommandHelper,
+        private EventDispatcherInterface $eventDispatcher
     )
     {
         $this->em = $em;
         $this->service = $service;
+        $this->allegroCommandHelper = $allegroCommandHelper;
+        $this->eventDispatcher = $eventDispatcher;
+
         parent::__construct();
     }
 
@@ -60,11 +53,8 @@ class SyncDossierWithAllegroCommand extends Command
 
         $io->info('Looking up allegro credentials');
 
-        /** @var OrganisatieRepository $organisatieRepository */
-        $organisatieRepository = $this->em->getRepository(Organisatie::class);
-
         /** @var Organisatie $allegroId */
-        $allegroId = $organisatieRepository->fetchAllegroUser();
+        $allegroId = $this->allegroCommandHelper->getAllegroIdFromAnyOrg();
 
         if (!isset($allegroId)) {
             $io->info('No organistation found whith a complete set of Allegro login data');
@@ -74,7 +64,7 @@ class SyncDossierWithAllegroCommand extends Command
         }
 
         $dossierRepository = $this->em->getRepository(Dossier::class);
-        $dossiers = $dossierRepository->findInAllegroAndWithStatus(['verzonden_shv', 'compleet_gka', 'dossier_gecontroleerd_gka']);
+        $dossiers = $dossierRepository->findByAllegroNumberAndWithStatuses(['verzonden_shv', 'compleet_gka', 'dossier_gecontroleerd_gka']);
 
         try {
             $this->service->login($allegroId);
