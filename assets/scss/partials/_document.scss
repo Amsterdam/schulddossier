@@ -184,13 +184,14 @@ a.bestand {
 }
 
 .bestand-verwijderen-check {
-  pointer-events: none;
+  pointer-events: none ;
   position: absolute;
   opacity: 0;
   left: 0;
 }
 
 .bestand-action-list-item-bestand-verwijderen {
+  pointer-events: auto;
   opacity: 0;
   z-index: 2;
   font-size: 0;
@@ -211,10 +212,10 @@ a.bestand {
 }
 
 div.bestand-action-list-container {
- z-index: 99;
  width: $fileIconWidth;
  height: $fileIconHeight;
  position: relative;
+ pointer-events: none;
 }
 
 div.bestand-action-list{
