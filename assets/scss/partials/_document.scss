@@ -223,16 +223,16 @@ a.bestand {
   left: 0;
 }
 
-.bestand-verwijderen {
-  position: absolute;
+.bestand-action-list-item-bestand-verwijderen {
+  // position: absolute;
   z-index: 2;
-  left: 5px;
-  top: 5px;
+  // left: 5px;
+  // top: 5px;
   font-size: 0;
   width: 3rem;
   height: 3rem;
   text-align: center;
-  opacity: 0;
+  // opacity: 0;
   background-color: rgba(#fff, .8);
   transition: all .3s;
   &:before {
@@ -246,6 +246,64 @@ a.bestand {
     background-color: rgba(#fff, 1);
   }
 }
+
+div.bestand-action-list-container {
+ z-index: 99;
+ width: 120px;
+ height: 150px;
+ position: relative;
+}
+
+div.bestand-action-list{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bestand-action-list-item{
+  width: 3rem;
+  height: 3rem;
+  margin: 5px;
+
+  >.bestand-action-list-item-download{
+
+    &:before {
+      content: '';
+      pointer-events: auto;
+      z-index: 2;
+      @extend .icon-download !optional;
+      background-position: 50% 50%;
+      background-size: 20px auto;
+      width: 3rem;
+      height: 3rem;
+      // opacity: 0;
+      transition: opacity .3s;
+      background-color: #fff;
+  }
+}
+
+  >.bestand-action-list-item-full-screen{
+
+   &:before {
+      content: '';
+      pointer-events: auto;
+      z-index: 2;
+      @extend .icon-fullscreen !optional;
+      background-position: 50% 50%;
+      background-size: 20px auto;
+      width: 3rem;
+      height: 3rem;
+      // opacity: 0;
+      transition: opacity .3s;
+      background-color: #fff;
+    }
+  }
+}
+
 
 .bestand-zoom {
   position: absolute;
@@ -387,17 +445,16 @@ a.bestand {
       top: 5.1rem;
     }
   }
-  .bestand-verwijderen-check ~ label {
-    border: 1px solid transparent;
-  }
   .bestand-verwijderen-check:checked ~ label {
+    width: 120px;
+    height: 150px;
     opacity: 1;
-    width: 100%;
     background: rgba(255,255,255,1);
     border: 1px solid #000;
-    height: 100%;
     left: 0;
     top: 0;
+    margin: -5px;
+    z-index: 99;
     &:before {
       background-image: url('../../images/ico_undo.svg');
       background-position-x: 10px;
@@ -406,10 +463,7 @@ a.bestand {
     }
     &:after {
       content: 'Document wordt verwijderd';
-      position: absolute;
-      left: 0;
-      width: 100%;
-      bottom: 50px;
+
       font-size: 16px;
       line-height: 1.2em;
       text-align: center;
