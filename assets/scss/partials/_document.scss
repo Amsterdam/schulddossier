@@ -225,39 +225,33 @@ div.bestand-action-list{
   justify-content: space-between;
 }
 
+@mixin button-action-icon($icon) {
+  opacity: 0;
+  &:before {
+    content: '';
+    pointer-events: auto;
+    z-index: 2;
+    @extend #{$icon} !optional;
+    background-position: 50% 50%;
+    background-size: 20px auto;
+    width: $fileActionIconWidth;
+    height: $fileActionIconHeight;
+    background-color: #fff;
+  }
+}
+
+
 .bestand-action-list-item{
   width: $fileActionIconWidth;
   height: $fileActionIconHeight;
   margin: $baseMargin;
 
   >.bestand-action-list-item-download{
-    opacity: 0;
-    &:before {
-      content: '';
-      pointer-events: auto;
-      z-index: 2;
-      @extend .icon-download !optional;
-      background-position: 50% 50%;
-      background-size: 20px auto;
-      width: $fileActionIconWidth;
-      height: $fileActionIconHeight;
-      background-color: #fff;
+    @include button-action-icon('.icon-download');
   }
-}
 
   >.bestand-action-list-item-full-screen{
-    opacity: 0;
-   &:before {
-      content: '';
-      pointer-events: auto;
-      z-index: 2;
-      @extend .icon-fullscreen !optional;
-      background-position: 50% 50%;
-      background-size: 20px auto;
-      width: $fileActionIconWidth;
-      height: $fileActionIconHeight;
-      background-color: #fff;
-    }
+    @include button-action-icon('.icon-fullscreen');
   }
 }
 
@@ -268,13 +262,9 @@ div.bestand-action-list{
   left: 0;
   right: 0;
   bottom: 0;
-
   font-size: 0;
-
   opacity: 0;
-
   background-color: #fff;
-
   transition: all .3s;
   text-decoration: none;
   border: 2px solid transparent;
@@ -296,7 +286,7 @@ div.bestand-action-list{
     transition: box-shadow .3s;
     box-shadow: 0 0 5px 0 rgba(#000, 0);
     text-align: center;
-    font-size: 18px;
+    font-size: $fs-large;
     line-height: $fileIconHeight;
     padding-right: 2px;
     &:after {
@@ -387,7 +377,7 @@ div.bestand-action-list{
     }
     &:after {
       content: 'Document wordt verwijderd';
-      font-size: 16px;
+      font-size: $fs-default;
       line-height: 1.2em;
       text-align: center;
     }
