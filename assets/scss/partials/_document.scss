@@ -130,10 +130,6 @@ $fileActionIconWidth: 3rem;
   width: $fileIconWidth;
   height: $fileIconHeight;
   margin: 5px;
-
-  //padding: 30px 30px 28px 30px;
-
-  //margin: 0 0 20px 0;
   background-color: rgba($brandColor2, 0);
   transition: background-color .3s;
   i {
@@ -172,7 +168,6 @@ a.bestand {
     height: $fileActionIconHeight;
     right: 0;
     top: 0;
-    // opacity: 0;
     transition: opacity .3s;
     background-color: #fff;
   }
@@ -189,7 +184,6 @@ a.bestand {
     height: $fileActionIconHeight;
     right: 0;
     top: 0;
-    // opacity: 0;
     transition: opacity .3s;
     background-color: #fff;
   }
@@ -229,6 +223,7 @@ a.bestand {
 }
 
 .bestand-action-list-item-bestand-verwijderen {
+  opacity: 0;
   z-index: 2;
   font-size: 0;
   width: $fileActionIconWidth;
@@ -252,9 +247,6 @@ div.bestand-action-list-container {
  width: $fileIconWidth;
  height: $fileIconHeight;
  position: relative;
- transition: all .3s;
- opacity: 0;
-
 }
 
 div.bestand-action-list{
@@ -273,6 +265,7 @@ div.bestand-action-list{
   margin: 5px;
 
   >.bestand-action-list-item-download{
+    opacity: 0;
     &:before {
       content: '';
       pointer-events: auto;
@@ -287,6 +280,7 @@ div.bestand-action-list{
 }
 
   >.bestand-action-list-item-full-screen{
+    opacity: 0;
    &:before {
       content: '';
       pointer-events: auto;
@@ -388,7 +382,9 @@ div.bestand-action-list{
     margin-bottom: 10px;
   }
   li:hover {
-    div.bestand-action-list-container,
+    .bestand-action-list-item-download,
+    .bestand-action-list-item-full-screen,
+    .bestand-action-list-item-bestand-verwijderen,
     .bestand:before,
     .bestand-zoom {
       opacity: 1;
