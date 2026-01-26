@@ -1,3 +1,8 @@
+$fileIconHeight: 150px;
+$fileIconWidth: 120px;
+$fileActionIconHeight: 3rem;
+$fileActionIconWidth: 3rem;
+
 .document-container {
   max-width: $maxContentWidth;
   margin: 2 * $lineHeight auto;
@@ -122,8 +127,8 @@
 .bestand {
   position: relative;
   display: inline-block;
-  width: 100px;
-  height: 150px;
+  width: $fileIconWidth;
+  height: $fileIconHeight;
   margin: 5px;
 
   //padding: 30px 30px 28px 30px;
@@ -144,7 +149,7 @@
     box-shadow: 0 0 5px 0 rgba(#000, 0);
     text-align: center;
     font-size: 24px;
-    line-height: 150px;
+    line-height: $fileIconHeight;
     padding-right: 2px;
     font-style: normal;
     &:after {
@@ -163,11 +168,11 @@ a.bestand {
     @extend .icon-download !optional;
     background-position: 50% 50%;
     background-size: 20px auto;
-    width: 3rem;
-    height: 3rem;
+    width: $fileActionIconWidth;
+    height: $fileActionIconHeight;
     right: 0;
     top: 0;
-    opacity: 0;
+    // opacity: 0;
     transition: opacity .3s;
     background-color: #fff;
   }
@@ -180,11 +185,11 @@ a.bestand {
     @extend .icon-fullscreen !optional;
     background-position: 50% 50%;
     background-size: 20px auto;
-    width: 3rem;
-    height: 3rem;
+    width: $fileActionIconWidth;
+    height: $fileActionIconHeight;
     right: 0;
     top: 0;
-    opacity: 0;
+    // opacity: 0;
     transition: opacity .3s;
     background-color: #fff;
   }
@@ -224,17 +229,12 @@ a.bestand {
 }
 
 .bestand-action-list-item-bestand-verwijderen {
-  // position: absolute;
   z-index: 2;
-  // left: 5px;
-  // top: 5px;
   font-size: 0;
-  width: 3rem;
-  height: 3rem;
+  width: $fileActionIconWidth;
+  height: $fileActionIconHeight;
   text-align: center;
-  // opacity: 0;
   background-color: rgba(#fff, .8);
-  transition: all .3s;
   &:before {
     content: '';
     @extend .icon-prullenbak !optional;
@@ -249,9 +249,12 @@ a.bestand {
 
 div.bestand-action-list-container {
  z-index: 99;
- width: 120px;
- height: 150px;
+ width: $fileIconWidth;
+ height: $fileIconHeight;
  position: relative;
+ transition: all .3s;
+ opacity: 0;
+
 }
 
 div.bestand-action-list{
@@ -265,12 +268,11 @@ div.bestand-action-list{
 }
 
 .bestand-action-list-item{
-  width: 3rem;
-  height: 3rem;
+  width: $fileActionIconWidth;
+  height: $fileActionIconHeight;
   margin: 5px;
 
   >.bestand-action-list-item-download{
-
     &:before {
       content: '';
       pointer-events: auto;
@@ -278,16 +280,13 @@ div.bestand-action-list{
       @extend .icon-download !optional;
       background-position: 50% 50%;
       background-size: 20px auto;
-      width: 3rem;
-      height: 3rem;
-      // opacity: 0;
-      transition: opacity .3s;
+      width: $fileActionIconWidth;
+      height: $fileActionIconHeight;
       background-color: #fff;
   }
 }
 
   >.bestand-action-list-item-full-screen{
-
    &:before {
       content: '';
       pointer-events: auto;
@@ -295,10 +294,8 @@ div.bestand-action-list{
       @extend .icon-fullscreen !optional;
       background-position: 50% 50%;
       background-size: 20px auto;
-      width: 3rem;
-      height: 3rem;
-      // opacity: 0;
-      transition: opacity .3s;
+      width: $fileActionIconWidth;
+      height: $fileActionIconHeight;
       background-color: #fff;
     }
   }
@@ -340,7 +337,7 @@ div.bestand-action-list{
     box-shadow: 0 0 5px 0 rgba(#000, 0);
     text-align: center;
     font-size: 18px;
-    line-height: 150px;
+    line-height: $fileIconHeight;
     padding-right: 2px;
     &:after {
       transition: opacity .3s;
@@ -379,40 +376,8 @@ div.bestand-action-list{
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  //&:before {
-  //  content: '';
-  //  position: absolute;
-  //  z-index: 2;
-  //  left: .3rem;
-  //  top: .3rem;
-  //  width: 1.2rem;
-  //  height: 1.2rem;
-  //  border-radius: 50%;
-  //  text-align: center;
-  //  font-size: 1.4rem;
-  //  line-height: 1rem;
-  //  border: 2px solid $textColor;
-  //  background-color: #fff;
-  //
-  //
-  //}
-  //&:after {
-  //  content: '';
-  //  position: absolute;
-  //  z-index: 1;
-  //  left: 1.7rem;
-  //  top: 1.4rem;
-  //  width: 0;
-  //  height: 1rem;
-  //  border-left: 4px solid $textColor;
-  //  transform: rotate(-45deg);
-  //
-  //}
-
   &.selected {
-
     background-color: $lightColor3;
-
   }
 
 }
@@ -423,7 +388,7 @@ div.bestand-action-list{
     margin-bottom: 10px;
   }
   li:hover {
-    .bestand-verwijderen,
+    div.bestand-action-list-container,
     .bestand:before,
     .bestand-zoom {
       opacity: 1;
@@ -433,8 +398,6 @@ div.bestand-action-list{
     }
   }
   .bestand-zoom {
-
-    //background-color: transparent;
     opacity: 1;
     &:before {
       left: 4.1rem;
@@ -446,8 +409,8 @@ div.bestand-action-list{
     }
   }
   .bestand-verwijderen-check:checked ~ label {
-    width: 120px;
-    height: 150px;
+    width: $fileIconWidth;
+    height: $fileIconHeight;
     opacity: 1;
     background: rgba(255,255,255,1);
     border: 1px solid #000;
@@ -463,7 +426,6 @@ div.bestand-action-list{
     }
     &:after {
       content: 'Document wordt verwijderd';
-
       font-size: 16px;
       line-height: 1.2em;
       text-align: center;
@@ -471,21 +433,6 @@ div.bestand-action-list{
     &:hover:after {
       content: 'Document herstellen';
     }
-  }
-  .bestand-verwijderen-check:checked ~ .bestand {
-    .icon-file {
-      opacity: .1;
-    }
-
-    &:hover {
-      &:before {
-        opacity: 0;
-      }
-      .icon-file:after {
-        opacity: 1;
-      }
-    }
-
   }
 }
 
