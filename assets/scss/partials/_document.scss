@@ -3,6 +3,7 @@ $fileIconWidth: 120px;
 $fileActionIconHeight: 3rem;
 $fileActionIconWidth: 3rem;
 $baseMargin: 5px;
+$documentBackgroundColor: #fff;
 
 .document-container {
   max-width: $maxContentWidth;
@@ -17,7 +18,7 @@ $baseMargin: 5px;
 }
 
 .document {
-  background-color: #fff;
+  background-color: $documentBackgroundColor;
   > p {
     max-width: 700px;
   }
@@ -83,7 +84,7 @@ $baseMargin: 5px;
   .button.secondary {
     color: rgba(0, 0, 0, 0.2);
     border-color: rgba(0, 0, 0, 0.2);
-    background-color: #fff;
+    background-color: $documentBackgroundColor;
     &:hover {
       color: rgba(0, 0, 0, 0.2);
     }
@@ -195,7 +196,7 @@ a.bestand {
   width: $fileActionIconWidth;
   height: $fileActionIconHeight;
   text-align: center;
-  background-color: rgba(#fff, .8);
+  background-color: rgba($documentBackgroundColor, .8);
   &:before {
     content: '';
     @extend .icon-prullenbak !optional;
@@ -204,7 +205,7 @@ a.bestand {
     height: 20px;
   }
   &:hover {
-    background-color: rgba(#fff, 1);
+    background-color: rgba($documentBackgroundColor, 1);
   }
 }
 
@@ -236,7 +237,7 @@ div.bestand-action-list{
     background-size: 20px auto;
     width: $fileActionIconWidth;
     height: $fileActionIconHeight;
-    background-color: #fff;
+    background-color: $documentBackgroundColor;
   }
 }
 
@@ -264,7 +265,7 @@ div.bestand-action-list{
   bottom: 0;
   font-size: 0;
   opacity: 0;
-  background-color: #fff;
+  background-color: $documentBackgroundColor;
   transition: all .3s;
   text-decoration: none;
   border: 2px solid transparent;
@@ -298,7 +299,7 @@ div.bestand-action-list{
       content: attr(data-extension);
       position: absolute;
       font-size: 8px;
-      color: #fff;
+      color: $documentBackgroundColor;
       background-color: $textColor;
       left: 28%;
       right: 29%;
