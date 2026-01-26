@@ -156,38 +156,6 @@ $fileActionIconWidth: 3rem;
 
 a.bestand {
   pointer-events: none;
-  &:before {
-    content: '';
-    pointer-events: auto;
-    position: absolute;
-    z-index: 2;
-    @extend .icon-download !optional;
-    background-position: 50% 50%;
-    background-size: 20px auto;
-    width: $fileActionIconWidth;
-    height: $fileActionIconHeight;
-    right: 0;
-    top: 0;
-    transition: opacity .3s;
-    background-color: #fff;
-  }
-  &.fullscreen-view{
-    &:before {
-    content: '';
-    pointer-events: auto;
-    position: absolute;
-    z-index: 2;
-    @extend .icon-fullscreen !optional;
-    background-position: 50% 50%;
-    background-size: 20px auto;
-    width: $fileActionIconWidth;
-    height: $fileActionIconHeight;
-    right: 0;
-    top: 0;
-    transition: opacity .3s;
-    background-color: #fff;
-  }
-}
 
   &.add {
     &:before {
