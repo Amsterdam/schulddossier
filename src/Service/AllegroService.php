@@ -621,7 +621,7 @@ class AllegroService
      * @param Dossier $dossier
      * @throws \Exception
      */
-    public function updateDossier(Dossier $dossier, TSRVAanvraagHeader $header = null)
+    public function updateDossier(Dossier $dossier, ?TSRVAanvraagHeader $header)
     {
         if (!isset($header)) {
             $header = $this->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer());
@@ -638,7 +638,7 @@ class AllegroService
      * @param Dossier $dossier
      * @throws \Exception
      */
-    public function isDossierInSyncWithAllegro(Dossier $dossier, TSRVAanvraagHeader $header = null)
+    public function isDossierInSyncWithAllegro(Dossier $dossier, ?TSRVAanvraagHeader $header)
     {
         $currentStatus = $dossier->getAllegroStatus();
         $currentExtraStatus = $dossier->getAllegroExtraStatus();
