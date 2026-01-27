@@ -15,11 +15,13 @@
 
 
 
-                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_downloaddocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
+                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_showdocumentfullscreen', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
                    title="{{ dossierDocument.document.naam }}"
                    class="bestand bestand-type-{{ dossierDocument.document.origineleExtensie|lower }}">
 
                 </a>
+
+            
 
                 {% if removeFile is defined %}
                     {% do removeFile.setRendered() %}

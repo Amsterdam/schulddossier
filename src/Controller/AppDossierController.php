@@ -65,6 +65,8 @@ use Symfony\Component\Workflow\Registry as WorkflowRegistry;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use ZipArchive;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\IOFactory;
 
 /**
  * @Route("/app/dossier")
@@ -113,7 +115,7 @@ class AppDossierController extends AbstractController
         if ($section === 'search') {
             $searchForm->handleRequest($request);
         }
-     
+
         // if user is from a shv limit his search results on the user organisaties
         if ($authChecker->isGranted('ROLE_SHV') || $authChecker->isGranted('ROLE_SHV_KEYUSER')) {
             $seachQuery['organisaties'] = $forcedOrganisaties;
@@ -324,7 +326,7 @@ class AppDossierController extends AbstractController
                     $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
                 }
             }
-            
+
             $subForm = $voorleggerForm->get('cdst');
             if (!is_null($subForm['transition']->getData())) {
                 if ($subForm['transition']->getData() === 'verzenden_shv') {
@@ -333,7 +335,7 @@ class AppDossierController extends AbstractController
                 }
                 $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
                 $workflow->apply($dossier, $subForm['transition']->getData());
-            
+
                 // TODO: This code is never reached, because workflow apply return the method. 
                 // Nevertheless it would be nice to give the user feedback about an update. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-580
 
@@ -524,8 +526,7 @@ class AppDossierController extends AbstractController
         Dossier                $dossier,
         Document               $document,
         FileStorageSelector    $fileStorageSelector
-    ): Response
-    {
+    ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
         return $this->streamedFileResponse(
@@ -534,7 +535,6 @@ class AppDossierController extends AbstractController
             $document,
             HeaderUtils::DISPOSITION_INLINE
         );
-
     }
 
     /**
@@ -548,8 +548,7 @@ class AppDossierController extends AbstractController
         Dossier                $dossier,
         Document               $document,
         FileStorageSelector    $fileStorageSelector
-    ): Response
-    {
+    ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
         return $this->streamedFileResponse(
@@ -559,16 +558,54 @@ class AppDossierController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/wordviewer")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("document", options={"id"="documentId"})
+     */
+    public function showDocumentFullscreenAction(
+        Request                $request,
+        Dossier                $dossier,
+        Document               $document,
+        FileStorageSelector    $fileStorageSelector,
+    ): Response {
+        $this->checkDocumentAccess($dossier, $document);
+
+        $filePath = '/var/www/var/data/dossiers/dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
+
+        if (!file_exists($filePath)) {
+            return new Response('File not found: ' . $filePath, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        if (!is_readable($filePath)) {
+            return new Response('File is not readable: ' . $filePath, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        try {
+            $phpWord = IOFactory::load($filePath);
+        } catch (\Exception $e) {
+            return new Response('Error loading the Word document: ' . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        $phpWord = IOFactory::load($filePath);
+
+        $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
+        ob_start();
+        $htmlWriter->save('php://output');
+        $htmlContent = ob_get_clean();
+
+        return new Response($htmlContent, Response::HTTP_OK, ['Content-Type' => 'text/html']);
+    }
+
     private function streamedFileResponse(
         FlysystemFilesystem $filesystem,
         Dossier             $dossier,
         Document            $document,
         string              $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
-    ): StreamedResponse
-    {
+    ): StreamedResponse {
         try {
             $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
-            $fileStream = $filesystem->readStream($path);
+            $fileStream = $filesystem->readStream(path: $path);
         } catch (FileNotFoundException $e) {
             throw new NotFoundHttpException('Document not found');
         }
@@ -785,13 +822,15 @@ class AppDossierController extends AbstractController
     {
         try {
             $allegroService->updateDossier($dossier);
-        } catch (\Exception|\Error $e) {
+        } catch (\Exception | \Error $e) {
             $this->addFlash('error', 'Ongeldig allegro nummer of geen verbinding met allegro mogelijk.');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
         }
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger',
-            ['dossierId' => $dossier->getId()]);
+        return $this->redirectToRoute(
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger',
+            ['dossierId' => $dossier->getId()]
+        );
     }
 
     /**
@@ -1312,5 +1351,3 @@ class AppDossierController extends AbstractController
         }
     }
 }
-
-
