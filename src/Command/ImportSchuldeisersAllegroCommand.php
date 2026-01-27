@@ -2,7 +2,6 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Command;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
@@ -14,12 +13,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class ImportSchuldeisersAllegroCommand extends Command
 {
     public function __construct(
-        private EntityManagerInterface $em,
         private AllegroService $service,
         private AllegroCommandHelper $allegroCommandHelper
     )
     {
-        $this->em = $em;
         $this->service = $service;
         $this->allegroCommandHelper = $allegroCommandHelper;
 

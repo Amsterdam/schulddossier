@@ -23,14 +23,16 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 )]
 class SyncDossierWithAllegroCommand extends Command
 {
+    private $dossierRepository;
+
     public function __construct(
-        private EntityManagerInterface $em,
+        EntityManagerInterface $em,
         private AllegroService $service,
         private AllegroCommandHelper $allegroCommandHelper,
         private EventDispatcherInterface $eventDispatcher
     )
     {
-        $this->em = $em;
+        $this->dossierRepository = $em->getRepository(Dossier::class);
         $this->service = $service;
         $this->allegroCommandHelper = $allegroCommandHelper;
         $this->eventDispatcher = $eventDispatcher;
@@ -63,8 +65,7 @@ class SyncDossierWithAllegroCommand extends Command
             return Command::SUCCESS;
         }
 
-        $dossierRepository = $this->em->getRepository(Dossier::class);
-        $dossiers = $dossierRepository->findByAllegroNumberAndWithStatuses(['verzonden_shv', 'compleet_gka', 'dossier_gecontroleerd_gka']);
+        $dossiers = $this->dossierRepository->findByAllegroNumberAndWithStatuses(['verzonden_shv', 'compleet_gka', 'dossier_gecontroleerd_gka']);
 
         try {
             $this->service->login($allegroUser);

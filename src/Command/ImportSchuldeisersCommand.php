@@ -2,7 +2,6 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Command;
 
-use Doctrine\ORM\EntityRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldeiserRepository;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
