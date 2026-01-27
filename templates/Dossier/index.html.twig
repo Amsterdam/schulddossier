@@ -9,10 +9,10 @@
 {% block document %}
 
 {% if "now"|date("Y-m-d") < "2026-02-13"|date("Y-m-d") %}
-{% set releaseDate = '03-02-26' %}
+{% set releaseDate = '26-02-03' %}
     <div class="announcement">
-        <h4 class="title">Vanaf nu kan je pdf documenten op volledig scherm bekijken</h4>
-        <span class="message"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}#release{{ releaseDate }}">Bekijk versies</a> voor toelichting op de laatste update</span>
+        <h4 class="title">Vanaf nu zijn PDF-documenten venstervullend te bekijken in een nieuw tabblad</h4>
+        <span class="message"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}#release{{ releaseDate }}">Bekijk versies</a> voor een toelichting op de laatste update.</span>
     </div>
 {% endif %}
 
