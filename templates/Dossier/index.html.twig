@@ -8,13 +8,11 @@
 
 {% block document %}
 
-{% if "now"|date("Y-m-d") < "2026-02-27"|date("Y-m-d") %}
-{% set releaseDate = '26-02-17' %}
+{% if "now"|date("Y-m-d") < "2026-02-13"|date("Y-m-d") %}
+{% set releaseDate = '26-02-03' %}
     <div class="announcement">
-        <h4 class="title">Nieuwe van Schulddossier is live ({{ releaseDate|date("d-m-Y") }})</h4>
-        <span class="message">Bekijk PDF- en Microsoft Word-documenten op volledig scherm.
-            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}#release{{ releaseDate }}">Bekijk versies</a> voor een toelichting.
-        </span>
+        <h4 class="title">Vanaf nu zijn PDF-documenten op volledig scherm te bekijken in een nieuw tabblad</h4>
+        <span class="message"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}#release{{ releaseDate }}">Bekijk versies</a> voor een toelichting op de laatste update.</span>
     </div>
 {% endif %}
 
