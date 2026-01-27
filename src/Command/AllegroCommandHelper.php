@@ -19,7 +19,6 @@ class AllegroCommandHelper
         /** @var OrganisatieRepository $organisatieRepository */
         $organisatieRepository = $this->em->getRepository(Organisatie::class);
 
-        /** @var Organisatie $allegroId */
         return $organisatieRepository->fetchAllegroUser();
     }
 }

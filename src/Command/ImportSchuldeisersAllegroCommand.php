@@ -41,10 +41,10 @@ class ImportSchuldeisersAllegroCommand extends Command
 
         $io->info('Looking up allegro credentials');
 
-        /** @var Organisatie $allegroId */
-        $allegroId = $this->allegroCommandHelper->getAllegroIdFromAnyOrg();
+        /** @var Organisatie $allegroUser */
+        $allegroUser = $this->allegroCommandHelper->getAllegroIdFromAnyOrg();
 
-        if (!isset($allegroId)) {
+        if (!isset($allegroUser)) {
             $io->info('No organistation found whith a complete set of Allegro login data');
             $io->success('Job finished');
 
@@ -52,13 +52,13 @@ class ImportSchuldeisersAllegroCommand extends Command
         }
 
         try {
-            if (!$this->service->login($allegroId)) {
-                $io->error('Could not login with Allegro credentials belonging to Organisation id ' . $allegroId->getId());
+            if (!$this->service->login($allegroUser)) {
+                $io->error('Could not login with Allegro credentials belonging to Organisation id ' . $allegroUser->getId());
 
                 return Command::FAILURE;
             }
 
-            $statistics = $this->service->syncSchuldeisers($allegroId);
+            $statistics = $this->service->syncSchuldeisers($allegroUser);
 
             $io->table(
                 ['Action', 'Value'],

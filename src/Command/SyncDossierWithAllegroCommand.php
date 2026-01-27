@@ -53,10 +53,10 @@ class SyncDossierWithAllegroCommand extends Command
 
         $io->info('Looking up allegro credentials');
 
-        /** @var Organisatie $allegroId */
-        $allegroId = $this->allegroCommandHelper->getAllegroIdFromAnyOrg();
+        /** @var Organisatie $allegroUser */
+        $allegroUser = $this->allegroCommandHelper->getAllegroIdFromAnyOrg();
 
-        if (!isset($allegroId)) {
+        if (!isset($allegroUser)) {
             $io->info('No organistation found whith a complete set of Allegro login data');
             $io->success('Job finished');
 
@@ -67,7 +67,7 @@ class SyncDossierWithAllegroCommand extends Command
         $dossiers = $dossierRepository->findByAllegroNumberAndWithStatuses(['verzonden_shv', 'compleet_gka', 'dossier_gecontroleerd_gka']);
 
         try {
-            $this->service->login($allegroId);
+            $this->service->login($allegroUser);
         } catch (Exception $e) {
             $io->error('Could not login to Allegro: ' . $e->getMessage());
 
@@ -76,33 +76,34 @@ class SyncDossierWithAllegroCommand extends Command
 
         foreach ($dossiers as $dossier) {
             $header = null;
-                try {
-                    $header = $this->service->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer());
-                } catch (Exception $e) {
-                    $io->error('Error: failed to fetch SRV Aanvraag Header. ' . $e->getMessage());
-                }
 
-                $dossierCanBeUpdatedWithAllegro = $this->service->isDossierInSyncWithAllegro($dossier, $header);
-
-                if ($dossierCanBeUpdatedWithAllegro) {
-                    try {
-                        $this->service->updateDossier($dossier, $header);
-                    } catch (Exception $e) {
-                        $io->error('Error: could not update dossier. ' . $e->getMessage());
-                    }
-
-                    try {
-                        $this->eventDispatcher->dispatch(new DossierSyncedWithAllegroEvent($dossier, new Gebruiker()), DossierSyncedWithAllegroEvent::NAME);
-                    } catch (Exception $e) {
-                        $io->error('Error: could not send e-mail notification. ' . $e->getMessage());
-                    }
-                }
-
-                $io->info('The dossier with ID ' . $dossier->getId() . ' ' . ($dossierCanBeUpdatedWithAllegro ? 'has' : 'has NOT') . ' been updated with new Allegro (' . $dossier->getAllegroNummer() . ') data.');
+            try {
+                $header = $this->service->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer());
+            } catch (Exception $e) {
+                $io->error('Error: failed to fetch SRV Aanvraag Header. ' . $e->getMessage());
             }
 
-            $io->success('Job completed successfully');
+            $dossierCanBeUpdatedWithAllegro = $this->service->isDossierInSyncWithAllegro($dossier, $header);
 
-            return Command::SUCCESS;
+            if ($dossierCanBeUpdatedWithAllegro) {
+                try {
+                    $this->service->updateDossier($dossier, $header);
+                } catch (Exception $e) {
+                    $io->error('Error: could not update dossier. ' . $e->getMessage());
+                }
+
+                try {
+                    $this->eventDispatcher->dispatch(new DossierSyncedWithAllegroEvent($dossier, new Gebruiker()), DossierSyncedWithAllegroEvent::NAME);
+                } catch (Exception $e) {
+                    $io->error('Error: could not send e-mail notification. ' . $e->getMessage());
+                }
+            }
+
+            $io->info('The dossier with ID ' . $dossier->getId() . ' ' . ($dossierCanBeUpdatedWithAllegro ? 'has' : 'has NOT') . ' been updated with new Allegro (' . $dossier->getAllegroNummer() . ') data.');
+        }
+
+        $io->success('Job completed successfully');
+
+        return Command::SUCCESS;
     }
 }
