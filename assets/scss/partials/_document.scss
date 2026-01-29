@@ -1,3 +1,10 @@
+$fileIconHeight: 150px;
+$fileIconWidth: 120px;
+$fileActionIconHeight: 3rem;
+$fileActionIconWidth: 3rem;
+$baseMargin: 5px;
+$documentBackgroundColor: #fff;
+
 .document-container {
   max-width: $maxContentWidth;
   margin: 2 * $lineHeight auto;
@@ -10,12 +17,8 @@
   max-width: $maxContentWideWidth;
 }
 
-.pdf-splitter.animatable ~ .document-container {
-  //transition: padding .3s;
-}
-
 .document {
-  background-color: #fff;
+  background-color: $documentBackgroundColor;
   > p {
     max-width: 700px;
   }
@@ -81,7 +84,7 @@
   .button.secondary {
     color: rgba(0, 0, 0, 0.2);
     border-color: rgba(0, 0, 0, 0.2);
-    background-color: #fff;
+    background-color: $documentBackgroundColor;
     &:hover {
       color: rgba(0, 0, 0, 0.2);
     }
@@ -122,13 +125,9 @@
 .bestand {
   position: relative;
   display: inline-block;
-  width: 100px;
-  height: 150px;
-  margin: 5px;
-
-  //padding: 30px 30px 28px 30px;
-
-  //margin: 0 0 20px 0;
+  width: $fileIconWidth;
+  height: $fileIconHeight;
+  margin: $baseMargin;
   background-color: rgba($brandColor2, 0);
   transition: background-color .3s;
   i {
@@ -144,44 +143,18 @@
     box-shadow: 0 0 5px 0 rgba(#000, 0);
     text-align: center;
     font-size: 24px;
-    line-height: 150px;
+    line-height: $fileIconHeight;
     padding-right: 2px;
     font-style: normal;
     &:after {
       transition: opacity .3s;
     }
   }
-
 }
 
 a.bestand {
   pointer-events: none;
-  &:before {
-    content: '';
-    pointer-events: auto;
-    position: absolute;
-    z-index: 2;
-    @extend .icon-download !optional;
-    background-position: 50% 50%;
-    background-size: 20px auto;
-    width: 3rem;
-    height: 3rem;
-    right: 0;
-    top: 0;
-    opacity: 0;
-    transition: opacity .3s;
 
-    background-color: #fff;
-  }
-  //&:hover {
-  //  background-color: rgba($brandColor2, .2);
-  //  &:before {
-  //    opacity: 1;
-  //  }
-  //  i {
-  //    box-shadow: 0 0 5px 0 rgba(#000, .4);
-  //  }
-  //}
   &.add {
     &:before {
       display: none;
@@ -215,18 +188,15 @@ a.bestand {
   left: 0;
 }
 
-.bestand-verwijderen {
-  position: absolute;
-  z-index: 2;
-  left: 5px;
-  top: 5px;
-  font-size: 0;
-  width: 3rem;
-  height: 3rem;
-  text-align: center;
+.bestand-action-list-item-bestand-verwijderen {
+  pointer-events: auto;
   opacity: 0;
-  background-color: rgba(#fff, .8);
-  transition: all .3s;
+  z-index: 2;
+  font-size: 0;
+  width: $fileActionIconWidth;
+  height: $fileActionIconHeight;
+  text-align: center;
+  background-color: rgba($documentBackgroundColor, .8);
   &:before {
     content: '';
     @extend .icon-prullenbak !optional;
@@ -235,9 +205,57 @@ a.bestand {
     height: 20px;
   }
   &:hover {
-    background-color: rgba(#fff, 1);
+    background-color: rgba($documentBackgroundColor, 1);
   }
 }
+
+div.bestand-action-list-container {
+ width: $fileIconWidth;
+ height: $fileIconHeight;
+ position: relative;
+ pointer-events: none;
+}
+
+div.bestand-action-list{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@mixin button-action-icon($icon) {
+  opacity: 0;
+  &:before {
+    content: '';
+    pointer-events: auto;
+    z-index: 2;
+    @extend #{$icon} !optional;
+    background-position: 50% 50%;
+    background-size: 20px auto;
+    width: $fileActionIconWidth;
+    height: $fileActionIconHeight;
+    background-color: $documentBackgroundColor;
+  }
+}
+
+
+.bestand-action-list-item{
+  width: $fileActionIconWidth;
+  height: $fileActionIconHeight;
+  margin: $baseMargin;
+
+  >.bestand-action-list-item-download{
+    @include button-action-icon('.icon-download');
+  }
+
+  >.bestand-action-list-item-full-screen{
+    @include button-action-icon('.icon-fullscreen');
+  }
+}
+
 
 .bestand-zoom {
   position: absolute;
@@ -245,13 +263,9 @@ a.bestand {
   left: 0;
   right: 0;
   bottom: 0;
-
   font-size: 0;
-
   opacity: 0;
-
-  background-color: #fff;
-
+  background-color: $documentBackgroundColor;
   transition: all .3s;
   text-decoration: none;
   border: 2px solid transparent;
@@ -273,8 +287,8 @@ a.bestand {
     transition: box-shadow .3s;
     box-shadow: 0 0 5px 0 rgba(#000, 0);
     text-align: center;
-    font-size: 18px;
-    line-height: 150px;
+    font-size: $fs-large;
+    line-height: $fileIconHeight;
     padding-right: 2px;
     &:after {
       transition: opacity .3s;
@@ -285,14 +299,13 @@ a.bestand {
       content: attr(data-extension);
       position: absolute;
       font-size: 8px;
-      color: #fff;
+      color: $documentBackgroundColor;
       background-color: $textColor;
       left: 28%;
       right: 29%;
       bottom: 31%;
       font-style: normal;
       font-weight: bold;
-      //top: 50%;
       line-height: 11px;
       padding: 2px 0;
       overflow: hidden;
@@ -313,40 +326,8 @@ a.bestand {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  //&:before {
-  //  content: '';
-  //  position: absolute;
-  //  z-index: 2;
-  //  left: .3rem;
-  //  top: .3rem;
-  //  width: 1.2rem;
-  //  height: 1.2rem;
-  //  border-radius: 50%;
-  //  text-align: center;
-  //  font-size: 1.4rem;
-  //  line-height: 1rem;
-  //  border: 2px solid $textColor;
-  //  background-color: #fff;
-  //
-  //
-  //}
-  //&:after {
-  //  content: '';
-  //  position: absolute;
-  //  z-index: 1;
-  //  left: 1.7rem;
-  //  top: 1.4rem;
-  //  width: 0;
-  //  height: 1rem;
-  //  border-left: 4px solid $textColor;
-  //  transform: rotate(-45deg);
-  //
-  //}
-
   &.selected {
-
     background-color: $lightColor3;
-
   }
 
 }
@@ -357,7 +338,9 @@ a.bestand {
     margin-bottom: 10px;
   }
   li:hover {
-    .bestand-verwijderen,
+    .bestand-action-list-item-download,
+    .bestand-action-list-item-full-screen,
+    .bestand-action-list-item-bestand-verwijderen,
     .bestand:before,
     .bestand-zoom {
       opacity: 1;
@@ -367,8 +350,6 @@ a.bestand {
     }
   }
   .bestand-zoom {
-
-    //background-color: transparent;
     opacity: 1;
     &:before {
       left: 4.1rem;
@@ -379,17 +360,16 @@ a.bestand {
       top: 5.1rem;
     }
   }
-  .bestand-verwijderen-check ~ label {
-    border: 1px solid transparent;
-  }
   .bestand-verwijderen-check:checked ~ label {
+    width: $fileIconWidth;
+    height: $fileIconHeight;
     opacity: 1;
-    width: 100%;
     background: rgba(255,255,255,1);
     border: 1px solid #000;
-    height: 100%;
     left: 0;
     top: 0;
+    margin: -$baseMargin;
+    z-index: 99;
     &:before {
       background-image: url('../../images/ico_undo.svg');
       background-position-x: 10px;
@@ -398,32 +378,13 @@ a.bestand {
     }
     &:after {
       content: 'Document wordt verwijderd';
-      position: absolute;
-      left: 0;
-      width: 100%;
-      bottom: 50px;
-      font-size: 16px;
+      font-size: $fs-default;
       line-height: 1.2em;
       text-align: center;
     }
     &:hover:after {
       content: 'Document herstellen';
     }
-  }
-  .bestand-verwijderen-check:checked ~ .bestand {
-    .icon-file {
-      opacity: .1;
-    }
-
-    &:hover {
-      &:before {
-        opacity: 0;
-      }
-      .icon-file:after {
-        opacity: 1;
-      }
-    }
-
   }
 }
 
