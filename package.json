@@ -8,14 +8,12 @@
   "scripts": {
     "dev": "encore dev",
     "watch": "encore dev --watch",
-    "build": "encore production",
-    "postinstall": "rm -fr ./public/vendor && mkdir -p ./public/vendor/moment && cp -R ./node_modules/moment ./public/vendor/moment"
+    "build": "encore production"
   },
   "dependencies": {
     "ajv": "^6.12.6",
     "glob-parent": "^6.0.2",
     "jspdf": "^4.0.0",
-    "moment": "^2.30.1",
     "pdfjs-dist": "^4.10.38",
     "schema-utils": "^4.3.3",
     "sortablejs": "^1.15.6",

@@ -14,7 +14,6 @@
         "lcobucci/jwt": "^3.2",
         "league/flysystem": "^1.0",
         "markei/filesystemoperations": "dev-symfony5support",
-        "moment/moment": "^2.21",
         "mozilla/pdf.js": "1.9.426",
         "mrrio/jspdf": "1.3.5",
         "nelmio/security-bundle": "^3.4",
@@ -133,8 +132,7 @@
             ["mkdir", "public/vendor"],
             ["mirror", "vendor/mozilla/pdf.js", "public/vendor/mozilla/pdf.js", null, {"delete": true}],
             ["mirror", "vendor/mrrio/jspdf", "public/vendor/mrrio/jspdf", null, {"delete": true}],
-            ["mirror", "vendor/jshjohnson/choices", "public/vendor/jshjohnson/choices", null, {"delete": true}],
-            ["mirror", "vendor/moment/moment", "public/vendor/moment/moment", null, {"delete": true}]
+            ["mirror", "vendor/jshjohnson/choices", "public/vendor/jshjohnson/choices", null, {"delete": true}]
         ]
     },
     "repositories": [
