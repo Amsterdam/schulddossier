@@ -594,7 +594,9 @@ class AppDossierController extends AbstractController
         $htmlWriter->save('php://output');
         $htmlContent = ob_get_clean();
 
-        return new Response($htmlContent, Response::HTTP_OK, ['Content-Type' => 'text/html']);
+        return $this->render('Dossier/detailDocumentWordViewer.html.twig', [
+            'html_content' => $htmlContent
+        ]);
     }
 
     private function streamedFileResponse(
