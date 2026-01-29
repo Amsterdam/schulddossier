@@ -9,7 +9,7 @@
     "dev": "encore dev",
     "watch": "encore dev --watch",
     "build": "encore production",
-    "postinstall": "rm -fr ./public/vendor"
+    "postinstall": "rm -fr ./public/vendor && mkdir -p ./public/vendor"
   },
   "dependencies": {
     "ajv": "^6.12.6",
