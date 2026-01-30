@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSAfschrift implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -366,7 +364,4 @@ class TPRSAfschrift implements RequestInterface
 
         return $new;
     }
-
-
 }
-

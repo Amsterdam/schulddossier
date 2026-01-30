@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSRVEiser implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -555,7 +553,4 @@ class TSRVEiser implements RequestInterface
 
         return $new;
     }
-
-
 }
-

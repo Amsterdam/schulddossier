@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TPRSAfschriften
 {
-
     /**
      * @var PRSAfschriftArray $Afschriften
      */
@@ -15,7 +14,7 @@ class TPRSAfschriften
      */
     public function __construct($Afschriften)
     {
-      $this->Afschriften = $Afschriften;
+        $this->Afschriften = $Afschriften;
     }
 
     /**
@@ -23,7 +22,7 @@ class TPRSAfschriften
      */
     public function getAfschriften()
     {
-      return $this->Afschriften;
+        return $this->Afschriften;
     }
 
     /**
@@ -32,8 +31,7 @@ class TPRSAfschriften
      */
     public function setAfschriften($Afschriften)
     {
-      $this->Afschriften = $Afschriften;
-      return $this;
+        $this->Afschriften = $Afschriften;
+        return $this;
     }
-
 }

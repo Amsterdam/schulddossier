@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TCasusHeader
 {
-
     /**
      * @var int $Relatiecode
      */
@@ -45,12 +44,12 @@ class TCasusHeader
      */
     public function __construct($Relatiecode, $Volgnummer, $CasusCode, \DateTime $Aanmaakdatum, $CasusStatus, $CasusStatusTekst)
     {
-      $this->Relatiecode = $Relatiecode;
-      $this->Volgnummer = $Volgnummer;
-      $this->CasusCode = $CasusCode;
-      $this->Aanmaakdatum = $Aanmaakdatum->format(\DateTime::ATOM);
-      $this->CasusStatus = $CasusStatus;
-      $this->CasusStatusTekst = $CasusStatusTekst;
+        $this->Relatiecode = $Relatiecode;
+        $this->Volgnummer = $Volgnummer;
+        $this->CasusCode = $CasusCode;
+        $this->Aanmaakdatum = $Aanmaakdatum->format(\DateTime::ATOM);
+        $this->CasusStatus = $CasusStatus;
+        $this->CasusStatusTekst = $CasusStatusTekst;
     }
 
     /**
@@ -58,7 +57,7 @@ class TCasusHeader
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -67,8 +66,8 @@ class TCasusHeader
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -76,7 +75,7 @@ class TCasusHeader
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -85,8 +84,8 @@ class TCasusHeader
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -94,7 +93,7 @@ class TCasusHeader
      */
     public function getCasusCode()
     {
-      return $this->CasusCode;
+        return $this->CasusCode;
     }
 
     /**
@@ -103,8 +102,8 @@ class TCasusHeader
      */
     public function setCasusCode($CasusCode)
     {
-      $this->CasusCode = $CasusCode;
-      return $this;
+        $this->CasusCode = $CasusCode;
+        return $this;
     }
 
     /**
@@ -112,15 +111,15 @@ class TCasusHeader
      */
     public function getAanmaakdatum()
     {
-      if ($this->Aanmaakdatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Aanmaakdatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Aanmaakdatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Aanmaakdatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -129,8 +128,8 @@ class TCasusHeader
      */
     public function setAanmaakdatum(\DateTime $Aanmaakdatum)
     {
-      $this->Aanmaakdatum = $Aanmaakdatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Aanmaakdatum = $Aanmaakdatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -138,7 +137,7 @@ class TCasusHeader
      */
     public function getCasusStatus()
     {
-      return $this->CasusStatus;
+        return $this->CasusStatus;
     }
 
     /**
@@ -147,8 +146,8 @@ class TCasusHeader
      */
     public function setCasusStatus($CasusStatus)
     {
-      $this->CasusStatus = $CasusStatus;
-      return $this;
+        $this->CasusStatus = $CasusStatus;
+        return $this;
     }
 
     /**
@@ -156,7 +155,7 @@ class TCasusHeader
      */
     public function getCasusStatusTekst()
     {
-      return $this->CasusStatusTekst;
+        return $this->CasusStatusTekst;
     }
 
     /**
@@ -165,8 +164,7 @@ class TCasusHeader
      */
     public function setCasusStatusTekst($CasusStatusTekst)
     {
-      $this->CasusStatusTekst = $CasusStatusTekst;
-      return $this;
+        $this->CasusStatusTekst = $CasusStatusTekst;
+        return $this;
     }
-
 }

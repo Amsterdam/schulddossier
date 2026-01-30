@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TDocumentSleutel
 {
-
     /**
      * @var string $ComponentCode
      */
@@ -33,10 +32,10 @@ class TDocumentSleutel
      */
     public function __construct($ComponentCode, \DateTime $ArchiefDatum, $Kenmerk, $Volgnummer)
     {
-      $this->ComponentCode = $ComponentCode;
-      $this->ArchiefDatum = $ArchiefDatum->format(\DateTime::ATOM);
-      $this->Kenmerk = $Kenmerk;
-      $this->Volgnummer = $Volgnummer;
+        $this->ComponentCode = $ComponentCode;
+        $this->ArchiefDatum = $ArchiefDatum->format(\DateTime::ATOM);
+        $this->Kenmerk = $Kenmerk;
+        $this->Volgnummer = $Volgnummer;
     }
 
     /**
@@ -44,7 +43,7 @@ class TDocumentSleutel
      */
     public function getComponentCode()
     {
-      return $this->ComponentCode;
+        return $this->ComponentCode;
     }
 
     /**
@@ -53,8 +52,8 @@ class TDocumentSleutel
      */
     public function setComponentCode($ComponentCode)
     {
-      $this->ComponentCode = $ComponentCode;
-      return $this;
+        $this->ComponentCode = $ComponentCode;
+        return $this;
     }
 
     /**
@@ -62,15 +61,15 @@ class TDocumentSleutel
      */
     public function getArchiefDatum()
     {
-      if ($this->ArchiefDatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->ArchiefDatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->ArchiefDatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->ArchiefDatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -79,8 +78,8 @@ class TDocumentSleutel
      */
     public function setArchiefDatum(\DateTime $ArchiefDatum)
     {
-      $this->ArchiefDatum = $ArchiefDatum->format(\DateTime::ATOM);
-      return $this;
+        $this->ArchiefDatum = $ArchiefDatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -88,7 +87,7 @@ class TDocumentSleutel
      */
     public function getKenmerk()
     {
-      return $this->Kenmerk;
+        return $this->Kenmerk;
     }
 
     /**
@@ -97,8 +96,8 @@ class TDocumentSleutel
      */
     public function setKenmerk($Kenmerk)
     {
-      $this->Kenmerk = $Kenmerk;
-      return $this;
+        $this->Kenmerk = $Kenmerk;
+        return $this;
     }
 
     /**
@@ -106,7 +105,7 @@ class TDocumentSleutel
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -115,8 +114,7 @@ class TDocumentSleutel
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
-
 }

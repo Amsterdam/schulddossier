@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TPL
 {
-
     /**
      * @var TPLHeader $InfoHeader
      */
@@ -195,37 +194,37 @@ class TPL
      */
     public function __construct($InfoHeader, $Opdrachtgever, $OpdrachtgeverContact, \DateTime $TheoEinddatum, $NettoKredietsom, $BrutoKredietsom, $Kredietvergoeding, $MaandTermijn, $KwartaalTermijn, $AantalMaanden, $AantalKwartalen, \DateTime $DatumEersteAflossing, $Betaald, $SaldoLening, $Achterstand, $ResterendeLooptijd, $EffectiefJaarpercentage, \DateTime $DatumLaatsteBetaling, $BedragLaatsteBetaling, $VolledigVervroegdeAflossing, $Medewerker, $MedelenerCode, $OpenstaandeVertragingsrente, $OpenstaandeKredietvergoeding, $BetaaldeVertragingsrente, $BetaaldeBoeterente, $KostenVVA, $Voorstand, $LeningSoort, $MaandPercentage, $BetaaldeKredietvergoeding)
     {
-      $this->InfoHeader = $InfoHeader;
-      $this->Opdrachtgever = $Opdrachtgever;
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      $this->TheoEinddatum = $TheoEinddatum->format(\DateTime::ATOM);
-      $this->NettoKredietsom = $NettoKredietsom;
-      $this->BrutoKredietsom = $BrutoKredietsom;
-      $this->Kredietvergoeding = $Kredietvergoeding;
-      $this->MaandTermijn = $MaandTermijn;
-      $this->KwartaalTermijn = $KwartaalTermijn;
-      $this->AantalMaanden = $AantalMaanden;
-      $this->AantalKwartalen = $AantalKwartalen;
-      $this->DatumEersteAflossing = $DatumEersteAflossing->format(\DateTime::ATOM);
-      $this->Betaald = $Betaald;
-      $this->SaldoLening = $SaldoLening;
-      $this->Achterstand = $Achterstand;
-      $this->ResterendeLooptijd = $ResterendeLooptijd;
-      $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
-      $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
-      $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
-      $this->Medewerker = $Medewerker;
-      $this->MedelenerCode = $MedelenerCode;
-      $this->OpenstaandeVertragingsrente = $OpenstaandeVertragingsrente;
-      $this->OpenstaandeKredietvergoeding = $OpenstaandeKredietvergoeding;
-      $this->BetaaldeVertragingsrente = $BetaaldeVertragingsrente;
-      $this->BetaaldeBoeterente = $BetaaldeBoeterente;
-      $this->KostenVVA = $KostenVVA;
-      $this->Voorstand = $Voorstand;
-      $this->LeningSoort = $LeningSoort;
-      $this->MaandPercentage = $MaandPercentage;
-      $this->BetaaldeKredietvergoeding = $BetaaldeKredietvergoeding;
+        $this->InfoHeader = $InfoHeader;
+        $this->Opdrachtgever = $Opdrachtgever;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        $this->TheoEinddatum = $TheoEinddatum->format(\DateTime::ATOM);
+        $this->NettoKredietsom = $NettoKredietsom;
+        $this->BrutoKredietsom = $BrutoKredietsom;
+        $this->Kredietvergoeding = $Kredietvergoeding;
+        $this->MaandTermijn = $MaandTermijn;
+        $this->KwartaalTermijn = $KwartaalTermijn;
+        $this->AantalMaanden = $AantalMaanden;
+        $this->AantalKwartalen = $AantalKwartalen;
+        $this->DatumEersteAflossing = $DatumEersteAflossing->format(\DateTime::ATOM);
+        $this->Betaald = $Betaald;
+        $this->SaldoLening = $SaldoLening;
+        $this->Achterstand = $Achterstand;
+        $this->ResterendeLooptijd = $ResterendeLooptijd;
+        $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
+        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+        $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
+        $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
+        $this->Medewerker = $Medewerker;
+        $this->MedelenerCode = $MedelenerCode;
+        $this->OpenstaandeVertragingsrente = $OpenstaandeVertragingsrente;
+        $this->OpenstaandeKredietvergoeding = $OpenstaandeKredietvergoeding;
+        $this->BetaaldeVertragingsrente = $BetaaldeVertragingsrente;
+        $this->BetaaldeBoeterente = $BetaaldeBoeterente;
+        $this->KostenVVA = $KostenVVA;
+        $this->Voorstand = $Voorstand;
+        $this->LeningSoort = $LeningSoort;
+        $this->MaandPercentage = $MaandPercentage;
+        $this->BetaaldeKredietvergoeding = $BetaaldeKredietvergoeding;
     }
 
     /**
@@ -233,7 +232,7 @@ class TPL
      */
     public function getInfoHeader()
     {
-      return $this->InfoHeader;
+        return $this->InfoHeader;
     }
 
     /**
@@ -242,8 +241,8 @@ class TPL
      */
     public function setInfoHeader($InfoHeader)
     {
-      $this->InfoHeader = $InfoHeader;
-      return $this;
+        $this->InfoHeader = $InfoHeader;
+        return $this;
     }
 
     /**
@@ -251,7 +250,7 @@ class TPL
      */
     public function getOpdrachtgever()
     {
-      return $this->Opdrachtgever;
+        return $this->Opdrachtgever;
     }
 
     /**
@@ -260,8 +259,8 @@ class TPL
      */
     public function setOpdrachtgever($Opdrachtgever)
     {
-      $this->Opdrachtgever = $Opdrachtgever;
-      return $this;
+        $this->Opdrachtgever = $Opdrachtgever;
+        return $this;
     }
 
     /**
@@ -269,7 +268,7 @@ class TPL
      */
     public function getOpdrachtgeverContact()
     {
-      return $this->OpdrachtgeverContact;
+        return $this->OpdrachtgeverContact;
     }
 
     /**
@@ -278,8 +277,8 @@ class TPL
      */
     public function setOpdrachtgeverContact($OpdrachtgeverContact)
     {
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      return $this;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        return $this;
     }
 
     /**
@@ -287,15 +286,15 @@ class TPL
      */
     public function getTheoEinddatum()
     {
-      if ($this->TheoEinddatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->TheoEinddatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->TheoEinddatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->TheoEinddatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -304,8 +303,8 @@ class TPL
      */
     public function setTheoEinddatum(\DateTime $TheoEinddatum)
     {
-      $this->TheoEinddatum = $TheoEinddatum->format(\DateTime::ATOM);
-      return $this;
+        $this->TheoEinddatum = $TheoEinddatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -313,7 +312,7 @@ class TPL
      */
     public function getNettoKredietsom()
     {
-      return $this->NettoKredietsom;
+        return $this->NettoKredietsom;
     }
 
     /**
@@ -322,8 +321,8 @@ class TPL
      */
     public function setNettoKredietsom($NettoKredietsom)
     {
-      $this->NettoKredietsom = $NettoKredietsom;
-      return $this;
+        $this->NettoKredietsom = $NettoKredietsom;
+        return $this;
     }
 
     /**
@@ -331,7 +330,7 @@ class TPL
      */
     public function getBrutoKredietsom()
     {
-      return $this->BrutoKredietsom;
+        return $this->BrutoKredietsom;
     }
 
     /**
@@ -340,8 +339,8 @@ class TPL
      */
     public function setBrutoKredietsom($BrutoKredietsom)
     {
-      $this->BrutoKredietsom = $BrutoKredietsom;
-      return $this;
+        $this->BrutoKredietsom = $BrutoKredietsom;
+        return $this;
     }
 
     /**
@@ -349,7 +348,7 @@ class TPL
      */
     public function getKredietvergoeding()
     {
-      return $this->Kredietvergoeding;
+        return $this->Kredietvergoeding;
     }
 
     /**
@@ -358,8 +357,8 @@ class TPL
      */
     public function setKredietvergoeding($Kredietvergoeding)
     {
-      $this->Kredietvergoeding = $Kredietvergoeding;
-      return $this;
+        $this->Kredietvergoeding = $Kredietvergoeding;
+        return $this;
     }
 
     /**
@@ -367,7 +366,7 @@ class TPL
      */
     public function getMaandTermijn()
     {
-      return $this->MaandTermijn;
+        return $this->MaandTermijn;
     }
 
     /**
@@ -376,8 +375,8 @@ class TPL
      */
     public function setMaandTermijn($MaandTermijn)
     {
-      $this->MaandTermijn = $MaandTermijn;
-      return $this;
+        $this->MaandTermijn = $MaandTermijn;
+        return $this;
     }
 
     /**
@@ -385,7 +384,7 @@ class TPL
      */
     public function getKwartaalTermijn()
     {
-      return $this->KwartaalTermijn;
+        return $this->KwartaalTermijn;
     }
 
     /**
@@ -394,8 +393,8 @@ class TPL
      */
     public function setKwartaalTermijn($KwartaalTermijn)
     {
-      $this->KwartaalTermijn = $KwartaalTermijn;
-      return $this;
+        $this->KwartaalTermijn = $KwartaalTermijn;
+        return $this;
     }
 
     /**
@@ -403,7 +402,7 @@ class TPL
      */
     public function getAantalMaanden()
     {
-      return $this->AantalMaanden;
+        return $this->AantalMaanden;
     }
 
     /**
@@ -412,8 +411,8 @@ class TPL
      */
     public function setAantalMaanden($AantalMaanden)
     {
-      $this->AantalMaanden = $AantalMaanden;
-      return $this;
+        $this->AantalMaanden = $AantalMaanden;
+        return $this;
     }
 
     /**
@@ -421,7 +420,7 @@ class TPL
      */
     public function getAantalKwartalen()
     {
-      return $this->AantalKwartalen;
+        return $this->AantalKwartalen;
     }
 
     /**
@@ -430,8 +429,8 @@ class TPL
      */
     public function setAantalKwartalen($AantalKwartalen)
     {
-      $this->AantalKwartalen = $AantalKwartalen;
-      return $this;
+        $this->AantalKwartalen = $AantalKwartalen;
+        return $this;
     }
 
     /**
@@ -439,15 +438,15 @@ class TPL
      */
     public function getDatumEersteAflossing()
     {
-      if ($this->DatumEersteAflossing == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumEersteAflossing);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumEersteAflossing == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumEersteAflossing);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -456,8 +455,8 @@ class TPL
      */
     public function setDatumEersteAflossing(\DateTime $DatumEersteAflossing)
     {
-      $this->DatumEersteAflossing = $DatumEersteAflossing->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumEersteAflossing = $DatumEersteAflossing->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -465,7 +464,7 @@ class TPL
      */
     public function getBetaald()
     {
-      return $this->Betaald;
+        return $this->Betaald;
     }
 
     /**
@@ -474,8 +473,8 @@ class TPL
      */
     public function setBetaald($Betaald)
     {
-      $this->Betaald = $Betaald;
-      return $this;
+        $this->Betaald = $Betaald;
+        return $this;
     }
 
     /**
@@ -483,7 +482,7 @@ class TPL
      */
     public function getSaldoLening()
     {
-      return $this->SaldoLening;
+        return $this->SaldoLening;
     }
 
     /**
@@ -492,8 +491,8 @@ class TPL
      */
     public function setSaldoLening($SaldoLening)
     {
-      $this->SaldoLening = $SaldoLening;
-      return $this;
+        $this->SaldoLening = $SaldoLening;
+        return $this;
     }
 
     /**
@@ -501,7 +500,7 @@ class TPL
      */
     public function getAchterstand()
     {
-      return $this->Achterstand;
+        return $this->Achterstand;
     }
 
     /**
@@ -510,8 +509,8 @@ class TPL
      */
     public function setAchterstand($Achterstand)
     {
-      $this->Achterstand = $Achterstand;
-      return $this;
+        $this->Achterstand = $Achterstand;
+        return $this;
     }
 
     /**
@@ -519,7 +518,7 @@ class TPL
      */
     public function getResterendeLooptijd()
     {
-      return $this->ResterendeLooptijd;
+        return $this->ResterendeLooptijd;
     }
 
     /**
@@ -528,8 +527,8 @@ class TPL
      */
     public function setResterendeLooptijd($ResterendeLooptijd)
     {
-      $this->ResterendeLooptijd = $ResterendeLooptijd;
-      return $this;
+        $this->ResterendeLooptijd = $ResterendeLooptijd;
+        return $this;
     }
 
     /**
@@ -537,7 +536,7 @@ class TPL
      */
     public function getEffectiefJaarpercentage()
     {
-      return $this->EffectiefJaarpercentage;
+        return $this->EffectiefJaarpercentage;
     }
 
     /**
@@ -546,8 +545,8 @@ class TPL
      */
     public function setEffectiefJaarpercentage($EffectiefJaarpercentage)
     {
-      $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
-      return $this;
+        $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
+        return $this;
     }
 
     /**
@@ -555,15 +554,15 @@ class TPL
      */
     public function getDatumLaatsteBetaling()
     {
-      if ($this->DatumLaatsteBetaling == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumLaatsteBetaling);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumLaatsteBetaling == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumLaatsteBetaling);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -572,8 +571,8 @@ class TPL
      */
     public function setDatumLaatsteBetaling(\DateTime $DatumLaatsteBetaling)
     {
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -581,7 +580,7 @@ class TPL
      */
     public function getBedragLaatsteBetaling()
     {
-      return $this->BedragLaatsteBetaling;
+        return $this->BedragLaatsteBetaling;
     }
 
     /**
@@ -590,8 +589,8 @@ class TPL
      */
     public function setBedragLaatsteBetaling($BedragLaatsteBetaling)
     {
-      $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
-      return $this;
+        $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
+        return $this;
     }
 
     /**
@@ -599,7 +598,7 @@ class TPL
      */
     public function getVolledigVervroegdeAflossing()
     {
-      return $this->VolledigVervroegdeAflossing;
+        return $this->VolledigVervroegdeAflossing;
     }
 
     /**
@@ -608,8 +607,8 @@ class TPL
      */
     public function setVolledigVervroegdeAflossing($VolledigVervroegdeAflossing)
     {
-      $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
-      return $this;
+        $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
+        return $this;
     }
 
     /**
@@ -617,7 +616,7 @@ class TPL
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -626,8 +625,8 @@ class TPL
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -635,7 +634,7 @@ class TPL
      */
     public function getMedelenerCode()
     {
-      return $this->MedelenerCode;
+        return $this->MedelenerCode;
     }
 
     /**
@@ -644,8 +643,8 @@ class TPL
      */
     public function setMedelenerCode($MedelenerCode)
     {
-      $this->MedelenerCode = $MedelenerCode;
-      return $this;
+        $this->MedelenerCode = $MedelenerCode;
+        return $this;
     }
 
     /**
@@ -653,7 +652,7 @@ class TPL
      */
     public function getOpenstaandeVertragingsrente()
     {
-      return $this->OpenstaandeVertragingsrente;
+        return $this->OpenstaandeVertragingsrente;
     }
 
     /**
@@ -662,8 +661,8 @@ class TPL
      */
     public function setOpenstaandeVertragingsrente($OpenstaandeVertragingsrente)
     {
-      $this->OpenstaandeVertragingsrente = $OpenstaandeVertragingsrente;
-      return $this;
+        $this->OpenstaandeVertragingsrente = $OpenstaandeVertragingsrente;
+        return $this;
     }
 
     /**
@@ -671,7 +670,7 @@ class TPL
      */
     public function getOpenstaandeKredietvergoeding()
     {
-      return $this->OpenstaandeKredietvergoeding;
+        return $this->OpenstaandeKredietvergoeding;
     }
 
     /**
@@ -680,8 +679,8 @@ class TPL
      */
     public function setOpenstaandeKredietvergoeding($OpenstaandeKredietvergoeding)
     {
-      $this->OpenstaandeKredietvergoeding = $OpenstaandeKredietvergoeding;
-      return $this;
+        $this->OpenstaandeKredietvergoeding = $OpenstaandeKredietvergoeding;
+        return $this;
     }
 
     /**
@@ -689,7 +688,7 @@ class TPL
      */
     public function getBetaaldeVertragingsrente()
     {
-      return $this->BetaaldeVertragingsrente;
+        return $this->BetaaldeVertragingsrente;
     }
 
     /**
@@ -698,8 +697,8 @@ class TPL
      */
     public function setBetaaldeVertragingsrente($BetaaldeVertragingsrente)
     {
-      $this->BetaaldeVertragingsrente = $BetaaldeVertragingsrente;
-      return $this;
+        $this->BetaaldeVertragingsrente = $BetaaldeVertragingsrente;
+        return $this;
     }
 
     /**
@@ -707,7 +706,7 @@ class TPL
      */
     public function getBetaaldeBoeterente()
     {
-      return $this->BetaaldeBoeterente;
+        return $this->BetaaldeBoeterente;
     }
 
     /**
@@ -716,8 +715,8 @@ class TPL
      */
     public function setBetaaldeBoeterente($BetaaldeBoeterente)
     {
-      $this->BetaaldeBoeterente = $BetaaldeBoeterente;
-      return $this;
+        $this->BetaaldeBoeterente = $BetaaldeBoeterente;
+        return $this;
     }
 
     /**
@@ -725,7 +724,7 @@ class TPL
      */
     public function getKostenVVA()
     {
-      return $this->KostenVVA;
+        return $this->KostenVVA;
     }
 
     /**
@@ -734,8 +733,8 @@ class TPL
      */
     public function setKostenVVA($KostenVVA)
     {
-      $this->KostenVVA = $KostenVVA;
-      return $this;
+        $this->KostenVVA = $KostenVVA;
+        return $this;
     }
 
     /**
@@ -743,7 +742,7 @@ class TPL
      */
     public function getVoorstand()
     {
-      return $this->Voorstand;
+        return $this->Voorstand;
     }
 
     /**
@@ -752,8 +751,8 @@ class TPL
      */
     public function setVoorstand($Voorstand)
     {
-      $this->Voorstand = $Voorstand;
-      return $this;
+        $this->Voorstand = $Voorstand;
+        return $this;
     }
 
     /**
@@ -761,7 +760,7 @@ class TPL
      */
     public function getLeningSoort()
     {
-      return $this->LeningSoort;
+        return $this->LeningSoort;
     }
 
     /**
@@ -770,8 +769,8 @@ class TPL
      */
     public function setLeningSoort($LeningSoort)
     {
-      $this->LeningSoort = $LeningSoort;
-      return $this;
+        $this->LeningSoort = $LeningSoort;
+        return $this;
     }
 
     /**
@@ -779,7 +778,7 @@ class TPL
      */
     public function getMaandPercentage()
     {
-      return $this->MaandPercentage;
+        return $this->MaandPercentage;
     }
 
     /**
@@ -788,8 +787,8 @@ class TPL
      */
     public function setMaandPercentage($MaandPercentage)
     {
-      $this->MaandPercentage = $MaandPercentage;
-      return $this;
+        $this->MaandPercentage = $MaandPercentage;
+        return $this;
     }
 
     /**
@@ -797,7 +796,7 @@ class TPL
      */
     public function getBetaaldeKredietvergoeding()
     {
-      return $this->BetaaldeKredietvergoeding;
+        return $this->BetaaldeKredietvergoeding;
     }
 
     /**
@@ -806,8 +805,7 @@ class TPL
      */
     public function setBetaaldeKredietvergoeding($BetaaldeKredietvergoeding)
     {
-      $this->BetaaldeKredietvergoeding = $BetaaldeKredietvergoeding;
-      return $this;
+        $this->BetaaldeKredietvergoeding = $BetaaldeKredietvergoeding;
+        return $this;
     }
-
 }

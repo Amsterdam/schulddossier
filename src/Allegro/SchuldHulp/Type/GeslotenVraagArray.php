@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class GeslotenVraagArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TGeslotenVraag
      */
@@ -42,7 +40,4 @@ class GeslotenVraagArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

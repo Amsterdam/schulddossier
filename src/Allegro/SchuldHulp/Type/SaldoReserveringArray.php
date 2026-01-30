@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SaldoReserveringArray implements RequestInterface
 {
-
     /**
      * @var
      * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSaldoReservering
@@ -43,7 +41,4 @@ class SaldoReserveringArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

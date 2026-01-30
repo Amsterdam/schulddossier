@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TExtraProductHeader implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -122,7 +121,4 @@ class TExtraProductHeader implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusPVAProduct implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -122,7 +121,4 @@ class TCasusPVAProduct implements RequestInterface
 
         return $new;
     }
-
-
 }
-

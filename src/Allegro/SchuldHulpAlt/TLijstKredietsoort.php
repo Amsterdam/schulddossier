@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TLijstKredietsoort
 {
-
     /**
      * @var string $Code
      */
@@ -21,8 +20,8 @@ class TLijstKredietsoort
      */
     public function __construct($Code, $Omschrijving)
     {
-      $this->Code = $Code;
-      $this->Omschrijving = $Omschrijving;
+        $this->Code = $Code;
+        $this->Omschrijving = $Omschrijving;
     }
 
     /**
@@ -30,7 +29,7 @@ class TLijstKredietsoort
      */
     public function getCode()
     {
-      return $this->Code;
+        return $this->Code;
     }
 
     /**
@@ -39,8 +38,8 @@ class TLijstKredietsoort
      */
     public function setCode($Code)
     {
-      $this->Code = $Code;
-      return $this;
+        $this->Code = $Code;
+        return $this;
     }
 
     /**
@@ -48,7 +47,7 @@ class TLijstKredietsoort
      */
     public function getOmschrijving()
     {
-      return $this->Omschrijving;
+        return $this->Omschrijving;
     }
 
     /**
@@ -57,8 +56,7 @@ class TLijstKredietsoort
      */
     public function setOmschrijving($Omschrijving)
     {
-      $this->Omschrijving = $Omschrijving;
-      return $this;
+        $this->Omschrijving = $Omschrijving;
+        return $this;
     }
-
 }

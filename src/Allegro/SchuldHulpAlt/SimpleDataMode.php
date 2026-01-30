@@ -8,6 +8,4 @@ class SimpleDataMode
     const Insert = 'Insert';
     const Delete = 'Delete';
     const Update = 'Update';
-
-
 }

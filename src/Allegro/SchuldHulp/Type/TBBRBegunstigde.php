@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBRBegunstigde implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -259,7 +257,4 @@ class TBBRBegunstigde implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TCasusPVAProduct
 {
-
     /**
      * @var string $Naam
      */
@@ -33,10 +32,10 @@ class TCasusPVAProduct
      */
     public function __construct($Naam, $IDAanvraag, $Geactiveerd, \DateTime $DatumActivering)
     {
-      $this->Naam = $Naam;
-      $this->IDAanvraag = $IDAanvraag;
-      $this->Geactiveerd = $Geactiveerd;
-      $this->DatumActivering = $DatumActivering->format(\DateTime::ATOM);
+        $this->Naam = $Naam;
+        $this->IDAanvraag = $IDAanvraag;
+        $this->Geactiveerd = $Geactiveerd;
+        $this->DatumActivering = $DatumActivering->format(\DateTime::ATOM);
     }
 
     /**
@@ -44,7 +43,7 @@ class TCasusPVAProduct
      */
     public function getNaam()
     {
-      return $this->Naam;
+        return $this->Naam;
     }
 
     /**
@@ -53,8 +52,8 @@ class TCasusPVAProduct
      */
     public function setNaam($Naam)
     {
-      $this->Naam = $Naam;
-      return $this;
+        $this->Naam = $Naam;
+        return $this;
     }
 
     /**
@@ -62,7 +61,7 @@ class TCasusPVAProduct
      */
     public function getIDAanvraag()
     {
-      return $this->IDAanvraag;
+        return $this->IDAanvraag;
     }
 
     /**
@@ -71,8 +70,8 @@ class TCasusPVAProduct
      */
     public function setIDAanvraag($IDAanvraag)
     {
-      $this->IDAanvraag = $IDAanvraag;
-      return $this;
+        $this->IDAanvraag = $IDAanvraag;
+        return $this;
     }
 
     /**
@@ -80,7 +79,7 @@ class TCasusPVAProduct
      */
     public function getGeactiveerd()
     {
-      return $this->Geactiveerd;
+        return $this->Geactiveerd;
     }
 
     /**
@@ -89,8 +88,8 @@ class TCasusPVAProduct
      */
     public function setGeactiveerd($Geactiveerd)
     {
-      $this->Geactiveerd = $Geactiveerd;
-      return $this;
+        $this->Geactiveerd = $Geactiveerd;
+        return $this;
     }
 
     /**
@@ -98,15 +97,15 @@ class TCasusPVAProduct
      */
     public function getDatumActivering()
     {
-      if ($this->DatumActivering == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumActivering);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumActivering == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumActivering);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -115,8 +114,7 @@ class TCasusPVAProduct
      */
     public function setDatumActivering(\DateTime $DatumActivering)
     {
-      $this->DatumActivering = $DatumActivering->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumActivering = $DatumActivering->format(\DateTime::ATOM);
+        return $this;
     }
-
 }

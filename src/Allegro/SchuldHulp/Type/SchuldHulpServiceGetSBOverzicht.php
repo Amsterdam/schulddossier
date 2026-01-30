@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SchuldHulpServiceGetSBOverzicht implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -42,7 +40,4 @@ class SchuldHulpServiceGetSBOverzicht implements RequestInterface
 
         return $new;
     }
-
-
 }
-

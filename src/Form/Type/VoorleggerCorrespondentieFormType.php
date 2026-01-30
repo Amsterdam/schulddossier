@@ -1,4 +1,5 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;

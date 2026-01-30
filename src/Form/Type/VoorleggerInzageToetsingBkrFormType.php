@@ -1,4 +1,5 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -64,5 +65,5 @@ class VoorleggerInzageToetsingBkrFormType extends AbstractType
         $resolver->setDefault('data_class', Voorlegger::class);
         $resolver->setDefault('choice_translation_domain', false);
         $resolver->setDefault('disable_group', null);
-   }
+    }
 }

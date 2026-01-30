@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class KindArray
 {
-
     /**
      * @var TKind[] $TKind
      */
     protected $TKind = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class KindArray
      */
     public function getTKind()
     {
-      return $this->TKind;
+        return $this->TKind;
     }
 
     /**
@@ -30,8 +28,7 @@ class KindArray
      */
     public function setTKind(array $TKind = null)
     {
-      $this->TKind = $TKind;
-      return $this;
+        $this->TKind = $TKind;
+        return $this;
     }
-
 }

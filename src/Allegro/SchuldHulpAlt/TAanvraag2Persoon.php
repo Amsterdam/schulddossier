@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TAanvraag2Persoon
 {
-
     /**
      * @var int $Relatiecode
      */
@@ -103,15 +102,15 @@ class TAanvraag2Persoon
      */
     public function __construct($Relatiecode, $BSN, $Voornamen, $Achternaam, $Geslacht, $Geboortedatum, $Nationaliteit, $CorrespondentieMail, $CorrespondentieWeb)
     {
-      $this->Relatiecode = $Relatiecode;
-      $this->BSN = $BSN;
-      $this->Voornamen = $Voornamen;
-      $this->Achternaam = $Achternaam;
-      $this->Geslacht = $Geslacht;
-      $this->Geboortedatum = $Geboortedatum;
-      $this->Nationaliteit = $Nationaliteit;
-      $this->CorrespondentieMail = $CorrespondentieMail;
-      $this->CorrespondentieWeb = $CorrespondentieWeb;
+        $this->Relatiecode = $Relatiecode;
+        $this->BSN = $BSN;
+        $this->Voornamen = $Voornamen;
+        $this->Achternaam = $Achternaam;
+        $this->Geslacht = $Geslacht;
+        $this->Geboortedatum = $Geboortedatum;
+        $this->Nationaliteit = $Nationaliteit;
+        $this->CorrespondentieMail = $CorrespondentieMail;
+        $this->CorrespondentieWeb = $CorrespondentieWeb;
     }
 
     /**
@@ -119,7 +118,7 @@ class TAanvraag2Persoon
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -128,8 +127,8 @@ class TAanvraag2Persoon
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -137,7 +136,7 @@ class TAanvraag2Persoon
      */
     public function getBSN()
     {
-      return $this->BSN;
+        return $this->BSN;
     }
 
     /**
@@ -146,8 +145,8 @@ class TAanvraag2Persoon
      */
     public function setBSN($BSN)
     {
-      $this->BSN = $BSN;
-      return $this;
+        $this->BSN = $BSN;
+        return $this;
     }
 
     /**
@@ -155,7 +154,7 @@ class TAanvraag2Persoon
      */
     public function getVoornamen()
     {
-      return $this->Voornamen;
+        return $this->Voornamen;
     }
 
     /**
@@ -164,8 +163,8 @@ class TAanvraag2Persoon
      */
     public function setVoornamen($Voornamen)
     {
-      $this->Voornamen = $Voornamen;
-      return $this;
+        $this->Voornamen = $Voornamen;
+        return $this;
     }
 
     /**
@@ -173,7 +172,7 @@ class TAanvraag2Persoon
      */
     public function getVoorletters()
     {
-      return $this->Voorletters;
+        return $this->Voorletters;
     }
 
     /**
@@ -182,8 +181,8 @@ class TAanvraag2Persoon
      */
     public function setVoorletters($Voorletters)
     {
-      $this->Voorletters = $Voorletters;
-      return $this;
+        $this->Voorletters = $Voorletters;
+        return $this;
     }
 
     /**
@@ -191,7 +190,7 @@ class TAanvraag2Persoon
      */
     public function getVoorvoegsels()
     {
-      return $this->Voorvoegsels;
+        return $this->Voorvoegsels;
     }
 
     /**
@@ -200,8 +199,8 @@ class TAanvraag2Persoon
      */
     public function setVoorvoegsels($Voorvoegsels)
     {
-      $this->Voorvoegsels = $Voorvoegsels;
-      return $this;
+        $this->Voorvoegsels = $Voorvoegsels;
+        return $this;
     }
 
     /**
@@ -209,7 +208,7 @@ class TAanvraag2Persoon
      */
     public function getAchternaam()
     {
-      return $this->Achternaam;
+        return $this->Achternaam;
     }
 
     /**
@@ -218,8 +217,8 @@ class TAanvraag2Persoon
      */
     public function setAchternaam($Achternaam)
     {
-      $this->Achternaam = $Achternaam;
-      return $this;
+        $this->Achternaam = $Achternaam;
+        return $this;
     }
 
     /**
@@ -227,7 +226,7 @@ class TAanvraag2Persoon
      */
     public function getGeslacht()
     {
-      return $this->Geslacht;
+        return $this->Geslacht;
     }
 
     /**
@@ -236,8 +235,8 @@ class TAanvraag2Persoon
      */
     public function setGeslacht($Geslacht)
     {
-      $this->Geslacht = $Geslacht;
-      return $this;
+        $this->Geslacht = $Geslacht;
+        return $this;
     }
 
     /**
@@ -245,7 +244,7 @@ class TAanvraag2Persoon
      */
     public function getGeboortedatum()
     {
-      return $this->Geboortedatum;
+        return $this->Geboortedatum;
     }
 
     /**
@@ -254,8 +253,8 @@ class TAanvraag2Persoon
      */
     public function setGeboortedatum($Geboortedatum)
     {
-      $this->Geboortedatum = $Geboortedatum;
-      return $this;
+        $this->Geboortedatum = $Geboortedatum;
+        return $this;
     }
 
     /**
@@ -263,7 +262,7 @@ class TAanvraag2Persoon
      */
     public function getNationaliteit()
     {
-      return $this->Nationaliteit;
+        return $this->Nationaliteit;
     }
 
     /**
@@ -272,8 +271,8 @@ class TAanvraag2Persoon
      */
     public function setNationaliteit($Nationaliteit)
     {
-      $this->Nationaliteit = $Nationaliteit;
-      return $this;
+        $this->Nationaliteit = $Nationaliteit;
+        return $this;
     }
 
     /**
@@ -281,7 +280,7 @@ class TAanvraag2Persoon
      */
     public function getRekeningnummers()
     {
-      return $this->Rekeningnummers;
+        return $this->Rekeningnummers;
     }
 
     /**
@@ -290,8 +289,8 @@ class TAanvraag2Persoon
      */
     public function setRekeningnummers($Rekeningnummers)
     {
-      $this->Rekeningnummers = $Rekeningnummers;
-      return $this;
+        $this->Rekeningnummers = $Rekeningnummers;
+        return $this;
     }
 
     /**
@@ -299,7 +298,7 @@ class TAanvraag2Persoon
      */
     public function getBezoekadres()
     {
-      return $this->Bezoekadres;
+        return $this->Bezoekadres;
     }
 
     /**
@@ -308,8 +307,8 @@ class TAanvraag2Persoon
      */
     public function setBezoekadres($Bezoekadres)
     {
-      $this->Bezoekadres = $Bezoekadres;
-      return $this;
+        $this->Bezoekadres = $Bezoekadres;
+        return $this;
     }
 
     /**
@@ -317,7 +316,7 @@ class TAanvraag2Persoon
      */
     public function getPostadres()
     {
-      return $this->Postadres;
+        return $this->Postadres;
     }
 
     /**
@@ -326,8 +325,8 @@ class TAanvraag2Persoon
      */
     public function setPostadres($Postadres)
     {
-      $this->Postadres = $Postadres;
-      return $this;
+        $this->Postadres = $Postadres;
+        return $this;
     }
 
     /**
@@ -335,7 +334,7 @@ class TAanvraag2Persoon
      */
     public function getCorrespondentieMail()
     {
-      return $this->CorrespondentieMail;
+        return $this->CorrespondentieMail;
     }
 
     /**
@@ -344,8 +343,8 @@ class TAanvraag2Persoon
      */
     public function setCorrespondentieMail($CorrespondentieMail)
     {
-      $this->CorrespondentieMail = $CorrespondentieMail;
-      return $this;
+        $this->CorrespondentieMail = $CorrespondentieMail;
+        return $this;
     }
 
     /**
@@ -353,7 +352,7 @@ class TAanvraag2Persoon
      */
     public function getCorrespondentieWeb()
     {
-      return $this->CorrespondentieWeb;
+        return $this->CorrespondentieWeb;
     }
 
     /**
@@ -362,8 +361,8 @@ class TAanvraag2Persoon
      */
     public function setCorrespondentieWeb($CorrespondentieWeb)
     {
-      $this->CorrespondentieWeb = $CorrespondentieWeb;
-      return $this;
+        $this->CorrespondentieWeb = $CorrespondentieWeb;
+        return $this;
     }
 
     /**
@@ -371,7 +370,7 @@ class TAanvraag2Persoon
      */
     public function getContact()
     {
-      return $this->Contact;
+        return $this->Contact;
     }
 
     /**
@@ -380,8 +379,8 @@ class TAanvraag2Persoon
      */
     public function setContact($Contact)
     {
-      $this->Contact = $Contact;
-      return $this;
+        $this->Contact = $Contact;
+        return $this;
     }
 
     /**
@@ -389,7 +388,7 @@ class TAanvraag2Persoon
      */
     public function getInkomen()
     {
-      return $this->Inkomen;
+        return $this->Inkomen;
     }
 
     /**
@@ -398,8 +397,8 @@ class TAanvraag2Persoon
      */
     public function setInkomen($Inkomen)
     {
-      $this->Inkomen = $Inkomen;
-      return $this;
+        $this->Inkomen = $Inkomen;
+        return $this;
     }
 
     /**
@@ -407,7 +406,7 @@ class TAanvraag2Persoon
      */
     public function getUitgaven()
     {
-      return $this->Uitgaven;
+        return $this->Uitgaven;
     }
 
     /**
@@ -416,8 +415,7 @@ class TAanvraag2Persoon
      */
     public function setUitgaven($Uitgaven)
     {
-      $this->Uitgaven = $Uitgaven;
-      return $this;
+        $this->Uitgaven = $Uitgaven;
+        return $this;
     }
-
 }

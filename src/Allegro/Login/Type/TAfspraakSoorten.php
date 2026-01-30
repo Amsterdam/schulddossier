@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TAfspraakSoorten implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -68,7 +67,4 @@ class TAfspraakSoorten implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class GeslotenVraagArray
 {
-
     /**
      * @var TGeslotenVraag[] $TGeslotenVraag
      */
     protected $TGeslotenVraag = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class GeslotenVraagArray
      */
     public function getTGeslotenVraag()
     {
-      return $this->TGeslotenVraag;
+        return $this->TGeslotenVraag;
     }
 
     /**
@@ -30,8 +28,7 @@ class GeslotenVraagArray
      */
     public function setTGeslotenVraag(array $TGeslotenVraag = null)
     {
-      $this->TGeslotenVraag = $TGeslotenVraag;
-      return $this;
+        $this->TGeslotenVraag = $TGeslotenVraag;
+        return $this;
     }
-
 }

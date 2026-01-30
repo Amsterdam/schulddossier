@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class BBRBegunstigdeArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBRBegunstigde
      */
@@ -42,7 +40,4 @@ class BBRBegunstigdeArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

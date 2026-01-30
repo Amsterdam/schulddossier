@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TMedewerker implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -203,7 +202,4 @@ class TMedewerker implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -8,6 +8,4 @@ class eSoortOpdracht
     const ReserveringOfDoorbetaling = 'ReserveringOfDoorbetaling';
     const Reservering = 'Reservering';
     const Doorbetaling = 'Doorbetaling';
-
-
 }

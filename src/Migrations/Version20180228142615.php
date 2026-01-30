@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace DoctrineMigrations;
 
@@ -10,8 +12,6 @@ use Doctrine\Migrations\AbstractMigration;
  */
 class Version20180228142615 extends AbstractMigration
 {
-
-
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs

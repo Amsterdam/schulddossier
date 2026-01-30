@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TAanvraag2Lening extends TAanvraag2
 {
-
     /**
      * @var SchuldArray $Schulden
      */
@@ -27,8 +26,8 @@ class TAanvraag2Lening extends TAanvraag2
      */
     public function __construct($Bedrijfscode, $Aanvrager, $MetPartner, $GezinsSituatie, $AantalKinderen, $Schuldbedrag, $Schuldeisers, $GewenstKrediet, $GewenstAflossing, $OpdrachtgeverCode, $Borgstelling, $CollectieveBorgstelling, $Schulden)
     {
-      parent::__construct($Bedrijfscode, $Aanvrager, $MetPartner, $GezinsSituatie, $AantalKinderen, $Schuldbedrag, $Schuldeisers, $GewenstKrediet, $GewenstAflossing, $OpdrachtgeverCode, $Borgstelling, $CollectieveBorgstelling);
-      $this->Schulden = $Schulden;
+        parent::__construct($Bedrijfscode, $Aanvrager, $MetPartner, $GezinsSituatie, $AantalKinderen, $Schuldbedrag, $Schuldeisers, $GewenstKrediet, $GewenstAflossing, $OpdrachtgeverCode, $Borgstelling, $CollectieveBorgstelling);
+        $this->Schulden = $Schulden;
     }
 
     /**
@@ -36,7 +35,7 @@ class TAanvraag2Lening extends TAanvraag2
      */
     public function getSchulden()
     {
-      return $this->Schulden;
+        return $this->Schulden;
     }
 
     /**
@@ -45,8 +44,7 @@ class TAanvraag2Lening extends TAanvraag2
      */
     public function setSchulden($Schulden)
     {
-      $this->Schulden = $Schulden;
-      return $this;
+        $this->Schulden = $Schulden;
+        return $this;
     }
-
 }

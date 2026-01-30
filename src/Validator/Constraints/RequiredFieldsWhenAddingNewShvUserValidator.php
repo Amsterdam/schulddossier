@@ -14,7 +14,6 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class RequiredFieldsWhenAddingNewShvUserValidator extends ConstraintValidator
 {
-
     /**
      * Checks if the passed value is valid.
      *

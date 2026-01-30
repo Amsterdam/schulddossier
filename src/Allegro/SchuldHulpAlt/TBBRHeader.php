@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBBRHeader
 {
-
     /**
      * @var int $RelatieCode
      */
@@ -69,16 +68,16 @@ class TBBRHeader
      */
     public function __construct($RelatieCode, $Volgnummer, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, $VormCode, $VormNaam, $ProductNaam, $ProductOmschrijving, $Team)
     {
-      $this->RelatieCode = $RelatieCode;
-      $this->Volgnummer = $Volgnummer;
-      $this->Medewerker = $Medewerker;
-      $this->Opdrachtgever = $Opdrachtgever;
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      $this->VormCode = $VormCode;
-      $this->VormNaam = $VormNaam;
-      $this->ProductNaam = $ProductNaam;
-      $this->ProductOmschrijving = $ProductOmschrijving;
-      $this->Team = $Team;
+        $this->RelatieCode = $RelatieCode;
+        $this->Volgnummer = $Volgnummer;
+        $this->Medewerker = $Medewerker;
+        $this->Opdrachtgever = $Opdrachtgever;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        $this->VormCode = $VormCode;
+        $this->VormNaam = $VormNaam;
+        $this->ProductNaam = $ProductNaam;
+        $this->ProductOmschrijving = $ProductOmschrijving;
+        $this->Team = $Team;
     }
 
     /**
@@ -86,7 +85,7 @@ class TBBRHeader
      */
     public function getRelatieCode()
     {
-      return $this->RelatieCode;
+        return $this->RelatieCode;
     }
 
     /**
@@ -95,8 +94,8 @@ class TBBRHeader
      */
     public function setRelatieCode($RelatieCode)
     {
-      $this->RelatieCode = $RelatieCode;
-      return $this;
+        $this->RelatieCode = $RelatieCode;
+        return $this;
     }
 
     /**
@@ -104,7 +103,7 @@ class TBBRHeader
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -113,8 +112,8 @@ class TBBRHeader
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -122,7 +121,7 @@ class TBBRHeader
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -131,8 +130,8 @@ class TBBRHeader
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -140,7 +139,7 @@ class TBBRHeader
      */
     public function getOpdrachtgever()
     {
-      return $this->Opdrachtgever;
+        return $this->Opdrachtgever;
     }
 
     /**
@@ -149,8 +148,8 @@ class TBBRHeader
      */
     public function setOpdrachtgever($Opdrachtgever)
     {
-      $this->Opdrachtgever = $Opdrachtgever;
-      return $this;
+        $this->Opdrachtgever = $Opdrachtgever;
+        return $this;
     }
 
     /**
@@ -158,7 +157,7 @@ class TBBRHeader
      */
     public function getOpdrachtgeverContact()
     {
-      return $this->OpdrachtgeverContact;
+        return $this->OpdrachtgeverContact;
     }
 
     /**
@@ -167,8 +166,8 @@ class TBBRHeader
      */
     public function setOpdrachtgeverContact($OpdrachtgeverContact)
     {
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      return $this;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        return $this;
     }
 
     /**
@@ -176,7 +175,7 @@ class TBBRHeader
      */
     public function getVormCode()
     {
-      return $this->VormCode;
+        return $this->VormCode;
     }
 
     /**
@@ -185,8 +184,8 @@ class TBBRHeader
      */
     public function setVormCode($VormCode)
     {
-      $this->VormCode = $VormCode;
-      return $this;
+        $this->VormCode = $VormCode;
+        return $this;
     }
 
     /**
@@ -194,7 +193,7 @@ class TBBRHeader
      */
     public function getVormNaam()
     {
-      return $this->VormNaam;
+        return $this->VormNaam;
     }
 
     /**
@@ -203,8 +202,8 @@ class TBBRHeader
      */
     public function setVormNaam($VormNaam)
     {
-      $this->VormNaam = $VormNaam;
-      return $this;
+        $this->VormNaam = $VormNaam;
+        return $this;
     }
 
     /**
@@ -212,7 +211,7 @@ class TBBRHeader
      */
     public function getProductNaam()
     {
-      return $this->ProductNaam;
+        return $this->ProductNaam;
     }
 
     /**
@@ -221,8 +220,8 @@ class TBBRHeader
      */
     public function setProductNaam($ProductNaam)
     {
-      $this->ProductNaam = $ProductNaam;
-      return $this;
+        $this->ProductNaam = $ProductNaam;
+        return $this;
     }
 
     /**
@@ -230,7 +229,7 @@ class TBBRHeader
      */
     public function getProductOmschrijving()
     {
-      return $this->ProductOmschrijving;
+        return $this->ProductOmschrijving;
     }
 
     /**
@@ -239,8 +238,8 @@ class TBBRHeader
      */
     public function setProductOmschrijving($ProductOmschrijving)
     {
-      $this->ProductOmschrijving = $ProductOmschrijving;
-      return $this;
+        $this->ProductOmschrijving = $ProductOmschrijving;
+        return $this;
     }
 
     /**
@@ -248,7 +247,7 @@ class TBBRHeader
      */
     public function getTeam()
     {
-      return $this->Team;
+        return $this->Team;
     }
 
     /**
@@ -257,8 +256,7 @@ class TBBRHeader
      */
     public function setTeam($Team)
     {
-      $this->Team = $Team;
-      return $this;
+        $this->Team = $Team;
+        return $this;
     }
-
 }

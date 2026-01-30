@@ -22,9 +22,9 @@ class DocumentUploadSubscriber implements EventSubscriberInterface
      */
     public function __construct(
         protected FileStorageSelector $fileStorageSelector,
-        protected LoggerInterface     $logger,
-    )
-    {}
+        protected LoggerInterface $logger,
+    ) {
+    }
 
     public function getSubscribedEvents(): array
     {
@@ -75,11 +75,9 @@ class DocumentUploadSubscriber implements EventSubscriberInterface
             fclose($stream);
         } catch (\Exception $e) {
             $this->logger->error(__CLASS__ . ":" . __METHOD__ . ": Failed to store file, errormessage: " . $e->getMessage());
-        }
-        catch (\Throwable $e) {
+        } catch (\Throwable $e) {
             $this->logger->error(__CLASS__ . ":" . __METHOD__ . ": Failed fclose, errormessage: " . $e->getMessage());
         }
-
     }
 
     /**
