@@ -1,0 +1,14 @@
+{% extends 'master.html.twig' %}
+
+{% block document %}
+
+<div class="announcement">
+    <span class="message">Deze weergave in de applicatie kan visueel afwijken van het oorspronkelijke document</span>
+</div>
+
+<div class="document well">
+ {{ html_content|raw }}
+</div>
+
+
+{% endblock %}
