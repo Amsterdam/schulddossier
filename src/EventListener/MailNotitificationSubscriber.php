@@ -128,7 +128,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
                 'tokenStorage' => $this->tokenStorage
             ]);
         } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
     }
 
@@ -180,7 +180,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
                 'tokenStorage' => $this->tokenStorage
             ]);
         } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
     }
 
@@ -195,7 +195,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
                 'tokenStorage' => $this->tokenStorage
             ]);
         } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
     }
 
@@ -210,7 +210,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
                 'tokenStorage' => $this->tokenStorage
             ]);
         } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
     }
 
@@ -225,7 +225,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
                 'tokenStorage' => $this->tokenStorage
             ]);
         } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
     }
 
@@ -240,21 +240,25 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
                 'tokenStorage' => $this->tokenStorage
             ]);
         } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
     }
 
     public function notifyDossierSyncedWithAllegro(DossierChangedEvent $event)
     {
-        /** @var $dossier Dossier */
         $dossier = $event->getDossier();
 
-        if ($dossier->getMedewerkerOrganisatie() !== null && empty($dossier->getMedewerkerOrganisatie()->getEmail()) === false) {
-            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerOrganisatie()->getEmail(), 'mails/notifyDossierSyncedWithAllegro.html.twig', [
-                'dossier' => $dossier
-            ]);
+        $gebruiker = $event->getGebruiker();
+
+        if ($gebruiker !== null && empty($gebruiker->getEmail()) === false) {
+            $this->mail(
+                $this->fromNotificiatieAdres,
+                $gebruiker->getEmail(),
+                'mails/notifyDossierSyncedWithAllegro.html.twig',
+                ['dossier' => $dossier]
+            );
         } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
     }
 

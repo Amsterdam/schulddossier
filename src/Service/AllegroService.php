@@ -683,12 +683,6 @@ class AllegroService
                 ))
             ))
         )->getResult();
-
-        // TODO: event dispatchen waar de `MailNotificationSubscriber` naar luistert.
-        // $this->eventDispatcher->dispatch(
-        // new DossierChangedEvent($dossier, $user, ActionEvent::DOSSIER_SEND_TO_ALLEGRO),
-        // DossierChangedEvent::NAME
-        // );
     }
 
     /**

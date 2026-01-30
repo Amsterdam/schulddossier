@@ -94,7 +94,7 @@ class SyncDossierWithAllegroCommand extends Command
                 }
 
                 try {
-                    $this->eventDispatcher->dispatch(new DossierSyncedWithAllegroEvent($dossier, new Gebruiker()), DossierSyncedWithAllegroEvent::NAME);
+                    $this->eventDispatcher->dispatch(new DossierSyncedWithAllegroEvent($dossier, $dossier->getMedewerkerOrganisatie()), DossierSyncedWithAllegroEvent::NAME);
                 } catch (Exception $e) {
                     $io->error('Error: could not send e-mail notification. ' . $e->getMessage());
                 }
