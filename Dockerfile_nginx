@@ -29,7 +29,6 @@ USER nginx
 WORKDIR /var/www
 
 RUN npm ci --no-audit --no-fund --ignore-scripts
-RUN npm run postinstall
 
 CMD exec nginx -g 'daemon off;'
 

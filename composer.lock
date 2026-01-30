@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8996ff602b35226c83d20a31d10b38a2",
+    "content-hash": "792576afb639064f9cc42fb73b88a878",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -143,152 +143,6 @@
                 }
             ],
             "time": "2025-12-08T15:06:51+00:00"
-        },
-        {
-            "name": "composer/installers",
-            "version": "v2.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/composer/installers.git",
-                "reference": "12fb2dfe5e16183de69e784a7b84046c43d97e8e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/12fb2dfe5e16183de69e784a7b84046c43d97e8e",
-                "reference": "12fb2dfe5e16183de69e784a7b84046c43d97e8e",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0 || ^2.0",
-                "php": "^7.2 || ^8.0"
-            },
-            "require-dev": {
-                "composer/composer": "^1.10.27 || ^2.7",
-                "composer/semver": "^1.7.2 || ^3.4.0",
-                "phpstan/phpstan": "^1.11",
-                "phpstan/phpstan-phpunit": "^1",
-                "symfony/phpunit-bridge": "^7.1.1",
-                "symfony/process": "^5 || ^6 || ^7"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "Composer\\Installers\\Plugin",
-                "branch-alias": {
-                    "dev-main": "2.x-dev"
-                },
-                "plugin-modifies-install-path": true
-            },
-            "autoload": {
-                "psr-4": {
-                    "Composer\\Installers\\": "src/Composer/Installers"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kyle Robinson Young",
-                    "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama"
-                }
-            ],
-            "description": "A multi-framework Composer library installer",
-            "homepage": "https://composer.github.io/installers/",
-            "keywords": [
-                "Dolibarr",
-                "Eliasis",
-                "Hurad",
-                "ImageCMS",
-                "Kanboard",
-                "Lan Management System",
-                "MODX Evo",
-                "MantisBT",
-                "Mautic",
-                "Maya",
-                "OXID",
-                "Plentymarkets",
-                "Porto",
-                "RadPHP",
-                "SMF",
-                "Starbug",
-                "Thelia",
-                "Whmcs",
-                "WolfCMS",
-                "agl",
-                "annotatecms",
-                "attogram",
-                "bitrix",
-                "cakephp",
-                "chef",
-                "cockpit",
-                "codeigniter",
-                "concrete5",
-                "concreteCMS",
-                "croogo",
-                "dokuwiki",
-                "drupal",
-                "eZ Platform",
-                "elgg",
-                "expressionengine",
-                "fuelphp",
-                "grav",
-                "installer",
-                "itop",
-                "known",
-                "kohana",
-                "laravel",
-                "lavalite",
-                "lithium",
-                "magento",
-                "majima",
-                "mako",
-                "matomo",
-                "mediawiki",
-                "miaoxing",
-                "modulework",
-                "modx",
-                "moodle",
-                "osclass",
-                "pantheon",
-                "phpbb",
-                "piwik",
-                "ppi",
-                "processwire",
-                "puppet",
-                "pxcms",
-                "reindex",
-                "roundcube",
-                "shopware",
-                "silverstripe",
-                "sydes",
-                "sylius",
-                "tastyigniter",
-                "wordpress",
-                "yawik",
-                "zend",
-                "zikula"
-            ],
-            "support": {
-                "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/v2.3.0"
-            },
-            "funding": [
-                {
-                    "url": "https://packagist.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/composer",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2024-06-24T20:46:46+00:00"
         },
         {
             "name": "composer/pcre",
@@ -542,16 +396,16 @@
         },
         {
             "name": "doctrine/collections",
-            "version": "2.5.1",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "171e68db4b9aca9dc1f5d49925762f3d53d248c5"
+                "reference": "7713da39d8e237f28411d6a616a3dce5e20d5de2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/171e68db4b9aca9dc1f5d49925762f3d53d248c5",
-                "reference": "171e68db4b9aca9dc1f5d49925762f3d53d248c5",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/7713da39d8e237f28411d6a616a3dce5e20d5de2",
+                "reference": "7713da39d8e237f28411d6a616a3dce5e20d5de2",
                 "shasum": ""
             },
             "require": {
@@ -608,7 +462,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/collections/issues",
-                "source": "https://github.com/doctrine/collections/tree/2.5.1"
+                "source": "https://github.com/doctrine/collections/tree/2.6.0"
             },
             "funding": [
                 {
@@ -624,7 +478,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-01-12T20:53:55+00:00"
+            "time": "2026-01-15T10:01:58+00:00"
         },
         {
             "name": "doctrine/common",
@@ -3204,64 +3058,6 @@
             "time": "2022-03-09T08:36:52+00:00"
         },
         {
-            "name": "moment/moment",
-            "version": "2.30.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/moment/moment.git",
-                "reference": "485d9a7d709bd5f3869a7ad24630cf0746d072dc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/moment/moment/zipball/485d9a7d709bd5f3869a7ad24630cf0746d072dc",
-                "reference": "485d9a7d709bd5f3869a7ad24630cf0746d072dc",
-                "shasum": ""
-            },
-            "require": {
-                "oomphinc/composer-installers-extender": "*"
-            },
-            "type": "component",
-            "extra": {
-                "component": {
-                    "files": [
-                        "min/*.js",
-                        "locale/*.js"
-                    ],
-                    "scripts": [
-                        "moment.js"
-                    ]
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tim Wood",
-                    "email": "washwithcare@gmail.com"
-                }
-            ],
-            "description": "Parse, validate, manipulate, and display dates in JavaScript.",
-            "homepage": "https://github.com/moment/moment",
-            "keywords": [
-                "date",
-                "ender",
-                "format",
-                "i18n",
-                "l10n",
-                "moment",
-                "parse",
-                "time",
-                "validate"
-            ],
-            "support": {
-                "issues": "https://github.com/moment/moment/issues",
-                "source": "https://github.com/moment/moment/tree/2.30.1"
-            },
-            "time": "2023-12-27T10:35:18+00:00"
-        },
-        {
             "name": "monolog/monolog",
             "version": "2.11.0",
             "source": {
@@ -3383,16 +3179,16 @@
         },
         {
             "name": "nelmio/security-bundle",
-            "version": "v3.7.0",
+            "version": "v3.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioSecurityBundle.git",
-                "reference": "9389ec28cd219d621d3d91c840a3df6f04c9f651"
+                "reference": "2fafee1cdda1d5952554c44eef4c3c8566d56f40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioSecurityBundle/zipball/9389ec28cd219d621d3d91c840a3df6f04c9f651",
-                "reference": "9389ec28cd219d621d3d91c840a3df6f04c9f651",
+                "url": "https://api.github.com/repos/nelmio/NelmioSecurityBundle/zipball/2fafee1cdda1d5952554c44eef4c3c8566d56f40",
+                "reference": "2fafee1cdda1d5952554c44eef4c3c8566d56f40",
                 "shasum": ""
             },
             "require": {
@@ -3451,9 +3247,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nelmio/NelmioSecurityBundle/issues",
-                "source": "https://github.com/nelmio/NelmioSecurityBundle/tree/v3.7.0"
+                "source": "https://github.com/nelmio/NelmioSecurityBundle/tree/v3.8.0"
             },
-            "time": "2025-12-30T14:05:13+00:00"
+            "time": "2026-01-14T19:38:55+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3563,63 +3359,6 @@
                 "source": "https://github.com/chrisnharvey/flysystem-openstack-swift/tree/0.4.1"
             },
             "time": "2022-02-08T11:01:48+00:00"
-        },
-        {
-            "name": "oomphinc/composer-installers-extender",
-            "version": "2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/oomphinc/composer-installers-extender.git",
-                "reference": "cbf4b6f9a24153b785d09eee755b995ba87bd5f9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/oomphinc/composer-installers-extender/zipball/cbf4b6f9a24153b785d09eee755b995ba87bd5f9",
-                "reference": "cbf4b6f9a24153b785d09eee755b995ba87bd5f9",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.1 || ^2.0",
-                "composer/installers": "^1.0 || ^2.0",
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "composer/composer": "^2.0",
-                "phpunit/phpunit": "^7.2",
-                "squizlabs/php_codesniffer": "^3.3"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "OomphInc\\ComposerInstallersExtender\\Plugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "OomphInc\\ComposerInstallersExtender\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stephen Beemsterboer",
-                    "email": "stephen@oomphinc.com",
-                    "homepage": "https://github.com/balbuf"
-                },
-                {
-                    "name": "Nathan Dentzau",
-                    "email": "nate@oomphinc.com",
-                    "homepage": "http://oomph.is/ndentzau"
-                }
-            ],
-            "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
-            "homepage": "http://www.oomphinc.com/",
-            "support": {
-                "issues": "https://github.com/oomphinc/composer-installers-extender/issues",
-                "source": "https://github.com/oomphinc/composer-installers-extender/tree/2.0.1"
-            },
-            "time": "2021-12-15T12:32:42+00:00"
         },
         {
             "name": "php-http/client-common",
@@ -4721,16 +4460,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.50",
+            "version": "2.0.51",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "1815ddd00195487cc922577751c175f339f4e20f"
+                "reference": "ed661e7cdaeb8c419e609e2f3203551a13c2ed48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/1815ddd00195487cc922577751c175f339f4e20f",
-                "reference": "1815ddd00195487cc922577751c175f339f4e20f",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/ed661e7cdaeb8c419e609e2f3203551a13c2ed48",
+                "reference": "ed661e7cdaeb8c419e609e2f3203551a13c2ed48",
                 "shasum": ""
             },
             "require": {
@@ -4811,7 +4550,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/2.0.50"
+                "source": "https://github.com/phpseclib/phpseclib/tree/2.0.51"
             },
             "funding": [
                 {
@@ -4827,7 +4566,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-12-15T11:48:50+00:00"
+            "time": "2026-01-27T09:11:52+00:00"
         },
         {
             "name": "psr/cache",
@@ -7132,16 +6871,16 @@
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v5.4.50",
+            "version": "v5.4.51",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "2fe5cf994d7e1e189258b7f7d3395cc5999a9762"
+                "reference": "85432f7548b2757b8387f7e1a468abd62fc4c9bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/2fe5cf994d7e1e189258b7f7d3395cc5999a9762",
-                "reference": "2fe5cf994d7e1e189258b7f7d3395cc5999a9762",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/85432f7548b2757b8387f7e1a468abd62fc4c9bc",
+                "reference": "85432f7548b2757b8387f7e1a468abd62fc4c9bc",
                 "shasum": ""
             },
             "require": {
@@ -7225,7 +6964,7 @@
             "description": "Provides a structured process for converting a Request into a Response",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-kernel/tree/v5.4.50"
+                "source": "https://github.com/symfony/http-kernel/tree/v5.4.51"
             },
             "funding": [
                 {
@@ -7245,7 +6984,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-11-12T11:09:00+00:00"
+            "time": "2026-01-28T07:10:35+00:00"
         },
         {
             "name": "symfony/mailer",
@@ -8711,16 +8450,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v5.4.47",
+            "version": "v5.4.51",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "5d1662fb32ebc94f17ddb8d635454a776066733d"
+                "reference": "467bfc56f18f5ef6d5ccb09324d7e988c1c0a98f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/5d1662fb32ebc94f17ddb8d635454a776066733d",
-                "reference": "5d1662fb32ebc94f17ddb8d635454a776066733d",
+                "url": "https://api.github.com/repos/symfony/process/zipball/467bfc56f18f5ef6d5ccb09324d7e988c1c0a98f",
+                "reference": "467bfc56f18f5ef6d5ccb09324d7e988c1c0a98f",
                 "shasum": ""
             },
             "require": {
@@ -8753,7 +8492,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v5.4.47"
+                "source": "https://github.com/symfony/process/tree/v5.4.51"
             },
             "funding": [
                 {
@@ -8765,11 +8504,15 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-06T11:36:42+00:00"
+            "time": "2026-01-26T15:53:37+00:00"
         },
         {
             "name": "symfony/property-access",
@@ -9436,6 +9179,7 @@
                     "type": "tidelift"
                 }
             ],
+            "abandoned": true,
             "time": "2024-09-25T14:11:13+00:00"
         },
         {
