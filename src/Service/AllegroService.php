@@ -116,7 +116,7 @@ class AllegroService
     /**
      * @var ?string
      */
-    private $proxyPort;
+    private $proxyHostPort;
 
 
     public function __construct(
@@ -128,7 +128,7 @@ class AllegroService
         Security $security,
         $allegroOnbekendeSchuldeiser,
         ?string $proxyHostIp = null,
-        ?string $proxyPort = null,
+        ?string $proxyHostPort = null,
     ) {
         $this->loginWsdl = sprintf('%s?service=LoginService', $allegroEndpoint);
         $this->schuldHulpWsdl = sprintf('%s?service=SchuldHulpService', $allegroEndpoint);
@@ -139,7 +139,7 @@ class AllegroService
         $this->em = $em;
         $this->onbekendeSchuldeiser = (string)$allegroOnbekendeSchuldeiser;
         $this->proxyHostIp = $proxyHostIp;
-        $this->proxyPort = $proxyPort;
+        $this->proxyPort = $proxyHostPort;
     }
 
     /**
@@ -496,15 +496,15 @@ class AllegroService
 
     private function getSchuldHulpService(
             Organisatie $organisatie,
-            ?string $proxyHost = null,
-            ?string $proxyPort = null
+            ?string $proxyHostIp = null,
+            ?string $proxyHostPort = null
         ): AllegroSchuldHulpClient
     {
         return SchuldHulpClientFactory::factory(
-            $this->schuldHulpWsdl, 
+            $this->schuldHulpWsdl,
             $organisatie,
-            $proxyHost,
-            $proxyPort
+            $proxyHostIp,
+            $proxyHostPort
         );
     }
 
@@ -523,14 +523,14 @@ class AllegroService
 
     private function getLoginService(
         ?Organisatie $organisatie = null,
-        ?string $proxyHost = null,
-        ?string $proxyPort = null
+        ?string $proxyHostIp = null,
+        ?string $proxyHostPort = null
     ): AllegroLoginClient {
         return LoginClientFactory::factory(
             $this->loginWsdl,
             $organisatie,
-            $proxyHost,
-            $proxyPort
+            $proxyHostIp,
+            $proxyHostPort
         );
     }
 
@@ -541,7 +541,7 @@ class AllegroService
     public function getSRVEisers(Dossier $dossier, TSRVAanvraagHeader $header): ?TSRVEisers
     {
         $schuldhulpService = $this->getSchuldHulpService($dossier->getOrganisatie(), $this->proxyHostIp, $this->proxyPort);
-        
+
         return $schuldhulpService->getSRVEisers(
             (new SchuldHulpServiceGetSRVEisers(
                 (new TSRVAanvraagHeader(
