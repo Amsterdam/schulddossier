@@ -14,7 +14,7 @@ class AllegroCommandHelper
         $this->em = $em;
     }
 
-    public function getAllegroIdFromAnyOrg(): Organisatie|null
+    public function getAllegroUserFromAnyOrg(): Organisatie|null
     {
         /** @var OrganisatieRepository $organisatieRepository */
         $organisatieRepository = $this->em->getRepository(Organisatie::class);

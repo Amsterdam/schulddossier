@@ -56,7 +56,7 @@ class SyncDossierWithAllegroCommand extends Command
         $io->info('Looking up allegro credentials');
 
         /** @var Organisatie $allegroUser */
-        $allegroUser = $this->allegroCommandHelper->getAllegroIdFromAnyOrg();
+        $allegroUser = $this->allegroCommandHelper->getAllegroUserFromAnyOrg();
 
         if (!isset($allegroUser)) {
             $io->info('No organistation found whith a complete set of Allegro login data');
