@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TSRVAanvraag implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader
      */
@@ -527,7 +526,4 @@ class TSRVAanvraag implements RequestInterface
 
         return $new;
     }
-
-
 }
-

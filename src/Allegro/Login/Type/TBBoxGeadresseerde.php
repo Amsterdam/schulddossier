@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBoxGeadresseerde implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TMedewerker
      */
@@ -68,7 +67,4 @@ class TBBoxGeadresseerde implements RequestInterface
 
         return $new;
     }
-
-
 }
-

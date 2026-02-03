@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class RCHeaderArray
 {
-
     /**
      * @var TRCHeader[] $TRCHeader
      */
     protected $TRCHeader = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class RCHeaderArray
      */
     public function getTRCHeader()
     {
-      return $this->TRCHeader;
+        return $this->TRCHeader;
     }
 
     /**
@@ -30,8 +28,7 @@ class RCHeaderArray
      */
     public function setTRCHeader(array $TRCHeader = null)
     {
-      $this->TRCHeader = $TRCHeader;
-      return $this;
+        $this->TRCHeader = $TRCHeader;
+        return $this;
     }
-
 }

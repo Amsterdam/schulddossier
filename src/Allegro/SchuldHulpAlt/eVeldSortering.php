@@ -13,6 +13,4 @@ class eVeldSortering
     const vsGelezen = 'vsGelezen';
     const vsGearchiveerd = 'vsGearchiveerd';
     const vsBijlagen = 'vsBijlagen';
-
-
 }

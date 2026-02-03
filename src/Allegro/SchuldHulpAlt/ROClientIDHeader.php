@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class ROClientIDHeader
 {
-
     /**
      * @var string $ID
      */
@@ -15,7 +14,7 @@ class ROClientIDHeader
      */
     public function __construct($ID)
     {
-      $this->ID = $ID;
+        $this->ID = $ID;
     }
 
     /**
@@ -23,7 +22,7 @@ class ROClientIDHeader
      */
     public function getID()
     {
-      return $this->ID;
+        return $this->ID;
     }
 
     /**
@@ -32,8 +31,7 @@ class ROClientIDHeader
      */
     public function setID($ID)
     {
-      $this->ID = $ID;
-      return $this;
+        $this->ID = $ID;
+        return $this;
     }
-
 }

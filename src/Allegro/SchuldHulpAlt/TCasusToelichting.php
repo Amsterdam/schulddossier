@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TCasusToelichting
 {
-
     /**
      * @var int $VolgnummerCasus
      */
@@ -57,14 +56,14 @@ class TCasusToelichting
      */
     public function __construct($VolgnummerCasus, $Titel, $TitelTitel, $Medewerker, \DateTime $Datum, $SubTitel, $SubTitelTitel, $Tekst)
     {
-      $this->VolgnummerCasus = $VolgnummerCasus;
-      $this->Titel = $Titel;
-      $this->TitelTitel = $TitelTitel;
-      $this->Medewerker = $Medewerker;
-      $this->Datum = $Datum->format(\DateTime::ATOM);
-      $this->SubTitel = $SubTitel;
-      $this->SubTitelTitel = $SubTitelTitel;
-      $this->Tekst = $Tekst;
+        $this->VolgnummerCasus = $VolgnummerCasus;
+        $this->Titel = $Titel;
+        $this->TitelTitel = $TitelTitel;
+        $this->Medewerker = $Medewerker;
+        $this->Datum = $Datum->format(\DateTime::ATOM);
+        $this->SubTitel = $SubTitel;
+        $this->SubTitelTitel = $SubTitelTitel;
+        $this->Tekst = $Tekst;
     }
 
     /**
@@ -72,7 +71,7 @@ class TCasusToelichting
      */
     public function getVolgnummerCasus()
     {
-      return $this->VolgnummerCasus;
+        return $this->VolgnummerCasus;
     }
 
     /**
@@ -81,8 +80,8 @@ class TCasusToelichting
      */
     public function setVolgnummerCasus($VolgnummerCasus)
     {
-      $this->VolgnummerCasus = $VolgnummerCasus;
-      return $this;
+        $this->VolgnummerCasus = $VolgnummerCasus;
+        return $this;
     }
 
     /**
@@ -90,7 +89,7 @@ class TCasusToelichting
      */
     public function getTitel()
     {
-      return $this->Titel;
+        return $this->Titel;
     }
 
     /**
@@ -99,8 +98,8 @@ class TCasusToelichting
      */
     public function setTitel($Titel)
     {
-      $this->Titel = $Titel;
-      return $this;
+        $this->Titel = $Titel;
+        return $this;
     }
 
     /**
@@ -108,7 +107,7 @@ class TCasusToelichting
      */
     public function getTitelTitel()
     {
-      return $this->TitelTitel;
+        return $this->TitelTitel;
     }
 
     /**
@@ -117,8 +116,8 @@ class TCasusToelichting
      */
     public function setTitelTitel($TitelTitel)
     {
-      $this->TitelTitel = $TitelTitel;
-      return $this;
+        $this->TitelTitel = $TitelTitel;
+        return $this;
     }
 
     /**
@@ -126,7 +125,7 @@ class TCasusToelichting
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -135,8 +134,8 @@ class TCasusToelichting
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -144,15 +143,15 @@ class TCasusToelichting
      */
     public function getDatum()
     {
-      if ($this->Datum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Datum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Datum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Datum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -161,8 +160,8 @@ class TCasusToelichting
      */
     public function setDatum(\DateTime $Datum)
     {
-      $this->Datum = $Datum->format(\DateTime::ATOM);
-      return $this;
+        $this->Datum = $Datum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -170,7 +169,7 @@ class TCasusToelichting
      */
     public function getSubTitel()
     {
-      return $this->SubTitel;
+        return $this->SubTitel;
     }
 
     /**
@@ -179,8 +178,8 @@ class TCasusToelichting
      */
     public function setSubTitel($SubTitel)
     {
-      $this->SubTitel = $SubTitel;
-      return $this;
+        $this->SubTitel = $SubTitel;
+        return $this;
     }
 
     /**
@@ -188,7 +187,7 @@ class TCasusToelichting
      */
     public function getSubTitelTitel()
     {
-      return $this->SubTitelTitel;
+        return $this->SubTitelTitel;
     }
 
     /**
@@ -197,8 +196,8 @@ class TCasusToelichting
      */
     public function setSubTitelTitel($SubTitelTitel)
     {
-      $this->SubTitelTitel = $SubTitelTitel;
-      return $this;
+        $this->SubTitelTitel = $SubTitelTitel;
+        return $this;
     }
 
     /**
@@ -206,7 +205,7 @@ class TCasusToelichting
      */
     public function getTekst()
     {
-      return $this->Tekst;
+        return $this->Tekst;
     }
 
     /**
@@ -215,8 +214,7 @@ class TCasusToelichting
      */
     public function setTekst($Tekst)
     {
-      $this->Tekst = $Tekst;
-      return $this;
+        $this->Tekst = $Tekst;
+        return $this;
     }
-
 }

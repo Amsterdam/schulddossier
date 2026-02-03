@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TPLAanvraag
 {
-
     /**
      * @var int $Relatiecode
      */
@@ -111,23 +110,23 @@ class TPLAanvraag
      */
     public function __construct($Relatiecode, $Volgnummer, \DateTime $DatumAanvraag, $SoortLening, $MedelenerCode, $Medewerker, $GewenstKrediet, $Status, \DateTime $DatumStatus, $RedenAfwijzing, \DateTime $DatumStatusA, \DateTime $DatumStatusB, \DateTime $DatumStatusC, \DateTime $DatumStatusD, \DateTime $DatumStatusE, \DateTime $DatumStatusAfIn, \DateTime $DatumStatusFiat)
     {
-      $this->Relatiecode = $Relatiecode;
-      $this->Volgnummer = $Volgnummer;
-      $this->DatumAanvraag = $DatumAanvraag->format(\DateTime::ATOM);
-      $this->SoortLening = $SoortLening;
-      $this->MedelenerCode = $MedelenerCode;
-      $this->Medewerker = $Medewerker;
-      $this->GewenstKrediet = $GewenstKrediet;
-      $this->Status = $Status;
-      $this->DatumStatus = $DatumStatus->format(\DateTime::ATOM);
-      $this->RedenAfwijzing = $RedenAfwijzing;
-      $this->DatumStatusA = $DatumStatusA->format(\DateTime::ATOM);
-      $this->DatumStatusB = $DatumStatusB->format(\DateTime::ATOM);
-      $this->DatumStatusC = $DatumStatusC->format(\DateTime::ATOM);
-      $this->DatumStatusD = $DatumStatusD->format(\DateTime::ATOM);
-      $this->DatumStatusE = $DatumStatusE->format(\DateTime::ATOM);
-      $this->DatumStatusAfIn = $DatumStatusAfIn->format(\DateTime::ATOM);
-      $this->DatumStatusFiat = $DatumStatusFiat->format(\DateTime::ATOM);
+        $this->Relatiecode = $Relatiecode;
+        $this->Volgnummer = $Volgnummer;
+        $this->DatumAanvraag = $DatumAanvraag->format(\DateTime::ATOM);
+        $this->SoortLening = $SoortLening;
+        $this->MedelenerCode = $MedelenerCode;
+        $this->Medewerker = $Medewerker;
+        $this->GewenstKrediet = $GewenstKrediet;
+        $this->Status = $Status;
+        $this->DatumStatus = $DatumStatus->format(\DateTime::ATOM);
+        $this->RedenAfwijzing = $RedenAfwijzing;
+        $this->DatumStatusA = $DatumStatusA->format(\DateTime::ATOM);
+        $this->DatumStatusB = $DatumStatusB->format(\DateTime::ATOM);
+        $this->DatumStatusC = $DatumStatusC->format(\DateTime::ATOM);
+        $this->DatumStatusD = $DatumStatusD->format(\DateTime::ATOM);
+        $this->DatumStatusE = $DatumStatusE->format(\DateTime::ATOM);
+        $this->DatumStatusAfIn = $DatumStatusAfIn->format(\DateTime::ATOM);
+        $this->DatumStatusFiat = $DatumStatusFiat->format(\DateTime::ATOM);
     }
 
     /**
@@ -135,7 +134,7 @@ class TPLAanvraag
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -144,8 +143,8 @@ class TPLAanvraag
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -153,7 +152,7 @@ class TPLAanvraag
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -162,8 +161,8 @@ class TPLAanvraag
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -171,15 +170,15 @@ class TPLAanvraag
      */
     public function getDatumAanvraag()
     {
-      if ($this->DatumAanvraag == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumAanvraag);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumAanvraag == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumAanvraag);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -188,8 +187,8 @@ class TPLAanvraag
      */
     public function setDatumAanvraag(\DateTime $DatumAanvraag)
     {
-      $this->DatumAanvraag = $DatumAanvraag->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumAanvraag = $DatumAanvraag->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -197,7 +196,7 @@ class TPLAanvraag
      */
     public function getSoortLening()
     {
-      return $this->SoortLening;
+        return $this->SoortLening;
     }
 
     /**
@@ -206,8 +205,8 @@ class TPLAanvraag
      */
     public function setSoortLening($SoortLening)
     {
-      $this->SoortLening = $SoortLening;
-      return $this;
+        $this->SoortLening = $SoortLening;
+        return $this;
     }
 
     /**
@@ -215,7 +214,7 @@ class TPLAanvraag
      */
     public function getMedelenerCode()
     {
-      return $this->MedelenerCode;
+        return $this->MedelenerCode;
     }
 
     /**
@@ -224,8 +223,8 @@ class TPLAanvraag
      */
     public function setMedelenerCode($MedelenerCode)
     {
-      $this->MedelenerCode = $MedelenerCode;
-      return $this;
+        $this->MedelenerCode = $MedelenerCode;
+        return $this;
     }
 
     /**
@@ -233,7 +232,7 @@ class TPLAanvraag
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -242,8 +241,8 @@ class TPLAanvraag
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -251,7 +250,7 @@ class TPLAanvraag
      */
     public function getGewenstKrediet()
     {
-      return $this->GewenstKrediet;
+        return $this->GewenstKrediet;
     }
 
     /**
@@ -260,8 +259,8 @@ class TPLAanvraag
      */
     public function setGewenstKrediet($GewenstKrediet)
     {
-      $this->GewenstKrediet = $GewenstKrediet;
-      return $this;
+        $this->GewenstKrediet = $GewenstKrediet;
+        return $this;
     }
 
     /**
@@ -269,7 +268,7 @@ class TPLAanvraag
      */
     public function getStatus()
     {
-      return $this->Status;
+        return $this->Status;
     }
 
     /**
@@ -278,8 +277,8 @@ class TPLAanvraag
      */
     public function setStatus($Status)
     {
-      $this->Status = $Status;
-      return $this;
+        $this->Status = $Status;
+        return $this;
     }
 
     /**
@@ -287,15 +286,15 @@ class TPLAanvraag
      */
     public function getDatumStatus()
     {
-      if ($this->DatumStatus == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumStatus);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumStatus == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumStatus);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -304,8 +303,8 @@ class TPLAanvraag
      */
     public function setDatumStatus(\DateTime $DatumStatus)
     {
-      $this->DatumStatus = $DatumStatus->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumStatus = $DatumStatus->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -313,7 +312,7 @@ class TPLAanvraag
      */
     public function getRedenAfwijzing()
     {
-      return $this->RedenAfwijzing;
+        return $this->RedenAfwijzing;
     }
 
     /**
@@ -322,8 +321,8 @@ class TPLAanvraag
      */
     public function setRedenAfwijzing($RedenAfwijzing)
     {
-      $this->RedenAfwijzing = $RedenAfwijzing;
-      return $this;
+        $this->RedenAfwijzing = $RedenAfwijzing;
+        return $this;
     }
 
     /**
@@ -331,15 +330,15 @@ class TPLAanvraag
      */
     public function getDatumStatusA()
     {
-      if ($this->DatumStatusA == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumStatusA);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumStatusA == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumStatusA);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -348,8 +347,8 @@ class TPLAanvraag
      */
     public function setDatumStatusA(\DateTime $DatumStatusA)
     {
-      $this->DatumStatusA = $DatumStatusA->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumStatusA = $DatumStatusA->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -357,15 +356,15 @@ class TPLAanvraag
      */
     public function getDatumStatusB()
     {
-      if ($this->DatumStatusB == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumStatusB);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumStatusB == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumStatusB);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -374,8 +373,8 @@ class TPLAanvraag
      */
     public function setDatumStatusB(\DateTime $DatumStatusB)
     {
-      $this->DatumStatusB = $DatumStatusB->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumStatusB = $DatumStatusB->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -383,15 +382,15 @@ class TPLAanvraag
      */
     public function getDatumStatusC()
     {
-      if ($this->DatumStatusC == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumStatusC);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumStatusC == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumStatusC);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -400,8 +399,8 @@ class TPLAanvraag
      */
     public function setDatumStatusC(\DateTime $DatumStatusC)
     {
-      $this->DatumStatusC = $DatumStatusC->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumStatusC = $DatumStatusC->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -409,15 +408,15 @@ class TPLAanvraag
      */
     public function getDatumStatusD()
     {
-      if ($this->DatumStatusD == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumStatusD);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumStatusD == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumStatusD);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -426,8 +425,8 @@ class TPLAanvraag
      */
     public function setDatumStatusD(\DateTime $DatumStatusD)
     {
-      $this->DatumStatusD = $DatumStatusD->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumStatusD = $DatumStatusD->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -435,15 +434,15 @@ class TPLAanvraag
      */
     public function getDatumStatusE()
     {
-      if ($this->DatumStatusE == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumStatusE);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumStatusE == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumStatusE);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -452,8 +451,8 @@ class TPLAanvraag
      */
     public function setDatumStatusE(\DateTime $DatumStatusE)
     {
-      $this->DatumStatusE = $DatumStatusE->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumStatusE = $DatumStatusE->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -461,15 +460,15 @@ class TPLAanvraag
      */
     public function getDatumStatusAfIn()
     {
-      if ($this->DatumStatusAfIn == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumStatusAfIn);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumStatusAfIn == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumStatusAfIn);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -478,8 +477,8 @@ class TPLAanvraag
      */
     public function setDatumStatusAfIn(\DateTime $DatumStatusAfIn)
     {
-      $this->DatumStatusAfIn = $DatumStatusAfIn->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumStatusAfIn = $DatumStatusAfIn->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -487,15 +486,15 @@ class TPLAanvraag
      */
     public function getDatumStatusFiat()
     {
-      if ($this->DatumStatusFiat == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumStatusFiat);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumStatusFiat == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumStatusFiat);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -504,8 +503,7 @@ class TPLAanvraag
      */
     public function setDatumStatusFiat(\DateTime $DatumStatusFiat)
     {
-      $this->DatumStatusFiat = $DatumStatusFiat->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumStatusFiat = $DatumStatusFiat->format(\DateTime::ATOM);
+        return $this;
     }
-
 }

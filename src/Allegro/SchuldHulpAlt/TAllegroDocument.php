@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TAllegroDocument
 {
-
     /**
      * @var TDocumentSleutel $DocumentSleutel
      */
@@ -45,12 +44,12 @@ class TAllegroDocument
      */
     public function __construct($DocumentSleutel, $Relatiecode, $Activiteit, $SoortActiviteit, $Onderwerp, $Omschrijving)
     {
-      $this->DocumentSleutel = $DocumentSleutel;
-      $this->Relatiecode = $Relatiecode;
-      $this->Activiteit = $Activiteit;
-      $this->SoortActiviteit = $SoortActiviteit;
-      $this->Onderwerp = $Onderwerp;
-      $this->Omschrijving = $Omschrijving;
+        $this->DocumentSleutel = $DocumentSleutel;
+        $this->Relatiecode = $Relatiecode;
+        $this->Activiteit = $Activiteit;
+        $this->SoortActiviteit = $SoortActiviteit;
+        $this->Onderwerp = $Onderwerp;
+        $this->Omschrijving = $Omschrijving;
     }
 
     /**
@@ -58,7 +57,7 @@ class TAllegroDocument
      */
     public function getDocumentSleutel()
     {
-      return $this->DocumentSleutel;
+        return $this->DocumentSleutel;
     }
 
     /**
@@ -67,8 +66,8 @@ class TAllegroDocument
      */
     public function setDocumentSleutel($DocumentSleutel)
     {
-      $this->DocumentSleutel = $DocumentSleutel;
-      return $this;
+        $this->DocumentSleutel = $DocumentSleutel;
+        return $this;
     }
 
     /**
@@ -76,7 +75,7 @@ class TAllegroDocument
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -85,8 +84,8 @@ class TAllegroDocument
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -94,7 +93,7 @@ class TAllegroDocument
      */
     public function getActiviteit()
     {
-      return $this->Activiteit;
+        return $this->Activiteit;
     }
 
     /**
@@ -103,8 +102,8 @@ class TAllegroDocument
      */
     public function setActiviteit($Activiteit)
     {
-      $this->Activiteit = $Activiteit;
-      return $this;
+        $this->Activiteit = $Activiteit;
+        return $this;
     }
 
     /**
@@ -112,7 +111,7 @@ class TAllegroDocument
      */
     public function getSoortActiviteit()
     {
-      return $this->SoortActiviteit;
+        return $this->SoortActiviteit;
     }
 
     /**
@@ -121,8 +120,8 @@ class TAllegroDocument
      */
     public function setSoortActiviteit($SoortActiviteit)
     {
-      $this->SoortActiviteit = $SoortActiviteit;
-      return $this;
+        $this->SoortActiviteit = $SoortActiviteit;
+        return $this;
     }
 
     /**
@@ -130,7 +129,7 @@ class TAllegroDocument
      */
     public function getOnderwerp()
     {
-      return $this->Onderwerp;
+        return $this->Onderwerp;
     }
 
     /**
@@ -139,8 +138,8 @@ class TAllegroDocument
      */
     public function setOnderwerp($Onderwerp)
     {
-      $this->Onderwerp = $Onderwerp;
-      return $this;
+        $this->Onderwerp = $Onderwerp;
+        return $this;
     }
 
     /**
@@ -148,7 +147,7 @@ class TAllegroDocument
      */
     public function getOmschrijving()
     {
-      return $this->Omschrijving;
+        return $this->Omschrijving;
     }
 
     /**
@@ -157,8 +156,7 @@ class TAllegroDocument
      */
     public function setOmschrijving($Omschrijving)
     {
-      $this->Omschrijving = $Omschrijving;
-      return $this;
+        $this->Omschrijving = $Omschrijving;
+        return $this;
     }
-
 }

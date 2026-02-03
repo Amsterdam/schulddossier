@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TSBEisers implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SBEiserArray
      */
@@ -176,7 +175,4 @@ class TSBEisers implements RequestInterface
 
         return $new;
     }
-
-
 }
-

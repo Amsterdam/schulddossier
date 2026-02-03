@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TSaldoReservering implements RequestInterface
 {
-
     /**
      * @var \DateTimeInterface
      */
@@ -123,7 +121,4 @@ class TSaldoReservering implements RequestInterface
 
         return $new;
     }
-
-
 }
-

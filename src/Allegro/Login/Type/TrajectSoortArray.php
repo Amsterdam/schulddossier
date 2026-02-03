@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TrajectSoortArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTrajectSoort
      */
@@ -41,7 +40,4 @@ class TrajectSoortArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

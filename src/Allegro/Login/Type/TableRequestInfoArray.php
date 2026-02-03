@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TableRequestInfoArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TableRequestInfo
      */
@@ -41,7 +40,4 @@ class TableRequestInfoArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

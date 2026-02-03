@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class CasusHeaderArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader
      */
@@ -41,7 +40,4 @@ class CasusHeaderArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

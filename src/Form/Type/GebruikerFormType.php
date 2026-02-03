@@ -63,7 +63,7 @@ class GebruikerFormType extends AbstractType
             'help' => 'DB: gebruiker_organisatie.gebruiker_id gebruiker_organisatie.organisatie_id',
             'query_builder' => function (EntityRepository $repository) use ($user) {
                 $qb = $repository->createQueryBuilder('organisatie');
-                if($user->getType() === Gebruiker::TYPE_SHV_KEYUSER){
+                if ($user->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
                     $qb->andWhere('organisatie IN (:organisaties)');
                     $qb->setParameter('organisaties', $user->getOrganisaties());
                 }

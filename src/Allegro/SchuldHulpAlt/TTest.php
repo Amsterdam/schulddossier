@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TTest
 {
-
     /**
      * @var string $Veld1
      */
@@ -21,8 +20,8 @@ class TTest
      */
     public function __construct($Veld1, $Veld2)
     {
-      $this->Veld1 = $Veld1;
-      $this->Veld2 = $Veld2;
+        $this->Veld1 = $Veld1;
+        $this->Veld2 = $Veld2;
     }
 
     /**
@@ -30,7 +29,7 @@ class TTest
      */
     public function getVeld1()
     {
-      return $this->Veld1;
+        return $this->Veld1;
     }
 
     /**
@@ -39,8 +38,8 @@ class TTest
      */
     public function setVeld1($Veld1)
     {
-      $this->Veld1 = $Veld1;
-      return $this;
+        $this->Veld1 = $Veld1;
+        return $this;
     }
 
     /**
@@ -48,7 +47,7 @@ class TTest
      */
     public function getVeld2()
     {
-      return $this->Veld2;
+        return $this->Veld2;
     }
 
     /**
@@ -57,8 +56,7 @@ class TTest
      */
     public function setVeld2($Veld2)
     {
-      $this->Veld2 = $Veld2;
-      return $this;
+        $this->Veld2 = $Veld2;
+        return $this;
     }
-
 }

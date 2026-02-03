@@ -11,7 +11,6 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 
 class AantekeningFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
 {
-
     /**
      * @inheritDoc
      */
