@@ -39,6 +39,7 @@ class AllegroController extends AbstractController
                 $dossier->getAllegroNummer());
             $aanvraag = $allegroService->getSRVAanvraag($dossier->getOrganisatie(), $header);
             $srvEisers = $allegroService->getSRVEisers($dossier, $header);
+            // $sbOaverzicht = $allegroService->getSBOverzicht($dossier); Geen response
             $eisers = $srvEisers->getEisers()->getTSRVEiser();
         } catch (\Exception|\Error $e) {
             // Geen eisers gevonden
