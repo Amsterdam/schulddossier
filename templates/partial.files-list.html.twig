@@ -2,34 +2,45 @@
     <ul class="bestanden">
         {% for dossierDocument in dossierDocumenten if dossierDocument.document.inPrullenbak == false %}
             <li>
-                {#{% if dossierDocument.document.origineleExtensie|lower == 'pdf' %}#}
                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
                    class="bestand-zoom" title="Bekijk deze {{ dossierDocument.document.origineleExtensie|lower }}"
                    data-handler="bestand" target="_blank">
-                    {#{{ dossierDocument.document.naam }}#}
                     <i class="icon-document"
                        data-extension="{{ dossierDocument.document.origineleExtensie|lower }}"></i>
                     <span class="bestand-naam">{{ dossierDocument.document.naam }}</span>
                 </a>
-                {#{% endif %}#}
 
-
-
-                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_downloaddocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
-                   title="{{ dossierDocument.document.naam }}"
-                   class="bestand bestand-type-{{ dossierDocument.document.origineleExtensie|lower }}">
-
-                </a>
-
-                {% if removeFile is defined %}
-                    {% do removeFile.setRendered() %}
-                    <input class="bestand-verwijderen-check" type="checkbox"
-                           name="{{ removeFile.vars.prototype.vars.full_name|replace({'__name__': dossierDocument.document.id}) }}"
-                           id="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}"
-                           value="{{ dossierDocument.document.id }}">
-                    <label class="bestand-verwijderen"
-                           for="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}">verwijderen</label>
-                {% endif %}
+                <div class="bestand-action-list-container">
+                    <div class="bestand-action-list">
+                        <div class="bestand-action-list-item">           
+                            {% if removeFile is defined %}
+                                {% do removeFile.setRendered() %}
+                                <input class="bestand-verwijderen-check" type="checkbox"
+                                       name="{{ removeFile.vars.prototype.vars.full_name|replace({'__name__': dossierDocument.document.id}) }}"
+                                       id="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}"
+                                       value="{{ dossierDocument.document.id }}">
+                                <label class="bestand-action-list-item-bestand-verwijderen"
+                                       for="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}">verwijderen
+                                </label>
+                            {% endif %}      
+                        </div>
+                        {% if dossierDocument.document.origineleExtensie|lower == 'pdf' %}
+                            <div class="bestand-action-list-item">
+                                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}" 
+                                    title="{{ dossierDocument.document.naam }}" 
+                                    class="bestand-action-list-item-full-screen" 
+                                    target="_blank">
+                                </a>
+                            </div>
+                        {% endif %}
+                        <div class="bestand-action-list-item">
+                            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_downloaddocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
+                               title="{{ dossierDocument.document.naam }}"
+                               class="bestand-action-list-item-download">
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </li>
         {% endfor %}
     </ul>
