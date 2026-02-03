@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TOrganisatie
 {
-
     /**
      * @var int $RelatieCode
      */
@@ -31,8 +30,8 @@ class TOrganisatie
      */
     public function __construct($RelatieCode, $Naam)
     {
-      $this->RelatieCode = $RelatieCode;
-      $this->Naam = $Naam;
+        $this->RelatieCode = $RelatieCode;
+        $this->Naam = $Naam;
     }
 
     /**
@@ -40,7 +39,7 @@ class TOrganisatie
      */
     public function getRelatieCode()
     {
-      return $this->RelatieCode;
+        return $this->RelatieCode;
     }
 
     /**
@@ -49,8 +48,8 @@ class TOrganisatie
      */
     public function setRelatieCode($RelatieCode)
     {
-      $this->RelatieCode = $RelatieCode;
-      return $this;
+        $this->RelatieCode = $RelatieCode;
+        return $this;
     }
 
     /**
@@ -58,7 +57,7 @@ class TOrganisatie
      */
     public function getNaam()
     {
-      return $this->Naam;
+        return $this->Naam;
     }
 
     /**
@@ -67,8 +66,8 @@ class TOrganisatie
      */
     public function setNaam($Naam)
     {
-      $this->Naam = $Naam;
-      return $this;
+        $this->Naam = $Naam;
+        return $this;
     }
 
     /**
@@ -76,7 +75,7 @@ class TOrganisatie
      */
     public function getBezoekAdres()
     {
-      return $this->BezoekAdres;
+        return $this->BezoekAdres;
     }
 
     /**
@@ -85,8 +84,8 @@ class TOrganisatie
      */
     public function setBezoekAdres($BezoekAdres)
     {
-      $this->BezoekAdres = $BezoekAdres;
-      return $this;
+        $this->BezoekAdres = $BezoekAdres;
+        return $this;
     }
 
     /**
@@ -94,7 +93,7 @@ class TOrganisatie
      */
     public function getPostAdres()
     {
-      return $this->PostAdres;
+        return $this->PostAdres;
     }
 
     /**
@@ -103,8 +102,7 @@ class TOrganisatie
      */
     public function setPostAdres($PostAdres)
     {
-      $this->PostAdres = $PostAdres;
-      return $this;
+        $this->PostAdres = $PostAdres;
+        return $this;
     }
-
 }

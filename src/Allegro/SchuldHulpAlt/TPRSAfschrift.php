@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TPRSAfschrift
 {
-
     /**
      * @var int $Relatiecode
      */
@@ -87,19 +86,19 @@ class TPRSAfschrift
      */
     public function __construct($Relatiecode, $VolgnummerAfschrift, \DateTime $DatumAfschrift, $SaldoPrs, $TotaalBedragBijMutaties, $TotaalBedragAfMutaties, $TotaalInReserveringen, $TotaalUitReserveringen, $TotaalSaldoReserveringen, $HuidigPrsSaldo, $HuidigTotaalSaldoReserveringen, $VorigSaldo, \DateTime $VorigDatumAfschift)
     {
-      $this->Relatiecode = $Relatiecode;
-      $this->VolgnummerAfschrift = $VolgnummerAfschrift;
-      $this->DatumAfschrift = $DatumAfschrift->format(\DateTime::ATOM);
-      $this->SaldoPrs = $SaldoPrs;
-      $this->TotaalBedragBijMutaties = $TotaalBedragBijMutaties;
-      $this->TotaalBedragAfMutaties = $TotaalBedragAfMutaties;
-      $this->TotaalInReserveringen = $TotaalInReserveringen;
-      $this->TotaalUitReserveringen = $TotaalUitReserveringen;
-      $this->TotaalSaldoReserveringen = $TotaalSaldoReserveringen;
-      $this->HuidigPrsSaldo = $HuidigPrsSaldo;
-      $this->HuidigTotaalSaldoReserveringen = $HuidigTotaalSaldoReserveringen;
-      $this->VorigSaldo = $VorigSaldo;
-      $this->VorigDatumAfschift = $VorigDatumAfschift->format(\DateTime::ATOM);
+        $this->Relatiecode = $Relatiecode;
+        $this->VolgnummerAfschrift = $VolgnummerAfschrift;
+        $this->DatumAfschrift = $DatumAfschrift->format(\DateTime::ATOM);
+        $this->SaldoPrs = $SaldoPrs;
+        $this->TotaalBedragBijMutaties = $TotaalBedragBijMutaties;
+        $this->TotaalBedragAfMutaties = $TotaalBedragAfMutaties;
+        $this->TotaalInReserveringen = $TotaalInReserveringen;
+        $this->TotaalUitReserveringen = $TotaalUitReserveringen;
+        $this->TotaalSaldoReserveringen = $TotaalSaldoReserveringen;
+        $this->HuidigPrsSaldo = $HuidigPrsSaldo;
+        $this->HuidigTotaalSaldoReserveringen = $HuidigTotaalSaldoReserveringen;
+        $this->VorigSaldo = $VorigSaldo;
+        $this->VorigDatumAfschift = $VorigDatumAfschift->format(\DateTime::ATOM);
     }
 
     /**
@@ -107,7 +106,7 @@ class TPRSAfschrift
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -116,8 +115,8 @@ class TPRSAfschrift
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -125,7 +124,7 @@ class TPRSAfschrift
      */
     public function getVolgnummerAfschrift()
     {
-      return $this->VolgnummerAfschrift;
+        return $this->VolgnummerAfschrift;
     }
 
     /**
@@ -134,8 +133,8 @@ class TPRSAfschrift
      */
     public function setVolgnummerAfschrift($VolgnummerAfschrift)
     {
-      $this->VolgnummerAfschrift = $VolgnummerAfschrift;
-      return $this;
+        $this->VolgnummerAfschrift = $VolgnummerAfschrift;
+        return $this;
     }
 
     /**
@@ -143,15 +142,15 @@ class TPRSAfschrift
      */
     public function getDatumAfschrift()
     {
-      if ($this->DatumAfschrift == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumAfschrift);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumAfschrift == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumAfschrift);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -160,8 +159,8 @@ class TPRSAfschrift
      */
     public function setDatumAfschrift(\DateTime $DatumAfschrift)
     {
-      $this->DatumAfschrift = $DatumAfschrift->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumAfschrift = $DatumAfschrift->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -169,7 +168,7 @@ class TPRSAfschrift
      */
     public function getSaldoPrs()
     {
-      return $this->SaldoPrs;
+        return $this->SaldoPrs;
     }
 
     /**
@@ -178,8 +177,8 @@ class TPRSAfschrift
      */
     public function setSaldoPrs($SaldoPrs)
     {
-      $this->SaldoPrs = $SaldoPrs;
-      return $this;
+        $this->SaldoPrs = $SaldoPrs;
+        return $this;
     }
 
     /**
@@ -187,7 +186,7 @@ class TPRSAfschrift
      */
     public function getTotaalBedragBijMutaties()
     {
-      return $this->TotaalBedragBijMutaties;
+        return $this->TotaalBedragBijMutaties;
     }
 
     /**
@@ -196,8 +195,8 @@ class TPRSAfschrift
      */
     public function setTotaalBedragBijMutaties($TotaalBedragBijMutaties)
     {
-      $this->TotaalBedragBijMutaties = $TotaalBedragBijMutaties;
-      return $this;
+        $this->TotaalBedragBijMutaties = $TotaalBedragBijMutaties;
+        return $this;
     }
 
     /**
@@ -205,7 +204,7 @@ class TPRSAfschrift
      */
     public function getTotaalBedragAfMutaties()
     {
-      return $this->TotaalBedragAfMutaties;
+        return $this->TotaalBedragAfMutaties;
     }
 
     /**
@@ -214,8 +213,8 @@ class TPRSAfschrift
      */
     public function setTotaalBedragAfMutaties($TotaalBedragAfMutaties)
     {
-      $this->TotaalBedragAfMutaties = $TotaalBedragAfMutaties;
-      return $this;
+        $this->TotaalBedragAfMutaties = $TotaalBedragAfMutaties;
+        return $this;
     }
 
     /**
@@ -223,7 +222,7 @@ class TPRSAfschrift
      */
     public function getTotaalInReserveringen()
     {
-      return $this->TotaalInReserveringen;
+        return $this->TotaalInReserveringen;
     }
 
     /**
@@ -232,8 +231,8 @@ class TPRSAfschrift
      */
     public function setTotaalInReserveringen($TotaalInReserveringen)
     {
-      $this->TotaalInReserveringen = $TotaalInReserveringen;
-      return $this;
+        $this->TotaalInReserveringen = $TotaalInReserveringen;
+        return $this;
     }
 
     /**
@@ -241,7 +240,7 @@ class TPRSAfschrift
      */
     public function getTotaalUitReserveringen()
     {
-      return $this->TotaalUitReserveringen;
+        return $this->TotaalUitReserveringen;
     }
 
     /**
@@ -250,8 +249,8 @@ class TPRSAfschrift
      */
     public function setTotaalUitReserveringen($TotaalUitReserveringen)
     {
-      $this->TotaalUitReserveringen = $TotaalUitReserveringen;
-      return $this;
+        $this->TotaalUitReserveringen = $TotaalUitReserveringen;
+        return $this;
     }
 
     /**
@@ -259,7 +258,7 @@ class TPRSAfschrift
      */
     public function getTotaalSaldoReserveringen()
     {
-      return $this->TotaalSaldoReserveringen;
+        return $this->TotaalSaldoReserveringen;
     }
 
     /**
@@ -268,8 +267,8 @@ class TPRSAfschrift
      */
     public function setTotaalSaldoReserveringen($TotaalSaldoReserveringen)
     {
-      $this->TotaalSaldoReserveringen = $TotaalSaldoReserveringen;
-      return $this;
+        $this->TotaalSaldoReserveringen = $TotaalSaldoReserveringen;
+        return $this;
     }
 
     /**
@@ -277,7 +276,7 @@ class TPRSAfschrift
      */
     public function getHuidigPrsSaldo()
     {
-      return $this->HuidigPrsSaldo;
+        return $this->HuidigPrsSaldo;
     }
 
     /**
@@ -286,8 +285,8 @@ class TPRSAfschrift
      */
     public function setHuidigPrsSaldo($HuidigPrsSaldo)
     {
-      $this->HuidigPrsSaldo = $HuidigPrsSaldo;
-      return $this;
+        $this->HuidigPrsSaldo = $HuidigPrsSaldo;
+        return $this;
     }
 
     /**
@@ -295,7 +294,7 @@ class TPRSAfschrift
      */
     public function getHuidigTotaalSaldoReserveringen()
     {
-      return $this->HuidigTotaalSaldoReserveringen;
+        return $this->HuidigTotaalSaldoReserveringen;
     }
 
     /**
@@ -304,8 +303,8 @@ class TPRSAfschrift
      */
     public function setHuidigTotaalSaldoReserveringen($HuidigTotaalSaldoReserveringen)
     {
-      $this->HuidigTotaalSaldoReserveringen = $HuidigTotaalSaldoReserveringen;
-      return $this;
+        $this->HuidigTotaalSaldoReserveringen = $HuidigTotaalSaldoReserveringen;
+        return $this;
     }
 
     /**
@@ -313,7 +312,7 @@ class TPRSAfschrift
      */
     public function getVorigSaldo()
     {
-      return $this->VorigSaldo;
+        return $this->VorigSaldo;
     }
 
     /**
@@ -322,8 +321,8 @@ class TPRSAfschrift
      */
     public function setVorigSaldo($VorigSaldo)
     {
-      $this->VorigSaldo = $VorigSaldo;
-      return $this;
+        $this->VorigSaldo = $VorigSaldo;
+        return $this;
     }
 
     /**
@@ -331,15 +330,15 @@ class TPRSAfschrift
      */
     public function getVorigDatumAfschift()
     {
-      if ($this->VorigDatumAfschift == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->VorigDatumAfschift);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->VorigDatumAfschift == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->VorigDatumAfschift);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -348,8 +347,7 @@ class TPRSAfschrift
      */
     public function setVorigDatumAfschift(\DateTime $VorigDatumAfschift)
     {
-      $this->VorigDatumAfschift = $VorigDatumAfschift->format(\DateTime::ATOM);
-      return $this;
+        $this->VorigDatumAfschift = $VorigDatumAfschift->format(\DateTime::ATOM);
+        return $this;
     }
-
 }

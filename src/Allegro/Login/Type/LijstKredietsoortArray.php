@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class LijstKredietsoortArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TLijstKredietsoort
      */
@@ -41,7 +40,4 @@ class LijstKredietsoortArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

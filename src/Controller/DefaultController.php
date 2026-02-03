@@ -26,7 +26,7 @@ class DefaultController extends AbstractController
     {
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
-    
+
     /**
      * @Route("/app/debug")
      * @Security("is_granted('ROLE_USER')")
@@ -46,6 +46,6 @@ class DefaultController extends AbstractController
      */
     public function pingAction()
     {
-        return new JsonResponse(['status'=>'OK']);
+        return new JsonResponse(['status' => 'OK']);
     }
 }

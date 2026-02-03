@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TLijstOpdrachtgever
 {
-
     /**
      * @var int $RelatieCode
      */
@@ -27,9 +26,9 @@ class TLijstOpdrachtgever
      */
     public function __construct($RelatieCode, $Naam, $Vestigingsplaats)
     {
-      $this->RelatieCode = $RelatieCode;
-      $this->Naam = $Naam;
-      $this->Vestigingsplaats = $Vestigingsplaats;
+        $this->RelatieCode = $RelatieCode;
+        $this->Naam = $Naam;
+        $this->Vestigingsplaats = $Vestigingsplaats;
     }
 
     /**
@@ -37,7 +36,7 @@ class TLijstOpdrachtgever
      */
     public function getRelatieCode()
     {
-      return $this->RelatieCode;
+        return $this->RelatieCode;
     }
 
     /**
@@ -46,8 +45,8 @@ class TLijstOpdrachtgever
      */
     public function setRelatieCode($RelatieCode)
     {
-      $this->RelatieCode = $RelatieCode;
-      return $this;
+        $this->RelatieCode = $RelatieCode;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class TLijstOpdrachtgever
      */
     public function getNaam()
     {
-      return $this->Naam;
+        return $this->Naam;
     }
 
     /**
@@ -64,8 +63,8 @@ class TLijstOpdrachtgever
      */
     public function setNaam($Naam)
     {
-      $this->Naam = $Naam;
-      return $this;
+        $this->Naam = $Naam;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class TLijstOpdrachtgever
      */
     public function getVestigingsplaats()
     {
-      return $this->Vestigingsplaats;
+        return $this->Vestigingsplaats;
     }
 
     /**
@@ -82,8 +81,7 @@ class TLijstOpdrachtgever
      */
     public function setVestigingsplaats($Vestigingsplaats)
     {
-      $this->Vestigingsplaats = $Vestigingsplaats;
-      return $this;
+        $this->Vestigingsplaats = $Vestigingsplaats;
+        return $this;
     }
-
 }

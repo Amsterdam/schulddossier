@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TAfspraak
 {
-
     /**
      * @var \DateTime $StartTijdStip
      */
@@ -57,14 +56,14 @@ class TAfspraak
      */
     public function __construct(\DateTime $StartTijdStip, \DateTime $EindTijdStip, $Medewerker, $Locatie, $LocatieAdres, $LocatieSpreekkamer, $AfspraakCode, $AfspraakOmschrijving)
     {
-      $this->StartTijdStip = $StartTijdStip->format(\DateTime::ATOM);
-      $this->EindTijdStip = $EindTijdStip->format(\DateTime::ATOM);
-      $this->Medewerker = $Medewerker;
-      $this->Locatie = $Locatie;
-      $this->LocatieAdres = $LocatieAdres;
-      $this->LocatieSpreekkamer = $LocatieSpreekkamer;
-      $this->AfspraakCode = $AfspraakCode;
-      $this->AfspraakOmschrijving = $AfspraakOmschrijving;
+        $this->StartTijdStip = $StartTijdStip->format(\DateTime::ATOM);
+        $this->EindTijdStip = $EindTijdStip->format(\DateTime::ATOM);
+        $this->Medewerker = $Medewerker;
+        $this->Locatie = $Locatie;
+        $this->LocatieAdres = $LocatieAdres;
+        $this->LocatieSpreekkamer = $LocatieSpreekkamer;
+        $this->AfspraakCode = $AfspraakCode;
+        $this->AfspraakOmschrijving = $AfspraakOmschrijving;
     }
 
     /**
@@ -72,15 +71,15 @@ class TAfspraak
      */
     public function getStartTijdStip()
     {
-      if ($this->StartTijdStip == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->StartTijdStip);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->StartTijdStip == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->StartTijdStip);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -89,8 +88,8 @@ class TAfspraak
      */
     public function setStartTijdStip(\DateTime $StartTijdStip)
     {
-      $this->StartTijdStip = $StartTijdStip->format(\DateTime::ATOM);
-      return $this;
+        $this->StartTijdStip = $StartTijdStip->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -98,15 +97,15 @@ class TAfspraak
      */
     public function getEindTijdStip()
     {
-      if ($this->EindTijdStip == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->EindTijdStip);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->EindTijdStip == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->EindTijdStip);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -115,8 +114,8 @@ class TAfspraak
      */
     public function setEindTijdStip(\DateTime $EindTijdStip)
     {
-      $this->EindTijdStip = $EindTijdStip->format(\DateTime::ATOM);
-      return $this;
+        $this->EindTijdStip = $EindTijdStip->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -124,7 +123,7 @@ class TAfspraak
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -133,8 +132,8 @@ class TAfspraak
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -142,7 +141,7 @@ class TAfspraak
      */
     public function getLocatie()
     {
-      return $this->Locatie;
+        return $this->Locatie;
     }
 
     /**
@@ -151,8 +150,8 @@ class TAfspraak
      */
     public function setLocatie($Locatie)
     {
-      $this->Locatie = $Locatie;
-      return $this;
+        $this->Locatie = $Locatie;
+        return $this;
     }
 
     /**
@@ -160,7 +159,7 @@ class TAfspraak
      */
     public function getLocatieAdres()
     {
-      return $this->LocatieAdres;
+        return $this->LocatieAdres;
     }
 
     /**
@@ -169,8 +168,8 @@ class TAfspraak
      */
     public function setLocatieAdres($LocatieAdres)
     {
-      $this->LocatieAdres = $LocatieAdres;
-      return $this;
+        $this->LocatieAdres = $LocatieAdres;
+        return $this;
     }
 
     /**
@@ -178,7 +177,7 @@ class TAfspraak
      */
     public function getLocatieSpreekkamer()
     {
-      return $this->LocatieSpreekkamer;
+        return $this->LocatieSpreekkamer;
     }
 
     /**
@@ -187,8 +186,8 @@ class TAfspraak
      */
     public function setLocatieSpreekkamer($LocatieSpreekkamer)
     {
-      $this->LocatieSpreekkamer = $LocatieSpreekkamer;
-      return $this;
+        $this->LocatieSpreekkamer = $LocatieSpreekkamer;
+        return $this;
     }
 
     /**
@@ -196,7 +195,7 @@ class TAfspraak
      */
     public function getAfspraakCode()
     {
-      return $this->AfspraakCode;
+        return $this->AfspraakCode;
     }
 
     /**
@@ -205,8 +204,8 @@ class TAfspraak
      */
     public function setAfspraakCode($AfspraakCode)
     {
-      $this->AfspraakCode = $AfspraakCode;
-      return $this;
+        $this->AfspraakCode = $AfspraakCode;
+        return $this;
     }
 
     /**
@@ -214,7 +213,7 @@ class TAfspraak
      */
     public function getAfspraakOmschrijving()
     {
-      return $this->AfspraakOmschrijving;
+        return $this->AfspraakOmschrijving;
     }
 
     /**
@@ -223,8 +222,7 @@ class TAfspraak
      */
     public function setAfspraakOmschrijving($AfspraakOmschrijving)
     {
-      $this->AfspraakOmschrijving = $AfspraakOmschrijving;
-      return $this;
+        $this->AfspraakOmschrijving = $AfspraakOmschrijving;
+        return $this;
     }
-
 }

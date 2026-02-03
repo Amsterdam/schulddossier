@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SimpleDelta
 {
-
     /**
      * @var string $TableName
      */
@@ -27,9 +26,9 @@ class SimpleDelta
      */
     public function __construct($TableName, $Fields, $Rows)
     {
-      $this->TableName = $TableName;
-      $this->Fields = $Fields;
-      $this->Rows = $Rows;
+        $this->TableName = $TableName;
+        $this->Fields = $Fields;
+        $this->Rows = $Rows;
     }
 
     /**
@@ -37,7 +36,7 @@ class SimpleDelta
      */
     public function getTableName()
     {
-      return $this->TableName;
+        return $this->TableName;
     }
 
     /**
@@ -46,8 +45,8 @@ class SimpleDelta
      */
     public function setTableName($TableName)
     {
-      $this->TableName = $TableName;
-      return $this;
+        $this->TableName = $TableName;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class SimpleDelta
      */
     public function getFields()
     {
-      return $this->Fields;
+        return $this->Fields;
     }
 
     /**
@@ -64,8 +63,8 @@ class SimpleDelta
      */
     public function setFields($Fields)
     {
-      $this->Fields = $Fields;
-      return $this;
+        $this->Fields = $Fields;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class SimpleDelta
      */
     public function getRows()
     {
-      return $this->Rows;
+        return $this->Rows;
     }
 
     /**
@@ -82,8 +81,7 @@ class SimpleDelta
      */
     public function setRows($Rows)
     {
-      $this->Rows = $Rows;
-      return $this;
+        $this->Rows = $Rows;
+        return $this;
     }
-
 }

@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TContract implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -203,7 +202,4 @@ class TContract implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class LoginServiceBSNNaarRelatieMetBedrijf implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -41,7 +40,4 @@ class LoginServiceBSNNaarRelatieMetBedrijf implements RequestInterface
 
         return $new;
     }
-
-
 }
-

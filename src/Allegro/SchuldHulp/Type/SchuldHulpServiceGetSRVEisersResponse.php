@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\ResultInterface;
 
 class SchuldHulpServiceGetSRVEisersResponse implements ResultInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TSRVEisers
      */
@@ -32,7 +30,4 @@ class SchuldHulpServiceGetSRVEisersResponse implements ResultInterface
 
         return $new;
     }
-
-
 }
-

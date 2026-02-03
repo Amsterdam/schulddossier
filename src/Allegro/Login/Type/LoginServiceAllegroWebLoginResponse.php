@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\ResultInterface;
 
 class LoginServiceAllegroWebLoginResponse implements ResultInterface
 {
-
     /**
      * @var bool
      */
@@ -56,7 +55,4 @@ class LoginServiceAllegroWebLoginResponse implements ResultInterface
 
         return $new;
     }
-
-
 }
-

@@ -24,6 +24,5 @@ final class Version20230821065733 extends AbstractMigration
     {
         $this->addSql('ALTER TABLE voorlegger DROP principebeslissing');
         $this->addSql('ALTER TABLE voorlegger DROP schulden_op_de_werkvloer');
-
     }
 }

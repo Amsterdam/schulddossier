@@ -35,12 +35,14 @@ class AllegroController extends AbstractController
         $aanvraag = null;
         $eisers = [];
         try {
-            $header = $allegroService->getSRVAanvraagHeader($dossier->getOrganisatie(),
-                $dossier->getAllegroNummer());
+            $header = $allegroService->getSRVAanvraagHeader(
+                $dossier->getOrganisatie(),
+                $dossier->getAllegroNummer()
+            );
             $aanvraag = $allegroService->getSRVAanvraag($dossier->getOrganisatie(), $header);
             $srvEisers = $allegroService->getSRVEisers($dossier, $header);
             $eisers = $srvEisers->getEisers()->getTSRVEiser();
-        } catch (\Exception|\Error $e) {
+        } catch (\Exception | \Error $e) {
             // Geen eisers gevonden
         }
 
@@ -62,7 +64,8 @@ class AllegroController extends AbstractController
      * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function validateSendToAllegro(Request $request, Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator): JsonResponse {
+    public function validateSendToAllegro(Request $request, Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator): JsonResponse
+    {
         try {
             $allegroService->validateDossier($dossier);
         } catch (AllegroServiceException $e) {
@@ -77,7 +80,8 @@ class AllegroController extends AbstractController
      * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function send(Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator, EntityManagerInterface $em, LoggerInterface $logger): JsonResponse {
+    public function send(Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator, EntityManagerInterface $em, LoggerInterface $logger): JsonResponse
+    {
         try {
             $response = $allegroService->sendAanvraag($dossier);
 
@@ -93,7 +97,7 @@ class AllegroController extends AbstractController
             return new JsonResponse(['send' => false, 'message' => $translator->trans($e->getMessage())]);
         } catch (\Exception $e) {
             // Logging toevoegen
-            $logger->error($e->getMessage(),[AllegroService::LOGGING_CONTEXT]);
+            $logger->error($e->getMessage(), [AllegroService::LOGGING_CONTEXT]);
             return new JsonResponse(['send' => false, 'message' => 'Er is iets mis gegaan in het contact met allegro, probeer het later nog een keer of neem contact op met het beheer']);
         }
     }

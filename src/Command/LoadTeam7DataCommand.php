@@ -17,9 +17,7 @@ class LoadTeam7DataCommand extends Command
     public function __construct(
         private readonly string $appEnv,
         private readonly EntityManagerInterface $em
-
-    )
-    {
+    ) {
         parent::__construct();
     }
 

@@ -7,7 +7,6 @@ use Doctrine\ORM\EntityRepository;
 
 class ActionEventRepository extends EntityRepository
 {
-
     /**
      * @param string $emailGebruiker
      * @return array
@@ -25,4 +24,3 @@ class ActionEventRepository extends EntityRepository
         return $resultSet->fetchAllAssociative();
     }
 }
-

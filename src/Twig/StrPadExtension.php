@@ -23,5 +23,4 @@ class StrPadExtension extends \Twig_Extension
             })
         ];
     }
-
 }

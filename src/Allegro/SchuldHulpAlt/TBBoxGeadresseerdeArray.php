@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBBoxGeadresseerdeArray
 {
-
     /**
      * @var TBBoxGeadresseerde[] $TBBoxGeadresseerde
      */
     protected $TBBoxGeadresseerde = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class TBBoxGeadresseerdeArray
      */
     public function getTBBoxGeadresseerde()
     {
-      return $this->TBBoxGeadresseerde;
+        return $this->TBBoxGeadresseerde;
     }
 
     /**
@@ -30,8 +28,7 @@ class TBBoxGeadresseerdeArray
      */
     public function setTBBoxGeadresseerde(array $TBBoxGeadresseerde = null)
     {
-      $this->TBBoxGeadresseerde = $TBBoxGeadresseerde;
-      return $this;
+        $this->TBBoxGeadresseerde = $TBBoxGeadresseerde;
+        return $this;
     }
-
 }

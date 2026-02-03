@@ -73,7 +73,7 @@ class DossierVoter extends Voter
             ($user->getType() === Gebruiker::TYPE_GKA || $user->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER)
             &&
             !$dossier->isEersteKeerVerzondenAanGKA()
-            ) {
+        ) {
             return false;
         }
 

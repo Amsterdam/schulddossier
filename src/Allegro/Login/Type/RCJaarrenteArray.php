@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class RCJaarrenteArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRCJaarrente
      */
@@ -41,7 +40,4 @@ class RCJaarrenteArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

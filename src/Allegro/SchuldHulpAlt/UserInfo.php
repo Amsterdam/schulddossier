@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class UserInfo
 {
-
     /**
      * @var string $SessionID
      */
@@ -39,11 +38,11 @@ class UserInfo
      */
     public function __construct($SessionID, $UserID, $Privileges, $Attributes, $UserData)
     {
-      $this->SessionID = $SessionID;
-      $this->UserID = $UserID;
-      $this->Privileges = $Privileges;
-      $this->Attributes = $Attributes;
-      $this->UserData = $UserData;
+        $this->SessionID = $SessionID;
+        $this->UserID = $UserID;
+        $this->Privileges = $Privileges;
+        $this->Attributes = $Attributes;
+        $this->UserData = $UserData;
     }
 
     /**
@@ -51,7 +50,7 @@ class UserInfo
      */
     public function getSessionID()
     {
-      return $this->SessionID;
+        return $this->SessionID;
     }
 
     /**
@@ -60,8 +59,8 @@ class UserInfo
      */
     public function setSessionID($SessionID)
     {
-      $this->SessionID = $SessionID;
-      return $this;
+        $this->SessionID = $SessionID;
+        return $this;
     }
 
     /**
@@ -69,7 +68,7 @@ class UserInfo
      */
     public function getUserID()
     {
-      return $this->UserID;
+        return $this->UserID;
     }
 
     /**
@@ -78,8 +77,8 @@ class UserInfo
      */
     public function setUserID($UserID)
     {
-      $this->UserID = $UserID;
-      return $this;
+        $this->UserID = $UserID;
+        return $this;
     }
 
     /**
@@ -87,7 +86,7 @@ class UserInfo
      */
     public function getPrivileges()
     {
-      return $this->Privileges;
+        return $this->Privileges;
     }
 
     /**
@@ -96,8 +95,8 @@ class UserInfo
      */
     public function setPrivileges($Privileges)
     {
-      $this->Privileges = $Privileges;
-      return $this;
+        $this->Privileges = $Privileges;
+        return $this;
     }
 
     /**
@@ -105,7 +104,7 @@ class UserInfo
      */
     public function getAttributes()
     {
-      return $this->Attributes;
+        return $this->Attributes;
     }
 
     /**
@@ -114,8 +113,8 @@ class UserInfo
      */
     public function setAttributes($Attributes)
     {
-      $this->Attributes = $Attributes;
-      return $this;
+        $this->Attributes = $Attributes;
+        return $this;
     }
 
     /**
@@ -123,7 +122,7 @@ class UserInfo
      */
     public function getUserData()
     {
-      return $this->UserData;
+        return $this->UserData;
     }
 
     /**
@@ -132,8 +131,7 @@ class UserInfo
      */
     public function setUserData($UserData)
     {
-      $this->UserData = $UserData;
-      return $this;
+        $this->UserData = $UserData;
+        return $this;
     }
-
 }

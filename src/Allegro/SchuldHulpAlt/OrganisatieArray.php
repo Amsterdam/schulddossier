@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class OrganisatieArray
 {
-
     /**
      * @var TOrganisatie[] $TOrganisatie
      */
     protected $TOrganisatie = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class OrganisatieArray
      */
     public function getTOrganisatie()
     {
-      return $this->TOrganisatie;
+        return $this->TOrganisatie;
     }
 
     /**
@@ -30,8 +28,7 @@ class OrganisatieArray
      */
     public function setTOrganisatie(array $TOrganisatie = null)
     {
-      $this->TOrganisatie = $TOrganisatie;
-      return $this;
+        $this->TOrganisatie = $TOrganisatie;
+        return $this;
     }
-
 }

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSorteerInfo
 {
-
     /**
      * @var eVeldSortering $Veld
      */
@@ -21,8 +20,8 @@ class TSorteerInfo
      */
     public function __construct($Veld, $Oplopend)
     {
-      $this->Veld = $Veld;
-      $this->Oplopend = $Oplopend;
+        $this->Veld = $Veld;
+        $this->Oplopend = $Oplopend;
     }
 
     /**
@@ -30,7 +29,7 @@ class TSorteerInfo
      */
     public function getVeld()
     {
-      return $this->Veld;
+        return $this->Veld;
     }
 
     /**
@@ -39,8 +38,8 @@ class TSorteerInfo
      */
     public function setVeld($Veld)
     {
-      $this->Veld = $Veld;
-      return $this;
+        $this->Veld = $Veld;
+        return $this;
     }
 
     /**
@@ -48,7 +47,7 @@ class TSorteerInfo
      */
     public function getOplopend()
     {
-      return $this->Oplopend;
+        return $this->Oplopend;
     }
 
     /**
@@ -57,8 +56,7 @@ class TSorteerInfo
      */
     public function setOplopend($Oplopend)
     {
-      $this->Oplopend = $Oplopend;
-      return $this;
+        $this->Oplopend = $Oplopend;
+        return $this;
     }
-
 }
