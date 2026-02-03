@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SimpleDataResult
 {
-
     /**
      * @var string $TableName
      */
@@ -27,9 +26,9 @@ class SimpleDataResult
      */
     public function __construct($TableName, $FieldInfo, $Data)
     {
-      $this->TableName = $TableName;
-      $this->FieldInfo = $FieldInfo;
-      $this->Data = $Data;
+        $this->TableName = $TableName;
+        $this->FieldInfo = $FieldInfo;
+        $this->Data = $Data;
     }
 
     /**
@@ -37,7 +36,7 @@ class SimpleDataResult
      */
     public function getTableName()
     {
-      return $this->TableName;
+        return $this->TableName;
     }
 
     /**
@@ -46,8 +45,8 @@ class SimpleDataResult
      */
     public function setTableName($TableName)
     {
-      $this->TableName = $TableName;
-      return $this;
+        $this->TableName = $TableName;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class SimpleDataResult
      */
     public function getFieldInfo()
     {
-      return $this->FieldInfo;
+        return $this->FieldInfo;
     }
 
     /**
@@ -64,8 +63,8 @@ class SimpleDataResult
      */
     public function setFieldInfo($FieldInfo)
     {
-      $this->FieldInfo = $FieldInfo;
-      return $this;
+        $this->FieldInfo = $FieldInfo;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class SimpleDataResult
      */
     public function getData()
     {
-      return $this->Data;
+        return $this->Data;
     }
 
     /**
@@ -82,8 +81,7 @@ class SimpleDataResult
      */
     public function setData($Data)
     {
-      $this->Data = $Data;
-      return $this;
+        $this->Data = $Data;
+        return $this;
     }
-
 }

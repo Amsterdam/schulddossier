@@ -18,10 +18,9 @@ class AllegroTypeExtension extends \Twig_Extension
     public function getFilters(): array
     {
         return [
-            new \Twig_Filter('allegro_status', function (String $status) {
+            new \Twig_Filter('allegro_status', function (string $status) {
                 return Dossier::twigAllegroStatus($status);
             })
         ];
     }
-
 }

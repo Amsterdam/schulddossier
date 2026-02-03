@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TKind implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -176,7 +175,4 @@ class TKind implements RequestInterface
 
         return $new;
     }
-
-
 }
-

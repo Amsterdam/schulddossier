@@ -30,12 +30,12 @@ trait ExportAble
         $sheet = $spreadsheet->getActiveSheet();
 
         $columnIndex = 1;
-        foreach($csvHeader as $headerItem){
+        foreach ($csvHeader as $headerItem) {
             $sheet->setCellValueByColumnAndRow($columnIndex++, 1, $headerItem);
         }
         $maxColumnIndex = $columnIndex;
-        foreach($csvValues as $csvValue){
-            if($columnIndex === $maxColumnIndex){
+        foreach ($csvValues as $csvValue) {
+            if ($columnIndex === $maxColumnIndex) {
                 $columnIndex = 1;
             }
             $sheet->setCellValueByColumnAndRow($columnIndex++, 2, $csvValue);
@@ -57,13 +57,13 @@ trait ExportAble
         $sheet = $spreadsheet->getActiveSheet();
 
         $columnIndex = 1;
-        foreach($header as $headerItem){
+        foreach ($header as $headerItem) {
             $sheet->setCellValueByColumnAndRow($columnIndex++, 1, $headerItem);
         }
         $maxColumnIndex = $columnIndex;
         $rowIndex = 1;
-        foreach($rows as $csvValue){
-            if($columnIndex === $maxColumnIndex){
+        foreach ($rows as $csvValue) {
+            if ($columnIndex === $maxColumnIndex) {
                 $columnIndex = 1;
                 $rowIndex++;
             }
@@ -118,7 +118,7 @@ trait ExportAble
                 $attributeValue = $attributeValue->format('d-m-Y h:i:s');
             }
 
-            if(is_bool($attributeValue)){
+            if (is_bool($attributeValue)) {
                 $attributeValue = $attributeValue ? 'ja' : 'nee';
             }
 

@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class BooleanArray
 {
-
     /**
      * @var boolean[] $boolean
      */
     protected $boolean = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class BooleanArray
      */
     public function getBoolean()
     {
-      return $this->boolean;
+        return $this->boolean;
     }
 
     /**
@@ -30,8 +28,7 @@ class BooleanArray
      */
     public function setBoolean(array $boolean = null)
     {
-      $this->boolean = $boolean;
-      return $this;
+        $this->boolean = $boolean;
+        return $this;
     }
-
 }

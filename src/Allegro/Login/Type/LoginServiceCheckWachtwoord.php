@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class LoginServiceCheckWachtwoord implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -41,7 +40,4 @@ class LoginServiceCheckWachtwoord implements RequestInterface
 
         return $new;
     }
-
-
 }
-

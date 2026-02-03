@@ -8,6 +8,4 @@ class eJaNeeLeeg
     const Leeg = 'Leeg';
     const Ja = 'Ja';
     const Nee = 'Nee';
-
-
 }

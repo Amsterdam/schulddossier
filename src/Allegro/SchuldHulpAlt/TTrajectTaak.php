@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TTrajectTaak
 {
-
     /**
      * @var \DateTime $StartDatum
      */
@@ -69,16 +68,16 @@ class TTrajectTaak
      */
     public function __construct(\DateTime $StartDatum, $Medewerker, $Actie, $ActieOmschrijving, $MedewerkerUitgevoerd, \DateTime $DatumUitgevoerd, $AfmeldCategorie, $StapnummerTraject, $TrajectCode, $TrajectOmschrijving)
     {
-      $this->StartDatum = $StartDatum->format(\DateTime::ATOM);
-      $this->Medewerker = $Medewerker;
-      $this->Actie = $Actie;
-      $this->ActieOmschrijving = $ActieOmschrijving;
-      $this->MedewerkerUitgevoerd = $MedewerkerUitgevoerd;
-      $this->DatumUitgevoerd = $DatumUitgevoerd->format(\DateTime::ATOM);
-      $this->AfmeldCategorie = $AfmeldCategorie;
-      $this->StapnummerTraject = $StapnummerTraject;
-      $this->TrajectCode = $TrajectCode;
-      $this->TrajectOmschrijving = $TrajectOmschrijving;
+        $this->StartDatum = $StartDatum->format(\DateTime::ATOM);
+        $this->Medewerker = $Medewerker;
+        $this->Actie = $Actie;
+        $this->ActieOmschrijving = $ActieOmschrijving;
+        $this->MedewerkerUitgevoerd = $MedewerkerUitgevoerd;
+        $this->DatumUitgevoerd = $DatumUitgevoerd->format(\DateTime::ATOM);
+        $this->AfmeldCategorie = $AfmeldCategorie;
+        $this->StapnummerTraject = $StapnummerTraject;
+        $this->TrajectCode = $TrajectCode;
+        $this->TrajectOmschrijving = $TrajectOmschrijving;
     }
 
     /**
@@ -86,15 +85,15 @@ class TTrajectTaak
      */
     public function getStartDatum()
     {
-      if ($this->StartDatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->StartDatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->StartDatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->StartDatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -103,8 +102,8 @@ class TTrajectTaak
      */
     public function setStartDatum(\DateTime $StartDatum)
     {
-      $this->StartDatum = $StartDatum->format(\DateTime::ATOM);
-      return $this;
+        $this->StartDatum = $StartDatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -112,7 +111,7 @@ class TTrajectTaak
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -121,8 +120,8 @@ class TTrajectTaak
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -130,7 +129,7 @@ class TTrajectTaak
      */
     public function getActie()
     {
-      return $this->Actie;
+        return $this->Actie;
     }
 
     /**
@@ -139,8 +138,8 @@ class TTrajectTaak
      */
     public function setActie($Actie)
     {
-      $this->Actie = $Actie;
-      return $this;
+        $this->Actie = $Actie;
+        return $this;
     }
 
     /**
@@ -148,7 +147,7 @@ class TTrajectTaak
      */
     public function getActieOmschrijving()
     {
-      return $this->ActieOmschrijving;
+        return $this->ActieOmschrijving;
     }
 
     /**
@@ -157,8 +156,8 @@ class TTrajectTaak
      */
     public function setActieOmschrijving($ActieOmschrijving)
     {
-      $this->ActieOmschrijving = $ActieOmschrijving;
-      return $this;
+        $this->ActieOmschrijving = $ActieOmschrijving;
+        return $this;
     }
 
     /**
@@ -166,7 +165,7 @@ class TTrajectTaak
      */
     public function getMedewerkerUitgevoerd()
     {
-      return $this->MedewerkerUitgevoerd;
+        return $this->MedewerkerUitgevoerd;
     }
 
     /**
@@ -175,8 +174,8 @@ class TTrajectTaak
      */
     public function setMedewerkerUitgevoerd($MedewerkerUitgevoerd)
     {
-      $this->MedewerkerUitgevoerd = $MedewerkerUitgevoerd;
-      return $this;
+        $this->MedewerkerUitgevoerd = $MedewerkerUitgevoerd;
+        return $this;
     }
 
     /**
@@ -184,15 +183,15 @@ class TTrajectTaak
      */
     public function getDatumUitgevoerd()
     {
-      if ($this->DatumUitgevoerd == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumUitgevoerd);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumUitgevoerd == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumUitgevoerd);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -201,8 +200,8 @@ class TTrajectTaak
      */
     public function setDatumUitgevoerd(\DateTime $DatumUitgevoerd)
     {
-      $this->DatumUitgevoerd = $DatumUitgevoerd->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumUitgevoerd = $DatumUitgevoerd->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -210,7 +209,7 @@ class TTrajectTaak
      */
     public function getAfmeldCategorie()
     {
-      return $this->AfmeldCategorie;
+        return $this->AfmeldCategorie;
     }
 
     /**
@@ -219,8 +218,8 @@ class TTrajectTaak
      */
     public function setAfmeldCategorie($AfmeldCategorie)
     {
-      $this->AfmeldCategorie = $AfmeldCategorie;
-      return $this;
+        $this->AfmeldCategorie = $AfmeldCategorie;
+        return $this;
     }
 
     /**
@@ -228,7 +227,7 @@ class TTrajectTaak
      */
     public function getStapnummerTraject()
     {
-      return $this->StapnummerTraject;
+        return $this->StapnummerTraject;
     }
 
     /**
@@ -237,8 +236,8 @@ class TTrajectTaak
      */
     public function setStapnummerTraject($StapnummerTraject)
     {
-      $this->StapnummerTraject = $StapnummerTraject;
-      return $this;
+        $this->StapnummerTraject = $StapnummerTraject;
+        return $this;
     }
 
     /**
@@ -246,7 +245,7 @@ class TTrajectTaak
      */
     public function getTrajectCode()
     {
-      return $this->TrajectCode;
+        return $this->TrajectCode;
     }
 
     /**
@@ -255,8 +254,8 @@ class TTrajectTaak
      */
     public function setTrajectCode($TrajectCode)
     {
-      $this->TrajectCode = $TrajectCode;
-      return $this;
+        $this->TrajectCode = $TrajectCode;
+        return $this;
     }
 
     /**
@@ -264,7 +263,7 @@ class TTrajectTaak
      */
     public function getTrajectOmschrijving()
     {
-      return $this->TrajectOmschrijving;
+        return $this->TrajectOmschrijving;
     }
 
     /**
@@ -273,8 +272,7 @@ class TTrajectTaak
      */
     public function setTrajectOmschrijving($TrajectOmschrijving)
     {
-      $this->TrajectOmschrijving = $TrajectOmschrijving;
-      return $this;
+        $this->TrajectOmschrijving = $TrajectOmschrijving;
+        return $this;
     }
-
 }

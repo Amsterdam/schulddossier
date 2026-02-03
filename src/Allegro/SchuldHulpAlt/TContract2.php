@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TContract2
 {
-
     /**
      * @var int $ContractCode
      */
@@ -33,10 +32,10 @@ class TContract2
      */
     public function __construct($ContractCode, $ContractVolgnummer, $ContractSoort, $ContractVolgnrSoort)
     {
-      $this->ContractCode = $ContractCode;
-      $this->ContractVolgnummer = $ContractVolgnummer;
-      $this->ContractSoort = $ContractSoort;
-      $this->ContractVolgnrSoort = $ContractVolgnrSoort;
+        $this->ContractCode = $ContractCode;
+        $this->ContractVolgnummer = $ContractVolgnummer;
+        $this->ContractSoort = $ContractSoort;
+        $this->ContractVolgnrSoort = $ContractVolgnrSoort;
     }
 
     /**
@@ -44,7 +43,7 @@ class TContract2
      */
     public function getContractCode()
     {
-      return $this->ContractCode;
+        return $this->ContractCode;
     }
 
     /**
@@ -53,8 +52,8 @@ class TContract2
      */
     public function setContractCode($ContractCode)
     {
-      $this->ContractCode = $ContractCode;
-      return $this;
+        $this->ContractCode = $ContractCode;
+        return $this;
     }
 
     /**
@@ -62,7 +61,7 @@ class TContract2
      */
     public function getContractVolgnummer()
     {
-      return $this->ContractVolgnummer;
+        return $this->ContractVolgnummer;
     }
 
     /**
@@ -71,8 +70,8 @@ class TContract2
      */
     public function setContractVolgnummer($ContractVolgnummer)
     {
-      $this->ContractVolgnummer = $ContractVolgnummer;
-      return $this;
+        $this->ContractVolgnummer = $ContractVolgnummer;
+        return $this;
     }
 
     /**
@@ -80,7 +79,7 @@ class TContract2
      */
     public function getContractSoort()
     {
-      return $this->ContractSoort;
+        return $this->ContractSoort;
     }
 
     /**
@@ -89,8 +88,8 @@ class TContract2
      */
     public function setContractSoort($ContractSoort)
     {
-      $this->ContractSoort = $ContractSoort;
-      return $this;
+        $this->ContractSoort = $ContractSoort;
+        return $this;
     }
 
     /**
@@ -98,7 +97,7 @@ class TContract2
      */
     public function getContractVolgnrSoort()
     {
-      return $this->ContractVolgnrSoort;
+        return $this->ContractVolgnrSoort;
     }
 
     /**
@@ -107,8 +106,7 @@ class TContract2
      */
     public function setContractVolgnrSoort($ContractVolgnrSoort)
     {
-      $this->ContractVolgnrSoort = $ContractVolgnrSoort;
-      return $this;
+        $this->ContractVolgnrSoort = $ContractVolgnrSoort;
+        return $this;
     }
-
 }

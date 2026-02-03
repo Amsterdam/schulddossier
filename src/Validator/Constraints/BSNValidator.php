@@ -29,17 +29,17 @@ class BSNValidator extends ConstraintValidator
         $digits = str_split($value);
         $sum = 0;
 
-        for ($i=count($digits);$i>0;$i--) {
+        for ($i = count($digits); $i > 0; $i--) {
             $digit = current($digits);
-            if ($i>1) {
-                $sum += $i*$digit;
+            if ($i > 1) {
+                $sum += $i * $digit;
             } else {
-                $sum += -1*$digit;
+                $sum += -1 * $digit;
             }
             next($digits);
         }
 
-        if ($sum/11 !== (int)floor($sum/11)) {
+        if ($sum / 11 !== (int)floor($sum / 11)) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ string }}', $value)
                 ->addViolation();

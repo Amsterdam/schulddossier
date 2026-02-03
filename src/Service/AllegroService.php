@@ -153,8 +153,10 @@ class AllegroService
         $oldestAllowedSession = clone $now;
         $oldestAllowedSession->modify(sprintf('-%s seconds', self::SESSION_TIMEOUT));
 
-        if (false === $force && null !== $organisatie->getAllegroSessionId() && $organisatie->getAllegroSessionAge(
-            ) >= $oldestAllowedSession) {
+        if (
+            false === $force && null !== $organisatie->getAllegroSessionId() && $organisatie->getAllegroSessionAge(
+            ) >= $oldestAllowedSession
+        ) {
             return $organisatie;
         }
         $response = $this->getLoginService(null, $this->proxyHostIp, $this->proxyPort)->allegroWebLogin(
@@ -259,13 +261,17 @@ class AllegroService
         $this->validateDossier($dossier);
 
         $relatiecode = (null === $dossier->getAllegroNummer() || '' === $dossier->getAllegroNummer(
-            )) ? 0 : (int)$dossier->getAllegroNummer();
+        )) ? 0 : (int)$dossier->getAllegroNummer();
 
         $aanvrager = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2Persoon(
             $relatiecode,
-            $dossier->getClientBSN(), $dossier->getClientVoorletters(), $dossier->getClientNaam(),
+            $dossier->getClientBSN(),
+            $dossier->getClientVoorletters(),
+            $dossier->getClientNaam(),
             self::MAPPING_GESLACHT[$dossier->getClientGeslacht()],
-            $dossier->getClientGeboortedatum()->format('Ymd'), eNationaliteit::Leeg, $aanvragerCorrespondentieMail,
+            $dossier->getClientGeboortedatum()->format('Ymd'),
+            eNationaliteit::Leeg,
+            $aanvragerCorrespondentieMail,
             $aanvragerCorrespondentieWeb
         );
 
@@ -281,9 +287,13 @@ class AllegroService
         if (!$dossier->getPartnerNvt()) {
             $partner = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2Persoon(
                 0,
-                $dossier->getPartnerBSN(), $dossier->getPartnerVoorletters(), $dossier->getPartnerNaam(),
+                $dossier->getPartnerBSN(),
+                $dossier->getPartnerVoorletters(),
+                $dossier->getPartnerNaam(),
                 self::MAPPING_GESLACHT[$dossier->getPartnerGeslacht()],
-                $dossier->getPartnerGeboortedatum()->format('Ymd'), eNationaliteit::Leeg, false,
+                $dossier->getPartnerGeboortedatum()->format('Ymd'),
+                eNationaliteit::Leeg,
+                false,
                 false
             );
         }
@@ -304,9 +314,20 @@ class AllegroService
 
         $aanvraag = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2SR(
             $bedrijfsCode,
-            $aanvrager, false, $gezin, $kinderen, $aanvraagSchuldbedrag,
-            count($dossier->getSchuldItemsNotInPrullenbak()), 0, 0, 0,
-            false, false, $dossier->getVoorlegger()->getJongerenSchuldenvrijeStart(), true, true,
+            $aanvrager,
+            false,
+            $gezin,
+            $kinderen,
+            $aanvraagSchuldbedrag,
+            count($dossier->getSchuldItemsNotInPrullenbak()),
+            0,
+            0,
+            0,
+            false,
+            false,
+            $dossier->getVoorlegger()->getJongerenSchuldenvrijeStart(),
+            true,
+            true,
             true
         );
 
@@ -346,7 +367,16 @@ class AllegroService
         if ($dossier->getVoorlegger()->isBeschikkingUwvZw()) {
             $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
                 eSoortInkomen::Uitkering,
-                0, 0, 0, 1, 0, 0, 0, 0, 0, 0
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             );
             $inkomen->setUitkeringsInstantie('UWV');
             $inkomen->setSoortUitkering('ZW');
@@ -356,7 +386,16 @@ class AllegroService
         if ($dossier->getVoorlegger()->isBeschikkingUwvWw()) {
             $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
                 eSoortInkomen::Uitkering,
-                0, 0, 0, 1, 0, 0, 0, 0, 0, 0
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             );
             $inkomen->setUitkeringsInstantie('UWV');
             $inkomen->setSoortUitkering('WW');
@@ -366,7 +405,16 @@ class AllegroService
         if ($dossier->getVoorlegger()->isBeschikkingUwvWia()) {
             $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
                 eSoortInkomen::Uitkering,
-                0, 0, 0, 1, 0, 0, 0, 0, 0, 0
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             );
             $inkomen->setUitkeringsInstantie('UWV');
             $inkomen->setSoortUitkering('WIA');
@@ -376,7 +424,16 @@ class AllegroService
         if ($dossier->getVoorlegger()->isBeschikkingUwvWajong()) {
             $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
                 eSoortInkomen::Uitkering,
-                0, 0, 0, 1, 0, 0, 0, 0, 0, 0
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             );
             $inkomen->setUitkeringsInstantie('UWV');
             $inkomen->setSoortUitkering('Wajong');
@@ -386,7 +443,16 @@ class AllegroService
         if ($dossier->getVoorlegger()->isBeschikkingGemeenteAmsterdamWPI()) {
             $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
                 eSoortInkomen::Uitkering,
-                0, 0, 0, 1, 0, 0, 0, 0, 0, 0
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             );
             $inkomen->setUitkeringsInstantie('Gemeente Amsterdam');
             $inkomen->setSoortUitkering('WPI');
@@ -396,7 +462,16 @@ class AllegroService
         if ($dossier->getVoorlegger()->isBeschikkingSVBAOW()) {
             $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
                 eSoortInkomen::Uitkering,
-                0, 0, 0, 1, 0, 0, 0, 0, 0, 0
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             );
             $inkomen->setUitkeringsInstantie('SVB');
             $inkomen->setSoortUitkering('AOW');
@@ -406,7 +481,16 @@ class AllegroService
         if ($dossier->getVoorlegger()->isBeschikkingSVBANW()) {
             $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
                 eSoortInkomen::Uitkering,
-                0, 0, 0, 1, 0, 0, 0, 0, 0, 0
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             );
             $inkomen->setUitkeringsInstantie('SVB');
             $inkomen->setSoortUitkering('ANW');
@@ -416,19 +500,39 @@ class AllegroService
         if ($dossier->getVoorlegger()->isBeschikkingGemeenteAmsterdamIOAW()) {
             $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
                 eSoortInkomen::Uitkering,
-                0, 0, 0, 1, 0, 0, 0, 0, 0, 0
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             );
             $inkomen->setUitkeringsInstantie('Gemeente Amsterdam');
             $inkomen->setSoortUitkering('IOAW');
             $array[] = $inkomen;
         }
 
-        if (null !== $dossier->getVoorlegger()->getBeschikkingUwvOverig() && strlen(
+        if (
+            null !== $dossier->getVoorlegger()->getBeschikkingUwvOverig() && strlen(
                 $dossier->getVoorlegger()->getBeschikkingUwvOverig()
-            )) {
+            )
+        ) {
             $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
                 eSoortInkomen::Uitkering,
-                0, 0, 0, 1, 0, 0, 0, 0, 0, 0
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             );
             $inkomen->setUitkeringsInstantie('Overig');
             $inkomen->setSoortUitkering($dossier->getVoorlegger()->getBeschikkingUwvOverig());
@@ -440,7 +544,16 @@ class AllegroService
             ) ? $dossier->getVoorlegger()->getArbeidsovereenkomstEinddatum()->format('Ymd') : 0;
             $inkomen = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen(
                 eSoortInkomen::Werk,
-                0, $dienstVerbandTot, 0, 0, 0, 0, 0, 0, 0, 0
+                0,
+                $dienstVerbandTot,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
             );
             $inkomen->setWerkgever($dossier->getVoorlegger()->getArbeidsovereenkomstWerkgever());
 
@@ -495,13 +608,12 @@ class AllegroService
     }
 
     private function getSchuldHulpService(
-            Organisatie $organisatie,
-            ?string $proxyHost = null,
-            ?string $proxyPort = null
-        ): AllegroSchuldHulpClient
-    {
+        Organisatie $organisatie,
+        ?string $proxyHost = null,
+        ?string $proxyPort = null
+    ): AllegroSchuldHulpClient {
         return SchuldHulpClientFactory::factory(
-            $this->schuldHulpWsdl, 
+            $this->schuldHulpWsdl,
             $organisatie,
             $proxyHost,
             $proxyPort
@@ -541,13 +653,17 @@ class AllegroService
     public function getSRVEisers(Dossier $dossier, TSRVAanvraagHeader $header): ?TSRVEisers
     {
         $schuldhulpService = $this->getSchuldHulpService($dossier->getOrganisatie(), $this->proxyHostIp, $this->proxyPort);
-        
+
         return $schuldhulpService->getSRVEisers(
             (new SchuldHulpServiceGetSRVEisers(
                 (new TSRVAanvraagHeader(
                     $header->getRelatieCode(),
-                    $header->getVolgnummer(), $header->getIsNPS(), $header->getStatus(), $header->getStatustekst(),
-                    $header->getAanvraagdatum(), $header->getExtraStatus()
+                    $header->getVolgnummer(),
+                    $header->getIsNPS(),
+                    $header->getStatus(),
+                    $header->getStatustekst(),
+                    $header->getAanvraagdatum(),
+                    $header->getExtraStatus()
                 ))
             ))
         )->getResult();

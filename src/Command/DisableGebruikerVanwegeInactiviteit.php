@@ -75,6 +75,5 @@ class DisableGebruikerVanwegeInactiviteit extends Command
     {
         $gebruiker->setEnabled(false);
         $this->em->persist($gebruiker);
-
     }
 }

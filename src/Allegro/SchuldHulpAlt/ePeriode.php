@@ -9,6 +9,4 @@ class ePeriode
     const Maand = 'Maand';
     const Vier_weken = 'Vier_weken';
     const Week = 'Week';
-
-
 }

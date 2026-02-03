@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TTrajectSoort implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -68,7 +67,4 @@ class TTrajectSoort implements RequestInterface
 
         return $new;
     }
-
-
 }
-

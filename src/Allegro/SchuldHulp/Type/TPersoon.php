@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPersoon implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -231,7 +229,4 @@ class TPersoon implements RequestInterface
 
         return $new;
     }
-
-
 }
-

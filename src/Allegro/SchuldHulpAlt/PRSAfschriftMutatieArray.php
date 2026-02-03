@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class PRSAfschriftMutatieArray
 {
-
     /**
      * @var TPRSAfschriftMutatie[] $TPRSAfschriftMutatie
      */
     protected $TPRSAfschriftMutatie = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class PRSAfschriftMutatieArray
      */
     public function getTPRSAfschriftMutatie()
     {
-      return $this->TPRSAfschriftMutatie;
+        return $this->TPRSAfschriftMutatie;
     }
 
     /**
@@ -30,8 +28,7 @@ class PRSAfschriftMutatieArray
      */
     public function setTPRSAfschriftMutatie(array $TPRSAfschriftMutatie = null)
     {
-      $this->TPRSAfschriftMutatie = $TPRSAfschriftMutatie;
-      return $this;
+        $this->TPRSAfschriftMutatie = $TPRSAfschriftMutatie;
+        return $this;
     }
-
 }

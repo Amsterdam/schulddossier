@@ -6,14 +6,10 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TAanvraagDK implements RequestInterface
 {
-
     /**
      * Constructor
      */
     public function __construct()
     {
     }
-
-
 }
-

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SimpleFieldInfo
 {
-
     /**
      * @var string $Name
      */
@@ -27,9 +26,9 @@ class SimpleFieldInfo
      */
     public function __construct($Name, $DataType, $Hidden)
     {
-      $this->Name = $Name;
-      $this->DataType = $DataType;
-      $this->Hidden = $Hidden;
+        $this->Name = $Name;
+        $this->DataType = $DataType;
+        $this->Hidden = $Hidden;
     }
 
     /**
@@ -37,7 +36,7 @@ class SimpleFieldInfo
      */
     public function getName()
     {
-      return $this->Name;
+        return $this->Name;
     }
 
     /**
@@ -46,8 +45,8 @@ class SimpleFieldInfo
      */
     public function setName($Name)
     {
-      $this->Name = $Name;
-      return $this;
+        $this->Name = $Name;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class SimpleFieldInfo
      */
     public function getDataType()
     {
-      return $this->DataType;
+        return $this->DataType;
     }
 
     /**
@@ -64,8 +63,8 @@ class SimpleFieldInfo
      */
     public function setDataType($DataType)
     {
-      $this->DataType = $DataType;
-      return $this;
+        $this->DataType = $DataType;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class SimpleFieldInfo
      */
     public function getHidden()
     {
-      return $this->Hidden;
+        return $this->Hidden;
     }
 
     /**
@@ -82,8 +81,7 @@ class SimpleFieldInfo
      */
     public function setHidden($Hidden)
     {
-      $this->Hidden = $Hidden;
-      return $this;
+        $this->Hidden = $Hidden;
+        return $this;
     }
-
 }

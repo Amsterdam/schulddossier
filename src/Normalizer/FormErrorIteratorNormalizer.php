@@ -46,5 +46,4 @@ class FormErrorIteratorNormalizer implements NormalizerInterface, NormalizerAwar
             'errors' => $errorData
         ];
     }
-
 }

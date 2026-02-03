@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TTeam
 {
-
     /**
      * @var string $Team
      */
@@ -27,9 +26,9 @@ class TTeam
      */
     public function __construct($Team, $Code, $Standaard)
     {
-      $this->Team = $Team;
-      $this->Code = $Code;
-      $this->Standaard = $Standaard;
+        $this->Team = $Team;
+        $this->Code = $Code;
+        $this->Standaard = $Standaard;
     }
 
     /**
@@ -37,7 +36,7 @@ class TTeam
      */
     public function getTeam()
     {
-      return $this->Team;
+        return $this->Team;
     }
 
     /**
@@ -46,8 +45,8 @@ class TTeam
      */
     public function setTeam($Team)
     {
-      $this->Team = $Team;
-      return $this;
+        $this->Team = $Team;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class TTeam
      */
     public function getCode()
     {
-      return $this->Code;
+        return $this->Code;
     }
 
     /**
@@ -64,8 +63,8 @@ class TTeam
      */
     public function setCode($Code)
     {
-      $this->Code = $Code;
-      return $this;
+        $this->Code = $Code;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class TTeam
      */
     public function getStandaard()
     {
-      return $this->Standaard;
+        return $this->Standaard;
     }
 
     /**
@@ -82,8 +81,7 @@ class TTeam
      */
     public function setStandaard($Standaard)
     {
-      $this->Standaard = $Standaard;
-      return $this;
+        $this->Standaard = $Standaard;
+        return $this;
     }
-
 }

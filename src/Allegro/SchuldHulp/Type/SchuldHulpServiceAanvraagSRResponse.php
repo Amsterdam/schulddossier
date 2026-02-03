@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\ResultInterface;
 
 class SchuldHulpServiceAanvraagSRResponse implements ResultInterface
 {
-
     /**
      * @var bool
      */
@@ -82,7 +80,4 @@ class SchuldHulpServiceAanvraagSRResponse implements ResultInterface
 
         return $new;
     }
-
-
 }
-

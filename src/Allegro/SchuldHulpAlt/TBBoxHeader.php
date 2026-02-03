@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBBoxHeader
 {
-
     /**
      * @var int $Code
      */
@@ -57,14 +56,14 @@ class TBBoxHeader
      */
     public function __construct($Code, $AfzenderOntvanger, $Onderwerp, \DateTime $Tijdstip, $IndicatieOntvangen, $IndicatieGelezen, $IndicatieArchief, $IndicatieBijlage)
     {
-      $this->Code = $Code;
-      $this->AfzenderOntvanger = $AfzenderOntvanger;
-      $this->Onderwerp = $Onderwerp;
-      $this->Tijdstip = $Tijdstip->format(\DateTime::ATOM);
-      $this->IndicatieOntvangen = $IndicatieOntvangen;
-      $this->IndicatieGelezen = $IndicatieGelezen;
-      $this->IndicatieArchief = $IndicatieArchief;
-      $this->IndicatieBijlage = $IndicatieBijlage;
+        $this->Code = $Code;
+        $this->AfzenderOntvanger = $AfzenderOntvanger;
+        $this->Onderwerp = $Onderwerp;
+        $this->Tijdstip = $Tijdstip->format(\DateTime::ATOM);
+        $this->IndicatieOntvangen = $IndicatieOntvangen;
+        $this->IndicatieGelezen = $IndicatieGelezen;
+        $this->IndicatieArchief = $IndicatieArchief;
+        $this->IndicatieBijlage = $IndicatieBijlage;
     }
 
     /**
@@ -72,7 +71,7 @@ class TBBoxHeader
      */
     public function getCode()
     {
-      return $this->Code;
+        return $this->Code;
     }
 
     /**
@@ -81,8 +80,8 @@ class TBBoxHeader
      */
     public function setCode($Code)
     {
-      $this->Code = $Code;
-      return $this;
+        $this->Code = $Code;
+        return $this;
     }
 
     /**
@@ -90,7 +89,7 @@ class TBBoxHeader
      */
     public function getAfzenderOntvanger()
     {
-      return $this->AfzenderOntvanger;
+        return $this->AfzenderOntvanger;
     }
 
     /**
@@ -99,8 +98,8 @@ class TBBoxHeader
      */
     public function setAfzenderOntvanger($AfzenderOntvanger)
     {
-      $this->AfzenderOntvanger = $AfzenderOntvanger;
-      return $this;
+        $this->AfzenderOntvanger = $AfzenderOntvanger;
+        return $this;
     }
 
     /**
@@ -108,7 +107,7 @@ class TBBoxHeader
      */
     public function getOnderwerp()
     {
-      return $this->Onderwerp;
+        return $this->Onderwerp;
     }
 
     /**
@@ -117,8 +116,8 @@ class TBBoxHeader
      */
     public function setOnderwerp($Onderwerp)
     {
-      $this->Onderwerp = $Onderwerp;
-      return $this;
+        $this->Onderwerp = $Onderwerp;
+        return $this;
     }
 
     /**
@@ -126,15 +125,15 @@ class TBBoxHeader
      */
     public function getTijdstip()
     {
-      if ($this->Tijdstip == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Tijdstip);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Tijdstip == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Tijdstip);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -143,8 +142,8 @@ class TBBoxHeader
      */
     public function setTijdstip(\DateTime $Tijdstip)
     {
-      $this->Tijdstip = $Tijdstip->format(\DateTime::ATOM);
-      return $this;
+        $this->Tijdstip = $Tijdstip->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -152,7 +151,7 @@ class TBBoxHeader
      */
     public function getIndicatieOntvangen()
     {
-      return $this->IndicatieOntvangen;
+        return $this->IndicatieOntvangen;
     }
 
     /**
@@ -161,8 +160,8 @@ class TBBoxHeader
      */
     public function setIndicatieOntvangen($IndicatieOntvangen)
     {
-      $this->IndicatieOntvangen = $IndicatieOntvangen;
-      return $this;
+        $this->IndicatieOntvangen = $IndicatieOntvangen;
+        return $this;
     }
 
     /**
@@ -170,7 +169,7 @@ class TBBoxHeader
      */
     public function getIndicatieGelezen()
     {
-      return $this->IndicatieGelezen;
+        return $this->IndicatieGelezen;
     }
 
     /**
@@ -179,8 +178,8 @@ class TBBoxHeader
      */
     public function setIndicatieGelezen($IndicatieGelezen)
     {
-      $this->IndicatieGelezen = $IndicatieGelezen;
-      return $this;
+        $this->IndicatieGelezen = $IndicatieGelezen;
+        return $this;
     }
 
     /**
@@ -188,7 +187,7 @@ class TBBoxHeader
      */
     public function getIndicatieArchief()
     {
-      return $this->IndicatieArchief;
+        return $this->IndicatieArchief;
     }
 
     /**
@@ -197,8 +196,8 @@ class TBBoxHeader
      */
     public function setIndicatieArchief($IndicatieArchief)
     {
-      $this->IndicatieArchief = $IndicatieArchief;
-      return $this;
+        $this->IndicatieArchief = $IndicatieArchief;
+        return $this;
     }
 
     /**
@@ -206,7 +205,7 @@ class TBBoxHeader
      */
     public function getIndicatieBijlage()
     {
-      return $this->IndicatieBijlage;
+        return $this->IndicatieBijlage;
     }
 
     /**
@@ -215,8 +214,7 @@ class TBBoxHeader
      */
     public function setIndicatieBijlage($IndicatieBijlage)
     {
-      $this->IndicatieBijlage = $IndicatieBijlage;
-      return $this;
+        $this->IndicatieBijlage = $IndicatieBijlage;
+        return $this;
     }
-
 }
