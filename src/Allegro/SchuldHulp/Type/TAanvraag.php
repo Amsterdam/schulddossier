@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TAanvraag implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPersoonAanvraag
      */
@@ -744,7 +742,4 @@ class TAanvraag implements RequestInterface
 
         return $new;
     }
-
-
 }
-

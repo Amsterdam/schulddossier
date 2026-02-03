@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class SimpleDataParameter implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -95,7 +94,4 @@ class SimpleDataParameter implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -10,8 +10,7 @@ use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 
 class AllegroSchuldHulpClientFactory
 {
-
-    public static function factory(string $wsdl) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient
+    public static function factory(string $wsdl): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\AllegroSchuldHulpClient
     {
         $engine = ExtSoapEngineFactory::fromOptions(
             ExtSoapOptions::defaults($wsdl, [])
@@ -21,7 +20,4 @@ class AllegroSchuldHulpClientFactory
 
         return new AllegroSchuldHulpClient($engine, $eventDispatcher);
     }
-
-
 }
-

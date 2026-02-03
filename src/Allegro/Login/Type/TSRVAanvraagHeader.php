@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TSRVAanvraagHeader implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -203,7 +202,4 @@ class TSRVAanvraagHeader implements RequestInterface
 
         return $new;
     }
-
-
 }
-

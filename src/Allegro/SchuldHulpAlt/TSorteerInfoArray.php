@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSorteerInfoArray
 {
-
     /**
      * @var TSorteerInfo[] $TSorteerInfo
      */
     protected $TSorteerInfo = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class TSorteerInfoArray
      */
     public function getTSorteerInfo()
     {
-      return $this->TSorteerInfo;
+        return $this->TSorteerInfo;
     }
 
     /**
@@ -30,8 +28,7 @@ class TSorteerInfoArray
      */
     public function setTSorteerInfo(array $TSorteerInfo = null)
     {
-      $this->TSorteerInfo = $TSorteerInfo;
-      return $this;
+        $this->TSorteerInfo = $TSorteerInfo;
+        return $this;
     }
-
 }

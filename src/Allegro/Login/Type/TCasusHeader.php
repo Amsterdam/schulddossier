@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusHeader implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -176,7 +175,4 @@ class TCasusHeader implements RequestInterface
 
         return $new;
     }
-
-
 }
-

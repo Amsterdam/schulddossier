@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SRVAanvraagHeaderArray
 {
-
     /**
      * @var TSRVAanvraagHeader[] $TSRVAanvraagHeader
      */
     protected $TSRVAanvraagHeader = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class SRVAanvraagHeaderArray
      */
     public function getTSRVAanvraagHeader()
     {
-      return $this->TSRVAanvraagHeader;
+        return $this->TSRVAanvraagHeader;
     }
 
     /**
@@ -30,8 +28,7 @@ class SRVAanvraagHeaderArray
      */
     public function setTSRVAanvraagHeader(array $TSRVAanvraagHeader = null)
     {
-      $this->TSRVAanvraagHeader = $TSRVAanvraagHeader;
-      return $this;
+        $this->TSRVAanvraagHeader = $TSRVAanvraagHeader;
+        return $this;
     }
-
 }

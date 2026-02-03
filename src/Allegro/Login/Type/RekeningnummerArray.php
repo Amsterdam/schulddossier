@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class RekeningnummerArray implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -41,7 +40,4 @@ class RekeningnummerArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

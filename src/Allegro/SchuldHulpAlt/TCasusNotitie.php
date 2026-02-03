@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TCasusNotitie
 {
-
     /**
      * @var int $Volgnummer
      */
@@ -39,11 +38,11 @@ class TCasusNotitie
      */
     public function __construct($Volgnummer, \DateTime $Datum, $Beschrijving, $Medewerker, $PDF)
     {
-      $this->Volgnummer = $Volgnummer;
-      $this->Datum = $Datum->format(\DateTime::ATOM);
-      $this->Beschrijving = $Beschrijving;
-      $this->Medewerker = $Medewerker;
-      $this->PDF = $PDF;
+        $this->Volgnummer = $Volgnummer;
+        $this->Datum = $Datum->format(\DateTime::ATOM);
+        $this->Beschrijving = $Beschrijving;
+        $this->Medewerker = $Medewerker;
+        $this->PDF = $PDF;
     }
 
     /**
@@ -51,7 +50,7 @@ class TCasusNotitie
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -60,8 +59,8 @@ class TCasusNotitie
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -69,15 +68,15 @@ class TCasusNotitie
      */
     public function getDatum()
     {
-      if ($this->Datum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Datum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Datum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Datum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -86,8 +85,8 @@ class TCasusNotitie
      */
     public function setDatum(\DateTime $Datum)
     {
-      $this->Datum = $Datum->format(\DateTime::ATOM);
-      return $this;
+        $this->Datum = $Datum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -95,7 +94,7 @@ class TCasusNotitie
      */
     public function getBeschrijving()
     {
-      return $this->Beschrijving;
+        return $this->Beschrijving;
     }
 
     /**
@@ -104,8 +103,8 @@ class TCasusNotitie
      */
     public function setBeschrijving($Beschrijving)
     {
-      $this->Beschrijving = $Beschrijving;
-      return $this;
+        $this->Beschrijving = $Beschrijving;
+        return $this;
     }
 
     /**
@@ -113,7 +112,7 @@ class TCasusNotitie
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -122,8 +121,8 @@ class TCasusNotitie
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -131,7 +130,7 @@ class TCasusNotitie
      */
     public function getPDF()
     {
-      return $this->PDF;
+        return $this->PDF;
     }
 
     /**
@@ -140,8 +139,7 @@ class TCasusNotitie
      */
     public function setPDF($PDF)
     {
-      $this->PDF = $PDF;
-      return $this;
+        $this->PDF = $PDF;
+        return $this;
     }
-
 }

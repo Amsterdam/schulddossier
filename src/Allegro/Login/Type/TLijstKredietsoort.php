@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TLijstKredietsoort implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -68,7 +67,4 @@ class TLijstKredietsoort implements RequestInterface
 
         return $new;
     }
-
-
 }
-

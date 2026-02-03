@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class DataParameterArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\DataParameter
      */
@@ -41,7 +40,4 @@ class DataParameterArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

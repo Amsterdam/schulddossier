@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class LijstOpdrachtgeverArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TLijstOpdrachtgever
      */
@@ -41,7 +40,4 @@ class LijstOpdrachtgeverArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

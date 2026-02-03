@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBBoxTekstArray
 {
-
     /**
      * @var TBBoxTekst[] $TBBoxTekst
      */
     protected $TBBoxTekst = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class TBBoxTekstArray
      */
     public function getTBBoxTekst()
     {
-      return $this->TBBoxTekst;
+        return $this->TBBoxTekst;
     }
 
     /**
@@ -30,8 +28,7 @@ class TBBoxTekstArray
      */
     public function setTBBoxTekst(array $TBBoxTekst = null)
     {
-      $this->TBBoxTekst = $TBBoxTekst;
-      return $this;
+        $this->TBBoxTekst = $TBBoxTekst;
+        return $this;
     }
-
 }

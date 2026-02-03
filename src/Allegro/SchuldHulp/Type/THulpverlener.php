@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class THulpverlener implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -285,7 +283,4 @@ class THulpverlener implements RequestInterface
 
         return $new;
     }
-
-
 }
-

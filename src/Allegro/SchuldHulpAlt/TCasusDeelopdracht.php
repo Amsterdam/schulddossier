@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TCasusDeelopdracht
 {
-
     /**
      * @var int $VolgnummerCasus
      */
@@ -93,20 +92,20 @@ class TCasusDeelopdracht
      */
     public function __construct($VolgnummerCasus, $VolgnummerKlantopdracht, $ToelichtingKlantopdracht, $VolgnummerDeelopdracht, $Naam, $Omschrijving, $RubriekSoort, $RubriekNaam, $Toelichting, \DateTime $Startdatum, \DateTime $DatumUiterlijk, \DateTime $DatumUitgevoerd, \DateTime $DatumNietUitgevoerd, $NaamLang)
     {
-      $this->VolgnummerCasus = $VolgnummerCasus;
-      $this->VolgnummerKlantopdracht = $VolgnummerKlantopdracht;
-      $this->ToelichtingKlantopdracht = $ToelichtingKlantopdracht;
-      $this->VolgnummerDeelopdracht = $VolgnummerDeelopdracht;
-      $this->Naam = $Naam;
-      $this->Omschrijving = $Omschrijving;
-      $this->RubriekSoort = $RubriekSoort;
-      $this->RubriekNaam = $RubriekNaam;
-      $this->Toelichting = $Toelichting;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      $this->DatumUiterlijk = $DatumUiterlijk->format(\DateTime::ATOM);
-      $this->DatumUitgevoerd = $DatumUitgevoerd->format(\DateTime::ATOM);
-      $this->DatumNietUitgevoerd = $DatumNietUitgevoerd->format(\DateTime::ATOM);
-      $this->NaamLang = $NaamLang;
+        $this->VolgnummerCasus = $VolgnummerCasus;
+        $this->VolgnummerKlantopdracht = $VolgnummerKlantopdracht;
+        $this->ToelichtingKlantopdracht = $ToelichtingKlantopdracht;
+        $this->VolgnummerDeelopdracht = $VolgnummerDeelopdracht;
+        $this->Naam = $Naam;
+        $this->Omschrijving = $Omschrijving;
+        $this->RubriekSoort = $RubriekSoort;
+        $this->RubriekNaam = $RubriekNaam;
+        $this->Toelichting = $Toelichting;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        $this->DatumUiterlijk = $DatumUiterlijk->format(\DateTime::ATOM);
+        $this->DatumUitgevoerd = $DatumUitgevoerd->format(\DateTime::ATOM);
+        $this->DatumNietUitgevoerd = $DatumNietUitgevoerd->format(\DateTime::ATOM);
+        $this->NaamLang = $NaamLang;
     }
 
     /**
@@ -114,7 +113,7 @@ class TCasusDeelopdracht
      */
     public function getVolgnummerCasus()
     {
-      return $this->VolgnummerCasus;
+        return $this->VolgnummerCasus;
     }
 
     /**
@@ -123,8 +122,8 @@ class TCasusDeelopdracht
      */
     public function setVolgnummerCasus($VolgnummerCasus)
     {
-      $this->VolgnummerCasus = $VolgnummerCasus;
-      return $this;
+        $this->VolgnummerCasus = $VolgnummerCasus;
+        return $this;
     }
 
     /**
@@ -132,7 +131,7 @@ class TCasusDeelopdracht
      */
     public function getVolgnummerKlantopdracht()
     {
-      return $this->VolgnummerKlantopdracht;
+        return $this->VolgnummerKlantopdracht;
     }
 
     /**
@@ -141,8 +140,8 @@ class TCasusDeelopdracht
      */
     public function setVolgnummerKlantopdracht($VolgnummerKlantopdracht)
     {
-      $this->VolgnummerKlantopdracht = $VolgnummerKlantopdracht;
-      return $this;
+        $this->VolgnummerKlantopdracht = $VolgnummerKlantopdracht;
+        return $this;
     }
 
     /**
@@ -150,7 +149,7 @@ class TCasusDeelopdracht
      */
     public function getToelichtingKlantopdracht()
     {
-      return $this->ToelichtingKlantopdracht;
+        return $this->ToelichtingKlantopdracht;
     }
 
     /**
@@ -159,8 +158,8 @@ class TCasusDeelopdracht
      */
     public function setToelichtingKlantopdracht($ToelichtingKlantopdracht)
     {
-      $this->ToelichtingKlantopdracht = $ToelichtingKlantopdracht;
-      return $this;
+        $this->ToelichtingKlantopdracht = $ToelichtingKlantopdracht;
+        return $this;
     }
 
     /**
@@ -168,7 +167,7 @@ class TCasusDeelopdracht
      */
     public function getVolgnummerDeelopdracht()
     {
-      return $this->VolgnummerDeelopdracht;
+        return $this->VolgnummerDeelopdracht;
     }
 
     /**
@@ -177,8 +176,8 @@ class TCasusDeelopdracht
      */
     public function setVolgnummerDeelopdracht($VolgnummerDeelopdracht)
     {
-      $this->VolgnummerDeelopdracht = $VolgnummerDeelopdracht;
-      return $this;
+        $this->VolgnummerDeelopdracht = $VolgnummerDeelopdracht;
+        return $this;
     }
 
     /**
@@ -186,7 +185,7 @@ class TCasusDeelopdracht
      */
     public function getNaam()
     {
-      return $this->Naam;
+        return $this->Naam;
     }
 
     /**
@@ -195,8 +194,8 @@ class TCasusDeelopdracht
      */
     public function setNaam($Naam)
     {
-      $this->Naam = $Naam;
-      return $this;
+        $this->Naam = $Naam;
+        return $this;
     }
 
     /**
@@ -204,7 +203,7 @@ class TCasusDeelopdracht
      */
     public function getOmschrijving()
     {
-      return $this->Omschrijving;
+        return $this->Omschrijving;
     }
 
     /**
@@ -213,8 +212,8 @@ class TCasusDeelopdracht
      */
     public function setOmschrijving($Omschrijving)
     {
-      $this->Omschrijving = $Omschrijving;
-      return $this;
+        $this->Omschrijving = $Omschrijving;
+        return $this;
     }
 
     /**
@@ -222,7 +221,7 @@ class TCasusDeelopdracht
      */
     public function getRubriekSoort()
     {
-      return $this->RubriekSoort;
+        return $this->RubriekSoort;
     }
 
     /**
@@ -231,8 +230,8 @@ class TCasusDeelopdracht
      */
     public function setRubriekSoort($RubriekSoort)
     {
-      $this->RubriekSoort = $RubriekSoort;
-      return $this;
+        $this->RubriekSoort = $RubriekSoort;
+        return $this;
     }
 
     /**
@@ -240,7 +239,7 @@ class TCasusDeelopdracht
      */
     public function getRubriekNaam()
     {
-      return $this->RubriekNaam;
+        return $this->RubriekNaam;
     }
 
     /**
@@ -249,8 +248,8 @@ class TCasusDeelopdracht
      */
     public function setRubriekNaam($RubriekNaam)
     {
-      $this->RubriekNaam = $RubriekNaam;
-      return $this;
+        $this->RubriekNaam = $RubriekNaam;
+        return $this;
     }
 
     /**
@@ -258,7 +257,7 @@ class TCasusDeelopdracht
      */
     public function getToelichting()
     {
-      return $this->Toelichting;
+        return $this->Toelichting;
     }
 
     /**
@@ -267,8 +266,8 @@ class TCasusDeelopdracht
      */
     public function setToelichting($Toelichting)
     {
-      $this->Toelichting = $Toelichting;
-      return $this;
+        $this->Toelichting = $Toelichting;
+        return $this;
     }
 
     /**
@@ -276,15 +275,15 @@ class TCasusDeelopdracht
      */
     public function getStartdatum()
     {
-      if ($this->Startdatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Startdatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Startdatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -293,8 +292,8 @@ class TCasusDeelopdracht
      */
     public function setStartdatum(\DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -302,15 +301,15 @@ class TCasusDeelopdracht
      */
     public function getDatumUiterlijk()
     {
-      if ($this->DatumUiterlijk == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumUiterlijk);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumUiterlijk == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumUiterlijk);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -319,8 +318,8 @@ class TCasusDeelopdracht
      */
     public function setDatumUiterlijk(\DateTime $DatumUiterlijk)
     {
-      $this->DatumUiterlijk = $DatumUiterlijk->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumUiterlijk = $DatumUiterlijk->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -328,15 +327,15 @@ class TCasusDeelopdracht
      */
     public function getDatumUitgevoerd()
     {
-      if ($this->DatumUitgevoerd == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumUitgevoerd);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumUitgevoerd == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumUitgevoerd);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -345,8 +344,8 @@ class TCasusDeelopdracht
      */
     public function setDatumUitgevoerd(\DateTime $DatumUitgevoerd)
     {
-      $this->DatumUitgevoerd = $DatumUitgevoerd->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumUitgevoerd = $DatumUitgevoerd->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -354,15 +353,15 @@ class TCasusDeelopdracht
      */
     public function getDatumNietUitgevoerd()
     {
-      if ($this->DatumNietUitgevoerd == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumNietUitgevoerd);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumNietUitgevoerd == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumNietUitgevoerd);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -371,8 +370,8 @@ class TCasusDeelopdracht
      */
     public function setDatumNietUitgevoerd(\DateTime $DatumNietUitgevoerd)
     {
-      $this->DatumNietUitgevoerd = $DatumNietUitgevoerd->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumNietUitgevoerd = $DatumNietUitgevoerd->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -380,7 +379,7 @@ class TCasusDeelopdracht
      */
     public function getNaamLang()
     {
-      return $this->NaamLang;
+        return $this->NaamLang;
     }
 
     /**
@@ -389,8 +388,7 @@ class TCasusDeelopdracht
      */
     public function setNaamLang($NaamLang)
     {
-      $this->NaamLang = $NaamLang;
-      return $this;
+        $this->NaamLang = $NaamLang;
+        return $this;
     }
-
 }

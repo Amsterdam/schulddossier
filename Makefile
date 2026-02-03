@@ -72,3 +72,9 @@ npm-watch:
 
 enter-pod:
 	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh
+
+check-php-format:
+	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh -c "vendor/bin/phpcs --extensions=php"
+
+fix-php-format:
+	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh -c "vendor/bin/phpcbf --standard=PSR12 --extensions=php src"

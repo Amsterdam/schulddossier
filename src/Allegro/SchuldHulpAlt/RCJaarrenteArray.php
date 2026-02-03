@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class RCJaarrenteArray
 {
-
     /**
      * @var TRCJaarrente[] $TRCJaarrente
      */
     protected $TRCJaarrente = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class RCJaarrenteArray
      */
     public function getTRCJaarrente()
     {
-      return $this->TRCJaarrente;
+        return $this->TRCJaarrente;
     }
 
     /**
@@ -30,8 +28,7 @@ class RCJaarrenteArray
      */
     public function setTRCJaarrente(array $TRCJaarrente = null)
     {
-      $this->TRCJaarrente = $TRCJaarrente;
-      return $this;
+        $this->TRCJaarrente = $TRCJaarrente;
+        return $this;
     }
-
 }

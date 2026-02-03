@@ -1,4 +1,5 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Service;
 
 use League\Flysystem\Filesystem;
@@ -26,8 +27,7 @@ class FileStorageSelector
      */
     public function getByGroep($groep)
     {
-        switch ($groep)
-        {
+        switch ($groep) {
             case 'dossier':
                 return $this->getFileStorageForDossier();
         }

@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TAllegroDocument implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDocumentSleutel
      */
@@ -176,7 +175,4 @@ class TAllegroDocument implements RequestInterface
 
         return $new;
     }
-
-
 }
-

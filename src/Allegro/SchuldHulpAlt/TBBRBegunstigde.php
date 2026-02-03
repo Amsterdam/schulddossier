@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBBRBegunstigde
 {
-
     /**
      * @var string $Achternaam
      */
@@ -63,15 +62,15 @@ class TBBRBegunstigde
      */
     public function __construct($Achternaam, $Voorvoegsels, $Voorletters, $PlaatsnaamBezoekadres, $Relatiecode, $OpdrachtSoortKeuze, $KeuzeReservering, $Betaalwijze, $Rekeningnummers)
     {
-      $this->Achternaam = $Achternaam;
-      $this->Voorvoegsels = $Voorvoegsels;
-      $this->Voorletters = $Voorletters;
-      $this->PlaatsnaamBezoekadres = $PlaatsnaamBezoekadres;
-      $this->Relatiecode = $Relatiecode;
-      $this->OpdrachtSoortKeuze = $OpdrachtSoortKeuze;
-      $this->KeuzeReservering = $KeuzeReservering;
-      $this->Betaalwijze = $Betaalwijze;
-      $this->Rekeningnummers = $Rekeningnummers;
+        $this->Achternaam = $Achternaam;
+        $this->Voorvoegsels = $Voorvoegsels;
+        $this->Voorletters = $Voorletters;
+        $this->PlaatsnaamBezoekadres = $PlaatsnaamBezoekadres;
+        $this->Relatiecode = $Relatiecode;
+        $this->OpdrachtSoortKeuze = $OpdrachtSoortKeuze;
+        $this->KeuzeReservering = $KeuzeReservering;
+        $this->Betaalwijze = $Betaalwijze;
+        $this->Rekeningnummers = $Rekeningnummers;
     }
 
     /**
@@ -79,7 +78,7 @@ class TBBRBegunstigde
      */
     public function getAchternaam()
     {
-      return $this->Achternaam;
+        return $this->Achternaam;
     }
 
     /**
@@ -88,8 +87,8 @@ class TBBRBegunstigde
      */
     public function setAchternaam($Achternaam)
     {
-      $this->Achternaam = $Achternaam;
-      return $this;
+        $this->Achternaam = $Achternaam;
+        return $this;
     }
 
     /**
@@ -97,7 +96,7 @@ class TBBRBegunstigde
      */
     public function getVoorvoegsels()
     {
-      return $this->Voorvoegsels;
+        return $this->Voorvoegsels;
     }
 
     /**
@@ -106,8 +105,8 @@ class TBBRBegunstigde
      */
     public function setVoorvoegsels($Voorvoegsels)
     {
-      $this->Voorvoegsels = $Voorvoegsels;
-      return $this;
+        $this->Voorvoegsels = $Voorvoegsels;
+        return $this;
     }
 
     /**
@@ -115,7 +114,7 @@ class TBBRBegunstigde
      */
     public function getVoorletters()
     {
-      return $this->Voorletters;
+        return $this->Voorletters;
     }
 
     /**
@@ -124,8 +123,8 @@ class TBBRBegunstigde
      */
     public function setVoorletters($Voorletters)
     {
-      $this->Voorletters = $Voorletters;
-      return $this;
+        $this->Voorletters = $Voorletters;
+        return $this;
     }
 
     /**
@@ -133,7 +132,7 @@ class TBBRBegunstigde
      */
     public function getPlaatsnaamBezoekadres()
     {
-      return $this->PlaatsnaamBezoekadres;
+        return $this->PlaatsnaamBezoekadres;
     }
 
     /**
@@ -142,8 +141,8 @@ class TBBRBegunstigde
      */
     public function setPlaatsnaamBezoekadres($PlaatsnaamBezoekadres)
     {
-      $this->PlaatsnaamBezoekadres = $PlaatsnaamBezoekadres;
-      return $this;
+        $this->PlaatsnaamBezoekadres = $PlaatsnaamBezoekadres;
+        return $this;
     }
 
     /**
@@ -151,7 +150,7 @@ class TBBRBegunstigde
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -160,8 +159,8 @@ class TBBRBegunstigde
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -169,7 +168,7 @@ class TBBRBegunstigde
      */
     public function getOpdrachtSoortKeuze()
     {
-      return $this->OpdrachtSoortKeuze;
+        return $this->OpdrachtSoortKeuze;
     }
 
     /**
@@ -178,8 +177,8 @@ class TBBRBegunstigde
      */
     public function setOpdrachtSoortKeuze($OpdrachtSoortKeuze)
     {
-      $this->OpdrachtSoortKeuze = $OpdrachtSoortKeuze;
-      return $this;
+        $this->OpdrachtSoortKeuze = $OpdrachtSoortKeuze;
+        return $this;
     }
 
     /**
@@ -187,7 +186,7 @@ class TBBRBegunstigde
      */
     public function getKeuzeReservering()
     {
-      return $this->KeuzeReservering;
+        return $this->KeuzeReservering;
     }
 
     /**
@@ -196,8 +195,8 @@ class TBBRBegunstigde
      */
     public function setKeuzeReservering($KeuzeReservering)
     {
-      $this->KeuzeReservering = $KeuzeReservering;
-      return $this;
+        $this->KeuzeReservering = $KeuzeReservering;
+        return $this;
     }
 
     /**
@@ -205,7 +204,7 @@ class TBBRBegunstigde
      */
     public function getBetaalwijze()
     {
-      return $this->Betaalwijze;
+        return $this->Betaalwijze;
     }
 
     /**
@@ -214,8 +213,8 @@ class TBBRBegunstigde
      */
     public function setBetaalwijze($Betaalwijze)
     {
-      $this->Betaalwijze = $Betaalwijze;
-      return $this;
+        $this->Betaalwijze = $Betaalwijze;
+        return $this;
     }
 
     /**
@@ -223,7 +222,7 @@ class TBBRBegunstigde
      */
     public function getRekeningnummers()
     {
-      return $this->Rekeningnummers;
+        return $this->Rekeningnummers;
     }
 
     /**
@@ -232,8 +231,7 @@ class TBBRBegunstigde
      */
     public function setRekeningnummers($Rekeningnummers)
     {
-      $this->Rekeningnummers = $Rekeningnummers;
-      return $this;
+        $this->Rekeningnummers = $Rekeningnummers;
+        return $this;
     }
-
 }

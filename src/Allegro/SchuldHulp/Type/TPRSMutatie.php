@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSMutatie implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -285,7 +283,4 @@ class TPRSMutatie implements RequestInterface
 
         return $new;
     }
-
-
 }
-

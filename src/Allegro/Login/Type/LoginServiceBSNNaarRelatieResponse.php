@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\ResultInterface;
 
 class LoginServiceBSNNaarRelatieResponse implements ResultInterface
 {
-
     /**
      * @var int
      */
@@ -81,7 +80,4 @@ class LoginServiceBSNNaarRelatieResponse implements ResultInterface
 
         return $new;
     }
-
-
 }
-

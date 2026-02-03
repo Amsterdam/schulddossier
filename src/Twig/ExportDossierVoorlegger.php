@@ -29,5 +29,4 @@ class ExportDossierVoorlegger extends \Twig_Extension
             })
         ];
     }
-
 }

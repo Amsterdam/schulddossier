@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class ContractArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContract
      */
@@ -41,7 +40,4 @@ class ContractArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

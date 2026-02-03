@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class AllegroDocumentArray
 {
-
     /**
      * @var TAllegroDocument[] $TAllegroDocument
      */
     protected $TAllegroDocument = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class AllegroDocumentArray
      */
     public function getTAllegroDocument()
     {
-      return $this->TAllegroDocument;
+        return $this->TAllegroDocument;
     }
 
     /**
@@ -30,8 +28,7 @@ class AllegroDocumentArray
      */
     public function setTAllegroDocument(array $TAllegroDocument = null)
     {
-      $this->TAllegroDocument = $TAllegroDocument;
-      return $this;
+        $this->TAllegroDocument = $TAllegroDocument;
+        return $this;
     }
-
 }
