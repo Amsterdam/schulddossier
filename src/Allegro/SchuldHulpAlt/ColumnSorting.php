@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class ColumnSorting
 {
-
     /**
      * @var string $FieldName
      */
@@ -21,8 +20,8 @@ class ColumnSorting
      */
     public function __construct($FieldName, $SortDirection)
     {
-      $this->FieldName = $FieldName;
-      $this->SortDirection = $SortDirection;
+        $this->FieldName = $FieldName;
+        $this->SortDirection = $SortDirection;
     }
 
     /**
@@ -30,7 +29,7 @@ class ColumnSorting
      */
     public function getFieldName()
     {
-      return $this->FieldName;
+        return $this->FieldName;
     }
 
     /**
@@ -39,8 +38,8 @@ class ColumnSorting
      */
     public function setFieldName($FieldName)
     {
-      $this->FieldName = $FieldName;
-      return $this;
+        $this->FieldName = $FieldName;
+        return $this;
     }
 
     /**
@@ -48,7 +47,7 @@ class ColumnSorting
      */
     public function getSortDirection()
     {
-      return $this->SortDirection;
+        return $this->SortDirection;
     }
 
     /**
@@ -57,8 +56,7 @@ class ColumnSorting
      */
     public function setSortDirection($SortDirection)
     {
-      $this->SortDirection = $SortDirection;
-      return $this;
+        $this->SortDirection = $SortDirection;
+        return $this;
     }
-
 }

@@ -35,7 +35,6 @@ class VerwijderGebruikerVanwegeInactiviteit extends Command
             'type' => 'Geanonimiseerd',
         ],
         private int $updatedActionEventlogCount = 0,
-
     ) {
         parent::__construct();
     }

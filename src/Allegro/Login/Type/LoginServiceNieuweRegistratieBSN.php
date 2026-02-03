@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class LoginServiceNieuweRegistratieBSN implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -176,7 +175,4 @@ class LoginServiceNieuweRegistratieBSN implements RequestInterface
 
         return $new;
     }
-
-
 }
-

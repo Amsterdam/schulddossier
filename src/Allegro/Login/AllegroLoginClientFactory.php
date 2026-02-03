@@ -10,8 +10,7 @@ use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 
 class AllegroLoginClientFactory
 {
-
-    public static function factory(string $wsdl) : \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient
+    public static function factory(string $wsdl): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient
     {
         $engine = ExtSoapEngineFactory::fromOptions(
             ExtSoapOptions::defaults($wsdl, [])
@@ -21,7 +20,4 @@ class AllegroLoginClientFactory
 
         return new AllegroLoginClient($engine, $eventDispatcher);
     }
-
-
 }
-

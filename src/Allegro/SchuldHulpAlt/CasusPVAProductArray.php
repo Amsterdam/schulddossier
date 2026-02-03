@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class CasusPVAProductArray
 {
-
     /**
      * @var TCasusPVAProduct[] $TCasusPVAProduct
      */
     protected $TCasusPVAProduct = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class CasusPVAProductArray
      */
     public function getTCasusPVAProduct()
     {
-      return $this->TCasusPVAProduct;
+        return $this->TCasusPVAProduct;
     }
 
     /**
@@ -30,8 +28,7 @@ class CasusPVAProductArray
      */
     public function setTCasusPVAProduct(array $TCasusPVAProduct = null)
     {
-      $this->TCasusPVAProduct = $TCasusPVAProduct;
-      return $this;
+        $this->TCasusPVAProduct = $TCasusPVAProduct;
+        return $this;
     }
-
 }

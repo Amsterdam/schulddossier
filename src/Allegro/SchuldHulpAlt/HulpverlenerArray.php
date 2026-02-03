@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class HulpverlenerArray
 {
-
     /**
      * @var THulpverlener[] $THulpverlener
      */
     protected $THulpverlener = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class HulpverlenerArray
      */
     public function getTHulpverlener()
     {
-      return $this->THulpverlener;
+        return $this->THulpverlener;
     }
 
     /**
@@ -30,8 +28,7 @@ class HulpverlenerArray
      */
     public function setTHulpverlener(array $THulpverlener = null)
     {
-      $this->THulpverlener = $THulpverlener;
-      return $this;
+        $this->THulpverlener = $THulpverlener;
+        return $this;
     }
-
 }

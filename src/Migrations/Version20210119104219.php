@@ -12,19 +12,19 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20210119104219 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE voorlegger ADD schuldenrust_lening BOOLEAN DEFAULT NULL');
         $this->addSql('ALTER TABLE voorlegger ADD sanerings_krediet BOOLEAN DEFAULT NULL');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');

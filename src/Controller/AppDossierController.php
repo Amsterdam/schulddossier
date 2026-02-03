@@ -115,7 +115,7 @@ class AppDossierController extends AbstractController
         if ($section === 'search') {
             $searchForm->handleRequest($request);
         }
-     
+
         // if user is from a shv limit his search results on the user organisaties
         if ($authChecker->isGranted('ROLE_SHV') || $authChecker->isGranted('ROLE_SHV_KEYUSER')) {
             $seachQuery['organisaties'] = $forcedOrganisaties;
@@ -326,7 +326,7 @@ class AppDossierController extends AbstractController
                     $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
                 }
             }
-            
+
             $subForm = $voorleggerForm->get('cdst');
             if (!is_null($subForm['transition']->getData())) {
                 if ($subForm['transition']->getData() === 'verzenden_shv') {
@@ -335,8 +335,8 @@ class AppDossierController extends AbstractController
                 }
                 $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
                 $workflow->apply($dossier, $subForm['transition']->getData());
-            
-                // TODO: This code is never reached, because workflow apply return the method. 
+
+                // TODO: This code is never reached, because workflow apply return the method.
                 // Nevertheless it would be nice to give the user feedback about an update. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-580
 
                 // if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
@@ -491,7 +491,7 @@ class AppDossierController extends AbstractController
 
             $this->addFlash('success', 'Document toegevoegd');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', ['dossierId' => $dossier->getId()]);
-        } else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
+        } elseif ($form->isSubmitted() && $request->isXmlHttpRequest()) {
             return new JsonResponse($serializer->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         }
 
@@ -522,12 +522,11 @@ class AppDossierController extends AbstractController
      * @ParamConverter("document", options={"id"="documentId"})
      */
     public function detailDocumentAction(
-        Request                $request,
-        Dossier                $dossier,
-        Document               $document,
-        FileStorageSelector    $fileStorageSelector
-    ): Response
-    {
+        Request $request,
+        Dossier $dossier,
+        Document $document,
+        FileStorageSelector $fileStorageSelector
+    ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
         return $this->streamedFileResponse(
@@ -536,7 +535,6 @@ class AppDossierController extends AbstractController
             $document,
             HeaderUtils::DISPOSITION_INLINE
         );
-
     }
 
     /**
@@ -546,10 +544,10 @@ class AppDossierController extends AbstractController
      * @ParamConverter("document", options={"id"="documentId"})
      */
     public function downloadDocumentAction(
-        Request                $request,
-        Dossier                $dossier,
-        Document               $document,
-        FileStorageSelector    $fileStorageSelector
+        Request $request,
+        Dossier $dossier,
+        Document $document,
+        FileStorageSelector $fileStorageSelector
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
@@ -599,9 +597,9 @@ class AppDossierController extends AbstractController
 
     private function streamedFileResponse(
         FlysystemFilesystem $filesystem,
-        Dossier             $dossier,
-        Document            $document,
-        string              $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
+        Dossier $dossier,
+        Document $document,
+        string $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
     ): StreamedResponse {
         try {
             $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
@@ -822,13 +820,15 @@ class AppDossierController extends AbstractController
     {
         try {
             $allegroService->updateDossier($dossier);
-        } catch (\Exception|\Error $e) {
+        } catch (\Exception | \Error $e) {
             $this->addFlash('error', 'Ongeldig allegro nummer of geen verbinding met allegro mogelijk.');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
         }
 
-        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger',
-            ['dossierId' => $dossier->getId()]);
+        return $this->redirectToRoute(
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger',
+            ['dossierId' => $dossier->getId()]
+        );
     }
 
     /**
@@ -1349,5 +1349,3 @@ class AppDossierController extends AbstractController
         }
     }
 }
-
-

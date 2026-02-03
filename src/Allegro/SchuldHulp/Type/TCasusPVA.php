@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusPVA implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -259,7 +257,4 @@ class TCasusPVA implements RequestInterface
 
         return $new;
     }
-
-
 }
-

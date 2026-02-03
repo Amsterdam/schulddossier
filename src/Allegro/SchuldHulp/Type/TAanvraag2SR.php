@@ -2,13 +2,11 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
-use \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag;
 
 class TAanvraag2SR extends \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag implements RequestInterface
 {
-
     /**
      * @var bool
      */
@@ -368,7 +366,4 @@ class TAanvraag2SR extends \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp
 
         return $new;
     }
-
-
 }
-

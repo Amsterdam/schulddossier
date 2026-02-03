@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TInkomen implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -608,7 +607,4 @@ class TInkomen implements RequestInterface
 
         return $new;
     }
-
-
 }
-

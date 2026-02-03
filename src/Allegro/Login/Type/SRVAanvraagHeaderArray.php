@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class SRVAanvraagHeaderArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSRVAanvraagHeader
      */
@@ -41,7 +40,4 @@ class SRVAanvraagHeaderArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

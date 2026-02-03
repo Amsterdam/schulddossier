@@ -378,7 +378,7 @@ class SchuldItem
 
     public function isVerlopen(): bool
     {
-        if ($this->getVaststelDatum() instanceof \DateTime){
+        if ($this->getVaststelDatum() instanceof \DateTime) {
             $gracePeriod = (new \DateTime())->modify('-6 months');
             return $this->getVaststelDatum() < $gracePeriod;
         }

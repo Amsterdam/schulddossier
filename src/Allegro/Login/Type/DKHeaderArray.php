@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class DKHeaderArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader
      */
@@ -41,7 +40,4 @@ class DKHeaderArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

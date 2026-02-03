@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class Rekeningnummer2Array
 {
-
     /**
      * @var TRekeningnummer[] $TRekeningnummer
      */
     protected $TRekeningnummer = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class Rekeningnummer2Array
      */
     public function getTRekeningnummer()
     {
-      return $this->TRekeningnummer;
+        return $this->TRekeningnummer;
     }
 
     /**
@@ -30,8 +28,7 @@ class Rekeningnummer2Array
      */
     public function setTRekeningnummer(array $TRekeningnummer = null)
     {
-      $this->TRekeningnummer = $TRekeningnummer;
-      return $this;
+        $this->TRekeningnummer = $TRekeningnummer;
+        return $this;
     }
-
 }

@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\ResultInterface;
 
 class LoginServiceBSNNaarRelatieMetBedrijfResponse implements ResultInterface
 {
-
     /**
      * @var
      * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\RelatiecodeBedrijfcodeArray
@@ -82,7 +81,4 @@ class LoginServiceBSNNaarRelatieMetBedrijfResponse implements ResultInterface
 
         return $new;
     }
-
-
 }
-

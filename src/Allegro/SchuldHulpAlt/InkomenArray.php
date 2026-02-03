@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class InkomenArray
 {
-
     /**
      * @var TInkomen[] $TInkomen
      */
     protected $TInkomen = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class InkomenArray
      */
     public function getTInkomen()
     {
-      return $this->TInkomen;
+        return $this->TInkomen;
     }
 
     /**
@@ -30,8 +28,7 @@ class InkomenArray
      */
     public function setTInkomen(array $TInkomen = null)
     {
-      $this->TInkomen = $TInkomen;
-      return $this;
+        $this->TInkomen = $TInkomen;
+        return $this;
     }
-
 }

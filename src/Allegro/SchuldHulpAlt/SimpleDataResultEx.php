@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SimpleDataResultEx extends SimpleDataResult
 {
-
     /**
      * @param string $TableName
      * @param SimpleFieldInfoArray $FieldInfo
@@ -12,7 +11,6 @@ class SimpleDataResultEx extends SimpleDataResult
      */
     public function __construct($TableName, $FieldInfo, $Data)
     {
-      parent::__construct($TableName, $FieldInfo, $Data);
+        parent::__construct($TableName, $FieldInfo, $Data);
     }
-
 }

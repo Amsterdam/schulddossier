@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TAfspraakSoortenArray
 {
-
     /**
      * @var TAfspraakSoorten[] $TAfspraakSoorten
      */
     protected $TAfspraakSoorten = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class TAfspraakSoortenArray
      */
     public function getTAfspraakSoorten()
     {
-      return $this->TAfspraakSoorten;
+        return $this->TAfspraakSoorten;
     }
 
     /**
@@ -30,8 +28,7 @@ class TAfspraakSoortenArray
      */
     public function setTAfspraakSoorten(array $TAfspraakSoorten = null)
     {
-      $this->TAfspraakSoorten = $TAfspraakSoorten;
-      return $this;
+        $this->TAfspraakSoorten = $TAfspraakSoorten;
+        return $this;
     }
-
 }

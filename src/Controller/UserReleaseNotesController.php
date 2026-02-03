@@ -1,4 +1,5 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +12,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Serializer\Serializer;
-
 
 /**
  * @Route("/app/versies")
@@ -33,8 +33,10 @@ class UserReleaseNotesController extends AbstractController
     {
         $finder = new Finder();
         $finder->directories()->in($this->getParameter('kernel.project_dir') . '/templates/UserReleaseNotes/');
-        $finder->sort(function ($a, $b) { return strcmp($b->getRelativePathname(), $a->getRelativePathname()); });
-        
+        $finder->sort(function ($a, $b) {
+            return strcmp($b->getRelativePathname(), $a->getRelativePathname());
+        });
+
         $templates = [];
 
         foreach ($finder as $dir) {

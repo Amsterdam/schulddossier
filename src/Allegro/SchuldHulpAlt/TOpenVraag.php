@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TOpenVraag
 {
-
     /**
      * @var string $Vraag
      */
@@ -21,8 +20,8 @@ class TOpenVraag
      */
     public function __construct($Vraag, $Antwoord)
     {
-      $this->Vraag = $Vraag;
-      $this->Antwoord = $Antwoord;
+        $this->Vraag = $Vraag;
+        $this->Antwoord = $Antwoord;
     }
 
     /**
@@ -30,7 +29,7 @@ class TOpenVraag
      */
     public function getVraag()
     {
-      return $this->Vraag;
+        return $this->Vraag;
     }
 
     /**
@@ -39,8 +38,8 @@ class TOpenVraag
      */
     public function setVraag($Vraag)
     {
-      $this->Vraag = $Vraag;
-      return $this;
+        $this->Vraag = $Vraag;
+        return $this;
     }
 
     /**
@@ -48,7 +47,7 @@ class TOpenVraag
      */
     public function getAntwoord()
     {
-      return $this->Antwoord;
+        return $this->Antwoord;
     }
 
     /**
@@ -57,8 +56,7 @@ class TOpenVraag
      */
     public function setAntwoord($Antwoord)
     {
-      $this->Antwoord = $Antwoord;
-      return $this;
+        $this->Antwoord = $Antwoord;
+        return $this;
     }
-
 }

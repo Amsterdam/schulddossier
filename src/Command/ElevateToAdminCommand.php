@@ -39,7 +39,7 @@ class ElevateToAdminCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->write('Trying to elevate the user with email address ' . $input->getArgument('email'). ' to admin');
+        $output->write('Trying to elevate the user with email address ' . $input->getArgument('email') . ' to admin');
         $userRepo = $this->em->getRepository(Gebruiker::class);
         /** @var Gebruiker $gebruiker */
         $gebruiker = $userRepo->findOneBy(['email' => strtolower($input->getArgument('email'))]);

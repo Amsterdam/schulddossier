@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class PLAanvraagArray
 {
-
     /**
      * @var TPLAanvraag[] $TPLAanvraag
      */
     protected $TPLAanvraag = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class PLAanvraagArray
      */
     public function getTPLAanvraag()
     {
-      return $this->TPLAanvraag;
+        return $this->TPLAanvraag;
     }
 
     /**
@@ -30,8 +28,7 @@ class PLAanvraagArray
      */
     public function setTPLAanvraag(array $TPLAanvraag = null)
     {
-      $this->TPLAanvraag = $TPLAanvraag;
-      return $this;
+        $this->TPLAanvraag = $TPLAanvraag;
+        return $this;
     }
-
 }

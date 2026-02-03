@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TestArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTest
      */
@@ -41,7 +40,4 @@ class TestArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

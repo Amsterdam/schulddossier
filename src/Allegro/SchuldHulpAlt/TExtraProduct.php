@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TExtraProduct
 {
-
     /**
      * @var TExtraProductHeader $InfoHeader
      */
@@ -75,17 +74,17 @@ class TExtraProduct
      */
     public function __construct($InfoHeader, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, \DateTime $Startdatum, $Status, $StatusOmschrijving, $UitvoerendeOrganisatie, $UitvoerendeOrganisatieContact, \DateTime $GeschatteEinddatum, $PartnerCode)
     {
-      $this->InfoHeader = $InfoHeader;
-      $this->Medewerker = $Medewerker;
-      $this->Opdrachtgever = $Opdrachtgever;
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      $this->Status = $Status;
-      $this->StatusOmschrijving = $StatusOmschrijving;
-      $this->UitvoerendeOrganisatie = $UitvoerendeOrganisatie;
-      $this->UitvoerendeOrganisatieContact = $UitvoerendeOrganisatieContact;
-      $this->GeschatteEinddatum = $GeschatteEinddatum->format(\DateTime::ATOM);
-      $this->PartnerCode = $PartnerCode;
+        $this->InfoHeader = $InfoHeader;
+        $this->Medewerker = $Medewerker;
+        $this->Opdrachtgever = $Opdrachtgever;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        $this->Status = $Status;
+        $this->StatusOmschrijving = $StatusOmschrijving;
+        $this->UitvoerendeOrganisatie = $UitvoerendeOrganisatie;
+        $this->UitvoerendeOrganisatieContact = $UitvoerendeOrganisatieContact;
+        $this->GeschatteEinddatum = $GeschatteEinddatum->format(\DateTime::ATOM);
+        $this->PartnerCode = $PartnerCode;
     }
 
     /**
@@ -93,7 +92,7 @@ class TExtraProduct
      */
     public function getInfoHeader()
     {
-      return $this->InfoHeader;
+        return $this->InfoHeader;
     }
 
     /**
@@ -102,8 +101,8 @@ class TExtraProduct
      */
     public function setInfoHeader($InfoHeader)
     {
-      $this->InfoHeader = $InfoHeader;
-      return $this;
+        $this->InfoHeader = $InfoHeader;
+        return $this;
     }
 
     /**
@@ -111,7 +110,7 @@ class TExtraProduct
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -120,8 +119,8 @@ class TExtraProduct
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -129,7 +128,7 @@ class TExtraProduct
      */
     public function getOpdrachtgever()
     {
-      return $this->Opdrachtgever;
+        return $this->Opdrachtgever;
     }
 
     /**
@@ -138,8 +137,8 @@ class TExtraProduct
      */
     public function setOpdrachtgever($Opdrachtgever)
     {
-      $this->Opdrachtgever = $Opdrachtgever;
-      return $this;
+        $this->Opdrachtgever = $Opdrachtgever;
+        return $this;
     }
 
     /**
@@ -147,7 +146,7 @@ class TExtraProduct
      */
     public function getOpdrachtgeverContact()
     {
-      return $this->OpdrachtgeverContact;
+        return $this->OpdrachtgeverContact;
     }
 
     /**
@@ -156,8 +155,8 @@ class TExtraProduct
      */
     public function setOpdrachtgeverContact($OpdrachtgeverContact)
     {
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      return $this;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        return $this;
     }
 
     /**
@@ -165,15 +164,15 @@ class TExtraProduct
      */
     public function getStartdatum()
     {
-      if ($this->Startdatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Startdatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Startdatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -182,8 +181,8 @@ class TExtraProduct
      */
     public function setStartdatum(\DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -191,7 +190,7 @@ class TExtraProduct
      */
     public function getStatus()
     {
-      return $this->Status;
+        return $this->Status;
     }
 
     /**
@@ -200,8 +199,8 @@ class TExtraProduct
      */
     public function setStatus($Status)
     {
-      $this->Status = $Status;
-      return $this;
+        $this->Status = $Status;
+        return $this;
     }
 
     /**
@@ -209,7 +208,7 @@ class TExtraProduct
      */
     public function getStatusOmschrijving()
     {
-      return $this->StatusOmschrijving;
+        return $this->StatusOmschrijving;
     }
 
     /**
@@ -218,8 +217,8 @@ class TExtraProduct
      */
     public function setStatusOmschrijving($StatusOmschrijving)
     {
-      $this->StatusOmschrijving = $StatusOmschrijving;
-      return $this;
+        $this->StatusOmschrijving = $StatusOmschrijving;
+        return $this;
     }
 
     /**
@@ -227,7 +226,7 @@ class TExtraProduct
      */
     public function getUitvoerendeOrganisatie()
     {
-      return $this->UitvoerendeOrganisatie;
+        return $this->UitvoerendeOrganisatie;
     }
 
     /**
@@ -236,8 +235,8 @@ class TExtraProduct
      */
     public function setUitvoerendeOrganisatie($UitvoerendeOrganisatie)
     {
-      $this->UitvoerendeOrganisatie = $UitvoerendeOrganisatie;
-      return $this;
+        $this->UitvoerendeOrganisatie = $UitvoerendeOrganisatie;
+        return $this;
     }
 
     /**
@@ -245,7 +244,7 @@ class TExtraProduct
      */
     public function getUitvoerendeOrganisatieContact()
     {
-      return $this->UitvoerendeOrganisatieContact;
+        return $this->UitvoerendeOrganisatieContact;
     }
 
     /**
@@ -254,8 +253,8 @@ class TExtraProduct
      */
     public function setUitvoerendeOrganisatieContact($UitvoerendeOrganisatieContact)
     {
-      $this->UitvoerendeOrganisatieContact = $UitvoerendeOrganisatieContact;
-      return $this;
+        $this->UitvoerendeOrganisatieContact = $UitvoerendeOrganisatieContact;
+        return $this;
     }
 
     /**
@@ -263,15 +262,15 @@ class TExtraProduct
      */
     public function getGeschatteEinddatum()
     {
-      if ($this->GeschatteEinddatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->GeschatteEinddatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->GeschatteEinddatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->GeschatteEinddatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -280,8 +279,8 @@ class TExtraProduct
      */
     public function setGeschatteEinddatum(\DateTime $GeschatteEinddatum)
     {
-      $this->GeschatteEinddatum = $GeschatteEinddatum->format(\DateTime::ATOM);
-      return $this;
+        $this->GeschatteEinddatum = $GeschatteEinddatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -289,7 +288,7 @@ class TExtraProduct
      */
     public function getPartnerCode()
     {
-      return $this->PartnerCode;
+        return $this->PartnerCode;
     }
 
     /**
@@ -298,8 +297,7 @@ class TExtraProduct
      */
     public function setPartnerCode($PartnerCode)
     {
-      $this->PartnerCode = $PartnerCode;
-      return $this;
+        $this->PartnerCode = $PartnerCode;
+        return $this;
     }
-
 }

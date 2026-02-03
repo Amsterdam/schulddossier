@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TBijlage implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -95,7 +94,4 @@ class TBijlage implements RequestInterface
 
         return $new;
     }
-
-
 }
-

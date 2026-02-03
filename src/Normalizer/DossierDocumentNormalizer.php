@@ -50,5 +50,4 @@ class DossierDocumentNormalizer implements NormalizerInterface, NormalizerAwareI
             ]
         ];
     }
-
 }

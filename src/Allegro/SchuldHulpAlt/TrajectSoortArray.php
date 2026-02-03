@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TrajectSoortArray
 {
-
     /**
      * @var TTrajectSoort[] $TTrajectSoort
      */
     protected $TTrajectSoort = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class TrajectSoortArray
      */
     public function getTTrajectSoort()
     {
-      return $this->TTrajectSoort;
+        return $this->TTrajectSoort;
     }
 
     /**
@@ -30,8 +28,7 @@ class TrajectSoortArray
      */
     public function setTTrajectSoort(array $TTrajectSoort = null)
     {
-      $this->TTrajectSoort = $TTrajectSoort;
-      return $this;
+        $this->TTrajectSoort = $TTrajectSoort;
+        return $this;
     }
-
 }

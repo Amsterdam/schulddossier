@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TTrajectSoort
 {
-
     /**
      * @var string $Trajectnaam
      */
@@ -21,8 +20,8 @@ class TTrajectSoort
      */
     public function __construct($Trajectnaam, $Trajectcodes)
     {
-      $this->Trajectnaam = $Trajectnaam;
-      $this->Trajectcodes = $Trajectcodes;
+        $this->Trajectnaam = $Trajectnaam;
+        $this->Trajectcodes = $Trajectcodes;
     }
 
     /**
@@ -30,7 +29,7 @@ class TTrajectSoort
      */
     public function getTrajectnaam()
     {
-      return $this->Trajectnaam;
+        return $this->Trajectnaam;
     }
 
     /**
@@ -39,8 +38,8 @@ class TTrajectSoort
      */
     public function setTrajectnaam($Trajectnaam)
     {
-      $this->Trajectnaam = $Trajectnaam;
-      return $this;
+        $this->Trajectnaam = $Trajectnaam;
+        return $this;
     }
 
     /**
@@ -48,7 +47,7 @@ class TTrajectSoort
      */
     public function getTrajectcodes()
     {
-      return $this->Trajectcodes;
+        return $this->Trajectcodes;
     }
 
     /**
@@ -57,8 +56,7 @@ class TTrajectSoort
      */
     public function setTrajectcodes($Trajectcodes)
     {
-      $this->Trajectcodes = $Trajectcodes;
-      return $this;
+        $this->Trajectcodes = $Trajectcodes;
+        return $this;
     }
-
 }

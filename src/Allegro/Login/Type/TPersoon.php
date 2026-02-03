@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TPersoon implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -230,7 +229,4 @@ class TPersoon implements RequestInterface
 
         return $new;
     }
-
-
 }
-

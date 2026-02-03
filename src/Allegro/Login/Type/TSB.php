@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TSB implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBHeader
      */
@@ -635,7 +634,4 @@ class TSB implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SchuldHulpService___AanvraagSRResponse
 {
-
     /**
      * @var boolean $Result
      */
@@ -27,9 +26,9 @@ class SchuldHulpService___AanvraagSRResponse
      */
     public function __construct($Result, $ExtraInfo, $ExtraInfoOmschrijving)
     {
-      $this->Result = $Result;
-      $this->ExtraInfo = $ExtraInfo;
-      $this->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
+        $this->Result = $Result;
+        $this->ExtraInfo = $ExtraInfo;
+        $this->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
     }
 
     /**
@@ -37,7 +36,7 @@ class SchuldHulpService___AanvraagSRResponse
      */
     public function getResult()
     {
-      return $this->Result;
+        return $this->Result;
     }
 
     /**
@@ -46,8 +45,8 @@ class SchuldHulpService___AanvraagSRResponse
      */
     public function setResult($Result)
     {
-      $this->Result = $Result;
-      return $this;
+        $this->Result = $Result;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class SchuldHulpService___AanvraagSRResponse
      */
     public function getExtraInfo()
     {
-      return $this->ExtraInfo;
+        return $this->ExtraInfo;
     }
 
     /**
@@ -64,8 +63,8 @@ class SchuldHulpService___AanvraagSRResponse
      */
     public function setExtraInfo($ExtraInfo)
     {
-      $this->ExtraInfo = $ExtraInfo;
-      return $this;
+        $this->ExtraInfo = $ExtraInfo;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class SchuldHulpService___AanvraagSRResponse
      */
     public function getExtraInfoOmschrijving()
     {
-      return $this->ExtraInfoOmschrijving;
+        return $this->ExtraInfoOmschrijving;
     }
 
     /**
@@ -82,8 +81,7 @@ class SchuldHulpService___AanvraagSRResponse
      */
     public function setExtraInfoOmschrijving($ExtraInfoOmschrijving)
     {
-      $this->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
-      return $this;
+        $this->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
+        return $this;
     }
-
 }

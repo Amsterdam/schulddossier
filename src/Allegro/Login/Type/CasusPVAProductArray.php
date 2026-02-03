@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class CasusPVAProductArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusPVAProduct
      */
@@ -41,7 +40,4 @@ class CasusPVAProductArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TContract2 implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -123,7 +121,4 @@ class TContract2 implements RequestInterface
 
         return $new;
     }
-
-
 }
-

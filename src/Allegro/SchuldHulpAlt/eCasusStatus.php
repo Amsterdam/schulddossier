@@ -17,6 +17,4 @@ class eCasusStatus
     const csInactief = 'csInactief';
     const csStop = 'csStop';
     const csNone = 'csNone';
-
-
 }

@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TBijlage implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -96,7 +94,4 @@ class TBijlage implements RequestInterface
 
         return $new;
     }
-
-
 }
-

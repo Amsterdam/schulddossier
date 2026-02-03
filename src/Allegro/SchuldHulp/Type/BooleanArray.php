@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class BooleanArray implements RequestInterface
 {
-
     /**
      * @var bool
      */
@@ -42,7 +40,4 @@ class BooleanArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

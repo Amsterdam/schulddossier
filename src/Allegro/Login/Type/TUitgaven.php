@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TUitgaven implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -365,7 +364,4 @@ class TUitgaven implements RequestInterface
 
         return $new;
     }
-
-
 }
-
