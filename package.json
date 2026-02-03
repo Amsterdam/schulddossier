@@ -13,7 +13,7 @@
   "dependencies": {
     "ajv": "^6.12.6",
     "glob-parent": "^6.0.2",
-    "jspdf": "^3.0.4",
+    "jspdf": "^4.1.0",
     "moment": "^2.30.1",
     "pdfjs-dist": "^4.10.38",
     "schema-utils": "^4.3.3",
