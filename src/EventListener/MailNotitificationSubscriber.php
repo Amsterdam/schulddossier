@@ -6,6 +6,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedCorrespondentie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
+use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierSyncedWithAllegroEvent;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -126,7 +128,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
                 'tokenStorage' => $this->tokenStorage
             ]);
         } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
     }
 
@@ -142,10 +144,12 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             $this->mail(
                 $this->fromNotificiatieAdres,
                 $event->getDossier()->getMedewerkerOrganisatie()->getEmail(),
-                'mails/notifyAddedAantekening.html.twig', [
+                'mails/notifyAddedAantekening.html.twig',
+                [
                     'dossier' => $event->getDossier(),
                     'tokenStorage' => $this->tokenStorage
-            ]);
+                ]
+            );
         }
 
         if (
@@ -156,10 +160,12 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             $this->mail(
                 $this->fromNotificiatieAdres,
                 $event->getDossier()->getTeamGka()->getEmail(),
-                'mails/notifyAddedAantekening.html.twig', [
+                'mails/notifyAddedAantekening.html.twig',
+                [
                     'dossier' => $event->getDossier(),
                     'tokenStorage' => $this->tokenStorage
-            ]);
+                ]
+            );
         }
     }
 
@@ -174,7 +180,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
                 'tokenStorage' => $this->tokenStorage
             ]);
         } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
     }
 
@@ -189,7 +195,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
                 'tokenStorage' => $this->tokenStorage
             ]);
         } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
     }
 
@@ -204,7 +210,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
                 'tokenStorage' => $this->tokenStorage
             ]);
         } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
     }
 
@@ -219,24 +225,42 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
                 'tokenStorage' => $this->tokenStorage
             ]);
         } else {
-            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
     }
 
     public function notifyGoedkeurenDossierGka(Event $event)
-        {
-            /** @var $dossier Dossier */
-            $dossier = $event->getSubject();
+    {
+        /** @var $dossier Dossier */
+        $dossier = $event->getSubject();
 
-            if ($dossier->getMedewerkerOrganisatie() !== null && empty($dossier->getMedewerkerOrganisatie()->getEmail()) === false) {
-                $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerOrganisatie()->getEmail(), 'mails/notifyGoedkeurenGka.html.twig', [
-                    'dossier' => $dossier,
-                    'tokenStorage' => $this->tokenStorage
-                ]);
-            } else {
-                $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId(), 'gebruikerId' => $dossier->getMedewerkerOrganisatie() ? $dossier->getMedewerkerOrganisatie()->getId() : 'n/a']);
-            }
+        if ($dossier->getMedewerkerOrganisatie() !== null && empty($dossier->getMedewerkerOrganisatie()->getEmail()) === false) {
+            $this->mail($this->fromNotificiatieAdres, $dossier->getMedewerkerOrganisatie()->getEmail(), 'mails/notifyGoedkeurenGka.html.twig', [
+                'dossier' => $dossier,
+                'tokenStorage' => $this->tokenStorage
+            ]);
+        } else {
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
         }
+    }
+
+    public function notifyDossierSyncedWithAllegro(DossierChangedEvent $event)
+    {
+        $dossier = $event->getDossier();
+
+        $gebruiker = $event->getGebruiker();
+
+        if ($gebruiker !== null && empty($gebruiker->getEmail()) === false) {
+            $this->mail(
+                $this->fromNotificiatieAdres,
+                $gebruiker->getEmail(),
+                'mails/notifyDossierSyncedWithAllegro.html.twig',
+                ['dossier' => $dossier]
+            );
+        } else {
+            $this->logger->notice('Kan geen notifificatie sturen omdat er geen organisatie opgegeven is of er is voor de medewerker van dit dossier geen e-mailadres ingevuld', ['dossierId' => $dossier->getId()]);
+        }
+    }
 
     protected function mail($from, $to, $template, $data)
     {
@@ -269,7 +293,8 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         return json_decode($jsonString, true);
     }
 
-    private function composeEmail($from, $to, $template, $data): Email {
+    private function composeEmail($from, $to, $template, $data): Email
+    {
         $message = new Email();
         $message->getHeaders()->addTextHeader('X-Application', 'Schuldhulp');
         $message->addFrom($from);
@@ -282,7 +307,8 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         return $message;
     }
 
-    private function sendEmail(Email $message, $from, $to) {
+    private function sendEmail(Email $message, $from, $to)
+    {
         try {
             $this->logger->info('Mail: start sending', ['from' => $from, 'to' => $to, 'subject' => $message->getSubject()]);
             $this->mailer->send($message);
@@ -305,7 +331,8 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
             'workflow.dossier_flow.completed.goedkeuren_dossier_gka' => 'notifyGoedkeurenDossierGka',
             'workflow.dossier_flow.completed.afsluiten_gka' => 'notifyAfsluitenDossierGka',
             DossierAddedAantekeningEvent::NAME => 'notifyAboutAantekening',
-            DossierAddedCorrespondentie::NAME => 'notifyAboutCorrespondentie'
+            DossierAddedCorrespondentie::NAME => 'notifyAboutCorrespondentie',
+            DossierSyncedWithAllegroEvent::NAME => 'notifyDossierSyncedWithAllegro'
         ];
     }
 }
