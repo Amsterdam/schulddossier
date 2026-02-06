@@ -46,12 +46,12 @@
 
 				{% for log in logs %}
 					<li class="aantekening
-																																																												                {% if log.data.gebruiker is defined %}
-																																																												                {% if log.data.gebruiker.email is defined %}
-																																																												                {% if log.data.gebruiker.email == app.user.email %} aantekening-mijn {% endif %}
-																																																												                {% endif %}
-																																																												                {% endif %}
-																																																												                {% if log.data.gebruiker.type is defined %} {{ log.data.gebruiker.type|lower }}{% endif %}">
+																																																																																																																											                {% if log.data.gebruiker is defined %}
+																																																																																																																											                {% if log.data.gebruiker.email is defined %}
+																																																																																																																											                {% if log.data.gebruiker.email == app.user.email %} aantekening-mijn {% endif %}
+																																																																																																																											                {% endif %}
+																																																																																																																											                {% endif %}
+																																																																																																																											                {% if log.data.gebruiker.type is defined %} {{ log.data.gebruiker.type|lower }}{% endif %}">
 						<p class="aantekening-meta">
 							<time>
 								{% if log.datumTijd|date('d-m-Y') == date()|date('d-m-Y') %}
@@ -100,6 +100,26 @@
 							{% endif %}
 							{% if log.name == 'gebruiker_gewijzigd' %}
 								Gebruiker gewijzigd
+								<br>
+								<br>
+								<strong>Gewijzigd naar:</strong>
+								<br>
+								Naam:
+								{{ log.data.gewijzigd.gebruiker.naam }}<br>
+
+								E-mail:
+								{{ log.data.gewijzigd.gebruiker.email }}<br>
+
+								Gebruikersnaam:
+								{{ log.data.gewijzigd.gebruiker.username }}<br>
+
+								Type:
+								{{ log.data.gewijzigd.gebruiker.type }}<br>
+
+								<br>
+								<strong>Gewijzigd door:</strong>
+								{{ log.data.gebruiker.username }}<br>
+
 							{% endif %}
 							{% if log.name == 'gebruiker_verwijderd' %}
 								Gebruiker verwijderd
