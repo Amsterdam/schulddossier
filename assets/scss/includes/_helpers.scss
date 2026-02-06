@@ -187,3 +187,12 @@
   clear: both;
   display: table;
 }
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+
+  &.space-between {
+    justify-content: space-between;
+  }
+}
