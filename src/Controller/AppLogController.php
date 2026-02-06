@@ -21,7 +21,7 @@ class AppLogController extends AbstractController
 {
     /**
      * @Route("/")
-     * @Security("is_granted('ROLE_USER')")
+     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      */
     public function indexAction(Request $request, ActionEventRepository $actionEventRepository)
     {
