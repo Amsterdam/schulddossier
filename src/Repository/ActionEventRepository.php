@@ -5,10 +5,8 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 
 
 class ActionEventRepository extends ServiceEntityRepository
@@ -47,7 +45,8 @@ class ActionEventRepository extends ServiceEntityRepository
     public function findByFilters(array $filters): array
     {
         if (!empty($filters['gebruiker'])) {
-            return $this->findByNameAndUserId($filters['gebruiker']->getId());
+            $username = $filters['gebruiker']->getUsername();
+            return $this->findChangedGebruiker($username);
         }
 
         return $this->findByFiltersWithQuerryBuilder($filters);
@@ -57,28 +56,14 @@ class ActionEventRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('a');
 
-        if (!empty($filters['logType'])) {
-            $qb->andWhere('a.name = :logType')
-                ->setParameter('logType', $filters['logType']);
-        }
-
         return $qb->orderBy('a.datumTijd', 'DESC')
             ->setMaxResults(100)
             ->getQuery()
             ->getResult();
     }
 
-    private function findByNameAndUserId(int $userId): array
+    private function findChangedGebruiker(string $username): array
     {
-        $entityManager = $this->getEntityManager();
-        $gebruiker = $entityManager->getRepository(Gebruiker::class)->find($userId);
-
-        if (!$gebruiker) {
-            throw new \Exception('User not found for the given ID.');
-        }
-
-        $username = $gebruiker->getUsername();
-
         $sql = "
             SELECT * 
             FROM action_event 
@@ -86,6 +71,7 @@ class ActionEventRepository extends ServiceEntityRepository
               AND data -> 'gewijzigd' -> 'gebruiker' ->> 'username' = :username
         ";
 
+        $entityManager = $this->getEntityManager();
         $connection = $entityManager->getConnection();
         $statement = $connection->prepare($sql);
         $result = $statement->executeQuery([
