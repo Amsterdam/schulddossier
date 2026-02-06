@@ -50,12 +50,12 @@
 
 				{% for log in logs %}
 					<li class="aantekening
-																																																																																																																																																																																																																																										                {% if log.data.gebruiker is defined %}
-																																																																																																																																																																																																																																										                {% if log.data.gebruiker.email is defined %}
-																																																																																																																																																																																																																																										                {% if log.data.gebruiker.email == app.user.email %} aantekening-mijn {% endif %}
-																																																																																																																																																																																																																																										                {% endif %}
-																																																																																																																																																																																																																																										                {% endif %}
-																																																																																																																																																																																																																																										                {% if log.data.gebruiker.type is defined %} {{ log.data.gebruiker.type|lower }}{% endif %}">
+																																																																																																																																																																																																																																																																																																																																																										                {% if log.data.gebruiker is defined %}
+																																																																																																																																																																																																																																																																																																																																																										                {% if log.data.gebruiker.email is defined %}
+																																																																																																																																																																																																																																																																																																																																																										                {% if log.data.gebruiker.email == app.user.email %} aantekening-mijn {% endif %}
+																																																																																																																																																																																																																																																																																																																																																										                {% endif %}
+																																																																																																																																																																																																																																																																																																																																																										                {% endif %}
+																																																																																																																																																																																																																																																																																																																																																										                {% if log.data.gebruiker.type is defined %} {{ log.data.gebruiker.type|lower }}{% endif %}">
 						<p class="aantekening-meta">
 							<time>
 								{% if log.datumTijd|date('d-m-Y') == date()|date('d-m-Y') %}
@@ -106,24 +106,30 @@
 								Gebruiker gewijzigd
 								<br>
 								<br>
-								<strong>Gewijzigd naar:</strong>
+								<strong>Gewijzigd naar</strong>
 								<br>
-								Naam:
-								{{ log.data.gewijzigd.gebruiker.naam }}<br>
-
-								E-mail:
-								{{ log.data.gewijzigd.gebruiker.email }}<br>
-
-								Gebruikersnaam:
-								{{ log.data.gewijzigd.gebruiker.username }}<br>
-
-								Type:
-								{{ log.data.gewijzigd.gebruiker.type }}<br>
-
+								<div class="flex-row space-between">
+									<span>Naam:</span>
+									<span>{{ log.data.gewijzigd.gebruiker.naam }}</span>
+								</div>
+								<div class="flex-row space-between">
+									<span>E-mail:</span>
+									<span>{{ log.data.gewijzigd.gebruiker.email }}</span>
+								</div>
+								<div class="flex-row space-between">
+									<span>Gebruikersnaam:</span>
+									<span>{{ log.data.gewijzigd.gebruiker.username }}</span>
+								</div>
+								<div class="flex-row space-between">
+									<span>Type:</span>
+									<span>{{ log.data.gewijzigd.gebruiker.type }}</span>
+								</div>
 								<br>
-								<strong>Gewijzigd door:</strong>
-								{{ log.data.gebruiker.username }}<br>
-
+								<strong>Gewijzigd door</strong><br>
+								<div class="flex-row space-between">
+									<span>Gebruikersnaam:</span>
+									<span>{{ log.data.gebruiker.username }}</span>
+								</div>
 							{% endif %}
 							{% if log.name == 'gebruiker_verwijderd' %}
 								Gebruiker verwijderd
