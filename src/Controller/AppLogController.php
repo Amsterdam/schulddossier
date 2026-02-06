@@ -31,6 +31,8 @@ class AppLogController extends AbstractController
         // Initialize filters
         $filters = [];
 
+        $logs = [];
+
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 

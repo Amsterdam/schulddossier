@@ -25,9 +25,7 @@ class SearchLogFormType extends AbstractType
             // Dropdown for Event Types
             ->add('logType', ChoiceType::class, [
                 'choices' => [
-                    'Gebruiker verwijderd' => ActionEvent::GEBRUIKER_GEWIJZIGD,
-                    'Gebruiker ingelog' => ActionEvent::GEBRUIKER_INGELOGD,
-                    'Gebruiker verwijderd' => ActionEvent::GEBRUIKER_VERWIJDERD,
+                    'Gebruiker gewijzigd' => ActionEvent::GEBRUIKER_GEWIJZIGD
                 ],
                 'placeholder' => 'Select an event type',
                 'required' => false, // Optional: Allow no selection
