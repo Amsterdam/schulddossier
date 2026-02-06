@@ -15,28 +15,19 @@ class SearchLogFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // Dropdown for Users
             ->add('gebruiker', EntityType::class, [
-                'class' => Gebruiker::class, // Replace with your User entity
-                'choice_label' => 'naam', // Replace 'name' with the property to display
+                'label' => 'Gewijzigde gebruiker',
+                'class' => Gebruiker::class,
+                'choice_label' => 'naam',
                 'placeholder' => 'Selecteer een gebruiker',
-                'required' => false, // Optional: Allow no selection
-            ])
-            // Dropdown for Event Types
-            ->add('logType', ChoiceType::class, [
-                'choices' => [
-                    'Gebruiker gewijzigd' => ActionEvent::GEBRUIKER_GEWIJZIGD
-                ],
-                'placeholder' => 'Select an event type',
-                'required' => false, // Optional: Allow no selection
+                'required' => false,
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // No data class since this is a search form
-            'csrf_protection' => false, // Optional: Disable CSRF for search forms
+            'csrf_protection' => false,
         ]);
     }
 }

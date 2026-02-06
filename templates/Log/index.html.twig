@@ -32,11 +32,15 @@
 
 		</div>
 
-		{{ form_start(form) }}
-		{{ form_row(form.gebruiker) }}
-		{{ form_row(form.logType) }}
-		<button type="submit">Filter Logs</button>
-		{{ form_end(form) }}
+		{% if  is_granted('ROLE_ADMIN')  %}
+			{{ form_start(form) }}
+			{{ form_row(form.gebruiker) }}
+			<p class="explanation">Filtert logs op 'gebruiker gewijzigd' en zoekt naar de gebruiker waarop wijzigingen zijn aangebracht.</p>
+			<div class="buttons right">
+				<button type="submit" class="button primary">Filter Logs</button>
+			</div>
+			{{ form_end(form) }}
+		{% endif %}
 
 		{% if logs is empty %}
 			Er zijn geen logs gevonden
@@ -46,12 +50,12 @@
 
 				{% for log in logs %}
 					<li class="aantekening
-																																																																																																																											                {% if log.data.gebruiker is defined %}
-																																																																																																																											                {% if log.data.gebruiker.email is defined %}
-																																																																																																																											                {% if log.data.gebruiker.email == app.user.email %} aantekening-mijn {% endif %}
-																																																																																																																											                {% endif %}
-																																																																																																																											                {% endif %}
-																																																																																																																											                {% if log.data.gebruiker.type is defined %} {{ log.data.gebruiker.type|lower }}{% endif %}">
+																																																																																																																																																																																																																																										                {% if log.data.gebruiker is defined %}
+																																																																																																																																																																																																																																										                {% if log.data.gebruiker.email is defined %}
+																																																																																																																																																																																																																																										                {% if log.data.gebruiker.email == app.user.email %} aantekening-mijn {% endif %}
+																																																																																																																																																																																																																																										                {% endif %}
+																																																																																																																																																																																																																																										                {% endif %}
+																																																																																																																																																																																																																																										                {% if log.data.gebruiker.type is defined %} {{ log.data.gebruiker.type|lower }}{% endif %}">
 						<p class="aantekening-meta">
 							<time>
 								{% if log.datumTijd|date('d-m-Y') == date()|date('d-m-Y') %}
