@@ -564,11 +564,9 @@ class AppDossierController extends AbstractController
      * @ParamConverter("dossier", options={"id"="dossierId"})
      * @ParamConverter("document", options={"id"="documentId"})
      */
-    public function showDocumentFullscreenAction(
-        Request                $request,
+    public function wordViewerAction(
         Dossier                $dossier,
         Document               $document,
-        FileStorageSelector    $fileStorageSelector,
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
