@@ -80,12 +80,11 @@ class ActionEventRepository extends ServiceEntityRepository
         ]);
         $resultDatabaseEntries = $result->fetchAllAssociative();
 
-        $actionEvents = [];
-        foreach ($resultDatabaseEntries as $entry) {
+        $actionEvents = array_map(function ($entry) {
             $entry['data'] = json_decode($entry['data'], true);
             $entry['datum_tijd'] = new \DateTime($entry['datum_tijd']);
-            $actionEvents[] = $this->denormalizer->denormalize($entry, ActionEvent::class);
-        }
+            return $this->denormalizer->denormalize($entry, ActionEvent::class);
+        }, $resultDatabaseEntries);
 
         return $actionEvents;
     }
