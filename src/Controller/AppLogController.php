@@ -28,15 +28,12 @@ class AppLogController extends AbstractController
         $form = $this->createForm(SearchLogFormType::class);
         $form->handleRequest($request);
 
-        // Initialize filters
         $filters = [];
-
         $logs = [];
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            // Add filters based on form data
             if (!empty($data['gebruiker'])) {
                 $filters['gebruiker'] = $data['gebruiker'];
             }
