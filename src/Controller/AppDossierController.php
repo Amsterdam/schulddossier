@@ -595,7 +595,9 @@ class AppDossierController extends AbstractController
         $htmlContent = ob_get_clean();
 
         return $this->render('Dossier/detailDocumentWordViewer.html.twig', [
-            'html_content' => $htmlContent
+            'html_content' => $htmlContent,
+            'document' => $document,
+            'dossier' => $dossier
         ]);
     }
 

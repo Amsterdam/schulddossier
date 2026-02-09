@@ -42,11 +42,12 @@ $messageBorderColor: #CCC;
   flex-direction: column;
   gap: 0.8rem;
 
-  h4.title{
+  h4.title {
     font-size: $fs-default;
-  }
-
-  .message{
+    font-family: inherit;
+    }
+    
+  a, .message {
     color: $colorBgDark;
     font-size: $fs-x-small;
   }
