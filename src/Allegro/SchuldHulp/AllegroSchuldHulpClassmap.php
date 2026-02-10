@@ -8,8 +8,7 @@ use Phpro\SoapClient\Soap\ClassMap\ClassMap;
 
 class AllegroSchuldHulpClassmap
 {
-
-    public static function getCollection() : \Phpro\SoapClient\Soap\ClassMap\ClassMapCollection
+    public static function getCollection(): \Phpro\SoapClient\Soap\ClassMap\ClassMapCollection
     {
         return new ClassMapCollection([
             new ClassMap('TTest', Type\TTest::class),
@@ -213,7 +212,4 @@ class AllegroSchuldHulpClassmap
             new ClassMap('ROClientIDHeader', Type\ROClientIDHeader::class),
         ]);
     }
-
-
 }
-

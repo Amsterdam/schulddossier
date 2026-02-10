@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\ResultInterface;
 
 class LoginServiceGenereerWachtwoordResponse implements ResultInterface
 {
-
     /**
      * @var bool
      */
@@ -81,7 +80,4 @@ class LoginServiceGenereerWachtwoordResponse implements ResultInterface
 
         return $new;
     }
-
-
 }
-

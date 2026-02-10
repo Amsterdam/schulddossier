@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TAanvraagSR extends TAanvraag
 {
-
     /**
      * @var int $Bedrijfscode
      */
@@ -126,22 +125,22 @@ class TAanvraagSR extends TAanvraag
      */
     public function __construct($Aanvrager, $MetPartner, $Partner, $Bezoekadres, $Postadres, $Contact, $CorrespondentieMail, $GezinsSituatie, $AantalKinderen, $ToelichtingKinderen, $InkomenAanvrager, $InkomenPartner, $Uitgaven, $Schuldbedrag, $Schuldeisers, $SoortLening, $GewenstKrediet, $GewenstAflossing, $Bestedingsdoel, $Indiener, $HulpverlenerNaam, $OpdrachtgeverCode, $Contactpersoon, $KredietSoort, $Borgstelling, $Toelichting, $CollectieveBorgstelling, $Bedrijfscode, $CorrespondentieWeb, $NPS, $OorzaakSchulden, $Bewindvoerder, $ToelichtingAlgemeen, $ToelichtingSO, $ToelichtingAanmelding, $ToelichtingVoorstel, $TotaalschuldVullen, $OpdrachtgeverOvernemen, $HulpverlenerOvernemen, $OpenVragen, $GeslotenVragen, $Schulden)
     {
-      parent::__construct($Aanvrager, $MetPartner, $Partner, $Bezoekadres, $Postadres, $Contact, $CorrespondentieMail, $GezinsSituatie, $AantalKinderen, $ToelichtingKinderen, $InkomenAanvrager, $InkomenPartner, $Uitgaven, $Schuldbedrag, $Schuldeisers, $SoortLening, $GewenstKrediet, $GewenstAflossing, $Bestedingsdoel, $Indiener, $HulpverlenerNaam, $OpdrachtgeverCode, $Contactpersoon, $KredietSoort, $Borgstelling, $Toelichting, $CollectieveBorgstelling);
-      $this->Bedrijfscode = $Bedrijfscode;
-      $this->CorrespondentieWeb = $CorrespondentieWeb;
-      $this->NPS = $NPS;
-      $this->OorzaakSchulden = $OorzaakSchulden;
-      $this->Bewindvoerder = $Bewindvoerder;
-      $this->ToelichtingAlgemeen = $ToelichtingAlgemeen;
-      $this->ToelichtingSO = $ToelichtingSO;
-      $this->ToelichtingAanmelding = $ToelichtingAanmelding;
-      $this->ToelichtingVoorstel = $ToelichtingVoorstel;
-      $this->TotaalschuldVullen = $TotaalschuldVullen;
-      $this->OpdrachtgeverOvernemen = $OpdrachtgeverOvernemen;
-      $this->HulpverlenerOvernemen = $HulpverlenerOvernemen;
-      $this->OpenVragen = $OpenVragen;
-      $this->GeslotenVragen = $GeslotenVragen;
-      $this->Schulden = $Schulden;
+        parent::__construct($Aanvrager, $MetPartner, $Partner, $Bezoekadres, $Postadres, $Contact, $CorrespondentieMail, $GezinsSituatie, $AantalKinderen, $ToelichtingKinderen, $InkomenAanvrager, $InkomenPartner, $Uitgaven, $Schuldbedrag, $Schuldeisers, $SoortLening, $GewenstKrediet, $GewenstAflossing, $Bestedingsdoel, $Indiener, $HulpverlenerNaam, $OpdrachtgeverCode, $Contactpersoon, $KredietSoort, $Borgstelling, $Toelichting, $CollectieveBorgstelling);
+        $this->Bedrijfscode = $Bedrijfscode;
+        $this->CorrespondentieWeb = $CorrespondentieWeb;
+        $this->NPS = $NPS;
+        $this->OorzaakSchulden = $OorzaakSchulden;
+        $this->Bewindvoerder = $Bewindvoerder;
+        $this->ToelichtingAlgemeen = $ToelichtingAlgemeen;
+        $this->ToelichtingSO = $ToelichtingSO;
+        $this->ToelichtingAanmelding = $ToelichtingAanmelding;
+        $this->ToelichtingVoorstel = $ToelichtingVoorstel;
+        $this->TotaalschuldVullen = $TotaalschuldVullen;
+        $this->OpdrachtgeverOvernemen = $OpdrachtgeverOvernemen;
+        $this->HulpverlenerOvernemen = $HulpverlenerOvernemen;
+        $this->OpenVragen = $OpenVragen;
+        $this->GeslotenVragen = $GeslotenVragen;
+        $this->Schulden = $Schulden;
     }
 
     /**
@@ -149,7 +148,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getBedrijfscode()
     {
-      return $this->Bedrijfscode;
+        return $this->Bedrijfscode;
     }
 
     /**
@@ -158,8 +157,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setBedrijfscode($Bedrijfscode)
     {
-      $this->Bedrijfscode = $Bedrijfscode;
-      return $this;
+        $this->Bedrijfscode = $Bedrijfscode;
+        return $this;
     }
 
     /**
@@ -167,7 +166,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getCorrespondentieWeb()
     {
-      return $this->CorrespondentieWeb;
+        return $this->CorrespondentieWeb;
     }
 
     /**
@@ -176,8 +175,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setCorrespondentieWeb($CorrespondentieWeb)
     {
-      $this->CorrespondentieWeb = $CorrespondentieWeb;
-      return $this;
+        $this->CorrespondentieWeb = $CorrespondentieWeb;
+        return $this;
     }
 
     /**
@@ -185,7 +184,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getNPS()
     {
-      return $this->NPS;
+        return $this->NPS;
     }
 
     /**
@@ -194,8 +193,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setNPS($NPS)
     {
-      $this->NPS = $NPS;
-      return $this;
+        $this->NPS = $NPS;
+        return $this;
     }
 
     /**
@@ -203,7 +202,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getOorzaakSchulden()
     {
-      return $this->OorzaakSchulden;
+        return $this->OorzaakSchulden;
     }
 
     /**
@@ -212,8 +211,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setOorzaakSchulden($OorzaakSchulden)
     {
-      $this->OorzaakSchulden = $OorzaakSchulden;
-      return $this;
+        $this->OorzaakSchulden = $OorzaakSchulden;
+        return $this;
     }
 
     /**
@@ -221,7 +220,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getBewindvoerder()
     {
-      return $this->Bewindvoerder;
+        return $this->Bewindvoerder;
     }
 
     /**
@@ -230,8 +229,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setBewindvoerder($Bewindvoerder)
     {
-      $this->Bewindvoerder = $Bewindvoerder;
-      return $this;
+        $this->Bewindvoerder = $Bewindvoerder;
+        return $this;
     }
 
     /**
@@ -239,7 +238,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getToelichtingAlgemeen()
     {
-      return $this->ToelichtingAlgemeen;
+        return $this->ToelichtingAlgemeen;
     }
 
     /**
@@ -248,8 +247,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setToelichtingAlgemeen($ToelichtingAlgemeen)
     {
-      $this->ToelichtingAlgemeen = $ToelichtingAlgemeen;
-      return $this;
+        $this->ToelichtingAlgemeen = $ToelichtingAlgemeen;
+        return $this;
     }
 
     /**
@@ -257,7 +256,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getToelichtingSO()
     {
-      return $this->ToelichtingSO;
+        return $this->ToelichtingSO;
     }
 
     /**
@@ -266,8 +265,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setToelichtingSO($ToelichtingSO)
     {
-      $this->ToelichtingSO = $ToelichtingSO;
-      return $this;
+        $this->ToelichtingSO = $ToelichtingSO;
+        return $this;
     }
 
     /**
@@ -275,7 +274,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getToelichtingAanmelding()
     {
-      return $this->ToelichtingAanmelding;
+        return $this->ToelichtingAanmelding;
     }
 
     /**
@@ -284,8 +283,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setToelichtingAanmelding($ToelichtingAanmelding)
     {
-      $this->ToelichtingAanmelding = $ToelichtingAanmelding;
-      return $this;
+        $this->ToelichtingAanmelding = $ToelichtingAanmelding;
+        return $this;
     }
 
     /**
@@ -293,7 +292,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getToelichtingVoorstel()
     {
-      return $this->ToelichtingVoorstel;
+        return $this->ToelichtingVoorstel;
     }
 
     /**
@@ -302,8 +301,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setToelichtingVoorstel($ToelichtingVoorstel)
     {
-      $this->ToelichtingVoorstel = $ToelichtingVoorstel;
-      return $this;
+        $this->ToelichtingVoorstel = $ToelichtingVoorstel;
+        return $this;
     }
 
     /**
@@ -311,7 +310,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getTotaalschuldVullen()
     {
-      return $this->TotaalschuldVullen;
+        return $this->TotaalschuldVullen;
     }
 
     /**
@@ -320,8 +319,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setTotaalschuldVullen($TotaalschuldVullen)
     {
-      $this->TotaalschuldVullen = $TotaalschuldVullen;
-      return $this;
+        $this->TotaalschuldVullen = $TotaalschuldVullen;
+        return $this;
     }
 
     /**
@@ -329,7 +328,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getOpdrachtgeverOvernemen()
     {
-      return $this->OpdrachtgeverOvernemen;
+        return $this->OpdrachtgeverOvernemen;
     }
 
     /**
@@ -338,8 +337,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setOpdrachtgeverOvernemen($OpdrachtgeverOvernemen)
     {
-      $this->OpdrachtgeverOvernemen = $OpdrachtgeverOvernemen;
-      return $this;
+        $this->OpdrachtgeverOvernemen = $OpdrachtgeverOvernemen;
+        return $this;
     }
 
     /**
@@ -347,7 +346,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getHulpverlenerOvernemen()
     {
-      return $this->HulpverlenerOvernemen;
+        return $this->HulpverlenerOvernemen;
     }
 
     /**
@@ -356,8 +355,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setHulpverlenerOvernemen($HulpverlenerOvernemen)
     {
-      $this->HulpverlenerOvernemen = $HulpverlenerOvernemen;
-      return $this;
+        $this->HulpverlenerOvernemen = $HulpverlenerOvernemen;
+        return $this;
     }
 
     /**
@@ -365,7 +364,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getOpenVragen()
     {
-      return $this->OpenVragen;
+        return $this->OpenVragen;
     }
 
     /**
@@ -374,8 +373,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setOpenVragen($OpenVragen)
     {
-      $this->OpenVragen = $OpenVragen;
-      return $this;
+        $this->OpenVragen = $OpenVragen;
+        return $this;
     }
 
     /**
@@ -383,7 +382,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getGeslotenVragen()
     {
-      return $this->GeslotenVragen;
+        return $this->GeslotenVragen;
     }
 
     /**
@@ -392,8 +391,8 @@ class TAanvraagSR extends TAanvraag
      */
     public function setGeslotenVragen($GeslotenVragen)
     {
-      $this->GeslotenVragen = $GeslotenVragen;
-      return $this;
+        $this->GeslotenVragen = $GeslotenVragen;
+        return $this;
     }
 
     /**
@@ -401,7 +400,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function getSchulden()
     {
-      return $this->Schulden;
+        return $this->Schulden;
     }
 
     /**
@@ -410,8 +409,7 @@ class TAanvraagSR extends TAanvraag
      */
     public function setSchulden($Schulden)
     {
-      $this->Schulden = $Schulden;
-      return $this;
+        $this->Schulden = $Schulden;
+        return $this;
     }
-
 }

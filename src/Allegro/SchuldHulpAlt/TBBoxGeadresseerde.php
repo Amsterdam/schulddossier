@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBBoxGeadresseerde
 {
-
     /**
      * @var TMedewerker $Medewerker
      */
@@ -21,8 +20,8 @@ class TBBoxGeadresseerde
      */
     public function __construct($Medewerker, $Informatie)
     {
-      $this->Medewerker = $Medewerker;
-      $this->Informatie = $Informatie;
+        $this->Medewerker = $Medewerker;
+        $this->Informatie = $Informatie;
     }
 
     /**
@@ -30,7 +29,7 @@ class TBBoxGeadresseerde
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -39,8 +38,8 @@ class TBBoxGeadresseerde
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -48,7 +47,7 @@ class TBBoxGeadresseerde
      */
     public function getInformatie()
     {
-      return $this->Informatie;
+        return $this->Informatie;
     }
 
     /**
@@ -57,8 +56,7 @@ class TBBoxGeadresseerde
      */
     public function setInformatie($Informatie)
     {
-      $this->Informatie = $Informatie;
-      return $this;
+        $this->Informatie = $Informatie;
+        return $this;
     }
-
 }

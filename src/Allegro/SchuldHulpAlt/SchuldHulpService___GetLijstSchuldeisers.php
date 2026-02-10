@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SchuldHulpService___GetLijstSchuldeisers
 {
-
     /**
      * @var string $aZoekargument
      */
@@ -15,7 +14,7 @@ class SchuldHulpService___GetLijstSchuldeisers
      */
     public function __construct($aZoekargument)
     {
-      $this->aZoekargument = $aZoekargument;
+        $this->aZoekargument = $aZoekargument;
     }
 
     /**
@@ -23,7 +22,7 @@ class SchuldHulpService___GetLijstSchuldeisers
      */
     public function getAZoekargument()
     {
-      return $this->aZoekargument;
+        return $this->aZoekargument;
     }
 
     /**
@@ -32,8 +31,7 @@ class SchuldHulpService___GetLijstSchuldeisers
      */
     public function setAZoekargument($aZoekargument)
     {
-      $this->aZoekargument = $aZoekargument;
-      return $this;
+        $this->aZoekargument = $aZoekargument;
+        return $this;
     }
-
 }

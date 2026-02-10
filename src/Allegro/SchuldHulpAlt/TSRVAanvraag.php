@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSRVAanvraag
 {
-
     /**
      * @var TSRVAanvraagHeader $InfoHeader
      */
@@ -123,25 +122,25 @@ class TSRVAanvraag
      */
     public function __construct($InfoHeader, \DateTime $Startdatum, \DateTime $Einddatum, $Eindstatus, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, $VTLB, \DateTime $DatumBerekening, $BrutoAfloscapaciteit, $KostenFinancieelBeheer, $KostenSchuldhulpverlening, $NettoAfloscapaciteit, $TotaalAangemeldeSchuld, $TotaalTeruggemeldeSchuld, $PartnerCode, \DateTime $Aanvraagdatum, $RedenOpschorting, $ExtraInleg)
     {
-      $this->InfoHeader = $InfoHeader;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
-      $this->Eindstatus = $Eindstatus;
-      $this->Medewerker = $Medewerker;
-      $this->Opdrachtgever = $Opdrachtgever;
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      $this->VTLB = $VTLB;
-      $this->DatumBerekening = $DatumBerekening->format(\DateTime::ATOM);
-      $this->BrutoAfloscapaciteit = $BrutoAfloscapaciteit;
-      $this->KostenFinancieelBeheer = $KostenFinancieelBeheer;
-      $this->KostenSchuldhulpverlening = $KostenSchuldhulpverlening;
-      $this->NettoAfloscapaciteit = $NettoAfloscapaciteit;
-      $this->TotaalAangemeldeSchuld = $TotaalAangemeldeSchuld;
-      $this->TotaalTeruggemeldeSchuld = $TotaalTeruggemeldeSchuld;
-      $this->PartnerCode = $PartnerCode;
-      $this->Aanvraagdatum = $Aanvraagdatum->format(\DateTime::ATOM);
-      $this->RedenOpschorting = $RedenOpschorting;
-      $this->ExtraInleg = $ExtraInleg;
+        $this->InfoHeader = $InfoHeader;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
+        $this->Eindstatus = $Eindstatus;
+        $this->Medewerker = $Medewerker;
+        $this->Opdrachtgever = $Opdrachtgever;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        $this->VTLB = $VTLB;
+        $this->DatumBerekening = $DatumBerekening->format(\DateTime::ATOM);
+        $this->BrutoAfloscapaciteit = $BrutoAfloscapaciteit;
+        $this->KostenFinancieelBeheer = $KostenFinancieelBeheer;
+        $this->KostenSchuldhulpverlening = $KostenSchuldhulpverlening;
+        $this->NettoAfloscapaciteit = $NettoAfloscapaciteit;
+        $this->TotaalAangemeldeSchuld = $TotaalAangemeldeSchuld;
+        $this->TotaalTeruggemeldeSchuld = $TotaalTeruggemeldeSchuld;
+        $this->PartnerCode = $PartnerCode;
+        $this->Aanvraagdatum = $Aanvraagdatum->format(\DateTime::ATOM);
+        $this->RedenOpschorting = $RedenOpschorting;
+        $this->ExtraInleg = $ExtraInleg;
     }
 
     /**
@@ -149,7 +148,7 @@ class TSRVAanvraag
      */
     public function getInfoHeader()
     {
-      return $this->InfoHeader;
+        return $this->InfoHeader;
     }
 
     /**
@@ -158,8 +157,8 @@ class TSRVAanvraag
      */
     public function setInfoHeader($InfoHeader)
     {
-      $this->InfoHeader = $InfoHeader;
-      return $this;
+        $this->InfoHeader = $InfoHeader;
+        return $this;
     }
 
     /**
@@ -167,15 +166,15 @@ class TSRVAanvraag
      */
     public function getStartdatum()
     {
-      if ($this->Startdatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Startdatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Startdatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -184,8 +183,8 @@ class TSRVAanvraag
      */
     public function setStartdatum(\DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -193,15 +192,15 @@ class TSRVAanvraag
      */
     public function getEinddatum()
     {
-      if ($this->Einddatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Einddatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Einddatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Einddatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -210,8 +209,8 @@ class TSRVAanvraag
      */
     public function setEinddatum(\DateTime $Einddatum)
     {
-      $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -219,7 +218,7 @@ class TSRVAanvraag
      */
     public function getEindstatus()
     {
-      return $this->Eindstatus;
+        return $this->Eindstatus;
     }
 
     /**
@@ -228,8 +227,8 @@ class TSRVAanvraag
      */
     public function setEindstatus($Eindstatus)
     {
-      $this->Eindstatus = $Eindstatus;
-      return $this;
+        $this->Eindstatus = $Eindstatus;
+        return $this;
     }
 
     /**
@@ -237,7 +236,7 @@ class TSRVAanvraag
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -246,8 +245,8 @@ class TSRVAanvraag
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -255,7 +254,7 @@ class TSRVAanvraag
      */
     public function getOpdrachtgever()
     {
-      return $this->Opdrachtgever;
+        return $this->Opdrachtgever;
     }
 
     /**
@@ -264,8 +263,8 @@ class TSRVAanvraag
      */
     public function setOpdrachtgever($Opdrachtgever)
     {
-      $this->Opdrachtgever = $Opdrachtgever;
-      return $this;
+        $this->Opdrachtgever = $Opdrachtgever;
+        return $this;
     }
 
     /**
@@ -273,7 +272,7 @@ class TSRVAanvraag
      */
     public function getOpdrachtgeverContact()
     {
-      return $this->OpdrachtgeverContact;
+        return $this->OpdrachtgeverContact;
     }
 
     /**
@@ -282,8 +281,8 @@ class TSRVAanvraag
      */
     public function setOpdrachtgeverContact($OpdrachtgeverContact)
     {
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      return $this;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        return $this;
     }
 
     /**
@@ -291,7 +290,7 @@ class TSRVAanvraag
      */
     public function getVTLB()
     {
-      return $this->VTLB;
+        return $this->VTLB;
     }
 
     /**
@@ -300,8 +299,8 @@ class TSRVAanvraag
      */
     public function setVTLB($VTLB)
     {
-      $this->VTLB = $VTLB;
-      return $this;
+        $this->VTLB = $VTLB;
+        return $this;
     }
 
     /**
@@ -309,15 +308,15 @@ class TSRVAanvraag
      */
     public function getDatumBerekening()
     {
-      if ($this->DatumBerekening == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumBerekening);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumBerekening == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumBerekening);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -326,8 +325,8 @@ class TSRVAanvraag
      */
     public function setDatumBerekening(\DateTime $DatumBerekening)
     {
-      $this->DatumBerekening = $DatumBerekening->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumBerekening = $DatumBerekening->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -335,7 +334,7 @@ class TSRVAanvraag
      */
     public function getBrutoAfloscapaciteit()
     {
-      return $this->BrutoAfloscapaciteit;
+        return $this->BrutoAfloscapaciteit;
     }
 
     /**
@@ -344,8 +343,8 @@ class TSRVAanvraag
      */
     public function setBrutoAfloscapaciteit($BrutoAfloscapaciteit)
     {
-      $this->BrutoAfloscapaciteit = $BrutoAfloscapaciteit;
-      return $this;
+        $this->BrutoAfloscapaciteit = $BrutoAfloscapaciteit;
+        return $this;
     }
 
     /**
@@ -353,7 +352,7 @@ class TSRVAanvraag
      */
     public function getKostenFinancieelBeheer()
     {
-      return $this->KostenFinancieelBeheer;
+        return $this->KostenFinancieelBeheer;
     }
 
     /**
@@ -362,8 +361,8 @@ class TSRVAanvraag
      */
     public function setKostenFinancieelBeheer($KostenFinancieelBeheer)
     {
-      $this->KostenFinancieelBeheer = $KostenFinancieelBeheer;
-      return $this;
+        $this->KostenFinancieelBeheer = $KostenFinancieelBeheer;
+        return $this;
     }
 
     /**
@@ -371,7 +370,7 @@ class TSRVAanvraag
      */
     public function getKostenSchuldhulpverlening()
     {
-      return $this->KostenSchuldhulpverlening;
+        return $this->KostenSchuldhulpverlening;
     }
 
     /**
@@ -380,8 +379,8 @@ class TSRVAanvraag
      */
     public function setKostenSchuldhulpverlening($KostenSchuldhulpverlening)
     {
-      $this->KostenSchuldhulpverlening = $KostenSchuldhulpverlening;
-      return $this;
+        $this->KostenSchuldhulpverlening = $KostenSchuldhulpverlening;
+        return $this;
     }
 
     /**
@@ -389,7 +388,7 @@ class TSRVAanvraag
      */
     public function getNettoAfloscapaciteit()
     {
-      return $this->NettoAfloscapaciteit;
+        return $this->NettoAfloscapaciteit;
     }
 
     /**
@@ -398,8 +397,8 @@ class TSRVAanvraag
      */
     public function setNettoAfloscapaciteit($NettoAfloscapaciteit)
     {
-      $this->NettoAfloscapaciteit = $NettoAfloscapaciteit;
-      return $this;
+        $this->NettoAfloscapaciteit = $NettoAfloscapaciteit;
+        return $this;
     }
 
     /**
@@ -407,7 +406,7 @@ class TSRVAanvraag
      */
     public function getTotaalAangemeldeSchuld()
     {
-      return $this->TotaalAangemeldeSchuld;
+        return $this->TotaalAangemeldeSchuld;
     }
 
     /**
@@ -416,8 +415,8 @@ class TSRVAanvraag
      */
     public function setTotaalAangemeldeSchuld($TotaalAangemeldeSchuld)
     {
-      $this->TotaalAangemeldeSchuld = $TotaalAangemeldeSchuld;
-      return $this;
+        $this->TotaalAangemeldeSchuld = $TotaalAangemeldeSchuld;
+        return $this;
     }
 
     /**
@@ -425,7 +424,7 @@ class TSRVAanvraag
      */
     public function getTotaalTeruggemeldeSchuld()
     {
-      return $this->TotaalTeruggemeldeSchuld;
+        return $this->TotaalTeruggemeldeSchuld;
     }
 
     /**
@@ -434,8 +433,8 @@ class TSRVAanvraag
      */
     public function setTotaalTeruggemeldeSchuld($TotaalTeruggemeldeSchuld)
     {
-      $this->TotaalTeruggemeldeSchuld = $TotaalTeruggemeldeSchuld;
-      return $this;
+        $this->TotaalTeruggemeldeSchuld = $TotaalTeruggemeldeSchuld;
+        return $this;
     }
 
     /**
@@ -443,7 +442,7 @@ class TSRVAanvraag
      */
     public function getPartnerCode()
     {
-      return $this->PartnerCode;
+        return $this->PartnerCode;
     }
 
     /**
@@ -452,8 +451,8 @@ class TSRVAanvraag
      */
     public function setPartnerCode($PartnerCode)
     {
-      $this->PartnerCode = $PartnerCode;
-      return $this;
+        $this->PartnerCode = $PartnerCode;
+        return $this;
     }
 
     /**
@@ -461,15 +460,15 @@ class TSRVAanvraag
      */
     public function getAanvraagdatum()
     {
-      if ($this->Aanvraagdatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Aanvraagdatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Aanvraagdatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Aanvraagdatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -478,8 +477,8 @@ class TSRVAanvraag
      */
     public function setAanvraagdatum(\DateTime $Aanvraagdatum)
     {
-      $this->Aanvraagdatum = $Aanvraagdatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Aanvraagdatum = $Aanvraagdatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -487,7 +486,7 @@ class TSRVAanvraag
      */
     public function getRedenOpschorting()
     {
-      return $this->RedenOpschorting;
+        return $this->RedenOpschorting;
     }
 
     /**
@@ -496,8 +495,8 @@ class TSRVAanvraag
      */
     public function setRedenOpschorting($RedenOpschorting)
     {
-      $this->RedenOpschorting = $RedenOpschorting;
-      return $this;
+        $this->RedenOpschorting = $RedenOpschorting;
+        return $this;
     }
 
     /**
@@ -505,7 +504,7 @@ class TSRVAanvraag
      */
     public function getExtraInleg()
     {
-      return $this->ExtraInleg;
+        return $this->ExtraInleg;
     }
 
     /**
@@ -514,8 +513,7 @@ class TSRVAanvraag
      */
     public function setExtraInleg($ExtraInleg)
     {
-      $this->ExtraInleg = $ExtraInleg;
-      return $this;
+        $this->ExtraInleg = $ExtraInleg;
+        return $this;
     }
-
 }

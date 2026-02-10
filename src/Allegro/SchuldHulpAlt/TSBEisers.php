@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSBEisers
 {
-
     /**
      * @var SBEiserArray $Eisers
      */
@@ -45,12 +44,12 @@ class TSBEisers
      */
     public function __construct($Eisers, $SomTeruggemeldBedrag, $SomBerekendBedrag, $SomGereserveerdBedrag, $SomDoorbetaaldBedrag, $SomPrognoseRestschuld)
     {
-      $this->Eisers = $Eisers;
-      $this->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
-      $this->SomBerekendBedrag = $SomBerekendBedrag;
-      $this->SomGereserveerdBedrag = $SomGereserveerdBedrag;
-      $this->SomDoorbetaaldBedrag = $SomDoorbetaaldBedrag;
-      $this->SomPrognoseRestschuld = $SomPrognoseRestschuld;
+        $this->Eisers = $Eisers;
+        $this->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
+        $this->SomBerekendBedrag = $SomBerekendBedrag;
+        $this->SomGereserveerdBedrag = $SomGereserveerdBedrag;
+        $this->SomDoorbetaaldBedrag = $SomDoorbetaaldBedrag;
+        $this->SomPrognoseRestschuld = $SomPrognoseRestschuld;
     }
 
     /**
@@ -58,7 +57,7 @@ class TSBEisers
      */
     public function getEisers()
     {
-      return $this->Eisers;
+        return $this->Eisers;
     }
 
     /**
@@ -67,8 +66,8 @@ class TSBEisers
      */
     public function setEisers($Eisers)
     {
-      $this->Eisers = $Eisers;
-      return $this;
+        $this->Eisers = $Eisers;
+        return $this;
     }
 
     /**
@@ -76,7 +75,7 @@ class TSBEisers
      */
     public function getSomTeruggemeldBedrag()
     {
-      return $this->SomTeruggemeldBedrag;
+        return $this->SomTeruggemeldBedrag;
     }
 
     /**
@@ -85,8 +84,8 @@ class TSBEisers
      */
     public function setSomTeruggemeldBedrag($SomTeruggemeldBedrag)
     {
-      $this->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
-      return $this;
+        $this->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
+        return $this;
     }
 
     /**
@@ -94,7 +93,7 @@ class TSBEisers
      */
     public function getSomBerekendBedrag()
     {
-      return $this->SomBerekendBedrag;
+        return $this->SomBerekendBedrag;
     }
 
     /**
@@ -103,8 +102,8 @@ class TSBEisers
      */
     public function setSomBerekendBedrag($SomBerekendBedrag)
     {
-      $this->SomBerekendBedrag = $SomBerekendBedrag;
-      return $this;
+        $this->SomBerekendBedrag = $SomBerekendBedrag;
+        return $this;
     }
 
     /**
@@ -112,7 +111,7 @@ class TSBEisers
      */
     public function getSomGereserveerdBedrag()
     {
-      return $this->SomGereserveerdBedrag;
+        return $this->SomGereserveerdBedrag;
     }
 
     /**
@@ -121,8 +120,8 @@ class TSBEisers
      */
     public function setSomGereserveerdBedrag($SomGereserveerdBedrag)
     {
-      $this->SomGereserveerdBedrag = $SomGereserveerdBedrag;
-      return $this;
+        $this->SomGereserveerdBedrag = $SomGereserveerdBedrag;
+        return $this;
     }
 
     /**
@@ -130,7 +129,7 @@ class TSBEisers
      */
     public function getSomDoorbetaaldBedrag()
     {
-      return $this->SomDoorbetaaldBedrag;
+        return $this->SomDoorbetaaldBedrag;
     }
 
     /**
@@ -139,8 +138,8 @@ class TSBEisers
      */
     public function setSomDoorbetaaldBedrag($SomDoorbetaaldBedrag)
     {
-      $this->SomDoorbetaaldBedrag = $SomDoorbetaaldBedrag;
-      return $this;
+        $this->SomDoorbetaaldBedrag = $SomDoorbetaaldBedrag;
+        return $this;
     }
 
     /**
@@ -148,7 +147,7 @@ class TSBEisers
      */
     public function getSomPrognoseRestschuld()
     {
-      return $this->SomPrognoseRestschuld;
+        return $this->SomPrognoseRestschuld;
     }
 
     /**
@@ -157,8 +156,7 @@ class TSBEisers
      */
     public function setSomPrognoseRestschuld($SomPrognoseRestschuld)
     {
-      $this->SomPrognoseRestschuld = $SomPrognoseRestschuld;
-      return $this;
+        $this->SomPrognoseRestschuld = $SomPrognoseRestschuld;
+        return $this;
     }
-
 }

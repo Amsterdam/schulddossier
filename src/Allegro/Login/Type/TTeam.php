@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TTeam implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -95,7 +94,4 @@ class TTeam implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TExtraProduct implements RequestInterface
 {
-
     /**
      * @var
      * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TExtraProductHeader
@@ -313,7 +311,4 @@ class TExtraProduct implements RequestInterface
 
         return $new;
     }
-
-
 }
-

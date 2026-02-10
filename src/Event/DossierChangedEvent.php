@@ -46,7 +46,7 @@ class DossierChangedEvent extends Event
     {
         return $this->gebruiker;
     }
-    
+
     public function getForceType(): ?string
     {
         return $this->forceType;

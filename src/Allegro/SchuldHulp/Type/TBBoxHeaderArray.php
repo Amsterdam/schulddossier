@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBoxHeaderArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TBBoxHeader
      */
@@ -42,7 +40,4 @@ class TBBoxHeaderArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

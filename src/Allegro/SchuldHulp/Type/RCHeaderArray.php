@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class RCHeaderArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRCHeader
      */
@@ -42,7 +40,4 @@ class RCHeaderArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

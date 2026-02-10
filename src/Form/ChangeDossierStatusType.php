@@ -20,7 +20,6 @@ use Symfony\Component\Workflow\Workflow;
  */
 class ChangeDossierStatusType extends AbstractType
 {
-
     /**
      * @var Gebruiker $user
      */
@@ -79,32 +78,32 @@ class ChangeDossierStatusType extends AbstractType
         });
     }
 
-    public function  getTransitionChoices(Gebruiker $user, Dossier $dossier, Workflow $workflow)
+    public function getTransitionChoices(Gebruiker $user, Dossier $dossier, Workflow $workflow)
     {
         $transitionChoices = [];
 
-        if ($workflow->can($dossier, 'afkeuren_shv') & !$user->isGka()){
+        if ($workflow->can($dossier, 'afkeuren_shv') & !$user->isGka()) {
             $transitionChoices['Afkeuren'] = 'afkeuren_shv';
         }
-        if ($workflow->can($dossier, 'afkeuren_dossier_gka') & !$user->isSchuldhulpverlener()){
+        if ($workflow->can($dossier, 'afkeuren_dossier_gka') & !$user->isSchuldhulpverlener()) {
             $transitionChoices['Dossier afwijzen (terug naar SHV-er/Bewindvoerder)'] = 'afkeuren_dossier_gka';
         }
-        if ($workflow->can($dossier, 'opgevoerd_shv') & !$user->isGka()){
+        if ($workflow->can($dossier, 'opgevoerd_shv') & !$user->isGka()) {
             $transitionChoices['Ter controle aanbieden'] = 'opgevoerd_shv';
         }
-        if ($workflow->can($dossier, 'goedkeuren_shv') & !$user->isGka()){
+        if ($workflow->can($dossier, 'goedkeuren_shv') & !$user->isGka()) {
             $transitionChoices['Goedkeuren'] = 'goedkeuren_shv';
         }
-        if ($workflow->can($dossier, 'verzenden_shv') & !$user->isGka()){
+        if ($workflow->can($dossier, 'verzenden_shv') & !$user->isGka()) {
             $transitionChoices['Verzenden naar GKA'] = 'verzenden_shv';
         }
-        if ($workflow->can($dossier, 'gestart_gka') & !$user->isSchuldhulpverlener()){
+        if ($workflow->can($dossier, 'gestart_gka') & !$user->isSchuldhulpverlener()) {
             $transitionChoices['Start proces GKA'] = 'gestart_gka';
         }
-        if ($workflow->can($dossier, 'goedkeuren_dossier_gka') & !$user->isSchuldhulpverlener()){
+        if ($workflow->can($dossier, 'goedkeuren_dossier_gka') & !$user->isSchuldhulpverlener()) {
             $transitionChoices['Dossier akkoord'] = 'goedkeuren_dossier_gka';
         }
-        if ($workflow->can($dossier, 'afsluiten_gka') & !$user->isSchuldhulpverlener()){
+        if ($workflow->can($dossier, 'afsluiten_gka') & !$user->isSchuldhulpverlener()) {
             $transitionChoices['Afsluiten GKA'] = 'afsluiten_gka';
         }
 

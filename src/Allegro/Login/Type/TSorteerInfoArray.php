@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TSorteerInfoArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSorteerInfo
      */
@@ -41,7 +40,4 @@ class TSorteerInfoArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

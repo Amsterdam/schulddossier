@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusInfo implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusHeader
      */
@@ -608,7 +607,4 @@ class TCasusInfo implements RequestInterface
 
         return $new;
     }
-
-
 }
-

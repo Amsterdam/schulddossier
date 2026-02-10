@@ -8,8 +8,7 @@ use Phpro\SoapClient\Soap\ClassMap\ClassMap;
 
 class AllegroLoginClassmap
 {
-
-    public static function getCollection() : \Phpro\SoapClient\Soap\ClassMap\ClassMapCollection
+    public static function getCollection(): \Phpro\SoapClient\Soap\ClassMap\ClassMapCollection
     {
         return new ClassMapCollection([
             new ClassMap('TTest', Type\TTest::class),
@@ -206,7 +205,4 @@ class AllegroLoginClassmap
             new ClassMap('ROClientIDHeader', Type\ROClientIDHeader::class),
         ]);
     }
-
-
 }
-

@@ -11,7 +11,6 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 
 class SchuldItemFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
 {
-
     /**
      * @inheritDoc
      */

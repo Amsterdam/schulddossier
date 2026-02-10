@@ -17,16 +17,18 @@ trait PaginationTrait
         return $this->getEntityManager()->createQuery($dql);
     }
 
-    public function generatePaginationQueryDql(): String
+    public function generatePaginationQueryDql(): string
     {
-        return sprintf('
+        return sprintf(
+            '
             SELECT %s 
             FROM %s %s %s
         ',
-            $this->paginationAlias.$this->paginationAliases,
+            $this->paginationAlias . $this->paginationAliases,
             $this->getEntityName(),
             $this->paginationAlias,
-            $this->paginationJoins);
+            $this->paginationJoins
+        );
     }
 
     public function setPaginationAlias(string $alias)
@@ -53,5 +55,4 @@ trait PaginationTrait
     {
         return parent::getEntityManager();
     }
-
 }

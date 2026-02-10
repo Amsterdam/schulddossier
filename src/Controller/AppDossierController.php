@@ -491,7 +491,7 @@ class AppDossierController extends AbstractController
 
             $this->addFlash('success', 'Document toegevoegd');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', ['dossierId' => $dossier->getId()]);
-        } else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
+        } elseif ($form->isSubmitted() && $request->isXmlHttpRequest()) {
             return new JsonResponse($serializer->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
         }
 

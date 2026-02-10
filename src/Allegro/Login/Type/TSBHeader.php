@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TSBHeader implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -95,7 +94,4 @@ class TSBHeader implements RequestInterface
 
         return $new;
     }
-
-
 }
-

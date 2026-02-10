@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBBoxHeaderArray
 {
-
     /**
      * @var TBBoxHeader[] $TBBoxHeader
      */
     protected $TBBoxHeader = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class TBBoxHeaderArray
      */
     public function getTBBoxHeader()
     {
-      return $this->TBBoxHeader;
+        return $this->TBBoxHeader;
     }
 
     /**
@@ -30,8 +28,7 @@ class TBBoxHeaderArray
      */
     public function setTBBoxHeader(array $TBBoxHeader = null)
     {
-      $this->TBBoxHeader = $TBBoxHeader;
-      return $this;
+        $this->TBBoxHeader = $TBBoxHeader;
+        return $this;
     }
-
 }

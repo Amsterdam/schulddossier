@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class VariantArray
 {
-
     /**
      * @var anyType[] $anyType
      */
     protected $anyType = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class VariantArray
      */
     public function getAnyType()
     {
-      return $this->anyType;
+        return $this->anyType;
     }
 
     /**
@@ -30,8 +28,7 @@ class VariantArray
      */
     public function setAnyType(array $anyType = null)
     {
-      $this->anyType = $anyType;
-      return $this;
+        $this->anyType = $anyType;
+        return $this;
     }
-
 }

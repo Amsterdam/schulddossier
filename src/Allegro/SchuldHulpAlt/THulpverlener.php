@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class THulpverlener
 {
-
     /**
      * @var int $Code
      */
@@ -69,16 +68,16 @@ class THulpverlener
      */
     public function __construct($Code, $OrganisatieCode, $OrganisatieNaam, $ContactCode, $ContactNaam, $SoortHulp, $InzageGevraagd, \DateTime $DatumInzageGevraagd, $Inzage, \DateTime $DatumInzage)
     {
-      $this->Code = $Code;
-      $this->OrganisatieCode = $OrganisatieCode;
-      $this->OrganisatieNaam = $OrganisatieNaam;
-      $this->ContactCode = $ContactCode;
-      $this->ContactNaam = $ContactNaam;
-      $this->SoortHulp = $SoortHulp;
-      $this->InzageGevraagd = $InzageGevraagd;
-      $this->DatumInzageGevraagd = $DatumInzageGevraagd->format(\DateTime::ATOM);
-      $this->Inzage = $Inzage;
-      $this->DatumInzage = $DatumInzage->format(\DateTime::ATOM);
+        $this->Code = $Code;
+        $this->OrganisatieCode = $OrganisatieCode;
+        $this->OrganisatieNaam = $OrganisatieNaam;
+        $this->ContactCode = $ContactCode;
+        $this->ContactNaam = $ContactNaam;
+        $this->SoortHulp = $SoortHulp;
+        $this->InzageGevraagd = $InzageGevraagd;
+        $this->DatumInzageGevraagd = $DatumInzageGevraagd->format(\DateTime::ATOM);
+        $this->Inzage = $Inzage;
+        $this->DatumInzage = $DatumInzage->format(\DateTime::ATOM);
     }
 
     /**
@@ -86,7 +85,7 @@ class THulpverlener
      */
     public function getCode()
     {
-      return $this->Code;
+        return $this->Code;
     }
 
     /**
@@ -95,8 +94,8 @@ class THulpverlener
      */
     public function setCode($Code)
     {
-      $this->Code = $Code;
-      return $this;
+        $this->Code = $Code;
+        return $this;
     }
 
     /**
@@ -104,7 +103,7 @@ class THulpverlener
      */
     public function getOrganisatieCode()
     {
-      return $this->OrganisatieCode;
+        return $this->OrganisatieCode;
     }
 
     /**
@@ -113,8 +112,8 @@ class THulpverlener
      */
     public function setOrganisatieCode($OrganisatieCode)
     {
-      $this->OrganisatieCode = $OrganisatieCode;
-      return $this;
+        $this->OrganisatieCode = $OrganisatieCode;
+        return $this;
     }
 
     /**
@@ -122,7 +121,7 @@ class THulpverlener
      */
     public function getOrganisatieNaam()
     {
-      return $this->OrganisatieNaam;
+        return $this->OrganisatieNaam;
     }
 
     /**
@@ -131,8 +130,8 @@ class THulpverlener
      */
     public function setOrganisatieNaam($OrganisatieNaam)
     {
-      $this->OrganisatieNaam = $OrganisatieNaam;
-      return $this;
+        $this->OrganisatieNaam = $OrganisatieNaam;
+        return $this;
     }
 
     /**
@@ -140,7 +139,7 @@ class THulpverlener
      */
     public function getContactCode()
     {
-      return $this->ContactCode;
+        return $this->ContactCode;
     }
 
     /**
@@ -149,8 +148,8 @@ class THulpverlener
      */
     public function setContactCode($ContactCode)
     {
-      $this->ContactCode = $ContactCode;
-      return $this;
+        $this->ContactCode = $ContactCode;
+        return $this;
     }
 
     /**
@@ -158,7 +157,7 @@ class THulpverlener
      */
     public function getContactNaam()
     {
-      return $this->ContactNaam;
+        return $this->ContactNaam;
     }
 
     /**
@@ -167,8 +166,8 @@ class THulpverlener
      */
     public function setContactNaam($ContactNaam)
     {
-      $this->ContactNaam = $ContactNaam;
-      return $this;
+        $this->ContactNaam = $ContactNaam;
+        return $this;
     }
 
     /**
@@ -176,7 +175,7 @@ class THulpverlener
      */
     public function getSoortHulp()
     {
-      return $this->SoortHulp;
+        return $this->SoortHulp;
     }
 
     /**
@@ -185,8 +184,8 @@ class THulpverlener
      */
     public function setSoortHulp($SoortHulp)
     {
-      $this->SoortHulp = $SoortHulp;
-      return $this;
+        $this->SoortHulp = $SoortHulp;
+        return $this;
     }
 
     /**
@@ -194,7 +193,7 @@ class THulpverlener
      */
     public function getInzageGevraagd()
     {
-      return $this->InzageGevraagd;
+        return $this->InzageGevraagd;
     }
 
     /**
@@ -203,8 +202,8 @@ class THulpverlener
      */
     public function setInzageGevraagd($InzageGevraagd)
     {
-      $this->InzageGevraagd = $InzageGevraagd;
-      return $this;
+        $this->InzageGevraagd = $InzageGevraagd;
+        return $this;
     }
 
     /**
@@ -212,15 +211,15 @@ class THulpverlener
      */
     public function getDatumInzageGevraagd()
     {
-      if ($this->DatumInzageGevraagd == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumInzageGevraagd);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumInzageGevraagd == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumInzageGevraagd);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -229,8 +228,8 @@ class THulpverlener
      */
     public function setDatumInzageGevraagd(\DateTime $DatumInzageGevraagd)
     {
-      $this->DatumInzageGevraagd = $DatumInzageGevraagd->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumInzageGevraagd = $DatumInzageGevraagd->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -238,7 +237,7 @@ class THulpverlener
      */
     public function getInzage()
     {
-      return $this->Inzage;
+        return $this->Inzage;
     }
 
     /**
@@ -247,8 +246,8 @@ class THulpverlener
      */
     public function setInzage($Inzage)
     {
-      $this->Inzage = $Inzage;
-      return $this;
+        $this->Inzage = $Inzage;
+        return $this;
     }
 
     /**
@@ -256,15 +255,15 @@ class THulpverlener
      */
     public function getDatumInzage()
     {
-      if ($this->DatumInzage == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumInzage);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumInzage == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumInzage);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -273,8 +272,7 @@ class THulpverlener
      */
     public function setDatumInzage(\DateTime $DatumInzage)
     {
-      $this->DatumInzage = $DatumInzage->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumInzage = $DatumInzage->format(\DateTime::ATOM);
+        return $this;
     }
-
 }

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TInkomen
 {
-
     /**
      * @var eSoortInkomen $SoortInkomen
      */
@@ -135,17 +134,17 @@ class TInkomen
      */
     public function __construct($SoortInkomen, $WerkzaamSinds, $DienstVerbandTot, $Loon, $Uitkering, $Pensioen, $KGB, $Vrijwilligers, $KinderAlimentatieBedrag, $PartnerAlimentatieBedrag, $OverigInkomenBedrag)
     {
-      $this->SoortInkomen = $SoortInkomen;
-      $this->WerkzaamSinds = $WerkzaamSinds;
-      $this->DienstVerbandTot = $DienstVerbandTot;
-      $this->Loon = $Loon;
-      $this->Uitkering = $Uitkering;
-      $this->Pensioen = $Pensioen;
-      $this->KGB = $KGB;
-      $this->Vrijwilligers = $Vrijwilligers;
-      $this->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
-      $this->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
-      $this->OverigInkomenBedrag = $OverigInkomenBedrag;
+        $this->SoortInkomen = $SoortInkomen;
+        $this->WerkzaamSinds = $WerkzaamSinds;
+        $this->DienstVerbandTot = $DienstVerbandTot;
+        $this->Loon = $Loon;
+        $this->Uitkering = $Uitkering;
+        $this->Pensioen = $Pensioen;
+        $this->KGB = $KGB;
+        $this->Vrijwilligers = $Vrijwilligers;
+        $this->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
+        $this->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
+        $this->OverigInkomenBedrag = $OverigInkomenBedrag;
     }
 
     /**
@@ -153,7 +152,7 @@ class TInkomen
      */
     public function getSoortInkomen()
     {
-      return $this->SoortInkomen;
+        return $this->SoortInkomen;
     }
 
     /**
@@ -162,8 +161,8 @@ class TInkomen
      */
     public function setSoortInkomen($SoortInkomen)
     {
-      $this->SoortInkomen = $SoortInkomen;
-      return $this;
+        $this->SoortInkomen = $SoortInkomen;
+        return $this;
     }
 
     /**
@@ -171,7 +170,7 @@ class TInkomen
      */
     public function getBeroep()
     {
-      return $this->Beroep;
+        return $this->Beroep;
     }
 
     /**
@@ -180,8 +179,8 @@ class TInkomen
      */
     public function setBeroep($Beroep)
     {
-      $this->Beroep = $Beroep;
-      return $this;
+        $this->Beroep = $Beroep;
+        return $this;
     }
 
     /**
@@ -189,7 +188,7 @@ class TInkomen
      */
     public function getWerkgever()
     {
-      return $this->Werkgever;
+        return $this->Werkgever;
     }
 
     /**
@@ -198,8 +197,8 @@ class TInkomen
      */
     public function setWerkgever($Werkgever)
     {
-      $this->Werkgever = $Werkgever;
-      return $this;
+        $this->Werkgever = $Werkgever;
+        return $this;
     }
 
     /**
@@ -207,7 +206,7 @@ class TInkomen
      */
     public function getWerkzaamSinds()
     {
-      return $this->WerkzaamSinds;
+        return $this->WerkzaamSinds;
     }
 
     /**
@@ -216,8 +215,8 @@ class TInkomen
      */
     public function setWerkzaamSinds($WerkzaamSinds)
     {
-      $this->WerkzaamSinds = $WerkzaamSinds;
-      return $this;
+        $this->WerkzaamSinds = $WerkzaamSinds;
+        return $this;
     }
 
     /**
@@ -225,7 +224,7 @@ class TInkomen
      */
     public function getVastDienstverband()
     {
-      return $this->VastDienstverband;
+        return $this->VastDienstverband;
     }
 
     /**
@@ -234,8 +233,8 @@ class TInkomen
      */
     public function setVastDienstverband($VastDienstverband)
     {
-      $this->VastDienstverband = $VastDienstverband;
-      return $this;
+        $this->VastDienstverband = $VastDienstverband;
+        return $this;
     }
 
     /**
@@ -243,7 +242,7 @@ class TInkomen
      */
     public function getDienstVerbandTot()
     {
-      return $this->DienstVerbandTot;
+        return $this->DienstVerbandTot;
     }
 
     /**
@@ -252,8 +251,8 @@ class TInkomen
      */
     public function setDienstVerbandTot($DienstVerbandTot)
     {
-      $this->DienstVerbandTot = $DienstVerbandTot;
-      return $this;
+        $this->DienstVerbandTot = $DienstVerbandTot;
+        return $this;
     }
 
     /**
@@ -261,7 +260,7 @@ class TInkomen
      */
     public function getLoon()
     {
-      return $this->Loon;
+        return $this->Loon;
     }
 
     /**
@@ -270,8 +269,8 @@ class TInkomen
      */
     public function setLoon($Loon)
     {
-      $this->Loon = $Loon;
-      return $this;
+        $this->Loon = $Loon;
+        return $this;
     }
 
     /**
@@ -279,7 +278,7 @@ class TInkomen
      */
     public function getLoonPeriode()
     {
-      return $this->LoonPeriode;
+        return $this->LoonPeriode;
     }
 
     /**
@@ -288,8 +287,8 @@ class TInkomen
      */
     public function setLoonPeriode($LoonPeriode)
     {
-      $this->LoonPeriode = $LoonPeriode;
-      return $this;
+        $this->LoonPeriode = $LoonPeriode;
+        return $this;
     }
 
     /**
@@ -297,7 +296,7 @@ class TInkomen
      */
     public function getSoortUitkering()
     {
-      return $this->SoortUitkering;
+        return $this->SoortUitkering;
     }
 
     /**
@@ -306,8 +305,8 @@ class TInkomen
      */
     public function setSoortUitkering($SoortUitkering)
     {
-      $this->SoortUitkering = $SoortUitkering;
-      return $this;
+        $this->SoortUitkering = $SoortUitkering;
+        return $this;
     }
 
     /**
@@ -315,7 +314,7 @@ class TInkomen
      */
     public function getUitkeringsInstantie()
     {
-      return $this->UitkeringsInstantie;
+        return $this->UitkeringsInstantie;
     }
 
     /**
@@ -324,8 +323,8 @@ class TInkomen
      */
     public function setUitkeringsInstantie($UitkeringsInstantie)
     {
-      $this->UitkeringsInstantie = $UitkeringsInstantie;
-      return $this;
+        $this->UitkeringsInstantie = $UitkeringsInstantie;
+        return $this;
     }
 
     /**
@@ -333,7 +332,7 @@ class TInkomen
      */
     public function getUitkering()
     {
-      return $this->Uitkering;
+        return $this->Uitkering;
     }
 
     /**
@@ -342,8 +341,8 @@ class TInkomen
      */
     public function setUitkering($Uitkering)
     {
-      $this->Uitkering = $Uitkering;
-      return $this;
+        $this->Uitkering = $Uitkering;
+        return $this;
     }
 
     /**
@@ -351,7 +350,7 @@ class TInkomen
      */
     public function getUitkeringPeriode()
     {
-      return $this->UitkeringPeriode;
+        return $this->UitkeringPeriode;
     }
 
     /**
@@ -360,8 +359,8 @@ class TInkomen
      */
     public function setUitkeringPeriode($UitkeringPeriode)
     {
-      $this->UitkeringPeriode = $UitkeringPeriode;
-      return $this;
+        $this->UitkeringPeriode = $UitkeringPeriode;
+        return $this;
     }
 
     /**
@@ -369,7 +368,7 @@ class TInkomen
      */
     public function getPensioen()
     {
-      return $this->Pensioen;
+        return $this->Pensioen;
     }
 
     /**
@@ -378,8 +377,8 @@ class TInkomen
      */
     public function setPensioen($Pensioen)
     {
-      $this->Pensioen = $Pensioen;
-      return $this;
+        $this->Pensioen = $Pensioen;
+        return $this;
     }
 
     /**
@@ -387,7 +386,7 @@ class TInkomen
      */
     public function getPensioenPeriode()
     {
-      return $this->PensioenPeriode;
+        return $this->PensioenPeriode;
     }
 
     /**
@@ -396,8 +395,8 @@ class TInkomen
      */
     public function setPensioenPeriode($PensioenPeriode)
     {
-      $this->PensioenPeriode = $PensioenPeriode;
-      return $this;
+        $this->PensioenPeriode = $PensioenPeriode;
+        return $this;
     }
 
     /**
@@ -405,7 +404,7 @@ class TInkomen
      */
     public function getKGB()
     {
-      return $this->KGB;
+        return $this->KGB;
     }
 
     /**
@@ -414,8 +413,8 @@ class TInkomen
      */
     public function setKGB($KGB)
     {
-      $this->KGB = $KGB;
-      return $this;
+        $this->KGB = $KGB;
+        return $this;
     }
 
     /**
@@ -423,7 +422,7 @@ class TInkomen
      */
     public function getVrijwilligers()
     {
-      return $this->Vrijwilligers;
+        return $this->Vrijwilligers;
     }
 
     /**
@@ -432,8 +431,8 @@ class TInkomen
      */
     public function setVrijwilligers($Vrijwilligers)
     {
-      $this->Vrijwilligers = $Vrijwilligers;
-      return $this;
+        $this->Vrijwilligers = $Vrijwilligers;
+        return $this;
     }
 
     /**
@@ -441,7 +440,7 @@ class TInkomen
      */
     public function getVrijwilligersPeriode()
     {
-      return $this->VrijwilligersPeriode;
+        return $this->VrijwilligersPeriode;
     }
 
     /**
@@ -450,8 +449,8 @@ class TInkomen
      */
     public function setVrijwilligersPeriode($VrijwilligersPeriode)
     {
-      $this->VrijwilligersPeriode = $VrijwilligersPeriode;
-      return $this;
+        $this->VrijwilligersPeriode = $VrijwilligersPeriode;
+        return $this;
     }
 
     /**
@@ -459,7 +458,7 @@ class TInkomen
      */
     public function getKinderAlimentatieBedrag()
     {
-      return $this->KinderAlimentatieBedrag;
+        return $this->KinderAlimentatieBedrag;
     }
 
     /**
@@ -468,8 +467,8 @@ class TInkomen
      */
     public function setKinderAlimentatieBedrag($KinderAlimentatieBedrag)
     {
-      $this->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
-      return $this;
+        $this->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
+        return $this;
     }
 
     /**
@@ -477,7 +476,7 @@ class TInkomen
      */
     public function getPartnerAlimentatieBedrag()
     {
-      return $this->PartnerAlimentatieBedrag;
+        return $this->PartnerAlimentatieBedrag;
     }
 
     /**
@@ -486,8 +485,8 @@ class TInkomen
      */
     public function setPartnerAlimentatieBedrag($PartnerAlimentatieBedrag)
     {
-      $this->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
-      return $this;
+        $this->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
+        return $this;
     }
 
     /**
@@ -495,7 +494,7 @@ class TInkomen
      */
     public function getOverigInkomen()
     {
-      return $this->OverigInkomen;
+        return $this->OverigInkomen;
     }
 
     /**
@@ -504,8 +503,8 @@ class TInkomen
      */
     public function setOverigInkomen($OverigInkomen)
     {
-      $this->OverigInkomen = $OverigInkomen;
-      return $this;
+        $this->OverigInkomen = $OverigInkomen;
+        return $this;
     }
 
     /**
@@ -513,7 +512,7 @@ class TInkomen
      */
     public function getOverigInkomenBedrag()
     {
-      return $this->OverigInkomenBedrag;
+        return $this->OverigInkomenBedrag;
     }
 
     /**
@@ -522,8 +521,8 @@ class TInkomen
      */
     public function setOverigInkomenBedrag($OverigInkomenBedrag)
     {
-      $this->OverigInkomenBedrag = $OverigInkomenBedrag;
-      return $this;
+        $this->OverigInkomenBedrag = $OverigInkomenBedrag;
+        return $this;
     }
 
     /**
@@ -531,7 +530,7 @@ class TInkomen
      */
     public function getOverigInkomenPeriode()
     {
-      return $this->OverigInkomenPeriode;
+        return $this->OverigInkomenPeriode;
     }
 
     /**
@@ -540,8 +539,8 @@ class TInkomen
      */
     public function setOverigInkomenPeriode($OverigInkomenPeriode)
     {
-      $this->OverigInkomenPeriode = $OverigInkomenPeriode;
-      return $this;
+        $this->OverigInkomenPeriode = $OverigInkomenPeriode;
+        return $this;
     }
 
     /**
@@ -549,7 +548,7 @@ class TInkomen
      */
     public function getToelichting()
     {
-      return $this->Toelichting;
+        return $this->Toelichting;
     }
 
     /**
@@ -558,8 +557,7 @@ class TInkomen
      */
     public function setToelichting($Toelichting)
     {
-      $this->Toelichting = $Toelichting;
-      return $this;
+        $this->Toelichting = $Toelichting;
+        return $this;
     }
-
 }

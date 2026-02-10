@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TAfspraak implements RequestInterface
 {
-
     /**
      * @var \DateTimeInterface
      */
@@ -230,7 +229,4 @@ class TAfspraak implements RequestInterface
 
         return $new;
     }
-
-
 }
-

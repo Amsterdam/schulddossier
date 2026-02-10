@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class KindArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TKind
      */
@@ -42,7 +40,4 @@ class KindArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

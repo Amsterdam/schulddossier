@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class BBROpdrachtArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBROpdracht
      */
@@ -41,7 +40,4 @@ class BBROpdrachtArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

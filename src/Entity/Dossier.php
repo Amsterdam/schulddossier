@@ -840,8 +840,10 @@ class Dossier
     public function getNietVerwijderdeDocumentenByOnderwerpen($onderwerpen)
     {
         return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerpen) {
-            return in_array($dossierDocument->getOnderwerp(),
-                    $onderwerpen) && $dossierDocument->getDocument()->isInPrullenbak() === false;
+            return in_array(
+                $dossierDocument->getOnderwerp(),
+                $onderwerpen
+            ) && $dossierDocument->getDocument()->isInPrullenbak() === false;
         });
     }
 

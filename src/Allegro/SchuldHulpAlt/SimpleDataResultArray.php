@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SimpleDataResultArray
 {
-
     /**
      * @var SimpleDataResult[] $SimpleDataResult
      */
     protected $SimpleDataResult = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class SimpleDataResultArray
      */
     public function getSimpleDataResult()
     {
-      return $this->SimpleDataResult;
+        return $this->SimpleDataResult;
     }
 
     /**
@@ -30,8 +28,7 @@ class SimpleDataResultArray
      */
     public function setSimpleDataResult(array $SimpleDataResult = null)
     {
-      $this->SimpleDataResult = $SimpleDataResult;
-      return $this;
+        $this->SimpleDataResult = $SimpleDataResult;
+        return $this;
     }
-
 }

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TAdres
 {
-
     /**
      * @var string $Straat
      */
@@ -45,10 +44,9 @@ class TAdres
      */
     protected $LandNaam = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -56,7 +54,7 @@ class TAdres
      */
     public function getStraat()
     {
-      return $this->Straat;
+        return $this->Straat;
     }
 
     /**
@@ -65,8 +63,8 @@ class TAdres
      */
     public function setStraat($Straat)
     {
-      $this->Straat = $Straat;
-      return $this;
+        $this->Straat = $Straat;
+        return $this;
     }
 
     /**
@@ -74,7 +72,7 @@ class TAdres
      */
     public function getHuisnr()
     {
-      return $this->Huisnr;
+        return $this->Huisnr;
     }
 
     /**
@@ -83,8 +81,8 @@ class TAdres
      */
     public function setHuisnr($Huisnr)
     {
-      $this->Huisnr = $Huisnr;
-      return $this;
+        $this->Huisnr = $Huisnr;
+        return $this;
     }
 
     /**
@@ -92,7 +90,7 @@ class TAdres
      */
     public function getHuisnrToev()
     {
-      return $this->HuisnrToev;
+        return $this->HuisnrToev;
     }
 
     /**
@@ -101,8 +99,8 @@ class TAdres
      */
     public function setHuisnrToev($HuisnrToev)
     {
-      $this->HuisnrToev = $HuisnrToev;
-      return $this;
+        $this->HuisnrToev = $HuisnrToev;
+        return $this;
     }
 
     /**
@@ -110,7 +108,7 @@ class TAdres
      */
     public function getPostcode()
     {
-      return $this->Postcode;
+        return $this->Postcode;
     }
 
     /**
@@ -119,8 +117,8 @@ class TAdres
      */
     public function setPostcode($Postcode)
     {
-      $this->Postcode = $Postcode;
-      return $this;
+        $this->Postcode = $Postcode;
+        return $this;
     }
 
     /**
@@ -128,7 +126,7 @@ class TAdres
      */
     public function getPC()
     {
-      return $this->PC;
+        return $this->PC;
     }
 
     /**
@@ -137,8 +135,8 @@ class TAdres
      */
     public function setPC($PC)
     {
-      $this->PC = $PC;
-      return $this;
+        $this->PC = $PC;
+        return $this;
     }
 
     /**
@@ -146,7 +144,7 @@ class TAdres
      */
     public function getPL()
     {
-      return $this->PL;
+        return $this->PL;
     }
 
     /**
@@ -155,8 +153,8 @@ class TAdres
      */
     public function setPL($PL)
     {
-      $this->PL = $PL;
-      return $this;
+        $this->PL = $PL;
+        return $this;
     }
 
     /**
@@ -164,7 +162,7 @@ class TAdres
      */
     public function getWoonplaats()
     {
-      return $this->Woonplaats;
+        return $this->Woonplaats;
     }
 
     /**
@@ -173,8 +171,8 @@ class TAdres
      */
     public function setWoonplaats($Woonplaats)
     {
-      $this->Woonplaats = $Woonplaats;
-      return $this;
+        $this->Woonplaats = $Woonplaats;
+        return $this;
     }
 
     /**
@@ -182,7 +180,7 @@ class TAdres
      */
     public function getLandNaam()
     {
-      return $this->LandNaam;
+        return $this->LandNaam;
     }
 
     /**
@@ -191,8 +189,7 @@ class TAdres
      */
     public function setLandNaam($LandNaam)
     {
-      $this->LandNaam = $LandNaam;
-      return $this;
+        $this->LandNaam = $LandNaam;
+        return $this;
     }
-
 }

@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TAfspraakSoortenArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAfspraakSoorten
      */
@@ -42,7 +40,4 @@ class TAfspraakSoortenArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

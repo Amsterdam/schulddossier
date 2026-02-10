@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class SBEiserArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSBEiser
      */
@@ -41,7 +40,4 @@ class SBEiserArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

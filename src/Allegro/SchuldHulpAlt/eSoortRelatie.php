@@ -11,6 +11,4 @@ class eSoortRelatie
     const srSchuldeiser = 'srSchuldeiser';
     const srEigenOrganisatie = 'srEigenOrganisatie';
     const srAndereInstantie = 'srAndereInstantie';
-
-
 }

@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class StringArrayArray
 {
-
     /**
      * @var StringArray[] $StringArray
      */
     protected $StringArray = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class StringArrayArray
      */
     public function getStringArray()
     {
-      return $this->StringArray;
+        return $this->StringArray;
     }
 
     /**
@@ -30,8 +28,7 @@ class StringArrayArray
      */
     public function setStringArray(array $StringArray = null)
     {
-      $this->StringArray = $StringArray;
-      return $this;
+        $this->StringArray = $StringArray;
+        return $this;
     }
-
 }

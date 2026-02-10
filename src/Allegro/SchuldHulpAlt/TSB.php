@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSB
 {
-
     /**
      * @var TSBHeader $InfoHeader
      */
@@ -147,29 +146,29 @@ class TSB
      */
     public function __construct($InfoHeader, $Medewerker, $Opdrachtgever, $OpdrachtgeverContact, \DateTime $Startdatum, \DateTime $StartdatumEersteBetaling, \DateTime $TheoEinddatum, $TotaalAantalMaanden, $TotaalAantalMaandenVerstreken, $TotaalAantalMaandenResterend, $VTLB, \DateTime $DatumBerekening, $BrutoAflosCapaciteitMaand, $KostenFinancieelBeheerMaand, $KostenSchuldhulpverleningMaand, $NettoAflosCapaciteitMaand, \DateTime $DatumOverzicht, $PartnerCode, $TotaalSchuldbedrag, $MaximumKosten, $BetaaldeKosten, \DateTime $DatumLaatsteBetaling, $BedragLaatsteBetaling)
     {
-      $this->InfoHeader = $InfoHeader;
-      $this->Medewerker = $Medewerker;
-      $this->Opdrachtgever = $Opdrachtgever;
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      $this->StartdatumEersteBetaling = $StartdatumEersteBetaling->format(\DateTime::ATOM);
-      $this->TheoEinddatum = $TheoEinddatum->format(\DateTime::ATOM);
-      $this->TotaalAantalMaanden = $TotaalAantalMaanden;
-      $this->TotaalAantalMaandenVerstreken = $TotaalAantalMaandenVerstreken;
-      $this->TotaalAantalMaandenResterend = $TotaalAantalMaandenResterend;
-      $this->VTLB = $VTLB;
-      $this->DatumBerekening = $DatumBerekening->format(\DateTime::ATOM);
-      $this->BrutoAflosCapaciteitMaand = $BrutoAflosCapaciteitMaand;
-      $this->KostenFinancieelBeheerMaand = $KostenFinancieelBeheerMaand;
-      $this->KostenSchuldhulpverleningMaand = $KostenSchuldhulpverleningMaand;
-      $this->NettoAflosCapaciteitMaand = $NettoAflosCapaciteitMaand;
-      $this->DatumOverzicht = $DatumOverzicht->format(\DateTime::ATOM);
-      $this->PartnerCode = $PartnerCode;
-      $this->TotaalSchuldbedrag = $TotaalSchuldbedrag;
-      $this->MaximumKosten = $MaximumKosten;
-      $this->BetaaldeKosten = $BetaaldeKosten;
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
-      $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
+        $this->InfoHeader = $InfoHeader;
+        $this->Medewerker = $Medewerker;
+        $this->Opdrachtgever = $Opdrachtgever;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        $this->StartdatumEersteBetaling = $StartdatumEersteBetaling->format(\DateTime::ATOM);
+        $this->TheoEinddatum = $TheoEinddatum->format(\DateTime::ATOM);
+        $this->TotaalAantalMaanden = $TotaalAantalMaanden;
+        $this->TotaalAantalMaandenVerstreken = $TotaalAantalMaandenVerstreken;
+        $this->TotaalAantalMaandenResterend = $TotaalAantalMaandenResterend;
+        $this->VTLB = $VTLB;
+        $this->DatumBerekening = $DatumBerekening->format(\DateTime::ATOM);
+        $this->BrutoAflosCapaciteitMaand = $BrutoAflosCapaciteitMaand;
+        $this->KostenFinancieelBeheerMaand = $KostenFinancieelBeheerMaand;
+        $this->KostenSchuldhulpverleningMaand = $KostenSchuldhulpverleningMaand;
+        $this->NettoAflosCapaciteitMaand = $NettoAflosCapaciteitMaand;
+        $this->DatumOverzicht = $DatumOverzicht->format(\DateTime::ATOM);
+        $this->PartnerCode = $PartnerCode;
+        $this->TotaalSchuldbedrag = $TotaalSchuldbedrag;
+        $this->MaximumKosten = $MaximumKosten;
+        $this->BetaaldeKosten = $BetaaldeKosten;
+        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+        $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
     }
 
     /**
@@ -177,7 +176,7 @@ class TSB
      */
     public function getInfoHeader()
     {
-      return $this->InfoHeader;
+        return $this->InfoHeader;
     }
 
     /**
@@ -186,8 +185,8 @@ class TSB
      */
     public function setInfoHeader($InfoHeader)
     {
-      $this->InfoHeader = $InfoHeader;
-      return $this;
+        $this->InfoHeader = $InfoHeader;
+        return $this;
     }
 
     /**
@@ -195,7 +194,7 @@ class TSB
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -204,8 +203,8 @@ class TSB
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -213,7 +212,7 @@ class TSB
      */
     public function getOpdrachtgever()
     {
-      return $this->Opdrachtgever;
+        return $this->Opdrachtgever;
     }
 
     /**
@@ -222,8 +221,8 @@ class TSB
      */
     public function setOpdrachtgever($Opdrachtgever)
     {
-      $this->Opdrachtgever = $Opdrachtgever;
-      return $this;
+        $this->Opdrachtgever = $Opdrachtgever;
+        return $this;
     }
 
     /**
@@ -231,7 +230,7 @@ class TSB
      */
     public function getOpdrachtgeverContact()
     {
-      return $this->OpdrachtgeverContact;
+        return $this->OpdrachtgeverContact;
     }
 
     /**
@@ -240,8 +239,8 @@ class TSB
      */
     public function setOpdrachtgeverContact($OpdrachtgeverContact)
     {
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      return $this;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        return $this;
     }
 
     /**
@@ -249,15 +248,15 @@ class TSB
      */
     public function getStartdatum()
     {
-      if ($this->Startdatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Startdatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Startdatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -266,8 +265,8 @@ class TSB
      */
     public function setStartdatum(\DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -275,15 +274,15 @@ class TSB
      */
     public function getStartdatumEersteBetaling()
     {
-      if ($this->StartdatumEersteBetaling == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->StartdatumEersteBetaling);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->StartdatumEersteBetaling == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->StartdatumEersteBetaling);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -292,8 +291,8 @@ class TSB
      */
     public function setStartdatumEersteBetaling(\DateTime $StartdatumEersteBetaling)
     {
-      $this->StartdatumEersteBetaling = $StartdatumEersteBetaling->format(\DateTime::ATOM);
-      return $this;
+        $this->StartdatumEersteBetaling = $StartdatumEersteBetaling->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -301,15 +300,15 @@ class TSB
      */
     public function getTheoEinddatum()
     {
-      if ($this->TheoEinddatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->TheoEinddatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->TheoEinddatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->TheoEinddatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -318,8 +317,8 @@ class TSB
      */
     public function setTheoEinddatum(\DateTime $TheoEinddatum)
     {
-      $this->TheoEinddatum = $TheoEinddatum->format(\DateTime::ATOM);
-      return $this;
+        $this->TheoEinddatum = $TheoEinddatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -327,7 +326,7 @@ class TSB
      */
     public function getTotaalAantalMaanden()
     {
-      return $this->TotaalAantalMaanden;
+        return $this->TotaalAantalMaanden;
     }
 
     /**
@@ -336,8 +335,8 @@ class TSB
      */
     public function setTotaalAantalMaanden($TotaalAantalMaanden)
     {
-      $this->TotaalAantalMaanden = $TotaalAantalMaanden;
-      return $this;
+        $this->TotaalAantalMaanden = $TotaalAantalMaanden;
+        return $this;
     }
 
     /**
@@ -345,7 +344,7 @@ class TSB
      */
     public function getTotaalAantalMaandenVerstreken()
     {
-      return $this->TotaalAantalMaandenVerstreken;
+        return $this->TotaalAantalMaandenVerstreken;
     }
 
     /**
@@ -354,8 +353,8 @@ class TSB
      */
     public function setTotaalAantalMaandenVerstreken($TotaalAantalMaandenVerstreken)
     {
-      $this->TotaalAantalMaandenVerstreken = $TotaalAantalMaandenVerstreken;
-      return $this;
+        $this->TotaalAantalMaandenVerstreken = $TotaalAantalMaandenVerstreken;
+        return $this;
     }
 
     /**
@@ -363,7 +362,7 @@ class TSB
      */
     public function getTotaalAantalMaandenResterend()
     {
-      return $this->TotaalAantalMaandenResterend;
+        return $this->TotaalAantalMaandenResterend;
     }
 
     /**
@@ -372,8 +371,8 @@ class TSB
      */
     public function setTotaalAantalMaandenResterend($TotaalAantalMaandenResterend)
     {
-      $this->TotaalAantalMaandenResterend = $TotaalAantalMaandenResterend;
-      return $this;
+        $this->TotaalAantalMaandenResterend = $TotaalAantalMaandenResterend;
+        return $this;
     }
 
     /**
@@ -381,7 +380,7 @@ class TSB
      */
     public function getVTLB()
     {
-      return $this->VTLB;
+        return $this->VTLB;
     }
 
     /**
@@ -390,8 +389,8 @@ class TSB
      */
     public function setVTLB($VTLB)
     {
-      $this->VTLB = $VTLB;
-      return $this;
+        $this->VTLB = $VTLB;
+        return $this;
     }
 
     /**
@@ -399,15 +398,15 @@ class TSB
      */
     public function getDatumBerekening()
     {
-      if ($this->DatumBerekening == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumBerekening);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumBerekening == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumBerekening);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -416,8 +415,8 @@ class TSB
      */
     public function setDatumBerekening(\DateTime $DatumBerekening)
     {
-      $this->DatumBerekening = $DatumBerekening->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumBerekening = $DatumBerekening->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -425,7 +424,7 @@ class TSB
      */
     public function getBrutoAflosCapaciteitMaand()
     {
-      return $this->BrutoAflosCapaciteitMaand;
+        return $this->BrutoAflosCapaciteitMaand;
     }
 
     /**
@@ -434,8 +433,8 @@ class TSB
      */
     public function setBrutoAflosCapaciteitMaand($BrutoAflosCapaciteitMaand)
     {
-      $this->BrutoAflosCapaciteitMaand = $BrutoAflosCapaciteitMaand;
-      return $this;
+        $this->BrutoAflosCapaciteitMaand = $BrutoAflosCapaciteitMaand;
+        return $this;
     }
 
     /**
@@ -443,7 +442,7 @@ class TSB
      */
     public function getKostenFinancieelBeheerMaand()
     {
-      return $this->KostenFinancieelBeheerMaand;
+        return $this->KostenFinancieelBeheerMaand;
     }
 
     /**
@@ -452,8 +451,8 @@ class TSB
      */
     public function setKostenFinancieelBeheerMaand($KostenFinancieelBeheerMaand)
     {
-      $this->KostenFinancieelBeheerMaand = $KostenFinancieelBeheerMaand;
-      return $this;
+        $this->KostenFinancieelBeheerMaand = $KostenFinancieelBeheerMaand;
+        return $this;
     }
 
     /**
@@ -461,7 +460,7 @@ class TSB
      */
     public function getKostenSchuldhulpverleningMaand()
     {
-      return $this->KostenSchuldhulpverleningMaand;
+        return $this->KostenSchuldhulpverleningMaand;
     }
 
     /**
@@ -470,8 +469,8 @@ class TSB
      */
     public function setKostenSchuldhulpverleningMaand($KostenSchuldhulpverleningMaand)
     {
-      $this->KostenSchuldhulpverleningMaand = $KostenSchuldhulpverleningMaand;
-      return $this;
+        $this->KostenSchuldhulpverleningMaand = $KostenSchuldhulpverleningMaand;
+        return $this;
     }
 
     /**
@@ -479,7 +478,7 @@ class TSB
      */
     public function getNettoAflosCapaciteitMaand()
     {
-      return $this->NettoAflosCapaciteitMaand;
+        return $this->NettoAflosCapaciteitMaand;
     }
 
     /**
@@ -488,8 +487,8 @@ class TSB
      */
     public function setNettoAflosCapaciteitMaand($NettoAflosCapaciteitMaand)
     {
-      $this->NettoAflosCapaciteitMaand = $NettoAflosCapaciteitMaand;
-      return $this;
+        $this->NettoAflosCapaciteitMaand = $NettoAflosCapaciteitMaand;
+        return $this;
     }
 
     /**
@@ -497,15 +496,15 @@ class TSB
      */
     public function getDatumOverzicht()
     {
-      if ($this->DatumOverzicht == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumOverzicht);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumOverzicht == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumOverzicht);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -514,8 +513,8 @@ class TSB
      */
     public function setDatumOverzicht(\DateTime $DatumOverzicht)
     {
-      $this->DatumOverzicht = $DatumOverzicht->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumOverzicht = $DatumOverzicht->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -523,7 +522,7 @@ class TSB
      */
     public function getPartnerCode()
     {
-      return $this->PartnerCode;
+        return $this->PartnerCode;
     }
 
     /**
@@ -532,8 +531,8 @@ class TSB
      */
     public function setPartnerCode($PartnerCode)
     {
-      $this->PartnerCode = $PartnerCode;
-      return $this;
+        $this->PartnerCode = $PartnerCode;
+        return $this;
     }
 
     /**
@@ -541,7 +540,7 @@ class TSB
      */
     public function getTotaalSchuldbedrag()
     {
-      return $this->TotaalSchuldbedrag;
+        return $this->TotaalSchuldbedrag;
     }
 
     /**
@@ -550,8 +549,8 @@ class TSB
      */
     public function setTotaalSchuldbedrag($TotaalSchuldbedrag)
     {
-      $this->TotaalSchuldbedrag = $TotaalSchuldbedrag;
-      return $this;
+        $this->TotaalSchuldbedrag = $TotaalSchuldbedrag;
+        return $this;
     }
 
     /**
@@ -559,7 +558,7 @@ class TSB
      */
     public function getMaximumKosten()
     {
-      return $this->MaximumKosten;
+        return $this->MaximumKosten;
     }
 
     /**
@@ -568,8 +567,8 @@ class TSB
      */
     public function setMaximumKosten($MaximumKosten)
     {
-      $this->MaximumKosten = $MaximumKosten;
-      return $this;
+        $this->MaximumKosten = $MaximumKosten;
+        return $this;
     }
 
     /**
@@ -577,7 +576,7 @@ class TSB
      */
     public function getBetaaldeKosten()
     {
-      return $this->BetaaldeKosten;
+        return $this->BetaaldeKosten;
     }
 
     /**
@@ -586,8 +585,8 @@ class TSB
      */
     public function setBetaaldeKosten($BetaaldeKosten)
     {
-      $this->BetaaldeKosten = $BetaaldeKosten;
-      return $this;
+        $this->BetaaldeKosten = $BetaaldeKosten;
+        return $this;
     }
 
     /**
@@ -595,15 +594,15 @@ class TSB
      */
     public function getDatumLaatsteBetaling()
     {
-      if ($this->DatumLaatsteBetaling == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumLaatsteBetaling);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumLaatsteBetaling == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumLaatsteBetaling);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -612,8 +611,8 @@ class TSB
      */
     public function setDatumLaatsteBetaling(\DateTime $DatumLaatsteBetaling)
     {
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -621,7 +620,7 @@ class TSB
      */
     public function getBedragLaatsteBetaling()
     {
-      return $this->BedragLaatsteBetaling;
+        return $this->BedragLaatsteBetaling;
     }
 
     /**
@@ -630,8 +629,7 @@ class TSB
      */
     public function setBedragLaatsteBetaling($BedragLaatsteBetaling)
     {
-      $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
-      return $this;
+        $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
+        return $this;
     }
-
 }

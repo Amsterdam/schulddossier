@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class ContactpersoonArray
 {
-
     /**
      * @var TContactpersoon[] $TContactpersoon
      */
     protected $TContactpersoon = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class ContactpersoonArray
      */
     public function getTContactpersoon()
     {
-      return $this->TContactpersoon;
+        return $this->TContactpersoon;
     }
 
     /**
@@ -30,8 +28,7 @@ class ContactpersoonArray
      */
     public function setTContactpersoon(array $TContactpersoon = null)
     {
-      $this->TContactpersoon = $TContactpersoon;
-      return $this;
+        $this->TContactpersoon = $TContactpersoon;
+        return $this;
     }
-
 }

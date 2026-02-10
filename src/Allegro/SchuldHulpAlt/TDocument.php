@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TDocument
 {
-
     /**
      * @var int $Relatiecode
      */
@@ -75,17 +74,17 @@ class TDocument
      */
     public function __construct($Relatiecode, $ContractVolgnummer, $Achternaam, $Geslacht, $Geboortedatum, $BSN, $SoortDocument, $Onderwerp, $Omschrijving, $DocumentNaam, $Document)
     {
-      $this->Relatiecode = $Relatiecode;
-      $this->ContractVolgnummer = $ContractVolgnummer;
-      $this->Achternaam = $Achternaam;
-      $this->Geslacht = $Geslacht;
-      $this->Geboortedatum = $Geboortedatum;
-      $this->BSN = $BSN;
-      $this->SoortDocument = $SoortDocument;
-      $this->Onderwerp = $Onderwerp;
-      $this->Omschrijving = $Omschrijving;
-      $this->DocumentNaam = $DocumentNaam;
-      $this->Document = $Document;
+        $this->Relatiecode = $Relatiecode;
+        $this->ContractVolgnummer = $ContractVolgnummer;
+        $this->Achternaam = $Achternaam;
+        $this->Geslacht = $Geslacht;
+        $this->Geboortedatum = $Geboortedatum;
+        $this->BSN = $BSN;
+        $this->SoortDocument = $SoortDocument;
+        $this->Onderwerp = $Onderwerp;
+        $this->Omschrijving = $Omschrijving;
+        $this->DocumentNaam = $DocumentNaam;
+        $this->Document = $Document;
     }
 
     /**
@@ -93,7 +92,7 @@ class TDocument
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -102,8 +101,8 @@ class TDocument
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -111,7 +110,7 @@ class TDocument
      */
     public function getContractVolgnummer()
     {
-      return $this->ContractVolgnummer;
+        return $this->ContractVolgnummer;
     }
 
     /**
@@ -120,8 +119,8 @@ class TDocument
      */
     public function setContractVolgnummer($ContractVolgnummer)
     {
-      $this->ContractVolgnummer = $ContractVolgnummer;
-      return $this;
+        $this->ContractVolgnummer = $ContractVolgnummer;
+        return $this;
     }
 
     /**
@@ -129,7 +128,7 @@ class TDocument
      */
     public function getAchternaam()
     {
-      return $this->Achternaam;
+        return $this->Achternaam;
     }
 
     /**
@@ -138,8 +137,8 @@ class TDocument
      */
     public function setAchternaam($Achternaam)
     {
-      $this->Achternaam = $Achternaam;
-      return $this;
+        $this->Achternaam = $Achternaam;
+        return $this;
     }
 
     /**
@@ -147,7 +146,7 @@ class TDocument
      */
     public function getGeslacht()
     {
-      return $this->Geslacht;
+        return $this->Geslacht;
     }
 
     /**
@@ -156,8 +155,8 @@ class TDocument
      */
     public function setGeslacht($Geslacht)
     {
-      $this->Geslacht = $Geslacht;
-      return $this;
+        $this->Geslacht = $Geslacht;
+        return $this;
     }
 
     /**
@@ -165,7 +164,7 @@ class TDocument
      */
     public function getGeboortedatum()
     {
-      return $this->Geboortedatum;
+        return $this->Geboortedatum;
     }
 
     /**
@@ -174,8 +173,8 @@ class TDocument
      */
     public function setGeboortedatum($Geboortedatum)
     {
-      $this->Geboortedatum = $Geboortedatum;
-      return $this;
+        $this->Geboortedatum = $Geboortedatum;
+        return $this;
     }
 
     /**
@@ -183,7 +182,7 @@ class TDocument
      */
     public function getBSN()
     {
-      return $this->BSN;
+        return $this->BSN;
     }
 
     /**
@@ -192,8 +191,8 @@ class TDocument
      */
     public function setBSN($BSN)
     {
-      $this->BSN = $BSN;
-      return $this;
+        $this->BSN = $BSN;
+        return $this;
     }
 
     /**
@@ -201,7 +200,7 @@ class TDocument
      */
     public function getSoortDocument()
     {
-      return $this->SoortDocument;
+        return $this->SoortDocument;
     }
 
     /**
@@ -210,8 +209,8 @@ class TDocument
      */
     public function setSoortDocument($SoortDocument)
     {
-      $this->SoortDocument = $SoortDocument;
-      return $this;
+        $this->SoortDocument = $SoortDocument;
+        return $this;
     }
 
     /**
@@ -219,7 +218,7 @@ class TDocument
      */
     public function getOnderwerp()
     {
-      return $this->Onderwerp;
+        return $this->Onderwerp;
     }
 
     /**
@@ -228,8 +227,8 @@ class TDocument
      */
     public function setOnderwerp($Onderwerp)
     {
-      $this->Onderwerp = $Onderwerp;
-      return $this;
+        $this->Onderwerp = $Onderwerp;
+        return $this;
     }
 
     /**
@@ -237,7 +236,7 @@ class TDocument
      */
     public function getOmschrijving()
     {
-      return $this->Omschrijving;
+        return $this->Omschrijving;
     }
 
     /**
@@ -246,8 +245,8 @@ class TDocument
      */
     public function setOmschrijving($Omschrijving)
     {
-      $this->Omschrijving = $Omschrijving;
-      return $this;
+        $this->Omschrijving = $Omschrijving;
+        return $this;
     }
 
     /**
@@ -255,7 +254,7 @@ class TDocument
      */
     public function getDocumentNaam()
     {
-      return $this->DocumentNaam;
+        return $this->DocumentNaam;
     }
 
     /**
@@ -264,8 +263,8 @@ class TDocument
      */
     public function setDocumentNaam($DocumentNaam)
     {
-      $this->DocumentNaam = $DocumentNaam;
-      return $this;
+        $this->DocumentNaam = $DocumentNaam;
+        return $this;
     }
 
     /**
@@ -273,7 +272,7 @@ class TDocument
      */
     public function getDocument()
     {
-      return $this->Document;
+        return $this->Document;
     }
 
     /**
@@ -282,8 +281,7 @@ class TDocument
      */
     public function setDocument($Document)
     {
-      $this->Document = $Document;
-      return $this;
+        $this->Document = $Document;
+        return $this;
     }
-
 }

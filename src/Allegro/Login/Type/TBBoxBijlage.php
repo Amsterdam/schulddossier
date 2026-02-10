@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBoxBijlage implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -149,7 +148,4 @@ class TBBoxBijlage implements RequestInterface
 
         return $new;
     }
-
-
 }
-
