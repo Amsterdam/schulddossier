@@ -336,7 +336,7 @@ class AppDossierController extends AbstractController
                 $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
                 $workflow->apply($dossier, $subForm['transition']->getData());
 
-                // TODO: This code is never reached, because workflow apply return the method.
+                // TODO: This code is never reached, because workflow apply return the method. 
                 // Nevertheless it would be nice to give the user feedback about an update. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-580
 
                 // if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
@@ -522,10 +522,10 @@ class AppDossierController extends AbstractController
      * @ParamConverter("document", options={"id"="documentId"})
      */
     public function detailDocumentAction(
-        Request $request,
-        Dossier $dossier,
-        Document $document,
-        FileStorageSelector $fileStorageSelector
+        Request                $request,
+        Dossier                $dossier,
+        Document               $document,
+        FileStorageSelector    $fileStorageSelector
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
@@ -544,10 +544,10 @@ class AppDossierController extends AbstractController
      * @ParamConverter("document", options={"id"="documentId"})
      */
     public function downloadDocumentAction(
-        Request $request,
-        Dossier $dossier,
-        Document $document,
-        FileStorageSelector $fileStorageSelector
+        Request                $request,
+        Dossier                $dossier,
+        Document               $document,
+        FileStorageSelector    $fileStorageSelector
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
@@ -597,9 +597,9 @@ class AppDossierController extends AbstractController
 
     private function streamedFileResponse(
         FlysystemFilesystem $filesystem,
-        Dossier $dossier,
-        Document $document,
-        string $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
+        Dossier             $dossier,
+        Document            $document,
+        string              $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
     ): StreamedResponse {
         try {
             $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
