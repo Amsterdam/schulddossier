@@ -34,9 +34,11 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use Http\Discovery\Exception\NotFoundException;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
+use League\Flysystem\Adapter\Local;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpWord\IOFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -334,7 +336,7 @@ class AppDossierController extends AbstractController
                 $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
                 $workflow->apply($dossier, $subForm['transition']->getData());
 
-                // TODO: This code is never reached, because workflow apply return the method.
+                // TODO: This code is never reached, because workflow apply return the method. 
                 // Nevertheless it would be nice to give the user feedback about an update. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-580
 
                 // if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
@@ -520,10 +522,10 @@ class AppDossierController extends AbstractController
      * @ParamConverter("document", options={"id"="documentId"})
      */
     public function detailDocumentAction(
-        Request $request,
-        Dossier $dossier,
-        Document $document,
-        FileStorageSelector $fileStorageSelector
+        Request                $request,
+        Dossier                $dossier,
+        Document               $document,
+        FileStorageSelector    $fileStorageSelector
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
@@ -542,10 +544,10 @@ class AppDossierController extends AbstractController
      * @ParamConverter("document", options={"id"="documentId"})
      */
     public function downloadDocumentAction(
-        Request $request,
-        Dossier $dossier,
-        Document $document,
-        FileStorageSelector $fileStorageSelector
+        Request                $request,
+        Dossier                $dossier,
+        Document               $document,
+        FileStorageSelector    $fileStorageSelector
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
@@ -556,15 +558,52 @@ class AppDossierController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/wordviewer")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("document", options={"id"="documentId"})
+     */
+    public function wordViewerAction(
+        Dossier                $dossier,
+        Document               $document,
+        FileStorageSelector    $fileStorageSelector
+    ): Response {
+        $this->checkDocumentAccess($dossier, $document);
+
+        $adapter = $fileStorageSelector->getFileStorageForDossier()->getAdapter();
+
+        /** @var Local $adapter */
+        $rootDirectory = $adapter->getPathPrefix();
+        $filePath = $rootDirectory .  '/dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
+
+        try {
+            $phpWord = IOFactory::load($filePath);
+        } catch (\Exception $e) {
+            return new Response('Error loading the Word document: ' . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
+        ob_start();
+        $htmlWriter->save('php://output');
+        $htmlContent = ob_get_clean();
+
+        return $this->render('Dossier/detailDocumentWordViewer.html.twig', [
+            'html_content' => $htmlContent,
+            'document' => $document,
+            'dossier' => $dossier
+        ]);
+    }
+
     private function streamedFileResponse(
         FlysystemFilesystem $filesystem,
-        Dossier $dossier,
-        Document $document,
-        string $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
+        Dossier             $dossier,
+        Document            $document,
+        string              $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
     ): StreamedResponse {
         try {
             $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
-            $fileStream = $filesystem->readStream($path);
+            $fileStream = $filesystem->readStream(path: $path);
         } catch (FileNotFoundException $e) {
             throw new NotFoundHttpException('Document not found');
         }
