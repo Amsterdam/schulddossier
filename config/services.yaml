@@ -28,7 +28,7 @@ services:
     autoconfigure: true
     bind:
       $proxyHostIp: '%env(PROXY_HOST_IP)%'
-      $proxyPort: '%env(PROXY_HOST_PORT)%'
+      $proxyHostPort: '%env(PROXY_HOST_PORT)%'
       $allegroEndpoint: '%env(ALLEGRO_ENDPOINT)%'
       $allegroOnbekendeSchuldeiser: '%env(ALLEGRO_ONBEKENDE_SCHULDEISER)%'
       string $azureAuthorityHost: '%env(AZURE_AUTHORITY_HOST)%'
