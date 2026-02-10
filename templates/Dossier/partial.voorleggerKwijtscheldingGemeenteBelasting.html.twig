@@ -42,7 +42,7 @@
             <div class="dossier__voorlegger__sectie__body">
                 <div class="explanation">
                     <p>Heeft de klant recht op kwijtschelding voor de gemeentelijke belastingen? <br>
-                     De schuldhulpverlener kan toetsen of de klant in aanmerking komt voor kwijtschelding. 
+                     De schuldhulpverlener kan toetsen of de klant in aanmerking komt voor kwijtschelding.
                     </p>
                 </div>
                 {{ form_row(form.kwijtscheldingGemeenteBelasting) }}
@@ -55,6 +55,8 @@
                 {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('kwijtscheldingGemeenteBelasting')} only %}
             </div>
             {% include 'Dossier/partial.documentViewer.html.twig' %}
+            <input type="hidden" name="voorleggerSectionTitle" value="{{ title }}">
+            <input type="hidden" name="voorleggerSectionFragmentId" value="#id_voorlegger-kwijtscheldingGemeenteBelasting">
         </div>
     </div>
 </div>

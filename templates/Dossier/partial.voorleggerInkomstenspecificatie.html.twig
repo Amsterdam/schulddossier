@@ -38,7 +38,7 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
-                {{ detailsMacro({    
+                {{ detailsMacro({
                     class: "explanation",
                     title: "Toelichting",
                     value: "<p>Het inkomen is op orde en alle voorliggende financiële voorzieningen zijn aangevraagd. De schuldhulpverlener moet hierop toezien. Cliënt heeft minimaal een inkomen op sociaal minimum.</p>
@@ -119,6 +119,8 @@
                 {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('inkomstenspecificatie')} only %}
             </div>
             {% include 'Dossier/partial.documentViewer.html.twig' %}
+            <input type="hidden" name="voorleggerSectionTitle" value="{{ title }}">
+            <input type="hidden" name="voorleggerSectionFragmentId" value="#id_voorlegger-vtlb">
         </div>
     </div>
 </div>

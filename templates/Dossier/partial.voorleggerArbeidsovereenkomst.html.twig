@@ -44,7 +44,7 @@
                 <hr>
             </div>
             <div class="dossier__voorlegger__sectie__body">
-                {{ detailsMacro({    
+                {{ detailsMacro({
                     class: "explanation",
                     title: "Toelichting",
                     value: "<p>Voeg het meest recente arbeidscontract toe. Eindigt het contract binnen drie maanden, informeer dan bij de werkgever of er sprake is van een intentie tot verlenging. Loopt het contract binnen zes weken af, voeg dan bij de aanvraag een intentieverklaring van de werkgever toe.</p>"
@@ -81,6 +81,8 @@
                 {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('arbeidsovereenkomst')} only %}
             </div>
             {% include 'Dossier/partial.documentViewer.html.twig' %}
+            <input type="hidden" name="voorleggerSectionTitle" value="{{ title }}">
+            <input type="hidden" name="voorleggerSectionFragmentId" value="#id_voorlegger-arbeidsovereenkomst">
         </div>
     </div>
 </div>
