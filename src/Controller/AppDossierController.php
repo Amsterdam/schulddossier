@@ -345,13 +345,18 @@ class AppDossierController extends AbstractController
             }
 
             $em->flush();
+
             if ($sendCorrespondentieNotification === true) {
                 $eventDispatcher->dispatch(new DossierAddedCorrespondentie($dossier, $this->getUser()), DossierAddedCorrespondentie::NAME);
             }
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+            if (!is_null($request->get('voorleggerSectionTitle')) && !is_null($request->get('voorleggerSectionFragmentId'))) {
+                $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerItemGewijzigd($this->getUser(), $dossier, $request->get('voorleggerSectionTitle'), $request->get('voorleggerSectionFragmentId')), ActionEvent::NAME);
+            } else {
+                $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+            }
+
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
-
 
         $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
 
@@ -608,6 +613,7 @@ class AppDossierController extends AbstractController
                 'name' => [
                     'dossier_status_gewijzigd',
                     'dossier_gewijzigd',
+                    'dossier_voorlegger_item_gewijzigd',
                     'dossier_send_to_allegro'
                 ],
                 'dossier' => $dossier

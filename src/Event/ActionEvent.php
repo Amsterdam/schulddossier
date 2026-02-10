@@ -35,6 +35,7 @@ class ActionEvent extends Event
 
     const GEBRUIKER_INGELOGD = 'gebruiker_ingelogd';
     const DOSSIER_GEWIJZIGD = 'dossier_gewijzigd';
+    const DOSSIER_VOORLEGGER_ITEM_GEWIJZIGD = 'dossier_voorlegger_item_gewijzigd';
     const DOSSIER_STATUS_GEWIJZIGD = 'dossier_status_gewijzigd';
     const GEBRUIKER_GEWIJZIGD = 'gebruiker_gewijzigd';
     const GEBRUIKER_VERWIJDERD = 'gebruiker_verwijderd';
@@ -193,6 +194,29 @@ class ActionEvent extends Event
         );
 
         return new self(self::DOSSIER_HERSTELD, $data, $dossier);
+    }
+
+    /**
+     * @param Gebruiker $gebruiker
+     * @param Dossier $dossier
+     * @param string $voorleggerSectionFragmentId
+     *
+     * @return ActionEvent
+     */
+    public static function registerDossierVoorleggerItemGewijzigd(
+        Gebruiker $gebruiker,
+        Dossier $dossier,
+        ?string $voorleggerSectionTitle,
+        ?string $voorleggerSectionFragmentId,
+    ) {
+        $data = array_merge(
+            self::getGebruikerData($gebruiker),
+            self::getDossierData(dossier: $dossier),
+            isset($voorleggerSectionTitle) ? ['voorlegger_section_title' => $voorleggerSectionTitle] : [],
+            isset($voorleggerSectionFragmentId) ? ['voorlegger_section_fragment_id' => $voorleggerSectionFragmentId] : [],
+        );
+
+        return new self(self::DOSSIER_VOORLEGGER_ITEM_GEWIJZIGD, $data, $dossier);
     }
 
     /**

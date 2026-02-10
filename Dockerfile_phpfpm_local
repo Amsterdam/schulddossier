@@ -70,9 +70,9 @@ WORKDIR /var/www
 
 COPY --chown=www-data . /var/www
 
-RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
+RUN composer install --no-progress --no-suggest --no-scripts
 
-RUN npm ci --no-audit --no-fund --ignore-scripts
+RUN npm ci --no-fund
 RUN npm run build
 
 CMD ["/var/www/docker-entrypoint_phpfpm.sh"]
