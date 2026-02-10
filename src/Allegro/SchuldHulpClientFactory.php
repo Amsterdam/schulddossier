@@ -14,12 +14,12 @@ class SchuldHulpClientFactory
     public static function factory(
         string $wsdl,
         Organisatie $organisatie,
-        ?string $proxyHost = null,
-        ?string $proxyPort = null
+        ?string $proxyHostIp = null,
+        ?string $proxyHostPort = null
     ): AllegroSchuldHulpClient {
-        $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHost, $proxyPort);
+        $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHostIp, $proxyHostPort);
 
-        $extSoapOptions = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
+        $extSoapOptions = AllegroHelper::createSoapOptionsArray($proxyHostIp, $proxyHostPort);
 
         $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
             ExtSoapOptions::defaults($wsdl, $extSoapOptions)->withClassMap(AllegroSchuldHulpClassmap::getCollection()),
