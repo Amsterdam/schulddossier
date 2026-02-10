@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SchuldHulpService___AanvraagSR
 {
-
     /**
      * @var TAanvraagSR $aAanvraagSR
      */
@@ -15,7 +14,7 @@ class SchuldHulpService___AanvraagSR
      */
     public function __construct($aAanvraagSR)
     {
-      $this->aAanvraagSR = $aAanvraagSR;
+        $this->aAanvraagSR = $aAanvraagSR;
     }
 
     /**
@@ -23,7 +22,7 @@ class SchuldHulpService___AanvraagSR
      */
     public function getAAanvraagSR()
     {
-      return $this->aAanvraagSR;
+        return $this->aAanvraagSR;
     }
 
     /**
@@ -32,8 +31,7 @@ class SchuldHulpService___AanvraagSR
      */
     public function setAAanvraagSR($aAanvraagSR)
     {
-      $this->aAanvraagSR = $aAanvraagSR;
-      return $this;
+        $this->aAanvraagSR = $aAanvraagSR;
+        return $this;
     }
-
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace DoctrineMigrations;
 
@@ -22,7 +24,7 @@ class Version20180430134212 extends AbstractMigration
         $this->addSql('ALTER TABLE voorlegger ADD toeslagen_zorg BOOLEAN DEFAULT NULL');
         $this->addSql('ALTER TABLE voorlegger ADD toeslagen_kinderopvang BOOLEAN DEFAULT NULL');
         $this->addSql('ALTER TABLE voorlegger ADD toeslagen_kindgebonden_budget BOOLEAN DEFAULT NULL');
-        
+
         $this->addSql('UPDATE voorlegger SET toeslagen_ontvangen_madi = 1');
         $this->addSql('UPDATE voorlegger SET toeslagen_ontvangen_gka = 0');
         $this->addSql('UPDATE voorlegger SET toeslagen_huur = (SELECT COUNT(dd.id) FROM dossier_document AS dd WHERE dd.onderwerp = \'huurtoeslag\' AND dd.dossier_id = voorlegger.dossier_id) > 0');
@@ -31,7 +33,7 @@ class Version20180430134212 extends AbstractMigration
         $this->addSql('UPDATE voorlegger SET toeslagen_kindgebonden_budget = (SELECT COUNT(dd.id) FROM dossier_document AS dd WHERE dd.onderwerp = \'kindgebondenBudget\' AND dd.dossier_id = voorlegger.dossier_id) > 0');
         $this->addSql('UPDATE voorlegger SET toeslagen_nvt = false');
         $this->addSql('UPDATE voorlegger SET toeslagen_nvt = true WHERE toeslagen_huur = false AND toeslagen_zorg = false AND toeslagen_kinderopvang = false AND toeslagen_kindgebonden_budget = false');
-        
+
         $this->addSql('UPDATE dossier_document SET onderwerp = \'toeslagen\' WHERE onderwerp =\'huurtoeslag\'');
         $this->addSql('UPDATE dossier_document SET onderwerp = \'toeslagen\' WHERE onderwerp =\'zorgtoeslag\'');
         $this->addSql('UPDATE dossier_document SET onderwerp = \'toeslagen\' WHERE onderwerp =\'kinderopvangtoeslag\'');

@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSMutatiesPeriode implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\PRSMutatieArray
      */
@@ -258,7 +256,4 @@ class TPRSMutatiesPeriode implements RequestInterface
 
         return $new;
     }
-
-
 }
-

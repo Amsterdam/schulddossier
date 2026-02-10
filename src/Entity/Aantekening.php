@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Aantekening
 {
     use ExportAble;
+
     /**
      * @var integer
      * @ORM\Id

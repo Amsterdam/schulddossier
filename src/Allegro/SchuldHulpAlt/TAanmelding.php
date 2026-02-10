@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TAanmelding
 {
-
     /**
      * @var TPersoon $Aanvrager
      */
@@ -171,33 +170,33 @@ class TAanmelding
      */
     public function __construct($Aanvrager, $Partner, $GezinsSituatie, $Adres, $Contact, $Waarom, $Crisis, $JaNeeVraag1, $JaNeeVraag2, $JaNeeVraag3, $JaNeeVraag4, $JaNeeVraag5, $JaNeeVraag6, $JaNeeVraag7, $JaNeeVraag8, $JaNeeVraag9, $JaNeeVraag10, $OpenVraag1, $OpenVraag2, $OpenVraag3, $OpenVraag4, $OpenVraag5, $OpenVraag6, $OpenVraag7, $OpenVraag8, $OpenVraag9, $OpenVraag10)
     {
-      $this->Aanvrager = $Aanvrager;
-      $this->Partner = $Partner;
-      $this->GezinsSituatie = $GezinsSituatie;
-      $this->Adres = $Adres;
-      $this->Contact = $Contact;
-      $this->Waarom = $Waarom;
-      $this->Crisis = $Crisis;
-      $this->JaNeeVraag1 = $JaNeeVraag1;
-      $this->JaNeeVraag2 = $JaNeeVraag2;
-      $this->JaNeeVraag3 = $JaNeeVraag3;
-      $this->JaNeeVraag4 = $JaNeeVraag4;
-      $this->JaNeeVraag5 = $JaNeeVraag5;
-      $this->JaNeeVraag6 = $JaNeeVraag6;
-      $this->JaNeeVraag7 = $JaNeeVraag7;
-      $this->JaNeeVraag8 = $JaNeeVraag8;
-      $this->JaNeeVraag9 = $JaNeeVraag9;
-      $this->JaNeeVraag10 = $JaNeeVraag10;
-      $this->OpenVraag1 = $OpenVraag1;
-      $this->OpenVraag2 = $OpenVraag2;
-      $this->OpenVraag3 = $OpenVraag3;
-      $this->OpenVraag4 = $OpenVraag4;
-      $this->OpenVraag5 = $OpenVraag5;
-      $this->OpenVraag6 = $OpenVraag6;
-      $this->OpenVraag7 = $OpenVraag7;
-      $this->OpenVraag8 = $OpenVraag8;
-      $this->OpenVraag9 = $OpenVraag9;
-      $this->OpenVraag10 = $OpenVraag10;
+        $this->Aanvrager = $Aanvrager;
+        $this->Partner = $Partner;
+        $this->GezinsSituatie = $GezinsSituatie;
+        $this->Adres = $Adres;
+        $this->Contact = $Contact;
+        $this->Waarom = $Waarom;
+        $this->Crisis = $Crisis;
+        $this->JaNeeVraag1 = $JaNeeVraag1;
+        $this->JaNeeVraag2 = $JaNeeVraag2;
+        $this->JaNeeVraag3 = $JaNeeVraag3;
+        $this->JaNeeVraag4 = $JaNeeVraag4;
+        $this->JaNeeVraag5 = $JaNeeVraag5;
+        $this->JaNeeVraag6 = $JaNeeVraag6;
+        $this->JaNeeVraag7 = $JaNeeVraag7;
+        $this->JaNeeVraag8 = $JaNeeVraag8;
+        $this->JaNeeVraag9 = $JaNeeVraag9;
+        $this->JaNeeVraag10 = $JaNeeVraag10;
+        $this->OpenVraag1 = $OpenVraag1;
+        $this->OpenVraag2 = $OpenVraag2;
+        $this->OpenVraag3 = $OpenVraag3;
+        $this->OpenVraag4 = $OpenVraag4;
+        $this->OpenVraag5 = $OpenVraag5;
+        $this->OpenVraag6 = $OpenVraag6;
+        $this->OpenVraag7 = $OpenVraag7;
+        $this->OpenVraag8 = $OpenVraag8;
+        $this->OpenVraag9 = $OpenVraag9;
+        $this->OpenVraag10 = $OpenVraag10;
     }
 
     /**
@@ -205,7 +204,7 @@ class TAanmelding
      */
     public function getAanvrager()
     {
-      return $this->Aanvrager;
+        return $this->Aanvrager;
     }
 
     /**
@@ -214,8 +213,8 @@ class TAanmelding
      */
     public function setAanvrager($Aanvrager)
     {
-      $this->Aanvrager = $Aanvrager;
-      return $this;
+        $this->Aanvrager = $Aanvrager;
+        return $this;
     }
 
     /**
@@ -223,7 +222,7 @@ class TAanmelding
      */
     public function getPartner()
     {
-      return $this->Partner;
+        return $this->Partner;
     }
 
     /**
@@ -232,8 +231,8 @@ class TAanmelding
      */
     public function setPartner($Partner)
     {
-      $this->Partner = $Partner;
-      return $this;
+        $this->Partner = $Partner;
+        return $this;
     }
 
     /**
@@ -241,7 +240,7 @@ class TAanmelding
      */
     public function getGezinsSituatie()
     {
-      return $this->GezinsSituatie;
+        return $this->GezinsSituatie;
     }
 
     /**
@@ -250,8 +249,8 @@ class TAanmelding
      */
     public function setGezinsSituatie($GezinsSituatie)
     {
-      $this->GezinsSituatie = $GezinsSituatie;
-      return $this;
+        $this->GezinsSituatie = $GezinsSituatie;
+        return $this;
     }
 
     /**
@@ -259,7 +258,7 @@ class TAanmelding
      */
     public function getAdres()
     {
-      return $this->Adres;
+        return $this->Adres;
     }
 
     /**
@@ -268,8 +267,8 @@ class TAanmelding
      */
     public function setAdres($Adres)
     {
-      $this->Adres = $Adres;
-      return $this;
+        $this->Adres = $Adres;
+        return $this;
     }
 
     /**
@@ -277,7 +276,7 @@ class TAanmelding
      */
     public function getContact()
     {
-      return $this->Contact;
+        return $this->Contact;
     }
 
     /**
@@ -286,8 +285,8 @@ class TAanmelding
      */
     public function setContact($Contact)
     {
-      $this->Contact = $Contact;
-      return $this;
+        $this->Contact = $Contact;
+        return $this;
     }
 
     /**
@@ -295,7 +294,7 @@ class TAanmelding
      */
     public function getWaarom()
     {
-      return $this->Waarom;
+        return $this->Waarom;
     }
 
     /**
@@ -304,8 +303,8 @@ class TAanmelding
      */
     public function setWaarom($Waarom)
     {
-      $this->Waarom = $Waarom;
-      return $this;
+        $this->Waarom = $Waarom;
+        return $this;
     }
 
     /**
@@ -313,7 +312,7 @@ class TAanmelding
      */
     public function getCrisis()
     {
-      return $this->Crisis;
+        return $this->Crisis;
     }
 
     /**
@@ -322,8 +321,8 @@ class TAanmelding
      */
     public function setCrisis($Crisis)
     {
-      $this->Crisis = $Crisis;
-      return $this;
+        $this->Crisis = $Crisis;
+        return $this;
     }
 
     /**
@@ -331,7 +330,7 @@ class TAanmelding
      */
     public function getJaNeeVraag1()
     {
-      return $this->JaNeeVraag1;
+        return $this->JaNeeVraag1;
     }
 
     /**
@@ -340,8 +339,8 @@ class TAanmelding
      */
     public function setJaNeeVraag1($JaNeeVraag1)
     {
-      $this->JaNeeVraag1 = $JaNeeVraag1;
-      return $this;
+        $this->JaNeeVraag1 = $JaNeeVraag1;
+        return $this;
     }
 
     /**
@@ -349,7 +348,7 @@ class TAanmelding
      */
     public function getJaNeeVraag2()
     {
-      return $this->JaNeeVraag2;
+        return $this->JaNeeVraag2;
     }
 
     /**
@@ -358,8 +357,8 @@ class TAanmelding
      */
     public function setJaNeeVraag2($JaNeeVraag2)
     {
-      $this->JaNeeVraag2 = $JaNeeVraag2;
-      return $this;
+        $this->JaNeeVraag2 = $JaNeeVraag2;
+        return $this;
     }
 
     /**
@@ -367,7 +366,7 @@ class TAanmelding
      */
     public function getJaNeeVraag3()
     {
-      return $this->JaNeeVraag3;
+        return $this->JaNeeVraag3;
     }
 
     /**
@@ -376,8 +375,8 @@ class TAanmelding
      */
     public function setJaNeeVraag3($JaNeeVraag3)
     {
-      $this->JaNeeVraag3 = $JaNeeVraag3;
-      return $this;
+        $this->JaNeeVraag3 = $JaNeeVraag3;
+        return $this;
     }
 
     /**
@@ -385,7 +384,7 @@ class TAanmelding
      */
     public function getJaNeeVraag4()
     {
-      return $this->JaNeeVraag4;
+        return $this->JaNeeVraag4;
     }
 
     /**
@@ -394,8 +393,8 @@ class TAanmelding
      */
     public function setJaNeeVraag4($JaNeeVraag4)
     {
-      $this->JaNeeVraag4 = $JaNeeVraag4;
-      return $this;
+        $this->JaNeeVraag4 = $JaNeeVraag4;
+        return $this;
     }
 
     /**
@@ -403,7 +402,7 @@ class TAanmelding
      */
     public function getJaNeeVraag5()
     {
-      return $this->JaNeeVraag5;
+        return $this->JaNeeVraag5;
     }
 
     /**
@@ -412,8 +411,8 @@ class TAanmelding
      */
     public function setJaNeeVraag5($JaNeeVraag5)
     {
-      $this->JaNeeVraag5 = $JaNeeVraag5;
-      return $this;
+        $this->JaNeeVraag5 = $JaNeeVraag5;
+        return $this;
     }
 
     /**
@@ -421,7 +420,7 @@ class TAanmelding
      */
     public function getJaNeeVraag6()
     {
-      return $this->JaNeeVraag6;
+        return $this->JaNeeVraag6;
     }
 
     /**
@@ -430,8 +429,8 @@ class TAanmelding
      */
     public function setJaNeeVraag6($JaNeeVraag6)
     {
-      $this->JaNeeVraag6 = $JaNeeVraag6;
-      return $this;
+        $this->JaNeeVraag6 = $JaNeeVraag6;
+        return $this;
     }
 
     /**
@@ -439,7 +438,7 @@ class TAanmelding
      */
     public function getJaNeeVraag7()
     {
-      return $this->JaNeeVraag7;
+        return $this->JaNeeVraag7;
     }
 
     /**
@@ -448,8 +447,8 @@ class TAanmelding
      */
     public function setJaNeeVraag7($JaNeeVraag7)
     {
-      $this->JaNeeVraag7 = $JaNeeVraag7;
-      return $this;
+        $this->JaNeeVraag7 = $JaNeeVraag7;
+        return $this;
     }
 
     /**
@@ -457,7 +456,7 @@ class TAanmelding
      */
     public function getJaNeeVraag8()
     {
-      return $this->JaNeeVraag8;
+        return $this->JaNeeVraag8;
     }
 
     /**
@@ -466,8 +465,8 @@ class TAanmelding
      */
     public function setJaNeeVraag8($JaNeeVraag8)
     {
-      $this->JaNeeVraag8 = $JaNeeVraag8;
-      return $this;
+        $this->JaNeeVraag8 = $JaNeeVraag8;
+        return $this;
     }
 
     /**
@@ -475,7 +474,7 @@ class TAanmelding
      */
     public function getJaNeeVraag9()
     {
-      return $this->JaNeeVraag9;
+        return $this->JaNeeVraag9;
     }
 
     /**
@@ -484,8 +483,8 @@ class TAanmelding
      */
     public function setJaNeeVraag9($JaNeeVraag9)
     {
-      $this->JaNeeVraag9 = $JaNeeVraag9;
-      return $this;
+        $this->JaNeeVraag9 = $JaNeeVraag9;
+        return $this;
     }
 
     /**
@@ -493,7 +492,7 @@ class TAanmelding
      */
     public function getJaNeeVraag10()
     {
-      return $this->JaNeeVraag10;
+        return $this->JaNeeVraag10;
     }
 
     /**
@@ -502,8 +501,8 @@ class TAanmelding
      */
     public function setJaNeeVraag10($JaNeeVraag10)
     {
-      $this->JaNeeVraag10 = $JaNeeVraag10;
-      return $this;
+        $this->JaNeeVraag10 = $JaNeeVraag10;
+        return $this;
     }
 
     /**
@@ -511,7 +510,7 @@ class TAanmelding
      */
     public function getOpenVraag1()
     {
-      return $this->OpenVraag1;
+        return $this->OpenVraag1;
     }
 
     /**
@@ -520,8 +519,8 @@ class TAanmelding
      */
     public function setOpenVraag1($OpenVraag1)
     {
-      $this->OpenVraag1 = $OpenVraag1;
-      return $this;
+        $this->OpenVraag1 = $OpenVraag1;
+        return $this;
     }
 
     /**
@@ -529,7 +528,7 @@ class TAanmelding
      */
     public function getOpenVraag2()
     {
-      return $this->OpenVraag2;
+        return $this->OpenVraag2;
     }
 
     /**
@@ -538,8 +537,8 @@ class TAanmelding
      */
     public function setOpenVraag2($OpenVraag2)
     {
-      $this->OpenVraag2 = $OpenVraag2;
-      return $this;
+        $this->OpenVraag2 = $OpenVraag2;
+        return $this;
     }
 
     /**
@@ -547,7 +546,7 @@ class TAanmelding
      */
     public function getOpenVraag3()
     {
-      return $this->OpenVraag3;
+        return $this->OpenVraag3;
     }
 
     /**
@@ -556,8 +555,8 @@ class TAanmelding
      */
     public function setOpenVraag3($OpenVraag3)
     {
-      $this->OpenVraag3 = $OpenVraag3;
-      return $this;
+        $this->OpenVraag3 = $OpenVraag3;
+        return $this;
     }
 
     /**
@@ -565,7 +564,7 @@ class TAanmelding
      */
     public function getOpenVraag4()
     {
-      return $this->OpenVraag4;
+        return $this->OpenVraag4;
     }
 
     /**
@@ -574,8 +573,8 @@ class TAanmelding
      */
     public function setOpenVraag4($OpenVraag4)
     {
-      $this->OpenVraag4 = $OpenVraag4;
-      return $this;
+        $this->OpenVraag4 = $OpenVraag4;
+        return $this;
     }
 
     /**
@@ -583,7 +582,7 @@ class TAanmelding
      */
     public function getOpenVraag5()
     {
-      return $this->OpenVraag5;
+        return $this->OpenVraag5;
     }
 
     /**
@@ -592,8 +591,8 @@ class TAanmelding
      */
     public function setOpenVraag5($OpenVraag5)
     {
-      $this->OpenVraag5 = $OpenVraag5;
-      return $this;
+        $this->OpenVraag5 = $OpenVraag5;
+        return $this;
     }
 
     /**
@@ -601,7 +600,7 @@ class TAanmelding
      */
     public function getOpenVraag6()
     {
-      return $this->OpenVraag6;
+        return $this->OpenVraag6;
     }
 
     /**
@@ -610,8 +609,8 @@ class TAanmelding
      */
     public function setOpenVraag6($OpenVraag6)
     {
-      $this->OpenVraag6 = $OpenVraag6;
-      return $this;
+        $this->OpenVraag6 = $OpenVraag6;
+        return $this;
     }
 
     /**
@@ -619,7 +618,7 @@ class TAanmelding
      */
     public function getOpenVraag7()
     {
-      return $this->OpenVraag7;
+        return $this->OpenVraag7;
     }
 
     /**
@@ -628,8 +627,8 @@ class TAanmelding
      */
     public function setOpenVraag7($OpenVraag7)
     {
-      $this->OpenVraag7 = $OpenVraag7;
-      return $this;
+        $this->OpenVraag7 = $OpenVraag7;
+        return $this;
     }
 
     /**
@@ -637,7 +636,7 @@ class TAanmelding
      */
     public function getOpenVraag8()
     {
-      return $this->OpenVraag8;
+        return $this->OpenVraag8;
     }
 
     /**
@@ -646,8 +645,8 @@ class TAanmelding
      */
     public function setOpenVraag8($OpenVraag8)
     {
-      $this->OpenVraag8 = $OpenVraag8;
-      return $this;
+        $this->OpenVraag8 = $OpenVraag8;
+        return $this;
     }
 
     /**
@@ -655,7 +654,7 @@ class TAanmelding
      */
     public function getOpenVraag9()
     {
-      return $this->OpenVraag9;
+        return $this->OpenVraag9;
     }
 
     /**
@@ -664,8 +663,8 @@ class TAanmelding
      */
     public function setOpenVraag9($OpenVraag9)
     {
-      $this->OpenVraag9 = $OpenVraag9;
-      return $this;
+        $this->OpenVraag9 = $OpenVraag9;
+        return $this;
     }
 
     /**
@@ -673,7 +672,7 @@ class TAanmelding
      */
     public function getOpenVraag10()
     {
-      return $this->OpenVraag10;
+        return $this->OpenVraag10;
     }
 
     /**
@@ -682,8 +681,7 @@ class TAanmelding
      */
     public function setOpenVraag10($OpenVraag10)
     {
-      $this->OpenVraag10 = $OpenVraag10;
-      return $this;
+        $this->OpenVraag10 = $OpenVraag10;
+        return $this;
     }
-
 }

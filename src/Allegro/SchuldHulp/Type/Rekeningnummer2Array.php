@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class Rekeningnummer2Array implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TRekeningnummer
      */
@@ -42,7 +40,4 @@ class Rekeningnummer2Array implements RequestInterface
 
         return $new;
     }
-
-
 }
-

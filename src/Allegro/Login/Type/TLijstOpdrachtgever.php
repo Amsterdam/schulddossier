@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TLijstOpdrachtgever implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -95,7 +94,4 @@ class TLijstOpdrachtgever implements RequestInterface
 
         return $new;
     }
-
-
 }
-

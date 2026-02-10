@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TKind
 {
-
     /**
      * @var int $UniekVolgnummer
      */
@@ -45,12 +44,12 @@ class TKind
      */
     public function __construct($UniekVolgnummer, $Voornaam, $Achternaam, \DateTime $Geboortedatum, $Activiteit, $MeetelKind)
     {
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      $this->Voornaam = $Voornaam;
-      $this->Achternaam = $Achternaam;
-      $this->Geboortedatum = $Geboortedatum->format(\DateTime::ATOM);
-      $this->Activiteit = $Activiteit;
-      $this->MeetelKind = $MeetelKind;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        $this->Voornaam = $Voornaam;
+        $this->Achternaam = $Achternaam;
+        $this->Geboortedatum = $Geboortedatum->format(\DateTime::ATOM);
+        $this->Activiteit = $Activiteit;
+        $this->MeetelKind = $MeetelKind;
     }
 
     /**
@@ -58,7 +57,7 @@ class TKind
      */
     public function getUniekVolgnummer()
     {
-      return $this->UniekVolgnummer;
+        return $this->UniekVolgnummer;
     }
 
     /**
@@ -67,8 +66,8 @@ class TKind
      */
     public function setUniekVolgnummer($UniekVolgnummer)
     {
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      return $this;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        return $this;
     }
 
     /**
@@ -76,7 +75,7 @@ class TKind
      */
     public function getVoornaam()
     {
-      return $this->Voornaam;
+        return $this->Voornaam;
     }
 
     /**
@@ -85,8 +84,8 @@ class TKind
      */
     public function setVoornaam($Voornaam)
     {
-      $this->Voornaam = $Voornaam;
-      return $this;
+        $this->Voornaam = $Voornaam;
+        return $this;
     }
 
     /**
@@ -94,7 +93,7 @@ class TKind
      */
     public function getAchternaam()
     {
-      return $this->Achternaam;
+        return $this->Achternaam;
     }
 
     /**
@@ -103,8 +102,8 @@ class TKind
      */
     public function setAchternaam($Achternaam)
     {
-      $this->Achternaam = $Achternaam;
-      return $this;
+        $this->Achternaam = $Achternaam;
+        return $this;
     }
 
     /**
@@ -112,15 +111,15 @@ class TKind
      */
     public function getGeboortedatum()
     {
-      if ($this->Geboortedatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Geboortedatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Geboortedatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Geboortedatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -129,8 +128,8 @@ class TKind
      */
     public function setGeboortedatum(\DateTime $Geboortedatum)
     {
-      $this->Geboortedatum = $Geboortedatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Geboortedatum = $Geboortedatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -138,7 +137,7 @@ class TKind
      */
     public function getActiviteit()
     {
-      return $this->Activiteit;
+        return $this->Activiteit;
     }
 
     /**
@@ -147,8 +146,8 @@ class TKind
      */
     public function setActiviteit($Activiteit)
     {
-      $this->Activiteit = $Activiteit;
-      return $this;
+        $this->Activiteit = $Activiteit;
+        return $this;
     }
 
     /**
@@ -156,7 +155,7 @@ class TKind
      */
     public function getMeetelKind()
     {
-      return $this->MeetelKind;
+        return $this->MeetelKind;
     }
 
     /**
@@ -165,8 +164,7 @@ class TKind
      */
     public function setMeetelKind($MeetelKind)
     {
-      $this->MeetelKind = $MeetelKind;
-      return $this;
+        $this->MeetelKind = $MeetelKind;
+        return $this;
     }
-
 }

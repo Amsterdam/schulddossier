@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\ResultInterface;
 
 class LoginServiceAllegroWebMagAanmeldenResponse implements ResultInterface
 {
-
     /**
      * @var bool
      */
@@ -56,7 +55,4 @@ class LoginServiceAllegroWebMagAanmeldenResponse implements ResultInterface
 
         return $new;
     }
-
-
 }
-

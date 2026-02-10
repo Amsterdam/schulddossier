@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class CasusHeaderArray
 {
-
     /**
      * @var TCasusHeader[] $TCasusHeader
      */
     protected $TCasusHeader = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class CasusHeaderArray
      */
     public function getTCasusHeader()
     {
-      return $this->TCasusHeader;
+        return $this->TCasusHeader;
     }
 
     /**
@@ -30,8 +28,7 @@ class CasusHeaderArray
      */
     public function setTCasusHeader(array $TCasusHeader = null)
     {
-      $this->TCasusHeader = $TCasusHeader;
-      return $this;
+        $this->TCasusHeader = $TCasusHeader;
+        return $this;
     }
-
 }

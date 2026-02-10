@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TUitgaven
 {
-
     /**
      * @var eWoningSoort $WoningSoort
      */
@@ -93,20 +92,20 @@ class TUitgaven
      */
     public function __construct($WoningSoort, $Kostgeld, $Huur, $Huurtoeslag, $MaandHypotheek, $MaandTeruggave, $SaldoHypotheek, $WOZWaarde, $Zorgpremie, $Zorgtoeslag, $KinderAlimentatieBedrag, $PartnerAlimentatieBedrag, $OverigUitgaven, $Toelichting)
     {
-      $this->WoningSoort = $WoningSoort;
-      $this->Kostgeld = $Kostgeld;
-      $this->Huur = $Huur;
-      $this->Huurtoeslag = $Huurtoeslag;
-      $this->MaandHypotheek = $MaandHypotheek;
-      $this->MaandTeruggave = $MaandTeruggave;
-      $this->SaldoHypotheek = $SaldoHypotheek;
-      $this->WOZWaarde = $WOZWaarde;
-      $this->Zorgpremie = $Zorgpremie;
-      $this->Zorgtoeslag = $Zorgtoeslag;
-      $this->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
-      $this->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
-      $this->OverigUitgaven = $OverigUitgaven;
-      $this->Toelichting = $Toelichting;
+        $this->WoningSoort = $WoningSoort;
+        $this->Kostgeld = $Kostgeld;
+        $this->Huur = $Huur;
+        $this->Huurtoeslag = $Huurtoeslag;
+        $this->MaandHypotheek = $MaandHypotheek;
+        $this->MaandTeruggave = $MaandTeruggave;
+        $this->SaldoHypotheek = $SaldoHypotheek;
+        $this->WOZWaarde = $WOZWaarde;
+        $this->Zorgpremie = $Zorgpremie;
+        $this->Zorgtoeslag = $Zorgtoeslag;
+        $this->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
+        $this->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
+        $this->OverigUitgaven = $OverigUitgaven;
+        $this->Toelichting = $Toelichting;
     }
 
     /**
@@ -114,7 +113,7 @@ class TUitgaven
      */
     public function getWoningSoort()
     {
-      return $this->WoningSoort;
+        return $this->WoningSoort;
     }
 
     /**
@@ -123,8 +122,8 @@ class TUitgaven
      */
     public function setWoningSoort($WoningSoort)
     {
-      $this->WoningSoort = $WoningSoort;
-      return $this;
+        $this->WoningSoort = $WoningSoort;
+        return $this;
     }
 
     /**
@@ -132,7 +131,7 @@ class TUitgaven
      */
     public function getKostgeld()
     {
-      return $this->Kostgeld;
+        return $this->Kostgeld;
     }
 
     /**
@@ -141,8 +140,8 @@ class TUitgaven
      */
     public function setKostgeld($Kostgeld)
     {
-      $this->Kostgeld = $Kostgeld;
-      return $this;
+        $this->Kostgeld = $Kostgeld;
+        return $this;
     }
 
     /**
@@ -150,7 +149,7 @@ class TUitgaven
      */
     public function getHuur()
     {
-      return $this->Huur;
+        return $this->Huur;
     }
 
     /**
@@ -159,8 +158,8 @@ class TUitgaven
      */
     public function setHuur($Huur)
     {
-      $this->Huur = $Huur;
-      return $this;
+        $this->Huur = $Huur;
+        return $this;
     }
 
     /**
@@ -168,7 +167,7 @@ class TUitgaven
      */
     public function getHuurtoeslag()
     {
-      return $this->Huurtoeslag;
+        return $this->Huurtoeslag;
     }
 
     /**
@@ -177,8 +176,8 @@ class TUitgaven
      */
     public function setHuurtoeslag($Huurtoeslag)
     {
-      $this->Huurtoeslag = $Huurtoeslag;
-      return $this;
+        $this->Huurtoeslag = $Huurtoeslag;
+        return $this;
     }
 
     /**
@@ -186,7 +185,7 @@ class TUitgaven
      */
     public function getMaandHypotheek()
     {
-      return $this->MaandHypotheek;
+        return $this->MaandHypotheek;
     }
 
     /**
@@ -195,8 +194,8 @@ class TUitgaven
      */
     public function setMaandHypotheek($MaandHypotheek)
     {
-      $this->MaandHypotheek = $MaandHypotheek;
-      return $this;
+        $this->MaandHypotheek = $MaandHypotheek;
+        return $this;
     }
 
     /**
@@ -204,7 +203,7 @@ class TUitgaven
      */
     public function getMaandTeruggave()
     {
-      return $this->MaandTeruggave;
+        return $this->MaandTeruggave;
     }
 
     /**
@@ -213,8 +212,8 @@ class TUitgaven
      */
     public function setMaandTeruggave($MaandTeruggave)
     {
-      $this->MaandTeruggave = $MaandTeruggave;
-      return $this;
+        $this->MaandTeruggave = $MaandTeruggave;
+        return $this;
     }
 
     /**
@@ -222,7 +221,7 @@ class TUitgaven
      */
     public function getSaldoHypotheek()
     {
-      return $this->SaldoHypotheek;
+        return $this->SaldoHypotheek;
     }
 
     /**
@@ -231,8 +230,8 @@ class TUitgaven
      */
     public function setSaldoHypotheek($SaldoHypotheek)
     {
-      $this->SaldoHypotheek = $SaldoHypotheek;
-      return $this;
+        $this->SaldoHypotheek = $SaldoHypotheek;
+        return $this;
     }
 
     /**
@@ -240,7 +239,7 @@ class TUitgaven
      */
     public function getWOZWaarde()
     {
-      return $this->WOZWaarde;
+        return $this->WOZWaarde;
     }
 
     /**
@@ -249,8 +248,8 @@ class TUitgaven
      */
     public function setWOZWaarde($WOZWaarde)
     {
-      $this->WOZWaarde = $WOZWaarde;
-      return $this;
+        $this->WOZWaarde = $WOZWaarde;
+        return $this;
     }
 
     /**
@@ -258,7 +257,7 @@ class TUitgaven
      */
     public function getZorgpremie()
     {
-      return $this->Zorgpremie;
+        return $this->Zorgpremie;
     }
 
     /**
@@ -267,8 +266,8 @@ class TUitgaven
      */
     public function setZorgpremie($Zorgpremie)
     {
-      $this->Zorgpremie = $Zorgpremie;
-      return $this;
+        $this->Zorgpremie = $Zorgpremie;
+        return $this;
     }
 
     /**
@@ -276,7 +275,7 @@ class TUitgaven
      */
     public function getZorgtoeslag()
     {
-      return $this->Zorgtoeslag;
+        return $this->Zorgtoeslag;
     }
 
     /**
@@ -285,8 +284,8 @@ class TUitgaven
      */
     public function setZorgtoeslag($Zorgtoeslag)
     {
-      $this->Zorgtoeslag = $Zorgtoeslag;
-      return $this;
+        $this->Zorgtoeslag = $Zorgtoeslag;
+        return $this;
     }
 
     /**
@@ -294,7 +293,7 @@ class TUitgaven
      */
     public function getKinderAlimentatieBedrag()
     {
-      return $this->KinderAlimentatieBedrag;
+        return $this->KinderAlimentatieBedrag;
     }
 
     /**
@@ -303,8 +302,8 @@ class TUitgaven
      */
     public function setKinderAlimentatieBedrag($KinderAlimentatieBedrag)
     {
-      $this->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
-      return $this;
+        $this->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
+        return $this;
     }
 
     /**
@@ -312,7 +311,7 @@ class TUitgaven
      */
     public function getPartnerAlimentatieBedrag()
     {
-      return $this->PartnerAlimentatieBedrag;
+        return $this->PartnerAlimentatieBedrag;
     }
 
     /**
@@ -321,8 +320,8 @@ class TUitgaven
      */
     public function setPartnerAlimentatieBedrag($PartnerAlimentatieBedrag)
     {
-      $this->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
-      return $this;
+        $this->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
+        return $this;
     }
 
     /**
@@ -330,7 +329,7 @@ class TUitgaven
      */
     public function getOverigUitgaven()
     {
-      return $this->OverigUitgaven;
+        return $this->OverigUitgaven;
     }
 
     /**
@@ -339,8 +338,8 @@ class TUitgaven
      */
     public function setOverigUitgaven($OverigUitgaven)
     {
-      $this->OverigUitgaven = $OverigUitgaven;
-      return $this;
+        $this->OverigUitgaven = $OverigUitgaven;
+        return $this;
     }
 
     /**
@@ -348,7 +347,7 @@ class TUitgaven
      */
     public function getToelichting()
     {
-      return $this->Toelichting;
+        return $this->Toelichting;
     }
 
     /**
@@ -357,8 +356,7 @@ class TUitgaven
      */
     public function setToelichting($Toelichting)
     {
-      $this->Toelichting = $Toelichting;
-      return $this;
+        $this->Toelichting = $Toelichting;
+        return $this;
     }
-
 }

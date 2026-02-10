@@ -8,6 +8,4 @@ class eNationaliteit
     const Leeg = 'Leeg';
     const Nederlandse = 'Nederlandse';
     const Anders = 'Anders';
-
-
 }

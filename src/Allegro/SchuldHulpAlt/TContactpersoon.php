@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TContactpersoon
 {
-
     /**
      * @var int $Code
      */
@@ -75,17 +74,17 @@ class TContactpersoon
      */
     public function __construct($Code, $Achternaam, $Voorvoegsels, $Voornaam, $Voorletters, \DateTime $GeboorteDatum, $Telefoon, $Email, $NogBevestigen, $Actief, $MagAanmelden)
     {
-      $this->Code = $Code;
-      $this->Achternaam = $Achternaam;
-      $this->Voorvoegsels = $Voorvoegsels;
-      $this->Voornaam = $Voornaam;
-      $this->Voorletters = $Voorletters;
-      $this->GeboorteDatum = $GeboorteDatum->format(\DateTime::ATOM);
-      $this->Telefoon = $Telefoon;
-      $this->Email = $Email;
-      $this->NogBevestigen = $NogBevestigen;
-      $this->Actief = $Actief;
-      $this->MagAanmelden = $MagAanmelden;
+        $this->Code = $Code;
+        $this->Achternaam = $Achternaam;
+        $this->Voorvoegsels = $Voorvoegsels;
+        $this->Voornaam = $Voornaam;
+        $this->Voorletters = $Voorletters;
+        $this->GeboorteDatum = $GeboorteDatum->format(\DateTime::ATOM);
+        $this->Telefoon = $Telefoon;
+        $this->Email = $Email;
+        $this->NogBevestigen = $NogBevestigen;
+        $this->Actief = $Actief;
+        $this->MagAanmelden = $MagAanmelden;
     }
 
     /**
@@ -93,7 +92,7 @@ class TContactpersoon
      */
     public function getCode()
     {
-      return $this->Code;
+        return $this->Code;
     }
 
     /**
@@ -102,8 +101,8 @@ class TContactpersoon
      */
     public function setCode($Code)
     {
-      $this->Code = $Code;
-      return $this;
+        $this->Code = $Code;
+        return $this;
     }
 
     /**
@@ -111,7 +110,7 @@ class TContactpersoon
      */
     public function getAchternaam()
     {
-      return $this->Achternaam;
+        return $this->Achternaam;
     }
 
     /**
@@ -120,8 +119,8 @@ class TContactpersoon
      */
     public function setAchternaam($Achternaam)
     {
-      $this->Achternaam = $Achternaam;
-      return $this;
+        $this->Achternaam = $Achternaam;
+        return $this;
     }
 
     /**
@@ -129,7 +128,7 @@ class TContactpersoon
      */
     public function getVoorvoegsels()
     {
-      return $this->Voorvoegsels;
+        return $this->Voorvoegsels;
     }
 
     /**
@@ -138,8 +137,8 @@ class TContactpersoon
      */
     public function setVoorvoegsels($Voorvoegsels)
     {
-      $this->Voorvoegsels = $Voorvoegsels;
-      return $this;
+        $this->Voorvoegsels = $Voorvoegsels;
+        return $this;
     }
 
     /**
@@ -147,7 +146,7 @@ class TContactpersoon
      */
     public function getVoornaam()
     {
-      return $this->Voornaam;
+        return $this->Voornaam;
     }
 
     /**
@@ -156,8 +155,8 @@ class TContactpersoon
      */
     public function setVoornaam($Voornaam)
     {
-      $this->Voornaam = $Voornaam;
-      return $this;
+        $this->Voornaam = $Voornaam;
+        return $this;
     }
 
     /**
@@ -165,7 +164,7 @@ class TContactpersoon
      */
     public function getVoorletters()
     {
-      return $this->Voorletters;
+        return $this->Voorletters;
     }
 
     /**
@@ -174,8 +173,8 @@ class TContactpersoon
      */
     public function setVoorletters($Voorletters)
     {
-      $this->Voorletters = $Voorletters;
-      return $this;
+        $this->Voorletters = $Voorletters;
+        return $this;
     }
 
     /**
@@ -183,15 +182,15 @@ class TContactpersoon
      */
     public function getGeboorteDatum()
     {
-      if ($this->GeboorteDatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->GeboorteDatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->GeboorteDatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->GeboorteDatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -200,8 +199,8 @@ class TContactpersoon
      */
     public function setGeboorteDatum(\DateTime $GeboorteDatum)
     {
-      $this->GeboorteDatum = $GeboorteDatum->format(\DateTime::ATOM);
-      return $this;
+        $this->GeboorteDatum = $GeboorteDatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -209,7 +208,7 @@ class TContactpersoon
      */
     public function getTelefoon()
     {
-      return $this->Telefoon;
+        return $this->Telefoon;
     }
 
     /**
@@ -218,8 +217,8 @@ class TContactpersoon
      */
     public function setTelefoon($Telefoon)
     {
-      $this->Telefoon = $Telefoon;
-      return $this;
+        $this->Telefoon = $Telefoon;
+        return $this;
     }
 
     /**
@@ -227,7 +226,7 @@ class TContactpersoon
      */
     public function getEmail()
     {
-      return $this->Email;
+        return $this->Email;
     }
 
     /**
@@ -236,8 +235,8 @@ class TContactpersoon
      */
     public function setEmail($Email)
     {
-      $this->Email = $Email;
-      return $this;
+        $this->Email = $Email;
+        return $this;
     }
 
     /**
@@ -245,7 +244,7 @@ class TContactpersoon
      */
     public function getNogBevestigen()
     {
-      return $this->NogBevestigen;
+        return $this->NogBevestigen;
     }
 
     /**
@@ -254,8 +253,8 @@ class TContactpersoon
      */
     public function setNogBevestigen($NogBevestigen)
     {
-      $this->NogBevestigen = $NogBevestigen;
-      return $this;
+        $this->NogBevestigen = $NogBevestigen;
+        return $this;
     }
 
     /**
@@ -263,7 +262,7 @@ class TContactpersoon
      */
     public function getActief()
     {
-      return $this->Actief;
+        return $this->Actief;
     }
 
     /**
@@ -272,8 +271,8 @@ class TContactpersoon
      */
     public function setActief($Actief)
     {
-      $this->Actief = $Actief;
-      return $this;
+        $this->Actief = $Actief;
+        return $this;
     }
 
     /**
@@ -281,7 +280,7 @@ class TContactpersoon
      */
     public function getMagAanmelden()
     {
-      return $this->MagAanmelden;
+        return $this->MagAanmelden;
     }
 
     /**
@@ -290,8 +289,7 @@ class TContactpersoon
      */
     public function setMagAanmelden($MagAanmelden)
     {
-      $this->MagAanmelden = $MagAanmelden;
-      return $this;
+        $this->MagAanmelden = $MagAanmelden;
+        return $this;
     }
-
 }

@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class CasusPVAProductArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TCasusPVAProduct
      */
@@ -42,7 +40,4 @@ class CasusPVAProductArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

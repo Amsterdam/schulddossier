@@ -8,6 +8,4 @@ class eSoortLening
     const PL = 'PL';
     const SL = 'SL';
     const SK = 'SK';
-
-
 }

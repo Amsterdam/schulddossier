@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class BBRVormArray
 {
-
     /**
      * @var TBBRVorm[] $TBBRVorm
      */
     protected $TBBRVorm = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class BBRVormArray
      */
     public function getTBBRVorm()
     {
-      return $this->TBBRVorm;
+        return $this->TBBRVorm;
     }
 
     /**
@@ -30,8 +28,7 @@ class BBRVormArray
      */
     public function setTBBRVorm(array $TBBRVorm = null)
     {
-      $this->TBBRVorm = $TBBRVorm;
-      return $this;
+        $this->TBBRVorm = $TBBRVorm;
+        return $this;
     }
-
 }

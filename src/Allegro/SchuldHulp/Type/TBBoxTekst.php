@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBoxTekst implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -123,7 +121,4 @@ class TBBoxTekst implements RequestInterface
 
         return $new;
     }
-
-
 }
-

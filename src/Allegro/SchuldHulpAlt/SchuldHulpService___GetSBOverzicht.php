@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SchuldHulpService___GetSBOverzicht
 {
-
     /**
      * @var int $aRelatieCode
      */
@@ -15,7 +14,7 @@ class SchuldHulpService___GetSBOverzicht
      */
     public function __construct($aRelatieCode)
     {
-      $this->aRelatieCode = $aRelatieCode;
+        $this->aRelatieCode = $aRelatieCode;
     }
 
     /**
@@ -23,7 +22,7 @@ class SchuldHulpService___GetSBOverzicht
      */
     public function getARelatieCode()
     {
-      return $this->aRelatieCode;
+        return $this->aRelatieCode;
     }
 
     /**
@@ -32,8 +31,7 @@ class SchuldHulpService___GetSBOverzicht
      */
     public function setARelatieCode($aRelatieCode)
     {
-      $this->aRelatieCode = $aRelatieCode;
-      return $this;
+        $this->aRelatieCode = $aRelatieCode;
+        return $this;
     }
-
 }

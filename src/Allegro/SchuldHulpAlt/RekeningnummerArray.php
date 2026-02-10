@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class RekeningnummerArray
 {
-
     /**
      * @var string[] $string
      */
     protected $string = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class RekeningnummerArray
      */
     public function getString()
     {
-      return $this->string;
+        return $this->string;
     }
 
     /**
@@ -30,8 +28,7 @@ class RekeningnummerArray
      */
     public function setString(array $string = null)
     {
-      $this->string = $string;
-      return $this;
+        $this->string = $string;
+        return $this;
     }
-
 }

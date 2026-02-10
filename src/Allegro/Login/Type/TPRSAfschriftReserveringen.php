@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSAfschriftReserveringen implements RequestInterface
 {
-
     /**
      * @var
      * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSAfschriftReseveringArray
@@ -42,7 +41,4 @@ class TPRSAfschriftReserveringen implements RequestInterface
 
         return $new;
     }
-
-
 }
-

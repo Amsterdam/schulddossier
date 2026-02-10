@@ -1,4 +1,5 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
 use Doctrine\ORM\EntityRepository;

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TProductExtra
 {
-
     /**
      * @var int $Code
      */
@@ -39,11 +38,11 @@ class TProductExtra
      */
     public function __construct($Code, $Volgnummer, $Tabel, $Opdrachtgever, $OpdrachtgeverContact)
     {
-      $this->Code = $Code;
-      $this->Volgnummer = $Volgnummer;
-      $this->Tabel = $Tabel;
-      $this->Opdrachtgever = $Opdrachtgever;
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        $this->Code = $Code;
+        $this->Volgnummer = $Volgnummer;
+        $this->Tabel = $Tabel;
+        $this->Opdrachtgever = $Opdrachtgever;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
     }
 
     /**
@@ -51,7 +50,7 @@ class TProductExtra
      */
     public function getCode()
     {
-      return $this->Code;
+        return $this->Code;
     }
 
     /**
@@ -60,8 +59,8 @@ class TProductExtra
      */
     public function setCode($Code)
     {
-      $this->Code = $Code;
-      return $this;
+        $this->Code = $Code;
+        return $this;
     }
 
     /**
@@ -69,7 +68,7 @@ class TProductExtra
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -78,8 +77,8 @@ class TProductExtra
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -87,7 +86,7 @@ class TProductExtra
      */
     public function getTabel()
     {
-      return $this->Tabel;
+        return $this->Tabel;
     }
 
     /**
@@ -96,8 +95,8 @@ class TProductExtra
      */
     public function setTabel($Tabel)
     {
-      $this->Tabel = $Tabel;
-      return $this;
+        $this->Tabel = $Tabel;
+        return $this;
     }
 
     /**
@@ -105,7 +104,7 @@ class TProductExtra
      */
     public function getOpdrachtgever()
     {
-      return $this->Opdrachtgever;
+        return $this->Opdrachtgever;
     }
 
     /**
@@ -114,8 +113,8 @@ class TProductExtra
      */
     public function setOpdrachtgever($Opdrachtgever)
     {
-      $this->Opdrachtgever = $Opdrachtgever;
-      return $this;
+        $this->Opdrachtgever = $Opdrachtgever;
+        return $this;
     }
 
     /**
@@ -123,7 +122,7 @@ class TProductExtra
      */
     public function getOpdrachtgeverContact()
     {
-      return $this->OpdrachtgeverContact;
+        return $this->OpdrachtgeverContact;
     }
 
     /**
@@ -132,8 +131,7 @@ class TProductExtra
      */
     public function setOpdrachtgeverContact($OpdrachtgeverContact)
     {
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      return $this;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        return $this;
     }
-
 }

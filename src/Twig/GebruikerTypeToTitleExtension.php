@@ -19,10 +19,9 @@ class GebruikerTypeToTitleExtension extends \Twig_Extension
     public function getFilters(): array
     {
         return [
-            new \Twig_Filter('transform_type_in_title', function (String $type) {
+            new \Twig_Filter('transform_type_in_title', function (string $type) {
                 return Gebruiker::getTitleFromType($type);
             })
         ];
     }
-
 }

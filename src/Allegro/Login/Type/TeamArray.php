@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TeamArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TTeam
      */
@@ -41,7 +40,4 @@ class TeamArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

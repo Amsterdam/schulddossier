@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TRCJaarrente implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -95,7 +94,4 @@ class TRCJaarrente implements RequestInterface
 
         return $new;
     }
-
-
 }
-

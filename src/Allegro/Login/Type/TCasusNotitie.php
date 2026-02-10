@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusNotitie implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -149,7 +148,4 @@ class TCasusNotitie implements RequestInterface
 
         return $new;
     }
-
-
 }
-

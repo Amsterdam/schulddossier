@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBRVorm implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -68,7 +67,4 @@ class TBBRVorm implements RequestInterface
 
         return $new;
     }
-
-
 }
-

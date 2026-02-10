@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TExtraProductHeaderArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TExtraProductHeader
      */
@@ -41,7 +40,4 @@ class TExtraProductHeaderArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

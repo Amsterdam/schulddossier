@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class SimpleDeltaChangeArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\SimpleDeltaChange
      */
@@ -41,7 +40,4 @@ class SimpleDeltaChangeArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

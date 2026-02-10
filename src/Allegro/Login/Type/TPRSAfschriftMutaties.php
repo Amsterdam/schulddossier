@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSAfschriftMutaties implements RequestInterface
 {
-
     /**
      * @var
      * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\PRSAfschriftMutatieArray
@@ -42,7 +41,4 @@ class TPRSAfschriftMutaties implements RequestInterface
 
         return $new;
     }
-
-
 }
-

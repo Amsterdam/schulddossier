@@ -103,7 +103,7 @@ class DossierRepository extends EntityRepository
 
             if ($query['organisaties'] instanceof Collection) {
                 $organisaties = $query['organisaties']->toArray();
-            } else if (is_array($query['organisaties'])) {
+            } elseif (is_array($query['organisaties'])) {
                 $organisaties = $query['organisaties'];
             } else {
                 $organisaties = [$query['organisaties']];

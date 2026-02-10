@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TableRequestInfo
 {
-
     /**
      * @var string $UserFilter
      */
@@ -33,10 +32,10 @@ class TableRequestInfo
      */
     public function __construct($UserFilter, $IncludeSchema, $MaxRecords, $Parameters)
     {
-      $this->UserFilter = $UserFilter;
-      $this->IncludeSchema = $IncludeSchema;
-      $this->MaxRecords = $MaxRecords;
-      $this->Parameters = $Parameters;
+        $this->UserFilter = $UserFilter;
+        $this->IncludeSchema = $IncludeSchema;
+        $this->MaxRecords = $MaxRecords;
+        $this->Parameters = $Parameters;
     }
 
     /**
@@ -44,7 +43,7 @@ class TableRequestInfo
      */
     public function getUserFilter()
     {
-      return $this->UserFilter;
+        return $this->UserFilter;
     }
 
     /**
@@ -53,8 +52,8 @@ class TableRequestInfo
      */
     public function setUserFilter($UserFilter)
     {
-      $this->UserFilter = $UserFilter;
-      return $this;
+        $this->UserFilter = $UserFilter;
+        return $this;
     }
 
     /**
@@ -62,7 +61,7 @@ class TableRequestInfo
      */
     public function getIncludeSchema()
     {
-      return $this->IncludeSchema;
+        return $this->IncludeSchema;
     }
 
     /**
@@ -71,8 +70,8 @@ class TableRequestInfo
      */
     public function setIncludeSchema($IncludeSchema)
     {
-      $this->IncludeSchema = $IncludeSchema;
-      return $this;
+        $this->IncludeSchema = $IncludeSchema;
+        return $this;
     }
 
     /**
@@ -80,7 +79,7 @@ class TableRequestInfo
      */
     public function getMaxRecords()
     {
-      return $this->MaxRecords;
+        return $this->MaxRecords;
     }
 
     /**
@@ -89,8 +88,8 @@ class TableRequestInfo
      */
     public function setMaxRecords($MaxRecords)
     {
-      $this->MaxRecords = $MaxRecords;
-      return $this;
+        $this->MaxRecords = $MaxRecords;
+        return $this;
     }
 
     /**
@@ -98,7 +97,7 @@ class TableRequestInfo
      */
     public function getParameters()
     {
-      return $this->Parameters;
+        return $this->Parameters;
     }
 
     /**
@@ -107,8 +106,7 @@ class TableRequestInfo
      */
     public function setParameters($Parameters)
     {
-      $this->Parameters = $Parameters;
-      return $this;
+        $this->Parameters = $Parameters;
+        return $this;
     }
-
 }

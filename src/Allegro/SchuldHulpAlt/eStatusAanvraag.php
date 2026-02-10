@@ -13,6 +13,4 @@ class eStatusAanvraag
     const Gefiatteerd = 'Gefiatteerd';
     const Afgewezen = 'Afgewezen';
     const Ingetrokken = 'Ingetrokken';
-
-
 }

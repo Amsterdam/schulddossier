@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TAfspraakSoortenArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAfspraakSoorten
      */
@@ -41,7 +40,4 @@ class TAfspraakSoortenArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

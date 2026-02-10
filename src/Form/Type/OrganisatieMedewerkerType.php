@@ -59,8 +59,8 @@ class OrganisatieMedewerkerType extends AbstractType
      */
     private function transformCollectionToChoices(Collection $collection): array
     {
-        if($collection->isEmpty()){
-           return [];
+        if ($collection->isEmpty()) {
+            return [];
         }
 
         return array_merge(...$collection->map(function (Organisatie $organisatie) {

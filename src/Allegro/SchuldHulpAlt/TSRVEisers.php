@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSRVEisers
 {
-
     /**
      * @var SRVEiserArray $Eisers
      */
@@ -33,10 +32,10 @@ class TSRVEisers
      */
     public function __construct($Eisers, $SomAangemeldBedrag, $SomTeruggemeldBedrag, $SomBerekendBedrag)
     {
-      $this->Eisers = $Eisers;
-      $this->SomAangemeldBedrag = $SomAangemeldBedrag;
-      $this->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
-      $this->SomBerekendBedrag = $SomBerekendBedrag;
+        $this->Eisers = $Eisers;
+        $this->SomAangemeldBedrag = $SomAangemeldBedrag;
+        $this->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
+        $this->SomBerekendBedrag = $SomBerekendBedrag;
     }
 
     /**
@@ -44,7 +43,7 @@ class TSRVEisers
      */
     public function getEisers()
     {
-      return $this->Eisers;
+        return $this->Eisers;
     }
 
     /**
@@ -53,8 +52,8 @@ class TSRVEisers
      */
     public function setEisers($Eisers)
     {
-      $this->Eisers = $Eisers;
-      return $this;
+        $this->Eisers = $Eisers;
+        return $this;
     }
 
     /**
@@ -62,7 +61,7 @@ class TSRVEisers
      */
     public function getSomAangemeldBedrag()
     {
-      return $this->SomAangemeldBedrag;
+        return $this->SomAangemeldBedrag;
     }
 
     /**
@@ -71,8 +70,8 @@ class TSRVEisers
      */
     public function setSomAangemeldBedrag($SomAangemeldBedrag)
     {
-      $this->SomAangemeldBedrag = $SomAangemeldBedrag;
-      return $this;
+        $this->SomAangemeldBedrag = $SomAangemeldBedrag;
+        return $this;
     }
 
     /**
@@ -80,7 +79,7 @@ class TSRVEisers
      */
     public function getSomTeruggemeldBedrag()
     {
-      return $this->SomTeruggemeldBedrag;
+        return $this->SomTeruggemeldBedrag;
     }
 
     /**
@@ -89,8 +88,8 @@ class TSRVEisers
      */
     public function setSomTeruggemeldBedrag($SomTeruggemeldBedrag)
     {
-      $this->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
-      return $this;
+        $this->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
+        return $this;
     }
 
     /**
@@ -98,7 +97,7 @@ class TSRVEisers
      */
     public function getSomBerekendBedrag()
     {
-      return $this->SomBerekendBedrag;
+        return $this->SomBerekendBedrag;
     }
 
     /**
@@ -107,8 +106,7 @@ class TSRVEisers
      */
     public function setSomBerekendBedrag($SomBerekendBedrag)
     {
-      $this->SomBerekendBedrag = $SomBerekendBedrag;
-      return $this;
+        $this->SomBerekendBedrag = $SomBerekendBedrag;
+        return $this;
     }
-
 }

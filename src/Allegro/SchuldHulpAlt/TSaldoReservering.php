@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSaldoReservering
 {
-
     /**
      * @var \DateTime $Datum
      */
@@ -33,10 +32,10 @@ class TSaldoReservering
      */
     public function __construct(\DateTime $Datum, $Volgnummer, $Omschrijving, $Saldo)
     {
-      $this->Datum = $Datum->format(\DateTime::ATOM);
-      $this->Volgnummer = $Volgnummer;
-      $this->Omschrijving = $Omschrijving;
-      $this->Saldo = $Saldo;
+        $this->Datum = $Datum->format(\DateTime::ATOM);
+        $this->Volgnummer = $Volgnummer;
+        $this->Omschrijving = $Omschrijving;
+        $this->Saldo = $Saldo;
     }
 
     /**
@@ -44,15 +43,15 @@ class TSaldoReservering
      */
     public function getDatum()
     {
-      if ($this->Datum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Datum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Datum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Datum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -61,8 +60,8 @@ class TSaldoReservering
      */
     public function setDatum(\DateTime $Datum)
     {
-      $this->Datum = $Datum->format(\DateTime::ATOM);
-      return $this;
+        $this->Datum = $Datum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -70,7 +69,7 @@ class TSaldoReservering
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -79,8 +78,8 @@ class TSaldoReservering
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -88,7 +87,7 @@ class TSaldoReservering
      */
     public function getOmschrijving()
     {
-      return $this->Omschrijving;
+        return $this->Omschrijving;
     }
 
     /**
@@ -97,8 +96,8 @@ class TSaldoReservering
      */
     public function setOmschrijving($Omschrijving)
     {
-      $this->Omschrijving = $Omschrijving;
-      return $this;
+        $this->Omschrijving = $Omschrijving;
+        return $this;
     }
 
     /**
@@ -106,7 +105,7 @@ class TSaldoReservering
      */
     public function getSaldo()
     {
-      return $this->Saldo;
+        return $this->Saldo;
     }
 
     /**
@@ -115,8 +114,7 @@ class TSaldoReservering
      */
     public function setSaldo($Saldo)
     {
-      $this->Saldo = $Saldo;
-      return $this;
+        $this->Saldo = $Saldo;
+        return $this;
     }
-
 }

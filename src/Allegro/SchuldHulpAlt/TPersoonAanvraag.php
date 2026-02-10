@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TPersoonAanvraag
 {
-
     /**
      * @var int $Relatiecode
      */
@@ -81,18 +80,18 @@ class TPersoonAanvraag
      */
     public function __construct($Relatiecode, $Voornamen, $Achternaam, $Voorvoegsels, $Geslacht, $Geboortedatum, $BSN, $Nationaliteit, $RekeningIBAN, $RekeningBIC, $RekeningBank, $Voorletters)
     {
-      $this->Relatiecode = $Relatiecode;
-      $this->Voornamen = $Voornamen;
-      $this->Achternaam = $Achternaam;
-      $this->Voorvoegsels = $Voorvoegsels;
-      $this->Geslacht = $Geslacht;
-      $this->Geboortedatum = $Geboortedatum;
-      $this->BSN = $BSN;
-      $this->Nationaliteit = $Nationaliteit;
-      $this->RekeningIBAN = $RekeningIBAN;
-      $this->RekeningBIC = $RekeningBIC;
-      $this->RekeningBank = $RekeningBank;
-      $this->Voorletters = $Voorletters;
+        $this->Relatiecode = $Relatiecode;
+        $this->Voornamen = $Voornamen;
+        $this->Achternaam = $Achternaam;
+        $this->Voorvoegsels = $Voorvoegsels;
+        $this->Geslacht = $Geslacht;
+        $this->Geboortedatum = $Geboortedatum;
+        $this->BSN = $BSN;
+        $this->Nationaliteit = $Nationaliteit;
+        $this->RekeningIBAN = $RekeningIBAN;
+        $this->RekeningBIC = $RekeningBIC;
+        $this->RekeningBank = $RekeningBank;
+        $this->Voorletters = $Voorletters;
     }
 
     /**
@@ -100,7 +99,7 @@ class TPersoonAanvraag
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -109,8 +108,8 @@ class TPersoonAanvraag
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -118,7 +117,7 @@ class TPersoonAanvraag
      */
     public function getVoornamen()
     {
-      return $this->Voornamen;
+        return $this->Voornamen;
     }
 
     /**
@@ -127,8 +126,8 @@ class TPersoonAanvraag
      */
     public function setVoornamen($Voornamen)
     {
-      $this->Voornamen = $Voornamen;
-      return $this;
+        $this->Voornamen = $Voornamen;
+        return $this;
     }
 
     /**
@@ -136,7 +135,7 @@ class TPersoonAanvraag
      */
     public function getAchternaam()
     {
-      return $this->Achternaam;
+        return $this->Achternaam;
     }
 
     /**
@@ -145,8 +144,8 @@ class TPersoonAanvraag
      */
     public function setAchternaam($Achternaam)
     {
-      $this->Achternaam = $Achternaam;
-      return $this;
+        $this->Achternaam = $Achternaam;
+        return $this;
     }
 
     /**
@@ -154,7 +153,7 @@ class TPersoonAanvraag
      */
     public function getVoorvoegsels()
     {
-      return $this->Voorvoegsels;
+        return $this->Voorvoegsels;
     }
 
     /**
@@ -163,8 +162,8 @@ class TPersoonAanvraag
      */
     public function setVoorvoegsels($Voorvoegsels)
     {
-      $this->Voorvoegsels = $Voorvoegsels;
-      return $this;
+        $this->Voorvoegsels = $Voorvoegsels;
+        return $this;
     }
 
     /**
@@ -172,7 +171,7 @@ class TPersoonAanvraag
      */
     public function getGeslacht()
     {
-      return $this->Geslacht;
+        return $this->Geslacht;
     }
 
     /**
@@ -181,8 +180,8 @@ class TPersoonAanvraag
      */
     public function setGeslacht($Geslacht)
     {
-      $this->Geslacht = $Geslacht;
-      return $this;
+        $this->Geslacht = $Geslacht;
+        return $this;
     }
 
     /**
@@ -190,7 +189,7 @@ class TPersoonAanvraag
      */
     public function getGeboortedatum()
     {
-      return $this->Geboortedatum;
+        return $this->Geboortedatum;
     }
 
     /**
@@ -199,8 +198,8 @@ class TPersoonAanvraag
      */
     public function setGeboortedatum($Geboortedatum)
     {
-      $this->Geboortedatum = $Geboortedatum;
-      return $this;
+        $this->Geboortedatum = $Geboortedatum;
+        return $this;
     }
 
     /**
@@ -208,7 +207,7 @@ class TPersoonAanvraag
      */
     public function getBSN()
     {
-      return $this->BSN;
+        return $this->BSN;
     }
 
     /**
@@ -217,8 +216,8 @@ class TPersoonAanvraag
      */
     public function setBSN($BSN)
     {
-      $this->BSN = $BSN;
-      return $this;
+        $this->BSN = $BSN;
+        return $this;
     }
 
     /**
@@ -226,7 +225,7 @@ class TPersoonAanvraag
      */
     public function getNationaliteit()
     {
-      return $this->Nationaliteit;
+        return $this->Nationaliteit;
     }
 
     /**
@@ -235,8 +234,8 @@ class TPersoonAanvraag
      */
     public function setNationaliteit($Nationaliteit)
     {
-      $this->Nationaliteit = $Nationaliteit;
-      return $this;
+        $this->Nationaliteit = $Nationaliteit;
+        return $this;
     }
 
     /**
@@ -244,7 +243,7 @@ class TPersoonAanvraag
      */
     public function getRekeningIBAN()
     {
-      return $this->RekeningIBAN;
+        return $this->RekeningIBAN;
     }
 
     /**
@@ -253,8 +252,8 @@ class TPersoonAanvraag
      */
     public function setRekeningIBAN($RekeningIBAN)
     {
-      $this->RekeningIBAN = $RekeningIBAN;
-      return $this;
+        $this->RekeningIBAN = $RekeningIBAN;
+        return $this;
     }
 
     /**
@@ -262,7 +261,7 @@ class TPersoonAanvraag
      */
     public function getRekeningBIC()
     {
-      return $this->RekeningBIC;
+        return $this->RekeningBIC;
     }
 
     /**
@@ -271,8 +270,8 @@ class TPersoonAanvraag
      */
     public function setRekeningBIC($RekeningBIC)
     {
-      $this->RekeningBIC = $RekeningBIC;
-      return $this;
+        $this->RekeningBIC = $RekeningBIC;
+        return $this;
     }
 
     /**
@@ -280,7 +279,7 @@ class TPersoonAanvraag
      */
     public function getRekeningBank()
     {
-      return $this->RekeningBank;
+        return $this->RekeningBank;
     }
 
     /**
@@ -289,8 +288,8 @@ class TPersoonAanvraag
      */
     public function setRekeningBank($RekeningBank)
     {
-      $this->RekeningBank = $RekeningBank;
-      return $this;
+        $this->RekeningBank = $RekeningBank;
+        return $this;
     }
 
     /**
@@ -298,7 +297,7 @@ class TPersoonAanvraag
      */
     public function getVoorletters()
     {
-      return $this->Voorletters;
+        return $this->Voorletters;
     }
 
     /**
@@ -307,8 +306,7 @@ class TPersoonAanvraag
      */
     public function setVoorletters($Voorletters)
     {
-      $this->Voorletters = $Voorletters;
-      return $this;
+        $this->Voorletters = $Voorletters;
+        return $this;
     }
-
 }

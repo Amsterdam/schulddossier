@@ -16,8 +16,7 @@ class SchuldHulpClientFactory
         Organisatie $organisatie,
         ?string $proxyHostIp = null,
         ?string $proxyHostPort = null
-    ): AllegroSchuldHulpClient
-    {
+    ): AllegroSchuldHulpClient {
         $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHostIp, $proxyHostPort);
 
         $extSoapOptions = AllegroHelper::createSoapOptionsArray($proxyHostIp, $proxyHostPort);

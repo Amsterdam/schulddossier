@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class ContractArray
 {
-
     /**
      * @var TContract[] $TContract
      */
     protected $TContract = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class ContractArray
      */
     public function getTContract()
     {
-      return $this->TContract;
+        return $this->TContract;
     }
 
     /**
@@ -30,8 +28,7 @@ class ContractArray
      */
     public function setTContract(array $TContract = null)
     {
-      $this->TContract = $TContract;
-      return $this;
+        $this->TContract = $TContract;
+        return $this;
     }
-
 }

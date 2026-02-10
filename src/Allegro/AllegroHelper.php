@@ -19,8 +19,7 @@ class AllegroHelper
     public static function createSoapOptionsArray(
         ?string $proxyHostIp = null,
         ?string $proxyHostPort = null
-    ): array
-    {
+    ): array {
         $soapOptionsArray = [];
 
         if (isset($proxyHostIp, $proxyHostPort)) {
@@ -47,8 +46,7 @@ class AllegroHelper
     public static function createSoapClientConfig(
         ?string $proxyHostIp = null,
         ?string $proxyHostPort = null
-    ): array
-    {
+    ): array {
         $config = ['headers' => ['User-Agent' => 'fixxx-schuldhulp/1.0']];
 
         if (isset($proxyHostIp, $proxyHostPort)) {
@@ -70,8 +68,7 @@ class AllegroHelper
         ?Organisatie $organisatie = null,
         ?string $proxyHostIp = null,
         ?string $proxyHostPort = null
-    ) : HandlerInterface
-    {
+    ): HandlerInterface {
         $config = AllegroHelper::createSoapClientConfig($proxyHostIp, $proxyHostPort);
 
         $handler = HttPlugHandle::createForClient(

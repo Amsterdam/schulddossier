@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TPRSMutaties
 {
-
     /**
      * @var PRSMutatieArray $Mutaties
      */
@@ -15,7 +14,7 @@ class TPRSMutaties
      */
     public function __construct($Mutaties)
     {
-      $this->Mutaties = $Mutaties;
+        $this->Mutaties = $Mutaties;
     }
 
     /**
@@ -23,7 +22,7 @@ class TPRSMutaties
      */
     public function getMutaties()
     {
-      return $this->Mutaties;
+        return $this->Mutaties;
     }
 
     /**
@@ -32,8 +31,7 @@ class TPRSMutaties
      */
     public function setMutaties($Mutaties)
     {
-      $this->Mutaties = $Mutaties;
-      return $this;
+        $this->Mutaties = $Mutaties;
+        return $this;
     }
-
 }

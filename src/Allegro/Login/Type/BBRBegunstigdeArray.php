@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class BBRBegunstigdeArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBRBegunstigde
      */
@@ -41,7 +40,4 @@ class BBRBegunstigdeArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

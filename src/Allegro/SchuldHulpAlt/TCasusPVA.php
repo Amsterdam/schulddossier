@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TCasusPVA
 {
-
     /**
      * @var int $VolgnummerPVA
      */
@@ -63,15 +62,15 @@ class TCasusPVA
      */
     public function __construct($VolgnummerPVA, $MedewerkerPVA, $TeamPVA, \DateTime $DatumPVA, \DateTime $DatumPVAEinde, \DateTime $DatumFiattering, \DateTime $DatumFiatteringEinde, $Gefiatteerd, $Producten)
     {
-      $this->VolgnummerPVA = $VolgnummerPVA;
-      $this->MedewerkerPVA = $MedewerkerPVA;
-      $this->TeamPVA = $TeamPVA;
-      $this->DatumPVA = $DatumPVA->format(\DateTime::ATOM);
-      $this->DatumPVAEinde = $DatumPVAEinde->format(\DateTime::ATOM);
-      $this->DatumFiattering = $DatumFiattering->format(\DateTime::ATOM);
-      $this->DatumFiatteringEinde = $DatumFiatteringEinde->format(\DateTime::ATOM);
-      $this->Gefiatteerd = $Gefiatteerd;
-      $this->Producten = $Producten;
+        $this->VolgnummerPVA = $VolgnummerPVA;
+        $this->MedewerkerPVA = $MedewerkerPVA;
+        $this->TeamPVA = $TeamPVA;
+        $this->DatumPVA = $DatumPVA->format(\DateTime::ATOM);
+        $this->DatumPVAEinde = $DatumPVAEinde->format(\DateTime::ATOM);
+        $this->DatumFiattering = $DatumFiattering->format(\DateTime::ATOM);
+        $this->DatumFiatteringEinde = $DatumFiatteringEinde->format(\DateTime::ATOM);
+        $this->Gefiatteerd = $Gefiatteerd;
+        $this->Producten = $Producten;
     }
 
     /**
@@ -79,7 +78,7 @@ class TCasusPVA
      */
     public function getVolgnummerPVA()
     {
-      return $this->VolgnummerPVA;
+        return $this->VolgnummerPVA;
     }
 
     /**
@@ -88,8 +87,8 @@ class TCasusPVA
      */
     public function setVolgnummerPVA($VolgnummerPVA)
     {
-      $this->VolgnummerPVA = $VolgnummerPVA;
-      return $this;
+        $this->VolgnummerPVA = $VolgnummerPVA;
+        return $this;
     }
 
     /**
@@ -97,7 +96,7 @@ class TCasusPVA
      */
     public function getMedewerkerPVA()
     {
-      return $this->MedewerkerPVA;
+        return $this->MedewerkerPVA;
     }
 
     /**
@@ -106,8 +105,8 @@ class TCasusPVA
      */
     public function setMedewerkerPVA($MedewerkerPVA)
     {
-      $this->MedewerkerPVA = $MedewerkerPVA;
-      return $this;
+        $this->MedewerkerPVA = $MedewerkerPVA;
+        return $this;
     }
 
     /**
@@ -115,7 +114,7 @@ class TCasusPVA
      */
     public function getTeamPVA()
     {
-      return $this->TeamPVA;
+        return $this->TeamPVA;
     }
 
     /**
@@ -124,8 +123,8 @@ class TCasusPVA
      */
     public function setTeamPVA($TeamPVA)
     {
-      $this->TeamPVA = $TeamPVA;
-      return $this;
+        $this->TeamPVA = $TeamPVA;
+        return $this;
     }
 
     /**
@@ -133,15 +132,15 @@ class TCasusPVA
      */
     public function getDatumPVA()
     {
-      if ($this->DatumPVA == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumPVA);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumPVA == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumPVA);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -150,8 +149,8 @@ class TCasusPVA
      */
     public function setDatumPVA(\DateTime $DatumPVA)
     {
-      $this->DatumPVA = $DatumPVA->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumPVA = $DatumPVA->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -159,15 +158,15 @@ class TCasusPVA
      */
     public function getDatumPVAEinde()
     {
-      if ($this->DatumPVAEinde == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumPVAEinde);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumPVAEinde == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumPVAEinde);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -176,8 +175,8 @@ class TCasusPVA
      */
     public function setDatumPVAEinde(\DateTime $DatumPVAEinde)
     {
-      $this->DatumPVAEinde = $DatumPVAEinde->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumPVAEinde = $DatumPVAEinde->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -185,15 +184,15 @@ class TCasusPVA
      */
     public function getDatumFiattering()
     {
-      if ($this->DatumFiattering == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumFiattering);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumFiattering == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumFiattering);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -202,8 +201,8 @@ class TCasusPVA
      */
     public function setDatumFiattering(\DateTime $DatumFiattering)
     {
-      $this->DatumFiattering = $DatumFiattering->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumFiattering = $DatumFiattering->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -211,15 +210,15 @@ class TCasusPVA
      */
     public function getDatumFiatteringEinde()
     {
-      if ($this->DatumFiatteringEinde == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumFiatteringEinde);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumFiatteringEinde == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumFiatteringEinde);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -228,8 +227,8 @@ class TCasusPVA
      */
     public function setDatumFiatteringEinde(\DateTime $DatumFiatteringEinde)
     {
-      $this->DatumFiatteringEinde = $DatumFiatteringEinde->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumFiatteringEinde = $DatumFiatteringEinde->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -237,7 +236,7 @@ class TCasusPVA
      */
     public function getGefiatteerd()
     {
-      return $this->Gefiatteerd;
+        return $this->Gefiatteerd;
     }
 
     /**
@@ -246,8 +245,8 @@ class TCasusPVA
      */
     public function setGefiatteerd($Gefiatteerd)
     {
-      $this->Gefiatteerd = $Gefiatteerd;
-      return $this;
+        $this->Gefiatteerd = $Gefiatteerd;
+        return $this;
     }
 
     /**
@@ -255,7 +254,7 @@ class TCasusPVA
      */
     public function getProducten()
     {
-      return $this->Producten;
+        return $this->Producten;
     }
 
     /**
@@ -264,8 +263,7 @@ class TCasusPVA
      */
     public function setProducten($Producten)
     {
-      $this->Producten = $Producten;
-      return $this;
+        $this->Producten = $Producten;
+        return $this;
     }
-
 }
