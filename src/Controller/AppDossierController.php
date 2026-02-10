@@ -34,9 +34,12 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use Http\Discovery\Exception\NotFoundException;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
+use League\Flysystem\Adapter\Local;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\IOFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -65,8 +68,6 @@ use Symfony\Component\Workflow\Registry as WorkflowRegistry;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use ZipArchive;
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\IOFactory;
 
 /**
  * @Route("/app/dossier")
@@ -567,25 +568,21 @@ class AppDossierController extends AbstractController
     public function wordViewerAction(
         Dossier                $dossier,
         Document               $document,
+        FileStorageSelector    $fileStorageSelector
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
-        $filePath = '/var/www/var/data/dossiers/dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
+        $adapter = $fileStorageSelector->getFileStorageForDossier()->getAdapter();
 
-        if (!file_exists($filePath)) {
-            return new Response('File not found: ' . $filePath, Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-
-        if (!is_readable($filePath)) {
-            return new Response('File is not readable: ' . $filePath, Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
+        /** @var Local $adapter */
+        $rootDirectory = $adapter->getPathPrefix();
+        $filePath = $rootDirectory .  '/dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
 
         try {
             $phpWord = IOFactory::load($filePath);
         } catch (\Exception $e) {
             return new Response('Error loading the Word document: ' . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-        $phpWord = IOFactory::load($filePath);
 
         $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
         ob_start();
