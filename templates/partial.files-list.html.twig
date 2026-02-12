@@ -28,7 +28,7 @@
                         {% if dossierDocument.document.origineleExtensie|lower == 'pdf' %}
                             <div class="bestand-action-list-item">
                                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}" 
-                                    title="Open document in een nieuw tabblad en volledig scherm"
+                                    title="Open het document in een nieuw tabblad en bekijk het in volledige schermweergave"
                                     class="bestand-action-list-item-full-screen" 
                                     target="_blank">
                                 </a>
@@ -38,7 +38,7 @@
                         {% if dossierDocument.document.origineleExtensie|lower == 'docx' %}
                             <div class="bestand-action-list-item">
                                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_wordviewer', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
-                                    title="Open document in een nieuw tabblad en volledig scherm"
+                                    title="Open het document in een nieuw tabblad en bekijk het in volledige schermweergave."
                                     class="bestand-action-list-item-full-screen" 
                                     target="_blank">
                                 </a>
