@@ -286,8 +286,14 @@ class AppDossierController extends AbstractController
             'disable_group' => $this->getUser()->getType(),
         ]);
 
+        // Create a clone of the original values to compare later if something has changed.
+        $existingVoorleggerValues = (array) clone $voorleggerForm->getData();
+
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
+            $incomingVoorleggerValues = (array) $voorleggerForm->getData();
+            $updatedFields = array_diff_assoc($existingVoorleggerValues, $incomingVoorleggerValues);
+
             $sendCorrespondentieNotification = false;
             foreach ($voorleggerForm->all() as $key => $child) {
                 if ($child->has('file')) {
@@ -336,7 +342,7 @@ class AppDossierController extends AbstractController
                 $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
                 $workflow->apply($dossier, $subForm['transition']->getData());
 
-                // TODO: This code is never reached, because workflow apply return the method. 
+                // TODO: This code is never reached, because workflow apply return the method.
                 // Nevertheless it would be nice to give the user feedback about an update. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-580
 
                 // if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
