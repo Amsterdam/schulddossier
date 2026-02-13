@@ -20,14 +20,15 @@
                                        id="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}"
                                        value="{{ dossierDocument.document.id }}">
                                 <label class="bestand-action-list-item-bestand-verwijderen"
-                                       for="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}">verwijderen
-                                </label>
+                                       for="{{ removeFile.vars.prototype.vars.id|replace({'__name__': dossierDocument.document.id}) }}"
+                                       title="Document verwijderen">verwijderen
+                                       </label>
                             {% endif %}      
                         </div>
                         {% if dossierDocument.document.origineleExtensie|lower == 'pdf' %}
                             <div class="bestand-action-list-item">
                                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}" 
-                                    title="{{ dossierDocument.document.naam }}" 
+                                    title="Open het document in een nieuw tabblad en bekijk het in volledige schermweergave"
                                     class="bestand-action-list-item-full-screen" 
                                     target="_blank">
                                 </a>
@@ -37,7 +38,7 @@
                         {% if dossierDocument.document.origineleExtensie|lower == 'docx' %}
                             <div class="bestand-action-list-item">
                                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_wordviewer', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
-                                    title="{{ dossierDocument.document.naam }}" 
+                                    title="Open het document in een nieuw tabblad en bekijk het in volledige schermweergave."
                                     class="bestand-action-list-item-full-screen" 
                                     target="_blank">
                                 </a>
@@ -45,7 +46,7 @@
                         {% endif %}
                         <div class="bestand-action-list-item">
                             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_downloaddocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
-                               title="{{ dossierDocument.document.naam }}"
+                               title="Document downloaden"
                                class="bestand-action-list-item-download">
                             </a>
                         </div>
