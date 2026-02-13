@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TContract2Array implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TContract2
      */
@@ -41,7 +40,4 @@ class TContract2Array implements RequestInterface
 
         return $new;
     }
-
-
 }
-

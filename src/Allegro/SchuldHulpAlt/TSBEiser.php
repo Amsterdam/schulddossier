@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSBEiser
 {
-
     /**
      * @var int $RelatieCode
      */
@@ -111,23 +110,23 @@ class TSBEiser
      */
     public function __construct($RelatieCode, $Volgnummer, $CodeEiser, $NaamEiser, $UniekVolgnummer, $Referentie, $TeruggemeldBedrag, $BerekendBedrag, $GereserveerdBedrag, $DoorbetaaldBedrag, $PrognoseRestschuld, $CodeIncasso, $NaamIncasso, $ReferentieIncasso, $CodeDeurwaarder, $NaamDeurwaarder, $ReferentieDeurwaarder)
     {
-      $this->RelatieCode = $RelatieCode;
-      $this->Volgnummer = $Volgnummer;
-      $this->CodeEiser = $CodeEiser;
-      $this->NaamEiser = $NaamEiser;
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      $this->Referentie = $Referentie;
-      $this->TeruggemeldBedrag = $TeruggemeldBedrag;
-      $this->BerekendBedrag = $BerekendBedrag;
-      $this->GereserveerdBedrag = $GereserveerdBedrag;
-      $this->DoorbetaaldBedrag = $DoorbetaaldBedrag;
-      $this->PrognoseRestschuld = $PrognoseRestschuld;
-      $this->CodeIncasso = $CodeIncasso;
-      $this->NaamIncasso = $NaamIncasso;
-      $this->ReferentieIncasso = $ReferentieIncasso;
-      $this->CodeDeurwaarder = $CodeDeurwaarder;
-      $this->NaamDeurwaarder = $NaamDeurwaarder;
-      $this->ReferentieDeurwaarder = $ReferentieDeurwaarder;
+        $this->RelatieCode = $RelatieCode;
+        $this->Volgnummer = $Volgnummer;
+        $this->CodeEiser = $CodeEiser;
+        $this->NaamEiser = $NaamEiser;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        $this->Referentie = $Referentie;
+        $this->TeruggemeldBedrag = $TeruggemeldBedrag;
+        $this->BerekendBedrag = $BerekendBedrag;
+        $this->GereserveerdBedrag = $GereserveerdBedrag;
+        $this->DoorbetaaldBedrag = $DoorbetaaldBedrag;
+        $this->PrognoseRestschuld = $PrognoseRestschuld;
+        $this->CodeIncasso = $CodeIncasso;
+        $this->NaamIncasso = $NaamIncasso;
+        $this->ReferentieIncasso = $ReferentieIncasso;
+        $this->CodeDeurwaarder = $CodeDeurwaarder;
+        $this->NaamDeurwaarder = $NaamDeurwaarder;
+        $this->ReferentieDeurwaarder = $ReferentieDeurwaarder;
     }
 
     /**
@@ -135,7 +134,7 @@ class TSBEiser
      */
     public function getRelatieCode()
     {
-      return $this->RelatieCode;
+        return $this->RelatieCode;
     }
 
     /**
@@ -144,8 +143,8 @@ class TSBEiser
      */
     public function setRelatieCode($RelatieCode)
     {
-      $this->RelatieCode = $RelatieCode;
-      return $this;
+        $this->RelatieCode = $RelatieCode;
+        return $this;
     }
 
     /**
@@ -153,7 +152,7 @@ class TSBEiser
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -162,8 +161,8 @@ class TSBEiser
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -171,7 +170,7 @@ class TSBEiser
      */
     public function getCodeEiser()
     {
-      return $this->CodeEiser;
+        return $this->CodeEiser;
     }
 
     /**
@@ -180,8 +179,8 @@ class TSBEiser
      */
     public function setCodeEiser($CodeEiser)
     {
-      $this->CodeEiser = $CodeEiser;
-      return $this;
+        $this->CodeEiser = $CodeEiser;
+        return $this;
     }
 
     /**
@@ -189,7 +188,7 @@ class TSBEiser
      */
     public function getNaamEiser()
     {
-      return $this->NaamEiser;
+        return $this->NaamEiser;
     }
 
     /**
@@ -198,8 +197,8 @@ class TSBEiser
      */
     public function setNaamEiser($NaamEiser)
     {
-      $this->NaamEiser = $NaamEiser;
-      return $this;
+        $this->NaamEiser = $NaamEiser;
+        return $this;
     }
 
     /**
@@ -207,7 +206,7 @@ class TSBEiser
      */
     public function getUniekVolgnummer()
     {
-      return $this->UniekVolgnummer;
+        return $this->UniekVolgnummer;
     }
 
     /**
@@ -216,8 +215,8 @@ class TSBEiser
      */
     public function setUniekVolgnummer($UniekVolgnummer)
     {
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      return $this;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        return $this;
     }
 
     /**
@@ -225,7 +224,7 @@ class TSBEiser
      */
     public function getReferentie()
     {
-      return $this->Referentie;
+        return $this->Referentie;
     }
 
     /**
@@ -234,8 +233,8 @@ class TSBEiser
      */
     public function setReferentie($Referentie)
     {
-      $this->Referentie = $Referentie;
-      return $this;
+        $this->Referentie = $Referentie;
+        return $this;
     }
 
     /**
@@ -243,7 +242,7 @@ class TSBEiser
      */
     public function getTeruggemeldBedrag()
     {
-      return $this->TeruggemeldBedrag;
+        return $this->TeruggemeldBedrag;
     }
 
     /**
@@ -252,8 +251,8 @@ class TSBEiser
      */
     public function setTeruggemeldBedrag($TeruggemeldBedrag)
     {
-      $this->TeruggemeldBedrag = $TeruggemeldBedrag;
-      return $this;
+        $this->TeruggemeldBedrag = $TeruggemeldBedrag;
+        return $this;
     }
 
     /**
@@ -261,7 +260,7 @@ class TSBEiser
      */
     public function getBerekendBedrag()
     {
-      return $this->BerekendBedrag;
+        return $this->BerekendBedrag;
     }
 
     /**
@@ -270,8 +269,8 @@ class TSBEiser
      */
     public function setBerekendBedrag($BerekendBedrag)
     {
-      $this->BerekendBedrag = $BerekendBedrag;
-      return $this;
+        $this->BerekendBedrag = $BerekendBedrag;
+        return $this;
     }
 
     /**
@@ -279,7 +278,7 @@ class TSBEiser
      */
     public function getGereserveerdBedrag()
     {
-      return $this->GereserveerdBedrag;
+        return $this->GereserveerdBedrag;
     }
 
     /**
@@ -288,8 +287,8 @@ class TSBEiser
      */
     public function setGereserveerdBedrag($GereserveerdBedrag)
     {
-      $this->GereserveerdBedrag = $GereserveerdBedrag;
-      return $this;
+        $this->GereserveerdBedrag = $GereserveerdBedrag;
+        return $this;
     }
 
     /**
@@ -297,7 +296,7 @@ class TSBEiser
      */
     public function getDoorbetaaldBedrag()
     {
-      return $this->DoorbetaaldBedrag;
+        return $this->DoorbetaaldBedrag;
     }
 
     /**
@@ -306,8 +305,8 @@ class TSBEiser
      */
     public function setDoorbetaaldBedrag($DoorbetaaldBedrag)
     {
-      $this->DoorbetaaldBedrag = $DoorbetaaldBedrag;
-      return $this;
+        $this->DoorbetaaldBedrag = $DoorbetaaldBedrag;
+        return $this;
     }
 
     /**
@@ -315,7 +314,7 @@ class TSBEiser
      */
     public function getPrognoseRestschuld()
     {
-      return $this->PrognoseRestschuld;
+        return $this->PrognoseRestschuld;
     }
 
     /**
@@ -324,8 +323,8 @@ class TSBEiser
      */
     public function setPrognoseRestschuld($PrognoseRestschuld)
     {
-      $this->PrognoseRestschuld = $PrognoseRestschuld;
-      return $this;
+        $this->PrognoseRestschuld = $PrognoseRestschuld;
+        return $this;
     }
 
     /**
@@ -333,7 +332,7 @@ class TSBEiser
      */
     public function getCodeIncasso()
     {
-      return $this->CodeIncasso;
+        return $this->CodeIncasso;
     }
 
     /**
@@ -342,8 +341,8 @@ class TSBEiser
      */
     public function setCodeIncasso($CodeIncasso)
     {
-      $this->CodeIncasso = $CodeIncasso;
-      return $this;
+        $this->CodeIncasso = $CodeIncasso;
+        return $this;
     }
 
     /**
@@ -351,7 +350,7 @@ class TSBEiser
      */
     public function getNaamIncasso()
     {
-      return $this->NaamIncasso;
+        return $this->NaamIncasso;
     }
 
     /**
@@ -360,8 +359,8 @@ class TSBEiser
      */
     public function setNaamIncasso($NaamIncasso)
     {
-      $this->NaamIncasso = $NaamIncasso;
-      return $this;
+        $this->NaamIncasso = $NaamIncasso;
+        return $this;
     }
 
     /**
@@ -369,7 +368,7 @@ class TSBEiser
      */
     public function getReferentieIncasso()
     {
-      return $this->ReferentieIncasso;
+        return $this->ReferentieIncasso;
     }
 
     /**
@@ -378,8 +377,8 @@ class TSBEiser
      */
     public function setReferentieIncasso($ReferentieIncasso)
     {
-      $this->ReferentieIncasso = $ReferentieIncasso;
-      return $this;
+        $this->ReferentieIncasso = $ReferentieIncasso;
+        return $this;
     }
 
     /**
@@ -387,7 +386,7 @@ class TSBEiser
      */
     public function getCodeDeurwaarder()
     {
-      return $this->CodeDeurwaarder;
+        return $this->CodeDeurwaarder;
     }
 
     /**
@@ -396,8 +395,8 @@ class TSBEiser
      */
     public function setCodeDeurwaarder($CodeDeurwaarder)
     {
-      $this->CodeDeurwaarder = $CodeDeurwaarder;
-      return $this;
+        $this->CodeDeurwaarder = $CodeDeurwaarder;
+        return $this;
     }
 
     /**
@@ -405,7 +404,7 @@ class TSBEiser
      */
     public function getNaamDeurwaarder()
     {
-      return $this->NaamDeurwaarder;
+        return $this->NaamDeurwaarder;
     }
 
     /**
@@ -414,8 +413,8 @@ class TSBEiser
      */
     public function setNaamDeurwaarder($NaamDeurwaarder)
     {
-      $this->NaamDeurwaarder = $NaamDeurwaarder;
-      return $this;
+        $this->NaamDeurwaarder = $NaamDeurwaarder;
+        return $this;
     }
 
     /**
@@ -423,7 +422,7 @@ class TSBEiser
      */
     public function getReferentieDeurwaarder()
     {
-      return $this->ReferentieDeurwaarder;
+        return $this->ReferentieDeurwaarder;
     }
 
     /**
@@ -432,8 +431,7 @@ class TSBEiser
      */
     public function setReferentieDeurwaarder($ReferentieDeurwaarder)
     {
-      $this->ReferentieDeurwaarder = $ReferentieDeurwaarder;
-      return $this;
+        $this->ReferentieDeurwaarder = $ReferentieDeurwaarder;
+        return $this;
     }
-
 }

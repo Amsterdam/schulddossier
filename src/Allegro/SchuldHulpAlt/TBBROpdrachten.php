@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBBROpdrachten
 {
-
     /**
      * @var BBROpdrachtArray $BBROpdrachten
      */
@@ -15,7 +14,7 @@ class TBBROpdrachten
      */
     public function __construct($BBROpdrachten)
     {
-      $this->BBROpdrachten = $BBROpdrachten;
+        $this->BBROpdrachten = $BBROpdrachten;
     }
 
     /**
@@ -23,7 +22,7 @@ class TBBROpdrachten
      */
     public function getBBROpdrachten()
     {
-      return $this->BBROpdrachten;
+        return $this->BBROpdrachten;
     }
 
     /**
@@ -32,8 +31,7 @@ class TBBROpdrachten
      */
     public function setBBROpdrachten($BBROpdrachten)
     {
-      $this->BBROpdrachten = $BBROpdrachten;
-      return $this;
+        $this->BBROpdrachten = $BBROpdrachten;
+        return $this;
     }
-
 }

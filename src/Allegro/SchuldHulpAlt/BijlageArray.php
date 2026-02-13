@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class BijlageArray
 {
-
     /**
      * @var TBijlage[] $TBijlage
      */
     protected $TBijlage = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class BijlageArray
      */
     public function getTBijlage()
     {
-      return $this->TBijlage;
+        return $this->TBijlage;
     }
 
     /**
@@ -30,8 +28,7 @@ class BijlageArray
      */
     public function setTBijlage(array $TBijlage = null)
     {
-      $this->TBijlage = $TBijlage;
-      return $this;
+        $this->TBijlage = $TBijlage;
+        return $this;
     }
-
 }

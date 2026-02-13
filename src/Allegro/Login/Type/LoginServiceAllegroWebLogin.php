@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class LoginServiceAllegroWebLogin implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -68,7 +67,4 @@ class LoginServiceAllegroWebLogin implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class LijstKredietsoortArray
 {
-
     /**
      * @var TLijstKredietsoort[] $TLijstKredietsoort
      */
     protected $TLijstKredietsoort = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class LijstKredietsoortArray
      */
     public function getTLijstKredietsoort()
     {
-      return $this->TLijstKredietsoort;
+        return $this->TLijstKredietsoort;
     }
 
     /**
@@ -30,8 +28,7 @@ class LijstKredietsoortArray
      */
     public function setTLijstKredietsoort(array $TLijstKredietsoort = null)
     {
-      $this->TLijstKredietsoort = $TLijstKredietsoort;
-      return $this;
+        $this->TLijstKredietsoort = $TLijstKredietsoort;
+        return $this;
     }
-
 }

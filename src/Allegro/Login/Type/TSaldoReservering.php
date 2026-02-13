@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TSaldoReservering implements RequestInterface
 {
-
     /**
      * @var \DateTimeInterface
      */
@@ -122,7 +121,4 @@ class TSaldoReservering implements RequestInterface
 
         return $new;
     }
-
-
 }
-

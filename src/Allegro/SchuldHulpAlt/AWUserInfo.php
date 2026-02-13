@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class AWUserInfo extends UserInfo
 {
-
     /**
      * @var string $LoginType
      */
@@ -62,15 +61,15 @@ class AWUserInfo extends UserInfo
      */
     public function __construct($SessionID, $UserID, $Privileges, $Attributes, $UserData, $LoginType, $RelatieCode, $Naam, \DateTime $LaatsteLogin, $Autorisaties, $ExtraInfo, $ExtraInfoOmschrijving, $WachtwoordWijzigen)
     {
-      parent::__construct($SessionID, $UserID, $Privileges, $Attributes, $UserData);
-      $this->LoginType = $LoginType;
-      $this->RelatieCode = $RelatieCode;
-      $this->Naam = $Naam;
-      $this->LaatsteLogin = $LaatsteLogin->format(\DateTime::ATOM);
-      $this->Autorisaties = $Autorisaties;
-      $this->ExtraInfo = $ExtraInfo;
-      $this->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
-      $this->WachtwoordWijzigen = $WachtwoordWijzigen;
+        parent::__construct($SessionID, $UserID, $Privileges, $Attributes, $UserData);
+        $this->LoginType = $LoginType;
+        $this->RelatieCode = $RelatieCode;
+        $this->Naam = $Naam;
+        $this->LaatsteLogin = $LaatsteLogin->format(\DateTime::ATOM);
+        $this->Autorisaties = $Autorisaties;
+        $this->ExtraInfo = $ExtraInfo;
+        $this->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
+        $this->WachtwoordWijzigen = $WachtwoordWijzigen;
     }
 
     /**
@@ -78,7 +77,7 @@ class AWUserInfo extends UserInfo
      */
     public function getLoginType()
     {
-      return $this->LoginType;
+        return $this->LoginType;
     }
 
     /**
@@ -87,8 +86,8 @@ class AWUserInfo extends UserInfo
      */
     public function setLoginType($LoginType)
     {
-      $this->LoginType = $LoginType;
-      return $this;
+        $this->LoginType = $LoginType;
+        return $this;
     }
 
     /**
@@ -96,7 +95,7 @@ class AWUserInfo extends UserInfo
      */
     public function getRelatieCode()
     {
-      return $this->RelatieCode;
+        return $this->RelatieCode;
     }
 
     /**
@@ -105,8 +104,8 @@ class AWUserInfo extends UserInfo
      */
     public function setRelatieCode($RelatieCode)
     {
-      $this->RelatieCode = $RelatieCode;
-      return $this;
+        $this->RelatieCode = $RelatieCode;
+        return $this;
     }
 
     /**
@@ -114,7 +113,7 @@ class AWUserInfo extends UserInfo
      */
     public function getNaam()
     {
-      return $this->Naam;
+        return $this->Naam;
     }
 
     /**
@@ -123,8 +122,8 @@ class AWUserInfo extends UserInfo
      */
     public function setNaam($Naam)
     {
-      $this->Naam = $Naam;
-      return $this;
+        $this->Naam = $Naam;
+        return $this;
     }
 
     /**
@@ -132,15 +131,15 @@ class AWUserInfo extends UserInfo
      */
     public function getLaatsteLogin()
     {
-      if ($this->LaatsteLogin == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->LaatsteLogin);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->LaatsteLogin == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->LaatsteLogin);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -149,8 +148,8 @@ class AWUserInfo extends UserInfo
      */
     public function setLaatsteLogin(\DateTime $LaatsteLogin)
     {
-      $this->LaatsteLogin = $LaatsteLogin->format(\DateTime::ATOM);
-      return $this;
+        $this->LaatsteLogin = $LaatsteLogin->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -158,7 +157,7 @@ class AWUserInfo extends UserInfo
      */
     public function getAutorisaties()
     {
-      return $this->Autorisaties;
+        return $this->Autorisaties;
     }
 
     /**
@@ -167,8 +166,8 @@ class AWUserInfo extends UserInfo
      */
     public function setAutorisaties($Autorisaties)
     {
-      $this->Autorisaties = $Autorisaties;
-      return $this;
+        $this->Autorisaties = $Autorisaties;
+        return $this;
     }
 
     /**
@@ -176,7 +175,7 @@ class AWUserInfo extends UserInfo
      */
     public function getExtraInfo()
     {
-      return $this->ExtraInfo;
+        return $this->ExtraInfo;
     }
 
     /**
@@ -185,8 +184,8 @@ class AWUserInfo extends UserInfo
      */
     public function setExtraInfo($ExtraInfo)
     {
-      $this->ExtraInfo = $ExtraInfo;
-      return $this;
+        $this->ExtraInfo = $ExtraInfo;
+        return $this;
     }
 
     /**
@@ -194,7 +193,7 @@ class AWUserInfo extends UserInfo
      */
     public function getExtraInfoOmschrijving()
     {
-      return $this->ExtraInfoOmschrijving;
+        return $this->ExtraInfoOmschrijving;
     }
 
     /**
@@ -203,8 +202,8 @@ class AWUserInfo extends UserInfo
      */
     public function setExtraInfoOmschrijving($ExtraInfoOmschrijving)
     {
-      $this->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
-      return $this;
+        $this->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
+        return $this;
     }
 
     /**
@@ -212,7 +211,7 @@ class AWUserInfo extends UserInfo
      */
     public function getWachtwoordWijzigen()
     {
-      return $this->WachtwoordWijzigen;
+        return $this->WachtwoordWijzigen;
     }
 
     /**
@@ -221,8 +220,7 @@ class AWUserInfo extends UserInfo
      */
     public function setWachtwoordWijzigen($WachtwoordWijzigen)
     {
-      $this->WachtwoordWijzigen = $WachtwoordWijzigen;
-      return $this;
+        $this->WachtwoordWijzigen = $WachtwoordWijzigen;
+        return $this;
     }
-
 }

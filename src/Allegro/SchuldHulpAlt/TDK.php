@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TDK
 {
-
     /**
      * @var TDKHeader $InfoHeader
      */
@@ -111,23 +110,23 @@ class TDK
      */
     public function __construct($InfoHeader, $Opdrachtgever, $OpdrachtgeverContact, $Contractlimiet, $MaandTermijn, $TheoretischeLooptijd, \DateTime $DatumEersteAflossing, $Saldo, $Achterstand, $VrijOpneembaar, $EffectiefJaarpercentage, \DateTime $DatumLaatsteBetaling, $BedragLaatsteBetaling, $VolledigVervroegdeAflossing, $Medewerker, $MedelenerCode, $Maandpercentage)
     {
-      $this->InfoHeader = $InfoHeader;
-      $this->Opdrachtgever = $Opdrachtgever;
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      $this->Contractlimiet = $Contractlimiet;
-      $this->MaandTermijn = $MaandTermijn;
-      $this->TheoretischeLooptijd = $TheoretischeLooptijd;
-      $this->DatumEersteAflossing = $DatumEersteAflossing->format(\DateTime::ATOM);
-      $this->Saldo = $Saldo;
-      $this->Achterstand = $Achterstand;
-      $this->VrijOpneembaar = $VrijOpneembaar;
-      $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
-      $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
-      $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
-      $this->Medewerker = $Medewerker;
-      $this->MedelenerCode = $MedelenerCode;
-      $this->Maandpercentage = $Maandpercentage;
+        $this->InfoHeader = $InfoHeader;
+        $this->Opdrachtgever = $Opdrachtgever;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        $this->Contractlimiet = $Contractlimiet;
+        $this->MaandTermijn = $MaandTermijn;
+        $this->TheoretischeLooptijd = $TheoretischeLooptijd;
+        $this->DatumEersteAflossing = $DatumEersteAflossing->format(\DateTime::ATOM);
+        $this->Saldo = $Saldo;
+        $this->Achterstand = $Achterstand;
+        $this->VrijOpneembaar = $VrijOpneembaar;
+        $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
+        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+        $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
+        $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
+        $this->Medewerker = $Medewerker;
+        $this->MedelenerCode = $MedelenerCode;
+        $this->Maandpercentage = $Maandpercentage;
     }
 
     /**
@@ -135,7 +134,7 @@ class TDK
      */
     public function getInfoHeader()
     {
-      return $this->InfoHeader;
+        return $this->InfoHeader;
     }
 
     /**
@@ -144,8 +143,8 @@ class TDK
      */
     public function setInfoHeader($InfoHeader)
     {
-      $this->InfoHeader = $InfoHeader;
-      return $this;
+        $this->InfoHeader = $InfoHeader;
+        return $this;
     }
 
     /**
@@ -153,7 +152,7 @@ class TDK
      */
     public function getOpdrachtgever()
     {
-      return $this->Opdrachtgever;
+        return $this->Opdrachtgever;
     }
 
     /**
@@ -162,8 +161,8 @@ class TDK
      */
     public function setOpdrachtgever($Opdrachtgever)
     {
-      $this->Opdrachtgever = $Opdrachtgever;
-      return $this;
+        $this->Opdrachtgever = $Opdrachtgever;
+        return $this;
     }
 
     /**
@@ -171,7 +170,7 @@ class TDK
      */
     public function getOpdrachtgeverContact()
     {
-      return $this->OpdrachtgeverContact;
+        return $this->OpdrachtgeverContact;
     }
 
     /**
@@ -180,8 +179,8 @@ class TDK
      */
     public function setOpdrachtgeverContact($OpdrachtgeverContact)
     {
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      return $this;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        return $this;
     }
 
     /**
@@ -189,7 +188,7 @@ class TDK
      */
     public function getContractlimiet()
     {
-      return $this->Contractlimiet;
+        return $this->Contractlimiet;
     }
 
     /**
@@ -198,8 +197,8 @@ class TDK
      */
     public function setContractlimiet($Contractlimiet)
     {
-      $this->Contractlimiet = $Contractlimiet;
-      return $this;
+        $this->Contractlimiet = $Contractlimiet;
+        return $this;
     }
 
     /**
@@ -207,7 +206,7 @@ class TDK
      */
     public function getMaandTermijn()
     {
-      return $this->MaandTermijn;
+        return $this->MaandTermijn;
     }
 
     /**
@@ -216,8 +215,8 @@ class TDK
      */
     public function setMaandTermijn($MaandTermijn)
     {
-      $this->MaandTermijn = $MaandTermijn;
-      return $this;
+        $this->MaandTermijn = $MaandTermijn;
+        return $this;
     }
 
     /**
@@ -225,7 +224,7 @@ class TDK
      */
     public function getTheoretischeLooptijd()
     {
-      return $this->TheoretischeLooptijd;
+        return $this->TheoretischeLooptijd;
     }
 
     /**
@@ -234,8 +233,8 @@ class TDK
      */
     public function setTheoretischeLooptijd($TheoretischeLooptijd)
     {
-      $this->TheoretischeLooptijd = $TheoretischeLooptijd;
-      return $this;
+        $this->TheoretischeLooptijd = $TheoretischeLooptijd;
+        return $this;
     }
 
     /**
@@ -243,15 +242,15 @@ class TDK
      */
     public function getDatumEersteAflossing()
     {
-      if ($this->DatumEersteAflossing == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumEersteAflossing);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumEersteAflossing == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumEersteAflossing);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -260,8 +259,8 @@ class TDK
      */
     public function setDatumEersteAflossing(\DateTime $DatumEersteAflossing)
     {
-      $this->DatumEersteAflossing = $DatumEersteAflossing->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumEersteAflossing = $DatumEersteAflossing->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -269,7 +268,7 @@ class TDK
      */
     public function getSaldo()
     {
-      return $this->Saldo;
+        return $this->Saldo;
     }
 
     /**
@@ -278,8 +277,8 @@ class TDK
      */
     public function setSaldo($Saldo)
     {
-      $this->Saldo = $Saldo;
-      return $this;
+        $this->Saldo = $Saldo;
+        return $this;
     }
 
     /**
@@ -287,7 +286,7 @@ class TDK
      */
     public function getAchterstand()
     {
-      return $this->Achterstand;
+        return $this->Achterstand;
     }
 
     /**
@@ -296,8 +295,8 @@ class TDK
      */
     public function setAchterstand($Achterstand)
     {
-      $this->Achterstand = $Achterstand;
-      return $this;
+        $this->Achterstand = $Achterstand;
+        return $this;
     }
 
     /**
@@ -305,7 +304,7 @@ class TDK
      */
     public function getVrijOpneembaar()
     {
-      return $this->VrijOpneembaar;
+        return $this->VrijOpneembaar;
     }
 
     /**
@@ -314,8 +313,8 @@ class TDK
      */
     public function setVrijOpneembaar($VrijOpneembaar)
     {
-      $this->VrijOpneembaar = $VrijOpneembaar;
-      return $this;
+        $this->VrijOpneembaar = $VrijOpneembaar;
+        return $this;
     }
 
     /**
@@ -323,7 +322,7 @@ class TDK
      */
     public function getEffectiefJaarpercentage()
     {
-      return $this->EffectiefJaarpercentage;
+        return $this->EffectiefJaarpercentage;
     }
 
     /**
@@ -332,8 +331,8 @@ class TDK
      */
     public function setEffectiefJaarpercentage($EffectiefJaarpercentage)
     {
-      $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
-      return $this;
+        $this->EffectiefJaarpercentage = $EffectiefJaarpercentage;
+        return $this;
     }
 
     /**
@@ -341,15 +340,15 @@ class TDK
      */
     public function getDatumLaatsteBetaling()
     {
-      if ($this->DatumLaatsteBetaling == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumLaatsteBetaling);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumLaatsteBetaling == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumLaatsteBetaling);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -358,8 +357,8 @@ class TDK
      */
     public function setDatumLaatsteBetaling(\DateTime $DatumLaatsteBetaling)
     {
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -367,7 +366,7 @@ class TDK
      */
     public function getBedragLaatsteBetaling()
     {
-      return $this->BedragLaatsteBetaling;
+        return $this->BedragLaatsteBetaling;
     }
 
     /**
@@ -376,8 +375,8 @@ class TDK
      */
     public function setBedragLaatsteBetaling($BedragLaatsteBetaling)
     {
-      $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
-      return $this;
+        $this->BedragLaatsteBetaling = $BedragLaatsteBetaling;
+        return $this;
     }
 
     /**
@@ -385,7 +384,7 @@ class TDK
      */
     public function getVolledigVervroegdeAflossing()
     {
-      return $this->VolledigVervroegdeAflossing;
+        return $this->VolledigVervroegdeAflossing;
     }
 
     /**
@@ -394,8 +393,8 @@ class TDK
      */
     public function setVolledigVervroegdeAflossing($VolledigVervroegdeAflossing)
     {
-      $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
-      return $this;
+        $this->VolledigVervroegdeAflossing = $VolledigVervroegdeAflossing;
+        return $this;
     }
 
     /**
@@ -403,7 +402,7 @@ class TDK
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -412,8 +411,8 @@ class TDK
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -421,7 +420,7 @@ class TDK
      */
     public function getMedelenerCode()
     {
-      return $this->MedelenerCode;
+        return $this->MedelenerCode;
     }
 
     /**
@@ -430,8 +429,8 @@ class TDK
      */
     public function setMedelenerCode($MedelenerCode)
     {
-      $this->MedelenerCode = $MedelenerCode;
-      return $this;
+        $this->MedelenerCode = $MedelenerCode;
+        return $this;
     }
 
     /**
@@ -439,7 +438,7 @@ class TDK
      */
     public function getMaandpercentage()
     {
-      return $this->Maandpercentage;
+        return $this->Maandpercentage;
     }
 
     /**
@@ -448,8 +447,7 @@ class TDK
      */
     public function setMaandpercentage($Maandpercentage)
     {
-      $this->Maandpercentage = $Maandpercentage;
-      return $this;
+        $this->Maandpercentage = $Maandpercentage;
+        return $this;
     }
-
 }

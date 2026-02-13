@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class CasusToelichtingArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TCasusToelichting
      */
@@ -41,7 +40,4 @@ class CasusToelichtingArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

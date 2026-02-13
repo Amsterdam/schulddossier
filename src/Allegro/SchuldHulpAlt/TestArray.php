@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TestArray
 {
-
     /**
      * @var TTest[] $TTest
      */
     protected $TTest = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class TestArray
      */
     public function getTTest()
     {
-      return $this->TTest;
+        return $this->TTest;
     }
 
     /**
@@ -30,8 +28,7 @@ class TestArray
      */
     public function setTTest(array $TTest = null)
     {
-      $this->TTest = $TTest;
-      return $this;
+        $this->TTest = $TTest;
+        return $this;
     }
-
 }

@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TCasusDeelopdracht implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -392,7 +391,4 @@ class TCasusDeelopdracht implements RequestInterface
 
         return $new;
     }
-
-
 }
-

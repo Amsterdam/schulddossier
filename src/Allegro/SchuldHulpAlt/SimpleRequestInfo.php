@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SimpleRequestInfo
 {
-
     /**
      * @var string $SQL
      */
@@ -51,13 +50,13 @@ class SimpleRequestInfo
      */
     public function __construct($SQL, $Table, $Where, $Parameters, $MaxRecords, $IncludeSchema, $SimpleMode)
     {
-      $this->SQL = $SQL;
-      $this->Table = $Table;
-      $this->Where = $Where;
-      $this->Parameters = $Parameters;
-      $this->MaxRecords = $MaxRecords;
-      $this->IncludeSchema = $IncludeSchema;
-      $this->SimpleMode = $SimpleMode;
+        $this->SQL = $SQL;
+        $this->Table = $Table;
+        $this->Where = $Where;
+        $this->Parameters = $Parameters;
+        $this->MaxRecords = $MaxRecords;
+        $this->IncludeSchema = $IncludeSchema;
+        $this->SimpleMode = $SimpleMode;
     }
 
     /**
@@ -65,7 +64,7 @@ class SimpleRequestInfo
      */
     public function getSQL()
     {
-      return $this->SQL;
+        return $this->SQL;
     }
 
     /**
@@ -74,8 +73,8 @@ class SimpleRequestInfo
      */
     public function setSQL($SQL)
     {
-      $this->SQL = $SQL;
-      return $this;
+        $this->SQL = $SQL;
+        return $this;
     }
 
     /**
@@ -83,7 +82,7 @@ class SimpleRequestInfo
      */
     public function getTable()
     {
-      return $this->Table;
+        return $this->Table;
     }
 
     /**
@@ -92,8 +91,8 @@ class SimpleRequestInfo
      */
     public function setTable($Table)
     {
-      $this->Table = $Table;
-      return $this;
+        $this->Table = $Table;
+        return $this;
     }
 
     /**
@@ -101,7 +100,7 @@ class SimpleRequestInfo
      */
     public function getWhere()
     {
-      return $this->Where;
+        return $this->Where;
     }
 
     /**
@@ -110,8 +109,8 @@ class SimpleRequestInfo
      */
     public function setWhere($Where)
     {
-      $this->Where = $Where;
-      return $this;
+        $this->Where = $Where;
+        return $this;
     }
 
     /**
@@ -119,7 +118,7 @@ class SimpleRequestInfo
      */
     public function getParameters()
     {
-      return $this->Parameters;
+        return $this->Parameters;
     }
 
     /**
@@ -128,8 +127,8 @@ class SimpleRequestInfo
      */
     public function setParameters($Parameters)
     {
-      $this->Parameters = $Parameters;
-      return $this;
+        $this->Parameters = $Parameters;
+        return $this;
     }
 
     /**
@@ -137,7 +136,7 @@ class SimpleRequestInfo
      */
     public function getMaxRecords()
     {
-      return $this->MaxRecords;
+        return $this->MaxRecords;
     }
 
     /**
@@ -146,8 +145,8 @@ class SimpleRequestInfo
      */
     public function setMaxRecords($MaxRecords)
     {
-      $this->MaxRecords = $MaxRecords;
-      return $this;
+        $this->MaxRecords = $MaxRecords;
+        return $this;
     }
 
     /**
@@ -155,7 +154,7 @@ class SimpleRequestInfo
      */
     public function getIncludeSchema()
     {
-      return $this->IncludeSchema;
+        return $this->IncludeSchema;
     }
 
     /**
@@ -164,8 +163,8 @@ class SimpleRequestInfo
      */
     public function setIncludeSchema($IncludeSchema)
     {
-      $this->IncludeSchema = $IncludeSchema;
-      return $this;
+        $this->IncludeSchema = $IncludeSchema;
+        return $this;
     }
 
     /**
@@ -173,7 +172,7 @@ class SimpleRequestInfo
      */
     public function getSimpleMode()
     {
-      return $this->SimpleMode;
+        return $this->SimpleMode;
     }
 
     /**
@@ -182,8 +181,7 @@ class SimpleRequestInfo
      */
     public function setSimpleMode($SimpleMode)
     {
-      $this->SimpleMode = $SimpleMode;
-      return $this;
+        $this->SimpleMode = $SimpleMode;
+        return $this;
     }
-
 }

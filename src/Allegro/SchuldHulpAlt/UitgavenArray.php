@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class UitgavenArray
 {
-
     /**
      * @var TUitgaven[] $TUitgaven
      */
     protected $TUitgaven = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class UitgavenArray
      */
     public function getTUitgaven()
     {
-      return $this->TUitgaven;
+        return $this->TUitgaven;
     }
 
     /**
@@ -30,8 +28,7 @@ class UitgavenArray
      */
     public function setTUitgaven(array $TUitgaven = null)
     {
-      $this->TUitgaven = $TUitgaven;
-      return $this;
+        $this->TUitgaven = $TUitgaven;
+        return $this;
     }
-
 }

@@ -60,7 +60,7 @@ class ApplicationVersion
         $versionFile = self::getVersionFile();
         if (file_exists($versionFile)) {
             $versionFile = self::getVersionFile();
-            return date ("y-m-d", filemtime($versionFile));
+            return date("y-m-d", filemtime($versionFile));
         }
         return '';
     }

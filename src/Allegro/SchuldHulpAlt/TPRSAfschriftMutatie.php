@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TPRSAfschriftMutatie
 {
-
     /**
      * @var int $VolgnummerMutatie
      */
@@ -75,17 +74,17 @@ class TPRSAfschriftMutatie
      */
     public function __construct($VolgnummerMutatie, $Contractcode, $ContractVolgnummer, \DateTime $DatumMutatie, $IndicatieAf, $IndicatieBij, $Bedrag, $Omschrijving, $Rekeningnummer, $ExtraToelichting, $Reservering)
     {
-      $this->VolgnummerMutatie = $VolgnummerMutatie;
-      $this->Contractcode = $Contractcode;
-      $this->ContractVolgnummer = $ContractVolgnummer;
-      $this->DatumMutatie = $DatumMutatie->format(\DateTime::ATOM);
-      $this->IndicatieAf = $IndicatieAf;
-      $this->IndicatieBij = $IndicatieBij;
-      $this->Bedrag = $Bedrag;
-      $this->Omschrijving = $Omschrijving;
-      $this->Rekeningnummer = $Rekeningnummer;
-      $this->ExtraToelichting = $ExtraToelichting;
-      $this->Reservering = $Reservering;
+        $this->VolgnummerMutatie = $VolgnummerMutatie;
+        $this->Contractcode = $Contractcode;
+        $this->ContractVolgnummer = $ContractVolgnummer;
+        $this->DatumMutatie = $DatumMutatie->format(\DateTime::ATOM);
+        $this->IndicatieAf = $IndicatieAf;
+        $this->IndicatieBij = $IndicatieBij;
+        $this->Bedrag = $Bedrag;
+        $this->Omschrijving = $Omschrijving;
+        $this->Rekeningnummer = $Rekeningnummer;
+        $this->ExtraToelichting = $ExtraToelichting;
+        $this->Reservering = $Reservering;
     }
 
     /**
@@ -93,7 +92,7 @@ class TPRSAfschriftMutatie
      */
     public function getVolgnummerMutatie()
     {
-      return $this->VolgnummerMutatie;
+        return $this->VolgnummerMutatie;
     }
 
     /**
@@ -102,8 +101,8 @@ class TPRSAfschriftMutatie
      */
     public function setVolgnummerMutatie($VolgnummerMutatie)
     {
-      $this->VolgnummerMutatie = $VolgnummerMutatie;
-      return $this;
+        $this->VolgnummerMutatie = $VolgnummerMutatie;
+        return $this;
     }
 
     /**
@@ -111,7 +110,7 @@ class TPRSAfschriftMutatie
      */
     public function getContractcode()
     {
-      return $this->Contractcode;
+        return $this->Contractcode;
     }
 
     /**
@@ -120,8 +119,8 @@ class TPRSAfschriftMutatie
      */
     public function setContractcode($Contractcode)
     {
-      $this->Contractcode = $Contractcode;
-      return $this;
+        $this->Contractcode = $Contractcode;
+        return $this;
     }
 
     /**
@@ -129,7 +128,7 @@ class TPRSAfschriftMutatie
      */
     public function getContractVolgnummer()
     {
-      return $this->ContractVolgnummer;
+        return $this->ContractVolgnummer;
     }
 
     /**
@@ -138,8 +137,8 @@ class TPRSAfschriftMutatie
      */
     public function setContractVolgnummer($ContractVolgnummer)
     {
-      $this->ContractVolgnummer = $ContractVolgnummer;
-      return $this;
+        $this->ContractVolgnummer = $ContractVolgnummer;
+        return $this;
     }
 
     /**
@@ -147,15 +146,15 @@ class TPRSAfschriftMutatie
      */
     public function getDatumMutatie()
     {
-      if ($this->DatumMutatie == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumMutatie);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumMutatie == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumMutatie);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -164,8 +163,8 @@ class TPRSAfschriftMutatie
      */
     public function setDatumMutatie(\DateTime $DatumMutatie)
     {
-      $this->DatumMutatie = $DatumMutatie->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumMutatie = $DatumMutatie->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -173,7 +172,7 @@ class TPRSAfschriftMutatie
      */
     public function getIndicatieAf()
     {
-      return $this->IndicatieAf;
+        return $this->IndicatieAf;
     }
 
     /**
@@ -182,8 +181,8 @@ class TPRSAfschriftMutatie
      */
     public function setIndicatieAf($IndicatieAf)
     {
-      $this->IndicatieAf = $IndicatieAf;
-      return $this;
+        $this->IndicatieAf = $IndicatieAf;
+        return $this;
     }
 
     /**
@@ -191,7 +190,7 @@ class TPRSAfschriftMutatie
      */
     public function getIndicatieBij()
     {
-      return $this->IndicatieBij;
+        return $this->IndicatieBij;
     }
 
     /**
@@ -200,8 +199,8 @@ class TPRSAfschriftMutatie
      */
     public function setIndicatieBij($IndicatieBij)
     {
-      $this->IndicatieBij = $IndicatieBij;
-      return $this;
+        $this->IndicatieBij = $IndicatieBij;
+        return $this;
     }
 
     /**
@@ -209,7 +208,7 @@ class TPRSAfschriftMutatie
      */
     public function getBedrag()
     {
-      return $this->Bedrag;
+        return $this->Bedrag;
     }
 
     /**
@@ -218,8 +217,8 @@ class TPRSAfschriftMutatie
      */
     public function setBedrag($Bedrag)
     {
-      $this->Bedrag = $Bedrag;
-      return $this;
+        $this->Bedrag = $Bedrag;
+        return $this;
     }
 
     /**
@@ -227,7 +226,7 @@ class TPRSAfschriftMutatie
      */
     public function getOmschrijving()
     {
-      return $this->Omschrijving;
+        return $this->Omschrijving;
     }
 
     /**
@@ -236,8 +235,8 @@ class TPRSAfschriftMutatie
      */
     public function setOmschrijving($Omschrijving)
     {
-      $this->Omschrijving = $Omschrijving;
-      return $this;
+        $this->Omschrijving = $Omschrijving;
+        return $this;
     }
 
     /**
@@ -245,7 +244,7 @@ class TPRSAfschriftMutatie
      */
     public function getRekeningnummer()
     {
-      return $this->Rekeningnummer;
+        return $this->Rekeningnummer;
     }
 
     /**
@@ -254,8 +253,8 @@ class TPRSAfschriftMutatie
      */
     public function setRekeningnummer($Rekeningnummer)
     {
-      $this->Rekeningnummer = $Rekeningnummer;
-      return $this;
+        $this->Rekeningnummer = $Rekeningnummer;
+        return $this;
     }
 
     /**
@@ -263,7 +262,7 @@ class TPRSAfschriftMutatie
      */
     public function getExtraToelichting()
     {
-      return $this->ExtraToelichting;
+        return $this->ExtraToelichting;
     }
 
     /**
@@ -272,8 +271,8 @@ class TPRSAfschriftMutatie
      */
     public function setExtraToelichting($ExtraToelichting)
     {
-      $this->ExtraToelichting = $ExtraToelichting;
-      return $this;
+        $this->ExtraToelichting = $ExtraToelichting;
+        return $this;
     }
 
     /**
@@ -281,7 +280,7 @@ class TPRSAfschriftMutatie
      */
     public function getReservering()
     {
-      return $this->Reservering;
+        return $this->Reservering;
     }
 
     /**
@@ -290,8 +289,7 @@ class TPRSAfschriftMutatie
      */
     public function setReservering($Reservering)
     {
-      $this->Reservering = $Reservering;
-      return $this;
+        $this->Reservering = $Reservering;
+        return $this;
     }
-
 }

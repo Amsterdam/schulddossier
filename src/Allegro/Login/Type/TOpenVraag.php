@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TOpenVraag implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -68,7 +67,4 @@ class TOpenVraag implements RequestInterface
 
         return $new;
     }
-
-
 }
-

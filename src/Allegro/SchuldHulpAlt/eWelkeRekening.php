@@ -8,6 +8,4 @@ class eWelkeRekening
     const wrRelatie = 'wrRelatie';
     const wrPartner = 'wrPartner';
     const wrAnders = 'wrAnders';
-
-
 }

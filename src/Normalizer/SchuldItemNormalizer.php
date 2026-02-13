@@ -37,5 +37,4 @@ class SchuldItemNormalizer implements NormalizerInterface, NormalizerAwareInterf
             'dossierDocumenten' => $this->normalizer->normalize($object->getDossierDocumenten(), $format)
         ];
     }
-
 }

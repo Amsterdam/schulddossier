@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class RelatieProductArray
 {
-
     /**
      * @var TRelatieProduct[] $TRelatieProduct
      */
     protected $TRelatieProduct = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class RelatieProductArray
      */
     public function getTRelatieProduct()
     {
-      return $this->TRelatieProduct;
+        return $this->TRelatieProduct;
     }
 
     /**
@@ -30,8 +28,7 @@ class RelatieProductArray
      */
     public function setTRelatieProduct(array $TRelatieProduct = null)
     {
-      $this->TRelatieProduct = $TRelatieProduct;
-      return $this;
+        $this->TRelatieProduct = $TRelatieProduct;
+        return $this;
     }
-
 }

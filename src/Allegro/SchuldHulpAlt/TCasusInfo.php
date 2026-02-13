@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TCasusInfo
 {
-
     /**
      * @var TCasusHeader $InfoHeader
      */
@@ -141,28 +140,28 @@ class TCasusInfo
      */
     public function __construct($InfoHeader, $CasusMedewerker, $CasusTeam, $Opdrachtgever, $OpdrachtgeverContact, \DateTime $DatumAanmelding, \DateTime $DatumAanmeldingEinde, \DateTime $DatumIntake, \DateTime $DatumIntakeEinde, \DateTime $DatumInventarisatie, \DateTime $DatumInventarisatieEinde, \DateTime $DatumAnalyse, \DateTime $DatumAnalyseEinde, $Crisis, \DateTime $DatumCrisis, \DateTime $DatumCrisisEinde, \DateTime $DatumAfwijzing, \DateTime $DatumAfwijzingEinde, \DateTime $DatumStop, \DateTime $DatumStopEinde, \DateTime $VerwachteEinddatumIntake, $PVA)
     {
-      $this->InfoHeader = $InfoHeader;
-      $this->CasusMedewerker = $CasusMedewerker;
-      $this->CasusTeam = $CasusTeam;
-      $this->Opdrachtgever = $Opdrachtgever;
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      $this->DatumAanmelding = $DatumAanmelding->format(\DateTime::ATOM);
-      $this->DatumAanmeldingEinde = $DatumAanmeldingEinde->format(\DateTime::ATOM);
-      $this->DatumIntake = $DatumIntake->format(\DateTime::ATOM);
-      $this->DatumIntakeEinde = $DatumIntakeEinde->format(\DateTime::ATOM);
-      $this->DatumInventarisatie = $DatumInventarisatie->format(\DateTime::ATOM);
-      $this->DatumInventarisatieEinde = $DatumInventarisatieEinde->format(\DateTime::ATOM);
-      $this->DatumAnalyse = $DatumAnalyse->format(\DateTime::ATOM);
-      $this->DatumAnalyseEinde = $DatumAnalyseEinde->format(\DateTime::ATOM);
-      $this->Crisis = $Crisis;
-      $this->DatumCrisis = $DatumCrisis->format(\DateTime::ATOM);
-      $this->DatumCrisisEinde = $DatumCrisisEinde->format(\DateTime::ATOM);
-      $this->DatumAfwijzing = $DatumAfwijzing->format(\DateTime::ATOM);
-      $this->DatumAfwijzingEinde = $DatumAfwijzingEinde->format(\DateTime::ATOM);
-      $this->DatumStop = $DatumStop->format(\DateTime::ATOM);
-      $this->DatumStopEinde = $DatumStopEinde->format(\DateTime::ATOM);
-      $this->VerwachteEinddatumIntake = $VerwachteEinddatumIntake->format(\DateTime::ATOM);
-      $this->PVA = $PVA;
+        $this->InfoHeader = $InfoHeader;
+        $this->CasusMedewerker = $CasusMedewerker;
+        $this->CasusTeam = $CasusTeam;
+        $this->Opdrachtgever = $Opdrachtgever;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        $this->DatumAanmelding = $DatumAanmelding->format(\DateTime::ATOM);
+        $this->DatumAanmeldingEinde = $DatumAanmeldingEinde->format(\DateTime::ATOM);
+        $this->DatumIntake = $DatumIntake->format(\DateTime::ATOM);
+        $this->DatumIntakeEinde = $DatumIntakeEinde->format(\DateTime::ATOM);
+        $this->DatumInventarisatie = $DatumInventarisatie->format(\DateTime::ATOM);
+        $this->DatumInventarisatieEinde = $DatumInventarisatieEinde->format(\DateTime::ATOM);
+        $this->DatumAnalyse = $DatumAnalyse->format(\DateTime::ATOM);
+        $this->DatumAnalyseEinde = $DatumAnalyseEinde->format(\DateTime::ATOM);
+        $this->Crisis = $Crisis;
+        $this->DatumCrisis = $DatumCrisis->format(\DateTime::ATOM);
+        $this->DatumCrisisEinde = $DatumCrisisEinde->format(\DateTime::ATOM);
+        $this->DatumAfwijzing = $DatumAfwijzing->format(\DateTime::ATOM);
+        $this->DatumAfwijzingEinde = $DatumAfwijzingEinde->format(\DateTime::ATOM);
+        $this->DatumStop = $DatumStop->format(\DateTime::ATOM);
+        $this->DatumStopEinde = $DatumStopEinde->format(\DateTime::ATOM);
+        $this->VerwachteEinddatumIntake = $VerwachteEinddatumIntake->format(\DateTime::ATOM);
+        $this->PVA = $PVA;
     }
 
     /**
@@ -170,7 +169,7 @@ class TCasusInfo
      */
     public function getInfoHeader()
     {
-      return $this->InfoHeader;
+        return $this->InfoHeader;
     }
 
     /**
@@ -179,8 +178,8 @@ class TCasusInfo
      */
     public function setInfoHeader($InfoHeader)
     {
-      $this->InfoHeader = $InfoHeader;
-      return $this;
+        $this->InfoHeader = $InfoHeader;
+        return $this;
     }
 
     /**
@@ -188,7 +187,7 @@ class TCasusInfo
      */
     public function getCasusMedewerker()
     {
-      return $this->CasusMedewerker;
+        return $this->CasusMedewerker;
     }
 
     /**
@@ -197,8 +196,8 @@ class TCasusInfo
      */
     public function setCasusMedewerker($CasusMedewerker)
     {
-      $this->CasusMedewerker = $CasusMedewerker;
-      return $this;
+        $this->CasusMedewerker = $CasusMedewerker;
+        return $this;
     }
 
     /**
@@ -206,7 +205,7 @@ class TCasusInfo
      */
     public function getCasusTeam()
     {
-      return $this->CasusTeam;
+        return $this->CasusTeam;
     }
 
     /**
@@ -215,8 +214,8 @@ class TCasusInfo
      */
     public function setCasusTeam($CasusTeam)
     {
-      $this->CasusTeam = $CasusTeam;
-      return $this;
+        $this->CasusTeam = $CasusTeam;
+        return $this;
     }
 
     /**
@@ -224,7 +223,7 @@ class TCasusInfo
      */
     public function getOpdrachtgever()
     {
-      return $this->Opdrachtgever;
+        return $this->Opdrachtgever;
     }
 
     /**
@@ -233,8 +232,8 @@ class TCasusInfo
      */
     public function setOpdrachtgever($Opdrachtgever)
     {
-      $this->Opdrachtgever = $Opdrachtgever;
-      return $this;
+        $this->Opdrachtgever = $Opdrachtgever;
+        return $this;
     }
 
     /**
@@ -242,7 +241,7 @@ class TCasusInfo
      */
     public function getOpdrachtgeverContact()
     {
-      return $this->OpdrachtgeverContact;
+        return $this->OpdrachtgeverContact;
     }
 
     /**
@@ -251,8 +250,8 @@ class TCasusInfo
      */
     public function setOpdrachtgeverContact($OpdrachtgeverContact)
     {
-      $this->OpdrachtgeverContact = $OpdrachtgeverContact;
-      return $this;
+        $this->OpdrachtgeverContact = $OpdrachtgeverContact;
+        return $this;
     }
 
     /**
@@ -260,15 +259,15 @@ class TCasusInfo
      */
     public function getDatumAanmelding()
     {
-      if ($this->DatumAanmelding == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumAanmelding);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumAanmelding == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumAanmelding);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -277,8 +276,8 @@ class TCasusInfo
      */
     public function setDatumAanmelding(\DateTime $DatumAanmelding)
     {
-      $this->DatumAanmelding = $DatumAanmelding->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumAanmelding = $DatumAanmelding->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -286,15 +285,15 @@ class TCasusInfo
      */
     public function getDatumAanmeldingEinde()
     {
-      if ($this->DatumAanmeldingEinde == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumAanmeldingEinde);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumAanmeldingEinde == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumAanmeldingEinde);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -303,8 +302,8 @@ class TCasusInfo
      */
     public function setDatumAanmeldingEinde(\DateTime $DatumAanmeldingEinde)
     {
-      $this->DatumAanmeldingEinde = $DatumAanmeldingEinde->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumAanmeldingEinde = $DatumAanmeldingEinde->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -312,15 +311,15 @@ class TCasusInfo
      */
     public function getDatumIntake()
     {
-      if ($this->DatumIntake == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumIntake);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumIntake == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumIntake);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -329,8 +328,8 @@ class TCasusInfo
      */
     public function setDatumIntake(\DateTime $DatumIntake)
     {
-      $this->DatumIntake = $DatumIntake->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumIntake = $DatumIntake->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -338,15 +337,15 @@ class TCasusInfo
      */
     public function getDatumIntakeEinde()
     {
-      if ($this->DatumIntakeEinde == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumIntakeEinde);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumIntakeEinde == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumIntakeEinde);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -355,8 +354,8 @@ class TCasusInfo
      */
     public function setDatumIntakeEinde(\DateTime $DatumIntakeEinde)
     {
-      $this->DatumIntakeEinde = $DatumIntakeEinde->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumIntakeEinde = $DatumIntakeEinde->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -364,15 +363,15 @@ class TCasusInfo
      */
     public function getDatumInventarisatie()
     {
-      if ($this->DatumInventarisatie == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumInventarisatie);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumInventarisatie == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumInventarisatie);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -381,8 +380,8 @@ class TCasusInfo
      */
     public function setDatumInventarisatie(\DateTime $DatumInventarisatie)
     {
-      $this->DatumInventarisatie = $DatumInventarisatie->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumInventarisatie = $DatumInventarisatie->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -390,15 +389,15 @@ class TCasusInfo
      */
     public function getDatumInventarisatieEinde()
     {
-      if ($this->DatumInventarisatieEinde == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumInventarisatieEinde);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumInventarisatieEinde == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumInventarisatieEinde);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -407,8 +406,8 @@ class TCasusInfo
      */
     public function setDatumInventarisatieEinde(\DateTime $DatumInventarisatieEinde)
     {
-      $this->DatumInventarisatieEinde = $DatumInventarisatieEinde->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumInventarisatieEinde = $DatumInventarisatieEinde->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -416,15 +415,15 @@ class TCasusInfo
      */
     public function getDatumAnalyse()
     {
-      if ($this->DatumAnalyse == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumAnalyse);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumAnalyse == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumAnalyse);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -433,8 +432,8 @@ class TCasusInfo
      */
     public function setDatumAnalyse(\DateTime $DatumAnalyse)
     {
-      $this->DatumAnalyse = $DatumAnalyse->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumAnalyse = $DatumAnalyse->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -442,15 +441,15 @@ class TCasusInfo
      */
     public function getDatumAnalyseEinde()
     {
-      if ($this->DatumAnalyseEinde == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumAnalyseEinde);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumAnalyseEinde == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumAnalyseEinde);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -459,8 +458,8 @@ class TCasusInfo
      */
     public function setDatumAnalyseEinde(\DateTime $DatumAnalyseEinde)
     {
-      $this->DatumAnalyseEinde = $DatumAnalyseEinde->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumAnalyseEinde = $DatumAnalyseEinde->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -468,7 +467,7 @@ class TCasusInfo
      */
     public function getCrisis()
     {
-      return $this->Crisis;
+        return $this->Crisis;
     }
 
     /**
@@ -477,8 +476,8 @@ class TCasusInfo
      */
     public function setCrisis($Crisis)
     {
-      $this->Crisis = $Crisis;
-      return $this;
+        $this->Crisis = $Crisis;
+        return $this;
     }
 
     /**
@@ -486,15 +485,15 @@ class TCasusInfo
      */
     public function getDatumCrisis()
     {
-      if ($this->DatumCrisis == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumCrisis);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumCrisis == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumCrisis);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -503,8 +502,8 @@ class TCasusInfo
      */
     public function setDatumCrisis(\DateTime $DatumCrisis)
     {
-      $this->DatumCrisis = $DatumCrisis->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumCrisis = $DatumCrisis->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -512,15 +511,15 @@ class TCasusInfo
      */
     public function getDatumCrisisEinde()
     {
-      if ($this->DatumCrisisEinde == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumCrisisEinde);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumCrisisEinde == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumCrisisEinde);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -529,8 +528,8 @@ class TCasusInfo
      */
     public function setDatumCrisisEinde(\DateTime $DatumCrisisEinde)
     {
-      $this->DatumCrisisEinde = $DatumCrisisEinde->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumCrisisEinde = $DatumCrisisEinde->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -538,15 +537,15 @@ class TCasusInfo
      */
     public function getDatumAfwijzing()
     {
-      if ($this->DatumAfwijzing == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumAfwijzing);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumAfwijzing == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumAfwijzing);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -555,8 +554,8 @@ class TCasusInfo
      */
     public function setDatumAfwijzing(\DateTime $DatumAfwijzing)
     {
-      $this->DatumAfwijzing = $DatumAfwijzing->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumAfwijzing = $DatumAfwijzing->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -564,15 +563,15 @@ class TCasusInfo
      */
     public function getDatumAfwijzingEinde()
     {
-      if ($this->DatumAfwijzingEinde == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumAfwijzingEinde);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumAfwijzingEinde == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumAfwijzingEinde);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -581,8 +580,8 @@ class TCasusInfo
      */
     public function setDatumAfwijzingEinde(\DateTime $DatumAfwijzingEinde)
     {
-      $this->DatumAfwijzingEinde = $DatumAfwijzingEinde->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumAfwijzingEinde = $DatumAfwijzingEinde->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -590,15 +589,15 @@ class TCasusInfo
      */
     public function getDatumStop()
     {
-      if ($this->DatumStop == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumStop);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumStop == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumStop);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -607,8 +606,8 @@ class TCasusInfo
      */
     public function setDatumStop(\DateTime $DatumStop)
     {
-      $this->DatumStop = $DatumStop->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumStop = $DatumStop->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -616,15 +615,15 @@ class TCasusInfo
      */
     public function getDatumStopEinde()
     {
-      if ($this->DatumStopEinde == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumStopEinde);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumStopEinde == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumStopEinde);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -633,8 +632,8 @@ class TCasusInfo
      */
     public function setDatumStopEinde(\DateTime $DatumStopEinde)
     {
-      $this->DatumStopEinde = $DatumStopEinde->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumStopEinde = $DatumStopEinde->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -642,15 +641,15 @@ class TCasusInfo
      */
     public function getVerwachteEinddatumIntake()
     {
-      if ($this->VerwachteEinddatumIntake == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->VerwachteEinddatumIntake);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->VerwachteEinddatumIntake == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->VerwachteEinddatumIntake);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -659,8 +658,8 @@ class TCasusInfo
      */
     public function setVerwachteEinddatumIntake(\DateTime $VerwachteEinddatumIntake)
     {
-      $this->VerwachteEinddatumIntake = $VerwachteEinddatumIntake->format(\DateTime::ATOM);
-      return $this;
+        $this->VerwachteEinddatumIntake = $VerwachteEinddatumIntake->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -668,7 +667,7 @@ class TCasusInfo
      */
     public function getPVA()
     {
-      return $this->PVA;
+        return $this->PVA;
     }
 
     /**
@@ -677,8 +676,7 @@ class TCasusInfo
      */
     public function setPVA($PVA)
     {
-      $this->PVA = $PVA;
-      return $this;
+        $this->PVA = $PVA;
+        return $this;
     }
-
 }

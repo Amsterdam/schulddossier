@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class RelatiecodeBedrijfcodeArray implements RequestInterface
 {
-
     /**
      * @var
      * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRelatiecodeBedrijfcode
@@ -42,7 +41,4 @@ class RelatiecodeBedrijfcodeArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

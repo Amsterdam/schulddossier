@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TPLHeader
 {
-
     /**
      * @var int $RelatieCode
      */
@@ -27,9 +26,9 @@ class TPLHeader
      */
     public function __construct($RelatieCode, $Volgnummer, \DateTime $Startdatum)
     {
-      $this->RelatieCode = $RelatieCode;
-      $this->Volgnummer = $Volgnummer;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        $this->RelatieCode = $RelatieCode;
+        $this->Volgnummer = $Volgnummer;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
     }
 
     /**
@@ -37,7 +36,7 @@ class TPLHeader
      */
     public function getRelatieCode()
     {
-      return $this->RelatieCode;
+        return $this->RelatieCode;
     }
 
     /**
@@ -46,8 +45,8 @@ class TPLHeader
      */
     public function setRelatieCode($RelatieCode)
     {
-      $this->RelatieCode = $RelatieCode;
-      return $this;
+        $this->RelatieCode = $RelatieCode;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class TPLHeader
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -64,8 +63,8 @@ class TPLHeader
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -73,15 +72,15 @@ class TPLHeader
      */
     public function getStartdatum()
     {
-      if ($this->Startdatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Startdatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Startdatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -90,8 +89,7 @@ class TPLHeader
      */
     public function setStartdatum(\DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        return $this;
     }
-
 }

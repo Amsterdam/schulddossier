@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class PLHeaderArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPLHeader
      */
@@ -41,7 +40,4 @@ class PLHeaderArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TableRequestInfo implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -124,7 +122,4 @@ class TableRequestInfo implements RequestInterface
 
         return $new;
     }
-
-
 }
-

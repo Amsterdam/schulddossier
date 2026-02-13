@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBBoxTekst
 {
-
     /**
      * @var int $Code
      */
@@ -33,10 +32,10 @@ class TBBoxTekst
      */
     public function __construct($Code, $Naam, $Onderwerp, $Tekst)
     {
-      $this->Code = $Code;
-      $this->Naam = $Naam;
-      $this->Onderwerp = $Onderwerp;
-      $this->Tekst = $Tekst;
+        $this->Code = $Code;
+        $this->Naam = $Naam;
+        $this->Onderwerp = $Onderwerp;
+        $this->Tekst = $Tekst;
     }
 
     /**
@@ -44,7 +43,7 @@ class TBBoxTekst
      */
     public function getCode()
     {
-      return $this->Code;
+        return $this->Code;
     }
 
     /**
@@ -53,8 +52,8 @@ class TBBoxTekst
      */
     public function setCode($Code)
     {
-      $this->Code = $Code;
-      return $this;
+        $this->Code = $Code;
+        return $this;
     }
 
     /**
@@ -62,7 +61,7 @@ class TBBoxTekst
      */
     public function getNaam()
     {
-      return $this->Naam;
+        return $this->Naam;
     }
 
     /**
@@ -71,8 +70,8 @@ class TBBoxTekst
      */
     public function setNaam($Naam)
     {
-      $this->Naam = $Naam;
-      return $this;
+        $this->Naam = $Naam;
+        return $this;
     }
 
     /**
@@ -80,7 +79,7 @@ class TBBoxTekst
      */
     public function getOnderwerp()
     {
-      return $this->Onderwerp;
+        return $this->Onderwerp;
     }
 
     /**
@@ -89,8 +88,8 @@ class TBBoxTekst
      */
     public function setOnderwerp($Onderwerp)
     {
-      $this->Onderwerp = $Onderwerp;
-      return $this;
+        $this->Onderwerp = $Onderwerp;
+        return $this;
     }
 
     /**
@@ -98,7 +97,7 @@ class TBBoxTekst
      */
     public function getTekst()
     {
-      return $this->Tekst;
+        return $this->Tekst;
     }
 
     /**
@@ -107,8 +106,7 @@ class TBBoxTekst
      */
     public function setTekst($Tekst)
     {
-      $this->Tekst = $Tekst;
-      return $this;
+        $this->Tekst = $Tekst;
+        return $this;
     }
-
 }

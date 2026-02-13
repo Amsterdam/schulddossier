@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class RelatiecodeBedrijfcodeArray
 {
-
     /**
      * @var TRelatiecodeBedrijfcode[] $TRelatiecodeBedrijfcode
      */
     protected $TRelatiecodeBedrijfcode = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class RelatiecodeBedrijfcodeArray
      */
     public function getTRelatiecodeBedrijfcode()
     {
-      return $this->TRelatiecodeBedrijfcode;
+        return $this->TRelatiecodeBedrijfcode;
     }
 
     /**
@@ -30,8 +28,7 @@ class RelatiecodeBedrijfcodeArray
      */
     public function setTRelatiecodeBedrijfcode(array $TRelatiecodeBedrijfcode = null)
     {
-      $this->TRelatiecodeBedrijfcode = $TRelatiecodeBedrijfcode;
-      return $this;
+        $this->TRelatiecodeBedrijfcode = $TRelatiecodeBedrijfcode;
+        return $this;
     }
-
 }

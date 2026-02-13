@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SchuldArray
 {
-
     /**
      * @var TSchuld[] $TSchuld
      */
     protected $TSchuld = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class SchuldArray
      */
     public function getTSchuld()
     {
-      return $this->TSchuld;
+        return $this->TSchuld;
     }
 
     /**
@@ -30,8 +28,7 @@ class SchuldArray
      */
     public function setTSchuld(array $TSchuld = null)
     {
-      $this->TSchuld = $TSchuld;
-      return $this;
+        $this->TSchuld = $TSchuld;
+        return $this;
     }
-
 }

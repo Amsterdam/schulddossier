@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSaldoReserveringen
 {
-
     /**
      * @var SaldoReserveringArray $SaldoReserveringen
      */
@@ -21,8 +20,8 @@ class TSaldoReserveringen
      */
     public function __construct($SaldoReserveringen, $Totaal)
     {
-      $this->SaldoReserveringen = $SaldoReserveringen;
-      $this->Totaal = $Totaal;
+        $this->SaldoReserveringen = $SaldoReserveringen;
+        $this->Totaal = $Totaal;
     }
 
     /**
@@ -30,7 +29,7 @@ class TSaldoReserveringen
      */
     public function getSaldoReserveringen()
     {
-      return $this->SaldoReserveringen;
+        return $this->SaldoReserveringen;
     }
 
     /**
@@ -39,8 +38,8 @@ class TSaldoReserveringen
      */
     public function setSaldoReserveringen($SaldoReserveringen)
     {
-      $this->SaldoReserveringen = $SaldoReserveringen;
-      return $this;
+        $this->SaldoReserveringen = $SaldoReserveringen;
+        return $this;
     }
 
     /**
@@ -48,7 +47,7 @@ class TSaldoReserveringen
      */
     public function getTotaal()
     {
-      return $this->Totaal;
+        return $this->Totaal;
     }
 
     /**
@@ -57,8 +56,7 @@ class TSaldoReserveringen
      */
     public function setTotaal($Totaal)
     {
-      $this->Totaal = $Totaal;
-      return $this;
+        $this->Totaal = $Totaal;
+        return $this;
     }
-
 }

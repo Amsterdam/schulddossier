@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 trait FilterAble
 {
-
     private array $allowedFilterFields = [
         't.naam',
         'g.email',

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBijlage
 {
-
     /**
      * @var eSoortDocument $Soort
      */
@@ -27,9 +26,9 @@ class TBijlage
      */
     public function __construct($Soort, $Extension, $Bijlage)
     {
-      $this->Soort = $Soort;
-      $this->Extension = $Extension;
-      $this->Bijlage = $Bijlage;
+        $this->Soort = $Soort;
+        $this->Extension = $Extension;
+        $this->Bijlage = $Bijlage;
     }
 
     /**
@@ -37,7 +36,7 @@ class TBijlage
      */
     public function getSoort()
     {
-      return $this->Soort;
+        return $this->Soort;
     }
 
     /**
@@ -46,8 +45,8 @@ class TBijlage
      */
     public function setSoort($Soort)
     {
-      $this->Soort = $Soort;
-      return $this;
+        $this->Soort = $Soort;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class TBijlage
      */
     public function getExtension()
     {
-      return $this->Extension;
+        return $this->Extension;
     }
 
     /**
@@ -64,8 +63,8 @@ class TBijlage
      */
     public function setExtension($Extension)
     {
-      $this->Extension = $Extension;
-      return $this;
+        $this->Extension = $Extension;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class TBijlage
      */
     public function getBijlage()
     {
-      return $this->Bijlage;
+        return $this->Bijlage;
     }
 
     /**
@@ -82,8 +81,7 @@ class TBijlage
      */
     public function setBijlage($Bijlage)
     {
-      $this->Bijlage = $Bijlage;
-      return $this;
+        $this->Bijlage = $Bijlage;
+        return $this;
     }
-
 }

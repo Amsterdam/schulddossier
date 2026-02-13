@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SRVEiserArray
 {
-
     /**
      * @var TSRVEiser[] $TSRVEiser
      */
     protected $TSRVEiser = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class SRVEiserArray
      */
     public function getTSRVEiser()
     {
-      return $this->TSRVEiser;
+        return $this->TSRVEiser;
     }
 
     /**
@@ -30,8 +28,7 @@ class SRVEiserArray
      */
     public function setTSRVEiser(array $TSRVEiser = null)
     {
-      $this->TSRVEiser = $TSRVEiser;
-      return $this;
+        $this->TSRVEiser = $TSRVEiser;
+        return $this;
     }
-
 }

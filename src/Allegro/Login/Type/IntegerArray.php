@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class IntegerArray implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -41,7 +40,4 @@ class IntegerArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

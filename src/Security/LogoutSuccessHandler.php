@@ -14,13 +14,11 @@ use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
 
 class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
 {
-
     public function __construct(
-        private readonly string          $url,
-        private readonly string          $keycloakVersion,
+        private readonly string $url,
+        private readonly string $keycloakVersion,
         private readonly RouterInterface $router
-    )
-    {
+    ) {
     }
 
     /**
