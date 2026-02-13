@@ -34,9 +34,11 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use Http\Discovery\Exception\NotFoundException;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
+use League\Flysystem\Adapter\Local;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpWord\IOFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -548,8 +550,7 @@ class AppDossierController extends AbstractController
         Dossier                $dossier,
         Document               $document,
         FileStorageSelector    $fileStorageSelector
-    ): Response
-    {
+    ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
         return $this->streamedFileResponse(
@@ -559,16 +560,52 @@ class AppDossierController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/wordviewer")
+     * @Security("is_granted('access', dossier)")
+     * @ParamConverter("dossier", options={"id"="dossierId"})
+     * @ParamConverter("document", options={"id"="documentId"})
+     */
+    public function wordViewerAction(
+        Dossier                $dossier,
+        Document               $document,
+        FileStorageSelector    $fileStorageSelector
+    ): Response {
+        $this->checkDocumentAccess($dossier, $document);
+
+        $adapter = $fileStorageSelector->getFileStorageForDossier()->getAdapter();
+
+        /** @var Local $adapter */
+        $rootDirectory = $adapter->getPathPrefix();
+        $filePath = $rootDirectory .  '/dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
+
+        try {
+            $phpWord = IOFactory::load($filePath);
+        } catch (\Exception $e) {
+            return new Response('Error loading the Word document: ' . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
+        ob_start();
+        $htmlWriter->save('php://output');
+        $htmlContent = ob_get_clean();
+
+        return $this->render('Dossier/detailDocumentWordViewer.html.twig', [
+            'html_content' => $htmlContent,
+            'document' => $document,
+            'dossier' => $dossier
+        ]);
+    }
+
     private function streamedFileResponse(
         FlysystemFilesystem $filesystem,
         Dossier             $dossier,
         Document            $document,
         string              $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
-    ): StreamedResponse
-    {
+    ): StreamedResponse {
         try {
             $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
-            $fileStream = $filesystem->readStream($path);
+            $fileStream = $filesystem->readStream(path: $path);
         } catch (FileNotFoundException $e) {
             throw new NotFoundHttpException('Document not found');
         }

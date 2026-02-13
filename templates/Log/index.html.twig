@@ -1,100 +1,169 @@
 {% extends 'master.html.twig' %}
 
-{% block title %}Logboek - {{ parent() }}{% endblock %}
+{% block title %}Logboek -
+	{{ parent() }}
+{% endblock %}
 
 {% block pdfsplitter %}{% endblock %}
 
 {% block document %}
-<p class="nav-internal--breadcrumb">
-    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class=" nav-internal--breadcrumb__home">
-        <span>Start</span>
-    </a>
-    <a href="#" class="nav-internal--breadcrumb__section in-active">
-        <i class="nav-internal--breadcrumb__icon-arrow-right"></i>
-        <span>Logboek</span>
-    </a>
-</p>
-    <div class="document well">
-        <div class="document-header group">
-            <h1 class="document-title">{% if dossier is defined %}{{ dossier.clientNaam }} logboek{% else %}Logboek{% endif %}</h1>
-            <nav class="nav-internal">
-                <ul>
-                    <li>Logboek</li>
-                </ul>
-            </nav>
+	<p class="nav-internal--breadcrumb">
+		<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_index') }}" class=" nav-internal--breadcrumb__home">
+			<span>Start</span>
+		</a>
+		<a href="#" class="nav-internal--breadcrumb__section in-active">
+			<i class="nav-internal--breadcrumb__icon-arrow-right"></i>
+			<span>Logboek</span>
+		</a>
+	</p>
+	<div class="document well">
+		<div class="document-header group">
+			<h1 class="document-title">
+				{% if dossier is defined %}
+					{{ dossier.clientNaam }}
+					logboek{% else %}Logboek
+				{% endif %}
+			</h1>
+			<nav class="nav-internal">
+				<ul>
+					<li>Logboek</li>
+				</ul>
+			</nav>
+		</div>
+		{% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}
+			{{ form_start(form) }}
+			{{ form_row(form.gebruiker) }}
+			<p class="explanation">Filtert logs op 'gebruiker gewijzigd' en zoekt naar de gebruiker waarop wijzigingen zijn aangebracht.</p>
+			<div class="buttons right">
+				<button type="submit" class="button primary">Filter Logs</button>
+			</div>
+			{{ form_end(form) }}
+		{% endif %}
 
-        </div>
-        <ul class="aantekeningen log-list">
+		{% if logs is empty %}
+			Er zijn geen logs gevonden
+		{% else %}
 
-        {% for log in logs %}
-            <li class="aantekening
-                {% if log.data.gebruiker is defined %}
-                {% if log.data.gebruiker.email is defined %}
-                {% if log.data.gebruiker.email == app.user.email %} aantekening-mijn {% endif %}
-                {% endif %}
-                {% endif %}
-                {% if log.data.gebruiker.type is defined %} {{ log.data.gebruiker.type|lower }}{% endif %}">
-                <p class="aantekening-meta">
-                  <time>
-                      {% if log.datumTijd|date('d-m-Y') == date()|date('d-m-Y') %}
-                      Vandaag {{ log.datumTijd|date('H:i') }}
-                      {% else %}
-                      {{ log.datumTijd|date('d-m-Y H:i') }}
-                      {% endif %}
-                  </time>
-                  {% if log.data.gebruiker is defined %}
-                  {% if log.data.gebruiker.email is defined and log.data.gebruiker.email == app.user.email %}
-                      <strong>Jij</strong>
-                  {% else %}
-                  <strong>{% if log.data.gebruiker.email is defined %}<a href="mailto:{{ log.data.gebruiker.email }}">{% endif %}{{ log.data.gebruiker.naam }} {% if log.data.gebruiker.email is defined %}</a>{% endif %}</strong>
-                  {% endif %}
-                  {% endif %}
+			<ul class="aantekeningen log-list">
 
-                </p>
-                <div class="aantekening-bericht">
-                            {% if log.name == 'dossier_status_gewijzigd' %}
-                                Dossier status gewijzigd naar: <strong>{{ log.data.status.naar }}</strong>
-                            {% endif %}
-                            {% if log.name == 'dossier_gewijzigd' %}
-                                Dossier gewijzigd
-                            {% endif %}
-                            {% if log.name == 'dossier_verwijderd' %}
-                                Dossier verwijderd
-                                <br>
-                                Schuldhulpverlener/Bewindvoerder dossiernr.: {{ log.data.dossier.allegro_nummer }} <br>
-                                GKA dossiernr.: {{ log.data.dossier.regas_nummer }}
-                            {% endif %}
-                            {% if log.name == 'gebruiker_ingelogd' %}
-                                Gebruiker ingelogd
-                            {% endif %}
-                            {% if log.name == 'gebruiker_gewijzigd' %}
-                                Gebruiker gewijzigd
-                            {% endif %}
-                           {% if log.name == 'gebruiker_verwijderd' %}
-                               Gebruiker verwijderd
-                           {% endif %}
-                            {% if log.name == 'dossier_aangemaakt' %}
-                                Dossier aangemaakt
-                            {% endif %}
-                            {% if log.name == 'gebruiker_disabled_door_systeem' %}
-                                Het systeem heeft <strong>{{ log.data.aangepast.gebruikers }}</strong> gebruikers gedeactiveerd vanwege inactiviteit.
-                            {% endif %}
-                            {% if log.name == 'gebruiker_verwijderd_door_systeem' %}
-                                Het systeem heeft <strong>{{ log.data.aangepast.gebruikers }}</strong> gebruikers geanonimiseerd en uitgeschakeld vanwege inactiviteit. Hierdoor zijn <strong>{{ log.data.aangepast.actionevents }}</strong> logregels aangepast.
-                            {% endif %}
+				{% for log in logs %}
+					<li class="aantekening
+											{% if log.data.gebruiker is defined %}
+												{% if log.data.gebruiker.email is defined %}
+													{% if log.data.gebruiker.email == app.user.email %} aantekening-mijn
+													{% endif %}
+												{% endif %}
+											{% endif %}
+											{% if log.data.gebruiker.type is defined %} {{ log.data.gebruiker.type|lower }}
+											{% endif %}">
+						<p class="aantekening-meta">
+							<time>
+								{% if log.datumTijd|date('d-m-Y') == date()|date('d-m-Y') %}
+									Vandaag
+									{{ log.datumTijd|date('H:i') }}
+								{% else %}
+									{{ log.datumTijd|date('d-m-Y H:i') }}
+								{% endif %}
+							</time>
+							{% if log.data.gebruiker is defined %}
+								{% if log.data.gebruiker.email is defined and log.data.gebruiker.email == app.user.email %}
+									<strong>Jij</strong>
+								{% else %}
+									<strong>
+										{% if log.data.gebruiker.email is defined %}
+											<a href="mailto:{{ log.data.gebruiker.email }}">
+											{% endif %}
+											{{ log.data.gebruiker.naam }}
+											{% if log.data.gebruiker.email is defined %}
+											</a>
+										{% endif %}
+									</strong>
+								{% endif %}
+							{% endif %}
 
-                            {% if log.name == 'dossier_geopened' %}
-                                Dossier geopend: {% if log.dossier is defined %}
-                                {% if log.dossier.clientNaam is defined %}
-                                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
-                                {% else %}
-                                    <i>Verwijderd</i>
-                                {% endif %}
-                            {% endif %}
-                            {% endif %}
-                </div>
-            </li>
-        {% endfor %}
-        </ul>
-    </div>
+						</p>
+						<div class="aantekening-bericht">
+							{% if log.name == 'dossier_status_gewijzigd' %}
+								Dossier status gewijzigd naar:
+								<strong>{{ log.data.status.naar }}</strong>
+							{% endif %}
+							{% if log.name == 'dossier_gewijzigd' %}
+								Dossier gewijzigd
+							{% endif %}
+							{% if log.name == 'dossier_verwijderd' %}
+								Dossier verwijderd
+								<br>
+								Schuldhulpverlener/Bewindvoerder dossiernr.:
+								{{ log.data.dossier.allegro_nummer }}
+								<br>
+								GKA dossiernr.:
+								{{ log.data.dossier.regas_nummer }}
+							{% endif %}
+							{% if log.name == 'gebruiker_ingelogd' %}
+								Gebruiker ingelogd
+							{% endif %}
+							{% if log.name == 'gebruiker_gewijzigd' %}
+								Gebruiker gewijzigd
+								<br>
+								<br>
+								<strong>Gewijzigd naar</strong>
+								<br>
+								<div class="flex-row space-between">
+									<span>Naam:</span>
+									<span>{{ log.data.gewijzigd.gebruiker.naam }}</span>
+								</div>
+								<div class="flex-row space-between">
+									<span>E-mail:</span>
+									<span>{{ log.data.gewijzigd.gebruiker.email }}</span>
+								</div>
+								<div class="flex-row space-between">
+									<span>Gebruikersnaam:</span>
+									<span>{{ log.data.gewijzigd.gebruiker.username }}</span>
+								</div>
+								<div class="flex-row space-between">
+									<span>Type:</span>
+									<span>{{ log.data.gewijzigd.gebruiker.type|transform_type_in_title }}</span>
+								</div>
+								<br>
+								<strong>Gewijzigd door</strong><br>
+								<div class="flex-row space-between">
+									<span>Gebruikersnaam:</span>
+									<span>{{ log.data.gebruiker.username }}</span>
+								</div>
+							{% endif %}
+							{% if log.name == 'gebruiker_verwijderd' %}
+								Gebruiker verwijderd
+							{% endif %}
+							{% if log.name == 'dossier_aangemaakt' %}
+								Dossier aangemaakt
+							{% endif %}
+							{% if log.name == 'gebruiker_disabled_door_systeem' %}
+								Het systeem heeft
+								<strong>{{ log.data.aangepast.gebruikers }}</strong>
+								gebruikers gedeactiveerd vanwege inactiviteit.
+							{% endif %}
+							{% if log.name == 'gebruiker_verwijderd_door_systeem' %}
+								Het systeem heeft
+								<strong>{{ log.data.aangepast.gebruikers }}</strong>
+								gebruikers geanonimiseerd en uitgeschakeld vanwege inactiviteit. Hierdoor zijn
+								<strong>{{ log.data.aangepast.actionevents }}</strong>
+								logregels aangepast.
+							{% endif %}
+
+							{% if log.name == 'dossier_geopened' %}
+								Dossier geopend:
+								{% if log.dossier is defined %}
+									{% if log.dossier.clientNaam is defined %}
+										<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+									{% else %}
+										<i>Verwijderd</i>
+									{% endif %}
+								{% endif %}
+							{% endif %}
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif  %}
+	</div>
 {% endblock %}

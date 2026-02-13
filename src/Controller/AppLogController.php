@@ -8,6 +8,10 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchLogFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository;
+
 
 /**
  * @Route("/app/log")
@@ -17,20 +21,32 @@ class AppLogController extends AbstractController
 {
     /**
      * @Route("/")
-     * @Security("is_granted('ROLE_USER')")
+     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      */
-    public function indexAction()
+    public function indexAction(Request $request, ActionEventRepository $actionEventRepository)
     {
-        $logs = $this->getDoctrine()
-            ->getRepository(ActionEvent::class)
-            ->findBy([], ['datumTijd' => 'DESC'], 100);
+        $form = $this->createForm(SearchLogFormType::class);
+        $form->handleRequest($request);
 
-        if (!$logs) {
-            throw $this->createNotFoundException(
-                'No logs found '
-            );
+        $filters = [];
+        $logs = [];
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            if (!empty($data['gebruiker'])) {
+                $filters['gebruiker'] = $data['gebruiker'];
+            }
+            if (!empty($data['logType'])) {
+                $filters['logType'] = $data['logType'];
+            }
         }
 
-        return $this->render('Log/index.html.twig', ['logs' => $logs]);
+        $logs = $actionEventRepository->findByFilters($filters);
+
+        return $this->render('Log/index.html.twig', [
+            'form' => $form->createView(),
+            'logs' => $logs
+        ]);
     }
 }
