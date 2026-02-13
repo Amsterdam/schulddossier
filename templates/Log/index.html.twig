@@ -30,7 +30,7 @@
 				</ul>
 			</nav>
 		</div>
-		{% if  is_granted('ROLE_ADMIN')  %}
+		{% if is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}
 			{{ form_start(form) }}
 			{{ form_row(form.gebruiker) }}
 			<p class="explanation">Filtert logs op 'gebruiker gewijzigd' en zoekt naar de gebruiker waarop wijzigingen zijn aangebracht.</p>
