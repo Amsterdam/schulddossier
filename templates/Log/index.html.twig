@@ -55,6 +55,17 @@
                             {% if log.name == 'dossier_status_gewijzigd' %}
                                 Dossier status gewijzigd naar: <strong>{{ log.data.status.naar }}</strong>
                             {% endif %}
+                            {% if log.name == 'dossier_voorlegger_item_gewijzigd' %}
+                                Dossier gewijzigd:
+                                {% if log.data.voorlegger_section_fragment_id is defined and log.data.voorlegger_section_title is defined %}
+                                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}{{ log.data.voorlegger_section_fragment_id }}">{{ log.data.voorlegger_section_title }}</a>
+                                {% endif %}
+                                {% if log.dossier is defined %}
+                                    {% if log.dossier.clientNaam is defined %}
+                                        in <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
                             {% if log.name == 'dossier_gewijzigd' %}
                                 Dossier gewijzigd
                             {% endif %}
