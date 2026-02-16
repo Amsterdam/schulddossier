@@ -68,7 +68,7 @@ use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use ZipArchive;
 use ReflectionClass;
-
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * @Route("/app/dossier")
@@ -275,7 +275,7 @@ class AppDossierController extends AbstractController
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailVoorleggerAction(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier, EventDispatcherInterface $eventDispatcher)
+    public function detailVoorleggerAction(Request $request, EntityManagerInterface $em, WorkflowRegistry $registry, Dossier $dossier, EventDispatcherInterface $eventDispatcher, NormalizerInterface $normalizer)
     {
         if ($dossier->getVoorlegger() === null) {
             $dossier->setVoorlegger(new Voorlegger());
@@ -288,13 +288,22 @@ class AppDossierController extends AbstractController
             'disable_group' => $this->getUser()->getType(),
         ]);
 
-        $originalEntity   = clone $voorleggerForm->getData();
+
+        $originalEntity = clone $voorleggerForm->getData();
+
+        $originalValuesArray = $normalizer->normalize($originalEntity, null,  [
+            'groups' => ['voorlegger_compare']
+        ]);
 
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
             $submittedEntity  = $voorleggerForm->getData();
-            // $updatedFields = array_diff_assoc($existingVoorleggerValues, $incomingVoorleggerValues);
-          
+            $submittedValuesArray = $normalizer->normalize($submittedEntity, null,  [
+                'groups' => ['voorlegger_compare']
+            ]);
+
+            $updatedFields = array_diff_assoc($originalValuesArray, $submittedValuesArray);
+
             $differences = $this->compareEntities($originalEntity, $submittedEntity);
 
 
