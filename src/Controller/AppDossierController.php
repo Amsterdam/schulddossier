@@ -67,6 +67,8 @@ use Symfony\Component\Workflow\Registry as WorkflowRegistry;
 use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use ZipArchive;
+use ReflectionClass;
+
 
 /**
  * @Route("/app/dossier")
@@ -286,8 +288,16 @@ class AppDossierController extends AbstractController
             'disable_group' => $this->getUser()->getType(),
         ]);
 
+        $originalEntity   = clone $voorleggerForm->getData();
+
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
+            $submittedEntity  = $voorleggerForm->getData();
+            // $updatedFields = array_diff_assoc($existingVoorleggerValues, $incomingVoorleggerValues);
+          
+            $differences = $this->compareEntities($originalEntity, $submittedEntity);
+
+
             $sendCorrespondentieNotification = false;
             foreach ($voorleggerForm->all() as $key => $child) {
                 if ($child->has('file')) {
@@ -1347,5 +1357,27 @@ class AppDossierController extends AbstractController
         if ($document->isInPrullenbak() === true) {
             throw $this->createNotFoundException('Document not available');
         }
+    }
+
+    function compareEntities($entity1, $entity2): array
+    {
+        $differences = [];
+        $reflection = new ReflectionClass(get_class($entity1));
+        $properties = $reflection->getProperties();
+
+        foreach ($properties as $property) {
+            $property->setAccessible(true); // Allow access to private/protected properties
+            $value1 = $property->getValue($entity1);
+            $value2 = $property->getValue($entity2);
+
+            if ($value1 !== $value2) {
+                $differences[$property->getName()] = [
+                    'original' => $value1,
+                    'updated' => $value2,
+                ];
+            }
+        }
+
+        return $differences;
     }
 }
