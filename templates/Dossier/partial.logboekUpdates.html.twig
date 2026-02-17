@@ -1,3 +1,4 @@
+{% if updates is not empty %}
 <div class="table">
     <table>
         <thead>
@@ -18,3 +19,6 @@
         </tbody>
     </table>
 </div>
+{% else %}
+    <p class="logboek-no-updates">Er zijn geen velden bijgewerkt</p>
+{% endif %}
