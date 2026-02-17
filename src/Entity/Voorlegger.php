@@ -5,7 +5,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity
@@ -39,31 +38,32 @@ class Voorlegger
      */
     private $dossier;
 
+    // ---
+
+
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @Groups({"voorlegger_compare"})
      */
     private $legitimatieOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @Groups({"voorlegger_compare"}) 
      */
     private $legitimatieOntvangenGka;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @Groups({"voorlegger_compare"}) 
      */
     private $vtlbOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @Groups({"voorlegger_compare"}) 
      */
     private $vtlbOntvangenGka;
 
@@ -72,42 +72,40 @@ class Voorlegger
      * @ORM\Column(type="decimal", precision=8, scale=2, nullable=true)
      * @Assert\Type("numeric")
      * @Assert\Range(min=-100000, max=100000)
-     * @Groups({"voorlegger_compare"}) 
      */
     private $vtlbBedrag;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $inkomstenspecificatieOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $inkomstenspecificatieOntvangenGka;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $arbeidsovereenkomstOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $arbeidsovereenkomstOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $arbeidsovereenkomstNvt;
 
@@ -115,14 +113,12 @@ class Voorlegger
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $arbeidsovereenkomstWerkgever = null;
 
     /**
      * @var \Date|null
      * @ORM\Column(type="date", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $arbeidsovereenkomstEinddatum;
 
@@ -131,7 +127,6 @@ class Voorlegger
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
      * @Assert\Choice(callback="getContractOpties")
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $arbeidsovereenkomstContract;
 
@@ -139,14 +134,12 @@ class Voorlegger
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $arbeidsovereenkomstPartnerWerkgever = null;
 
     /**
      * @var \Date|null
      * @ORM\Column(type="date", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $arbeidsovereenkomstPartnerEinddatum;
 
@@ -155,91 +148,80 @@ class Voorlegger
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
      * @Assert\Choice(callback="getContractOpties")
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $arbeidsovereenkomstPartnerContract;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingUwvOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingUwvOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingUwvNvt;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingInkomenUitWerk;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingUwvZw;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingUwvWw;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingUwvWia;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingUwvWajong;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingGemeenteAmsterdamWPI;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingSVBAOW;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingSVBANW;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingGemeenteAmsterdamIOAW;
 
@@ -247,225 +229,211 @@ class Voorlegger
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingUwvOverig;
+
+    // ---
 
     /**
      * @var integer|null
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Length(min=0, max=255)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private ?int $verloningsDag;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $voorlopigeTeruggaafBelastingdienstOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $voorlopigeTeruggaafBelastingdienstOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $voorlopigeTeruggaafBelastingdienstNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $alimentatieOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $alimentatieOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $alimentatieNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $kostgeldOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $kostgeldOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $kostgeldNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $toeslagenOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $toeslagenOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $toeslagenNvt;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $toeslagenHuur;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $toeslagenZorg;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $toeslagenKinderopvang;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $toeslagenKindgebondenBudget;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $huurspecificatieOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $huurspecificatieOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $huurspecificatieNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $polisbladZorgverzekeringOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $polisbladZorgverzekeringOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $polisbladZorgverzekeringNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $alimentatieEchtscheidingsconvenantOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $alimentatieEchtscheidingsconvenantOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $alimentatieEchtscheidingsconvenantNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $overeenkomstKinderopvangOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $overeenkomstKinderopvangOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $overeenkomstKinderopvangNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $kwijtscheldingGemeenteBelastingOntvangenShv;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $kwijtscheldingGemeenteBelastingNvt;
 
@@ -474,70 +442,68 @@ class Voorlegger
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
      * @Assert\Choice(choices={"ja", "nee", "nvt"})
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $kwijtscheldingGemeenteBelasting;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $corrigerenGemeenteBelastingOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $corrigerenGemeenteBelastingNvt;
+
+    // ---
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $autoNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $autoTaxatieOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $autoTaxatieOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $autoTaxatieNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $autolastenKmWoonwerkverkeerOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $autolastenKmWoonwerkverkeerOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $autolastenKmWoonwerkverkeerNvt;
 
@@ -545,225 +511,216 @@ class Voorlegger
      * @var integer
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Type("numeric")
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $autolastenKmWoonwerkverkeer;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $verklaringWerkgeverOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $verklaringWerkgeverOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $verklaringWerkgeverNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $vrijwaringsbewijsOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $vrijwaringsbewijsOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $vrijwaringsbewijsNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $schuldenoverzichtOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $schuldenoverzichtOntvangenGka;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $vorderingenOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $vorderingenOntvangenGka;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $inzageToetsingBkrOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $inzageToetsingBkrOntvangenGka;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $stabilisatieovereenkomstOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $stabilisatieovereenkomstOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $stabilisatieovereenkomstNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $cjibOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $cjibOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $cjib;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $cjibNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $meterstandenEnergieOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $meterstandenEnergieOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $meterstandenEnergieNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $waternetOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $waternetOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $waternetNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $retourbewijsModemOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $retourbewijsModemOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $retourbewijsModemNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $toelichtingAanvraagSchuldsaneringClientOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $toelichtingAanvraagSchuldsaneringClientOntvangenGka;
 
+    // ---
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $ontstaanVanSchulden;
 
@@ -771,91 +728,82 @@ class Voorlegger
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=0, max=255)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $inspanningsverplichting;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $toelichtingAanvraagSchuldsaneringShvOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $toelichtingAanvraagSchuldsaneringShvOntvangenGka;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingOnderBewindstellingOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingOnderBewindstellingOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $beschikkingOnderBewindstellingNvt;
+
+    // ---
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $budgetbeheerOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $budgetbeheerOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $budgetbeheerNvt;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $budgetbeheerPlangroep;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $budgetbeheerCav;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $budgetbeheerFibu;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $budgetbeheerOverig;
 
@@ -864,21 +812,18 @@ class Voorlegger
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $gereserveerdeGeldenOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $gereserveerdeGeldenOntvangenGka;
 
     /**
      * @var boolean
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $gereserveerdeGeldenNvt;
 
@@ -887,7 +832,6 @@ class Voorlegger
      * @ORM\Column(type="decimal", nullable=true, precision=8, scale=2)
      * @Assert\Type("numeric")
      * @Assert\Range(min=-100000, max=100000)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $gereserveerdeGelden;
 
@@ -896,14 +840,12 @@ class Voorlegger
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $ondertekendAanvraagFormulierOntvangenShv;
 
     /**
      * @var integer
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $ondertekendAanvraagFormulierOntvangenGka;
 
@@ -912,7 +854,6 @@ class Voorlegger
     /**
      * @var string
      * @ORM\Column(type="text", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $aanvullendeInformatie;
 
@@ -922,7 +863,6 @@ class Voorlegger
      * @var string
      * @ORM\Column(type="string", length=125, nullable=true)
      * @Assert\Length(min=0, max=125)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $energieBedrijf;
 
@@ -930,14 +870,12 @@ class Voorlegger
      * @var string
      * @ORM\Column(type="string", length=25, nullable=true)
      * @Assert\Length(min=0, max=25)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $energieBedrijfKlantnummer;
 
     /**
      * @var \Date
      * @ORM\Column(type="date", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $energieBedrijfDatumOpname;
 
@@ -946,7 +884,6 @@ class Voorlegger
      * @ORM\Column(type="bigint", nullable=true)
      * @Assert\Type("numeric")
      * @Assert\Range(min=-100000, max=100000)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $energieBedrijfT1;
 
@@ -955,7 +892,6 @@ class Voorlegger
      * @ORM\Column(type="bigint", nullable=true)
      * @Assert\Type("numeric")
      * @Assert\Range(min=-100000, max=100000)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $energieBedrijfT2;
 
@@ -964,7 +900,6 @@ class Voorlegger
      * @ORM\Column(type="float", nullable=true)
      * @Assert\Type("numeric")
      * @Assert\Range(min=-100000, max=100000)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $energieBedrijfGas;
 
@@ -972,7 +907,6 @@ class Voorlegger
      * @var string
      * @ORM\Column(type="string", length=125, nullable=true)
      * @Assert\Length(min=0, max=125)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $warmteBedrijf;
 
@@ -980,14 +914,12 @@ class Voorlegger
      * @var string
      * @ORM\Column(type="string", length=25, nullable=true)
      * @Assert\Length(min=0, max=25)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $warmteBedrijfKlantnummer;
 
     /**
      * @var \Date
      * @ORM\Column(type="date", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $warmteBedrijfDatumOpname;
 
@@ -996,7 +928,6 @@ class Voorlegger
      * @ORM\Column(type="float", nullable=true)
      * @Assert\Type("numeric")
      * @Assert\Range(min=-100000, max=100000)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $warmteBedrijfOpname;
 
@@ -1004,14 +935,13 @@ class Voorlegger
      * @var string
      * @ORM\Column(type="string", length=25, nullable=true)
      * @Assert\Length(min=0, max=25)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $drinkwaterKlantnummer;
 
     /**
      * @var \Date
      * @ORM\Column(type="date", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
+
      */
     private $drinkwaterDatumOpname;
 
@@ -1020,42 +950,36 @@ class Voorlegger
      * @ORM\Column(type="float", nullable=true)
      * @Assert\Type("numeric")
      * @Assert\Range(min=-100000, max=100000)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $drinkwaterOpname;
 
     /**
      * @var boolean|null
      * @ORM\Column(type="boolean", nullable=true, options={"default" : false})
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $aangifteBelastingdienst;
 
     /**
      * @var integer|null
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $aangifteBelastingdienstShv;
 
     /**
      * @var integer|null
      * @ORM\Column(type="smallint", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $aangifteBelastingdienstGka;
 
     /**
      * @var boolean|null
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $aangifteBelastingdienstNvt;
 
     /**
      * @var boolean|null
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $jongerenSchuldenvrijeStart;
 
@@ -1063,7 +987,6 @@ class Voorlegger
      * @var string|null
      * @ORM\Column(type="string", length=125, nullable=true)
      * @Assert\Length(min=0, max=125)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private ?string $jssAdviseurNaam;
 
@@ -1071,7 +994,6 @@ class Voorlegger
      * @var string|null
      * @ORM\Column(type="string", length=125, nullable=true)
      * @Assert\Length(min=0, max=125)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private ?string $jssAdviseurTelefoon;
 
@@ -1079,42 +1001,36 @@ class Voorlegger
      * @var string|null
      * @ORM\Column(type="string", length=125, nullable=true)
      * @Assert\Length(min=0, max=125)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private ?string $jssAdviseurEmail;
 
     /**
      * @var boolean|null
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $kindregeling;
 
     /**
      * @var boolean|null
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $saneringsKrediet;
 
     /**
      * @var boolean|null
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $principebeslissing;
 
     /**
      * @var boolean|null
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $schuldenOpDeWerkvloer;
 
     /**
      * @var boolean|null
      * @ORM\Column(type="boolean", nullable=true)
-     * @GROUPS({"voorlegger_compare"}) 
      */
     private $herfinancering;
 
