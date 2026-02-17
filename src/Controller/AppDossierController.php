@@ -652,9 +652,10 @@ class AppDossierController extends AbstractController
             ->getRepository(ActionEventEntity::class)
             ->findBy([
                 'name' => [
-                    'dossier_status_gewijzigd',
-                    'dossier_gewijzigd',
-                    'dossier_send_to_allegro'
+                ActionEvent::DOSSIER_GEWIJZIGD,
+                ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
+                ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
+                ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD
                 ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));

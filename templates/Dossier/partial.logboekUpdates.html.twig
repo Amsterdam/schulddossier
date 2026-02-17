@@ -1,0 +1,18 @@
+<table>
+    <thead>
+        <tr>
+            <th>Dataveld</th>
+            <th>Originele waarde</th>
+            <th>Bijgewerkte waarde</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for field, values in updates %}
+            <tr>
+                <td>{{ field }}</td>
+                <td>{{ values.original }}</td>
+                <td>{{ values.updated }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -239,7 +239,7 @@ class ActionEvent extends Event
 
         $data = array_merge(
             self::getGebruikerData($gebruiker),
-            $voorleggerUpdates
+            ["updates" => $voorleggerUpdates]
         );
 
         return new self(self::DOSSIER_VOORLEGGER_GEWIJZIGD, $data, $dossier);
