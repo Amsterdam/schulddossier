@@ -6,8 +6,10 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Event;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\EventDispatcher\Event;
+use ReflectionClass;
 
 class ActionEvent extends Event
 {
@@ -36,6 +38,7 @@ class ActionEvent extends Event
     const GEBRUIKER_INGELOGD = 'gebruiker_ingelogd';
     const DOSSIER_GEWIJZIGD = 'dossier_gewijzigd';
     const DOSSIER_STATUS_GEWIJZIGD = 'dossier_status_gewijzigd';
+    const DOSSIER_VOORLEGGER_GEWIJZIGD = 'dossier_voorlegger_gewijzigd';
     const GEBRUIKER_GEWIJZIGD = 'gebruiker_gewijzigd';
     const GEBRUIKER_VERWIJDERD = 'gebruiker_verwijderd';
     const GEBRUIKER_DISABLED_SYSTEM = 'gebruiker_disabled_door_systeem';
@@ -219,6 +222,31 @@ class ActionEvent extends Event
     }
 
     /**
+     * @param Gebruiker $gebruiker
+     * @param Dossier $dossier
+     * @param Voorlegger $originalVoorlegger
+     * @param Voorlegger $toTsubmittedVoorleggerransition
+     *
+     * @return ActionEvent
+     */
+    public static function registerDossierVoorleggerGewijzigd(
+        Gebruiker $gebruiker,
+        Dossier $dossier,
+        Voorlegger $originalVoorlegger,
+        Voorlegger $submittedVoorlegger,
+    ) {
+        $voorleggerUpdates = self::getEntityUpdates($originalVoorlegger, $submittedVoorlegger);
+
+        $data = array_merge(
+            self::getGebruikerData($gebruiker),
+            $voorleggerUpdates
+        );
+
+        return new self(self::DOSSIER_VOORLEGGER_GEWIJZIGD, $data, $dossier);
+    }
+
+
+    /**
      * @param Gebruiker|UserInterface $gebruiker
      * @param Gebruiker $verwijderdeGebruiker
      * @return self
@@ -291,5 +319,27 @@ class ActionEvent extends Event
                 "regas_nummer" => $dossier->getRegasNummer(),
             ],
         ];
+    }
+
+    public static function getEntityUpdates($originalEntity, $submittedEntity): array
+    {
+        $updates = [];
+        $reflection = new ReflectionClass(get_class($originalEntity));
+        $properties = $reflection->getProperties();
+
+        foreach ($properties as $property) {
+            $property->setAccessible(true);
+            $originalValue = $property->getValue($originalEntity);
+            $submittedValue = $property->getValue($submittedEntity);
+
+            if ($originalValue !== $submittedValue) {
+                $updates[$property->getName()] = [
+                    'original' => $originalValue,
+                    'updated' => $submittedValue,
+                ];
+            }
+        }
+
+        return $updates;
     }
 }

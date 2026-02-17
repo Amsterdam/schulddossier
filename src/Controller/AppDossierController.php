@@ -288,16 +288,10 @@ class AppDossierController extends AbstractController
             'disable_group' => $this->getUser()->getType(),
         ]);
 
-        $originalEntity   = clone $voorleggerForm->getData();
+        $originalVoorlegger   = clone $voorleggerForm->getData();
 
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
-            $submittedEntity  = $voorleggerForm->getData();
-            // $updatedFields = array_diff_assoc($existingVoorleggerValues, $incomingVoorleggerValues);
-          
-            $differences = $this->compareEntities($originalEntity, $submittedEntity);
-
-
             $sendCorrespondentieNotification = false;
             foreach ($voorleggerForm->all() as $key => $child) {
                 if ($child->has('file')) {
@@ -360,7 +354,10 @@ class AppDossierController extends AbstractController
             if ($sendCorrespondentieNotification === true) {
                 $eventDispatcher->dispatch(new DossierAddedCorrespondentie($dossier, $this->getUser()), DossierAddedCorrespondentie::NAME);
             }
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+
+            $submittedVoorlegger  = $voorleggerForm->getData();
+
+            $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $originalVoorlegger, $submittedVoorlegger), ActionEvent::NAME);
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
 
@@ -1357,27 +1354,5 @@ class AppDossierController extends AbstractController
         if ($document->isInPrullenbak() === true) {
             throw $this->createNotFoundException('Document not available');
         }
-    }
-
-    function compareEntities($entity1, $entity2): array
-    {
-        $differences = [];
-        $reflection = new ReflectionClass(get_class($entity1));
-        $properties = $reflection->getProperties();
-
-        foreach ($properties as $property) {
-            $property->setAccessible(true); // Allow access to private/protected properties
-            $value1 = $property->getValue($entity1);
-            $value2 = $property->getValue($entity2);
-
-            if ($value1 !== $value2) {
-                $differences[$property->getName()] = [
-                    'original' => $value1,
-                    'updated' => $value2,
-                ];
-            }
-        }
-
-        return $differences;
     }
 }
