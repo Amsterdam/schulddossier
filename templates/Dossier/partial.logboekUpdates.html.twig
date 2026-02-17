@@ -1,18 +1,20 @@
-<table>
-    <thead>
-        <tr>
-            <th>Dataveld</th>
-            <th>Originele waarde</th>
-            <th>Bijgewerkte waarde</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for field, values in updates %}
+<div class="table">
+    <table>
+        <thead>
             <tr>
-                <td>{{ field }}</td>
-                <td>{{ values.original }}</td>
-                <td>{{ values.updated }}</td>
+                <th>Veld</th>
+                <th>Origineel</th>
+                <th>Bijgewerkt</th>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            {% for field, values in updates %}
+                <tr>
+                    <td>{{ field }}</td>
+                    <td class="logboek-update-original-value">{{ values.original }}</td>
+                    <td class="logboek-update-updated-value">{{ values.updated }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -20,3 +20,15 @@
     }
   }
 }
+
+.table {
+  table {
+    td.logboek-update-original-value{
+      color: $borderColor2;
+    }
+    td.logboek-update-updated-value{
+      color: $textColor;
+      font-weight: bold;
+    }
+  }
+}
