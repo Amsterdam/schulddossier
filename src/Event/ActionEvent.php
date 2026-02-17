@@ -235,6 +235,14 @@ class ActionEvent extends Event
         Voorlegger $originalVoorlegger,
         Voorlegger $submittedVoorlegger,
     ) {
+
+        /* vtlbBedrag and Gereserveerdegelden are stored in the form as a string, but submitted as a float. 
+        The code below ensures they are always a float when compared.*/
+        $vtlbFloat = floatval(str_replace(',', '.', (string) $originalVoorlegger->getVtlbBedrag()));
+        $originalVoorlegger->setVtlbBedrag($vtlbFloat);
+        $gereserveerdeGeldenFloat = floatval(str_replace(',', '.', (string) $originalVoorlegger->getGereserveerdeGelden()));
+        $originalVoorlegger->setGereserveerdeGelden($gereserveerdeGeldenFloat);
+
         $voorleggerUpdates = self::getEntityUpdates($originalVoorlegger, $submittedVoorlegger);
 
         $data = array_merge(
