@@ -28,10 +28,9 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldenFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldItemFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
-use Http\Discovery\Exception\NotFoundException;
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\SchuldeiserOrganisationType;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
 use League\Flysystem\Adapter\Local;
@@ -44,7 +43,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -64,8 +62,6 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
-use Symfony\Contracts\Cache\ItemInterface;
-use Symfony\Contracts\HttpClient\ResponseInterface;
 use ZipArchive;
 
 /**
@@ -191,6 +187,7 @@ class AppDossierController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($dossier);
+            $dossierChangeSet = $this->getDossierChangeSet($dossier, $em);
             $em->flush();
 
             $allegroCheck = isset($form['allegroCheck']) ? $form['allegroCheck']->getData() : false;
@@ -220,7 +217,7 @@ class AppDossierController extends AbstractController
                 }
             }
 
-            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier), ActionEvent::NAME);
+            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier, $dossierChangeSet), ActionEvent::NAME);
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_createaddtional', [
                 'dossierId' => $dossier->getId()
@@ -243,20 +240,16 @@ class AppDossierController extends AbstractController
             $dossier->setVoorlegger(new Voorlegger());
         }
 
-        $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger(), [
-            'disabled' => $dossier->isInPrullenbak() === true,
-            'disable_group' => $this->getUser()->getType()
-        ]);
-
         $form = $this->createForm(DetailDossierAdditionalFormType::class, $dossier);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($dossier);
+            $dossierChangeSet = $this->getDossierChangeSet($dossier, $em);
             $em->flush();
             $this->addFlash('success', 'Dossier aangemaakt');
 
-            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier), ActionEvent::NAME);
+            $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $dossierChangeSet), ActionEvent::NAME);
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
                 'dossierId' => $dossier->getId()
@@ -336,7 +329,7 @@ class AppDossierController extends AbstractController
                 $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
                 $workflow->apply($dossier, $subForm['transition']->getData());
 
-                // TODO: This code is never reached, because workflow apply return the method. 
+                // TODO: This code is never reached, because workflow apply return the method.
                 // Nevertheless it would be nice to give the user feedback about an update. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-580
 
                 // if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
@@ -346,14 +339,18 @@ class AppDossierController extends AbstractController
                 // }
             }
 
+            $voorleggerChangeSet = $this->getVoorleggerChangeSet($dossier->getVoorlegger(), $em);
+            $dossierChangeSet =  $this->getDossierChangeSet($dossier, $em);
+            $combinedChangeSet = array_merge($dossierChangeSet, $voorleggerChangeSet);
+
             $em->flush();
             if ($sendCorrespondentieNotification === true) {
                 $eventDispatcher->dispatch(new DossierAddedCorrespondentie($dossier, $this->getUser()), DossierAddedCorrespondentie::NAME);
             }
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+
+            $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $combinedChangeSet), ActionEvent::NAME);
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
-
 
         $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
 
@@ -378,8 +375,9 @@ class AppDossierController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $dossierChangeSet = $this->getDossierChangeSet($dossier, $em);
             $em->flush();
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+            $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $dossierChangeSet), ActionEvent::NAME);
 
             if ($request->isXmlHttpRequest()) {
                 return new JsonResponse(['msg' => 'OK']);
@@ -522,10 +520,10 @@ class AppDossierController extends AbstractController
      * @ParamConverter("document", options={"id"="documentId"})
      */
     public function detailDocumentAction(
-        Request                $request,
-        Dossier                $dossier,
-        Document               $document,
-        FileStorageSelector    $fileStorageSelector
+        Request $request,
+        Dossier $dossier,
+        Document $document,
+        FileStorageSelector $fileStorageSelector
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
@@ -544,10 +542,10 @@ class AppDossierController extends AbstractController
      * @ParamConverter("document", options={"id"="documentId"})
      */
     public function downloadDocumentAction(
-        Request                $request,
-        Dossier                $dossier,
-        Document               $document,
-        FileStorageSelector    $fileStorageSelector
+        Request $request,
+        Dossier $dossier,
+        Document $document,
+        FileStorageSelector $fileStorageSelector
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
@@ -565,9 +563,9 @@ class AppDossierController extends AbstractController
      * @ParamConverter("document", options={"id"="documentId"})
      */
     public function wordViewerAction(
-        Dossier                $dossier,
-        Document               $document,
-        FileStorageSelector    $fileStorageSelector
+        Dossier $dossier,
+        Document $document,
+        FileStorageSelector $fileStorageSelector
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
@@ -597,9 +595,9 @@ class AppDossierController extends AbstractController
 
     private function streamedFileResponse(
         FlysystemFilesystem $filesystem,
-        Dossier             $dossier,
-        Document            $document,
-        string              $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
+        Dossier $dossier,
+        Document $document,
+        string $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
     ): StreamedResponse {
         try {
             $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
@@ -645,9 +643,13 @@ class AppDossierController extends AbstractController
             ->getRepository(ActionEventEntity::class)
             ->findBy([
                 'name' => [
-                    'dossier_status_gewijzigd',
-                    'dossier_gewijzigd',
-                    'dossier_send_to_allegro'
+                ActionEvent::DOSSIER_GEWIJZIGD,
+                ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
+                ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
+                ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD,
+                ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD,
+                ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT,
+                ActionEvent::DOSSIER_AANGEMAAKT,
                 ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
@@ -704,17 +706,25 @@ class AppDossierController extends AbstractController
                     $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
                 }
             }
+
+            $schuldItemUpdates = [];
+
+            foreach ($schuldItems as $schuldItem) {
+                $schuldItemUpdates = $this->getSchuldItemUpdate($schuldItem, $em, $schuldItemUpdates);
+            }
+
             $em->flush();
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
-            //if ($request->isXmlHttpRequest()) {
-            //    return new JsonResponse(['status' => 'OK']);
-            //}
-            //$this->addFlash('success', 'Opgeslagen');
+
+            if (!empty($schuldItemUpdates)) {
+                $eventDispatcher->dispatch(ActionEvent::registerSchuldItemsGewijzigd(
+                    $this->getUser(),
+                    $dossier,
+                    $schuldItemUpdates
+                ), ActionEvent::NAME);
+            }
+
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
         }
-        //else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
-        //    return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-        //}
 
         $schuldItem = new SchuldItem();
         $createForm = $this->createForm(SchuldItemFormType::class, $schuldItem);
@@ -754,13 +764,14 @@ class AppDossierController extends AbstractController
                 $aantekening->setTekst($createForm->get('aantekening')->get('tekst')->getData());
                 $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
             }
+            $schuldItemUpdate = $this->getSchuldItemUpdate($schuldItem, $em, []);
+
             $em->flush();
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
-            //$this->addFlash('success', 'Toegevoegd');
+
+            $eventDispatcher->dispatch(ActionEvent::registerSchuldItemAangemaakt($this->getUser(), $dossier, $schuldItemUpdate), ActionEvent::NAME);
+
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
-        } //else if ($createForm->isSubmitted() && $request->isXmlHttpRequest()) {
-        //    return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-        //}
+        }
 
         $schuldeiser = new Schuldeiser();
         $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser, [
@@ -1347,5 +1358,194 @@ class AppDossierController extends AbstractController
         if ($document->isInPrullenbak() === true) {
             throw $this->createNotFoundException('Document not available');
         }
+    }
+
+    /**
+     * Processes the change set for a dossier entity.
+     *
+     * Fetches the change set, removes specific keys, formats date fields,
+     * and resolves proxy entities for organisation-related fields.
+     *
+     * @param object $dossier The dossier entity.
+     * @param EntityManagerInterface $entityManager The entity manager instance.
+     *
+     * @return array The processed change set.
+     */
+    private function getDossierChangeSet(object $dossier, EntityManagerInterface $entityManager)
+    {
+        $dossierChangeSet = $this->getEntityChangeSet($dossier, $entityManager);
+        $dossierChangeSet = $this->removeKeys(['dossierTemplate', 'allegroSyncDate', 'sendToAllegro', 'allegroStatus', 'allegroExtraStatus', 'aanmaakDatumTijd', 'inPrullenbak', 'eersteKeerVerzondenAanGKA', 'aanmaker'], $dossierChangeSet);
+        $dossierChangeSet = $this->formatDateChangeSet($dossierChangeSet, 'indiendatumTijd');
+        $dossierChangeSet = $this->formatDateChangeSet($dossierChangeSet, 'clientGeboortedatum');
+        $dossierChangeSet = $this->formatDateChangeSet($dossierChangeSet, 'partnerGeboortedatum');
+        $dossierChangeSet = $this->formatDateChangeSet($dossierChangeSet, 'clientBurgelijkeStaatSinds');
+        $dossierChangeSet = $this->loadProxyEntityForOrganisationType('organisatie', $dossierChangeSet);
+        $dossierChangeSet = $this->loadProxyEntityForOrganisationType('teamGka', $dossierChangeSet);
+        $dossierChangeSet = $this->loadProxyEntityForOrganisationType('medewerkerOrganisatie', $dossierChangeSet);
+
+        // Convert clientKinderenList to string
+        if (array_key_exists('clientKinderen', $dossierChangeSet)) {
+            foreach ([0, 1] as $index) {
+                $currentValue = $dossierChangeSet['clientKinderen'][$index];
+                if (!empty($currentValue) || (is_array($currentValue) && empty($currentValue))) {
+                    $dossierChangeSet['clientKinderen'][$index] =  implode(',', (array) $currentValue);
+                }
+                if (is_array($currentValue) && empty($currentValue)) {
+                    $dossierChangeSet['clientKinderen'][$index] = null;
+                }
+            }
+        }
+        return $dossierChangeSet;
+    }
+
+    /**
+     * Retrieves and formats the change set for a given Voorlegger entity.
+     *
+     * This function retrieves the change set of the provided Voorlegger entity,
+     * and formats specific date fields within the change set.
+     *
+     * @param object $voorlegger The Voorlegger entity for which the change set is retrieved.
+     * @param EntityManagerInterface $entityManager The entity manager used to retrieve the change set.
+     *
+     * @return array The formatted change set for the Voorlegger entity.
+     */
+    private function getVoorleggerChangeSet(object $voorlegger, EntityManagerInterface $entityManager)
+    {
+        $voorleggerChangeSet = $this->getEntityChangeSet($voorlegger, $entityManager);
+        $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'arbeidsovereenkomstEinddatum');
+        $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'arbeidsovereenkomstPartnerEinddatum');
+        $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'energieBedrijfDatumOpname');
+        $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'warmteBedrijfDatumOpname');
+        $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'drinkwaterDatumOpname');
+
+        return $voorleggerChangeSet;
+    }
+
+    /**
+     * Gets the changeset for an entity.
+     *
+     * @param object $entity
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return mixed[][]
+     * @phpstan-return array<string, array{mixed, mixed}|PersistentCollection>
+     */
+    private function getEntityChangeSet($entity, EntityManagerInterface $entityManager)
+    {
+        $unitOfWork = $entityManager->getUnitOfWork();
+        $unitOfWork->computeChangeSets();
+
+        return $unitOfWork->getEntityChangeSet($entity);
+    }
+
+    /**
+     * Processes the schuldenChangeSet array to replace proxy objects for all organisation types
+     * (e.g., 'schuldeiser' and 'incassant') with their respective data arrays.
+     *
+     * @param array $schuldenChangeSet The change set containing potential proxy objects for organisations.
+     *
+     * @return array The updated change set with proxy objects replaced by arrays containing organisation data.
+     */
+    private function loadProxyEntityForSchuldeiserOrganisations(array $schuldenChangeSet)
+    {
+        $SchuldeiserOrganisationTypes = SchuldeiserOrganisationType::TYPES;
+
+        foreach ($SchuldeiserOrganisationTypes as $organisationType) {
+            $schuldenChangeSet = $this->loadProxyEntityForOrganisationType($organisationType, $schuldenChangeSet);
+        }
+
+        return $schuldenChangeSet;
+    }
+
+    /**
+     * Replaces proxy objects for a specific organisation type in the schuldenChangeSet array
+     * with arrays containing the organisation's ID and bedrijfsnaam.
+     *
+     * @param string $organisationType The type of organisation (e.g., 'schuldeiser' or 'incassant').
+     * @param array $schuldenChangeSet The change set containing potential proxy objects for the given organisation type.
+     *
+     * @return array The updated change set with proxy objects for the specified organisation type replaced by arrays.
+     */
+    private function loadProxyEntityForOrganisationType($organisationType, array $schuldenChangeSet)
+    {
+        if (!array_key_exists($organisationType, $schuldenChangeSet)) {
+            return $schuldenChangeSet;
+        }
+
+        foreach ([0, 1] as $index) {
+            $currentItem = $schuldenChangeSet[$organisationType][$index];
+            if (!empty($currentItem)) {
+                $schuldenChangeSet[$organisationType][$index] = [
+                    'id' => $currentItem->getId(),
+                    'naam' => $currentItem instanceof Schuldeiser
+                        ? $currentItem->getBedrijfsnaam()
+                        : $currentItem->getNaam()
+                ];
+            }
+        }
+        return $schuldenChangeSet;
+    }
+
+    /**
+     * Formats date values in a specified key of a change set array.
+     *
+     * Checks if the given key exists in the array. If found, formats the DateTime
+     * objects in the key's values to 'd-m-Y' and returns the updated array.
+     *
+     * @param array  $changeSet The array containing the change set data.
+     * @param string $key       The key in the array whose date values need formatting.
+     *
+     * @return array The updated array with formatted date values for the specified key.
+     */
+    private function formatDateChangeSet(array $changeSet, string $key): array
+    {
+        if (array_key_exists($key, $changeSet)) {
+            foreach ($changeSet[$key] as $index => $date) {
+                if (!empty($date)) {
+                    $changeSet[$key][$index] = $date->format('d-m-Y');
+                }
+            }
+        }
+
+        return $changeSet;
+    }
+
+    /**
+     * Processes the change set of a schuld item and appends the updated data to the update array.
+     *
+     * @param object $schuldItem The schuld item entity to process.
+     * @param EntityManagerInterface $entityManager The entity manager to retrieve the change set.
+     * @param array $schuldItemUpdate The array to append the updated schuld item data.
+     *
+     * @return array The updated schuld item update array.
+     */
+    private function getSchuldItemUpdate(object $schuldItem, EntityManagerInterface $entityManager, array $schuldItemUpdate)
+    {
+        $schuldenChangeSet = $this->getEntityChangeSet($schuldItem, $entityManager);
+
+        if (empty($schuldenChangeSet)) {
+            return $schuldItemUpdate;
+        }
+
+        $schuldenChangeSet = $this->loadProxyEntityForSchuldeiserOrganisations($schuldenChangeSet);
+        $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'vaststelDatum');
+        $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'ontstaansDatum');
+
+        // Remove keys that are already stored in the action-event object to avoid duplication.
+        $keysToRemove = ['aanmaker', 'bewerker', 'dossier', 'verwijderd', 'aanmaakDatumTijd', 'bewerkDatumTijd'];
+        $schuldenChangeSet = $this->removeKeys($keysToRemove, $schuldenChangeSet);
+
+        $schuldItemUpdate[] = [
+            'id' => $schuldItem->getId(),
+            'schuldeiserNaam' => $schuldItem->getSchuldeiser()->getBedrijfsnaam(),
+            'bedrag' => $schuldItem->getBedrag(),
+            'schuldenChangeSet' => $schuldenChangeSet
+        ];
+        return $schuldItemUpdate;
+    }
+
+    private function removeKeys($keysToRemove, $array)
+    {
+        return  array_diff_key($array, array_flip($keysToRemove));
     }
 }

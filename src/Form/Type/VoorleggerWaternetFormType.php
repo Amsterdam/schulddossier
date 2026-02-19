@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierFormLabel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -46,7 +47,7 @@ class VoorleggerWaternetFormType extends AbstractType
         ]);
         $builder->add('drinkwaterOpname', NumberType::class, [
             'required' => false,
-            'label' => "Meterstand Water",
+            'label' => DossierFormLabel::getFormLabel('drinkwaterOpname'),
             'help' => 'DB: voorlegger.drinkwater_opname'
         ]);
 

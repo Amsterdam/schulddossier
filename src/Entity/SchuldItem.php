@@ -277,7 +277,7 @@ class SchuldItem
 
     public function getBedrag()
     {
-        return $this->bedrag;
+        return (float) $this->bedrag;
     }
 
     public function setBedrag($bedrag)
@@ -287,7 +287,7 @@ class SchuldItem
 
     public function getBedragOorspronkelijk()
     {
-        return $this->bedragOorspronkelijk;
+        return (float) $this->bedragOorspronkelijk;
     }
 
     public function setBedragOorspronkelijk($bedragOorspronkelijk = null)

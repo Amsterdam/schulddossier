@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierFormLabel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -38,7 +39,7 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
         ]);
         $builder->add('jongerenSchuldenvrijeStart', CheckboxType::class, [
             'required' => false,
-            'label' => 'Jongeren Schuldenvrije Start (JSS)',
+            'label' => DossierFormLabel::getFormLabel('jongerenSchuldenvrijeStart'),
             'help' => 'DB: voorlegger.jongeren_schuldenvrije_start',
             'constraints' => [new Callback(function ($value, ExecutionContextInterface $executionContext) {
                 /**
@@ -65,38 +66,36 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
         ]);
         $builder->add('jssAdviseurNaam', TextType::class, [
             'required' => false,
-            'label' => 'Naam Jongerenadviseur',
+            'label' => DossierFormLabel::getFormLabel('jssAdviseurNaam'),
             'help' => 'DB: voorlegger.jss_adviseur_naam',
         ]);
         $builder->add('jssAdviseurTelefoon', TextType::class, [
             'required' => false,
-            'label' => 'Telefoonnummer Jongerenadviseur',
+            'label' => DossierFormLabel::getFormLabel('jssAdviseurTelefoon'),
             'help' => 'DB: voorlegger.jss_adviseur_telefoon',
         ]);
         $builder->add('jssAdviseurEmail', TextType::class, [
             'required' => false,
-            'label' => 'E-mailadres Jongerenadviseur',
+            'label' => DossierFormLabel::getFormLabel('jssAdviseurEmail'),
             'help' => 'DB: voorlegger.jss_adviseur_email',
         ]);
         $builder->add('kindregeling', CheckboxType::class, [
             'required' => false,
-            'label' => 'Kindregeling',
             'help' => 'DB: voorlegger.kindregeling',
         ]);
         $builder->add('saneringsKrediet', CheckboxType::class, [
             'required' => false,
-            'label' => 'Saneringskrediet (SK)',
+            'label' => DossierFormLabel::getFormLabel('saneringsKrediet'),
             'help' => 'DB: voorlegger.saneringskrediet',
         ]);
         $builder->add('principebeslissing', CheckboxType::class, [
             'required' => false,
-            'label' => 'Principebeslissing',
             'help' => 'DB: voorlegger.pricipebeslissing',
         ]);
 
         $builder->add('schuldenOpDeWerkvloer', CheckboxType::class, [
             'required' => false,
-            'label' => 'Betreft Schulden op de werkvloer?',
+            'label' => DossierFormLabel::getFormLabel('schuldenOpDeWerkvloer'),
             'help' => 'DB: voorlegger.schulden_op_de_werkvloer',
         ]);
         $builder->add('aanvullendeInformatie', TextareaType::class, [
