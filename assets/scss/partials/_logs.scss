@@ -20,3 +20,25 @@
     }
   }
 }
+
+.table {
+  table {
+    td.logboek-update-original-value{
+      color: $borderColor2;
+    }
+    td.logboek-update-updated-value{
+      color: $textColor;
+      font-weight: bold;
+    }
+    td.logboek-update-field{   
+      white-space: nowrap;       
+      overflow: hidden;         
+      text-overflow: ellipsis;   
+      max-width: 200px;         
+    }
+  }
+}
+
+.logboek-no-updates {
+  color: $borderColor2;
+}

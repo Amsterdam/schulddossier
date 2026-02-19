@@ -90,6 +90,12 @@
 							{% if log.name == 'dossier_gewijzigd' %}
 								Dossier gewijzigd
 							{% endif %}
+      						{% if log.name == 'dossier_voorlegger_gewijzigd' %}
+                                Dossier voorlegger gewijzigd
+                                <br>
+                                <br>
+                                {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.voorleggerChangeSet } %}
+                            {% endif %}
 							{% if log.name == 'dossier_verwijderd' %}
 								Dossier verwijderd
 								<br>

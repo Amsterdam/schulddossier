@@ -36,6 +36,7 @@ class ActionEvent extends Event
     const GEBRUIKER_INGELOGD = 'gebruiker_ingelogd';
     const DOSSIER_GEWIJZIGD = 'dossier_gewijzigd';
     const DOSSIER_STATUS_GEWIJZIGD = 'dossier_status_gewijzigd';
+    const DOSSIER_VOORLEGGER_GEWIJZIGD = 'dossier_voorlegger_gewijzigd';
     const GEBRUIKER_GEWIJZIGD = 'gebruiker_gewijzigd';
     const GEBRUIKER_VERWIJDERD = 'gebruiker_verwijderd';
     const GEBRUIKER_DISABLED_SYSTEM = 'gebruiker_disabled_door_systeem';
@@ -47,7 +48,6 @@ class ActionEvent extends Event
     const DOSSIER_HERSTELD = 'dossier_hersteld';
     const DOSSIER_SEND_TO_ALLEGRO = 'dossier_send_to_allegro';
 
-//    public function __construct(string $actionName, array $data = [])
     public function __construct(string $actionName, array $data = [], Dossier $dossier = null)
     {
         $this->action = $actionName;
@@ -217,6 +217,30 @@ class ActionEvent extends Event
 
         return new self(self::DOSSIER_STATUS_GEWIJZIGD, $data, $dossier);
     }
+
+    /**
+     * @param Gebruiker $gebruiker
+     * @param Dossier $dossier
+     * @param array $voorleggerChangeSet,
+     *
+     * @return ActionEvent
+     */
+    public static function registerDossierVoorleggerGewijzigd(
+        Gebruiker $gebruiker,
+        Dossier $dossier,
+        $voorleggerChangeSet,
+    ) {
+
+        $data = array_merge(
+            self::getGebruikerData($gebruiker),
+            [
+                "voorleggerChangeSet" => $voorleggerChangeSet,
+            ]
+        );
+
+        return new self(self::DOSSIER_VOORLEGGER_GEWIJZIGD, $data, $dossier);
+    }
+
 
     /**
      * @param Gebruiker|UserInterface $gebruiker

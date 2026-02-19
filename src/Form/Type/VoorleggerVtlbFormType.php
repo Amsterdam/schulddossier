@@ -27,6 +27,7 @@ class VoorleggerVtlbFormType extends AbstractType
         ]);
         $builder->add('vtlbBedrag', NumberType::class, [
             'required' => false,
+            'scale' => 2,
             'label' => 'Maandelijkse afloscapaciteit',
             'help' => 'DB: voorlegger.vtlb_bedrag'
         ]);

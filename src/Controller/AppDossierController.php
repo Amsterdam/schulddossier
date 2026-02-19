@@ -346,11 +346,14 @@ class AppDossierController extends AbstractController
                 // }
             }
 
+            $voorleggerChangeSet = $this->getEntityChangeSet($dossier->getVoorlegger(), $em);
+
             $em->flush();
             if ($sendCorrespondentieNotification === true) {
                 $eventDispatcher->dispatch(new DossierAddedCorrespondentie($dossier, $this->getUser()), DossierAddedCorrespondentie::NAME);
             }
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+
+            $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $voorleggerChangeSet), ActionEvent::NAME);
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
 
@@ -645,9 +648,10 @@ class AppDossierController extends AbstractController
             ->getRepository(ActionEventEntity::class)
             ->findBy([
                 'name' => [
-                    'dossier_status_gewijzigd',
-                    'dossier_gewijzigd',
-                    'dossier_send_to_allegro'
+                ActionEvent::DOSSIER_GEWIJZIGD,
+                ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
+                ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
+                ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD
                 ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
@@ -1347,5 +1351,22 @@ class AppDossierController extends AbstractController
         if ($document->isInPrullenbak() === true) {
             throw $this->createNotFoundException('Document not available');
         }
+    }
+
+    /**
+     * Gets the changeset for an entity.
+     *
+     * @param object $entity
+     * @param EntityManagerInterface $entityManager
+     * 
+     * @return mixed[][]
+     * @phpstan-return array<string, array{mixed, mixed}|PersistentCollection>
+     */
+    private function getEntityChangeSet($entity, EntityManagerInterface $entityManager)
+    {
+        $unitOfWork = $entityManager->getUnitOfWork();
+        $unitOfWork->computeChangeSets();
+
+        return $unitOfWork->getEntityChangeSet($entity);
     }
 }
