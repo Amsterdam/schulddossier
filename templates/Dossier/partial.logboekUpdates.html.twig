@@ -1,19 +1,43 @@
-{% if updates is not empty %}
+{% if changeSet is not empty %}
 <div class="table">
     <table>
         <thead>
             <tr>
                 <th>Veld</th>
-                <th>Origineel</th>
-                <th>Bijgewerkt</th>
+                <th>Oude waarde</th>
+                <th>Nieuwe waarde</th>
             </tr>
         </thead>
         <tbody>
-            {% for field, values in updates %}
+            {% for field, values in changeSet %}
                 <tr>
                     <td class="logboek-update-field">{{ field }}</td>
-                    <td class="logboek-update-original-value">{{ values.original }}</td>
-                    <td class="logboek-update-updated-value">{{ values.updated }}</td>
+                    <td class="logboek-update-original-value">
+                        {% if values[0] is same as(false) %}
+                            Nee
+                        {% elseif values[0] is same as(true) %}
+                            Ja
+                        {% elseif values[0] is null %}
+                            Geen waarde
+                        {% else %}
+                            {{ values[0] }}
+                        {% endif %}
+                    </td>
+                    <td class="logboek-update-updated-value">
+                        {% if values[1] is same as(false) %}
+                            Nee
+                        {% elseif values[1] is same as(true) %}
+                            Ja
+                        {% elseif values[1] is null %}
+                            Geen waarde
+                        {% else %}
+                            {{ values[1] }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Er zijn geen velden bijgewerkt</td>
                 </tr>
             {% endfor %}
         </tbody>

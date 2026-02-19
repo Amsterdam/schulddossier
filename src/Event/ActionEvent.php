@@ -50,7 +50,7 @@ class ActionEvent extends Event
     const DOSSIER_HERSTELD = 'dossier_hersteld';
     const DOSSIER_SEND_TO_ALLEGRO = 'dossier_send_to_allegro';
 
-//    public function __construct(string $actionName, array $data = [])
+    //    public function __construct(string $actionName, array $data = [])
     public function __construct(string $actionName, array $data = [], Dossier $dossier = null)
     {
         $this->action = $actionName;
@@ -232,22 +232,21 @@ class ActionEvent extends Event
     public static function registerDossierVoorleggerGewijzigd(
         Gebruiker $gebruiker,
         Dossier $dossier,
-        Voorlegger $originalVoorlegger,
-        Voorlegger $submittedVoorlegger,
+        $voorleggerChangeSet,
     ) {
 
         /* vtlbBedrag and Gereserveerdegelden are stored in the form as a string, but submitted as a float. 
         The code below ensures they are always a float when compared.*/
-        $vtlbFloat = floatval(str_replace(',', '.', (string) $originalVoorlegger->getVtlbBedrag()));
-        $originalVoorlegger->setVtlbBedrag($vtlbFloat);
-        $gereserveerdeGeldenFloat = floatval(str_replace(',', '.', (string) $originalVoorlegger->getGereserveerdeGelden()));
-        $originalVoorlegger->setGereserveerdeGelden($gereserveerdeGeldenFloat);
-
-        $voorleggerUpdates = self::getEntityUpdates($originalVoorlegger, $submittedVoorlegger);
+        // $vtlbFloat = floatval(str_replace(',', '.', (string) $originalVoorlegger->getVtlbBedrag()));
+        // $originalVoorlegger->setVtlbBedrag($vtlbFloat);
+        // $gereserveerdeGeldenFloat = floatval(str_replace(',', '.', (string) $originalVoorlegger->getGereserveerdeGelden()));
+        // $originalVoorlegger->setGereserveerdeGelden($gereserveerdeGeldenFloat);
 
         $data = array_merge(
             self::getGebruikerData($gebruiker),
-            ["updates" => $voorleggerUpdates]
+            [
+                "voorleggerChangeSet" => $voorleggerChangeSet,
+            ]
         );
 
         return new self(self::DOSSIER_VOORLEGGER_GEWIJZIGD, $data, $dossier);
