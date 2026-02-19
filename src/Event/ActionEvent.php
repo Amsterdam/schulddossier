@@ -224,8 +224,7 @@ class ActionEvent extends Event
     /**
      * @param Gebruiker $gebruiker
      * @param Dossier $dossier
-     * @param Voorlegger $originalVoorlegger
-     * @param Voorlegger $toTsubmittedVoorleggerransition
+     * @param array $voorleggerChangeSet,
      *
      * @return ActionEvent
      */
