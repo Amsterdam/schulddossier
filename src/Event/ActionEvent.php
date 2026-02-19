@@ -320,26 +320,4 @@ class ActionEvent extends Event
             ],
         ];
     }
-
-    public static function getEntityUpdates($originalEntity, $submittedEntity): array
-    {
-        $updates = [];
-        $reflection = new ReflectionClass(get_class($originalEntity));
-        $properties = $reflection->getProperties();
-
-        foreach ($properties as $property) {
-            $property->setAccessible(true);
-            $originalValue = $property->getValue($originalEntity);
-            $submittedValue = $property->getValue($submittedEntity);
-
-            if ($originalValue !== $submittedValue) {
-                $updates[$property->getName()] = [
-                    'original' => $originalValue,
-                    'updated' => $submittedValue,
-                ];
-            }
-        }
-
-        return $updates;
-    }
 }
