@@ -6,10 +6,8 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Event;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\EventDispatcher\Event;
-use ReflectionClass;
 
 class ActionEvent extends Event
 {
