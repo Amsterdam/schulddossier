@@ -64,7 +64,7 @@
                                 {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.voorleggerChangeSet } %}
                             {% endif %}
                             {% if log.name == 'dossier_schulditems_gewijzigd' %}
-                                Dossier schulditems gewijzigd
+                                Dossier schulditems gewijzigd door {{ log.data.gebruiker.naam }}
                                 <br>
                                 <br>
                                 {% for schulditemUpdate in log.data.schuldItemUpdates %}
