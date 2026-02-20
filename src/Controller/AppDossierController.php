@@ -651,8 +651,9 @@ class AppDossierController extends AbstractController
                 ActionEvent::DOSSIER_GEWIJZIGD,
                 ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
                 ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
-                ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD
-                ],
+                ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD,
+                ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD
+            ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
 
@@ -708,17 +709,29 @@ class AppDossierController extends AbstractController
                     $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
                 }
             }
+
+            $schuldItemUpdates = [];
+
+            foreach ($schuldItems as $schuldItem) {
+                $schuldenChangeSet = $this->getEntityChangeSet($schuldItem, $em);
+                if (!empty($schuldenChangeSet)) {
+                    $schuldItemUpdates[] = [
+                        'schuldeiserNaam' => $schuldItem->getSchuldeiser()->getBedrijfsnaam(),
+                        'bedrag' => $schuldItem->getBedrag(),
+                        'schuldenChangeSet' => $schuldenChangeSet
+                    ];
+                }
+            }
+
             $em->flush();
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
-            //if ($request->isXmlHttpRequest()) {
-            //    return new JsonResponse(['status' => 'OK']);
-            //}
-            //$this->addFlash('success', 'Opgeslagen');
+            $eventDispatcher->dispatch(ActionEvent::registerSchuldItemsGewijzigd(
+                $this->getUser(),
+                $dossier,
+                $schuldItemUpdates
+            ), ActionEvent::NAME);
+
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
         }
-        //else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
-        //    return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-        //}
 
         $schuldItem = new SchuldItem();
         $createForm = $this->createForm(SchuldItemFormType::class, $schuldItem);
