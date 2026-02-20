@@ -716,6 +716,7 @@ class AppDossierController extends AbstractController
                 $schuldenChangeSet = $this->getEntityChangeSet($schuldItem, $em);
                 if (!empty($schuldenChangeSet)) {
                     $schuldItemUpdates[] = [
+                        'id' => $schuldItem->getId(),
                         'schuldeiserNaam' => $schuldItem->getSchuldeiser()->getBedrijfsnaam(),
                         'bedrag' => $schuldItem->getBedrag(),
                         'schuldenChangeSet' => $schuldenChangeSet

@@ -58,7 +58,7 @@
                                 Dossier gewijzigd
                             {% endif %}
                             {% if log.name == 'dossier_voorlegger_gewijzigd' %}
-                                Dossier voorlegger gewijzigd
+                                Dossier voorlegger gewijzigd door {{ log.data.gebruiker.naam }}
                                 <br>
                                 <br>
                                 {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.voorleggerChangeSet } %}
@@ -68,8 +68,11 @@
                                 <br>
                                 <br>
                                 {% for schulditemUpdate in log.data.schuldItemUpdates %}
-                                    {{ schulditemUpdate.schuldeiserNaam }} - {{ schulditemUpdate.bedrag }} 
+                                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden',{'dossierId': log.dossier.Id})}}#id_schuldItem-{{schulditemUpdate.id}}"> 
+                                        {{ schulditemUpdate.schuldeiserNaam }}&nbsp;(<span class="bedrag">&euro; {{ schulditemUpdate.bedrag|number_format(2, ',', '.') }}</span>) 
+                                    </a>
                                     {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: schulditemUpdate.schuldenChangeSet } %}
+                                    <br>
                                 {% endfor %}
                             {% endif %}
                             {% if log.name == 'gebruiker_ingelogd' %}
