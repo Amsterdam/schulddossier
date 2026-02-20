@@ -724,11 +724,14 @@ class AppDossierController extends AbstractController
             }
 
             $em->flush();
-            $eventDispatcher->dispatch(ActionEvent::registerSchuldItemsGewijzigd(
-                $this->getUser(),
-                $dossier,
-                $schuldItemUpdates
-            ), ActionEvent::NAME);
+
+            if (!empty($schuldItemUpdates)) {
+                $eventDispatcher->dispatch(ActionEvent::registerSchuldItemsGewijzigd(
+                    $this->getUser(),
+                    $dossier,
+                    $schuldItemUpdates
+                ), ActionEvent::NAME);
+            }
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
         }
