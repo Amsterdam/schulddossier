@@ -28,10 +28,9 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldenFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldItemFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
-use Http\Discovery\Exception\NotFoundException;
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\SchuldeiserOrganisationType;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
 use League\Flysystem\Adapter\Local;
@@ -44,7 +43,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -64,8 +62,6 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
-use Symfony\Contracts\Cache\ItemInterface;
-use Symfony\Contracts\HttpClient\ResponseInterface;
 use ZipArchive;
 
 /**
@@ -715,6 +711,8 @@ class AppDossierController extends AbstractController
             foreach ($schuldItems as $schuldItem) {
                 $schuldenChangeSet = $this->getEntityChangeSet($schuldItem, $em);
                 if (!empty($schuldenChangeSet)) {
+
+                    $schuldenChangeSet = $this->loadProxyEntityForSchuldeiserOrganisations($schuldenChangeSet);
                     $schuldItemUpdates[] = [
                         'id' => $schuldItem->getId(),
                         'schuldeiserNaam' => $schuldItem->getSchuldeiser()->getBedrijfsnaam(),
@@ -1385,5 +1383,50 @@ class AppDossierController extends AbstractController
         $unitOfWork->computeChangeSets();
 
         return $unitOfWork->getEntityChangeSet($entity);
+    }
+
+    /**
+     * Processes the schuldenChangeSet array to replace proxy objects for all organisation types
+     * (e.g., 'schuldeiser' and 'incassant') with their respective data arrays.
+     *
+     * @param array $schuldenChangeSet The change set containing potential proxy objects for organisations.
+     *
+     * @return array The updated change set with proxy objects replaced by arrays containing organisation data.
+     */
+    private function loadProxyEntityForSchuldeiserOrganisations(array $schuldenChangeSet)
+    {
+        $SchuldeiserOrganisationTypes = SchuldeiserOrganisationType::TYPES;
+
+        foreach ($SchuldeiserOrganisationTypes as $organisationType) {
+            $schuldenChangeSet = $this->loadProxyEntityForOrganisationType($organisationType, $schuldenChangeSet);
+        }
+
+        return $schuldenChangeSet;
+    }
+
+    /**
+     * Replaces proxy objects for a specific organisation type in the schuldenChangeSet array
+     * with arrays containing the organisation's ID and bedrijfsnaam.
+     *
+     * @param string $organisationType The type of organisation (e.g., 'schuldeiser' or 'incassant').
+     * @param array $schuldenChangeSet The change set containing potential proxy objects for the given organisation type.
+     *
+     * @return array The updated change set with proxy objects for the specified organisation type replaced by arrays.
+     */
+    private function loadProxyEntityForOrganisationType($organisationType, array $schuldenChangeSet)
+    {
+        if (!array_key_exists($organisationType, $schuldenChangeSet)) {
+            return $schuldenChangeSet;
+        }
+
+        foreach ([0, 1] as $index) {
+            if (!empty($schuldenChangeSet[$organisationType][$index])) {
+                $schuldenChangeSet[$organisationType][$index] = [
+                    'id' => $schuldenChangeSet[$organisationType][$index]->getId(),
+                    'naam' => $schuldenChangeSet[$organisationType][$index]->getBedrijfsnaam()
+                ];
+            }
+        }
+        return $schuldenChangeSet;
     }
 }
