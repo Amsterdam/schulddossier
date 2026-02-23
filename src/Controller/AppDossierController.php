@@ -1442,7 +1442,7 @@ class AppDossierController extends AbstractController
      *
      * @return array The updated array with formatted date values for the specified key.
      */
-    public function formatDateChangeSet(array $changeSet, string $key): array
+    private function formatDateChangeSet(array $changeSet, string $key): array
     {
         if (array_key_exists($key, $changeSet)) {
             foreach ($changeSet[$key] as $index => $date) {
