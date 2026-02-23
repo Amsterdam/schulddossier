@@ -661,7 +661,7 @@ class AppDossierController extends AbstractController
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailSchuldenAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    public function detailSchuldenAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher, SerializerInterface $serializer)
     {
         $schuldItems = $dossier->getSchuldItems();
 
@@ -775,7 +775,10 @@ class AppDossierController extends AbstractController
                 $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
             }
             $em->flush();
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+
+            $normalizedSchuldItem = $serializer->normalize($schuldItem);
+            $eventDispatcher->dispatch(ActionEvent::registerSchuldItemAangemaakt($this->getUser(), $dossier, $normalizedSchuldItem), ActionEvent::NAME);
+
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
         }
 

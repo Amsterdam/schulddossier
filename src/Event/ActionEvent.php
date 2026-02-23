@@ -38,6 +38,7 @@ class ActionEvent extends Event
     const DOSSIER_STATUS_GEWIJZIGD = 'dossier_status_gewijzigd';
     const DOSSIER_VOORLEGGER_GEWIJZIGD = 'dossier_voorlegger_gewijzigd';
     const DOSSIER_SCHULDITEMS_GEWIJZIGD = 'dossier_schulditems_gewijzigd';
+    const DOSSIER_SCHULDITEM_AANGEMAAKT = 'dossier_schulditem_aangemaakt';
     const GEBRUIKER_GEWIJZIGD = 'gebruiker_gewijzigd';
     const GEBRUIKER_VERWIJDERD = 'gebruiker_verwijderd';
     const GEBRUIKER_DISABLED_SYSTEM = 'gebruiker_disabled_door_systeem';
@@ -264,6 +265,29 @@ class ActionEvent extends Event
         );
 
         return new self(self::DOSSIER_SCHULDITEMS_GEWIJZIGD, $data, $dossier);
+    }
+
+    /**
+     * @param Gebruiker $gebruiker
+     * @param Dossier $dossier
+     * @param array $schuldItem,
+     *
+     * @return ActionEvent
+     */
+    public static function registerSchuldItemAangemaakt(
+        Gebruiker $gebruiker,
+        Dossier $dossier,
+        $schuldItem,
+    ) {
+
+        $data = array_merge(
+            self::getGebruikerData($gebruiker),
+            [
+                "SchuldItem" => $schuldItem,
+            ]
+        );
+
+        return new self(self::DOSSIER_SCHULDITEM_AANGEMAAKT, $data, $dossier);
     }
 
     /**
