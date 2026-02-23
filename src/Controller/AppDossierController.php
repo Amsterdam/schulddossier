@@ -711,7 +711,6 @@ class AppDossierController extends AbstractController
             foreach ($schuldItems as $schuldItem) {
                 $schuldenChangeSet = $this->getEntityChangeSet($schuldItem, $em);
                 if (!empty($schuldenChangeSet)) {
-
                     $schuldenChangeSet = $this->loadProxyEntityForSchuldeiserOrganisations($schuldenChangeSet);
                     $schuldItemUpdates[] = [
                         'id' => $schuldItem->getId(),
