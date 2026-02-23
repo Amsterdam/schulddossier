@@ -712,6 +712,8 @@ class AppDossierController extends AbstractController
                 $schuldenChangeSet = $this->getEntityChangeSet($schuldItem, $em);
                 if (!empty($schuldenChangeSet)) {
                     $schuldenChangeSet = $this->loadProxyEntityForSchuldeiserOrganisations($schuldenChangeSet);
+                    $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'vaststelDatum');
+                    $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'ontstaansDatum');
                     $schuldItemUpdates[] = [
                         'id' => $schuldItem->getId(),
                         'schuldeiserNaam' => $schuldItem->getSchuldeiser()->getBedrijfsnaam(),
@@ -1427,5 +1429,29 @@ class AppDossierController extends AbstractController
             }
         }
         return $schuldenChangeSet;
+    }
+
+    /**
+     * Formats date values in a specified key of a change set array.
+     *
+     * Checks if the given key exists in the array. If found, formats the DateTime 
+     * objects in the key's values to 'd-m-Y' and returns the updated array.
+     *
+     * @param array  $changeSet The array containing the change set data.
+     * @param string $key       The key in the array whose date values need formatting.
+     *
+     * @return array The updated array with formatted date values for the specified key.
+     */
+    public function formatDateChangeSet(array $changeSet, string $key): array
+    {
+        if (array_key_exists($key, $changeSet)) {
+            foreach ($changeSet[$key] as $index => $date) {
+                if (!empty($date)) {
+                    $changeSet[$key][$index] = $date->format('d-m-Y');
+                }
+            }
+        }
+
+        return $changeSet;
     }
 }
