@@ -776,11 +776,8 @@ class AppDossierController extends AbstractController
             }
             $em->flush();
             $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
-            //$this->addFlash('success', 'Toegevoegd');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
-        } //else if ($createForm->isSubmitted() && $request->isXmlHttpRequest()) {
-        //    return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-        //}
+        }
 
         $schuldeiser = new Schuldeiser();
         $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser, [
