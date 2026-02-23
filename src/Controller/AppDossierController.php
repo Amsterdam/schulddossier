@@ -28,10 +28,9 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldenFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldItemFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchDossierFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
-use Http\Discovery\Exception\NotFoundException;
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\SchuldeiserOrganisationType;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
 use League\Flysystem\Adapter\Local;
@@ -44,7 +43,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -64,8 +62,6 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
-use Symfony\Contracts\Cache\ItemInterface;
-use Symfony\Contracts\HttpClient\ResponseInterface;
 use ZipArchive;
 
 /**
@@ -651,8 +647,9 @@ class AppDossierController extends AbstractController
                 ActionEvent::DOSSIER_GEWIJZIGD,
                 ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
                 ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
-                ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD
-                ],
+                ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD,
+                ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD
+            ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
 
@@ -708,17 +705,36 @@ class AppDossierController extends AbstractController
                     $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
                 }
             }
+
+            $schuldItemUpdates = [];
+
+            foreach ($schuldItems as $schuldItem) {
+                $schuldenChangeSet = $this->getEntityChangeSet($schuldItem, $em);
+                if (!empty($schuldenChangeSet)) {
+                    $schuldenChangeSet = $this->loadProxyEntityForSchuldeiserOrganisations($schuldenChangeSet);
+                    $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'vaststelDatum');
+                    $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'ontstaansDatum');
+                    $schuldItemUpdates[] = [
+                        'id' => $schuldItem->getId(),
+                        'schuldeiserNaam' => $schuldItem->getSchuldeiser()->getBedrijfsnaam(),
+                        'bedrag' => $schuldItem->getBedrag(),
+                        'schuldenChangeSet' => $schuldenChangeSet
+                    ];
+                }
+            }
+
             $em->flush();
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
-            //if ($request->isXmlHttpRequest()) {
-            //    return new JsonResponse(['status' => 'OK']);
-            //}
-            //$this->addFlash('success', 'Opgeslagen');
+
+            if (!empty($schuldItemUpdates)) {
+                $eventDispatcher->dispatch(ActionEvent::registerSchuldItemsGewijzigd(
+                    $this->getUser(),
+                    $dossier,
+                    $schuldItemUpdates
+                ), ActionEvent::NAME);
+            }
+
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
         }
-        //else if ($form->isSubmitted() && $request->isXmlHttpRequest()) {
-        //    return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-        //}
 
         $schuldItem = new SchuldItem();
         $createForm = $this->createForm(SchuldItemFormType::class, $schuldItem);
@@ -1368,5 +1384,74 @@ class AppDossierController extends AbstractController
         $unitOfWork->computeChangeSets();
 
         return $unitOfWork->getEntityChangeSet($entity);
+    }
+
+    /**
+     * Processes the schuldenChangeSet array to replace proxy objects for all organisation types
+     * (e.g., 'schuldeiser' and 'incassant') with their respective data arrays.
+     *
+     * @param array $schuldenChangeSet The change set containing potential proxy objects for organisations.
+     *
+     * @return array The updated change set with proxy objects replaced by arrays containing organisation data.
+     */
+    private function loadProxyEntityForSchuldeiserOrganisations(array $schuldenChangeSet)
+    {
+        $SchuldeiserOrganisationTypes = SchuldeiserOrganisationType::TYPES;
+
+        foreach ($SchuldeiserOrganisationTypes as $organisationType) {
+            $schuldenChangeSet = $this->loadProxyEntityForOrganisationType($organisationType, $schuldenChangeSet);
+        }
+
+        return $schuldenChangeSet;
+    }
+
+    /**
+     * Replaces proxy objects for a specific organisation type in the schuldenChangeSet array
+     * with arrays containing the organisation's ID and bedrijfsnaam.
+     *
+     * @param string $organisationType The type of organisation (e.g., 'schuldeiser' or 'incassant').
+     * @param array $schuldenChangeSet The change set containing potential proxy objects for the given organisation type.
+     *
+     * @return array The updated change set with proxy objects for the specified organisation type replaced by arrays.
+     */
+    private function loadProxyEntityForOrganisationType($organisationType, array $schuldenChangeSet)
+    {
+        if (!array_key_exists($organisationType, $schuldenChangeSet)) {
+            return $schuldenChangeSet;
+        }
+
+        foreach ([0, 1] as $index) {
+            if (!empty($schuldenChangeSet[$organisationType][$index])) {
+                $schuldenChangeSet[$organisationType][$index] = [
+                    'id' => $schuldenChangeSet[$organisationType][$index]->getId(),
+                    'naam' => $schuldenChangeSet[$organisationType][$index]->getBedrijfsnaam()
+                ];
+            }
+        }
+        return $schuldenChangeSet;
+    }
+
+    /**
+     * Formats date values in a specified key of a change set array.
+     *
+     * Checks if the given key exists in the array. If found, formats the DateTime 
+     * objects in the key's values to 'd-m-Y' and returns the updated array.
+     *
+     * @param array  $changeSet The array containing the change set data.
+     * @param string $key       The key in the array whose date values need formatting.
+     *
+     * @return array The updated array with formatted date values for the specified key.
+     */
+    public function formatDateChangeSet(array $changeSet, string $key): array
+    {
+        if (array_key_exists($key, $changeSet)) {
+            foreach ($changeSet[$key] as $index => $date) {
+                if (!empty($date)) {
+                    $changeSet[$key][$index] = $date->format('d-m-Y');
+                }
+            }
+        }
+
+        return $changeSet;
     }
 }

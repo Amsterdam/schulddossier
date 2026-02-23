@@ -19,6 +19,8 @@
                                 Ja
                             {% elseif values[0] is null %}
                                 Geen waarde
+                            {% elseif values[0] is iterable %}
+                                {{ values[0]['naam'] }}
                             {% else %}
                                 {{ values[0] }}
                             {% endif %}
@@ -30,6 +32,8 @@
                                 Ja
                             {% elseif values[1] is null %}
                                 Geen waarde
+                            {% elseif values[1] is iterable %}
+                                {{ values[1]['naam'] }}
                             {% else %}
                                 {{ values[1] }}
                             {% endif %}
