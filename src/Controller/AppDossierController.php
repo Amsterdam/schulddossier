@@ -648,7 +648,8 @@ class AppDossierController extends AbstractController
                 ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
                 ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
                 ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD,
-                ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD
+                ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD,
+                ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT
             ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
@@ -709,18 +710,7 @@ class AppDossierController extends AbstractController
             $schuldItemUpdates = [];
 
             foreach ($schuldItems as $schuldItem) {
-                $schuldenChangeSet = $this->getEntityChangeSet($schuldItem, $em);
-                if (!empty($schuldenChangeSet)) {
-                    $schuldenChangeSet = $this->loadProxyEntityForSchuldeiserOrganisations($schuldenChangeSet);
-                    $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'vaststelDatum');
-                    $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'ontstaansDatum');
-                    $schuldItemUpdates[] = [
-                        'id' => $schuldItem->getId(),
-                        'schuldeiserNaam' => $schuldItem->getSchuldeiser()->getBedrijfsnaam(),
-                        'bedrag' => $schuldItem->getBedrag(),
-                        'schuldenChangeSet' => $schuldenChangeSet
-                    ];
-                }
+                $schuldItemUpdates[] = $this->getSchuldItemUpdate($schuldItem, $em, $schuldItemUpdates);
             }
 
             $em->flush();
@@ -774,10 +764,11 @@ class AppDossierController extends AbstractController
                 $aantekening->setTekst($createForm->get('aantekening')->get('tekst')->getData());
                 $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
             }
+            $schuldItemUpdate = $this->getSchuldItemUpdate($schuldItem, $em, []);
+
             $em->flush();
 
-            $normalizedSchuldItem = $serializer->normalize($schuldItem);
-            $eventDispatcher->dispatch(ActionEvent::registerSchuldItemAangemaakt($this->getUser(), $dossier, $normalizedSchuldItem), ActionEvent::NAME);
+            $eventDispatcher->dispatch(ActionEvent::registerSchuldItemAangemaakt($this->getUser(), $dossier, $schuldItemUpdate), ActionEvent::NAME);
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
         }
@@ -1453,5 +1444,30 @@ class AppDossierController extends AbstractController
         }
 
         return $changeSet;
+    }
+
+    private function getSchuldItemUpdate(object $schuldItem, EntityManagerInterface $entityManager, array $schuldItemUpdate)
+    {
+        $schuldenChangeSet = $this->getEntityChangeSet($schuldItem, $entityManager);
+
+        if (empty($schuldenChangeSet)) {
+            return $schuldItemUpdate;
+        }
+
+        $schuldenChangeSet = $this->loadProxyEntityForSchuldeiserOrganisations($schuldenChangeSet);
+        $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'vaststelDatum');
+        $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'ontstaansDatum');
+
+        /* Removes keys which are already stored in the action-event object */
+        $keysToRemove = ['aanmaker', 'bewerker', 'dossier', 'verwijderd', 'aanmaakDatumTijd', 'bewerkDatumTijd'];
+        $schuldenChangeSet = array_diff_key($schuldenChangeSet, array_flip($keysToRemove));
+
+        $schuldItemUpdate[] = [
+            'id' => $schuldItem->getId(),
+            'schuldeiserNaam' => $schuldItem->getSchuldeiser()->getBedrijfsnaam(),
+            'bedrag' => $schuldItem->getBedrag(),
+            'schuldenChangeSet' => $schuldenChangeSet
+        ];
+        return $schuldItemUpdate;
     }
 }
