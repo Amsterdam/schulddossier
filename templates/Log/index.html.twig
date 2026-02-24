@@ -91,13 +91,21 @@
 								Dossier gewijzigd
 							{% endif %}
       						{% if log.name == 'dossier_voorlegger_gewijzigd' %}
-                                Dossier voorlegger gewijzigd door {{ log.data.gebruiker.naam }}
+                                Voorlegger gewijzigd van dossier 
+									{% if log.dossier.clientNaam is defined %}
+										<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+									{% endif  %}
+								door {{ log.data.gebruiker.naam }}
                                 <br>
                                 <br>
                                 {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.voorleggerChangeSet } %}
                             {% endif %}
 							{% if log.name == 'dossier_schulditem_aangemaakt' %}
-                                Dossier schulditem aangemaakt door {{ log.data.gebruiker.naam }}
+								Schulditem aangemaakt voor dossier 
+									{% if log.dossier.clientNaam is defined %}
+										<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+									{% endif  %}
+								door {{ log.data.gebruiker.naam }}
                                 <br>
                                 <br>
                                 {% for schulditemUpdate in log.data.schulditemUpdates %}
@@ -109,7 +117,11 @@
                                 {% endfor %}
                             {% endif %}
 							{% if log.name == 'dossier_schulditems_gewijzigd' %}
-                                Dossier schulditems gewijzigd door {{ log.data.gebruiker.naam }}
+								Schulditem gewijzigd voor dossier 
+								{% if log.dossier.clientNaam is defined %}
+									<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+								{% endif  %}
+								door {{ log.data.gebruiker.naam }}
                                 <br>
                                 <br>
                                 {% for schulditemUpdate in log.data.schuldItemUpdates %}
