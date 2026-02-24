@@ -36,6 +36,7 @@ class ActionEvent extends Event
     const GEBRUIKER_INGELOGD = 'gebruiker_ingelogd';
     const DOSSIER_GEWIJZIGD = 'dossier_gewijzigd';
     const DOSSIER_STATUS_GEWIJZIGD = 'dossier_status_gewijzigd';
+    const DOSSIER_PERSOONSGEGEVENS_GEWIJZIGD = 'dossier_persoonsgegevens_gewijzigd';
     const DOSSIER_VOORLEGGER_GEWIJZIGD = 'dossier_voorlegger_gewijzigd';
     const DOSSIER_SCHULDITEMS_GEWIJZIGD = 'dossier_schulditems_gewijzigd';
     const DOSSIER_SCHULDITEM_AANGEMAAKT = 'dossier_schulditem_aangemaakt';
@@ -222,6 +223,28 @@ class ActionEvent extends Event
         );
 
         return new self(self::DOSSIER_STATUS_GEWIJZIGD, $data, $dossier);
+    }
+
+    /**
+     * @param Gebruiker $gebruiker
+     * @param Dossier $dossier
+     * @param array $dossierChangeSet
+     *
+     * @return ActionEvent
+     */
+    public static function registerDossierPersoonsgegevensGewijzigd(
+        Gebruiker $gebruiker,
+        Dossier $dossier,
+        array $dossierChangeSet
+    ) {
+        $data = array_merge(
+            self::getGebruikerData($gebruiker),
+            [
+                "dossierChangeSet" => $dossierChangeSet
+            ]
+        );
+
+        return new self(self::DOSSIER_PERSOONSGEGEVENS_GEWIJZIGD, $data, $dossier);
     }
 
     /**

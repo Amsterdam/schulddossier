@@ -249,7 +249,7 @@ class AppDossierController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'Dossier aangemaakt');
 
-            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier, $dossierChangeSet), ActionEvent::NAME);
+            $eventDispatcher->dispatch(ActionEvent::registerDossierPersoonsgegevensGewijzigd($this->getUser(), $dossier, $dossierChangeSet), ActionEvent::NAME);
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
                 'dossierId' => $dossier->getId()
@@ -350,7 +350,6 @@ class AppDossierController extends AbstractController
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
 
-
         $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
 
         return $this->render('Dossier/detailVoorlegger.html.twig', [
@@ -374,8 +373,9 @@ class AppDossierController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $dossierChangeSet = $this->getDossierChangeSet($dossier, $em);
             $em->flush();
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+            $eventDispatcher->dispatch(ActionEvent::registerDossierPersoonsgegevensGewijzigd($this->getUser(), $dossier, $dossierChangeSet), ActionEvent::NAME);
 
             if ($request->isXmlHttpRequest()) {
                 return new JsonResponse(['msg' => 'OK']);
@@ -648,6 +648,7 @@ class AppDossierController extends AbstractController
                 ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD,
                 ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT,
                 ActionEvent::DOSSIER_AANGEMAAKT,
+                ActionEvent::DOSSIER_PERSOONSGEGEVENS_GEWIJZIGD,
             ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
