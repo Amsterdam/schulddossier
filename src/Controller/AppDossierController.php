@@ -245,10 +245,11 @@ class AppDossierController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($dossier);
+            $dossierChangeSet = $this->getDossierChangeSet($dossier, $em);
             $em->flush();
             $this->addFlash('success', 'Dossier aangemaakt');
 
-            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier), ActionEvent::NAME);
+            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier, $dossierChangeSet), ActionEvent::NAME);
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
                 'dossierId' => $dossier->getId()
@@ -1375,9 +1376,19 @@ class AppDossierController extends AbstractController
         $dossierChangeSet = $this->formatDateChangeSet($dossierChangeSet, 'indiendatumTijd');
         $dossierChangeSet = $this->formatDateChangeSet($dossierChangeSet, 'clientGeboortedatum');
         $dossierChangeSet = $this->formatDateChangeSet($dossierChangeSet, 'partnerGeboortedatum');
+        $dossierChangeSet = $this->formatDateChangeSet($dossierChangeSet, 'clientBurgelijkeStaatSinds');
         $dossierChangeSet = $this->loadProxyEntityForOrganisationType('organisatie', $dossierChangeSet);
         $dossierChangeSet = $this->loadProxyEntityForOrganisationType('teamGka', $dossierChangeSet);
         $dossierChangeSet = $this->loadProxyEntityForOrganisationType('medewerkerOrganisatie', $dossierChangeSet);
+
+        //Convert clientKinderenList to string
+        if (array_key_exists('clientKinderen', $dossierChangeSet)) {
+            foreach ([0, 1] as $index) {
+                if (!empty($dossierChangeSet['clientKinderen'][$index])) {
+                    $dossierChangeSet['clientKinderen'][$index] =  implode(',', (array) $dossierChangeSet['clientKinderen'][$index]);
+                }
+            }
+        }
         return $dossierChangeSet;
     }
 
