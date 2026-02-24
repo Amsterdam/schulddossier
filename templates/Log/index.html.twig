@@ -177,7 +177,14 @@
 								Gebruiker verwijderd
 							{% endif %}
 							{% if log.name == 'dossier_aangemaakt' %}
-								Dossier aangemaakt
+								Dossier aangemaakt voor door
+								{% if log.dossier.clientNaam is defined %}
+									<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+								{% endif  %}
+								door {{ log.data.gebruiker.naam }}
+                                <br>
+                                <br>
+                                {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.dossierChangeSet, isNew: true } %}
 							{% endif %}
 							{% if log.name == 'gebruiker_disabled_door_systeem' %}
 								Het systeem heeft
