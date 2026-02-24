@@ -1362,6 +1362,17 @@ class AppDossierController extends AbstractController
         }
     }
 
+    /**
+     * Processes the change set for a dossier entity.
+     *
+     * Fetches the change set, removes specific keys, formats date fields, 
+     * and resolves proxy entities for organisation-related fields.
+     *
+     * @param object $dossier The dossier entity.
+     * @param EntityManagerInterface $entityManager The entity manager instance.
+     *
+     * @return array The processed change set.
+     */
     private function getDossierChangeSet(object $dossier, EntityManagerInterface $entityManager)
     {
         $dossierChangeSet = $this->getEntityChangeSet($dossier, $entityManager);
