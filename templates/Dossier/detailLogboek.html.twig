@@ -94,7 +94,10 @@
                                 Gebruiker gewijzigd
                             {% endif %}
                             {% if log.name == 'dossier_aangemaakt' %}
-                                Dossier aangemaakt
+                                Dossier aangemaakt door {{ log.data.gebruiker.naam }}
+                                <br>
+                                <br>
+                                {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.dossierChangeSet, isNew: true } %}
                             {% endif %}
                             {% if log.name == 'dossier_send_to_allegro' %}
                                 Dossier verzonden naar allegro

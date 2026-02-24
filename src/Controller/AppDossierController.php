@@ -187,6 +187,7 @@ class AppDossierController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($dossier);
+            $dossierChangeSet = $this->getDossierChangeSet($dossier, $em);
             $em->flush();
 
             $allegroCheck = isset($form['allegroCheck']) ? $form['allegroCheck']->getData() : false;
@@ -216,7 +217,7 @@ class AppDossierController extends AbstractController
                 }
             }
 
-            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier), ActionEvent::NAME);
+            $eventDispatcher->dispatch(ActionEvent::registerDossierAangemaakt($this->getUser(), $dossier, $dossierChangeSet), ActionEvent::NAME);
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_createaddtional', [
                 'dossierId' => $dossier->getId()
@@ -649,7 +650,8 @@ class AppDossierController extends AbstractController
                 ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
                 ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD,
                 ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD,
-                ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT
+                ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT,
+                ActionEvent::DOSSIER_AANGEMAAKT,
             ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
@@ -1360,6 +1362,19 @@ class AppDossierController extends AbstractController
         }
     }
 
+    private function getDossierChangeSet(object $dossier, EntityManagerInterface $entityManager)
+    {
+        $dossierChangeSet = $this->getEntityChangeSet($dossier, $entityManager);
+        $dossierChangeSet = $this->removeKeys(['dossierTemplate', 'allegroSyncDate', 'sendToAllegro', 'allegroStatus', 'allegroExtraStatus', 'aanmaakDatumTijd', 'inPrullenbak', 'eersteKeerVerzondenAanGKA', 'aanmaker'], $dossierChangeSet);
+        $dossierChangeSet = $this->formatDateChangeSet($dossierChangeSet, 'indiendatumTijd');
+        $dossierChangeSet = $this->formatDateChangeSet($dossierChangeSet, 'clientGeboortedatum');
+        $dossierChangeSet = $this->formatDateChangeSet($dossierChangeSet, 'partnerGeboortedatum');
+        $dossierChangeSet = $this->loadProxyEntityForOrganisationType('organisatie', $dossierChangeSet);
+        $dossierChangeSet = $this->loadProxyEntityForOrganisationType('teamGka', $dossierChangeSet);
+        $dossierChangeSet = $this->loadProxyEntityForOrganisationType('medewerkerOrganisatie', $dossierChangeSet);
+        return $dossierChangeSet;
+    }
+
     /**
      * Gets the changeset for an entity.
      *
@@ -1415,7 +1430,7 @@ class AppDossierController extends AbstractController
             if (!empty($schuldenChangeSet[$organisationType][$index])) {
                 $schuldenChangeSet[$organisationType][$index] = [
                     'id' => $schuldenChangeSet[$organisationType][$index]->getId(),
-                    'naam' => $schuldenChangeSet[$organisationType][$index]->getBedrijfsnaam()
+                    'naam' => isset($schuldenChangeSet[$organisationType][$index]->getBedrijfsnaam) ? $schuldenChangeSet[$organisationType][$index]->getBedrijfsnaam() : $schuldenChangeSet[$organisationType][$index]->getNaam()
                 ];
             }
         }
@@ -1469,7 +1484,7 @@ class AppDossierController extends AbstractController
 
         // Remove keys that are already stored in the action-event object to avoid duplication.
         $keysToRemove = ['aanmaker', 'bewerker', 'dossier', 'verwijderd', 'aanmaakDatumTijd', 'bewerkDatumTijd'];
-        $schuldenChangeSet = array_diff_key($schuldenChangeSet, array_flip($keysToRemove));
+        $schuldenChangeSet = $this->removeKeys($keysToRemove, $schuldenChangeSet);
 
         $schuldItemUpdate[] = [
             'id' => $schuldItem->getId(),
@@ -1478,5 +1493,10 @@ class AppDossierController extends AbstractController
             'schuldenChangeSet' => $schuldenChangeSet
         ];
         return $schuldItemUpdate;
+    }
+
+    private function removeKeys($keysToRemove, $array)
+    {
+        return  array_diff_key($array, array_flip($keysToRemove));
     }
 }
