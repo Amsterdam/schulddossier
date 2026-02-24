@@ -1467,7 +1467,7 @@ class AppDossierController extends AbstractController
         $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'vaststelDatum');
         $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'ontstaansDatum');
 
-        /* Removes keys which are already stored in the action-event object */
+        // Remove keys that are already stored in the action-event object to avoid duplication.
         $keysToRemove = ['aanmaker', 'bewerker', 'dossier', 'verwijderd', 'aanmaakDatumTijd', 'bewerkDatumTijd'];
         $schuldenChangeSet = array_diff_key($schuldenChangeSet, array_flip($keysToRemove));
 
