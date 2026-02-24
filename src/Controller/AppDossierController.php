@@ -650,7 +650,6 @@ class AppDossierController extends AbstractController
                 ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD,
                 ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT,
                 ActionEvent::DOSSIER_AANGEMAAKT,
-                ActionEvent::DOSSIER_PERSOONSGEGEVENS_GEWIJZIGD,
             ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
