@@ -177,7 +177,7 @@
 								Gebruiker verwijderd
 							{% endif %}
 							{% if log.name == 'dossier_aangemaakt' %}
-								Dossier aangemaakt voor door
+								Dossier aangemaakt voor
 								{% if log.dossier.clientNaam is defined %}
 									<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
 								{% endif  %}
