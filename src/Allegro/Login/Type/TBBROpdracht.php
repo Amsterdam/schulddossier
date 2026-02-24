@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBROpdracht implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -527,7 +526,4 @@ class TBBROpdracht implements RequestInterface
 
         return $new;
     }
-
-
 }
-

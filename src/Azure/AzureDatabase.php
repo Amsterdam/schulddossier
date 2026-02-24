@@ -17,7 +17,6 @@ class AzureDatabase
 
     public function __construct(private HttpClientInterface $client, private LoggerInterface $logger, private string $azureAuthorityHost, private string $azureTenantId, private string $azureFederatedTokenFile, private string $azureClientId)
     {
-
     }
 
     public function getPassword(string $default, $invalidateCache = false): string
@@ -30,7 +29,9 @@ class AzureDatabase
 
         return $cache->get(self::CACHE_KEY, function (ItemInterface $item) use ($default) {
             $this->logger->debug("Cache invalid. Getting db password from azure");
-            if (!$this->azureAuthorityHost || !$this->azureTenantId || !$this->azureFederatedTokenFile || !$this->azureClientId) return $default;
+            if (!$this->azureAuthorityHost || !$this->azureTenantId || !$this->azureFederatedTokenFile || !$this->azureClientId) {
+                return $default;
+            }
 
             return $this->getPasswordFromAzure();
         });

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TAanvraag2
 {
-
     /**
      * @var int $Bedrijfscode
      */
@@ -131,18 +130,18 @@ class TAanvraag2
      */
     public function __construct($Bedrijfscode, $Aanvrager, $MetPartner, $GezinsSituatie, $AantalKinderen, $Schuldbedrag, $Schuldeisers, $GewenstKrediet, $GewenstAflossing, $OpdrachtgeverCode, $Borgstelling, $CollectieveBorgstelling)
     {
-      $this->Bedrijfscode = $Bedrijfscode;
-      $this->Aanvrager = $Aanvrager;
-      $this->MetPartner = $MetPartner;
-      $this->GezinsSituatie = $GezinsSituatie;
-      $this->AantalKinderen = $AantalKinderen;
-      $this->Schuldbedrag = $Schuldbedrag;
-      $this->Schuldeisers = $Schuldeisers;
-      $this->GewenstKrediet = $GewenstKrediet;
-      $this->GewenstAflossing = $GewenstAflossing;
-      $this->OpdrachtgeverCode = $OpdrachtgeverCode;
-      $this->Borgstelling = $Borgstelling;
-      $this->CollectieveBorgstelling = $CollectieveBorgstelling;
+        $this->Bedrijfscode = $Bedrijfscode;
+        $this->Aanvrager = $Aanvrager;
+        $this->MetPartner = $MetPartner;
+        $this->GezinsSituatie = $GezinsSituatie;
+        $this->AantalKinderen = $AantalKinderen;
+        $this->Schuldbedrag = $Schuldbedrag;
+        $this->Schuldeisers = $Schuldeisers;
+        $this->GewenstKrediet = $GewenstKrediet;
+        $this->GewenstAflossing = $GewenstAflossing;
+        $this->OpdrachtgeverCode = $OpdrachtgeverCode;
+        $this->Borgstelling = $Borgstelling;
+        $this->CollectieveBorgstelling = $CollectieveBorgstelling;
     }
 
     /**
@@ -150,7 +149,7 @@ class TAanvraag2
      */
     public function getBedrijfscode()
     {
-      return $this->Bedrijfscode;
+        return $this->Bedrijfscode;
     }
 
     /**
@@ -159,8 +158,8 @@ class TAanvraag2
      */
     public function setBedrijfscode($Bedrijfscode)
     {
-      $this->Bedrijfscode = $Bedrijfscode;
-      return $this;
+        $this->Bedrijfscode = $Bedrijfscode;
+        return $this;
     }
 
     /**
@@ -168,7 +167,7 @@ class TAanvraag2
      */
     public function getAanvrager()
     {
-      return $this->Aanvrager;
+        return $this->Aanvrager;
     }
 
     /**
@@ -177,8 +176,8 @@ class TAanvraag2
      */
     public function setAanvrager($Aanvrager)
     {
-      $this->Aanvrager = $Aanvrager;
-      return $this;
+        $this->Aanvrager = $Aanvrager;
+        return $this;
     }
 
     /**
@@ -186,7 +185,7 @@ class TAanvraag2
      */
     public function getMetPartner()
     {
-      return $this->MetPartner;
+        return $this->MetPartner;
     }
 
     /**
@@ -195,8 +194,8 @@ class TAanvraag2
      */
     public function setMetPartner($MetPartner)
     {
-      $this->MetPartner = $MetPartner;
-      return $this;
+        $this->MetPartner = $MetPartner;
+        return $this;
     }
 
     /**
@@ -204,7 +203,7 @@ class TAanvraag2
      */
     public function getPartner()
     {
-      return $this->Partner;
+        return $this->Partner;
     }
 
     /**
@@ -213,8 +212,8 @@ class TAanvraag2
      */
     public function setPartner($Partner)
     {
-      $this->Partner = $Partner;
-      return $this;
+        $this->Partner = $Partner;
+        return $this;
     }
 
     /**
@@ -222,7 +221,7 @@ class TAanvraag2
      */
     public function getGezinsSituatie()
     {
-      return $this->GezinsSituatie;
+        return $this->GezinsSituatie;
     }
 
     /**
@@ -231,8 +230,8 @@ class TAanvraag2
      */
     public function setGezinsSituatie($GezinsSituatie)
     {
-      $this->GezinsSituatie = $GezinsSituatie;
-      return $this;
+        $this->GezinsSituatie = $GezinsSituatie;
+        return $this;
     }
 
     /**
@@ -240,7 +239,7 @@ class TAanvraag2
      */
     public function getAantalKinderen()
     {
-      return $this->AantalKinderen;
+        return $this->AantalKinderen;
     }
 
     /**
@@ -249,8 +248,8 @@ class TAanvraag2
      */
     public function setAantalKinderen($AantalKinderen)
     {
-      $this->AantalKinderen = $AantalKinderen;
-      return $this;
+        $this->AantalKinderen = $AantalKinderen;
+        return $this;
     }
 
     /**
@@ -258,7 +257,7 @@ class TAanvraag2
      */
     public function getToelichtingKinderen()
     {
-      return $this->ToelichtingKinderen;
+        return $this->ToelichtingKinderen;
     }
 
     /**
@@ -267,8 +266,8 @@ class TAanvraag2
      */
     public function setToelichtingKinderen($ToelichtingKinderen)
     {
-      $this->ToelichtingKinderen = $ToelichtingKinderen;
-      return $this;
+        $this->ToelichtingKinderen = $ToelichtingKinderen;
+        return $this;
     }
 
     /**
@@ -276,7 +275,7 @@ class TAanvraag2
      */
     public function getSchuldbedrag()
     {
-      return $this->Schuldbedrag;
+        return $this->Schuldbedrag;
     }
 
     /**
@@ -285,8 +284,8 @@ class TAanvraag2
      */
     public function setSchuldbedrag($Schuldbedrag)
     {
-      $this->Schuldbedrag = $Schuldbedrag;
-      return $this;
+        $this->Schuldbedrag = $Schuldbedrag;
+        return $this;
     }
 
     /**
@@ -294,7 +293,7 @@ class TAanvraag2
      */
     public function getSchuldeisers()
     {
-      return $this->Schuldeisers;
+        return $this->Schuldeisers;
     }
 
     /**
@@ -303,8 +302,8 @@ class TAanvraag2
      */
     public function setSchuldeisers($Schuldeisers)
     {
-      $this->Schuldeisers = $Schuldeisers;
-      return $this;
+        $this->Schuldeisers = $Schuldeisers;
+        return $this;
     }
 
     /**
@@ -312,7 +311,7 @@ class TAanvraag2
      */
     public function getSoortLening()
     {
-      return $this->SoortLening;
+        return $this->SoortLening;
     }
 
     /**
@@ -321,8 +320,8 @@ class TAanvraag2
      */
     public function setSoortLening($SoortLening)
     {
-      $this->SoortLening = $SoortLening;
-      return $this;
+        $this->SoortLening = $SoortLening;
+        return $this;
     }
 
     /**
@@ -330,7 +329,7 @@ class TAanvraag2
      */
     public function getGewenstKrediet()
     {
-      return $this->GewenstKrediet;
+        return $this->GewenstKrediet;
     }
 
     /**
@@ -339,8 +338,8 @@ class TAanvraag2
      */
     public function setGewenstKrediet($GewenstKrediet)
     {
-      $this->GewenstKrediet = $GewenstKrediet;
-      return $this;
+        $this->GewenstKrediet = $GewenstKrediet;
+        return $this;
     }
 
     /**
@@ -348,7 +347,7 @@ class TAanvraag2
      */
     public function getGewenstAflossing()
     {
-      return $this->GewenstAflossing;
+        return $this->GewenstAflossing;
     }
 
     /**
@@ -357,8 +356,8 @@ class TAanvraag2
      */
     public function setGewenstAflossing($GewenstAflossing)
     {
-      $this->GewenstAflossing = $GewenstAflossing;
-      return $this;
+        $this->GewenstAflossing = $GewenstAflossing;
+        return $this;
     }
 
     /**
@@ -366,7 +365,7 @@ class TAanvraag2
      */
     public function getBestedingsdoel()
     {
-      return $this->Bestedingsdoel;
+        return $this->Bestedingsdoel;
     }
 
     /**
@@ -375,8 +374,8 @@ class TAanvraag2
      */
     public function setBestedingsdoel($Bestedingsdoel)
     {
-      $this->Bestedingsdoel = $Bestedingsdoel;
-      return $this;
+        $this->Bestedingsdoel = $Bestedingsdoel;
+        return $this;
     }
 
     /**
@@ -384,7 +383,7 @@ class TAanvraag2
      */
     public function getIndiener()
     {
-      return $this->Indiener;
+        return $this->Indiener;
     }
 
     /**
@@ -393,8 +392,8 @@ class TAanvraag2
      */
     public function setIndiener($Indiener)
     {
-      $this->Indiener = $Indiener;
-      return $this;
+        $this->Indiener = $Indiener;
+        return $this;
     }
 
     /**
@@ -402,7 +401,7 @@ class TAanvraag2
      */
     public function getHulpverlenerNaam()
     {
-      return $this->HulpverlenerNaam;
+        return $this->HulpverlenerNaam;
     }
 
     /**
@@ -411,8 +410,8 @@ class TAanvraag2
      */
     public function setHulpverlenerNaam($HulpverlenerNaam)
     {
-      $this->HulpverlenerNaam = $HulpverlenerNaam;
-      return $this;
+        $this->HulpverlenerNaam = $HulpverlenerNaam;
+        return $this;
     }
 
     /**
@@ -420,7 +419,7 @@ class TAanvraag2
      */
     public function getOpdrachtgeverCode()
     {
-      return $this->OpdrachtgeverCode;
+        return $this->OpdrachtgeverCode;
     }
 
     /**
@@ -429,8 +428,8 @@ class TAanvraag2
      */
     public function setOpdrachtgeverCode($OpdrachtgeverCode)
     {
-      $this->OpdrachtgeverCode = $OpdrachtgeverCode;
-      return $this;
+        $this->OpdrachtgeverCode = $OpdrachtgeverCode;
+        return $this;
     }
 
     /**
@@ -438,7 +437,7 @@ class TAanvraag2
      */
     public function getContactpersoon()
     {
-      return $this->Contactpersoon;
+        return $this->Contactpersoon;
     }
 
     /**
@@ -447,8 +446,8 @@ class TAanvraag2
      */
     public function setContactpersoon($Contactpersoon)
     {
-      $this->Contactpersoon = $Contactpersoon;
-      return $this;
+        $this->Contactpersoon = $Contactpersoon;
+        return $this;
     }
 
     /**
@@ -456,7 +455,7 @@ class TAanvraag2
      */
     public function getKredietSoort()
     {
-      return $this->KredietSoort;
+        return $this->KredietSoort;
     }
 
     /**
@@ -465,8 +464,8 @@ class TAanvraag2
      */
     public function setKredietSoort($KredietSoort)
     {
-      $this->KredietSoort = $KredietSoort;
-      return $this;
+        $this->KredietSoort = $KredietSoort;
+        return $this;
     }
 
     /**
@@ -474,7 +473,7 @@ class TAanvraag2
      */
     public function getBorgstelling()
     {
-      return $this->Borgstelling;
+        return $this->Borgstelling;
     }
 
     /**
@@ -483,8 +482,8 @@ class TAanvraag2
      */
     public function setBorgstelling($Borgstelling)
     {
-      $this->Borgstelling = $Borgstelling;
-      return $this;
+        $this->Borgstelling = $Borgstelling;
+        return $this;
     }
 
     /**
@@ -492,7 +491,7 @@ class TAanvraag2
      */
     public function getToelichting()
     {
-      return $this->Toelichting;
+        return $this->Toelichting;
     }
 
     /**
@@ -501,8 +500,8 @@ class TAanvraag2
      */
     public function setToelichting($Toelichting)
     {
-      $this->Toelichting = $Toelichting;
-      return $this;
+        $this->Toelichting = $Toelichting;
+        return $this;
     }
 
     /**
@@ -510,7 +509,7 @@ class TAanvraag2
      */
     public function getCollectieveBorgstelling()
     {
-      return $this->CollectieveBorgstelling;
+        return $this->CollectieveBorgstelling;
     }
 
     /**
@@ -519,8 +518,8 @@ class TAanvraag2
      */
     public function setCollectieveBorgstelling($CollectieveBorgstelling)
     {
-      $this->CollectieveBorgstelling = $CollectieveBorgstelling;
-      return $this;
+        $this->CollectieveBorgstelling = $CollectieveBorgstelling;
+        return $this;
     }
 
     /**
@@ -528,7 +527,7 @@ class TAanvraag2
      */
     public function getOverigeGegevens()
     {
-      return $this->OverigeGegevens;
+        return $this->OverigeGegevens;
     }
 
     /**
@@ -537,8 +536,7 @@ class TAanvraag2
      */
     public function setOverigeGegevens($OverigeGegevens)
     {
-      $this->OverigeGegevens = $OverigeGegevens;
-      return $this;
+        $this->OverigeGegevens = $OverigeGegevens;
+        return $this;
     }
-
 }

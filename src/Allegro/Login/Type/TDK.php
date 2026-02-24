@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TDK implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TDKHeader
      */
@@ -473,7 +472,4 @@ class TDK implements RequestInterface
 
         return $new;
     }
-
-
 }
-

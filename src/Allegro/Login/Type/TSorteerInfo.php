@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TSorteerInfo implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -68,7 +67,4 @@ class TSorteerInfo implements RequestInterface
 
         return $new;
     }
-
-
 }
-

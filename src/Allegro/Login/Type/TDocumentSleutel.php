@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TDocumentSleutel implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -122,7 +121,4 @@ class TDocumentSleutel implements RequestInterface
 
         return $new;
     }
-
-
 }
-

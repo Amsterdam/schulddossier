@@ -27,5 +27,4 @@ class GebruikerNormalizer implements NormalizerInterface, NormalizerAwareInterfa
             'username' => $object->getUsername()
         ];
     }
-
 }

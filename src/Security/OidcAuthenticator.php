@@ -98,7 +98,6 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         $this->logger = $logger;
 
         $this->twig = $twig;
-
     }
 
     /**
@@ -362,13 +361,11 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
 
             // create the key instance
             $signerKey = new Key($publicKey);
-            $signer = new $signers[$token->getHeader('alg')];
+            $signer = new $signers[$token->getHeader('alg')]();
 
             return $token->verify($signer, $signerKey);
-        }
-        catch (TransferException $e) {
+        } catch (TransferException $e) {
             throw new AuthenticationException('Can not connect to OIDC certs URL. Error ' . $e->getMessage());
         }
     }
 }
-

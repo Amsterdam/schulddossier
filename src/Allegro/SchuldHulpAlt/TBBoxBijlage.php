@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBBoxBijlage
 {
-
     /**
      * @var int $Code
      */
@@ -39,11 +38,11 @@ class TBBoxBijlage
      */
     public function __construct($Code, $UniekVolgnummer, $Bijlage, $BijlageSize, $BijlageNaam)
     {
-      $this->Code = $Code;
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      $this->Bijlage = $Bijlage;
-      $this->BijlageSize = $BijlageSize;
-      $this->BijlageNaam = $BijlageNaam;
+        $this->Code = $Code;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        $this->Bijlage = $Bijlage;
+        $this->BijlageSize = $BijlageSize;
+        $this->BijlageNaam = $BijlageNaam;
     }
 
     /**
@@ -51,7 +50,7 @@ class TBBoxBijlage
      */
     public function getCode()
     {
-      return $this->Code;
+        return $this->Code;
     }
 
     /**
@@ -60,8 +59,8 @@ class TBBoxBijlage
      */
     public function setCode($Code)
     {
-      $this->Code = $Code;
-      return $this;
+        $this->Code = $Code;
+        return $this;
     }
 
     /**
@@ -69,7 +68,7 @@ class TBBoxBijlage
      */
     public function getUniekVolgnummer()
     {
-      return $this->UniekVolgnummer;
+        return $this->UniekVolgnummer;
     }
 
     /**
@@ -78,8 +77,8 @@ class TBBoxBijlage
      */
     public function setUniekVolgnummer($UniekVolgnummer)
     {
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      return $this;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        return $this;
     }
 
     /**
@@ -87,7 +86,7 @@ class TBBoxBijlage
      */
     public function getBijlage()
     {
-      return $this->Bijlage;
+        return $this->Bijlage;
     }
 
     /**
@@ -96,8 +95,8 @@ class TBBoxBijlage
      */
     public function setBijlage($Bijlage)
     {
-      $this->Bijlage = $Bijlage;
-      return $this;
+        $this->Bijlage = $Bijlage;
+        return $this;
     }
 
     /**
@@ -105,7 +104,7 @@ class TBBoxBijlage
      */
     public function getBijlageSize()
     {
-      return $this->BijlageSize;
+        return $this->BijlageSize;
     }
 
     /**
@@ -114,8 +113,8 @@ class TBBoxBijlage
      */
     public function setBijlageSize($BijlageSize)
     {
-      $this->BijlageSize = $BijlageSize;
-      return $this;
+        $this->BijlageSize = $BijlageSize;
+        return $this;
     }
 
     /**
@@ -123,7 +122,7 @@ class TBBoxBijlage
      */
     public function getBijlageNaam()
     {
-      return $this->BijlageNaam;
+        return $this->BijlageNaam;
     }
 
     /**
@@ -132,8 +131,7 @@ class TBBoxBijlage
      */
     public function setBijlageNaam($BijlageNaam)
     {
-      $this->BijlageNaam = $BijlageNaam;
-      return $this;
+        $this->BijlageNaam = $BijlageNaam;
+        return $this;
     }
-
 }

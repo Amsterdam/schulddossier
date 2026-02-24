@@ -1,4 +1,5 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -18,7 +19,6 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
 {
-
     private bool $featureflagHerfinanciering;
 
     public function __construct(bool $featureflagHerfinanciering)
@@ -40,7 +40,7 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
             'required' => false,
             'label' => 'Jongeren Schuldenvrije Start (JSS)',
             'help' => 'DB: voorlegger.jongeren_schuldenvrije_start',
-            'constraints' => [new Callback(function($value, ExecutionContextInterface $executionContext) {
+            'constraints' => [new Callback(function ($value, ExecutionContextInterface $executionContext) {
                 /**
                  * @var Voorlegger $voorlegger
                  */

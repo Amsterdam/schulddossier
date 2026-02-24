@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TAanmelding implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPersoon
      */
@@ -743,7 +742,4 @@ class TAanmelding implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TableRequestInfoV5 extends TableRequestInfo
 {
-
     /**
      * @var anyType $WhereClause
      */
@@ -31,10 +30,10 @@ class TableRequestInfoV5 extends TableRequestInfo
      */
     public function __construct($UserFilter, $IncludeSchema, $MaxRecords, $Parameters, $WhereClause, $DynamicSelectFieldNames, $Sorting)
     {
-      parent::__construct($UserFilter, $IncludeSchema, $MaxRecords, $Parameters);
-      $this->WhereClause = $WhereClause;
-      $this->DynamicSelectFieldNames = $DynamicSelectFieldNames;
-      $this->Sorting = $Sorting;
+        parent::__construct($UserFilter, $IncludeSchema, $MaxRecords, $Parameters);
+        $this->WhereClause = $WhereClause;
+        $this->DynamicSelectFieldNames = $DynamicSelectFieldNames;
+        $this->Sorting = $Sorting;
     }
 
     /**
@@ -42,7 +41,7 @@ class TableRequestInfoV5 extends TableRequestInfo
      */
     public function getWhereClause()
     {
-      return $this->WhereClause;
+        return $this->WhereClause;
     }
 
     /**
@@ -51,8 +50,8 @@ class TableRequestInfoV5 extends TableRequestInfo
      */
     public function setWhereClause($WhereClause)
     {
-      $this->WhereClause = $WhereClause;
-      return $this;
+        $this->WhereClause = $WhereClause;
+        return $this;
     }
 
     /**
@@ -60,7 +59,7 @@ class TableRequestInfoV5 extends TableRequestInfo
      */
     public function getDynamicSelectFieldNames()
     {
-      return $this->DynamicSelectFieldNames;
+        return $this->DynamicSelectFieldNames;
     }
 
     /**
@@ -69,8 +68,8 @@ class TableRequestInfoV5 extends TableRequestInfo
      */
     public function setDynamicSelectFieldNames($DynamicSelectFieldNames)
     {
-      $this->DynamicSelectFieldNames = $DynamicSelectFieldNames;
-      return $this;
+        $this->DynamicSelectFieldNames = $DynamicSelectFieldNames;
+        return $this;
     }
 
     /**
@@ -78,7 +77,7 @@ class TableRequestInfoV5 extends TableRequestInfo
      */
     public function getSorting()
     {
-      return $this->Sorting;
+        return $this->Sorting;
     }
 
     /**
@@ -87,8 +86,7 @@ class TableRequestInfoV5 extends TableRequestInfo
      */
     public function setSorting($Sorting)
     {
-      $this->Sorting = $Sorting;
-      return $this;
+        $this->Sorting = $Sorting;
+        return $this;
     }
-
 }

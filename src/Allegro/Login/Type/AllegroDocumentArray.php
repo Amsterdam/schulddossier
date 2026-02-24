@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class AllegroDocumentArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TAllegroDocument
      */
@@ -41,7 +40,4 @@ class AllegroDocumentArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

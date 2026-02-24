@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class Int64Array
 {
-
     /**
      * @var long[] $long
      */
     protected $long = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class Int64Array
      */
     public function getLong()
     {
-      return $this->long;
+        return $this->long;
     }
 
     /**
@@ -30,8 +28,7 @@ class Int64Array
      */
     public function setLong(array $long = null)
     {
-      $this->long = $long;
-      return $this;
+        $this->long = $long;
+        return $this;
     }
-
 }

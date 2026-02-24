@@ -9,6 +9,4 @@ class eWoningSoort
     const Huur = 'Huur';
     const Koop = 'Koop';
     const Inwonend = 'Inwonend';
-
-
 }

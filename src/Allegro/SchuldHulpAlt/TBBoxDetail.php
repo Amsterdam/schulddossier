@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBBoxDetail
 {
-
     /**
      * @var int $Code
      */
@@ -177,34 +176,34 @@ class TBBoxDetail
      */
     public function __construct($Code, $Relatie, $ContractVolgnummer, $ContractSoort, $SoortOpdracht, $CodeEiserBegunstigde, $NummerReservering, $UniekVolgnummer, \DateTime $AanmaakDatum, \DateTime $OntvangstDatum, $Nieuw, \DateTime $EmailDatum, $AanmaakMedewerker, $AanmaakRelatie, $AfzenderMedewerker, $AfzenderRelatie, $OntvangerMedewerker, $OntvangerRelatie, \DateTime $LeesDatum, $LeesMedewerker, $LeesRelatie, \DateTime $ArchiefDatum, $ArchiefMedewerker, $ArchiefRelatie, $Onderwerp, $Tekst, $BijlagenAantal, $Bijlagen)
     {
-      $this->Code = $Code;
-      $this->Relatie = $Relatie;
-      $this->ContractVolgnummer = $ContractVolgnummer;
-      $this->ContractSoort = $ContractSoort;
-      $this->SoortOpdracht = $SoortOpdracht;
-      $this->CodeEiserBegunstigde = $CodeEiserBegunstigde;
-      $this->NummerReservering = $NummerReservering;
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      $this->AanmaakDatum = $AanmaakDatum->format(\DateTime::ATOM);
-      $this->OntvangstDatum = $OntvangstDatum->format(\DateTime::ATOM);
-      $this->Nieuw = $Nieuw;
-      $this->EmailDatum = $EmailDatum->format(\DateTime::ATOM);
-      $this->AanmaakMedewerker = $AanmaakMedewerker;
-      $this->AanmaakRelatie = $AanmaakRelatie;
-      $this->AfzenderMedewerker = $AfzenderMedewerker;
-      $this->AfzenderRelatie = $AfzenderRelatie;
-      $this->OntvangerMedewerker = $OntvangerMedewerker;
-      $this->OntvangerRelatie = $OntvangerRelatie;
-      $this->LeesDatum = $LeesDatum->format(\DateTime::ATOM);
-      $this->LeesMedewerker = $LeesMedewerker;
-      $this->LeesRelatie = $LeesRelatie;
-      $this->ArchiefDatum = $ArchiefDatum->format(\DateTime::ATOM);
-      $this->ArchiefMedewerker = $ArchiefMedewerker;
-      $this->ArchiefRelatie = $ArchiefRelatie;
-      $this->Onderwerp = $Onderwerp;
-      $this->Tekst = $Tekst;
-      $this->BijlagenAantal = $BijlagenAantal;
-      $this->Bijlagen = $Bijlagen;
+        $this->Code = $Code;
+        $this->Relatie = $Relatie;
+        $this->ContractVolgnummer = $ContractVolgnummer;
+        $this->ContractSoort = $ContractSoort;
+        $this->SoortOpdracht = $SoortOpdracht;
+        $this->CodeEiserBegunstigde = $CodeEiserBegunstigde;
+        $this->NummerReservering = $NummerReservering;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        $this->AanmaakDatum = $AanmaakDatum->format(\DateTime::ATOM);
+        $this->OntvangstDatum = $OntvangstDatum->format(\DateTime::ATOM);
+        $this->Nieuw = $Nieuw;
+        $this->EmailDatum = $EmailDatum->format(\DateTime::ATOM);
+        $this->AanmaakMedewerker = $AanmaakMedewerker;
+        $this->AanmaakRelatie = $AanmaakRelatie;
+        $this->AfzenderMedewerker = $AfzenderMedewerker;
+        $this->AfzenderRelatie = $AfzenderRelatie;
+        $this->OntvangerMedewerker = $OntvangerMedewerker;
+        $this->OntvangerRelatie = $OntvangerRelatie;
+        $this->LeesDatum = $LeesDatum->format(\DateTime::ATOM);
+        $this->LeesMedewerker = $LeesMedewerker;
+        $this->LeesRelatie = $LeesRelatie;
+        $this->ArchiefDatum = $ArchiefDatum->format(\DateTime::ATOM);
+        $this->ArchiefMedewerker = $ArchiefMedewerker;
+        $this->ArchiefRelatie = $ArchiefRelatie;
+        $this->Onderwerp = $Onderwerp;
+        $this->Tekst = $Tekst;
+        $this->BijlagenAantal = $BijlagenAantal;
+        $this->Bijlagen = $Bijlagen;
     }
 
     /**
@@ -212,7 +211,7 @@ class TBBoxDetail
      */
     public function getCode()
     {
-      return $this->Code;
+        return $this->Code;
     }
 
     /**
@@ -221,8 +220,8 @@ class TBBoxDetail
      */
     public function setCode($Code)
     {
-      $this->Code = $Code;
-      return $this;
+        $this->Code = $Code;
+        return $this;
     }
 
     /**
@@ -230,7 +229,7 @@ class TBBoxDetail
      */
     public function getRelatie()
     {
-      return $this->Relatie;
+        return $this->Relatie;
     }
 
     /**
@@ -239,8 +238,8 @@ class TBBoxDetail
      */
     public function setRelatie($Relatie)
     {
-      $this->Relatie = $Relatie;
-      return $this;
+        $this->Relatie = $Relatie;
+        return $this;
     }
 
     /**
@@ -248,7 +247,7 @@ class TBBoxDetail
      */
     public function getContractVolgnummer()
     {
-      return $this->ContractVolgnummer;
+        return $this->ContractVolgnummer;
     }
 
     /**
@@ -257,8 +256,8 @@ class TBBoxDetail
      */
     public function setContractVolgnummer($ContractVolgnummer)
     {
-      $this->ContractVolgnummer = $ContractVolgnummer;
-      return $this;
+        $this->ContractVolgnummer = $ContractVolgnummer;
+        return $this;
     }
 
     /**
@@ -266,7 +265,7 @@ class TBBoxDetail
      */
     public function getContractSoort()
     {
-      return $this->ContractSoort;
+        return $this->ContractSoort;
     }
 
     /**
@@ -275,8 +274,8 @@ class TBBoxDetail
      */
     public function setContractSoort($ContractSoort)
     {
-      $this->ContractSoort = $ContractSoort;
-      return $this;
+        $this->ContractSoort = $ContractSoort;
+        return $this;
     }
 
     /**
@@ -284,7 +283,7 @@ class TBBoxDetail
      */
     public function getSoortOpdracht()
     {
-      return $this->SoortOpdracht;
+        return $this->SoortOpdracht;
     }
 
     /**
@@ -293,8 +292,8 @@ class TBBoxDetail
      */
     public function setSoortOpdracht($SoortOpdracht)
     {
-      $this->SoortOpdracht = $SoortOpdracht;
-      return $this;
+        $this->SoortOpdracht = $SoortOpdracht;
+        return $this;
     }
 
     /**
@@ -302,7 +301,7 @@ class TBBoxDetail
      */
     public function getCodeEiserBegunstigde()
     {
-      return $this->CodeEiserBegunstigde;
+        return $this->CodeEiserBegunstigde;
     }
 
     /**
@@ -311,8 +310,8 @@ class TBBoxDetail
      */
     public function setCodeEiserBegunstigde($CodeEiserBegunstigde)
     {
-      $this->CodeEiserBegunstigde = $CodeEiserBegunstigde;
-      return $this;
+        $this->CodeEiserBegunstigde = $CodeEiserBegunstigde;
+        return $this;
     }
 
     /**
@@ -320,7 +319,7 @@ class TBBoxDetail
      */
     public function getNummerReservering()
     {
-      return $this->NummerReservering;
+        return $this->NummerReservering;
     }
 
     /**
@@ -329,8 +328,8 @@ class TBBoxDetail
      */
     public function setNummerReservering($NummerReservering)
     {
-      $this->NummerReservering = $NummerReservering;
-      return $this;
+        $this->NummerReservering = $NummerReservering;
+        return $this;
     }
 
     /**
@@ -338,7 +337,7 @@ class TBBoxDetail
      */
     public function getUniekVolgnummer()
     {
-      return $this->UniekVolgnummer;
+        return $this->UniekVolgnummer;
     }
 
     /**
@@ -347,8 +346,8 @@ class TBBoxDetail
      */
     public function setUniekVolgnummer($UniekVolgnummer)
     {
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      return $this;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        return $this;
     }
 
     /**
@@ -356,15 +355,15 @@ class TBBoxDetail
      */
     public function getAanmaakDatum()
     {
-      if ($this->AanmaakDatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->AanmaakDatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->AanmaakDatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->AanmaakDatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -373,8 +372,8 @@ class TBBoxDetail
      */
     public function setAanmaakDatum(\DateTime $AanmaakDatum)
     {
-      $this->AanmaakDatum = $AanmaakDatum->format(\DateTime::ATOM);
-      return $this;
+        $this->AanmaakDatum = $AanmaakDatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -382,15 +381,15 @@ class TBBoxDetail
      */
     public function getOntvangstDatum()
     {
-      if ($this->OntvangstDatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->OntvangstDatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->OntvangstDatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->OntvangstDatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -399,8 +398,8 @@ class TBBoxDetail
      */
     public function setOntvangstDatum(\DateTime $OntvangstDatum)
     {
-      $this->OntvangstDatum = $OntvangstDatum->format(\DateTime::ATOM);
-      return $this;
+        $this->OntvangstDatum = $OntvangstDatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -408,7 +407,7 @@ class TBBoxDetail
      */
     public function getNieuw()
     {
-      return $this->Nieuw;
+        return $this->Nieuw;
     }
 
     /**
@@ -417,8 +416,8 @@ class TBBoxDetail
      */
     public function setNieuw($Nieuw)
     {
-      $this->Nieuw = $Nieuw;
-      return $this;
+        $this->Nieuw = $Nieuw;
+        return $this;
     }
 
     /**
@@ -426,15 +425,15 @@ class TBBoxDetail
      */
     public function getEmailDatum()
     {
-      if ($this->EmailDatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->EmailDatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->EmailDatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->EmailDatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -443,8 +442,8 @@ class TBBoxDetail
      */
     public function setEmailDatum(\DateTime $EmailDatum)
     {
-      $this->EmailDatum = $EmailDatum->format(\DateTime::ATOM);
-      return $this;
+        $this->EmailDatum = $EmailDatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -452,7 +451,7 @@ class TBBoxDetail
      */
     public function getAanmaakMedewerker()
     {
-      return $this->AanmaakMedewerker;
+        return $this->AanmaakMedewerker;
     }
 
     /**
@@ -461,8 +460,8 @@ class TBBoxDetail
      */
     public function setAanmaakMedewerker($AanmaakMedewerker)
     {
-      $this->AanmaakMedewerker = $AanmaakMedewerker;
-      return $this;
+        $this->AanmaakMedewerker = $AanmaakMedewerker;
+        return $this;
     }
 
     /**
@@ -470,7 +469,7 @@ class TBBoxDetail
      */
     public function getAanmaakRelatie()
     {
-      return $this->AanmaakRelatie;
+        return $this->AanmaakRelatie;
     }
 
     /**
@@ -479,8 +478,8 @@ class TBBoxDetail
      */
     public function setAanmaakRelatie($AanmaakRelatie)
     {
-      $this->AanmaakRelatie = $AanmaakRelatie;
-      return $this;
+        $this->AanmaakRelatie = $AanmaakRelatie;
+        return $this;
     }
 
     /**
@@ -488,7 +487,7 @@ class TBBoxDetail
      */
     public function getAfzenderMedewerker()
     {
-      return $this->AfzenderMedewerker;
+        return $this->AfzenderMedewerker;
     }
 
     /**
@@ -497,8 +496,8 @@ class TBBoxDetail
      */
     public function setAfzenderMedewerker($AfzenderMedewerker)
     {
-      $this->AfzenderMedewerker = $AfzenderMedewerker;
-      return $this;
+        $this->AfzenderMedewerker = $AfzenderMedewerker;
+        return $this;
     }
 
     /**
@@ -506,7 +505,7 @@ class TBBoxDetail
      */
     public function getAfzenderRelatie()
     {
-      return $this->AfzenderRelatie;
+        return $this->AfzenderRelatie;
     }
 
     /**
@@ -515,8 +514,8 @@ class TBBoxDetail
      */
     public function setAfzenderRelatie($AfzenderRelatie)
     {
-      $this->AfzenderRelatie = $AfzenderRelatie;
-      return $this;
+        $this->AfzenderRelatie = $AfzenderRelatie;
+        return $this;
     }
 
     /**
@@ -524,7 +523,7 @@ class TBBoxDetail
      */
     public function getOntvangerMedewerker()
     {
-      return $this->OntvangerMedewerker;
+        return $this->OntvangerMedewerker;
     }
 
     /**
@@ -533,8 +532,8 @@ class TBBoxDetail
      */
     public function setOntvangerMedewerker($OntvangerMedewerker)
     {
-      $this->OntvangerMedewerker = $OntvangerMedewerker;
-      return $this;
+        $this->OntvangerMedewerker = $OntvangerMedewerker;
+        return $this;
     }
 
     /**
@@ -542,7 +541,7 @@ class TBBoxDetail
      */
     public function getOntvangerRelatie()
     {
-      return $this->OntvangerRelatie;
+        return $this->OntvangerRelatie;
     }
 
     /**
@@ -551,8 +550,8 @@ class TBBoxDetail
      */
     public function setOntvangerRelatie($OntvangerRelatie)
     {
-      $this->OntvangerRelatie = $OntvangerRelatie;
-      return $this;
+        $this->OntvangerRelatie = $OntvangerRelatie;
+        return $this;
     }
 
     /**
@@ -560,15 +559,15 @@ class TBBoxDetail
      */
     public function getLeesDatum()
     {
-      if ($this->LeesDatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->LeesDatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->LeesDatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->LeesDatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -577,8 +576,8 @@ class TBBoxDetail
      */
     public function setLeesDatum(\DateTime $LeesDatum)
     {
-      $this->LeesDatum = $LeesDatum->format(\DateTime::ATOM);
-      return $this;
+        $this->LeesDatum = $LeesDatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -586,7 +585,7 @@ class TBBoxDetail
      */
     public function getLeesMedewerker()
     {
-      return $this->LeesMedewerker;
+        return $this->LeesMedewerker;
     }
 
     /**
@@ -595,8 +594,8 @@ class TBBoxDetail
      */
     public function setLeesMedewerker($LeesMedewerker)
     {
-      $this->LeesMedewerker = $LeesMedewerker;
-      return $this;
+        $this->LeesMedewerker = $LeesMedewerker;
+        return $this;
     }
 
     /**
@@ -604,7 +603,7 @@ class TBBoxDetail
      */
     public function getLeesRelatie()
     {
-      return $this->LeesRelatie;
+        return $this->LeesRelatie;
     }
 
     /**
@@ -613,8 +612,8 @@ class TBBoxDetail
      */
     public function setLeesRelatie($LeesRelatie)
     {
-      $this->LeesRelatie = $LeesRelatie;
-      return $this;
+        $this->LeesRelatie = $LeesRelatie;
+        return $this;
     }
 
     /**
@@ -622,15 +621,15 @@ class TBBoxDetail
      */
     public function getArchiefDatum()
     {
-      if ($this->ArchiefDatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->ArchiefDatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->ArchiefDatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->ArchiefDatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -639,8 +638,8 @@ class TBBoxDetail
      */
     public function setArchiefDatum(\DateTime $ArchiefDatum)
     {
-      $this->ArchiefDatum = $ArchiefDatum->format(\DateTime::ATOM);
-      return $this;
+        $this->ArchiefDatum = $ArchiefDatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -648,7 +647,7 @@ class TBBoxDetail
      */
     public function getArchiefMedewerker()
     {
-      return $this->ArchiefMedewerker;
+        return $this->ArchiefMedewerker;
     }
 
     /**
@@ -657,8 +656,8 @@ class TBBoxDetail
      */
     public function setArchiefMedewerker($ArchiefMedewerker)
     {
-      $this->ArchiefMedewerker = $ArchiefMedewerker;
-      return $this;
+        $this->ArchiefMedewerker = $ArchiefMedewerker;
+        return $this;
     }
 
     /**
@@ -666,7 +665,7 @@ class TBBoxDetail
      */
     public function getArchiefRelatie()
     {
-      return $this->ArchiefRelatie;
+        return $this->ArchiefRelatie;
     }
 
     /**
@@ -675,8 +674,8 @@ class TBBoxDetail
      */
     public function setArchiefRelatie($ArchiefRelatie)
     {
-      $this->ArchiefRelatie = $ArchiefRelatie;
-      return $this;
+        $this->ArchiefRelatie = $ArchiefRelatie;
+        return $this;
     }
 
     /**
@@ -684,7 +683,7 @@ class TBBoxDetail
      */
     public function getOnderwerp()
     {
-      return $this->Onderwerp;
+        return $this->Onderwerp;
     }
 
     /**
@@ -693,8 +692,8 @@ class TBBoxDetail
      */
     public function setOnderwerp($Onderwerp)
     {
-      $this->Onderwerp = $Onderwerp;
-      return $this;
+        $this->Onderwerp = $Onderwerp;
+        return $this;
     }
 
     /**
@@ -702,7 +701,7 @@ class TBBoxDetail
      */
     public function getTekst()
     {
-      return $this->Tekst;
+        return $this->Tekst;
     }
 
     /**
@@ -711,8 +710,8 @@ class TBBoxDetail
      */
     public function setTekst($Tekst)
     {
-      $this->Tekst = $Tekst;
-      return $this;
+        $this->Tekst = $Tekst;
+        return $this;
     }
 
     /**
@@ -720,7 +719,7 @@ class TBBoxDetail
      */
     public function getBijlagenAantal()
     {
-      return $this->BijlagenAantal;
+        return $this->BijlagenAantal;
     }
 
     /**
@@ -729,8 +728,8 @@ class TBBoxDetail
      */
     public function setBijlagenAantal($BijlagenAantal)
     {
-      $this->BijlagenAantal = $BijlagenAantal;
-      return $this;
+        $this->BijlagenAantal = $BijlagenAantal;
+        return $this;
     }
 
     /**
@@ -738,7 +737,7 @@ class TBBoxDetail
      */
     public function getBijlagen()
     {
-      return $this->Bijlagen;
+        return $this->Bijlagen;
     }
 
     /**
@@ -747,8 +746,7 @@ class TBBoxDetail
      */
     public function setBijlagen($Bijlagen)
     {
-      $this->Bijlagen = $Bijlagen;
-      return $this;
+        $this->Bijlagen = $Bijlagen;
+        return $this;
     }
-
 }

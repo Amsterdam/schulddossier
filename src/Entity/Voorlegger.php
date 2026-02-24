@@ -1189,7 +1189,7 @@ class Voorlegger
 
     public function getVtlbBedrag()
     {
-        return $this->vtlbBedrag;
+        return (float) $this->vtlbBedrag;
     }
 
     public function getInkomstenspecificatieOntvangenShv()
@@ -1710,7 +1710,7 @@ class Voorlegger
 
     public function getGereserveerdeGelden()
     {
-        return $this->gereserveerdeGelden;
+        return (float) $this->gereserveerdeGelden;
     }
 
     public function getOndertekendAanvraagFormulierOntvangenShv()

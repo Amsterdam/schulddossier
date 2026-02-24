@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TOpdrachtgeverKlant
 {
-
     /**
      * @var int $Relatiecode
      */
@@ -93,20 +92,20 @@ class TOpdrachtgeverKlant
      */
     public function __construct($Relatiecode, $Zoeknaam, \DateTime $GeboorteDatum, $BSN, $Adres, $CasusVolgnummer, $AanvraagSRVolgnummer, $SRVolgnummer, $AanvraagBBRVolgnummer, $BBRVolgnummer, $CasusCrisis, $CasusFase, $Trajecten, $BBRVorm)
     {
-      $this->Relatiecode = $Relatiecode;
-      $this->Zoeknaam = $Zoeknaam;
-      $this->GeboorteDatum = $GeboorteDatum->format(\DateTime::ATOM);
-      $this->BSN = $BSN;
-      $this->Adres = $Adres;
-      $this->CasusVolgnummer = $CasusVolgnummer;
-      $this->AanvraagSRVolgnummer = $AanvraagSRVolgnummer;
-      $this->SRVolgnummer = $SRVolgnummer;
-      $this->AanvraagBBRVolgnummer = $AanvraagBBRVolgnummer;
-      $this->BBRVolgnummer = $BBRVolgnummer;
-      $this->CasusCrisis = $CasusCrisis;
-      $this->CasusFase = $CasusFase;
-      $this->Trajecten = $Trajecten;
-      $this->BBRVorm = $BBRVorm;
+        $this->Relatiecode = $Relatiecode;
+        $this->Zoeknaam = $Zoeknaam;
+        $this->GeboorteDatum = $GeboorteDatum->format(\DateTime::ATOM);
+        $this->BSN = $BSN;
+        $this->Adres = $Adres;
+        $this->CasusVolgnummer = $CasusVolgnummer;
+        $this->AanvraagSRVolgnummer = $AanvraagSRVolgnummer;
+        $this->SRVolgnummer = $SRVolgnummer;
+        $this->AanvraagBBRVolgnummer = $AanvraagBBRVolgnummer;
+        $this->BBRVolgnummer = $BBRVolgnummer;
+        $this->CasusCrisis = $CasusCrisis;
+        $this->CasusFase = $CasusFase;
+        $this->Trajecten = $Trajecten;
+        $this->BBRVorm = $BBRVorm;
     }
 
     /**
@@ -114,7 +113,7 @@ class TOpdrachtgeverKlant
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -123,8 +122,8 @@ class TOpdrachtgeverKlant
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -132,7 +131,7 @@ class TOpdrachtgeverKlant
      */
     public function getZoeknaam()
     {
-      return $this->Zoeknaam;
+        return $this->Zoeknaam;
     }
 
     /**
@@ -141,8 +140,8 @@ class TOpdrachtgeverKlant
      */
     public function setZoeknaam($Zoeknaam)
     {
-      $this->Zoeknaam = $Zoeknaam;
-      return $this;
+        $this->Zoeknaam = $Zoeknaam;
+        return $this;
     }
 
     /**
@@ -150,15 +149,15 @@ class TOpdrachtgeverKlant
      */
     public function getGeboorteDatum()
     {
-      if ($this->GeboorteDatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->GeboorteDatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->GeboorteDatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->GeboorteDatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -167,8 +166,8 @@ class TOpdrachtgeverKlant
      */
     public function setGeboorteDatum(\DateTime $GeboorteDatum)
     {
-      $this->GeboorteDatum = $GeboorteDatum->format(\DateTime::ATOM);
-      return $this;
+        $this->GeboorteDatum = $GeboorteDatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -176,7 +175,7 @@ class TOpdrachtgeverKlant
      */
     public function getBSN()
     {
-      return $this->BSN;
+        return $this->BSN;
     }
 
     /**
@@ -185,8 +184,8 @@ class TOpdrachtgeverKlant
      */
     public function setBSN($BSN)
     {
-      $this->BSN = $BSN;
-      return $this;
+        $this->BSN = $BSN;
+        return $this;
     }
 
     /**
@@ -194,7 +193,7 @@ class TOpdrachtgeverKlant
      */
     public function getAdres()
     {
-      return $this->Adres;
+        return $this->Adres;
     }
 
     /**
@@ -203,8 +202,8 @@ class TOpdrachtgeverKlant
      */
     public function setAdres($Adres)
     {
-      $this->Adres = $Adres;
-      return $this;
+        $this->Adres = $Adres;
+        return $this;
     }
 
     /**
@@ -212,7 +211,7 @@ class TOpdrachtgeverKlant
      */
     public function getCasusVolgnummer()
     {
-      return $this->CasusVolgnummer;
+        return $this->CasusVolgnummer;
     }
 
     /**
@@ -221,8 +220,8 @@ class TOpdrachtgeverKlant
      */
     public function setCasusVolgnummer($CasusVolgnummer)
     {
-      $this->CasusVolgnummer = $CasusVolgnummer;
-      return $this;
+        $this->CasusVolgnummer = $CasusVolgnummer;
+        return $this;
     }
 
     /**
@@ -230,7 +229,7 @@ class TOpdrachtgeverKlant
      */
     public function getAanvraagSRVolgnummer()
     {
-      return $this->AanvraagSRVolgnummer;
+        return $this->AanvraagSRVolgnummer;
     }
 
     /**
@@ -239,8 +238,8 @@ class TOpdrachtgeverKlant
      */
     public function setAanvraagSRVolgnummer($AanvraagSRVolgnummer)
     {
-      $this->AanvraagSRVolgnummer = $AanvraagSRVolgnummer;
-      return $this;
+        $this->AanvraagSRVolgnummer = $AanvraagSRVolgnummer;
+        return $this;
     }
 
     /**
@@ -248,7 +247,7 @@ class TOpdrachtgeverKlant
      */
     public function getSRVolgnummer()
     {
-      return $this->SRVolgnummer;
+        return $this->SRVolgnummer;
     }
 
     /**
@@ -257,8 +256,8 @@ class TOpdrachtgeverKlant
      */
     public function setSRVolgnummer($SRVolgnummer)
     {
-      $this->SRVolgnummer = $SRVolgnummer;
-      return $this;
+        $this->SRVolgnummer = $SRVolgnummer;
+        return $this;
     }
 
     /**
@@ -266,7 +265,7 @@ class TOpdrachtgeverKlant
      */
     public function getAanvraagBBRVolgnummer()
     {
-      return $this->AanvraagBBRVolgnummer;
+        return $this->AanvraagBBRVolgnummer;
     }
 
     /**
@@ -275,8 +274,8 @@ class TOpdrachtgeverKlant
      */
     public function setAanvraagBBRVolgnummer($AanvraagBBRVolgnummer)
     {
-      $this->AanvraagBBRVolgnummer = $AanvraagBBRVolgnummer;
-      return $this;
+        $this->AanvraagBBRVolgnummer = $AanvraagBBRVolgnummer;
+        return $this;
     }
 
     /**
@@ -284,7 +283,7 @@ class TOpdrachtgeverKlant
      */
     public function getBBRVolgnummer()
     {
-      return $this->BBRVolgnummer;
+        return $this->BBRVolgnummer;
     }
 
     /**
@@ -293,8 +292,8 @@ class TOpdrachtgeverKlant
      */
     public function setBBRVolgnummer($BBRVolgnummer)
     {
-      $this->BBRVolgnummer = $BBRVolgnummer;
-      return $this;
+        $this->BBRVolgnummer = $BBRVolgnummer;
+        return $this;
     }
 
     /**
@@ -302,7 +301,7 @@ class TOpdrachtgeverKlant
      */
     public function getCasusCrisis()
     {
-      return $this->CasusCrisis;
+        return $this->CasusCrisis;
     }
 
     /**
@@ -311,8 +310,8 @@ class TOpdrachtgeverKlant
      */
     public function setCasusCrisis($CasusCrisis)
     {
-      $this->CasusCrisis = $CasusCrisis;
-      return $this;
+        $this->CasusCrisis = $CasusCrisis;
+        return $this;
     }
 
     /**
@@ -320,7 +319,7 @@ class TOpdrachtgeverKlant
      */
     public function getCasusFase()
     {
-      return $this->CasusFase;
+        return $this->CasusFase;
     }
 
     /**
@@ -329,8 +328,8 @@ class TOpdrachtgeverKlant
      */
     public function setCasusFase($CasusFase)
     {
-      $this->CasusFase = $CasusFase;
-      return $this;
+        $this->CasusFase = $CasusFase;
+        return $this;
     }
 
     /**
@@ -338,7 +337,7 @@ class TOpdrachtgeverKlant
      */
     public function getTrajecten()
     {
-      return $this->Trajecten;
+        return $this->Trajecten;
     }
 
     /**
@@ -347,8 +346,8 @@ class TOpdrachtgeverKlant
      */
     public function setTrajecten($Trajecten)
     {
-      $this->Trajecten = $Trajecten;
-      return $this;
+        $this->Trajecten = $Trajecten;
+        return $this;
     }
 
     /**
@@ -356,7 +355,7 @@ class TOpdrachtgeverKlant
      */
     public function getBBRVorm()
     {
-      return $this->BBRVorm;
+        return $this->BBRVorm;
     }
 
     /**
@@ -365,8 +364,7 @@ class TOpdrachtgeverKlant
      */
     public function setBBRVorm($BBRVorm)
     {
-      $this->BBRVorm = $BBRVorm;
-      return $this;
+        $this->BBRVorm = $BBRVorm;
+        return $this;
     }
-
 }

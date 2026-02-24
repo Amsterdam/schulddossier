@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TableRequestInfoArray
 {
-
     /**
      * @var TableRequestInfo[] $TableRequestInfo
      */
     protected $TableRequestInfo = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class TableRequestInfoArray
      */
     public function getTableRequestInfo()
     {
-      return $this->TableRequestInfo;
+        return $this->TableRequestInfo;
     }
 
     /**
@@ -30,8 +28,7 @@ class TableRequestInfoArray
      */
     public function setTableRequestInfo(array $TableRequestInfo = null)
     {
-      $this->TableRequestInfo = $TableRequestInfo;
-      return $this;
+        $this->TableRequestInfo = $TableRequestInfo;
+        return $this;
     }
-
 }

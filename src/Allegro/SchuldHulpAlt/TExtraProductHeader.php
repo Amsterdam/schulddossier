@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TExtraProductHeader
 {
-
     /**
      * @var int $Relatiecode
      */
@@ -33,10 +32,10 @@ class TExtraProductHeader
      */
     public function __construct($Relatiecode, $Volgnummer, $Omschrijving, \DateTime $AanvraagDatum)
     {
-      $this->Relatiecode = $Relatiecode;
-      $this->Volgnummer = $Volgnummer;
-      $this->Omschrijving = $Omschrijving;
-      $this->AanvraagDatum = $AanvraagDatum->format(\DateTime::ATOM);
+        $this->Relatiecode = $Relatiecode;
+        $this->Volgnummer = $Volgnummer;
+        $this->Omschrijving = $Omschrijving;
+        $this->AanvraagDatum = $AanvraagDatum->format(\DateTime::ATOM);
     }
 
     /**
@@ -44,7 +43,7 @@ class TExtraProductHeader
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -53,8 +52,8 @@ class TExtraProductHeader
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -62,7 +61,7 @@ class TExtraProductHeader
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -71,8 +70,8 @@ class TExtraProductHeader
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -80,7 +79,7 @@ class TExtraProductHeader
      */
     public function getOmschrijving()
     {
-      return $this->Omschrijving;
+        return $this->Omschrijving;
     }
 
     /**
@@ -89,8 +88,8 @@ class TExtraProductHeader
      */
     public function setOmschrijving($Omschrijving)
     {
-      $this->Omschrijving = $Omschrijving;
-      return $this;
+        $this->Omschrijving = $Omschrijving;
+        return $this;
     }
 
     /**
@@ -98,15 +97,15 @@ class TExtraProductHeader
      */
     public function getAanvraagDatum()
     {
-      if ($this->AanvraagDatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->AanvraagDatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->AanvraagDatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->AanvraagDatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -115,8 +114,7 @@ class TExtraProductHeader
      */
     public function setAanvraagDatum(\DateTime $AanvraagDatum)
     {
-      $this->AanvraagDatum = $AanvraagDatum->format(\DateTime::ATOM);
-      return $this;
+        $this->AanvraagDatum = $AanvraagDatum->format(\DateTime::ATOM);
+        return $this;
     }
-
 }

@@ -3,9 +3,7 @@ FROM php:8.2-fpm-alpine
 COPY certificates/adp_rootca.crt /usr/local/share/ca-certificates/adp_rootca.crt
 RUN update-ca-certificates --fresh
 
-RUN apk update && apk upgrade
-
-RUN apk add \
+RUN apk add --no-cache \
     icu-dev \
     postgresql-dev \
     libzip-dev \
@@ -50,9 +48,9 @@ COPY docker-phpfpm/www.conf /usr/local/etc/php-fpm.d
 
 # Install dependencies and xdebug in one layer
 RUN apk --no-cache add pcre-dev ${PHPIZE_DEPS} \
-  && apk add --update linux-headers \
-  && pecl install xdebug-3.3.0 && docker-php-ext-enable xdebug \
-  && apk del pcre-dev ${PHPIZE_DEPS}
+    && apk add --update linux-headers \
+    && pecl install xdebug-3.4.1 && docker-php-ext-enable xdebug \
+    && apk del pcre-dev ${PHPIZE_DEPS}
 
 # Copy the Xdebug configuration file
 COPY ./docker-phpfpm/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
@@ -76,6 +74,5 @@ RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
 
 RUN npm ci --no-audit --no-fund --ignore-scripts
 RUN npm run build
-RUN npm run postinstall
 
 CMD ["/var/www/docker-entrypoint_phpfpm.sh"]

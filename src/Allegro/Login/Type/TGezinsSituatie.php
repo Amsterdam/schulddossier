@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TGezinsSituatie implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -122,7 +121,4 @@ class TGezinsSituatie implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TRC
 {
-
     /**
      * @var TRCHeader $InfoHeader
      */
@@ -57,14 +56,14 @@ class TRC
      */
     public function __construct($InfoHeader, $Medewerker, $Rentecode, $RentecodeOmschrijving, \DateTime $TabelIngangsdatum, $RentepercentagePositief, $RentepercentageNegatief, $Jaarrente)
     {
-      $this->InfoHeader = $InfoHeader;
-      $this->Medewerker = $Medewerker;
-      $this->Rentecode = $Rentecode;
-      $this->RentecodeOmschrijving = $RentecodeOmschrijving;
-      $this->TabelIngangsdatum = $TabelIngangsdatum->format(\DateTime::ATOM);
-      $this->RentepercentagePositief = $RentepercentagePositief;
-      $this->RentepercentageNegatief = $RentepercentageNegatief;
-      $this->Jaarrente = $Jaarrente;
+        $this->InfoHeader = $InfoHeader;
+        $this->Medewerker = $Medewerker;
+        $this->Rentecode = $Rentecode;
+        $this->RentecodeOmschrijving = $RentecodeOmschrijving;
+        $this->TabelIngangsdatum = $TabelIngangsdatum->format(\DateTime::ATOM);
+        $this->RentepercentagePositief = $RentepercentagePositief;
+        $this->RentepercentageNegatief = $RentepercentageNegatief;
+        $this->Jaarrente = $Jaarrente;
     }
 
     /**
@@ -72,7 +71,7 @@ class TRC
      */
     public function getInfoHeader()
     {
-      return $this->InfoHeader;
+        return $this->InfoHeader;
     }
 
     /**
@@ -81,8 +80,8 @@ class TRC
      */
     public function setInfoHeader($InfoHeader)
     {
-      $this->InfoHeader = $InfoHeader;
-      return $this;
+        $this->InfoHeader = $InfoHeader;
+        return $this;
     }
 
     /**
@@ -90,7 +89,7 @@ class TRC
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -99,8 +98,8 @@ class TRC
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -108,7 +107,7 @@ class TRC
      */
     public function getRentecode()
     {
-      return $this->Rentecode;
+        return $this->Rentecode;
     }
 
     /**
@@ -117,8 +116,8 @@ class TRC
      */
     public function setRentecode($Rentecode)
     {
-      $this->Rentecode = $Rentecode;
-      return $this;
+        $this->Rentecode = $Rentecode;
+        return $this;
     }
 
     /**
@@ -126,7 +125,7 @@ class TRC
      */
     public function getRentecodeOmschrijving()
     {
-      return $this->RentecodeOmschrijving;
+        return $this->RentecodeOmschrijving;
     }
 
     /**
@@ -135,8 +134,8 @@ class TRC
      */
     public function setRentecodeOmschrijving($RentecodeOmschrijving)
     {
-      $this->RentecodeOmschrijving = $RentecodeOmschrijving;
-      return $this;
+        $this->RentecodeOmschrijving = $RentecodeOmschrijving;
+        return $this;
     }
 
     /**
@@ -144,15 +143,15 @@ class TRC
      */
     public function getTabelIngangsdatum()
     {
-      if ($this->TabelIngangsdatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->TabelIngangsdatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->TabelIngangsdatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->TabelIngangsdatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -161,8 +160,8 @@ class TRC
      */
     public function setTabelIngangsdatum(\DateTime $TabelIngangsdatum)
     {
-      $this->TabelIngangsdatum = $TabelIngangsdatum->format(\DateTime::ATOM);
-      return $this;
+        $this->TabelIngangsdatum = $TabelIngangsdatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -170,7 +169,7 @@ class TRC
      */
     public function getRentepercentagePositief()
     {
-      return $this->RentepercentagePositief;
+        return $this->RentepercentagePositief;
     }
 
     /**
@@ -179,8 +178,8 @@ class TRC
      */
     public function setRentepercentagePositief($RentepercentagePositief)
     {
-      $this->RentepercentagePositief = $RentepercentagePositief;
-      return $this;
+        $this->RentepercentagePositief = $RentepercentagePositief;
+        return $this;
     }
 
     /**
@@ -188,7 +187,7 @@ class TRC
      */
     public function getRentepercentageNegatief()
     {
-      return $this->RentepercentageNegatief;
+        return $this->RentepercentageNegatief;
     }
 
     /**
@@ -197,8 +196,8 @@ class TRC
      */
     public function setRentepercentageNegatief($RentepercentageNegatief)
     {
-      $this->RentepercentageNegatief = $RentepercentageNegatief;
-      return $this;
+        $this->RentepercentageNegatief = $RentepercentageNegatief;
+        return $this;
     }
 
     /**
@@ -206,7 +205,7 @@ class TRC
      */
     public function getJaarrente()
     {
-      return $this->Jaarrente;
+        return $this->Jaarrente;
     }
 
     /**
@@ -215,8 +214,7 @@ class TRC
      */
     public function setJaarrente($Jaarrente)
     {
-      $this->Jaarrente = $Jaarrente;
-      return $this;
+        $this->Jaarrente = $Jaarrente;
+        return $this;
     }
-
 }

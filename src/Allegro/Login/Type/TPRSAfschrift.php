@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TPRSAfschrift implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -365,7 +364,4 @@ class TPRSAfschrift implements RequestInterface
 
         return $new;
     }
-
-
 }
-
