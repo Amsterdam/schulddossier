@@ -648,7 +648,8 @@ class AppDossierController extends AbstractController
                 ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
                 ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
                 ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD,
-                ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD
+                ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD,
+                ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT
             ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
@@ -709,18 +710,7 @@ class AppDossierController extends AbstractController
             $schuldItemUpdates = [];
 
             foreach ($schuldItems as $schuldItem) {
-                $schuldenChangeSet = $this->getEntityChangeSet($schuldItem, $em);
-                if (!empty($schuldenChangeSet)) {
-                    $schuldenChangeSet = $this->loadProxyEntityForSchuldeiserOrganisations($schuldenChangeSet);
-                    $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'vaststelDatum');
-                    $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'ontstaansDatum');
-                    $schuldItemUpdates[] = [
-                        'id' => $schuldItem->getId(),
-                        'schuldeiserNaam' => $schuldItem->getSchuldeiser()->getBedrijfsnaam(),
-                        'bedrag' => $schuldItem->getBedrag(),
-                        'schuldenChangeSet' => $schuldenChangeSet
-                    ];
-                }
+                $schuldItemUpdates[] = $this->getSchuldItemUpdate($schuldItem, $em, $schuldItemUpdates);
             }
 
             $em->flush();
@@ -774,13 +764,14 @@ class AppDossierController extends AbstractController
                 $aantekening->setTekst($createForm->get('aantekening')->get('tekst')->getData());
                 $eventDispatcher->dispatch(new DossierAddedAantekeningEvent($dossier, $this->getUser()), DossierAddedAantekeningEvent::NAME);
             }
+            $schuldItemUpdate = $this->getSchuldItemUpdate($schuldItem, $em, []);
+
             $em->flush();
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
-            //$this->addFlash('success', 'Toegevoegd');
+
+            $eventDispatcher->dispatch(ActionEvent::registerSchuldItemAangemaakt($this->getUser(), $dossier, $schuldItemUpdate), ActionEvent::NAME);
+
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', ['dossierId' => $dossier->getId()]);
-        } //else if ($createForm->isSubmitted() && $request->isXmlHttpRequest()) {
-        //    return new JsonResponse($this->get('json_serializer')->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-        //}
+        }
 
         $schuldeiser = new Schuldeiser();
         $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser, [
@@ -1442,7 +1433,7 @@ class AppDossierController extends AbstractController
      *
      * @return array The updated array with formatted date values for the specified key.
      */
-    public function formatDateChangeSet(array $changeSet, string $key): array
+    private function formatDateChangeSet(array $changeSet, string $key): array
     {
         if (array_key_exists($key, $changeSet)) {
             foreach ($changeSet[$key] as $index => $date) {
@@ -1453,5 +1444,39 @@ class AppDossierController extends AbstractController
         }
 
         return $changeSet;
+    }
+
+    /**
+     * Processes the change set of a schuld item and appends the updated data to the update array.
+     *
+     * @param object $schuldItem The schuld item entity to process.
+     * @param EntityManagerInterface $entityManager The entity manager to retrieve the change set.
+     * @param array $schuldItemUpdate The array to append the updated schuld item data.
+     *
+     * @return array The updated schuld item update array.
+     */
+    private function getSchuldItemUpdate(object $schuldItem, EntityManagerInterface $entityManager, array $schuldItemUpdate)
+    {
+        $schuldenChangeSet = $this->getEntityChangeSet($schuldItem, $entityManager);
+
+        if (empty($schuldenChangeSet)) {
+            return $schuldItemUpdate;
+        }
+
+        $schuldenChangeSet = $this->loadProxyEntityForSchuldeiserOrganisations($schuldenChangeSet);
+        $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'vaststelDatum');
+        $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'ontstaansDatum');
+
+        // Remove keys that are already stored in the action-event object to avoid duplication.
+        $keysToRemove = ['aanmaker', 'bewerker', 'dossier', 'verwijderd', 'aanmaakDatumTijd', 'bewerkDatumTijd'];
+        $schuldenChangeSet = array_diff_key($schuldenChangeSet, array_flip($keysToRemove));
+
+        $schuldItemUpdate[] = [
+            'id' => $schuldItem->getId(),
+            'schuldeiserNaam' => $schuldItem->getSchuldeiser()->getBedrijfsnaam(),
+            'bedrag' => $schuldItem->getBedrag(),
+            'schuldenChangeSet' => $schuldenChangeSet
+        ];
+        return $schuldItemUpdate;
     }
 }
