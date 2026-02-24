@@ -1446,6 +1446,15 @@ class AppDossierController extends AbstractController
         return $changeSet;
     }
 
+    /**
+     * Processes the change set of a schuld item and appends the updated data to the update array.
+     *
+     * @param object $schuldItem The schuld item entity to process.
+     * @param EntityManagerInterface $entityManager The entity manager to retrieve the change set.
+     * @param array $schuldItemUpdate The array to append the updated schuld item data.
+     *
+     * @return array The updated schuld item update array.
+     */
     private function getSchuldItemUpdate(object $schuldItem, EntityManagerInterface $entityManager, array $schuldItemUpdate)
     {
         $schuldenChangeSet = $this->getEntityChangeSet($schuldItem, $entityManager);
