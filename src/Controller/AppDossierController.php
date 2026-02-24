@@ -340,13 +340,15 @@ class AppDossierController extends AbstractController
             }
 
             $voorleggerChangeSet = $this->getEntityChangeSet($dossier->getVoorlegger(), $em);
+            $dossierChangeSet =  $this->getEntityChangeSet($dossier, $em);
+            $combinedChangeSet = array_merge($voorleggerChangeSet, $dossierChangeSet);
 
             $em->flush();
             if ($sendCorrespondentieNotification === true) {
                 $eventDispatcher->dispatch(new DossierAddedCorrespondentie($dossier, $this->getUser()), DossierAddedCorrespondentie::NAME);
             }
 
-            $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $voorleggerChangeSet), ActionEvent::NAME);
+            $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $combinedChangeSet), ActionEvent::NAME);
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
 
