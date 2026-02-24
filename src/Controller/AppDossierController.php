@@ -240,11 +240,6 @@ class AppDossierController extends AbstractController
             $dossier->setVoorlegger(new Voorlegger());
         }
 
-        $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger(), [
-            'disabled' => $dossier->isInPrullenbak() === true,
-            'disable_group' => $this->getUser()->getType()
-        ]);
-
         $form = $this->createForm(DetailDossierAdditionalFormType::class, $dossier);
 
         $form->handleRequest($request);
