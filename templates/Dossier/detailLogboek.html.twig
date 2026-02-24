@@ -61,7 +61,7 @@
                                 Dossier voorlegger gewijzigd door {{ log.data.gebruiker.naam }}
                                 <br>
                                 <br>
-                                {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.voorleggerChangeSet } %}
+                                {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.changeSet } %}
                             {% endif %}
                             {% if log.name == 'dossier_schulditems_gewijzigd' %}
                                 Dossier schulditems gewijzigd door {{ log.data.gebruiker.naam }}
@@ -98,12 +98,6 @@
                                 <br>
                                 <br>
                                 {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.dossierChangeSet, isNew: true } %}
-                            {% endif %}
-                            {% if log.name == 'dossier_persoonsgegevens_gewijzigd' %}
-                                Dossier gewijzigd door {{ log.data.gebruiker.naam }}
-                                <br>
-                                <br>
-                                {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.dossierChangeSet} %}
                             {% endif %}
                             {% if log.name == 'dossier_send_to_allegro' %}
                                 Dossier verzonden naar allegro

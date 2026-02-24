@@ -98,7 +98,7 @@
 								door {{ log.data.gebruiker.naam }}
                                 <br>
                                 <br>
-                                {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.voorleggerChangeSet } %}
+                                {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.changeSet } %}
                             {% endif %}
 							{% if log.name == 'dossier_schulditem_aangemaakt' %}
 								Schulditem aangemaakt voor dossier 

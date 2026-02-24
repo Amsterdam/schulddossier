@@ -249,7 +249,7 @@ class AppDossierController extends AbstractController
             $em->flush();
             $this->addFlash('success', 'Dossier aangemaakt');
 
-            $eventDispatcher->dispatch(ActionEvent::registerDossierPersoonsgegevensGewijzigd($this->getUser(), $dossier, $dossierChangeSet), ActionEvent::NAME);
+            $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $dossierChangeSet), ActionEvent::NAME);
 
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
                 'dossierId' => $dossier->getId()
@@ -377,7 +377,7 @@ class AppDossierController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $dossierChangeSet = $this->getDossierChangeSet($dossier, $em);
             $em->flush();
-            $eventDispatcher->dispatch(ActionEvent::registerDossierPersoonsgegevensGewijzigd($this->getUser(), $dossier, $dossierChangeSet), ActionEvent::NAME);
+            $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $dossierChangeSet), ActionEvent::NAME);
 
             if ($request->isXmlHttpRequest()) {
                 return new JsonResponse(['msg' => 'OK']);
