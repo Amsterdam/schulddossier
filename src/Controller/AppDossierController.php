@@ -662,7 +662,7 @@ class AppDossierController extends AbstractController
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function detailSchuldenAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher, SerializerInterface $serializer)
+    public function detailSchuldenAction(Request $request, Dossier $dossier, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $schuldItems = $dossier->getSchuldItems();
 
