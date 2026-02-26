@@ -710,7 +710,7 @@ class AppDossierController extends AbstractController
             $schuldItemUpdates = [];
 
             foreach ($schuldItems as $schuldItem) {
-                $schuldItemUpdates[] = $this->getSchuldItemUpdate($schuldItem, $em, $schuldItemUpdates);
+                $schuldItemUpdates = $this->getSchuldItemUpdate($schuldItem, $em, $schuldItemUpdates);
             }
 
             $em->flush();
@@ -1446,10 +1446,13 @@ class AppDossierController extends AbstractController
         }
 
         foreach ([0, 1] as $index) {
-            if (!empty($schuldenChangeSet[$organisationType][$index])) {
+            $currentItem = $schuldenChangeSet[$organisationType][$index];
+            if (!empty($currentItem)) {
                 $schuldenChangeSet[$organisationType][$index] = [
-                    'id' => $schuldenChangeSet[$organisationType][$index]->getId(),
-                    'naam' => isset($schuldenChangeSet[$organisationType][$index]->getBedrijfsnaam) ? $schuldenChangeSet[$organisationType][$index]->getBedrijfsnaam() : $schuldenChangeSet[$organisationType][$index]->getNaam()
+                    'id' => $currentItem->getId(),
+                    'naam' => method_exists($currentItem, 'getBedrijfsnaam') && $currentItem->getBedrijfsnaam()
+                        ? $currentItem->getBedrijfsnaam()
+                        : $currentItem->getNaam()
                 ];
             }
         }
