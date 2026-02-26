@@ -340,7 +340,7 @@ class AppDossierController extends AbstractController
             }
 
             $voorleggerChangeSet = $this->getEntityChangeSet($dossier->getVoorlegger(), $em);
-            $dossierChangeSet =  $this->getEntityChangeSet($dossier, $em);
+            $dossierChangeSet =  $this->getDossierChangeSet($dossier, $em);
             $combinedChangeSet = array_merge($voorleggerChangeSet, $dossierChangeSet);
 
             $em->flush();
@@ -1383,11 +1383,15 @@ class AppDossierController extends AbstractController
         $dossierChangeSet = $this->loadProxyEntityForOrganisationType('teamGka', $dossierChangeSet);
         $dossierChangeSet = $this->loadProxyEntityForOrganisationType('medewerkerOrganisatie', $dossierChangeSet);
 
-        //Convert clientKinderenList to string
+        // Convert clientKinderenList to string
         if (array_key_exists('clientKinderen', $dossierChangeSet)) {
             foreach ([0, 1] as $index) {
-                if (!empty($dossierChangeSet['clientKinderen'][$index])) {
-                    $dossierChangeSet['clientKinderen'][$index] =  implode(',', (array) $dossierChangeSet['clientKinderen'][$index]);
+                $currentValue = $dossierChangeSet['clientKinderen'][$index];
+                if (!empty($currentValue) || (is_array($currentValue) && empty($currentValue))) {
+                    $dossierChangeSet['clientKinderen'][$index] =  implode(',', (array) $currentValue);
+                }
+                if (is_array($currentValue) && empty($currentValue)) {
+                    $dossierChangeSet['clientKinderen'][$index] = null;
                 }
             }
         }
