@@ -1454,7 +1454,7 @@ class AppDossierController extends AbstractController
             if (!empty($currentItem)) {
                 $schuldenChangeSet[$organisationType][$index] = [
                     'id' => $currentItem->getId(),
-                    'naam' => method_exists($currentItem, 'getBedrijfsnaam') && $currentItem->getBedrijfsnaam()
+                    'naam' => $currentItem instanceof Schuldeiser
                         ? $currentItem->getBedrijfsnaam()
                         : $currentItem->getNaam()
                 ];
