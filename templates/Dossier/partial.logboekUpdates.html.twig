@@ -22,8 +22,10 @@
                                     Ja
                                 {% elseif values[0] is null %}
                                     Geen waarde
-                                {% elseif values[0] is iterable %}
+                                {% elseif values[0]['naam'] is defined %}
                                     {{ values[0]['naam'] }}
+                                {% elseif values[0] is iterable %}
+                                    Kan waarde niet tonen
                                 {% else %}
                                     {{ values[0] }}
                                 {% endif %}
@@ -36,8 +38,10 @@
                                 Ja
                             {% elseif values[1] is null %}
                                 Geen waarde
-                            {% elseif values[1] is iterable %}
+                            {% elseif values[1]['naam'] is defined %}
                                 {{ values[1]['naam'] }}
+                            {% elseif values[1] is iterable %}
+                                Kan waarde niet tonen
                             {% else %}
                                 {{ values[1] }}
                             {% endif %}
