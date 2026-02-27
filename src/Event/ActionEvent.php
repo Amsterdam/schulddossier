@@ -120,14 +120,18 @@ class ActionEvent extends Event
     /**
      * @param Gebruiker $gebruiker
      * @param Dossier $dossier
+     * @param array $dossierChangeSet
      *
      * @return ActionEvent
      */
-    public static function registerDossierAangemaakt(Gebruiker $gebruiker, Dossier $dossier): self
+    public static function registerDossierAangemaakt(Gebruiker $gebruiker, Dossier $dossier, $dossierChangeSet): self
     {
         $data = array_merge(
             self::getGebruikerData($gebruiker),
-            self::getDossierData($dossier)
+            self::getDossierData($dossier),
+            [
+                "dossierChangeSet" => $dossierChangeSet,
+            ]
         );
 
         return new self(self::DOSSIER_AANGEMAAKT, $data, $dossier);
@@ -223,20 +227,20 @@ class ActionEvent extends Event
     /**
      * @param Gebruiker $gebruiker
      * @param Dossier $dossier
-     * @param array $voorleggerChangeSet,
+     * @param array $changeSet,
      *
      * @return ActionEvent
      */
     public static function registerDossierVoorleggerGewijzigd(
         Gebruiker $gebruiker,
         Dossier $dossier,
-        $voorleggerChangeSet,
+        $changeSet,
     ) {
 
         $data = array_merge(
             self::getGebruikerData($gebruiker),
             [
-                "voorleggerChangeSet" => $voorleggerChangeSet,
+                "changeSet" => $changeSet,
             ]
         );
 
