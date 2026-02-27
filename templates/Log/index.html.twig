@@ -91,17 +91,17 @@
 								Dossier gewijzigd
 							{% endif %}
       						{% if log.name == 'dossier_voorlegger_gewijzigd' %}
-                                Voorlegger gewijzigd van dossier 
+                                Dossier 
 									{% if log.dossier.clientNaam is defined %}
 										<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
 									{% endif  %}
-								door {{ log.data.gebruiker.naam }}
+								gewijzigd door {{ log.data.gebruiker.naam }}
                                 <br>
                                 <br>
                                 {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.changeSet } %}
                             {% endif %}
 							{% if log.name == 'dossier_schulditem_aangemaakt' %}
-								Schulditem aangemaakt voor dossier 
+								Schuld aangemaakt voor dossier 
 									{% if log.dossier.clientNaam is defined %}
 										<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
 									{% endif  %}
@@ -109,15 +109,16 @@
                                 <br>
                                 <br>
                                 {% for schulditemUpdate in log.data.schulditemUpdates %}
-                                   <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden',{'dossierId': log.dossier.Id})}}#id_schuldItem-{{schulditemUpdate.id}}"> 
+                                    Naam schuld: <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden',{'dossierId': log.dossier.Id})}}#id_schuldItem-{{schulditemUpdate.id}}"> 
                                         {{ schulditemUpdate.schuldeiserNaam }}&nbsp;(<span class="bedrag">&euro; {{ schulditemUpdate.bedrag|number_format(2, ',', '.') }}</span>) 
                                     </a>
+									<br>
+									<br>
                                     {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: schulditemUpdate.schuldenChangeSet, isNew: true } %}
-                                    <br>
                                 {% endfor %}
                             {% endif %}
 							{% if log.name == 'dossier_schulditems_gewijzigd' %}
-								Schulditem gewijzigd voor dossier 
+								Schuld(en) gewijzigd voor dossier 
 								{% if log.dossier.clientNaam is defined %}
 									<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
 								{% endif  %}
@@ -125,9 +126,11 @@
                                 <br>
                                 <br>
                                 {% for schulditemUpdate in log.data.schuldItemUpdates %}
-                                    <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden',{'dossierId': log.dossier.Id})}}#id_schuldItem-{{schulditemUpdate.id}}"> 
+                                    Naam schuld: <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden',{'dossierId': log.dossier.Id})}}#id_schuldItem-{{schulditemUpdate.id}}"> 
                                         {{ schulditemUpdate.schuldeiserNaam }}&nbsp;(<span class="bedrag">&euro; {{ schulditemUpdate.bedrag|number_format(2, ',', '.') }}</span>) 
                                     </a>
+									<br>
+									<br>
                                     {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: schulditemUpdate.schuldenChangeSet } %}
                                     <br>
                                 {% endfor %}

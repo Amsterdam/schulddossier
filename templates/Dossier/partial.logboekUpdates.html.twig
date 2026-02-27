@@ -1,4 +1,8 @@
 {% if changeSet is not empty %}
+{% set title = title | default('Gewijzigde velden') %}
+
+<details>
+    <summary class="explanation">{{ title }}</summary>
     <div class="table">
         <table>
             <thead>
@@ -51,6 +55,7 @@
             </tbody>
         </table>
     </div>
+</details>
 {% else %}
     <p class="logboek-no-updates">Er zijn geen velden bijgewerkt</p>
 {% endif %}
