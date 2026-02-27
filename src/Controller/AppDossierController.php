@@ -339,9 +339,9 @@ class AppDossierController extends AbstractController
                 // }
             }
 
-            $voorleggerChangeSet = $this->getEntityChangeSet($dossier->getVoorlegger(), $em);
+            $voorleggerChangeSet = $this->getVoorleggerChangeSet($dossier->getVoorlegger(), $em);
             $dossierChangeSet =  $this->getDossierChangeSet($dossier, $em);
-            $combinedChangeSet = array_merge($voorleggerChangeSet, $dossierChangeSet);
+            $combinedChangeSet = array_merge($dossierChangeSet, $voorleggerChangeSet);
 
             $em->flush();
             if ($sendCorrespondentieNotification === true) {
@@ -1396,6 +1396,29 @@ class AppDossierController extends AbstractController
             }
         }
         return $dossierChangeSet;
+    }
+
+    /**
+     * Retrieves and formats the change set for a given Voorlegger entity.
+     *
+     * This function retrieves the change set of the provided Voorlegger entity,
+     * and formats specific date fields within the change set.
+     *
+     * @param object $voorlegger The Voorlegger entity for which the change set is retrieved.
+     * @param EntityManagerInterface $entityManager The entity manager used to retrieve the change set.
+     *
+     * @return array The formatted change set for the Voorlegger entity.
+     */
+    private function getVoorleggerChangeSet(object $voorlegger, EntityManagerInterface $entityManager)
+    {
+        $voorleggerChangeSet = $this->getEntityChangeSet($voorlegger, $entityManager);
+        $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'arbeidsovereenkomstEinddatum');
+        $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'arbeidsovereenkomstPartnerEinddatum');
+        $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'energieBedrijfDatumOpname');
+        $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'warmteBedrijfDatumOpname');
+        $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'drinkwaterDatumOpname');
+
+        return $voorleggerChangeSet;
     }
 
     /**
