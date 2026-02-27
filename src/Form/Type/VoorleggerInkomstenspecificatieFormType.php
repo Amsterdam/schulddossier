@@ -2,7 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
-use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierLabel;
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierFormLabel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -30,47 +30,47 @@ class VoorleggerInkomstenspecificatieFormType extends AbstractType
         ]);
 
         $builder->add('beschikkingInkomenUitWerk', CheckboxType::class, [
-            'label' => DossierLabel::getLabel('beschikkingInkomenUitWerk'),
+            'label' => DossierFormLabel::getFormLabel('beschikkingInkomenUitWerk'),
             'required' => false,
             'help' => 'DB: voorlegger.beschikking_inkomen_uit_werk'
         ]);
         $builder->add('beschikkingUwvZw', CheckboxType::class, [
-            'label' => DossierLabel::getLabel('beschikkingUwvZw'),
+            'label' => DossierFormLabel::getFormLabel('beschikkingUwvZw'),
             'required' => false,
             'help' => 'DB: voorlegger.beschikking_uwv_zw',
         ]);
         $builder->add('beschikkingUwvWw', CheckboxType::class, [
-            'label' => DossierLabel::getLabel('beschikkingUwvWw'),
+            'label' => DossierFormLabel::getFormLabel('beschikkingUwvWw'),
             'required' => false,
             'help' => 'DB: voorlegger.beschikking_uwv_ww',
         ]);
         $builder->add('beschikkingUwvWia', CheckboxType::class, [
-            'label' => DossierLabel::getLabel('beschikkingUwvWia'),
+            'label' => DossierFormLabel::getFormLabel('beschikkingUwvWia'),
             'required' => false,
             'help' => 'DB: voorlegger.beschikking_uwv_wia',
         ]);
         $builder->add('beschikkingUwvWajong', CheckboxType::class, [
-            'label' => DossierLabel::getLabel('beschikkingUwvWajong'),
+            'label' => DossierFormLabel::getFormLabel('beschikkingUwvWajong'),
             'required' => false,
             'help' => 'DB: voorlegger.beschikking_uwv_wajong',
         ]);
         $builder->add('beschikkingGemeenteAmsterdamWPI', CheckboxType::class, [
-            'label' => DossierLabel::getLabel('beschikkingGemeenteAmsterdamWPI'),
+            'label' => DossierFormLabel::getFormLabel('beschikkingGemeenteAmsterdamWPI'),
             'required' => false,
             'help' => 'DB: voorlegger.beschikking_gemeente_amsterdam_wpi',
         ]);
         $builder->add('beschikkingSVBAOW', CheckboxType::class, [
-            'label' => DossierLabel::getLabel('beschikkingSVBAOW'),
+            'label' => DossierFormLabel::getFormLabel('beschikkingSVBAOW'),
             'required' => false,
             'help' => 'DB: voorlegger.beschikking_svbaow',
         ]);
         $builder->add('beschikkingSVBANW', CheckboxType::class, [
-            'label' => DossierLabel::getLabel('beschikkingSVBANW'),
+            'label' => DossierFormLabel::getFormLabel('beschikkingSVBANW'),
             'required' => false,
             'help' => 'DB: voorlegger.beschikking_svbanw',
         ]);
         $builder->add('beschikkingGemeenteAmsterdamIOAW', CheckboxType::class, [
-            'label' => DossierLabel::getLabel('beschikkingGemeenteAmsterdamIOAW'),
+            'label' => DossierFormLabel::getFormLabel('beschikkingGemeenteAmsterdamIOAW'),
             'required' => false,
             'help' => 'DB: voorlegger.beschikking_gemeente_amsterdam_ioaw',
         ]);
@@ -87,7 +87,7 @@ class VoorleggerInkomstenspecificatieFormType extends AbstractType
         $builder->add('verloningsDag', ChoiceType::class, [
             'required' => true,
             'choices' => $verloningsDagOptions,
-            'label' => DossierLabel::getLabel('verloningsDag'),
+            'label' => DossierFormLabel::getFormLabel('verloningsDag'),
             'empty_data' => null,
             'help' => 'DB: voorlegger.verlonings_dag',
         ]);

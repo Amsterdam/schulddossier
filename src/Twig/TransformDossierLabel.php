@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Twig;
 
-use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierLabel;
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierFormLabel;
 
 /**
  * Class GebruikerTypeToTitleExtension
@@ -21,8 +21,8 @@ class TransformDossierLabel extends \Twig_Extension
     {
         return [
             new \Twig_Filter('transform_dossier_label', function (string $key) {
-             
-                return  DossierLabel::getLabelOrHumanize($key);
+
+                return  DossierFormLabel::getFormLabelOrHumanize($key);
             })
         ];
     }
