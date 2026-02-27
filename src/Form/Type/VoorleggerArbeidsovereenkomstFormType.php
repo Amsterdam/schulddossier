@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierLabel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -37,7 +38,7 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
             'help' => 'DB: voorlegger.arbeidsovereenkomst_werkgever'
         ]);
         $builder->add('arbeidsovereenkomstContract', ChoiceType::class, [
-            'label' => 'Soort dienstverband',
+            'label' => DossierLabel::getLabel('arbeidsovereenkomstContract'),
             'required' => false,
             'multiple' => false,
             'expanded' => true,

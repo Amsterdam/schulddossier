@@ -17,7 +17,7 @@
             <tbody>
                 {% for field, values in changeSet %}
                     <tr>
-                        <td class="logboek-update-field">{{ field }}</td>
+                        <td class="logboek-update-field">{{ field | transform_dossier_label }}</td>
                         {% if isNew|default(false) == false %}
                             <td class="logboek-update-original-value">
                                 {% if values[0] is same as(false) %}
