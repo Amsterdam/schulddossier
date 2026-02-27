@@ -6,7 +6,21 @@ class DossierLabel
 {
    
     public const DOSSIER_LABELS = [
-        'arbeidsovereenkomstContract' => 'Soort dienstverband'
+        'arbeidsovereenkomstContract' => 'Soort dienstverband',
+        'arbeidsovereenkomstWerkgever' => 'Soort Werkgever',
+        'arbeidsovereenkomstEinddatum' => 'Einddatum dienstverband (indien van toepassing)',
+        'aangifteBelastingdienst' => 'Aangifte ingediend',
+        'beschikkingInkomenUitWerk' => 'Inkomen uit werk',
+        'beschikkingUwvZw' => 'UWV ZW',
+        'beschikkingUwvWw' => 'UWV WW',
+        'beschikkingUwvWia' => 'UWV Wia',
+        'beschikkingUwvWajong' => 'UWV Wajong',
+        'beschikkingGemeenteAmsterdamWPI' => 'Gemeente Amsterdam (WPI)',
+        'beschikkingSVBAOW' => 'SVB (AOW)',
+        'beschikkingSVBANW' => 'SVB (ANW)',
+        'beschikkingGemeenteAmsterdamIOAW' => 'Gemeente Amsterdam (IOAW)',
+        'verloningsDag' => 'Verloningsmoment',
+
     ];
 
     /**

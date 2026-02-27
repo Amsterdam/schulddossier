@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierLabel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -30,7 +31,7 @@ class VoorleggerBelastingFormType extends AbstractType
         ]);
         $builder->add('aangifteBelastingdienst', CheckboxType::class, [
             'required' => false,
-            'label' => 'Aangifte ingediend',
+            'label' => DossierLabel::getLabel('aangifteBelastingdienst'),
             'help' => 'DB: voorlegger.aangifte_belastingdienst'
         ]);
         $builder->add('file', CollectionType::class, [

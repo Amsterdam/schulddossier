@@ -33,7 +33,7 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
             'required' => false
         ]);
         $builder->add('arbeidsovereenkomstWerkgever', TextType::class, [
-            'label' => 'Werkgever',
+            'label' => DossierLabel::getLabel('arbeidsovereenkomstWerkgever'),
             'required' => false,
             'help' => 'DB: voorlegger.arbeidsovereenkomst_werkgever'
         ]);
@@ -47,7 +47,7 @@ class VoorleggerArbeidsovereenkomstFormType extends AbstractType
             'help' => 'DB: voorlegger.arbeidsovereenkomst_contract'
         ]);
         $builder->add('arbeidsovereenkomstEinddatum', DateType::class, [
-            'label' => 'Einddatum dienstverband (indien van toepassing)',
+            'label' => DossierLabel::getLabel('arbeidsovereenkomstEinddatum'),
             'required' => true,
             'html5' => true,
             'widget' => 'single_text',
