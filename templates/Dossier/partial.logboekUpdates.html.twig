@@ -1,4 +1,8 @@
 {% if changeSet is not empty %}
+{% set title = title | default('Gewijzigde velden') %}
+
+<details>
+    <summary class="explanation">{{ title }}</summary>
     <div class="table">
         <table>
             <thead>
@@ -13,7 +17,7 @@
             <tbody>
                 {% for field, values in changeSet %}
                     <tr>
-                        <td class="logboek-update-field">{{ field }}</td>
+                        <td class="logboek-update-field">{{ field | transform_dossier_label }}</td>
                         {% if isNew|default(false) == false %}
                             <td class="logboek-update-original-value">
                                 {% if values[0] is same as(false) %}
@@ -22,8 +26,10 @@
                                     Ja
                                 {% elseif values[0] is null %}
                                     Geen waarde
-                                {% elseif values[0] is iterable %}
+                                {% elseif values[0]['naam'] is defined %}
                                     {{ values[0]['naam'] }}
+                                {% elseif values[0] is iterable %}
+                                    Kan waarde niet tonen
                                 {% else %}
                                     {{ values[0] }}
                                 {% endif %}
@@ -36,8 +42,10 @@
                                 Ja
                             {% elseif values[1] is null %}
                                 Geen waarde
-                            {% elseif values[1] is iterable %}
+                            {% elseif values[1]['naam'] is defined %}
                                 {{ values[1]['naam'] }}
+                            {% elseif values[1] is iterable %}
+                                Kan waarde niet tonen
                             {% else %}
                                 {{ values[1] }}
                             {% endif %}
@@ -47,6 +55,7 @@
             </tbody>
         </table>
     </div>
+</details>
 {% else %}
     <p class="logboek-no-updates">Er zijn geen velden bijgewerkt</p>
 {% endif %}
