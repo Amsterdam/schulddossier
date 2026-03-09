@@ -16,7 +16,7 @@ class TransformDossierLabel extends \Twig_Extension
     /**
      * @return array|\Twig_Filter[]s
      */
- 
+
     public function getFilters(): array
     {
         return [
@@ -27,6 +27,3 @@ class TransformDossierLabel extends \Twig_Extension
         ];
     }
 }
-
-  
-

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Constants;
 
 class DossierFormLabel
 {
-
     public const DOSSIER_FORM_LABELS = [
         'arbeidsovereenkomstContract' => 'Soort dienstverband',
         'arbeidsovereenkomstWerkgever' => 'Soort Werkgever',
@@ -51,7 +50,4 @@ class DossierFormLabel
     {
         return self::DOSSIER_FORM_LABELS[$key] ?? ucfirst(strtolower(preg_replace('/([a-z])([A-Z])/', '$1 $2', $key)));
     }
-
-   
-
 }

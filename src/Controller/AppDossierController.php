@@ -329,7 +329,7 @@ class AppDossierController extends AbstractController
                 $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
                 $workflow->apply($dossier, $subForm['transition']->getData());
 
-                // TODO: This code is never reached, because workflow apply return the method. 
+                // TODO: This code is never reached, because workflow apply return the method.
                 // Nevertheless it would be nice to give the user feedback about an update. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-580
 
                 // if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
@@ -520,10 +520,10 @@ class AppDossierController extends AbstractController
      * @ParamConverter("document", options={"id"="documentId"})
      */
     public function detailDocumentAction(
-        Request                $request,
-        Dossier                $dossier,
-        Document               $document,
-        FileStorageSelector    $fileStorageSelector
+        Request $request,
+        Dossier $dossier,
+        Document $document,
+        FileStorageSelector $fileStorageSelector
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
@@ -542,10 +542,10 @@ class AppDossierController extends AbstractController
      * @ParamConverter("document", options={"id"="documentId"})
      */
     public function downloadDocumentAction(
-        Request                $request,
-        Dossier                $dossier,
-        Document               $document,
-        FileStorageSelector    $fileStorageSelector
+        Request $request,
+        Dossier $dossier,
+        Document $document,
+        FileStorageSelector $fileStorageSelector
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
@@ -563,9 +563,9 @@ class AppDossierController extends AbstractController
      * @ParamConverter("document", options={"id"="documentId"})
      */
     public function wordViewerAction(
-        Dossier                $dossier,
-        Document               $document,
-        FileStorageSelector    $fileStorageSelector
+        Dossier $dossier,
+        Document $document,
+        FileStorageSelector $fileStorageSelector
     ): Response {
         $this->checkDocumentAccess($dossier, $document);
 
@@ -595,9 +595,9 @@ class AppDossierController extends AbstractController
 
     private function streamedFileResponse(
         FlysystemFilesystem $filesystem,
-        Dossier             $dossier,
-        Document            $document,
-        string              $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
+        Dossier $dossier,
+        Document $document,
+        string $disposition = HeaderUtils::DISPOSITION_ATTACHMENT
     ): StreamedResponse {
         try {
             $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
@@ -650,7 +650,7 @@ class AppDossierController extends AbstractController
                 ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD,
                 ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT,
                 ActionEvent::DOSSIER_AANGEMAAKT,
-            ],
+                ],
                 'dossier' => $dossier
             ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
 
@@ -1363,7 +1363,7 @@ class AppDossierController extends AbstractController
     /**
      * Processes the change set for a dossier entity.
      *
-     * Fetches the change set, removes specific keys, formats date fields, 
+     * Fetches the change set, removes specific keys, formats date fields,
      * and resolves proxy entities for organisation-related fields.
      *
      * @param object $dossier The dossier entity.
@@ -1426,7 +1426,7 @@ class AppDossierController extends AbstractController
      *
      * @param object $entity
      * @param EntityManagerInterface $entityManager
-     * 
+     *
      * @return mixed[][]
      * @phpstan-return array<string, array{mixed, mixed}|PersistentCollection>
      */
@@ -1489,7 +1489,7 @@ class AppDossierController extends AbstractController
     /**
      * Formats date values in a specified key of a change set array.
      *
-     * Checks if the given key exists in the array. If found, formats the DateTime 
+     * Checks if the given key exists in the array. If found, formats the DateTime
      * objects in the key's values to 'd-m-Y' and returns the updated array.
      *
      * @param array  $changeSet The array containing the change set data.
