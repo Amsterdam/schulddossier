@@ -27,6 +27,14 @@ class DossierFormLabel
         'warmteBedrijfKlantnummer' => 'Klantnummer (warmtebedrijf)',
         'warmteBedrijfDatumOpname' => 'Datum opname (warmtebedrijf)',
         'warmteBedrijfOpname' => 'Meterstand Warmte',
+        'jongerenSchuldenvrijeStart' => 'Jongeren Schuldenvrije Start (JSS)',
+        'jssAdviseurNaam' => 'Naam Jongerenadviseur',
+        'jssAdviseurTelefoon' => 'Telefoonnummer Jongerenadviseur',
+        'jssAdviseurEmail' => 'E-mailadres Jongerenadviseur',
+        'saneringsKrediet' => 'Saneringskrediet(SK)',
+        'schuldenOpDeWerkvloer' => 'Betreft Schulden op de werkvloer?',
+        'vtlbBedrag' => 'Maandelijkse afloscapaciteit',
+        'drinkwaterOpname' => 'Meterstand Water',
     ];
 
     /**
