@@ -19,7 +19,14 @@ class DossierFormLabel
         'beschikkingSVBANW' => 'SVB (ANW)',
         'beschikkingGemeenteAmsterdamIOAW' => 'Gemeente Amsterdam (IOAW)',
         'verloningsDag' => 'Verloningsmoment',
-
+        'meterstandenEnergieNvt' => 'Schuld energiebedrijf n.v.t.',
+        'energieBedrijf' => 'Huidig energiebedrijf',
+        'energieBedrijfT1' => 'Meterstand Elektriciteit T1',
+        'energieBedrijfT2' => 'Meterstand Elektriciteit T2',
+        'energieBedrijfGas' => 'Meterstand Gas',
+        'warmteBedrijfKlantnummer' => 'Klantnummer (warmtebedrijf)',
+        'warmteBedrijfDatumOpname' => 'Datum opname (warmtebedrijf)',
+        'warmteBedrijfOpname' => 'Meterstand Warmte',
     ];
 
     /**
