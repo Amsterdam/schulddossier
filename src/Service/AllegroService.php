@@ -778,7 +778,7 @@ class AllegroService
                 $statistics['updated']++;
             }
 
-            foreach ($schulddossierSchuldeisers as $schulddossierSchuldeiser) {
+            foreach ($schulddossierSchuldeisers->findAll() as $schulddossierSchuldeiser) {
                 $existsInAllegro = array_filter(
                     $allegroSchuldeisers,
                     fn($allegroSchuldeiser) => $allegroSchuldeiser->getRelatieCode() === $schulddossierSchuldeiser->getAllegroCode()
@@ -789,7 +789,7 @@ class AllegroService
                     $schulddossierSchuldeiser->setEnabled(false);
                     $statistics['made-inactive']++;
                 } else {
-                    if (!$schulddossierSchuldeiser->isEnabled) {
+                    if (!$schulddossierSchuldeiser->isEnabled()) {
                         // enable schuldeisers which are exported from allegro
                         $schulddossierSchuldeiser->setEnabled(true);
                         $statistics['made-active']++;
