@@ -764,7 +764,6 @@ class AllegroService
             $eiser = $schulddossierSchuldeisers->findOneBy(['allegroCode' => $allegroSchuldeiser->getRelatieCode()]);
 
             if (null === $eiser) {
-
                 // Add schuldeiser
                 $eiser = new Schuldeiser();
                 $eiser->setAllegroCode($allegroSchuldeiser->getRelatieCode());
@@ -774,7 +773,6 @@ class AllegroService
                 $statistics['created']++;
                 $this->em->persist($eiser);
             } else {
-
                 // update schuldeiser
                 $eiser = $this->updateSchuldeiser($eiser, $allegroSchuldeiser);
                 $statistics['updated']++;
@@ -787,13 +785,11 @@ class AllegroService
                 );
 
                 if (empty($existsInAllegro)) {
-
                     // disable schuldeisers which are not exported from allegro
                     $schulddossierSchuldeiser->setEnabled(false);
                     $statistics['made-inactive']++;
                 } else {
                     if (!$schulddossierSchuldeiser->isEnabled) {
-
                         // enable schuldeisers which are exported from allegro
                         $schulddossierSchuldeiser->setEnabled(true);
                         $statistics['made-active']++;
@@ -812,10 +808,9 @@ class AllegroService
      * @return TOrganisatie[] Array of TOrganisatie objects
      */
     private function getAllegroSchuldeisers(
-        Organisatie $organisatie, 
+        Organisatie $organisatie,
         $searchString = ''
-        ): array
-    {
+    ): array {
         $organisatie = $this->login($organisatie);
         $parameters = new SchuldHulpServiceGetLijstSchuldeisers($searchString);
         $schuldhulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyPort);
@@ -825,7 +820,6 @@ class AllegroService
         $allegroSchuldeisers = $response->getResult()->getTOrganisatie();
 
         return $allegroSchuldeisers;
-        
     }
 
     /**
@@ -836,10 +830,9 @@ class AllegroService
      * @return Schuldeiser The updated Schuldeiser object.
      */
     private function updateSchuldeiser(
-        Schuldeiser $schuldeiser, 
+        Schuldeiser $schuldeiser,
         TOrganisatie $allegroSchuldeiser
-        ): Schuldeiser
-    {
+    ): Schuldeiser {
 
         $adres = $allegroSchuldeiser->getPostAdres();
         $schuldeiser->setBedrijfsnaam($allegroSchuldeiser->getNaam());
@@ -852,4 +845,3 @@ class AllegroService
         return $schuldeiser;
     }
 }
-
