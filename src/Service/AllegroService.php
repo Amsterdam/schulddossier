@@ -796,9 +796,8 @@ class AllegroService
                     }
                 }
             }
-
-            $this->em->flush();
         }
+        $this->em->flush();
         return $statistics;
     }
 
