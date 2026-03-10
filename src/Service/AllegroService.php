@@ -813,7 +813,7 @@ class AllegroService
     ): array {
         $organisatie = $this->login($organisatie);
         $parameters = new SchuldHulpServiceGetLijstSchuldeisers($searchString);
-        $schuldhulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyPort);
+        $schuldhulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyHostPort);
         $response = $schuldhulpService->getLijstSchuldeisers($parameters);
 
         /** @var TOrganisatie[] $allegroSchuldeisers */
