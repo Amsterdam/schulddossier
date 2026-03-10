@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSchuld
 {
-
     /**
      * @var string $Naam
      */
@@ -43,10 +42,10 @@ class TSchuld
      */
     public function __construct($Naam, $Schuld, $Omschrijving, $CodeEiser)
     {
-      $this->Naam = $Naam;
-      $this->Schuld = $Schuld;
-      $this->Omschrijving = $Omschrijving;
-      $this->CodeEiser = $CodeEiser;
+        $this->Naam = $Naam;
+        $this->Schuld = $Schuld;
+        $this->Omschrijving = $Omschrijving;
+        $this->CodeEiser = $CodeEiser;
     }
 
     /**
@@ -54,7 +53,7 @@ class TSchuld
      */
     public function getNaam()
     {
-      return $this->Naam;
+        return $this->Naam;
     }
 
     /**
@@ -63,8 +62,8 @@ class TSchuld
      */
     public function setNaam($Naam)
     {
-      $this->Naam = $Naam;
-      return $this;
+        $this->Naam = $Naam;
+        return $this;
     }
 
     /**
@@ -72,7 +71,7 @@ class TSchuld
      */
     public function getSchuld()
     {
-      return $this->Schuld;
+        return $this->Schuld;
     }
 
     /**
@@ -81,8 +80,8 @@ class TSchuld
      */
     public function setSchuld($Schuld)
     {
-      $this->Schuld = $Schuld;
-      return $this;
+        $this->Schuld = $Schuld;
+        return $this;
     }
 
     /**
@@ -90,7 +89,7 @@ class TSchuld
      */
     public function getStudieschuld()
     {
-      return $this->Studieschuld;
+        return $this->Studieschuld;
     }
 
     /**
@@ -99,8 +98,8 @@ class TSchuld
      */
     public function setStudieschuld($Studieschuld)
     {
-      $this->Studieschuld = $Studieschuld;
-      return $this;
+        $this->Studieschuld = $Studieschuld;
+        return $this;
     }
 
     /**
@@ -108,7 +107,7 @@ class TSchuld
      */
     public function getReferentie()
     {
-      return $this->Referentie;
+        return $this->Referentie;
     }
 
     /**
@@ -117,8 +116,8 @@ class TSchuld
      */
     public function setReferentie($Referentie)
     {
-      $this->Referentie = $Referentie;
-      return $this;
+        $this->Referentie = $Referentie;
+        return $this;
     }
 
     /**
@@ -126,7 +125,7 @@ class TSchuld
      */
     public function getOmschrijving()
     {
-      return $this->Omschrijving;
+        return $this->Omschrijving;
     }
 
     /**
@@ -135,8 +134,8 @@ class TSchuld
      */
     public function setOmschrijving($Omschrijving)
     {
-      $this->Omschrijving = $Omschrijving;
-      return $this;
+        $this->Omschrijving = $Omschrijving;
+        return $this;
     }
 
     /**
@@ -144,7 +143,7 @@ class TSchuld
      */
     public function getCodeEiser()
     {
-      return $this->CodeEiser;
+        return $this->CodeEiser;
     }
 
     /**
@@ -153,8 +152,7 @@ class TSchuld
      */
     public function setCodeEiser($CodeEiser)
     {
-      $this->CodeEiser = $CodeEiser;
-      return $this;
+        $this->CodeEiser = $CodeEiser;
+        return $this;
     }
-
 }

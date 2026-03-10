@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TTraject
 {
-
     /**
      * @var int $UniekTrajectNummer
      */
@@ -63,15 +62,15 @@ class TTraject
      */
     public function __construct($UniekTrajectNummer, $TrajectSoort, \DateTime $Startdatum, $StartMedewerker, \DateTime $Einddatum, $EindMedewerker, $Lopend, $Contractvolgnummer, $ContractVolgnummerSoort)
     {
-      $this->UniekTrajectNummer = $UniekTrajectNummer;
-      $this->TrajectSoort = $TrajectSoort;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      $this->StartMedewerker = $StartMedewerker;
-      $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
-      $this->EindMedewerker = $EindMedewerker;
-      $this->Lopend = $Lopend;
-      $this->Contractvolgnummer = $Contractvolgnummer;
-      $this->ContractVolgnummerSoort = $ContractVolgnummerSoort;
+        $this->UniekTrajectNummer = $UniekTrajectNummer;
+        $this->TrajectSoort = $TrajectSoort;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        $this->StartMedewerker = $StartMedewerker;
+        $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
+        $this->EindMedewerker = $EindMedewerker;
+        $this->Lopend = $Lopend;
+        $this->Contractvolgnummer = $Contractvolgnummer;
+        $this->ContractVolgnummerSoort = $ContractVolgnummerSoort;
     }
 
     /**
@@ -79,7 +78,7 @@ class TTraject
      */
     public function getUniekTrajectNummer()
     {
-      return $this->UniekTrajectNummer;
+        return $this->UniekTrajectNummer;
     }
 
     /**
@@ -88,8 +87,8 @@ class TTraject
      */
     public function setUniekTrajectNummer($UniekTrajectNummer)
     {
-      $this->UniekTrajectNummer = $UniekTrajectNummer;
-      return $this;
+        $this->UniekTrajectNummer = $UniekTrajectNummer;
+        return $this;
     }
 
     /**
@@ -97,7 +96,7 @@ class TTraject
      */
     public function getTrajectSoort()
     {
-      return $this->TrajectSoort;
+        return $this->TrajectSoort;
     }
 
     /**
@@ -106,8 +105,8 @@ class TTraject
      */
     public function setTrajectSoort($TrajectSoort)
     {
-      $this->TrajectSoort = $TrajectSoort;
-      return $this;
+        $this->TrajectSoort = $TrajectSoort;
+        return $this;
     }
 
     /**
@@ -115,15 +114,15 @@ class TTraject
      */
     public function getStartdatum()
     {
-      if ($this->Startdatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Startdatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Startdatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -132,8 +131,8 @@ class TTraject
      */
     public function setStartdatum(\DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -141,7 +140,7 @@ class TTraject
      */
     public function getStartMedewerker()
     {
-      return $this->StartMedewerker;
+        return $this->StartMedewerker;
     }
 
     /**
@@ -150,8 +149,8 @@ class TTraject
      */
     public function setStartMedewerker($StartMedewerker)
     {
-      $this->StartMedewerker = $StartMedewerker;
-      return $this;
+        $this->StartMedewerker = $StartMedewerker;
+        return $this;
     }
 
     /**
@@ -159,15 +158,15 @@ class TTraject
      */
     public function getEinddatum()
     {
-      if ($this->Einddatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Einddatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Einddatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Einddatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -176,8 +175,8 @@ class TTraject
      */
     public function setEinddatum(\DateTime $Einddatum)
     {
-      $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -185,7 +184,7 @@ class TTraject
      */
     public function getEindMedewerker()
     {
-      return $this->EindMedewerker;
+        return $this->EindMedewerker;
     }
 
     /**
@@ -194,8 +193,8 @@ class TTraject
      */
     public function setEindMedewerker($EindMedewerker)
     {
-      $this->EindMedewerker = $EindMedewerker;
-      return $this;
+        $this->EindMedewerker = $EindMedewerker;
+        return $this;
     }
 
     /**
@@ -203,7 +202,7 @@ class TTraject
      */
     public function getLopend()
     {
-      return $this->Lopend;
+        return $this->Lopend;
     }
 
     /**
@@ -212,8 +211,8 @@ class TTraject
      */
     public function setLopend($Lopend)
     {
-      $this->Lopend = $Lopend;
-      return $this;
+        $this->Lopend = $Lopend;
+        return $this;
     }
 
     /**
@@ -221,7 +220,7 @@ class TTraject
      */
     public function getContractvolgnummer()
     {
-      return $this->Contractvolgnummer;
+        return $this->Contractvolgnummer;
     }
 
     /**
@@ -230,8 +229,8 @@ class TTraject
      */
     public function setContractvolgnummer($Contractvolgnummer)
     {
-      $this->Contractvolgnummer = $Contractvolgnummer;
-      return $this;
+        $this->Contractvolgnummer = $Contractvolgnummer;
+        return $this;
     }
 
     /**
@@ -239,7 +238,7 @@ class TTraject
      */
     public function getContractVolgnummerSoort()
     {
-      return $this->ContractVolgnummerSoort;
+        return $this->ContractVolgnummerSoort;
     }
 
     /**
@@ -248,8 +247,7 @@ class TTraject
      */
     public function setContractVolgnummerSoort($ContractVolgnummerSoort)
     {
-      $this->ContractVolgnummerSoort = $ContractVolgnummerSoort;
-      return $this;
+        $this->ContractVolgnummerSoort = $ContractVolgnummerSoort;
+        return $this;
     }
-
 }

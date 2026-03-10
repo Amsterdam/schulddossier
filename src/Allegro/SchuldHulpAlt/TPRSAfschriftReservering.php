@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TPRSAfschriftReservering
 {
-
     /**
      * @var int $VolgnummerReservering
      */
@@ -27,9 +26,9 @@ class TPRSAfschriftReservering
      */
     public function __construct($VolgnummerReservering, $Omschrijving, $Saldo)
     {
-      $this->VolgnummerReservering = $VolgnummerReservering;
-      $this->Omschrijving = $Omschrijving;
-      $this->Saldo = $Saldo;
+        $this->VolgnummerReservering = $VolgnummerReservering;
+        $this->Omschrijving = $Omschrijving;
+        $this->Saldo = $Saldo;
     }
 
     /**
@@ -37,7 +36,7 @@ class TPRSAfschriftReservering
      */
     public function getVolgnummerReservering()
     {
-      return $this->VolgnummerReservering;
+        return $this->VolgnummerReservering;
     }
 
     /**
@@ -46,8 +45,8 @@ class TPRSAfschriftReservering
      */
     public function setVolgnummerReservering($VolgnummerReservering)
     {
-      $this->VolgnummerReservering = $VolgnummerReservering;
-      return $this;
+        $this->VolgnummerReservering = $VolgnummerReservering;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class TPRSAfschriftReservering
      */
     public function getOmschrijving()
     {
-      return $this->Omschrijving;
+        return $this->Omschrijving;
     }
 
     /**
@@ -64,8 +63,8 @@ class TPRSAfschriftReservering
      */
     public function setOmschrijving($Omschrijving)
     {
-      $this->Omschrijving = $Omschrijving;
-      return $this;
+        $this->Omschrijving = $Omschrijving;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class TPRSAfschriftReservering
      */
     public function getSaldo()
     {
-      return $this->Saldo;
+        return $this->Saldo;
     }
 
     /**
@@ -82,8 +81,7 @@ class TPRSAfschriftReservering
      */
     public function setSaldo($Saldo)
     {
-      $this->Saldo = $Saldo;
-      return $this;
+        $this->Saldo = $Saldo;
+        return $this;
     }
-
 }

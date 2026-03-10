@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TPRSMutatie
 {
-
     /**
      * @var int $RelatieCode
      */
@@ -69,16 +68,16 @@ class TPRSMutatie
      */
     public function __construct($RelatieCode, $UniekVolgnummer, $ContractCode, $ContractVolgnummer, \DateTime $Datum, $AfBij, $Bedrag, $VolgnummerAfschrift, $Omschrijving, $SaldoVoor)
     {
-      $this->RelatieCode = $RelatieCode;
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      $this->ContractCode = $ContractCode;
-      $this->ContractVolgnummer = $ContractVolgnummer;
-      $this->Datum = $Datum->format(\DateTime::ATOM);
-      $this->AfBij = $AfBij;
-      $this->Bedrag = $Bedrag;
-      $this->VolgnummerAfschrift = $VolgnummerAfschrift;
-      $this->Omschrijving = $Omschrijving;
-      $this->SaldoVoor = $SaldoVoor;
+        $this->RelatieCode = $RelatieCode;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        $this->ContractCode = $ContractCode;
+        $this->ContractVolgnummer = $ContractVolgnummer;
+        $this->Datum = $Datum->format(\DateTime::ATOM);
+        $this->AfBij = $AfBij;
+        $this->Bedrag = $Bedrag;
+        $this->VolgnummerAfschrift = $VolgnummerAfschrift;
+        $this->Omschrijving = $Omschrijving;
+        $this->SaldoVoor = $SaldoVoor;
     }
 
     /**
@@ -86,7 +85,7 @@ class TPRSMutatie
      */
     public function getRelatieCode()
     {
-      return $this->RelatieCode;
+        return $this->RelatieCode;
     }
 
     /**
@@ -95,8 +94,8 @@ class TPRSMutatie
      */
     public function setRelatieCode($RelatieCode)
     {
-      $this->RelatieCode = $RelatieCode;
-      return $this;
+        $this->RelatieCode = $RelatieCode;
+        return $this;
     }
 
     /**
@@ -104,7 +103,7 @@ class TPRSMutatie
      */
     public function getUniekVolgnummer()
     {
-      return $this->UniekVolgnummer;
+        return $this->UniekVolgnummer;
     }
 
     /**
@@ -113,8 +112,8 @@ class TPRSMutatie
      */
     public function setUniekVolgnummer($UniekVolgnummer)
     {
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      return $this;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        return $this;
     }
 
     /**
@@ -122,7 +121,7 @@ class TPRSMutatie
      */
     public function getContractCode()
     {
-      return $this->ContractCode;
+        return $this->ContractCode;
     }
 
     /**
@@ -131,8 +130,8 @@ class TPRSMutatie
      */
     public function setContractCode($ContractCode)
     {
-      $this->ContractCode = $ContractCode;
-      return $this;
+        $this->ContractCode = $ContractCode;
+        return $this;
     }
 
     /**
@@ -140,7 +139,7 @@ class TPRSMutatie
      */
     public function getContractVolgnummer()
     {
-      return $this->ContractVolgnummer;
+        return $this->ContractVolgnummer;
     }
 
     /**
@@ -149,8 +148,8 @@ class TPRSMutatie
      */
     public function setContractVolgnummer($ContractVolgnummer)
     {
-      $this->ContractVolgnummer = $ContractVolgnummer;
-      return $this;
+        $this->ContractVolgnummer = $ContractVolgnummer;
+        return $this;
     }
 
     /**
@@ -158,15 +157,15 @@ class TPRSMutatie
      */
     public function getDatum()
     {
-      if ($this->Datum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Datum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Datum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Datum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -175,8 +174,8 @@ class TPRSMutatie
      */
     public function setDatum(\DateTime $Datum)
     {
-      $this->Datum = $Datum->format(\DateTime::ATOM);
-      return $this;
+        $this->Datum = $Datum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -184,7 +183,7 @@ class TPRSMutatie
      */
     public function getAfBij()
     {
-      return $this->AfBij;
+        return $this->AfBij;
     }
 
     /**
@@ -193,8 +192,8 @@ class TPRSMutatie
      */
     public function setAfBij($AfBij)
     {
-      $this->AfBij = $AfBij;
-      return $this;
+        $this->AfBij = $AfBij;
+        return $this;
     }
 
     /**
@@ -202,7 +201,7 @@ class TPRSMutatie
      */
     public function getBedrag()
     {
-      return $this->Bedrag;
+        return $this->Bedrag;
     }
 
     /**
@@ -211,8 +210,8 @@ class TPRSMutatie
      */
     public function setBedrag($Bedrag)
     {
-      $this->Bedrag = $Bedrag;
-      return $this;
+        $this->Bedrag = $Bedrag;
+        return $this;
     }
 
     /**
@@ -220,7 +219,7 @@ class TPRSMutatie
      */
     public function getVolgnummerAfschrift()
     {
-      return $this->VolgnummerAfschrift;
+        return $this->VolgnummerAfschrift;
     }
 
     /**
@@ -229,8 +228,8 @@ class TPRSMutatie
      */
     public function setVolgnummerAfschrift($VolgnummerAfschrift)
     {
-      $this->VolgnummerAfschrift = $VolgnummerAfschrift;
-      return $this;
+        $this->VolgnummerAfschrift = $VolgnummerAfschrift;
+        return $this;
     }
 
     /**
@@ -238,7 +237,7 @@ class TPRSMutatie
      */
     public function getOmschrijving()
     {
-      return $this->Omschrijving;
+        return $this->Omschrijving;
     }
 
     /**
@@ -247,8 +246,8 @@ class TPRSMutatie
      */
     public function setOmschrijving($Omschrijving)
     {
-      $this->Omschrijving = $Omschrijving;
-      return $this;
+        $this->Omschrijving = $Omschrijving;
+        return $this;
     }
 
     /**
@@ -256,7 +255,7 @@ class TPRSMutatie
      */
     public function getSaldoVoor()
     {
-      return $this->SaldoVoor;
+        return $this->SaldoVoor;
     }
 
     /**
@@ -265,8 +264,7 @@ class TPRSMutatie
      */
     public function setSaldoVoor($SaldoVoor)
     {
-      $this->SaldoVoor = $SaldoVoor;
-      return $this;
+        $this->SaldoVoor = $SaldoVoor;
+        return $this;
     }
-
 }

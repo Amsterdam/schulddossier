@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TSchuld implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -149,7 +148,4 @@ class TSchuld implements RequestInterface
 
         return $new;
     }
-
-
 }
-

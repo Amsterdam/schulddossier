@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Query\Functions;
@@ -8,7 +9,6 @@ use Doctrine\ORM\Query\AST\Node;
 use Doctrine\ORM\Query\Lexer;
 use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\SqlWalker;
-
 
 /**
  * LEVENSHTEIN ::= "LEVENSHTEIN" "(" ArithmeticPrimary "," ArithmeticPrimary ")"
@@ -59,7 +59,7 @@ class Levenshtein extends FunctionNode
 
         if ($searchPhraseLength <= 3) {
             return 1;
-        } else if ($searchPhraseLength === 4) {
+        } elseif ($searchPhraseLength === 4) {
             return 2;
         }
 

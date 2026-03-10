@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TContract
 {
-
     /**
      * @var int $Relatiecode
      */
@@ -51,13 +50,13 @@ class TContract
      */
     public function __construct($Relatiecode, $RelatieZoeknaam, $ContractVolgnummer, $ContractSoort, $ContractStatus, $Contactpersoon, $Inzage)
     {
-      $this->Relatiecode = $Relatiecode;
-      $this->RelatieZoeknaam = $RelatieZoeknaam;
-      $this->ContractVolgnummer = $ContractVolgnummer;
-      $this->ContractSoort = $ContractSoort;
-      $this->ContractStatus = $ContractStatus;
-      $this->Contactpersoon = $Contactpersoon;
-      $this->Inzage = $Inzage;
+        $this->Relatiecode = $Relatiecode;
+        $this->RelatieZoeknaam = $RelatieZoeknaam;
+        $this->ContractVolgnummer = $ContractVolgnummer;
+        $this->ContractSoort = $ContractSoort;
+        $this->ContractStatus = $ContractStatus;
+        $this->Contactpersoon = $Contactpersoon;
+        $this->Inzage = $Inzage;
     }
 
     /**
@@ -65,7 +64,7 @@ class TContract
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -74,8 +73,8 @@ class TContract
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -83,7 +82,7 @@ class TContract
      */
     public function getRelatieZoeknaam()
     {
-      return $this->RelatieZoeknaam;
+        return $this->RelatieZoeknaam;
     }
 
     /**
@@ -92,8 +91,8 @@ class TContract
      */
     public function setRelatieZoeknaam($RelatieZoeknaam)
     {
-      $this->RelatieZoeknaam = $RelatieZoeknaam;
-      return $this;
+        $this->RelatieZoeknaam = $RelatieZoeknaam;
+        return $this;
     }
 
     /**
@@ -101,7 +100,7 @@ class TContract
      */
     public function getContractVolgnummer()
     {
-      return $this->ContractVolgnummer;
+        return $this->ContractVolgnummer;
     }
 
     /**
@@ -110,8 +109,8 @@ class TContract
      */
     public function setContractVolgnummer($ContractVolgnummer)
     {
-      $this->ContractVolgnummer = $ContractVolgnummer;
-      return $this;
+        $this->ContractVolgnummer = $ContractVolgnummer;
+        return $this;
     }
 
     /**
@@ -119,7 +118,7 @@ class TContract
      */
     public function getContractSoort()
     {
-      return $this->ContractSoort;
+        return $this->ContractSoort;
     }
 
     /**
@@ -128,8 +127,8 @@ class TContract
      */
     public function setContractSoort($ContractSoort)
     {
-      $this->ContractSoort = $ContractSoort;
-      return $this;
+        $this->ContractSoort = $ContractSoort;
+        return $this;
     }
 
     /**
@@ -137,7 +136,7 @@ class TContract
      */
     public function getContractStatus()
     {
-      return $this->ContractStatus;
+        return $this->ContractStatus;
     }
 
     /**
@@ -146,8 +145,8 @@ class TContract
      */
     public function setContractStatus($ContractStatus)
     {
-      $this->ContractStatus = $ContractStatus;
-      return $this;
+        $this->ContractStatus = $ContractStatus;
+        return $this;
     }
 
     /**
@@ -155,7 +154,7 @@ class TContract
      */
     public function getContactpersoon()
     {
-      return $this->Contactpersoon;
+        return $this->Contactpersoon;
     }
 
     /**
@@ -164,8 +163,8 @@ class TContract
      */
     public function setContactpersoon($Contactpersoon)
     {
-      $this->Contactpersoon = $Contactpersoon;
-      return $this;
+        $this->Contactpersoon = $Contactpersoon;
+        return $this;
     }
 
     /**
@@ -173,7 +172,7 @@ class TContract
      */
     public function getInzage()
     {
-      return $this->Inzage;
+        return $this->Inzage;
     }
 
     /**
@@ -182,8 +181,7 @@ class TContract
      */
     public function setInzage($Inzage)
     {
-      $this->Inzage = $Inzage;
-      return $this;
+        $this->Inzage = $Inzage;
+        return $this;
     }
-
 }

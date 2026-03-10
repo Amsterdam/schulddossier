@@ -7,7 +7,6 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 
 class SchuldeiserFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
 {
-
     /**
      * @inheritDoc
      */

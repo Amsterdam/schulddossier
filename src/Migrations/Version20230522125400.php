@@ -12,7 +12,6 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20230522125400 extends AbstractMigration
 {
-    
     public function getDescription(): string
     {
         return '';

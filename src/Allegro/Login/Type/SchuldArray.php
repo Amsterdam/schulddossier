@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class SchuldArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSchuld
      */
@@ -41,7 +40,4 @@ class SchuldArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

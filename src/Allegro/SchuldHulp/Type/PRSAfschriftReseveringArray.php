@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class PRSAfschriftReseveringArray implements RequestInterface
 {
-
     /**
      * @var
      * \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TPRSAfschriftReservering
@@ -43,7 +41,4 @@ class PRSAfschriftReseveringArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

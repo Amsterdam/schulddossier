@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class LoginServiceAllegroWebMagAanmelden implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -41,7 +40,4 @@ class LoginServiceAllegroWebMagAanmelden implements RequestInterface
 
         return $new;
     }
-
-
 }
-

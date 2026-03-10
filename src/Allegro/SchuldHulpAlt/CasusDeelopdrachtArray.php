@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class CasusDeelopdrachtArray
 {
-
     /**
      * @var TCasusDeelopdracht[] $TCasusDeelopdracht
      */
     protected $TCasusDeelopdracht = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class CasusDeelopdrachtArray
      */
     public function getTCasusDeelopdracht()
     {
-      return $this->TCasusDeelopdracht;
+        return $this->TCasusDeelopdracht;
     }
 
     /**
@@ -30,8 +28,7 @@ class CasusDeelopdrachtArray
      */
     public function setTCasusDeelopdracht(array $TCasusDeelopdracht = null)
     {
-      $this->TCasusDeelopdracht = $TCasusDeelopdracht;
-      return $this;
+        $this->TCasusDeelopdracht = $TCasusDeelopdracht;
+        return $this;
     }
-
 }

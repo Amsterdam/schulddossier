@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TRelatieProduct
 {
-
     /**
      * @var string $Contractnummer
      */
@@ -63,15 +62,15 @@ class TRelatieProduct
      */
     public function __construct($Contractnummer, $Product, $NaamProduct, $Status, \DateTime $Startdatum, \DateTime $Einddatum, $Eindstatus, $Medewerker, $Team)
     {
-      $this->Contractnummer = $Contractnummer;
-      $this->Product = $Product;
-      $this->NaamProduct = $NaamProduct;
-      $this->Status = $Status;
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
-      $this->Eindstatus = $Eindstatus;
-      $this->Medewerker = $Medewerker;
-      $this->Team = $Team;
+        $this->Contractnummer = $Contractnummer;
+        $this->Product = $Product;
+        $this->NaamProduct = $NaamProduct;
+        $this->Status = $Status;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
+        $this->Eindstatus = $Eindstatus;
+        $this->Medewerker = $Medewerker;
+        $this->Team = $Team;
     }
 
     /**
@@ -79,7 +78,7 @@ class TRelatieProduct
      */
     public function getContractnummer()
     {
-      return $this->Contractnummer;
+        return $this->Contractnummer;
     }
 
     /**
@@ -88,8 +87,8 @@ class TRelatieProduct
      */
     public function setContractnummer($Contractnummer)
     {
-      $this->Contractnummer = $Contractnummer;
-      return $this;
+        $this->Contractnummer = $Contractnummer;
+        return $this;
     }
 
     /**
@@ -97,7 +96,7 @@ class TRelatieProduct
      */
     public function getProduct()
     {
-      return $this->Product;
+        return $this->Product;
     }
 
     /**
@@ -106,8 +105,8 @@ class TRelatieProduct
      */
     public function setProduct($Product)
     {
-      $this->Product = $Product;
-      return $this;
+        $this->Product = $Product;
+        return $this;
     }
 
     /**
@@ -115,7 +114,7 @@ class TRelatieProduct
      */
     public function getNaamProduct()
     {
-      return $this->NaamProduct;
+        return $this->NaamProduct;
     }
 
     /**
@@ -124,8 +123,8 @@ class TRelatieProduct
      */
     public function setNaamProduct($NaamProduct)
     {
-      $this->NaamProduct = $NaamProduct;
-      return $this;
+        $this->NaamProduct = $NaamProduct;
+        return $this;
     }
 
     /**
@@ -133,7 +132,7 @@ class TRelatieProduct
      */
     public function getStatus()
     {
-      return $this->Status;
+        return $this->Status;
     }
 
     /**
@@ -142,8 +141,8 @@ class TRelatieProduct
      */
     public function setStatus($Status)
     {
-      $this->Status = $Status;
-      return $this;
+        $this->Status = $Status;
+        return $this;
     }
 
     /**
@@ -151,15 +150,15 @@ class TRelatieProduct
      */
     public function getStartdatum()
     {
-      if ($this->Startdatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Startdatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Startdatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Startdatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -168,8 +167,8 @@ class TRelatieProduct
      */
     public function setStartdatum(\DateTime $Startdatum)
     {
-      $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Startdatum = $Startdatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -177,15 +176,15 @@ class TRelatieProduct
      */
     public function getEinddatum()
     {
-      if ($this->Einddatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Einddatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Einddatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Einddatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -194,8 +193,8 @@ class TRelatieProduct
      */
     public function setEinddatum(\DateTime $Einddatum)
     {
-      $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Einddatum = $Einddatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -203,7 +202,7 @@ class TRelatieProduct
      */
     public function getEindstatus()
     {
-      return $this->Eindstatus;
+        return $this->Eindstatus;
     }
 
     /**
@@ -212,8 +211,8 @@ class TRelatieProduct
      */
     public function setEindstatus($Eindstatus)
     {
-      $this->Eindstatus = $Eindstatus;
-      return $this;
+        $this->Eindstatus = $Eindstatus;
+        return $this;
     }
 
     /**
@@ -221,7 +220,7 @@ class TRelatieProduct
      */
     public function getMedewerker()
     {
-      return $this->Medewerker;
+        return $this->Medewerker;
     }
 
     /**
@@ -230,8 +229,8 @@ class TRelatieProduct
      */
     public function setMedewerker($Medewerker)
     {
-      $this->Medewerker = $Medewerker;
-      return $this;
+        $this->Medewerker = $Medewerker;
+        return $this;
     }
 
     /**
@@ -239,7 +238,7 @@ class TRelatieProduct
      */
     public function getTeam()
     {
-      return $this->Team;
+        return $this->Team;
     }
 
     /**
@@ -248,8 +247,7 @@ class TRelatieProduct
      */
     public function setTeam($Team)
     {
-      $this->Team = $Team;
-      return $this;
+        $this->Team = $Team;
+        return $this;
     }
-
 }

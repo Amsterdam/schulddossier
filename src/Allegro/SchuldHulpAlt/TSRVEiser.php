@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSRVEiser
 {
-
     /**
      * @var int $RelatieCode
      */
@@ -129,26 +128,26 @@ class TSRVEiser
      */
     public function __construct($RelatieCode, $Volgnummer, $CodeEiser, $NaamEiser, $UniekVolgnummer, $Referentie, $AangemeldBedrag, $TeruggemeldBedrag, $PrognoseVoorstel, $TerugmeldingVoorstel, \DateTime $DatumTerugmeldingVoorstel, $IndicatieOpgaaf, $IndicatieVoorstel, $IndicatieSK, $CodeIncasso, $NaamIncasso, $ReferentieIncasso, $CodeDeurwaarder, $NaamDeurwaarder, $ReferentieDeurwaarder)
     {
-      $this->RelatieCode = $RelatieCode;
-      $this->Volgnummer = $Volgnummer;
-      $this->CodeEiser = $CodeEiser;
-      $this->NaamEiser = $NaamEiser;
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      $this->Referentie = $Referentie;
-      $this->AangemeldBedrag = $AangemeldBedrag;
-      $this->TeruggemeldBedrag = $TeruggemeldBedrag;
-      $this->PrognoseVoorstel = $PrognoseVoorstel;
-      $this->TerugmeldingVoorstel = $TerugmeldingVoorstel;
-      $this->DatumTerugmeldingVoorstel = $DatumTerugmeldingVoorstel->format(\DateTime::ATOM);
-      $this->IndicatieOpgaaf = $IndicatieOpgaaf;
-      $this->IndicatieVoorstel = $IndicatieVoorstel;
-      $this->IndicatieSK = $IndicatieSK;
-      $this->CodeIncasso = $CodeIncasso;
-      $this->NaamIncasso = $NaamIncasso;
-      $this->ReferentieIncasso = $ReferentieIncasso;
-      $this->CodeDeurwaarder = $CodeDeurwaarder;
-      $this->NaamDeurwaarder = $NaamDeurwaarder;
-      $this->ReferentieDeurwaarder = $ReferentieDeurwaarder;
+        $this->RelatieCode = $RelatieCode;
+        $this->Volgnummer = $Volgnummer;
+        $this->CodeEiser = $CodeEiser;
+        $this->NaamEiser = $NaamEiser;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        $this->Referentie = $Referentie;
+        $this->AangemeldBedrag = $AangemeldBedrag;
+        $this->TeruggemeldBedrag = $TeruggemeldBedrag;
+        $this->PrognoseVoorstel = $PrognoseVoorstel;
+        $this->TerugmeldingVoorstel = $TerugmeldingVoorstel;
+        $this->DatumTerugmeldingVoorstel = $DatumTerugmeldingVoorstel->format(\DateTime::ATOM);
+        $this->IndicatieOpgaaf = $IndicatieOpgaaf;
+        $this->IndicatieVoorstel = $IndicatieVoorstel;
+        $this->IndicatieSK = $IndicatieSK;
+        $this->CodeIncasso = $CodeIncasso;
+        $this->NaamIncasso = $NaamIncasso;
+        $this->ReferentieIncasso = $ReferentieIncasso;
+        $this->CodeDeurwaarder = $CodeDeurwaarder;
+        $this->NaamDeurwaarder = $NaamDeurwaarder;
+        $this->ReferentieDeurwaarder = $ReferentieDeurwaarder;
     }
 
     /**
@@ -156,7 +155,7 @@ class TSRVEiser
      */
     public function getRelatieCode()
     {
-      return $this->RelatieCode;
+        return $this->RelatieCode;
     }
 
     /**
@@ -165,8 +164,8 @@ class TSRVEiser
      */
     public function setRelatieCode($RelatieCode)
     {
-      $this->RelatieCode = $RelatieCode;
-      return $this;
+        $this->RelatieCode = $RelatieCode;
+        return $this;
     }
 
     /**
@@ -174,7 +173,7 @@ class TSRVEiser
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -183,8 +182,8 @@ class TSRVEiser
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -192,7 +191,7 @@ class TSRVEiser
      */
     public function getCodeEiser()
     {
-      return $this->CodeEiser;
+        return $this->CodeEiser;
     }
 
     /**
@@ -201,8 +200,8 @@ class TSRVEiser
      */
     public function setCodeEiser($CodeEiser)
     {
-      $this->CodeEiser = $CodeEiser;
-      return $this;
+        $this->CodeEiser = $CodeEiser;
+        return $this;
     }
 
     /**
@@ -210,7 +209,7 @@ class TSRVEiser
      */
     public function getNaamEiser()
     {
-      return $this->NaamEiser;
+        return $this->NaamEiser;
     }
 
     /**
@@ -219,8 +218,8 @@ class TSRVEiser
      */
     public function setNaamEiser($NaamEiser)
     {
-      $this->NaamEiser = $NaamEiser;
-      return $this;
+        $this->NaamEiser = $NaamEiser;
+        return $this;
     }
 
     /**
@@ -228,7 +227,7 @@ class TSRVEiser
      */
     public function getUniekVolgnummer()
     {
-      return $this->UniekVolgnummer;
+        return $this->UniekVolgnummer;
     }
 
     /**
@@ -237,8 +236,8 @@ class TSRVEiser
      */
     public function setUniekVolgnummer($UniekVolgnummer)
     {
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      return $this;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        return $this;
     }
 
     /**
@@ -246,7 +245,7 @@ class TSRVEiser
      */
     public function getReferentie()
     {
-      return $this->Referentie;
+        return $this->Referentie;
     }
 
     /**
@@ -255,8 +254,8 @@ class TSRVEiser
      */
     public function setReferentie($Referentie)
     {
-      $this->Referentie = $Referentie;
-      return $this;
+        $this->Referentie = $Referentie;
+        return $this;
     }
 
     /**
@@ -264,7 +263,7 @@ class TSRVEiser
      */
     public function getAangemeldBedrag()
     {
-      return $this->AangemeldBedrag;
+        return $this->AangemeldBedrag;
     }
 
     /**
@@ -273,8 +272,8 @@ class TSRVEiser
      */
     public function setAangemeldBedrag($AangemeldBedrag)
     {
-      $this->AangemeldBedrag = $AangemeldBedrag;
-      return $this;
+        $this->AangemeldBedrag = $AangemeldBedrag;
+        return $this;
     }
 
     /**
@@ -282,7 +281,7 @@ class TSRVEiser
      */
     public function getTeruggemeldBedrag()
     {
-      return $this->TeruggemeldBedrag;
+        return $this->TeruggemeldBedrag;
     }
 
     /**
@@ -291,8 +290,8 @@ class TSRVEiser
      */
     public function setTeruggemeldBedrag($TeruggemeldBedrag)
     {
-      $this->TeruggemeldBedrag = $TeruggemeldBedrag;
-      return $this;
+        $this->TeruggemeldBedrag = $TeruggemeldBedrag;
+        return $this;
     }
 
     /**
@@ -300,7 +299,7 @@ class TSRVEiser
      */
     public function getPrognoseVoorstel()
     {
-      return $this->PrognoseVoorstel;
+        return $this->PrognoseVoorstel;
     }
 
     /**
@@ -309,8 +308,8 @@ class TSRVEiser
      */
     public function setPrognoseVoorstel($PrognoseVoorstel)
     {
-      $this->PrognoseVoorstel = $PrognoseVoorstel;
-      return $this;
+        $this->PrognoseVoorstel = $PrognoseVoorstel;
+        return $this;
     }
 
     /**
@@ -318,7 +317,7 @@ class TSRVEiser
      */
     public function getTerugmeldingVoorstel()
     {
-      return $this->TerugmeldingVoorstel;
+        return $this->TerugmeldingVoorstel;
     }
 
     /**
@@ -327,8 +326,8 @@ class TSRVEiser
      */
     public function setTerugmeldingVoorstel($TerugmeldingVoorstel)
     {
-      $this->TerugmeldingVoorstel = $TerugmeldingVoorstel;
-      return $this;
+        $this->TerugmeldingVoorstel = $TerugmeldingVoorstel;
+        return $this;
     }
 
     /**
@@ -336,15 +335,15 @@ class TSRVEiser
      */
     public function getDatumTerugmeldingVoorstel()
     {
-      if ($this->DatumTerugmeldingVoorstel == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumTerugmeldingVoorstel);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumTerugmeldingVoorstel == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumTerugmeldingVoorstel);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -353,8 +352,8 @@ class TSRVEiser
      */
     public function setDatumTerugmeldingVoorstel(\DateTime $DatumTerugmeldingVoorstel)
     {
-      $this->DatumTerugmeldingVoorstel = $DatumTerugmeldingVoorstel->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumTerugmeldingVoorstel = $DatumTerugmeldingVoorstel->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -362,7 +361,7 @@ class TSRVEiser
      */
     public function getIndicatieOpgaaf()
     {
-      return $this->IndicatieOpgaaf;
+        return $this->IndicatieOpgaaf;
     }
 
     /**
@@ -371,8 +370,8 @@ class TSRVEiser
      */
     public function setIndicatieOpgaaf($IndicatieOpgaaf)
     {
-      $this->IndicatieOpgaaf = $IndicatieOpgaaf;
-      return $this;
+        $this->IndicatieOpgaaf = $IndicatieOpgaaf;
+        return $this;
     }
 
     /**
@@ -380,7 +379,7 @@ class TSRVEiser
      */
     public function getIndicatieVoorstel()
     {
-      return $this->IndicatieVoorstel;
+        return $this->IndicatieVoorstel;
     }
 
     /**
@@ -389,8 +388,8 @@ class TSRVEiser
      */
     public function setIndicatieVoorstel($IndicatieVoorstel)
     {
-      $this->IndicatieVoorstel = $IndicatieVoorstel;
-      return $this;
+        $this->IndicatieVoorstel = $IndicatieVoorstel;
+        return $this;
     }
 
     /**
@@ -398,7 +397,7 @@ class TSRVEiser
      */
     public function getIndicatieSK()
     {
-      return $this->IndicatieSK;
+        return $this->IndicatieSK;
     }
 
     /**
@@ -407,8 +406,8 @@ class TSRVEiser
      */
     public function setIndicatieSK($IndicatieSK)
     {
-      $this->IndicatieSK = $IndicatieSK;
-      return $this;
+        $this->IndicatieSK = $IndicatieSK;
+        return $this;
     }
 
     /**
@@ -416,7 +415,7 @@ class TSRVEiser
      */
     public function getCodeIncasso()
     {
-      return $this->CodeIncasso;
+        return $this->CodeIncasso;
     }
 
     /**
@@ -425,8 +424,8 @@ class TSRVEiser
      */
     public function setCodeIncasso($CodeIncasso)
     {
-      $this->CodeIncasso = $CodeIncasso;
-      return $this;
+        $this->CodeIncasso = $CodeIncasso;
+        return $this;
     }
 
     /**
@@ -434,7 +433,7 @@ class TSRVEiser
      */
     public function getNaamIncasso()
     {
-      return $this->NaamIncasso;
+        return $this->NaamIncasso;
     }
 
     /**
@@ -443,8 +442,8 @@ class TSRVEiser
      */
     public function setNaamIncasso($NaamIncasso)
     {
-      $this->NaamIncasso = $NaamIncasso;
-      return $this;
+        $this->NaamIncasso = $NaamIncasso;
+        return $this;
     }
 
     /**
@@ -452,7 +451,7 @@ class TSRVEiser
      */
     public function getReferentieIncasso()
     {
-      return $this->ReferentieIncasso;
+        return $this->ReferentieIncasso;
     }
 
     /**
@@ -461,8 +460,8 @@ class TSRVEiser
      */
     public function setReferentieIncasso($ReferentieIncasso)
     {
-      $this->ReferentieIncasso = $ReferentieIncasso;
-      return $this;
+        $this->ReferentieIncasso = $ReferentieIncasso;
+        return $this;
     }
 
     /**
@@ -470,7 +469,7 @@ class TSRVEiser
      */
     public function getCodeDeurwaarder()
     {
-      return $this->CodeDeurwaarder;
+        return $this->CodeDeurwaarder;
     }
 
     /**
@@ -479,8 +478,8 @@ class TSRVEiser
      */
     public function setCodeDeurwaarder($CodeDeurwaarder)
     {
-      $this->CodeDeurwaarder = $CodeDeurwaarder;
-      return $this;
+        $this->CodeDeurwaarder = $CodeDeurwaarder;
+        return $this;
     }
 
     /**
@@ -488,7 +487,7 @@ class TSRVEiser
      */
     public function getNaamDeurwaarder()
     {
-      return $this->NaamDeurwaarder;
+        return $this->NaamDeurwaarder;
     }
 
     /**
@@ -497,8 +496,8 @@ class TSRVEiser
      */
     public function setNaamDeurwaarder($NaamDeurwaarder)
     {
-      $this->NaamDeurwaarder = $NaamDeurwaarder;
-      return $this;
+        $this->NaamDeurwaarder = $NaamDeurwaarder;
+        return $this;
     }
 
     /**
@@ -506,7 +505,7 @@ class TSRVEiser
      */
     public function getReferentieDeurwaarder()
     {
-      return $this->ReferentieDeurwaarder;
+        return $this->ReferentieDeurwaarder;
     }
 
     /**
@@ -515,8 +514,7 @@ class TSRVEiser
      */
     public function setReferentieDeurwaarder($ReferentieDeurwaarder)
     {
-      $this->ReferentieDeurwaarder = $ReferentieDeurwaarder;
-      return $this;
+        $this->ReferentieDeurwaarder = $ReferentieDeurwaarder;
+        return $this;
     }
-
 }

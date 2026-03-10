@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class StringArray implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -42,7 +40,4 @@ class StringArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

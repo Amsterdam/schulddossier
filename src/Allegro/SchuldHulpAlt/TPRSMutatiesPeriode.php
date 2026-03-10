@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TPRSMutatiesPeriode
 {
-
     /**
      * @var PRSMutatieArray $Mutaties
      */
@@ -63,15 +62,15 @@ class TPRSMutatiesPeriode
      */
     public function __construct($Mutaties, \DateTime $DatumStart, \DateTime $DatumEinde, $SaldoStart, $SaldoEinde, $TotaalAf, $TotaalBij, \DateTime $PeriodeStart, \DateTime $PeriodeEinde)
     {
-      $this->Mutaties = $Mutaties;
-      $this->DatumStart = $DatumStart->format(\DateTime::ATOM);
-      $this->DatumEinde = $DatumEinde->format(\DateTime::ATOM);
-      $this->SaldoStart = $SaldoStart;
-      $this->SaldoEinde = $SaldoEinde;
-      $this->TotaalAf = $TotaalAf;
-      $this->TotaalBij = $TotaalBij;
-      $this->PeriodeStart = $PeriodeStart->format(\DateTime::ATOM);
-      $this->PeriodeEinde = $PeriodeEinde->format(\DateTime::ATOM);
+        $this->Mutaties = $Mutaties;
+        $this->DatumStart = $DatumStart->format(\DateTime::ATOM);
+        $this->DatumEinde = $DatumEinde->format(\DateTime::ATOM);
+        $this->SaldoStart = $SaldoStart;
+        $this->SaldoEinde = $SaldoEinde;
+        $this->TotaalAf = $TotaalAf;
+        $this->TotaalBij = $TotaalBij;
+        $this->PeriodeStart = $PeriodeStart->format(\DateTime::ATOM);
+        $this->PeriodeEinde = $PeriodeEinde->format(\DateTime::ATOM);
     }
 
     /**
@@ -79,7 +78,7 @@ class TPRSMutatiesPeriode
      */
     public function getMutaties()
     {
-      return $this->Mutaties;
+        return $this->Mutaties;
     }
 
     /**
@@ -88,8 +87,8 @@ class TPRSMutatiesPeriode
      */
     public function setMutaties($Mutaties)
     {
-      $this->Mutaties = $Mutaties;
-      return $this;
+        $this->Mutaties = $Mutaties;
+        return $this;
     }
 
     /**
@@ -97,15 +96,15 @@ class TPRSMutatiesPeriode
      */
     public function getDatumStart()
     {
-      if ($this->DatumStart == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumStart);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumStart == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumStart);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -114,8 +113,8 @@ class TPRSMutatiesPeriode
      */
     public function setDatumStart(\DateTime $DatumStart)
     {
-      $this->DatumStart = $DatumStart->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumStart = $DatumStart->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -123,15 +122,15 @@ class TPRSMutatiesPeriode
      */
     public function getDatumEinde()
     {
-      if ($this->DatumEinde == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumEinde);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumEinde == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumEinde);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -140,8 +139,8 @@ class TPRSMutatiesPeriode
      */
     public function setDatumEinde(\DateTime $DatumEinde)
     {
-      $this->DatumEinde = $DatumEinde->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumEinde = $DatumEinde->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -149,7 +148,7 @@ class TPRSMutatiesPeriode
      */
     public function getSaldoStart()
     {
-      return $this->SaldoStart;
+        return $this->SaldoStart;
     }
 
     /**
@@ -158,8 +157,8 @@ class TPRSMutatiesPeriode
      */
     public function setSaldoStart($SaldoStart)
     {
-      $this->SaldoStart = $SaldoStart;
-      return $this;
+        $this->SaldoStart = $SaldoStart;
+        return $this;
     }
 
     /**
@@ -167,7 +166,7 @@ class TPRSMutatiesPeriode
      */
     public function getSaldoEinde()
     {
-      return $this->SaldoEinde;
+        return $this->SaldoEinde;
     }
 
     /**
@@ -176,8 +175,8 @@ class TPRSMutatiesPeriode
      */
     public function setSaldoEinde($SaldoEinde)
     {
-      $this->SaldoEinde = $SaldoEinde;
-      return $this;
+        $this->SaldoEinde = $SaldoEinde;
+        return $this;
     }
 
     /**
@@ -185,7 +184,7 @@ class TPRSMutatiesPeriode
      */
     public function getTotaalAf()
     {
-      return $this->TotaalAf;
+        return $this->TotaalAf;
     }
 
     /**
@@ -194,8 +193,8 @@ class TPRSMutatiesPeriode
      */
     public function setTotaalAf($TotaalAf)
     {
-      $this->TotaalAf = $TotaalAf;
-      return $this;
+        $this->TotaalAf = $TotaalAf;
+        return $this;
     }
 
     /**
@@ -203,7 +202,7 @@ class TPRSMutatiesPeriode
      */
     public function getTotaalBij()
     {
-      return $this->TotaalBij;
+        return $this->TotaalBij;
     }
 
     /**
@@ -212,8 +211,8 @@ class TPRSMutatiesPeriode
      */
     public function setTotaalBij($TotaalBij)
     {
-      $this->TotaalBij = $TotaalBij;
-      return $this;
+        $this->TotaalBij = $TotaalBij;
+        return $this;
     }
 
     /**
@@ -221,15 +220,15 @@ class TPRSMutatiesPeriode
      */
     public function getPeriodeStart()
     {
-      if ($this->PeriodeStart == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->PeriodeStart);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->PeriodeStart == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->PeriodeStart);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -238,8 +237,8 @@ class TPRSMutatiesPeriode
      */
     public function setPeriodeStart(\DateTime $PeriodeStart)
     {
-      $this->PeriodeStart = $PeriodeStart->format(\DateTime::ATOM);
-      return $this;
+        $this->PeriodeStart = $PeriodeStart->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -247,15 +246,15 @@ class TPRSMutatiesPeriode
      */
     public function getPeriodeEinde()
     {
-      if ($this->PeriodeEinde == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->PeriodeEinde);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->PeriodeEinde == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->PeriodeEinde);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -264,8 +263,7 @@ class TPRSMutatiesPeriode
      */
     public function setPeriodeEinde(\DateTime $PeriodeEinde)
     {
-      $this->PeriodeEinde = $PeriodeEinde->format(\DateTime::ATOM);
-      return $this;
+        $this->PeriodeEinde = $PeriodeEinde->format(\DateTime::ATOM);
+        return $this;
     }
-
 }

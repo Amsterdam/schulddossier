@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TRelatiecodeBedrijfcode
 {
-
     /**
      * @var int $Relatiecode
      */
@@ -27,9 +26,9 @@ class TRelatiecodeBedrijfcode
      */
     public function __construct($Relatiecode, $Bedrijfscode, $Bedrijfsnaam)
     {
-      $this->Relatiecode = $Relatiecode;
-      $this->Bedrijfscode = $Bedrijfscode;
-      $this->Bedrijfsnaam = $Bedrijfsnaam;
+        $this->Relatiecode = $Relatiecode;
+        $this->Bedrijfscode = $Bedrijfscode;
+        $this->Bedrijfsnaam = $Bedrijfsnaam;
     }
 
     /**
@@ -37,7 +36,7 @@ class TRelatiecodeBedrijfcode
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -46,8 +45,8 @@ class TRelatiecodeBedrijfcode
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class TRelatiecodeBedrijfcode
      */
     public function getBedrijfscode()
     {
-      return $this->Bedrijfscode;
+        return $this->Bedrijfscode;
     }
 
     /**
@@ -64,8 +63,8 @@ class TRelatiecodeBedrijfcode
      */
     public function setBedrijfscode($Bedrijfscode)
     {
-      $this->Bedrijfscode = $Bedrijfscode;
-      return $this;
+        $this->Bedrijfscode = $Bedrijfscode;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class TRelatiecodeBedrijfcode
      */
     public function getBedrijfsnaam()
     {
-      return $this->Bedrijfsnaam;
+        return $this->Bedrijfsnaam;
     }
 
     /**
@@ -82,8 +81,7 @@ class TRelatiecodeBedrijfcode
      */
     public function setBedrijfsnaam($Bedrijfsnaam)
     {
-      $this->Bedrijfsnaam = $Bedrijfsnaam;
-      return $this;
+        $this->Bedrijfsnaam = $Bedrijfsnaam;
+        return $this;
     }
-
 }

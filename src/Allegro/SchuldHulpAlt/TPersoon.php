@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TPersoon
 {
-
     /**
      * @var string $Voornamen
      */
@@ -57,14 +56,14 @@ class TPersoon
      */
     public function __construct($Voornamen, $Achternaam, $Voorvoegsels, $BSN, $Geboortedatum, $Geslacht, $Ondernemer, $SoortOndernemer)
     {
-      $this->Voornamen = $Voornamen;
-      $this->Achternaam = $Achternaam;
-      $this->Voorvoegsels = $Voorvoegsels;
-      $this->BSN = $BSN;
-      $this->Geboortedatum = $Geboortedatum;
-      $this->Geslacht = $Geslacht;
-      $this->Ondernemer = $Ondernemer;
-      $this->SoortOndernemer = $SoortOndernemer;
+        $this->Voornamen = $Voornamen;
+        $this->Achternaam = $Achternaam;
+        $this->Voorvoegsels = $Voorvoegsels;
+        $this->BSN = $BSN;
+        $this->Geboortedatum = $Geboortedatum;
+        $this->Geslacht = $Geslacht;
+        $this->Ondernemer = $Ondernemer;
+        $this->SoortOndernemer = $SoortOndernemer;
     }
 
     /**
@@ -72,7 +71,7 @@ class TPersoon
      */
     public function getVoornamen()
     {
-      return $this->Voornamen;
+        return $this->Voornamen;
     }
 
     /**
@@ -81,8 +80,8 @@ class TPersoon
      */
     public function setVoornamen($Voornamen)
     {
-      $this->Voornamen = $Voornamen;
-      return $this;
+        $this->Voornamen = $Voornamen;
+        return $this;
     }
 
     /**
@@ -90,7 +89,7 @@ class TPersoon
      */
     public function getAchternaam()
     {
-      return $this->Achternaam;
+        return $this->Achternaam;
     }
 
     /**
@@ -99,8 +98,8 @@ class TPersoon
      */
     public function setAchternaam($Achternaam)
     {
-      $this->Achternaam = $Achternaam;
-      return $this;
+        $this->Achternaam = $Achternaam;
+        return $this;
     }
 
     /**
@@ -108,7 +107,7 @@ class TPersoon
      */
     public function getVoorvoegsels()
     {
-      return $this->Voorvoegsels;
+        return $this->Voorvoegsels;
     }
 
     /**
@@ -117,8 +116,8 @@ class TPersoon
      */
     public function setVoorvoegsels($Voorvoegsels)
     {
-      $this->Voorvoegsels = $Voorvoegsels;
-      return $this;
+        $this->Voorvoegsels = $Voorvoegsels;
+        return $this;
     }
 
     /**
@@ -126,7 +125,7 @@ class TPersoon
      */
     public function getBSN()
     {
-      return $this->BSN;
+        return $this->BSN;
     }
 
     /**
@@ -135,8 +134,8 @@ class TPersoon
      */
     public function setBSN($BSN)
     {
-      $this->BSN = $BSN;
-      return $this;
+        $this->BSN = $BSN;
+        return $this;
     }
 
     /**
@@ -144,7 +143,7 @@ class TPersoon
      */
     public function getGeboortedatum()
     {
-      return $this->Geboortedatum;
+        return $this->Geboortedatum;
     }
 
     /**
@@ -153,8 +152,8 @@ class TPersoon
      */
     public function setGeboortedatum($Geboortedatum)
     {
-      $this->Geboortedatum = $Geboortedatum;
-      return $this;
+        $this->Geboortedatum = $Geboortedatum;
+        return $this;
     }
 
     /**
@@ -162,7 +161,7 @@ class TPersoon
      */
     public function getGeslacht()
     {
-      return $this->Geslacht;
+        return $this->Geslacht;
     }
 
     /**
@@ -171,8 +170,8 @@ class TPersoon
      */
     public function setGeslacht($Geslacht)
     {
-      $this->Geslacht = $Geslacht;
-      return $this;
+        $this->Geslacht = $Geslacht;
+        return $this;
     }
 
     /**
@@ -180,7 +179,7 @@ class TPersoon
      */
     public function getOndernemer()
     {
-      return $this->Ondernemer;
+        return $this->Ondernemer;
     }
 
     /**
@@ -189,8 +188,8 @@ class TPersoon
      */
     public function setOndernemer($Ondernemer)
     {
-      $this->Ondernemer = $Ondernemer;
-      return $this;
+        $this->Ondernemer = $Ondernemer;
+        return $this;
     }
 
     /**
@@ -198,7 +197,7 @@ class TPersoon
      */
     public function getSoortOndernemer()
     {
-      return $this->SoortOndernemer;
+        return $this->SoortOndernemer;
     }
 
     /**
@@ -207,8 +206,7 @@ class TPersoon
      */
     public function setSoortOndernemer($SoortOndernemer)
     {
-      $this->SoortOndernemer = $SoortOndernemer;
-      return $this;
+        $this->SoortOndernemer = $SoortOndernemer;
+        return $this;
     }
-
 }

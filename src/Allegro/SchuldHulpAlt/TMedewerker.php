@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TMedewerker
 {
-
     /**
      * @var string $Code
      */
@@ -51,13 +50,13 @@ class TMedewerker
      */
     public function __construct($Code, $Voornaam, $Achternaam, $Voorvoegsels, $Voorletters, $Telefoon, $Teams)
     {
-      $this->Code = $Code;
-      $this->Voornaam = $Voornaam;
-      $this->Achternaam = $Achternaam;
-      $this->Voorvoegsels = $Voorvoegsels;
-      $this->Voorletters = $Voorletters;
-      $this->Telefoon = $Telefoon;
-      $this->Teams = $Teams;
+        $this->Code = $Code;
+        $this->Voornaam = $Voornaam;
+        $this->Achternaam = $Achternaam;
+        $this->Voorvoegsels = $Voorvoegsels;
+        $this->Voorletters = $Voorletters;
+        $this->Telefoon = $Telefoon;
+        $this->Teams = $Teams;
     }
 
     /**
@@ -65,7 +64,7 @@ class TMedewerker
      */
     public function getCode()
     {
-      return $this->Code;
+        return $this->Code;
     }
 
     /**
@@ -74,8 +73,8 @@ class TMedewerker
      */
     public function setCode($Code)
     {
-      $this->Code = $Code;
-      return $this;
+        $this->Code = $Code;
+        return $this;
     }
 
     /**
@@ -83,7 +82,7 @@ class TMedewerker
      */
     public function getVoornaam()
     {
-      return $this->Voornaam;
+        return $this->Voornaam;
     }
 
     /**
@@ -92,8 +91,8 @@ class TMedewerker
      */
     public function setVoornaam($Voornaam)
     {
-      $this->Voornaam = $Voornaam;
-      return $this;
+        $this->Voornaam = $Voornaam;
+        return $this;
     }
 
     /**
@@ -101,7 +100,7 @@ class TMedewerker
      */
     public function getAchternaam()
     {
-      return $this->Achternaam;
+        return $this->Achternaam;
     }
 
     /**
@@ -110,8 +109,8 @@ class TMedewerker
      */
     public function setAchternaam($Achternaam)
     {
-      $this->Achternaam = $Achternaam;
-      return $this;
+        $this->Achternaam = $Achternaam;
+        return $this;
     }
 
     /**
@@ -119,7 +118,7 @@ class TMedewerker
      */
     public function getVoorvoegsels()
     {
-      return $this->Voorvoegsels;
+        return $this->Voorvoegsels;
     }
 
     /**
@@ -128,8 +127,8 @@ class TMedewerker
      */
     public function setVoorvoegsels($Voorvoegsels)
     {
-      $this->Voorvoegsels = $Voorvoegsels;
-      return $this;
+        $this->Voorvoegsels = $Voorvoegsels;
+        return $this;
     }
 
     /**
@@ -137,7 +136,7 @@ class TMedewerker
      */
     public function getVoorletters()
     {
-      return $this->Voorletters;
+        return $this->Voorletters;
     }
 
     /**
@@ -146,8 +145,8 @@ class TMedewerker
      */
     public function setVoorletters($Voorletters)
     {
-      $this->Voorletters = $Voorletters;
-      return $this;
+        $this->Voorletters = $Voorletters;
+        return $this;
     }
 
     /**
@@ -155,7 +154,7 @@ class TMedewerker
      */
     public function getTelefoon()
     {
-      return $this->Telefoon;
+        return $this->Telefoon;
     }
 
     /**
@@ -164,8 +163,8 @@ class TMedewerker
      */
     public function setTelefoon($Telefoon)
     {
-      $this->Telefoon = $Telefoon;
-      return $this;
+        $this->Telefoon = $Telefoon;
+        return $this;
     }
 
     /**
@@ -173,7 +172,7 @@ class TMedewerker
      */
     public function getTeams()
     {
-      return $this->Teams;
+        return $this->Teams;
     }
 
     /**
@@ -182,8 +181,7 @@ class TMedewerker
      */
     public function setTeams($Teams)
     {
-      $this->Teams = $Teams;
-      return $this;
+        $this->Teams = $Teams;
+        return $this;
     }
-
 }

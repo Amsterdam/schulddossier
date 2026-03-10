@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TContact
 {
-
     /**
      * @var string $TelefoonThuis
      */
@@ -27,9 +26,9 @@ class TContact
      */
     public function __construct($TelefoonThuis, $TelefoonMobiel, $EmailAdres)
     {
-      $this->TelefoonThuis = $TelefoonThuis;
-      $this->TelefoonMobiel = $TelefoonMobiel;
-      $this->EmailAdres = $EmailAdres;
+        $this->TelefoonThuis = $TelefoonThuis;
+        $this->TelefoonMobiel = $TelefoonMobiel;
+        $this->EmailAdres = $EmailAdres;
     }
 
     /**
@@ -37,7 +36,7 @@ class TContact
      */
     public function getTelefoonThuis()
     {
-      return $this->TelefoonThuis;
+        return $this->TelefoonThuis;
     }
 
     /**
@@ -46,8 +45,8 @@ class TContact
      */
     public function setTelefoonThuis($TelefoonThuis)
     {
-      $this->TelefoonThuis = $TelefoonThuis;
-      return $this;
+        $this->TelefoonThuis = $TelefoonThuis;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class TContact
      */
     public function getTelefoonMobiel()
     {
-      return $this->TelefoonMobiel;
+        return $this->TelefoonMobiel;
     }
 
     /**
@@ -64,8 +63,8 @@ class TContact
      */
     public function setTelefoonMobiel($TelefoonMobiel)
     {
-      $this->TelefoonMobiel = $TelefoonMobiel;
-      return $this;
+        $this->TelefoonMobiel = $TelefoonMobiel;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class TContact
      */
     public function getEmailAdres()
     {
-      return $this->EmailAdres;
+        return $this->EmailAdres;
     }
 
     /**
@@ -82,8 +81,7 @@ class TContact
      */
     public function setEmailAdres($EmailAdres)
     {
-      $this->EmailAdres = $EmailAdres;
-      return $this;
+        $this->EmailAdres = $EmailAdres;
+        return $this;
     }
-
 }

@@ -87,19 +87,20 @@ class AppGebruikerController extends AbstractController
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
     public function updateAction(
-        Request                  $request,
-        EntityManagerInterface   $em,
-        Gebruiker                $gebruiker,
+        Request $request,
+        EntityManagerInterface $em,
+        Gebruiker $gebruiker,
         EventDispatcherInterface $eventDispatcher
-    )
-    {
+    ) {
         if ($this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
-            if (!$gebruiker->getOrganisaties()->isEmpty() && empty(
-                array_intersect(
-                    $this->getUser()->getOrganisaties()->toArray(),
-                    $gebruiker->getOrganisaties()->toArray()
+            if (
+                !$gebruiker->getOrganisaties()->isEmpty() && empty(
+                    array_intersect(
+                        $this->getUser()->getOrganisaties()->toArray(),
+                        $gebruiker->getOrganisaties()->toArray()
+                    )
                 )
-                )) {
+            ) {
                 throw $this->createAccessDeniedException();
             }
         }
@@ -132,12 +133,11 @@ class AppGebruikerController extends AbstractController
      * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
      */
     public function deleteAction(
-        Request                  $request,
-        EntityManagerInterface   $em,
-        Gebruiker                $gebruiker,
+        Request $request,
+        EntityManagerInterface $em,
+        Gebruiker $gebruiker,
         EventDispatcherInterface $eventDispatcher
-    )
-    {
+    ) {
         // TODO Dit punt is in opverleg met de kredietbank uitgeschakeld om te refinen welke gegevens er moeten worden geanonimiseerd
         // TODO Weergave is ook weg gehaald in schulddossier/templates/Gebruiker/update.html.twig
         throw $this->createAccessDeniedException('Deze functionaliteit is uitgeschakeld');
@@ -177,10 +177,9 @@ class AppGebruikerController extends AbstractController
         $response = new StreamedResponse(function () use ($gebruikers) {
             $handle = fopen('php://output', 'w+');
 
-            fputcsv($handle, ['naam', 'e-mail', 'organisatie', 'laatste login datum', 'enabled/disabled'], ';');
+            fputcsv($handle, ['e-mail', 'naam', 'organisatie', 'rol', 'laatste login datum', 'enabled/disabled'], ';');
 
             foreach ($gebruikers as $gebruiker) {
-
                 $lastLogin = $gebruiker->getLastLogin() !== null
                     ? $gebruiker->getLastLogin()->format('Y-m-d H:i:s')
                     : 'Nooit';
@@ -195,7 +194,7 @@ class AppGebruikerController extends AbstractController
 
                 $organisaties = implode(',', $organisatieNames);
 
-                fputcsv($handle, [$gebruiker->getNaam(), $gebruiker->getEmail(), $organisaties, $lastLogin, $isEnabled], ';');
+                fputcsv($handle, [$gebruiker->getEmail(), $gebruiker->getNaam(), $organisaties, Gebruiker::getTitleFromType($gebruiker->getType()), $lastLogin, $isEnabled], ';');
             }
             fclose($handle);
         });

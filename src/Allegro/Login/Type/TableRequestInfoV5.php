@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TableRequestInfoV5 implements RequestInterface
 {
-
     /**
      * @var mixed
      */
@@ -95,7 +94,4 @@ class TableRequestInfoV5 implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SimpleDeltaChange
 {
-
     /**
      * @var StringArray $OldValues
      */
@@ -33,10 +32,10 @@ class SimpleDeltaChange
      */
     public function __construct($OldValues, $NewValues, $Error, $Mode)
     {
-      $this->OldValues = $OldValues;
-      $this->NewValues = $NewValues;
-      $this->Error = $Error;
-      $this->Mode = $Mode;
+        $this->OldValues = $OldValues;
+        $this->NewValues = $NewValues;
+        $this->Error = $Error;
+        $this->Mode = $Mode;
     }
 
     /**
@@ -44,7 +43,7 @@ class SimpleDeltaChange
      */
     public function getOldValues()
     {
-      return $this->OldValues;
+        return $this->OldValues;
     }
 
     /**
@@ -53,8 +52,8 @@ class SimpleDeltaChange
      */
     public function setOldValues($OldValues)
     {
-      $this->OldValues = $OldValues;
-      return $this;
+        $this->OldValues = $OldValues;
+        return $this;
     }
 
     /**
@@ -62,7 +61,7 @@ class SimpleDeltaChange
      */
     public function getNewValues()
     {
-      return $this->NewValues;
+        return $this->NewValues;
     }
 
     /**
@@ -71,8 +70,8 @@ class SimpleDeltaChange
      */
     public function setNewValues($NewValues)
     {
-      $this->NewValues = $NewValues;
-      return $this;
+        $this->NewValues = $NewValues;
+        return $this;
     }
 
     /**
@@ -80,7 +79,7 @@ class SimpleDeltaChange
      */
     public function getError()
     {
-      return $this->Error;
+        return $this->Error;
     }
 
     /**
@@ -89,8 +88,8 @@ class SimpleDeltaChange
      */
     public function setError($Error)
     {
-      $this->Error = $Error;
-      return $this;
+        $this->Error = $Error;
+        return $this;
     }
 
     /**
@@ -98,7 +97,7 @@ class SimpleDeltaChange
      */
     public function getMode()
     {
-      return $this->Mode;
+        return $this->Mode;
     }
 
     /**
@@ -107,8 +106,7 @@ class SimpleDeltaChange
      */
     public function setMode($Mode)
     {
-      $this->Mode = $Mode;
-      return $this;
+        $this->Mode = $Mode;
+        return $this;
     }
-
 }

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSBHeader
 {
-
     /**
      * @var int $RelatieCode
      */
@@ -27,9 +26,9 @@ class TSBHeader
      */
     public function __construct($RelatieCode, $Volgnummer, $IsNPS)
     {
-      $this->RelatieCode = $RelatieCode;
-      $this->Volgnummer = $Volgnummer;
-      $this->IsNPS = $IsNPS;
+        $this->RelatieCode = $RelatieCode;
+        $this->Volgnummer = $Volgnummer;
+        $this->IsNPS = $IsNPS;
     }
 
     /**
@@ -37,7 +36,7 @@ class TSBHeader
      */
     public function getRelatieCode()
     {
-      return $this->RelatieCode;
+        return $this->RelatieCode;
     }
 
     /**
@@ -46,8 +45,8 @@ class TSBHeader
      */
     public function setRelatieCode($RelatieCode)
     {
-      $this->RelatieCode = $RelatieCode;
-      return $this;
+        $this->RelatieCode = $RelatieCode;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class TSBHeader
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -64,8 +63,8 @@ class TSBHeader
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class TSBHeader
      */
     public function getIsNPS()
     {
-      return $this->IsNPS;
+        return $this->IsNPS;
     }
 
     /**
@@ -82,8 +81,7 @@ class TSBHeader
      */
     public function setIsNPS($IsNPS)
     {
-      $this->IsNPS = $IsNPS;
-      return $this;
+        $this->IsNPS = $IsNPS;
+        return $this;
     }
-
 }

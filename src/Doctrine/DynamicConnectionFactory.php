@@ -13,20 +13,18 @@ class DynamicConnectionFactory extends BaseConnectionFactory
 {
     public function __construct(
         private readonly ContainerInterface $container,
-        private readonly AzureDatabase      $azureDatabase,
-        private readonly LoggerInterface    $logger
-    )
-    {
+        private readonly AzureDatabase $azureDatabase,
+        private readonly LoggerInterface $logger
+    ) {
         parent::__construct($container->getParameter('doctrine.dbal.connection_factory.types'));
     }
 
     public function createConnection(
-        array          $params,
+        array $params,
         ?Configuration $config = null,
-        ?EventManager  $eventManager = null,
-        array          $mappingTypes = []
-    ): DynamicConnection
-    {
+        ?EventManager $eventManager = null,
+        array $mappingTypes = []
+    ): DynamicConnection {
         $defaultConnection = parent::createConnection($params, $config, $eventManager, $mappingTypes);
 
         $driver = $defaultConnection->getDriver();

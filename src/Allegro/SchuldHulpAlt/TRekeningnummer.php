@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TRekeningnummer
 {
-
     /**
      * @var int $Volgnummer
      */
@@ -51,13 +50,13 @@ class TRekeningnummer
      */
     public function __construct($Volgnummer, $IBAN, $BIC, $Bank, $Omschrijving, $Buitenland, $Geblokkeerd)
     {
-      $this->Volgnummer = $Volgnummer;
-      $this->IBAN = $IBAN;
-      $this->BIC = $BIC;
-      $this->Bank = $Bank;
-      $this->Omschrijving = $Omschrijving;
-      $this->Buitenland = $Buitenland;
-      $this->Geblokkeerd = $Geblokkeerd;
+        $this->Volgnummer = $Volgnummer;
+        $this->IBAN = $IBAN;
+        $this->BIC = $BIC;
+        $this->Bank = $Bank;
+        $this->Omschrijving = $Omschrijving;
+        $this->Buitenland = $Buitenland;
+        $this->Geblokkeerd = $Geblokkeerd;
     }
 
     /**
@@ -65,7 +64,7 @@ class TRekeningnummer
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -74,8 +73,8 @@ class TRekeningnummer
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -83,7 +82,7 @@ class TRekeningnummer
      */
     public function getIBAN()
     {
-      return $this->IBAN;
+        return $this->IBAN;
     }
 
     /**
@@ -92,8 +91,8 @@ class TRekeningnummer
      */
     public function setIBAN($IBAN)
     {
-      $this->IBAN = $IBAN;
-      return $this;
+        $this->IBAN = $IBAN;
+        return $this;
     }
 
     /**
@@ -101,7 +100,7 @@ class TRekeningnummer
      */
     public function getBIC()
     {
-      return $this->BIC;
+        return $this->BIC;
     }
 
     /**
@@ -110,8 +109,8 @@ class TRekeningnummer
      */
     public function setBIC($BIC)
     {
-      $this->BIC = $BIC;
-      return $this;
+        $this->BIC = $BIC;
+        return $this;
     }
 
     /**
@@ -119,7 +118,7 @@ class TRekeningnummer
      */
     public function getBank()
     {
-      return $this->Bank;
+        return $this->Bank;
     }
 
     /**
@@ -128,8 +127,8 @@ class TRekeningnummer
      */
     public function setBank($Bank)
     {
-      $this->Bank = $Bank;
-      return $this;
+        $this->Bank = $Bank;
+        return $this;
     }
 
     /**
@@ -137,7 +136,7 @@ class TRekeningnummer
      */
     public function getOmschrijving()
     {
-      return $this->Omschrijving;
+        return $this->Omschrijving;
     }
 
     /**
@@ -146,8 +145,8 @@ class TRekeningnummer
      */
     public function setOmschrijving($Omschrijving)
     {
-      $this->Omschrijving = $Omschrijving;
-      return $this;
+        $this->Omschrijving = $Omschrijving;
+        return $this;
     }
 
     /**
@@ -155,7 +154,7 @@ class TRekeningnummer
      */
     public function getBuitenland()
     {
-      return $this->Buitenland;
+        return $this->Buitenland;
     }
 
     /**
@@ -164,8 +163,8 @@ class TRekeningnummer
      */
     public function setBuitenland($Buitenland)
     {
-      $this->Buitenland = $Buitenland;
-      return $this;
+        $this->Buitenland = $Buitenland;
+        return $this;
     }
 
     /**
@@ -173,7 +172,7 @@ class TRekeningnummer
      */
     public function getGeblokkeerd()
     {
-      return $this->Geblokkeerd;
+        return $this->Geblokkeerd;
     }
 
     /**
@@ -182,8 +181,7 @@ class TRekeningnummer
      */
     public function setGeblokkeerd($Geblokkeerd)
     {
-      $this->Geblokkeerd = $Geblokkeerd;
-      return $this;
+        $this->Geblokkeerd = $Geblokkeerd;
+        return $this;
     }
-
 }

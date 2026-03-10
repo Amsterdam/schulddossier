@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TSBEiser implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -473,7 +472,4 @@ class TSBEiser implements RequestInterface
 
         return $new;
     }
-
-
 }
-

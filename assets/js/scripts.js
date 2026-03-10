@@ -647,7 +647,7 @@
           if (extension !== 'pdf' && extension !== 'jpeg' && extension !== 'jpg' && extension !== 'png') {
             self.classList.remove('loading');
             self.classList.add('disabled');
-            statusElem.innerHTML = '<span>Het <strong>'+extension+'</strong> bestand kan hier niet worden getoond.</span><br><span>Download het bestand om deze weer te geven.</span>';
+            statusElem.innerHTML = '<span>Het <strong>' + extension + '</strong> bestand kan hier niet worden getoond.</span><br><span>' + (extension === 'docx' ? 'Het document is wel zichtbaar in de volledige schermweergave' : 'Download het bestand om deze weer te geven.') + '</span>';
             return;
           };
 

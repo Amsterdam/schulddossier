@@ -144,6 +144,4 @@ class DossierTimeline
     {
         $this->data = $data;
     }
-
-
 }

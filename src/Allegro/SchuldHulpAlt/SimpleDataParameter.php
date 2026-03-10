@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SimpleDataParameter
 {
-
     /**
      * @var SimpleDataType $DataType
      */
@@ -27,9 +26,9 @@ class SimpleDataParameter
      */
     public function __construct($DataType, $Name, $Value)
     {
-      $this->DataType = $DataType;
-      $this->Name = $Name;
-      $this->Value = $Value;
+        $this->DataType = $DataType;
+        $this->Name = $Name;
+        $this->Value = $Value;
     }
 
     /**
@@ -37,7 +36,7 @@ class SimpleDataParameter
      */
     public function getDataType()
     {
-      return $this->DataType;
+        return $this->DataType;
     }
 
     /**
@@ -46,8 +45,8 @@ class SimpleDataParameter
      */
     public function setDataType($DataType)
     {
-      $this->DataType = $DataType;
-      return $this;
+        $this->DataType = $DataType;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class SimpleDataParameter
      */
     public function getName()
     {
-      return $this->Name;
+        return $this->Name;
     }
 
     /**
@@ -64,8 +63,8 @@ class SimpleDataParameter
      */
     public function setName($Name)
     {
-      $this->Name = $Name;
-      return $this;
+        $this->Name = $Name;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class SimpleDataParameter
      */
     public function getValue()
     {
-      return $this->Value;
+        return $this->Value;
     }
 
     /**
@@ -82,8 +81,7 @@ class SimpleDataParameter
      */
     public function setValue($Value)
     {
-      $this->Value = $Value;
-      return $this;
+        $this->Value = $Value;
+        return $this;
     }
-
 }

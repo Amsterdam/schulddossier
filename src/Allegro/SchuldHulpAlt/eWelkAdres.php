@@ -8,6 +8,4 @@ class eWelkAdres
     const waBezoek = 'waBezoek';
     const waPost = 'waPost';
     const waBeide = 'waBeide';
-
-
 }

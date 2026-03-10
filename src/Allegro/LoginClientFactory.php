@@ -14,12 +14,12 @@ class LoginClientFactory
     public static function factory(
         string $wsdl,
         ?Organisatie $organisatie = null,
-        ?string $proxyHost = null,
-        ?string $proxyPort = null
+        ?string $proxyHostIp = null,
+        ?string $proxyHostPort = null
     ): AllegroLoginClient {
-        $extSoapOptionsArray = AllegroHelper::createSoapOptionsArray($proxyHost, $proxyPort);
+        $extSoapOptionsArray = AllegroHelper::createSoapOptionsArray($proxyHostIp, $proxyHostPort);
 
-        $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHost, $proxyPort);
+        $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHostIp, $proxyHostPort);
 
         $engine = ExtSoapEngineFactory::fromOptionsWithHandler(
             ExtSoapOptions::defaults($wsdl, $extSoapOptionsArray)->withClassMap(

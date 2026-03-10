@@ -31,5 +31,4 @@ class SchuldeiserNormalizer implements NormalizerInterface, NormalizerAwareInter
             'plaats' => $object->getPlaats(),
         ];
     }
-
 }

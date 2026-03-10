@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TPersoonAanvraag implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -311,7 +310,4 @@ class TPersoonAanvraag implements RequestInterface
 
         return $new;
     }
-
-
 }
-

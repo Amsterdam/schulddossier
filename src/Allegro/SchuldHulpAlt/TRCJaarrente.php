@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TRCJaarrente
 {
-
     /**
      * @var int $Jaar
      */
@@ -27,9 +26,9 @@ class TRCJaarrente
      */
     public function __construct($Jaar, $RentePositief, $RenteNegatief)
     {
-      $this->Jaar = $Jaar;
-      $this->RentePositief = $RentePositief;
-      $this->RenteNegatief = $RenteNegatief;
+        $this->Jaar = $Jaar;
+        $this->RentePositief = $RentePositief;
+        $this->RenteNegatief = $RenteNegatief;
     }
 
     /**
@@ -37,7 +36,7 @@ class TRCJaarrente
      */
     public function getJaar()
     {
-      return $this->Jaar;
+        return $this->Jaar;
     }
 
     /**
@@ -46,8 +45,8 @@ class TRCJaarrente
      */
     public function setJaar($Jaar)
     {
-      $this->Jaar = $Jaar;
-      return $this;
+        $this->Jaar = $Jaar;
+        return $this;
     }
 
     /**
@@ -55,7 +54,7 @@ class TRCJaarrente
      */
     public function getRentePositief()
     {
-      return $this->RentePositief;
+        return $this->RentePositief;
     }
 
     /**
@@ -64,8 +63,8 @@ class TRCJaarrente
      */
     public function setRentePositief($RentePositief)
     {
-      $this->RentePositief = $RentePositief;
-      return $this;
+        $this->RentePositief = $RentePositief;
+        return $this;
     }
 
     /**
@@ -73,7 +72,7 @@ class TRCJaarrente
      */
     public function getRenteNegatief()
     {
-      return $this->RenteNegatief;
+        return $this->RenteNegatief;
     }
 
     /**
@@ -82,8 +81,7 @@ class TRCJaarrente
      */
     public function setRenteNegatief($RenteNegatief)
     {
-      $this->RenteNegatief = $RenteNegatief;
-      return $this;
+        $this->RenteNegatief = $RenteNegatief;
+        return $this;
     }
-
 }
