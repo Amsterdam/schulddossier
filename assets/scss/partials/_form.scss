@@ -322,7 +322,9 @@ form {
       }
     }
     .radio-group__horizontal {
-
+      label{
+        margin-bottom: 0;
+      } 
     }
     .radio-group__vertical {
       flex-wrap: wrap;
