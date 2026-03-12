@@ -25,16 +25,20 @@
   table {
     td.logboek-update-original-value{
       color: $borderColor2;
+      overflow: hidden;         
+      text-overflow: ellipsis; 
     }
     td.logboek-update-updated-value{
       color: $textColor;
       font-weight: bold;
+      overflow: hidden;         
+      text-overflow: ellipsis; 
+      max-width: 80px;
     }
     td.logboek-update-field{   
-      white-space: nowrap;       
       overflow: hidden;         
       text-overflow: ellipsis;   
-      max-width: 200px;         
+      max-width: 180px;         
     }
   }
 }
