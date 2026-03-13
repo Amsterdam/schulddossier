@@ -100,7 +100,7 @@ class SchuldItem
     private $type;
 
     /**
-     * @var float
+     * @var ?float
      * @ORM\Column(type="decimal", precision=9, scale=2, nullable=true)
      * @Assert\NotBlank
      * @Assert\Type("numeric")
@@ -109,7 +109,7 @@ class SchuldItem
     private $bedrag;
 
     /**
-     * @var float
+     * @var ?float
      * @ORM\Column(type="decimal", precision=9, scale=2, nullable=true)
      * @Assert\Type("numeric")
      * @Assert\Range(min=-1, max=1000000)
@@ -277,7 +277,7 @@ class SchuldItem
 
     public function getBedrag()
     {
-        return (float) $this->bedrag;
+        return $this->bedrag === null ? $this->bedrag : (float) $this->bedrag;
     }
 
     public function setBedrag($bedrag)
@@ -287,7 +287,7 @@ class SchuldItem
 
     public function getBedragOorspronkelijk()
     {
-        return (float) $this->bedragOorspronkelijk;
+        return $this->bedragOorspronkelijk === null ? $this->bedragOorspronkelijk : (float) $this->bedragOorspronkelijk;
     }
 
     public function setBedragOorspronkelijk($bedragOorspronkelijk = null)
