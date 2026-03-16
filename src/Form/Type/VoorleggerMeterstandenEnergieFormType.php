@@ -51,12 +51,12 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
             'widget' => 'single_text',
             'help' => 'DB: energie_bedrijf_datum_opname'
         ]);
-        $builder->add('energieBedrijfT1', NumberType::class, [
+        $builder->add('energieBedrijfT1', TextType::class, [
             'required' => false,
             'label' => DossierFormLabel::getFormLabel('energieBedrijfT1'),
             'help' => 'DB: energie_bedrijf_t1'
         ]);
-        $builder->add('energieBedrijfT2', NumberType::class, [
+        $builder->add('energieBedrijfT2', TextType::class, [
             'required' => false,
             'label' => DossierFormLabel::getFormLabel('energieBedrijfT2'),
             'help' => 'DB: energie_bedrijf_t2'
