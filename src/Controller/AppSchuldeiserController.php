@@ -72,38 +72,6 @@ class AppSchuldeiserController extends AbstractController
     }
 
     /**
-     * @Route("/nieuw")
-     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     */
-    public function createAction(Request $request, EntityManagerInterface $em, SerializerInterface $jsonSerializer)
-    {
-        $schuldeiser = new Schuldeiser();
-
-        $form = $this->createForm(SchuldeiserFormType::class, $schuldeiser);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($schuldeiser);
-            $em->flush($schuldeiser);
-
-            if ($request->isXmlHttpRequest()) {
-                return new JsonResponse($jsonSerializer->normalize($schuldeiser), JsonResponse::HTTP_CREATED);
-            }
-
-            $this->addFlash('succes', 'Schuldeiser aangemaakt');
-            return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_update', ['schuldeiserId' => $schuldeiser->getId()]);
-        } elseif ($form->isSubmitted() && $form->isValid() === false) {
-            if ($request->isXmlHttpRequest()) {
-                return new JsonResponse($jsonSerializer->normalize($form->getErrors(true, true)), JsonResponse::HTTP_BAD_REQUEST);
-            }
-        }
-
-        return $this->render('Schuldeiser/create.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
-    /**
      * @Route("/detail/{schuldeiserId}/bewerken")
      * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      * @ParamConverter("schuldeiser", options={"id"="schuldeiserId"})
