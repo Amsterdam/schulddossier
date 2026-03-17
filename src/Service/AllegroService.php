@@ -755,49 +755,55 @@ class AllegroService
             return $statistics;
         }
 
-        $schulddossierSchuldeisers = $this->em->getRepository(Schuldeiser::class);
+        // Fetch all existing schuldeisers and index them by allegroCode
+        $schulddossierSchuldeisers = $this->em->getRepository(Schuldeiser::class)->findAll();
+        $existingSchuldeisers = [];
+        foreach ($schulddossierSchuldeisers as $schuldeiser) {
+            $existingSchuldeisers[$schuldeiser->getAllegroCode()] = $schuldeiser;
+        }
 
+        // Index Allegro schuldeisers by relatieCode for quick lookup
+        $allegroSchuldeisersByCode = [];
         foreach ($allegroSchuldeisers as $allegroSchuldeiser) {
-            /**
-             * @var TOrganisatie $allegroSchuldeiser
-             */
-            $eiser = $schulddossierSchuldeisers->findOneBy(['allegroCode' => $allegroSchuldeiser->getRelatieCode()]);
+            $allegroSchuldeisersByCode[$allegroSchuldeiser->getRelatieCode()] = $allegroSchuldeiser;
+        }
 
-            if (null === $eiser) {
-                // Add schuldeiser
+        // Process Allegro schuldeisers
+        foreach ($allegroSchuldeisersByCode as $relatieCode => $allegroSchuldeiser) {
+            if (!isset($existingSchuldeisers[$relatieCode])) {
+                // Add new schuldeiser
                 $eiser = new Schuldeiser();
-                $eiser->setAllegroCode($allegroSchuldeiser->getRelatieCode());
+                $eiser->setAllegroCode($relatieCode);
                 $eiser->setRekening('');
                 $eiser->setEnabled(true);
                 $eiser = $this->updateSchuldeiser($eiser, $allegroSchuldeiser);
                 $statistics['created']++;
                 $this->em->persist($eiser);
             } else {
-                // update schuldeiser
+                // Update existing schuldeiser
+                $eiser = $existingSchuldeisers[$relatieCode];
                 $eiser = $this->updateSchuldeiser($eiser, $allegroSchuldeiser);
                 $statistics['updated']++;
             }
+        }
 
-            foreach ($schulddossierSchuldeisers->findAll() as $schulddossierSchuldeiser) {
-                $existsInAllegro = array_filter(
-                    $allegroSchuldeisers,
-                    fn($allegroSchuldeiser) => $allegroSchuldeiser->getRelatieCode() === $schulddossierSchuldeiser->getAllegroCode()
-                );
-
-                if (empty($existsInAllegro)) {
-                    // disable schuldeisers which are not exported from allegro
-                    $schulddossierSchuldeiser->setEnabled(false);
+        // Disable schuldeisers not in Allegro
+        foreach ($existingSchuldeisers as $relatieCode => $schuldeiser) {
+            if (!isset($allegroSchuldeisersByCode[$relatieCode])) {
+                if ($schuldeiser->isEnabled()) {
+                    $schuldeiser->setEnabled(false);
                     $statistics['made-inactive']++;
-                } else {
-                    if (!$schulddossierSchuldeiser->isEnabled()) {
-                        // enable schuldeisers which are exported from allegro
-                        $schulddossierSchuldeiser->setEnabled(true);
-                        $statistics['made-active']++;
-                    }
+                }
+            } else {
+                if (!$schuldeiser->isEnabled()) {
+                    $schuldeiser->setEnabled(true);
+                    $statistics['made-active']++;
                 }
             }
         }
+
         $this->em->flush();
+
         return $statistics;
     }
 
