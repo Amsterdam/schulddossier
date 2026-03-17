@@ -3,8 +3,11 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SchuldeiserFormType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldeiserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -49,6 +52,23 @@ class AppSchuldeiserController extends AbstractController
                 'numberOfPages' => ceil(count($items) / $request->query->getInt('pageSize', $maxPageSize))
             ]
         ]);
+    }
+
+    /**
+     * @Route("/synchroniseer")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function synchroniseAction(EntityManagerInterface $entityManager, AllegroService $allegroService)
+    {
+        /** @var OrganisatieRepository $organisatieRepository */
+        $organisatieRepository = $entityManager->getRepository(Organisatie::class);
+
+        /** @var Organisatie $allegroId */
+        $allegroId = $organisatieRepository->fetchAllegroUser();
+
+        $statistics = $allegroService->syncSchuldeisers($allegroId);
+
+        return new JsonResponse($statistics);
     }
 
     /**
