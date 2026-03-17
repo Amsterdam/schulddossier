@@ -3,10 +3,12 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+
 
 
 class ActionEventRepository extends ServiceEntityRepository
@@ -50,6 +52,24 @@ class ActionEventRepository extends ServiceEntityRepository
         }
 
         return $this->findByFiltersWithQuerryBuilder($filters);
+    }
+
+
+    /**
+     * Get logs for a specific dossier.
+     *
+     * @param array $names
+     * @param mixed $dossier
+     * @return QueryBuilder
+     */
+    public function getLogsQuery(array $names, $dossier): QueryBuilder
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.name IN (:names)')
+            ->andWhere('a.dossier = :dossier')
+            ->setParameter('names', $names)
+            ->setParameter('dossier', $dossier)
+            ->orderBy('a.datumTijd', 'DESC');
     }
 
     private function findByFiltersWithQuerryBuilder(array $filters)

@@ -31,6 +31,8 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use GemeenteAmsterdam\FixxxSchuldhulp\Constants\SchuldeiserOrganisationType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
 use League\Flysystem\Adapter\Local;
@@ -63,6 +65,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
 use ZipArchive;
+
 
 /**
  * @Route("/app/dossier")
@@ -637,24 +640,27 @@ class AppDossierController extends AbstractController
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function logAction(Request $request, Dossier $dossier)
+    public function logAction(Request $request, Dossier $dossier, PaginatorInterface $paginator, ActionEventRepository $actionEventRepository)
     {
-        $logs = $this->getDoctrine()
-            ->getRepository(ActionEventEntity::class)
-            ->findBy([
-                'name' => [
-                ActionEvent::DOSSIER_GEWIJZIGD,
-                ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
-                ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
-                ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD,
-                ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD,
-                ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT,
-                ActionEvent::DOSSIER_AANGEMAAKT,
-                ],
-                'dossier' => $dossier
-            ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
+        $eventNames = [
+            ActionEvent::DOSSIER_GEWIJZIGD,
+            ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
+            ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
+            ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD,
+            ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD,
+            ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT,
+            ActionEvent::DOSSIER_AANGEMAAKT,
+        ];
 
-        return $this->render('Dossier/detailLogboek.html.twig', ['logs' => $logs, 'dossier' => $dossier]);
+        $queryBuilder = $actionEventRepository->getLogsQuery($eventNames, $dossier);
+
+        $pagination = $paginator->paginate(
+            $queryBuilder,
+            $request->query->getInt('page', 1),
+            100
+        );
+
+        return $this->render('Dossier/detailLogboek.html.twig', ['dossier' => $dossier, 'pagination' => $pagination]);
     }
 
     /**
