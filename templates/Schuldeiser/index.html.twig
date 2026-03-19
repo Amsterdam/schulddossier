@@ -23,7 +23,6 @@
                 <ul>
                     <li>Schuldeisers</li>
                     {% if is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_synchronise') }}">Synchroniseer Schuldeisers met Allegro</a></li>{% endif %}
-                    {% if is_granted('ROLE_GKA') or is_granted('ROLE_GKA_APPBEHEERDER') or is_granted('ROLE_ADMIN') %}<li><a class="primary" href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create') }}">Nieuwe schuldeiser</a></li>{% endif %}
                 </ul>
             </nav>
         </div>
