@@ -77,7 +77,6 @@ class ImportSchuldeisersAllegroCommand extends Command
             $io->success('Job completed successfully');
 
             return Command::SUCCESS;
-
         } catch (\Exception $e) {
             $io->error('Error with the following message occurred: ' . $e->getMessage());
             return Command::FAILURE;

@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SimpleDeltaArray
 {
-
     /**
      * @var SimpleDelta[] $SimpleDelta
      */
     protected $SimpleDelta = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class SimpleDeltaArray
      */
     public function getSimpleDelta()
     {
-      return $this->SimpleDelta;
+        return $this->SimpleDelta;
     }
 
     /**
@@ -30,8 +28,7 @@ class SimpleDeltaArray
      */
     public function setSimpleDelta(array $SimpleDelta = null)
     {
-      $this->SimpleDelta = $SimpleDelta;
-      return $this;
+        $this->SimpleDelta = $SimpleDelta;
+        return $this;
     }
-
 }

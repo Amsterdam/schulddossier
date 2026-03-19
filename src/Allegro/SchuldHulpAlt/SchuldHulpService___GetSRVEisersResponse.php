@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SchuldHulpService___GetSRVEisersResponse
 {
-
     /**
      * @var TSRVEisers $Result
      */
@@ -15,7 +14,7 @@ class SchuldHulpService___GetSRVEisersResponse
      */
     public function __construct($Result)
     {
-      $this->Result = $Result;
+        $this->Result = $Result;
     }
 
     /**
@@ -23,7 +22,7 @@ class SchuldHulpService___GetSRVEisersResponse
      */
     public function getResult()
     {
-      return $this->Result;
+        return $this->Result;
     }
 
     /**
@@ -32,8 +31,7 @@ class SchuldHulpService___GetSRVEisersResponse
      */
     public function setResult($Result)
     {
-      $this->Result = $Result;
-      return $this;
+        $this->Result = $Result;
+        return $this;
     }
-
 }

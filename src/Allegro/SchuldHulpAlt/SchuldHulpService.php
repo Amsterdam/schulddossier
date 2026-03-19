@@ -6,7 +6,6 @@ use SoapClient;
 
 class SchuldHulpService extends SoapClient
 {
-
     /**
      * @var array $classmap The defined classes
      */
@@ -218,18 +217,18 @@ class SchuldHulpService extends SoapClient
      */
     public function __construct(array $options = array(), $wsdl = null)
     {
-      foreach (self::$classmap as $key => $value) {
-        if (!isset($options['classmap'][$key])) {
-          $options['classmap'][$key] = $value;
+        foreach (self::$classmap as $key => $value) {
+            if (!isset($options['classmap'][$key])) {
+                $options['classmap'][$key] = $value;
+            }
         }
-      }
-      $options = array_merge(array (
-      'features' => 1,
-    ), $options);
-      if (!$wsdl) {
-        $wsdl = '../doc/modified_schuldhulpservice.wsdl';
-      }
-      parent::__construct($wsdl, $options);
+        $options = array_merge(array (
+        'features' => 1,
+        ), $options);
+        if (!$wsdl) {
+            $wsdl = '../doc/modified_schuldhulpservice.wsdl';
+        }
+        parent::__construct($wsdl, $options);
     }
 
     /**
@@ -238,7 +237,7 @@ class SchuldHulpService extends SoapClient
      */
     public function GetSBOverzicht(SchuldHulpService___GetSBOverzicht $parameters)
     {
-      return $this->__soapCall('GetSBOverzicht', array($parameters));
+        return $this->__soapCall('GetSBOverzicht', array($parameters));
     }
 
     /**
@@ -247,7 +246,7 @@ class SchuldHulpService extends SoapClient
      */
     public function GetSB(SchuldHulpService___GetSB $parameters)
     {
-      return $this->__soapCall('GetSB', array($parameters));
+        return $this->__soapCall('GetSB', array($parameters));
     }
 
     /**
@@ -256,7 +255,7 @@ class SchuldHulpService extends SoapClient
      */
     public function GetSBEisers(SchuldHulpService___GetSBEisers $parameters)
     {
-      return $this->__soapCall('GetSBEisers', array($parameters));
+        return $this->__soapCall('GetSBEisers', array($parameters));
     }
 
     /**
@@ -265,7 +264,7 @@ class SchuldHulpService extends SoapClient
      */
     public function GetSRVOverzicht(SchuldHulpService___GetSRVOverzicht $parameters)
     {
-      return $this->__soapCall('GetSRVOverzicht', array($parameters));
+        return $this->__soapCall('GetSRVOverzicht', array($parameters));
     }
 
     /**
@@ -274,7 +273,7 @@ class SchuldHulpService extends SoapClient
      */
     public function GetSRVAanvraag(SchuldHulpService___GetSRVAanvraag $parameters)
     {
-      return $this->__soapCall('GetSRVAanvraag', array($parameters));
+        return $this->__soapCall('GetSRVAanvraag', array($parameters));
     }
 
     /**
@@ -283,7 +282,7 @@ class SchuldHulpService extends SoapClient
      */
     public function GetSRVEisers(SchuldHulpService___GetSRVEisers $parameters)
     {
-      return $this->__soapCall('GetSRVEisers', array($parameters));
+        return $this->__soapCall('GetSRVEisers', array($parameters));
     }
 
     /**
@@ -292,7 +291,7 @@ class SchuldHulpService extends SoapClient
      */
     public function GetLijstSchuldeisers(SchuldHulpService___GetLijstSchuldeisers $parameters)
     {
-      return $this->__soapCall('GetLijstSchuldeisers', array($parameters));
+        return $this->__soapCall('GetLijstSchuldeisers', array($parameters));
     }
 
     /**
@@ -303,7 +302,7 @@ class SchuldHulpService extends SoapClient
      */
     public function AanvraagSR(SchuldHulpService___AanvraagSR $parameters)
     {
-      return $this->__soapCall('AanvraagSR', array($parameters));
+        return $this->__soapCall('AanvraagSR', array($parameters));
     }
 
     /**
@@ -312,7 +311,6 @@ class SchuldHulpService extends SoapClient
      */
     public function Aanvraag2SR(SchuldHulpService___Aanvraag2SR $parameters)
     {
-      return $this->__soapCall('Aanvraag2SR', array($parameters));
+        return $this->__soapCall('Aanvraag2SR', array($parameters));
     }
-
 }

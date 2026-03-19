@@ -1,4 +1,5 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -7,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger;
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierFormLabel;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -29,12 +31,12 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
         ]);
         $builder->add('meterstandenEnergieNvt', CheckboxType::class, [
             'required' => false,
-            'label' => "Schuld energiebedrijf n.v.t."
+            'label' => DossierFormLabel::getFormLabel('meterstandenEnergieNvt'),
         ]);
 
         $builder->add('energieBedrijf', TextType::class, [
             'required' => false,
-            'label' => "Huidig energiebedrijf",
+            'label' => DossierFormLabel::getFormLabel('energieBedrijf'),
             'help' => 'DB: energie_bedrijf'
         ]);
         $builder->add('energieBedrijfKlantnummer', TextType::class, [
@@ -49,19 +51,19 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
             'widget' => 'single_text',
             'help' => 'DB: energie_bedrijf_datum_opname'
         ]);
-        $builder->add('energieBedrijfT1', NumberType::class, [
+        $builder->add('energieBedrijfT1', TextType::class, [
             'required' => false,
-            'label' => "Meterstand Elektriciteit T1",
+            'label' => DossierFormLabel::getFormLabel('energieBedrijfT1'),
             'help' => 'DB: energie_bedrijf_t1'
         ]);
-        $builder->add('energieBedrijfT2', NumberType::class, [
+        $builder->add('energieBedrijfT2', TextType::class, [
             'required' => false,
-            'label' => "Meterstand Elektriciteit T2",
+            'label' => DossierFormLabel::getFormLabel('energieBedrijfT2'),
             'help' => 'DB: energie_bedrijf_t2'
         ]);
         $builder->add('energieBedrijfGas', NumberType::class, [
             'required' => false,
-            'label' => "Meterstand Gas",
+            'label' => DossierFormLabel::getFormLabel('energieBedrijfGas'),
             'help' => 'DB: energie_bedrijf_gas'
         ]);
         $builder->add('warmteBedrijf', TextType::class, [
@@ -71,11 +73,11 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
         ]);
         $builder->add('warmteBedrijfKlantnummer', TextType::class, [
             'required' => false,
-            'label' => "Klantnummer (warmtebedrijf)",
+            'label' => DossierFormLabel::getFormLabel('warmteBedrijfKlantnummer'),
             'help' => 'DB: warmte_bedrijf_klantnummer'
         ]);
         $builder->add('warmteBedrijfDatumOpname', DateType::class, [
-            'label' => "Datum opname (warmtebedrijf)",
+            'label' => DossierFormLabel::getFormLabel('warmteBedrijfDatumOpname'),
             'required' => false,
             'html5' => true,
             'widget' => 'single_text',
@@ -83,7 +85,7 @@ class VoorleggerMeterstandenEnergieFormType extends AbstractType
         ]);
         $builder->add('warmteBedrijfOpname', NumberType::class, [
             'required' => false,
-            'label' => "Meterstand Warmte",
+            'label' => DossierFormLabel::getFormLabel('warmteBedrijfOpname'),
             'help' => 'DB: warmte_bedrijf_opname'
         ]);
 

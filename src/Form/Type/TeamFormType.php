@@ -1,4 +1,5 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -7,7 +8,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-
 
 class TeamFormType extends AbstractType
 {

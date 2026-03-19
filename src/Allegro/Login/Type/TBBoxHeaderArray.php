@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TBBoxHeaderArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TBBoxHeader
      */
@@ -41,7 +40,4 @@ class TBBoxHeaderArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

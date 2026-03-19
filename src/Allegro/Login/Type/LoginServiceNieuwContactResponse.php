@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\ResultInterface;
 
 class LoginServiceNieuwContactResponse implements ResultInterface
 {
-
     /**
      * @var bool
      */
@@ -81,7 +80,4 @@ class LoginServiceNieuwContactResponse implements ResultInterface
 
         return $new;
     }
-
-
 }
-

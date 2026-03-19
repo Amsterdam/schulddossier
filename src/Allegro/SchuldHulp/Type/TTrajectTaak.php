@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TTrajectTaak implements RequestInterface
 {
-
     /**
      * @var \DateTimeInterface
      */
@@ -285,7 +283,4 @@ class TTrajectTaak implements RequestInterface
 
         return $new;
     }
-
-
 }
-

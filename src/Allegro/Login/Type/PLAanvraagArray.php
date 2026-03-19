@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class PLAanvraagArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TPLAanvraag
      */
@@ -41,7 +40,4 @@ class PLAanvraagArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

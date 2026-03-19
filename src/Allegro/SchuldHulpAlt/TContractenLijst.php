@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TContractenLijst
 {
-
     /**
      * @var ContractArray $Contracten
      */
@@ -15,7 +14,7 @@ class TContractenLijst
      */
     public function __construct($Contracten)
     {
-      $this->Contracten = $Contracten;
+        $this->Contracten = $Contracten;
     }
 
     /**
@@ -23,7 +22,7 @@ class TContractenLijst
      */
     public function getContracten()
     {
-      return $this->Contracten;
+        return $this->Contracten;
     }
 
     /**
@@ -32,8 +31,7 @@ class TContractenLijst
      */
     public function setContracten($Contracten)
     {
-      $this->Contracten = $Contracten;
-      return $this;
+        $this->Contracten = $Contracten;
+        return $this;
     }
-
 }

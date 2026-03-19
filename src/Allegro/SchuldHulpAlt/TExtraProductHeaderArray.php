@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TExtraProductHeaderArray
 {
-
     /**
      * @var TExtraProductHeader[] $TExtraProductHeader
      */
     protected $TExtraProductHeader = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class TExtraProductHeaderArray
      */
     public function getTExtraProductHeader()
     {
-      return $this->TExtraProductHeader;
+        return $this->TExtraProductHeader;
     }
 
     /**
@@ -30,8 +28,7 @@ class TExtraProductHeaderArray
      */
     public function setTExtraProductHeader(array $TExtraProductHeader = null)
     {
-      $this->TExtraProductHeader = $TExtraProductHeader;
-      return $this;
+        $this->TExtraProductHeader = $TExtraProductHeader;
+        return $this;
     }
-
 }

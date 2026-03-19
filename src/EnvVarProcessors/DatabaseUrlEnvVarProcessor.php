@@ -7,7 +7,9 @@ use Symfony\Component\DependencyInjection\EnvVarProcessorInterface;
 
 class DatabaseUrlEnvVarProcessor implements EnvVarProcessorInterface
 {
-    public function __construct(private AzureDatabase $azureDatabase){}
+    public function __construct(private AzureDatabase $azureDatabase)
+    {
+    }
 
     public function getEnv(string $prefix, string $name, \Closure $getEnv)
     {

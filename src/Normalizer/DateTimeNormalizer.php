@@ -24,5 +24,4 @@ class DateTimeNormalizer implements NormalizerInterface, NormalizerAwareInterfac
             'rfc2822' => $object->format('r'),
         ];
     }
-
 }

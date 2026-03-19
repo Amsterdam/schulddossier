@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SBEiserArray
 {
-
     /**
      * @var TSBEiser[] $TSBEiser
      */
     protected $TSBEiser = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class SBEiserArray
      */
     public function getTSBEiser()
     {
-      return $this->TSBEiser;
+        return $this->TSBEiser;
     }
 
     /**
@@ -30,8 +28,7 @@ class SBEiserArray
      */
     public function setTSBEiser(array $TSBEiser = null)
     {
-      $this->TSBEiser = $TSBEiser;
-      return $this;
+        $this->TSBEiser = $TSBEiser;
+        return $this;
     }
-
 }

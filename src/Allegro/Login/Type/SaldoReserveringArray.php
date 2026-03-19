@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class SaldoReserveringArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TSaldoReservering
      */
@@ -41,7 +40,4 @@ class SaldoReserveringArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

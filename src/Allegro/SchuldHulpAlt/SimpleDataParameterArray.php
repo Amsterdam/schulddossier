@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SimpleDataParameterArray
 {
-
     /**
      * @var SimpleDataParameter[] $SimpleDataParameter
      */
     protected $SimpleDataParameter = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class SimpleDataParameterArray
      */
     public function getSimpleDataParameter()
     {
-      return $this->SimpleDataParameter;
+        return $this->SimpleDataParameter;
     }
 
     /**
@@ -30,8 +28,7 @@ class SimpleDataParameterArray
      */
     public function setSimpleDataParameter(array $SimpleDataParameter = null)
     {
-      $this->SimpleDataParameter = $SimpleDataParameter;
-      return $this;
+        $this->SimpleDataParameter = $SimpleDataParameter;
+        return $this;
     }
-
 }

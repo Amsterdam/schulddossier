@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TGezinsSituatie
 {
-
     /**
      * @var string $BurgerlijkeStaat
      */
@@ -38,10 +37,10 @@ class TGezinsSituatie
      */
     public function __construct($BurgerlijkeStaat, $GemeenschapVanGoederen, $Kinderen, \DateTime $BurgerlijkeStaatSinds)
     {
-      $this->BurgerlijkeStaat = $BurgerlijkeStaat;
-      $this->GemeenschapVanGoederen = $GemeenschapVanGoederen;
-      $this->Kinderen = $Kinderen;
-      $this->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds->format(\DateTime::ATOM);
+        $this->BurgerlijkeStaat = $BurgerlijkeStaat;
+        $this->GemeenschapVanGoederen = $GemeenschapVanGoederen;
+        $this->Kinderen = $Kinderen;
+        $this->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds->format(\DateTime::ATOM);
     }
 
     /**
@@ -49,7 +48,7 @@ class TGezinsSituatie
      */
     public function getBurgerlijkeStaat()
     {
-      return $this->BurgerlijkeStaat;
+        return $this->BurgerlijkeStaat;
     }
 
     /**
@@ -58,8 +57,8 @@ class TGezinsSituatie
      */
     public function setBurgerlijkeStaat($BurgerlijkeStaat)
     {
-      $this->BurgerlijkeStaat = $BurgerlijkeStaat;
-      return $this;
+        $this->BurgerlijkeStaat = $BurgerlijkeStaat;
+        return $this;
     }
 
     /**
@@ -67,7 +66,7 @@ class TGezinsSituatie
      */
     public function getGemeenschapVanGoederen()
     {
-      return $this->GemeenschapVanGoederen;
+        return $this->GemeenschapVanGoederen;
     }
 
     /**
@@ -76,8 +75,8 @@ class TGezinsSituatie
      */
     public function setGemeenschapVanGoederen($GemeenschapVanGoederen)
     {
-      $this->GemeenschapVanGoederen = $GemeenschapVanGoederen;
-      return $this;
+        $this->GemeenschapVanGoederen = $GemeenschapVanGoederen;
+        return $this;
     }
 
     /**
@@ -85,7 +84,7 @@ class TGezinsSituatie
      */
     public function getGemeenschapVanGoederenDetail()
     {
-      return $this->GemeenschapVanGoederenDetail;
+        return $this->GemeenschapVanGoederenDetail;
     }
 
     /**
@@ -94,8 +93,8 @@ class TGezinsSituatie
      */
     public function setGemeenschapVanGoederenDetail($GemeenschapVanGoederenDetail)
     {
-      $this->GemeenschapVanGoederenDetail = $GemeenschapVanGoederenDetail;
-      return $this;
+        $this->GemeenschapVanGoederenDetail = $GemeenschapVanGoederenDetail;
+        return $this;
     }
 
     /**
@@ -103,7 +102,7 @@ class TGezinsSituatie
      */
     public function getKinderen()
     {
-      return $this->Kinderen;
+        return $this->Kinderen;
     }
 
     /**
@@ -112,8 +111,8 @@ class TGezinsSituatie
      */
     public function setKinderen($Kinderen)
     {
-      $this->Kinderen = $Kinderen;
-      return $this;
+        $this->Kinderen = $Kinderen;
+        return $this;
     }
 
     /**
@@ -121,15 +120,15 @@ class TGezinsSituatie
      */
     public function getBurgerlijkeStaatSinds()
     {
-      if ($this->BurgerlijkeStaatSinds == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->BurgerlijkeStaatSinds);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->BurgerlijkeStaatSinds == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->BurgerlijkeStaatSinds);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -138,8 +137,7 @@ class TGezinsSituatie
      */
     public function setBurgerlijkeStaatSinds(\DateTime $BurgerlijkeStaatSinds)
     {
-      $this->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds->format(\DateTime::ATOM);
-      return $this;
+        $this->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds->format(\DateTime::ATOM);
+        return $this;
     }
-
 }

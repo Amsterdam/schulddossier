@@ -1,6 +1,8 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierFormLabel;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,7 +28,8 @@ class VoorleggerVtlbFormType extends AbstractType
         ]);
         $builder->add('vtlbBedrag', NumberType::class, [
             'required' => false,
-            'label' => 'Maandelijkse afloscapaciteit',
+            'scale' => 2,
+            'label' => DossierFormLabel::getFormLabel('vtlbBedrag'),
             'help' => 'DB: voorlegger.vtlb_bedrag'
         ]);
         $builder->add('file', CollectionType::class, [

@@ -62,10 +62,19 @@ composer-update:
 	docker run --rm -v .:/app -u 1000:1000 composer update --lock
 
 npm-install:
-	docker run --rm -v .:/app -w /app -u 1000:1000 node sh -c "/usr/local/bin/npm install --no-audit --no-fund"
+	docker run --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm install --no-audit --no-fund"
 
 npm-run-dev:
-	docker run --rm -v .:/app -w /app -u 1000:1000 node sh -c "/usr/local/bin/npm run dev && /usr/local/bin/npm run css:build"
+	docker run --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm run dev && /usr/local/bin/npm run css:build"
 
 npm-watch:
-	docker run -it --init --rm -v .:/app -w /app -u 1000:1000 node sh -c "/usr/local/bin/npm run watch"
+	docker run -it --init --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm run watch"
+
+enter-pod:
+	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh
+
+check-php-format:
+	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh -c "vendor/bin/phpcs --extensions=php"
+
+fix-php-format:
+	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh -c "vendor/bin/phpcbf --standard=PSR12 --extensions=php src"

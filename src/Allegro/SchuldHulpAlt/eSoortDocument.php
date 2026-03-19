@@ -11,6 +11,4 @@ class eSoortDocument
     const Leningaanvraag = 'Leningaanvraag';
     const DKaanvraag = 'DKaanvraag';
     const SRaanvraag = 'SRaanvraag';
-
-
 }

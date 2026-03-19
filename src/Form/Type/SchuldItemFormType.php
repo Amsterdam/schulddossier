@@ -23,7 +23,6 @@ use Symfony\Component\Validator\Constraints\Valid;
 
 class SchuldItemFormType extends AbstractType
 {
-
     private $logger;
     protected $em;
     /**

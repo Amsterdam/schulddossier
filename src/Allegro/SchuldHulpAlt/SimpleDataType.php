@@ -14,6 +14,4 @@ class SimpleDataType
     const Guid = 'Guid';
     const Binary = 'Binary';
     const Boolean = 'Boolean';
-
-
 }

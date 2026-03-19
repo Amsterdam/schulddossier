@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class LijstOpdrachtgeverArray
 {
-
     /**
      * @var TLijstOpdrachtgever[] $TLijstOpdrachtgever
      */
     protected $TLijstOpdrachtgever = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class LijstOpdrachtgeverArray
      */
     public function getTLijstOpdrachtgever()
     {
-      return $this->TLijstOpdrachtgever;
+        return $this->TLijstOpdrachtgever;
     }
 
     /**
@@ -30,8 +28,7 @@ class LijstOpdrachtgeverArray
      */
     public function setTLijstOpdrachtgever(array $TLijstOpdrachtgever = null)
     {
-      $this->TLijstOpdrachtgever = $TLijstOpdrachtgever;
-      return $this;
+        $this->TLijstOpdrachtgever = $TLijstOpdrachtgever;
+        return $this;
     }
-
 }

@@ -8,6 +8,4 @@ class eOntvangenVerzonden
     const ovOntvangen = 'ovOntvangen';
     const ovVerzonden = 'ovVerzonden';
     const ovBeide = 'ovBeide';
-
-
 }

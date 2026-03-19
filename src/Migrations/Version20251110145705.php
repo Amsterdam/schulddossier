@@ -9,7 +9,7 @@ use Doctrine\Migrations\AbstractMigration;
 
 final class Version20251110145705 extends AbstractMigration
 {
-  public function getDescription(): string
+    public function getDescription(): string
     {
         return 'Update dossier.indiendatum_tijd with the latest datumtijd from dossier_timeline for subtype verzenden_gka';
     }

@@ -2,12 +2,10 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type;
 
-
 use Phpro\SoapClient\Type\RequestInterface;
 
 class TGeslotenVraag implements RequestInterface
 {
-
     /**
      * @var string
      */
@@ -69,7 +67,4 @@ class TGeslotenVraag implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TableRequestInfoV6 extends TableRequestInfo
 {
-
     /**
      * @var string $Sql
      */
@@ -19,8 +18,8 @@ class TableRequestInfoV6 extends TableRequestInfo
      */
     public function __construct($UserFilter, $IncludeSchema, $MaxRecords, $Parameters, $Sql)
     {
-      parent::__construct($UserFilter, $IncludeSchema, $MaxRecords, $Parameters);
-      $this->Sql = $Sql;
+        parent::__construct($UserFilter, $IncludeSchema, $MaxRecords, $Parameters);
+        $this->Sql = $Sql;
     }
 
     /**
@@ -28,7 +27,7 @@ class TableRequestInfoV6 extends TableRequestInfo
      */
     public function getSql()
     {
-      return $this->Sql;
+        return $this->Sql;
     }
 
     /**
@@ -37,8 +36,7 @@ class TableRequestInfoV6 extends TableRequestInfo
      */
     public function setSql($Sql)
     {
-      $this->Sql = $Sql;
-      return $this;
+        $this->Sql = $Sql;
+        return $this;
     }
-
 }

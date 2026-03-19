@@ -44,6 +44,16 @@
                                 </a>
                             </div>
                         {% endif %}
+
+                        {% if dossierDocument.document.origineleExtensie|lower == 'docx' %}
+                            <div class="bestand-action-list-item">
+                                <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_wordviewer', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
+                                    title="{{ dossierDocument.document.naam }}" 
+                                    class="bestand-action-list-item-full-screen" 
+                                    target="_blank">
+                                </a>
+                            </div>
+                        {% endif %}
                         <div class="bestand-action-list-item">
                             <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_downloaddocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
                                title="Document downloaden"

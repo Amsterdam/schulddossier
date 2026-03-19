@@ -8,6 +8,4 @@ class eWelkEmailAdres
     const weaWebGegevens = 'weaWebGegevens';
     const weaCorrespondentie = 'weaCorrespondentie';
     const weaBeide = 'weaBeide';
-
-
 }

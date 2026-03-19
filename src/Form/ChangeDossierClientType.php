@@ -175,10 +175,9 @@ class ChangeDossierClientType extends AbstractType
             'required' => false,
             'help' => 'DB: dossier.client_kinderen'
         ]);
-
-
     }
-    public function configureOptions(OptionsResolver $resolver) {
+    public function configureOptions(OptionsResolver $resolver)
+    {
         $resolver->setDefaults([
             'data_class' => Dossier::class,
         ]);

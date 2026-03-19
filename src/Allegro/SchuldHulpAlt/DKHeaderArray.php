@@ -4,16 +4,14 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class DKHeaderArray
 {
-
     /**
      * @var TDKHeader[] $TDKHeader
      */
     protected $TDKHeader = null;
 
-    
+
     public function __construct()
     {
-    
     }
 
     /**
@@ -21,7 +19,7 @@ class DKHeaderArray
      */
     public function getTDKHeader()
     {
-      return $this->TDKHeader;
+        return $this->TDKHeader;
     }
 
     /**
@@ -30,8 +28,7 @@ class DKHeaderArray
      */
     public function setTDKHeader(array $TDKHeader = null)
     {
-      $this->TDKHeader = $TDKHeader;
-      return $this;
+        $this->TDKHeader = $TDKHeader;
+        return $this;
     }
-
 }

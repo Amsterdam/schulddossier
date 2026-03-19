@@ -12,6 +12,4 @@ class eContractSoort
     const scAlles = 'scAlles';
     const scCasus = 'scCasus';
     const scAllesPlus = 'scAllesPlus';
-
-
 }

@@ -90,6 +90,51 @@
 							{% if log.name == 'dossier_gewijzigd' %}
 								Dossier gewijzigd
 							{% endif %}
+      						{% if log.name == 'dossier_voorlegger_gewijzigd' %}
+                                Dossier 
+									{% if log.dossier.clientNaam is defined %}
+										<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+									{% endif  %}
+								gewijzigd door {{ log.data.gebruiker.naam }}
+                                <br>
+                                <br>
+                                {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.changeSet } %}
+                            {% endif %}
+							{% if log.name == 'dossier_schulditem_aangemaakt' %}
+								Schuld aangemaakt voor dossier 
+									{% if log.dossier.clientNaam is defined %}
+										<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+									{% endif  %}
+								door {{ log.data.gebruiker.naam }}
+                                <br>
+                                <br>
+                                {% for schulditemUpdate in log.data.schulditemUpdates %}
+                                    Naam schuld: <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden',{'dossierId': log.dossier.Id})}}#id_schuldItem-{{schulditemUpdate.id}}"> 
+                                        {{ schulditemUpdate.schuldeiserNaam }}&nbsp;(<span class="bedrag">&euro; {{ schulditemUpdate.bedrag|number_format(2, ',', '.') }}</span>) 
+                                    </a>
+									<br>
+									<br>
+                                    {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: schulditemUpdate.schuldenChangeSet, isNew: true } %}
+                                {% endfor %}
+                            {% endif %}
+							{% if log.name == 'dossier_schulditems_gewijzigd' %}
+								Schuld(en) gewijzigd voor dossier 
+								{% if log.dossier.clientNaam is defined %}
+									<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+								{% endif  %}
+								door {{ log.data.gebruiker.naam }}
+                                <br>
+                                <br>
+                                {% for schulditemUpdate in log.data.schuldItemUpdates %}
+                                    Naam schuld: <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden',{'dossierId': log.dossier.Id})}}#id_schuldItem-{{schulditemUpdate.id}}"> 
+                                        {{ schulditemUpdate.schuldeiserNaam }}&nbsp;(<span class="bedrag">&euro; {{ schulditemUpdate.bedrag|number_format(2, ',', '.') }}</span>) 
+                                    </a>
+									<br>
+									<br>
+                                    {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: schulditemUpdate.schuldenChangeSet } %}
+                                    <br>
+                                {% endfor %}
+                            {% endif %}
 							{% if log.name == 'dossier_verwijderd' %}
 								Dossier verwijderd
 								<br>
@@ -135,7 +180,14 @@
 								Gebruiker verwijderd
 							{% endif %}
 							{% if log.name == 'dossier_aangemaakt' %}
-								Dossier aangemaakt
+								Dossier aangemaakt voor
+								{% if log.dossier.clientNaam is defined %}
+									<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+								{% endif  %}
+								door {{ log.data.gebruiker.naam }}
+                                <br>
+                                <br>
+                                {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.dossierChangeSet, isNew: true } %}
 							{% endif %}
 							{% if log.name == 'gebruiker_disabled_door_systeem' %}
 								Het systeem heeft

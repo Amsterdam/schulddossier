@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class TRelatiecodeBedrijfcode implements RequestInterface
 {
-
     /**
      * @var int
      */
@@ -95,7 +94,4 @@ class TRelatiecodeBedrijfcode implements RequestInterface
 
         return $new;
     }
-
-
 }
-

@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TBBROpdracht
 {
-
     /**
      * @var int $Relatiecode
      */
@@ -123,25 +122,25 @@ class TBBROpdracht
      */
     public function __construct($Relatiecode, $Volgnummer, $CodeBegunstigde, $Begunstigde, $Omschrijving, $Referentie, $Periodiciteit, $AantalKeerPerPeriode, $PeriodeBedrag, $Maximaal, \DateTime $StartDatum, \DateTime $VolgendeDatum, $BetaaldBedrag, $RestBetaling, $Soort, $NummerReservering, $UniekVolgnummer, \DateTime $DatumLaatsteBetaling, $Prioriteit)
     {
-      $this->Relatiecode = $Relatiecode;
-      $this->Volgnummer = $Volgnummer;
-      $this->CodeBegunstigde = $CodeBegunstigde;
-      $this->Begunstigde = $Begunstigde;
-      $this->Omschrijving = $Omschrijving;
-      $this->Referentie = $Referentie;
-      $this->Periodiciteit = $Periodiciteit;
-      $this->AantalKeerPerPeriode = $AantalKeerPerPeriode;
-      $this->PeriodeBedrag = $PeriodeBedrag;
-      $this->Maximaal = $Maximaal;
-      $this->StartDatum = $StartDatum->format(\DateTime::ATOM);
-      $this->VolgendeDatum = $VolgendeDatum->format(\DateTime::ATOM);
-      $this->BetaaldBedrag = $BetaaldBedrag;
-      $this->RestBetaling = $RestBetaling;
-      $this->Soort = $Soort;
-      $this->NummerReservering = $NummerReservering;
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
-      $this->Prioriteit = $Prioriteit;
+        $this->Relatiecode = $Relatiecode;
+        $this->Volgnummer = $Volgnummer;
+        $this->CodeBegunstigde = $CodeBegunstigde;
+        $this->Begunstigde = $Begunstigde;
+        $this->Omschrijving = $Omschrijving;
+        $this->Referentie = $Referentie;
+        $this->Periodiciteit = $Periodiciteit;
+        $this->AantalKeerPerPeriode = $AantalKeerPerPeriode;
+        $this->PeriodeBedrag = $PeriodeBedrag;
+        $this->Maximaal = $Maximaal;
+        $this->StartDatum = $StartDatum->format(\DateTime::ATOM);
+        $this->VolgendeDatum = $VolgendeDatum->format(\DateTime::ATOM);
+        $this->BetaaldBedrag = $BetaaldBedrag;
+        $this->RestBetaling = $RestBetaling;
+        $this->Soort = $Soort;
+        $this->NummerReservering = $NummerReservering;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+        $this->Prioriteit = $Prioriteit;
     }
 
     /**
@@ -149,7 +148,7 @@ class TBBROpdracht
      */
     public function getRelatiecode()
     {
-      return $this->Relatiecode;
+        return $this->Relatiecode;
     }
 
     /**
@@ -158,8 +157,8 @@ class TBBROpdracht
      */
     public function setRelatiecode($Relatiecode)
     {
-      $this->Relatiecode = $Relatiecode;
-      return $this;
+        $this->Relatiecode = $Relatiecode;
+        return $this;
     }
 
     /**
@@ -167,7 +166,7 @@ class TBBROpdracht
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -176,8 +175,8 @@ class TBBROpdracht
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -185,7 +184,7 @@ class TBBROpdracht
      */
     public function getCodeBegunstigde()
     {
-      return $this->CodeBegunstigde;
+        return $this->CodeBegunstigde;
     }
 
     /**
@@ -194,8 +193,8 @@ class TBBROpdracht
      */
     public function setCodeBegunstigde($CodeBegunstigde)
     {
-      $this->CodeBegunstigde = $CodeBegunstigde;
-      return $this;
+        $this->CodeBegunstigde = $CodeBegunstigde;
+        return $this;
     }
 
     /**
@@ -203,7 +202,7 @@ class TBBROpdracht
      */
     public function getBegunstigde()
     {
-      return $this->Begunstigde;
+        return $this->Begunstigde;
     }
 
     /**
@@ -212,8 +211,8 @@ class TBBROpdracht
      */
     public function setBegunstigde($Begunstigde)
     {
-      $this->Begunstigde = $Begunstigde;
-      return $this;
+        $this->Begunstigde = $Begunstigde;
+        return $this;
     }
 
     /**
@@ -221,7 +220,7 @@ class TBBROpdracht
      */
     public function getOmschrijving()
     {
-      return $this->Omschrijving;
+        return $this->Omschrijving;
     }
 
     /**
@@ -230,8 +229,8 @@ class TBBROpdracht
      */
     public function setOmschrijving($Omschrijving)
     {
-      $this->Omschrijving = $Omschrijving;
-      return $this;
+        $this->Omschrijving = $Omschrijving;
+        return $this;
     }
 
     /**
@@ -239,7 +238,7 @@ class TBBROpdracht
      */
     public function getReferentie()
     {
-      return $this->Referentie;
+        return $this->Referentie;
     }
 
     /**
@@ -248,8 +247,8 @@ class TBBROpdracht
      */
     public function setReferentie($Referentie)
     {
-      $this->Referentie = $Referentie;
-      return $this;
+        $this->Referentie = $Referentie;
+        return $this;
     }
 
     /**
@@ -257,7 +256,7 @@ class TBBROpdracht
      */
     public function getPeriodiciteit()
     {
-      return $this->Periodiciteit;
+        return $this->Periodiciteit;
     }
 
     /**
@@ -266,8 +265,8 @@ class TBBROpdracht
      */
     public function setPeriodiciteit($Periodiciteit)
     {
-      $this->Periodiciteit = $Periodiciteit;
-      return $this;
+        $this->Periodiciteit = $Periodiciteit;
+        return $this;
     }
 
     /**
@@ -275,7 +274,7 @@ class TBBROpdracht
      */
     public function getAantalKeerPerPeriode()
     {
-      return $this->AantalKeerPerPeriode;
+        return $this->AantalKeerPerPeriode;
     }
 
     /**
@@ -284,8 +283,8 @@ class TBBROpdracht
      */
     public function setAantalKeerPerPeriode($AantalKeerPerPeriode)
     {
-      $this->AantalKeerPerPeriode = $AantalKeerPerPeriode;
-      return $this;
+        $this->AantalKeerPerPeriode = $AantalKeerPerPeriode;
+        return $this;
     }
 
     /**
@@ -293,7 +292,7 @@ class TBBROpdracht
      */
     public function getPeriodeBedrag()
     {
-      return $this->PeriodeBedrag;
+        return $this->PeriodeBedrag;
     }
 
     /**
@@ -302,8 +301,8 @@ class TBBROpdracht
      */
     public function setPeriodeBedrag($PeriodeBedrag)
     {
-      $this->PeriodeBedrag = $PeriodeBedrag;
-      return $this;
+        $this->PeriodeBedrag = $PeriodeBedrag;
+        return $this;
     }
 
     /**
@@ -311,7 +310,7 @@ class TBBROpdracht
      */
     public function getMaximaal()
     {
-      return $this->Maximaal;
+        return $this->Maximaal;
     }
 
     /**
@@ -320,8 +319,8 @@ class TBBROpdracht
      */
     public function setMaximaal($Maximaal)
     {
-      $this->Maximaal = $Maximaal;
-      return $this;
+        $this->Maximaal = $Maximaal;
+        return $this;
     }
 
     /**
@@ -329,15 +328,15 @@ class TBBROpdracht
      */
     public function getStartDatum()
     {
-      if ($this->StartDatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->StartDatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->StartDatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->StartDatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -346,8 +345,8 @@ class TBBROpdracht
      */
     public function setStartDatum(\DateTime $StartDatum)
     {
-      $this->StartDatum = $StartDatum->format(\DateTime::ATOM);
-      return $this;
+        $this->StartDatum = $StartDatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -355,15 +354,15 @@ class TBBROpdracht
      */
     public function getVolgendeDatum()
     {
-      if ($this->VolgendeDatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->VolgendeDatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->VolgendeDatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->VolgendeDatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -372,8 +371,8 @@ class TBBROpdracht
      */
     public function setVolgendeDatum(\DateTime $VolgendeDatum)
     {
-      $this->VolgendeDatum = $VolgendeDatum->format(\DateTime::ATOM);
-      return $this;
+        $this->VolgendeDatum = $VolgendeDatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -381,7 +380,7 @@ class TBBROpdracht
      */
     public function getBetaaldBedrag()
     {
-      return $this->BetaaldBedrag;
+        return $this->BetaaldBedrag;
     }
 
     /**
@@ -390,8 +389,8 @@ class TBBROpdracht
      */
     public function setBetaaldBedrag($BetaaldBedrag)
     {
-      $this->BetaaldBedrag = $BetaaldBedrag;
-      return $this;
+        $this->BetaaldBedrag = $BetaaldBedrag;
+        return $this;
     }
 
     /**
@@ -399,7 +398,7 @@ class TBBROpdracht
      */
     public function getRestBetaling()
     {
-      return $this->RestBetaling;
+        return $this->RestBetaling;
     }
 
     /**
@@ -408,8 +407,8 @@ class TBBROpdracht
      */
     public function setRestBetaling($RestBetaling)
     {
-      $this->RestBetaling = $RestBetaling;
-      return $this;
+        $this->RestBetaling = $RestBetaling;
+        return $this;
     }
 
     /**
@@ -417,7 +416,7 @@ class TBBROpdracht
      */
     public function getSoort()
     {
-      return $this->Soort;
+        return $this->Soort;
     }
 
     /**
@@ -426,8 +425,8 @@ class TBBROpdracht
      */
     public function setSoort($Soort)
     {
-      $this->Soort = $Soort;
-      return $this;
+        $this->Soort = $Soort;
+        return $this;
     }
 
     /**
@@ -435,7 +434,7 @@ class TBBROpdracht
      */
     public function getNummerReservering()
     {
-      return $this->NummerReservering;
+        return $this->NummerReservering;
     }
 
     /**
@@ -444,8 +443,8 @@ class TBBROpdracht
      */
     public function setNummerReservering($NummerReservering)
     {
-      $this->NummerReservering = $NummerReservering;
-      return $this;
+        $this->NummerReservering = $NummerReservering;
+        return $this;
     }
 
     /**
@@ -453,7 +452,7 @@ class TBBROpdracht
      */
     public function getUniekVolgnummer()
     {
-      return $this->UniekVolgnummer;
+        return $this->UniekVolgnummer;
     }
 
     /**
@@ -462,8 +461,8 @@ class TBBROpdracht
      */
     public function setUniekVolgnummer($UniekVolgnummer)
     {
-      $this->UniekVolgnummer = $UniekVolgnummer;
-      return $this;
+        $this->UniekVolgnummer = $UniekVolgnummer;
+        return $this;
     }
 
     /**
@@ -471,15 +470,15 @@ class TBBROpdracht
      */
     public function getDatumLaatsteBetaling()
     {
-      if ($this->DatumLaatsteBetaling == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->DatumLaatsteBetaling);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->DatumLaatsteBetaling == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->DatumLaatsteBetaling);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -488,8 +487,8 @@ class TBBROpdracht
      */
     public function setDatumLaatsteBetaling(\DateTime $DatumLaatsteBetaling)
     {
-      $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
-      return $this;
+        $this->DatumLaatsteBetaling = $DatumLaatsteBetaling->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -497,7 +496,7 @@ class TBBROpdracht
      */
     public function getPrioriteit()
     {
-      return $this->Prioriteit;
+        return $this->Prioriteit;
     }
 
     /**
@@ -506,8 +505,7 @@ class TBBROpdracht
      */
     public function setPrioriteit($Prioriteit)
     {
-      $this->Prioriteit = $Prioriteit;
-      return $this;
+        $this->Prioriteit = $Prioriteit;
+        return $this;
     }
-
 }

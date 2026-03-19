@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class SchuldHulpService___GetSRVEisers
 {
-
     /**
      * @var TSRVAanvraagHeader $aHeader
      */
@@ -15,7 +14,7 @@ class SchuldHulpService___GetSRVEisers
      */
     public function __construct($aHeader)
     {
-      $this->aHeader = $aHeader;
+        $this->aHeader = $aHeader;
     }
 
     /**
@@ -23,7 +22,7 @@ class SchuldHulpService___GetSRVEisers
      */
     public function getAHeader()
     {
-      return $this->aHeader;
+        return $this->aHeader;
     }
 
     /**
@@ -32,8 +31,7 @@ class SchuldHulpService___GetSRVEisers
      */
     public function setAHeader($aHeader)
     {
-      $this->aHeader = $aHeader;
-      return $this;
+        $this->aHeader = $aHeader;
+        return $this;
     }
-
 }

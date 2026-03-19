@@ -1,4 +1,5 @@
 <?php
+
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -84,9 +85,9 @@ class VoorleggerFormType extends AbstractType
             $dossier = $voorlegger->getDossier();
             $user = $this->tokenStorage->getToken()->getUser();
             $gebruikers = $this->em->getRepository(Gebruiker::class)->findAllByTypeAndOrganisatieRaw(
-                    [Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER],
-                    [$dossier->getOrganisatie()]
-                );
+                [Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER],
+                [$dossier->getOrganisatie()]
+            );
             if ($this->tokenStorage->getToken() === null || $this->tokenStorage->getToken()->getUser() === null) {
                 return;
             }
@@ -94,11 +95,11 @@ class VoorleggerFormType extends AbstractType
             $choices = [];
             $data = null;
             foreach ($gebruikers->getQuery()->getResult() as $key => $value) {
-                if ($value != $user && $value->isEnabled()){
-                    $choices[$value->getEmail()] = $value->getNaam() . ' (' .$value->getEmail() . ')';
+                if ($value != $user && $value->isEnabled()) {
+                    $choices[$value->getEmail()] = $value->getNaam() . ' (' . $value->getEmail() . ')';
                 }
             }
-            if (empty($dossier->getOrganisatie()->getEmailAdresControle()) === false){
+            if (empty($dossier->getOrganisatie()->getEmailAdresControle()) === false) {
                 $data = $dossier->getOrganisatie()->getEmailAdresControle();
                 $choices = array($dossier->getOrganisatie()->getEmailAdresControle() => 'Controle e-mailadres (' . $dossier->getOrganisatie()->getEmailAdresControle() . ')') + $choices;
             }
@@ -125,7 +126,6 @@ class VoorleggerFormType extends AbstractType
                 'data' => $dossier,
                 'disabled' => $dossier->isInPrullenbak() === true
             ]);
-
         });
     }
 

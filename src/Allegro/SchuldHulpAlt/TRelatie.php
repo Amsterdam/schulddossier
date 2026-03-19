@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TRelatie
 {
-
     /**
      * @var int $RelatieCode
      */
@@ -201,38 +200,38 @@ class TRelatie
      */
     public function __construct($RelatieCode, $Voornamen, $Voorletters, $Zoeknaam, $Achternaam, $Voorvoegsels, $Geslacht, $BezoekAdres, $PostAdres, \DateTime $Geboortedatum, $Geboorteplaats, $BSN, $Rekening, $Telefoon1, $Telefoon2, $Email, $BurgerlijkeStaat, $PartnerCode, $Autorisaties, $Identificatiebewijs, $IdentificatieNummer, \DateTime $IdentificatieGeldig, $Kinderen, $Bedrijf, $IBAN, $BIC, $InzakeRekening, $RekeningInzake, $RekeningInzakeIBAN, $RekeningInzakeBIC, $Klantmanager, $Pincode)
     {
-      $this->RelatieCode = $RelatieCode;
-      $this->Voornamen = $Voornamen;
-      $this->Voorletters = $Voorletters;
-      $this->Zoeknaam = $Zoeknaam;
-      $this->Achternaam = $Achternaam;
-      $this->Voorvoegsels = $Voorvoegsels;
-      $this->Geslacht = $Geslacht;
-      $this->BezoekAdres = $BezoekAdres;
-      $this->PostAdres = $PostAdres;
-      $this->Geboortedatum = $Geboortedatum->format(\DateTime::ATOM);
-      $this->Geboorteplaats = $Geboorteplaats;
-      $this->BSN = $BSN;
-      $this->Rekening = $Rekening;
-      $this->Telefoon1 = $Telefoon1;
-      $this->Telefoon2 = $Telefoon2;
-      $this->Email = $Email;
-      $this->BurgerlijkeStaat = $BurgerlijkeStaat;
-      $this->PartnerCode = $PartnerCode;
-      $this->Autorisaties = $Autorisaties;
-      $this->Identificatiebewijs = $Identificatiebewijs;
-      $this->IdentificatieNummer = $IdentificatieNummer;
-      $this->IdentificatieGeldig = $IdentificatieGeldig->format(\DateTime::ATOM);
-      $this->Kinderen = $Kinderen;
-      $this->Bedrijf = $Bedrijf;
-      $this->IBAN = $IBAN;
-      $this->BIC = $BIC;
-      $this->InzakeRekening = $InzakeRekening;
-      $this->RekeningInzake = $RekeningInzake;
-      $this->RekeningInzakeIBAN = $RekeningInzakeIBAN;
-      $this->RekeningInzakeBIC = $RekeningInzakeBIC;
-      $this->Klantmanager = $Klantmanager;
-      $this->Pincode = $Pincode;
+        $this->RelatieCode = $RelatieCode;
+        $this->Voornamen = $Voornamen;
+        $this->Voorletters = $Voorletters;
+        $this->Zoeknaam = $Zoeknaam;
+        $this->Achternaam = $Achternaam;
+        $this->Voorvoegsels = $Voorvoegsels;
+        $this->Geslacht = $Geslacht;
+        $this->BezoekAdres = $BezoekAdres;
+        $this->PostAdres = $PostAdres;
+        $this->Geboortedatum = $Geboortedatum->format(\DateTime::ATOM);
+        $this->Geboorteplaats = $Geboorteplaats;
+        $this->BSN = $BSN;
+        $this->Rekening = $Rekening;
+        $this->Telefoon1 = $Telefoon1;
+        $this->Telefoon2 = $Telefoon2;
+        $this->Email = $Email;
+        $this->BurgerlijkeStaat = $BurgerlijkeStaat;
+        $this->PartnerCode = $PartnerCode;
+        $this->Autorisaties = $Autorisaties;
+        $this->Identificatiebewijs = $Identificatiebewijs;
+        $this->IdentificatieNummer = $IdentificatieNummer;
+        $this->IdentificatieGeldig = $IdentificatieGeldig->format(\DateTime::ATOM);
+        $this->Kinderen = $Kinderen;
+        $this->Bedrijf = $Bedrijf;
+        $this->IBAN = $IBAN;
+        $this->BIC = $BIC;
+        $this->InzakeRekening = $InzakeRekening;
+        $this->RekeningInzake = $RekeningInzake;
+        $this->RekeningInzakeIBAN = $RekeningInzakeIBAN;
+        $this->RekeningInzakeBIC = $RekeningInzakeBIC;
+        $this->Klantmanager = $Klantmanager;
+        $this->Pincode = $Pincode;
     }
 
     /**
@@ -240,7 +239,7 @@ class TRelatie
      */
     public function getRelatieCode()
     {
-      return $this->RelatieCode;
+        return $this->RelatieCode;
     }
 
     /**
@@ -249,8 +248,8 @@ class TRelatie
      */
     public function setRelatieCode($RelatieCode)
     {
-      $this->RelatieCode = $RelatieCode;
-      return $this;
+        $this->RelatieCode = $RelatieCode;
+        return $this;
     }
 
     /**
@@ -258,7 +257,7 @@ class TRelatie
      */
     public function getVoornamen()
     {
-      return $this->Voornamen;
+        return $this->Voornamen;
     }
 
     /**
@@ -267,8 +266,8 @@ class TRelatie
      */
     public function setVoornamen($Voornamen)
     {
-      $this->Voornamen = $Voornamen;
-      return $this;
+        $this->Voornamen = $Voornamen;
+        return $this;
     }
 
     /**
@@ -276,7 +275,7 @@ class TRelatie
      */
     public function getVoorletters()
     {
-      return $this->Voorletters;
+        return $this->Voorletters;
     }
 
     /**
@@ -285,8 +284,8 @@ class TRelatie
      */
     public function setVoorletters($Voorletters)
     {
-      $this->Voorletters = $Voorletters;
-      return $this;
+        $this->Voorletters = $Voorletters;
+        return $this;
     }
 
     /**
@@ -294,7 +293,7 @@ class TRelatie
      */
     public function getZoeknaam()
     {
-      return $this->Zoeknaam;
+        return $this->Zoeknaam;
     }
 
     /**
@@ -303,8 +302,8 @@ class TRelatie
      */
     public function setZoeknaam($Zoeknaam)
     {
-      $this->Zoeknaam = $Zoeknaam;
-      return $this;
+        $this->Zoeknaam = $Zoeknaam;
+        return $this;
     }
 
     /**
@@ -312,7 +311,7 @@ class TRelatie
      */
     public function getAchternaam()
     {
-      return $this->Achternaam;
+        return $this->Achternaam;
     }
 
     /**
@@ -321,8 +320,8 @@ class TRelatie
      */
     public function setAchternaam($Achternaam)
     {
-      $this->Achternaam = $Achternaam;
-      return $this;
+        $this->Achternaam = $Achternaam;
+        return $this;
     }
 
     /**
@@ -330,7 +329,7 @@ class TRelatie
      */
     public function getVoorvoegsels()
     {
-      return $this->Voorvoegsels;
+        return $this->Voorvoegsels;
     }
 
     /**
@@ -339,8 +338,8 @@ class TRelatie
      */
     public function setVoorvoegsels($Voorvoegsels)
     {
-      $this->Voorvoegsels = $Voorvoegsels;
-      return $this;
+        $this->Voorvoegsels = $Voorvoegsels;
+        return $this;
     }
 
     /**
@@ -348,7 +347,7 @@ class TRelatie
      */
     public function getGeslacht()
     {
-      return $this->Geslacht;
+        return $this->Geslacht;
     }
 
     /**
@@ -357,8 +356,8 @@ class TRelatie
      */
     public function setGeslacht($Geslacht)
     {
-      $this->Geslacht = $Geslacht;
-      return $this;
+        $this->Geslacht = $Geslacht;
+        return $this;
     }
 
     /**
@@ -366,7 +365,7 @@ class TRelatie
      */
     public function getBezoekAdres()
     {
-      return $this->BezoekAdres;
+        return $this->BezoekAdres;
     }
 
     /**
@@ -375,8 +374,8 @@ class TRelatie
      */
     public function setBezoekAdres($BezoekAdres)
     {
-      $this->BezoekAdres = $BezoekAdres;
-      return $this;
+        $this->BezoekAdres = $BezoekAdres;
+        return $this;
     }
 
     /**
@@ -384,7 +383,7 @@ class TRelatie
      */
     public function getPostAdres()
     {
-      return $this->PostAdres;
+        return $this->PostAdres;
     }
 
     /**
@@ -393,8 +392,8 @@ class TRelatie
      */
     public function setPostAdres($PostAdres)
     {
-      $this->PostAdres = $PostAdres;
-      return $this;
+        $this->PostAdres = $PostAdres;
+        return $this;
     }
 
     /**
@@ -402,15 +401,15 @@ class TRelatie
      */
     public function getGeboortedatum()
     {
-      if ($this->Geboortedatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Geboortedatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Geboortedatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Geboortedatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -419,8 +418,8 @@ class TRelatie
      */
     public function setGeboortedatum(\DateTime $Geboortedatum)
     {
-      $this->Geboortedatum = $Geboortedatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Geboortedatum = $Geboortedatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -428,7 +427,7 @@ class TRelatie
      */
     public function getGeboorteplaats()
     {
-      return $this->Geboorteplaats;
+        return $this->Geboorteplaats;
     }
 
     /**
@@ -437,8 +436,8 @@ class TRelatie
      */
     public function setGeboorteplaats($Geboorteplaats)
     {
-      $this->Geboorteplaats = $Geboorteplaats;
-      return $this;
+        $this->Geboorteplaats = $Geboorteplaats;
+        return $this;
     }
 
     /**
@@ -446,7 +445,7 @@ class TRelatie
      */
     public function getBSN()
     {
-      return $this->BSN;
+        return $this->BSN;
     }
 
     /**
@@ -455,8 +454,8 @@ class TRelatie
      */
     public function setBSN($BSN)
     {
-      $this->BSN = $BSN;
-      return $this;
+        $this->BSN = $BSN;
+        return $this;
     }
 
     /**
@@ -464,7 +463,7 @@ class TRelatie
      */
     public function getRekening()
     {
-      return $this->Rekening;
+        return $this->Rekening;
     }
 
     /**
@@ -473,8 +472,8 @@ class TRelatie
      */
     public function setRekening($Rekening)
     {
-      $this->Rekening = $Rekening;
-      return $this;
+        $this->Rekening = $Rekening;
+        return $this;
     }
 
     /**
@@ -482,7 +481,7 @@ class TRelatie
      */
     public function getTelefoon1()
     {
-      return $this->Telefoon1;
+        return $this->Telefoon1;
     }
 
     /**
@@ -491,8 +490,8 @@ class TRelatie
      */
     public function setTelefoon1($Telefoon1)
     {
-      $this->Telefoon1 = $Telefoon1;
-      return $this;
+        $this->Telefoon1 = $Telefoon1;
+        return $this;
     }
 
     /**
@@ -500,7 +499,7 @@ class TRelatie
      */
     public function getTelefoon2()
     {
-      return $this->Telefoon2;
+        return $this->Telefoon2;
     }
 
     /**
@@ -509,8 +508,8 @@ class TRelatie
      */
     public function setTelefoon2($Telefoon2)
     {
-      $this->Telefoon2 = $Telefoon2;
-      return $this;
+        $this->Telefoon2 = $Telefoon2;
+        return $this;
     }
 
     /**
@@ -518,7 +517,7 @@ class TRelatie
      */
     public function getEmail()
     {
-      return $this->Email;
+        return $this->Email;
     }
 
     /**
@@ -527,8 +526,8 @@ class TRelatie
      */
     public function setEmail($Email)
     {
-      $this->Email = $Email;
-      return $this;
+        $this->Email = $Email;
+        return $this;
     }
 
     /**
@@ -536,7 +535,7 @@ class TRelatie
      */
     public function getBurgerlijkeStaat()
     {
-      return $this->BurgerlijkeStaat;
+        return $this->BurgerlijkeStaat;
     }
 
     /**
@@ -545,8 +544,8 @@ class TRelatie
      */
     public function setBurgerlijkeStaat($BurgerlijkeStaat)
     {
-      $this->BurgerlijkeStaat = $BurgerlijkeStaat;
-      return $this;
+        $this->BurgerlijkeStaat = $BurgerlijkeStaat;
+        return $this;
     }
 
     /**
@@ -554,7 +553,7 @@ class TRelatie
      */
     public function getPartnerCode()
     {
-      return $this->PartnerCode;
+        return $this->PartnerCode;
     }
 
     /**
@@ -563,8 +562,8 @@ class TRelatie
      */
     public function setPartnerCode($PartnerCode)
     {
-      $this->PartnerCode = $PartnerCode;
-      return $this;
+        $this->PartnerCode = $PartnerCode;
+        return $this;
     }
 
     /**
@@ -572,7 +571,7 @@ class TRelatie
      */
     public function getAutorisaties()
     {
-      return $this->Autorisaties;
+        return $this->Autorisaties;
     }
 
     /**
@@ -581,8 +580,8 @@ class TRelatie
      */
     public function setAutorisaties($Autorisaties)
     {
-      $this->Autorisaties = $Autorisaties;
-      return $this;
+        $this->Autorisaties = $Autorisaties;
+        return $this;
     }
 
     /**
@@ -590,7 +589,7 @@ class TRelatie
      */
     public function getIdentificatiebewijs()
     {
-      return $this->Identificatiebewijs;
+        return $this->Identificatiebewijs;
     }
 
     /**
@@ -599,8 +598,8 @@ class TRelatie
      */
     public function setIdentificatiebewijs($Identificatiebewijs)
     {
-      $this->Identificatiebewijs = $Identificatiebewijs;
-      return $this;
+        $this->Identificatiebewijs = $Identificatiebewijs;
+        return $this;
     }
 
     /**
@@ -608,7 +607,7 @@ class TRelatie
      */
     public function getIdentificatieNummer()
     {
-      return $this->IdentificatieNummer;
+        return $this->IdentificatieNummer;
     }
 
     /**
@@ -617,8 +616,8 @@ class TRelatie
      */
     public function setIdentificatieNummer($IdentificatieNummer)
     {
-      $this->IdentificatieNummer = $IdentificatieNummer;
-      return $this;
+        $this->IdentificatieNummer = $IdentificatieNummer;
+        return $this;
     }
 
     /**
@@ -626,15 +625,15 @@ class TRelatie
      */
     public function getIdentificatieGeldig()
     {
-      if ($this->IdentificatieGeldig == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->IdentificatieGeldig);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->IdentificatieGeldig == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->IdentificatieGeldig);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -643,8 +642,8 @@ class TRelatie
      */
     public function setIdentificatieGeldig(\DateTime $IdentificatieGeldig)
     {
-      $this->IdentificatieGeldig = $IdentificatieGeldig->format(\DateTime::ATOM);
-      return $this;
+        $this->IdentificatieGeldig = $IdentificatieGeldig->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -652,7 +651,7 @@ class TRelatie
      */
     public function getKinderen()
     {
-      return $this->Kinderen;
+        return $this->Kinderen;
     }
 
     /**
@@ -661,8 +660,8 @@ class TRelatie
      */
     public function setKinderen($Kinderen)
     {
-      $this->Kinderen = $Kinderen;
-      return $this;
+        $this->Kinderen = $Kinderen;
+        return $this;
     }
 
     /**
@@ -670,7 +669,7 @@ class TRelatie
      */
     public function getBedrijf()
     {
-      return $this->Bedrijf;
+        return $this->Bedrijf;
     }
 
     /**
@@ -679,8 +678,8 @@ class TRelatie
      */
     public function setBedrijf($Bedrijf)
     {
-      $this->Bedrijf = $Bedrijf;
-      return $this;
+        $this->Bedrijf = $Bedrijf;
+        return $this;
     }
 
     /**
@@ -688,7 +687,7 @@ class TRelatie
      */
     public function getIBAN()
     {
-      return $this->IBAN;
+        return $this->IBAN;
     }
 
     /**
@@ -697,8 +696,8 @@ class TRelatie
      */
     public function setIBAN($IBAN)
     {
-      $this->IBAN = $IBAN;
-      return $this;
+        $this->IBAN = $IBAN;
+        return $this;
     }
 
     /**
@@ -706,7 +705,7 @@ class TRelatie
      */
     public function getBIC()
     {
-      return $this->BIC;
+        return $this->BIC;
     }
 
     /**
@@ -715,8 +714,8 @@ class TRelatie
      */
     public function setBIC($BIC)
     {
-      $this->BIC = $BIC;
-      return $this;
+        $this->BIC = $BIC;
+        return $this;
     }
 
     /**
@@ -724,7 +723,7 @@ class TRelatie
      */
     public function getInzakeRekening()
     {
-      return $this->InzakeRekening;
+        return $this->InzakeRekening;
     }
 
     /**
@@ -733,8 +732,8 @@ class TRelatie
      */
     public function setInzakeRekening($InzakeRekening)
     {
-      $this->InzakeRekening = $InzakeRekening;
-      return $this;
+        $this->InzakeRekening = $InzakeRekening;
+        return $this;
     }
 
     /**
@@ -742,7 +741,7 @@ class TRelatie
      */
     public function getRekeningInzake()
     {
-      return $this->RekeningInzake;
+        return $this->RekeningInzake;
     }
 
     /**
@@ -751,8 +750,8 @@ class TRelatie
      */
     public function setRekeningInzake($RekeningInzake)
     {
-      $this->RekeningInzake = $RekeningInzake;
-      return $this;
+        $this->RekeningInzake = $RekeningInzake;
+        return $this;
     }
 
     /**
@@ -760,7 +759,7 @@ class TRelatie
      */
     public function getRekeningInzakeIBAN()
     {
-      return $this->RekeningInzakeIBAN;
+        return $this->RekeningInzakeIBAN;
     }
 
     /**
@@ -769,8 +768,8 @@ class TRelatie
      */
     public function setRekeningInzakeIBAN($RekeningInzakeIBAN)
     {
-      $this->RekeningInzakeIBAN = $RekeningInzakeIBAN;
-      return $this;
+        $this->RekeningInzakeIBAN = $RekeningInzakeIBAN;
+        return $this;
     }
 
     /**
@@ -778,7 +777,7 @@ class TRelatie
      */
     public function getRekeningInzakeBIC()
     {
-      return $this->RekeningInzakeBIC;
+        return $this->RekeningInzakeBIC;
     }
 
     /**
@@ -787,8 +786,8 @@ class TRelatie
      */
     public function setRekeningInzakeBIC($RekeningInzakeBIC)
     {
-      $this->RekeningInzakeBIC = $RekeningInzakeBIC;
-      return $this;
+        $this->RekeningInzakeBIC = $RekeningInzakeBIC;
+        return $this;
     }
 
     /**
@@ -796,7 +795,7 @@ class TRelatie
      */
     public function getKlantmanager()
     {
-      return $this->Klantmanager;
+        return $this->Klantmanager;
     }
 
     /**
@@ -805,8 +804,8 @@ class TRelatie
      */
     public function setKlantmanager($Klantmanager)
     {
-      $this->Klantmanager = $Klantmanager;
-      return $this;
+        $this->Klantmanager = $Klantmanager;
+        return $this;
     }
 
     /**
@@ -814,7 +813,7 @@ class TRelatie
      */
     public function getPincode()
     {
-      return $this->Pincode;
+        return $this->Pincode;
     }
 
     /**
@@ -823,8 +822,7 @@ class TRelatie
      */
     public function setPincode($Pincode)
     {
-      $this->Pincode = $Pincode;
-      return $this;
+        $this->Pincode = $Pincode;
+        return $this;
     }
-
 }

@@ -6,7 +6,6 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class RelatieProductArray implements RequestInterface
 {
-
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\TRelatieProduct
      */
@@ -41,7 +40,4 @@ class RelatieProductArray implements RequestInterface
 
         return $new;
     }
-
-
 }
-

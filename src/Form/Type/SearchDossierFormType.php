@@ -86,16 +86,14 @@ class SearchDossierFormType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'query_builder' => function (GebruikerRepository $repository) {
-                    if ($this->user->getType() === Gebruiker::TYPE_SHV || $this->user->getType() === Gebruiker::TYPE_SHV_KEYUSER){
+                    if ($this->user->getType() === Gebruiker::TYPE_SHV || $this->user->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
                         return $repository->findAllByTypeAndOrganisatieRaw([Gebruiker::TYPE_SHV, Gebruiker::TYPE_SHV_KEYUSER, Gebruiker::TYPE_ONBEKEND], $this->user->getOrganisaties());
-                    }else{
+                    } else {
                         return $repository->findAllRaw();
-
                     }
                 },
                 'placeholder' => 'Alle medewerkers'
             ]);
-
         });
     }
 

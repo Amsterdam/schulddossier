@@ -4,7 +4,6 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt;
 
 class TSRVAanvraagHeader
 {
-
     /**
      * @var int $RelatieCode
      */
@@ -51,13 +50,13 @@ class TSRVAanvraagHeader
      */
     public function __construct($RelatieCode, $Volgnummer, $IsNPS, $Status, $Statustekst, \DateTime $Aanvraagdatum, $ExtraStatus)
     {
-      $this->RelatieCode = $RelatieCode;
-      $this->Volgnummer = $Volgnummer;
-      $this->IsNPS = $IsNPS;
-      $this->Status = $Status;
-      $this->Statustekst = $Statustekst;
-      $this->Aanvraagdatum = $Aanvraagdatum->format(\DateTime::ATOM);
-      $this->ExtraStatus = $ExtraStatus;
+        $this->RelatieCode = $RelatieCode;
+        $this->Volgnummer = $Volgnummer;
+        $this->IsNPS = $IsNPS;
+        $this->Status = $Status;
+        $this->Statustekst = $Statustekst;
+        $this->Aanvraagdatum = $Aanvraagdatum->format(\DateTime::ATOM);
+        $this->ExtraStatus = $ExtraStatus;
     }
 
     /**
@@ -65,7 +64,7 @@ class TSRVAanvraagHeader
      */
     public function getRelatieCode()
     {
-      return $this->RelatieCode;
+        return $this->RelatieCode;
     }
 
     /**
@@ -74,8 +73,8 @@ class TSRVAanvraagHeader
      */
     public function setRelatieCode($RelatieCode)
     {
-      $this->RelatieCode = $RelatieCode;
-      return $this;
+        $this->RelatieCode = $RelatieCode;
+        return $this;
     }
 
     /**
@@ -83,7 +82,7 @@ class TSRVAanvraagHeader
      */
     public function getVolgnummer()
     {
-      return $this->Volgnummer;
+        return $this->Volgnummer;
     }
 
     /**
@@ -92,8 +91,8 @@ class TSRVAanvraagHeader
      */
     public function setVolgnummer($Volgnummer)
     {
-      $this->Volgnummer = $Volgnummer;
-      return $this;
+        $this->Volgnummer = $Volgnummer;
+        return $this;
     }
 
     /**
@@ -101,7 +100,7 @@ class TSRVAanvraagHeader
      */
     public function getIsNPS()
     {
-      return $this->IsNPS;
+        return $this->IsNPS;
     }
 
     /**
@@ -110,8 +109,8 @@ class TSRVAanvraagHeader
      */
     public function setIsNPS($IsNPS)
     {
-      $this->IsNPS = $IsNPS;
-      return $this;
+        $this->IsNPS = $IsNPS;
+        return $this;
     }
 
     /**
@@ -119,7 +118,7 @@ class TSRVAanvraagHeader
      */
     public function getStatus()
     {
-      return $this->Status;
+        return $this->Status;
     }
 
     /**
@@ -128,8 +127,8 @@ class TSRVAanvraagHeader
      */
     public function setStatus($Status)
     {
-      $this->Status = $Status;
-      return $this;
+        $this->Status = $Status;
+        return $this;
     }
 
     /**
@@ -137,7 +136,7 @@ class TSRVAanvraagHeader
      */
     public function getStatustekst()
     {
-      return $this->Statustekst;
+        return $this->Statustekst;
     }
 
     /**
@@ -146,8 +145,8 @@ class TSRVAanvraagHeader
      */
     public function setStatustekst($Statustekst)
     {
-      $this->Statustekst = $Statustekst;
-      return $this;
+        $this->Statustekst = $Statustekst;
+        return $this;
     }
 
     /**
@@ -155,15 +154,15 @@ class TSRVAanvraagHeader
      */
     public function getAanvraagdatum()
     {
-      if ($this->Aanvraagdatum == null) {
-        return null;
-      } else {
-        try {
-          return new \DateTime($this->Aanvraagdatum);
-        } catch (\Exception $e) {
-          return false;
+        if ($this->Aanvraagdatum == null) {
+            return null;
+        } else {
+            try {
+                return new \DateTime($this->Aanvraagdatum);
+            } catch (\Exception $e) {
+                return false;
+            }
         }
-      }
     }
 
     /**
@@ -172,8 +171,8 @@ class TSRVAanvraagHeader
      */
     public function setAanvraagdatum(\DateTime $Aanvraagdatum)
     {
-      $this->Aanvraagdatum = $Aanvraagdatum->format(\DateTime::ATOM);
-      return $this;
+        $this->Aanvraagdatum = $Aanvraagdatum->format(\DateTime::ATOM);
+        return $this;
     }
 
     /**
@@ -181,7 +180,7 @@ class TSRVAanvraagHeader
      */
     public function getExtraStatus()
     {
-      return $this->ExtraStatus;
+        return $this->ExtraStatus;
     }
 
     /**
@@ -190,8 +189,7 @@ class TSRVAanvraagHeader
      */
     public function setExtraStatus($ExtraStatus)
     {
-      $this->ExtraStatus = $ExtraStatus;
-      return $this;
+        $this->ExtraStatus = $ExtraStatus;
+        return $this;
     }
-
 }
