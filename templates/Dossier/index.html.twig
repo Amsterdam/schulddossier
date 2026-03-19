@@ -9,7 +9,7 @@
 {% block document %}
 
 {% set releaseDate = "2026-03-23" %}
-{% if "now"|date("Y-m-d") < releaseDate | date("Y-m-d") %}
+{% if "now"|date("Y-m-d") < releaseDate | date_modify("+1 week") | date("Y-m-d") %}
     <div class="announcement">
         <h4 class="title">Vanaf nu zijn gewijzigde velden van Dossiers en Schulden zichtbaar in het logboek</h4>
         <span class="message"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}#release{{ releaseDate }}">Bekijk versies</a> voor een toelichting op de laatste update.</span>
