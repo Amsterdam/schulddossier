@@ -35,6 +35,7 @@ class DossierFormLabel
         'schuldenOpDeWerkvloer' => 'Betreft Schulden op de werkvloer?',
         'vtlbBedrag' => 'Maandelijkse afloscapaciteit',
         'drinkwaterOpname' => 'Meterstand Water',
+        'verwijderd' => 'In prullenbak',
     ];
 
     /**

@@ -780,9 +780,7 @@ class AppDossierController extends AbstractController
         }
 
         $schuldeiser = new Schuldeiser();
-        $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser, [
-            'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create', [])
-        ]);
+        $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser);
 
         $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
 
@@ -1127,8 +1125,10 @@ class AppDossierController extends AbstractController
 
         $em->remove($schuldItem);
 
+        $actionEventRemark = 'Schuld verwijderd uit de database - ' . $schuldItem->getSchuldeiser()->getBedrijfsnaam() . ' (€ ' . $schuldItem->getBedrag() . ')';
+
         $em->flush();
-        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Schuld definitief verwijderd');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
@@ -1538,7 +1538,7 @@ class AppDossierController extends AbstractController
         $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'ontstaansDatum');
 
         // Remove keys that are already stored in the action-event object to avoid duplication.
-        $keysToRemove = ['aanmaker', 'bewerker', 'dossier', 'verwijderd', 'aanmaakDatumTijd', 'bewerkDatumTijd'];
+        $keysToRemove = ['aanmaker', 'bewerker', 'dossier', 'aanmaakDatumTijd', 'bewerkDatumTijd'];
         $schuldenChangeSet = $this->removeKeys($keysToRemove, $schuldenChangeSet);
 
         $schuldItemUpdate[] = [

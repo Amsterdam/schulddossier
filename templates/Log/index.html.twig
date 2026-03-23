@@ -88,8 +88,12 @@
 								<strong>{{ log.data.status.naar }}</strong>
 							{% endif %}
 							{% if log.name == 'dossier_gewijzigd' %}
-								Dossier gewijzigd
-							{% endif %}
+								Dossier gewijzigd door {{ log.data.gebruiker.naam ?? 'Onbekend' }}
+								{% if log.data.remark %}
+									<br><br>
+									{{ log.data.remark }}
+								{% endif %}
+                            {% endif %}
       						{% if log.name == 'dossier_voorlegger_gewijzigd' %}
                                 Dossier 
 									{% if log.dossier.clientNaam is defined %}

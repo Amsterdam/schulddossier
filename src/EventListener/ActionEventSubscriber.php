@@ -110,7 +110,8 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $action->setData(
             array_merge(
                 ActionEvent::getGebruikerData($gebruiker),
-                ActionEvent::getDossierData($dossier)
+                ActionEvent::getDossierData($dossier),
+                ['remark' => $event->getRemark()]
             )
         );
 
