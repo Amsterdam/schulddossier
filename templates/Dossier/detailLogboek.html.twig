@@ -25,7 +25,7 @@
 
         <ul class="aantekeningen log-list">
 
-        {% for log in logs %}
+        {% for log in pagination %}
             <li class="aantekening
                 {% if log.data.gebruiker is defined %}
                 {% if log.data.gebruiker.email is defined %}
@@ -117,6 +117,8 @@
             </li>
         {% endfor %}
         </ul>
-
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     </div>
 {% endblock %}
