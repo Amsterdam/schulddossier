@@ -780,9 +780,7 @@ class AppDossierController extends AbstractController
         }
 
         $schuldeiser = new Schuldeiser();
-        $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser, [
-            'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create', [])
-        ]);
+        $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser);
 
         $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
 
