@@ -287,6 +287,7 @@ class AppDossierController extends AbstractController
             $sendCorrespondentieNotification = false;
             foreach ($voorleggerForm->all() as $key => $child) {
                 if ($child->has('file')) {
+                    $actionEventRemark = 'Document(en) toegevoegd';
                     $files = $child->get('file')->getData();
                     foreach ($files as $document) {
                         /** @var Document $document */
@@ -303,15 +304,22 @@ class AppDossierController extends AbstractController
                             if ($key === 'correspondentie') {
                                 $sendCorrespondentieNotification = true;
                             }
+
+                            $actionEventRemark = $actionEventRemark . ' - ' . $document->getBestandsnaam();
                         }
                     }
+                    $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
                 }
                 if ($child->has('removeFile')) {
+                    $actionEventRemark = 'Document(en) naar prullenbank verplaatst';
                     $removeFiles = $child->get('removeFile')->getData();
                     foreach ($removeFiles as $documentId) {
                         $documentId = intval($documentId);
                         $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
+                        $actionEventRemark = $actionEventRemark . ' - ' . $document->getBestandsnaam();
                     }
+
+                    $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
                 }
                 if ($child->has('aantekening') && empty($child->get('aantekening')->get('tekst')->getData()) === false) {
                     $aantekening = new Aantekening();
@@ -464,6 +472,7 @@ class AppDossierController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $files = $form->get('file')->getData();
+            $actionEventRemark = 'Document(en) toegevoegd en/of naar prullenbak verplaatst in overige documenten';
             foreach ($files as $document) {
                 /** @var $file Document */
                 if ($document !== null) {
@@ -476,15 +485,16 @@ class AppDossierController extends AbstractController
                     $dossierDocument->setDocument($document);
                     $dossierDocument->setDossier($dossier);
                     $dossierDocument->setOnderwerp('overige');
+                    $actionEventRemark = ' - toegevoegd: ' . $document->getBestandsnaam();
                 }
             }
             $removeFiles = $form->get('removeFile')->getData();
             foreach ($removeFiles as $documentId) {
                 $documentId = intval($documentId);
                 $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
+                $actionEventRemark = ' - naar prullenbak verplaatst: ' . $document->getBestandsnaam();
             }
 
-            $actionEventRemark = 'Document(en) toegevoegd en/of verwijderd in overige documenten';
             $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
             $em->flush();
 
