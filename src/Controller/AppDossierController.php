@@ -1125,8 +1125,10 @@ class AppDossierController extends AbstractController
 
         $em->remove($schuldItem);
 
+        $actionEventRemark = 'Schuld verwijderd uit de database - ' . $schuldItem->getSchuldeiser()->getBedrijfsnaam() . ' (€ ' . $schuldItem->getBedrag() . ')';
+
         $em->flush();
-        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Schuld definitief verwijderd');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
