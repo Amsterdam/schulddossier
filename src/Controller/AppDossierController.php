@@ -483,7 +483,9 @@ class AppDossierController extends AbstractController
                 $documentId = intval($documentId);
                 $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
             }
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+
+            $actionEventRemark = 'Document(en) toegevoegd en/of verwijderd in overige documenten';
+            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
             $em->flush();
 
             if ($request->isXmlHttpRequest()) {
@@ -948,9 +950,11 @@ class AppDossierController extends AbstractController
 
         $document->setInPrullenbak(true);
         $this->addFlash('success', 'Document in prullenbak geplaatst');
+        $actionEventRemark = 'Document naar prullenbak verplaatst - ' . $document->getBestandsnaam();
 
         $em->flush();
-        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()]);
     }
@@ -981,7 +985,9 @@ class AppDossierController extends AbstractController
 
         $em->remove($document);
 
-        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+        $actionEventRemark = 'Document verwijderd uit de database - ' . $document->getBestandsnaam();
+
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
         $em->flush();
         $this->addFlash('success', 'Document definitief verwijderd');
 
@@ -1013,9 +1019,10 @@ class AppDossierController extends AbstractController
         }
 
         $document->setInPrullenbak(false);
+        $actionEventRemark = 'Document hersteld uit de prullenbak: ' . $document->getBestandsnaam();
 
         $em->flush();
-        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Document hersteld');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
@@ -1157,8 +1164,10 @@ class AppDossierController extends AbstractController
 
         $schuldItem->setVerwijderd(false);
 
+        $actionEventRemark = 'Schuld hersteld uit de prullenbak - ' . $schuldItem->getSchuldeiser()->getBedrijfsnaam() . ' (€ ' . $schuldItem->getBedrag() . ')';;
+
         $em->flush();
-        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Schuld hersteld');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
