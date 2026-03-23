@@ -287,7 +287,6 @@ class AppDossierController extends AbstractController
             $sendCorrespondentieNotification = false;
             foreach ($voorleggerForm->all() as $key => $child) {
                 if ($child->has('file')) {
-                    $actionEventRemark = 'Document(en) toegevoegd';
                     $files = $child->get('file')->getData();
                     foreach ($files as $document) {
                         /** @var Document $document */
@@ -305,21 +304,20 @@ class AppDossierController extends AbstractController
                                 $sendCorrespondentieNotification = true;
                             }
 
-                            $actionEventRemark = $actionEventRemark . ' - ' . $document->getBestandsnaam();
+                            $actionEventRemark = 'Document toegevoegd - ' . $document->getNaam();
+                            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
                         }
                     }
-                    $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
                 }
                 if ($child->has('removeFile')) {
-                    $actionEventRemark = 'Document(en) naar prullenbank verplaatst';
                     $removeFiles = $child->get('removeFile')->getData();
                     foreach ($removeFiles as $documentId) {
                         $documentId = intval($documentId);
-                        $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
-                        $actionEventRemark = $actionEventRemark . ' - ' . $document->getBestandsnaam();
+                        $document = $dossier->getDossierDocumentByDocumentId($documentId)->getDocument();
+                        $document->setInPrullenbak(true);
+                        $actionEventRemark = 'Document naar prullenbank verplaatst - ' .  $document->getNaam();
+                        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
                     }
-
-                    $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
                 }
                 if ($child->has('aantekening') && empty($child->get('aantekening')->get('tekst')->getData()) === false) {
                     $aantekening = new Aantekening();
@@ -359,7 +357,10 @@ class AppDossierController extends AbstractController
                 $eventDispatcher->dispatch(new DossierAddedCorrespondentie($dossier, $this->getUser()), DossierAddedCorrespondentie::NAME);
             }
 
-            $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $combinedChangeSet), ActionEvent::NAME);
+            if (!empty($combinedChangeSet)) {
+                $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $combinedChangeSet), ActionEvent::NAME);
+            }
+
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
 
@@ -485,14 +486,15 @@ class AppDossierController extends AbstractController
                     $dossierDocument->setDocument($document);
                     $dossierDocument->setDossier($dossier);
                     $dossierDocument->setOnderwerp('overige');
-                    $actionEventRemark = ' - toegevoegd: ' . $document->getBestandsnaam();
+                    $actionEventRemark = ' - toegevoegd: ' . $document->getNaam();
                 }
             }
             $removeFiles = $form->get('removeFile')->getData();
             foreach ($removeFiles as $documentId) {
                 $documentId = intval($documentId);
-                $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
-                $actionEventRemark = ' - naar prullenbak verplaatst: ' . $document->getBestandsnaam();
+                $document = $dossier->getDossierDocumentByDocumentId($documentId)->getDocument();
+                $document->setInPrullenbak(true);
+                $actionEventRemark = ' - naar prullenbak verplaatst: ' . $document->getNaam();
             }
 
             $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
@@ -960,7 +962,7 @@ class AppDossierController extends AbstractController
 
         $document->setInPrullenbak(true);
         $this->addFlash('success', 'Document in prullenbak geplaatst');
-        $actionEventRemark = 'Document naar prullenbak verplaatst - ' . $document->getBestandsnaam();
+        $actionEventRemark = 'Document naar prullenbak verplaatst - ' . $document->getNaam();
 
         $em->flush();
 
@@ -995,7 +997,7 @@ class AppDossierController extends AbstractController
 
         $em->remove($document);
 
-        $actionEventRemark = 'Document verwijderd uit de database - ' . $document->getBestandsnaam();
+        $actionEventRemark = 'Document verwijderd uit de database - ' . $document->getNaam();
 
         $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
         $em->flush();
