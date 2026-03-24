@@ -56,7 +56,7 @@ class AppSchuldeiserController extends AbstractController
 
     /**
      * @Route("/synchroniseer")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_ADMIN') || is_granted('ROLE_GKA_APPBEHEERDER')")
      */
     public function synchroniseAction(EntityManagerInterface $entityManager, AllegroService $allegroService)
     {
@@ -68,7 +68,16 @@ class AppSchuldeiserController extends AbstractController
 
         $statistics = $allegroService->syncSchuldeisers($allegroId);
 
-        return new JsonResponse($statistics);
+        $this->addFlash(
+            'success',
+            'Schuldeisers gesynchroniseerd. ' .
+                'Aantal toegevoegd: ' . $statistics['created'] . '. ' .
+                'Aantal bijgewerkt: ' . $statistics['updated'] . '. ' .
+                'Aantal op actief gezet: ' . $statistics['made-active'] . '. ' .
+                'Aantal op inactief gezet: ' . $statistics['made-inactive'] . '. '
+        );
+
+        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index');
     }
 
     /**
