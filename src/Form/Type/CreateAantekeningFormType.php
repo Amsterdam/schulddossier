@@ -10,7 +10,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-
 class CreateAantekeningFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -26,7 +25,7 @@ class CreateAantekeningFormType extends AbstractType
             if (isset($data['tekst'])) {
                 $data['tekst'] = str_replace('#', '', $data['tekst']);
                 $data['tekst'] = strip_tags($data['tekst']);
-                }
+            }
 
             $event->setData($data);
         });

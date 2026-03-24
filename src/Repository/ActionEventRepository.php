@@ -9,11 +9,8 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
-
-
 class ActionEventRepository extends ServiceEntityRepository
 {
-
     use DenormalizerAwareTrait;
 
     /**
