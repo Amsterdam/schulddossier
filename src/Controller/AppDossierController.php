@@ -66,7 +66,6 @@ use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
 use ZipArchive;
 
-
 /**
  * @Route("/app/dossier")
  * @Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
@@ -1176,7 +1175,8 @@ class AppDossierController extends AbstractController
 
         $schuldItem->setVerwijderd(false);
 
-        $actionEventRemark = 'Schuld hersteld uit de prullenbak - ' . $schuldItem->getSchuldeiser()->getBedrijfsnaam() . ' (€ ' . $schuldItem->getBedrag() . ')';;
+        $actionEventRemark = 'Schuld hersteld uit de prullenbak - ' . $schuldItem->getSchuldeiser()->getBedrijfsnaam() . ' (€ ' . $schuldItem->getBedrag() . ')';
+        ;
 
         $em->flush();
         $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
