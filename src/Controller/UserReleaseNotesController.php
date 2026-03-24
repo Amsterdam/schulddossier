@@ -3,10 +3,8 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Finder\Finder;
@@ -40,7 +38,6 @@ class UserReleaseNotesController extends AbstractController
         $templates = [];
 
         foreach ($finder as $dir) {
-            $dirPath = $dir->getRealPath();
             $o = [];
             $title = new Finder();
             $content = new Finder();
@@ -65,8 +62,6 @@ class UserReleaseNotesController extends AbstractController
      */
     public function releaseNoteSeenAction(Request $request, Serializer $jsonSerializer)
     {
-
-//        $seenReleaseNotes = $request->getSession()->get('seenReleaseNotes');
         $seenReleaseNotes = $this->session->get('seenReleaseNotes');
         $seenReleaseNotes["ts" . $request->query->get('ts')] = 0;
 
