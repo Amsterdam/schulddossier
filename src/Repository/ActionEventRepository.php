@@ -74,7 +74,7 @@ class ActionEventRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('a');
 
         return $qb->orderBy('a.datumTijd', 'DESC')
-            ->setMaxResults(100)
+            ->setMaxResults(1000)
             ->getQuery()
             ->getResult();
     }
