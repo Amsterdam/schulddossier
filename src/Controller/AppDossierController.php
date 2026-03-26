@@ -303,7 +303,7 @@ class AppDossierController extends AbstractController
                                 $sendCorrespondentieNotification = true;
                             }
 
-                            $actionEventRemark = 'Document toegevoegd - ' . $document->getNaam();
+                            $actionEventRemark = $this->writeActionEventRemark('Document toegevoegd', $document);
                             $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
                         }
                     }
@@ -314,7 +314,8 @@ class AppDossierController extends AbstractController
                         $documentId = intval($documentId);
                         $document = $dossier->getDossierDocumentByDocumentId($documentId)->getDocument();
                         $document->setInPrullenbak(true);
-                        $actionEventRemark = 'Document naar prullenbank verplaatst - ' .  $document->getNaam();
+                        $actionEventRemark = $this->writeActionEventRemark('Document naar prullenbank verplaatst', $document);
+
                         $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
                     }
                 }
@@ -961,7 +962,7 @@ class AppDossierController extends AbstractController
 
         $document->setInPrullenbak(true);
         $this->addFlash('success', 'Document in prullenbak geplaatst');
-        $actionEventRemark = 'Document naar prullenbak verplaatst - ' . $document->getNaam();
+        $actionEventRemark = $this->writeActionEventRemark('Document naar prullenbak verplaatst', $document);
 
         $em->flush();
 
@@ -996,7 +997,7 @@ class AppDossierController extends AbstractController
 
         $em->remove($document);
 
-        $actionEventRemark = 'Document verwijderd uit de database - ' . $document->getNaam();
+        $actionEventRemark = $this->writeActionEventRemark('Document verwijderd uit de database', $document);
 
         $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
         $em->flush();
@@ -1030,7 +1031,7 @@ class AppDossierController extends AbstractController
         }
 
         $document->setInPrullenbak(false);
-        $actionEventRemark = 'Document hersteld uit de prullenbak: ' . $document->getNaam();
+        $actionEventRemark = $this->writeActionEventRemark('Document hersteld uit de prullenbak', $document);
 
         $em->flush();
         $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
@@ -1143,7 +1144,7 @@ class AppDossierController extends AbstractController
 
         $em->remove($schuldItem);
 
-        $actionEventRemark = 'Schuld verwijderd uit de database - ' . $schuldItem->getSchuldeiser()->getBedrijfsnaam() . ' (€ ' . $schuldItem->getBedrag() . ')';
+        $actionEventRemark = 'Schuld verwijderd uit de database. <br><br>Naam schuld: ' . $schuldItem->getSchuldeiser()->getBedrijfsnaam() . ' (€ ' . $schuldItem->getBedrag() . ')';
 
         $em->flush();
         $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
@@ -1175,8 +1176,7 @@ class AppDossierController extends AbstractController
 
         $schuldItem->setVerwijderd(false);
 
-        $actionEventRemark = 'Schuld hersteld uit de prullenbak - ' . $schuldItem->getSchuldeiser()->getBedrijfsnaam() . ' (€ ' . $schuldItem->getBedrag() . ')';
-        ;
+        $actionEventRemark = 'Schuld hersteld uit de prullenbak <br><br>Naam schuld: ' . $schuldItem->getSchuldeiser()->getBedrijfsnaam() . ' (€ ' . $schuldItem->getBedrag() . ')';
 
         $em->flush();
         $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
@@ -1574,5 +1574,10 @@ class AppDossierController extends AbstractController
     private function removeKeys($keysToRemove, $array)
     {
         return  array_diff_key($array, array_flip($keysToRemove));
+    }
+
+    private function writeActionEventRemark(string $action, Document $document)
+    {
+        return $action . ': <strong> ' . $document->getNaam() . '</strong>';
     }
 }
