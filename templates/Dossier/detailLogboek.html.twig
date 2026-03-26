@@ -58,13 +58,13 @@
                             {{ log.data.remark | default('Dossier gewijzigd') | raw }}
                             {% endif %}
                             {% if log.name == 'dossier_voorlegger_gewijzigd' %}
-                                Dossier gewijzigd door {{ log.data.gebruiker.naam }}
+                                Dossier gewijzigd
                                 <br>
                                 <br>
                                 {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.changeSet } %}
                             {% endif %}
                             {% if log.name == 'dossier_schulditems_gewijzigd' %}
-                                Schuld(en) gewijzigd door {{ log.data.gebruiker.naam }}
+                                Schuld(en) gewijzigd
                                 <br>
                                 <br>
                                 {% for schulditemUpdate in log.data.schuldItemUpdates %}
@@ -77,7 +77,7 @@
                                 {% endfor %}
                             {% endif %}
                             {% if log.name == 'dossier_schulditem_aangemaakt' %}
-                                Schuld aangemaakt door {{ log.data.gebruiker.naam }}
+                                Schuld aangemaakt
                                 <br>
                                 <br>
                                 Naam schuld: {% for schulditemUpdate in log.data.schulditemUpdates %}
