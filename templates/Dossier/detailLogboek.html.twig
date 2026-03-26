@@ -55,11 +55,7 @@
                                 Dossier status gewijzigd naar: <strong>{{ log.data.status.naar }}</strong>
                             {% endif %}
                             {% if log.name == 'dossier_gewijzigd' %}
-                                Dossier gewijzigd door {{ log.data.gebruiker.naam ?? 'Onbekend' }}
-                                {% if log.data.remark %}
-                                    <br><br>
-                                    {{ log.data.remark }}
-                                {% endif %}
+                               {{ log.data.remark ?? 'Dossier gewijzigd'  }}
                             {% endif %}
                             {% if log.name == 'dossier_voorlegger_gewijzigd' %}
                                 Dossier gewijzigd door {{ log.data.gebruiker.naam }}
