@@ -1439,6 +1439,12 @@ class AppDossierController extends AbstractController
     private function getVoorleggerChangeSet(object $voorlegger, EntityManagerInterface $entityManager)
     {
         $voorleggerChangeSet = $this->getEntityChangeSet($voorlegger, $entityManager);
+
+        /*The values of the 'statusbolletjes' are removed from the changeset, because they are not interesting 
+        to track according to the business. See ticket SCHUL-962 in jira*/
+        $statusbolletjesKeys = Voorlegger::getStatusPropertiesList();
+        $voorleggerChangeSet = $this->removeKeys($statusbolletjesKeys, $voorleggerChangeSet);
+
         $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'arbeidsovereenkomstEinddatum');
         $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'arbeidsovereenkomstPartnerEinddatum');
         $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'energieBedrijfDatumOpname');

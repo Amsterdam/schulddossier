@@ -4,6 +4,8 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
+use LogicException;
+use ReflectionClass;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -1041,12 +1043,12 @@ class Voorlegger
         $this->legitimatieOntvangenShv = self::STATUS_SHV_OPEN;
         $this->legitimatieOntvangenGka = false;
         $this->vtlbOntvangenShv = self::STATUS_SHV_OPEN;
-        $this->vtlbOntvangenGka = false;
+        $this->vtlbOntvangenShv = false;
         $this->vtlbBedrag = 0.00;
         $this->inkomstenspecificatieOntvangenShv = self::STATUS_SHV_OPEN;
         $this->inkomstenspecificatieOntvangenGka = false;
         $this->arbeidsovereenkomstOntvangenShv = self::STATUS_SHV_OPEN;
-        $this->arbeidsovereenkomstOntvangenGka = false;
+        $this->arbeidsovereenkomstOntvangenShv = false;
         $this->arbeidsovereenkomstNvt = false;
         $this->beschikkingUwvOntvangenShv = self::STATUS_SHV_OPEN;
         $this->beschikkingUwvOntvangenGka = false;
@@ -1139,7 +1141,7 @@ class Voorlegger
         $this->gereserveerdeGeldenNvt = false;
         $this->gereserveerdeGelden = 0.00;
         $this->ondertekendAanvraagFormulierOntvangenShv = self::STATUS_SHV_OPEN;
-        $this->ondertekendAanvraagFormulierOntvangenGka = false;
+        $this->ondertekendAanvraagFormulierOntvangenShv = false;
         $this->toeslagenOntvangenShv = self::STATUS_SHV_OPEN;
         $this->toeslagenOntvangenGka = false;
         $this->toeslagenNvt = false;
@@ -2807,5 +2809,99 @@ class Voorlegger
     public function setJssAdviseurEmail(?string $jssAdviseurEmail): void
     {
         $this->jssAdviseurEmail = $jssAdviseurEmail;
+    }
+
+    /**
+     * Retrieves a list of properties used for the 'statusbolletjes' feature.
+     *
+     * This method ensures that all expected properties, which are required for the
+     * 'statusbolletjes' functionality, exist on the class. It uses reflection to
+     * validate the presence of these properties. If any property is missing, a
+     * LogicException is thrown to indicate a misconfiguration or code issue.
+     *
+     * @throws LogicException If one or more expected properties are not defined in the class.
+     *
+     * @return string[] An array of property names that are required for the 'statusbolletjes' feature.
+     */
+    public static function getStatusPropertiesList(): array
+    {
+        $expectedProperties = [
+            'legitimatieOntvangenShv',
+            'legitimatieOntvangenGka',
+            'vtlbOntvangenShv',
+            'vtlbOntvangenShv',
+            'inkomstenspecificatieOntvangenShv',
+            'inkomstenspecificatieOntvangenGka',
+            'arbeidsovereenkomstOntvangenShv',
+            'arbeidsovereenkomstOntvangenShv',
+            'beschikkingUwvOntvangenShv',
+            'beschikkingUwvOntvangenGka',
+            'voorlopigeTeruggaafBelastingdienstOntvangenShv',
+            'voorlopigeTeruggaafBelastingdienstOntvangenGka',
+            'alimentatieOntvangenShv',
+            'alimentatieOntvangenGka',
+            'kostgeldOntvangenShv',
+            'kostgeldOntvangenGka',
+            'huurspecificatieOntvangenShv',
+            'huurspecificatieOntvangenGka',
+            'polisbladZorgverzekeringOntvangenShv',
+            'polisbladZorgverzekeringOntvangenGka',
+            'alimentatieEchtscheidingsconvenantOntvangenShv',
+            'alimentatieEchtscheidingsconvenantOntvangenGka',
+            'overeenkomstKinderopvangOntvangenShv',
+            'overeenkomstKinderopvangOntvangenGka',
+            'kwijtscheldingGemeenteBelastingOntvangenShv',
+            'corrigerenGemeenteBelastingOntvangenGka',
+            'autoTaxatieOntvangenShv',
+            'autoTaxatieOntvangenGka',
+            'autolastenKmWoonwerkverkeerOntvangenShv',
+            'autolastenKmWoonwerkverkeerOntvangenGka',
+            'verklaringWerkgeverOntvangenShv',
+            'verklaringWerkgeverOntvangenGka',
+            'vrijwaringsbewijsOntvangenShv',
+            'vrijwaringsbewijsOntvangenGka',
+            'schuldenoverzichtOntvangenShv',
+            'schuldenoverzichtOntvangenGka',
+            'vorderingenOntvangenShv',
+            'vorderingenOntvangenGka',
+            'inzageToetsingBkrOntvangenShv',
+            'inzageToetsingBkrOntvangenGka',
+            'stabilisatieovereenkomstOntvangenShv',
+            'stabilisatieovereenkomstOntvangenGka',
+            'cjibOntvangenShv',
+            'cjibOntvangenGka',
+            'meterstandenEnergieOntvangenShv',
+            'meterstandenEnergieOntvangenGka',
+            'waternetOntvangenShv',
+            'waternetOntvangenGka',
+            'retourbewijsModemOntvangenShv',
+            'retourbewijsModemOntvangenGka',
+            'toelichtingAanvraagSchuldsaneringClientOntvangenShv',
+            'toelichtingAanvraagSchuldsaneringClientOntvangenGka',
+            'toelichtingAanvraagSchuldsaneringShvOntvangenShv',
+            'toelichtingAanvraagSchuldsaneringShvOntvangenGka',
+            'beschikkingOnderBewindstellingOntvangenShv',
+            'beschikkingOnderBewindstellingOntvangenGka',
+            'budgetbeheerOntvangenShv',
+            'budgetbeheerOntvangenGka',
+            'gereserveerdeGeldenOntvangenShv',
+            'gereserveerdeGeldenOntvangenGka',
+            'ondertekendAanvraagFormulierOntvangenShv',
+            'ondertekendAanvraagFormulierOntvangenShv',
+            'toeslagenOntvangenShv',
+            'toeslagenOntvangenGka',
+            'aangifteBelastingdienstShv',
+            'aangifteBelastingdienstGka'
+        ];
+
+        $reflection = new ReflectionClass(static::class);
+
+        foreach ($expectedProperties as $property) {
+            if (!$reflection->hasProperty($property)) {
+                throw new LogicException("Property \"$property\" does not exist on the class.");
+            }
+        }
+
+        return $expectedProperties;
     }
 }
