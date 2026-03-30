@@ -284,6 +284,10 @@ class AppDossierController extends AbstractController
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
             $sendCorrespondentieNotification = false;
+            $voorleggerChangeSet = $this->getVoorleggerChangeSet($dossier->getVoorlegger(), $em);
+            $dossierChangeSet =  $this->getDossierChangeSet($dossier, $em);
+            $combinedChangeSet = array_merge($dossierChangeSet, $voorleggerChangeSet);
+
             foreach ($voorleggerForm->all() as $key => $child) {
                 if ($child->has('file')) {
                     $files = $child->get('file')->getData();
@@ -346,10 +350,6 @@ class AppDossierController extends AbstractController
                 //     $this->addFlash('success', 'De status is gewijzigd');
                 // }
             }
-
-            $voorleggerChangeSet = $this->getVoorleggerChangeSet($dossier->getVoorlegger(), $em);
-            $dossierChangeSet =  $this->getDossierChangeSet($dossier, $em);
-            $combinedChangeSet = array_merge($dossierChangeSet, $voorleggerChangeSet);
 
             $em->flush();
             if ($sendCorrespondentieNotification === true) {
