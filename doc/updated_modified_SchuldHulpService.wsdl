@@ -2965,12 +2965,12 @@ Bij deze resultaten zullen de gegevens Titel, TitelTitel, Medewerker en Datum al
             </xs:documentation>
          </xs:annotation>
             <xs:sequence>
-               <xs:element name="TTest" minOccurs="0" maxOccurs="unbounded" type="tns:TTest" />
+               <xs:element name="TTest"    maxOccurs="unbounded" type="tns:TTest" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="IntegerArray">
             <xs:sequence>
-               <xs:element name="int" minOccurs="0" maxOccurs="unbounded" type="xs:int" />
+               <xs:element name="int"    maxOccurs="unbounded" type="xs:int" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="CasusHeaderArray">
@@ -2992,367 +2992,367 @@ Bij deze resultaten zullen de gegevens Titel, TitelTitel, Medewerker en Datum al
             </xs:documentation>
          </xs:annotation>
             <xs:sequence>
-               <xs:element name="TCasusHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TCasusHeader" />
+               <xs:element name="TCasusHeader"    maxOccurs="unbounded" type="tns:TCasusHeader" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="CasusPVAArray">
             <xs:sequence>
-               <xs:element name="TCasusPVA" minOccurs="0" maxOccurs="unbounded" type="tns:TCasusPVA" />
+               <xs:element name="TCasusPVA"    maxOccurs="unbounded" type="tns:TCasusPVA" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="CasusPVAProductArray">
             <xs:sequence>
-               <xs:element name="TCasusPVAProduct" minOccurs="0" maxOccurs="unbounded" type="tns:TCasusPVAProduct" />
+               <xs:element name="TCasusPVAProduct"    maxOccurs="unbounded" type="tns:TCasusPVAProduct" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="BooleanArray">
             <xs:sequence>
-               <xs:element name="boolean" minOccurs="0" maxOccurs="unbounded" type="xs:boolean" />
+               <xs:element name="boolean"    maxOccurs="unbounded" type="xs:boolean" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="SRVAanvraagHeaderArray">
             <xs:sequence>
-               <xs:element name="TSRVAanvraagHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TSRVAanvraagHeader" />
+               <xs:element name="TSRVAanvraagHeader"    maxOccurs="unbounded" type="tns:TSRVAanvraagHeader" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="SRVEiserArray">
             <xs:sequence>
-               <xs:element name="TSRVEiser" minOccurs="0" maxOccurs="unbounded" type="tns:TSRVEiser" />
+               <xs:element name="TSRVEiser"    maxOccurs="unbounded" type="tns:TSRVEiser" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="SBEiserArray">
             <xs:sequence>
-               <xs:element name="TSBEiser" minOccurs="0" maxOccurs="unbounded" type="tns:TSBEiser" />
+               <xs:element name="TSBEiser"    maxOccurs="unbounded" type="tns:TSBEiser" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="SBHeaderArray">
             <xs:sequence>
-               <xs:element name="TSBHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TSBHeader" />
+               <xs:element name="TSBHeader"    maxOccurs="unbounded" type="tns:TSBHeader" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="PLHeaderArray">
             <xs:sequence>
-               <xs:element name="TPLHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TPLHeader" />
+               <xs:element name="TPLHeader"    maxOccurs="unbounded" type="tns:TPLHeader" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="PRSMutatieArray">
             <xs:sequence>
-               <xs:element name="TPRSMutatie" minOccurs="0" maxOccurs="unbounded" type="tns:TPRSMutatie" />
+               <xs:element name="TPRSMutatie"    maxOccurs="unbounded" type="tns:TPRSMutatie" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="DKHeaderArray">
             <xs:sequence>
-               <xs:element name="TDKHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TDKHeader" />
+               <xs:element name="TDKHeader"    maxOccurs="unbounded" type="tns:TDKHeader" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="BBRHeaderArray">
             <xs:sequence>
-               <xs:element name="TBBRHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TBBRHeader" />
+               <xs:element name="TBBRHeader"    maxOccurs="unbounded" type="tns:TBBRHeader" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="BBROpdrachtArray">
             <xs:sequence>
-               <xs:element name="TBBROpdracht" minOccurs="0" maxOccurs="unbounded" type="tns:TBBROpdracht" />
+               <xs:element name="TBBROpdracht"    maxOccurs="unbounded" type="tns:TBBROpdracht" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="SaldoReserveringArray">
             <xs:sequence>
-               <xs:element name="TSaldoReservering" minOccurs="0" maxOccurs="unbounded" type="tns:TSaldoReservering" />
+               <xs:element name="TSaldoReservering"    maxOccurs="unbounded" type="tns:TSaldoReservering" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TeamArray">
             <xs:sequence>
-               <xs:element name="TTeam" minOccurs="0" maxOccurs="unbounded" type="tns:TTeam" />
+               <xs:element name="TTeam"    maxOccurs="unbounded" type="tns:TTeam" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="KindArray">
             <xs:sequence>
-               <xs:element name="TKind" minOccurs="0" maxOccurs="unbounded" type="tns:TKind" />
+               <xs:element name="TKind"    maxOccurs="unbounded" type="tns:TKind" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TrajectTaakArray">
             <xs:sequence>
-               <xs:element name="TTrajectTaak" minOccurs="0" maxOccurs="unbounded" type="tns:TTrajectTaak" />
+               <xs:element name="TTrajectTaak"    maxOccurs="unbounded" type="tns:TTrajectTaak" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="OrganisatieArray">
             <xs:sequence>
-               <xs:element name="TOrganisatie" minOccurs="0" maxOccurs="unbounded" type="tns:TOrganisatie" />
+               <xs:element name="TOrganisatie"    maxOccurs="unbounded" type="tns:TOrganisatie" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="AfspraakArray">
             <xs:sequence>
-               <xs:element name="TAfspraak" minOccurs="0" maxOccurs="unbounded" type="tns:TAfspraak" />
+               <xs:element name="TAfspraak"    maxOccurs="unbounded" type="tns:TAfspraak" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="ContractArray">
             <xs:sequence>
-               <xs:element name="TContract" minOccurs="0" maxOccurs="unbounded" type="tns:TContract" />
+               <xs:element name="TContract"    maxOccurs="unbounded" type="tns:TContract" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="PRSAfschriftArray">
             <xs:sequence>
-               <xs:element name="TPRSAfschrift" minOccurs="0" maxOccurs="unbounded" type="tns:TPRSAfschrift" />
+               <xs:element name="TPRSAfschrift"    maxOccurs="unbounded" type="tns:TPRSAfschrift" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="PRSAfschriftMutatieArray">
             <xs:sequence>
-               <xs:element name="TPRSAfschriftMutatie" minOccurs="0" maxOccurs="unbounded" type="tns:TPRSAfschriftMutatie" />
+               <xs:element name="TPRSAfschriftMutatie"    maxOccurs="unbounded" type="tns:TPRSAfschriftMutatie" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="PRSAfschriftReseveringArray">
             <xs:sequence>
-               <xs:element name="TPRSAfschriftReservering" minOccurs="0" maxOccurs="unbounded" type="tns:TPRSAfschriftReservering" />
+               <xs:element name="TPRSAfschriftReservering"    maxOccurs="unbounded" type="tns:TPRSAfschriftReservering" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="CasusDeelopdrachtArray">
             <xs:sequence>
-               <xs:element name="TCasusDeelopdracht" minOccurs="0" maxOccurs="unbounded" type="tns:TCasusDeelopdracht" />
+               <xs:element name="TCasusDeelopdracht"    maxOccurs="unbounded" type="tns:TCasusDeelopdracht" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="HulpverlenerArray">
             <xs:sequence>
-               <xs:element name="THulpverlener" minOccurs="0" maxOccurs="unbounded" type="tns:THulpverlener" />
+               <xs:element name="THulpverlener"    maxOccurs="unbounded" type="tns:THulpverlener" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="ContactpersoonArray">
             <xs:sequence>
-               <xs:element name="TContactpersoon" minOccurs="0" maxOccurs="unbounded" type="tns:TContactpersoon" />
+               <xs:element name="TContactpersoon"    maxOccurs="unbounded" type="tns:TContactpersoon" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TExtraProductHeaderArray">
             <xs:sequence>
-               <xs:element name="TExtraProductHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TExtraProductHeader" />
+               <xs:element name="TExtraProductHeader"    maxOccurs="unbounded" type="tns:TExtraProductHeader" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="CasusToelichtingArray">
             <xs:sequence>
-               <xs:element name="TCasusToelichting" minOccurs="0" maxOccurs="unbounded" type="tns:TCasusToelichting" />
+               <xs:element name="TCasusToelichting"    maxOccurs="unbounded" type="tns:TCasusToelichting" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TrajectSoortArray">
             <xs:sequence>
-               <xs:element name="TTrajectSoort" minOccurs="0" maxOccurs="unbounded" type="tns:TTrajectSoort" />
+               <xs:element name="TTrajectSoort"    maxOccurs="unbounded" type="tns:TTrajectSoort" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="OpdrachtgeverKlantArray">
             <xs:sequence>
-               <xs:element name="TOpdrachtgeverKlant" minOccurs="0" maxOccurs="unbounded" type="tns:TOpdrachtgeverKlant" />
+               <xs:element name="TOpdrachtgeverKlant"    maxOccurs="unbounded" type="tns:TOpdrachtgeverKlant" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TrajectArray">
             <xs:sequence>
-               <xs:element name="TTraject" minOccurs="0" maxOccurs="unbounded" type="tns:TTraject" />
+               <xs:element name="TTraject"    maxOccurs="unbounded" type="tns:TTraject" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="BBRVormArray">
             <xs:sequence>
-               <xs:element name="TBBRVorm" minOccurs="0" maxOccurs="unbounded" type="tns:TBBRVorm" />
+               <xs:element name="TBBRVorm"    maxOccurs="unbounded" type="tns:TBBRVorm" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="CasusNotitieArray">
             <xs:sequence>
-               <xs:element name="TCasusNotitie" minOccurs="0" maxOccurs="unbounded" type="tns:TCasusNotitie" />
+               <xs:element name="TCasusNotitie"    maxOccurs="unbounded" type="tns:TCasusNotitie" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="BijlageArray">
             <xs:sequence>
-               <xs:element name="TBijlage" minOccurs="0" maxOccurs="unbounded" type="tns:TBijlage" />
+               <xs:element name="TBijlage"    maxOccurs="unbounded" type="tns:TBijlage" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="RelatieProductArray">
             <xs:sequence>
-               <xs:element name="TRelatieProduct" minOccurs="0" maxOccurs="unbounded" type="tns:TRelatieProduct" />
+               <xs:element name="TRelatieProduct"    maxOccurs="unbounded" type="tns:TRelatieProduct" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="LijstOpdrachtgeverArray">
             <xs:sequence>
-               <xs:element name="TLijstOpdrachtgever" minOccurs="0" maxOccurs="unbounded" type="tns:TLijstOpdrachtgever" />
+               <xs:element name="TLijstOpdrachtgever"    maxOccurs="unbounded" type="tns:TLijstOpdrachtgever" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="LijstKredietsoortArray">
             <xs:sequence>
-               <xs:element name="TLijstKredietsoort" minOccurs="0" maxOccurs="unbounded" type="tns:TLijstKredietsoort" />
+               <xs:element name="TLijstKredietsoort"    maxOccurs="unbounded" type="tns:TLijstKredietsoort" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="SchuldArray">
             <xs:sequence>
-               <xs:element name="TSchuld" minOccurs="0" maxOccurs="unbounded" type="tns:TSchuld" />
+               <xs:element name="TSchuld"    maxOccurs="unbounded" type="tns:TSchuld" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="AllegroDocumentArray">
             <xs:sequence>
-               <xs:element name="TAllegroDocument" minOccurs="0" maxOccurs="unbounded" type="tns:TAllegroDocument" />
+               <xs:element name="TAllegroDocument"    maxOccurs="unbounded" type="tns:TAllegroDocument" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="PLAanvraagArray">
             <xs:sequence>
-               <xs:element name="TPLAanvraag" minOccurs="0" maxOccurs="unbounded" type="tns:TPLAanvraag" />
+               <xs:element name="TPLAanvraag"    maxOccurs="unbounded" type="tns:TPLAanvraag" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="RCJaarrenteArray">
             <xs:sequence>
-               <xs:element name="TRCJaarrente" minOccurs="0" maxOccurs="unbounded" type="tns:TRCJaarrente" />
+               <xs:element name="TRCJaarrente"    maxOccurs="unbounded" type="tns:TRCJaarrente" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="RCHeaderArray">
             <xs:sequence>
-               <xs:element name="TRCHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TRCHeader" />
+               <xs:element name="TRCHeader"    maxOccurs="unbounded" type="tns:TRCHeader" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TBBoxHeaderArray">
             <xs:sequence>
-               <xs:element name="TBBoxHeader" minOccurs="0" maxOccurs="unbounded" type="tns:TBBoxHeader" />
+               <xs:element name="TBBoxHeader"    maxOccurs="unbounded" type="tns:TBBoxHeader" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TBBoxBijlageArray">
             <xs:sequence>
-               <xs:element name="TBBoxBijlage" minOccurs="0" maxOccurs="unbounded" type="tns:TBBoxBijlage" />
+               <xs:element name="TBBoxBijlage"    maxOccurs="unbounded" type="tns:TBBoxBijlage" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TBBoxGeadresseerdeArray">
             <xs:sequence>
-               <xs:element name="TBBoxGeadresseerde" minOccurs="0" maxOccurs="unbounded" type="tns:TBBoxGeadresseerde" />
+               <xs:element name="TBBoxGeadresseerde"    maxOccurs="unbounded" type="tns:TBBoxGeadresseerde" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TBBoxTekstArray">
             <xs:sequence>
-               <xs:element name="TBBoxTekst" minOccurs="0" maxOccurs="unbounded" type="tns:TBBoxTekst" />
+               <xs:element name="TBBoxTekst"    maxOccurs="unbounded" type="tns:TBBoxTekst" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="Int64Array">
             <xs:sequence>
-               <xs:element name="long" minOccurs="0" maxOccurs="unbounded" type="xs:long" />
+               <xs:element name="long"    maxOccurs="unbounded" type="xs:long" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TSorteerInfoArray">
             <xs:sequence>
-               <xs:element name="TSorteerInfo" minOccurs="0" maxOccurs="unbounded" type="tns:TSorteerInfo" />
+               <xs:element name="TSorteerInfo"    maxOccurs="unbounded" type="tns:TSorteerInfo" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="BBRBegunstigdeArray">
             <xs:sequence>
-               <xs:element name="TBBRBegunstigde" minOccurs="0" maxOccurs="unbounded" type="tns:TBBRBegunstigde" />
+               <xs:element name="TBBRBegunstigde"    maxOccurs="unbounded" type="tns:TBBRBegunstigde" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TAfspraakSoortenArray">
             <xs:sequence>
-               <xs:element name="TAfspraakSoorten" minOccurs="0" maxOccurs="unbounded" type="tns:TAfspraakSoorten" />
+               <xs:element name="TAfspraakSoorten"    maxOccurs="unbounded" type="tns:TAfspraakSoorten" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TContract2Array">
             <xs:sequence>
-               <xs:element name="TContract2" minOccurs="0" maxOccurs="unbounded" type="tns:TContract2" />
+               <xs:element name="TContract2"    maxOccurs="unbounded" type="tns:TContract2" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="RekeningnummerArray">
             <xs:sequence>
-               <xs:element name="string" minOccurs="0" maxOccurs="unbounded" type="xs:string" />
+               <xs:element name="string"    maxOccurs="unbounded" type="xs:string" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="RelatiecodeBedrijfcodeArray">
             <xs:sequence>
-               <xs:element name="TRelatiecodeBedrijfcode" minOccurs="0" maxOccurs="unbounded" type="tns:TRelatiecodeBedrijfcode" />
+               <xs:element name="TRelatiecodeBedrijfcode"    maxOccurs="unbounded" type="tns:TRelatiecodeBedrijfcode" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="Rekeningnummer2Array">
             <xs:sequence>
-               <xs:element name="TRekeningnummer" minOccurs="0" maxOccurs="unbounded" type="tns:TRekeningnummer" />
+               <xs:element name="TRekeningnummer"    maxOccurs="unbounded" type="tns:TRekeningnummer" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="InkomenArray">
             <xs:sequence>
-               <xs:element name="TInkomen" minOccurs="0" maxOccurs="unbounded" type="tns:TInkomen" />
+               <xs:element name="TInkomen"    maxOccurs="unbounded" type="tns:TInkomen" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="UitgavenArray">
             <xs:sequence>
-               <xs:element name="TUitgaven" minOccurs="0" maxOccurs="unbounded" type="tns:TUitgaven" />
+               <xs:element name="TUitgaven"    maxOccurs="unbounded" type="tns:TUitgaven" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="OpenVraagArray">
             <xs:sequence>
-               <xs:element name="TOpenVraag" minOccurs="0" maxOccurs="unbounded" type="tns:TOpenVraag" />
+               <xs:element name="TOpenVraag"    maxOccurs="unbounded" type="tns:TOpenVraag" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="GeslotenVraagArray">
             <xs:sequence>
-               <xs:element name="TGeslotenVraag" minOccurs="0" maxOccurs="unbounded" type="tns:TGeslotenVraag" />
+               <xs:element name="TGeslotenVraag"    maxOccurs="unbounded" type="tns:TGeslotenVraag" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="PandenArray">
             <xs:sequence>
-               <xs:element name="TPand" minOccurs="0" maxOccurs="unbounded" type="tns:TPand" />
+               <xs:element name="TPand"    maxOccurs="unbounded" type="tns:TPand" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="PandBerichtenArray">
             <xs:sequence>
-               <xs:element name="TPandBericht" minOccurs="0" maxOccurs="unbounded" type="tns:TPandBericht" />
+               <xs:element name="TPandBericht"    maxOccurs="unbounded" type="tns:TPandBericht" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="PRSMutatieExtraArray">
             <xs:sequence>
-               <xs:element name="TPRSMutatieExtra" minOccurs="0" maxOccurs="unbounded" type="tns:TPRSMutatieExtra" />
+               <xs:element name="TPRSMutatieExtra"    maxOccurs="unbounded" type="tns:TPRSMutatieExtra" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="FooterArray">
             <xs:sequence>
-               <xs:element name="TFooter" minOccurs="0" maxOccurs="unbounded" type="tns:TFooter" />
+               <xs:element name="TFooter"    maxOccurs="unbounded" type="tns:TFooter" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="StringArray">
             <xs:sequence>
-               <xs:element name="string" minOccurs="0" maxOccurs="unbounded" type="xs:string" />
+               <xs:element name="string"    maxOccurs="unbounded" type="xs:string" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="TableRequestInfoArray">
             <xs:sequence>
-               <xs:element name="TableRequestInfo" minOccurs="0" maxOccurs="unbounded" type="tns:TableRequestInfo" />
+               <xs:element name="TableRequestInfo"    maxOccurs="unbounded" type="tns:TableRequestInfo" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="DataParameterArray">
             <xs:sequence>
-               <xs:element name="DataParameter" minOccurs="0" maxOccurs="unbounded" type="tns:DataParameter" />
+               <xs:element name="DataParameter"    maxOccurs="unbounded" type="tns:DataParameter" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="SimpleRequestInfoArray">
             <xs:sequence>
-               <xs:element name="SimpleRequestInfo" minOccurs="0" maxOccurs="unbounded" type="tns:SimpleRequestInfo" />
+               <xs:element name="SimpleRequestInfo"    maxOccurs="unbounded" type="tns:SimpleRequestInfo" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="SimpleDataParameterArray">
             <xs:sequence>
-               <xs:element name="SimpleDataParameter" minOccurs="0" maxOccurs="unbounded" type="tns:SimpleDataParameter" />
+               <xs:element name="SimpleDataParameter"    maxOccurs="unbounded" type="tns:SimpleDataParameter" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="SimpleDataResultArray">
             <xs:sequence>
-               <xs:element name="SimpleDataResult" minOccurs="0" maxOccurs="unbounded" type="tns:SimpleDataResult" />
+               <xs:element name="SimpleDataResult"    maxOccurs="unbounded" type="tns:SimpleDataResult" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="SimpleFieldInfoArray">
             <xs:sequence>
-               <xs:element name="SimpleFieldInfo" minOccurs="0" maxOccurs="unbounded" type="tns:SimpleFieldInfo" />
+               <xs:element name="SimpleFieldInfo"    maxOccurs="unbounded" type="tns:SimpleFieldInfo" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="StringArrayArray">
             <xs:sequence>
-               <xs:element name="StringArray" minOccurs="0" maxOccurs="unbounded" type="tns:StringArray" />
+               <xs:element name="StringArray"    maxOccurs="unbounded" type="tns:StringArray" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="SimpleDeltaArray">
             <xs:sequence>
-               <xs:element name="SimpleDelta" minOccurs="0" maxOccurs="unbounded" type="tns:SimpleDelta" />
+               <xs:element name="SimpleDelta"    maxOccurs="unbounded" type="tns:SimpleDelta" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="SimpleDeltaChangeArray">
             <xs:sequence>
-               <xs:element name="SimpleDeltaChange" minOccurs="0" maxOccurs="unbounded" type="tns:SimpleDeltaChange" />
+               <xs:element name="SimpleDeltaChange"    maxOccurs="unbounded" type="tns:SimpleDeltaChange" />
             </xs:sequence>
          </xs:complexType>
          <xs:complexType name="VariantArray">
             <xs:sequence>
-               <xs:element name="anyType" minOccurs="0" maxOccurs="unbounded" type="xs:anyType" />
+               <xs:element name="anyType"    maxOccurs="unbounded" type="xs:anyType" />
             </xs:sequence>
          </xs:complexType>
    <xs:element name="SchuldHulpService___GetSBOverzicht">
@@ -3514,7 +3514,7 @@ Bij deze resultaten zullen de gegevens Titel, TitelTitel, Medewerker en Datum al
    <xs:element name="ROClientIDHeader">
       <xs:complexType>
          <xs:sequence>
-      <xs:element name="ID" minOccurs="0" maxOccurs="1" type="xs:string" />
+      <xs:element name="ID"    maxOccurs="1" type="xs:string" />
          </xs:sequence>
       </xs:complexType>
    </xs:element>
