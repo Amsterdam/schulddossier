@@ -95,7 +95,7 @@
 								gewijzigd door {{ log.data.gebruiker.naam ?? 'Onbekend' }}
 								{% if log.data.remark %}
 									<br><br>
-									{{ log.data.remark | sanitize }}
+									{{ log.data.remark | sanitize | raw }}
 								{% endif %}
                             {% endif %}
       						{% if log.name == 'dossier_voorlegger_gewijzigd' %}

@@ -55,7 +55,7 @@
                                 Dossier status gewijzigd naar: <strong>{{ log.data.status.naar }}</strong>
                             {% endif %}
                             {% if log.name == 'dossier_gewijzigd' %}
-                            {{ log.data.remark | default('Dossier gewijzigd') | sanitize }}
+                            {{ log.data.remark | default('Dossier gewijzigd') | sanitize | raw }}
                             {% endif %}
                             {% if log.name == 'dossier_voorlegger_gewijzigd' %}
                                 Dossier gewijzigd
