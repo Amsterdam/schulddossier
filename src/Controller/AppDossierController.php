@@ -1030,7 +1030,7 @@ class AppDossierController extends AbstractController
         }
 
         $document->setInPrullenbak(false);
-        $actionEventRemark = 'Document hersteld uit de prullenbak: ' . $document->getBestandsnaam();
+        $actionEventRemark = 'Document hersteld uit de prullenbak: ' . $document->getNaam();
 
         $em->flush();
         $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
