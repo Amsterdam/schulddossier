@@ -8,17 +8,17 @@ use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
 
 return Config::create()
     ->setEngine(ExtSoapEngineFactory::fromOptions(
-        ExtSoapOptions::defaults('/srv/app/doc/modified_schuldhulpservice.wsdl', [])
+        ExtSoapOptions::defaults('/srv/app/doc/updated_modified_SchuldHulpService.wsdl', [])
             ->disableWsdlCache()
     ))
-    ->setTypeDestination('src/Allegro/SchuldHulp/Type')
-    ->setTypeNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type')
-    ->setClientDestination('src/Allegro/SchuldHulp')
-    ->setClientName('AllegroSchuldHulpClient')
-    ->setClientNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp')
-    ->setClassMapDestination('src/Allegro/SchuldHulp')
-    ->setClassMapName('AllegroSchuldHulpClassmap')
-    ->setClassMapNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp')
+    ->setTypeDestination('src/Allegro/UpdatedSchuldhulp/Type')
+    ->setTypeNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\UpdatedSchuldhulp\Type')
+    ->setClientDestination('src/Allegro/UpdatedSchuldhulp')
+    ->setClientName('UpdatedSchuldhulpClient')
+    ->setClientNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\UpdatedSchuldhulp')
+    ->setClassMapDestination('src/Allegro/UpdatedSchuldhulp')
+    ->setClassMapName('UpdatedSchuldhulpClassmap')
+    ->setClassMapNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\UpdatedSchuldhulp')
     ->addRule(new Rules\AssembleRule(new Assembler\GetterAssembler(new Assembler\GetterAssemblerOptions())))
     ->addRule(new Rules\AssembleRule(new Assembler\ImmutableSetterAssembler()))
     ->addRule(
@@ -41,7 +41,7 @@ return Config::create()
     ->addRule(
         new Rules\TypenameMatchesRule(
             new Rules\MultiRule([
-                new Rules\AssembleRule(new Assembler\ExtendAssembler('\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\TAanvraag')),
+                new Rules\AssembleRule(new Assembler\ExtendAssembler('\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\UpdatedSchuldhulp\Type\TAanvraag')),
             ]),
             '/TAanvraag2SR/'
         )
