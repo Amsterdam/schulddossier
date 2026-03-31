@@ -21,7 +21,6 @@ class SchuldHulpClientFactory
     ): AllegroSchuldHulpClient {
 
         if (!empty($proxyHostIp) && !empty($proxyHostPort)) {
-
             $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHostIp, $proxyHostPort);
 
             $extSoapOptions = AllegroHelper::createSoapOptionsArray($proxyHostIp, $proxyHostPort);

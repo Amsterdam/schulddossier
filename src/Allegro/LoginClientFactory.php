@@ -21,7 +21,6 @@ class LoginClientFactory
     ): AllegroLoginClient {
 
         if (!empty($proxyHostIp) && !empty($proxyHostPort)) {
-
             $extSoapOptionsArray = AllegroHelper::createSoapOptionsArray($proxyHostIp, $proxyHostPort);
 
             $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHostIp, $proxyHostPort);

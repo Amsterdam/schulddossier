@@ -152,8 +152,10 @@ class AllegroService
         $oldestAllowedSession = clone $now;
         $oldestAllowedSession->modify(sprintf('-%s seconds', self::SESSION_TIMEOUT));
 
-        if (false === $force && null !== $organisatie->getAllegroSessionId() && $organisatie->getAllegroSessionAge(
-            ) >= $oldestAllowedSession) {
+        if (
+            false === $force && null !== $organisatie->getAllegroSessionId() && $organisatie->getAllegroSessionAge(
+            ) >= $oldestAllowedSession
+        ) {
             return $organisatie;
         }
         $response = $this->getLoginService(null, $this->proxyHostIp, $this->proxyHostPort)->allegroWebLogin(
@@ -602,7 +604,7 @@ class AllegroService
         ?string $proxyHostPort = null
     ): AllegroSchuldHulpClient {
         return SchuldHulpClientFactory::factory(
-            $this->schuldHulpWsdl, 
+            $this->schuldHulpWsdl,
             $organisatie,
             $proxyHostIp,
             $proxyHostPort
