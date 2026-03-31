@@ -24,7 +24,7 @@ class SanitizeHtml extends \Twig_Extension
         return [
             new \Twig_Filter('sanitize', function ($input) {
                 $config = HTMLPurifier_Config::createDefault();
-                $config->set('HTML.Allowed', 'strong');
+                $config->set('HTML.Allowed', 'strong, br');
                 $purifier = new HTMLPurifier($config);
                 $purifiedInput =  $purifier->purify($input);
 
