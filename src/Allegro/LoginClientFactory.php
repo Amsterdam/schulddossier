@@ -55,8 +55,5 @@ class LoginClientFactory
         $eventDispatcher = new EventDispatcher();
 
         return new AllegroLoginClient($engine, $eventDispatcher);
-
-
-        return new AllegroLoginClient($engine, $eventDispatcher);
     }
 }
