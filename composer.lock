@@ -11342,7 +11342,7 @@
         "php": "^8.2",
         "ext-iconv": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "platform-overrides": {
         "php": "8.2",
         "ext-gd": "1"

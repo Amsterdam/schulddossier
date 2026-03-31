@@ -284,6 +284,10 @@ class AppDossierController extends AbstractController
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
             $sendCorrespondentieNotification = false;
+            $voorleggerChangeSet = $this->getVoorleggerChangeSet($dossier->getVoorlegger(), $em);
+            $dossierChangeSet =  $this->getDossierChangeSet($dossier, $em);
+            $combinedChangeSet = array_merge($dossierChangeSet, $voorleggerChangeSet);
+
             foreach ($voorleggerForm->all() as $key => $child) {
                 if ($child->has('file')) {
                     $files = $child->get('file')->getData();
@@ -347,10 +351,6 @@ class AppDossierController extends AbstractController
                 //     $this->addFlash('success', 'De status is gewijzigd');
                 // }
             }
-
-            $voorleggerChangeSet = $this->getVoorleggerChangeSet($dossier->getVoorlegger(), $em);
-            $dossierChangeSet =  $this->getDossierChangeSet($dossier, $em);
-            $combinedChangeSet = array_merge($dossierChangeSet, $voorleggerChangeSet);
 
             $em->flush();
             if ($sendCorrespondentieNotification === true) {
@@ -1439,6 +1439,12 @@ class AppDossierController extends AbstractController
     private function getVoorleggerChangeSet(object $voorlegger, EntityManagerInterface $entityManager)
     {
         $voorleggerChangeSet = $this->getEntityChangeSet($voorlegger, $entityManager);
+
+        /*The values of the 'statusbolletjes' are removed from the changeset, because they are not interesting 
+        to track according to the business. See ticket SCHUL-962 in jira*/
+        $statusbolletjesKeys = Voorlegger::getStatusPropertiesList();
+        $voorleggerChangeSet = $this->removeKeys($statusbolletjesKeys, $voorleggerChangeSet);
+
         $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'arbeidsovereenkomstEinddatum');
         $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'arbeidsovereenkomstPartnerEinddatum');
         $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'energieBedrijfDatumOpname');
