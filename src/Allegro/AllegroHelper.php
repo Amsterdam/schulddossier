@@ -22,7 +22,7 @@ class AllegroHelper
     ): array {
         $soapOptionsArray = [];
 
-        if (isset($proxyHostIp, $proxyHostPort)) {
+        if (!isset($proxyHostIp, $proxyHostPort)) {
             return $soapOptionsArray;
         }
 
