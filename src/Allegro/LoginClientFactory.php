@@ -11,7 +11,6 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 
-
 class LoginClientFactory
 {
     public static function factory(string $wsdl, Organisatie $organisatie = null): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient
