@@ -23,18 +23,18 @@ parameters:
   featureflag_herfinanciering: '%env(FEATUREFLAG_HERFINANCIERING)%'
 
 services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
-    bind:
-      $proxyHostIp: '%env(PROXY_HOST_IP)%'
-      $proxyHostPort: '%env(PROXY_HOST_PORT)%'
-      $allegroEndpoint: '%env(ALLEGRO_ENDPOINT)%'
-      $allegroOnbekendeSchuldeiser: '%env(ALLEGRO_ONBEKENDE_SCHULDEISER)%'
-      string $azureAuthorityHost: '%env(AZURE_AUTHORITY_HOST)%'
-      string $azureTenantId: '%env(AZURE_TENANT_ID)%'
-      string $azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
-      string $azureClientId: '%env(AZURE_CLIENT_ID)%'
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $proxyHostIp: '%env(PROXY_HOST_IP)%'
+            $proxyHostPort: '%env(PROXY_HOST_PORT)%'
+            $allegroEndpoint: '%env(ALLEGRO_ENDPOINT)%'
+            $allegroOnbekendeSchuldeiser: '%env(ALLEGRO_ONBEKENDE_SCHULDEISER)%'
+            string $azureAuthorityHost: '%env(AZURE_AUTHORITY_HOST)%'
+            string $azureTenantId: '%env(AZURE_TENANT_ID)%'
+            string $azureFederatedTokenFile: '%env(AZURE_FEDERATED_TOKEN_FILE)%'
+            string $azureClientId: '%env(AZURE_CLIENT_ID)%'
 
   GemeenteAmsterdam\FixxxSchuldhulp\:
     resource: '../src/'

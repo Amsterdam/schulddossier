@@ -787,15 +787,14 @@ form {
         }
       }
     }
-    &:hover {
-      .bestand-verwijderen {
-        opacity: .9;
-        &:hover {
-          opacity: 1;
-        }
+    .bestand-verwijderen {
+      position: relative;
+      z-index: 2;
+      opacity: 0.9;
+      &:hover {
+        opacity: 1;
       }
     }
-
   }
 }
 

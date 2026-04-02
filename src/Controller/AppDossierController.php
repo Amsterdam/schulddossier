@@ -31,6 +31,8 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use GemeenteAmsterdam\FixxxSchuldhulp\Constants\SchuldeiserOrganisationType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
 use League\Flysystem\Adapter\Local;
@@ -282,6 +284,10 @@ class AppDossierController extends AbstractController
         $voorleggerForm->handleRequest($request);
         if ($voorleggerForm->isSubmitted() && $voorleggerForm->isValid()) {
             $sendCorrespondentieNotification = false;
+            $voorleggerChangeSet = $this->getVoorleggerChangeSet($dossier->getVoorlegger(), $em);
+            $dossierChangeSet =  $this->getDossierChangeSet($dossier, $em);
+            $combinedChangeSet = array_merge($dossierChangeSet, $voorleggerChangeSet);
+
             foreach ($voorleggerForm->all() as $key => $child) {
                 if ($child->has('file')) {
                     $files = $child->get('file')->getData();
@@ -300,6 +306,9 @@ class AppDossierController extends AbstractController
                             if ($key === 'correspondentie') {
                                 $sendCorrespondentieNotification = true;
                             }
+
+                            $actionEventRemark = $this->writeActionEventRemark('Document toegevoegd', $document);
+                            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
                         }
                     }
                 }
@@ -307,7 +316,11 @@ class AppDossierController extends AbstractController
                     $removeFiles = $child->get('removeFile')->getData();
                     foreach ($removeFiles as $documentId) {
                         $documentId = intval($documentId);
-                        $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
+                        $document = $dossier->getDossierDocumentByDocumentId($documentId)->getDocument();
+                        $document->setInPrullenbak(true);
+                        $actionEventRemark = $this->writeActionEventRemark('Document naar prullenbank verplaatst', $document);
+
+                        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
                     }
                 }
                 if ($child->has('aantekening') && empty($child->get('aantekening')->get('tekst')->getData()) === false) {
@@ -339,16 +352,15 @@ class AppDossierController extends AbstractController
                 // }
             }
 
-            $voorleggerChangeSet = $this->getVoorleggerChangeSet($dossier->getVoorlegger(), $em);
-            $dossierChangeSet =  $this->getDossierChangeSet($dossier, $em);
-            $combinedChangeSet = array_merge($dossierChangeSet, $voorleggerChangeSet);
-
             $em->flush();
             if ($sendCorrespondentieNotification === true) {
                 $eventDispatcher->dispatch(new DossierAddedCorrespondentie($dossier, $this->getUser()), DossierAddedCorrespondentie::NAME);
             }
 
-            $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $combinedChangeSet), ActionEvent::NAME);
+            if (!empty($combinedChangeSet)) {
+                $eventDispatcher->dispatch(ActionEvent::registerDossierVoorleggerGewijzigd($this->getUser(), $dossier, $combinedChangeSet), ActionEvent::NAME);
+            }
+
             $voorleggerForm = $this->createForm(VoorleggerFormType::class, $dossier->getVoorlegger());
         }
 
@@ -461,6 +473,7 @@ class AppDossierController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $files = $form->get('file')->getData();
+            $actionEventRemark = 'Document(en) toegevoegd en/of naar prullenbak verplaatst in overige documenten';
             foreach ($files as $document) {
                 /** @var $file Document */
                 if ($document !== null) {
@@ -473,14 +486,18 @@ class AppDossierController extends AbstractController
                     $dossierDocument->setDocument($document);
                     $dossierDocument->setDossier($dossier);
                     $dossierDocument->setOnderwerp('overige');
+                    $actionEventRemark = ' - toegevoegd: ' . $document->getNaam();
                 }
             }
             $removeFiles = $form->get('removeFile')->getData();
             foreach ($removeFiles as $documentId) {
                 $documentId = intval($documentId);
-                $dossier->getDossierDocumentByDocumentId($documentId)->getDocument()->setInPrullenbak(true);
+                $document = $dossier->getDossierDocumentByDocumentId($documentId)->getDocument();
+                $document->setInPrullenbak(true);
+                $actionEventRemark = ' - naar prullenbak verplaatst: ' . $document->getNaam();
             }
-            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+
+            $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
             $em->flush();
 
             if ($request->isXmlHttpRequest()) {
@@ -637,24 +654,27 @@ class AppDossierController extends AbstractController
      * @Security("is_granted('access', dossier)")
      * @ParamConverter("dossier", options={"id"="dossierId"})
      */
-    public function logAction(Request $request, Dossier $dossier)
+    public function logAction(Request $request, Dossier $dossier, PaginatorInterface $paginator, ActionEventRepository $actionEventRepository)
     {
-        $logs = $this->getDoctrine()
-            ->getRepository(ActionEventEntity::class)
-            ->findBy([
-                'name' => [
-                ActionEvent::DOSSIER_GEWIJZIGD,
-                ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
-                ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
-                ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD,
-                ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD,
-                ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT,
-                ActionEvent::DOSSIER_AANGEMAAKT,
-                ],
-                'dossier' => $dossier
-            ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
+        $eventNames = [
+            ActionEvent::DOSSIER_GEWIJZIGD,
+            ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
+            ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
+            ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD,
+            ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD,
+            ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT,
+            ActionEvent::DOSSIER_AANGEMAAKT,
+        ];
 
-        return $this->render('Dossier/detailLogboek.html.twig', ['logs' => $logs, 'dossier' => $dossier]);
+        $queryBuilder = $actionEventRepository->getLogsQuery($eventNames, $dossier);
+
+        $pagination = $paginator->paginate(
+            $queryBuilder,
+            $request->query->getInt('page', 1),
+            100
+        );
+
+        return $this->render('Dossier/detailLogboek.html.twig', ['dossier' => $dossier, 'pagination' => $pagination]);
     }
 
     /**
@@ -774,9 +794,7 @@ class AppDossierController extends AbstractController
         }
 
         $schuldeiser = new Schuldeiser();
-        $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser, [
-            'action' => $this->generateUrl('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_create', [])
-        ]);
+        $createSchuldeiserForm = $this->createForm(SchuldeiserFormType::class, $schuldeiser);
 
         $eventDispatcher->dispatch(ActionEvent::registerDossierGeopened($this->getUser(), $dossier), ActionEvent::NAME);
 
@@ -944,9 +962,11 @@ class AppDossierController extends AbstractController
 
         $document->setInPrullenbak(true);
         $this->addFlash('success', 'Document in prullenbak geplaatst');
+        $actionEventRemark = $this->writeActionEventRemark('Document naar prullenbak verplaatst', $document);
 
         $em->flush();
-        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', ['dossierId' => $dossier->getId()]);
     }
@@ -977,7 +997,9 @@ class AppDossierController extends AbstractController
 
         $em->remove($document);
 
-        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+        $actionEventRemark = $this->writeActionEventRemark('Document verwijderd uit de database', $document);
+
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
         $em->flush();
         $this->addFlash('success', 'Document definitief verwijderd');
 
@@ -1009,9 +1031,10 @@ class AppDossierController extends AbstractController
         }
 
         $document->setInPrullenbak(false);
+        $actionEventRemark = $this->writeActionEventRemark('Document hersteld uit de prullenbak', $document);
 
         $em->flush();
-        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Document hersteld');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
@@ -1121,8 +1144,10 @@ class AppDossierController extends AbstractController
 
         $em->remove($schuldItem);
 
+        $actionEventRemark = 'Schuld verwijderd uit de database. <br><br>Naam schuld: ' . $schuldItem->getSchuldeiser()->getBedrijfsnaam() . ' (€ ' . $schuldItem->getBedrag() . ')';
+
         $em->flush();
-        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Schuld definitief verwijderd');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
@@ -1151,8 +1176,10 @@ class AppDossierController extends AbstractController
 
         $schuldItem->setVerwijderd(false);
 
+        $actionEventRemark = 'Schuld hersteld uit de prullenbak <br><br>Naam schuld: ' . $schuldItem->getSchuldeiser()->getBedrijfsnaam() . ' (€ ' . $schuldItem->getBedrag() . ')';
+
         $em->flush();
-        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser()), DossierChangedEvent::NAME);
+        $eventDispatcher->dispatch(new DossierChangedEvent($dossier, $this->getUser(), null, $actionEventRemark), DossierChangedEvent::NAME);
         $this->addFlash('success', 'Schuld hersteld');
 
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
@@ -1412,6 +1439,12 @@ class AppDossierController extends AbstractController
     private function getVoorleggerChangeSet(object $voorlegger, EntityManagerInterface $entityManager)
     {
         $voorleggerChangeSet = $this->getEntityChangeSet($voorlegger, $entityManager);
+
+        /*The values of the 'statusbolletjes' are removed from the changeset, because they are not interesting
+        to track according to the business. See ticket SCHUL-962 in jira*/
+        $statusbolletjesKeys = Voorlegger::getStatusPropertiesList();
+        $voorleggerChangeSet = $this->removeKeys($statusbolletjesKeys, $voorleggerChangeSet);
+
         $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'arbeidsovereenkomstEinddatum');
         $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'arbeidsovereenkomstPartnerEinddatum');
         $voorleggerChangeSet = $this->formatDateChangeSet($voorleggerChangeSet, 'energieBedrijfDatumOpname');
@@ -1532,7 +1565,7 @@ class AppDossierController extends AbstractController
         $schuldenChangeSet = $this->formatDateChangeSet($schuldenChangeSet, 'ontstaansDatum');
 
         // Remove keys that are already stored in the action-event object to avoid duplication.
-        $keysToRemove = ['aanmaker', 'bewerker', 'dossier', 'verwijderd', 'aanmaakDatumTijd', 'bewerkDatumTijd'];
+        $keysToRemove = ['aanmaker', 'bewerker', 'dossier', 'aanmaakDatumTijd', 'bewerkDatumTijd'];
         $schuldenChangeSet = $this->removeKeys($keysToRemove, $schuldenChangeSet);
 
         $schuldItemUpdate[] = [
@@ -1547,5 +1580,10 @@ class AppDossierController extends AbstractController
     private function removeKeys($keysToRemove, $array)
     {
         return  array_diff_key($array, array_flip($keysToRemove));
+    }
+
+    private function writeActionEventRemark(string $action, Document $document)
+    {
+        return $action . ': <strong> ' . $document->getNaam() . '</strong>';
     }
 }

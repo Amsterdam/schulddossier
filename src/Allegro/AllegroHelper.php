@@ -22,16 +22,18 @@ class AllegroHelper
     ): array {
         $soapOptionsArray = [];
 
-        if (isset($proxyHostIp, $proxyHostPort)) {
-            $streamContext = stream_context_create([
+        if (empty($proxyHostIp) || empty($proxyHostPort)) {
+            return $soapOptionsArray;
+        }
+
+        $streamContext = stream_context_create([
                 'http' => [
                     'proxy' => 'tcp://' . $proxyHostIp . ':' . $proxyHostPort,
                     'request_fulluri' => true,
                 ],
             ]);
 
-           $soapOptionsArray['stream_context'] = $streamContext;
-        }
+        $soapOptionsArray['stream_context'] = $streamContext;
 
         return $soapOptionsArray;
     }

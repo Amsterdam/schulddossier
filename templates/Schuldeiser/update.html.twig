@@ -66,10 +66,6 @@
         {% if app.user.type == 'admin' %}
             {{ form_help(form.opmerkingen) }}
         {% endif %}
-        <p class="buttons right">
-            <button type="submit" class="button primary">Opslaan</button>
-            <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index') }}">Annuleren</a>
-        </p>
         {{ form_end(form) }}
     </div>
 </div>

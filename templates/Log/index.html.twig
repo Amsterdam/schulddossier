@@ -40,13 +40,13 @@
 			{{ form_end(form) }}
 		{% endif %}
 
-		{% if logs is empty %}
+		{% if pagination is empty %}
 			Er zijn geen logs gevonden
 		{% else %}
 
 			<ul class="aantekeningen log-list">
 
-				{% for log in logs %}
+				{% for log in pagination %}
 					<li class="aantekening
 											{% if log.data.gebruiker is defined %}
 												{% if log.data.gebruiker.email is defined %}
@@ -88,8 +88,16 @@
 								<strong>{{ log.data.status.naar }}</strong>
 							{% endif %}
 							{% if log.name == 'dossier_gewijzigd' %}
-								Dossier gewijzigd
-							{% endif %}
+								Dossier	
+									{% if log.dossier.clientNaam is defined %}
+										<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
+									{% endif  %} 
+								gewijzigd door {{ log.data.gebruiker.naam ?? 'Onbekend' }}
+								{% if log.data.remark %}
+									<br><br>
+									{{ log.data.remark | sanitize | raw }}
+								{% endif %}
+                            {% endif %}
       						{% if log.name == 'dossier_voorlegger_gewijzigd' %}
                                 Dossier 
 									{% if log.dossier.clientNaam is defined %}
@@ -216,6 +224,9 @@
 					</li>
 				{% endfor %}
 			</ul>
+			<div class="navigation">
+            	{{ knp_pagination_render(pagination) }}
+        	</div>
 		{% endif  %}
 	</div>
 {% endblock %}

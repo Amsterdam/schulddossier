@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchLogFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository;
-
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/app/log")
@@ -23,7 +23,7 @@ class AppLogController extends AbstractController
      * @Route("/")
      * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
      */
-    public function indexAction(Request $request, ActionEventRepository $actionEventRepository)
+    public function indexAction(Request $request, ActionEventRepository $actionEventRepository, PaginatorInterface $paginator,)
     {
         $form = $this->createForm(SearchLogFormType::class);
         $form->handleRequest($request);
@@ -44,9 +44,17 @@ class AppLogController extends AbstractController
 
         $logs = $actionEventRepository->findByFilters($filters);
 
+        $pagination = $paginator->paginate(
+            $logs,
+            $request->query->getInt('page', 1),
+            100
+        );
+
+
         return $this->render('Log/index.html.twig', [
             'form' => $form->createView(),
-            'logs' => $logs
+            'logs' => $logs,
+            'pagination' => $pagination
         ]);
     }
 }
