@@ -7,8 +7,8 @@ use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapOptions;
 use Phpro\SoapClient\Soap\Driver\ExtSoap\ExtSoapEngineFactory;
 
 return Config::create()
-    ->setEngine(ExtSoapEngineFactory::fromOptions(
-        ExtSoapOptions::defaults('/srv/app/doc/updated_modified_SchuldHulpService.wsdl', [])
+    ->setEngine($engine = ExtSoapEngineFactory::fromOptions(
+        ExtSoapOptions::defaults('doc/updated_modified_SchuldHulpService.wsdl', [])
             ->disableWsdlCache()
     ))
     ->setTypeDestination('src/Allegro/UpdatedSchuldhulp/Type')
@@ -20,30 +20,24 @@ return Config::create()
     ->setClassMapName('UpdatedSchuldhulpClassmap')
     ->setClassMapNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\UpdatedSchuldhulp')
     ->addRule(new Rules\AssembleRule(new Assembler\GetterAssembler(new Assembler\GetterAssemblerOptions())))
-    ->addRule(new Rules\AssembleRule(new Assembler\ImmutableSetterAssembler()))
+    ->addRule(new Rules\AssembleRule(new Assembler\ImmutableSetterAssembler(
+        new Assembler\ImmutableSetterAssemblerOptions()
+    )))
     ->addRule(
-        new Rules\TypenameMatchesRule(
+        new Rules\IsRequestRule(
+            $engine->getMetadata(),
             new Rules\MultiRule([
                 new Rules\AssembleRule(new Assembler\RequestAssembler()),
                 new Rules\AssembleRule(new Assembler\ConstructorAssembler(new Assembler\ConstructorAssemblerOptions())),
-            ]),
-            '/(?<!Response)$/i'
+            ])
         )
     )
     ->addRule(
-        new Rules\TypenameMatchesRule(
+        new Rules\IsResultRule(
+            $engine->getMetadata(),
             new Rules\MultiRule([
                 new Rules\AssembleRule(new Assembler\ResultAssembler()),
-            ]),
-            '/Response$/i'
-        )
-    )
-    ->addRule(
-        new Rules\TypenameMatchesRule(
-            new Rules\MultiRule([
-                new Rules\AssembleRule(new Assembler\ExtendAssembler('\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\UpdatedSchuldhulp\Type\TAanvraag')),
-            ]),
-            '/TAanvraag2SR/'
+            ])
         )
     )
 ;
