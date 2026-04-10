@@ -1,0 +1,32 @@
+<?php
+
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+
+class TrajectArray
+{
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TTraject
+     */
+    private $TTraject;
+
+    /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TTraject
+     */
+    public function getTTraject()
+    {
+        return $this->TTraject;
+    }
+
+    /**
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TTraject $TTraject
+     * @return TrajectArray
+     */
+    public function withTTraject($TTraject)
+    {
+        $new = clone $this;
+        $new->TTraject = $TTraject;
+
+        return $new;
+    }
+}
+

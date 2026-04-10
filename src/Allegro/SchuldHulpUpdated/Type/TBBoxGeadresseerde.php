@@ -1,0 +1,57 @@
+<?php
+
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+
+class TBBoxGeadresseerde
+{
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     */
+    private $Medewerker;
+
+    /**
+     * @var string
+     */
+    private $Informatie;
+
+    /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     */
+    public function getMedewerker()
+    {
+        return $this->Medewerker;
+    }
+
+    /**
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker $Medewerker
+     * @return TBBoxGeadresseerde
+     */
+    public function withMedewerker($Medewerker)
+    {
+        $new = clone $this;
+        $new->Medewerker = $Medewerker;
+
+        return $new;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInformatie()
+    {
+        return $this->Informatie;
+    }
+
+    /**
+     * @param string $Informatie
+     * @return TBBoxGeadresseerde
+     */
+    public function withInformatie($Informatie)
+    {
+        $new = clone $this;
+        $new->Informatie = $Informatie;
+
+        return $new;
+    }
+}
+
