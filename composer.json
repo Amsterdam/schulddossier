@@ -28,7 +28,7 @@
         "php-http/message-factory": "^1.0",
         "phpoffice/phpspreadsheet": "^1.30",
         "phpoffice/phpword": "^1.4",
-        "phpro/soap-client": "^1.7",
+        "phpro/soap-client": "^2.0",
         "phpseclib/phpseclib": "^2.0",
         "psr/http-client": "^1.0",
         "psr/http-message": "^1.0",
