@@ -19,6 +19,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAanvraag2P
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAanvraag2SR;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TContact;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TGezinsSituatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TInkomen;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOrganisatie as TypeTOrganisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TSchuld as TypeTSchuld;
@@ -298,20 +299,16 @@ class AllegroService
         ) ? 'Ja' : 'Nee';
         $kinderenInGezin = 1 >= $kinderen ? 'Ja' : 'Nee';
 
-        $gezin = new \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TGezinsSituatie(
-            $omzetting[0],
-            $gemeenschapVanGoederen,
-            $kinderenInGezin,
-            new \DateTime('0001-01-01T00:00:00')
-        );
-
-
-
+        $gezin = new TGezinsSituatie();
+        $gezin->withBurgerlijkeStaat($omzetting[0]);
+        $gezin->withGemeenschapVanGoederen($gemeenschapVanGoederen);
+        $gezin->withKinderen($kinderenInGezin);
+        $gezin->withBurgerlijkeStaatSinds(new \DateTime('0001-01-01T00:00:00'));
 
         $aanvraag = new TAanvraag2SR();
         $aanvraag->withBedrijfscode($bedrijfsCode);
         $aanvraag->withAanvrager($aanvrager);
-        $aanvraag->withPartner(false);
+        $aanvraag->withPartner($partner);
         $aanvraag->withGezinsSituatie($gezin);
         $aanvraag->withAantalKinderen($kinderen);
         $aanvraag->withSchuldbedrag($aanvraagSchuldbedrag);
@@ -326,15 +323,12 @@ class AllegroService
         $aanvraag->withOpdrachtgeverOvernemen(false);
         $aanvraag->withHulpverlenerOvernemen(false);
 
-
         $schulden = $this->mapSchulden($dossier);
         $aanvraag->withSchulden($schulden);
 
         if (null !== $partner) {
             $aanvraag->withPartner($partner);
         }
-
-        //vervangen door factory
 
         $schuldHulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyHostPort);
         $a = $schuldHulpService->Aanvraag2SR(new SchuldHulpServiceAanvraag2SR($aanvraag));
