@@ -2,7 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
 
-class TAanvraag2SR
+class TAanvraag2SR extends TAanvraag2
 {
     /**
      * @var bool
