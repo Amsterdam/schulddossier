@@ -5,6 +5,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Service;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLogin;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\AWUserInfo;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\SchuldHulpUpdatedClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\SchuldHulpUpdatedClientFactory;
@@ -37,6 +38,7 @@ use Phpro\SoapClient\Exception\SoapException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Security;
+
 
 class AllegroService
 {
@@ -161,7 +163,12 @@ class AllegroService
         );
         if ($response->getResult()) {
             $organisatie->setAllegroSessionAge($now);
-            $organisatie->setAllegroSessionId($response->getAUserInfo()->SessionID);
+
+            /** @var AWUserInfo $aUserInfo */
+            $aUserInfo = $response->getAUserInfo();
+
+            // TODO fixen: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-993
+            // $organisatie->setAllegroSessionId($aUserInfo->SessionID);
             $this->em->flush();
 
             return $organisatie;
@@ -338,10 +345,10 @@ class AllegroService
         }
 
         $user = $this->security->getUser();
+
         /**
          * @var Gebruiker $user
          */
-
         $this->eventDispatcher->dispatch(
             new DossierChangedEvent($dossier, $user, ActionEvent::DOSSIER_SEND_TO_ALLEGRO),
             DossierChangedEvent::NAME
