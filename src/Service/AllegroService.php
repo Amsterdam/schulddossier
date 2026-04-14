@@ -221,7 +221,12 @@ class AllegroService
     public function sendAanvraag(Dossier $dossier): bool
     {
         $organisatie = $dossier->getOrganisatie();
-        $this->setSoapHeader($organisatie);
+        $loginSucces = $this->login($organisatie);
+
+        if (!$loginSucces) {
+            throw new \Exception('Login of organisatie failed');
+        }
+
 
         $bedrijfsCode = 2; // Vaste waarde 2 = Kredietbank
         $aanvragerCorrespondentieMail = false;
@@ -534,26 +539,6 @@ class AllegroService
 
         $srvEisers = $schuldHulpService->getSRVEisers($schuldHulpServiceGetSRVEisers);
         return $srvEisers->getResult();
-    }
-
-    /**
-     * @param Organisatie $organisatie
-     * @throws \Exception
-     */
-    private function setSoapHeader(Organisatie $organisatie): void
-    {
-        $loginSucces = $this->login($organisatie);
-
-        if (!$loginSucces) {
-            throw new \Exception('Login of organisatie failed');
-        }
-
-        $header = new \SoapHeader(
-            'http://tempuri.org/',
-            'ROClientIDHeader',
-            ['ID' => $organisatie->getAllegroSessionId()]
-        );
-        $this->altService->__setSoapHeaders($header);
     }
 
     /**
