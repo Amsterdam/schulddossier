@@ -8,10 +8,10 @@
 
 {% block document %}
 
-{% set releaseDate = "2026-03-31" %}
+{% set releaseDate = "2026-04-14" %}
 {% if "now"|date("Y-m-d") < releaseDate | date_modify("+1 week") | date("Y-m-d") %}
     <div class="announcement">
-        <h4 class="title">Nieuwe versie staat live: synchronisatie van inactieve schuldeisers uit Allegro en verbeteringen in logfunctionaliteit </h4>
+        <h4 class="title">Nieuwe versie staat live</h4>
         <span class="message"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}#release{{ releaseDate }}">Bekijk versies</a> voor een toelichting op de laatste update.</span>
     </div>
 {% endif %}

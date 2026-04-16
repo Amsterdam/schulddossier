@@ -8,6 +8,7 @@
         "doctrine/doctrine-bundle": "^2.1",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.7",
+        "ezyang/htmlpurifier": "^4.19",
         "guzzlehttp/guzzle": "^7.7.0",
         "jshjohnson/choices": "3.0.3",
         "knplabs/knp-paginator-bundle": "5.4.1",
