@@ -332,6 +332,7 @@ class AllegroService
 
         $schulden = $this->mapSchulden($dossier);
         $aanvraag->setSchulden($schulden);
+        $aanvraag->setSoortLening('SK');
 
         if (null !== $partner) {
             $aanvraag->setPartner($partner);
