@@ -2,7 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 
-class AWUserInfo
+use Phpro\SoapClient\Type\RequestInterface;
+
+class AWUserInfo implements RequestInterface
 {
     /**
      * @var string
@@ -43,6 +45,18 @@ class AWUserInfo
      * @var bool
      */
     private $WachtwoordWijzigen;
+
+    /**
+     * This property is manually added after generating the code with phpro soap client wizard
+     * @var string
+     */
+    private $SessionID;
+
+    /**
+     * This property is manually added after generating the code with phpro soap client wizard
+     * @var string
+     */
+    private $UserID;
 
     /**
      * @return string
@@ -202,6 +216,25 @@ class AWUserInfo
         $new->WachtwoordWijzigen = $WachtwoordWijzigen;
 
         return $new;
+    }
+
+    /**
+     * This functions is manually added after generating the code with phpro soap client wizard
+     * @return string
+     */
+    public function getSessionId()
+    {
+        return $this->SessionID;
+    }
+
+
+    /**
+     * This function is manually added after generating the code with phpro soap client wizard
+     * @return string
+     */
+    public function getUserID()
+    {
+        return $this->UserID;
     }
 }
 

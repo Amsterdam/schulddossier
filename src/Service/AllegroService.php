@@ -155,7 +155,9 @@ class AllegroService
         ) {
             return $organisatie;
         }
-        $response = $this->getLoginService(null, $this->proxyHostIp, $this->proxyHostPort)->allegroWebLogin(
+
+        $loginService = $this->getLoginService($this->proxyHostIp, $this->proxyHostPort);
+        $response =  $loginService->allegroWebLogin(
             (new LoginServiceAllegroWebLogin(
                 $organisatie->getAllegroUsername(),
                 $organisatie->getAllegroPassword()
@@ -167,8 +169,7 @@ class AllegroService
             /** @var AWUserInfo $aUserInfo */
             $aUserInfo = $response->getAUserInfo();
 
-            // TODO fixen: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-993
-            // $organisatie->setAllegroSessionId($aUserInfo->SessionID);
+            $organisatie->setAllegroSessionId($aUserInfo->getSessionId());
             $this->em->flush();
 
             return $organisatie;
@@ -506,13 +507,11 @@ class AllegroService
     }
 
     private function getLoginService(
-        ?Organisatie $organisatie = null,
         ?string $proxyHostIp = null,
         ?string $proxyHostPort = null
     ): LoginServiceClient {
         return LoginServiceClientFactory::factory(
             $this->loginWsdl,
-            $organisatie,
             $proxyHostIp,
             $proxyHostPort
         );
