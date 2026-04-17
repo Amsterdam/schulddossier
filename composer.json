@@ -27,6 +27,7 @@
         "php-http/httplug-bundle": "^1.27",
         "php-http/message": "^1.6",
         "php-http/message-factory": "^1.0",
+        "php-soap/psr18-transport": "^1.2",
         "phpoffice/phpspreadsheet": "^1.30",
         "phpoffice/phpword": "^1.4",
         "phpro/soap-client": "^2.0",
