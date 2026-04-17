@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\AllegroHelper;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use Http\Client\Common\PluginClient;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -34,6 +35,8 @@ class SchuldHulpUpdatedClientFactory
         /* if the code does not work, we could try this one */
         // $httpClient = Psr18ClientDiscovery::find();
 
+        $extSoapOptionsArray = [];
+
         if (!empty($proxyHostIp) && !empty($proxyHostPort)) {
             $httpClient = HttpClient::create([
                 'proxy' => 'http://' . $proxyHostIp . ':' . $proxyHostPort,
@@ -41,6 +44,7 @@ class SchuldHulpUpdatedClientFactory
                     'User-Agent' => 'fixxx-schuldhulp/1.0'
                 ]
             ]);
+            $extSoapOptionsArray = AllegroHelper::createSoapOptionsArray($proxyHostIp, $proxyHostPort);
         } else {
             $httpClient = HttpClient::create([
                 'headers' => [
@@ -70,7 +74,7 @@ class SchuldHulpUpdatedClientFactory
         );
 
         $engine = DefaultEngineFactory::create(
-            ExtSoapOptions::defaults($wsdl, [])
+            ExtSoapOptions::defaults($wsdl, $extSoapOptionsArray)
                 ->withClassMap(SchuldHulpUpdatedClassmap::getCollection()),
             $transporter
         );
