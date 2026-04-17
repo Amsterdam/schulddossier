@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TRelatieProduct
 {
@@ -40,7 +40,7 @@ class TRelatieProduct
     private $Eindstatus;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     private $Medewerker;
 
@@ -190,7 +190,7 @@ class TRelatieProduct
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     public function getMedewerker()
     {
@@ -198,7 +198,7 @@ class TRelatieProduct
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker $Medewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $Medewerker
      * @return TRelatieProduct
      */
     public function withMedewerker($Medewerker)

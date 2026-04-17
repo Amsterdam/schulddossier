@@ -1,16 +1,16 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TrajectTaakArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TTrajectTaak
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTrajectTaak
      */
     private $TTrajectTaak;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TTrajectTaak
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTrajectTaak
      */
     public function getTTrajectTaak()
     {
@@ -18,7 +18,7 @@ class TrajectTaakArray
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TTrajectTaak $TTrajectTaak
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTrajectTaak $TTrajectTaak
      * @return TrajectTaakArray
      */
     public function withTTrajectTaak($TTrajectTaak)

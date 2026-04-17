@@ -1,16 +1,16 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TPRSAfschriftReserveringen
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\PRSAfschriftReseveringArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSAfschriftReseveringArray
      */
     private $AfschriftReserveringen;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\PRSAfschriftReseveringArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSAfschriftReseveringArray
      */
     public function getAfschriftReserveringen()
     {
@@ -18,7 +18,7 @@ class TPRSAfschriftReserveringen
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\PRSAfschriftReseveringArray $AfschriftReserveringen
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSAfschriftReseveringArray $AfschriftReserveringen
      * @return TPRSAfschriftReserveringen
      */
     public function withAfschriftReserveringen($AfschriftReserveringen)

@@ -1,11 +1,11 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TSRVEisers
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SRVEiserArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SRVEiserArray
      */
     private $Eisers;
 
@@ -25,7 +25,7 @@ class TSRVEisers
     private $SomBerekendBedrag;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SRVEiserArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SRVEiserArray
      */
     public function getEisers()
     {
@@ -33,7 +33,7 @@ class TSRVEisers
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SRVEiserArray $Eisers
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SRVEiserArray $Eisers
      * @return TSRVEisers
      */
     public function withEisers($Eisers)

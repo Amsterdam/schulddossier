@@ -1,11 +1,11 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TCasusInfo
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TCasusHeader
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TCasusHeader
      */
     private $InfoHeader;
 
@@ -110,12 +110,12 @@ class TCasusInfo
     private $VerwachteEinddatumIntake;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\CasusPVAArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\CasusPVAArray
      */
     private $PVA;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TCasusHeader
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TCasusHeader
      */
     public function getInfoHeader()
     {
@@ -123,7 +123,7 @@ class TCasusInfo
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TCasusHeader $InfoHeader
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TCasusHeader $InfoHeader
      * @return TCasusInfo
      */
     public function withInfoHeader($InfoHeader)
@@ -535,7 +535,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\CasusPVAArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\CasusPVAArray
      */
     public function getPVA()
     {
@@ -543,7 +543,7 @@ class TCasusInfo
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\CasusPVAArray $PVA
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\CasusPVAArray $PVA
      * @return TCasusInfo
      */
     public function withPVA($PVA)

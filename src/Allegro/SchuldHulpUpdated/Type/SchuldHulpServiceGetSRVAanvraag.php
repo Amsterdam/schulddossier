@@ -1,20 +1,20 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SchuldHulpServiceGetSRVAanvraag implements RequestInterface
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TSRVAanvraagHeader
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraagHeader
      */
     private $aHeader;
 
     /**
      * Constructor
      *
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TSRVAanvraagHeader $aHeader
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraagHeader $aHeader
      */
     public function __construct($aHeader)
     {
@@ -22,7 +22,7 @@ class SchuldHulpServiceGetSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TSRVAanvraagHeader
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraagHeader
      */
     public function getAHeader()
     {
@@ -30,7 +30,7 @@ class SchuldHulpServiceGetSRVAanvraag implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TSRVAanvraagHeader $aHeader
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraagHeader $aHeader
      * @return SchuldHulpServiceGetSRVAanvraag
      */
     public function withAHeader($aHeader)

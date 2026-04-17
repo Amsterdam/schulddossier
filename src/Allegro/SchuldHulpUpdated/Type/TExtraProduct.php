@@ -1,11 +1,11 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TExtraProduct
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TExtraProductHeader
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TExtraProductHeader
      */
     private $InfoHeader;
 
@@ -60,7 +60,7 @@ class TExtraProduct
     private $PartnerCode;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TExtraProductHeader
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TExtraProductHeader
      */
     public function getInfoHeader()
     {
@@ -68,7 +68,7 @@ class TExtraProduct
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TExtraProductHeader $InfoHeader
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TExtraProductHeader $InfoHeader
      * @return TExtraProduct
      */
     public function withInfoHeader($InfoHeader)

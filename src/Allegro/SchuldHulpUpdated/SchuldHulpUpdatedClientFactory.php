@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\AllegroHelper;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\SchuldHulpUpdatedClient;

@@ -1,11 +1,11 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TAllegroDocument
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TDocumentSleutel
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TDocumentSleutel
      */
     private $DocumentSleutel;
 
@@ -35,7 +35,7 @@ class TAllegroDocument
     private $Omschrijving;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TDocumentSleutel
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TDocumentSleutel
      */
     public function getDocumentSleutel()
     {
@@ -43,7 +43,7 @@ class TAllegroDocument
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TDocumentSleutel $DocumentSleutel
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TDocumentSleutel $DocumentSleutel
      * @return TAllegroDocument
      */
     public function withDocumentSleutel($DocumentSleutel)

@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TBBRBegunstigde
 {
@@ -45,7 +45,7 @@ class TBBRBegunstigde
     private $Betaalwijze;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\RekeningnummerArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RekeningnummerArray
      */
     private $Rekeningnummers;
 
@@ -210,7 +210,7 @@ class TBBRBegunstigde
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\RekeningnummerArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RekeningnummerArray
      */
     public function getRekeningnummers()
     {
@@ -218,7 +218,7 @@ class TBBRBegunstigde
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\RekeningnummerArray $Rekeningnummers
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RekeningnummerArray $Rekeningnummers
      * @return TBBRBegunstigde
      */
     public function withRekeningnummers($Rekeningnummers)

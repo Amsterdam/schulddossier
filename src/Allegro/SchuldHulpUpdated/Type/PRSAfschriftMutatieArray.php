@@ -1,16 +1,16 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class PRSAfschriftMutatieArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TPRSAfschriftMutatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPRSAfschriftMutatie
      */
     private $TPRSAfschriftMutatie;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TPRSAfschriftMutatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPRSAfschriftMutatie
      */
     public function getTPRSAfschriftMutatie()
     {
@@ -18,7 +18,7 @@ class PRSAfschriftMutatieArray
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TPRSAfschriftMutatie $TPRSAfschriftMutatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPRSAfschriftMutatie $TPRSAfschriftMutatie
      * @return PRSAfschriftMutatieArray
      */
     public function withTPRSAfschriftMutatie($TPRSAfschriftMutatie)

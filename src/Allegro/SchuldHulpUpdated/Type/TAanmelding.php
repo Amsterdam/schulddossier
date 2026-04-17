@@ -1,31 +1,31 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TAanmelding
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TPersoon
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPersoon
      */
     private $Aanvrager;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TPersoon
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPersoon
      */
     private $Partner;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TGezinsSituatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGezinsSituatie
      */
     private $GezinsSituatie;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
      */
     private $Adres;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TContact
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContact
      */
     private $Contact;
 
@@ -40,107 +40,107 @@ class TAanmelding
     private $Crisis;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     private $JaNeeVraag1;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     private $JaNeeVraag2;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     private $JaNeeVraag3;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     private $JaNeeVraag4;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     private $JaNeeVraag5;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     private $JaNeeVraag6;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     private $JaNeeVraag7;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     private $JaNeeVraag8;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     private $JaNeeVraag9;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     private $JaNeeVraag10;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     private $OpenVraag1;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     private $OpenVraag2;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     private $OpenVraag3;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     private $OpenVraag4;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     private $OpenVraag5;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     private $OpenVraag6;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     private $OpenVraag7;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     private $OpenVraag8;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     private $OpenVraag9;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     private $OpenVraag10;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TPersoon
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPersoon
      */
     public function getAanvrager()
     {
@@ -148,7 +148,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TPersoon $Aanvrager
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPersoon $Aanvrager
      * @return TAanmelding
      */
     public function withAanvrager($Aanvrager)
@@ -160,7 +160,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TPersoon
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPersoon
      */
     public function getPartner()
     {
@@ -168,7 +168,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TPersoon $Partner
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPersoon $Partner
      * @return TAanmelding
      */
     public function withPartner($Partner)
@@ -180,7 +180,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TGezinsSituatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGezinsSituatie
      */
     public function getGezinsSituatie()
     {
@@ -188,7 +188,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TGezinsSituatie $GezinsSituatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGezinsSituatie $GezinsSituatie
      * @return TAanmelding
      */
     public function withGezinsSituatie($GezinsSituatie)
@@ -200,7 +200,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
      */
     public function getAdres()
     {
@@ -208,7 +208,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres $Adres
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $Adres
      * @return TAanmelding
      */
     public function withAdres($Adres)
@@ -220,7 +220,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TContact
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContact
      */
     public function getContact()
     {
@@ -228,7 +228,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TContact $Contact
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContact $Contact
      * @return TAanmelding
      */
     public function withContact($Contact)
@@ -280,7 +280,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     public function getJaNeeVraag1()
     {
@@ -288,7 +288,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag $JaNeeVraag1
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag $JaNeeVraag1
      * @return TAanmelding
      */
     public function withJaNeeVraag1($JaNeeVraag1)
@@ -300,7 +300,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     public function getJaNeeVraag2()
     {
@@ -308,7 +308,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag $JaNeeVraag2
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag $JaNeeVraag2
      * @return TAanmelding
      */
     public function withJaNeeVraag2($JaNeeVraag2)
@@ -320,7 +320,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     public function getJaNeeVraag3()
     {
@@ -328,7 +328,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag $JaNeeVraag3
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag $JaNeeVraag3
      * @return TAanmelding
      */
     public function withJaNeeVraag3($JaNeeVraag3)
@@ -340,7 +340,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     public function getJaNeeVraag4()
     {
@@ -348,7 +348,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag $JaNeeVraag4
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag $JaNeeVraag4
      * @return TAanmelding
      */
     public function withJaNeeVraag4($JaNeeVraag4)
@@ -360,7 +360,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     public function getJaNeeVraag5()
     {
@@ -368,7 +368,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag $JaNeeVraag5
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag $JaNeeVraag5
      * @return TAanmelding
      */
     public function withJaNeeVraag5($JaNeeVraag5)
@@ -380,7 +380,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     public function getJaNeeVraag6()
     {
@@ -388,7 +388,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag $JaNeeVraag6
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag $JaNeeVraag6
      * @return TAanmelding
      */
     public function withJaNeeVraag6($JaNeeVraag6)
@@ -400,7 +400,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     public function getJaNeeVraag7()
     {
@@ -408,7 +408,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag $JaNeeVraag7
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag $JaNeeVraag7
      * @return TAanmelding
      */
     public function withJaNeeVraag7($JaNeeVraag7)
@@ -420,7 +420,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     public function getJaNeeVraag8()
     {
@@ -428,7 +428,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag $JaNeeVraag8
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag $JaNeeVraag8
      * @return TAanmelding
      */
     public function withJaNeeVraag8($JaNeeVraag8)
@@ -440,7 +440,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     public function getJaNeeVraag9()
     {
@@ -448,7 +448,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag $JaNeeVraag9
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag $JaNeeVraag9
      * @return TAanmelding
      */
     public function withJaNeeVraag9($JaNeeVraag9)
@@ -460,7 +460,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag
      */
     public function getJaNeeVraag10()
     {
@@ -468,7 +468,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TJaNeeVraag $JaNeeVraag10
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TJaNeeVraag $JaNeeVraag10
      * @return TAanmelding
      */
     public function withJaNeeVraag10($JaNeeVraag10)
@@ -480,7 +480,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     public function getOpenVraag1()
     {
@@ -488,7 +488,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag $OpenVraag1
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag $OpenVraag1
      * @return TAanmelding
      */
     public function withOpenVraag1($OpenVraag1)
@@ -500,7 +500,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     public function getOpenVraag2()
     {
@@ -508,7 +508,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag $OpenVraag2
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag $OpenVraag2
      * @return TAanmelding
      */
     public function withOpenVraag2($OpenVraag2)
@@ -520,7 +520,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     public function getOpenVraag3()
     {
@@ -528,7 +528,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag $OpenVraag3
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag $OpenVraag3
      * @return TAanmelding
      */
     public function withOpenVraag3($OpenVraag3)
@@ -540,7 +540,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     public function getOpenVraag4()
     {
@@ -548,7 +548,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag $OpenVraag4
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag $OpenVraag4
      * @return TAanmelding
      */
     public function withOpenVraag4($OpenVraag4)
@@ -560,7 +560,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     public function getOpenVraag5()
     {
@@ -568,7 +568,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag $OpenVraag5
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag $OpenVraag5
      * @return TAanmelding
      */
     public function withOpenVraag5($OpenVraag5)
@@ -580,7 +580,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     public function getOpenVraag6()
     {
@@ -588,7 +588,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag $OpenVraag6
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag $OpenVraag6
      * @return TAanmelding
      */
     public function withOpenVraag6($OpenVraag6)
@@ -600,7 +600,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     public function getOpenVraag7()
     {
@@ -608,7 +608,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag $OpenVraag7
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag $OpenVraag7
      * @return TAanmelding
      */
     public function withOpenVraag7($OpenVraag7)
@@ -620,7 +620,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     public function getOpenVraag8()
     {
@@ -628,7 +628,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag $OpenVraag8
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag $OpenVraag8
      * @return TAanmelding
      */
     public function withOpenVraag8($OpenVraag8)
@@ -640,7 +640,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     public function getOpenVraag9()
     {
@@ -648,7 +648,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag $OpenVraag9
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag $OpenVraag9
      * @return TAanmelding
      */
     public function withOpenVraag9($OpenVraag9)
@@ -660,7 +660,7 @@ class TAanmelding
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
      */
     public function getOpenVraag10()
     {
@@ -668,7 +668,7 @@ class TAanmelding
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOpenVraag $OpenVraag10
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag $OpenVraag10
      * @return TAanmelding
      */
     public function withOpenVraag10($OpenVraag10)

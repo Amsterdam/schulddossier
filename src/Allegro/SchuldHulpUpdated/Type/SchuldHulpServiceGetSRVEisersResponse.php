@@ -1,18 +1,18 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 use Phpro\SoapClient\Type\ResultInterface;
 
 class SchuldHulpServiceGetSRVEisersResponse implements ResultInterface
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TSRVEisers
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVEisers
      */
     private $Result;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TSRVEisers
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVEisers
      */
     public function getResult()
     {
@@ -20,7 +20,7 @@ class SchuldHulpServiceGetSRVEisersResponse implements ResultInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TSRVEisers $Result
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVEisers $Result
      * @return SchuldHulpServiceGetSRVEisersResponse
      */
     public function withResult($Result)

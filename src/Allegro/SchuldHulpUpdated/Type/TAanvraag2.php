@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TAanvraag2
 {
@@ -10,7 +10,7 @@ class TAanvraag2
     private $Bedrijfscode;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAanvraag2Persoon
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2Persoon
      */
     private $Aanvrager;
 
@@ -20,12 +20,12 @@ class TAanvraag2
     private $MetPartner;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAanvraag2Persoon
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2Persoon
      */
     private $Partner;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TGezinsSituatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGezinsSituatie
      */
     private $GezinsSituatie;
 
@@ -140,7 +140,7 @@ class TAanvraag2
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAanvraag2Persoon
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2Persoon
      */
     public function getAanvrager()
     {
@@ -148,7 +148,7 @@ class TAanvraag2
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAanvraag2Persoon $Aanvrager
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2Persoon $Aanvrager
      * @return TAanvraag2
      */
     public function withAanvrager($Aanvrager)
@@ -180,7 +180,7 @@ class TAanvraag2
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAanvraag2Persoon
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2Persoon
      */
     public function getPartner()
     {
@@ -188,7 +188,7 @@ class TAanvraag2
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAanvraag2Persoon $Partner
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2Persoon $Partner
      * @return TAanvraag2
      */
     public function withPartner($Partner)
@@ -200,7 +200,7 @@ class TAanvraag2
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TGezinsSituatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGezinsSituatie
      */
     public function getGezinsSituatie()
     {
@@ -208,7 +208,7 @@ class TAanvraag2
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TGezinsSituatie $GezinsSituatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGezinsSituatie $GezinsSituatie
      * @return TAanvraag2
      */
     public function withGezinsSituatie($GezinsSituatie)

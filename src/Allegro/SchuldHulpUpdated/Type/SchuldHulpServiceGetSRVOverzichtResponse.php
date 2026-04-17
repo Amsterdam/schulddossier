@@ -1,18 +1,18 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 use Phpro\SoapClient\Type\ResultInterface;
 
 class SchuldHulpServiceGetSRVOverzichtResponse implements ResultInterface
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SRVAanvraagHeaderArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SRVAanvraagHeaderArray
      */
     private $Result;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SRVAanvraagHeaderArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SRVAanvraagHeaderArray
      */
     public function getResult()
     {
@@ -20,7 +20,7 @@ class SchuldHulpServiceGetSRVOverzichtResponse implements ResultInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SRVAanvraagHeaderArray $Result
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SRVAanvraagHeaderArray $Result
      * @return SchuldHulpServiceGetSRVOverzichtResponse
      */
     public function withResult($Result)

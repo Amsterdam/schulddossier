@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class SimpleDataResult
 {
@@ -10,12 +10,12 @@ class SimpleDataResult
     private $TableName;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SimpleFieldInfoArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleFieldInfoArray
      */
     private $FieldInfo;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\StringArrayArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArrayArray
      */
     private $Data;
 
@@ -40,7 +40,7 @@ class SimpleDataResult
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SimpleFieldInfoArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleFieldInfoArray
      */
     public function getFieldInfo()
     {
@@ -48,7 +48,7 @@ class SimpleDataResult
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SimpleFieldInfoArray $FieldInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleFieldInfoArray $FieldInfo
      * @return SimpleDataResult
      */
     public function withFieldInfo($FieldInfo)
@@ -60,7 +60,7 @@ class SimpleDataResult
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\StringArrayArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArrayArray
      */
     public function getData()
     {
@@ -68,7 +68,7 @@ class SimpleDataResult
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\StringArrayArray $Data
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArrayArray $Data
      * @return SimpleDataResult
      */
     public function withData($Data)

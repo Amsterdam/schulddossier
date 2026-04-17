@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TTraject
 {
@@ -10,7 +10,7 @@ class TTraject
     private $UniekTrajectNummer;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TTrajectSoort
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTrajectSoort
      */
     private $TrajectSoort;
 
@@ -20,7 +20,7 @@ class TTraject
     private $Startdatum;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     private $StartMedewerker;
 
@@ -30,7 +30,7 @@ class TTraject
     private $Einddatum;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     private $EindMedewerker;
 
@@ -70,7 +70,7 @@ class TTraject
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TTrajectSoort
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTrajectSoort
      */
     public function getTrajectSoort()
     {
@@ -78,7 +78,7 @@ class TTraject
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TTrajectSoort $TrajectSoort
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTrajectSoort $TrajectSoort
      * @return TTraject
      */
     public function withTrajectSoort($TrajectSoort)
@@ -110,7 +110,7 @@ class TTraject
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     public function getStartMedewerker()
     {
@@ -118,7 +118,7 @@ class TTraject
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker $StartMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $StartMedewerker
      * @return TTraject
      */
     public function withStartMedewerker($StartMedewerker)
@@ -150,7 +150,7 @@ class TTraject
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     public function getEindMedewerker()
     {
@@ -158,7 +158,7 @@ class TTraject
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker $EindMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $EindMedewerker
      * @return TTraject
      */
     public function withEindMedewerker($EindMedewerker)

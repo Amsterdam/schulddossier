@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TCasusNotitie
 {
@@ -20,7 +20,7 @@ class TCasusNotitie
     private $Beschrijving;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     private $Medewerker;
 
@@ -90,7 +90,7 @@ class TCasusNotitie
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     public function getMedewerker()
     {
@@ -98,7 +98,7 @@ class TCasusNotitie
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker $Medewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $Medewerker
      * @return TCasusNotitie
      */
     public function withMedewerker($Medewerker)

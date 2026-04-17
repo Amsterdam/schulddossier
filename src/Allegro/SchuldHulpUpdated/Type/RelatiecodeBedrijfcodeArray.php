@@ -1,16 +1,16 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class RelatiecodeBedrijfcodeArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatiecodeBedrijfcode
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatiecodeBedrijfcode
      */
     private $TRelatiecodeBedrijfcode;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatiecodeBedrijfcode
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatiecodeBedrijfcode
      */
     public function getTRelatiecodeBedrijfcode()
     {
@@ -18,7 +18,7 @@ class RelatiecodeBedrijfcodeArray
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatiecodeBedrijfcode $TRelatiecodeBedrijfcode
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatiecodeBedrijfcode $TRelatiecodeBedrijfcode
      * @return RelatiecodeBedrijfcodeArray
      */
     public function withTRelatiecodeBedrijfcode($TRelatiecodeBedrijfcode)

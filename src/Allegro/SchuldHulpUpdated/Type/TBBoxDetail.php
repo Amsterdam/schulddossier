@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TBBoxDetail
 {
@@ -10,7 +10,7 @@ class TBBoxDetail
     private $Code;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie
      */
     private $Relatie;
 
@@ -65,32 +65,32 @@ class TBBoxDetail
     private $EmailDatum;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     private $AanmaakMedewerker;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie
      */
     private $AanmaakRelatie;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     private $AfzenderMedewerker;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie
      */
     private $AfzenderRelatie;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     private $OntvangerMedewerker;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie
      */
     private $OntvangerRelatie;
 
@@ -100,12 +100,12 @@ class TBBoxDetail
     private $LeesDatum;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     private $LeesMedewerker;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie
      */
     private $LeesRelatie;
 
@@ -115,12 +115,12 @@ class TBBoxDetail
     private $ArchiefDatum;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     private $ArchiefMedewerker;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie
      */
     private $ArchiefRelatie;
 
@@ -140,7 +140,7 @@ class TBBoxDetail
     private $BijlagenAantal;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TBBoxBijlageArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxBijlageArray
      */
     private $Bijlagen;
 
@@ -170,7 +170,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie
      */
     public function getRelatie()
     {
@@ -178,7 +178,7 @@ class TBBoxDetail
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie $Relatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie $Relatie
      * @return TBBoxDetail
      */
     public function withRelatie($Relatie)
@@ -390,7 +390,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     public function getAanmaakMedewerker()
     {
@@ -398,7 +398,7 @@ class TBBoxDetail
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker $AanmaakMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $AanmaakMedewerker
      * @return TBBoxDetail
      */
     public function withAanmaakMedewerker($AanmaakMedewerker)
@@ -410,7 +410,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie
      */
     public function getAanmaakRelatie()
     {
@@ -418,7 +418,7 @@ class TBBoxDetail
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie $AanmaakRelatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie $AanmaakRelatie
      * @return TBBoxDetail
      */
     public function withAanmaakRelatie($AanmaakRelatie)
@@ -430,7 +430,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     public function getAfzenderMedewerker()
     {
@@ -438,7 +438,7 @@ class TBBoxDetail
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker $AfzenderMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $AfzenderMedewerker
      * @return TBBoxDetail
      */
     public function withAfzenderMedewerker($AfzenderMedewerker)
@@ -450,7 +450,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie
      */
     public function getAfzenderRelatie()
     {
@@ -458,7 +458,7 @@ class TBBoxDetail
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie $AfzenderRelatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie $AfzenderRelatie
      * @return TBBoxDetail
      */
     public function withAfzenderRelatie($AfzenderRelatie)
@@ -470,7 +470,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     public function getOntvangerMedewerker()
     {
@@ -478,7 +478,7 @@ class TBBoxDetail
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker $OntvangerMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $OntvangerMedewerker
      * @return TBBoxDetail
      */
     public function withOntvangerMedewerker($OntvangerMedewerker)
@@ -490,7 +490,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie
      */
     public function getOntvangerRelatie()
     {
@@ -498,7 +498,7 @@ class TBBoxDetail
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie $OntvangerRelatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie $OntvangerRelatie
      * @return TBBoxDetail
      */
     public function withOntvangerRelatie($OntvangerRelatie)
@@ -530,7 +530,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     public function getLeesMedewerker()
     {
@@ -538,7 +538,7 @@ class TBBoxDetail
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker $LeesMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $LeesMedewerker
      * @return TBBoxDetail
      */
     public function withLeesMedewerker($LeesMedewerker)
@@ -550,7 +550,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie
      */
     public function getLeesRelatie()
     {
@@ -558,7 +558,7 @@ class TBBoxDetail
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie $LeesRelatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie $LeesRelatie
      * @return TBBoxDetail
      */
     public function withLeesRelatie($LeesRelatie)
@@ -590,7 +590,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
     public function getArchiefMedewerker()
     {
@@ -598,7 +598,7 @@ class TBBoxDetail
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TMedewerker $ArchiefMedewerker
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $ArchiefMedewerker
      * @return TBBoxDetail
      */
     public function withArchiefMedewerker($ArchiefMedewerker)
@@ -610,7 +610,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie
      */
     public function getArchiefRelatie()
     {
@@ -618,7 +618,7 @@ class TBBoxDetail
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TRelatie $ArchiefRelatie
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie $ArchiefRelatie
      * @return TBBoxDetail
      */
     public function withArchiefRelatie($ArchiefRelatie)
@@ -690,7 +690,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TBBoxBijlageArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxBijlageArray
      */
     public function getBijlagen()
     {
@@ -698,7 +698,7 @@ class TBBoxDetail
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TBBoxBijlageArray $Bijlagen
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxBijlageArray $Bijlagen
      * @return TBBoxDetail
      */
     public function withBijlagen($Bijlagen)

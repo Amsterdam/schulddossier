@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TAanvraagSR
 {
@@ -25,7 +25,7 @@ class TAanvraagSR
     private $OorzaakSchulden;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOrganisatie
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie
      */
     private $Bewindvoerder;
 
@@ -65,17 +65,17 @@ class TAanvraagSR
     private $HulpverlenerOvernemen;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\OpenVraagArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OpenVraagArray
      */
     private $OpenVragen;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\GeslotenVraagArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\GeslotenVraagArray
      */
     private $GeslotenVragen;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SchuldArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray
      */
     private $Schulden;
 
@@ -160,7 +160,7 @@ class TAanvraagSR
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOrganisatie
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie
      */
     public function getBewindvoerder()
     {
@@ -168,7 +168,7 @@ class TAanvraagSR
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TOrganisatie $Bewindvoerder
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie $Bewindvoerder
      * @return TAanvraagSR
      */
     public function withBewindvoerder($Bewindvoerder)
@@ -320,7 +320,7 @@ class TAanvraagSR
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\OpenVraagArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OpenVraagArray
      */
     public function getOpenVragen()
     {
@@ -328,7 +328,7 @@ class TAanvraagSR
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\OpenVraagArray $OpenVragen
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OpenVraagArray $OpenVragen
      * @return TAanvraagSR
      */
     public function withOpenVragen($OpenVragen)
@@ -340,7 +340,7 @@ class TAanvraagSR
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\GeslotenVraagArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\GeslotenVraagArray
      */
     public function getGeslotenVragen()
     {
@@ -348,7 +348,7 @@ class TAanvraagSR
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\GeslotenVraagArray $GeslotenVragen
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\GeslotenVraagArray $GeslotenVragen
      * @return TAanvraagSR
      */
     public function withGeslotenVragen($GeslotenVragen)
@@ -360,7 +360,7 @@ class TAanvraagSR
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SchuldArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray
      */
     public function getSchulden()
     {
@@ -368,7 +368,7 @@ class TAanvraagSR
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SchuldArray $Schulden
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray $Schulden
      * @return TAanvraagSR
      */
     public function withSchulden($Schulden)

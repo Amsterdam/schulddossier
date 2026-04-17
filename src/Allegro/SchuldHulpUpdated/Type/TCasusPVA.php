@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TCasusPVA
 {
@@ -45,7 +45,7 @@ class TCasusPVA
     private $Gefiatteerd;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\CasusPVAProductArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\CasusPVAProductArray
      */
     private $Producten;
 
@@ -210,7 +210,7 @@ class TCasusPVA
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\CasusPVAProductArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\CasusPVAProductArray
      */
     public function getProducten()
     {
@@ -218,7 +218,7 @@ class TCasusPVA
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\CasusPVAProductArray $Producten
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\CasusPVAProductArray $Producten
      * @return TCasusPVA
      */
     public function withProducten($Producten)

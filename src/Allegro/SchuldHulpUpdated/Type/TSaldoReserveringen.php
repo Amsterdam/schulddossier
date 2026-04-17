@@ -1,11 +1,11 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TSaldoReserveringen
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SaldoReserveringArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SaldoReserveringArray
      */
     private $SaldoReserveringen;
 
@@ -15,7 +15,7 @@ class TSaldoReserveringen
     private $Totaal;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SaldoReserveringArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SaldoReserveringArray
      */
     public function getSaldoReserveringen()
     {
@@ -23,7 +23,7 @@ class TSaldoReserveringen
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\SaldoReserveringArray $SaldoReserveringen
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SaldoReserveringArray $SaldoReserveringen
      * @return TSaldoReserveringen
      */
     public function withSaldoReserveringen($SaldoReserveringen)

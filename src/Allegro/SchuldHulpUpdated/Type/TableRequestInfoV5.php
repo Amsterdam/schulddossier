@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TableRequestInfoV5
 {
@@ -10,12 +10,12 @@ class TableRequestInfoV5
     private $WhereClause;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\StringArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray
      */
     private $DynamicSelectFieldNames;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\ColumnSorting
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ColumnSorting
      */
     private $Sorting;
 
@@ -40,7 +40,7 @@ class TableRequestInfoV5
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\StringArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray
      */
     public function getDynamicSelectFieldNames()
     {
@@ -48,7 +48,7 @@ class TableRequestInfoV5
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\StringArray $DynamicSelectFieldNames
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray $DynamicSelectFieldNames
      * @return TableRequestInfoV5
      */
     public function withDynamicSelectFieldNames($DynamicSelectFieldNames)
@@ -60,7 +60,7 @@ class TableRequestInfoV5
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\ColumnSorting
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ColumnSorting
      */
     public function getSorting()
     {
@@ -68,7 +68,7 @@ class TableRequestInfoV5
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\ColumnSorting $Sorting
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ColumnSorting $Sorting
      * @return TableRequestInfoV5
      */
     public function withSorting($Sorting)

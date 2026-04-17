@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TAanvraag2Persoon
 {
@@ -50,17 +50,17 @@ class TAanvraag2Persoon
     private $Nationaliteit;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\Rekeningnummer2Array
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\Rekeningnummer2Array
      */
     private $Rekeningnummers;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
      */
     private $Bezoekadres;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
      */
     private $Postadres;
 
@@ -75,17 +75,17 @@ class TAanvraag2Persoon
     private $CorrespondentieWeb;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TContact
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContact
      */
     private $Contact;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\InkomenArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\InkomenArray
      */
     private $Inkomen;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\UitgavenArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\UitgavenArray
      */
     private $Uitgaven;
 
@@ -270,7 +270,7 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\Rekeningnummer2Array
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\Rekeningnummer2Array
      */
     public function getRekeningnummers()
     {
@@ -278,7 +278,7 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\Rekeningnummer2Array $Rekeningnummers
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\Rekeningnummer2Array $Rekeningnummers
      * @return TAanvraag2Persoon
      */
     public function withRekeningnummers($Rekeningnummers)
@@ -290,7 +290,7 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
      */
     public function getBezoekadres()
     {
@@ -298,7 +298,7 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres $Bezoekadres
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $Bezoekadres
      * @return TAanvraag2Persoon
      */
     public function withBezoekadres($Bezoekadres)
@@ -310,7 +310,7 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
      */
     public function getPostadres()
     {
@@ -318,7 +318,7 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres $Postadres
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $Postadres
      * @return TAanvraag2Persoon
      */
     public function withPostadres($Postadres)
@@ -370,7 +370,7 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TContact
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContact
      */
     public function getContact()
     {
@@ -378,7 +378,7 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TContact $Contact
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContact $Contact
      * @return TAanvraag2Persoon
      */
     public function withContact($Contact)
@@ -390,7 +390,7 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\InkomenArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\InkomenArray
      */
     public function getInkomen()
     {
@@ -398,7 +398,7 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\InkomenArray $Inkomen
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\InkomenArray $Inkomen
      * @return TAanvraag2Persoon
      */
     public function withInkomen($Inkomen)
@@ -410,7 +410,7 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\UitgavenArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\UitgavenArray
      */
     public function getUitgaven()
     {
@@ -418,7 +418,7 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\UitgavenArray $Uitgaven
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\UitgavenArray $Uitgaven
      * @return TAanvraag2Persoon
      */
     public function withUitgaven($Uitgaven)

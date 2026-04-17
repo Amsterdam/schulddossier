@@ -1,20 +1,20 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 use Phpro\SoapClient\Type\RequestInterface;
 
 class SchuldHulpServiceAanvraagSR implements RequestInterface
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAanvraagSR
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraagSR
      */
     private $aAanvraagSR;
 
     /**
      * Constructor
      *
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAanvraagSR $aAanvraagSR
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraagSR $aAanvraagSR
      */
     public function __construct($aAanvraagSR)
     {
@@ -22,7 +22,7 @@ class SchuldHulpServiceAanvraagSR implements RequestInterface
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAanvraagSR
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraagSR
      */
     public function getAAanvraagSR()
     {
@@ -30,7 +30,7 @@ class SchuldHulpServiceAanvraagSR implements RequestInterface
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAanvraagSR $aAanvraagSR
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraagSR $aAanvraagSR
      * @return SchuldHulpServiceAanvraagSR
      */
     public function withAAanvraagSR($aAanvraagSR)

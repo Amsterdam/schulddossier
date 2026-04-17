@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TOpdrachtgeverKlant
 {
@@ -25,7 +25,7 @@ class TOpdrachtgeverKlant
     private $BSN;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
      */
     private $Adres;
 
@@ -65,12 +65,12 @@ class TOpdrachtgeverKlant
     private $CasusFase;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TrajectSoortArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TrajectSoortArray
      */
     private $Trajecten;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\BBRVormArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\BBRVormArray
      */
     private $BBRVorm;
 
@@ -155,7 +155,7 @@ class TOpdrachtgeverKlant
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
      */
     public function getAdres()
     {
@@ -163,7 +163,7 @@ class TOpdrachtgeverKlant
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TAdres $Adres
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $Adres
      * @return TOpdrachtgeverKlant
      */
     public function withAdres($Adres)
@@ -315,7 +315,7 @@ class TOpdrachtgeverKlant
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TrajectSoortArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TrajectSoortArray
      */
     public function getTrajecten()
     {
@@ -323,7 +323,7 @@ class TOpdrachtgeverKlant
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\TrajectSoortArray $Trajecten
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TrajectSoortArray $Trajecten
      * @return TOpdrachtgeverKlant
      */
     public function withTrajecten($Trajecten)
@@ -335,7 +335,7 @@ class TOpdrachtgeverKlant
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\BBRVormArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\BBRVormArray
      */
     public function getBBRVorm()
     {
@@ -343,7 +343,7 @@ class TOpdrachtgeverKlant
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\BBRVormArray $BBRVorm
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\BBRVormArray $BBRVorm
      * @return TOpdrachtgeverKlant
      */
     public function withBBRVorm($BBRVorm)

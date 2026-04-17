@@ -1,8 +1,8 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated;
 
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection;
 use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMap;
 

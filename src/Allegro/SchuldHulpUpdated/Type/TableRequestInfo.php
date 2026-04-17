@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class TableRequestInfo
 {
@@ -20,7 +20,7 @@ class TableRequestInfo
     private $MaxRecords;
 
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\DataParameterArray
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\DataParameterArray
      */
     private $Parameters;
 
@@ -85,7 +85,7 @@ class TableRequestInfo
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\DataParameterArray
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\DataParameterArray
      */
     public function getParameters()
     {
@@ -93,7 +93,7 @@ class TableRequestInfo
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\Type\DataParameterArray $Parameters
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\DataParameterArray $Parameters
      * @return TableRequestInfo
      */
     public function withParameters($Parameters)
