@@ -195,7 +195,7 @@ class AllegroService
         );
         $result = $response->getResult();
 
-        return $result->getTSRVAanvraagHeader();
+        return $result->getTSRVAanvraagHeader()[0];
     }
 
     /**
@@ -523,19 +523,18 @@ class AllegroService
      */
     public function getSRVEisers(Dossier $dossier, TSRVAanvraagHeader $header): ?TSRVEisers
     {
-        $schuldHulpService = $this->getSchuldHulpService($dossier->getOrganisatie());
-
         $aanvraagHeader = new TSRVAanvraagHeader();
-        $aanvraagHeader->withRelatieCode($header->getRelatieCode());
-        $aanvraagHeader->withVolgnummer($header->getVolgnummer());
-        $aanvraagHeader->withIsNPS($header->getIsNPS());
-        $aanvraagHeader->withStatus($header->getStatus());
-        $aanvraagHeader->withStatustekst($header->getStatustekst());
-        $aanvraagHeader->withAanvraagdatum($header->getAanvraagdatum());
-        $aanvraagHeader->withExtraStatus($header->getExtraStatus());
+        $aanvraagHeader = $aanvraagHeader->withRelatieCode($header->getRelatieCode());
+        $aanvraagHeader = $aanvraagHeader->withVolgnummer($header->getVolgnummer());
+        $aanvraagHeader = $aanvraagHeader->withIsNPS($header->getIsNPS());
+        $aanvraagHeader = $aanvraagHeader->withStatus($header->getStatus());
+        $aanvraagHeader = $aanvraagHeader->withStatustekst($header->getStatustekst());
+        $aanvraagHeader = $aanvraagHeader->withAanvraagdatum($header->getAanvraagdatum());
+        $aanvraagHeader = $aanvraagHeader->withExtraStatus($header->getExtraStatus());
 
         $schuldHulpServiceGetSRVEisers = new TypeSchuldHulpServiceGetSRVEisers($aanvraagHeader);
 
+        $schuldHulpService = $this->getSchuldHulpService($dossier->getOrganisatie());
         $srvEisers = $schuldHulpService->getSRVEisers($schuldHulpServiceGetSRVEisers);
         return $srvEisers->getResult();
     }
