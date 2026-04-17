@@ -3,10 +3,10 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\AllegroLoginClient;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\LoginServiceAllegroWebLogin;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\Login\Type\AWUserInfo;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginClientFactory;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClient;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\LoginServiceAllegroWebLogin;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\AWUserInfo;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\SchuldHulpUpdatedClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated\SchuldHulpUpdatedClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\InkomenArray;
@@ -509,8 +509,8 @@ class AllegroService
         ?Organisatie $organisatie = null,
         ?string $proxyHostIp = null,
         ?string $proxyHostPort = null
-    ): AllegroLoginClient {
-        return LoginClientFactory::factory(
+    ): LoginServiceClient {
+        return LoginServiceClientFactory::factory(
             $this->loginWsdl,
             $organisatie,
             $proxyHostIp,
