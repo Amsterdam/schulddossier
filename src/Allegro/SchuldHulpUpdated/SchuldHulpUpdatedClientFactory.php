@@ -2,8 +2,6 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated;
 
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\AllegroHelper;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SessionMiddleware;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use Http\Client\Common\PluginClient;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -12,7 +10,6 @@ use Soap\ExtSoapEngine\ExtSoapOptions;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Caller\EngineCaller;
 use Soap\Psr18Transport\Psr18Transport;
-use Http\Discovery\Psr18ClientDiscovery;
 use Soap\Psr18Transport\Middleware\SoapHeaderMiddleware;
 use Soap\Xml\Builder\SoapHeader;
 use Symfony\Component\HttpClient\HttpClient;
@@ -37,56 +34,20 @@ class SchuldHulpUpdatedClientFactory
         /* if the code does not work, we could try this one */
         // $httpClient = Psr18ClientDiscovery::find();
 
-
         if (!empty($proxyHostIp) && !empty($proxyHostPort)) {
-
             $httpClient = HttpClient::create([
                 'proxy' => 'http://' . $proxyHostIp . ':' . $proxyHostPort,
                 'headers' => [
                     'User-Agent' => 'fixxx-schuldhulp/1.0'
                 ]
             ]);
-
-            $psr18Client = new Psr18Client($httpClient);
-
-            $tns = 'http://tempuri.org/';
-            $transporter = Psr18Transport::createForClient(
-                new PluginClient(
-                    $psr18Client,
-                    [
-                        new SoapHeaderMiddleware(
-                            new SoapHeader(
-                                $tns,
-                                'ROClientIDHeader',
-                                children(
-                                    namespaced_element($tns, 'ID', value($organisatie->getAllegroSessionId())),
-                                )
-                            )
-                        )
-                    ]
-                )
-            );
-
-
-            $extSoapOptions = AllegroHelper::createSoapOptionsArray($proxyHostIp, $proxyHostPort);
-
-            $engine = DefaultEngineFactory::create(
-                ExtSoapOptions::defaults($wsdl, $extSoapOptions)
-                    ->withClassMap(SchuldHulpUpdatedClassmap::getCollection()),
-            );
-
-            $eventDispatcher = new EventDispatcher();
-            $caller = new EventDispatchingCaller(new EngineCaller($engine), $eventDispatcher);
-
-            return new SchuldHulpUpdatedClient($caller);
+        } else {
+            $httpClient = HttpClient::create([
+                'headers' => [
+                    'User-Agent' => 'fixxx-schuldhulp/1.0'
+                ]
+            ]);
         }
-
-
-        $httpClient = HttpClient::create([
-            'headers' => [
-                'User-Agent' => 'fixxx-schuldhulp/1.0'
-            ]
-        ]);
 
         $psr18Client = new Psr18Client($httpClient);
 
