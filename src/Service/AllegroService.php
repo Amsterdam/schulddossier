@@ -235,8 +235,7 @@ class AllegroService
             throw new \Exception('Login of organisatie failed');
         }
 
-
-        $bedrijfsCode = 2; // Vaste waarde 2 = Kredietbank
+        $bedrijfscode = 2; // Vaste waarde 2 = Kredietbank
         $aanvragerCorrespondentieMail = false;
         $aanvragerCorrespondentieWeb = false;
         $aanvraagSchuldbedrag = $dossier->getSumSchuldItemsNotInPrullenbak();
@@ -298,7 +297,7 @@ class AllegroService
         }
 
         $inkomen = $this->mapInkomen($dossier);
-        $aanvrager =  $aanvrager->withInkomen($inkomen);
+        $aanvrager = $aanvrager->withInkomen($inkomen);
 
         // Partner
         $partner = null;
@@ -326,7 +325,7 @@ class AllegroService
         $gezin = $gezin->withBurgerlijkeStaatSinds(new \DateTime('0001-01-01T00:00:00'));
 
         $aanvraag = new TAanvraag2SR();
-        $aanvraag = $aanvraag->withBedrijfscode($bedrijfsCode);
+        $aanvraag = $aanvraag->withBedrijfscode($bedrijfscode);
         $aanvraag = $aanvraag->withAanvrager($aanvrager);
         $aanvraag = $aanvraag->withPartner($partner);
         $aanvraag = $aanvraag->withGezinsSituatie($gezin);
@@ -351,10 +350,12 @@ class AllegroService
         }
 
         $schuldHulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyHostPort);
-        $a = $schuldHulpService->Aanvraag2SR(new SchuldHulpServiceAanvraag2SR($aanvraag));
+        $schuldHulpServiceAanvraag2SR = new SchuldHulpServiceAanvraag2SR($aanvraag);
 
-        if (!$a->getResult()) {
-            $this->logger->error(sprintf('%s - %s', $a->getExtraInfo(), $a->getExtraInfoOmschrijving()), [AllegroService::LOGGING_CONTEXT]);
+        $aanvraagResponse = $schuldHulpService->Aanvraag2SR($schuldHulpServiceAanvraag2SR);
+
+        if (!$aanvraagResponse->getResult()) {
+            $this->logger->error(sprintf('%s - %s', $aanvraagResponse->getExtraInfo(), $aanvraagResponse->getExtraInfoOmschrijving()), [AllegroService::LOGGING_CONTEXT]);
         }
 
         $user = $this->security->getUser();
@@ -367,7 +368,7 @@ class AllegroService
             DossierChangedEvent::NAME
         );
 
-        return $a->getResult();
+        return $aanvraagResponse->getResult();
     }
 
     private function mapInkomen(Dossier $dossier): InkomenArray
