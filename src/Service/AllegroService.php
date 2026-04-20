@@ -193,9 +193,16 @@ class AllegroService
         $response = $schuldhulpService->getSRVOverzicht(
             (new TypeSchuldHulpServiceGetSRVOverzicht($relatieCode))
         );
-        $result = $response->getResult();
 
-        return $result->getTSRVAanvraagHeader()[0];
+        /** @var array $result */
+        $result = $response->getResult()->getTSRVAanvraagHeader();
+
+        /** 
+         * There should be one aanvraag for a person at the same time
+         * @var TSRVAanvraagHeader $SRVaanvraagheader */
+        $SRVaanvraagheader = $result[0];
+
+        return $SRVaanvraagheader;
     }
 
     /**
