@@ -29,4 +29,3 @@ class BBRHeaderArray
         return $new;
     }
 }
-

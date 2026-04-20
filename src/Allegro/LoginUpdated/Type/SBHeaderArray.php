@@ -29,4 +29,3 @@ class SBHeaderArray
         return $new;
     }
 }
-

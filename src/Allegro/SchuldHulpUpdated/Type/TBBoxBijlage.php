@@ -129,4 +129,3 @@ class TBBoxBijlage
         return $new;
     }
 }
-

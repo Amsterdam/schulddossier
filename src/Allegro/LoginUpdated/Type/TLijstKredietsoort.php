@@ -54,4 +54,3 @@ class TLijstKredietsoort
         return $new;
     }
 }
-

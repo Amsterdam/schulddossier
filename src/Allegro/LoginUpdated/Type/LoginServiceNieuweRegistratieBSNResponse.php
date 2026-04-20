@@ -81,4 +81,3 @@ class LoginServiceNieuweRegistratieBSNResponse implements ResultInterface
         return $new;
     }
 }
-

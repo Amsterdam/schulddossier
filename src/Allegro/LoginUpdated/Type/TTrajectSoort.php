@@ -54,4 +54,3 @@ class TTrajectSoort
         return $new;
     }
 }
-

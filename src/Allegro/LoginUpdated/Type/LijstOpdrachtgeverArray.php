@@ -29,4 +29,3 @@ class LijstOpdrachtgeverArray
         return $new;
     }
 }
-

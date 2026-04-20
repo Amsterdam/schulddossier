@@ -29,4 +29,3 @@ class ROClientIDHeader
         return $new;
     }
 }
-

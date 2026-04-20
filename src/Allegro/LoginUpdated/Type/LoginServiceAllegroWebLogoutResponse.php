@@ -7,4 +7,3 @@ use Phpro\SoapClient\Type\ResultInterface;
 class LoginServiceAllegroWebLogoutResponse implements ResultInterface
 {
 }
-

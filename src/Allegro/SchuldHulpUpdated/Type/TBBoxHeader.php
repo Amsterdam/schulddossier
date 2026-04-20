@@ -229,4 +229,3 @@ class TBBoxHeader
         return $new;
     }
 }
-

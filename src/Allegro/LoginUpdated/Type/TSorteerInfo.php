@@ -54,4 +54,3 @@ class TSorteerInfo
         return $new;
     }
 }
-

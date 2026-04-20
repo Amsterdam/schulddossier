@@ -179,4 +179,3 @@ class TRekeningnummer
         return $new;
     }
 }
-

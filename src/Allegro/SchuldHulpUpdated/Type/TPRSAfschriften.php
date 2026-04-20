@@ -29,4 +29,3 @@ class TPRSAfschriften
         return $new;
     }
 }
-

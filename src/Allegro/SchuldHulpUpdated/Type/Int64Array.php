@@ -29,4 +29,3 @@ class Int64Array
         return $new;
     }
 }
-

@@ -104,4 +104,3 @@ class TContract2
         return $new;
     }
 }
-

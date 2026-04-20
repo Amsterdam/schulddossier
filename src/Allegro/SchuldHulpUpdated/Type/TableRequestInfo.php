@@ -104,4 +104,3 @@ class TableRequestInfo
         return $new;
     }
 }
-

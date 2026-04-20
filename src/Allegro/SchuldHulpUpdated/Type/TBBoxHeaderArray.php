@@ -29,4 +29,3 @@ class TBBoxHeaderArray
         return $new;
     }
 }
-

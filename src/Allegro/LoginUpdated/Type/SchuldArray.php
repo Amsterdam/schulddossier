@@ -29,4 +29,3 @@ class SchuldArray
         return $new;
     }
 }
-

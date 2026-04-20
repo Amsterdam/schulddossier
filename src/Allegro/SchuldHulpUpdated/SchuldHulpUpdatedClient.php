@@ -110,4 +110,3 @@ class SchuldHulpUpdatedClient
         return ($this->caller)('Aanvraag2SR', $parameters);
     }
 }
-

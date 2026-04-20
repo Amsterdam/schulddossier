@@ -29,4 +29,3 @@ class TAanvraagLening
         return $new;
     }
 }
-

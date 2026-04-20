@@ -254,4 +254,3 @@ class TTrajectTaak
         return $new;
     }
 }
-

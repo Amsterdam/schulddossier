@@ -78,4 +78,3 @@ class SchuldHulpUpdatedClientFactory
         return new SchuldHulpUpdatedClient($caller);
     }
 }
-

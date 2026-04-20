@@ -129,4 +129,3 @@ class TGezinsSituatie
         return $new;
     }
 }
-

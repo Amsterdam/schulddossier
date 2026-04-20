@@ -29,4 +29,3 @@ class RelatieProductArray
         return $new;
     }
 }
-
