@@ -29,4 +29,3 @@ class BBROpdrachtArray
         return $new;
     }
 }
-

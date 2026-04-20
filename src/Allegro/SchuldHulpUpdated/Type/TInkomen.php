@@ -579,4 +579,3 @@ class TInkomen
         return $new;
     }
 }
-

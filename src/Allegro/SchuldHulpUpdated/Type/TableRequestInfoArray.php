@@ -29,4 +29,3 @@ class TableRequestInfoArray
         return $new;
     }
 }
-

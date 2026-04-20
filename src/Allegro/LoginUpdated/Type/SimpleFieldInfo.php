@@ -79,4 +79,3 @@ class SimpleFieldInfo
         return $new;
     }
 }
-

@@ -79,4 +79,3 @@ class SimpleDataParameter
         return $new;
     }
 }
-

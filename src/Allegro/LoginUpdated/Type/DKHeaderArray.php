@@ -29,4 +29,3 @@ class DKHeaderArray
         return $new;
     }
 }
-

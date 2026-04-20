@@ -29,4 +29,3 @@ class TPRSAfschriftMutaties
         return $new;
     }
 }
-

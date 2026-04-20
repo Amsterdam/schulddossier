@@ -29,4 +29,3 @@ class IntegerArray
         return $new;
     }
 }
-

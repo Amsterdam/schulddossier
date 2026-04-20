@@ -29,4 +29,3 @@ class TrajectSoortArray
         return $new;
     }
 }
-

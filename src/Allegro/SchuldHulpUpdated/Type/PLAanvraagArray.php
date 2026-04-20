@@ -29,4 +29,3 @@ class PLAanvraagArray
         return $new;
     }
 }
-

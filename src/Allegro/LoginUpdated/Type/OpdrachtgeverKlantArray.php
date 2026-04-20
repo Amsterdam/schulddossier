@@ -29,4 +29,3 @@ class OpdrachtgeverKlantArray
         return $new;
     }
 }
-

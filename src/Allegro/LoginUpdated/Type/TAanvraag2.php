@@ -579,4 +579,3 @@ class TAanvraag2
         return $new;
     }
 }
-

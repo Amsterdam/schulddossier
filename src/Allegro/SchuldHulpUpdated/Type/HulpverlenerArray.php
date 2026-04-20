@@ -29,4 +29,3 @@ class HulpverlenerArray
         return $new;
     }
 }
-

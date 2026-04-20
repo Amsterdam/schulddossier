@@ -29,4 +29,3 @@ class SimpleDataResultArray
         return $new;
     }
 }
-

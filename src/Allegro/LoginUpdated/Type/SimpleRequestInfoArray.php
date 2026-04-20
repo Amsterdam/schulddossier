@@ -29,4 +29,3 @@ class SimpleRequestInfoArray
         return $new;
     }
 }
-

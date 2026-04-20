@@ -554,4 +554,3 @@ class TCasusInfo
         return $new;
     }
 }
-

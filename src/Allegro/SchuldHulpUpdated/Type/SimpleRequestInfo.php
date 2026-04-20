@@ -179,4 +179,3 @@ class SimpleRequestInfo
         return $new;
     }
 }
-

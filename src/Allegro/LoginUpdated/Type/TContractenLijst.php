@@ -29,4 +29,3 @@ class TContractenLijst
         return $new;
     }
 }
-

@@ -31,4 +31,3 @@ class SchuldHulpServiceGetSBResponse implements ResultInterface
         return $new;
     }
 }
-

@@ -29,4 +29,3 @@ class CasusHeaderArray
         return $new;
     }
 }
-

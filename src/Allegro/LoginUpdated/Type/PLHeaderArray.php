@@ -29,4 +29,3 @@ class PLHeaderArray
         return $new;
     }
 }
-

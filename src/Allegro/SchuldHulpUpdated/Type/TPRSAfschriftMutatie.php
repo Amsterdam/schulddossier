@@ -279,4 +279,3 @@ class TPRSAfschriftMutatie
         return $new;
     }
 }
-

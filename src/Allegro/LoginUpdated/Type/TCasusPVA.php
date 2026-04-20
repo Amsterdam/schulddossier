@@ -229,4 +229,3 @@ class TCasusPVA
         return $new;
     }
 }
-

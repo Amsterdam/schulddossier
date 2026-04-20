@@ -39,7 +39,6 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Security;
 
-
 class AllegroService
 {
     const SESSION_TIMEOUT = 1800;
@@ -197,7 +196,7 @@ class AllegroService
         /** @var array $result */
         $result = $response->getResult()->getTSRVAanvraagHeader();
 
-        /** 
+        /**
          * There should be one aanvraag for a person at the same time
          * @var TSRVAanvraagHeader $SRVaanvraagheader */
         $SRVaanvraagheader = $result[0];

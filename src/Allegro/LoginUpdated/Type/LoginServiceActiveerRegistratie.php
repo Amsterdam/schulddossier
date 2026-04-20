@@ -68,4 +68,3 @@ class LoginServiceActiveerRegistratie implements RequestInterface
         return $new;
     }
 }
-

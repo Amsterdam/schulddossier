@@ -29,4 +29,3 @@ class PRSAfschriftArray
         return $new;
     }
 }
-

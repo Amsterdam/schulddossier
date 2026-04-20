@@ -29,4 +29,3 @@ class SBEiserArray
         return $new;
     }
 }
-

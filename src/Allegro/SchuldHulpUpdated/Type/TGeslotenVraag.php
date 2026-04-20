@@ -54,4 +54,3 @@ class TGeslotenVraag
         return $new;
     }
 }
-

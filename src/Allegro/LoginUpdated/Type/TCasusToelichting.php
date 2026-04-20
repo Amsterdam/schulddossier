@@ -204,4 +204,3 @@ class TCasusToelichting
         return $new;
     }
 }
-

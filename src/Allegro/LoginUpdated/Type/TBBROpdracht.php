@@ -504,4 +504,3 @@ class TBBROpdracht
         return $new;
     }
 }
-

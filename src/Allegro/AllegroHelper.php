@@ -2,7 +2,6 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro;
 
-
 class AllegroHelper
 {
     /**

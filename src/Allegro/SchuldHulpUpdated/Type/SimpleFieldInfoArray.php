@@ -29,4 +29,3 @@ class SimpleFieldInfoArray
         return $new;
     }
 }
-

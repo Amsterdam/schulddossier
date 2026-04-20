@@ -204,4 +204,3 @@ class AWUserInfo
         return $new;
     }
 }
-

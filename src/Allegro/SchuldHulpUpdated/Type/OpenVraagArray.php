@@ -29,4 +29,3 @@ class OpenVraagArray
         return $new;
     }
 }
-

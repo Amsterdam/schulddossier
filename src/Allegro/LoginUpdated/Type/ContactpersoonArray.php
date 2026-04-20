@@ -29,4 +29,3 @@ class ContactpersoonArray
         return $new;
     }
 }
-

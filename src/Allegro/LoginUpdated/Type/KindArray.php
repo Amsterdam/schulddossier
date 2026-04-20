@@ -29,4 +29,3 @@ class KindArray
         return $new;
     }
 }
-
