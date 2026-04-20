@@ -23,13 +23,6 @@ class LoginServiceClientFactory
         ?string $proxyHostPort = null
     ): LoginServiceClient
     {
-        // TODO handler implementeren: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-994
-        // needs become a transporter: https://github.com/phpro/soap-client/blob/v2.0.0/UPGRADING.md#transport
-        // $handler = AllegroHelper::createSoapClientHandler($organisatie, $proxyHostIp, $proxyHostPort);
-
-        /* if the code does not work, we could try this one */
-        // $httpClient = Psr18ClientDiscovery::find();
-
         $extSoapOptionsArray = [];
 
         if (!empty($proxyHostIp) && !empty($proxyHostPort)) {
