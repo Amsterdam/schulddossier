@@ -1,0 +1,56 @@
+<?php
+
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
+
+class TSaldoReserveringen
+{
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SaldoReserveringArray
+     */
+    private $SaldoReserveringen;
+
+    /**
+     * @var float
+     */
+    private $Totaal;
+
+    /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SaldoReserveringArray
+     */
+    public function getSaldoReserveringen()
+    {
+        return $this->SaldoReserveringen;
+    }
+
+    /**
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SaldoReserveringArray $SaldoReserveringen
+     * @return TSaldoReserveringen
+     */
+    public function withSaldoReserveringen($SaldoReserveringen)
+    {
+        $new = clone $this;
+        $new->SaldoReserveringen = $SaldoReserveringen;
+
+        return $new;
+    }
+
+    /**
+     * @return float
+     */
+    public function getTotaal()
+    {
+        return $this->Totaal;
+    }
+
+    /**
+     * @param float $Totaal
+     * @return TSaldoReserveringen
+     */
+    public function withTotaal($Totaal)
+    {
+        $new = clone $this;
+        $new->Totaal = $Totaal;
+
+        return $new;
+    }
+}

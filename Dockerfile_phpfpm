@@ -30,7 +30,9 @@ RUN docker-php-ext-install \
     soap \
     intl \
     gd \
-    xsl
+    xsl \
+    bcmath
+
 
 RUN docker-php-ext-configure \
     gd \
