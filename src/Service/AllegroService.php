@@ -291,8 +291,8 @@ class AllegroService
         if (null !== $dossier->getClientEmail() or null !== $dossier->getClientTelefoonnummer()) {
             $contact = new TContact();
             $contact = $contact->withTelefoonThuis($dossier->getClientTelefoonnummer());
-            $contact = $contact->withEmailAdres($dossier->$dossier->getClientEmail());
-            $aanvrager =  $aanvrager->withContact($contact);
+            $contact = $contact->withEmailAdres($dossier->getClientEmail());
+            $aanvrager = $aanvrager->withContact($contact);
         }
 
         $inkomen = $this->mapInkomen($dossier);
