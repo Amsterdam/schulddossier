@@ -9,6 +9,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\AWUserInfo;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\SchuldHulpUpdatedClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\SchuldHulpUpdatedClientFactory;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\enums\eSoortLening;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\InkomenArray;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray as TypeSchuldArray;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldHulpServiceAanvraag2SR;
@@ -340,6 +341,7 @@ class AllegroService
         $aanvraag = $aanvraag->withTotaalschuldVullen(false);
         $aanvraag = $aanvraag->withOpdrachtgeverOvernemen(false);
         $aanvraag = $aanvraag->withHulpverlenerOvernemen(false);
+        $aanvraag = $aanvraag->withSoortLening(eSoortLening::SK);
 
         $schulden = $this->mapSchulden($dossier);
         $aanvraag = $aanvraag->withSchulden($schulden);
