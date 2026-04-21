@@ -1,0 +1,106 @@
+<?php
+
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
+
+class TOrganisatie
+{
+    /**
+     * @var int
+     */
+    private $RelatieCode;
+
+    /**
+     * @var string
+     */
+    private $Naam;
+
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
+     */
+    private $BezoekAdres;
+
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
+     */
+    private $PostAdres;
+
+    /**
+     * @return int
+     */
+    public function getRelatieCode()
+    {
+        return $this->RelatieCode;
+    }
+
+    /**
+     * @param int $RelatieCode
+     * @return TOrganisatie
+     */
+    public function withRelatieCode($RelatieCode)
+    {
+        $new = clone $this;
+        $new->RelatieCode = $RelatieCode;
+
+        return $new;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNaam()
+    {
+        return $this->Naam;
+    }
+
+    /**
+     * @param string $Naam
+     * @return TOrganisatie
+     */
+    public function withNaam($Naam)
+    {
+        $new = clone $this;
+        $new->Naam = $Naam;
+
+        return $new;
+    }
+
+    /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
+     */
+    public function getBezoekAdres()
+    {
+        return $this->BezoekAdres;
+    }
+
+    /**
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $BezoekAdres
+     * @return TOrganisatie
+     */
+    public function withBezoekAdres($BezoekAdres)
+    {
+        $new = clone $this;
+        $new->BezoekAdres = $BezoekAdres;
+
+        return $new;
+    }
+
+    /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
+     */
+    public function getPostAdres()
+    {
+        return $this->PostAdres;
+    }
+
+    /**
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $PostAdres
+     * @return TOrganisatie
+     */
+    public function withPostAdres($PostAdres)
+    {
+        $new = clone $this;
+        $new->PostAdres = $PostAdres;
+
+        return $new;
+    }
+}

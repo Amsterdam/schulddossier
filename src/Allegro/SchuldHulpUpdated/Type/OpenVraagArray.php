@@ -1,0 +1,31 @@
+<?php
+
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
+
+class OpenVraagArray
+{
+    /**
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
+     */
+    private $TOpenVraag;
+
+    /**
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
+     */
+    public function getTOpenVraag()
+    {
+        return $this->TOpenVraag;
+    }
+
+    /**
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag $TOpenVraag
+     * @return OpenVraagArray
+     */
+    public function withTOpenVraag($TOpenVraag)
+    {
+        $new = clone $this;
+        $new->TOpenVraag = $TOpenVraag;
+
+        return $new;
+    }
+}
