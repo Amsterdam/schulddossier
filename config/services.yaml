@@ -152,13 +152,6 @@ services:
             $url: '%env(IAM_LOGOUT_URL)%'
             $keycloakVersion: '%keycloak_version%'
 
-
-    GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\SchuldHulpService:
-        arguments:
-            -
-                location: '%env(ALLEGRO_ENDPOINT)%?service=SchuldHulpService'
-            - '%kernel.project_dir%/doc/modified_schuldhulpservice.wsdl'
-
     doctrine.dbal.connection_factory:
         class: GemeenteAmsterdam\FixxxSchuldhulp\Doctrine\DynamicConnectionFactory
 
