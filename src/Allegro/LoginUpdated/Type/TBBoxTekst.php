@@ -104,3 +104,4 @@ class TBBoxTekst
         return $new;
     }
 }
+

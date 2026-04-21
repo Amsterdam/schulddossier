@@ -237,3 +237,4 @@ class AWUserInfo implements RequestInterface
         return $this->UserID;
     }
 }
+

@@ -679,3 +679,4 @@ class TAanmelding
         return $new;
     }
 }
+

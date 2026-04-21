@@ -29,3 +29,4 @@ class VariantArray
         return $new;
     }
 }
+

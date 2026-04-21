@@ -29,3 +29,4 @@ class AllegroDocumentArray
         return $new;
     }
 }
+

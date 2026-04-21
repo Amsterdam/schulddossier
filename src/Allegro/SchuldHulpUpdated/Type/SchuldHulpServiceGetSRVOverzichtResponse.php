@@ -31,3 +31,4 @@ class SchuldHulpServiceGetSRVOverzichtResponse implements ResultInterface
         return $new;
     }
 }
+

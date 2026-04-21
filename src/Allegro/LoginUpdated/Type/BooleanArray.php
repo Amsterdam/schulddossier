@@ -29,3 +29,4 @@ class BooleanArray
         return $new;
     }
 }
+

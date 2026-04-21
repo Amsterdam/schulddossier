@@ -179,3 +179,4 @@ class TContract
         return $new;
     }
 }
+

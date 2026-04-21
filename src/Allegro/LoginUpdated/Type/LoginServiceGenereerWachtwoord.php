@@ -41,3 +41,4 @@ class LoginServiceGenereerWachtwoord implements RequestInterface
         return $new;
     }
 }
+

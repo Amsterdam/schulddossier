@@ -29,3 +29,4 @@ class LijstKredietsoortArray
         return $new;
     }
 }
+

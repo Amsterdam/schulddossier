@@ -56,3 +56,4 @@ class LoginServiceAllegroWebLoginTijdelijkResponse implements ResultInterface
         return $new;
     }
 }
+

@@ -79,3 +79,4 @@ class TContact
         return $new;
     }
 }
+

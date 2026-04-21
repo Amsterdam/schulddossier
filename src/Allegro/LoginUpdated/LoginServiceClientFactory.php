@@ -21,7 +21,8 @@ class LoginServiceClientFactory
         string $wsdl,
         ?string $proxyHostIp = null,
         ?string $proxyHostPort = null
-    ): LoginServiceClient {
+    ): LoginServiceClient
+    {
         $extSoapOptionsArray = [];
 
         if (!empty($proxyHostIp) && !empty($proxyHostPort)) {
@@ -60,3 +61,4 @@ class LoginServiceClientFactory
         return new LoginServiceClient($caller);
     }
 }
+

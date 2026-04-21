@@ -81,3 +81,4 @@ class LoginServiceBSNNaarRelatieMetBedrijfResponse implements ResultInterface
         return $new;
     }
 }
+

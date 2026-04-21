@@ -81,3 +81,4 @@ class SchuldHulpServiceGetLijstSchuldeisersResponse implements ResultInterface
         return $new;
     }
 }
+

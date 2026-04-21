@@ -29,3 +29,4 @@ class TAfspraakSoortenArray
         return $new;
     }
 }
+

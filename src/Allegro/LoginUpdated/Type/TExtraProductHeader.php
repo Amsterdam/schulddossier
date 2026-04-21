@@ -104,3 +104,4 @@ class TExtraProductHeader
         return $new;
     }
 }
+

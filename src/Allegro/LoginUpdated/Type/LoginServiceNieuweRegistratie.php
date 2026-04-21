@@ -149,3 +149,4 @@ class LoginServiceNieuweRegistratie implements RequestInterface
         return $new;
     }
 }
+

@@ -81,3 +81,4 @@ class LoginServiceNieuwContactResponse implements ResultInterface
         return $new;
     }
 }
+

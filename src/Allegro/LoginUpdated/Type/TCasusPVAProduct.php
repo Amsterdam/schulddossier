@@ -104,3 +104,4 @@ class TCasusPVAProduct
         return $new;
     }
 }
+

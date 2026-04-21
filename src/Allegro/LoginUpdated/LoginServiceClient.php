@@ -140,3 +140,4 @@ class LoginServiceClient
         return ($this->caller)('BSNNaarRelatieMetBedrijf', $parameters);
     }
 }
+

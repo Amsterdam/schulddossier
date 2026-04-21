@@ -79,3 +79,4 @@ class TRelatiecodeBedrijfcode
         return $new;
     }
 }
+

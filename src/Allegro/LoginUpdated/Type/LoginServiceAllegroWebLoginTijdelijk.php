@@ -68,3 +68,4 @@ class LoginServiceAllegroWebLoginTijdelijk implements RequestInterface
         return $new;
     }
 }
+

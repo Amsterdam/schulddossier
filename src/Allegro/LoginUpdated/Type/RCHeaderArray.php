@@ -29,3 +29,4 @@ class RCHeaderArray
         return $new;
     }
 }
+

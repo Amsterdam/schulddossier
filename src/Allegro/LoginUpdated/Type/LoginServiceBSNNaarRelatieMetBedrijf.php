@@ -41,3 +41,4 @@ class LoginServiceBSNNaarRelatieMetBedrijf implements RequestInterface
         return $new;
     }
 }
+

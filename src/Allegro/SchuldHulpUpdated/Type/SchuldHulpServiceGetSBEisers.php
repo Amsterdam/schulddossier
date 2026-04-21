@@ -41,3 +41,4 @@ class SchuldHulpServiceGetSBEisers implements RequestInterface
         return $new;
     }
 }
+

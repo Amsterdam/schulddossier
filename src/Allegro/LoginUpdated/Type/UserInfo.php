@@ -129,3 +129,4 @@ class UserInfo
         return $new;
     }
 }
+

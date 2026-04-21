@@ -154,3 +154,4 @@ class TAllegroDocument
         return $new;
     }
 }
+

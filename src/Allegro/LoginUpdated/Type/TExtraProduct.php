@@ -279,3 +279,4 @@ class TExtraProduct
         return $new;
     }
 }
+

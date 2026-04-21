@@ -5,3 +5,4 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class SimpleDataResultEx
 {
 }
+

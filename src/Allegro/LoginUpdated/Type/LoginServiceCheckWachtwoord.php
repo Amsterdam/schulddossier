@@ -41,3 +41,4 @@ class LoginServiceCheckWachtwoord implements RequestInterface
         return $new;
     }
 }
+

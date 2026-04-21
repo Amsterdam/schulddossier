@@ -29,3 +29,4 @@ class ContractArray
         return $new;
     }
 }
+

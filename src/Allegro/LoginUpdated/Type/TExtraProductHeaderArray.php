@@ -29,3 +29,4 @@ class TExtraProductHeaderArray
         return $new;
     }
 }
+

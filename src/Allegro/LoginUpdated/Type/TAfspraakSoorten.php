@@ -54,3 +54,4 @@ class TAfspraakSoorten
         return $new;
     }
 }
+

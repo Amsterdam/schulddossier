@@ -154,3 +154,4 @@ class TCasusHeader
         return $new;
     }
 }
+

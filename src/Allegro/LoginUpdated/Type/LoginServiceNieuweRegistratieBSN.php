@@ -176,3 +176,4 @@ class LoginServiceNieuweRegistratieBSN implements RequestInterface
         return $new;
     }
 }
+

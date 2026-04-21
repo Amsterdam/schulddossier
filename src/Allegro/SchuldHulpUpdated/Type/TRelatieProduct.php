@@ -229,3 +229,4 @@ class TRelatieProduct
         return $new;
     }
 }
+

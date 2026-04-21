@@ -81,3 +81,4 @@ class LoginServiceNieuweRegistratieResponse implements ResultInterface
         return $new;
     }
 }
+

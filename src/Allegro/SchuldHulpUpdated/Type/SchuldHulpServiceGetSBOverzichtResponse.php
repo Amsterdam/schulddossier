@@ -31,3 +31,4 @@ class SchuldHulpServiceGetSBOverzichtResponse implements ResultInterface
         return $new;
     }
 }
+

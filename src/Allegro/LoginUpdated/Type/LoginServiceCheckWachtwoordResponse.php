@@ -106,3 +106,4 @@ class LoginServiceCheckWachtwoordResponse implements ResultInterface
         return $new;
     }
 }
+

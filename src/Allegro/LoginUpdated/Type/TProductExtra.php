@@ -129,3 +129,4 @@ class TProductExtra
         return $new;
     }
 }
+

@@ -41,3 +41,4 @@ class SchuldHulpServiceGetLijstSchuldeisers implements RequestInterface
         return $new;
     }
 }
+

@@ -79,3 +79,4 @@ class TTeam
         return $new;
     }
 }
+

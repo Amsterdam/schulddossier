@@ -54,3 +54,4 @@ class TFooter
         return $new;
     }
 }
+

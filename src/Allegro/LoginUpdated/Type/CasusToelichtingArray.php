@@ -29,3 +29,4 @@ class CasusToelichtingArray
         return $new;
     }
 }
+

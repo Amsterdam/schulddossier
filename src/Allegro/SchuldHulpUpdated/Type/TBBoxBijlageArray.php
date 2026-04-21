@@ -29,3 +29,4 @@ class TBBoxBijlageArray
         return $new;
     }
 }
+

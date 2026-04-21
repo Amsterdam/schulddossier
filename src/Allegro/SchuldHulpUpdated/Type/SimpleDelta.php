@@ -79,3 +79,4 @@ class SimpleDelta
         return $new;
     }
 }
+

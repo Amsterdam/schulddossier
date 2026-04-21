@@ -54,3 +54,4 @@ class ColumnSorting
         return $new;
     }
 }
+
