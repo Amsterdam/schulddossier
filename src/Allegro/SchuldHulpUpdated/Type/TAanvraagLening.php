@@ -7,21 +7,21 @@ class TAanvraagLening
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray
      */
-    private $Schulden;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray $Schulden;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray
      */
-    public function getSchulden()
+    public function getSchulden(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray
     {
         return $this->Schulden;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray $Schulden
-     * @return TAanvraagLening
+     * @return static
      */
-    public function withSchulden($Schulden)
+    public function withSchulden(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray $Schulden): static
     {
         $new = clone $this;
         $new->Schulden = $Schulden;
@@ -29,3 +29,4 @@ class TAanvraagLening
         return $new;
     }
 }
+

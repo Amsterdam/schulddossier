@@ -7,116 +7,116 @@ class TBBROpdracht
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var int
      */
-    private $CodeBegunstigde;
+    private int $CodeBegunstigde;
 
     /**
      * @var string
      */
-    private $Begunstigde;
+    private string $Begunstigde;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
      * @var string
      */
-    private $Referentie;
+    private string $Referentie;
 
     /**
      * @var string
      */
-    private $Periodiciteit;
+    private string $Periodiciteit;
 
     /**
      * @var int
      */
-    private $AantalKeerPerPeriode;
+    private int $AantalKeerPerPeriode;
 
     /**
      * @var float
      */
-    private $PeriodeBedrag;
+    private float $PeriodeBedrag;
 
     /**
      * @var float
      */
-    private $Maximaal;
+    private float $Maximaal;
 
     /**
      * @var \DateTimeInterface
      */
-    private $StartDatum;
+    private \DateTimeInterface $StartDatum;
 
     /**
      * @var \DateTimeInterface
      */
-    private $VolgendeDatum;
+    private \DateTimeInterface $VolgendeDatum;
 
     /**
      * @var float
      */
-    private $BetaaldBedrag;
+    private float $BetaaldBedrag;
 
     /**
      * @var string
      */
-    private $RestBetaling;
+    private string $RestBetaling;
 
     /**
      * @var string
      */
-    private $Soort;
+    private string $Soort;
 
     /**
      * @var int
      */
-    private $NummerReservering;
+    private int $NummerReservering;
 
     /**
      * @var int
      */
-    private $UniekVolgnummer;
+    private int $UniekVolgnummer;
 
     /**
      * @var \DateTimeInterface
      */
-    private $DatumLaatsteBetaling;
+    private \DateTimeInterface $DatumLaatsteBetaling;
 
     /**
      * @var int
      */
-    private $Prioriteit;
+    private int $Prioriteit;
 
     /**
      * @var string
      */
-    private $RekeningnummerBegunstigde;
+    private string $RekeningnummerBegunstigde;
 
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode(): int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode): static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -127,16 +127,16 @@ class TBBROpdracht
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -147,16 +147,16 @@ class TBBROpdracht
     /**
      * @return int
      */
-    public function getCodeBegunstigde()
+    public function getCodeBegunstigde(): int
     {
         return $this->CodeBegunstigde;
     }
 
     /**
      * @param int $CodeBegunstigde
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withCodeBegunstigde($CodeBegunstigde)
+    public function withCodeBegunstigde(int $CodeBegunstigde): static
     {
         $new = clone $this;
         $new->CodeBegunstigde = $CodeBegunstigde;
@@ -167,16 +167,16 @@ class TBBROpdracht
     /**
      * @return string
      */
-    public function getBegunstigde()
+    public function getBegunstigde(): string
     {
         return $this->Begunstigde;
     }
 
     /**
      * @param string $Begunstigde
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withBegunstigde($Begunstigde)
+    public function withBegunstigde(string $Begunstigde): static
     {
         $new = clone $this;
         $new->Begunstigde = $Begunstigde;
@@ -187,16 +187,16 @@ class TBBROpdracht
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving(): string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving): static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -207,16 +207,16 @@ class TBBROpdracht
     /**
      * @return string
      */
-    public function getReferentie()
+    public function getReferentie(): string
     {
         return $this->Referentie;
     }
 
     /**
      * @param string $Referentie
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withReferentie($Referentie)
+    public function withReferentie(string $Referentie): static
     {
         $new = clone $this;
         $new->Referentie = $Referentie;
@@ -227,16 +227,16 @@ class TBBROpdracht
     /**
      * @return string
      */
-    public function getPeriodiciteit()
+    public function getPeriodiciteit(): string
     {
         return $this->Periodiciteit;
     }
 
     /**
      * @param string $Periodiciteit
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withPeriodiciteit($Periodiciteit)
+    public function withPeriodiciteit(string $Periodiciteit): static
     {
         $new = clone $this;
         $new->Periodiciteit = $Periodiciteit;
@@ -247,16 +247,16 @@ class TBBROpdracht
     /**
      * @return int
      */
-    public function getAantalKeerPerPeriode()
+    public function getAantalKeerPerPeriode(): int
     {
         return $this->AantalKeerPerPeriode;
     }
 
     /**
      * @param int $AantalKeerPerPeriode
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withAantalKeerPerPeriode($AantalKeerPerPeriode)
+    public function withAantalKeerPerPeriode(int $AantalKeerPerPeriode): static
     {
         $new = clone $this;
         $new->AantalKeerPerPeriode = $AantalKeerPerPeriode;
@@ -267,16 +267,16 @@ class TBBROpdracht
     /**
      * @return float
      */
-    public function getPeriodeBedrag()
+    public function getPeriodeBedrag(): float
     {
         return $this->PeriodeBedrag;
     }
 
     /**
      * @param float $PeriodeBedrag
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withPeriodeBedrag($PeriodeBedrag)
+    public function withPeriodeBedrag(float $PeriodeBedrag): static
     {
         $new = clone $this;
         $new->PeriodeBedrag = $PeriodeBedrag;
@@ -287,16 +287,16 @@ class TBBROpdracht
     /**
      * @return float
      */
-    public function getMaximaal()
+    public function getMaximaal(): float
     {
         return $this->Maximaal;
     }
 
     /**
      * @param float $Maximaal
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withMaximaal($Maximaal)
+    public function withMaximaal(float $Maximaal): static
     {
         $new = clone $this;
         $new->Maximaal = $Maximaal;
@@ -307,16 +307,16 @@ class TBBROpdracht
     /**
      * @return \DateTimeInterface
      */
-    public function getStartDatum()
+    public function getStartDatum(): \DateTimeInterface
     {
         return $this->StartDatum;
     }
 
     /**
      * @param \DateTimeInterface $StartDatum
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withStartDatum($StartDatum)
+    public function withStartDatum(\DateTimeInterface $StartDatum): static
     {
         $new = clone $this;
         $new->StartDatum = $StartDatum;
@@ -327,16 +327,16 @@ class TBBROpdracht
     /**
      * @return \DateTimeInterface
      */
-    public function getVolgendeDatum()
+    public function getVolgendeDatum(): \DateTimeInterface
     {
         return $this->VolgendeDatum;
     }
 
     /**
      * @param \DateTimeInterface $VolgendeDatum
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withVolgendeDatum($VolgendeDatum)
+    public function withVolgendeDatum(\DateTimeInterface $VolgendeDatum): static
     {
         $new = clone $this;
         $new->VolgendeDatum = $VolgendeDatum;
@@ -347,16 +347,16 @@ class TBBROpdracht
     /**
      * @return float
      */
-    public function getBetaaldBedrag()
+    public function getBetaaldBedrag(): float
     {
         return $this->BetaaldBedrag;
     }
 
     /**
      * @param float $BetaaldBedrag
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withBetaaldBedrag($BetaaldBedrag)
+    public function withBetaaldBedrag(float $BetaaldBedrag): static
     {
         $new = clone $this;
         $new->BetaaldBedrag = $BetaaldBedrag;
@@ -367,16 +367,16 @@ class TBBROpdracht
     /**
      * @return string
      */
-    public function getRestBetaling()
+    public function getRestBetaling(): string
     {
         return $this->RestBetaling;
     }
 
     /**
      * @param string $RestBetaling
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withRestBetaling($RestBetaling)
+    public function withRestBetaling(string $RestBetaling): static
     {
         $new = clone $this;
         $new->RestBetaling = $RestBetaling;
@@ -387,16 +387,16 @@ class TBBROpdracht
     /**
      * @return string
      */
-    public function getSoort()
+    public function getSoort(): string
     {
         return $this->Soort;
     }
 
     /**
      * @param string $Soort
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withSoort($Soort)
+    public function withSoort(string $Soort): static
     {
         $new = clone $this;
         $new->Soort = $Soort;
@@ -407,16 +407,16 @@ class TBBROpdracht
     /**
      * @return int
      */
-    public function getNummerReservering()
+    public function getNummerReservering(): int
     {
         return $this->NummerReservering;
     }
 
     /**
      * @param int $NummerReservering
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withNummerReservering($NummerReservering)
+    public function withNummerReservering(int $NummerReservering): static
     {
         $new = clone $this;
         $new->NummerReservering = $NummerReservering;
@@ -427,16 +427,16 @@ class TBBROpdracht
     /**
      * @return int
      */
-    public function getUniekVolgnummer()
+    public function getUniekVolgnummer(): int
     {
         return $this->UniekVolgnummer;
     }
 
     /**
      * @param int $UniekVolgnummer
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withUniekVolgnummer($UniekVolgnummer)
+    public function withUniekVolgnummer(int $UniekVolgnummer): static
     {
         $new = clone $this;
         $new->UniekVolgnummer = $UniekVolgnummer;
@@ -447,16 +447,16 @@ class TBBROpdracht
     /**
      * @return \DateTimeInterface
      */
-    public function getDatumLaatsteBetaling()
+    public function getDatumLaatsteBetaling(): \DateTimeInterface
     {
         return $this->DatumLaatsteBetaling;
     }
 
     /**
      * @param \DateTimeInterface $DatumLaatsteBetaling
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withDatumLaatsteBetaling($DatumLaatsteBetaling)
+    public function withDatumLaatsteBetaling(\DateTimeInterface $DatumLaatsteBetaling): static
     {
         $new = clone $this;
         $new->DatumLaatsteBetaling = $DatumLaatsteBetaling;
@@ -467,16 +467,16 @@ class TBBROpdracht
     /**
      * @return int
      */
-    public function getPrioriteit()
+    public function getPrioriteit(): int
     {
         return $this->Prioriteit;
     }
 
     /**
      * @param int $Prioriteit
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withPrioriteit($Prioriteit)
+    public function withPrioriteit(int $Prioriteit): static
     {
         $new = clone $this;
         $new->Prioriteit = $Prioriteit;
@@ -487,16 +487,16 @@ class TBBROpdracht
     /**
      * @return string
      */
-    public function getRekeningnummerBegunstigde()
+    public function getRekeningnummerBegunstigde(): string
     {
         return $this->RekeningnummerBegunstigde;
     }
 
     /**
      * @param string $RekeningnummerBegunstigde
-     * @return TBBROpdracht
+     * @return static
      */
-    public function withRekeningnummerBegunstigde($RekeningnummerBegunstigde)
+    public function withRekeningnummerBegunstigde(string $RekeningnummerBegunstigde): static
     {
         $new = clone $this;
         $new->RekeningnummerBegunstigde = $RekeningnummerBegunstigde;
@@ -504,3 +504,4 @@ class TBBROpdracht
         return $new;
     }
 }
+

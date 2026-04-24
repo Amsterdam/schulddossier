@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class LijstOpdrachtgeverArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TLijstOpdrachtgever
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TLijstOpdrachtgever>
      */
-    private $TLijstOpdrachtgever;
+    private array $TLijstOpdrachtgever;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TLijstOpdrachtgever
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TLijstOpdrachtgever>
      */
-    public function getTLijstOpdrachtgever()
+    public function getTLijstOpdrachtgever(): array
     {
         return $this->TLijstOpdrachtgever;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TLijstOpdrachtgever $TLijstOpdrachtgever
-     * @return LijstOpdrachtgeverArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TLijstOpdrachtgever> $TLijstOpdrachtgever
+     * @return static
      */
-    public function withTLijstOpdrachtgever($TLijstOpdrachtgever)
+    public function withTLijstOpdrachtgever(array $TLijstOpdrachtgever): static
     {
         $new = clone $this;
         $new->TLijstOpdrachtgever = $TLijstOpdrachtgever;
@@ -29,3 +29,4 @@ class LijstOpdrachtgeverArray
         return $new;
     }
 }
+

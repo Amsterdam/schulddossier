@@ -5,23 +5,25 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class PRSAfschriftReseveringArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSAfschriftReservering
+     * tbv. PRS Online Afschrift reserveringen
+     *
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSAfschriftReservering>
      */
-    private $TPRSAfschriftReservering;
+    private array $TPRSAfschriftReservering;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSAfschriftReservering
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSAfschriftReservering>
      */
-    public function getTPRSAfschriftReservering()
+    public function getTPRSAfschriftReservering(): array
     {
         return $this->TPRSAfschriftReservering;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSAfschriftReservering $TPRSAfschriftReservering
-     * @return PRSAfschriftReseveringArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSAfschriftReservering> $TPRSAfschriftReservering
+     * @return static
      */
-    public function withTPRSAfschriftReservering($TPRSAfschriftReservering)
+    public function withTPRSAfschriftReservering(array $TPRSAfschriftReservering): static
     {
         $new = clone $this;
         $new->TPRSAfschriftReservering = $TPRSAfschriftReservering;
@@ -29,3 +31,4 @@ class PRSAfschriftReseveringArray
         return $new;
     }
 }
+

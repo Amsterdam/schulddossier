@@ -7,26 +7,26 @@ class TSaldoReserveringen
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SaldoReserveringArray
      */
-    private $SaldoReserveringen;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SaldoReserveringArray $SaldoReserveringen;
 
     /**
      * @var float
      */
-    private $Totaal;
+    private float $Totaal;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SaldoReserveringArray
      */
-    public function getSaldoReserveringen()
+    public function getSaldoReserveringen(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SaldoReserveringArray
     {
         return $this->SaldoReserveringen;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SaldoReserveringArray $SaldoReserveringen
-     * @return TSaldoReserveringen
+     * @return static
      */
-    public function withSaldoReserveringen($SaldoReserveringen)
+    public function withSaldoReserveringen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SaldoReserveringArray $SaldoReserveringen): static
     {
         $new = clone $this;
         $new->SaldoReserveringen = $SaldoReserveringen;
@@ -37,16 +37,16 @@ class TSaldoReserveringen
     /**
      * @return float
      */
-    public function getTotaal()
+    public function getTotaal(): float
     {
         return $this->Totaal;
     }
 
     /**
      * @param float $Totaal
-     * @return TSaldoReserveringen
+     * @return static
      */
-    public function withTotaal($Totaal)
+    public function withTotaal(float $Totaal): static
     {
         $new = clone $this;
         $new->Totaal = $Totaal;
@@ -54,3 +54,4 @@ class TSaldoReserveringen
         return $new;
     }
 }
+

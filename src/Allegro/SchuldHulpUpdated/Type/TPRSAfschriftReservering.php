@@ -7,31 +7,33 @@ class TPRSAfschriftReservering
     /**
      * @var int
      */
-    private $VolgnummerReservering;
+    private int $VolgnummerReservering;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
+     * Het saldo van de reservering op datum vervaardiging afschrift.
+     *
      * @var float
      */
-    private $Saldo;
+    private float $Saldo;
 
     /**
      * @return int
      */
-    public function getVolgnummerReservering()
+    public function getVolgnummerReservering(): int
     {
         return $this->VolgnummerReservering;
     }
 
     /**
      * @param int $VolgnummerReservering
-     * @return TPRSAfschriftReservering
+     * @return static
      */
-    public function withVolgnummerReservering($VolgnummerReservering)
+    public function withVolgnummerReservering(int $VolgnummerReservering): static
     {
         $new = clone $this;
         $new->VolgnummerReservering = $VolgnummerReservering;
@@ -42,16 +44,16 @@ class TPRSAfschriftReservering
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving(): string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TPRSAfschriftReservering
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving): static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -62,16 +64,16 @@ class TPRSAfschriftReservering
     /**
      * @return float
      */
-    public function getSaldo()
+    public function getSaldo(): float
     {
         return $this->Saldo;
     }
 
     /**
      * @param float $Saldo
-     * @return TPRSAfschriftReservering
+     * @return static
      */
-    public function withSaldo($Saldo)
+    public function withSaldo(float $Saldo): static
     {
         $new = clone $this;
         $new->Saldo = $Saldo;
@@ -79,3 +81,4 @@ class TPRSAfschriftReservering
         return $new;
     }
 }
+

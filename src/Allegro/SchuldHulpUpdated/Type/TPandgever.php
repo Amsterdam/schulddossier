@@ -7,51 +7,51 @@ class TPandgever
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $RelatieCode;
 
     /**
      * @var bool
      */
-    private $Beleenverbod;
+    private bool $Beleenverbod;
 
     /**
      * @var int
      */
-    private $AantalActueel;
+    private int $AantalActueel;
 
     /**
      * @var bool
      */
-    private $Vorderingen;
+    private bool $Vorderingen;
 
     /**
      * @var float
      */
-    private $BedragVorderingen;
+    private float $BedragVorderingen;
 
     /**
      * @var bool
      */
-    private $ReserveringNegatief;
+    private bool $ReserveringNegatief;
 
     /**
      * @var float
      */
-    private $BedragReservering;
+    private float $BedragReservering;
 
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode(): int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TPandgever
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode): static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -62,16 +62,16 @@ class TPandgever
     /**
      * @return bool
      */
-    public function getBeleenverbod()
+    public function getBeleenverbod(): bool
     {
         return $this->Beleenverbod;
     }
 
     /**
      * @param bool $Beleenverbod
-     * @return TPandgever
+     * @return static
      */
-    public function withBeleenverbod($Beleenverbod)
+    public function withBeleenverbod(bool $Beleenverbod): static
     {
         $new = clone $this;
         $new->Beleenverbod = $Beleenverbod;
@@ -82,16 +82,16 @@ class TPandgever
     /**
      * @return int
      */
-    public function getAantalActueel()
+    public function getAantalActueel(): int
     {
         return $this->AantalActueel;
     }
 
     /**
      * @param int $AantalActueel
-     * @return TPandgever
+     * @return static
      */
-    public function withAantalActueel($AantalActueel)
+    public function withAantalActueel(int $AantalActueel): static
     {
         $new = clone $this;
         $new->AantalActueel = $AantalActueel;
@@ -102,16 +102,16 @@ class TPandgever
     /**
      * @return bool
      */
-    public function getVorderingen()
+    public function getVorderingen(): bool
     {
         return $this->Vorderingen;
     }
 
     /**
      * @param bool $Vorderingen
-     * @return TPandgever
+     * @return static
      */
-    public function withVorderingen($Vorderingen)
+    public function withVorderingen(bool $Vorderingen): static
     {
         $new = clone $this;
         $new->Vorderingen = $Vorderingen;
@@ -122,16 +122,16 @@ class TPandgever
     /**
      * @return float
      */
-    public function getBedragVorderingen()
+    public function getBedragVorderingen(): float
     {
         return $this->BedragVorderingen;
     }
 
     /**
      * @param float $BedragVorderingen
-     * @return TPandgever
+     * @return static
      */
-    public function withBedragVorderingen($BedragVorderingen)
+    public function withBedragVorderingen(float $BedragVorderingen): static
     {
         $new = clone $this;
         $new->BedragVorderingen = $BedragVorderingen;
@@ -142,16 +142,16 @@ class TPandgever
     /**
      * @return bool
      */
-    public function getReserveringNegatief()
+    public function getReserveringNegatief(): bool
     {
         return $this->ReserveringNegatief;
     }
 
     /**
      * @param bool $ReserveringNegatief
-     * @return TPandgever
+     * @return static
      */
-    public function withReserveringNegatief($ReserveringNegatief)
+    public function withReserveringNegatief(bool $ReserveringNegatief): static
     {
         $new = clone $this;
         $new->ReserveringNegatief = $ReserveringNegatief;
@@ -162,16 +162,16 @@ class TPandgever
     /**
      * @return float
      */
-    public function getBedragReservering()
+    public function getBedragReservering(): float
     {
         return $this->BedragReservering;
     }
 
     /**
      * @param float $BedragReservering
-     * @return TPandgever
+     * @return static
      */
-    public function withBedragReservering($BedragReservering)
+    public function withBedragReservering(float $BedragReservering): static
     {
         $new = clone $this;
         $new->BedragReservering = $BedragReservering;
@@ -179,3 +179,4 @@ class TPandgever
         return $new;
     }
 }
+

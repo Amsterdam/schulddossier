@@ -7,66 +7,66 @@ class TPRSMutatie
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $RelatieCode;
 
     /**
      * @var int
      */
-    private $UniekVolgnummer;
+    private int $UniekVolgnummer;
 
     /**
      * @var int
      */
-    private $ContractCode;
+    private int $ContractCode;
 
     /**
      * @var int
      */
-    private $ContractVolgnummer;
+    private int $ContractVolgnummer;
 
     /**
      * @var \DateTimeInterface
      */
-    private $Datum;
+    private \DateTimeInterface $Datum;
 
     /**
      * @var string
      */
-    private $AfBij;
+    private string $AfBij;
 
     /**
      * @var float
      */
-    private $Bedrag;
+    private float $Bedrag;
 
     /**
      * @var int
      */
-    private $VolgnummerAfschrift;
+    private int $VolgnummerAfschrift;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
      * @var float
      */
-    private $SaldoVoor;
+    private float $SaldoVoor;
 
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode(): int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode): static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -77,16 +77,16 @@ class TPRSMutatie
     /**
      * @return int
      */
-    public function getUniekVolgnummer()
+    public function getUniekVolgnummer(): int
     {
         return $this->UniekVolgnummer;
     }
 
     /**
      * @param int $UniekVolgnummer
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withUniekVolgnummer($UniekVolgnummer)
+    public function withUniekVolgnummer(int $UniekVolgnummer): static
     {
         $new = clone $this;
         $new->UniekVolgnummer = $UniekVolgnummer;
@@ -97,16 +97,16 @@ class TPRSMutatie
     /**
      * @return int
      */
-    public function getContractCode()
+    public function getContractCode(): int
     {
         return $this->ContractCode;
     }
 
     /**
      * @param int $ContractCode
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withContractCode($ContractCode)
+    public function withContractCode(int $ContractCode): static
     {
         $new = clone $this;
         $new->ContractCode = $ContractCode;
@@ -117,16 +117,16 @@ class TPRSMutatie
     /**
      * @return int
      */
-    public function getContractVolgnummer()
+    public function getContractVolgnummer(): int
     {
         return $this->ContractVolgnummer;
     }
 
     /**
      * @param int $ContractVolgnummer
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withContractVolgnummer($ContractVolgnummer)
+    public function withContractVolgnummer(int $ContractVolgnummer): static
     {
         $new = clone $this;
         $new->ContractVolgnummer = $ContractVolgnummer;
@@ -137,16 +137,16 @@ class TPRSMutatie
     /**
      * @return \DateTimeInterface
      */
-    public function getDatum()
+    public function getDatum(): \DateTimeInterface
     {
         return $this->Datum;
     }
 
     /**
      * @param \DateTimeInterface $Datum
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withDatum($Datum)
+    public function withDatum(\DateTimeInterface $Datum): static
     {
         $new = clone $this;
         $new->Datum = $Datum;
@@ -157,16 +157,16 @@ class TPRSMutatie
     /**
      * @return string
      */
-    public function getAfBij()
+    public function getAfBij(): string
     {
         return $this->AfBij;
     }
 
     /**
      * @param string $AfBij
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withAfBij($AfBij)
+    public function withAfBij(string $AfBij): static
     {
         $new = clone $this;
         $new->AfBij = $AfBij;
@@ -177,16 +177,16 @@ class TPRSMutatie
     /**
      * @return float
      */
-    public function getBedrag()
+    public function getBedrag(): float
     {
         return $this->Bedrag;
     }
 
     /**
      * @param float $Bedrag
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withBedrag($Bedrag)
+    public function withBedrag(float $Bedrag): static
     {
         $new = clone $this;
         $new->Bedrag = $Bedrag;
@@ -197,16 +197,16 @@ class TPRSMutatie
     /**
      * @return int
      */
-    public function getVolgnummerAfschrift()
+    public function getVolgnummerAfschrift(): int
     {
         return $this->VolgnummerAfschrift;
     }
 
     /**
      * @param int $VolgnummerAfschrift
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withVolgnummerAfschrift($VolgnummerAfschrift)
+    public function withVolgnummerAfschrift(int $VolgnummerAfschrift): static
     {
         $new = clone $this;
         $new->VolgnummerAfschrift = $VolgnummerAfschrift;
@@ -217,16 +217,16 @@ class TPRSMutatie
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving(): string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving): static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -237,16 +237,16 @@ class TPRSMutatie
     /**
      * @return float
      */
-    public function getSaldoVoor()
+    public function getSaldoVoor(): float
     {
         return $this->SaldoVoor;
     }
 
     /**
      * @param float $SaldoVoor
-     * @return TPRSMutatie
+     * @return static
      */
-    public function withSaldoVoor($SaldoVoor)
+    public function withSaldoVoor(float $SaldoVoor): static
     {
         $new = clone $this;
         $new->SaldoVoor = $SaldoVoor;
@@ -254,3 +254,4 @@ class TPRSMutatie
         return $new;
     }
 }
+

@@ -7,86 +7,86 @@ class TCasusDeelopdracht
     /**
      * @var int
      */
-    private $VolgnummerCasus;
+    private int $VolgnummerCasus;
 
     /**
      * @var int
      */
-    private $VolgnummerKlantopdracht;
+    private int $VolgnummerKlantopdracht;
 
     /**
      * @var string
      */
-    private $ToelichtingKlantopdracht;
+    private string $ToelichtingKlantopdracht;
 
     /**
      * @var int
      */
-    private $VolgnummerDeelopdracht;
+    private int $VolgnummerDeelopdracht;
 
     /**
      * @var string
      */
-    private $Naam;
+    private string $Naam;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
      * @var string
      */
-    private $RubriekSoort;
+    private string $RubriekSoort;
 
     /**
      * @var string
      */
-    private $RubriekNaam;
+    private string $RubriekNaam;
 
     /**
      * @var string
      */
-    private $Toelichting;
+    private string $Toelichting;
 
     /**
      * @var \DateTimeInterface
      */
-    private $Startdatum;
+    private \DateTimeInterface $Startdatum;
 
     /**
      * @var \DateTimeInterface
      */
-    private $DatumUiterlijk;
+    private \DateTimeInterface $DatumUiterlijk;
 
     /**
      * @var \DateTimeInterface
      */
-    private $DatumUitgevoerd;
+    private \DateTimeInterface $DatumUitgevoerd;
 
     /**
      * @var \DateTimeInterface
      */
-    private $DatumNietUitgevoerd;
+    private \DateTimeInterface $DatumNietUitgevoerd;
 
     /**
      * @var string
      */
-    private $NaamLang;
+    private string $NaamLang;
 
     /**
      * @return int
      */
-    public function getVolgnummerCasus()
+    public function getVolgnummerCasus(): int
     {
         return $this->VolgnummerCasus;
     }
 
     /**
      * @param int $VolgnummerCasus
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withVolgnummerCasus($VolgnummerCasus)
+    public function withVolgnummerCasus(int $VolgnummerCasus): static
     {
         $new = clone $this;
         $new->VolgnummerCasus = $VolgnummerCasus;
@@ -97,16 +97,16 @@ class TCasusDeelopdracht
     /**
      * @return int
      */
-    public function getVolgnummerKlantopdracht()
+    public function getVolgnummerKlantopdracht(): int
     {
         return $this->VolgnummerKlantopdracht;
     }
 
     /**
      * @param int $VolgnummerKlantopdracht
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withVolgnummerKlantopdracht($VolgnummerKlantopdracht)
+    public function withVolgnummerKlantopdracht(int $VolgnummerKlantopdracht): static
     {
         $new = clone $this;
         $new->VolgnummerKlantopdracht = $VolgnummerKlantopdracht;
@@ -117,16 +117,16 @@ class TCasusDeelopdracht
     /**
      * @return string
      */
-    public function getToelichtingKlantopdracht()
+    public function getToelichtingKlantopdracht(): string
     {
         return $this->ToelichtingKlantopdracht;
     }
 
     /**
      * @param string $ToelichtingKlantopdracht
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withToelichtingKlantopdracht($ToelichtingKlantopdracht)
+    public function withToelichtingKlantopdracht(string $ToelichtingKlantopdracht): static
     {
         $new = clone $this;
         $new->ToelichtingKlantopdracht = $ToelichtingKlantopdracht;
@@ -137,16 +137,16 @@ class TCasusDeelopdracht
     /**
      * @return int
      */
-    public function getVolgnummerDeelopdracht()
+    public function getVolgnummerDeelopdracht(): int
     {
         return $this->VolgnummerDeelopdracht;
     }
 
     /**
      * @param int $VolgnummerDeelopdracht
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withVolgnummerDeelopdracht($VolgnummerDeelopdracht)
+    public function withVolgnummerDeelopdracht(int $VolgnummerDeelopdracht): static
     {
         $new = clone $this;
         $new->VolgnummerDeelopdracht = $VolgnummerDeelopdracht;
@@ -157,16 +157,16 @@ class TCasusDeelopdracht
     /**
      * @return string
      */
-    public function getNaam()
+    public function getNaam(): string
     {
         return $this->Naam;
     }
 
     /**
      * @param string $Naam
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withNaam($Naam)
+    public function withNaam(string $Naam): static
     {
         $new = clone $this;
         $new->Naam = $Naam;
@@ -177,16 +177,16 @@ class TCasusDeelopdracht
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving(): string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving): static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -197,16 +197,16 @@ class TCasusDeelopdracht
     /**
      * @return string
      */
-    public function getRubriekSoort()
+    public function getRubriekSoort(): string
     {
         return $this->RubriekSoort;
     }
 
     /**
      * @param string $RubriekSoort
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withRubriekSoort($RubriekSoort)
+    public function withRubriekSoort(string $RubriekSoort): static
     {
         $new = clone $this;
         $new->RubriekSoort = $RubriekSoort;
@@ -217,16 +217,16 @@ class TCasusDeelopdracht
     /**
      * @return string
      */
-    public function getRubriekNaam()
+    public function getRubriekNaam(): string
     {
         return $this->RubriekNaam;
     }
 
     /**
      * @param string $RubriekNaam
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withRubriekNaam($RubriekNaam)
+    public function withRubriekNaam(string $RubriekNaam): static
     {
         $new = clone $this;
         $new->RubriekNaam = $RubriekNaam;
@@ -237,16 +237,16 @@ class TCasusDeelopdracht
     /**
      * @return string
      */
-    public function getToelichting()
+    public function getToelichting(): string
     {
         return $this->Toelichting;
     }
 
     /**
      * @param string $Toelichting
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withToelichting($Toelichting)
+    public function withToelichting(string $Toelichting): static
     {
         $new = clone $this;
         $new->Toelichting = $Toelichting;
@@ -257,16 +257,16 @@ class TCasusDeelopdracht
     /**
      * @return \DateTimeInterface
      */
-    public function getStartdatum()
+    public function getStartdatum(): \DateTimeInterface
     {
         return $this->Startdatum;
     }
 
     /**
      * @param \DateTimeInterface $Startdatum
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withStartdatum($Startdatum)
+    public function withStartdatum(\DateTimeInterface $Startdatum): static
     {
         $new = clone $this;
         $new->Startdatum = $Startdatum;
@@ -277,16 +277,16 @@ class TCasusDeelopdracht
     /**
      * @return \DateTimeInterface
      */
-    public function getDatumUiterlijk()
+    public function getDatumUiterlijk(): \DateTimeInterface
     {
         return $this->DatumUiterlijk;
     }
 
     /**
      * @param \DateTimeInterface $DatumUiterlijk
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withDatumUiterlijk($DatumUiterlijk)
+    public function withDatumUiterlijk(\DateTimeInterface $DatumUiterlijk): static
     {
         $new = clone $this;
         $new->DatumUiterlijk = $DatumUiterlijk;
@@ -297,16 +297,16 @@ class TCasusDeelopdracht
     /**
      * @return \DateTimeInterface
      */
-    public function getDatumUitgevoerd()
+    public function getDatumUitgevoerd(): \DateTimeInterface
     {
         return $this->DatumUitgevoerd;
     }
 
     /**
      * @param \DateTimeInterface $DatumUitgevoerd
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withDatumUitgevoerd($DatumUitgevoerd)
+    public function withDatumUitgevoerd(\DateTimeInterface $DatumUitgevoerd): static
     {
         $new = clone $this;
         $new->DatumUitgevoerd = $DatumUitgevoerd;
@@ -317,16 +317,16 @@ class TCasusDeelopdracht
     /**
      * @return \DateTimeInterface
      */
-    public function getDatumNietUitgevoerd()
+    public function getDatumNietUitgevoerd(): \DateTimeInterface
     {
         return $this->DatumNietUitgevoerd;
     }
 
     /**
      * @param \DateTimeInterface $DatumNietUitgevoerd
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withDatumNietUitgevoerd($DatumNietUitgevoerd)
+    public function withDatumNietUitgevoerd(\DateTimeInterface $DatumNietUitgevoerd): static
     {
         $new = clone $this;
         $new->DatumNietUitgevoerd = $DatumNietUitgevoerd;
@@ -337,16 +337,16 @@ class TCasusDeelopdracht
     /**
      * @return string
      */
-    public function getNaamLang()
+    public function getNaamLang(): string
     {
         return $this->NaamLang;
     }
 
     /**
      * @param string $NaamLang
-     * @return TCasusDeelopdracht
+     * @return static
      */
-    public function withNaamLang($NaamLang)
+    public function withNaamLang(string $NaamLang): static
     {
         $new = clone $this;
         $new->NaamLang = $NaamLang;
@@ -354,3 +354,4 @@ class TCasusDeelopdracht
         return $new;
     }
 }
+

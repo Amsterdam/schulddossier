@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class RCHeaderArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRCHeader
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRCHeader>
      */
-    private $TRCHeader;
+    private array $TRCHeader;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRCHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRCHeader>
      */
-    public function getTRCHeader()
+    public function getTRCHeader(): array
     {
         return $this->TRCHeader;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRCHeader $TRCHeader
-     * @return RCHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRCHeader> $TRCHeader
+     * @return static
      */
-    public function withTRCHeader($TRCHeader)
+    public function withTRCHeader(array $TRCHeader): static
     {
         $new = clone $this;
         $new->TRCHeader = $TRCHeader;
@@ -29,3 +29,4 @@ class RCHeaderArray
         return $new;
     }
 }
+

@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class CasusPVAProductArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TCasusPVAProduct
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TCasusPVAProduct>
      */
-    private $TCasusPVAProduct;
+    private array $TCasusPVAProduct;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TCasusPVAProduct
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TCasusPVAProduct>
      */
-    public function getTCasusPVAProduct()
+    public function getTCasusPVAProduct(): array
     {
         return $this->TCasusPVAProduct;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TCasusPVAProduct $TCasusPVAProduct
-     * @return CasusPVAProductArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TCasusPVAProduct> $TCasusPVAProduct
+     * @return static
      */
-    public function withTCasusPVAProduct($TCasusPVAProduct)
+    public function withTCasusPVAProduct(array $TCasusPVAProduct): static
     {
         $new = clone $this;
         $new->TCasusPVAProduct = $TCasusPVAProduct;
@@ -29,3 +29,4 @@ class CasusPVAProductArray
         return $new;
     }
 }
+

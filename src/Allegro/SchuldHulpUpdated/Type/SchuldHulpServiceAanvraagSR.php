@@ -9,14 +9,14 @@ class SchuldHulpServiceAanvraagSR implements RequestInterface
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraagSR
      */
-    private $aAanvraagSR;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraagSR $aAanvraagSR;
 
     /**
      * Constructor
      *
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraagSR $aAanvraagSR
      */
-    public function __construct($aAanvraagSR)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraagSR $aAanvraagSR)
     {
         $this->aAanvraagSR = $aAanvraagSR;
     }
@@ -24,16 +24,16 @@ class SchuldHulpServiceAanvraagSR implements RequestInterface
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraagSR
      */
-    public function getAAanvraagSR()
+    public function getAAanvraagSR(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraagSR
     {
         return $this->aAanvraagSR;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraagSR $aAanvraagSR
-     * @return SchuldHulpServiceAanvraagSR
+     * @return static
      */
-    public function withAAanvraagSR($aAanvraagSR)
+    public function withAAanvraagSR(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraagSR $aAanvraagSR): static
     {
         $new = clone $this;
         $new->aAanvraagSR = $aAanvraagSR;
@@ -41,3 +41,4 @@ class SchuldHulpServiceAanvraagSR implements RequestInterface
         return $new;
     }
 }
+

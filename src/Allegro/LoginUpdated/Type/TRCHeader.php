@@ -7,31 +7,31 @@ class TRCHeader
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var \DateTimeInterface
      */
-    private $Ingangsdatum;
+    private \DateTimeInterface $Ingangsdatum;
 
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode(): int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TRCHeader
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode): static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -42,16 +42,16 @@ class TRCHeader
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TRCHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -62,16 +62,16 @@ class TRCHeader
     /**
      * @return \DateTimeInterface
      */
-    public function getIngangsdatum()
+    public function getIngangsdatum(): \DateTimeInterface
     {
         return $this->Ingangsdatum;
     }
 
     /**
      * @param \DateTimeInterface $Ingangsdatum
-     * @return TRCHeader
+     * @return static
      */
-    public function withIngangsdatum($Ingangsdatum)
+    public function withIngangsdatum(\DateTimeInterface $Ingangsdatum): static
     {
         $new = clone $this;
         $new->Ingangsdatum = $Ingangsdatum;
@@ -79,3 +79,4 @@ class TRCHeader
         return $new;
     }
 }
+

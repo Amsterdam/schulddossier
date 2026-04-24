@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class HulpverlenerArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\THulpverlener
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\THulpverlener>
      */
-    private $THulpverlener;
+    private array $THulpverlener;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\THulpverlener
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\THulpverlener>
      */
-    public function getTHulpverlener()
+    public function getTHulpverlener(): array
     {
         return $this->THulpverlener;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\THulpverlener $THulpverlener
-     * @return HulpverlenerArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\THulpverlener> $THulpverlener
+     * @return static
      */
-    public function withTHulpverlener($THulpverlener)
+    public function withTHulpverlener(array $THulpverlener): static
     {
         $new = clone $this;
         $new->THulpverlener = $THulpverlener;
@@ -29,3 +29,4 @@ class HulpverlenerArray
         return $new;
     }
 }
+

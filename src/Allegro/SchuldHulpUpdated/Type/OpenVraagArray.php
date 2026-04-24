@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class OpenVraagArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag>
      */
-    private $TOpenVraag;
+    private array $TOpenVraag;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag>
      */
-    public function getTOpenVraag()
+    public function getTOpenVraag(): array
     {
         return $this->TOpenVraag;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag $TOpenVraag
-     * @return OpenVraagArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpenVraag> $TOpenVraag
+     * @return static
      */
-    public function withTOpenVraag($TOpenVraag)
+    public function withTOpenVraag(array $TOpenVraag): static
     {
         $new = clone $this;
         $new->TOpenVraag = $TOpenVraag;
@@ -29,3 +29,4 @@ class OpenVraagArray
         return $new;
     }
 }
+

@@ -7,66 +7,66 @@ class TBBRHeader
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $RelatieCode;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var string
      */
-    private $Medewerker;
+    private string $Medewerker;
 
     /**
      * @var int
      */
-    private $Opdrachtgever;
+    private int $Opdrachtgever;
 
     /**
      * @var int
      */
-    private $OpdrachtgeverContact;
+    private int $OpdrachtgeverContact;
 
     /**
      * @var string
      */
-    private $VormCode;
+    private string $VormCode;
 
     /**
      * @var string
      */
-    private $VormNaam;
+    private string $VormNaam;
 
     /**
      * @var string
      */
-    private $ProductNaam;
+    private string $ProductNaam;
 
     /**
      * @var string
      */
-    private $ProductOmschrijving;
+    private string $ProductOmschrijving;
 
     /**
      * @var string
      */
-    private $Team;
+    private string $Team;
 
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode(): int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TBBRHeader
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode): static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -77,16 +77,16 @@ class TBBRHeader
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TBBRHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -97,16 +97,16 @@ class TBBRHeader
     /**
      * @return string
      */
-    public function getMedewerker()
+    public function getMedewerker(): string
     {
         return $this->Medewerker;
     }
 
     /**
      * @param string $Medewerker
-     * @return TBBRHeader
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(string $Medewerker): static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -117,16 +117,16 @@ class TBBRHeader
     /**
      * @return int
      */
-    public function getOpdrachtgever()
+    public function getOpdrachtgever(): int
     {
         return $this->Opdrachtgever;
     }
 
     /**
      * @param int $Opdrachtgever
-     * @return TBBRHeader
+     * @return static
      */
-    public function withOpdrachtgever($Opdrachtgever)
+    public function withOpdrachtgever(int $Opdrachtgever): static
     {
         $new = clone $this;
         $new->Opdrachtgever = $Opdrachtgever;
@@ -137,16 +137,16 @@ class TBBRHeader
     /**
      * @return int
      */
-    public function getOpdrachtgeverContact()
+    public function getOpdrachtgeverContact(): int
     {
         return $this->OpdrachtgeverContact;
     }
 
     /**
      * @param int $OpdrachtgeverContact
-     * @return TBBRHeader
+     * @return static
      */
-    public function withOpdrachtgeverContact($OpdrachtgeverContact)
+    public function withOpdrachtgeverContact(int $OpdrachtgeverContact): static
     {
         $new = clone $this;
         $new->OpdrachtgeverContact = $OpdrachtgeverContact;
@@ -157,16 +157,16 @@ class TBBRHeader
     /**
      * @return string
      */
-    public function getVormCode()
+    public function getVormCode(): string
     {
         return $this->VormCode;
     }
 
     /**
      * @param string $VormCode
-     * @return TBBRHeader
+     * @return static
      */
-    public function withVormCode($VormCode)
+    public function withVormCode(string $VormCode): static
     {
         $new = clone $this;
         $new->VormCode = $VormCode;
@@ -177,16 +177,16 @@ class TBBRHeader
     /**
      * @return string
      */
-    public function getVormNaam()
+    public function getVormNaam(): string
     {
         return $this->VormNaam;
     }
 
     /**
      * @param string $VormNaam
-     * @return TBBRHeader
+     * @return static
      */
-    public function withVormNaam($VormNaam)
+    public function withVormNaam(string $VormNaam): static
     {
         $new = clone $this;
         $new->VormNaam = $VormNaam;
@@ -197,16 +197,16 @@ class TBBRHeader
     /**
      * @return string
      */
-    public function getProductNaam()
+    public function getProductNaam(): string
     {
         return $this->ProductNaam;
     }
 
     /**
      * @param string $ProductNaam
-     * @return TBBRHeader
+     * @return static
      */
-    public function withProductNaam($ProductNaam)
+    public function withProductNaam(string $ProductNaam): static
     {
         $new = clone $this;
         $new->ProductNaam = $ProductNaam;
@@ -217,16 +217,16 @@ class TBBRHeader
     /**
      * @return string
      */
-    public function getProductOmschrijving()
+    public function getProductOmschrijving(): string
     {
         return $this->ProductOmschrijving;
     }
 
     /**
      * @param string $ProductOmschrijving
-     * @return TBBRHeader
+     * @return static
      */
-    public function withProductOmschrijving($ProductOmschrijving)
+    public function withProductOmschrijving(string $ProductOmschrijving): static
     {
         $new = clone $this;
         $new->ProductOmschrijving = $ProductOmschrijving;
@@ -237,16 +237,16 @@ class TBBRHeader
     /**
      * @return string
      */
-    public function getTeam()
+    public function getTeam(): string
     {
         return $this->Team;
     }
 
     /**
      * @param string $Team
-     * @return TBBRHeader
+     * @return static
      */
-    public function withTeam($Team)
+    public function withTeam(string $Team): static
     {
         $new = clone $this;
         $new->Team = $Team;
@@ -254,3 +254,4 @@ class TBBRHeader
         return $new;
     }
 }
+

@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class BooleanArray
 {
     /**
-     * @var bool
+     * @var non-empty-array<int<0,max>, bool>
      */
-    private $boolean;
+    private array $boolean;
 
     /**
-     * @return bool
+     * @return non-empty-array<int<0,max>, bool>
      */
-    public function getBoolean()
+    public function getBoolean(): array
     {
         return $this->boolean;
     }
 
     /**
-     * @param bool $boolean
-     * @return BooleanArray
+     * @param non-empty-array<int<0,max>, bool> $boolean
+     * @return static
      */
-    public function withBoolean($boolean)
+    public function withBoolean(array $boolean): static
     {
         $new = clone $this;
         $new->boolean = $boolean;
@@ -29,3 +29,4 @@ class BooleanArray
         return $new;
     }
 }
+

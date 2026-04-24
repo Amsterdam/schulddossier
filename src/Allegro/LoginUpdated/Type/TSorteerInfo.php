@@ -5,28 +5,28 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class TSorteerInfo
 {
     /**
-     * @var string
+     * @var 'vsCode' | 'vsAfzenderOntvanger' | 'vsOnderwerp' | 'vsTijdstip' | 'vsOntvangen' | 'vsGelezen' | 'vsGearchiveerd' | 'vsBijlagen'
      */
-    private $Veld;
+    private string $Veld;
 
     /**
      * @var bool
      */
-    private $Oplopend;
+    private bool $Oplopend;
 
     /**
-     * @return string
+     * @return 'vsCode' | 'vsAfzenderOntvanger' | 'vsOnderwerp' | 'vsTijdstip' | 'vsOntvangen' | 'vsGelezen' | 'vsGearchiveerd' | 'vsBijlagen'
      */
-    public function getVeld()
+    public function getVeld(): string
     {
         return $this->Veld;
     }
 
     /**
-     * @param string $Veld
-     * @return TSorteerInfo
+     * @param 'vsCode' | 'vsAfzenderOntvanger' | 'vsOnderwerp' | 'vsTijdstip' | 'vsOntvangen' | 'vsGelezen' | 'vsGearchiveerd' | 'vsBijlagen' $Veld
+     * @return static
      */
-    public function withVeld($Veld)
+    public function withVeld(string $Veld): static
     {
         $new = clone $this;
         $new->Veld = $Veld;
@@ -37,16 +37,16 @@ class TSorteerInfo
     /**
      * @return bool
      */
-    public function getOplopend()
+    public function getOplopend(): bool
     {
         return $this->Oplopend;
     }
 
     /**
      * @param bool $Oplopend
-     * @return TSorteerInfo
+     * @return static
      */
-    public function withOplopend($Oplopend)
+    public function withOplopend(bool $Oplopend): static
     {
         $new = clone $this;
         $new->Oplopend = $Oplopend;
@@ -54,3 +54,4 @@ class TSorteerInfo
         return $new;
     }
 }
+

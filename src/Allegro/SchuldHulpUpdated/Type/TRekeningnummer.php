@@ -7,51 +7,51 @@ class TRekeningnummer
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var string
      */
-    private $IBAN;
+    private string $IBAN;
 
     /**
      * @var string
      */
-    private $BIC;
+    private string $BIC;
 
     /**
      * @var string
      */
-    private $Bank;
+    private string $Bank;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
      * @var bool
      */
-    private $Buitenland;
+    private bool $Buitenland;
 
     /**
      * @var bool
      */
-    private $Geblokkeerd;
+    private bool $Geblokkeerd;
 
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TRekeningnummer
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -62,16 +62,16 @@ class TRekeningnummer
     /**
      * @return string
      */
-    public function getIBAN()
+    public function getIBAN(): string
     {
         return $this->IBAN;
     }
 
     /**
      * @param string $IBAN
-     * @return TRekeningnummer
+     * @return static
      */
-    public function withIBAN($IBAN)
+    public function withIBAN(string $IBAN): static
     {
         $new = clone $this;
         $new->IBAN = $IBAN;
@@ -82,16 +82,16 @@ class TRekeningnummer
     /**
      * @return string
      */
-    public function getBIC()
+    public function getBIC(): string
     {
         return $this->BIC;
     }
 
     /**
      * @param string $BIC
-     * @return TRekeningnummer
+     * @return static
      */
-    public function withBIC($BIC)
+    public function withBIC(string $BIC): static
     {
         $new = clone $this;
         $new->BIC = $BIC;
@@ -102,16 +102,16 @@ class TRekeningnummer
     /**
      * @return string
      */
-    public function getBank()
+    public function getBank(): string
     {
         return $this->Bank;
     }
 
     /**
      * @param string $Bank
-     * @return TRekeningnummer
+     * @return static
      */
-    public function withBank($Bank)
+    public function withBank(string $Bank): static
     {
         $new = clone $this;
         $new->Bank = $Bank;
@@ -122,16 +122,16 @@ class TRekeningnummer
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving(): string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TRekeningnummer
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving): static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -142,16 +142,16 @@ class TRekeningnummer
     /**
      * @return bool
      */
-    public function getBuitenland()
+    public function getBuitenland(): bool
     {
         return $this->Buitenland;
     }
 
     /**
      * @param bool $Buitenland
-     * @return TRekeningnummer
+     * @return static
      */
-    public function withBuitenland($Buitenland)
+    public function withBuitenland(bool $Buitenland): static
     {
         $new = clone $this;
         $new->Buitenland = $Buitenland;
@@ -162,16 +162,16 @@ class TRekeningnummer
     /**
      * @return bool
      */
-    public function getGeblokkeerd()
+    public function getGeblokkeerd(): bool
     {
         return $this->Geblokkeerd;
     }
 
     /**
      * @param bool $Geblokkeerd
-     * @return TRekeningnummer
+     * @return static
      */
-    public function withGeblokkeerd($Geblokkeerd)
+    public function withGeblokkeerd(bool $Geblokkeerd): static
     {
         $new = clone $this;
         $new->Geblokkeerd = $Geblokkeerd;
@@ -179,3 +179,4 @@ class TRekeningnummer
         return $new;
     }
 }
+

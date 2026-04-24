@@ -7,151 +7,151 @@ class TAanmelding
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPersoon
      */
-    private $Aanvrager;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPersoon $Aanvrager;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPersoon
      */
-    private $Partner;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPersoon $Partner;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TGezinsSituatie
      */
-    private $GezinsSituatie;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TGezinsSituatie $GezinsSituatie;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    private $Adres;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $Adres;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContact
      */
-    private $Contact;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContact $Contact;
 
     /**
      * @var string
      */
-    private $Waarom;
+    private string $Waarom;
 
     /**
      * @var string
      */
-    private $Crisis;
+    private string $Crisis;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    private $JaNeeVraag1;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag1;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    private $JaNeeVraag2;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag2;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    private $JaNeeVraag3;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag3;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    private $JaNeeVraag4;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag4;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    private $JaNeeVraag5;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag5;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    private $JaNeeVraag6;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag6;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    private $JaNeeVraag7;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag7;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    private $JaNeeVraag8;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag8;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    private $JaNeeVraag9;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag9;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    private $JaNeeVraag10;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag10;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    private $OpenVraag1;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag1;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    private $OpenVraag2;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag2;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    private $OpenVraag3;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag3;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    private $OpenVraag4;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag4;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    private $OpenVraag5;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag5;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    private $OpenVraag6;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag6;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    private $OpenVraag7;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag7;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    private $OpenVraag8;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag8;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    private $OpenVraag9;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag9;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    private $OpenVraag10;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag10;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPersoon
      */
-    public function getAanvrager()
+    public function getAanvrager(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPersoon
     {
         return $this->Aanvrager;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPersoon $Aanvrager
-     * @return TAanmelding
+     * @return static
      */
-    public function withAanvrager($Aanvrager)
+    public function withAanvrager(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPersoon $Aanvrager): static
     {
         $new = clone $this;
         $new->Aanvrager = $Aanvrager;
@@ -162,16 +162,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPersoon
      */
-    public function getPartner()
+    public function getPartner(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPersoon
     {
         return $this->Partner;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPersoon $Partner
-     * @return TAanmelding
+     * @return static
      */
-    public function withPartner($Partner)
+    public function withPartner(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPersoon $Partner): static
     {
         $new = clone $this;
         $new->Partner = $Partner;
@@ -182,16 +182,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TGezinsSituatie
      */
-    public function getGezinsSituatie()
+    public function getGezinsSituatie(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TGezinsSituatie
     {
         return $this->GezinsSituatie;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TGezinsSituatie $GezinsSituatie
-     * @return TAanmelding
+     * @return static
      */
-    public function withGezinsSituatie($GezinsSituatie)
+    public function withGezinsSituatie(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TGezinsSituatie $GezinsSituatie): static
     {
         $new = clone $this;
         $new->GezinsSituatie = $GezinsSituatie;
@@ -202,16 +202,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    public function getAdres()
+    public function getAdres(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
     {
         return $this->Adres;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $Adres
-     * @return TAanmelding
+     * @return static
      */
-    public function withAdres($Adres)
+    public function withAdres(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $Adres): static
     {
         $new = clone $this;
         $new->Adres = $Adres;
@@ -222,16 +222,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContact
      */
-    public function getContact()
+    public function getContact(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContact
     {
         return $this->Contact;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContact $Contact
-     * @return TAanmelding
+     * @return static
      */
-    public function withContact($Contact)
+    public function withContact(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContact $Contact): static
     {
         $new = clone $this;
         $new->Contact = $Contact;
@@ -242,16 +242,16 @@ class TAanmelding
     /**
      * @return string
      */
-    public function getWaarom()
+    public function getWaarom(): string
     {
         return $this->Waarom;
     }
 
     /**
      * @param string $Waarom
-     * @return TAanmelding
+     * @return static
      */
-    public function withWaarom($Waarom)
+    public function withWaarom(string $Waarom): static
     {
         $new = clone $this;
         $new->Waarom = $Waarom;
@@ -262,16 +262,16 @@ class TAanmelding
     /**
      * @return string
      */
-    public function getCrisis()
+    public function getCrisis(): string
     {
         return $this->Crisis;
     }
 
     /**
      * @param string $Crisis
-     * @return TAanmelding
+     * @return static
      */
-    public function withCrisis($Crisis)
+    public function withCrisis(string $Crisis): static
     {
         $new = clone $this;
         $new->Crisis = $Crisis;
@@ -282,16 +282,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    public function getJaNeeVraag1()
+    public function getJaNeeVraag1(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
     {
         return $this->JaNeeVraag1;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag1
-     * @return TAanmelding
+     * @return static
      */
-    public function withJaNeeVraag1($JaNeeVraag1)
+    public function withJaNeeVraag1(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag1): static
     {
         $new = clone $this;
         $new->JaNeeVraag1 = $JaNeeVraag1;
@@ -302,16 +302,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    public function getJaNeeVraag2()
+    public function getJaNeeVraag2(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
     {
         return $this->JaNeeVraag2;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag2
-     * @return TAanmelding
+     * @return static
      */
-    public function withJaNeeVraag2($JaNeeVraag2)
+    public function withJaNeeVraag2(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag2): static
     {
         $new = clone $this;
         $new->JaNeeVraag2 = $JaNeeVraag2;
@@ -322,16 +322,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    public function getJaNeeVraag3()
+    public function getJaNeeVraag3(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
     {
         return $this->JaNeeVraag3;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag3
-     * @return TAanmelding
+     * @return static
      */
-    public function withJaNeeVraag3($JaNeeVraag3)
+    public function withJaNeeVraag3(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag3): static
     {
         $new = clone $this;
         $new->JaNeeVraag3 = $JaNeeVraag3;
@@ -342,16 +342,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    public function getJaNeeVraag4()
+    public function getJaNeeVraag4(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
     {
         return $this->JaNeeVraag4;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag4
-     * @return TAanmelding
+     * @return static
      */
-    public function withJaNeeVraag4($JaNeeVraag4)
+    public function withJaNeeVraag4(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag4): static
     {
         $new = clone $this;
         $new->JaNeeVraag4 = $JaNeeVraag4;
@@ -362,16 +362,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    public function getJaNeeVraag5()
+    public function getJaNeeVraag5(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
     {
         return $this->JaNeeVraag5;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag5
-     * @return TAanmelding
+     * @return static
      */
-    public function withJaNeeVraag5($JaNeeVraag5)
+    public function withJaNeeVraag5(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag5): static
     {
         $new = clone $this;
         $new->JaNeeVraag5 = $JaNeeVraag5;
@@ -382,16 +382,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    public function getJaNeeVraag6()
+    public function getJaNeeVraag6(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
     {
         return $this->JaNeeVraag6;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag6
-     * @return TAanmelding
+     * @return static
      */
-    public function withJaNeeVraag6($JaNeeVraag6)
+    public function withJaNeeVraag6(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag6): static
     {
         $new = clone $this;
         $new->JaNeeVraag6 = $JaNeeVraag6;
@@ -402,16 +402,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    public function getJaNeeVraag7()
+    public function getJaNeeVraag7(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
     {
         return $this->JaNeeVraag7;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag7
-     * @return TAanmelding
+     * @return static
      */
-    public function withJaNeeVraag7($JaNeeVraag7)
+    public function withJaNeeVraag7(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag7): static
     {
         $new = clone $this;
         $new->JaNeeVraag7 = $JaNeeVraag7;
@@ -422,16 +422,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    public function getJaNeeVraag8()
+    public function getJaNeeVraag8(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
     {
         return $this->JaNeeVraag8;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag8
-     * @return TAanmelding
+     * @return static
      */
-    public function withJaNeeVraag8($JaNeeVraag8)
+    public function withJaNeeVraag8(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag8): static
     {
         $new = clone $this;
         $new->JaNeeVraag8 = $JaNeeVraag8;
@@ -442,16 +442,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    public function getJaNeeVraag9()
+    public function getJaNeeVraag9(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
     {
         return $this->JaNeeVraag9;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag9
-     * @return TAanmelding
+     * @return static
      */
-    public function withJaNeeVraag9($JaNeeVraag9)
+    public function withJaNeeVraag9(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag9): static
     {
         $new = clone $this;
         $new->JaNeeVraag9 = $JaNeeVraag9;
@@ -462,16 +462,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
      */
-    public function getJaNeeVraag10()
+    public function getJaNeeVraag10(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag
     {
         return $this->JaNeeVraag10;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag10
-     * @return TAanmelding
+     * @return static
      */
-    public function withJaNeeVraag10($JaNeeVraag10)
+    public function withJaNeeVraag10(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TJaNeeVraag $JaNeeVraag10): static
     {
         $new = clone $this;
         $new->JaNeeVraag10 = $JaNeeVraag10;
@@ -482,16 +482,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    public function getOpenVraag1()
+    public function getOpenVraag1(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
     {
         return $this->OpenVraag1;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag1
-     * @return TAanmelding
+     * @return static
      */
-    public function withOpenVraag1($OpenVraag1)
+    public function withOpenVraag1(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag1): static
     {
         $new = clone $this;
         $new->OpenVraag1 = $OpenVraag1;
@@ -502,16 +502,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    public function getOpenVraag2()
+    public function getOpenVraag2(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
     {
         return $this->OpenVraag2;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag2
-     * @return TAanmelding
+     * @return static
      */
-    public function withOpenVraag2($OpenVraag2)
+    public function withOpenVraag2(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag2): static
     {
         $new = clone $this;
         $new->OpenVraag2 = $OpenVraag2;
@@ -522,16 +522,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    public function getOpenVraag3()
+    public function getOpenVraag3(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
     {
         return $this->OpenVraag3;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag3
-     * @return TAanmelding
+     * @return static
      */
-    public function withOpenVraag3($OpenVraag3)
+    public function withOpenVraag3(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag3): static
     {
         $new = clone $this;
         $new->OpenVraag3 = $OpenVraag3;
@@ -542,16 +542,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    public function getOpenVraag4()
+    public function getOpenVraag4(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
     {
         return $this->OpenVraag4;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag4
-     * @return TAanmelding
+     * @return static
      */
-    public function withOpenVraag4($OpenVraag4)
+    public function withOpenVraag4(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag4): static
     {
         $new = clone $this;
         $new->OpenVraag4 = $OpenVraag4;
@@ -562,16 +562,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    public function getOpenVraag5()
+    public function getOpenVraag5(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
     {
         return $this->OpenVraag5;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag5
-     * @return TAanmelding
+     * @return static
      */
-    public function withOpenVraag5($OpenVraag5)
+    public function withOpenVraag5(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag5): static
     {
         $new = clone $this;
         $new->OpenVraag5 = $OpenVraag5;
@@ -582,16 +582,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    public function getOpenVraag6()
+    public function getOpenVraag6(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
     {
         return $this->OpenVraag6;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag6
-     * @return TAanmelding
+     * @return static
      */
-    public function withOpenVraag6($OpenVraag6)
+    public function withOpenVraag6(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag6): static
     {
         $new = clone $this;
         $new->OpenVraag6 = $OpenVraag6;
@@ -602,16 +602,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    public function getOpenVraag7()
+    public function getOpenVraag7(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
     {
         return $this->OpenVraag7;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag7
-     * @return TAanmelding
+     * @return static
      */
-    public function withOpenVraag7($OpenVraag7)
+    public function withOpenVraag7(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag7): static
     {
         $new = clone $this;
         $new->OpenVraag7 = $OpenVraag7;
@@ -622,16 +622,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    public function getOpenVraag8()
+    public function getOpenVraag8(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
     {
         return $this->OpenVraag8;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag8
-     * @return TAanmelding
+     * @return static
      */
-    public function withOpenVraag8($OpenVraag8)
+    public function withOpenVraag8(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag8): static
     {
         $new = clone $this;
         $new->OpenVraag8 = $OpenVraag8;
@@ -642,16 +642,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    public function getOpenVraag9()
+    public function getOpenVraag9(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
     {
         return $this->OpenVraag9;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag9
-     * @return TAanmelding
+     * @return static
      */
-    public function withOpenVraag9($OpenVraag9)
+    public function withOpenVraag9(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag9): static
     {
         $new = clone $this;
         $new->OpenVraag9 = $OpenVraag9;
@@ -662,16 +662,16 @@ class TAanmelding
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
      */
-    public function getOpenVraag10()
+    public function getOpenVraag10(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag
     {
         return $this->OpenVraag10;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag10
-     * @return TAanmelding
+     * @return static
      */
-    public function withOpenVraag10($OpenVraag10)
+    public function withOpenVraag10(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOpenVraag $OpenVraag10): static
     {
         $new = clone $this;
         $new->OpenVraag10 = $OpenVraag10;
@@ -679,3 +679,4 @@ class TAanmelding
         return $new;
     }
 }
+

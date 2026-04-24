@@ -7,21 +7,21 @@ class TableRequestInfoV6
     /**
      * @var string
      */
-    private $Sql;
+    private string $Sql;
 
     /**
      * @return string
      */
-    public function getSql()
+    public function getSql(): string
     {
         return $this->Sql;
     }
 
     /**
      * @param string $Sql
-     * @return TableRequestInfoV6
+     * @return static
      */
-    public function withSql($Sql)
+    public function withSql(string $Sql): static
     {
         $new = clone $this;
         $new->Sql = $Sql;
@@ -29,3 +29,4 @@ class TableRequestInfoV6
         return $new;
     }
 }
+

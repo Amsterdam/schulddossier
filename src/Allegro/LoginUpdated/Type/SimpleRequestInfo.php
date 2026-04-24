@@ -7,51 +7,51 @@ class SimpleRequestInfo
     /**
      * @var string
      */
-    private $SQL;
+    private string $SQL;
 
     /**
      * @var string
      */
-    private $Table;
+    private string $Table;
 
     /**
      * @var string
      */
-    private $Where;
+    private string $Where;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataParameterArray
      */
-    private $Parameters;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataParameterArray $Parameters;
 
     /**
      * @var int
      */
-    private $MaxRecords;
+    private int $MaxRecords;
 
     /**
      * @var bool
      */
-    private $IncludeSchema;
+    private bool $IncludeSchema;
 
     /**
      * @var bool
      */
-    private $SimpleMode;
+    private bool $SimpleMode;
 
     /**
      * @return string
      */
-    public function getSQL()
+    public function getSQL(): string
     {
         return $this->SQL;
     }
 
     /**
      * @param string $SQL
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withSQL($SQL)
+    public function withSQL(string $SQL): static
     {
         $new = clone $this;
         $new->SQL = $SQL;
@@ -62,16 +62,16 @@ class SimpleRequestInfo
     /**
      * @return string
      */
-    public function getTable()
+    public function getTable(): string
     {
         return $this->Table;
     }
 
     /**
      * @param string $Table
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withTable($Table)
+    public function withTable(string $Table): static
     {
         $new = clone $this;
         $new->Table = $Table;
@@ -82,16 +82,16 @@ class SimpleRequestInfo
     /**
      * @return string
      */
-    public function getWhere()
+    public function getWhere(): string
     {
         return $this->Where;
     }
 
     /**
      * @param string $Where
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withWhere($Where)
+    public function withWhere(string $Where): static
     {
         $new = clone $this;
         $new->Where = $Where;
@@ -102,16 +102,16 @@ class SimpleRequestInfo
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataParameterArray
      */
-    public function getParameters()
+    public function getParameters(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataParameterArray
     {
         return $this->Parameters;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataParameterArray $Parameters
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withParameters($Parameters)
+    public function withParameters(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataParameterArray $Parameters): static
     {
         $new = clone $this;
         $new->Parameters = $Parameters;
@@ -122,16 +122,16 @@ class SimpleRequestInfo
     /**
      * @return int
      */
-    public function getMaxRecords()
+    public function getMaxRecords(): int
     {
         return $this->MaxRecords;
     }
 
     /**
      * @param int $MaxRecords
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withMaxRecords($MaxRecords)
+    public function withMaxRecords(int $MaxRecords): static
     {
         $new = clone $this;
         $new->MaxRecords = $MaxRecords;
@@ -142,16 +142,16 @@ class SimpleRequestInfo
     /**
      * @return bool
      */
-    public function getIncludeSchema()
+    public function getIncludeSchema(): bool
     {
         return $this->IncludeSchema;
     }
 
     /**
      * @param bool $IncludeSchema
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withIncludeSchema($IncludeSchema)
+    public function withIncludeSchema(bool $IncludeSchema): static
     {
         $new = clone $this;
         $new->IncludeSchema = $IncludeSchema;
@@ -162,16 +162,16 @@ class SimpleRequestInfo
     /**
      * @return bool
      */
-    public function getSimpleMode()
+    public function getSimpleMode(): bool
     {
         return $this->SimpleMode;
     }
 
     /**
      * @param bool $SimpleMode
-     * @return SimpleRequestInfo
+     * @return static
      */
-    public function withSimpleMode($SimpleMode)
+    public function withSimpleMode(bool $SimpleMode): static
     {
         $new = clone $this;
         $new->SimpleMode = $SimpleMode;
@@ -179,3 +179,4 @@ class SimpleRequestInfo
         return $new;
     }
 }
+

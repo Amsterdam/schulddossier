@@ -7,56 +7,56 @@ class TAfspraak
     /**
      * @var \DateTimeInterface
      */
-    private $StartTijdStip;
+    private \DateTimeInterface $StartTijdStip;
 
     /**
      * @var \DateTimeInterface
      */
-    private $EindTijdStip;
+    private \DateTimeInterface $EindTijdStip;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TMedewerker
      */
-    private $Medewerker;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TMedewerker $Medewerker;
 
     /**
      * @var string
      */
-    private $Locatie;
+    private string $Locatie;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    private $LocatieAdres;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $LocatieAdres;
 
     /**
      * @var string
      */
-    private $LocatieSpreekkamer;
+    private string $LocatieSpreekkamer;
 
     /**
      * @var string
      */
-    private $AfspraakCode;
+    private string $AfspraakCode;
 
     /**
      * @var string
      */
-    private $AfspraakOmschrijving;
+    private string $AfspraakOmschrijving;
 
     /**
      * @return \DateTimeInterface
      */
-    public function getStartTijdStip()
+    public function getStartTijdStip(): \DateTimeInterface
     {
         return $this->StartTijdStip;
     }
 
     /**
      * @param \DateTimeInterface $StartTijdStip
-     * @return TAfspraak
+     * @return static
      */
-    public function withStartTijdStip($StartTijdStip)
+    public function withStartTijdStip(\DateTimeInterface $StartTijdStip): static
     {
         $new = clone $this;
         $new->StartTijdStip = $StartTijdStip;
@@ -67,16 +67,16 @@ class TAfspraak
     /**
      * @return \DateTimeInterface
      */
-    public function getEindTijdStip()
+    public function getEindTijdStip(): \DateTimeInterface
     {
         return $this->EindTijdStip;
     }
 
     /**
      * @param \DateTimeInterface $EindTijdStip
-     * @return TAfspraak
+     * @return static
      */
-    public function withEindTijdStip($EindTijdStip)
+    public function withEindTijdStip(\DateTimeInterface $EindTijdStip): static
     {
         $new = clone $this;
         $new->EindTijdStip = $EindTijdStip;
@@ -87,16 +87,16 @@ class TAfspraak
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TMedewerker
      */
-    public function getMedewerker()
+    public function getMedewerker(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TMedewerker
     {
         return $this->Medewerker;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TMedewerker $Medewerker
-     * @return TAfspraak
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TMedewerker $Medewerker): static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -107,16 +107,16 @@ class TAfspraak
     /**
      * @return string
      */
-    public function getLocatie()
+    public function getLocatie(): string
     {
         return $this->Locatie;
     }
 
     /**
      * @param string $Locatie
-     * @return TAfspraak
+     * @return static
      */
-    public function withLocatie($Locatie)
+    public function withLocatie(string $Locatie): static
     {
         $new = clone $this;
         $new->Locatie = $Locatie;
@@ -127,16 +127,16 @@ class TAfspraak
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    public function getLocatieAdres()
+    public function getLocatieAdres(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
     {
         return $this->LocatieAdres;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $LocatieAdres
-     * @return TAfspraak
+     * @return static
      */
-    public function withLocatieAdres($LocatieAdres)
+    public function withLocatieAdres(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $LocatieAdres): static
     {
         $new = clone $this;
         $new->LocatieAdres = $LocatieAdres;
@@ -147,16 +147,16 @@ class TAfspraak
     /**
      * @return string
      */
-    public function getLocatieSpreekkamer()
+    public function getLocatieSpreekkamer(): string
     {
         return $this->LocatieSpreekkamer;
     }
 
     /**
      * @param string $LocatieSpreekkamer
-     * @return TAfspraak
+     * @return static
      */
-    public function withLocatieSpreekkamer($LocatieSpreekkamer)
+    public function withLocatieSpreekkamer(string $LocatieSpreekkamer): static
     {
         $new = clone $this;
         $new->LocatieSpreekkamer = $LocatieSpreekkamer;
@@ -167,16 +167,16 @@ class TAfspraak
     /**
      * @return string
      */
-    public function getAfspraakCode()
+    public function getAfspraakCode(): string
     {
         return $this->AfspraakCode;
     }
 
     /**
      * @param string $AfspraakCode
-     * @return TAfspraak
+     * @return static
      */
-    public function withAfspraakCode($AfspraakCode)
+    public function withAfspraakCode(string $AfspraakCode): static
     {
         $new = clone $this;
         $new->AfspraakCode = $AfspraakCode;
@@ -187,16 +187,16 @@ class TAfspraak
     /**
      * @return string
      */
-    public function getAfspraakOmschrijving()
+    public function getAfspraakOmschrijving(): string
     {
         return $this->AfspraakOmschrijving;
     }
 
     /**
      * @param string $AfspraakOmschrijving
-     * @return TAfspraak
+     * @return static
      */
-    public function withAfspraakOmschrijving($AfspraakOmschrijving)
+    public function withAfspraakOmschrijving(string $AfspraakOmschrijving): static
     {
         $new = clone $this;
         $new->AfspraakOmschrijving = $AfspraakOmschrijving;
@@ -204,3 +204,4 @@ class TAfspraak
         return $new;
     }
 }
+

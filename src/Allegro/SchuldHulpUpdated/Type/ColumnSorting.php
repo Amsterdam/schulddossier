@@ -7,26 +7,26 @@ class ColumnSorting
     /**
      * @var string
      */
-    private $FieldName;
+    private string $FieldName;
 
     /**
-     * @var string
+     * @var 'Ascending' | 'Descending'
      */
-    private $SortDirection;
+    private string $SortDirection;
 
     /**
      * @return string
      */
-    public function getFieldName()
+    public function getFieldName(): string
     {
         return $this->FieldName;
     }
 
     /**
      * @param string $FieldName
-     * @return ColumnSorting
+     * @return static
      */
-    public function withFieldName($FieldName)
+    public function withFieldName(string $FieldName): static
     {
         $new = clone $this;
         $new->FieldName = $FieldName;
@@ -35,18 +35,18 @@ class ColumnSorting
     }
 
     /**
-     * @return string
+     * @return 'Ascending' | 'Descending'
      */
-    public function getSortDirection()
+    public function getSortDirection(): string
     {
         return $this->SortDirection;
     }
 
     /**
-     * @param string $SortDirection
-     * @return ColumnSorting
+     * @param 'Ascending' | 'Descending' $SortDirection
+     * @return static
      */
-    public function withSortDirection($SortDirection)
+    public function withSortDirection(string $SortDirection): static
     {
         $new = clone $this;
         $new->SortDirection = $SortDirection;
@@ -54,3 +54,4 @@ class ColumnSorting
         return $new;
     }
 }
+

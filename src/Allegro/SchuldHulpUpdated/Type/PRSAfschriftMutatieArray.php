@@ -5,23 +5,25 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class PRSAfschriftMutatieArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPRSAfschriftMutatie
+     * tbv. PRS Online Afschrift mutaties
+     *
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPRSAfschriftMutatie>
      */
-    private $TPRSAfschriftMutatie;
+    private array $TPRSAfschriftMutatie;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPRSAfschriftMutatie
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPRSAfschriftMutatie>
      */
-    public function getTPRSAfschriftMutatie()
+    public function getTPRSAfschriftMutatie(): array
     {
         return $this->TPRSAfschriftMutatie;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPRSAfschriftMutatie $TPRSAfschriftMutatie
-     * @return PRSAfschriftMutatieArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPRSAfschriftMutatie> $TPRSAfschriftMutatie
+     * @return static
      */
-    public function withTPRSAfschriftMutatie($TPRSAfschriftMutatie)
+    public function withTPRSAfschriftMutatie(array $TPRSAfschriftMutatie): static
     {
         $new = clone $this;
         $new->TPRSAfschriftMutatie = $TPRSAfschriftMutatie;
@@ -29,3 +31,4 @@ class PRSAfschriftMutatieArray
         return $new;
     }
 }
+

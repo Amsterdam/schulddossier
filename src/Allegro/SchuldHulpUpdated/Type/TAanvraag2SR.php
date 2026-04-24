@@ -7,81 +7,81 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @var bool
      */
-    private $NPS;
+    private bool $NPS;
 
     /**
      * @var string
      */
-    private $OorzaakSchulden;
+    private string $OorzaakSchulden;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie
      */
-    private $Bewindvoerder;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie $Bewindvoerder;
 
     /**
      * @var string
      */
-    private $ToelichtingAlgemeen;
+    private string $ToelichtingAlgemeen;
 
     /**
      * @var string
      */
-    private $ToelichtingSO;
+    private string $ToelichtingSO;
 
     /**
      * @var string
      */
-    private $ToelichtingAanmelding;
+    private string $ToelichtingAanmelding;
 
     /**
      * @var string
      */
-    private $ToelichtingVoorstel;
+    private string $ToelichtingVoorstel;
 
     /**
      * @var bool
      */
-    private $TotaalschuldVullen;
+    private bool $TotaalschuldVullen;
 
     /**
      * @var bool
      */
-    private $OpdrachtgeverOvernemen;
+    private bool $OpdrachtgeverOvernemen;
 
     /**
      * @var bool
      */
-    private $HulpverlenerOvernemen;
+    private bool $HulpverlenerOvernemen;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OpenVraagArray
      */
-    private $OpenVragen;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OpenVraagArray $OpenVragen;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\GeslotenVraagArray
      */
-    private $GeslotenVragen;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\GeslotenVraagArray $GeslotenVragen;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray
      */
-    private $Schulden;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray $Schulden;
 
     /**
      * @return bool
      */
-    public function getNPS()
+    public function getNPS(): bool
     {
         return $this->NPS;
     }
 
     /**
      * @param bool $NPS
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withNPS($NPS)
+    public function withNPS(bool $NPS): static
     {
         $new = clone $this;
         $new->NPS = $NPS;
@@ -92,16 +92,16 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @return string
      */
-    public function getOorzaakSchulden()
+    public function getOorzaakSchulden(): string
     {
         return $this->OorzaakSchulden;
     }
 
     /**
      * @param string $OorzaakSchulden
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withOorzaakSchulden($OorzaakSchulden)
+    public function withOorzaakSchulden(string $OorzaakSchulden): static
     {
         $new = clone $this;
         $new->OorzaakSchulden = $OorzaakSchulden;
@@ -112,16 +112,16 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie
      */
-    public function getBewindvoerder()
+    public function getBewindvoerder(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie
     {
         return $this->Bewindvoerder;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie $Bewindvoerder
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withBewindvoerder($Bewindvoerder)
+    public function withBewindvoerder(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie $Bewindvoerder): static
     {
         $new = clone $this;
         $new->Bewindvoerder = $Bewindvoerder;
@@ -132,16 +132,16 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @return string
      */
-    public function getToelichtingAlgemeen()
+    public function getToelichtingAlgemeen(): string
     {
         return $this->ToelichtingAlgemeen;
     }
 
     /**
      * @param string $ToelichtingAlgemeen
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withToelichtingAlgemeen($ToelichtingAlgemeen)
+    public function withToelichtingAlgemeen(string $ToelichtingAlgemeen): static
     {
         $new = clone $this;
         $new->ToelichtingAlgemeen = $ToelichtingAlgemeen;
@@ -152,16 +152,16 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @return string
      */
-    public function getToelichtingSO()
+    public function getToelichtingSO(): string
     {
         return $this->ToelichtingSO;
     }
 
     /**
      * @param string $ToelichtingSO
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withToelichtingSO($ToelichtingSO)
+    public function withToelichtingSO(string $ToelichtingSO): static
     {
         $new = clone $this;
         $new->ToelichtingSO = $ToelichtingSO;
@@ -172,16 +172,16 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @return string
      */
-    public function getToelichtingAanmelding()
+    public function getToelichtingAanmelding(): string
     {
         return $this->ToelichtingAanmelding;
     }
 
     /**
      * @param string $ToelichtingAanmelding
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withToelichtingAanmelding($ToelichtingAanmelding)
+    public function withToelichtingAanmelding(string $ToelichtingAanmelding): static
     {
         $new = clone $this;
         $new->ToelichtingAanmelding = $ToelichtingAanmelding;
@@ -192,16 +192,16 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @return string
      */
-    public function getToelichtingVoorstel()
+    public function getToelichtingVoorstel(): string
     {
         return $this->ToelichtingVoorstel;
     }
 
     /**
      * @param string $ToelichtingVoorstel
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withToelichtingVoorstel($ToelichtingVoorstel)
+    public function withToelichtingVoorstel(string $ToelichtingVoorstel): static
     {
         $new = clone $this;
         $new->ToelichtingVoorstel = $ToelichtingVoorstel;
@@ -212,16 +212,16 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @return bool
      */
-    public function getTotaalschuldVullen()
+    public function getTotaalschuldVullen(): bool
     {
         return $this->TotaalschuldVullen;
     }
 
     /**
      * @param bool $TotaalschuldVullen
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withTotaalschuldVullen($TotaalschuldVullen)
+    public function withTotaalschuldVullen(bool $TotaalschuldVullen): static
     {
         $new = clone $this;
         $new->TotaalschuldVullen = $TotaalschuldVullen;
@@ -232,16 +232,16 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @return bool
      */
-    public function getOpdrachtgeverOvernemen()
+    public function getOpdrachtgeverOvernemen(): bool
     {
         return $this->OpdrachtgeverOvernemen;
     }
 
     /**
      * @param bool $OpdrachtgeverOvernemen
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withOpdrachtgeverOvernemen($OpdrachtgeverOvernemen)
+    public function withOpdrachtgeverOvernemen(bool $OpdrachtgeverOvernemen): static
     {
         $new = clone $this;
         $new->OpdrachtgeverOvernemen = $OpdrachtgeverOvernemen;
@@ -252,16 +252,16 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @return bool
      */
-    public function getHulpverlenerOvernemen()
+    public function getHulpverlenerOvernemen(): bool
     {
         return $this->HulpverlenerOvernemen;
     }
 
     /**
      * @param bool $HulpverlenerOvernemen
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withHulpverlenerOvernemen($HulpverlenerOvernemen)
+    public function withHulpverlenerOvernemen(bool $HulpverlenerOvernemen): static
     {
         $new = clone $this;
         $new->HulpverlenerOvernemen = $HulpverlenerOvernemen;
@@ -272,16 +272,16 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OpenVraagArray
      */
-    public function getOpenVragen()
+    public function getOpenVragen(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OpenVraagArray
     {
         return $this->OpenVragen;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OpenVraagArray $OpenVragen
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withOpenVragen($OpenVragen)
+    public function withOpenVragen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OpenVraagArray $OpenVragen): static
     {
         $new = clone $this;
         $new->OpenVragen = $OpenVragen;
@@ -292,16 +292,16 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\GeslotenVraagArray
      */
-    public function getGeslotenVragen()
+    public function getGeslotenVragen(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\GeslotenVraagArray
     {
         return $this->GeslotenVragen;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\GeslotenVraagArray $GeslotenVragen
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withGeslotenVragen($GeslotenVragen)
+    public function withGeslotenVragen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\GeslotenVraagArray $GeslotenVragen): static
     {
         $new = clone $this;
         $new->GeslotenVragen = $GeslotenVragen;
@@ -312,16 +312,16 @@ class TAanvraag2SR extends TAanvraag2
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray
      */
-    public function getSchulden()
+    public function getSchulden(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray
     {
         return $this->Schulden;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray $Schulden
-     * @return TAanvraag2SR
+     * @return static
      */
-    public function withSchulden($Schulden)
+    public function withSchulden(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray $Schulden): static
     {
         $new = clone $this;
         $new->Schulden = $Schulden;
@@ -329,3 +329,4 @@ class TAanvraag2SR extends TAanvraag2
         return $new;
     }
 }
+

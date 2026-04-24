@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class ROClientIDHeader
 {
     /**
-     * @var string
+     * @var null | string
      */
-    private $ID;
+    private ?string $ID = null;
 
     /**
-     * @return string
+     * @return null | string
      */
-    public function getID()
+    public function getID(): ?string
     {
         return $this->ID;
     }
 
     /**
-     * @param string $ID
-     * @return ROClientIDHeader
+     * @param null | string $ID
+     * @return static
      */
-    public function withID($ID)
+    public function withID(?string $ID): static
     {
         $new = clone $this;
         $new->ID = $ID;
@@ -29,3 +29,4 @@ class ROClientIDHeader
         return $new;
     }
 }
+

@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class PandBerichtenArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPandBericht
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPandBericht>
      */
-    private $TPandBericht;
+    private array $TPandBericht;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPandBericht
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPandBericht>
      */
-    public function getTPandBericht()
+    public function getTPandBericht(): array
     {
         return $this->TPandBericht;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPandBericht $TPandBericht
-     * @return PandBerichtenArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TPandBericht> $TPandBericht
+     * @return static
      */
-    public function withTPandBericht($TPandBericht)
+    public function withTPandBericht(array $TPandBericht): static
     {
         $new = clone $this;
         $new->TPandBericht = $TPandBericht;
@@ -29,3 +29,4 @@ class PandBerichtenArray
         return $new;
     }
 }
+

@@ -9,17 +9,17 @@ class LoginServiceAllegroWebMagAanmelden implements RequestInterface
     /**
      * @var int
      */
-    private $aRelatieCode;
+    private int $aRelatieCode;
 
     /**
      * @var string
      */
-    private $aAllegroAanmeldcode;
+    private string $aAllegroAanmeldcode;
 
     /**
      * @var string
      */
-    private $aAllegroWachtwoord;
+    private string $aAllegroWachtwoord;
 
     /**
      * Constructor
@@ -28,7 +28,7 @@ class LoginServiceAllegroWebMagAanmelden implements RequestInterface
      * @param string $aAllegroAanmeldcode
      * @param string $aAllegroWachtwoord
      */
-    public function __construct($aRelatieCode, $aAllegroAanmeldcode, $aAllegroWachtwoord)
+    public function __construct(int $aRelatieCode, string $aAllegroAanmeldcode, string $aAllegroWachtwoord)
     {
         $this->aRelatieCode = $aRelatieCode;
         $this->aAllegroAanmeldcode = $aAllegroAanmeldcode;
@@ -38,16 +38,16 @@ class LoginServiceAllegroWebMagAanmelden implements RequestInterface
     /**
      * @return int
      */
-    public function getARelatieCode()
+    public function getARelatieCode(): int
     {
         return $this->aRelatieCode;
     }
 
     /**
      * @param int $aRelatieCode
-     * @return LoginServiceAllegroWebMagAanmelden
+     * @return static
      */
-    public function withARelatieCode($aRelatieCode)
+    public function withARelatieCode(int $aRelatieCode): static
     {
         $new = clone $this;
         $new->aRelatieCode = $aRelatieCode;
@@ -58,16 +58,16 @@ class LoginServiceAllegroWebMagAanmelden implements RequestInterface
     /**
      * @return string
      */
-    public function getAAllegroAanmeldcode()
+    public function getAAllegroAanmeldcode(): string
     {
         return $this->aAllegroAanmeldcode;
     }
 
     /**
      * @param string $aAllegroAanmeldcode
-     * @return LoginServiceAllegroWebMagAanmelden
+     * @return static
      */
-    public function withAAllegroAanmeldcode($aAllegroAanmeldcode)
+    public function withAAllegroAanmeldcode(string $aAllegroAanmeldcode): static
     {
         $new = clone $this;
         $new->aAllegroAanmeldcode = $aAllegroAanmeldcode;
@@ -78,16 +78,16 @@ class LoginServiceAllegroWebMagAanmelden implements RequestInterface
     /**
      * @return string
      */
-    public function getAAllegroWachtwoord()
+    public function getAAllegroWachtwoord(): string
     {
         return $this->aAllegroWachtwoord;
     }
 
     /**
      * @param string $aAllegroWachtwoord
-     * @return LoginServiceAllegroWebMagAanmelden
+     * @return static
      */
-    public function withAAllegroWachtwoord($aAllegroWachtwoord)
+    public function withAAllegroWachtwoord(string $aAllegroWachtwoord): static
     {
         $new = clone $this;
         $new->aAllegroWachtwoord = $aAllegroWachtwoord;
@@ -95,3 +95,4 @@ class LoginServiceAllegroWebMagAanmelden implements RequestInterface
         return $new;
     }
 }
+

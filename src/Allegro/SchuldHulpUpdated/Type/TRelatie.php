@@ -7,176 +7,176 @@ class TRelatie
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $RelatieCode;
 
     /**
      * @var string
      */
-    private $Voornamen;
+    private string $Voornamen;
 
     /**
      * @var string
      */
-    private $Voorletters;
+    private string $Voorletters;
 
     /**
      * @var string
      */
-    private $Zoeknaam;
+    private string $Zoeknaam;
 
     /**
      * @var string
      */
-    private $Achternaam;
+    private string $Achternaam;
 
     /**
      * @var string
      */
-    private $Voorvoegsels;
+    private string $Voorvoegsels;
 
     /**
      * @var string
      */
-    private $Geslacht;
+    private string $Geslacht;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
      */
-    private $BezoekAdres;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $BezoekAdres;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
      */
-    private $PostAdres;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $PostAdres;
 
     /**
      * @var \DateTimeInterface
      */
-    private $Geboortedatum;
+    private \DateTimeInterface $Geboortedatum;
 
     /**
      * @var string
      */
-    private $Geboorteplaats;
+    private string $Geboorteplaats;
 
     /**
      * @var int
      */
-    private $BSN;
+    private int $BSN;
 
     /**
      * @var string
      */
-    private $Rekening;
+    private string $Rekening;
 
     /**
      * @var string
      */
-    private $Telefoon1;
+    private string $Telefoon1;
 
     /**
      * @var string
      */
-    private $Telefoon2;
+    private string $Telefoon2;
 
     /**
      * @var string
      */
-    private $Email;
+    private string $Email;
 
     /**
      * @var string
      */
-    private $BurgerlijkeStaat;
+    private string $BurgerlijkeStaat;
 
     /**
      * @var int
      */
-    private $PartnerCode;
+    private int $PartnerCode;
 
     /**
      * @var string
      */
-    private $Autorisaties;
+    private string $Autorisaties;
 
     /**
      * @var string
      */
-    private $Identificatiebewijs;
+    private string $Identificatiebewijs;
 
     /**
      * @var string
      */
-    private $IdentificatieNummer;
+    private string $IdentificatieNummer;
 
     /**
      * @var \DateTimeInterface
      */
-    private $IdentificatieGeldig;
+    private \DateTimeInterface $IdentificatieGeldig;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\KindArray
      */
-    private $Kinderen;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\KindArray $Kinderen;
 
     /**
      * @var int
      */
-    private $Bedrijf;
+    private int $Bedrijf;
 
     /**
      * @var string
      */
-    private $IBAN;
+    private string $IBAN;
 
     /**
      * @var string
      */
-    private $BIC;
+    private string $BIC;
 
     /**
      * @var bool
      */
-    private $InzakeRekening;
+    private bool $InzakeRekening;
 
     /**
      * @var string
      */
-    private $RekeningInzake;
+    private string $RekeningInzake;
 
     /**
      * @var string
      */
-    private $RekeningInzakeIBAN;
+    private string $RekeningInzakeIBAN;
 
     /**
      * @var string
      */
-    private $RekeningInzakeBIC;
+    private string $RekeningInzakeBIC;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
-    private $Klantmanager;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $Klantmanager;
 
     /**
      * @var string
      */
-    private $Pincode;
+    private string $Pincode;
 
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode(): int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TRelatie
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode): static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -187,16 +187,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getVoornamen()
+    public function getVoornamen(): string
     {
         return $this->Voornamen;
     }
 
     /**
      * @param string $Voornamen
-     * @return TRelatie
+     * @return static
      */
-    public function withVoornamen($Voornamen)
+    public function withVoornamen(string $Voornamen): static
     {
         $new = clone $this;
         $new->Voornamen = $Voornamen;
@@ -207,16 +207,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getVoorletters()
+    public function getVoorletters(): string
     {
         return $this->Voorletters;
     }
 
     /**
      * @param string $Voorletters
-     * @return TRelatie
+     * @return static
      */
-    public function withVoorletters($Voorletters)
+    public function withVoorletters(string $Voorletters): static
     {
         $new = clone $this;
         $new->Voorletters = $Voorletters;
@@ -227,16 +227,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getZoeknaam()
+    public function getZoeknaam(): string
     {
         return $this->Zoeknaam;
     }
 
     /**
      * @param string $Zoeknaam
-     * @return TRelatie
+     * @return static
      */
-    public function withZoeknaam($Zoeknaam)
+    public function withZoeknaam(string $Zoeknaam): static
     {
         $new = clone $this;
         $new->Zoeknaam = $Zoeknaam;
@@ -247,16 +247,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam(): string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TRelatie
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam): static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -267,16 +267,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getVoorvoegsels()
+    public function getVoorvoegsels(): string
     {
         return $this->Voorvoegsels;
     }
 
     /**
      * @param string $Voorvoegsels
-     * @return TRelatie
+     * @return static
      */
-    public function withVoorvoegsels($Voorvoegsels)
+    public function withVoorvoegsels(string $Voorvoegsels): static
     {
         $new = clone $this;
         $new->Voorvoegsels = $Voorvoegsels;
@@ -287,16 +287,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getGeslacht()
+    public function getGeslacht(): string
     {
         return $this->Geslacht;
     }
 
     /**
      * @param string $Geslacht
-     * @return TRelatie
+     * @return static
      */
-    public function withGeslacht($Geslacht)
+    public function withGeslacht(string $Geslacht): static
     {
         $new = clone $this;
         $new->Geslacht = $Geslacht;
@@ -307,16 +307,16 @@ class TRelatie
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
      */
-    public function getBezoekAdres()
+    public function getBezoekAdres(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
     {
         return $this->BezoekAdres;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $BezoekAdres
-     * @return TRelatie
+     * @return static
      */
-    public function withBezoekAdres($BezoekAdres)
+    public function withBezoekAdres(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $BezoekAdres): static
     {
         $new = clone $this;
         $new->BezoekAdres = $BezoekAdres;
@@ -327,16 +327,16 @@ class TRelatie
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
      */
-    public function getPostAdres()
+    public function getPostAdres(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres
     {
         return $this->PostAdres;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $PostAdres
-     * @return TRelatie
+     * @return static
      */
-    public function withPostAdres($PostAdres)
+    public function withPostAdres(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $PostAdres): static
     {
         $new = clone $this;
         $new->PostAdres = $PostAdres;
@@ -347,16 +347,16 @@ class TRelatie
     /**
      * @return \DateTimeInterface
      */
-    public function getGeboortedatum()
+    public function getGeboortedatum(): \DateTimeInterface
     {
         return $this->Geboortedatum;
     }
 
     /**
      * @param \DateTimeInterface $Geboortedatum
-     * @return TRelatie
+     * @return static
      */
-    public function withGeboortedatum($Geboortedatum)
+    public function withGeboortedatum(\DateTimeInterface $Geboortedatum): static
     {
         $new = clone $this;
         $new->Geboortedatum = $Geboortedatum;
@@ -367,16 +367,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getGeboorteplaats()
+    public function getGeboorteplaats(): string
     {
         return $this->Geboorteplaats;
     }
 
     /**
      * @param string $Geboorteplaats
-     * @return TRelatie
+     * @return static
      */
-    public function withGeboorteplaats($Geboorteplaats)
+    public function withGeboorteplaats(string $Geboorteplaats): static
     {
         $new = clone $this;
         $new->Geboorteplaats = $Geboorteplaats;
@@ -387,16 +387,16 @@ class TRelatie
     /**
      * @return int
      */
-    public function getBSN()
+    public function getBSN(): int
     {
         return $this->BSN;
     }
 
     /**
      * @param int $BSN
-     * @return TRelatie
+     * @return static
      */
-    public function withBSN($BSN)
+    public function withBSN(int $BSN): static
     {
         $new = clone $this;
         $new->BSN = $BSN;
@@ -407,16 +407,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getRekening()
+    public function getRekening(): string
     {
         return $this->Rekening;
     }
 
     /**
      * @param string $Rekening
-     * @return TRelatie
+     * @return static
      */
-    public function withRekening($Rekening)
+    public function withRekening(string $Rekening): static
     {
         $new = clone $this;
         $new->Rekening = $Rekening;
@@ -427,16 +427,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getTelefoon1()
+    public function getTelefoon1(): string
     {
         return $this->Telefoon1;
     }
 
     /**
      * @param string $Telefoon1
-     * @return TRelatie
+     * @return static
      */
-    public function withTelefoon1($Telefoon1)
+    public function withTelefoon1(string $Telefoon1): static
     {
         $new = clone $this;
         $new->Telefoon1 = $Telefoon1;
@@ -447,16 +447,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getTelefoon2()
+    public function getTelefoon2(): string
     {
         return $this->Telefoon2;
     }
 
     /**
      * @param string $Telefoon2
-     * @return TRelatie
+     * @return static
      */
-    public function withTelefoon2($Telefoon2)
+    public function withTelefoon2(string $Telefoon2): static
     {
         $new = clone $this;
         $new->Telefoon2 = $Telefoon2;
@@ -467,16 +467,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->Email;
     }
 
     /**
      * @param string $Email
-     * @return TRelatie
+     * @return static
      */
-    public function withEmail($Email)
+    public function withEmail(string $Email): static
     {
         $new = clone $this;
         $new->Email = $Email;
@@ -487,16 +487,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getBurgerlijkeStaat()
+    public function getBurgerlijkeStaat(): string
     {
         return $this->BurgerlijkeStaat;
     }
 
     /**
      * @param string $BurgerlijkeStaat
-     * @return TRelatie
+     * @return static
      */
-    public function withBurgerlijkeStaat($BurgerlijkeStaat)
+    public function withBurgerlijkeStaat(string $BurgerlijkeStaat): static
     {
         $new = clone $this;
         $new->BurgerlijkeStaat = $BurgerlijkeStaat;
@@ -507,16 +507,16 @@ class TRelatie
     /**
      * @return int
      */
-    public function getPartnerCode()
+    public function getPartnerCode(): int
     {
         return $this->PartnerCode;
     }
 
     /**
      * @param int $PartnerCode
-     * @return TRelatie
+     * @return static
      */
-    public function withPartnerCode($PartnerCode)
+    public function withPartnerCode(int $PartnerCode): static
     {
         $new = clone $this;
         $new->PartnerCode = $PartnerCode;
@@ -527,16 +527,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getAutorisaties()
+    public function getAutorisaties(): string
     {
         return $this->Autorisaties;
     }
 
     /**
      * @param string $Autorisaties
-     * @return TRelatie
+     * @return static
      */
-    public function withAutorisaties($Autorisaties)
+    public function withAutorisaties(string $Autorisaties): static
     {
         $new = clone $this;
         $new->Autorisaties = $Autorisaties;
@@ -547,16 +547,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getIdentificatiebewijs()
+    public function getIdentificatiebewijs(): string
     {
         return $this->Identificatiebewijs;
     }
 
     /**
      * @param string $Identificatiebewijs
-     * @return TRelatie
+     * @return static
      */
-    public function withIdentificatiebewijs($Identificatiebewijs)
+    public function withIdentificatiebewijs(string $Identificatiebewijs): static
     {
         $new = clone $this;
         $new->Identificatiebewijs = $Identificatiebewijs;
@@ -567,16 +567,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getIdentificatieNummer()
+    public function getIdentificatieNummer(): string
     {
         return $this->IdentificatieNummer;
     }
 
     /**
      * @param string $IdentificatieNummer
-     * @return TRelatie
+     * @return static
      */
-    public function withIdentificatieNummer($IdentificatieNummer)
+    public function withIdentificatieNummer(string $IdentificatieNummer): static
     {
         $new = clone $this;
         $new->IdentificatieNummer = $IdentificatieNummer;
@@ -587,16 +587,16 @@ class TRelatie
     /**
      * @return \DateTimeInterface
      */
-    public function getIdentificatieGeldig()
+    public function getIdentificatieGeldig(): \DateTimeInterface
     {
         return $this->IdentificatieGeldig;
     }
 
     /**
      * @param \DateTimeInterface $IdentificatieGeldig
-     * @return TRelatie
+     * @return static
      */
-    public function withIdentificatieGeldig($IdentificatieGeldig)
+    public function withIdentificatieGeldig(\DateTimeInterface $IdentificatieGeldig): static
     {
         $new = clone $this;
         $new->IdentificatieGeldig = $IdentificatieGeldig;
@@ -607,16 +607,16 @@ class TRelatie
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\KindArray
      */
-    public function getKinderen()
+    public function getKinderen(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\KindArray
     {
         return $this->Kinderen;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\KindArray $Kinderen
-     * @return TRelatie
+     * @return static
      */
-    public function withKinderen($Kinderen)
+    public function withKinderen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\KindArray $Kinderen): static
     {
         $new = clone $this;
         $new->Kinderen = $Kinderen;
@@ -627,16 +627,16 @@ class TRelatie
     /**
      * @return int
      */
-    public function getBedrijf()
+    public function getBedrijf(): int
     {
         return $this->Bedrijf;
     }
 
     /**
      * @param int $Bedrijf
-     * @return TRelatie
+     * @return static
      */
-    public function withBedrijf($Bedrijf)
+    public function withBedrijf(int $Bedrijf): static
     {
         $new = clone $this;
         $new->Bedrijf = $Bedrijf;
@@ -647,16 +647,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getIBAN()
+    public function getIBAN(): string
     {
         return $this->IBAN;
     }
 
     /**
      * @param string $IBAN
-     * @return TRelatie
+     * @return static
      */
-    public function withIBAN($IBAN)
+    public function withIBAN(string $IBAN): static
     {
         $new = clone $this;
         $new->IBAN = $IBAN;
@@ -667,16 +667,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getBIC()
+    public function getBIC(): string
     {
         return $this->BIC;
     }
 
     /**
      * @param string $BIC
-     * @return TRelatie
+     * @return static
      */
-    public function withBIC($BIC)
+    public function withBIC(string $BIC): static
     {
         $new = clone $this;
         $new->BIC = $BIC;
@@ -687,16 +687,16 @@ class TRelatie
     /**
      * @return bool
      */
-    public function getInzakeRekening()
+    public function getInzakeRekening(): bool
     {
         return $this->InzakeRekening;
     }
 
     /**
      * @param bool $InzakeRekening
-     * @return TRelatie
+     * @return static
      */
-    public function withInzakeRekening($InzakeRekening)
+    public function withInzakeRekening(bool $InzakeRekening): static
     {
         $new = clone $this;
         $new->InzakeRekening = $InzakeRekening;
@@ -707,16 +707,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getRekeningInzake()
+    public function getRekeningInzake(): string
     {
         return $this->RekeningInzake;
     }
 
     /**
      * @param string $RekeningInzake
-     * @return TRelatie
+     * @return static
      */
-    public function withRekeningInzake($RekeningInzake)
+    public function withRekeningInzake(string $RekeningInzake): static
     {
         $new = clone $this;
         $new->RekeningInzake = $RekeningInzake;
@@ -727,16 +727,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getRekeningInzakeIBAN()
+    public function getRekeningInzakeIBAN(): string
     {
         return $this->RekeningInzakeIBAN;
     }
 
     /**
      * @param string $RekeningInzakeIBAN
-     * @return TRelatie
+     * @return static
      */
-    public function withRekeningInzakeIBAN($RekeningInzakeIBAN)
+    public function withRekeningInzakeIBAN(string $RekeningInzakeIBAN): static
     {
         $new = clone $this;
         $new->RekeningInzakeIBAN = $RekeningInzakeIBAN;
@@ -747,16 +747,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getRekeningInzakeBIC()
+    public function getRekeningInzakeBIC(): string
     {
         return $this->RekeningInzakeBIC;
     }
 
     /**
      * @param string $RekeningInzakeBIC
-     * @return TRelatie
+     * @return static
      */
-    public function withRekeningInzakeBIC($RekeningInzakeBIC)
+    public function withRekeningInzakeBIC(string $RekeningInzakeBIC): static
     {
         $new = clone $this;
         $new->RekeningInzakeBIC = $RekeningInzakeBIC;
@@ -767,16 +767,16 @@ class TRelatie
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
-    public function getKlantmanager()
+    public function getKlantmanager(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
     {
         return $this->Klantmanager;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $Klantmanager
-     * @return TRelatie
+     * @return static
      */
-    public function withKlantmanager($Klantmanager)
+    public function withKlantmanager(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $Klantmanager): static
     {
         $new = clone $this;
         $new->Klantmanager = $Klantmanager;
@@ -787,16 +787,16 @@ class TRelatie
     /**
      * @return string
      */
-    public function getPincode()
+    public function getPincode(): string
     {
         return $this->Pincode;
     }
 
     /**
      * @param string $Pincode
-     * @return TRelatie
+     * @return static
      */
-    public function withPincode($Pincode)
+    public function withPincode(string $Pincode): static
     {
         $new = clone $this;
         $new->Pincode = $Pincode;
@@ -804,3 +804,4 @@ class TRelatie
         return $new;
     }
 }
+

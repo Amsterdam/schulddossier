@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class CasusNotitieArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TCasusNotitie
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TCasusNotitie>
      */
-    private $TCasusNotitie;
+    private array $TCasusNotitie;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TCasusNotitie
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TCasusNotitie>
      */
-    public function getTCasusNotitie()
+    public function getTCasusNotitie(): array
     {
         return $this->TCasusNotitie;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TCasusNotitie $TCasusNotitie
-     * @return CasusNotitieArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TCasusNotitie> $TCasusNotitie
+     * @return static
      */
-    public function withTCasusNotitie($TCasusNotitie)
+    public function withTCasusNotitie(array $TCasusNotitie): static
     {
         $new = clone $this;
         $new->TCasusNotitie = $TCasusNotitie;
@@ -29,3 +29,4 @@ class CasusNotitieArray
         return $new;
     }
 }
+

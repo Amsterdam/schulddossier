@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class TBBoxGeadresseerdeArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxGeadresseerde
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxGeadresseerde>
      */
-    private $TBBoxGeadresseerde;
+    private array $TBBoxGeadresseerde;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxGeadresseerde
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxGeadresseerde>
      */
-    public function getTBBoxGeadresseerde()
+    public function getTBBoxGeadresseerde(): array
     {
         return $this->TBBoxGeadresseerde;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxGeadresseerde $TBBoxGeadresseerde
-     * @return TBBoxGeadresseerdeArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxGeadresseerde> $TBBoxGeadresseerde
+     * @return static
      */
-    public function withTBBoxGeadresseerde($TBBoxGeadresseerde)
+    public function withTBBoxGeadresseerde(array $TBBoxGeadresseerde): static
     {
         $new = clone $this;
         $new->TBBoxGeadresseerde = $TBBoxGeadresseerde;
@@ -29,3 +29,4 @@ class TBBoxGeadresseerdeArray
         return $new;
     }
 }
+

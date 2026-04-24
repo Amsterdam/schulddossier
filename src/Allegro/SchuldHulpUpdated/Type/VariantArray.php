@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class VariantArray
 {
     /**
-     * @var mixed
+     * @var non-empty-array<int<0,max>, mixed>
      */
-    private $anyType;
+    private array $anyType;
 
     /**
-     * @return mixed
+     * @return non-empty-array<int<0,max>, mixed>
      */
-    public function getAnyType()
+    public function getAnyType(): array
     {
         return $this->anyType;
     }
 
     /**
-     * @param mixed $anyType
-     * @return VariantArray
+     * @param non-empty-array<int<0,max>, mixed> $anyType
+     * @return static
      */
-    public function withAnyType($anyType)
+    public function withAnyType(array $anyType): static
     {
         $new = clone $this;
         $new->anyType = $anyType;
@@ -29,3 +29,4 @@ class VariantArray
         return $new;
     }
 }
+

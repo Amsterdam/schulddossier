@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class SBHeaderArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader>
      */
-    private $TSBHeader;
+    private array $TSBHeader;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader>
      */
-    public function getTSBHeader()
+    public function getTSBHeader(): array
     {
         return $this->TSBHeader;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader $TSBHeader
-     * @return SBHeaderArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader> $TSBHeader
+     * @return static
      */
-    public function withTSBHeader($TSBHeader)
+    public function withTSBHeader(array $TSBHeader): static
     {
         $new = clone $this;
         $new->TSBHeader = $TSBHeader;
@@ -29,3 +29,4 @@ class SBHeaderArray
         return $new;
     }
 }
+

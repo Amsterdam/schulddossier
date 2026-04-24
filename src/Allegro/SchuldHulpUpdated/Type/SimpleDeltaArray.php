@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class SimpleDeltaArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDelta
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDelta>
      */
-    private $SimpleDelta;
+    private array $SimpleDelta;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDelta
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDelta>
      */
-    public function getSimpleDelta()
+    public function getSimpleDelta(): array
     {
         return $this->SimpleDelta;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDelta $SimpleDelta
-     * @return SimpleDeltaArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDelta> $SimpleDelta
+     * @return static
      */
-    public function withSimpleDelta($SimpleDelta)
+    public function withSimpleDelta(array $SimpleDelta): static
     {
         $new = clone $this;
         $new->SimpleDelta = $SimpleDelta;
@@ -29,3 +29,4 @@ class SimpleDeltaArray
         return $new;
     }
 }
+

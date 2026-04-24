@@ -7,46 +7,46 @@ class TSBEisers
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SBEiserArray
      */
-    private $Eisers;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SBEiserArray $Eisers;
 
     /**
      * @var float
      */
-    private $SomTeruggemeldBedrag;
+    private float $SomTeruggemeldBedrag;
 
     /**
      * @var float
      */
-    private $SomBerekendBedrag;
+    private float $SomBerekendBedrag;
 
     /**
      * @var float
      */
-    private $SomGereserveerdBedrag;
+    private float $SomGereserveerdBedrag;
 
     /**
      * @var float
      */
-    private $SomDoorbetaaldBedrag;
+    private float $SomDoorbetaaldBedrag;
 
     /**
      * @var float
      */
-    private $SomPrognoseRestschuld;
+    private float $SomPrognoseRestschuld;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SBEiserArray
      */
-    public function getEisers()
+    public function getEisers(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SBEiserArray
     {
         return $this->Eisers;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SBEiserArray $Eisers
-     * @return TSBEisers
+     * @return static
      */
-    public function withEisers($Eisers)
+    public function withEisers(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SBEiserArray $Eisers): static
     {
         $new = clone $this;
         $new->Eisers = $Eisers;
@@ -57,16 +57,16 @@ class TSBEisers
     /**
      * @return float
      */
-    public function getSomTeruggemeldBedrag()
+    public function getSomTeruggemeldBedrag(): float
     {
         return $this->SomTeruggemeldBedrag;
     }
 
     /**
      * @param float $SomTeruggemeldBedrag
-     * @return TSBEisers
+     * @return static
      */
-    public function withSomTeruggemeldBedrag($SomTeruggemeldBedrag)
+    public function withSomTeruggemeldBedrag(float $SomTeruggemeldBedrag): static
     {
         $new = clone $this;
         $new->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
@@ -77,16 +77,16 @@ class TSBEisers
     /**
      * @return float
      */
-    public function getSomBerekendBedrag()
+    public function getSomBerekendBedrag(): float
     {
         return $this->SomBerekendBedrag;
     }
 
     /**
      * @param float $SomBerekendBedrag
-     * @return TSBEisers
+     * @return static
      */
-    public function withSomBerekendBedrag($SomBerekendBedrag)
+    public function withSomBerekendBedrag(float $SomBerekendBedrag): static
     {
         $new = clone $this;
         $new->SomBerekendBedrag = $SomBerekendBedrag;
@@ -97,16 +97,16 @@ class TSBEisers
     /**
      * @return float
      */
-    public function getSomGereserveerdBedrag()
+    public function getSomGereserveerdBedrag(): float
     {
         return $this->SomGereserveerdBedrag;
     }
 
     /**
      * @param float $SomGereserveerdBedrag
-     * @return TSBEisers
+     * @return static
      */
-    public function withSomGereserveerdBedrag($SomGereserveerdBedrag)
+    public function withSomGereserveerdBedrag(float $SomGereserveerdBedrag): static
     {
         $new = clone $this;
         $new->SomGereserveerdBedrag = $SomGereserveerdBedrag;
@@ -117,16 +117,16 @@ class TSBEisers
     /**
      * @return float
      */
-    public function getSomDoorbetaaldBedrag()
+    public function getSomDoorbetaaldBedrag(): float
     {
         return $this->SomDoorbetaaldBedrag;
     }
 
     /**
      * @param float $SomDoorbetaaldBedrag
-     * @return TSBEisers
+     * @return static
      */
-    public function withSomDoorbetaaldBedrag($SomDoorbetaaldBedrag)
+    public function withSomDoorbetaaldBedrag(float $SomDoorbetaaldBedrag): static
     {
         $new = clone $this;
         $new->SomDoorbetaaldBedrag = $SomDoorbetaaldBedrag;
@@ -137,16 +137,16 @@ class TSBEisers
     /**
      * @return float
      */
-    public function getSomPrognoseRestschuld()
+    public function getSomPrognoseRestschuld(): float
     {
         return $this->SomPrognoseRestschuld;
     }
 
     /**
      * @param float $SomPrognoseRestschuld
-     * @return TSBEisers
+     * @return static
      */
-    public function withSomPrognoseRestschuld($SomPrognoseRestschuld)
+    public function withSomPrognoseRestschuld(float $SomPrognoseRestschuld): static
     {
         $new = clone $this;
         $new->SomPrognoseRestschuld = $SomPrognoseRestschuld;
@@ -154,3 +154,4 @@ class TSBEisers
         return $new;
     }
 }
+

@@ -9,14 +9,14 @@ class SchuldHulpServiceGetSBOverzicht implements RequestInterface
     /**
      * @var int
      */
-    private $aRelatieCode;
+    private int $aRelatieCode;
 
     /**
      * Constructor
      *
      * @param int $aRelatieCode
      */
-    public function __construct($aRelatieCode)
+    public function __construct(int $aRelatieCode)
     {
         $this->aRelatieCode = $aRelatieCode;
     }
@@ -24,16 +24,16 @@ class SchuldHulpServiceGetSBOverzicht implements RequestInterface
     /**
      * @return int
      */
-    public function getARelatieCode()
+    public function getARelatieCode(): int
     {
         return $this->aRelatieCode;
     }
 
     /**
      * @param int $aRelatieCode
-     * @return SchuldHulpServiceGetSBOverzicht
+     * @return static
      */
-    public function withARelatieCode($aRelatieCode)
+    public function withARelatieCode(int $aRelatieCode): static
     {
         $new = clone $this;
         $new->aRelatieCode = $aRelatieCode;
@@ -41,3 +41,4 @@ class SchuldHulpServiceGetSBOverzicht implements RequestInterface
         return $new;
     }
 }
+

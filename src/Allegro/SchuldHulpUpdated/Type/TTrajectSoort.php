@@ -7,26 +7,26 @@ class TTrajectSoort
     /**
      * @var string
      */
-    private $Trajectnaam;
+    private string $Trajectnaam;
 
     /**
      * @var int
      */
-    private $Trajectcodes;
+    private int $Trajectcodes;
 
     /**
      * @return string
      */
-    public function getTrajectnaam()
+    public function getTrajectnaam(): string
     {
         return $this->Trajectnaam;
     }
 
     /**
      * @param string $Trajectnaam
-     * @return TTrajectSoort
+     * @return static
      */
-    public function withTrajectnaam($Trajectnaam)
+    public function withTrajectnaam(string $Trajectnaam): static
     {
         $new = clone $this;
         $new->Trajectnaam = $Trajectnaam;
@@ -37,16 +37,16 @@ class TTrajectSoort
     /**
      * @return int
      */
-    public function getTrajectcodes()
+    public function getTrajectcodes(): int
     {
         return $this->Trajectcodes;
     }
 
     /**
      * @param int $Trajectcodes
-     * @return TTrajectSoort
+     * @return static
      */
-    public function withTrajectcodes($Trajectcodes)
+    public function withTrajectcodes(int $Trajectcodes): static
     {
         $new = clone $this;
         $new->Trajectcodes = $Trajectcodes;
@@ -54,3 +54,4 @@ class TTrajectSoort
         return $new;
     }
 }
+

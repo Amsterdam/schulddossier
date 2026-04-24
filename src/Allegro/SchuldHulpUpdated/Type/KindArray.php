@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class KindArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TKind
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TKind>
      */
-    private $TKind;
+    private array $TKind;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TKind
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TKind>
      */
-    public function getTKind()
+    public function getTKind(): array
     {
         return $this->TKind;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TKind $TKind
-     * @return KindArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TKind> $TKind
+     * @return static
      */
-    public function withTKind($TKind)
+    public function withTKind(array $TKind): static
     {
         $new = clone $this;
         $new->TKind = $TKind;
@@ -29,3 +29,4 @@ class KindArray
         return $new;
     }
 }
+

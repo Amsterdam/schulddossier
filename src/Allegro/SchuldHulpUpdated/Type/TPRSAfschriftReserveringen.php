@@ -7,21 +7,21 @@ class TPRSAfschriftReserveringen
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSAfschriftReseveringArray
      */
-    private $AfschriftReserveringen;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSAfschriftReseveringArray $AfschriftReserveringen;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSAfschriftReseveringArray
      */
-    public function getAfschriftReserveringen()
+    public function getAfschriftReserveringen(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSAfschriftReseveringArray
     {
         return $this->AfschriftReserveringen;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSAfschriftReseveringArray $AfschriftReserveringen
-     * @return TPRSAfschriftReserveringen
+     * @return static
      */
-    public function withAfschriftReserveringen($AfschriftReserveringen)
+    public function withAfschriftReserveringen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSAfschriftReseveringArray $AfschriftReserveringen): static
     {
         $new = clone $this;
         $new->AfschriftReserveringen = $AfschriftReserveringen;
@@ -29,3 +29,4 @@ class TPRSAfschriftReserveringen
         return $new;
     }
 }
+

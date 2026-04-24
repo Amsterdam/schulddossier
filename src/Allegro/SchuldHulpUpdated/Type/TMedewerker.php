@@ -7,56 +7,56 @@ class TMedewerker
     /**
      * @var string
      */
-    private $Code;
+    private string $Code;
 
     /**
      * @var string
      */
-    private $Voornaam;
+    private string $Voornaam;
 
     /**
      * @var string
      */
-    private $Achternaam;
+    private string $Achternaam;
 
     /**
      * @var string
      */
-    private $Voorvoegsels;
+    private string $Voorvoegsels;
 
     /**
      * @var string
      */
-    private $Voorletters;
+    private string $Voorletters;
 
     /**
      * @var string
      */
-    private $Telefoon;
+    private string $Telefoon;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TeamArray
      */
-    private $Teams;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TeamArray $Teams;
 
     /**
      * @var string
      */
-    private $Email;
+    private string $Email;
 
     /**
      * @return string
      */
-    public function getCode()
+    public function getCode(): string
     {
         return $this->Code;
     }
 
     /**
      * @param string $Code
-     * @return TMedewerker
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(string $Code): static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -67,16 +67,16 @@ class TMedewerker
     /**
      * @return string
      */
-    public function getVoornaam()
+    public function getVoornaam(): string
     {
         return $this->Voornaam;
     }
 
     /**
      * @param string $Voornaam
-     * @return TMedewerker
+     * @return static
      */
-    public function withVoornaam($Voornaam)
+    public function withVoornaam(string $Voornaam): static
     {
         $new = clone $this;
         $new->Voornaam = $Voornaam;
@@ -87,16 +87,16 @@ class TMedewerker
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam(): string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TMedewerker
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam): static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -107,16 +107,16 @@ class TMedewerker
     /**
      * @return string
      */
-    public function getVoorvoegsels()
+    public function getVoorvoegsels(): string
     {
         return $this->Voorvoegsels;
     }
 
     /**
      * @param string $Voorvoegsels
-     * @return TMedewerker
+     * @return static
      */
-    public function withVoorvoegsels($Voorvoegsels)
+    public function withVoorvoegsels(string $Voorvoegsels): static
     {
         $new = clone $this;
         $new->Voorvoegsels = $Voorvoegsels;
@@ -127,16 +127,16 @@ class TMedewerker
     /**
      * @return string
      */
-    public function getVoorletters()
+    public function getVoorletters(): string
     {
         return $this->Voorletters;
     }
 
     /**
      * @param string $Voorletters
-     * @return TMedewerker
+     * @return static
      */
-    public function withVoorletters($Voorletters)
+    public function withVoorletters(string $Voorletters): static
     {
         $new = clone $this;
         $new->Voorletters = $Voorletters;
@@ -147,16 +147,16 @@ class TMedewerker
     /**
      * @return string
      */
-    public function getTelefoon()
+    public function getTelefoon(): string
     {
         return $this->Telefoon;
     }
 
     /**
      * @param string $Telefoon
-     * @return TMedewerker
+     * @return static
      */
-    public function withTelefoon($Telefoon)
+    public function withTelefoon(string $Telefoon): static
     {
         $new = clone $this;
         $new->Telefoon = $Telefoon;
@@ -167,16 +167,16 @@ class TMedewerker
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TeamArray
      */
-    public function getTeams()
+    public function getTeams(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TeamArray
     {
         return $this->Teams;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TeamArray $Teams
-     * @return TMedewerker
+     * @return static
      */
-    public function withTeams($Teams)
+    public function withTeams(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TeamArray $Teams): static
     {
         $new = clone $this;
         $new->Teams = $Teams;
@@ -187,16 +187,16 @@ class TMedewerker
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->Email;
     }
 
     /**
      * @param string $Email
-     * @return TMedewerker
+     * @return static
      */
-    public function withEmail($Email)
+    public function withEmail(string $Email): static
     {
         $new = clone $this;
         $new->Email = $Email;
@@ -204,3 +204,4 @@ class TMedewerker
         return $new;
     }
 }
+

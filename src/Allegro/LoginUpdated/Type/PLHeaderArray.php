@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class PLHeaderArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPLHeader
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPLHeader>
      */
-    private $TPLHeader;
+    private array $TPLHeader;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPLHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPLHeader>
      */
-    public function getTPLHeader()
+    public function getTPLHeader(): array
     {
         return $this->TPLHeader;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPLHeader $TPLHeader
-     * @return PLHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPLHeader> $TPLHeader
+     * @return static
      */
-    public function withTPLHeader($TPLHeader)
+    public function withTPLHeader(array $TPLHeader): static
     {
         $new = clone $this;
         $new->TPLHeader = $TPLHeader;
@@ -29,3 +29,4 @@ class PLHeaderArray
         return $new;
     }
 }
+

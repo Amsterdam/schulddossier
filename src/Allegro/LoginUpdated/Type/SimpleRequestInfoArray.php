@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class SimpleRequestInfoArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleRequestInfo
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleRequestInfo>
      */
-    private $SimpleRequestInfo;
+    private array $SimpleRequestInfo;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleRequestInfo
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleRequestInfo>
      */
-    public function getSimpleRequestInfo()
+    public function getSimpleRequestInfo(): array
     {
         return $this->SimpleRequestInfo;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleRequestInfo $SimpleRequestInfo
-     * @return SimpleRequestInfoArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleRequestInfo> $SimpleRequestInfo
+     * @return static
      */
-    public function withSimpleRequestInfo($SimpleRequestInfo)
+    public function withSimpleRequestInfo(array $SimpleRequestInfo): static
     {
         $new = clone $this;
         $new->SimpleRequestInfo = $SimpleRequestInfo;
@@ -29,3 +29,4 @@ class SimpleRequestInfoArray
         return $new;
     }
 }
+

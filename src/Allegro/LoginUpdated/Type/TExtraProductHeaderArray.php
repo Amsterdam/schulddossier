@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class TExtraProductHeaderArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TExtraProductHeader
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TExtraProductHeader>
      */
-    private $TExtraProductHeader;
+    private array $TExtraProductHeader;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TExtraProductHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TExtraProductHeader>
      */
-    public function getTExtraProductHeader()
+    public function getTExtraProductHeader(): array
     {
         return $this->TExtraProductHeader;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TExtraProductHeader $TExtraProductHeader
-     * @return TExtraProductHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TExtraProductHeader> $TExtraProductHeader
+     * @return static
      */
-    public function withTExtraProductHeader($TExtraProductHeader)
+    public function withTExtraProductHeader(array $TExtraProductHeader): static
     {
         $new = clone $this;
         $new->TExtraProductHeader = $TExtraProductHeader;
@@ -29,3 +29,4 @@ class TExtraProductHeaderArray
         return $new;
     }
 }
+

@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class ContractArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContract
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContract>
      */
-    private $TContract;
+    private array $TContract;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContract
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContract>
      */
-    public function getTContract()
+    public function getTContract(): array
     {
         return $this->TContract;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContract $TContract
-     * @return ContractArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContract> $TContract
+     * @return static
      */
-    public function withTContract($TContract)
+    public function withTContract(array $TContract): static
     {
         $new = clone $this;
         $new->TContract = $TContract;
@@ -29,3 +29,4 @@ class ContractArray
         return $new;
     }
 }
+

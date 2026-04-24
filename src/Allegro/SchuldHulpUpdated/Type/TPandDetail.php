@@ -7,86 +7,86 @@ class TPandDetail
     /**
      * @var string
      */
-    private $Pandnummer;
+    private string $Pandnummer;
 
     /**
      * @var int
      */
-    private $BeleenBewijsVlgnr;
+    private int $BeleenBewijsVlgnr;
 
     /**
      * @var string
      */
-    private $BeleenBewijsNr;
+    private string $BeleenBewijsNr;
 
     /**
      * @var \DateTimeInterface
      */
-    private $StartDatum;
+    private \DateTimeInterface $StartDatum;
 
     /**
      * @var \DateTimeInterface
      */
-    private $Beleenbewijs_Datum;
+    private \DateTimeInterface $Beleenbewijs_Datum;
 
     /**
      * @var \DateTimeInterface
      */
-    private $Beleenbewijs_Einddatum;
+    private \DateTimeInterface $Beleenbewijs_Einddatum;
 
     /**
      * @var float
      */
-    private $Beleenbewijs_Beleensom;
+    private float $Beleenbewijs_Beleensom;
 
     /**
      * @var int
      */
-    private $Verlengen;
+    private int $Verlengen;
 
     /**
      * @var \DateTimeInterface
      */
-    private $NwBeleenbewijs_Einddatum;
+    private \DateTimeInterface $NwBeleenbewijs_Einddatum;
 
     /**
      * @var float
      */
-    private $NwBeleenbewijs_Rente;
+    private float $NwBeleenbewijs_Rente;
 
     /**
      * @var float
      */
-    private $Rentepercentage;
+    private float $Rentepercentage;
 
     /**
      * @var int
      */
-    private $AantalArtikelen;
+    private int $AantalArtikelen;
 
     /**
      * @var string
      */
-    private $OmschrijvingArtikelen;
+    private string $OmschrijvingArtikelen;
 
     /**
      * @var float
      */
-    private $TotaalTaxatieWaarde;
+    private float $TotaalTaxatieWaarde;
 
     /**
      * @return string
      */
-    public function getPandnummer()
+    public function getPandnummer(): string
     {
         return $this->Pandnummer;
     }
 
     /**
      * @param string $Pandnummer
-     * @return TPandDetail
+     * @return static
      */
-    public function withPandnummer($Pandnummer)
+    public function withPandnummer(string $Pandnummer): static
     {
         $new = clone $this;
         $new->Pandnummer = $Pandnummer;
@@ -97,16 +97,16 @@ class TPandDetail
     /**
      * @return int
      */
-    public function getBeleenBewijsVlgnr()
+    public function getBeleenBewijsVlgnr(): int
     {
         return $this->BeleenBewijsVlgnr;
     }
 
     /**
      * @param int $BeleenBewijsVlgnr
-     * @return TPandDetail
+     * @return static
      */
-    public function withBeleenBewijsVlgnr($BeleenBewijsVlgnr)
+    public function withBeleenBewijsVlgnr(int $BeleenBewijsVlgnr): static
     {
         $new = clone $this;
         $new->BeleenBewijsVlgnr = $BeleenBewijsVlgnr;
@@ -117,16 +117,16 @@ class TPandDetail
     /**
      * @return string
      */
-    public function getBeleenBewijsNr()
+    public function getBeleenBewijsNr(): string
     {
         return $this->BeleenBewijsNr;
     }
 
     /**
      * @param string $BeleenBewijsNr
-     * @return TPandDetail
+     * @return static
      */
-    public function withBeleenBewijsNr($BeleenBewijsNr)
+    public function withBeleenBewijsNr(string $BeleenBewijsNr): static
     {
         $new = clone $this;
         $new->BeleenBewijsNr = $BeleenBewijsNr;
@@ -137,16 +137,16 @@ class TPandDetail
     /**
      * @return \DateTimeInterface
      */
-    public function getStartDatum()
+    public function getStartDatum(): \DateTimeInterface
     {
         return $this->StartDatum;
     }
 
     /**
      * @param \DateTimeInterface $StartDatum
-     * @return TPandDetail
+     * @return static
      */
-    public function withStartDatum($StartDatum)
+    public function withStartDatum(\DateTimeInterface $StartDatum): static
     {
         $new = clone $this;
         $new->StartDatum = $StartDatum;
@@ -157,16 +157,16 @@ class TPandDetail
     /**
      * @return \DateTimeInterface
      */
-    public function getBeleenbewijs_Datum()
+    public function getBeleenbewijsDatum(): \DateTimeInterface
     {
         return $this->Beleenbewijs_Datum;
     }
 
     /**
      * @param \DateTimeInterface $Beleenbewijs_Datum
-     * @return TPandDetail
+     * @return static
      */
-    public function withBeleenbewijs_Datum($Beleenbewijs_Datum)
+    public function withBeleenbewijsDatum(\DateTimeInterface $Beleenbewijs_Datum): static
     {
         $new = clone $this;
         $new->Beleenbewijs_Datum = $Beleenbewijs_Datum;
@@ -177,16 +177,16 @@ class TPandDetail
     /**
      * @return \DateTimeInterface
      */
-    public function getBeleenbewijs_Einddatum()
+    public function getBeleenbewijsEinddatum(): \DateTimeInterface
     {
         return $this->Beleenbewijs_Einddatum;
     }
 
     /**
      * @param \DateTimeInterface $Beleenbewijs_Einddatum
-     * @return TPandDetail
+     * @return static
      */
-    public function withBeleenbewijs_Einddatum($Beleenbewijs_Einddatum)
+    public function withBeleenbewijsEinddatum(\DateTimeInterface $Beleenbewijs_Einddatum): static
     {
         $new = clone $this;
         $new->Beleenbewijs_Einddatum = $Beleenbewijs_Einddatum;
@@ -197,16 +197,16 @@ class TPandDetail
     /**
      * @return float
      */
-    public function getBeleenbewijs_Beleensom()
+    public function getBeleenbewijsBeleensom(): float
     {
         return $this->Beleenbewijs_Beleensom;
     }
 
     /**
      * @param float $Beleenbewijs_Beleensom
-     * @return TPandDetail
+     * @return static
      */
-    public function withBeleenbewijs_Beleensom($Beleenbewijs_Beleensom)
+    public function withBeleenbewijsBeleensom(float $Beleenbewijs_Beleensom): static
     {
         $new = clone $this;
         $new->Beleenbewijs_Beleensom = $Beleenbewijs_Beleensom;
@@ -217,16 +217,16 @@ class TPandDetail
     /**
      * @return int
      */
-    public function getVerlengen()
+    public function getVerlengen(): int
     {
         return $this->Verlengen;
     }
 
     /**
      * @param int $Verlengen
-     * @return TPandDetail
+     * @return static
      */
-    public function withVerlengen($Verlengen)
+    public function withVerlengen(int $Verlengen): static
     {
         $new = clone $this;
         $new->Verlengen = $Verlengen;
@@ -237,16 +237,16 @@ class TPandDetail
     /**
      * @return \DateTimeInterface
      */
-    public function getNwBeleenbewijs_Einddatum()
+    public function getNwBeleenbewijsEinddatum(): \DateTimeInterface
     {
         return $this->NwBeleenbewijs_Einddatum;
     }
 
     /**
      * @param \DateTimeInterface $NwBeleenbewijs_Einddatum
-     * @return TPandDetail
+     * @return static
      */
-    public function withNwBeleenbewijs_Einddatum($NwBeleenbewijs_Einddatum)
+    public function withNwBeleenbewijsEinddatum(\DateTimeInterface $NwBeleenbewijs_Einddatum): static
     {
         $new = clone $this;
         $new->NwBeleenbewijs_Einddatum = $NwBeleenbewijs_Einddatum;
@@ -257,16 +257,16 @@ class TPandDetail
     /**
      * @return float
      */
-    public function getNwBeleenbewijs_Rente()
+    public function getNwBeleenbewijsRente(): float
     {
         return $this->NwBeleenbewijs_Rente;
     }
 
     /**
      * @param float $NwBeleenbewijs_Rente
-     * @return TPandDetail
+     * @return static
      */
-    public function withNwBeleenbewijs_Rente($NwBeleenbewijs_Rente)
+    public function withNwBeleenbewijsRente(float $NwBeleenbewijs_Rente): static
     {
         $new = clone $this;
         $new->NwBeleenbewijs_Rente = $NwBeleenbewijs_Rente;
@@ -277,16 +277,16 @@ class TPandDetail
     /**
      * @return float
      */
-    public function getRentepercentage()
+    public function getRentepercentage(): float
     {
         return $this->Rentepercentage;
     }
 
     /**
      * @param float $Rentepercentage
-     * @return TPandDetail
+     * @return static
      */
-    public function withRentepercentage($Rentepercentage)
+    public function withRentepercentage(float $Rentepercentage): static
     {
         $new = clone $this;
         $new->Rentepercentage = $Rentepercentage;
@@ -297,16 +297,16 @@ class TPandDetail
     /**
      * @return int
      */
-    public function getAantalArtikelen()
+    public function getAantalArtikelen(): int
     {
         return $this->AantalArtikelen;
     }
 
     /**
      * @param int $AantalArtikelen
-     * @return TPandDetail
+     * @return static
      */
-    public function withAantalArtikelen($AantalArtikelen)
+    public function withAantalArtikelen(int $AantalArtikelen): static
     {
         $new = clone $this;
         $new->AantalArtikelen = $AantalArtikelen;
@@ -317,16 +317,16 @@ class TPandDetail
     /**
      * @return string
      */
-    public function getOmschrijvingArtikelen()
+    public function getOmschrijvingArtikelen(): string
     {
         return $this->OmschrijvingArtikelen;
     }
 
     /**
      * @param string $OmschrijvingArtikelen
-     * @return TPandDetail
+     * @return static
      */
-    public function withOmschrijvingArtikelen($OmschrijvingArtikelen)
+    public function withOmschrijvingArtikelen(string $OmschrijvingArtikelen): static
     {
         $new = clone $this;
         $new->OmschrijvingArtikelen = $OmschrijvingArtikelen;
@@ -337,16 +337,16 @@ class TPandDetail
     /**
      * @return float
      */
-    public function getTotaalTaxatieWaarde()
+    public function getTotaalTaxatieWaarde(): float
     {
         return $this->TotaalTaxatieWaarde;
     }
 
     /**
      * @param float $TotaalTaxatieWaarde
-     * @return TPandDetail
+     * @return static
      */
-    public function withTotaalTaxatieWaarde($TotaalTaxatieWaarde)
+    public function withTotaalTaxatieWaarde(float $TotaalTaxatieWaarde): static
     {
         $new = clone $this;
         $new->TotaalTaxatieWaarde = $TotaalTaxatieWaarde;
@@ -354,3 +354,4 @@ class TPandDetail
         return $new;
     }
 }
+

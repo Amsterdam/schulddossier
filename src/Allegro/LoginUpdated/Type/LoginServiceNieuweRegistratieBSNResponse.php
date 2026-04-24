@@ -9,31 +9,31 @@ class LoginServiceNieuweRegistratieBSNResponse implements ResultInterface
     /**
      * @var string
      */
-    private $Result;
+    private string $Result;
 
     /**
      * @var int
      */
-    private $ExtraInfo;
+    private int $ExtraInfo;
 
     /**
      * @var string
      */
-    private $ExtraInfoOmschrijving;
+    private string $ExtraInfoOmschrijving;
 
     /**
      * @return string
      */
-    public function getResult()
+    public function getResult(): string
     {
         return $this->Result;
     }
 
     /**
      * @param string $Result
-     * @return LoginServiceNieuweRegistratieBSNResponse
+     * @return static
      */
-    public function withResult($Result)
+    public function withResult(string $Result): static
     {
         $new = clone $this;
         $new->Result = $Result;
@@ -44,16 +44,16 @@ class LoginServiceNieuweRegistratieBSNResponse implements ResultInterface
     /**
      * @return int
      */
-    public function getExtraInfo()
+    public function getExtraInfo(): int
     {
         return $this->ExtraInfo;
     }
 
     /**
      * @param int $ExtraInfo
-     * @return LoginServiceNieuweRegistratieBSNResponse
+     * @return static
      */
-    public function withExtraInfo($ExtraInfo)
+    public function withExtraInfo(int $ExtraInfo): static
     {
         $new = clone $this;
         $new->ExtraInfo = $ExtraInfo;
@@ -64,16 +64,16 @@ class LoginServiceNieuweRegistratieBSNResponse implements ResultInterface
     /**
      * @return string
      */
-    public function getExtraInfoOmschrijving()
+    public function getExtraInfoOmschrijving(): string
     {
         return $this->ExtraInfoOmschrijving;
     }
 
     /**
      * @param string $ExtraInfoOmschrijving
-     * @return LoginServiceNieuweRegistratieBSNResponse
+     * @return static
      */
-    public function withExtraInfoOmschrijving($ExtraInfoOmschrijving)
+    public function withExtraInfoOmschrijving(string $ExtraInfoOmschrijving): static
     {
         $new = clone $this;
         $new->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
@@ -81,3 +81,4 @@ class LoginServiceNieuweRegistratieBSNResponse implements ResultInterface
         return $new;
     }
 }
+

@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class SimpleDataResultArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataResult
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataResult>
      */
-    private $SimpleDataResult;
+    private array $SimpleDataResult;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataResult
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataResult>
      */
-    public function getSimpleDataResult()
+    public function getSimpleDataResult(): array
     {
         return $this->SimpleDataResult;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataResult $SimpleDataResult
-     * @return SimpleDataResultArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataResult> $SimpleDataResult
+     * @return static
      */
-    public function withSimpleDataResult($SimpleDataResult)
+    public function withSimpleDataResult(array $SimpleDataResult): static
     {
         $new = clone $this;
         $new->SimpleDataResult = $SimpleDataResult;
@@ -29,3 +29,4 @@ class SimpleDataResultArray
         return $new;
     }
 }
+

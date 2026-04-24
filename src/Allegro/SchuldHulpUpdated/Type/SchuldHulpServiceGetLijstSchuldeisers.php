@@ -9,14 +9,14 @@ class SchuldHulpServiceGetLijstSchuldeisers implements RequestInterface
     /**
      * @var string
      */
-    private $aZoekargument;
+    private string $aZoekargument;
 
     /**
      * Constructor
      *
      * @param string $aZoekargument
      */
-    public function __construct($aZoekargument)
+    public function __construct(string $aZoekargument)
     {
         $this->aZoekargument = $aZoekargument;
     }
@@ -24,16 +24,16 @@ class SchuldHulpServiceGetLijstSchuldeisers implements RequestInterface
     /**
      * @return string
      */
-    public function getAZoekargument()
+    public function getAZoekargument(): string
     {
         return $this->aZoekargument;
     }
 
     /**
      * @param string $aZoekargument
-     * @return SchuldHulpServiceGetLijstSchuldeisers
+     * @return static
      */
-    public function withAZoekargument($aZoekargument)
+    public function withAZoekargument(string $aZoekargument): static
     {
         $new = clone $this;
         $new->aZoekargument = $aZoekargument;
@@ -41,3 +41,4 @@ class SchuldHulpServiceGetLijstSchuldeisers implements RequestInterface
         return $new;
     }
 }
+

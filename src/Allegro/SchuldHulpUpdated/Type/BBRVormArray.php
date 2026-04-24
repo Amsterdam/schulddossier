@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class BBRVormArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBRVorm
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBRVorm>
      */
-    private $TBBRVorm;
+    private array $TBBRVorm;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBRVorm
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBRVorm>
      */
-    public function getTBBRVorm()
+    public function getTBBRVorm(): array
     {
         return $this->TBBRVorm;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBRVorm $TBBRVorm
-     * @return BBRVormArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBRVorm> $TBBRVorm
+     * @return static
      */
-    public function withTBBRVorm($TBBRVorm)
+    public function withTBBRVorm(array $TBBRVorm): static
     {
         $new = clone $this;
         $new->TBBRVorm = $TBBRVorm;
@@ -29,3 +29,4 @@ class BBRVormArray
         return $new;
     }
 }
+

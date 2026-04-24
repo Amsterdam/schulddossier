@@ -5,23 +5,27 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class TestArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTest
+     * Struct met 2 properties:
+     * 1) Veld1 van het type WideString
+     * 2) Veld2 van het type Integer
+     *
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTest>
      */
-    private $TTest;
+    private array $TTest;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTest
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTest>
      */
-    public function getTTest()
+    public function getTTest(): array
     {
         return $this->TTest;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTest $TTest
-     * @return TestArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTest> $TTest
+     * @return static
      */
-    public function withTTest($TTest)
+    public function withTTest(array $TTest): static
     {
         $new = clone $this;
         $new->TTest = $TTest;
@@ -29,3 +33,4 @@ class TestArray
         return $new;
     }
 }
+

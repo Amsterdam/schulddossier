@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class Rekeningnummer2Array
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRekeningnummer
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRekeningnummer>
      */
-    private $TRekeningnummer;
+    private array $TRekeningnummer;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRekeningnummer
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRekeningnummer>
      */
-    public function getTRekeningnummer()
+    public function getTRekeningnummer(): array
     {
         return $this->TRekeningnummer;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRekeningnummer $TRekeningnummer
-     * @return Rekeningnummer2Array
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRekeningnummer> $TRekeningnummer
+     * @return static
      */
-    public function withTRekeningnummer($TRekeningnummer)
+    public function withTRekeningnummer(array $TRekeningnummer): static
     {
         $new = clone $this;
         $new->TRekeningnummer = $TRekeningnummer;
@@ -29,3 +29,4 @@ class Rekeningnummer2Array
         return $new;
     }
 }
+

@@ -9,52 +9,52 @@ class LoginServiceNieuwContact implements RequestInterface
     /**
      * @var int
      */
-    private $OrganisatieCode;
+    private int $OrganisatieCode;
 
     /**
      * @var string
      */
-    private $Achternaam;
+    private string $Achternaam;
 
     /**
      * @var string
      */
-    private $Voorvoegsels;
+    private string $Voorvoegsels;
 
     /**
      * @var string
      */
-    private $Voornaam;
+    private string $Voornaam;
 
     /**
      * @var string
      */
-    private $Voorletters;
+    private string $Voorletters;
 
     /**
      * @var string
      */
-    private $Geslacht;
+    private string $Geslacht;
 
     /**
      * @var int
      */
-    private $GeboorteDatum;
+    private int $GeboorteDatum;
 
     /**
      * @var string
      */
-    private $Telefoonnummer;
+    private string $Telefoonnummer;
 
     /**
      * @var string
      */
-    private $EmailAdres;
+    private string $EmailAdres;
 
     /**
      * @var string
      */
-    private $Wachtwoord;
+    private string $Wachtwoord;
 
     /**
      * Constructor
@@ -70,7 +70,7 @@ class LoginServiceNieuwContact implements RequestInterface
      * @param string $EmailAdres
      * @param string $Wachtwoord
      */
-    public function __construct($OrganisatieCode, $Achternaam, $Voorvoegsels, $Voornaam, $Voorletters, $Geslacht, $GeboorteDatum, $Telefoonnummer, $EmailAdres, $Wachtwoord)
+    public function __construct(int $OrganisatieCode, string $Achternaam, string $Voorvoegsels, string $Voornaam, string $Voorletters, string $Geslacht, int $GeboorteDatum, string $Telefoonnummer, string $EmailAdres, string $Wachtwoord)
     {
         $this->OrganisatieCode = $OrganisatieCode;
         $this->Achternaam = $Achternaam;
@@ -87,16 +87,16 @@ class LoginServiceNieuwContact implements RequestInterface
     /**
      * @return int
      */
-    public function getOrganisatieCode()
+    public function getOrganisatieCode(): int
     {
         return $this->OrganisatieCode;
     }
 
     /**
      * @param int $OrganisatieCode
-     * @return LoginServiceNieuwContact
+     * @return static
      */
-    public function withOrganisatieCode($OrganisatieCode)
+    public function withOrganisatieCode(int $OrganisatieCode): static
     {
         $new = clone $this;
         $new->OrganisatieCode = $OrganisatieCode;
@@ -107,16 +107,16 @@ class LoginServiceNieuwContact implements RequestInterface
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam(): string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return LoginServiceNieuwContact
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam): static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -127,16 +127,16 @@ class LoginServiceNieuwContact implements RequestInterface
     /**
      * @return string
      */
-    public function getVoorvoegsels()
+    public function getVoorvoegsels(): string
     {
         return $this->Voorvoegsels;
     }
 
     /**
      * @param string $Voorvoegsels
-     * @return LoginServiceNieuwContact
+     * @return static
      */
-    public function withVoorvoegsels($Voorvoegsels)
+    public function withVoorvoegsels(string $Voorvoegsels): static
     {
         $new = clone $this;
         $new->Voorvoegsels = $Voorvoegsels;
@@ -147,16 +147,16 @@ class LoginServiceNieuwContact implements RequestInterface
     /**
      * @return string
      */
-    public function getVoornaam()
+    public function getVoornaam(): string
     {
         return $this->Voornaam;
     }
 
     /**
      * @param string $Voornaam
-     * @return LoginServiceNieuwContact
+     * @return static
      */
-    public function withVoornaam($Voornaam)
+    public function withVoornaam(string $Voornaam): static
     {
         $new = clone $this;
         $new->Voornaam = $Voornaam;
@@ -167,16 +167,16 @@ class LoginServiceNieuwContact implements RequestInterface
     /**
      * @return string
      */
-    public function getVoorletters()
+    public function getVoorletters(): string
     {
         return $this->Voorletters;
     }
 
     /**
      * @param string $Voorletters
-     * @return LoginServiceNieuwContact
+     * @return static
      */
-    public function withVoorletters($Voorletters)
+    public function withVoorletters(string $Voorletters): static
     {
         $new = clone $this;
         $new->Voorletters = $Voorletters;
@@ -187,16 +187,16 @@ class LoginServiceNieuwContact implements RequestInterface
     /**
      * @return string
      */
-    public function getGeslacht()
+    public function getGeslacht(): string
     {
         return $this->Geslacht;
     }
 
     /**
      * @param string $Geslacht
-     * @return LoginServiceNieuwContact
+     * @return static
      */
-    public function withGeslacht($Geslacht)
+    public function withGeslacht(string $Geslacht): static
     {
         $new = clone $this;
         $new->Geslacht = $Geslacht;
@@ -207,16 +207,16 @@ class LoginServiceNieuwContact implements RequestInterface
     /**
      * @return int
      */
-    public function getGeboorteDatum()
+    public function getGeboorteDatum(): int
     {
         return $this->GeboorteDatum;
     }
 
     /**
      * @param int $GeboorteDatum
-     * @return LoginServiceNieuwContact
+     * @return static
      */
-    public function withGeboorteDatum($GeboorteDatum)
+    public function withGeboorteDatum(int $GeboorteDatum): static
     {
         $new = clone $this;
         $new->GeboorteDatum = $GeboorteDatum;
@@ -227,16 +227,16 @@ class LoginServiceNieuwContact implements RequestInterface
     /**
      * @return string
      */
-    public function getTelefoonnummer()
+    public function getTelefoonnummer(): string
     {
         return $this->Telefoonnummer;
     }
 
     /**
      * @param string $Telefoonnummer
-     * @return LoginServiceNieuwContact
+     * @return static
      */
-    public function withTelefoonnummer($Telefoonnummer)
+    public function withTelefoonnummer(string $Telefoonnummer): static
     {
         $new = clone $this;
         $new->Telefoonnummer = $Telefoonnummer;
@@ -247,16 +247,16 @@ class LoginServiceNieuwContact implements RequestInterface
     /**
      * @return string
      */
-    public function getEmailAdres()
+    public function getEmailAdres(): string
     {
         return $this->EmailAdres;
     }
 
     /**
      * @param string $EmailAdres
-     * @return LoginServiceNieuwContact
+     * @return static
      */
-    public function withEmailAdres($EmailAdres)
+    public function withEmailAdres(string $EmailAdres): static
     {
         $new = clone $this;
         $new->EmailAdres = $EmailAdres;
@@ -267,16 +267,16 @@ class LoginServiceNieuwContact implements RequestInterface
     /**
      * @return string
      */
-    public function getWachtwoord()
+    public function getWachtwoord(): string
     {
         return $this->Wachtwoord;
     }
 
     /**
      * @param string $Wachtwoord
-     * @return LoginServiceNieuwContact
+     * @return static
      */
-    public function withWachtwoord($Wachtwoord)
+    public function withWachtwoord(string $Wachtwoord): static
     {
         $new = clone $this;
         $new->Wachtwoord = $Wachtwoord;
@@ -284,3 +284,4 @@ class LoginServiceNieuwContact implements RequestInterface
         return $new;
     }
 }
+

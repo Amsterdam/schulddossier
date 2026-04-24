@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class TAfspraakSoortenArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAfspraakSoorten
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAfspraakSoorten>
      */
-    private $TAfspraakSoorten;
+    private array $TAfspraakSoorten;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAfspraakSoorten
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAfspraakSoorten>
      */
-    public function getTAfspraakSoorten()
+    public function getTAfspraakSoorten(): array
     {
         return $this->TAfspraakSoorten;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAfspraakSoorten $TAfspraakSoorten
-     * @return TAfspraakSoortenArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAfspraakSoorten> $TAfspraakSoorten
+     * @return static
      */
-    public function withTAfspraakSoorten($TAfspraakSoorten)
+    public function withTAfspraakSoorten(array $TAfspraakSoorten): static
     {
         $new = clone $this;
         $new->TAfspraakSoorten = $TAfspraakSoorten;
@@ -29,3 +29,4 @@ class TAfspraakSoortenArray
         return $new;
     }
 }
+

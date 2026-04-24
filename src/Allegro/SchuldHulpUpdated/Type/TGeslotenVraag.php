@@ -7,26 +7,26 @@ class TGeslotenVraag
     /**
      * @var string
      */
-    private $Vraag;
+    private string $Vraag;
 
     /**
-     * @var string
+     * @var 'Leeg' | 'Ja' | 'Nee'
      */
-    private $Antwoord;
+    private string $Antwoord;
 
     /**
      * @return string
      */
-    public function getVraag()
+    public function getVraag(): string
     {
         return $this->Vraag;
     }
 
     /**
      * @param string $Vraag
-     * @return TGeslotenVraag
+     * @return static
      */
-    public function withVraag($Vraag)
+    public function withVraag(string $Vraag): static
     {
         $new = clone $this;
         $new->Vraag = $Vraag;
@@ -35,18 +35,18 @@ class TGeslotenVraag
     }
 
     /**
-     * @return string
+     * @return 'Leeg' | 'Ja' | 'Nee'
      */
-    public function getAntwoord()
+    public function getAntwoord(): string
     {
         return $this->Antwoord;
     }
 
     /**
-     * @param string $Antwoord
-     * @return TGeslotenVraag
+     * @param 'Leeg' | 'Ja' | 'Nee' $Antwoord
+     * @return static
      */
-    public function withAntwoord($Antwoord)
+    public function withAntwoord(string $Antwoord): static
     {
         $new = clone $this;
         $new->Antwoord = $Antwoord;
@@ -54,3 +54,4 @@ class TGeslotenVraag
         return $new;
     }
 }
+

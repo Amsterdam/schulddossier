@@ -13,3 +13,4 @@ class LoginServiceAllegroWebLogout implements RequestInterface
     {
     }
 }
+
