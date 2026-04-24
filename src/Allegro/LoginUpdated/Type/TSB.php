@@ -25,17 +25,17 @@ class TSB
     private int $OpdrachtgeverContact;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Startdatum;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $StartdatumEersteBetaling;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $TheoEinddatum;
 
@@ -60,7 +60,7 @@ class TSB
     private float $VTLB;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumBerekening;
 
@@ -85,7 +85,7 @@ class TSB
     private float $NettoAflosCapaciteitMaand;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumOverzicht;
 
@@ -110,7 +110,7 @@ class TSB
     private float $BetaaldeKosten;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumLaatsteBetaling;
 
@@ -200,7 +200,7 @@ class TSB
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum(): \DateTimeInterface
     {
@@ -220,7 +220,7 @@ class TSB
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatumEersteBetaling(): \DateTimeInterface
     {
@@ -240,7 +240,7 @@ class TSB
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getTheoEinddatum(): \DateTimeInterface
     {
@@ -340,7 +340,7 @@ class TSB
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumBerekening(): \DateTimeInterface
     {
@@ -440,7 +440,7 @@ class TSB
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumOverzicht(): \DateTimeInterface
     {
@@ -540,7 +540,7 @@ class TSB
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumLaatsteBetaling(): \DateTimeInterface
     {

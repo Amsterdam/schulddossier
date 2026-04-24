@@ -2,6 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use Gebruiker;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
@@ -62,12 +64,12 @@ class Document
      * @ORM\ManyToOne(targetEntity="Gebruiker")
      * @ORM\JoinColumn(name="gebruiker_id", referencedColumnName="id", nullable=false)
      */
+    #[ORM\JoinColumn(name: 'gebruiker_id', referencedColumnName: 'id', nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Gebruiker::class)]
     private $uploader;
 
     /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=false)
-     * @Assert\NotBlank
+     * @var DateTime
      */
     private $uploadDatumTijd;
 
@@ -112,7 +114,7 @@ class Document
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\File\File
+     * @return File
      */
     public function getFile()
     {
@@ -140,7 +142,7 @@ class Document
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getUploadDatumTijd()
     {

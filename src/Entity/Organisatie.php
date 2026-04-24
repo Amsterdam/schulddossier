@@ -2,14 +2,15 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository;
+use Gebruiker;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository")
- * @ORM\Table
- */
+#[ORM\Table]
+#[ORM\Entity(repositoryClass: OrganisatieRepository::class)]
 class Organisatie
 {
     /**
@@ -47,6 +48,7 @@ class Organisatie
      * @var Gebruiker[]|ArrayCollection
      * @ORM\ManyToMany(targetEntity="Gebruiker", mappedBy="organisaties")
      */
+    #[ORM\ManyToMany(targetEntity: Gebruiker::class, mappedBy: 'organisaties')]
     private $gebruikers;
 
     /**
@@ -188,18 +190,18 @@ class Organisatie
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getAllegroSessionAge(): ?\DateTime
+    public function getAllegroSessionAge(): ?DateTime
     {
         return $this->allegroSessionAge;
     }
 
     /**
-     * @param \DateTime|null $allegroSessionAge
+     * @param DateTime|null $allegroSessionAge
      * @return Organisatie
      */
-    public function setAllegroSessionAge(?\DateTime $allegroSessionAge): Organisatie
+    public function setAllegroSessionAge(?DateTime $allegroSessionAge): Organisatie
     {
         $this->allegroSessionAge = $allegroSessionAge;
 

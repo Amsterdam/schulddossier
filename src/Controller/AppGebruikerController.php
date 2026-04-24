@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
@@ -30,12 +31,13 @@ class AppGebruikerController extends AbstractController
 {
     use FilterAble;
 
-    /**
-     * @Route("/")
-     * @Route("/inactive", name="gebruikers_inactive")
-     */
-    public function indexAction(Request $request, PaginatorInterface $paginator, GebruikerRepository $repository)
-    {
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/inactive', name: 'gebruikers_inactive')]
+    public function index(
+        Request $request,
+        PaginatorInterface $paginator,
+        GebruikerRepository $repository
+    ): Response {
         $inactive = 'gebruikers_inactive' === $request->get('_route');
 
         if ($this->containsForbiddenFilterFields($request)) {
@@ -57,11 +59,11 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/nieuw")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
-     */
-    public function createAction(Request $request, EntityManagerInterface $em)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/nieuw')]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
+    ))]
+    public function create(Request $request, EntityManagerInterface $em)
     {
         $gebruiker = new Gebruiker();
         $form = $this->createForm(GebruikerFormType::class, $gebruiker);
@@ -81,12 +83,11 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/detail/{gebruikerId}/bewerken")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
-     */
-    public function updateAction(
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/detail/{gebruikerId}/bewerken')]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
+    ))]
+    public function update(
         Request $request,
         EntityManagerInterface $em,
         Gebruiker $gebruiker,
@@ -126,13 +127,9 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/detail/{gebruikerId}/verwijder")
-     * @Method({"POST"})
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
-     */
-    public function deleteAction(
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/detail/{gebruikerId}/verwijder', methods: ['POST'])]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
+    public function delete(
         Request $request,
         EntityManagerInterface $em,
         Gebruiker $gebruiker,
@@ -157,7 +154,7 @@ class AppGebruikerController extends AbstractController
             ActionEvent::NAME
         );
 
-        $gebruiker->setVerwijderd(new \DateTime());
+        $gebruiker->setVerwijderd(new DateTime());
         $gebruiker->anonymize();
         $em->persist($gebruiker);
         $this->addFlash('success', 'Gebruiker verwijderd en geanonimiseerd');
@@ -166,10 +163,8 @@ class AppGebruikerController extends AbstractController
         return new RedirectResponse('/app/gebruiker');
     }
 
-    /**
-     * @Route("/download-gebruikers-csv", name="get_gebruikers_csv", methods={"GET"})
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     */
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/download-gebruikers-csv', name: 'get_gebruikers_csv', methods: ['GET'])]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
     public function getGebruikersCsv(GebruikerRepository $repository): StreamedResponse
     {
         $gebruikers = $repository->findAll(0, 100000);

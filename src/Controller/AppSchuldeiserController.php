@@ -23,22 +23,22 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class AppSchuldeiserController extends AbstractController
 {
-    /**
-     * @Route("/")
-     */
-    public function indexAction(Request $request, EntityManagerInterface $em, SerializerInterface $jsonSerializer)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/schuldeiser/')]
+    public function index(Request $request, SchuldeiserRepository $repository, SerializerInterface $jsonSerializer)
     {
-        /** @var $schuldeiserRepository SchuldeiserRepository */
-        $schuldeiserRepository = $em->getRepository(Schuldeiser::class);
-
         if ($request->isXmlHttpRequest()) {
-            $items = $schuldeiserRepository->search($request->query->get('q'), 0, -1);
+            $items = $repository->search($request->query->get('q'), 0, -1);
             return new JsonResponse($jsonSerializer->normalize($items));
         }
 
         $maxPageSize = 50;
 
-        $items = $schuldeiserRepository->search($request->query->get('q'), $request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize), false);
+        $items = $repository->search(
+            $request->query->get('q'),
+            $request->query->getInt('page', 0),
+            $request->query->getInt('pageSize', $maxPageSize),
+            false
+        );
 
 
         return $this->render('Schuldeiser/index.html.twig', [
@@ -54,10 +54,10 @@ class AppSchuldeiserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/synchroniseer")
-     * @Security("is_granted('ROLE_ADMIN') || is_granted('ROLE_GKA_APPBEHEERDER')")
-     */
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/synchroniseer')]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"
+    ))]
     public function synchroniseAction(EntityManagerInterface $entityManager, AllegroService $allegroService)
     {
         /** @var OrganisatieRepository $organisatieRepository */
@@ -80,13 +80,16 @@ class AppSchuldeiserController extends AbstractController
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appschuldeiser_index');
     }
 
-    /**
-     * @Route("/detail/{schuldeiserId}/bewerken")
-     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("schuldeiser", options={"id"="schuldeiserId"})
-     */
-    public function updateAction(Request $request, EntityManagerInterface $em, Schuldeiser $schuldeiser)
-    {
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/schuldeiser/detail/{schuldeiserId}/bewerken')]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"
+    ))]
+    public function update(
+        Request $request,
+        EntityManagerInterface $em,
+        #[MapEntity(id: 'schuldeiserId')]
+        Schuldeiser $schuldeiser
+    ) {
         $form = $this->createForm(SchuldeiserFormType::class, $schuldeiser, []);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

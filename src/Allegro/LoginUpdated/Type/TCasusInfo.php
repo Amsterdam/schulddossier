@@ -48,42 +48,42 @@ class TCasusInfo
     private int $OpdrachtgeverContact;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumAanmelding;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumAanmeldingEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumIntake;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumIntakeEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumInventarisatie;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumInventarisatieEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumAnalyse;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumAnalyseEinde;
 
@@ -93,37 +93,37 @@ class TCasusInfo
     private bool $Crisis;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumCrisis;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumCrisisEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumAfwijzing;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumAfwijzingEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumStop;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumStopEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $VerwachteEinddatumIntake;
 
@@ -233,7 +233,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAanmelding(): \DateTimeInterface
     {
@@ -253,7 +253,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAanmeldingEinde(): \DateTimeInterface
     {
@@ -273,7 +273,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumIntake(): \DateTimeInterface
     {
@@ -293,7 +293,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumIntakeEinde(): \DateTimeInterface
     {
@@ -313,7 +313,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumInventarisatie(): \DateTimeInterface
     {
@@ -333,7 +333,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumInventarisatieEinde(): \DateTimeInterface
     {
@@ -353,7 +353,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAnalyse(): \DateTimeInterface
     {
@@ -373,7 +373,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAnalyseEinde(): \DateTimeInterface
     {
@@ -413,7 +413,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumCrisis(): \DateTimeInterface
     {
@@ -433,7 +433,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumCrisisEinde(): \DateTimeInterface
     {
@@ -453,7 +453,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAfwijzing(): \DateTimeInterface
     {
@@ -473,7 +473,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAfwijzingEinde(): \DateTimeInterface
     {
@@ -493,7 +493,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStop(): \DateTimeInterface
     {
@@ -513,7 +513,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStopEinde(): \DateTimeInterface
     {
@@ -533,7 +533,7 @@ class TCasusInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getVerwachteEinddatumIntake(): \DateTimeInterface
     {

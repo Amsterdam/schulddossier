@@ -13,10 +13,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AppSecurityController extends AbstractController
 {
-    /**
-     * @Route("/app/login")
-     */
-    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils, \Symfony\Component\Security\Core\Security $security)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/login')]
+    public function login(AuthenticationUtils $authenticationUtils, Security $security)
     {
         if ($security->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
@@ -31,19 +29,15 @@ class AppSecurityController extends AbstractController
         ]));
     }
 
-    /**
-     * @Route("/app/logout")
-     */
-    public function logoutAction()
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/logout')]
+    public function logout()
     {
         //
     }
 
-    /**
-     * @Route("/app/wachtwoord-veranderen")
-     * @Security("is_granted('ROLE_USER')")
-     */
-    public function changePasswordAction(Request $request, EntityManagerInterface $em)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/wachtwoord-veranderen')]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+    public function changePassword(Request $request, EntityManagerInterface $em)
     {
         $gebruiker = $this->getUser();
 

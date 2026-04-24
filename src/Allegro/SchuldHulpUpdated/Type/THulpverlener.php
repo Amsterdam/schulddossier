@@ -40,7 +40,7 @@ class THulpverlener
     private bool $InzageGevraagd;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumInzageGevraagd;
 
@@ -50,7 +50,7 @@ class THulpverlener
     private string $Inzage;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumInzage;
 
@@ -195,7 +195,7 @@ class THulpverlener
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumInzageGevraagd(): \DateTimeInterface
     {
@@ -235,7 +235,7 @@ class THulpverlener
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumInzage(): \DateTimeInterface
     {

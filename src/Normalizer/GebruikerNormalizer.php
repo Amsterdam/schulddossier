@@ -2,6 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Normalizer;
 
+use ArrayObject;
+use Symfony\Component\Form\FormErrorIterator;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
@@ -16,8 +18,11 @@ class GebruikerNormalizer implements NormalizerInterface, NormalizerAwareInterfa
         return $data instanceof Gebruiker;
     }
 
-    public function normalize($object, $format = null, array $context = [])
-    {
+    public function normalize(
+        $object,
+        $format = null,
+        array $context = []
+    ): array|string|int|float|bool|ArrayObject|null {
         /** @var $object Gebruiker */
         return [
             'id' => $object->getId(),

@@ -20,7 +20,7 @@ class TPL
     private int $OpdrachtgeverContact;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $TheoEinddatum;
 
@@ -60,7 +60,7 @@ class TPL
     private int $AantalKwartalen;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumEersteAflossing;
 
@@ -90,7 +90,7 @@ class TPL
     private float $EffectiefJaarpercentage;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumLaatsteBetaling;
 
@@ -220,7 +220,7 @@ class TPL
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getTheoEinddatum(): \DateTimeInterface
     {
@@ -380,7 +380,7 @@ class TPL
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumEersteAflossing(): \DateTimeInterface
     {
@@ -500,7 +500,7 @@ class TPL
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumLaatsteBetaling(): \DateTimeInterface
     {

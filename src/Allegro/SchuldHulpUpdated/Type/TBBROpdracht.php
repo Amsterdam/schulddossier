@@ -55,12 +55,12 @@ class TBBROpdracht
     private float $Maximaal;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $StartDatum;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $VolgendeDatum;
 
@@ -90,7 +90,7 @@ class TBBROpdracht
     private int $UniekVolgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumLaatsteBetaling;
 
@@ -305,7 +305,7 @@ class TBBROpdracht
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartDatum(): \DateTimeInterface
     {
@@ -325,7 +325,7 @@ class TBBROpdracht
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getVolgendeDatum(): \DateTimeInterface
     {
@@ -445,7 +445,7 @@ class TBBROpdracht
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumLaatsteBetaling(): \DateTimeInterface
     {

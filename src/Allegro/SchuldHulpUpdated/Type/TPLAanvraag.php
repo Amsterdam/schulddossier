@@ -15,7 +15,7 @@ class TPLAanvraag
     private int $Volgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumAanvraag;
 
@@ -55,37 +55,37 @@ class TPLAanvraag
     private string $RedenAfwijzing;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusA;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusB;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusC;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusD;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusE;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusAfIn;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusFiat;
 
@@ -130,7 +130,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAanvraag(): \DateTimeInterface
     {
@@ -250,7 +250,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatus(): \DateTimeInterface
     {
@@ -290,7 +290,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusA(): \DateTimeInterface
     {
@@ -310,7 +310,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusB(): \DateTimeInterface
     {
@@ -330,7 +330,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusC(): \DateTimeInterface
     {
@@ -350,7 +350,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusD(): \DateTimeInterface
     {
@@ -370,7 +370,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusE(): \DateTimeInterface
     {
@@ -390,7 +390,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusAfIn(): \DateTimeInterface
     {
@@ -410,7 +410,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStatusFiat(): \DateTimeInterface
     {

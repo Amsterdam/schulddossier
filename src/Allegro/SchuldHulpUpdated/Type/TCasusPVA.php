@@ -20,22 +20,22 @@ class TCasusPVA
     private string $TeamPVA;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumPVA;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumPVAEinde;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumFiattering;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumFiatteringEinde;
 
@@ -110,7 +110,7 @@ class TCasusPVA
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumPVA(): \DateTimeInterface
     {
@@ -130,7 +130,7 @@ class TCasusPVA
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumPVAEinde(): \DateTimeInterface
     {
@@ -150,7 +150,7 @@ class TCasusPVA
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumFiattering(): \DateTimeInterface
     {
@@ -170,7 +170,7 @@ class TCasusPVA
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumFiatteringEinde(): \DateTimeInterface
     {

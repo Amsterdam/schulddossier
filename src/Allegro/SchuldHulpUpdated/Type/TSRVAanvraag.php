@@ -10,12 +10,12 @@ class TSRVAanvraag
     private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraagHeader $InfoHeader;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Startdatum;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Einddatum;
 
@@ -45,7 +45,7 @@ class TSRVAanvraag
     private float $VTLB;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumBerekening;
 
@@ -85,7 +85,7 @@ class TSRVAanvraag
     private int $PartnerCode;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Aanvraagdatum;
 
@@ -120,7 +120,7 @@ class TSRVAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum(): \DateTimeInterface
     {
@@ -140,7 +140,7 @@ class TSRVAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEinddatum(): \DateTimeInterface
     {
@@ -260,7 +260,7 @@ class TSRVAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumBerekening(): \DateTimeInterface
     {
@@ -420,7 +420,7 @@ class TSRVAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getAanvraagdatum(): \DateTimeInterface
     {

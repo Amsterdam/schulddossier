@@ -10,7 +10,7 @@ class TCasusNotitie
     private int $Volgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Datum;
 
@@ -50,7 +50,7 @@ class TCasusNotitie
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatum(): \DateTimeInterface
     {

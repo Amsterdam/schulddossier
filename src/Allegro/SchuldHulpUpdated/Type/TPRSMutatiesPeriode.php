@@ -10,12 +10,12 @@ class TPRSMutatiesPeriode
     private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSMutatieArray $Mutaties;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumStart;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumEinde;
 
@@ -40,12 +40,12 @@ class TPRSMutatiesPeriode
     private float $TotaalBij;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $PeriodeStart;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $PeriodeEinde;
 
@@ -70,7 +70,7 @@ class TPRSMutatiesPeriode
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumStart(): \DateTimeInterface
     {
@@ -90,7 +90,7 @@ class TPRSMutatiesPeriode
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumEinde(): \DateTimeInterface
     {
@@ -190,7 +190,7 @@ class TPRSMutatiesPeriode
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPeriodeStart(): \DateTimeInterface
     {
@@ -210,7 +210,7 @@ class TPRSMutatiesPeriode
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getPeriodeEinde(): \DateTimeInterface
     {

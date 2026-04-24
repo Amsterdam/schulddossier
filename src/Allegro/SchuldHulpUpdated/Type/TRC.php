@@ -25,7 +25,7 @@ class TRC
     private string $RentecodeOmschrijving;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $TabelIngangsdatum;
 
@@ -125,7 +125,7 @@ class TRC
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getTabelIngangsdatum(): \DateTimeInterface
     {

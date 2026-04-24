@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\OrganisatieFormType;
@@ -19,14 +20,9 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AppOrganisatieController extends AbstractController
 {
-    /**
-     * @Route("/")
-     */
-    public function indexAction(Request $request, EntityManagerInterface $em)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/organisatie/')]
+    public function index(Request $request, OrganisatieRepository $repository): Response
     {
-        /** @var $repository OrganisatieRepository */
-        $repository = $em->getRepository(Organisatie::class);
-
         $maxPageSize = 10;
 
         $organisaties = $repository->findAll($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
@@ -42,11 +38,9 @@ class AppOrganisatieController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/nieuw")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     */
-    public function createAction(Request $request, EntityManagerInterface $em, AllegroService $allegroService)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/organisatie/nieuw')]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
+    public function create(Request $request, EntityManagerInterface $em, AllegroService $allegroService)
     {
         $organisatie = new Organisatie();
         $form = $this->createForm(OrganisatieFormType::class, $organisatie);
@@ -74,13 +68,15 @@ class AppOrganisatieController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/detail/{organisatieId}/bewerken")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("organisatie", options={"id"="organisatieId"})
-     */
-    public function updateAction(Request $request, EntityManagerInterface $em, Organisatie $organisatie, AllegroService $allegroService)
-    {
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/organisatie/detail/{organisatieId}/bewerken')]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
+    public function update(
+        Request $request,
+        EntityManagerInterface $em,
+        #[MapEntity(id: 'organisatieId')]
+        Organisatie $organisatie,
+        AllegroService $allegroService
+    ) {
         $form = $this->createForm(OrganisatieFormType::class, $organisatie, []);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

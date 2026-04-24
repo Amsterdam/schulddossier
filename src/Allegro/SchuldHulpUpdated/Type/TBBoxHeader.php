@@ -20,7 +20,7 @@ class TBBoxHeader
     private string $Onderwerp;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Tijdstip;
 
@@ -110,7 +110,7 @@ class TBBoxHeader
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getTijdstip(): \DateTimeInterface
     {

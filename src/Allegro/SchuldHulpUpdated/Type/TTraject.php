@@ -15,7 +15,7 @@ class TTraject
     private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTrajectSoort $TrajectSoort;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Startdatum;
 
@@ -25,7 +25,7 @@ class TTraject
     private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $StartMedewerker;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Einddatum;
 
@@ -90,7 +90,7 @@ class TTraject
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum(): \DateTimeInterface
     {
@@ -130,7 +130,7 @@ class TTraject
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEinddatum(): \DateTimeInterface
     {

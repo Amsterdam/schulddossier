@@ -50,22 +50,22 @@ class TCasusDeelopdracht
     private string $Toelichting;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Startdatum;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumUiterlijk;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumUitgevoerd;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumNietUitgevoerd;
 
@@ -255,7 +255,7 @@ class TCasusDeelopdracht
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum(): \DateTimeInterface
     {
@@ -275,7 +275,7 @@ class TCasusDeelopdracht
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumUiterlijk(): \DateTimeInterface
     {
@@ -295,7 +295,7 @@ class TCasusDeelopdracht
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumUitgevoerd(): \DateTimeInterface
     {
@@ -315,7 +315,7 @@ class TCasusDeelopdracht
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumNietUitgevoerd(): \DateTimeInterface
     {

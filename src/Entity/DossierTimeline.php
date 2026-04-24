@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

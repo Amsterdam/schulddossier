@@ -25,7 +25,7 @@ class TExtraProduct
     private int $OpdrachtgeverContact;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Startdatum;
 
@@ -50,7 +50,7 @@ class TExtraProduct
     private int $UitvoerendeOrganisatieContact;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $GeschatteEinddatum;
 
@@ -140,7 +140,7 @@ class TExtraProduct
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum(): \DateTimeInterface
     {
@@ -240,7 +240,7 @@ class TExtraProduct
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getGeschatteEinddatum(): \DateTimeInterface
     {

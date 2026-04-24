@@ -20,7 +20,7 @@ class AWUserInfo
     private string $Naam;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $LaatsteLogin;
 
@@ -105,7 +105,7 @@ class AWUserInfo
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getLaatsteLogin(): \DateTimeInterface
     {

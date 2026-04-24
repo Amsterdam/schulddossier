@@ -55,7 +55,7 @@ class TSRVEiser
     private string $TerugmeldingVoorstel;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumTerugmeldingVoorstel;
 
@@ -305,7 +305,7 @@ class TSRVEiser
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumTerugmeldingVoorstel(): \DateTimeInterface
     {

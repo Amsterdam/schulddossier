@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent as ActionEventEntity;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
@@ -75,7 +76,7 @@ class ActionEventSubscriber implements EventSubscriberInterface
         /** @var Gebruiker $gebruiker */
         $gebruiker = $event->getAuthenticationToken()->getUser();
         $action = new ActionEventEntity();
-        $dateTime = new \DateTime();
+        $dateTime = new DateTime();
 
         $gebruiker->setLastLogin($dateTime);
 
@@ -101,7 +102,7 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $dossier = $event->getDossier();
         $action = new ActionEventEntity();
 
-        $dateTime = new \DateTime();
+        $dateTime = new DateTime();
 
         $action->setName(null === $event->getForceType() ? ActionEvent::DOSSIER_GEWIJZIGD : $event->getForceType());
         $action->setDatumTijd($dateTime);

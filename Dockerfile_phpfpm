@@ -3,7 +3,7 @@ FROM php:8.4-fpm-alpine
 COPY certificates/adp_rootca.crt /usr/local/share/ca-certificates/adp_rootca.crt
 RUN update-ca-certificates --fresh
 
-RUN apk update && apk upgrade
+RUN apk update && apk upgrade  
 
 RUN apk add \
     icu-dev \
@@ -65,7 +65,7 @@ WORKDIR /var/www
 
 COPY --chown=www-data . /var/www
 
-RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts
+RUN composer install --prefer-dist --no-progress --no-suggest --no-scripts --optimize-autoloader
 
 RUN npm ci --no-audit --no-fund --ignore-scripts
 RUN npm run build

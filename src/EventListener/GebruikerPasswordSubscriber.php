@@ -22,6 +22,7 @@ class GebruikerPasswordSubscriber implements EventSubscriber
         $this->encoder = $encoder;
     }
 
+
     /**
      * {@inheritDoc}
      * @see \Doctrine\Common\EventSubscriber::getSubscribedEvents()

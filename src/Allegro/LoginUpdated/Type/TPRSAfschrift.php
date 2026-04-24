@@ -15,7 +15,7 @@ class TPRSAfschrift
     private int $VolgnummerAfschrift;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumAfschrift;
 
@@ -122,7 +122,7 @@ class TPRSAfschrift
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumAfschrift(): \DateTimeInterface
     {
@@ -322,7 +322,7 @@ class TPRSAfschrift
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getVorigDatumAfschift(): \DateTimeInterface
     {

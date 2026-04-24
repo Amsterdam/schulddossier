@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
+use Twig\Environment;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierAddedAantekeningEvent;
@@ -20,49 +21,17 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
 {
     private const TEST_EMAIL_ADRESSES_FILE_NAME = 'test-emails.json';
 
-    /**
-     * @var string
-     */
-    private $fromNotificiatieAdres;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
-
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $urlGenerator;
-
-    /**
-     * @var \Twig\Environment
-     */
-    private $twig;
-
-    /**
-     * @var MailerInterface
-     */
-    private $mailer;
-
-    private string $env;
-
-    public function __construct(MailerInterface $mailer, $fromNotificiatieAdres, string $env, LoggerInterface $mailLogger, TokenStorageInterface $tokenStorage, UrlGeneratorInterface $urlGenerator, \Twig\Environment $twig, RequestStack $requestStack, EntityManagerInterface $em)
-    {
-        $this->mailer = $mailer;
-        $this->fromNotificiatieAdres = $fromNotificiatieAdres;
-        $this->logger = $mailLogger;
-        $this->tokenStorage = $tokenStorage;
-        $this->urlGenerator = $urlGenerator;
-        $this->twig = $twig;
-        $this->requestStack = $requestStack;
-        $this->em = $em;
-        $this->env = $env;
+    public function __construct(
+        private MailerInterface $mailer,
+        private string $fromNotificiatieAdres,
+        private string $env,
+        private LoggerInterface $logger,
+        private TokenStorageInterface $tokenStorage,
+        private UrlGeneratorInterface $urlGenerator,
+        private Environment $twig,
+        private RequestStack $requestStack,
+        private EntityManagerInterface $em
+    ) {
     }
 
     /**

@@ -50,7 +50,7 @@ class TRelatie
     private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres $PostAdres;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Geboortedatum;
 
@@ -110,7 +110,7 @@ class TRelatie
     private string $IdentificatieNummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $IdentificatieGeldig;
 
@@ -345,7 +345,7 @@ class TRelatie
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getGeboortedatum(): \DateTimeInterface
     {
@@ -585,7 +585,7 @@ class TRelatie
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getIdentificatieGeldig(): \DateTimeInterface
     {

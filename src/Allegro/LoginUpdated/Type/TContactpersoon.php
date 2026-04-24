@@ -30,7 +30,7 @@ class TContactpersoon
     private string $Voorletters;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $GeboorteDatum;
 
@@ -160,7 +160,7 @@ class TContactpersoon
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getGeboorteDatum(): \DateTimeInterface
     {

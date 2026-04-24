@@ -20,7 +20,7 @@ class TKind
     private string $Achternaam;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Geboortedatum;
 
@@ -95,7 +95,7 @@ class TKind
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getGeboortedatum(): \DateTimeInterface
     {

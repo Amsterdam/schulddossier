@@ -25,12 +25,12 @@ class TRelatieProduct
     private string $Status;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Startdatum;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Einddatum;
 
@@ -130,7 +130,7 @@ class TRelatieProduct
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartdatum(): \DateTimeInterface
     {
@@ -150,7 +150,7 @@ class TRelatieProduct
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEinddatum(): \DateTimeInterface
     {

@@ -25,7 +25,7 @@ class TCasusToelichting
     private string $Medewerker;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Datum;
 
@@ -125,7 +125,7 @@ class TCasusToelichting
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatum(): \DateTimeInterface
     {

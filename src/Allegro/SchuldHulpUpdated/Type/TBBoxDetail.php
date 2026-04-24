@@ -45,12 +45,12 @@ class TBBoxDetail
     private int $UniekVolgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $AanmaakDatum;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $OntvangstDatum;
 
@@ -60,7 +60,7 @@ class TBBoxDetail
     private bool $Nieuw;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $EmailDatum;
 
@@ -95,7 +95,7 @@ class TBBoxDetail
     private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie $OntvangerRelatie;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $LeesDatum;
 
@@ -110,7 +110,7 @@ class TBBoxDetail
     private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatie $LeesRelatie;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $ArchiefDatum;
 
@@ -310,7 +310,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getAanmaakDatum(): \DateTimeInterface
     {
@@ -330,7 +330,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getOntvangstDatum(): \DateTimeInterface
     {
@@ -370,7 +370,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEmailDatum(): \DateTimeInterface
     {
@@ -510,7 +510,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getLeesDatum(): \DateTimeInterface
     {
@@ -570,7 +570,7 @@ class TBBoxDetail
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getArchiefDatum(): \DateTimeInterface
     {

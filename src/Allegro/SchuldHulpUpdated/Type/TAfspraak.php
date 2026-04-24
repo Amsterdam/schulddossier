@@ -10,7 +10,7 @@ class TAfspraak
     private \DateTimeInterface $StartTijdStip;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $EindTijdStip;
 
@@ -45,7 +45,7 @@ class TAfspraak
     private string $AfspraakOmschrijving;
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartTijdStip(): \DateTimeInterface
     {
@@ -65,7 +65,7 @@ class TAfspraak
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getEindTijdStip(): \DateTimeInterface
     {

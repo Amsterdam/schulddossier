@@ -30,7 +30,7 @@ class TTrajectTaak
     private string $MedewerkerUitgevoerd;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumUitgevoerd;
 
@@ -55,7 +55,7 @@ class TTrajectTaak
     private string $TrajectOmschrijving;
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getStartDatum(): \DateTimeInterface
     {
@@ -155,7 +155,7 @@ class TTrajectTaak
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumUitgevoerd(): \DateTimeInterface
     {

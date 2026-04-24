@@ -30,7 +30,7 @@ class TSRVAanvraagHeader
     private string $Statustekst;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Aanvraagdatum;
 
@@ -140,7 +140,7 @@ class TSRVAanvraagHeader
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getAanvraagdatum(): \DateTimeInterface
     {

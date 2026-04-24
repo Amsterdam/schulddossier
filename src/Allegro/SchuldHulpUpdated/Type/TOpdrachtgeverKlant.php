@@ -15,7 +15,7 @@ class TOpdrachtgeverKlant
     private string $Zoeknaam;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $GeboorteDatum;
 
@@ -115,7 +115,7 @@ class TOpdrachtgeverKlant
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getGeboorteDatum(): \DateTimeInterface
     {

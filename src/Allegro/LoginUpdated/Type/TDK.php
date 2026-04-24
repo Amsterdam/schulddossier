@@ -35,7 +35,7 @@ class TDK
     private int $TheoretischeLooptijd;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumEersteAflossing;
 
@@ -60,7 +60,7 @@ class TDK
     private float $EffectiefJaarpercentage;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $DatumLaatsteBetaling;
 
@@ -210,7 +210,7 @@ class TDK
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumEersteAflossing(): \DateTimeInterface
     {
@@ -310,7 +310,7 @@ class TDK
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatumLaatsteBetaling(): \DateTimeInterface
     {

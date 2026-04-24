@@ -25,7 +25,7 @@ class TPRSMutatie
     private int $ContractVolgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
     private \DateTimeInterface $Datum;
 
@@ -135,7 +135,7 @@ class TPRSMutatie
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
     public function getDatum(): \DateTimeInterface
     {
