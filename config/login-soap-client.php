@@ -1,15 +1,18 @@
 <?php
 
 use Phpro\SoapClient\CodeGenerator\Assembler;
-use Phpro\SoapClient\CodeGenerator\Rules;
 use Phpro\SoapClient\CodeGenerator\Config\Config;
-use Soap\ExtSoapEngine\ExtSoapOptions;
-use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Phpro\SoapClient\CodeGenerator\Rules;
+use Phpro\SoapClient\CodeGenerator\Rules\IsRequestRule;
+use Phpro\SoapClient\CodeGenerator\Rules\IsResultRule;
+use Phpro\SoapClient\Soap\CodeGeneratorEngineFactory;
+use Soap\Wsdl\Loader\FlatteningLoader;
+use Soap\Wsdl\Loader\StreamWrapperLoader;
 
 return Config::create()
-    ->setEngine($engine = DefaultEngineFactory::create(
-        ExtSoapOptions::defaults('doc/LoginService.wsdl', [])
-            ->disableWsdlCache()
+    ->setEngine($engine = CodeGeneratorEngineFactory::create(
+        'doc/LoginService.wsdl',
+        new FlatteningLoader(new StreamWrapperLoader())
     ))
     ->setTypeDestination('src/Allegro/LoginUpdated/Type')
     ->setTypeNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type')
@@ -24,7 +27,7 @@ return Config::create()
         new Assembler\ImmutableSetterAssemblerOptions()
     )))
     ->addRule(
-        new Rules\IsRequestRule(
+    new IsRequestRule(
             $engine->getMetadata(),
             new Rules\MultiRule([
                 new Rules\AssembleRule(new Assembler\RequestAssembler()),
@@ -33,7 +36,7 @@ return Config::create()
         )
     )
     ->addRule(
-        new Rules\IsResultRule(
+    new IsResultRule(
             $engine->getMetadata(),
             new Rules\MultiRule([
                 new Rules\AssembleRule(new Assembler\ResultAssembler()),
