@@ -2,7 +2,7 @@
     "type": "project",
     "license": "MPLv2",
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "ext-iconv": "*",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.1",
