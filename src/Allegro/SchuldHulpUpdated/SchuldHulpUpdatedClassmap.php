@@ -1,6 +1,6 @@
 <?php
 
-namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated;
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHuldUpdated;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 use Soap\ExtSoapEngine\Configuration\ClassMap\ClassMapCollection;
@@ -225,3 +225,4 @@ class SchuldHulpUpdatedClassmap
         );
     }
 }
+
