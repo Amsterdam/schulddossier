@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class OrganisatieArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie>
      */
-    private $TOrganisatie;
+    private array $TOrganisatie;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie>
      */
-    public function getTOrganisatie()
+    public function getTOrganisatie(): array
     {
         return $this->TOrganisatie;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie $TOrganisatie
-     * @return OrganisatieArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie> $TOrganisatie
+     * @return static
      */
-    public function withTOrganisatie($TOrganisatie)
+    public function withTOrganisatie(array $TOrganisatie): static
     {
         $new = clone $this;
         $new->TOrganisatie = $TOrganisatie;
@@ -29,3 +29,4 @@ class OrganisatieArray
         return $new;
     }
 }
+

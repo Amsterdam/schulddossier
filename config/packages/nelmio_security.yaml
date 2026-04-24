@@ -1,15 +1,16 @@
 # config/packages/nelmio_security.yaml
 nelmio_security:
-    # signs/verifies all cookies
-    signed_cookie:
-        names: [ '*' ]
-    # prevents framing of the entire site
-    clickjacking:
-        paths:
-            '^/.*': DENY
-        hosts:
-            - '^foo\.com$'
-            - '\.example\.org$'
+  # signs/verifies all cookies
+  signed_cookie:
+    names: [ '*' ]
+    hash_algo: sha512
+  # prevents framing of the entire site
+  clickjacking:
+    paths:
+      '^/.*': DENY
+    hosts:
+      - '^foo\.com$'
+      - '\.example\.org$'
 
     # prevents redirections outside the website's domain
     external_redirects:

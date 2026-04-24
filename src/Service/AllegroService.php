@@ -2,6 +2,17 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Service;
 
+use DateTime;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAdres;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2Persoon;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TGezinsSituatie;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2SR;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\InkomenArray;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen;
+use Exception;
+use SoapHeader;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzichtResponse;
+use Phpro\SoapClient\Type\ResultInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\LoginServiceAllegroWebLogin;
@@ -140,11 +151,11 @@ class AllegroService
     /**
      * @param Organisatie $organisatie
      * @return Organisatie|false
-     * @throws \Exception|SoapException
+     * @throws Exception|SoapException
      */
     public function login(Organisatie $organisatie, $force = false)
     {
-        $now = new \DateTime();
+        $now = new DateTime();
         $oldestAllowedSession = clone $now;
         $oldestAllowedSession->modify(sprintf('-%s seconds', self::SESSION_TIMEOUT));
 
@@ -183,7 +194,7 @@ class AllegroService
      * @param Organisatie $organisatie
      * @param string $relatieCode
      * @return TSRVAanvraagHeader|null
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSRVAanvraagHeader(Organisatie $organisatie, string $relatieCode): ?TSRVAanvraagHeader
     {
@@ -207,8 +218,8 @@ class AllegroService
     /**
      * @param Organisatie $organisatie
      * @param TSRVAanvraagHeader $header
-     * @return TypeTSRVAanvraag|null
-     * @throws \Exception
+     * @return TSRVAanvraag|null
+     * @throws Exception
      */
     public function getSRVAanvraag(Organisatie $organisatie, TSRVAanvraagHeader $header): ?TypeTSRVAanvraag
     {
@@ -223,7 +234,7 @@ class AllegroService
 
     /**
      * @param Dossier $dossier
-     * @throws \Exception
+     * @throws Exception
      */
     public function sendAanvraag(Dossier $dossier): bool
     {
@@ -502,14 +513,14 @@ class AllegroService
 
     /**
      * @param Dossier $dossier
-     * @throws \Exception
+     * @throws Exception
      */
     public function updateDossier(Dossier $dossier)
     {
         $header = $this->getSRVAanvraagHeader($dossier->getOrganisatie(), $dossier->getAllegroNummer());
         $dossier->setAllegroStatus($header->getStatus());
         $dossier->setAllegroExtraStatus($header->getExtraStatus());
-        $dossier->setAllegroSyncDate((new \DateTime()));
+        $dossier->setAllegroSyncDate((new DateTime()));
         $this->em->flush();
     }
 
@@ -526,7 +537,7 @@ class AllegroService
 
     /**
      * @param Dossier $dossier
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSRVEisers(Dossier $dossier, TSRVAanvraagHeader $header): ?TSRVEisers
     {
@@ -601,7 +612,7 @@ class AllegroService
     /**
      * @param Organisatie $organisatie
      * @param string $searchString
-     * @throws \Exception
+     * @throws Exception
      */
     public function syncSchuldeisers(Organisatie $organisatie, $searchString = ''): array
     {

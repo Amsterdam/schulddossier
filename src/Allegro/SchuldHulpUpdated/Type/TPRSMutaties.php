@@ -7,21 +7,21 @@ class TPRSMutaties
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSMutatieArray
      */
-    private $Mutaties;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSMutatieArray $Mutaties;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSMutatieArray
      */
-    public function getMutaties()
+    public function getMutaties(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSMutatieArray
     {
         return $this->Mutaties;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSMutatieArray $Mutaties
-     * @return TPRSMutaties
+     * @return static
      */
-    public function withMutaties($Mutaties)
+    public function withMutaties(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\PRSMutatieArray $Mutaties): static
     {
         $new = clone $this;
         $new->Mutaties = $Mutaties;
@@ -29,3 +29,4 @@ class TPRSMutaties
         return $new;
     }
 }
+

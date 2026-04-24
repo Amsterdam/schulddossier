@@ -7,46 +7,46 @@ class TKind
     /**
      * @var int
      */
-    private $UniekVolgnummer;
+    private int $UniekVolgnummer;
 
     /**
      * @var string
      */
-    private $Voornaam;
+    private string $Voornaam;
 
     /**
      * @var string
      */
-    private $Achternaam;
+    private string $Achternaam;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $Geboortedatum;
+    private \DateTimeInterface $Geboortedatum;
 
     /**
      * @var string
      */
-    private $Activiteit;
+    private string $Activiteit;
 
     /**
      * @var bool
      */
-    private $MeetelKind;
+    private bool $MeetelKind;
 
     /**
      * @return int
      */
-    public function getUniekVolgnummer()
+    public function getUniekVolgnummer(): int
     {
         return $this->UniekVolgnummer;
     }
 
     /**
      * @param int $UniekVolgnummer
-     * @return TKind
+     * @return static
      */
-    public function withUniekVolgnummer($UniekVolgnummer)
+    public function withUniekVolgnummer(int $UniekVolgnummer): static
     {
         $new = clone $this;
         $new->UniekVolgnummer = $UniekVolgnummer;
@@ -57,16 +57,16 @@ class TKind
     /**
      * @return string
      */
-    public function getVoornaam()
+    public function getVoornaam(): string
     {
         return $this->Voornaam;
     }
 
     /**
      * @param string $Voornaam
-     * @return TKind
+     * @return static
      */
-    public function withVoornaam($Voornaam)
+    public function withVoornaam(string $Voornaam): static
     {
         $new = clone $this;
         $new->Voornaam = $Voornaam;
@@ -77,16 +77,16 @@ class TKind
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam(): string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TKind
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam): static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -95,18 +95,18 @@ class TKind
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getGeboortedatum()
+    public function getGeboortedatum(): \DateTimeInterface
     {
         return $this->Geboortedatum;
     }
 
     /**
      * @param \DateTimeInterface $Geboortedatum
-     * @return TKind
+     * @return static
      */
-    public function withGeboortedatum($Geboortedatum)
+    public function withGeboortedatum(\DateTimeInterface $Geboortedatum): static
     {
         $new = clone $this;
         $new->Geboortedatum = $Geboortedatum;
@@ -117,16 +117,16 @@ class TKind
     /**
      * @return string
      */
-    public function getActiviteit()
+    public function getActiviteit(): string
     {
         return $this->Activiteit;
     }
 
     /**
      * @param string $Activiteit
-     * @return TKind
+     * @return static
      */
-    public function withActiviteit($Activiteit)
+    public function withActiviteit(string $Activiteit): static
     {
         $new = clone $this;
         $new->Activiteit = $Activiteit;
@@ -137,16 +137,16 @@ class TKind
     /**
      * @return bool
      */
-    public function getMeetelKind()
+    public function getMeetelKind(): bool
     {
         return $this->MeetelKind;
     }
 
     /**
      * @param bool $MeetelKind
-     * @return TKind
+     * @return static
      */
-    public function withMeetelKind($MeetelKind)
+    public function withMeetelKind(bool $MeetelKind): static
     {
         $new = clone $this;
         $new->MeetelKind = $MeetelKind;
@@ -154,3 +154,4 @@ class TKind
         return $new;
     }
 }
+

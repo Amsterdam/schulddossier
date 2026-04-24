@@ -2,13 +2,12 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldeiserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\SchuldeiserRepository")
- * @ORM\Table
- */
+#[ORM\Table]
+#[ORM\Entity(repositoryClass: SchuldeiserRepository::class)]
 class Schuldeiser
 {
     /**

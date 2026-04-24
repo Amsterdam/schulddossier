@@ -7,56 +7,56 @@ class TRC
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRCHeader
      */
-    private $InfoHeader;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRCHeader $InfoHeader;
 
     /**
      * @var string
      */
-    private $Medewerker;
+    private string $Medewerker;
 
     /**
      * @var int
      */
-    private $Rentecode;
+    private int $Rentecode;
 
     /**
      * @var string
      */
-    private $RentecodeOmschrijving;
+    private string $RentecodeOmschrijving;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $TabelIngangsdatum;
-
-    /**
-     * @var float
-     */
-    private $RentepercentagePositief;
+    private \DateTimeInterface $TabelIngangsdatum;
 
     /**
      * @var float
      */
-    private $RentepercentageNegatief;
+    private float $RentepercentagePositief;
+
+    /**
+     * @var float
+     */
+    private float $RentepercentageNegatief;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RCJaarrenteArray
      */
-    private $Jaarrente;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RCJaarrenteArray $Jaarrente;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRCHeader
      */
-    public function getInfoHeader()
+    public function getInfoHeader(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRCHeader
     {
         return $this->InfoHeader;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRCHeader $InfoHeader
-     * @return TRC
+     * @return static
      */
-    public function withInfoHeader($InfoHeader)
+    public function withInfoHeader(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRCHeader $InfoHeader): static
     {
         $new = clone $this;
         $new->InfoHeader = $InfoHeader;
@@ -67,16 +67,16 @@ class TRC
     /**
      * @return string
      */
-    public function getMedewerker()
+    public function getMedewerker(): string
     {
         return $this->Medewerker;
     }
 
     /**
      * @param string $Medewerker
-     * @return TRC
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(string $Medewerker): static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -87,16 +87,16 @@ class TRC
     /**
      * @return int
      */
-    public function getRentecode()
+    public function getRentecode(): int
     {
         return $this->Rentecode;
     }
 
     /**
      * @param int $Rentecode
-     * @return TRC
+     * @return static
      */
-    public function withRentecode($Rentecode)
+    public function withRentecode(int $Rentecode): static
     {
         $new = clone $this;
         $new->Rentecode = $Rentecode;
@@ -107,16 +107,16 @@ class TRC
     /**
      * @return string
      */
-    public function getRentecodeOmschrijving()
+    public function getRentecodeOmschrijving(): string
     {
         return $this->RentecodeOmschrijving;
     }
 
     /**
      * @param string $RentecodeOmschrijving
-     * @return TRC
+     * @return static
      */
-    public function withRentecodeOmschrijving($RentecodeOmschrijving)
+    public function withRentecodeOmschrijving(string $RentecodeOmschrijving): static
     {
         $new = clone $this;
         $new->RentecodeOmschrijving = $RentecodeOmschrijving;
@@ -125,18 +125,18 @@ class TRC
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getTabelIngangsdatum()
+    public function getTabelIngangsdatum(): \DateTimeInterface
     {
         return $this->TabelIngangsdatum;
     }
 
     /**
      * @param \DateTimeInterface $TabelIngangsdatum
-     * @return TRC
+     * @return static
      */
-    public function withTabelIngangsdatum($TabelIngangsdatum)
+    public function withTabelIngangsdatum(\DateTimeInterface $TabelIngangsdatum): static
     {
         $new = clone $this;
         $new->TabelIngangsdatum = $TabelIngangsdatum;
@@ -147,16 +147,16 @@ class TRC
     /**
      * @return float
      */
-    public function getRentepercentagePositief()
+    public function getRentepercentagePositief(): float
     {
         return $this->RentepercentagePositief;
     }
 
     /**
      * @param float $RentepercentagePositief
-     * @return TRC
+     * @return static
      */
-    public function withRentepercentagePositief($RentepercentagePositief)
+    public function withRentepercentagePositief(float $RentepercentagePositief): static
     {
         $new = clone $this;
         $new->RentepercentagePositief = $RentepercentagePositief;
@@ -167,16 +167,16 @@ class TRC
     /**
      * @return float
      */
-    public function getRentepercentageNegatief()
+    public function getRentepercentageNegatief(): float
     {
         return $this->RentepercentageNegatief;
     }
 
     /**
      * @param float $RentepercentageNegatief
-     * @return TRC
+     * @return static
      */
-    public function withRentepercentageNegatief($RentepercentageNegatief)
+    public function withRentepercentageNegatief(float $RentepercentageNegatief): static
     {
         $new = clone $this;
         $new->RentepercentageNegatief = $RentepercentageNegatief;
@@ -187,16 +187,16 @@ class TRC
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RCJaarrenteArray
      */
-    public function getJaarrente()
+    public function getJaarrente(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RCJaarrenteArray
     {
         return $this->Jaarrente;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RCJaarrenteArray $Jaarrente
-     * @return TRC
+     * @return static
      */
-    public function withJaarrente($Jaarrente)
+    public function withJaarrente(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RCJaarrenteArray $Jaarrente): static
     {
         $new = clone $this;
         $new->Jaarrente = $Jaarrente;
@@ -204,3 +204,4 @@ class TRC
         return $new;
     }
 }
+

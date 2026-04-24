@@ -9,31 +9,31 @@ class SchuldHulpServiceGetLijstSchuldeisersResponse implements ResultInterface
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OrganisatieArray
      */
-    private $Result;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OrganisatieArray $Result;
 
     /**
      * @var int
      */
-    private $ExtraInfo;
+    private int $ExtraInfo;
 
     /**
      * @var string
      */
-    private $ExtraInfoOmschrijving;
+    private string $ExtraInfoOmschrijving;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OrganisatieArray
      */
-    public function getResult()
+    public function getResult(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OrganisatieArray
     {
         return $this->Result;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OrganisatieArray $Result
-     * @return SchuldHulpServiceGetLijstSchuldeisersResponse
+     * @return static
      */
-    public function withResult($Result)
+    public function withResult(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\OrganisatieArray $Result): static
     {
         $new = clone $this;
         $new->Result = $Result;
@@ -44,16 +44,16 @@ class SchuldHulpServiceGetLijstSchuldeisersResponse implements ResultInterface
     /**
      * @return int
      */
-    public function getExtraInfo()
+    public function getExtraInfo(): int
     {
         return $this->ExtraInfo;
     }
 
     /**
      * @param int $ExtraInfo
-     * @return SchuldHulpServiceGetLijstSchuldeisersResponse
+     * @return static
      */
-    public function withExtraInfo($ExtraInfo)
+    public function withExtraInfo(int $ExtraInfo): static
     {
         $new = clone $this;
         $new->ExtraInfo = $ExtraInfo;
@@ -64,16 +64,16 @@ class SchuldHulpServiceGetLijstSchuldeisersResponse implements ResultInterface
     /**
      * @return string
      */
-    public function getExtraInfoOmschrijving()
+    public function getExtraInfoOmschrijving(): string
     {
         return $this->ExtraInfoOmschrijving;
     }
 
     /**
      * @param string $ExtraInfoOmschrijving
-     * @return SchuldHulpServiceGetLijstSchuldeisersResponse
+     * @return static
      */
-    public function withExtraInfoOmschrijving($ExtraInfoOmschrijving)
+    public function withExtraInfoOmschrijving(string $ExtraInfoOmschrijving): static
     {
         $new = clone $this;
         $new->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
@@ -81,3 +81,4 @@ class SchuldHulpServiceGetLijstSchuldeisersResponse implements ResultInterface
         return $new;
     }
 }
+

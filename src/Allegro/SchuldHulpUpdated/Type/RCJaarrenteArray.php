@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class RCJaarrenteArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRCJaarrente
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRCJaarrente>
      */
-    private $TRCJaarrente;
+    private array $TRCJaarrente;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRCJaarrente
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRCJaarrente>
      */
-    public function getTRCJaarrente()
+    public function getTRCJaarrente(): array
     {
         return $this->TRCJaarrente;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRCJaarrente $TRCJaarrente
-     * @return RCJaarrenteArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRCJaarrente> $TRCJaarrente
+     * @return static
      */
-    public function withTRCJaarrente($TRCJaarrente)
+    public function withTRCJaarrente(array $TRCJaarrente): static
     {
         $new = clone $this;
         $new->TRCJaarrente = $TRCJaarrente;
@@ -29,3 +29,4 @@ class RCJaarrenteArray
         return $new;
     }
 }
+

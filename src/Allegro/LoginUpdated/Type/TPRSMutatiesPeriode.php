@@ -7,61 +7,61 @@ class TPRSMutatiesPeriode
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSMutatieArray
      */
-    private $Mutaties;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSMutatieArray $Mutaties;
 
     /**
      * @var \DateTimeInterface
      */
-    private $DatumStart;
+    private \DateTimeInterface $DatumStart;
 
     /**
      * @var \DateTimeInterface
      */
-    private $DatumEinde;
+    private \DateTimeInterface $DatumEinde;
 
     /**
      * @var float
      */
-    private $SaldoStart;
+    private float $SaldoStart;
 
     /**
      * @var float
      */
-    private $SaldoEinde;
+    private float $SaldoEinde;
 
     /**
      * @var float
      */
-    private $TotaalAf;
+    private float $TotaalAf;
 
     /**
      * @var float
      */
-    private $TotaalBij;
+    private float $TotaalBij;
 
     /**
      * @var \DateTimeInterface
      */
-    private $PeriodeStart;
+    private \DateTimeInterface $PeriodeStart;
 
     /**
      * @var \DateTimeInterface
      */
-    private $PeriodeEinde;
+    private \DateTimeInterface $PeriodeEinde;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSMutatieArray
      */
-    public function getMutaties()
+    public function getMutaties(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSMutatieArray
     {
         return $this->Mutaties;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSMutatieArray $Mutaties
-     * @return TPRSMutatiesPeriode
+     * @return static
      */
-    public function withMutaties($Mutaties)
+    public function withMutaties(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSMutatieArray $Mutaties): static
     {
         $new = clone $this;
         $new->Mutaties = $Mutaties;
@@ -72,16 +72,16 @@ class TPRSMutatiesPeriode
     /**
      * @return \DateTimeInterface
      */
-    public function getDatumStart()
+    public function getDatumStart(): \DateTimeInterface
     {
         return $this->DatumStart;
     }
 
     /**
      * @param \DateTimeInterface $DatumStart
-     * @return TPRSMutatiesPeriode
+     * @return static
      */
-    public function withDatumStart($DatumStart)
+    public function withDatumStart(\DateTimeInterface $DatumStart): static
     {
         $new = clone $this;
         $new->DatumStart = $DatumStart;
@@ -92,16 +92,16 @@ class TPRSMutatiesPeriode
     /**
      * @return \DateTimeInterface
      */
-    public function getDatumEinde()
+    public function getDatumEinde(): \DateTimeInterface
     {
         return $this->DatumEinde;
     }
 
     /**
      * @param \DateTimeInterface $DatumEinde
-     * @return TPRSMutatiesPeriode
+     * @return static
      */
-    public function withDatumEinde($DatumEinde)
+    public function withDatumEinde(\DateTimeInterface $DatumEinde): static
     {
         $new = clone $this;
         $new->DatumEinde = $DatumEinde;
@@ -112,16 +112,16 @@ class TPRSMutatiesPeriode
     /**
      * @return float
      */
-    public function getSaldoStart()
+    public function getSaldoStart(): float
     {
         return $this->SaldoStart;
     }
 
     /**
      * @param float $SaldoStart
-     * @return TPRSMutatiesPeriode
+     * @return static
      */
-    public function withSaldoStart($SaldoStart)
+    public function withSaldoStart(float $SaldoStart): static
     {
         $new = clone $this;
         $new->SaldoStart = $SaldoStart;
@@ -132,16 +132,16 @@ class TPRSMutatiesPeriode
     /**
      * @return float
      */
-    public function getSaldoEinde()
+    public function getSaldoEinde(): float
     {
         return $this->SaldoEinde;
     }
 
     /**
      * @param float $SaldoEinde
-     * @return TPRSMutatiesPeriode
+     * @return static
      */
-    public function withSaldoEinde($SaldoEinde)
+    public function withSaldoEinde(float $SaldoEinde): static
     {
         $new = clone $this;
         $new->SaldoEinde = $SaldoEinde;
@@ -152,16 +152,16 @@ class TPRSMutatiesPeriode
     /**
      * @return float
      */
-    public function getTotaalAf()
+    public function getTotaalAf(): float
     {
         return $this->TotaalAf;
     }
 
     /**
      * @param float $TotaalAf
-     * @return TPRSMutatiesPeriode
+     * @return static
      */
-    public function withTotaalAf($TotaalAf)
+    public function withTotaalAf(float $TotaalAf): static
     {
         $new = clone $this;
         $new->TotaalAf = $TotaalAf;
@@ -172,16 +172,16 @@ class TPRSMutatiesPeriode
     /**
      * @return float
      */
-    public function getTotaalBij()
+    public function getTotaalBij(): float
     {
         return $this->TotaalBij;
     }
 
     /**
      * @param float $TotaalBij
-     * @return TPRSMutatiesPeriode
+     * @return static
      */
-    public function withTotaalBij($TotaalBij)
+    public function withTotaalBij(float $TotaalBij): static
     {
         $new = clone $this;
         $new->TotaalBij = $TotaalBij;
@@ -192,16 +192,16 @@ class TPRSMutatiesPeriode
     /**
      * @return \DateTimeInterface
      */
-    public function getPeriodeStart()
+    public function getPeriodeStart(): \DateTimeInterface
     {
         return $this->PeriodeStart;
     }
 
     /**
      * @param \DateTimeInterface $PeriodeStart
-     * @return TPRSMutatiesPeriode
+     * @return static
      */
-    public function withPeriodeStart($PeriodeStart)
+    public function withPeriodeStart(\DateTimeInterface $PeriodeStart): static
     {
         $new = clone $this;
         $new->PeriodeStart = $PeriodeStart;
@@ -212,16 +212,16 @@ class TPRSMutatiesPeriode
     /**
      * @return \DateTimeInterface
      */
-    public function getPeriodeEinde()
+    public function getPeriodeEinde(): \DateTimeInterface
     {
         return $this->PeriodeEinde;
     }
 
     /**
      * @param \DateTimeInterface $PeriodeEinde
-     * @return TPRSMutatiesPeriode
+     * @return static
      */
-    public function withPeriodeEinde($PeriodeEinde)
+    public function withPeriodeEinde(\DateTimeInterface $PeriodeEinde): static
     {
         $new = clone $this;
         $new->PeriodeEinde = $PeriodeEinde;
@@ -229,3 +229,4 @@ class TPRSMutatiesPeriode
         return $new;
     }
 }
+

@@ -7,36 +7,36 @@ class TDocumentSleutel
     /**
      * @var string
      */
-    private $ComponentCode;
+    private string $ComponentCode;
 
     /**
      * @var \DateTimeInterface
      */
-    private $ArchiefDatum;
+    private \DateTimeInterface $ArchiefDatum;
 
     /**
      * @var string
      */
-    private $Kenmerk;
+    private string $Kenmerk;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @return string
      */
-    public function getComponentCode()
+    public function getComponentCode(): string
     {
         return $this->ComponentCode;
     }
 
     /**
      * @param string $ComponentCode
-     * @return TDocumentSleutel
+     * @return static
      */
-    public function withComponentCode($ComponentCode)
+    public function withComponentCode(string $ComponentCode): static
     {
         $new = clone $this;
         $new->ComponentCode = $ComponentCode;
@@ -47,16 +47,16 @@ class TDocumentSleutel
     /**
      * @return \DateTimeInterface
      */
-    public function getArchiefDatum()
+    public function getArchiefDatum(): \DateTimeInterface
     {
         return $this->ArchiefDatum;
     }
 
     /**
      * @param \DateTimeInterface $ArchiefDatum
-     * @return TDocumentSleutel
+     * @return static
      */
-    public function withArchiefDatum($ArchiefDatum)
+    public function withArchiefDatum(\DateTimeInterface $ArchiefDatum): static
     {
         $new = clone $this;
         $new->ArchiefDatum = $ArchiefDatum;
@@ -67,16 +67,16 @@ class TDocumentSleutel
     /**
      * @return string
      */
-    public function getKenmerk()
+    public function getKenmerk(): string
     {
         return $this->Kenmerk;
     }
 
     /**
      * @param string $Kenmerk
-     * @return TDocumentSleutel
+     * @return static
      */
-    public function withKenmerk($Kenmerk)
+    public function withKenmerk(string $Kenmerk): static
     {
         $new = clone $this;
         $new->Kenmerk = $Kenmerk;
@@ -87,16 +87,16 @@ class TDocumentSleutel
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TDocumentSleutel
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -104,3 +104,4 @@ class TDocumentSleutel
         return $new;
     }
 }
+

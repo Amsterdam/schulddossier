@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class BBROpdrachtArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBROpdracht
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBROpdracht>
      */
-    private $TBBROpdracht;
+    private array $TBBROpdracht;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBROpdracht
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBROpdracht>
      */
-    public function getTBBROpdracht()
+    public function getTBBROpdracht(): array
     {
         return $this->TBBROpdracht;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBROpdracht $TBBROpdracht
-     * @return BBROpdrachtArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBROpdracht> $TBBROpdracht
+     * @return static
      */
-    public function withTBBROpdracht($TBBROpdracht)
+    public function withTBBROpdracht(array $TBBROpdracht): static
     {
         $new = clone $this;
         $new->TBBROpdracht = $TBBROpdracht;
@@ -29,3 +29,4 @@ class BBROpdrachtArray
         return $new;
     }
 }
+

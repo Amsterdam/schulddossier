@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class TrajectTaakArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TTrajectTaak
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TTrajectTaak>
      */
-    private $TTrajectTaak;
+    private array $TTrajectTaak;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TTrajectTaak
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TTrajectTaak>
      */
-    public function getTTrajectTaak()
+    public function getTTrajectTaak(): array
     {
         return $this->TTrajectTaak;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TTrajectTaak $TTrajectTaak
-     * @return TrajectTaakArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TTrajectTaak> $TTrajectTaak
+     * @return static
      */
-    public function withTTrajectTaak($TTrajectTaak)
+    public function withTTrajectTaak(array $TTrajectTaak): static
     {
         $new = clone $this;
         $new->TTrajectTaak = $TTrajectTaak;
@@ -29,3 +29,4 @@ class TrajectTaakArray
         return $new;
     }
 }
+

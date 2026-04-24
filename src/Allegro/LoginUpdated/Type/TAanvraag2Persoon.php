@@ -7,101 +7,101 @@ class TAanvraag2Persoon
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $BSN;
+    private int $BSN;
 
     /**
      * @var string
      */
-    private $Voornamen;
+    private string $Voornamen;
 
     /**
      * @var string
      */
-    private $Voorletters;
+    private string $Voorletters;
 
     /**
      * @var string
      */
-    private $Voorvoegsels;
+    private string $Voorvoegsels;
 
     /**
      * @var string
      */
-    private $Achternaam;
+    private string $Achternaam;
 
     /**
      * @var string
      */
-    private $Geslacht;
+    private string $Geslacht;
 
     /**
      * @var int
      */
-    private $Geboortedatum;
+    private int $Geboortedatum;
 
     /**
-     * @var string
+     * @var 'Leeg' | 'Nederlandse' | 'Anders'
      */
-    private $Nationaliteit;
+    private string $Nationaliteit;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\Rekeningnummer2Array
      */
-    private $Rekeningnummers;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\Rekeningnummer2Array $Rekeningnummers;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    private $Bezoekadres;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $Bezoekadres;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    private $Postadres;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $Postadres;
 
     /**
      * @var bool
      */
-    private $CorrespondentieMail;
+    private bool $CorrespondentieMail;
 
     /**
      * @var bool
      */
-    private $CorrespondentieWeb;
+    private bool $CorrespondentieWeb;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContact
      */
-    private $Contact;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContact $Contact;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\InkomenArray
      */
-    private $Inkomen;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\InkomenArray $Inkomen;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\UitgavenArray
      */
-    private $Uitgaven;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\UitgavenArray $Uitgaven;
 
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode(): int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode): static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -112,16 +112,16 @@ class TAanvraag2Persoon
     /**
      * @return int
      */
-    public function getBSN()
+    public function getBSN(): int
     {
         return $this->BSN;
     }
 
     /**
      * @param int $BSN
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withBSN($BSN)
+    public function withBSN(int $BSN): static
     {
         $new = clone $this;
         $new->BSN = $BSN;
@@ -132,16 +132,16 @@ class TAanvraag2Persoon
     /**
      * @return string
      */
-    public function getVoornamen()
+    public function getVoornamen(): string
     {
         return $this->Voornamen;
     }
 
     /**
      * @param string $Voornamen
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withVoornamen($Voornamen)
+    public function withVoornamen(string $Voornamen): static
     {
         $new = clone $this;
         $new->Voornamen = $Voornamen;
@@ -152,16 +152,16 @@ class TAanvraag2Persoon
     /**
      * @return string
      */
-    public function getVoorletters()
+    public function getVoorletters(): string
     {
         return $this->Voorletters;
     }
 
     /**
      * @param string $Voorletters
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withVoorletters($Voorletters)
+    public function withVoorletters(string $Voorletters): static
     {
         $new = clone $this;
         $new->Voorletters = $Voorletters;
@@ -172,16 +172,16 @@ class TAanvraag2Persoon
     /**
      * @return string
      */
-    public function getVoorvoegsels()
+    public function getVoorvoegsels(): string
     {
         return $this->Voorvoegsels;
     }
 
     /**
      * @param string $Voorvoegsels
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withVoorvoegsels($Voorvoegsels)
+    public function withVoorvoegsels(string $Voorvoegsels): static
     {
         $new = clone $this;
         $new->Voorvoegsels = $Voorvoegsels;
@@ -192,16 +192,16 @@ class TAanvraag2Persoon
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam(): string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam): static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -212,16 +212,16 @@ class TAanvraag2Persoon
     /**
      * @return string
      */
-    public function getGeslacht()
+    public function getGeslacht(): string
     {
         return $this->Geslacht;
     }
 
     /**
      * @param string $Geslacht
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withGeslacht($Geslacht)
+    public function withGeslacht(string $Geslacht): static
     {
         $new = clone $this;
         $new->Geslacht = $Geslacht;
@@ -232,16 +232,16 @@ class TAanvraag2Persoon
     /**
      * @return int
      */
-    public function getGeboortedatum()
+    public function getGeboortedatum(): int
     {
         return $this->Geboortedatum;
     }
 
     /**
      * @param int $Geboortedatum
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withGeboortedatum($Geboortedatum)
+    public function withGeboortedatum(int $Geboortedatum): static
     {
         $new = clone $this;
         $new->Geboortedatum = $Geboortedatum;
@@ -250,18 +250,18 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @return string
+     * @return 'Leeg' | 'Nederlandse' | 'Anders'
      */
-    public function getNationaliteit()
+    public function getNationaliteit(): string
     {
         return $this->Nationaliteit;
     }
 
     /**
-     * @param string $Nationaliteit
-     * @return TAanvraag2Persoon
+     * @param 'Leeg' | 'Nederlandse' | 'Anders' $Nationaliteit
+     * @return static
      */
-    public function withNationaliteit($Nationaliteit)
+    public function withNationaliteit(string $Nationaliteit): static
     {
         $new = clone $this;
         $new->Nationaliteit = $Nationaliteit;
@@ -272,16 +272,16 @@ class TAanvraag2Persoon
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\Rekeningnummer2Array
      */
-    public function getRekeningnummers()
+    public function getRekeningnummers(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\Rekeningnummer2Array
     {
         return $this->Rekeningnummers;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\Rekeningnummer2Array $Rekeningnummers
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withRekeningnummers($Rekeningnummers)
+    public function withRekeningnummers(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\Rekeningnummer2Array $Rekeningnummers): static
     {
         $new = clone $this;
         $new->Rekeningnummers = $Rekeningnummers;
@@ -292,16 +292,16 @@ class TAanvraag2Persoon
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    public function getBezoekadres()
+    public function getBezoekadres(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
     {
         return $this->Bezoekadres;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $Bezoekadres
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withBezoekadres($Bezoekadres)
+    public function withBezoekadres(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $Bezoekadres): static
     {
         $new = clone $this;
         $new->Bezoekadres = $Bezoekadres;
@@ -312,16 +312,16 @@ class TAanvraag2Persoon
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    public function getPostadres()
+    public function getPostadres(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
     {
         return $this->Postadres;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $Postadres
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withPostadres($Postadres)
+    public function withPostadres(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $Postadres): static
     {
         $new = clone $this;
         $new->Postadres = $Postadres;
@@ -332,16 +332,16 @@ class TAanvraag2Persoon
     /**
      * @return bool
      */
-    public function getCorrespondentieMail()
+    public function getCorrespondentieMail(): bool
     {
         return $this->CorrespondentieMail;
     }
 
     /**
      * @param bool $CorrespondentieMail
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withCorrespondentieMail($CorrespondentieMail)
+    public function withCorrespondentieMail(bool $CorrespondentieMail): static
     {
         $new = clone $this;
         $new->CorrespondentieMail = $CorrespondentieMail;
@@ -352,16 +352,16 @@ class TAanvraag2Persoon
     /**
      * @return bool
      */
-    public function getCorrespondentieWeb()
+    public function getCorrespondentieWeb(): bool
     {
         return $this->CorrespondentieWeb;
     }
 
     /**
      * @param bool $CorrespondentieWeb
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withCorrespondentieWeb($CorrespondentieWeb)
+    public function withCorrespondentieWeb(bool $CorrespondentieWeb): static
     {
         $new = clone $this;
         $new->CorrespondentieWeb = $CorrespondentieWeb;
@@ -372,16 +372,16 @@ class TAanvraag2Persoon
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContact
      */
-    public function getContact()
+    public function getContact(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContact
     {
         return $this->Contact;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContact $Contact
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withContact($Contact)
+    public function withContact(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TContact $Contact): static
     {
         $new = clone $this;
         $new->Contact = $Contact;
@@ -392,16 +392,16 @@ class TAanvraag2Persoon
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\InkomenArray
      */
-    public function getInkomen()
+    public function getInkomen(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\InkomenArray
     {
         return $this->Inkomen;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\InkomenArray $Inkomen
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withInkomen($Inkomen)
+    public function withInkomen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\InkomenArray $Inkomen): static
     {
         $new = clone $this;
         $new->Inkomen = $Inkomen;
@@ -412,16 +412,16 @@ class TAanvraag2Persoon
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\UitgavenArray
      */
-    public function getUitgaven()
+    public function getUitgaven(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\UitgavenArray
     {
         return $this->Uitgaven;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\UitgavenArray $Uitgaven
-     * @return TAanvraag2Persoon
+     * @return static
      */
-    public function withUitgaven($Uitgaven)
+    public function withUitgaven(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\UitgavenArray $Uitgaven): static
     {
         $new = clone $this;
         $new->Uitgaven = $Uitgaven;
@@ -429,3 +429,4 @@ class TAanvraag2Persoon
         return $new;
     }
 }
+

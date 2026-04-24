@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class TBBoxBijlageArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBoxBijlage
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBoxBijlage>
      */
-    private $TBBoxBijlage;
+    private array $TBBoxBijlage;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBoxBijlage
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBoxBijlage>
      */
-    public function getTBBoxBijlage()
+    public function getTBBoxBijlage(): array
     {
         return $this->TBBoxBijlage;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBoxBijlage $TBBoxBijlage
-     * @return TBBoxBijlageArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBoxBijlage> $TBBoxBijlage
+     * @return static
      */
-    public function withTBBoxBijlage($TBBoxBijlage)
+    public function withTBBoxBijlage(array $TBBoxBijlage): static
     {
         $new = clone $this;
         $new->TBBoxBijlage = $TBBoxBijlage;
@@ -29,3 +29,4 @@ class TBBoxBijlageArray
         return $new;
     }
 }
+

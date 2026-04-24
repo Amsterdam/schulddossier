@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class FooterArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TFooter
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TFooter>
      */
-    private $TFooter;
+    private array $TFooter;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TFooter
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TFooter>
      */
-    public function getTFooter()
+    public function getTFooter(): array
     {
         return $this->TFooter;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TFooter $TFooter
-     * @return FooterArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TFooter> $TFooter
+     * @return static
      */
-    public function withTFooter($TFooter)
+    public function withTFooter(array $TFooter): static
     {
         $new = clone $this;
         $new->TFooter = $TFooter;
@@ -29,3 +29,4 @@ class FooterArray
         return $new;
     }
 }
+

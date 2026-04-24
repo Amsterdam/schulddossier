@@ -7,41 +7,41 @@ class UserInfo
     /**
      * @var string
      */
-    private $SessionID;
+    private string $SessionID;
 
     /**
      * @var string
      */
-    private $UserID;
+    private string $UserID;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray
      */
-    private $Privileges;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray $Privileges;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\VariantArray
      */
-    private $Attributes;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\VariantArray $Attributes;
 
     /**
-     * @var string
+     * @var mixed
      */
-    private $UserData;
+    private mixed $UserData;
 
     /**
      * @return string
      */
-    public function getSessionID()
+    public function getSessionID(): string
     {
         return $this->SessionID;
     }
 
     /**
      * @param string $SessionID
-     * @return UserInfo
+     * @return static
      */
-    public function withSessionID($SessionID)
+    public function withSessionID(string $SessionID): static
     {
         $new = clone $this;
         $new->SessionID = $SessionID;
@@ -52,16 +52,16 @@ class UserInfo
     /**
      * @return string
      */
-    public function getUserID()
+    public function getUserID(): string
     {
         return $this->UserID;
     }
 
     /**
      * @param string $UserID
-     * @return UserInfo
+     * @return static
      */
-    public function withUserID($UserID)
+    public function withUserID(string $UserID): static
     {
         $new = clone $this;
         $new->UserID = $UserID;
@@ -72,16 +72,16 @@ class UserInfo
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray
      */
-    public function getPrivileges()
+    public function getPrivileges(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray
     {
         return $this->Privileges;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray $Privileges
-     * @return UserInfo
+     * @return static
      */
-    public function withPrivileges($Privileges)
+    public function withPrivileges(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray $Privileges): static
     {
         $new = clone $this;
         $new->Privileges = $Privileges;
@@ -92,16 +92,16 @@ class UserInfo
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\VariantArray
      */
-    public function getAttributes()
+    public function getAttributes(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\VariantArray
     {
         return $this->Attributes;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\VariantArray $Attributes
-     * @return UserInfo
+     * @return static
      */
-    public function withAttributes($Attributes)
+    public function withAttributes(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\VariantArray $Attributes): static
     {
         $new = clone $this;
         $new->Attributes = $Attributes;
@@ -110,18 +110,18 @@ class UserInfo
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getUserData()
+    public function getUserData(): mixed
     {
         return $this->UserData;
     }
 
     /**
-     * @param string $UserData
-     * @return UserInfo
+     * @param mixed $UserData
+     * @return static
      */
-    public function withUserData($UserData)
+    public function withUserData(mixed $UserData): static
     {
         $new = clone $this;
         $new->UserData = $UserData;
@@ -129,3 +129,4 @@ class UserInfo
         return $new;
     }
 }
+

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Security\Voter;
 
+use Exception;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -54,14 +55,14 @@ class DossierVoter extends Voter
      * @param TokenInterface $token
      *
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     protected function voteOnAttribute($attribute, $dossier, TokenInterface $token): bool
     {
         $user = $token->getUser();
 
         if (!$user instanceof Gebruiker) {
-            throw new \Exception('Cannot authorize this user');
+            throw new Exception('Cannot authorize this user');
         }
 
         if ($this->decisionManager->decide($token, ['ROLE_SHV'])) {

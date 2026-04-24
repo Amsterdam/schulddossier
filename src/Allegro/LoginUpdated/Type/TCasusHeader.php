@@ -7,46 +7,46 @@ class TCasusHeader
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var string
      */
-    private $CasusCode;
+    private string $CasusCode;
 
     /**
      * @var \DateTimeInterface
      */
-    private $Aanmaakdatum;
+    private \DateTimeInterface $Aanmaakdatum;
+
+    /**
+     * @var 'csAanmelding' | 'csAanmeldingVoorlopigGeweigerd' | 'csAanmeldingGeweigerd' | 'csAanmeldingVoltooid' | 'csCrisis' | 'csInventarisatie' | 'csAnalyse' | 'csPvA' | 'csFiattering' | 'csSlapend' | 'csAfwijzing' | 'csStop' | 'csInactief' | 'csNone'
+     */
+    private string $CasusStatus;
 
     /**
      * @var string
      */
-    private $CasusStatus;
-
-    /**
-     * @var string
-     */
-    private $CasusStatusTekst;
+    private string $CasusStatusTekst;
 
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode(): int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TCasusHeader
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode): static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -57,16 +57,16 @@ class TCasusHeader
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TCasusHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -77,16 +77,16 @@ class TCasusHeader
     /**
      * @return string
      */
-    public function getCasusCode()
+    public function getCasusCode(): string
     {
         return $this->CasusCode;
     }
 
     /**
      * @param string $CasusCode
-     * @return TCasusHeader
+     * @return static
      */
-    public function withCasusCode($CasusCode)
+    public function withCasusCode(string $CasusCode): static
     {
         $new = clone $this;
         $new->CasusCode = $CasusCode;
@@ -97,16 +97,16 @@ class TCasusHeader
     /**
      * @return \DateTimeInterface
      */
-    public function getAanmaakdatum()
+    public function getAanmaakdatum(): \DateTimeInterface
     {
         return $this->Aanmaakdatum;
     }
 
     /**
      * @param \DateTimeInterface $Aanmaakdatum
-     * @return TCasusHeader
+     * @return static
      */
-    public function withAanmaakdatum($Aanmaakdatum)
+    public function withAanmaakdatum(\DateTimeInterface $Aanmaakdatum): static
     {
         $new = clone $this;
         $new->Aanmaakdatum = $Aanmaakdatum;
@@ -115,18 +115,18 @@ class TCasusHeader
     }
 
     /**
-     * @return string
+     * @return 'csAanmelding' | 'csAanmeldingVoorlopigGeweigerd' | 'csAanmeldingGeweigerd' | 'csAanmeldingVoltooid' | 'csCrisis' | 'csInventarisatie' | 'csAnalyse' | 'csPvA' | 'csFiattering' | 'csSlapend' | 'csAfwijzing' | 'csStop' | 'csInactief' | 'csNone'
      */
-    public function getCasusStatus()
+    public function getCasusStatus(): string
     {
         return $this->CasusStatus;
     }
 
     /**
-     * @param string $CasusStatus
-     * @return TCasusHeader
+     * @param 'csAanmelding' | 'csAanmeldingVoorlopigGeweigerd' | 'csAanmeldingGeweigerd' | 'csAanmeldingVoltooid' | 'csCrisis' | 'csInventarisatie' | 'csAnalyse' | 'csPvA' | 'csFiattering' | 'csSlapend' | 'csAfwijzing' | 'csStop' | 'csInactief' | 'csNone' $CasusStatus
+     * @return static
      */
-    public function withCasusStatus($CasusStatus)
+    public function withCasusStatus(string $CasusStatus): static
     {
         $new = clone $this;
         $new->CasusStatus = $CasusStatus;
@@ -137,16 +137,16 @@ class TCasusHeader
     /**
      * @return string
      */
-    public function getCasusStatusTekst()
+    public function getCasusStatusTekst(): string
     {
         return $this->CasusStatusTekst;
     }
 
     /**
      * @param string $CasusStatusTekst
-     * @return TCasusHeader
+     * @return static
      */
-    public function withCasusStatusTekst($CasusStatusTekst)
+    public function withCasusStatusTekst(string $CasusStatusTekst): static
     {
         $new = clone $this;
         $new->CasusStatusTekst = $CasusStatusTekst;
@@ -154,3 +154,4 @@ class TCasusHeader
         return $new;
     }
 }
+

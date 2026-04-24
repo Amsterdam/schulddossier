@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Normalizer;
 
+use ArrayObject;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
@@ -28,8 +29,11 @@ class DossierDocumentNormalizer implements NormalizerInterface, NormalizerAwareI
         return $data instanceof DossierDocument;
     }
 
-    public function normalize($object, $format = null, array $context = [])
-    {
+    public function normalize(
+        $object,
+        $format = null,
+        array $context = []
+    ): array|string|int|float|bool|ArrayObject|null {
         /** @var $object DossierDocument */
         return [
             'id' => $object->getId(),

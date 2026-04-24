@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class AfspraakArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAfspraak
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAfspraak>
      */
-    private $TAfspraak;
+    private array $TAfspraak;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAfspraak
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAfspraak>
      */
-    public function getTAfspraak()
+    public function getTAfspraak(): array
     {
         return $this->TAfspraak;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAfspraak $TAfspraak
-     * @return AfspraakArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAfspraak> $TAfspraak
+     * @return static
      */
-    public function withTAfspraak($TAfspraak)
+    public function withTAfspraak(array $TAfspraak): static
     {
         $new = clone $this;
         $new->TAfspraak = $TAfspraak;
@@ -29,3 +29,4 @@ class AfspraakArray
         return $new;
     }
 }
+

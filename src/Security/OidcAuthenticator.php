@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Security;
 
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
@@ -196,8 +197,7 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
             $this->logger->info('User found', ['id' => $user->getId()]);
         }
 
-        $this->id_token = $output['id_token'];
-        return $user;
+        return $return;
     }
 
     /**
@@ -241,13 +241,27 @@ class OidcAuthenticator extends AbstractGuardAuthenticator
         ]));
     }
 
-    /**
-     * @param Request                      $request
-     * @param AuthenticationException|null $authException
-     *
-     * @return RedirectResponse|Response
-     */
-    public function start(Request $request, AuthenticationException $authException = null)
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $firewallName): ?Response
+    {
+        $gebruiker = $token->getUser();
+        /**
+         * @var Gebruiker $gebruiker
+         */
+        $current_time = new DateTime();
+        $gebruiker?->setLastLogin($current_time);
+        $this->entityManager->flush();
+
+        $request->getSession()->set('id_token', $request->getSession()->get('id_token_temp'));
+        $request->getSession()->set('refresh_token', $request->getSession()->get('refresh_token_temp'));
+
+        if ($request->getSession()->has('loginReturnUrl')) {
+            return new RedirectResponse($request->getSession()->get('loginReturnUrl'));
+        }
+
+        return new RedirectResponse($this->urlGenerator->generate('app_home_index'));
+    }
+
+    public function start(Request $request, ?AuthenticationException $authException = null): RedirectResponse
     {
         $request->getSession()->set('loginReturnUrl', $request->getUri());
 

@@ -2,11 +2,13 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
+use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
-class FallbackFileListener
+class FallbackFileEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(private readonly string $publicDir)
     {
@@ -15,7 +17,7 @@ class FallbackFileListener
     public function onKernelResponse(ResponseEvent $event)
     {
         $response = $event->getResponse();
-        if ($response->getStatusCode() !== 404) {
+        if ($response->getStatusCode() !== Response::HTTP_NOT_FOUND) {
             return;
         }
 
@@ -44,5 +46,13 @@ class FallbackFileListener
             $newResponse->headers->set('Content-Type', $mimeType);
             $event->setResponse($newResponse);
         }
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public static function getSubscribedEvents(): array
+    {
+        return [KernelEvents::RESPONSE => 'onKernelResponse'];
     }
 }

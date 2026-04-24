@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class GeslotenVraagArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGeslotenVraag
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGeslotenVraag>
      */
-    private $TGeslotenVraag;
+    private array $TGeslotenVraag;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGeslotenVraag
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGeslotenVraag>
      */
-    public function getTGeslotenVraag()
+    public function getTGeslotenVraag(): array
     {
         return $this->TGeslotenVraag;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGeslotenVraag $TGeslotenVraag
-     * @return GeslotenVraagArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGeslotenVraag> $TGeslotenVraag
+     * @return static
      */
-    public function withTGeslotenVraag($TGeslotenVraag)
+    public function withTGeslotenVraag(array $TGeslotenVraag): static
     {
         $new = clone $this;
         $new->TGeslotenVraag = $TGeslotenVraag;
@@ -29,3 +29,4 @@ class GeslotenVraagArray
         return $new;
     }
 }
+

@@ -7,36 +7,36 @@ class TSaldoReservering
     /**
      * @var \DateTimeInterface
      */
-    private $Datum;
+    private \DateTimeInterface $Datum;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
      * @var float
      */
-    private $Saldo;
+    private float $Saldo;
 
     /**
      * @return \DateTimeInterface
      */
-    public function getDatum()
+    public function getDatum(): \DateTimeInterface
     {
         return $this->Datum;
     }
 
     /**
      * @param \DateTimeInterface $Datum
-     * @return TSaldoReservering
+     * @return static
      */
-    public function withDatum($Datum)
+    public function withDatum(\DateTimeInterface $Datum): static
     {
         $new = clone $this;
         $new->Datum = $Datum;
@@ -47,16 +47,16 @@ class TSaldoReservering
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TSaldoReservering
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -67,16 +67,16 @@ class TSaldoReservering
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving(): string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TSaldoReservering
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving): static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -87,16 +87,16 @@ class TSaldoReservering
     /**
      * @return float
      */
-    public function getSaldo()
+    public function getSaldo(): float
     {
         return $this->Saldo;
     }
 
     /**
      * @param float $Saldo
-     * @return TSaldoReservering
+     * @return static
      */
-    public function withSaldo($Saldo)
+    public function withSaldo(float $Saldo): static
     {
         $new = clone $this;
         $new->Saldo = $Saldo;
@@ -104,3 +104,4 @@ class TSaldoReservering
         return $new;
     }
 }
+

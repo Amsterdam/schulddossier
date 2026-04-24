@@ -7,36 +7,36 @@ class TableRequestInfo
     /**
      * @var string
      */
-    private $UserFilter;
+    private string $UserFilter;
 
     /**
      * @var bool
      */
-    private $IncludeSchema;
+    private bool $IncludeSchema;
 
     /**
      * @var int
      */
-    private $MaxRecords;
+    private int $MaxRecords;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\DataParameterArray
      */
-    private $Parameters;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\DataParameterArray $Parameters;
 
     /**
      * @return string
      */
-    public function getUserFilter()
+    public function getUserFilter(): string
     {
         return $this->UserFilter;
     }
 
     /**
      * @param string $UserFilter
-     * @return TableRequestInfo
+     * @return static
      */
-    public function withUserFilter($UserFilter)
+    public function withUserFilter(string $UserFilter): static
     {
         $new = clone $this;
         $new->UserFilter = $UserFilter;
@@ -47,16 +47,16 @@ class TableRequestInfo
     /**
      * @return bool
      */
-    public function getIncludeSchema()
+    public function getIncludeSchema(): bool
     {
         return $this->IncludeSchema;
     }
 
     /**
      * @param bool $IncludeSchema
-     * @return TableRequestInfo
+     * @return static
      */
-    public function withIncludeSchema($IncludeSchema)
+    public function withIncludeSchema(bool $IncludeSchema): static
     {
         $new = clone $this;
         $new->IncludeSchema = $IncludeSchema;
@@ -67,16 +67,16 @@ class TableRequestInfo
     /**
      * @return int
      */
-    public function getMaxRecords()
+    public function getMaxRecords(): int
     {
         return $this->MaxRecords;
     }
 
     /**
      * @param int $MaxRecords
-     * @return TableRequestInfo
+     * @return static
      */
-    public function withMaxRecords($MaxRecords)
+    public function withMaxRecords(int $MaxRecords): static
     {
         $new = clone $this;
         $new->MaxRecords = $MaxRecords;
@@ -87,16 +87,16 @@ class TableRequestInfo
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\DataParameterArray
      */
-    public function getParameters()
+    public function getParameters(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\DataParameterArray
     {
         return $this->Parameters;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\DataParameterArray $Parameters
-     * @return TableRequestInfo
+     * @return static
      */
-    public function withParameters($Parameters)
+    public function withParameters(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\DataParameterArray $Parameters): static
     {
         $new = clone $this;
         $new->Parameters = $Parameters;
@@ -104,3 +104,4 @@ class TableRequestInfo
         return $new;
     }
 }
+

@@ -2,6 +2,11 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\InverseJoinColumn;
+use DateTime;
+use Rollerworks\Component\PasswordStrength\Validator\Constraints\PasswordStrength;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Serializable;
@@ -10,21 +15,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-/**
- * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
- * @ORM\Table(
- *  uniqueConstraints={
- *      @ORM\UniqueConstraint(name="uq_username", columns={"username"}),
- *      @ORM\UniqueConstraint(name="uq_email", columns={"email"})
- *  },
- *  indexes={
- *      @ORM\Index(name="idx_verwijderd_datetime", columns={"verwijderd_date_time"}),
- *  })
- * )
- * @UniqueEntity("email")
- * @UniqueEntity("username")
- */
-class Gebruiker implements UserInterface, \Serializable, EquatableInterface
+#[ORM\Table]
+#[ORM\Index(name: 'idx_verwijderd_datetime', columns: ['verwijderd_date_time'])]
+#[ORM\UniqueConstraint(name: 'uq_username', columns: ['username'])]
+#[ORM\UniqueConstraint(name: 'uq_email', columns: ['email'])]
+#[ORM\Entity(repositoryClass: GebruikerRepository::class)]
+#[UniqueEntity('email')]
+#[UniqueEntity('username')]
+class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthenticatedUserInterface
 {
     const TYPE_ADMIN = 'admin';
 
@@ -59,8 +57,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     /**
      * @var string
      * Not mapped to database
-     * @Assert\Length(min=8, groups={"password"})
-     * @Rollerworks\Component\PasswordStrength\Validator\Constraints\PasswordStrength(minStrength=4, message="Een wachtwoord moet minimaal een cijfer, een speciaal karakter, hoofdletter en kleine letter bevatten en bij elkaar 8 tekens of meer zijn.", minLength=0, groups={"password"})
+     * @PasswordStrength(minStrength=4, message="Een wachtwoord moet minimaal een cijfer, een speciaal karakter, hoofdletter en kleine letter bevatten en bij elkaar 8 tekens of meer zijn.", minLength=0, groups={"password"})
      */
     private $clearPassword;
 
@@ -123,6 +120,10 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      *  inverseJoinColumns={@ORM\JoinColumn(name="organisatie_id", referencedColumnName="id")}
      * )
      */
+    #[ORM\JoinTable]
+    #[JoinColumn(name: 'gebruiker_id', referencedColumnName: 'id')]
+    #[InverseJoinColumn(name: 'organisatie_id', referencedColumnName: 'id')]
+    #[ORM\ManyToMany(targetEntity: \Organisatie::class)]
     private $organisaties;
 
     /**
@@ -197,7 +198,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @return \DateTime|NULL
+     * @return DateTime|NULL
      */
     public function getPasswordChangedDateTime()
     {
@@ -245,9 +246,9 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param \DateTime $passwordChangedDateTime
+     * @param DateTime $passwordChangedDateTime
      */
-    public function setPasswordChangedDateTime(\DateTime $passwordChangedDateTime = null)
+    public function setPasswordChangedDateTime(?DateTime $passwordChangedDateTime)
     {
         $this->passwordChangedDateTime = $passwordChangedDateTime;
     }
@@ -289,7 +290,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
         $this->teamGka = $teamGka;
     }
 
-    public function getOrganisaties()
+    public function getOrganisaties(): ArrayCollection|PersistentCollection|array
     {
         return $this->organisaties;
     }
@@ -569,18 +570,18 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getLastLogin(): ?\DateTime
+    public function getLastLogin(): ?DateTime
     {
         return $this->lastLogin;
     }
 
     /**
-     * @param \DateTime|null $lastLogin
+     * @param DateTime|null $lastLogin
      * @return Gebruiker
      */
-    public function setLastLogin(?\DateTime $lastLogin): Gebruiker
+    public function setLastLogin(?DateTime $lastLogin): Gebruiker
     {
         $this->lastLogin = $lastLogin;
 

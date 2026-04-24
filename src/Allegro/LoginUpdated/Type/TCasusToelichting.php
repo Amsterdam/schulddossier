@@ -7,56 +7,56 @@ class TCasusToelichting
     /**
      * @var int
      */
-    private $VolgnummerCasus;
+    private int $VolgnummerCasus;
 
     /**
      * @var int
      */
-    private $Titel;
+    private int $Titel;
 
     /**
      * @var string
      */
-    private $TitelTitel;
+    private string $TitelTitel;
 
     /**
      * @var string
      */
-    private $Medewerker;
+    private string $Medewerker;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $Datum;
+    private \DateTimeInterface $Datum;
 
     /**
      * @var int
      */
-    private $SubTitel;
+    private int $SubTitel;
 
     /**
      * @var string
      */
-    private $SubTitelTitel;
+    private string $SubTitelTitel;
 
     /**
      * @var string
      */
-    private $Tekst;
+    private string $Tekst;
 
     /**
      * @return int
      */
-    public function getVolgnummerCasus()
+    public function getVolgnummerCasus(): int
     {
         return $this->VolgnummerCasus;
     }
 
     /**
      * @param int $VolgnummerCasus
-     * @return TCasusToelichting
+     * @return static
      */
-    public function withVolgnummerCasus($VolgnummerCasus)
+    public function withVolgnummerCasus(int $VolgnummerCasus): static
     {
         $new = clone $this;
         $new->VolgnummerCasus = $VolgnummerCasus;
@@ -67,16 +67,16 @@ class TCasusToelichting
     /**
      * @return int
      */
-    public function getTitel()
+    public function getTitel(): int
     {
         return $this->Titel;
     }
 
     /**
      * @param int $Titel
-     * @return TCasusToelichting
+     * @return static
      */
-    public function withTitel($Titel)
+    public function withTitel(int $Titel): static
     {
         $new = clone $this;
         $new->Titel = $Titel;
@@ -87,16 +87,16 @@ class TCasusToelichting
     /**
      * @return string
      */
-    public function getTitelTitel()
+    public function getTitelTitel(): string
     {
         return $this->TitelTitel;
     }
 
     /**
      * @param string $TitelTitel
-     * @return TCasusToelichting
+     * @return static
      */
-    public function withTitelTitel($TitelTitel)
+    public function withTitelTitel(string $TitelTitel): static
     {
         $new = clone $this;
         $new->TitelTitel = $TitelTitel;
@@ -107,16 +107,16 @@ class TCasusToelichting
     /**
      * @return string
      */
-    public function getMedewerker()
+    public function getMedewerker(): string
     {
         return $this->Medewerker;
     }
 
     /**
      * @param string $Medewerker
-     * @return TCasusToelichting
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(string $Medewerker): static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -125,18 +125,18 @@ class TCasusToelichting
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getDatum()
+    public function getDatum(): \DateTimeInterface
     {
         return $this->Datum;
     }
 
     /**
      * @param \DateTimeInterface $Datum
-     * @return TCasusToelichting
+     * @return static
      */
-    public function withDatum($Datum)
+    public function withDatum(\DateTimeInterface $Datum): static
     {
         $new = clone $this;
         $new->Datum = $Datum;
@@ -147,16 +147,16 @@ class TCasusToelichting
     /**
      * @return int
      */
-    public function getSubTitel()
+    public function getSubTitel(): int
     {
         return $this->SubTitel;
     }
 
     /**
      * @param int $SubTitel
-     * @return TCasusToelichting
+     * @return static
      */
-    public function withSubTitel($SubTitel)
+    public function withSubTitel(int $SubTitel): static
     {
         $new = clone $this;
         $new->SubTitel = $SubTitel;
@@ -167,16 +167,16 @@ class TCasusToelichting
     /**
      * @return string
      */
-    public function getSubTitelTitel()
+    public function getSubTitelTitel(): string
     {
         return $this->SubTitelTitel;
     }
 
     /**
      * @param string $SubTitelTitel
-     * @return TCasusToelichting
+     * @return static
      */
-    public function withSubTitelTitel($SubTitelTitel)
+    public function withSubTitelTitel(string $SubTitelTitel): static
     {
         $new = clone $this;
         $new->SubTitelTitel = $SubTitelTitel;
@@ -187,16 +187,16 @@ class TCasusToelichting
     /**
      * @return string
      */
-    public function getTekst()
+    public function getTekst(): string
     {
         return $this->Tekst;
     }
 
     /**
      * @param string $Tekst
-     * @return TCasusToelichting
+     * @return static
      */
-    public function withTekst($Tekst)
+    public function withTekst(string $Tekst): static
     {
         $new = clone $this;
         $new->Tekst = $Tekst;
@@ -204,3 +204,4 @@ class TCasusToelichting
         return $new;
     }
 }
+

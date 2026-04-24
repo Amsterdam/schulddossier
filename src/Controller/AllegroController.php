@@ -2,6 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use Exception;
+use Error;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Exception\AllegroServiceException;
@@ -22,14 +25,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class AllegroController extends AbstractController
 {
-    /**
-     * @Route("/srveisers/{dossierId}")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     * @Template()
-     */
-    public function allegroSrveisers(Request $request, Dossier $dossier, AllegroService $allegroService)
-    {
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/allegro/srveisers/{dossierId}')]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
+    #[Template('allegro/allegro_srveisers.html.twig')]
+    public function allegroSrveisers(
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        AllegroService $allegroService
+    ): array {
         $header = null;
         $srvEisers = null;
         $aanvraag = null;
@@ -42,11 +45,11 @@ class AllegroController extends AbstractController
             $aanvraag = $allegroService->getSRVAanvraag($dossier->getOrganisatie(), $header);
             $srvEisers = $allegroService->getSRVEisers($dossier, $header);
             $eisers = $srvEisers->getEisers()->getTSRVEiser();
-        } catch (\Exception | \Error $e) {
+        } catch (Exception|Error $e) {
             // Geen eisers gevonden
         }
 
-        $compareDate = \DateTime::createFromFormat('Y', '2000');
+        $compareDate = DateTime::createFromFormat('Y', '2000');
 
         return [
             'dossier' => $dossier,
@@ -58,14 +61,17 @@ class AllegroController extends AbstractController
         ];
     }
 
-    /**
-     * @Route("/validate/{dossierId}")
-     * @Security("is_granted('access', dossier)")
-     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function validateSendToAllegro(Request $request, Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator): JsonResponse
-    {
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/allegro/validate/{dossierId}')]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"
+    ))]
+    public function validateSendToAllegro(
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        AllegroService $allegroService,
+        TranslatorInterface $translator
+    ): JsonResponse {
         try {
             $allegroService->validateDossier($dossier);
         } catch (AllegroServiceException $e) {
@@ -74,19 +80,24 @@ class AllegroController extends AbstractController
         return new JsonResponse(['valid' => true]);
     }
 
-    /**
-     * @Route("/send/{dossierId}", methods={"POST"})
-     * @Security("is_granted('access', dossier)")
-     * @Security("is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     */
-    public function send(Dossier $dossier, AllegroService $allegroService, TranslatorInterface $translator, EntityManagerInterface $em, LoggerInterface $logger): JsonResponse
-    {
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/allegro/send/{dossierId}', methods: ['POST'])]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"
+    ))]
+    public function send(
+        #[MapEntity(id: 'dossierId')]
+        Dossier $dossier,
+        AllegroService $allegroService,
+        TranslatorInterface $translator,
+        EntityManagerInterface $em,
+        LoggerInterface $logger
+    ): JsonResponse {
         try {
             $response = $allegroService->sendAanvraag($dossier);
 
             $em->flush();
-            $dossier->setSendToAllegro((new \DateTime()));
+            $dossier->setSendToAllegro((new DateTime()));
 
             if ($response) {
                 return new JsonResponse(['send' => true]);
@@ -95,7 +106,7 @@ class AllegroController extends AbstractController
             }
         } catch (AllegroServiceException $e) {
             return new JsonResponse(['send' => false, 'message' => $translator->trans($e->getMessage())]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Logging toevoegen
             $logger->error($e->getMessage(), [AllegroService::LOGGING_CONTEXT]);
             return new JsonResponse(['send' => false, 'message' => 'Er is iets mis gegaan in het contact met allegro, probeer het later nog een keer of neem contact op met het beheer']);

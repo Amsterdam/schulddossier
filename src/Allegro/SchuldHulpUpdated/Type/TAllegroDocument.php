@@ -7,46 +7,46 @@ class TAllegroDocument
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TDocumentSleutel
      */
-    private $DocumentSleutel;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TDocumentSleutel $DocumentSleutel;
 
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Activiteit;
+    private int $Activiteit;
 
     /**
      * @var string
      */
-    private $SoortActiviteit;
+    private string $SoortActiviteit;
 
     /**
      * @var string
      */
-    private $Onderwerp;
+    private string $Onderwerp;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TDocumentSleutel
      */
-    public function getDocumentSleutel()
+    public function getDocumentSleutel(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TDocumentSleutel
     {
         return $this->DocumentSleutel;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TDocumentSleutel $DocumentSleutel
-     * @return TAllegroDocument
+     * @return static
      */
-    public function withDocumentSleutel($DocumentSleutel)
+    public function withDocumentSleutel(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TDocumentSleutel $DocumentSleutel): static
     {
         $new = clone $this;
         $new->DocumentSleutel = $DocumentSleutel;
@@ -57,16 +57,16 @@ class TAllegroDocument
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode(): int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TAllegroDocument
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode): static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -77,16 +77,16 @@ class TAllegroDocument
     /**
      * @return int
      */
-    public function getActiviteit()
+    public function getActiviteit(): int
     {
         return $this->Activiteit;
     }
 
     /**
      * @param int $Activiteit
-     * @return TAllegroDocument
+     * @return static
      */
-    public function withActiviteit($Activiteit)
+    public function withActiviteit(int $Activiteit): static
     {
         $new = clone $this;
         $new->Activiteit = $Activiteit;
@@ -97,16 +97,16 @@ class TAllegroDocument
     /**
      * @return string
      */
-    public function getSoortActiviteit()
+    public function getSoortActiviteit(): string
     {
         return $this->SoortActiviteit;
     }
 
     /**
      * @param string $SoortActiviteit
-     * @return TAllegroDocument
+     * @return static
      */
-    public function withSoortActiviteit($SoortActiviteit)
+    public function withSoortActiviteit(string $SoortActiviteit): static
     {
         $new = clone $this;
         $new->SoortActiviteit = $SoortActiviteit;
@@ -117,16 +117,16 @@ class TAllegroDocument
     /**
      * @return string
      */
-    public function getOnderwerp()
+    public function getOnderwerp(): string
     {
         return $this->Onderwerp;
     }
 
     /**
      * @param string $Onderwerp
-     * @return TAllegroDocument
+     * @return static
      */
-    public function withOnderwerp($Onderwerp)
+    public function withOnderwerp(string $Onderwerp): static
     {
         $new = clone $this;
         $new->Onderwerp = $Onderwerp;
@@ -137,16 +137,16 @@ class TAllegroDocument
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving(): string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TAllegroDocument
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving): static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -154,3 +154,4 @@ class TAllegroDocument
         return $new;
     }
 }
+

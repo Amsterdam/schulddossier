@@ -9,14 +9,14 @@ class SchuldHulpServiceGetSBEisers implements RequestInterface
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader
      */
-    private $aHeader;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader $aHeader;
 
     /**
      * Constructor
      *
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader $aHeader
      */
-    public function __construct($aHeader)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader $aHeader)
     {
         $this->aHeader = $aHeader;
     }
@@ -24,16 +24,16 @@ class SchuldHulpServiceGetSBEisers implements RequestInterface
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader
      */
-    public function getAHeader()
+    public function getAHeader(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader
     {
         return $this->aHeader;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader $aHeader
-     * @return SchuldHulpServiceGetSBEisers
+     * @return static
      */
-    public function withAHeader($aHeader)
+    public function withAHeader(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBHeader $aHeader): static
     {
         $new = clone $this;
         $new->aHeader = $aHeader;
@@ -41,3 +41,4 @@ class SchuldHulpServiceGetSBEisers implements RequestInterface
         return $new;
     }
 }
+

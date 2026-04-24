@@ -5,9 +5,11 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\TeamFormType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\TeamRepository;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Component\ExpressionLanguage\Expression;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,14 +19,9 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AppTeamController extends AbstractController
 {
-    /**
-     * @Route("/")
-     */
-    public function indexAction(Request $request, EntityManagerInterface $em)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/team/')]
+    public function index(Request $request, TeamRepository $repository): Response
     {
-        /** @var $repository TeamRepository */
-        $repository = $em->getRepository(Team::class);
-
         $maxPageSize = 10;
 
         $teams = $repository->findAll($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
@@ -40,11 +37,9 @@ class AppTeamController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/nieuw")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     */
-    public function createAction(Request $request, EntityManagerInterface $em)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/team/nieuw')]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
+    public function create(Request $request, EntityManagerInterface $em)
     {
         $team = new Team();
         $form = $this->createForm(TeamFormType::class, $team);
@@ -63,13 +58,14 @@ class AppTeamController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/detail/{teamId}/bewerken")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("team", options={"id"="teamId"})
-     */
-    public function updateAction(Request $request, EntityManagerInterface $em, Team $team)
-    {
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/team/detail/{teamId}/bewerken')]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
+    public function update(
+        Request $request,
+        EntityManagerInterface $em,
+        #[MapEntity(id: 'teamId')]
+        Team $team
+    ) {
         $form = $this->createForm(TeamFormType::class, $team, []);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

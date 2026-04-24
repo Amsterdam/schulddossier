@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class BBRBegunstigdeArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBRBegunstigde
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBRBegunstigde>
      */
-    private $TBBRBegunstigde;
+    private array $TBBRBegunstigde;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBRBegunstigde
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBRBegunstigde>
      */
-    public function getTBBRBegunstigde()
+    public function getTBBRBegunstigde(): array
     {
         return $this->TBBRBegunstigde;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBRBegunstigde $TBBRBegunstigde
-     * @return BBRBegunstigdeArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBRBegunstigde> $TBBRBegunstigde
+     * @return static
      */
-    public function withTBBRBegunstigde($TBBRBegunstigde)
+    public function withTBBRBegunstigde(array $TBBRBegunstigde): static
     {
         $new = clone $this;
         $new->TBBRBegunstigde = $TBBRBegunstigde;
@@ -29,3 +29,4 @@ class BBRBegunstigdeArray
         return $new;
     }
 }
+

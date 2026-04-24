@@ -7,36 +7,36 @@ class SimpleDeltaChange
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\StringArray
      */
-    private $OldValues;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\StringArray $OldValues;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\StringArray
      */
-    private $NewValues;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\StringArray $NewValues;
 
     /**
      * @var string
      */
-    private $Error;
+    private string $Error;
 
     /**
-     * @var string
+     * @var 'Insert' | 'Delete' | 'Update'
      */
-    private $Mode;
+    private string $Mode;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\StringArray
      */
-    public function getOldValues()
+    public function getOldValues(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\StringArray
     {
         return $this->OldValues;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\StringArray $OldValues
-     * @return SimpleDeltaChange
+     * @return static
      */
-    public function withOldValues($OldValues)
+    public function withOldValues(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\StringArray $OldValues): static
     {
         $new = clone $this;
         $new->OldValues = $OldValues;
@@ -47,16 +47,16 @@ class SimpleDeltaChange
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\StringArray
      */
-    public function getNewValues()
+    public function getNewValues(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\StringArray
     {
         return $this->NewValues;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\StringArray $NewValues
-     * @return SimpleDeltaChange
+     * @return static
      */
-    public function withNewValues($NewValues)
+    public function withNewValues(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\StringArray $NewValues): static
     {
         $new = clone $this;
         $new->NewValues = $NewValues;
@@ -67,16 +67,16 @@ class SimpleDeltaChange
     /**
      * @return string
      */
-    public function getError()
+    public function getError(): string
     {
         return $this->Error;
     }
 
     /**
      * @param string $Error
-     * @return SimpleDeltaChange
+     * @return static
      */
-    public function withError($Error)
+    public function withError(string $Error): static
     {
         $new = clone $this;
         $new->Error = $Error;
@@ -85,18 +85,18 @@ class SimpleDeltaChange
     }
 
     /**
-     * @return string
+     * @return 'Insert' | 'Delete' | 'Update'
      */
-    public function getMode()
+    public function getMode(): string
     {
         return $this->Mode;
     }
 
     /**
-     * @param string $Mode
-     * @return SimpleDeltaChange
+     * @param 'Insert' | 'Delete' | 'Update' $Mode
+     * @return static
      */
-    public function withMode($Mode)
+    public function withMode(string $Mode): static
     {
         $new = clone $this;
         $new->Mode = $Mode;
@@ -104,3 +104,4 @@ class SimpleDeltaChange
         return $new;
     }
 }
+

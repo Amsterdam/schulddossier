@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class TBBoxHeaderArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBoxHeader
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBoxHeader>
      */
-    private $TBBoxHeader;
+    private array $TBBoxHeader;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBoxHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBoxHeader>
      */
-    public function getTBBoxHeader()
+    public function getTBBoxHeader(): array
     {
         return $this->TBBoxHeader;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBoxHeader $TBBoxHeader
-     * @return TBBoxHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBBoxHeader> $TBBoxHeader
+     * @return static
      */
-    public function withTBBoxHeader($TBBoxHeader)
+    public function withTBBoxHeader(array $TBBoxHeader): static
     {
         $new = clone $this;
         $new->TBBoxHeader = $TBBoxHeader;
@@ -29,3 +29,4 @@ class TBBoxHeaderArray
         return $new;
     }
 }
+

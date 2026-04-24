@@ -2,6 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
+use Exception;
+use Throwable;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use Doctrine\ORM\Event\PostRemoveEventArgs;
@@ -73,9 +75,11 @@ class DocumentUploadSubscriber implements EventSubscriberInterface
         try {
             $flysystem->writeStream($object->getDirectory() . '/' . $object->getBestandsnaam(), $stream);
             fclose($stream);
-        } catch (\Exception $e) {
-            $this->logger->error(__CLASS__ . ":" . __METHOD__ . ": Failed to store file, errormessage: " . $e->getMessage());
-        } catch (\Throwable $e) {
+        } catch (Exception $e) {
+            $this->logger->error(
+                __CLASS__ . ":" . __METHOD__ . ": Failed to store file, errormessage: " . $e->getMessage()
+            );
+        } catch (Throwable $e) {
             $this->logger->error(__CLASS__ . ":" . __METHOD__ . ": Failed fclose, errormessage: " . $e->getMessage());
         }
     }

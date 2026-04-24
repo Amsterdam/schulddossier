@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class RelatieProductArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRelatieProduct
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRelatieProduct>
      */
-    private $TRelatieProduct;
+    private array $TRelatieProduct;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRelatieProduct
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRelatieProduct>
      */
-    public function getTRelatieProduct()
+    public function getTRelatieProduct(): array
     {
         return $this->TRelatieProduct;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRelatieProduct $TRelatieProduct
-     * @return RelatieProductArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRelatieProduct> $TRelatieProduct
+     * @return static
      */
-    public function withTRelatieProduct($TRelatieProduct)
+    public function withTRelatieProduct(array $TRelatieProduct): static
     {
         $new = clone $this;
         $new->TRelatieProduct = $TRelatieProduct;
@@ -29,3 +29,4 @@ class RelatieProductArray
         return $new;
     }
 }
+

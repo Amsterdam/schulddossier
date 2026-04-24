@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class UitgavenArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TUitgaven
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TUitgaven>
      */
-    private $TUitgaven;
+    private array $TUitgaven;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TUitgaven
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TUitgaven>
      */
-    public function getTUitgaven()
+    public function getTUitgaven(): array
     {
         return $this->TUitgaven;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TUitgaven $TUitgaven
-     * @return UitgavenArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TUitgaven> $TUitgaven
+     * @return static
      */
-    public function withTUitgaven($TUitgaven)
+    public function withTUitgaven(array $TUitgaven): static
     {
         $new = clone $this;
         $new->TUitgaven = $TUitgaven;
@@ -29,3 +29,4 @@ class UitgavenArray
         return $new;
     }
 }
+

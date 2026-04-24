@@ -5,33 +5,33 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class SimpleDataParameter
 {
     /**
-     * @var string
+     * @var 'String' | 'Integer' | 'Double' | 'DateTime' | 'Int64' | 'Currency' | 'Guid' | 'Binary' | 'Boolean'
      */
-    private $DataType;
+    private string $DataType;
 
     /**
      * @var string
      */
-    private $Name;
+    private string $Name;
 
     /**
      * @var string
      */
-    private $Value;
+    private string $Value;
 
     /**
-     * @return string
+     * @return 'String' | 'Integer' | 'Double' | 'DateTime' | 'Int64' | 'Currency' | 'Guid' | 'Binary' | 'Boolean'
      */
-    public function getDataType()
+    public function getDataType(): string
     {
         return $this->DataType;
     }
 
     /**
-     * @param string $DataType
-     * @return SimpleDataParameter
+     * @param 'String' | 'Integer' | 'Double' | 'DateTime' | 'Int64' | 'Currency' | 'Guid' | 'Binary' | 'Boolean' $DataType
+     * @return static
      */
-    public function withDataType($DataType)
+    public function withDataType(string $DataType): static
     {
         $new = clone $this;
         $new->DataType = $DataType;
@@ -42,16 +42,16 @@ class SimpleDataParameter
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->Name;
     }
 
     /**
      * @param string $Name
-     * @return SimpleDataParameter
+     * @return static
      */
-    public function withName($Name)
+    public function withName(string $Name): static
     {
         $new = clone $this;
         $new->Name = $Name;
@@ -62,16 +62,16 @@ class SimpleDataParameter
     /**
      * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->Value;
     }
 
     /**
      * @param string $Value
-     * @return SimpleDataParameter
+     * @return static
      */
-    public function withValue($Value)
+    public function withValue(string $Value): static
     {
         $new = clone $this;
         $new->Value = $Value;
@@ -79,3 +79,4 @@ class SimpleDataParameter
         return $new;
     }
 }
+

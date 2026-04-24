@@ -7,101 +7,101 @@ class TPLAanvraag
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $DatumAanvraag;
+    private \DateTimeInterface $DatumAanvraag;
 
     /**
-     * @var string
+     * @var 'PL' | 'SL' | 'SK'
      */
-    private $SoortLening;
+    private string $SoortLening;
 
     /**
      * @var int
      */
-    private $MedelenerCode;
+    private int $MedelenerCode;
 
     /**
      * @var string
      */
-    private $Medewerker;
+    private string $Medewerker;
 
     /**
      * @var float
      */
-    private $GewenstKrediet;
+    private float $GewenstKrediet;
+
+    /**
+     * @var 'A' | 'B' | 'C' | 'D' | 'E' | 'Gefiatteerd' | 'Afgewezen' | 'Ingetrokken'
+     */
+    private string $Status;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $DatumStatus;
 
     /**
      * @var string
      */
-    private $Status;
+    private string $RedenAfwijzing;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $DatumStatus;
+    private \DateTimeInterface $DatumStatusA;
 
     /**
-     * @var string
+     * @var DateTimeInterface
      */
-    private $RedenAfwijzing;
+    private \DateTimeInterface $DatumStatusB;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $DatumStatusA;
+    private \DateTimeInterface $DatumStatusC;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $DatumStatusB;
+    private \DateTimeInterface $DatumStatusD;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $DatumStatusC;
+    private \DateTimeInterface $DatumStatusE;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $DatumStatusD;
+    private \DateTimeInterface $DatumStatusAfIn;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $DatumStatusE;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $DatumStatusAfIn;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $DatumStatusFiat;
+    private \DateTimeInterface $DatumStatusFiat;
 
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode(): int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode): static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -112,16 +112,16 @@ class TPLAanvraag
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -130,18 +130,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getDatumAanvraag()
+    public function getDatumAanvraag(): \DateTimeInterface
     {
         return $this->DatumAanvraag;
     }
 
     /**
      * @param \DateTimeInterface $DatumAanvraag
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withDatumAanvraag($DatumAanvraag)
+    public function withDatumAanvraag(\DateTimeInterface $DatumAanvraag): static
     {
         $new = clone $this;
         $new->DatumAanvraag = $DatumAanvraag;
@@ -150,18 +150,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return string
+     * @return 'PL' | 'SL' | 'SK'
      */
-    public function getSoortLening()
+    public function getSoortLening(): string
     {
         return $this->SoortLening;
     }
 
     /**
-     * @param string $SoortLening
-     * @return TPLAanvraag
+     * @param 'PL' | 'SL' | 'SK' $SoortLening
+     * @return static
      */
-    public function withSoortLening($SoortLening)
+    public function withSoortLening(string $SoortLening): static
     {
         $new = clone $this;
         $new->SoortLening = $SoortLening;
@@ -172,16 +172,16 @@ class TPLAanvraag
     /**
      * @return int
      */
-    public function getMedelenerCode()
+    public function getMedelenerCode(): int
     {
         return $this->MedelenerCode;
     }
 
     /**
      * @param int $MedelenerCode
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withMedelenerCode($MedelenerCode)
+    public function withMedelenerCode(int $MedelenerCode): static
     {
         $new = clone $this;
         $new->MedelenerCode = $MedelenerCode;
@@ -192,16 +192,16 @@ class TPLAanvraag
     /**
      * @return string
      */
-    public function getMedewerker()
+    public function getMedewerker(): string
     {
         return $this->Medewerker;
     }
 
     /**
      * @param string $Medewerker
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(string $Medewerker): static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -212,16 +212,16 @@ class TPLAanvraag
     /**
      * @return float
      */
-    public function getGewenstKrediet()
+    public function getGewenstKrediet(): float
     {
         return $this->GewenstKrediet;
     }
 
     /**
      * @param float $GewenstKrediet
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withGewenstKrediet($GewenstKrediet)
+    public function withGewenstKrediet(float $GewenstKrediet): static
     {
         $new = clone $this;
         $new->GewenstKrediet = $GewenstKrediet;
@@ -230,18 +230,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return string
+     * @return 'A' | 'B' | 'C' | 'D' | 'E' | 'Gefiatteerd' | 'Afgewezen' | 'Ingetrokken'
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->Status;
     }
 
     /**
-     * @param string $Status
-     * @return TPLAanvraag
+     * @param 'A' | 'B' | 'C' | 'D' | 'E' | 'Gefiatteerd' | 'Afgewezen' | 'Ingetrokken' $Status
+     * @return static
      */
-    public function withStatus($Status)
+    public function withStatus(string $Status): static
     {
         $new = clone $this;
         $new->Status = $Status;
@@ -250,18 +250,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getDatumStatus()
+    public function getDatumStatus(): \DateTimeInterface
     {
         return $this->DatumStatus;
     }
 
     /**
      * @param \DateTimeInterface $DatumStatus
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withDatumStatus($DatumStatus)
+    public function withDatumStatus(\DateTimeInterface $DatumStatus): static
     {
         $new = clone $this;
         $new->DatumStatus = $DatumStatus;
@@ -272,16 +272,16 @@ class TPLAanvraag
     /**
      * @return string
      */
-    public function getRedenAfwijzing()
+    public function getRedenAfwijzing(): string
     {
         return $this->RedenAfwijzing;
     }
 
     /**
      * @param string $RedenAfwijzing
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withRedenAfwijzing($RedenAfwijzing)
+    public function withRedenAfwijzing(string $RedenAfwijzing): static
     {
         $new = clone $this;
         $new->RedenAfwijzing = $RedenAfwijzing;
@@ -290,18 +290,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getDatumStatusA()
+    public function getDatumStatusA(): \DateTimeInterface
     {
         return $this->DatumStatusA;
     }
 
     /**
      * @param \DateTimeInterface $DatumStatusA
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withDatumStatusA($DatumStatusA)
+    public function withDatumStatusA(\DateTimeInterface $DatumStatusA): static
     {
         $new = clone $this;
         $new->DatumStatusA = $DatumStatusA;
@@ -310,18 +310,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getDatumStatusB()
+    public function getDatumStatusB(): \DateTimeInterface
     {
         return $this->DatumStatusB;
     }
 
     /**
      * @param \DateTimeInterface $DatumStatusB
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withDatumStatusB($DatumStatusB)
+    public function withDatumStatusB(\DateTimeInterface $DatumStatusB): static
     {
         $new = clone $this;
         $new->DatumStatusB = $DatumStatusB;
@@ -330,18 +330,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getDatumStatusC()
+    public function getDatumStatusC(): \DateTimeInterface
     {
         return $this->DatumStatusC;
     }
 
     /**
      * @param \DateTimeInterface $DatumStatusC
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withDatumStatusC($DatumStatusC)
+    public function withDatumStatusC(\DateTimeInterface $DatumStatusC): static
     {
         $new = clone $this;
         $new->DatumStatusC = $DatumStatusC;
@@ -350,18 +350,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getDatumStatusD()
+    public function getDatumStatusD(): \DateTimeInterface
     {
         return $this->DatumStatusD;
     }
 
     /**
      * @param \DateTimeInterface $DatumStatusD
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withDatumStatusD($DatumStatusD)
+    public function withDatumStatusD(\DateTimeInterface $DatumStatusD): static
     {
         $new = clone $this;
         $new->DatumStatusD = $DatumStatusD;
@@ -370,18 +370,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getDatumStatusE()
+    public function getDatumStatusE(): \DateTimeInterface
     {
         return $this->DatumStatusE;
     }
 
     /**
      * @param \DateTimeInterface $DatumStatusE
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withDatumStatusE($DatumStatusE)
+    public function withDatumStatusE(\DateTimeInterface $DatumStatusE): static
     {
         $new = clone $this;
         $new->DatumStatusE = $DatumStatusE;
@@ -390,18 +390,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getDatumStatusAfIn()
+    public function getDatumStatusAfIn(): \DateTimeInterface
     {
         return $this->DatumStatusAfIn;
     }
 
     /**
      * @param \DateTimeInterface $DatumStatusAfIn
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withDatumStatusAfIn($DatumStatusAfIn)
+    public function withDatumStatusAfIn(\DateTimeInterface $DatumStatusAfIn): static
     {
         $new = clone $this;
         $new->DatumStatusAfIn = $DatumStatusAfIn;
@@ -410,18 +410,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getDatumStatusFiat()
+    public function getDatumStatusFiat(): \DateTimeInterface
     {
         return $this->DatumStatusFiat;
     }
 
     /**
      * @param \DateTimeInterface $DatumStatusFiat
-     * @return TPLAanvraag
+     * @return static
      */
-    public function withDatumStatusFiat($DatumStatusFiat)
+    public function withDatumStatusFiat(\DateTimeInterface $DatumStatusFiat): static
     {
         $new = clone $this;
         $new->DatumStatusFiat = $DatumStatusFiat;
@@ -429,3 +429,4 @@ class TPLAanvraag
         return $new;
     }
 }
+

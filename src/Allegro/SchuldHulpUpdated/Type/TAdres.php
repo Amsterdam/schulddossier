@@ -7,56 +7,56 @@ class TAdres
     /**
      * @var string
      */
-    private $Straat;
+    private string $Straat;
 
     /**
      * @var string
      */
-    private $Huisnr;
+    private string $Huisnr;
 
     /**
      * @var string
      */
-    private $HuisnrToev;
+    private string $HuisnrToev;
 
     /**
      * @var string
      */
-    private $Postcode;
+    private string $Postcode;
 
     /**
      * @var int
      */
-    private $PC;
+    private int $PC;
 
     /**
      * @var string
      */
-    private $PL;
+    private string $PL;
 
     /**
      * @var string
      */
-    private $Woonplaats;
+    private string $Woonplaats;
 
     /**
      * @var string
      */
-    private $LandNaam;
+    private string $LandNaam;
 
     /**
      * @return string
      */
-    public function getStraat()
+    public function getStraat(): string
     {
         return $this->Straat;
     }
 
     /**
      * @param string $Straat
-     * @return TAdres
+     * @return static
      */
-    public function withStraat($Straat)
+    public function withStraat(string $Straat): static
     {
         $new = clone $this;
         $new->Straat = $Straat;
@@ -67,16 +67,16 @@ class TAdres
     /**
      * @return string
      */
-    public function getHuisnr()
+    public function getHuisnr(): string
     {
         return $this->Huisnr;
     }
 
     /**
      * @param string $Huisnr
-     * @return TAdres
+     * @return static
      */
-    public function withHuisnr($Huisnr)
+    public function withHuisnr(string $Huisnr): static
     {
         $new = clone $this;
         $new->Huisnr = $Huisnr;
@@ -87,16 +87,16 @@ class TAdres
     /**
      * @return string
      */
-    public function getHuisnrToev()
+    public function getHuisnrToev(): string
     {
         return $this->HuisnrToev;
     }
 
     /**
      * @param string $HuisnrToev
-     * @return TAdres
+     * @return static
      */
-    public function withHuisnrToev($HuisnrToev)
+    public function withHuisnrToev(string $HuisnrToev): static
     {
         $new = clone $this;
         $new->HuisnrToev = $HuisnrToev;
@@ -107,16 +107,16 @@ class TAdres
     /**
      * @return string
      */
-    public function getPostcode()
+    public function getPostcode(): string
     {
         return $this->Postcode;
     }
 
     /**
      * @param string $Postcode
-     * @return TAdres
+     * @return static
      */
-    public function withPostcode($Postcode)
+    public function withPostcode(string $Postcode): static
     {
         $new = clone $this;
         $new->Postcode = $Postcode;
@@ -127,16 +127,16 @@ class TAdres
     /**
      * @return int
      */
-    public function getPC()
+    public function getPC(): int
     {
         return $this->PC;
     }
 
     /**
      * @param int $PC
-     * @return TAdres
+     * @return static
      */
-    public function withPC($PC)
+    public function withPC(int $PC): static
     {
         $new = clone $this;
         $new->PC = $PC;
@@ -147,16 +147,16 @@ class TAdres
     /**
      * @return string
      */
-    public function getPL()
+    public function getPL(): string
     {
         return $this->PL;
     }
 
     /**
      * @param string $PL
-     * @return TAdres
+     * @return static
      */
-    public function withPL($PL)
+    public function withPL(string $PL): static
     {
         $new = clone $this;
         $new->PL = $PL;
@@ -167,16 +167,16 @@ class TAdres
     /**
      * @return string
      */
-    public function getWoonplaats()
+    public function getWoonplaats(): string
     {
         return $this->Woonplaats;
     }
 
     /**
      * @param string $Woonplaats
-     * @return TAdres
+     * @return static
      */
-    public function withWoonplaats($Woonplaats)
+    public function withWoonplaats(string $Woonplaats): static
     {
         $new = clone $this;
         $new->Woonplaats = $Woonplaats;
@@ -187,16 +187,16 @@ class TAdres
     /**
      * @return string
      */
-    public function getLandNaam()
+    public function getLandNaam(): string
     {
         return $this->LandNaam;
     }
 
     /**
      * @param string $LandNaam
-     * @return TAdres
+     * @return static
      */
-    public function withLandNaam($LandNaam)
+    public function withLandNaam(string $LandNaam): static
     {
         $new = clone $this;
         $new->LandNaam = $LandNaam;
@@ -204,3 +204,4 @@ class TAdres
         return $new;
     }
 }
+

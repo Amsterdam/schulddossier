@@ -7,21 +7,21 @@ class TPRSAfschriftMutaties
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSAfschriftMutatieArray
      */
-    private $AfschriftMutaties;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSAfschriftMutatieArray $AfschriftMutaties;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSAfschriftMutatieArray
      */
-    public function getAfschriftMutaties()
+    public function getAfschriftMutaties(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSAfschriftMutatieArray
     {
         return $this->AfschriftMutaties;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSAfschriftMutatieArray $AfschriftMutaties
-     * @return TPRSAfschriftMutaties
+     * @return static
      */
-    public function withAfschriftMutaties($AfschriftMutaties)
+    public function withAfschriftMutaties(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSAfschriftMutatieArray $AfschriftMutaties): static
     {
         $new = clone $this;
         $new->AfschriftMutaties = $AfschriftMutaties;
@@ -29,3 +29,4 @@ class TPRSAfschriftMutaties
         return $new;
     }
 }
+

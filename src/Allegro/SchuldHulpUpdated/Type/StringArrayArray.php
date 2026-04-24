@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class StringArrayArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray>
      */
-    private $StringArray;
+    private array $StringArray;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray>
      */
-    public function getStringArray()
+    public function getStringArray(): array
     {
         return $this->StringArray;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray $StringArray
-     * @return StringArrayArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray> $StringArray
+     * @return static
      */
-    public function withStringArray($StringArray)
+    public function withStringArray(array $StringArray): static
     {
         $new = clone $this;
         $new->StringArray = $StringArray;
@@ -29,3 +29,4 @@ class StringArrayArray
         return $new;
     }
 }
+

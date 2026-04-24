@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class TSorteerInfoArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSorteerInfo
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSorteerInfo>
      */
-    private $TSorteerInfo;
+    private array $TSorteerInfo;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSorteerInfo
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSorteerInfo>
      */
-    public function getTSorteerInfo()
+    public function getTSorteerInfo(): array
     {
         return $this->TSorteerInfo;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSorteerInfo $TSorteerInfo
-     * @return TSorteerInfoArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSorteerInfo> $TSorteerInfo
+     * @return static
      */
-    public function withTSorteerInfo($TSorteerInfo)
+    public function withTSorteerInfo(array $TSorteerInfo): static
     {
         $new = clone $this;
         $new->TSorteerInfo = $TSorteerInfo;
@@ -29,3 +29,4 @@ class TSorteerInfoArray
         return $new;
     }
 }
+

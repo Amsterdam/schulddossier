@@ -7,61 +7,61 @@ class TBBRBegunstigde
     /**
      * @var string
      */
-    private $Achternaam;
+    private string $Achternaam;
 
     /**
      * @var string
      */
-    private $Voorvoegsels;
+    private string $Voorvoegsels;
 
     /**
      * @var string
      */
-    private $Voorletters;
+    private string $Voorletters;
 
     /**
      * @var string
      */
-    private $PlaatsnaamBezoekadres;
+    private string $PlaatsnaamBezoekadres;
 
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Relatiecode;
 
     /**
-     * @var string
+     * @var 'ReserveringOfDoorbetaling' | 'Reservering' | 'Doorbetaling'
      */
-    private $OpdrachtSoortKeuze;
+    private string $OpdrachtSoortKeuze;
 
     /**
      * @var bool
      */
-    private $KeuzeReservering;
+    private bool $KeuzeReservering;
 
     /**
      * @var string
      */
-    private $Betaalwijze;
+    private string $Betaalwijze;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RekeningnummerArray
      */
-    private $Rekeningnummers;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RekeningnummerArray $Rekeningnummers;
 
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam(): string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TBBRBegunstigde
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam): static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -72,16 +72,16 @@ class TBBRBegunstigde
     /**
      * @return string
      */
-    public function getVoorvoegsels()
+    public function getVoorvoegsels(): string
     {
         return $this->Voorvoegsels;
     }
 
     /**
      * @param string $Voorvoegsels
-     * @return TBBRBegunstigde
+     * @return static
      */
-    public function withVoorvoegsels($Voorvoegsels)
+    public function withVoorvoegsels(string $Voorvoegsels): static
     {
         $new = clone $this;
         $new->Voorvoegsels = $Voorvoegsels;
@@ -92,16 +92,16 @@ class TBBRBegunstigde
     /**
      * @return string
      */
-    public function getVoorletters()
+    public function getVoorletters(): string
     {
         return $this->Voorletters;
     }
 
     /**
      * @param string $Voorletters
-     * @return TBBRBegunstigde
+     * @return static
      */
-    public function withVoorletters($Voorletters)
+    public function withVoorletters(string $Voorletters): static
     {
         $new = clone $this;
         $new->Voorletters = $Voorletters;
@@ -112,16 +112,16 @@ class TBBRBegunstigde
     /**
      * @return string
      */
-    public function getPlaatsnaamBezoekadres()
+    public function getPlaatsnaamBezoekadres(): string
     {
         return $this->PlaatsnaamBezoekadres;
     }
 
     /**
      * @param string $PlaatsnaamBezoekadres
-     * @return TBBRBegunstigde
+     * @return static
      */
-    public function withPlaatsnaamBezoekadres($PlaatsnaamBezoekadres)
+    public function withPlaatsnaamBezoekadres(string $PlaatsnaamBezoekadres): static
     {
         $new = clone $this;
         $new->PlaatsnaamBezoekadres = $PlaatsnaamBezoekadres;
@@ -132,16 +132,16 @@ class TBBRBegunstigde
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode(): int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TBBRBegunstigde
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode): static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -150,18 +150,18 @@ class TBBRBegunstigde
     }
 
     /**
-     * @return string
+     * @return 'ReserveringOfDoorbetaling' | 'Reservering' | 'Doorbetaling'
      */
-    public function getOpdrachtSoortKeuze()
+    public function getOpdrachtSoortKeuze(): string
     {
         return $this->OpdrachtSoortKeuze;
     }
 
     /**
-     * @param string $OpdrachtSoortKeuze
-     * @return TBBRBegunstigde
+     * @param 'ReserveringOfDoorbetaling' | 'Reservering' | 'Doorbetaling' $OpdrachtSoortKeuze
+     * @return static
      */
-    public function withOpdrachtSoortKeuze($OpdrachtSoortKeuze)
+    public function withOpdrachtSoortKeuze(string $OpdrachtSoortKeuze): static
     {
         $new = clone $this;
         $new->OpdrachtSoortKeuze = $OpdrachtSoortKeuze;
@@ -172,16 +172,16 @@ class TBBRBegunstigde
     /**
      * @return bool
      */
-    public function getKeuzeReservering()
+    public function getKeuzeReservering(): bool
     {
         return $this->KeuzeReservering;
     }
 
     /**
      * @param bool $KeuzeReservering
-     * @return TBBRBegunstigde
+     * @return static
      */
-    public function withKeuzeReservering($KeuzeReservering)
+    public function withKeuzeReservering(bool $KeuzeReservering): static
     {
         $new = clone $this;
         $new->KeuzeReservering = $KeuzeReservering;
@@ -192,16 +192,16 @@ class TBBRBegunstigde
     /**
      * @return string
      */
-    public function getBetaalwijze()
+    public function getBetaalwijze(): string
     {
         return $this->Betaalwijze;
     }
 
     /**
      * @param string $Betaalwijze
-     * @return TBBRBegunstigde
+     * @return static
      */
-    public function withBetaalwijze($Betaalwijze)
+    public function withBetaalwijze(string $Betaalwijze): static
     {
         $new = clone $this;
         $new->Betaalwijze = $Betaalwijze;
@@ -212,16 +212,16 @@ class TBBRBegunstigde
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RekeningnummerArray
      */
-    public function getRekeningnummers()
+    public function getRekeningnummers(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RekeningnummerArray
     {
         return $this->Rekeningnummers;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RekeningnummerArray $Rekeningnummers
-     * @return TBBRBegunstigde
+     * @return static
      */
-    public function withRekeningnummers($Rekeningnummers)
+    public function withRekeningnummers(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\RekeningnummerArray $Rekeningnummers): static
     {
         $new = clone $this;
         $new->Rekeningnummers = $Rekeningnummers;
@@ -229,3 +229,4 @@ class TBBRBegunstigde
         return $new;
     }
 }
+

@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -65,7 +66,7 @@ class Aantekening
 
     public function __construct()
     {
-        $this->datumTijd = new \DateTime();
+        $this->datumTijd = new DateTime();
     }
 
     public function getId()

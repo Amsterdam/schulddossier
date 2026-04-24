@@ -9,21 +9,21 @@ class SchuldHulpServiceGetSBResponse implements ResultInterface
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSB
      */
-    private $Result;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSB $Result;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSB
      */
-    public function getResult()
+    public function getResult(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSB
     {
         return $this->Result;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSB $Result
-     * @return SchuldHulpServiceGetSBResponse
+     * @return static
      */
-    public function withResult($Result)
+    public function withResult(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSB $Result): static
     {
         $new = clone $this;
         $new->Result = $Result;
@@ -31,3 +31,4 @@ class SchuldHulpServiceGetSBResponse implements ResultInterface
         return $new;
     }
 }
+

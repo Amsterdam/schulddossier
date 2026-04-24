@@ -7,31 +7,31 @@ class SimpleFieldInfo
     /**
      * @var string
      */
-    private $Name;
+    private string $Name;
 
     /**
-     * @var string
+     * @var 'String' | 'Integer' | 'Double' | 'DateTime' | 'Int64' | 'Currency' | 'Guid' | 'Binary' | 'Boolean'
      */
-    private $DataType;
+    private string $DataType;
 
     /**
      * @var bool
      */
-    private $Hidden;
+    private bool $Hidden;
 
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->Name;
     }
 
     /**
      * @param string $Name
-     * @return SimpleFieldInfo
+     * @return static
      */
-    public function withName($Name)
+    public function withName(string $Name): static
     {
         $new = clone $this;
         $new->Name = $Name;
@@ -40,18 +40,18 @@ class SimpleFieldInfo
     }
 
     /**
-     * @return string
+     * @return 'String' | 'Integer' | 'Double' | 'DateTime' | 'Int64' | 'Currency' | 'Guid' | 'Binary' | 'Boolean'
      */
-    public function getDataType()
+    public function getDataType(): string
     {
         return $this->DataType;
     }
 
     /**
-     * @param string $DataType
-     * @return SimpleFieldInfo
+     * @param 'String' | 'Integer' | 'Double' | 'DateTime' | 'Int64' | 'Currency' | 'Guid' | 'Binary' | 'Boolean' $DataType
+     * @return static
      */
-    public function withDataType($DataType)
+    public function withDataType(string $DataType): static
     {
         $new = clone $this;
         $new->DataType = $DataType;
@@ -62,16 +62,16 @@ class SimpleFieldInfo
     /**
      * @return bool
      */
-    public function getHidden()
+    public function getHidden(): bool
     {
         return $this->Hidden;
     }
 
     /**
      * @param bool $Hidden
-     * @return SimpleFieldInfo
+     * @return static
      */
-    public function withHidden($Hidden)
+    public function withHidden(bool $Hidden): static
     {
         $new = clone $this;
         $new->Hidden = $Hidden;
@@ -79,3 +79,4 @@ class SimpleFieldInfo
         return $new;
     }
 }
+

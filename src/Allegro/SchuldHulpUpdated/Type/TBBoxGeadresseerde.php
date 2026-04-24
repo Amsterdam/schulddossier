@@ -7,26 +7,26 @@ class TBBoxGeadresseerde
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
-    private $Medewerker;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $Medewerker;
 
     /**
      * @var string
      */
-    private $Informatie;
+    private string $Informatie;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
-    public function getMedewerker()
+    public function getMedewerker(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
     {
         return $this->Medewerker;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $Medewerker
-     * @return TBBoxGeadresseerde
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $Medewerker): static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -37,16 +37,16 @@ class TBBoxGeadresseerde
     /**
      * @return string
      */
-    public function getInformatie()
+    public function getInformatie(): string
     {
         return $this->Informatie;
     }
 
     /**
      * @param string $Informatie
-     * @return TBBoxGeadresseerde
+     * @return static
      */
-    public function withInformatie($Informatie)
+    public function withInformatie(string $Informatie): static
     {
         $new = clone $this;
         $new->Informatie = $Informatie;
@@ -54,3 +54,4 @@ class TBBoxGeadresseerde
         return $new;
     }
 }
+

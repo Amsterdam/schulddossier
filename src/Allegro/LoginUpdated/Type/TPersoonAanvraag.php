@@ -7,76 +7,76 @@ class TPersoonAanvraag
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Relatiecode;
 
     /**
      * @var string
      */
-    private $Voornamen;
+    private string $Voornamen;
 
     /**
      * @var string
      */
-    private $Achternaam;
+    private string $Achternaam;
 
     /**
      * @var string
      */
-    private $Voorvoegsels;
+    private string $Voorvoegsels;
 
     /**
      * @var string
      */
-    private $Geslacht;
+    private string $Geslacht;
 
     /**
      * @var int
      */
-    private $Geboortedatum;
+    private int $Geboortedatum;
 
     /**
      * @var int
      */
-    private $BSN;
+    private int $BSN;
+
+    /**
+     * @var 'Leeg' | 'Nederlandse' | 'Anders'
+     */
+    private string $Nationaliteit;
 
     /**
      * @var string
      */
-    private $Nationaliteit;
+    private string $RekeningIBAN;
 
     /**
      * @var string
      */
-    private $RekeningIBAN;
+    private string $RekeningBIC;
 
     /**
      * @var string
      */
-    private $RekeningBIC;
+    private string $RekeningBank;
 
     /**
      * @var string
      */
-    private $RekeningBank;
-
-    /**
-     * @var string
-     */
-    private $Voorletters;
+    private string $Voorletters;
 
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode(): int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TPersoonAanvraag
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode): static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -87,16 +87,16 @@ class TPersoonAanvraag
     /**
      * @return string
      */
-    public function getVoornamen()
+    public function getVoornamen(): string
     {
         return $this->Voornamen;
     }
 
     /**
      * @param string $Voornamen
-     * @return TPersoonAanvraag
+     * @return static
      */
-    public function withVoornamen($Voornamen)
+    public function withVoornamen(string $Voornamen): static
     {
         $new = clone $this;
         $new->Voornamen = $Voornamen;
@@ -107,16 +107,16 @@ class TPersoonAanvraag
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam(): string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TPersoonAanvraag
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam): static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -127,16 +127,16 @@ class TPersoonAanvraag
     /**
      * @return string
      */
-    public function getVoorvoegsels()
+    public function getVoorvoegsels(): string
     {
         return $this->Voorvoegsels;
     }
 
     /**
      * @param string $Voorvoegsels
-     * @return TPersoonAanvraag
+     * @return static
      */
-    public function withVoorvoegsels($Voorvoegsels)
+    public function withVoorvoegsels(string $Voorvoegsels): static
     {
         $new = clone $this;
         $new->Voorvoegsels = $Voorvoegsels;
@@ -147,16 +147,16 @@ class TPersoonAanvraag
     /**
      * @return string
      */
-    public function getGeslacht()
+    public function getGeslacht(): string
     {
         return $this->Geslacht;
     }
 
     /**
      * @param string $Geslacht
-     * @return TPersoonAanvraag
+     * @return static
      */
-    public function withGeslacht($Geslacht)
+    public function withGeslacht(string $Geslacht): static
     {
         $new = clone $this;
         $new->Geslacht = $Geslacht;
@@ -167,16 +167,16 @@ class TPersoonAanvraag
     /**
      * @return int
      */
-    public function getGeboortedatum()
+    public function getGeboortedatum(): int
     {
         return $this->Geboortedatum;
     }
 
     /**
      * @param int $Geboortedatum
-     * @return TPersoonAanvraag
+     * @return static
      */
-    public function withGeboortedatum($Geboortedatum)
+    public function withGeboortedatum(int $Geboortedatum): static
     {
         $new = clone $this;
         $new->Geboortedatum = $Geboortedatum;
@@ -187,16 +187,16 @@ class TPersoonAanvraag
     /**
      * @return int
      */
-    public function getBSN()
+    public function getBSN(): int
     {
         return $this->BSN;
     }
 
     /**
      * @param int $BSN
-     * @return TPersoonAanvraag
+     * @return static
      */
-    public function withBSN($BSN)
+    public function withBSN(int $BSN): static
     {
         $new = clone $this;
         $new->BSN = $BSN;
@@ -205,18 +205,18 @@ class TPersoonAanvraag
     }
 
     /**
-     * @return string
+     * @return 'Leeg' | 'Nederlandse' | 'Anders'
      */
-    public function getNationaliteit()
+    public function getNationaliteit(): string
     {
         return $this->Nationaliteit;
     }
 
     /**
-     * @param string $Nationaliteit
-     * @return TPersoonAanvraag
+     * @param 'Leeg' | 'Nederlandse' | 'Anders' $Nationaliteit
+     * @return static
      */
-    public function withNationaliteit($Nationaliteit)
+    public function withNationaliteit(string $Nationaliteit): static
     {
         $new = clone $this;
         $new->Nationaliteit = $Nationaliteit;
@@ -227,16 +227,16 @@ class TPersoonAanvraag
     /**
      * @return string
      */
-    public function getRekeningIBAN()
+    public function getRekeningIBAN(): string
     {
         return $this->RekeningIBAN;
     }
 
     /**
      * @param string $RekeningIBAN
-     * @return TPersoonAanvraag
+     * @return static
      */
-    public function withRekeningIBAN($RekeningIBAN)
+    public function withRekeningIBAN(string $RekeningIBAN): static
     {
         $new = clone $this;
         $new->RekeningIBAN = $RekeningIBAN;
@@ -247,16 +247,16 @@ class TPersoonAanvraag
     /**
      * @return string
      */
-    public function getRekeningBIC()
+    public function getRekeningBIC(): string
     {
         return $this->RekeningBIC;
     }
 
     /**
      * @param string $RekeningBIC
-     * @return TPersoonAanvraag
+     * @return static
      */
-    public function withRekeningBIC($RekeningBIC)
+    public function withRekeningBIC(string $RekeningBIC): static
     {
         $new = clone $this;
         $new->RekeningBIC = $RekeningBIC;
@@ -267,16 +267,16 @@ class TPersoonAanvraag
     /**
      * @return string
      */
-    public function getRekeningBank()
+    public function getRekeningBank(): string
     {
         return $this->RekeningBank;
     }
 
     /**
      * @param string $RekeningBank
-     * @return TPersoonAanvraag
+     * @return static
      */
-    public function withRekeningBank($RekeningBank)
+    public function withRekeningBank(string $RekeningBank): static
     {
         $new = clone $this;
         $new->RekeningBank = $RekeningBank;
@@ -287,16 +287,16 @@ class TPersoonAanvraag
     /**
      * @return string
      */
-    public function getVoorletters()
+    public function getVoorletters(): string
     {
         return $this->Voorletters;
     }
 
     /**
      * @param string $Voorletters
-     * @return TPersoonAanvraag
+     * @return static
      */
-    public function withVoorletters($Voorletters)
+    public function withVoorletters(string $Voorletters): static
     {
         $new = clone $this;
         $new->Voorletters = $Voorletters;
@@ -304,3 +304,4 @@ class TPersoonAanvraag
         return $new;
     }
 }
+

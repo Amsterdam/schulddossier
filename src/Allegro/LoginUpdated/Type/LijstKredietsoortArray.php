@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class LijstKredietsoortArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TLijstKredietsoort
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TLijstKredietsoort>
      */
-    private $TLijstKredietsoort;
+    private array $TLijstKredietsoort;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TLijstKredietsoort
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TLijstKredietsoort>
      */
-    public function getTLijstKredietsoort()
+    public function getTLijstKredietsoort(): array
     {
         return $this->TLijstKredietsoort;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TLijstKredietsoort $TLijstKredietsoort
-     * @return LijstKredietsoortArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TLijstKredietsoort> $TLijstKredietsoort
+     * @return static
      */
-    public function withTLijstKredietsoort($TLijstKredietsoort)
+    public function withTLijstKredietsoort(array $TLijstKredietsoort): static
     {
         $new = clone $this;
         $new->TLijstKredietsoort = $TLijstKredietsoort;
@@ -29,3 +29,4 @@ class LijstKredietsoortArray
         return $new;
     }
 }
+

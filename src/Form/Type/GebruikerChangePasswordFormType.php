@@ -2,6 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Form\Type;
 
+use DateTime;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -44,9 +46,11 @@ class GebruikerChangePasswordFormType extends AbstractType
 
         $user = $this->security->getUser();
 
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-            if ($event->getForm()->get('clearPassword')->getData() !== null && $event->getForm()->get('clearPassword')->getData() !== '') {
-                $event->getData()->setPasswordChangedDateTime(new \DateTime());
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
+            if ($event->getForm()->get('clearPassword')->getData() !== null && $event->getForm()->get(
+                    'clearPassword'
+                )->getData() !== '') {
+                $event->getData()->setPasswordChangedDateTime(new DateTime());
             }
         });
     }

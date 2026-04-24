@@ -12,18 +12,14 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class OidcController extends AbstractController
 {
-    /**
-     * @Route("/test")
-     */
-    public function index(Request $request)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/oidc/test')]
+    public function index(): Response
     {
         return new Response('<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]) . '</body></html>');
     }
 
-    /**
-     * @Route("/return")
-     */
-    public function return(Request $request)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/oidc/return')]
+    public function return(): Response
     {
         return new Response('<html><head></head><boyd>OK! ' . json_encode([$this->getUser()->getId(), $this->getUser()->getEmail()]) . '</body></html>');
     }

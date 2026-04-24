@@ -9,14 +9,14 @@ class LoginServiceGenereerWachtwoord implements RequestInterface
     /**
      * @var string
      */
-    private $Email;
+    private string $Email;
 
     /**
      * Constructor
      *
      * @param string $Email
      */
-    public function __construct($Email)
+    public function __construct(string $Email)
     {
         $this->Email = $Email;
     }
@@ -24,16 +24,16 @@ class LoginServiceGenereerWachtwoord implements RequestInterface
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->Email;
     }
 
     /**
      * @param string $Email
-     * @return LoginServiceGenereerWachtwoord
+     * @return static
      */
-    public function withEmail($Email)
+    public function withEmail(string $Email): static
     {
         $new = clone $this;
         $new->Email = $Email;
@@ -41,3 +41,4 @@ class LoginServiceGenereerWachtwoord implements RequestInterface
         return $new;
     }
 }
+

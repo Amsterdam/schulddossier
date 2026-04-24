@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,23 +13,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-/**
- * @Route("/app/help")
- * @Security("is_granted('ROLE_USER')")
- */
+
+#[IsGranted('ROLE_USER')]
 class HelpController extends AbstractController
 {
-    private $session;
-
-    public function __construct(SessionInterface $session)
+    public function __construct()
     {
-        $this->session = $session;
     }
-    /**
-     * @Route("/")
-     * @Security("is_granted('ROLE_USER')")
-     */
-    public function indexAction(Request $request)
+
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/help')]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+    public function index(): Response
     {
         return $this->render('Help/index.html.twig');
     }

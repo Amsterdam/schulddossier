@@ -7,61 +7,61 @@ class TBBoxHeader
     /**
      * @var int
      */
-    private $Code;
+    private int $Code;
 
     /**
      * @var string
      */
-    private $AfzenderOntvanger;
+    private string $AfzenderOntvanger;
 
     /**
      * @var string
      */
-    private $Onderwerp;
+    private string $Onderwerp;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $Tijdstip;
-
-    /**
-     * @var bool
-     */
-    private $IndicatieOntvangen;
+    private \DateTimeInterface $Tijdstip;
 
     /**
      * @var bool
      */
-    private $IndicatieGelezen;
+    private bool $IndicatieOntvangen;
 
     /**
      * @var bool
      */
-    private $IndicatieArchief;
+    private bool $IndicatieGelezen;
 
     /**
      * @var bool
      */
-    private $IndicatieBijlage;
+    private bool $IndicatieArchief;
+
+    /**
+     * @var bool
+     */
+    private bool $IndicatieBijlage;
 
     /**
      * @var int
      */
-    private $ConversatieID;
+    private int $ConversatieID;
 
     /**
      * @return int
      */
-    public function getCode()
+    public function getCode(): int
     {
         return $this->Code;
     }
 
     /**
      * @param int $Code
-     * @return TBBoxHeader
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(int $Code): static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -72,16 +72,16 @@ class TBBoxHeader
     /**
      * @return string
      */
-    public function getAfzenderOntvanger()
+    public function getAfzenderOntvanger(): string
     {
         return $this->AfzenderOntvanger;
     }
 
     /**
      * @param string $AfzenderOntvanger
-     * @return TBBoxHeader
+     * @return static
      */
-    public function withAfzenderOntvanger($AfzenderOntvanger)
+    public function withAfzenderOntvanger(string $AfzenderOntvanger): static
     {
         $new = clone $this;
         $new->AfzenderOntvanger = $AfzenderOntvanger;
@@ -92,16 +92,16 @@ class TBBoxHeader
     /**
      * @return string
      */
-    public function getOnderwerp()
+    public function getOnderwerp(): string
     {
         return $this->Onderwerp;
     }
 
     /**
      * @param string $Onderwerp
-     * @return TBBoxHeader
+     * @return static
      */
-    public function withOnderwerp($Onderwerp)
+    public function withOnderwerp(string $Onderwerp): static
     {
         $new = clone $this;
         $new->Onderwerp = $Onderwerp;
@@ -110,18 +110,18 @@ class TBBoxHeader
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getTijdstip()
+    public function getTijdstip(): \DateTimeInterface
     {
         return $this->Tijdstip;
     }
 
     /**
      * @param \DateTimeInterface $Tijdstip
-     * @return TBBoxHeader
+     * @return static
      */
-    public function withTijdstip($Tijdstip)
+    public function withTijdstip(\DateTimeInterface $Tijdstip): static
     {
         $new = clone $this;
         $new->Tijdstip = $Tijdstip;
@@ -132,16 +132,16 @@ class TBBoxHeader
     /**
      * @return bool
      */
-    public function getIndicatieOntvangen()
+    public function getIndicatieOntvangen(): bool
     {
         return $this->IndicatieOntvangen;
     }
 
     /**
      * @param bool $IndicatieOntvangen
-     * @return TBBoxHeader
+     * @return static
      */
-    public function withIndicatieOntvangen($IndicatieOntvangen)
+    public function withIndicatieOntvangen(bool $IndicatieOntvangen): static
     {
         $new = clone $this;
         $new->IndicatieOntvangen = $IndicatieOntvangen;
@@ -152,16 +152,16 @@ class TBBoxHeader
     /**
      * @return bool
      */
-    public function getIndicatieGelezen()
+    public function getIndicatieGelezen(): bool
     {
         return $this->IndicatieGelezen;
     }
 
     /**
      * @param bool $IndicatieGelezen
-     * @return TBBoxHeader
+     * @return static
      */
-    public function withIndicatieGelezen($IndicatieGelezen)
+    public function withIndicatieGelezen(bool $IndicatieGelezen): static
     {
         $new = clone $this;
         $new->IndicatieGelezen = $IndicatieGelezen;
@@ -172,16 +172,16 @@ class TBBoxHeader
     /**
      * @return bool
      */
-    public function getIndicatieArchief()
+    public function getIndicatieArchief(): bool
     {
         return $this->IndicatieArchief;
     }
 
     /**
      * @param bool $IndicatieArchief
-     * @return TBBoxHeader
+     * @return static
      */
-    public function withIndicatieArchief($IndicatieArchief)
+    public function withIndicatieArchief(bool $IndicatieArchief): static
     {
         $new = clone $this;
         $new->IndicatieArchief = $IndicatieArchief;
@@ -192,16 +192,16 @@ class TBBoxHeader
     /**
      * @return bool
      */
-    public function getIndicatieBijlage()
+    public function getIndicatieBijlage(): bool
     {
         return $this->IndicatieBijlage;
     }
 
     /**
      * @param bool $IndicatieBijlage
-     * @return TBBoxHeader
+     * @return static
      */
-    public function withIndicatieBijlage($IndicatieBijlage)
+    public function withIndicatieBijlage(bool $IndicatieBijlage): static
     {
         $new = clone $this;
         $new->IndicatieBijlage = $IndicatieBijlage;
@@ -212,16 +212,16 @@ class TBBoxHeader
     /**
      * @return int
      */
-    public function getConversatieID()
+    public function getConversatieID(): int
     {
         return $this->ConversatieID;
     }
 
     /**
      * @param int $ConversatieID
-     * @return TBBoxHeader
+     * @return static
      */
-    public function withConversatieID($ConversatieID)
+    public function withConversatieID(int $ConversatieID): static
     {
         $new = clone $this;
         $new->ConversatieID = $ConversatieID;
@@ -229,3 +229,4 @@ class TBBoxHeader
         return $new;
     }
 }
+

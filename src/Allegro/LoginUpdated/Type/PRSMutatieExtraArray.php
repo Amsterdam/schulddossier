@@ -5,23 +5,25 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class PRSMutatieExtraArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSMutatieExtra
+     * Struct met extra velden voor KlantportaalService
+     *
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSMutatieExtra>
      */
-    private $TPRSMutatieExtra;
+    private array $TPRSMutatieExtra;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSMutatieExtra
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSMutatieExtra>
      */
-    public function getTPRSMutatieExtra()
+    public function getTPRSMutatieExtra(): array
     {
         return $this->TPRSMutatieExtra;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSMutatieExtra $TPRSMutatieExtra
-     * @return PRSMutatieExtraArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSMutatieExtra> $TPRSMutatieExtra
+     * @return static
      */
-    public function withTPRSMutatieExtra($TPRSMutatieExtra)
+    public function withTPRSMutatieExtra(array $TPRSMutatieExtra): static
     {
         $new = clone $this;
         $new->TPRSMutatieExtra = $TPRSMutatieExtra;
@@ -29,3 +31,4 @@ class PRSMutatieExtraArray
         return $new;
     }
 }
+

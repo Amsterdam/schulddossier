@@ -23,11 +23,10 @@ class UserReleaseNotesController extends AbstractController
     {
         $this->session = $session;
     }
-    /**
-     * @Route("/")
-     * @Security("is_granted('ROLE_USER')")
-     */
-    public function indexAction(Request $request)
+
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/versies/')]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+    public function index(): Response
     {
         $finder = new Finder();
         $finder->directories()->in($this->getParameter('kernel.project_dir') . '/templates/UserReleaseNotes/');
@@ -56,14 +55,16 @@ class UserReleaseNotesController extends AbstractController
         }
         return $this->render('UserReleaseNotes/index.html.twig', ['templates' => $templates]);
     }
-    /**
-     * @Route("/seen")
-     * @Security("is_granted('ROLE_USER')")
-     */
-    public function releaseNoteSeenAction(Request $request, Serializer $jsonSerializer)
-    {
+
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/versies/seen')]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+    public function releaseNoteSeen(
+        Request $request,
+        Serializer $jsonSerializer
+    ): JsonResponse {
+//        $seenReleaseNotes = $request->getSession()->get('seenReleaseNotes');
         $seenReleaseNotes = $this->session->get('seenReleaseNotes');
-        $seenReleaseNotes["ts" . $request->query->get('ts')] = 0;
+        $seenReleaseNotes["ts" . $request->query->all('ts')] = 0;
 
 
         return new JsonResponse($jsonSerializer->normalize([

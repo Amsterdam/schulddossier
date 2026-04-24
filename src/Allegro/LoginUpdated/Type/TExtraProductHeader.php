@@ -7,36 +7,36 @@ class TExtraProductHeader
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
      * @var \DateTimeInterface
      */
-    private $AanvraagDatum;
+    private \DateTimeInterface $AanvraagDatum;
 
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode(): int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TExtraProductHeader
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode): static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -47,16 +47,16 @@ class TExtraProductHeader
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TExtraProductHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -67,16 +67,16 @@ class TExtraProductHeader
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving(): string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TExtraProductHeader
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving): static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -87,16 +87,16 @@ class TExtraProductHeader
     /**
      * @return \DateTimeInterface
      */
-    public function getAanvraagDatum()
+    public function getAanvraagDatum(): \DateTimeInterface
     {
         return $this->AanvraagDatum;
     }
 
     /**
      * @param \DateTimeInterface $AanvraagDatum
-     * @return TExtraProductHeader
+     * @return static
      */
-    public function withAanvraagDatum($AanvraagDatum)
+    public function withAanvraagDatum(\DateTimeInterface $AanvraagDatum): static
     {
         $new = clone $this;
         $new->AanvraagDatum = $AanvraagDatum;
@@ -104,3 +104,4 @@ class TExtraProductHeader
         return $new;
     }
 }
+

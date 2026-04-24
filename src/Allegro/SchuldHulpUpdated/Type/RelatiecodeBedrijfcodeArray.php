@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class RelatiecodeBedrijfcodeArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatiecodeBedrijfcode
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatiecodeBedrijfcode>
      */
-    private $TRelatiecodeBedrijfcode;
+    private array $TRelatiecodeBedrijfcode;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatiecodeBedrijfcode
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatiecodeBedrijfcode>
      */
-    public function getTRelatiecodeBedrijfcode()
+    public function getTRelatiecodeBedrijfcode(): array
     {
         return $this->TRelatiecodeBedrijfcode;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatiecodeBedrijfcode $TRelatiecodeBedrijfcode
-     * @return RelatiecodeBedrijfcodeArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TRelatiecodeBedrijfcode> $TRelatiecodeBedrijfcode
+     * @return static
      */
-    public function withTRelatiecodeBedrijfcode($TRelatiecodeBedrijfcode)
+    public function withTRelatiecodeBedrijfcode(array $TRelatiecodeBedrijfcode): static
     {
         $new = clone $this;
         $new->TRelatiecodeBedrijfcode = $TRelatiecodeBedrijfcode;
@@ -29,3 +29,4 @@ class RelatiecodeBedrijfcodeArray
         return $new;
     }
 }
+

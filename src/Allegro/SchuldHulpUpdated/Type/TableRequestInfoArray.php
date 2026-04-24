@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class TableRequestInfoArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TableRequestInfo
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TableRequestInfo>
      */
-    private $TableRequestInfo;
+    private array $TableRequestInfo;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TableRequestInfo
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TableRequestInfo>
      */
-    public function getTableRequestInfo()
+    public function getTableRequestInfo(): array
     {
         return $this->TableRequestInfo;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TableRequestInfo $TableRequestInfo
-     * @return TableRequestInfoArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TableRequestInfo> $TableRequestInfo
+     * @return static
      */
-    public function withTableRequestInfo($TableRequestInfo)
+    public function withTableRequestInfo(array $TableRequestInfo): static
     {
         $new = clone $this;
         $new->TableRequestInfo = $TableRequestInfo;
@@ -29,3 +29,4 @@ class TableRequestInfoArray
         return $new;
     }
 }
+

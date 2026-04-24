@@ -9,12 +9,12 @@ class LoginServiceAllegroWebLogin implements RequestInterface
     /**
      * @var string
      */
-    private $aUsername;
+    private string $aUsername;
 
     /**
      * @var string
      */
-    private $aPassword;
+    private string $aPassword;
 
     /**
      * Constructor
@@ -22,7 +22,7 @@ class LoginServiceAllegroWebLogin implements RequestInterface
      * @param string $aUsername
      * @param string $aPassword
      */
-    public function __construct($aUsername, $aPassword)
+    public function __construct(string $aUsername, string $aPassword)
     {
         $this->aUsername = $aUsername;
         $this->aPassword = $aPassword;
@@ -31,16 +31,16 @@ class LoginServiceAllegroWebLogin implements RequestInterface
     /**
      * @return string
      */
-    public function getAUsername()
+    public function getAUsername(): string
     {
         return $this->aUsername;
     }
 
     /**
      * @param string $aUsername
-     * @return LoginServiceAllegroWebLogin
+     * @return static
      */
-    public function withAUsername($aUsername)
+    public function withAUsername(string $aUsername): static
     {
         $new = clone $this;
         $new->aUsername = $aUsername;
@@ -51,16 +51,16 @@ class LoginServiceAllegroWebLogin implements RequestInterface
     /**
      * @return string
      */
-    public function getAPassword()
+    public function getAPassword(): string
     {
         return $this->aPassword;
     }
 
     /**
      * @param string $aPassword
-     * @return LoginServiceAllegroWebLogin
+     * @return static
      */
-    public function withAPassword($aPassword)
+    public function withAPassword(string $aPassword): static
     {
         $new = clone $this;
         $new->aPassword = $aPassword;
@@ -68,3 +68,4 @@ class LoginServiceAllegroWebLogin implements RequestInterface
         return $new;
     }
 }
+

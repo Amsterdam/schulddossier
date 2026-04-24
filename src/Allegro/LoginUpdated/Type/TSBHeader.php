@@ -7,31 +7,31 @@ class TSBHeader
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $RelatieCode;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var bool
      */
-    private $IsNPS;
+    private bool $IsNPS;
 
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode(): int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TSBHeader
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode): static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -42,16 +42,16 @@ class TSBHeader
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TSBHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -62,16 +62,16 @@ class TSBHeader
     /**
      * @return bool
      */
-    public function getIsNPS()
+    public function getIsNPS(): bool
     {
         return $this->IsNPS;
     }
 
     /**
      * @param bool $IsNPS
-     * @return TSBHeader
+     * @return static
      */
-    public function withIsNPS($IsNPS)
+    public function withIsNPS(bool $IsNPS): static
     {
         $new = clone $this;
         $new->IsNPS = $IsNPS;
@@ -79,3 +79,4 @@ class TSBHeader
         return $new;
     }
 }
+

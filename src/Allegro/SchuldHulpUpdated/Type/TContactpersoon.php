@@ -7,71 +7,71 @@ class TContactpersoon
     /**
      * @var int
      */
-    private $Code;
+    private int $Code;
 
     /**
      * @var string
      */
-    private $Achternaam;
+    private string $Achternaam;
 
     /**
      * @var string
      */
-    private $Voorvoegsels;
+    private string $Voorvoegsels;
 
     /**
      * @var string
      */
-    private $Voornaam;
+    private string $Voornaam;
 
     /**
      * @var string
      */
-    private $Voorletters;
+    private string $Voorletters;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $GeboorteDatum;
-
-    /**
-     * @var string
-     */
-    private $Telefoon;
+    private \DateTimeInterface $GeboorteDatum;
 
     /**
      * @var string
      */
-    private $Email;
+    private string $Telefoon;
+
+    /**
+     * @var string
+     */
+    private string $Email;
 
     /**
      * @var bool
      */
-    private $NogBevestigen;
+    private bool $NogBevestigen;
 
     /**
      * @var bool
      */
-    private $Actief;
+    private bool $Actief;
 
     /**
      * @var bool
      */
-    private $MagAanmelden;
+    private bool $MagAanmelden;
 
     /**
      * @return int
      */
-    public function getCode()
+    public function getCode(): int
     {
         return $this->Code;
     }
 
     /**
      * @param int $Code
-     * @return TContactpersoon
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(int $Code): static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -82,16 +82,16 @@ class TContactpersoon
     /**
      * @return string
      */
-    public function getAchternaam()
+    public function getAchternaam(): string
     {
         return $this->Achternaam;
     }
 
     /**
      * @param string $Achternaam
-     * @return TContactpersoon
+     * @return static
      */
-    public function withAchternaam($Achternaam)
+    public function withAchternaam(string $Achternaam): static
     {
         $new = clone $this;
         $new->Achternaam = $Achternaam;
@@ -102,16 +102,16 @@ class TContactpersoon
     /**
      * @return string
      */
-    public function getVoorvoegsels()
+    public function getVoorvoegsels(): string
     {
         return $this->Voorvoegsels;
     }
 
     /**
      * @param string $Voorvoegsels
-     * @return TContactpersoon
+     * @return static
      */
-    public function withVoorvoegsels($Voorvoegsels)
+    public function withVoorvoegsels(string $Voorvoegsels): static
     {
         $new = clone $this;
         $new->Voorvoegsels = $Voorvoegsels;
@@ -122,16 +122,16 @@ class TContactpersoon
     /**
      * @return string
      */
-    public function getVoornaam()
+    public function getVoornaam(): string
     {
         return $this->Voornaam;
     }
 
     /**
      * @param string $Voornaam
-     * @return TContactpersoon
+     * @return static
      */
-    public function withVoornaam($Voornaam)
+    public function withVoornaam(string $Voornaam): static
     {
         $new = clone $this;
         $new->Voornaam = $Voornaam;
@@ -142,16 +142,16 @@ class TContactpersoon
     /**
      * @return string
      */
-    public function getVoorletters()
+    public function getVoorletters(): string
     {
         return $this->Voorletters;
     }
 
     /**
      * @param string $Voorletters
-     * @return TContactpersoon
+     * @return static
      */
-    public function withVoorletters($Voorletters)
+    public function withVoorletters(string $Voorletters): static
     {
         $new = clone $this;
         $new->Voorletters = $Voorletters;
@@ -160,18 +160,18 @@ class TContactpersoon
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getGeboorteDatum()
+    public function getGeboorteDatum(): \DateTimeInterface
     {
         return $this->GeboorteDatum;
     }
 
     /**
      * @param \DateTimeInterface $GeboorteDatum
-     * @return TContactpersoon
+     * @return static
      */
-    public function withGeboorteDatum($GeboorteDatum)
+    public function withGeboorteDatum(\DateTimeInterface $GeboorteDatum): static
     {
         $new = clone $this;
         $new->GeboorteDatum = $GeboorteDatum;
@@ -182,16 +182,16 @@ class TContactpersoon
     /**
      * @return string
      */
-    public function getTelefoon()
+    public function getTelefoon(): string
     {
         return $this->Telefoon;
     }
 
     /**
      * @param string $Telefoon
-     * @return TContactpersoon
+     * @return static
      */
-    public function withTelefoon($Telefoon)
+    public function withTelefoon(string $Telefoon): static
     {
         $new = clone $this;
         $new->Telefoon = $Telefoon;
@@ -202,16 +202,16 @@ class TContactpersoon
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->Email;
     }
 
     /**
      * @param string $Email
-     * @return TContactpersoon
+     * @return static
      */
-    public function withEmail($Email)
+    public function withEmail(string $Email): static
     {
         $new = clone $this;
         $new->Email = $Email;
@@ -222,16 +222,16 @@ class TContactpersoon
     /**
      * @return bool
      */
-    public function getNogBevestigen()
+    public function getNogBevestigen(): bool
     {
         return $this->NogBevestigen;
     }
 
     /**
      * @param bool $NogBevestigen
-     * @return TContactpersoon
+     * @return static
      */
-    public function withNogBevestigen($NogBevestigen)
+    public function withNogBevestigen(bool $NogBevestigen): static
     {
         $new = clone $this;
         $new->NogBevestigen = $NogBevestigen;
@@ -242,16 +242,16 @@ class TContactpersoon
     /**
      * @return bool
      */
-    public function getActief()
+    public function getActief(): bool
     {
         return $this->Actief;
     }
 
     /**
      * @param bool $Actief
-     * @return TContactpersoon
+     * @return static
      */
-    public function withActief($Actief)
+    public function withActief(bool $Actief): static
     {
         $new = clone $this;
         $new->Actief = $Actief;
@@ -262,16 +262,16 @@ class TContactpersoon
     /**
      * @return bool
      */
-    public function getMagAanmelden()
+    public function getMagAanmelden(): bool
     {
         return $this->MagAanmelden;
     }
 
     /**
      * @param bool $MagAanmelden
-     * @return TContactpersoon
+     * @return static
      */
-    public function withMagAanmelden($MagAanmelden)
+    public function withMagAanmelden(bool $MagAanmelden): static
     {
         $new = clone $this;
         $new->MagAanmelden = $MagAanmelden;
@@ -279,3 +279,4 @@ class TContactpersoon
         return $new;
     }
 }
+

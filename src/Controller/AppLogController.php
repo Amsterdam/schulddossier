@@ -19,11 +19,9 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class AppLogController extends AbstractController
 {
-    /**
-     * @Route("/")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     */
-    public function indexAction(Request $request, ActionEventRepository $actionEventRepository, PaginatorInterface $paginator,)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/log/')]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+    public function index(ManagerRegistry $doctrine): Response
     {
         $form = $this->createForm(SearchLogFormType::class);
         $form->handleRequest($request);

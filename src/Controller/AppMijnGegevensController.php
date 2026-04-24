@@ -17,10 +17,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AppMijnGegevensController extends AbstractController
 {
-    /**
-     * @Route("/")
-     */
-    public function indexAction(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/mijn-gegevens/')]
+    public function index(Request $request, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $gebruiker = $this->getUser();
         $form = $this->createForm(MijnGegevensFormType::class, $gebruiker);

@@ -7,41 +7,41 @@ class TCasusNotitie
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $Datum;
+    private \DateTimeInterface $Datum;
 
     /**
      * @var string
      */
-    private $Beschrijving;
+    private string $Beschrijving;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
-    private $Medewerker;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $Medewerker;
 
     /**
      * @var bool
      */
-    private $PDF;
+    private bool $PDF;
 
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TCasusNotitie
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -50,18 +50,18 @@ class TCasusNotitie
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return DateTimeInterface
      */
-    public function getDatum()
+    public function getDatum(): \DateTimeInterface
     {
         return $this->Datum;
     }
 
     /**
      * @param \DateTimeInterface $Datum
-     * @return TCasusNotitie
+     * @return static
      */
-    public function withDatum($Datum)
+    public function withDatum(\DateTimeInterface $Datum): static
     {
         $new = clone $this;
         $new->Datum = $Datum;
@@ -72,16 +72,16 @@ class TCasusNotitie
     /**
      * @return string
      */
-    public function getBeschrijving()
+    public function getBeschrijving(): string
     {
         return $this->Beschrijving;
     }
 
     /**
      * @param string $Beschrijving
-     * @return TCasusNotitie
+     * @return static
      */
-    public function withBeschrijving($Beschrijving)
+    public function withBeschrijving(string $Beschrijving): static
     {
         $new = clone $this;
         $new->Beschrijving = $Beschrijving;
@@ -92,16 +92,16 @@ class TCasusNotitie
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
      */
-    public function getMedewerker()
+    public function getMedewerker(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker
     {
         return $this->Medewerker;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $Medewerker
-     * @return TCasusNotitie
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TMedewerker $Medewerker): static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -112,16 +112,16 @@ class TCasusNotitie
     /**
      * @return bool
      */
-    public function getPDF()
+    public function getPDF(): bool
     {
         return $this->PDF;
     }
 
     /**
      * @param bool $PDF
-     * @return TCasusNotitie
+     * @return static
      */
-    public function withPDF($PDF)
+    public function withPDF(bool $PDF): static
     {
         $new = clone $this;
         $new->PDF = $PDF;
@@ -129,3 +129,4 @@ class TCasusNotitie
         return $new;
     }
 }
+
