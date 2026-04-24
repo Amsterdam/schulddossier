@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class BBRHeaderArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBRHeader
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBRHeader>
      */
-    private $TBBRHeader;
+    private array $TBBRHeader;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBRHeader
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBRHeader>
      */
-    public function getTBBRHeader()
+    public function getTBBRHeader(): array
     {
         return $this->TBBRHeader;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBRHeader $TBBRHeader
-     * @return BBRHeaderArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBRHeader> $TBBRHeader
+     * @return static
      */
-    public function withTBBRHeader($TBBRHeader)
+    public function withTBBRHeader(array $TBBRHeader): static
     {
         $new = clone $this;
         $new->TBBRHeader = $TBBRHeader;
@@ -29,3 +29,4 @@ class BBRHeaderArray
         return $new;
     }
 }
+

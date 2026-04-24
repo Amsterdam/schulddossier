@@ -7,21 +7,21 @@ class ROClientIDHeader
     /**
      * @var string
      */
-    private $ID;
+    private string $ID;
 
     /**
      * @return string
      */
-    public function getID()
+    public function getID(): string
     {
         return $this->ID;
     }
 
     /**
      * @param string $ID
-     * @return ROClientIDHeader
+     * @return static
      */
-    public function withID($ID)
+    public function withID(string $ID): static
     {
         $new = clone $this;
         $new->ID = $ID;
@@ -29,3 +29,4 @@ class ROClientIDHeader
         return $new;
     }
 }
+

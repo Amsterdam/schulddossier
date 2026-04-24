@@ -7,31 +7,31 @@ class TContact
     /**
      * @var string
      */
-    private $TelefoonThuis;
+    private string $TelefoonThuis;
 
     /**
      * @var string
      */
-    private $TelefoonMobiel;
+    private string $TelefoonMobiel;
 
     /**
      * @var string
      */
-    private $EmailAdres;
+    private string $EmailAdres;
 
     /**
      * @return string
      */
-    public function getTelefoonThuis()
+    public function getTelefoonThuis(): string
     {
         return $this->TelefoonThuis;
     }
 
     /**
      * @param string $TelefoonThuis
-     * @return TContact
+     * @return static
      */
-    public function withTelefoonThuis($TelefoonThuis)
+    public function withTelefoonThuis(string $TelefoonThuis): static
     {
         $new = clone $this;
         $new->TelefoonThuis = $TelefoonThuis;
@@ -42,16 +42,16 @@ class TContact
     /**
      * @return string
      */
-    public function getTelefoonMobiel()
+    public function getTelefoonMobiel(): string
     {
         return $this->TelefoonMobiel;
     }
 
     /**
      * @param string $TelefoonMobiel
-     * @return TContact
+     * @return static
      */
-    public function withTelefoonMobiel($TelefoonMobiel)
+    public function withTelefoonMobiel(string $TelefoonMobiel): static
     {
         $new = clone $this;
         $new->TelefoonMobiel = $TelefoonMobiel;
@@ -62,16 +62,16 @@ class TContact
     /**
      * @return string
      */
-    public function getEmailAdres()
+    public function getEmailAdres(): string
     {
         return $this->EmailAdres;
     }
 
     /**
      * @param string $EmailAdres
-     * @return TContact
+     * @return static
      */
-    public function withEmailAdres($EmailAdres)
+    public function withEmailAdres(string $EmailAdres): static
     {
         $new = clone $this;
         $new->EmailAdres = $EmailAdres;
@@ -79,3 +79,4 @@ class TContact
         return $new;
     }
 }
+

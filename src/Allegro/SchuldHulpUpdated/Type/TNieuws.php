@@ -7,26 +7,26 @@ class TNieuws
     /**
      * @var string
      */
-    private $Titel;
+    private string $Titel;
 
     /**
      * @var string
      */
-    private $Inhoud;
+    private string $Inhoud;
 
     /**
      * @return string
      */
-    public function getTitel()
+    public function getTitel(): string
     {
         return $this->Titel;
     }
 
     /**
      * @param string $Titel
-     * @return TNieuws
+     * @return static
      */
-    public function withTitel($Titel)
+    public function withTitel(string $Titel): static
     {
         $new = clone $this;
         $new->Titel = $Titel;
@@ -37,16 +37,16 @@ class TNieuws
     /**
      * @return string
      */
-    public function getInhoud()
+    public function getInhoud(): string
     {
         return $this->Inhoud;
     }
 
     /**
      * @param string $Inhoud
-     * @return TNieuws
+     * @return static
      */
-    public function withInhoud($Inhoud)
+    public function withInhoud(string $Inhoud): static
     {
         $new = clone $this;
         $new->Inhoud = $Inhoud;
@@ -54,3 +54,4 @@ class TNieuws
         return $new;
     }
 }
+

@@ -7,21 +7,21 @@ class TContractenLijst
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ContractArray
      */
-    private $Contracten;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ContractArray $Contracten;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ContractArray
      */
-    public function getContracten()
+    public function getContracten(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ContractArray
     {
         return $this->Contracten;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ContractArray $Contracten
-     * @return TContractenLijst
+     * @return static
      */
-    public function withContracten($Contracten)
+    public function withContracten(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ContractArray $Contracten): static
     {
         $new = clone $this;
         $new->Contracten = $Contracten;
@@ -29,3 +29,4 @@ class TContractenLijst
         return $new;
     }
 }
+

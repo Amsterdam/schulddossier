@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class TrajectArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTraject
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTraject>
      */
-    private $TTraject;
+    private array $TTraject;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTraject
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTraject>
      */
-    public function getTTraject()
+    public function getTTraject(): array
     {
         return $this->TTraject;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTraject $TTraject
-     * @return TrajectArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TTraject> $TTraject
+     * @return static
      */
-    public function withTTraject($TTraject)
+    public function withTTraject(array $TTraject): static
     {
         $new = clone $this;
         $new->TTraject = $TTraject;
@@ -29,3 +29,4 @@ class TrajectArray
         return $new;
     }
 }
+

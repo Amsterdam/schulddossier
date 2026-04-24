@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class SRVAanvraagHeaderArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraagHeader
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraagHeader>
      */
-    private $TSRVAanvraagHeader;
+    private array $TSRVAanvraagHeader;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraagHeader
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraagHeader>
      */
-    public function getTSRVAanvraagHeader()
+    public function getTSRVAanvraagHeader(): array
     {
         return $this->TSRVAanvraagHeader;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraagHeader $TSRVAanvraagHeader
-     * @return SRVAanvraagHeaderArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraagHeader> $TSRVAanvraagHeader
+     * @return static
      */
-    public function withTSRVAanvraagHeader($TSRVAanvraagHeader)
+    public function withTSRVAanvraagHeader(array $TSRVAanvraagHeader): static
     {
         $new = clone $this;
         $new->TSRVAanvraagHeader = $TSRVAanvraagHeader;
@@ -29,3 +29,4 @@ class SRVAanvraagHeaderArray
         return $new;
     }
 }
+

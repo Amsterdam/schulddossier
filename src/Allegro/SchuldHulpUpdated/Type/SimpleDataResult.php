@@ -7,31 +7,31 @@ class SimpleDataResult
     /**
      * @var string
      */
-    private $TableName;
+    private string $TableName;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleFieldInfoArray
      */
-    private $FieldInfo;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleFieldInfoArray $FieldInfo;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArrayArray
      */
-    private $Data;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArrayArray $Data;
 
     /**
      * @return string
      */
-    public function getTableName()
+    public function getTableName(): string
     {
         return $this->TableName;
     }
 
     /**
      * @param string $TableName
-     * @return SimpleDataResult
+     * @return static
      */
-    public function withTableName($TableName)
+    public function withTableName(string $TableName): static
     {
         $new = clone $this;
         $new->TableName = $TableName;
@@ -42,16 +42,16 @@ class SimpleDataResult
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleFieldInfoArray
      */
-    public function getFieldInfo()
+    public function getFieldInfo(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleFieldInfoArray
     {
         return $this->FieldInfo;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleFieldInfoArray $FieldInfo
-     * @return SimpleDataResult
+     * @return static
      */
-    public function withFieldInfo($FieldInfo)
+    public function withFieldInfo(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleFieldInfoArray $FieldInfo): static
     {
         $new = clone $this;
         $new->FieldInfo = $FieldInfo;
@@ -62,16 +62,16 @@ class SimpleDataResult
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArrayArray
      */
-    public function getData()
+    public function getData(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArrayArray
     {
         return $this->Data;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArrayArray $Data
-     * @return SimpleDataResult
+     * @return static
      */
-    public function withData($Data)
+    public function withData(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArrayArray $Data): static
     {
         $new = clone $this;
         $new->Data = $Data;
@@ -79,3 +79,4 @@ class SimpleDataResult
         return $new;
     }
 }
+

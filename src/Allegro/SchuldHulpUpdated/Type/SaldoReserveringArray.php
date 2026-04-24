@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class SaldoReserveringArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSaldoReservering
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSaldoReservering>
      */
-    private $TSaldoReservering;
+    private array $TSaldoReservering;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSaldoReservering
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSaldoReservering>
      */
-    public function getTSaldoReservering()
+    public function getTSaldoReservering(): array
     {
         return $this->TSaldoReservering;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSaldoReservering $TSaldoReservering
-     * @return SaldoReserveringArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSaldoReservering> $TSaldoReservering
+     * @return static
      */
-    public function withTSaldoReservering($TSaldoReservering)
+    public function withTSaldoReservering(array $TSaldoReservering): static
     {
         $new = clone $this;
         $new->TSaldoReservering = $TSaldoReservering;
@@ -29,3 +29,4 @@ class SaldoReserveringArray
         return $new;
     }
 }
+

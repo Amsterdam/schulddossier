@@ -7,31 +7,31 @@ class TDKHeader
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $RelatieCode;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var \DateTimeInterface
      */
-    private $DatumUitbetaling;
+    private \DateTimeInterface $DatumUitbetaling;
 
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode(): int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TDKHeader
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode): static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -42,16 +42,16 @@ class TDKHeader
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TDKHeader
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -62,16 +62,16 @@ class TDKHeader
     /**
      * @return \DateTimeInterface
      */
-    public function getDatumUitbetaling()
+    public function getDatumUitbetaling(): \DateTimeInterface
     {
         return $this->DatumUitbetaling;
     }
 
     /**
      * @param \DateTimeInterface $DatumUitbetaling
-     * @return TDKHeader
+     * @return static
      */
-    public function withDatumUitbetaling($DatumUitbetaling)
+    public function withDatumUitbetaling(\DateTimeInterface $DatumUitbetaling): static
     {
         $new = clone $this;
         $new->DatumUitbetaling = $DatumUitbetaling;
@@ -79,3 +79,4 @@ class TDKHeader
         return $new;
     }
 }
+

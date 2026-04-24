@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class InkomenArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TInkomen
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TInkomen>
      */
-    private $TInkomen;
+    private array $TInkomen;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TInkomen
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TInkomen>
      */
-    public function getTInkomen()
+    public function getTInkomen(): array
     {
         return $this->TInkomen;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TInkomen $TInkomen
-     * @return InkomenArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TInkomen> $TInkomen
+     * @return static
      */
-    public function withTInkomen($TInkomen)
+    public function withTInkomen(array $TInkomen): static
     {
         $new = clone $this;
         $new->TInkomen = $TInkomen;
@@ -29,3 +29,4 @@ class InkomenArray
         return $new;
     }
 }
+

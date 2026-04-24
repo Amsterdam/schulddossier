@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class ContactpersoonArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContactpersoon
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContactpersoon>
      */
-    private $TContactpersoon;
+    private array $TContactpersoon;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContactpersoon
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContactpersoon>
      */
-    public function getTContactpersoon()
+    public function getTContactpersoon(): array
     {
         return $this->TContactpersoon;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContactpersoon $TContactpersoon
-     * @return ContactpersoonArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContactpersoon> $TContactpersoon
+     * @return static
      */
-    public function withTContactpersoon($TContactpersoon)
+    public function withTContactpersoon(array $TContactpersoon): static
     {
         $new = clone $this;
         $new->TContactpersoon = $TContactpersoon;
@@ -29,3 +29,4 @@ class ContactpersoonArray
         return $new;
     }
 }
+

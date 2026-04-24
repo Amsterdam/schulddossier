@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class SBEiserArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBEiser
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBEiser>
      */
-    private $TSBEiser;
+    private array $TSBEiser;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBEiser
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBEiser>
      */
-    public function getTSBEiser()
+    public function getTSBEiser(): array
     {
         return $this->TSBEiser;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBEiser $TSBEiser
-     * @return SBEiserArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSBEiser> $TSBEiser
+     * @return static
      */
-    public function withTSBEiser($TSBEiser)
+    public function withTSBEiser(array $TSBEiser): static
     {
         $new = clone $this;
         $new->TSBEiser = $TSBEiser;
@@ -29,3 +29,4 @@ class SBEiserArray
         return $new;
     }
 }
+

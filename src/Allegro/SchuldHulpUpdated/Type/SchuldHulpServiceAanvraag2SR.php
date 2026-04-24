@@ -9,14 +9,14 @@ class SchuldHulpServiceAanvraag2SR implements RequestInterface
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2SR
      */
-    private $aAanvraag2SR;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2SR $aAanvraag2SR;
 
     /**
      * Constructor
      *
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2SR $aAanvraag2SR
      */
-    public function __construct($aAanvraag2SR)
+    public function __construct(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2SR $aAanvraag2SR)
     {
         $this->aAanvraag2SR = $aAanvraag2SR;
     }
@@ -24,16 +24,16 @@ class SchuldHulpServiceAanvraag2SR implements RequestInterface
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2SR
      */
-    public function getAAanvraag2SR()
+    public function getAAanvraag2SR(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2SR
     {
         return $this->aAanvraag2SR;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2SR $aAanvraag2SR
-     * @return SchuldHulpServiceAanvraag2SR
+     * @return static
      */
-    public function withAAanvraag2SR($aAanvraag2SR)
+    public function withAAanvraag2SR(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2SR $aAanvraag2SR): static
     {
         $new = clone $this;
         $new->aAanvraag2SR = $aAanvraag2SR;
@@ -41,3 +41,4 @@ class SchuldHulpServiceAanvraag2SR implements RequestInterface
         return $new;
     }
 }
+

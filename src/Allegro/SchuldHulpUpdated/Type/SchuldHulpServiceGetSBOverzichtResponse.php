@@ -9,21 +9,21 @@ class SchuldHulpServiceGetSBOverzichtResponse implements ResultInterface
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SBHeaderArray
      */
-    private $Result;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SBHeaderArray $Result;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SBHeaderArray
      */
-    public function getResult()
+    public function getResult(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SBHeaderArray
     {
         return $this->Result;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SBHeaderArray $Result
-     * @return SchuldHulpServiceGetSBOverzichtResponse
+     * @return static
      */
-    public function withResult($Result)
+    public function withResult(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SBHeaderArray $Result): static
     {
         $new = clone $this;
         $new->Result = $Result;
@@ -31,3 +31,4 @@ class SchuldHulpServiceGetSBOverzichtResponse implements ResultInterface
         return $new;
     }
 }
+

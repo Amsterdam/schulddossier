@@ -7,51 +7,51 @@ class TContract
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Relatiecode;
 
     /**
      * @var string
      */
-    private $RelatieZoeknaam;
+    private string $RelatieZoeknaam;
 
     /**
      * @var int
      */
-    private $ContractVolgnummer;
+    private int $ContractVolgnummer;
 
     /**
      * @var string
      */
-    private $ContractSoort;
+    private string $ContractSoort;
 
     /**
      * @var string
      */
-    private $ContractStatus;
+    private string $ContractStatus;
 
     /**
      * @var int
      */
-    private $Contactpersoon;
+    private int $Contactpersoon;
 
     /**
      * @var string
      */
-    private $Inzage;
+    private string $Inzage;
 
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode(): int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TContract
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode): static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -62,16 +62,16 @@ class TContract
     /**
      * @return string
      */
-    public function getRelatieZoeknaam()
+    public function getRelatieZoeknaam(): string
     {
         return $this->RelatieZoeknaam;
     }
 
     /**
      * @param string $RelatieZoeknaam
-     * @return TContract
+     * @return static
      */
-    public function withRelatieZoeknaam($RelatieZoeknaam)
+    public function withRelatieZoeknaam(string $RelatieZoeknaam): static
     {
         $new = clone $this;
         $new->RelatieZoeknaam = $RelatieZoeknaam;
@@ -82,16 +82,16 @@ class TContract
     /**
      * @return int
      */
-    public function getContractVolgnummer()
+    public function getContractVolgnummer(): int
     {
         return $this->ContractVolgnummer;
     }
 
     /**
      * @param int $ContractVolgnummer
-     * @return TContract
+     * @return static
      */
-    public function withContractVolgnummer($ContractVolgnummer)
+    public function withContractVolgnummer(int $ContractVolgnummer): static
     {
         $new = clone $this;
         $new->ContractVolgnummer = $ContractVolgnummer;
@@ -102,16 +102,16 @@ class TContract
     /**
      * @return string
      */
-    public function getContractSoort()
+    public function getContractSoort(): string
     {
         return $this->ContractSoort;
     }
 
     /**
      * @param string $ContractSoort
-     * @return TContract
+     * @return static
      */
-    public function withContractSoort($ContractSoort)
+    public function withContractSoort(string $ContractSoort): static
     {
         $new = clone $this;
         $new->ContractSoort = $ContractSoort;
@@ -122,16 +122,16 @@ class TContract
     /**
      * @return string
      */
-    public function getContractStatus()
+    public function getContractStatus(): string
     {
         return $this->ContractStatus;
     }
 
     /**
      * @param string $ContractStatus
-     * @return TContract
+     * @return static
      */
-    public function withContractStatus($ContractStatus)
+    public function withContractStatus(string $ContractStatus): static
     {
         $new = clone $this;
         $new->ContractStatus = $ContractStatus;
@@ -142,16 +142,16 @@ class TContract
     /**
      * @return int
      */
-    public function getContactpersoon()
+    public function getContactpersoon(): int
     {
         return $this->Contactpersoon;
     }
 
     /**
      * @param int $Contactpersoon
-     * @return TContract
+     * @return static
      */
-    public function withContactpersoon($Contactpersoon)
+    public function withContactpersoon(int $Contactpersoon): static
     {
         $new = clone $this;
         $new->Contactpersoon = $Contactpersoon;
@@ -162,16 +162,16 @@ class TContract
     /**
      * @return string
      */
-    public function getInzage()
+    public function getInzage(): string
     {
         return $this->Inzage;
     }
 
     /**
      * @param string $Inzage
-     * @return TContract
+     * @return static
      */
-    public function withInzage($Inzage)
+    public function withInzage(string $Inzage): static
     {
         $new = clone $this;
         $new->Inzage = $Inzage;
@@ -179,3 +179,4 @@ class TContract
         return $new;
     }
 }
+

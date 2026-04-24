@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class AllegroDocumentArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAllegroDocument
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAllegroDocument>
      */
-    private $TAllegroDocument;
+    private array $TAllegroDocument;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAllegroDocument
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAllegroDocument>
      */
-    public function getTAllegroDocument()
+    public function getTAllegroDocument(): array
     {
         return $this->TAllegroDocument;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAllegroDocument $TAllegroDocument
-     * @return AllegroDocumentArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAllegroDocument> $TAllegroDocument
+     * @return static
      */
-    public function withTAllegroDocument($TAllegroDocument)
+    public function withTAllegroDocument(array $TAllegroDocument): static
     {
         $new = clone $this;
         $new->TAllegroDocument = $TAllegroDocument;
@@ -29,3 +29,4 @@ class AllegroDocumentArray
         return $new;
     }
 }
+

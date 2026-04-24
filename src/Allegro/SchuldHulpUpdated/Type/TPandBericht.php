@@ -7,51 +7,51 @@ class TPandBericht
     /**
      * @var string
      */
-    private $SoortMutatie;
+    private string $SoortMutatie;
 
     /**
      * @var \DateTimeInterface
      */
-    private $Datum;
+    private \DateTimeInterface $Datum;
 
     /**
      * @var \DateTimeInterface
      */
-    private $Tijdstip;
+    private \DateTimeInterface $Tijdstip;
 
     /**
      * @var string
      */
-    private $Pandnummer;
+    private string $Pandnummer;
 
     /**
      * @var float
      */
-    private $BedragBetaald;
+    private float $BedragBetaald;
 
     /**
      * @var string
      */
-    private $iDealKenmerk;
+    private string $iDealKenmerk;
 
     /**
      * @var float
      */
-    private $iDealTotaalBedrag;
+    private float $iDealTotaalBedrag;
 
     /**
      * @return string
      */
-    public function getSoortMutatie()
+    public function getSoortMutatie(): string
     {
         return $this->SoortMutatie;
     }
 
     /**
      * @param string $SoortMutatie
-     * @return TPandBericht
+     * @return static
      */
-    public function withSoortMutatie($SoortMutatie)
+    public function withSoortMutatie(string $SoortMutatie): static
     {
         $new = clone $this;
         $new->SoortMutatie = $SoortMutatie;
@@ -62,16 +62,16 @@ class TPandBericht
     /**
      * @return \DateTimeInterface
      */
-    public function getDatum()
+    public function getDatum(): \DateTimeInterface
     {
         return $this->Datum;
     }
 
     /**
      * @param \DateTimeInterface $Datum
-     * @return TPandBericht
+     * @return static
      */
-    public function withDatum($Datum)
+    public function withDatum(\DateTimeInterface $Datum): static
     {
         $new = clone $this;
         $new->Datum = $Datum;
@@ -82,16 +82,16 @@ class TPandBericht
     /**
      * @return \DateTimeInterface
      */
-    public function getTijdstip()
+    public function getTijdstip(): \DateTimeInterface
     {
         return $this->Tijdstip;
     }
 
     /**
      * @param \DateTimeInterface $Tijdstip
-     * @return TPandBericht
+     * @return static
      */
-    public function withTijdstip($Tijdstip)
+    public function withTijdstip(\DateTimeInterface $Tijdstip): static
     {
         $new = clone $this;
         $new->Tijdstip = $Tijdstip;
@@ -102,16 +102,16 @@ class TPandBericht
     /**
      * @return string
      */
-    public function getPandnummer()
+    public function getPandnummer(): string
     {
         return $this->Pandnummer;
     }
 
     /**
      * @param string $Pandnummer
-     * @return TPandBericht
+     * @return static
      */
-    public function withPandnummer($Pandnummer)
+    public function withPandnummer(string $Pandnummer): static
     {
         $new = clone $this;
         $new->Pandnummer = $Pandnummer;
@@ -122,16 +122,16 @@ class TPandBericht
     /**
      * @return float
      */
-    public function getBedragBetaald()
+    public function getBedragBetaald(): float
     {
         return $this->BedragBetaald;
     }
 
     /**
      * @param float $BedragBetaald
-     * @return TPandBericht
+     * @return static
      */
-    public function withBedragBetaald($BedragBetaald)
+    public function withBedragBetaald(float $BedragBetaald): static
     {
         $new = clone $this;
         $new->BedragBetaald = $BedragBetaald;
@@ -142,16 +142,16 @@ class TPandBericht
     /**
      * @return string
      */
-    public function getIDealKenmerk()
+    public function getIDealKenmerk(): string
     {
         return $this->iDealKenmerk;
     }
 
     /**
      * @param string $iDealKenmerk
-     * @return TPandBericht
+     * @return static
      */
-    public function withIDealKenmerk($iDealKenmerk)
+    public function withIDealKenmerk(string $iDealKenmerk): static
     {
         $new = clone $this;
         $new->iDealKenmerk = $iDealKenmerk;
@@ -162,16 +162,16 @@ class TPandBericht
     /**
      * @return float
      */
-    public function getIDealTotaalBedrag()
+    public function getIDealTotaalBedrag(): float
     {
         return $this->iDealTotaalBedrag;
     }
 
     /**
      * @param float $iDealTotaalBedrag
-     * @return TPandBericht
+     * @return static
      */
-    public function withIDealTotaalBedrag($iDealTotaalBedrag)
+    public function withIDealTotaalBedrag(float $iDealTotaalBedrag): static
     {
         $new = clone $this;
         $new->iDealTotaalBedrag = $iDealTotaalBedrag;
@@ -179,3 +179,4 @@ class TPandBericht
         return $new;
     }
 }
+

@@ -7,41 +7,41 @@ class TBBoxBijlage
     /**
      * @var int
      */
-    private $Code;
+    private int $Code;
 
     /**
      * @var int
      */
-    private $UniekVolgnummer;
+    private int $UniekVolgnummer;
 
     /**
-     * @var string
+     * @var mixed
      */
-    private $Bijlage;
+    private mixed $Bijlage;
 
     /**
      * @var int
      */
-    private $BijlageSize;
+    private int $BijlageSize;
 
     /**
      * @var string
      */
-    private $BijlageNaam;
+    private string $BijlageNaam;
 
     /**
      * @return int
      */
-    public function getCode()
+    public function getCode(): int
     {
         return $this->Code;
     }
 
     /**
      * @param int $Code
-     * @return TBBoxBijlage
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(int $Code): static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -52,16 +52,16 @@ class TBBoxBijlage
     /**
      * @return int
      */
-    public function getUniekVolgnummer()
+    public function getUniekVolgnummer(): int
     {
         return $this->UniekVolgnummer;
     }
 
     /**
      * @param int $UniekVolgnummer
-     * @return TBBoxBijlage
+     * @return static
      */
-    public function withUniekVolgnummer($UniekVolgnummer)
+    public function withUniekVolgnummer(int $UniekVolgnummer): static
     {
         $new = clone $this;
         $new->UniekVolgnummer = $UniekVolgnummer;
@@ -70,18 +70,18 @@ class TBBoxBijlage
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getBijlage()
+    public function getBijlage(): mixed
     {
         return $this->Bijlage;
     }
 
     /**
-     * @param string $Bijlage
-     * @return TBBoxBijlage
+     * @param mixed $Bijlage
+     * @return static
      */
-    public function withBijlage($Bijlage)
+    public function withBijlage(mixed $Bijlage): static
     {
         $new = clone $this;
         $new->Bijlage = $Bijlage;
@@ -92,16 +92,16 @@ class TBBoxBijlage
     /**
      * @return int
      */
-    public function getBijlageSize()
+    public function getBijlageSize(): int
     {
         return $this->BijlageSize;
     }
 
     /**
      * @param int $BijlageSize
-     * @return TBBoxBijlage
+     * @return static
      */
-    public function withBijlageSize($BijlageSize)
+    public function withBijlageSize(int $BijlageSize): static
     {
         $new = clone $this;
         $new->BijlageSize = $BijlageSize;
@@ -112,16 +112,16 @@ class TBBoxBijlage
     /**
      * @return string
      */
-    public function getBijlageNaam()
+    public function getBijlageNaam(): string
     {
         return $this->BijlageNaam;
     }
 
     /**
      * @param string $BijlageNaam
-     * @return TBBoxBijlage
+     * @return static
      */
-    public function withBijlageNaam($BijlageNaam)
+    public function withBijlageNaam(string $BijlageNaam): static
     {
         $new = clone $this;
         $new->BijlageNaam = $BijlageNaam;
@@ -129,3 +129,4 @@ class TBBoxBijlage
         return $new;
     }
 }
+

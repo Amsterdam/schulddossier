@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class OpdrachtgeverKlantArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpdrachtgeverKlant
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpdrachtgeverKlant>
      */
-    private $TOpdrachtgeverKlant;
+    private array $TOpdrachtgeverKlant;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpdrachtgeverKlant
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpdrachtgeverKlant>
      */
-    public function getTOpdrachtgeverKlant()
+    public function getTOpdrachtgeverKlant(): array
     {
         return $this->TOpdrachtgeverKlant;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpdrachtgeverKlant $TOpdrachtgeverKlant
-     * @return OpdrachtgeverKlantArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOpdrachtgeverKlant> $TOpdrachtgeverKlant
+     * @return static
      */
-    public function withTOpdrachtgeverKlant($TOpdrachtgeverKlant)
+    public function withTOpdrachtgeverKlant(array $TOpdrachtgeverKlant): static
     {
         $new = clone $this;
         $new->TOpdrachtgeverKlant = $TOpdrachtgeverKlant;
@@ -29,3 +29,4 @@ class OpdrachtgeverKlantArray
         return $new;
     }
 }
+

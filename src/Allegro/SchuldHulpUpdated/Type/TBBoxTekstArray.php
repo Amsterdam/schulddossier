@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class TBBoxTekstArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxTekst
+     * @var non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxTekst>
      */
-    private $TBBoxTekst;
+    private array $TBBoxTekst;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxTekst
+     * @return non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxTekst>
      */
-    public function getTBBoxTekst()
+    public function getTBBoxTekst(): array
     {
         return $this->TBBoxTekst;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxTekst $TBBoxTekst
-     * @return TBBoxTekstArray
+     * @param non-empty-array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TBBoxTekst> $TBBoxTekst
+     * @return static
      */
-    public function withTBBoxTekst($TBBoxTekst)
+    public function withTBBoxTekst(array $TBBoxTekst): static
     {
         $new = clone $this;
         $new->TBBoxTekst = $TBBoxTekst;
@@ -29,3 +29,4 @@ class TBBoxTekstArray
         return $new;
     }
 }
+

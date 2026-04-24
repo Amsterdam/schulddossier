@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class StringArray
 {
     /**
-     * @var string
+     * @var non-empty-array<int<0,max>, string>
      */
-    private $string;
+    private array $string;
 
     /**
-     * @return string
+     * @return non-empty-array<int<0,max>, string>
      */
-    public function getString()
+    public function getString(): array
     {
         return $this->string;
     }
 
     /**
-     * @param string $string
-     * @return StringArray
+     * @param non-empty-array<int<0,max>, string> $string
+     * @return static
      */
-    public function withString($string)
+    public function withString(array $string): static
     {
         $new = clone $this;
         $new->string = $string;
@@ -29,3 +29,4 @@ class StringArray
         return $new;
     }
 }
+
