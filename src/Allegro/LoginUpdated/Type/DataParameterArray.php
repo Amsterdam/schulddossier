@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class DataParameterArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\DataParameter
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\DataParameter>
      */
-    private $DataParameter;
+    private array $DataParameter;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\DataParameter
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\DataParameter>
      */
-    public function getDataParameter()
+    public function getDataParameter(): array
     {
         return $this->DataParameter;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\DataParameter $DataParameter
-     * @return DataParameterArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\DataParameter> $DataParameter
+     * @return static
      */
-    public function withDataParameter($DataParameter)
+    public function withDataParameter(array $DataParameter): static
     {
         $new = clone $this;
         $new->DataParameter = $DataParameter;
@@ -29,3 +29,4 @@ class DataParameterArray
         return $new;
     }
 }
+

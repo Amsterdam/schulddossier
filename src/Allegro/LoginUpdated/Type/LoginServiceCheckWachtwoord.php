@@ -9,14 +9,14 @@ class LoginServiceCheckWachtwoord implements RequestInterface
     /**
      * @var string
      */
-    private $sEmailAdres;
+    private string $sEmailAdres;
 
     /**
      * Constructor
      *
      * @param string $sEmailAdres
      */
-    public function __construct($sEmailAdres)
+    public function __construct(string $sEmailAdres)
     {
         $this->sEmailAdres = $sEmailAdres;
     }
@@ -24,16 +24,16 @@ class LoginServiceCheckWachtwoord implements RequestInterface
     /**
      * @return string
      */
-    public function getSEmailAdres()
+    public function getSEmailAdres(): string
     {
         return $this->sEmailAdres;
     }
 
     /**
      * @param string $sEmailAdres
-     * @return LoginServiceCheckWachtwoord
+     * @return static
      */
-    public function withSEmailAdres($sEmailAdres)
+    public function withSEmailAdres(string $sEmailAdres): static
     {
         $new = clone $this;
         $new->sEmailAdres = $sEmailAdres;
@@ -41,3 +41,4 @@ class LoginServiceCheckWachtwoord implements RequestInterface
         return $new;
     }
 }
+

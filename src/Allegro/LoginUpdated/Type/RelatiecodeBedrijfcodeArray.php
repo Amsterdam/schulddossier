@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class RelatiecodeBedrijfcodeArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRelatiecodeBedrijfcode
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRelatiecodeBedrijfcode>
      */
-    private $TRelatiecodeBedrijfcode;
+    private array $TRelatiecodeBedrijfcode;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRelatiecodeBedrijfcode
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRelatiecodeBedrijfcode>
      */
-    public function getTRelatiecodeBedrijfcode()
+    public function getTRelatiecodeBedrijfcode(): array
     {
         return $this->TRelatiecodeBedrijfcode;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRelatiecodeBedrijfcode $TRelatiecodeBedrijfcode
-     * @return RelatiecodeBedrijfcodeArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TRelatiecodeBedrijfcode> $TRelatiecodeBedrijfcode
+     * @return static
      */
-    public function withTRelatiecodeBedrijfcode($TRelatiecodeBedrijfcode)
+    public function withTRelatiecodeBedrijfcode(array $TRelatiecodeBedrijfcode): static
     {
         $new = clone $this;
         $new->TRelatiecodeBedrijfcode = $TRelatiecodeBedrijfcode;
@@ -29,3 +29,4 @@ class RelatiecodeBedrijfcodeArray
         return $new;
     }
 }
+

@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class SimpleFieldInfoArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleFieldInfo
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleFieldInfo>
      */
-    private $SimpleFieldInfo;
+    private array $SimpleFieldInfo;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleFieldInfo
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleFieldInfo>
      */
-    public function getSimpleFieldInfo()
+    public function getSimpleFieldInfo(): array
     {
         return $this->SimpleFieldInfo;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleFieldInfo $SimpleFieldInfo
-     * @return SimpleFieldInfoArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleFieldInfo> $SimpleFieldInfo
+     * @return static
      */
-    public function withSimpleFieldInfo($SimpleFieldInfo)
+    public function withSimpleFieldInfo(array $SimpleFieldInfo): static
     {
         $new = clone $this;
         $new->SimpleFieldInfo = $SimpleFieldInfo;
@@ -29,3 +29,4 @@ class SimpleFieldInfoArray
         return $new;
     }
 }
+

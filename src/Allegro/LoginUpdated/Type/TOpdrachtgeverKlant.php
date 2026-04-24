@@ -7,86 +7,86 @@ class TOpdrachtgeverKlant
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Relatiecode;
 
     /**
      * @var string
      */
-    private $Zoeknaam;
+    private string $Zoeknaam;
 
     /**
      * @var \DateTimeInterface
      */
-    private $GeboorteDatum;
+    private \DateTimeInterface $GeboorteDatum;
 
     /**
      * @var int
      */
-    private $BSN;
+    private int $BSN;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    private $Adres;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $Adres;
 
     /**
      * @var int
      */
-    private $CasusVolgnummer;
+    private int $CasusVolgnummer;
 
     /**
      * @var int
      */
-    private $AanvraagSRVolgnummer;
+    private int $AanvraagSRVolgnummer;
 
     /**
      * @var int
      */
-    private $SRVolgnummer;
+    private int $SRVolgnummer;
 
     /**
      * @var int
      */
-    private $AanvraagBBRVolgnummer;
+    private int $AanvraagBBRVolgnummer;
 
     /**
      * @var int
      */
-    private $BBRVolgnummer;
+    private int $BBRVolgnummer;
 
     /**
      * @var bool
      */
-    private $CasusCrisis;
+    private bool $CasusCrisis;
 
     /**
      * @var string
      */
-    private $CasusFase;
+    private string $CasusFase;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TrajectSoortArray
      */
-    private $Trajecten;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TrajectSoortArray $Trajecten;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\BBRVormArray
      */
-    private $BBRVorm;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\BBRVormArray $BBRVorm;
 
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode(): int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode): static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -97,16 +97,16 @@ class TOpdrachtgeverKlant
     /**
      * @return string
      */
-    public function getZoeknaam()
+    public function getZoeknaam(): string
     {
         return $this->Zoeknaam;
     }
 
     /**
      * @param string $Zoeknaam
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withZoeknaam($Zoeknaam)
+    public function withZoeknaam(string $Zoeknaam): static
     {
         $new = clone $this;
         $new->Zoeknaam = $Zoeknaam;
@@ -117,16 +117,16 @@ class TOpdrachtgeverKlant
     /**
      * @return \DateTimeInterface
      */
-    public function getGeboorteDatum()
+    public function getGeboorteDatum(): \DateTimeInterface
     {
         return $this->GeboorteDatum;
     }
 
     /**
      * @param \DateTimeInterface $GeboorteDatum
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withGeboorteDatum($GeboorteDatum)
+    public function withGeboorteDatum(\DateTimeInterface $GeboorteDatum): static
     {
         $new = clone $this;
         $new->GeboorteDatum = $GeboorteDatum;
@@ -137,16 +137,16 @@ class TOpdrachtgeverKlant
     /**
      * @return int
      */
-    public function getBSN()
+    public function getBSN(): int
     {
         return $this->BSN;
     }
 
     /**
      * @param int $BSN
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withBSN($BSN)
+    public function withBSN(int $BSN): static
     {
         $new = clone $this;
         $new->BSN = $BSN;
@@ -157,16 +157,16 @@ class TOpdrachtgeverKlant
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    public function getAdres()
+    public function getAdres(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
     {
         return $this->Adres;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $Adres
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withAdres($Adres)
+    public function withAdres(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $Adres): static
     {
         $new = clone $this;
         $new->Adres = $Adres;
@@ -177,16 +177,16 @@ class TOpdrachtgeverKlant
     /**
      * @return int
      */
-    public function getCasusVolgnummer()
+    public function getCasusVolgnummer(): int
     {
         return $this->CasusVolgnummer;
     }
 
     /**
      * @param int $CasusVolgnummer
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withCasusVolgnummer($CasusVolgnummer)
+    public function withCasusVolgnummer(int $CasusVolgnummer): static
     {
         $new = clone $this;
         $new->CasusVolgnummer = $CasusVolgnummer;
@@ -197,16 +197,16 @@ class TOpdrachtgeverKlant
     /**
      * @return int
      */
-    public function getAanvraagSRVolgnummer()
+    public function getAanvraagSRVolgnummer(): int
     {
         return $this->AanvraagSRVolgnummer;
     }
 
     /**
      * @param int $AanvraagSRVolgnummer
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withAanvraagSRVolgnummer($AanvraagSRVolgnummer)
+    public function withAanvraagSRVolgnummer(int $AanvraagSRVolgnummer): static
     {
         $new = clone $this;
         $new->AanvraagSRVolgnummer = $AanvraagSRVolgnummer;
@@ -217,16 +217,16 @@ class TOpdrachtgeverKlant
     /**
      * @return int
      */
-    public function getSRVolgnummer()
+    public function getSRVolgnummer(): int
     {
         return $this->SRVolgnummer;
     }
 
     /**
      * @param int $SRVolgnummer
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withSRVolgnummer($SRVolgnummer)
+    public function withSRVolgnummer(int $SRVolgnummer): static
     {
         $new = clone $this;
         $new->SRVolgnummer = $SRVolgnummer;
@@ -237,16 +237,16 @@ class TOpdrachtgeverKlant
     /**
      * @return int
      */
-    public function getAanvraagBBRVolgnummer()
+    public function getAanvraagBBRVolgnummer(): int
     {
         return $this->AanvraagBBRVolgnummer;
     }
 
     /**
      * @param int $AanvraagBBRVolgnummer
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withAanvraagBBRVolgnummer($AanvraagBBRVolgnummer)
+    public function withAanvraagBBRVolgnummer(int $AanvraagBBRVolgnummer): static
     {
         $new = clone $this;
         $new->AanvraagBBRVolgnummer = $AanvraagBBRVolgnummer;
@@ -257,16 +257,16 @@ class TOpdrachtgeverKlant
     /**
      * @return int
      */
-    public function getBBRVolgnummer()
+    public function getBBRVolgnummer(): int
     {
         return $this->BBRVolgnummer;
     }
 
     /**
      * @param int $BBRVolgnummer
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withBBRVolgnummer($BBRVolgnummer)
+    public function withBBRVolgnummer(int $BBRVolgnummer): static
     {
         $new = clone $this;
         $new->BBRVolgnummer = $BBRVolgnummer;
@@ -277,16 +277,16 @@ class TOpdrachtgeverKlant
     /**
      * @return bool
      */
-    public function getCasusCrisis()
+    public function getCasusCrisis(): bool
     {
         return $this->CasusCrisis;
     }
 
     /**
      * @param bool $CasusCrisis
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withCasusCrisis($CasusCrisis)
+    public function withCasusCrisis(bool $CasusCrisis): static
     {
         $new = clone $this;
         $new->CasusCrisis = $CasusCrisis;
@@ -297,16 +297,16 @@ class TOpdrachtgeverKlant
     /**
      * @return string
      */
-    public function getCasusFase()
+    public function getCasusFase(): string
     {
         return $this->CasusFase;
     }
 
     /**
      * @param string $CasusFase
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withCasusFase($CasusFase)
+    public function withCasusFase(string $CasusFase): static
     {
         $new = clone $this;
         $new->CasusFase = $CasusFase;
@@ -317,16 +317,16 @@ class TOpdrachtgeverKlant
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TrajectSoortArray
      */
-    public function getTrajecten()
+    public function getTrajecten(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TrajectSoortArray
     {
         return $this->Trajecten;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TrajectSoortArray $Trajecten
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withTrajecten($Trajecten)
+    public function withTrajecten(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TrajectSoortArray $Trajecten): static
     {
         $new = clone $this;
         $new->Trajecten = $Trajecten;
@@ -337,16 +337,16 @@ class TOpdrachtgeverKlant
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\BBRVormArray
      */
-    public function getBBRVorm()
+    public function getBBRVorm(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\BBRVormArray
     {
         return $this->BBRVorm;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\BBRVormArray $BBRVorm
-     * @return TOpdrachtgeverKlant
+     * @return static
      */
-    public function withBBRVorm($BBRVorm)
+    public function withBBRVorm(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\BBRVormArray $BBRVorm): static
     {
         $new = clone $this;
         $new->BBRVorm = $BBRVorm;
@@ -354,3 +354,4 @@ class TOpdrachtgeverKlant
         return $new;
     }
 }
+

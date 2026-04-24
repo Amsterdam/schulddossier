@@ -7,26 +7,26 @@ class TAfspraakSoorten
     /**
      * @var string
      */
-    private $Code;
+    private string $Code;
 
     /**
      * @var string
      */
-    private $Omschrijving;
+    private string $Omschrijving;
 
     /**
      * @return string
      */
-    public function getCode()
+    public function getCode(): string
     {
         return $this->Code;
     }
 
     /**
      * @param string $Code
-     * @return TAfspraakSoorten
+     * @return static
      */
-    public function withCode($Code)
+    public function withCode(string $Code): static
     {
         $new = clone $this;
         $new->Code = $Code;
@@ -37,16 +37,16 @@ class TAfspraakSoorten
     /**
      * @return string
      */
-    public function getOmschrijving()
+    public function getOmschrijving(): string
     {
         return $this->Omschrijving;
     }
 
     /**
      * @param string $Omschrijving
-     * @return TAfspraakSoorten
+     * @return static
      */
-    public function withOmschrijving($Omschrijving)
+    public function withOmschrijving(string $Omschrijving): static
     {
         $new = clone $this;
         $new->Omschrijving = $Omschrijving;
@@ -54,3 +54,4 @@ class TAfspraakSoorten
         return $new;
     }
 }
+

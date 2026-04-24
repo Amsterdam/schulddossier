@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class SchuldArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TSchuld
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TSchuld>
      */
-    private $TSchuld;
+    private array $TSchuld;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TSchuld
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TSchuld>
      */
-    public function getTSchuld()
+    public function getTSchuld(): array
     {
         return $this->TSchuld;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TSchuld $TSchuld
-     * @return SchuldArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TSchuld> $TSchuld
+     * @return static
      */
-    public function withTSchuld($TSchuld)
+    public function withTSchuld(array $TSchuld): static
     {
         $new = clone $this;
         $new->TSchuld = $TSchuld;
@@ -29,3 +29,4 @@ class SchuldArray
         return $new;
     }
 }
+

@@ -9,12 +9,12 @@ class LoginServiceAllegroWebLoginTijdelijk implements RequestInterface
     /**
      * @var string
      */
-    private $aAllegroAanmeldcode;
+    private string $aAllegroAanmeldcode;
 
     /**
      * @var string
      */
-    private $aAllegroWachtwoord;
+    private string $aAllegroWachtwoord;
 
     /**
      * Constructor
@@ -22,7 +22,7 @@ class LoginServiceAllegroWebLoginTijdelijk implements RequestInterface
      * @param string $aAllegroAanmeldcode
      * @param string $aAllegroWachtwoord
      */
-    public function __construct($aAllegroAanmeldcode, $aAllegroWachtwoord)
+    public function __construct(string $aAllegroAanmeldcode, string $aAllegroWachtwoord)
     {
         $this->aAllegroAanmeldcode = $aAllegroAanmeldcode;
         $this->aAllegroWachtwoord = $aAllegroWachtwoord;
@@ -31,16 +31,16 @@ class LoginServiceAllegroWebLoginTijdelijk implements RequestInterface
     /**
      * @return string
      */
-    public function getAAllegroAanmeldcode()
+    public function getAAllegroAanmeldcode(): string
     {
         return $this->aAllegroAanmeldcode;
     }
 
     /**
      * @param string $aAllegroAanmeldcode
-     * @return LoginServiceAllegroWebLoginTijdelijk
+     * @return static
      */
-    public function withAAllegroAanmeldcode($aAllegroAanmeldcode)
+    public function withAAllegroAanmeldcode(string $aAllegroAanmeldcode): static
     {
         $new = clone $this;
         $new->aAllegroAanmeldcode = $aAllegroAanmeldcode;
@@ -51,16 +51,16 @@ class LoginServiceAllegroWebLoginTijdelijk implements RequestInterface
     /**
      * @return string
      */
-    public function getAAllegroWachtwoord()
+    public function getAAllegroWachtwoord(): string
     {
         return $this->aAllegroWachtwoord;
     }
 
     /**
      * @param string $aAllegroWachtwoord
-     * @return LoginServiceAllegroWebLoginTijdelijk
+     * @return static
      */
-    public function withAAllegroWachtwoord($aAllegroWachtwoord)
+    public function withAAllegroWachtwoord(string $aAllegroWachtwoord): static
     {
         $new = clone $this;
         $new->aAllegroWachtwoord = $aAllegroWachtwoord;
@@ -68,3 +68,4 @@ class LoginServiceAllegroWebLoginTijdelijk implements RequestInterface
         return $new;
     }
 }
+

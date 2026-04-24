@@ -7,31 +7,31 @@ class TPRSMutatieExtra
     /**
      * @var int
      */
-    private $ReserveringNummer;
+    private int $ReserveringNummer;
 
     /**
      * @var string
      */
-    private $ReserveringOmschrijving;
+    private string $ReserveringOmschrijving;
 
     /**
      * @var string
      */
-    private $NaamVerwijzing;
+    private string $NaamVerwijzing;
 
     /**
      * @return int
      */
-    public function getReserveringNummer()
+    public function getReserveringNummer(): int
     {
         return $this->ReserveringNummer;
     }
 
     /**
      * @param int $ReserveringNummer
-     * @return TPRSMutatieExtra
+     * @return static
      */
-    public function withReserveringNummer($ReserveringNummer)
+    public function withReserveringNummer(int $ReserveringNummer): static
     {
         $new = clone $this;
         $new->ReserveringNummer = $ReserveringNummer;
@@ -42,16 +42,16 @@ class TPRSMutatieExtra
     /**
      * @return string
      */
-    public function getReserveringOmschrijving()
+    public function getReserveringOmschrijving(): string
     {
         return $this->ReserveringOmschrijving;
     }
 
     /**
      * @param string $ReserveringOmschrijving
-     * @return TPRSMutatieExtra
+     * @return static
      */
-    public function withReserveringOmschrijving($ReserveringOmschrijving)
+    public function withReserveringOmschrijving(string $ReserveringOmschrijving): static
     {
         $new = clone $this;
         $new->ReserveringOmschrijving = $ReserveringOmschrijving;
@@ -62,16 +62,16 @@ class TPRSMutatieExtra
     /**
      * @return string
      */
-    public function getNaamVerwijzing()
+    public function getNaamVerwijzing(): string
     {
         return $this->NaamVerwijzing;
     }
 
     /**
      * @param string $NaamVerwijzing
-     * @return TPRSMutatieExtra
+     * @return static
      */
-    public function withNaamVerwijzing($NaamVerwijzing)
+    public function withNaamVerwijzing(string $NaamVerwijzing): static
     {
         $new = clone $this;
         $new->NaamVerwijzing = $NaamVerwijzing;
@@ -79,3 +79,4 @@ class TPRSMutatieExtra
         return $new;
     }
 }
+

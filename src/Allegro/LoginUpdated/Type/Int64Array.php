@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class Int64Array
 {
     /**
-     * @var int
+     * @var array<int<0,max>, int>
      */
-    private $long;
+    private array $long;
 
     /**
-     * @return int
+     * @return array<int<0,max>, int>
      */
-    public function getLong()
+    public function getLong(): array
     {
         return $this->long;
     }
 
     /**
-     * @param int $long
-     * @return Int64Array
+     * @param array<int<0,max>, int> $long
+     * @return static
      */
-    public function withLong($long)
+    public function withLong(array $long): static
     {
         $new = clone $this;
         $new->long = $long;
@@ -29,3 +29,4 @@ class Int64Array
         return $new;
     }
 }
+

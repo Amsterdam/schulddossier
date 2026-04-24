@@ -5,133 +5,133 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class TInkomen
 {
     /**
-     * @var string
+     * @var 'Werk' | 'Uitkering' | 'Combinatie_werk_en_uitkering' | 'Studiefinanciering' | 'Pensioen' | 'Combinatie_pensioen_en_uitkering' | 'Combinatie_werk_en_pensioen' | 'Combinatie_werk_en_uitkering_en_pensioen'
      */
-    private $SoortInkomen;
+    private string $SoortInkomen;
 
     /**
      * @var string
      */
-    private $Beroep;
+    private string $Beroep;
 
     /**
      * @var string
      */
-    private $Werkgever;
+    private string $Werkgever;
 
     /**
      * @var int
      */
-    private $WerkzaamSinds;
+    private int $WerkzaamSinds;
 
     /**
-     * @var string
+     * @var 'Leeg' | 'Ja' | 'Nee'
      */
-    private $VastDienstverband;
+    private string $VastDienstverband;
 
     /**
      * @var int
      */
-    private $DienstVerbandTot;
+    private int $DienstVerbandTot;
 
     /**
      * @var float
      */
-    private $Loon;
+    private float $Loon;
+
+    /**
+     * @var 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     */
+    private string $LoonPeriode;
 
     /**
      * @var string
      */
-    private $LoonPeriode;
+    private string $SoortUitkering;
 
     /**
      * @var string
      */
-    private $SoortUitkering;
-
-    /**
-     * @var string
-     */
-    private $UitkeringsInstantie;
+    private string $UitkeringsInstantie;
 
     /**
      * @var float
      */
-    private $Uitkering;
+    private float $Uitkering;
 
     /**
-     * @var string
+     * @var 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
      */
-    private $UitkeringPeriode;
-
-    /**
-     * @var float
-     */
-    private $Pensioen;
-
-    /**
-     * @var string
-     */
-    private $PensioenPeriode;
+    private string $UitkeringPeriode;
 
     /**
      * @var float
      */
-    private $KGB;
+    private float $Pensioen;
+
+    /**
+     * @var 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     */
+    private string $PensioenPeriode;
 
     /**
      * @var float
      */
-    private $Vrijwilligers;
-
-    /**
-     * @var string
-     */
-    private $VrijwilligersPeriode;
+    private float $KGB;
 
     /**
      * @var float
      */
-    private $KinderAlimentatieBedrag;
+    private float $Vrijwilligers;
+
+    /**
+     * @var 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     */
+    private string $VrijwilligersPeriode;
 
     /**
      * @var float
      */
-    private $PartnerAlimentatieBedrag;
-
-    /**
-     * @var string
-     */
-    private $OverigInkomen;
+    private float $KinderAlimentatieBedrag;
 
     /**
      * @var float
      */
-    private $OverigInkomenBedrag;
+    private float $PartnerAlimentatieBedrag;
 
     /**
      * @var string
      */
-    private $OverigInkomenPeriode;
+    private string $OverigInkomen;
+
+    /**
+     * @var float
+     */
+    private float $OverigInkomenBedrag;
+
+    /**
+     * @var 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     */
+    private string $OverigInkomenPeriode;
 
     /**
      * @var string
      */
-    private $Toelichting;
+    private string $Toelichting;
 
     /**
-     * @return string
+     * @return 'Werk' | 'Uitkering' | 'Combinatie_werk_en_uitkering' | 'Studiefinanciering' | 'Pensioen' | 'Combinatie_pensioen_en_uitkering' | 'Combinatie_werk_en_pensioen' | 'Combinatie_werk_en_uitkering_en_pensioen'
      */
-    public function getSoortInkomen()
+    public function getSoortInkomen(): string
     {
         return $this->SoortInkomen;
     }
 
     /**
-     * @param string $SoortInkomen
-     * @return TInkomen
+     * @param 'Werk' | 'Uitkering' | 'Combinatie_werk_en_uitkering' | 'Studiefinanciering' | 'Pensioen' | 'Combinatie_pensioen_en_uitkering' | 'Combinatie_werk_en_pensioen' | 'Combinatie_werk_en_uitkering_en_pensioen' $SoortInkomen
+     * @return static
      */
-    public function withSoortInkomen($SoortInkomen)
+    public function withSoortInkomen(string $SoortInkomen): static
     {
         $new = clone $this;
         $new->SoortInkomen = $SoortInkomen;
@@ -142,16 +142,16 @@ class TInkomen
     /**
      * @return string
      */
-    public function getBeroep()
+    public function getBeroep(): string
     {
         return $this->Beroep;
     }
 
     /**
      * @param string $Beroep
-     * @return TInkomen
+     * @return static
      */
-    public function withBeroep($Beroep)
+    public function withBeroep(string $Beroep): static
     {
         $new = clone $this;
         $new->Beroep = $Beroep;
@@ -162,16 +162,16 @@ class TInkomen
     /**
      * @return string
      */
-    public function getWerkgever()
+    public function getWerkgever(): string
     {
         return $this->Werkgever;
     }
 
     /**
      * @param string $Werkgever
-     * @return TInkomen
+     * @return static
      */
-    public function withWerkgever($Werkgever)
+    public function withWerkgever(string $Werkgever): static
     {
         $new = clone $this;
         $new->Werkgever = $Werkgever;
@@ -182,16 +182,16 @@ class TInkomen
     /**
      * @return int
      */
-    public function getWerkzaamSinds()
+    public function getWerkzaamSinds(): int
     {
         return $this->WerkzaamSinds;
     }
 
     /**
      * @param int $WerkzaamSinds
-     * @return TInkomen
+     * @return static
      */
-    public function withWerkzaamSinds($WerkzaamSinds)
+    public function withWerkzaamSinds(int $WerkzaamSinds): static
     {
         $new = clone $this;
         $new->WerkzaamSinds = $WerkzaamSinds;
@@ -200,18 +200,18 @@ class TInkomen
     }
 
     /**
-     * @return string
+     * @return 'Leeg' | 'Ja' | 'Nee'
      */
-    public function getVastDienstverband()
+    public function getVastDienstverband(): string
     {
         return $this->VastDienstverband;
     }
 
     /**
-     * @param string $VastDienstverband
-     * @return TInkomen
+     * @param 'Leeg' | 'Ja' | 'Nee' $VastDienstverband
+     * @return static
      */
-    public function withVastDienstverband($VastDienstverband)
+    public function withVastDienstverband(string $VastDienstverband): static
     {
         $new = clone $this;
         $new->VastDienstverband = $VastDienstverband;
@@ -222,16 +222,16 @@ class TInkomen
     /**
      * @return int
      */
-    public function getDienstVerbandTot()
+    public function getDienstVerbandTot(): int
     {
         return $this->DienstVerbandTot;
     }
 
     /**
      * @param int $DienstVerbandTot
-     * @return TInkomen
+     * @return static
      */
-    public function withDienstVerbandTot($DienstVerbandTot)
+    public function withDienstVerbandTot(int $DienstVerbandTot): static
     {
         $new = clone $this;
         $new->DienstVerbandTot = $DienstVerbandTot;
@@ -242,16 +242,16 @@ class TInkomen
     /**
      * @return float
      */
-    public function getLoon()
+    public function getLoon(): float
     {
         return $this->Loon;
     }
 
     /**
      * @param float $Loon
-     * @return TInkomen
+     * @return static
      */
-    public function withLoon($Loon)
+    public function withLoon(float $Loon): static
     {
         $new = clone $this;
         $new->Loon = $Loon;
@@ -260,18 +260,18 @@ class TInkomen
     }
 
     /**
-     * @return string
+     * @return 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
      */
-    public function getLoonPeriode()
+    public function getLoonPeriode(): string
     {
         return $this->LoonPeriode;
     }
 
     /**
-     * @param string $LoonPeriode
-     * @return TInkomen
+     * @param 'Leeg' | 'Maand' | 'Vier_weken' | 'Week' $LoonPeriode
+     * @return static
      */
-    public function withLoonPeriode($LoonPeriode)
+    public function withLoonPeriode(string $LoonPeriode): static
     {
         $new = clone $this;
         $new->LoonPeriode = $LoonPeriode;
@@ -282,16 +282,16 @@ class TInkomen
     /**
      * @return string
      */
-    public function getSoortUitkering()
+    public function getSoortUitkering(): string
     {
         return $this->SoortUitkering;
     }
 
     /**
      * @param string $SoortUitkering
-     * @return TInkomen
+     * @return static
      */
-    public function withSoortUitkering($SoortUitkering)
+    public function withSoortUitkering(string $SoortUitkering): static
     {
         $new = clone $this;
         $new->SoortUitkering = $SoortUitkering;
@@ -302,16 +302,16 @@ class TInkomen
     /**
      * @return string
      */
-    public function getUitkeringsInstantie()
+    public function getUitkeringsInstantie(): string
     {
         return $this->UitkeringsInstantie;
     }
 
     /**
      * @param string $UitkeringsInstantie
-     * @return TInkomen
+     * @return static
      */
-    public function withUitkeringsInstantie($UitkeringsInstantie)
+    public function withUitkeringsInstantie(string $UitkeringsInstantie): static
     {
         $new = clone $this;
         $new->UitkeringsInstantie = $UitkeringsInstantie;
@@ -322,16 +322,16 @@ class TInkomen
     /**
      * @return float
      */
-    public function getUitkering()
+    public function getUitkering(): float
     {
         return $this->Uitkering;
     }
 
     /**
      * @param float $Uitkering
-     * @return TInkomen
+     * @return static
      */
-    public function withUitkering($Uitkering)
+    public function withUitkering(float $Uitkering): static
     {
         $new = clone $this;
         $new->Uitkering = $Uitkering;
@@ -340,18 +340,18 @@ class TInkomen
     }
 
     /**
-     * @return string
+     * @return 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
      */
-    public function getUitkeringPeriode()
+    public function getUitkeringPeriode(): string
     {
         return $this->UitkeringPeriode;
     }
 
     /**
-     * @param string $UitkeringPeriode
-     * @return TInkomen
+     * @param 'Leeg' | 'Maand' | 'Vier_weken' | 'Week' $UitkeringPeriode
+     * @return static
      */
-    public function withUitkeringPeriode($UitkeringPeriode)
+    public function withUitkeringPeriode(string $UitkeringPeriode): static
     {
         $new = clone $this;
         $new->UitkeringPeriode = $UitkeringPeriode;
@@ -362,16 +362,16 @@ class TInkomen
     /**
      * @return float
      */
-    public function getPensioen()
+    public function getPensioen(): float
     {
         return $this->Pensioen;
     }
 
     /**
      * @param float $Pensioen
-     * @return TInkomen
+     * @return static
      */
-    public function withPensioen($Pensioen)
+    public function withPensioen(float $Pensioen): static
     {
         $new = clone $this;
         $new->Pensioen = $Pensioen;
@@ -380,18 +380,18 @@ class TInkomen
     }
 
     /**
-     * @return string
+     * @return 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
      */
-    public function getPensioenPeriode()
+    public function getPensioenPeriode(): string
     {
         return $this->PensioenPeriode;
     }
 
     /**
-     * @param string $PensioenPeriode
-     * @return TInkomen
+     * @param 'Leeg' | 'Maand' | 'Vier_weken' | 'Week' $PensioenPeriode
+     * @return static
      */
-    public function withPensioenPeriode($PensioenPeriode)
+    public function withPensioenPeriode(string $PensioenPeriode): static
     {
         $new = clone $this;
         $new->PensioenPeriode = $PensioenPeriode;
@@ -402,16 +402,16 @@ class TInkomen
     /**
      * @return float
      */
-    public function getKGB()
+    public function getKGB(): float
     {
         return $this->KGB;
     }
 
     /**
      * @param float $KGB
-     * @return TInkomen
+     * @return static
      */
-    public function withKGB($KGB)
+    public function withKGB(float $KGB): static
     {
         $new = clone $this;
         $new->KGB = $KGB;
@@ -422,16 +422,16 @@ class TInkomen
     /**
      * @return float
      */
-    public function getVrijwilligers()
+    public function getVrijwilligers(): float
     {
         return $this->Vrijwilligers;
     }
 
     /**
      * @param float $Vrijwilligers
-     * @return TInkomen
+     * @return static
      */
-    public function withVrijwilligers($Vrijwilligers)
+    public function withVrijwilligers(float $Vrijwilligers): static
     {
         $new = clone $this;
         $new->Vrijwilligers = $Vrijwilligers;
@@ -440,18 +440,18 @@ class TInkomen
     }
 
     /**
-     * @return string
+     * @return 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
      */
-    public function getVrijwilligersPeriode()
+    public function getVrijwilligersPeriode(): string
     {
         return $this->VrijwilligersPeriode;
     }
 
     /**
-     * @param string $VrijwilligersPeriode
-     * @return TInkomen
+     * @param 'Leeg' | 'Maand' | 'Vier_weken' | 'Week' $VrijwilligersPeriode
+     * @return static
      */
-    public function withVrijwilligersPeriode($VrijwilligersPeriode)
+    public function withVrijwilligersPeriode(string $VrijwilligersPeriode): static
     {
         $new = clone $this;
         $new->VrijwilligersPeriode = $VrijwilligersPeriode;
@@ -462,16 +462,16 @@ class TInkomen
     /**
      * @return float
      */
-    public function getKinderAlimentatieBedrag()
+    public function getKinderAlimentatieBedrag(): float
     {
         return $this->KinderAlimentatieBedrag;
     }
 
     /**
      * @param float $KinderAlimentatieBedrag
-     * @return TInkomen
+     * @return static
      */
-    public function withKinderAlimentatieBedrag($KinderAlimentatieBedrag)
+    public function withKinderAlimentatieBedrag(float $KinderAlimentatieBedrag): static
     {
         $new = clone $this;
         $new->KinderAlimentatieBedrag = $KinderAlimentatieBedrag;
@@ -482,16 +482,16 @@ class TInkomen
     /**
      * @return float
      */
-    public function getPartnerAlimentatieBedrag()
+    public function getPartnerAlimentatieBedrag(): float
     {
         return $this->PartnerAlimentatieBedrag;
     }
 
     /**
      * @param float $PartnerAlimentatieBedrag
-     * @return TInkomen
+     * @return static
      */
-    public function withPartnerAlimentatieBedrag($PartnerAlimentatieBedrag)
+    public function withPartnerAlimentatieBedrag(float $PartnerAlimentatieBedrag): static
     {
         $new = clone $this;
         $new->PartnerAlimentatieBedrag = $PartnerAlimentatieBedrag;
@@ -502,16 +502,16 @@ class TInkomen
     /**
      * @return string
      */
-    public function getOverigInkomen()
+    public function getOverigInkomen(): string
     {
         return $this->OverigInkomen;
     }
 
     /**
      * @param string $OverigInkomen
-     * @return TInkomen
+     * @return static
      */
-    public function withOverigInkomen($OverigInkomen)
+    public function withOverigInkomen(string $OverigInkomen): static
     {
         $new = clone $this;
         $new->OverigInkomen = $OverigInkomen;
@@ -522,16 +522,16 @@ class TInkomen
     /**
      * @return float
      */
-    public function getOverigInkomenBedrag()
+    public function getOverigInkomenBedrag(): float
     {
         return $this->OverigInkomenBedrag;
     }
 
     /**
      * @param float $OverigInkomenBedrag
-     * @return TInkomen
+     * @return static
      */
-    public function withOverigInkomenBedrag($OverigInkomenBedrag)
+    public function withOverigInkomenBedrag(float $OverigInkomenBedrag): static
     {
         $new = clone $this;
         $new->OverigInkomenBedrag = $OverigInkomenBedrag;
@@ -540,18 +540,18 @@ class TInkomen
     }
 
     /**
-     * @return string
+     * @return 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
      */
-    public function getOverigInkomenPeriode()
+    public function getOverigInkomenPeriode(): string
     {
         return $this->OverigInkomenPeriode;
     }
 
     /**
-     * @param string $OverigInkomenPeriode
-     * @return TInkomen
+     * @param 'Leeg' | 'Maand' | 'Vier_weken' | 'Week' $OverigInkomenPeriode
+     * @return static
      */
-    public function withOverigInkomenPeriode($OverigInkomenPeriode)
+    public function withOverigInkomenPeriode(string $OverigInkomenPeriode): static
     {
         $new = clone $this;
         $new->OverigInkomenPeriode = $OverigInkomenPeriode;
@@ -562,16 +562,16 @@ class TInkomen
     /**
      * @return string
      */
-    public function getToelichting()
+    public function getToelichting(): string
     {
         return $this->Toelichting;
     }
 
     /**
      * @param string $Toelichting
-     * @return TInkomen
+     * @return static
      */
-    public function withToelichting($Toelichting)
+    public function withToelichting(string $Toelichting): static
     {
         $new = clone $this;
         $new->Toelichting = $Toelichting;
@@ -579,3 +579,4 @@ class TInkomen
         return $new;
     }
 }
+

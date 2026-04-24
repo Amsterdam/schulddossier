@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class DKHeaderArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TDKHeader
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TDKHeader>
      */
-    private $TDKHeader;
+    private array $TDKHeader;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TDKHeader
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TDKHeader>
      */
-    public function getTDKHeader()
+    public function getTDKHeader(): array
     {
         return $this->TDKHeader;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TDKHeader $TDKHeader
-     * @return DKHeaderArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TDKHeader> $TDKHeader
+     * @return static
      */
-    public function withTDKHeader($TDKHeader)
+    public function withTDKHeader(array $TDKHeader): static
     {
         $new = clone $this;
         $new->TDKHeader = $TDKHeader;
@@ -29,3 +29,4 @@ class DKHeaderArray
         return $new;
     }
 }
+

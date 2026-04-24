@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class PRSMutatieArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSMutatie
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSMutatie>
      */
-    private $TPRSMutatie;
+    private array $TPRSMutatie;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSMutatie
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSMutatie>
      */
-    public function getTPRSMutatie()
+    public function getTPRSMutatie(): array
     {
         return $this->TPRSMutatie;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSMutatie $TPRSMutatie
-     * @return PRSMutatieArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSMutatie> $TPRSMutatie
+     * @return static
      */
-    public function withTPRSMutatie($TPRSMutatie)
+    public function withTPRSMutatie(array $TPRSMutatie): static
     {
         $new = clone $this;
         $new->TPRSMutatie = $TPRSMutatie;
@@ -29,3 +29,4 @@ class PRSMutatieArray
         return $new;
     }
 }
+

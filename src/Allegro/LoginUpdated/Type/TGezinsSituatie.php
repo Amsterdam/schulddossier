@@ -7,41 +7,41 @@ class TGezinsSituatie
     /**
      * @var string
      */
-    private $BurgerlijkeStaat;
+    private string $BurgerlijkeStaat;
 
     /**
      * @var string
      */
-    private $GemeenschapVanGoederen;
+    private string $GemeenschapVanGoederen;
 
     /**
      * @var string
      */
-    private $GemeenschapVanGoederenDetail;
+    private string $GemeenschapVanGoederenDetail;
 
     /**
      * @var string
      */
-    private $Kinderen;
+    private string $Kinderen;
 
     /**
      * @var \DateTimeInterface
      */
-    private $BurgerlijkeStaatSinds;
+    private \DateTimeInterface $BurgerlijkeStaatSinds;
 
     /**
      * @return string
      */
-    public function getBurgerlijkeStaat()
+    public function getBurgerlijkeStaat(): string
     {
         return $this->BurgerlijkeStaat;
     }
 
     /**
      * @param string $BurgerlijkeStaat
-     * @return TGezinsSituatie
+     * @return static
      */
-    public function withBurgerlijkeStaat($BurgerlijkeStaat)
+    public function withBurgerlijkeStaat(string $BurgerlijkeStaat): static
     {
         $new = clone $this;
         $new->BurgerlijkeStaat = $BurgerlijkeStaat;
@@ -52,16 +52,16 @@ class TGezinsSituatie
     /**
      * @return string
      */
-    public function getGemeenschapVanGoederen()
+    public function getGemeenschapVanGoederen(): string
     {
         return $this->GemeenschapVanGoederen;
     }
 
     /**
      * @param string $GemeenschapVanGoederen
-     * @return TGezinsSituatie
+     * @return static
      */
-    public function withGemeenschapVanGoederen($GemeenschapVanGoederen)
+    public function withGemeenschapVanGoederen(string $GemeenschapVanGoederen): static
     {
         $new = clone $this;
         $new->GemeenschapVanGoederen = $GemeenschapVanGoederen;
@@ -72,16 +72,16 @@ class TGezinsSituatie
     /**
      * @return string
      */
-    public function getGemeenschapVanGoederenDetail()
+    public function getGemeenschapVanGoederenDetail(): string
     {
         return $this->GemeenschapVanGoederenDetail;
     }
 
     /**
      * @param string $GemeenschapVanGoederenDetail
-     * @return TGezinsSituatie
+     * @return static
      */
-    public function withGemeenschapVanGoederenDetail($GemeenschapVanGoederenDetail)
+    public function withGemeenschapVanGoederenDetail(string $GemeenschapVanGoederenDetail): static
     {
         $new = clone $this;
         $new->GemeenschapVanGoederenDetail = $GemeenschapVanGoederenDetail;
@@ -92,16 +92,16 @@ class TGezinsSituatie
     /**
      * @return string
      */
-    public function getKinderen()
+    public function getKinderen(): string
     {
         return $this->Kinderen;
     }
 
     /**
      * @param string $Kinderen
-     * @return TGezinsSituatie
+     * @return static
      */
-    public function withKinderen($Kinderen)
+    public function withKinderen(string $Kinderen): static
     {
         $new = clone $this;
         $new->Kinderen = $Kinderen;
@@ -112,16 +112,16 @@ class TGezinsSituatie
     /**
      * @return \DateTimeInterface
      */
-    public function getBurgerlijkeStaatSinds()
+    public function getBurgerlijkeStaatSinds(): \DateTimeInterface
     {
         return $this->BurgerlijkeStaatSinds;
     }
 
     /**
      * @param \DateTimeInterface $BurgerlijkeStaatSinds
-     * @return TGezinsSituatie
+     * @return static
      */
-    public function withBurgerlijkeStaatSinds($BurgerlijkeStaatSinds)
+    public function withBurgerlijkeStaatSinds(\DateTimeInterface $BurgerlijkeStaatSinds): static
     {
         $new = clone $this;
         $new->BurgerlijkeStaatSinds = $BurgerlijkeStaatSinds;
@@ -129,3 +129,4 @@ class TGezinsSituatie
         return $new;
     }
 }
+

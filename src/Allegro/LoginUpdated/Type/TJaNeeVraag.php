@@ -7,26 +7,26 @@ class TJaNeeVraag
     /**
      * @var string
      */
-    private $Vraag;
+    private string $Vraag;
 
     /**
      * @var bool
      */
-    private $Antwoord;
+    private bool $Antwoord;
 
     /**
      * @return string
      */
-    public function getVraag()
+    public function getVraag(): string
     {
         return $this->Vraag;
     }
 
     /**
      * @param string $Vraag
-     * @return TJaNeeVraag
+     * @return static
      */
-    public function withVraag($Vraag)
+    public function withVraag(string $Vraag): static
     {
         $new = clone $this;
         $new->Vraag = $Vraag;
@@ -37,16 +37,16 @@ class TJaNeeVraag
     /**
      * @return bool
      */
-    public function getAntwoord()
+    public function getAntwoord(): bool
     {
         return $this->Antwoord;
     }
 
     /**
      * @param bool $Antwoord
-     * @return TJaNeeVraag
+     * @return static
      */
-    public function withAntwoord($Antwoord)
+    public function withAntwoord(bool $Antwoord): static
     {
         $new = clone $this;
         $new->Antwoord = $Antwoord;
@@ -54,3 +54,4 @@ class TJaNeeVraag
         return $new;
     }
 }
+

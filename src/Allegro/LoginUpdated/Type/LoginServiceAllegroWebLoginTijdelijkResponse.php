@@ -9,26 +9,28 @@ class LoginServiceAllegroWebLoginTijdelijkResponse implements ResultInterface
     /**
      * @var bool
      */
-    private $Result;
+    private bool $Result;
 
     /**
+     * Een meer uitgebreid UserInfo struct om extra informatie in kwijt te kunnen.
+     *
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\AWUserInfo
      */
-    private $aUserInfo;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\AWUserInfo $aUserInfo;
 
     /**
      * @return bool
      */
-    public function getResult()
+    public function getResult(): bool
     {
         return $this->Result;
     }
 
     /**
      * @param bool $Result
-     * @return LoginServiceAllegroWebLoginTijdelijkResponse
+     * @return static
      */
-    public function withResult($Result)
+    public function withResult(bool $Result): static
     {
         $new = clone $this;
         $new->Result = $Result;
@@ -39,16 +41,16 @@ class LoginServiceAllegroWebLoginTijdelijkResponse implements ResultInterface
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\AWUserInfo
      */
-    public function getAUserInfo()
+    public function getAUserInfo(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\AWUserInfo
     {
         return $this->aUserInfo;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\AWUserInfo $aUserInfo
-     * @return LoginServiceAllegroWebLoginTijdelijkResponse
+     * @return static
      */
-    public function withAUserInfo($aUserInfo)
+    public function withAUserInfo(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\AWUserInfo $aUserInfo): static
     {
         $new = clone $this;
         $new->aUserInfo = $aUserInfo;
@@ -56,3 +58,4 @@ class LoginServiceAllegroWebLoginTijdelijkResponse implements ResultInterface
         return $new;
     }
 }
+

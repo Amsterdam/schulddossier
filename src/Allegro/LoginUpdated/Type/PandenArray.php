@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class PandenArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPand
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPand>
      */
-    private $TPand;
+    private array $TPand;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPand
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPand>
      */
-    public function getTPand()
+    public function getTPand(): array
     {
         return $this->TPand;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPand $TPand
-     * @return PandenArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPand> $TPand
+     * @return static
      */
-    public function withTPand($TPand)
+    public function withTPand(array $TPand): static
     {
         $new = clone $this;
         $new->TPand = $TPand;
@@ -29,3 +29,4 @@ class PandenArray
         return $new;
     }
 }
+

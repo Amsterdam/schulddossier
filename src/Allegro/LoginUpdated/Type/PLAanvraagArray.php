@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class PLAanvraagArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPLAanvraag
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPLAanvraag>
      */
-    private $TPLAanvraag;
+    private array $TPLAanvraag;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPLAanvraag
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPLAanvraag>
      */
-    public function getTPLAanvraag()
+    public function getTPLAanvraag(): array
     {
         return $this->TPLAanvraag;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPLAanvraag $TPLAanvraag
-     * @return PLAanvraagArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPLAanvraag> $TPLAanvraag
+     * @return static
      */
-    public function withTPLAanvraag($TPLAanvraag)
+    public function withTPLAanvraag(array $TPLAanvraag): static
     {
         $new = clone $this;
         $new->TPLAanvraag = $TPLAanvraag;
@@ -29,3 +29,4 @@ class PLAanvraagArray
         return $new;
     }
 }
+

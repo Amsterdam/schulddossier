@@ -9,31 +9,31 @@ class LoginServiceBSNNaarRelatieMetBedrijfResponse implements ResultInterface
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\RelatiecodeBedrijfcodeArray
      */
-    private $Result;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\RelatiecodeBedrijfcodeArray $Result;
 
     /**
      * @var int
      */
-    private $ExtraInfo;
+    private int $ExtraInfo;
 
     /**
      * @var string
      */
-    private $ExtraInfoOmschrijving;
+    private string $ExtraInfoOmschrijving;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\RelatiecodeBedrijfcodeArray
      */
-    public function getResult()
+    public function getResult(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\RelatiecodeBedrijfcodeArray
     {
         return $this->Result;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\RelatiecodeBedrijfcodeArray $Result
-     * @return LoginServiceBSNNaarRelatieMetBedrijfResponse
+     * @return static
      */
-    public function withResult($Result)
+    public function withResult(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\RelatiecodeBedrijfcodeArray $Result): static
     {
         $new = clone $this;
         $new->Result = $Result;
@@ -44,16 +44,16 @@ class LoginServiceBSNNaarRelatieMetBedrijfResponse implements ResultInterface
     /**
      * @return int
      */
-    public function getExtraInfo()
+    public function getExtraInfo(): int
     {
         return $this->ExtraInfo;
     }
 
     /**
      * @param int $ExtraInfo
-     * @return LoginServiceBSNNaarRelatieMetBedrijfResponse
+     * @return static
      */
-    public function withExtraInfo($ExtraInfo)
+    public function withExtraInfo(int $ExtraInfo): static
     {
         $new = clone $this;
         $new->ExtraInfo = $ExtraInfo;
@@ -64,16 +64,16 @@ class LoginServiceBSNNaarRelatieMetBedrijfResponse implements ResultInterface
     /**
      * @return string
      */
-    public function getExtraInfoOmschrijving()
+    public function getExtraInfoOmschrijving(): string
     {
         return $this->ExtraInfoOmschrijving;
     }
 
     /**
      * @param string $ExtraInfoOmschrijving
-     * @return LoginServiceBSNNaarRelatieMetBedrijfResponse
+     * @return static
      */
-    public function withExtraInfoOmschrijving($ExtraInfoOmschrijving)
+    public function withExtraInfoOmschrijving(string $ExtraInfoOmschrijving): static
     {
         $new = clone $this;
         $new->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
@@ -81,3 +81,4 @@ class LoginServiceBSNNaarRelatieMetBedrijfResponse implements ResultInterface
         return $new;
     }
 }
+

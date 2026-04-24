@@ -7,21 +7,21 @@ class TPRSAfschriften
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSAfschriftArray
      */
-    private $Afschriften;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSAfschriftArray $Afschriften;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSAfschriftArray
      */
-    public function getAfschriften()
+    public function getAfschriften(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSAfschriftArray
     {
         return $this->Afschriften;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSAfschriftArray $Afschriften
-     * @return TPRSAfschriften
+     * @return static
      */
-    public function withAfschriften($Afschriften)
+    public function withAfschriften(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\PRSAfschriftArray $Afschriften): static
     {
         $new = clone $this;
         $new->Afschriften = $Afschriften;
@@ -29,3 +29,4 @@ class TPRSAfschriften
         return $new;
     }
 }
+

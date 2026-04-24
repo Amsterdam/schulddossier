@@ -7,101 +7,101 @@ class TSBEiser
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $RelatieCode;
 
     /**
      * @var int
      */
-    private $Volgnummer;
+    private int $Volgnummer;
 
     /**
      * @var int
      */
-    private $CodeEiser;
+    private int $CodeEiser;
 
     /**
      * @var string
      */
-    private $NaamEiser;
+    private string $NaamEiser;
 
     /**
      * @var int
      */
-    private $UniekVolgnummer;
+    private int $UniekVolgnummer;
 
     /**
      * @var string
      */
-    private $Referentie;
+    private string $Referentie;
 
     /**
      * @var float
      */
-    private $TeruggemeldBedrag;
+    private float $TeruggemeldBedrag;
 
     /**
      * @var float
      */
-    private $BerekendBedrag;
+    private float $BerekendBedrag;
 
     /**
      * @var float
      */
-    private $GereserveerdBedrag;
+    private float $GereserveerdBedrag;
 
     /**
      * @var float
      */
-    private $DoorbetaaldBedrag;
+    private float $DoorbetaaldBedrag;
 
     /**
      * @var float
      */
-    private $PrognoseRestschuld;
+    private float $PrognoseRestschuld;
 
     /**
      * @var int
      */
-    private $CodeIncasso;
+    private int $CodeIncasso;
 
     /**
      * @var string
      */
-    private $NaamIncasso;
+    private string $NaamIncasso;
 
     /**
      * @var string
      */
-    private $ReferentieIncasso;
+    private string $ReferentieIncasso;
 
     /**
      * @var int
      */
-    private $CodeDeurwaarder;
+    private int $CodeDeurwaarder;
 
     /**
      * @var string
      */
-    private $NaamDeurwaarder;
+    private string $NaamDeurwaarder;
 
     /**
      * @var string
      */
-    private $ReferentieDeurwaarder;
+    private string $ReferentieDeurwaarder;
 
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode(): int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TSBEiser
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode): static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -112,16 +112,16 @@ class TSBEiser
     /**
      * @return int
      */
-    public function getVolgnummer()
+    public function getVolgnummer(): int
     {
         return $this->Volgnummer;
     }
 
     /**
      * @param int $Volgnummer
-     * @return TSBEiser
+     * @return static
      */
-    public function withVolgnummer($Volgnummer)
+    public function withVolgnummer(int $Volgnummer): static
     {
         $new = clone $this;
         $new->Volgnummer = $Volgnummer;
@@ -132,16 +132,16 @@ class TSBEiser
     /**
      * @return int
      */
-    public function getCodeEiser()
+    public function getCodeEiser(): int
     {
         return $this->CodeEiser;
     }
 
     /**
      * @param int $CodeEiser
-     * @return TSBEiser
+     * @return static
      */
-    public function withCodeEiser($CodeEiser)
+    public function withCodeEiser(int $CodeEiser): static
     {
         $new = clone $this;
         $new->CodeEiser = $CodeEiser;
@@ -152,16 +152,16 @@ class TSBEiser
     /**
      * @return string
      */
-    public function getNaamEiser()
+    public function getNaamEiser(): string
     {
         return $this->NaamEiser;
     }
 
     /**
      * @param string $NaamEiser
-     * @return TSBEiser
+     * @return static
      */
-    public function withNaamEiser($NaamEiser)
+    public function withNaamEiser(string $NaamEiser): static
     {
         $new = clone $this;
         $new->NaamEiser = $NaamEiser;
@@ -172,16 +172,16 @@ class TSBEiser
     /**
      * @return int
      */
-    public function getUniekVolgnummer()
+    public function getUniekVolgnummer(): int
     {
         return $this->UniekVolgnummer;
     }
 
     /**
      * @param int $UniekVolgnummer
-     * @return TSBEiser
+     * @return static
      */
-    public function withUniekVolgnummer($UniekVolgnummer)
+    public function withUniekVolgnummer(int $UniekVolgnummer): static
     {
         $new = clone $this;
         $new->UniekVolgnummer = $UniekVolgnummer;
@@ -192,16 +192,16 @@ class TSBEiser
     /**
      * @return string
      */
-    public function getReferentie()
+    public function getReferentie(): string
     {
         return $this->Referentie;
     }
 
     /**
      * @param string $Referentie
-     * @return TSBEiser
+     * @return static
      */
-    public function withReferentie($Referentie)
+    public function withReferentie(string $Referentie): static
     {
         $new = clone $this;
         $new->Referentie = $Referentie;
@@ -212,16 +212,16 @@ class TSBEiser
     /**
      * @return float
      */
-    public function getTeruggemeldBedrag()
+    public function getTeruggemeldBedrag(): float
     {
         return $this->TeruggemeldBedrag;
     }
 
     /**
      * @param float $TeruggemeldBedrag
-     * @return TSBEiser
+     * @return static
      */
-    public function withTeruggemeldBedrag($TeruggemeldBedrag)
+    public function withTeruggemeldBedrag(float $TeruggemeldBedrag): static
     {
         $new = clone $this;
         $new->TeruggemeldBedrag = $TeruggemeldBedrag;
@@ -232,16 +232,16 @@ class TSBEiser
     /**
      * @return float
      */
-    public function getBerekendBedrag()
+    public function getBerekendBedrag(): float
     {
         return $this->BerekendBedrag;
     }
 
     /**
      * @param float $BerekendBedrag
-     * @return TSBEiser
+     * @return static
      */
-    public function withBerekendBedrag($BerekendBedrag)
+    public function withBerekendBedrag(float $BerekendBedrag): static
     {
         $new = clone $this;
         $new->BerekendBedrag = $BerekendBedrag;
@@ -252,16 +252,16 @@ class TSBEiser
     /**
      * @return float
      */
-    public function getGereserveerdBedrag()
+    public function getGereserveerdBedrag(): float
     {
         return $this->GereserveerdBedrag;
     }
 
     /**
      * @param float $GereserveerdBedrag
-     * @return TSBEiser
+     * @return static
      */
-    public function withGereserveerdBedrag($GereserveerdBedrag)
+    public function withGereserveerdBedrag(float $GereserveerdBedrag): static
     {
         $new = clone $this;
         $new->GereserveerdBedrag = $GereserveerdBedrag;
@@ -272,16 +272,16 @@ class TSBEiser
     /**
      * @return float
      */
-    public function getDoorbetaaldBedrag()
+    public function getDoorbetaaldBedrag(): float
     {
         return $this->DoorbetaaldBedrag;
     }
 
     /**
      * @param float $DoorbetaaldBedrag
-     * @return TSBEiser
+     * @return static
      */
-    public function withDoorbetaaldBedrag($DoorbetaaldBedrag)
+    public function withDoorbetaaldBedrag(float $DoorbetaaldBedrag): static
     {
         $new = clone $this;
         $new->DoorbetaaldBedrag = $DoorbetaaldBedrag;
@@ -292,16 +292,16 @@ class TSBEiser
     /**
      * @return float
      */
-    public function getPrognoseRestschuld()
+    public function getPrognoseRestschuld(): float
     {
         return $this->PrognoseRestschuld;
     }
 
     /**
      * @param float $PrognoseRestschuld
-     * @return TSBEiser
+     * @return static
      */
-    public function withPrognoseRestschuld($PrognoseRestschuld)
+    public function withPrognoseRestschuld(float $PrognoseRestschuld): static
     {
         $new = clone $this;
         $new->PrognoseRestschuld = $PrognoseRestschuld;
@@ -312,16 +312,16 @@ class TSBEiser
     /**
      * @return int
      */
-    public function getCodeIncasso()
+    public function getCodeIncasso(): int
     {
         return $this->CodeIncasso;
     }
 
     /**
      * @param int $CodeIncasso
-     * @return TSBEiser
+     * @return static
      */
-    public function withCodeIncasso($CodeIncasso)
+    public function withCodeIncasso(int $CodeIncasso): static
     {
         $new = clone $this;
         $new->CodeIncasso = $CodeIncasso;
@@ -332,16 +332,16 @@ class TSBEiser
     /**
      * @return string
      */
-    public function getNaamIncasso()
+    public function getNaamIncasso(): string
     {
         return $this->NaamIncasso;
     }
 
     /**
      * @param string $NaamIncasso
-     * @return TSBEiser
+     * @return static
      */
-    public function withNaamIncasso($NaamIncasso)
+    public function withNaamIncasso(string $NaamIncasso): static
     {
         $new = clone $this;
         $new->NaamIncasso = $NaamIncasso;
@@ -352,16 +352,16 @@ class TSBEiser
     /**
      * @return string
      */
-    public function getReferentieIncasso()
+    public function getReferentieIncasso(): string
     {
         return $this->ReferentieIncasso;
     }
 
     /**
      * @param string $ReferentieIncasso
-     * @return TSBEiser
+     * @return static
      */
-    public function withReferentieIncasso($ReferentieIncasso)
+    public function withReferentieIncasso(string $ReferentieIncasso): static
     {
         $new = clone $this;
         $new->ReferentieIncasso = $ReferentieIncasso;
@@ -372,16 +372,16 @@ class TSBEiser
     /**
      * @return int
      */
-    public function getCodeDeurwaarder()
+    public function getCodeDeurwaarder(): int
     {
         return $this->CodeDeurwaarder;
     }
 
     /**
      * @param int $CodeDeurwaarder
-     * @return TSBEiser
+     * @return static
      */
-    public function withCodeDeurwaarder($CodeDeurwaarder)
+    public function withCodeDeurwaarder(int $CodeDeurwaarder): static
     {
         $new = clone $this;
         $new->CodeDeurwaarder = $CodeDeurwaarder;
@@ -392,16 +392,16 @@ class TSBEiser
     /**
      * @return string
      */
-    public function getNaamDeurwaarder()
+    public function getNaamDeurwaarder(): string
     {
         return $this->NaamDeurwaarder;
     }
 
     /**
      * @param string $NaamDeurwaarder
-     * @return TSBEiser
+     * @return static
      */
-    public function withNaamDeurwaarder($NaamDeurwaarder)
+    public function withNaamDeurwaarder(string $NaamDeurwaarder): static
     {
         $new = clone $this;
         $new->NaamDeurwaarder = $NaamDeurwaarder;
@@ -412,16 +412,16 @@ class TSBEiser
     /**
      * @return string
      */
-    public function getReferentieDeurwaarder()
+    public function getReferentieDeurwaarder(): string
     {
         return $this->ReferentieDeurwaarder;
     }
 
     /**
      * @param string $ReferentieDeurwaarder
-     * @return TSBEiser
+     * @return static
      */
-    public function withReferentieDeurwaarder($ReferentieDeurwaarder)
+    public function withReferentieDeurwaarder(string $ReferentieDeurwaarder): static
     {
         $new = clone $this;
         $new->ReferentieDeurwaarder = $ReferentieDeurwaarder;
@@ -429,3 +429,4 @@ class TSBEiser
         return $new;
     }
 }
+

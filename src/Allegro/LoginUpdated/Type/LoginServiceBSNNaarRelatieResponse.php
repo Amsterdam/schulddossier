@@ -9,31 +9,31 @@ class LoginServiceBSNNaarRelatieResponse implements ResultInterface
     /**
      * @var int
      */
-    private $Result;
+    private int $Result;
 
     /**
      * @var int
      */
-    private $ExtraInfo;
+    private int $ExtraInfo;
 
     /**
      * @var string
      */
-    private $ExtraInfoOmschrijving;
+    private string $ExtraInfoOmschrijving;
 
     /**
      * @return int
      */
-    public function getResult()
+    public function getResult(): int
     {
         return $this->Result;
     }
 
     /**
      * @param int $Result
-     * @return LoginServiceBSNNaarRelatieResponse
+     * @return static
      */
-    public function withResult($Result)
+    public function withResult(int $Result): static
     {
         $new = clone $this;
         $new->Result = $Result;
@@ -44,16 +44,16 @@ class LoginServiceBSNNaarRelatieResponse implements ResultInterface
     /**
      * @return int
      */
-    public function getExtraInfo()
+    public function getExtraInfo(): int
     {
         return $this->ExtraInfo;
     }
 
     /**
      * @param int $ExtraInfo
-     * @return LoginServiceBSNNaarRelatieResponse
+     * @return static
      */
-    public function withExtraInfo($ExtraInfo)
+    public function withExtraInfo(int $ExtraInfo): static
     {
         $new = clone $this;
         $new->ExtraInfo = $ExtraInfo;
@@ -64,16 +64,16 @@ class LoginServiceBSNNaarRelatieResponse implements ResultInterface
     /**
      * @return string
      */
-    public function getExtraInfoOmschrijving()
+    public function getExtraInfoOmschrijving(): string
     {
         return $this->ExtraInfoOmschrijving;
     }
 
     /**
      * @param string $ExtraInfoOmschrijving
-     * @return LoginServiceBSNNaarRelatieResponse
+     * @return static
      */
-    public function withExtraInfoOmschrijving($ExtraInfoOmschrijving)
+    public function withExtraInfoOmschrijving(string $ExtraInfoOmschrijving): static
     {
         $new = clone $this;
         $new->ExtraInfoOmschrijving = $ExtraInfoOmschrijving;
@@ -81,3 +81,4 @@ class LoginServiceBSNNaarRelatieResponse implements ResultInterface
         return $new;
     }
 }
+

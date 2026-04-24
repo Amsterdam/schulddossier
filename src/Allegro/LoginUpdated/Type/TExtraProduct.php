@@ -7,71 +7,71 @@ class TExtraProduct
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TExtraProductHeader
      */
-    private $InfoHeader;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TExtraProductHeader $InfoHeader;
 
     /**
      * @var string
      */
-    private $Medewerker;
+    private string $Medewerker;
 
     /**
      * @var int
      */
-    private $Opdrachtgever;
+    private int $Opdrachtgever;
 
     /**
      * @var int
      */
-    private $OpdrachtgeverContact;
+    private int $OpdrachtgeverContact;
 
     /**
      * @var \DateTimeInterface
      */
-    private $Startdatum;
+    private \DateTimeInterface $Startdatum;
 
     /**
      * @var string
      */
-    private $Status;
+    private string $Status;
 
     /**
      * @var string
      */
-    private $StatusOmschrijving;
+    private string $StatusOmschrijving;
 
     /**
      * @var int
      */
-    private $UitvoerendeOrganisatie;
+    private int $UitvoerendeOrganisatie;
 
     /**
      * @var int
      */
-    private $UitvoerendeOrganisatieContact;
+    private int $UitvoerendeOrganisatieContact;
 
     /**
      * @var \DateTimeInterface
      */
-    private $GeschatteEinddatum;
+    private \DateTimeInterface $GeschatteEinddatum;
 
     /**
      * @var int
      */
-    private $PartnerCode;
+    private int $PartnerCode;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TExtraProductHeader
      */
-    public function getInfoHeader()
+    public function getInfoHeader(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TExtraProductHeader
     {
         return $this->InfoHeader;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TExtraProductHeader $InfoHeader
-     * @return TExtraProduct
+     * @return static
      */
-    public function withInfoHeader($InfoHeader)
+    public function withInfoHeader(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TExtraProductHeader $InfoHeader): static
     {
         $new = clone $this;
         $new->InfoHeader = $InfoHeader;
@@ -82,16 +82,16 @@ class TExtraProduct
     /**
      * @return string
      */
-    public function getMedewerker()
+    public function getMedewerker(): string
     {
         return $this->Medewerker;
     }
 
     /**
      * @param string $Medewerker
-     * @return TExtraProduct
+     * @return static
      */
-    public function withMedewerker($Medewerker)
+    public function withMedewerker(string $Medewerker): static
     {
         $new = clone $this;
         $new->Medewerker = $Medewerker;
@@ -102,16 +102,16 @@ class TExtraProduct
     /**
      * @return int
      */
-    public function getOpdrachtgever()
+    public function getOpdrachtgever(): int
     {
         return $this->Opdrachtgever;
     }
 
     /**
      * @param int $Opdrachtgever
-     * @return TExtraProduct
+     * @return static
      */
-    public function withOpdrachtgever($Opdrachtgever)
+    public function withOpdrachtgever(int $Opdrachtgever): static
     {
         $new = clone $this;
         $new->Opdrachtgever = $Opdrachtgever;
@@ -122,16 +122,16 @@ class TExtraProduct
     /**
      * @return int
      */
-    public function getOpdrachtgeverContact()
+    public function getOpdrachtgeverContact(): int
     {
         return $this->OpdrachtgeverContact;
     }
 
     /**
      * @param int $OpdrachtgeverContact
-     * @return TExtraProduct
+     * @return static
      */
-    public function withOpdrachtgeverContact($OpdrachtgeverContact)
+    public function withOpdrachtgeverContact(int $OpdrachtgeverContact): static
     {
         $new = clone $this;
         $new->OpdrachtgeverContact = $OpdrachtgeverContact;
@@ -142,16 +142,16 @@ class TExtraProduct
     /**
      * @return \DateTimeInterface
      */
-    public function getStartdatum()
+    public function getStartdatum(): \DateTimeInterface
     {
         return $this->Startdatum;
     }
 
     /**
      * @param \DateTimeInterface $Startdatum
-     * @return TExtraProduct
+     * @return static
      */
-    public function withStartdatum($Startdatum)
+    public function withStartdatum(\DateTimeInterface $Startdatum): static
     {
         $new = clone $this;
         $new->Startdatum = $Startdatum;
@@ -162,16 +162,16 @@ class TExtraProduct
     /**
      * @return string
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->Status;
     }
 
     /**
      * @param string $Status
-     * @return TExtraProduct
+     * @return static
      */
-    public function withStatus($Status)
+    public function withStatus(string $Status): static
     {
         $new = clone $this;
         $new->Status = $Status;
@@ -182,16 +182,16 @@ class TExtraProduct
     /**
      * @return string
      */
-    public function getStatusOmschrijving()
+    public function getStatusOmschrijving(): string
     {
         return $this->StatusOmschrijving;
     }
 
     /**
      * @param string $StatusOmschrijving
-     * @return TExtraProduct
+     * @return static
      */
-    public function withStatusOmschrijving($StatusOmschrijving)
+    public function withStatusOmschrijving(string $StatusOmschrijving): static
     {
         $new = clone $this;
         $new->StatusOmschrijving = $StatusOmschrijving;
@@ -202,16 +202,16 @@ class TExtraProduct
     /**
      * @return int
      */
-    public function getUitvoerendeOrganisatie()
+    public function getUitvoerendeOrganisatie(): int
     {
         return $this->UitvoerendeOrganisatie;
     }
 
     /**
      * @param int $UitvoerendeOrganisatie
-     * @return TExtraProduct
+     * @return static
      */
-    public function withUitvoerendeOrganisatie($UitvoerendeOrganisatie)
+    public function withUitvoerendeOrganisatie(int $UitvoerendeOrganisatie): static
     {
         $new = clone $this;
         $new->UitvoerendeOrganisatie = $UitvoerendeOrganisatie;
@@ -222,16 +222,16 @@ class TExtraProduct
     /**
      * @return int
      */
-    public function getUitvoerendeOrganisatieContact()
+    public function getUitvoerendeOrganisatieContact(): int
     {
         return $this->UitvoerendeOrganisatieContact;
     }
 
     /**
      * @param int $UitvoerendeOrganisatieContact
-     * @return TExtraProduct
+     * @return static
      */
-    public function withUitvoerendeOrganisatieContact($UitvoerendeOrganisatieContact)
+    public function withUitvoerendeOrganisatieContact(int $UitvoerendeOrganisatieContact): static
     {
         $new = clone $this;
         $new->UitvoerendeOrganisatieContact = $UitvoerendeOrganisatieContact;
@@ -242,16 +242,16 @@ class TExtraProduct
     /**
      * @return \DateTimeInterface
      */
-    public function getGeschatteEinddatum()
+    public function getGeschatteEinddatum(): \DateTimeInterface
     {
         return $this->GeschatteEinddatum;
     }
 
     /**
      * @param \DateTimeInterface $GeschatteEinddatum
-     * @return TExtraProduct
+     * @return static
      */
-    public function withGeschatteEinddatum($GeschatteEinddatum)
+    public function withGeschatteEinddatum(\DateTimeInterface $GeschatteEinddatum): static
     {
         $new = clone $this;
         $new->GeschatteEinddatum = $GeschatteEinddatum;
@@ -262,16 +262,16 @@ class TExtraProduct
     /**
      * @return int
      */
-    public function getPartnerCode()
+    public function getPartnerCode(): int
     {
         return $this->PartnerCode;
     }
 
     /**
      * @param int $PartnerCode
-     * @return TExtraProduct
+     * @return static
      */
-    public function withPartnerCode($PartnerCode)
+    public function withPartnerCode(int $PartnerCode): static
     {
         $new = clone $this;
         $new->PartnerCode = $PartnerCode;
@@ -279,3 +279,4 @@ class TExtraProduct
         return $new;
     }
 }
+

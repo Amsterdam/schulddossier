@@ -7,26 +7,26 @@ class TFooter
     /**
      * @var string
      */
-    private $Titel;
+    private string $Titel;
 
     /**
      * @var string
      */
-    private $Hyperlink;
+    private string $Hyperlink;
 
     /**
      * @return string
      */
-    public function getTitel()
+    public function getTitel(): string
     {
         return $this->Titel;
     }
 
     /**
      * @param string $Titel
-     * @return TFooter
+     * @return static
      */
-    public function withTitel($Titel)
+    public function withTitel(string $Titel): static
     {
         $new = clone $this;
         $new->Titel = $Titel;
@@ -37,16 +37,16 @@ class TFooter
     /**
      * @return string
      */
-    public function getHyperlink()
+    public function getHyperlink(): string
     {
         return $this->Hyperlink;
     }
 
     /**
      * @param string $Hyperlink
-     * @return TFooter
+     * @return static
      */
-    public function withHyperlink($Hyperlink)
+    public function withHyperlink(string $Hyperlink): static
     {
         $new = clone $this;
         $new->Hyperlink = $Hyperlink;
@@ -54,3 +54,4 @@ class TFooter
         return $new;
     }
 }
+

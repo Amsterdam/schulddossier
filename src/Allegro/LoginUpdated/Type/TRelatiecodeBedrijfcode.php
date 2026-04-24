@@ -7,31 +7,31 @@ class TRelatiecodeBedrijfcode
     /**
      * @var int
      */
-    private $Relatiecode;
+    private int $Relatiecode;
 
     /**
      * @var int
      */
-    private $Bedrijfscode;
+    private int $Bedrijfscode;
 
     /**
      * @var string
      */
-    private $Bedrijfsnaam;
+    private string $Bedrijfsnaam;
 
     /**
      * @return int
      */
-    public function getRelatiecode()
+    public function getRelatiecode(): int
     {
         return $this->Relatiecode;
     }
 
     /**
      * @param int $Relatiecode
-     * @return TRelatiecodeBedrijfcode
+     * @return static
      */
-    public function withRelatiecode($Relatiecode)
+    public function withRelatiecode(int $Relatiecode): static
     {
         $new = clone $this;
         $new->Relatiecode = $Relatiecode;
@@ -42,16 +42,16 @@ class TRelatiecodeBedrijfcode
     /**
      * @return int
      */
-    public function getBedrijfscode()
+    public function getBedrijfscode(): int
     {
         return $this->Bedrijfscode;
     }
 
     /**
      * @param int $Bedrijfscode
-     * @return TRelatiecodeBedrijfcode
+     * @return static
      */
-    public function withBedrijfscode($Bedrijfscode)
+    public function withBedrijfscode(int $Bedrijfscode): static
     {
         $new = clone $this;
         $new->Bedrijfscode = $Bedrijfscode;
@@ -62,16 +62,16 @@ class TRelatiecodeBedrijfcode
     /**
      * @return string
      */
-    public function getBedrijfsnaam()
+    public function getBedrijfsnaam(): string
     {
         return $this->Bedrijfsnaam;
     }
 
     /**
      * @param string $Bedrijfsnaam
-     * @return TRelatiecodeBedrijfcode
+     * @return static
      */
-    public function withBedrijfsnaam($Bedrijfsnaam)
+    public function withBedrijfsnaam(string $Bedrijfsnaam): static
     {
         $new = clone $this;
         $new->Bedrijfsnaam = $Bedrijfsnaam;
@@ -79,3 +79,4 @@ class TRelatiecodeBedrijfcode
         return $new;
     }
 }
+

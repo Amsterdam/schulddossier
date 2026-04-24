@@ -9,14 +9,14 @@ class LoginServiceBSNNaarRelatieMetBedrijf implements RequestInterface
     /**
      * @var int
      */
-    private $BSN;
+    private int $BSN;
 
     /**
      * Constructor
      *
      * @param int $BSN
      */
-    public function __construct($BSN)
+    public function __construct(int $BSN)
     {
         $this->BSN = $BSN;
     }
@@ -24,16 +24,16 @@ class LoginServiceBSNNaarRelatieMetBedrijf implements RequestInterface
     /**
      * @return int
      */
-    public function getBSN()
+    public function getBSN(): int
     {
         return $this->BSN;
     }
 
     /**
      * @param int $BSN
-     * @return LoginServiceBSNNaarRelatieMetBedrijf
+     * @return static
      */
-    public function withBSN($BSN)
+    public function withBSN(int $BSN): static
     {
         $new = clone $this;
         $new->BSN = $BSN;
@@ -41,3 +41,4 @@ class LoginServiceBSNNaarRelatieMetBedrijf implements RequestInterface
         return $new;
     }
 }
+

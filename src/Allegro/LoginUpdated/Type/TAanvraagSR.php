@@ -7,91 +7,91 @@ class TAanvraagSR
     /**
      * @var int
      */
-    private $Bedrijfscode;
+    private int $Bedrijfscode;
 
     /**
      * @var bool
      */
-    private $CorrespondentieWeb;
+    private bool $CorrespondentieWeb;
 
     /**
      * @var bool
      */
-    private $NPS;
+    private bool $NPS;
 
     /**
      * @var string
      */
-    private $OorzaakSchulden;
+    private string $OorzaakSchulden;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOrganisatie
      */
-    private $Bewindvoerder;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOrganisatie $Bewindvoerder;
 
     /**
      * @var string
      */
-    private $ToelichtingAlgemeen;
+    private string $ToelichtingAlgemeen;
 
     /**
      * @var string
      */
-    private $ToelichtingSO;
+    private string $ToelichtingSO;
 
     /**
      * @var string
      */
-    private $ToelichtingAanmelding;
+    private string $ToelichtingAanmelding;
 
     /**
      * @var string
      */
-    private $ToelichtingVoorstel;
+    private string $ToelichtingVoorstel;
 
     /**
      * @var bool
      */
-    private $TotaalschuldVullen;
+    private bool $TotaalschuldVullen;
 
     /**
      * @var bool
      */
-    private $OpdrachtgeverOvernemen;
+    private bool $OpdrachtgeverOvernemen;
 
     /**
      * @var bool
      */
-    private $HulpverlenerOvernemen;
+    private bool $HulpverlenerOvernemen;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\OpenVraagArray
      */
-    private $OpenVragen;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\OpenVraagArray $OpenVragen;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\GeslotenVraagArray
      */
-    private $GeslotenVragen;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\GeslotenVraagArray $GeslotenVragen;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SchuldArray
      */
-    private $Schulden;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SchuldArray $Schulden;
 
     /**
      * @return int
      */
-    public function getBedrijfscode()
+    public function getBedrijfscode(): int
     {
         return $this->Bedrijfscode;
     }
 
     /**
      * @param int $Bedrijfscode
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withBedrijfscode($Bedrijfscode)
+    public function withBedrijfscode(int $Bedrijfscode): static
     {
         $new = clone $this;
         $new->Bedrijfscode = $Bedrijfscode;
@@ -102,16 +102,16 @@ class TAanvraagSR
     /**
      * @return bool
      */
-    public function getCorrespondentieWeb()
+    public function getCorrespondentieWeb(): bool
     {
         return $this->CorrespondentieWeb;
     }
 
     /**
      * @param bool $CorrespondentieWeb
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withCorrespondentieWeb($CorrespondentieWeb)
+    public function withCorrespondentieWeb(bool $CorrespondentieWeb): static
     {
         $new = clone $this;
         $new->CorrespondentieWeb = $CorrespondentieWeb;
@@ -122,16 +122,16 @@ class TAanvraagSR
     /**
      * @return bool
      */
-    public function getNPS()
+    public function getNPS(): bool
     {
         return $this->NPS;
     }
 
     /**
      * @param bool $NPS
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withNPS($NPS)
+    public function withNPS(bool $NPS): static
     {
         $new = clone $this;
         $new->NPS = $NPS;
@@ -142,16 +142,16 @@ class TAanvraagSR
     /**
      * @return string
      */
-    public function getOorzaakSchulden()
+    public function getOorzaakSchulden(): string
     {
         return $this->OorzaakSchulden;
     }
 
     /**
      * @param string $OorzaakSchulden
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withOorzaakSchulden($OorzaakSchulden)
+    public function withOorzaakSchulden(string $OorzaakSchulden): static
     {
         $new = clone $this;
         $new->OorzaakSchulden = $OorzaakSchulden;
@@ -162,16 +162,16 @@ class TAanvraagSR
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOrganisatie
      */
-    public function getBewindvoerder()
+    public function getBewindvoerder(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOrganisatie
     {
         return $this->Bewindvoerder;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOrganisatie $Bewindvoerder
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withBewindvoerder($Bewindvoerder)
+    public function withBewindvoerder(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TOrganisatie $Bewindvoerder): static
     {
         $new = clone $this;
         $new->Bewindvoerder = $Bewindvoerder;
@@ -182,16 +182,16 @@ class TAanvraagSR
     /**
      * @return string
      */
-    public function getToelichtingAlgemeen()
+    public function getToelichtingAlgemeen(): string
     {
         return $this->ToelichtingAlgemeen;
     }
 
     /**
      * @param string $ToelichtingAlgemeen
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withToelichtingAlgemeen($ToelichtingAlgemeen)
+    public function withToelichtingAlgemeen(string $ToelichtingAlgemeen): static
     {
         $new = clone $this;
         $new->ToelichtingAlgemeen = $ToelichtingAlgemeen;
@@ -202,16 +202,16 @@ class TAanvraagSR
     /**
      * @return string
      */
-    public function getToelichtingSO()
+    public function getToelichtingSO(): string
     {
         return $this->ToelichtingSO;
     }
 
     /**
      * @param string $ToelichtingSO
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withToelichtingSO($ToelichtingSO)
+    public function withToelichtingSO(string $ToelichtingSO): static
     {
         $new = clone $this;
         $new->ToelichtingSO = $ToelichtingSO;
@@ -222,16 +222,16 @@ class TAanvraagSR
     /**
      * @return string
      */
-    public function getToelichtingAanmelding()
+    public function getToelichtingAanmelding(): string
     {
         return $this->ToelichtingAanmelding;
     }
 
     /**
      * @param string $ToelichtingAanmelding
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withToelichtingAanmelding($ToelichtingAanmelding)
+    public function withToelichtingAanmelding(string $ToelichtingAanmelding): static
     {
         $new = clone $this;
         $new->ToelichtingAanmelding = $ToelichtingAanmelding;
@@ -242,16 +242,16 @@ class TAanvraagSR
     /**
      * @return string
      */
-    public function getToelichtingVoorstel()
+    public function getToelichtingVoorstel(): string
     {
         return $this->ToelichtingVoorstel;
     }
 
     /**
      * @param string $ToelichtingVoorstel
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withToelichtingVoorstel($ToelichtingVoorstel)
+    public function withToelichtingVoorstel(string $ToelichtingVoorstel): static
     {
         $new = clone $this;
         $new->ToelichtingVoorstel = $ToelichtingVoorstel;
@@ -262,16 +262,16 @@ class TAanvraagSR
     /**
      * @return bool
      */
-    public function getTotaalschuldVullen()
+    public function getTotaalschuldVullen(): bool
     {
         return $this->TotaalschuldVullen;
     }
 
     /**
      * @param bool $TotaalschuldVullen
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withTotaalschuldVullen($TotaalschuldVullen)
+    public function withTotaalschuldVullen(bool $TotaalschuldVullen): static
     {
         $new = clone $this;
         $new->TotaalschuldVullen = $TotaalschuldVullen;
@@ -282,16 +282,16 @@ class TAanvraagSR
     /**
      * @return bool
      */
-    public function getOpdrachtgeverOvernemen()
+    public function getOpdrachtgeverOvernemen(): bool
     {
         return $this->OpdrachtgeverOvernemen;
     }
 
     /**
      * @param bool $OpdrachtgeverOvernemen
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withOpdrachtgeverOvernemen($OpdrachtgeverOvernemen)
+    public function withOpdrachtgeverOvernemen(bool $OpdrachtgeverOvernemen): static
     {
         $new = clone $this;
         $new->OpdrachtgeverOvernemen = $OpdrachtgeverOvernemen;
@@ -302,16 +302,16 @@ class TAanvraagSR
     /**
      * @return bool
      */
-    public function getHulpverlenerOvernemen()
+    public function getHulpverlenerOvernemen(): bool
     {
         return $this->HulpverlenerOvernemen;
     }
 
     /**
      * @param bool $HulpverlenerOvernemen
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withHulpverlenerOvernemen($HulpverlenerOvernemen)
+    public function withHulpverlenerOvernemen(bool $HulpverlenerOvernemen): static
     {
         $new = clone $this;
         $new->HulpverlenerOvernemen = $HulpverlenerOvernemen;
@@ -322,16 +322,16 @@ class TAanvraagSR
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\OpenVraagArray
      */
-    public function getOpenVragen()
+    public function getOpenVragen(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\OpenVraagArray
     {
         return $this->OpenVragen;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\OpenVraagArray $OpenVragen
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withOpenVragen($OpenVragen)
+    public function withOpenVragen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\OpenVraagArray $OpenVragen): static
     {
         $new = clone $this;
         $new->OpenVragen = $OpenVragen;
@@ -342,16 +342,16 @@ class TAanvraagSR
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\GeslotenVraagArray
      */
-    public function getGeslotenVragen()
+    public function getGeslotenVragen(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\GeslotenVraagArray
     {
         return $this->GeslotenVragen;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\GeslotenVraagArray $GeslotenVragen
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withGeslotenVragen($GeslotenVragen)
+    public function withGeslotenVragen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\GeslotenVraagArray $GeslotenVragen): static
     {
         $new = clone $this;
         $new->GeslotenVragen = $GeslotenVragen;
@@ -362,16 +362,16 @@ class TAanvraagSR
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SchuldArray
      */
-    public function getSchulden()
+    public function getSchulden(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SchuldArray
     {
         return $this->Schulden;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SchuldArray $Schulden
-     * @return TAanvraagSR
+     * @return static
      */
-    public function withSchulden($Schulden)
+    public function withSchulden(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SchuldArray $Schulden): static
     {
         $new = clone $this;
         $new->Schulden = $Schulden;
@@ -379,3 +379,4 @@ class TAanvraagSR
         return $new;
     }
 }
+

@@ -7,26 +7,26 @@ class TTest
     /**
      * @var string
      */
-    private $Veld1;
+    private string $Veld1;
 
     /**
      * @var int
      */
-    private $Veld2;
+    private int $Veld2;
 
     /**
      * @return string
      */
-    public function getVeld1()
+    public function getVeld1(): string
     {
         return $this->Veld1;
     }
 
     /**
      * @param string $Veld1
-     * @return TTest
+     * @return static
      */
-    public function withVeld1($Veld1)
+    public function withVeld1(string $Veld1): static
     {
         $new = clone $this;
         $new->Veld1 = $Veld1;
@@ -37,16 +37,16 @@ class TTest
     /**
      * @return int
      */
-    public function getVeld2()
+    public function getVeld2(): int
     {
         return $this->Veld2;
     }
 
     /**
      * @param int $Veld2
-     * @return TTest
+     * @return static
      */
-    public function withVeld2($Veld2)
+    public function withVeld2(int $Veld2): static
     {
         $new = clone $this;
         $new->Veld2 = $Veld2;
@@ -54,3 +54,4 @@ class TTest
         return $new;
     }
 }
+

@@ -9,12 +9,12 @@ class LoginServiceActiveerRegistratie implements RequestInterface
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $RelatieCode;
 
     /**
      * @var string
      */
-    private $RegistratieCode;
+    private string $RegistratieCode;
 
     /**
      * Constructor
@@ -22,7 +22,7 @@ class LoginServiceActiveerRegistratie implements RequestInterface
      * @param int $RelatieCode
      * @param string $RegistratieCode
      */
-    public function __construct($RelatieCode, $RegistratieCode)
+    public function __construct(int $RelatieCode, string $RegistratieCode)
     {
         $this->RelatieCode = $RelatieCode;
         $this->RegistratieCode = $RegistratieCode;
@@ -31,16 +31,16 @@ class LoginServiceActiveerRegistratie implements RequestInterface
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode(): int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return LoginServiceActiveerRegistratie
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode): static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -51,16 +51,16 @@ class LoginServiceActiveerRegistratie implements RequestInterface
     /**
      * @return string
      */
-    public function getRegistratieCode()
+    public function getRegistratieCode(): string
     {
         return $this->RegistratieCode;
     }
 
     /**
      * @param string $RegistratieCode
-     * @return LoginServiceActiveerRegistratie
+     * @return static
      */
-    public function withRegistratieCode($RegistratieCode)
+    public function withRegistratieCode(string $RegistratieCode): static
     {
         $new = clone $this;
         $new->RegistratieCode = $RegistratieCode;
@@ -68,3 +68,4 @@ class LoginServiceActiveerRegistratie implements RequestInterface
         return $new;
     }
 }
+

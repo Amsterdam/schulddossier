@@ -7,36 +7,36 @@ class TOrganisatie
     /**
      * @var int
      */
-    private $RelatieCode;
+    private int $RelatieCode;
 
     /**
      * @var string
      */
-    private $Naam;
+    private string $Naam;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    private $BezoekAdres;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $BezoekAdres;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    private $PostAdres;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $PostAdres;
 
     /**
      * @return int
      */
-    public function getRelatieCode()
+    public function getRelatieCode(): int
     {
         return $this->RelatieCode;
     }
 
     /**
      * @param int $RelatieCode
-     * @return TOrganisatie
+     * @return static
      */
-    public function withRelatieCode($RelatieCode)
+    public function withRelatieCode(int $RelatieCode): static
     {
         $new = clone $this;
         $new->RelatieCode = $RelatieCode;
@@ -47,16 +47,16 @@ class TOrganisatie
     /**
      * @return string
      */
-    public function getNaam()
+    public function getNaam(): string
     {
         return $this->Naam;
     }
 
     /**
      * @param string $Naam
-     * @return TOrganisatie
+     * @return static
      */
-    public function withNaam($Naam)
+    public function withNaam(string $Naam): static
     {
         $new = clone $this;
         $new->Naam = $Naam;
@@ -67,16 +67,16 @@ class TOrganisatie
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    public function getBezoekAdres()
+    public function getBezoekAdres(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
     {
         return $this->BezoekAdres;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $BezoekAdres
-     * @return TOrganisatie
+     * @return static
      */
-    public function withBezoekAdres($BezoekAdres)
+    public function withBezoekAdres(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $BezoekAdres): static
     {
         $new = clone $this;
         $new->BezoekAdres = $BezoekAdres;
@@ -87,16 +87,16 @@ class TOrganisatie
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
      */
-    public function getPostAdres()
+    public function getPostAdres(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres
     {
         return $this->PostAdres;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $PostAdres
-     * @return TOrganisatie
+     * @return static
      */
-    public function withPostAdres($PostAdres)
+    public function withPostAdres(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TAdres $PostAdres): static
     {
         $new = clone $this;
         $new->PostAdres = $PostAdres;
@@ -104,3 +104,4 @@ class TOrganisatie
         return $new;
     }
 }
+

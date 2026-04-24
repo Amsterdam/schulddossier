@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class LijstOpdrachtgeverArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TLijstOpdrachtgever
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TLijstOpdrachtgever>
      */
-    private $TLijstOpdrachtgever;
+    private array $TLijstOpdrachtgever;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TLijstOpdrachtgever
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TLijstOpdrachtgever>
      */
-    public function getTLijstOpdrachtgever()
+    public function getTLijstOpdrachtgever(): array
     {
         return $this->TLijstOpdrachtgever;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TLijstOpdrachtgever $TLijstOpdrachtgever
-     * @return LijstOpdrachtgeverArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TLijstOpdrachtgever> $TLijstOpdrachtgever
+     * @return static
      */
-    public function withTLijstOpdrachtgever($TLijstOpdrachtgever)
+    public function withTLijstOpdrachtgever(array $TLijstOpdrachtgever): static
     {
         $new = clone $this;
         $new->TLijstOpdrachtgever = $TLijstOpdrachtgever;
@@ -29,3 +29,4 @@ class LijstOpdrachtgeverArray
         return $new;
     }
 }
+

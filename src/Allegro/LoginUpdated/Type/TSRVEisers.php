@@ -7,36 +7,36 @@ class TSRVEisers
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SRVEiserArray
      */
-    private $Eisers;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SRVEiserArray $Eisers;
 
     /**
      * @var float
      */
-    private $SomAangemeldBedrag;
+    private float $SomAangemeldBedrag;
 
     /**
      * @var float
      */
-    private $SomTeruggemeldBedrag;
+    private float $SomTeruggemeldBedrag;
 
     /**
      * @var float
      */
-    private $SomBerekendBedrag;
+    private float $SomBerekendBedrag;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SRVEiserArray
      */
-    public function getEisers()
+    public function getEisers(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SRVEiserArray
     {
         return $this->Eisers;
     }
 
     /**
      * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SRVEiserArray $Eisers
-     * @return TSRVEisers
+     * @return static
      */
-    public function withEisers($Eisers)
+    public function withEisers(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SRVEiserArray $Eisers): static
     {
         $new = clone $this;
         $new->Eisers = $Eisers;
@@ -47,16 +47,16 @@ class TSRVEisers
     /**
      * @return float
      */
-    public function getSomAangemeldBedrag()
+    public function getSomAangemeldBedrag(): float
     {
         return $this->SomAangemeldBedrag;
     }
 
     /**
      * @param float $SomAangemeldBedrag
-     * @return TSRVEisers
+     * @return static
      */
-    public function withSomAangemeldBedrag($SomAangemeldBedrag)
+    public function withSomAangemeldBedrag(float $SomAangemeldBedrag): static
     {
         $new = clone $this;
         $new->SomAangemeldBedrag = $SomAangemeldBedrag;
@@ -67,16 +67,16 @@ class TSRVEisers
     /**
      * @return float
      */
-    public function getSomTeruggemeldBedrag()
+    public function getSomTeruggemeldBedrag(): float
     {
         return $this->SomTeruggemeldBedrag;
     }
 
     /**
      * @param float $SomTeruggemeldBedrag
-     * @return TSRVEisers
+     * @return static
      */
-    public function withSomTeruggemeldBedrag($SomTeruggemeldBedrag)
+    public function withSomTeruggemeldBedrag(float $SomTeruggemeldBedrag): static
     {
         $new = clone $this;
         $new->SomTeruggemeldBedrag = $SomTeruggemeldBedrag;
@@ -87,16 +87,16 @@ class TSRVEisers
     /**
      * @return float
      */
-    public function getSomBerekendBedrag()
+    public function getSomBerekendBedrag(): float
     {
         return $this->SomBerekendBedrag;
     }
 
     /**
      * @param float $SomBerekendBedrag
-     * @return TSRVEisers
+     * @return static
      */
-    public function withSomBerekendBedrag($SomBerekendBedrag)
+    public function withSomBerekendBedrag(float $SomBerekendBedrag): static
     {
         $new = clone $this;
         $new->SomBerekendBedrag = $SomBerekendBedrag;
@@ -104,3 +104,4 @@ class TSRVEisers
         return $new;
     }
 }
+

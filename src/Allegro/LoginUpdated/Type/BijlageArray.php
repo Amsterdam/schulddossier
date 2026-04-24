@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class BijlageArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBijlage
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBijlage>
      */
-    private $TBijlage;
+    private array $TBijlage;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBijlage
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBijlage>
      */
-    public function getTBijlage()
+    public function getTBijlage(): array
     {
         return $this->TBijlage;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBijlage $TBijlage
-     * @return BijlageArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TBijlage> $TBijlage
+     * @return static
      */
-    public function withTBijlage($TBijlage)
+    public function withTBijlage(array $TBijlage): static
     {
         $new = clone $this;
         $new->TBijlage = $TBijlage;
@@ -29,3 +29,4 @@ class BijlageArray
         return $new;
     }
 }
+

@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class TeamArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TTeam
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TTeam>
      */
-    private $TTeam;
+    private array $TTeam;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TTeam
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TTeam>
      */
-    public function getTTeam()
+    public function getTTeam(): array
     {
         return $this->TTeam;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TTeam $TTeam
-     * @return TeamArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TTeam> $TTeam
+     * @return static
      */
-    public function withTTeam($TTeam)
+    public function withTTeam(array $TTeam): static
     {
         $new = clone $this;
         $new->TTeam = $TTeam;
@@ -29,3 +29,4 @@ class TeamArray
         return $new;
     }
 }
+

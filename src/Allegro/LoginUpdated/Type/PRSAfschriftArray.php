@@ -5,23 +5,25 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class PRSAfschriftArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSAfschrift
+     * Tbv. PRS Online Afschriften
+     *
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSAfschrift>
      */
-    private $TPRSAfschrift;
+    private array $TPRSAfschrift;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSAfschrift
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSAfschrift>
      */
-    public function getTPRSAfschrift()
+    public function getTPRSAfschrift(): array
     {
         return $this->TPRSAfschrift;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSAfschrift $TPRSAfschrift
-     * @return PRSAfschriftArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TPRSAfschrift> $TPRSAfschrift
+     * @return static
      */
-    public function withTPRSAfschrift($TPRSAfschrift)
+    public function withTPRSAfschrift(array $TPRSAfschrift): static
     {
         $new = clone $this;
         $new->TPRSAfschrift = $TPRSAfschrift;
@@ -29,3 +31,4 @@ class PRSAfschriftArray
         return $new;
     }
 }
+

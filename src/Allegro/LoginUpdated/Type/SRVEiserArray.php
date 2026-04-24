@@ -5,23 +5,23 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class SRVEiserArray
 {
     /**
-     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TSRVEiser
+     * @var array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TSRVEiser>
      */
-    private $TSRVEiser;
+    private array $TSRVEiser;
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TSRVEiser
+     * @return array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TSRVEiser>
      */
-    public function getTSRVEiser()
+    public function getTSRVEiser(): array
     {
         return $this->TSRVEiser;
     }
 
     /**
-     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TSRVEiser $TSRVEiser
-     * @return SRVEiserArray
+     * @param array<int<0,max>, \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\TSRVEiser> $TSRVEiser
+     * @return static
      */
-    public function withTSRVEiser($TSRVEiser)
+    public function withTSRVEiser(array $TSRVEiser): static
     {
         $new = clone $this;
         $new->TSRVEiser = $TSRVEiser;
@@ -29,3 +29,4 @@ class SRVEiserArray
         return $new;
     }
 }
+
