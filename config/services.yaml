@@ -73,7 +73,7 @@ services:
         tags:
             - { name: kernel.event_listener, event: Symfony\Component\Security\Http\Event\LogoutEvent, dispatcher: security.event_dispatcher.app }
         bind:
-        $url: '%env(IAM_LOGOUT_URL)%'
+            $url: '%env(IAM_LOGOUT_URL)%'
   
     # Services
     GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector:
