@@ -2,11 +2,14 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\ExpressionLanguage\Expression;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class DefaultController extends AbstractController
 {
@@ -35,7 +38,6 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/ping")
      * @return JsonResponse
      */
     #[\Symfony\Component\Routing\Attribute\Route(path: '/ping')]

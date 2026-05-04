@@ -13,10 +13,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\SearchLogFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository;
 use Knp\Component\Pager\PaginatorInterface;
 
-/**
- * @Route("/app/log")
- * @Security("is_granted('ROLE_USER')")
- */
+#[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
 class AppLogController extends AbstractController
 {
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/log/')]

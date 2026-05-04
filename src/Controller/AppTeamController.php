@@ -12,11 +12,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-/**
- * @Route("/app/team")
- * @Security("is_granted('ROLE_USER')")
- */
+#[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
 class AppTeamController extends AbstractController
 {
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/team/')]
@@ -24,7 +22,10 @@ class AppTeamController extends AbstractController
     {
         $maxPageSize = 10;
 
-        $teams = $repository->findAll($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+        $teams = $repository->findAll(
+            $request->query->getInt('page', 0),
+            $request->query->getInt('pageSize', $maxPageSize)
+        );
 
         return $this->render('Team/index.html.twig', [
             'teams' => $teams,

@@ -4,22 +4,21 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
 #[IsGranted('ROLE_USER')]
 class HelpController extends AbstractController
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/help')]
     #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]

@@ -8,16 +8,14 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\OrganisatieFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Component\ExpressionLanguage\Expression;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-/**
- * @Route("/app/organisatie")
- * @Security("is_granted('ROLE_USER')")
- */
+#[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
 class AppOrganisatieController extends AbstractController
 {
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/organisatie/')]
@@ -25,7 +23,10 @@ class AppOrganisatieController extends AbstractController
     {
         $maxPageSize = 10;
 
-        $organisaties = $repository->findAll($request->query->getInt('page', 0), $request->query->getInt('pageSize', $maxPageSize));
+        $organisaties = $repository->findAll(
+            $request->query->getInt('page', 0),
+            $request->query->getInt('pageSize', $maxPageSize)
+        );
 
         return $this->render('Organisatie/index.html.twig', [
             'organisaties' => $organisaties,

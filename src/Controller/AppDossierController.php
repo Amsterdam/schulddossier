@@ -35,24 +35,17 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use GemeenteAmsterdam\FixxxSchuldhulp\Constants\SchuldeiserOrganisationType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository;
-use Knp\Component\Pager\PaginatorInterface;
-use League\Flysystem\FileNotFoundException;
+use Http\Discovery\Exception\NotFoundException;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
-use League\Flysystem\Adapter\Local;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpWord\IOFactory;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -68,16 +61,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
+use Symfony\Contracts\Cache\ItemInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 use ZipArchive;
 
-/**
- * @Route("/app/dossier")
- * @Security("is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
- */
+#[IsGranted(attribute: new Expression(
+    "is_granted('ROLE_SHV') || is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
+))]
 class AppDossierController extends AbstractController
 {
 
@@ -914,10 +909,6 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder")
-     * @Method({"POST"})
-     * @Security("user == aantekening.getGebruiker()")
-     * @ParamConverter("aantekening", options={"id"="aantekeningId"})
      * @param Request $request
      * @param Aantekening $aantekening
      * @param EntityManagerInterface $em
@@ -1276,10 +1267,6 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/downloadPdf")
-     * @Method("GET")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
      * @param Dossier $dossier
      *
      * @return Response
@@ -1294,14 +1281,9 @@ class AppDossierController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{dossierId}/downloadCsv")
-     * @Method("GET")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
      * @param Dossier $dossier
      *
      * @param FileStorageSelector $fileStorageSelector
-     *
      * @return Response
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception

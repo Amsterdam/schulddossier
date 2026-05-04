@@ -6,15 +6,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\MijnGegevensFormType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @Route("/app/mijn-gegevens")
- */
 class AppMijnGegevensController extends AbstractController
 {
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/mijn-gegevens/')]
@@ -27,10 +23,13 @@ class AppMijnGegevensController extends AbstractController
             if ($form->isValid()) {
                 $em->flush();
                 $this->addFlash('success', 'Opgeslagen');
-                $eventDispatcher->dispatch(ActionEvent::registerGebruikerGewijzigd($gebruiker, $gebruiker), ActionEvent::NAME);
+                $eventDispatcher->dispatch(
+                    ActionEvent::registerGebruikerGewijzigd($gebruiker, $gebruiker),
+                    ActionEvent::NAME
+                );
                 return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appmijngegevens_index');
             } else {
-                foreach ($form->getErrors() as $key => $error) {
+                foreach ($form->getErrors() as $error) {
                     $this->addFlash('error', $error->getMessage());
                 }
             }
