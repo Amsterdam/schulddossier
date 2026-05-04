@@ -25,6 +25,10 @@ parameters:
 
 
 services:
+
+    # Added for upgrade to Symfony 6
+    Symfony\Component\DependencyInjection\ContainerInterface: '@service_container'
+
     _defaults:
         autowire: true
         autoconfigure: true
@@ -40,11 +44,7 @@ services:
 
     GemeenteAmsterdam\FixxxSchuldhulp\:
         resource: '../src/'
-        exclude:
-            - '../src/Migrations/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-            - '../src/Tests/'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
     # Controllers
     GemeenteAmsterdam\FixxxSchuldhulp\Controller\:
@@ -54,10 +54,10 @@ services:
     # Doctrine EventListeners
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\GebruikerPasswordSubscriber:
         arguments:
-        - '@security.user_password_hasher'
+            - '@security.user_password_hasher'
         tags:
-        - name: doctrine.event_subscriber
-            connection: default
+            - name: doctrine.event_subscriber
+              connection: default
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\DocumentUploadSubscriber:
         tags:
             - name: doctrine.event_subscriber
