@@ -54,10 +54,10 @@ services:
     # Doctrine EventListeners
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\GebruikerPasswordSubscriber:
         arguments:
-            - '@security.user_password_encoder.generic'
+        - '@security.user_password_hasher'
         tags:
-            - name: doctrine.event_subscriber
-              connection: default
+        - name: doctrine.event_subscriber
+            connection: default
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\DocumentUploadSubscriber:
         tags:
             - name: doctrine.event_subscriber
@@ -69,6 +69,12 @@ services:
             - '%env(APP_NOTIFICATIE_FROM)%'
             - '%env(APP_ENV)%'
     
+    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\LogoutSubscriber:
+        tags:
+            - { name: kernel.event_listener, event: Symfony\Component\Security\Http\Event\LogoutEvent, dispatcher: security.event_dispatcher.app }
+        bind:
+        $url: '%env(IAM_LOGOUT_URL)%'
+  
     # Services
     GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector:
         #lazy: true
@@ -78,23 +84,6 @@ services:
         arguments:
             - '%kernel.environment%'
             - '%kernel.project_dir%'
-
-
-    GemeenteAmsterdam\FixxxSchuldhulp\EventListener\LogoutSubscriber:
-        tags:
-        - { name: kernel.event_listener, event: Symfony\Component\Security\Http\Event\LogoutEvent, dispatcher: security.event_dispatcher.app }
-        bind:
-        $url: '%env(IAM_LOGOUT_URL)%'
-  
-    # Services
-    GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector:
-        #lazy: true
-        arguments:
-        - '@flysystem_dossier'
-    GemeenteAmsterdam\FixxxSchuldhulp\Service\ApplicationVersion:
-        arguments:
-        - '%kernel.environment%'
-        - '%kernel.project_dir%'
 
     GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\:
         resource: '../src/Form/Type'
@@ -145,36 +134,17 @@ services:
         class: Symfony\Component\Serializer\Encoder\JsonEncoder
         public: false
 
-          # Serializer
-    json_serializer:
-        class: Symfony\Component\Serializer\Serializer
-        arguments:
-        0:
-            - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\DateTimeNormalizer'
-            - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\FormErrorIteratorNormalizer'
-            - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\GebruikerNormalizer'
-            - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\DossierDocumentNormalizer'
-            - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\SchuldeiserNormalizer'
-            - '@GemeenteAmsterdam\FixxxSchuldhulp\Normalizer\SchuldItemNormalizer'
-        1:
-            - '@json_encoder'
-        public: true
-    json_encoder:
-        class: Symfony\Component\Serializer\Encoder\JsonEncoder
-        public: false
-
-
     # Flysystem
     flysystem_local_adapter_dossier:
         class: League\Flysystem\Local\LocalFilesystemAdapter
         lazy: true
         arguments:
-        - '%kernel.project_dir%/var/data/dossiers/'
+            - '%kernel.project_dir%/var/data/dossiers/'
     flysystem_dossier:
         class: League\Flysystem\Filesystem
         lazy: true
         arguments:
-        - '@flysystem_local_adapter_dossier'
+            - '@flysystem_local_adapter_dossier'
                 
     # Security
     GemeenteAmsterdam\FixxxSchuldhulp\Security\OidcAuthenticator:
@@ -190,14 +160,11 @@ services:
     App\Controller\ImageController:
         arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
 
-    App\Controller\ImageController:
-        arguments: [ "@=parameter('azureClientId') !== '' ? service('App\\\\Azure\\\\AzureStorage') : service('App\\\\Azure\\\\AzureStorageLocal')" ]
-
     GemeenteAmsterdam\FixxxSchuldhulp\EventListener\FallbackFileEventSubscriber:
         arguments:
-        $publicDir: '%kernel.project_dir%/public'
+            $publicDir: '%kernel.project_dir%/public'
         tags:
-        - { name: 'kernel.event_listener', event: 'kernel.response' }
+            - { name: 'kernel.event_listener', event: 'kernel.response' }
 
     #Commands
     GemeenteAmsterdam\FixxxSchuldhulp\Command\LoadTeam7DataCommand:
