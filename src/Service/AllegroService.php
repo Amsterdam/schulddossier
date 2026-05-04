@@ -3,12 +3,6 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Service;
 
 use DateTime;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAdres;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2Persoon;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TGezinsSituatie;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TAanvraag2SR;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\InkomenArray;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt\TInkomen;
 use Exception;
 use SoapHeader;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulp\Type\SchuldHulpServiceGetSBOverzichtResponse;
