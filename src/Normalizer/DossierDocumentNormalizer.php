@@ -24,7 +24,7 @@ class DossierDocumentNormalizer implements NormalizerInterface, NormalizerAwareI
         $this->router = $router;
     }
 
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof DossierDocument;
     }
@@ -52,6 +52,13 @@ class DossierDocumentNormalizer implements NormalizerInterface, NormalizerAwareI
                 'uploader' => $this->normalizer->normalize($object->getDocument()->getUploader(), $format, $context),
                 'url' => $this->router->generate('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', ['dossierId' => $object->getDossier()->getId(), 'documentId' => $object->getDocument()->getId()], UrlGeneratorInterface::ABSOLUTE_URL)
             ]
+        ];
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            DossierDocument::class => true,
         ];
     }
 }

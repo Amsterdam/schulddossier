@@ -13,7 +13,7 @@ class SchuldItemNormalizer implements NormalizerInterface, NormalizerAwareInterf
 {
     use NormalizerAwareTrait;
 
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof SchuldItem;
     }
@@ -40,6 +40,13 @@ class SchuldItemNormalizer implements NormalizerInterface, NormalizerAwareInterf
             'vaststelDatum' => $this->normalizer->normalize($object->getVaststelDatum(), $format),
             'ontstaansDatum' => $this->normalizer->normalize($object->getOntstaansDatum(), $format),
             'dossierDocumenten' => $this->normalizer->normalize($object->getDossierDocumenten(), $format)
+        ];
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            SchuldItem::class => true,
         ];
     }
 }

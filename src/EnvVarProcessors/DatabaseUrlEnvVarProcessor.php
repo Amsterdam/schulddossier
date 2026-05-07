@@ -23,7 +23,7 @@ class DatabaseUrlEnvVarProcessor implements EnvVarProcessorInterface
         return str_replace($fakePassword, $newPassword, $env);
     }
 
-    public static function getProvidedTypes()
+    public static function getProvidedTypes(): array
     {
         return [
             'dburl' => 'string',

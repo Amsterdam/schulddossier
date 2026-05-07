@@ -13,7 +13,7 @@ class GebruikerNormalizer implements NormalizerInterface, NormalizerAwareInterfa
 {
     use NormalizerAwareTrait;
 
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof Gebruiker;
     }
@@ -30,6 +30,13 @@ class GebruikerNormalizer implements NormalizerInterface, NormalizerAwareInterfa
             'roles' => $object->getRoles(),
             'type' => $object->getType(),
             'username' => $object->getUsername()
+        ];
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            Gebruiker::class => true,
         ];
     }
 }

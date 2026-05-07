@@ -14,7 +14,7 @@ class FormErrorIteratorNormalizer implements NormalizerInterface, NormalizerAwar
 {
     use NormalizerAwareTrait;
 
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof FormErrorIterator;
     }
@@ -49,6 +49,13 @@ class FormErrorIteratorNormalizer implements NormalizerInterface, NormalizerAwar
 
         return [
             'errors' => $errorData
+        ];
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            FormErrorIterator::class => true,
         ];
     }
 }
