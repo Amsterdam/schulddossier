@@ -39,7 +39,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function handle(Request $request, AccessDeniedException $accessDeniedException)
+    public function handle(Request $request, AccessDeniedException $accessDeniedException): ?Response
     {
         /** @var Gebruiker $user */
         $user = $this->tokenStorage->getToken()->getUser();
