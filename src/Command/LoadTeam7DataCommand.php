@@ -38,7 +38,7 @@ class LoadTeam7DataCommand extends Command
         return false;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $io->title('Testdata laden voor Team 7');
@@ -71,6 +71,6 @@ class LoadTeam7DataCommand extends Command
 
         $io->success("Load complete");
         $io->success("Executed {$statements} statements");
-        return command::SUCCESS;
+        return Command::SUCCESS;
     }
 }
