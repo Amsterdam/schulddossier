@@ -36,7 +36,7 @@ class GebruikerNormalizer implements NormalizerInterface, NormalizerAwareInterfa
     public function getSupportedTypes(?string $format): array
     {
         return [
-            Gebruiker::class => true,
+            Gebruiker::class => false,
         ];
     }
 }

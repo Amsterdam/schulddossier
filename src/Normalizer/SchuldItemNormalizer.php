@@ -46,7 +46,7 @@ class SchuldItemNormalizer implements NormalizerInterface, NormalizerAwareInterf
     public function getSupportedTypes(?string $format): array
     {
         return [
-            SchuldItem::class => true,
+            SchuldItem::class => false,
         ];
     }
 }

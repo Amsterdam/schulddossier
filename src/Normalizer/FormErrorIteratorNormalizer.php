@@ -55,7 +55,7 @@ class FormErrorIteratorNormalizer implements NormalizerInterface, NormalizerAwar
     public function getSupportedTypes(?string $format): array
     {
         return [
-            FormErrorIterator::class => true,
+            FormErrorIterator::class => false,
         ];
     }
 }

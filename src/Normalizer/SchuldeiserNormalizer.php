@@ -39,7 +39,7 @@ class SchuldeiserNormalizer implements NormalizerInterface, NormalizerAwareInter
     public function getSupportedTypes(?string $format): array
     {
         return [
-            Schuldeiser::class => true,
+            Schuldeiser::class => false,
         ];
     }
 }

@@ -58,7 +58,7 @@ class DossierDocumentNormalizer implements NormalizerInterface, NormalizerAwareI
     public function getSupportedTypes(?string $format): array
     {
         return [
-            DossierDocument::class => true,
+            DossierDocument::class => false,
         ];
     }
 }
