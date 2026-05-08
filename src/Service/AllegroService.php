@@ -42,7 +42,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Exception\AllegroServiceException;
 use Phpro\SoapClient\Exception\SoapException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 class AllegroService
 {
