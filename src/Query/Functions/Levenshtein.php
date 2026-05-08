@@ -59,7 +59,7 @@ class Levenshtein extends FunctionNode
 
         if ($searchPhraseLength <= 3) {
             return 1;
-        } elseif ($searchPhraseLength === 4) {
+        } else if ($searchPhraseLength === 4) {
             return 2;
         }
 
