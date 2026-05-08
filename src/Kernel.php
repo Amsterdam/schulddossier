@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
 class Kernel extends BaseKernel
@@ -25,12 +26,12 @@ class Kernel extends BaseKernel
         }
     }
 
-    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
+    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
         // Feel free to remove the "container.autowiring.strict_mode" parameter
         // if you are using symfony/dependency-injection 4.0+ as it's the default behavior
         $container->setParameter('container.autowiring.strict_mode', true);
-        $container->setParameter('container.dumper.inline_class_loader', true);
+        $container->setParameter('.container.dumper.inline_class_loader', true);
         $confDir = $this->getProjectDir() . '/config';
 
         $loader->load($confDir . '/{packages}/*' . self::CONFIG_EXTS, 'glob');
@@ -39,12 +40,15 @@ class Kernel extends BaseKernel
         $loader->load($confDir . '/{services}_' . $this->environment . self::CONFIG_EXTS, 'glob');
     }
 
-    protected function configureRoutes(RouteCollectionBuilder $routes)
+    protected function configureRoutes(RoutingConfigurator $routes): void
     {
-        $confDir = $this->getProjectDir() . '/config';
+        $routes->import('../config/{routes}/' . $this->environment . '/*.yaml');
+        $routes->import('../config/{routes}/*.yaml');
 
-        $routes->import($confDir . '/{routes}/*' . self::CONFIG_EXTS, '/', 'glob');
-        $routes->import($confDir . '/{routes}/' . $this->environment . '/**/*' . self::CONFIG_EXTS, '/', 'glob');
-        $routes->import($confDir . '/{routes}' . self::CONFIG_EXTS, '/', 'glob');
+        if (is_file(\dirname(__DIR__) . '/config/routes.yaml')) {
+            $routes->import('../config/routes.yaml');
+        } elseif (is_file($path = \dirname(__DIR__) . '/config/routes.php')) {
+            (require $path)($routes->withPath($path), $this);
+        }
     }
 }
