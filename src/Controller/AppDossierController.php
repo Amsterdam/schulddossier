@@ -42,6 +42,8 @@ use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Doctrine\Persistence\ManagerRegistry;
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -692,18 +694,20 @@ class AppDossierController extends AbstractController
     public function log(
         Request $request,
         #[MapEntity(id: 'dossierId')]
-        Dossier $dossier
+        Dossier $dossier,
+        PaginatorInterface $paginator,
+        ActionEventRepository $actionEventRepository
     ): Response {
-        $logs = $this->doctrine
-            ->getRepository(ActionEventEntity::class)
-            ->findBy([
-                'name' => [
-                    'dossier_status_gewijzigd',
-                    'dossier_gewijzigd',
-                    'dossier_send_to_allegro'
-                ],
-                'dossier' => $dossier
-            ], ['datumTijd' => 'DESC'], 30, $request->query->getInt('offset'));
+        
+    $eventNames = [
+            ActionEvent::DOSSIER_GEWIJZIGD,
+            ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
+            ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
+            ActionEvent::DOSSIER_VOORLEGGER_GEWIJZIGD,
+            ActionEvent::DOSSIER_SCHULDITEMS_GEWIJZIGD,
+            ActionEvent::DOSSIER_SCHULDITEM_AANGEMAAKT,
+            ActionEvent::DOSSIER_AANGEMAAKT,
+        ];
 
         $queryBuilder = $actionEventRepository->getLogsQuery($eventNames, $dossier);
 
