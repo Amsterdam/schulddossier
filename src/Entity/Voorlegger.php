@@ -5,6 +5,8 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
+use LogicException;
+use ReflectionClass;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Table]
@@ -2781,5 +2783,123 @@ class Voorlegger
     public function setJssAdviseurEmail(?string $jssAdviseurEmail): void
     {
         $this->jssAdviseurEmail = $jssAdviseurEmail;
+    }
+
+    
+    /**
+     * Retrieves a list of properties used for the 'statusbolletjes' feature.
+     *
+     * This method ensures that all expected properties, which are required for the
+     * 'statusbolletjes' functionality, exist on the class. It uses reflection to
+     * validate the presence of these properties. If any property is missing, a
+     * LogicException is thrown to indicate a misconfiguration or code issue.
+     *
+     * @throws LogicException If one or more expected properties are not defined in the class.
+     *
+     * @return string[] An array of property names that are required for the 'statusbolletjes' feature.
+     */
+    public static function getStatusPropertiesList(): array
+    {
+        $expectedProperties = [
+            'legitimatieOntvangenShv',
+            'legitimatieOntvangenGka',
+            'vtlbOntvangenShv',
+            'vtlbOntvangenShv',
+            'inkomstenspecificatieOntvangenShv',
+            'inkomstenspecificatieOntvangenGka',
+            'arbeidsovereenkomstOntvangenShv',
+            'arbeidsovereenkomstOntvangenShv',
+            'arbeidsovereenkomstNvt',
+            'beschikkingUwvOntvangenShv',
+            'beschikkingUwvOntvangenGka',
+            'beschikkingUwvNvt',
+            'voorlopigeTeruggaafBelastingdienstOntvangenShv',
+            'voorlopigeTeruggaafBelastingdienstOntvangenGka',
+            'voorlopigeTeruggaafBelastingdienstNvt',
+            'alimentatieOntvangenShv',
+            'alimentatieOntvangenGka',
+            'alimentatieNvt',
+            'kostgeldOntvangenShv',
+            'kostgeldOntvangenGka',
+            'kostgeldNvt',
+            'huurspecificatieOntvangenShv',
+            'huurspecificatieOntvangenGka',
+            'huurspecificatieNvt',
+            'polisbladZorgverzekeringOntvangenShv',
+            'polisbladZorgverzekeringOntvangenGka',
+            'polisbladZorgverzekeringNvt',
+            'alimentatieEchtscheidingsconvenantOntvangenShv',
+            'alimentatieEchtscheidingsconvenantOntvangenGka',
+            'alimentatieEchtscheidingsconvenantNvt',
+            'overeenkomstKinderopvangOntvangenShv',
+            'overeenkomstKinderopvangOntvangenGka',
+            'overeenkomstKinderopvangNvt',
+            'kwijtscheldingGemeenteBelastingOntvangenShv',
+            'kwijtscheldingGemeenteBelastingNvt',
+            'corrigerenGemeenteBelastingOntvangenGka',
+            'autoTaxatieOntvangenShv',
+            'autoTaxatieOntvangenGka',
+            'autoTaxatieNvt',
+            'autolastenKmWoonwerkverkeerOntvangenShv',
+            'autolastenKmWoonwerkverkeerOntvangenGka',
+            'autolastenKmWoonwerkverkeerNvt',
+            'verklaringWerkgeverOntvangenShv',
+            'verklaringWerkgeverOntvangenGka',
+            'verklaringWerkgeverNvt',
+            'vrijwaringsbewijsOntvangenShv',
+            'vrijwaringsbewijsOntvangenGka',
+            'vrijwaringsbewijsNvt',
+            'schuldenoverzichtOntvangenShv',
+            'schuldenoverzichtOntvangenGka',
+            'vorderingenOntvangenShv',
+            'vorderingenOntvangenGka',
+            'inzageToetsingBkrOntvangenShv',
+            'inzageToetsingBkrOntvangenGka',
+            'stabilisatieovereenkomstOntvangenShv',
+            'stabilisatieovereenkomstOntvangenGka',
+            'stabilisatieovereenkomstNvt',
+            'cjibOntvangenShv',
+            'cjibOntvangenGka',
+            'cjibNvt',
+            'meterstandenEnergieOntvangenShv',
+            'meterstandenEnergieOntvangenGka',
+            'meterstandenEnergieNvt',
+            'waternetOntvangenShv',
+            'waternetOntvangenGka',
+            'waternetNvt',
+            'retourbewijsModemOntvangenShv',
+            'retourbewijsModemOntvangenGka',
+            'retourbewijsModemNvt',
+            'toelichtingAanvraagSchuldsaneringClientOntvangenShv',
+            'toelichtingAanvraagSchuldsaneringClientOntvangenGka',
+            'toelichtingAanvraagSchuldsaneringShvOntvangenShv',
+            'toelichtingAanvraagSchuldsaneringShvOntvangenGka',
+            'beschikkingOnderBewindstellingOntvangenShv',
+            'beschikkingOnderBewindstellingOntvangenGka',
+            'beschikkingOnderBewindstellingNvt',
+            'budgetbeheerOntvangenShv',
+            'budgetbeheerOntvangenGka',
+            'budgetbeheerNvt',
+            'gereserveerdeGeldenOntvangenShv',
+            'gereserveerdeGeldenOntvangenGka',
+            'gereserveerdeGeldenNvt',
+            'ondertekendAanvraagFormulierOntvangenShv',
+            'toeslagenOntvangenShv',
+            'toeslagenOntvangenGka',
+            'toeslagenNvt',
+            'aangifteBelastingdienstShv',
+            'aangifteBelastingdienstGka',
+            'aangifteBelastingdienstNvt'
+        ];
+
+        $reflection = new ReflectionClass(static::class);
+
+        foreach ($expectedProperties as $property) {
+            if (!$reflection->hasProperty($property)) {
+                throw new LogicException("Property \"$property\" does not exist on the class.");
+            }
+        }
+
+        return $expectedProperties;
     }
 }
