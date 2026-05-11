@@ -39,9 +39,9 @@
         "symfony/dependency-injection": "*",
         "symfony/expression-language": "*",
         "symfony/filesystem": "*",
-        "symfony/flex": "^1.0",
-        "symfony/form": "7.2.*",
-        "symfony/framework-bundle": "7.2.*",
+        "symfony/flex": "^2.0",
+        "symfony/form": "*",
+        "symfony/framework-bundle": "*",
         "symfony/http-client": "*",
         "symfony/http-foundation": "*",
         "symfony/mailer": "*",
@@ -127,7 +127,7 @@
         "symfony": {
             "id": "01C78G17XCNVEZ49WHBEVGCP02",
             "allow-contrib": false,
-            "require": "7.2.*"
+            "require": "7.4.*"
         }
     },
     "repositories": [
