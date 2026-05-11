@@ -1047,7 +1047,6 @@ class Voorlegger
         $this->overeenkomstKinderopvangNvt = false;
         $this->kwijtscheldingGemeenteBelastingOntvangenShv = self::STATUS_SHV_OPEN;
         $this->kwijtscheldingGemeenteBelastingNvt = false;
-        $this->kwijtscheldingGemeenteBelasting = false;
         $this->corrigerenGemeenteBelastingOntvangenGka = false;
         $this->corrigerenGemeenteBelastingNvt = false;
         $this->autoNvt = false;
