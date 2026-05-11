@@ -25,7 +25,7 @@ class SanitizeHtml extends AbstractExtension
         return [
             new TwigFilter(
                 'sanitize',
-                [$this, 'strPad']
+                [$this, 'sanitize']
             )
         ];
     }
