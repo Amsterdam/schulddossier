@@ -613,14 +613,12 @@ class AppDossierController extends AbstractController
         );
     }
 
-    /**
-     * @Route("/detail/{dossierId}/documenten/detail/{documentId}/wordviewer")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
-     * @ParamConverter("document", options={"id"="documentId"})
-     */
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/detail/{dossierId}/documenten/detail/{documentId}/wordviewer')]
+    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function wordViewerAction(
+        #[MapEntity(id: 'dossierId')]
         Dossier $dossier,
+        #[MapEntity(id: 'documentId')]
         Document $document,
         FileStorageSelector $fileStorageSelector
     ): Response {
