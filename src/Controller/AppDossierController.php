@@ -613,40 +613,45 @@ class AppDossierController extends AbstractController
         );
     }
 
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/detail/{dossierId}/documenten/detail/{documentId}/wordviewer')]
-    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
-    public function wordViewerAction(
-        #[MapEntity(id: 'dossierId')]
-        Dossier $dossier,
-        #[MapEntity(id: 'documentId')]
-        Document $document,
-        FileStorageSelector $fileStorageSelector
-    ): Response {
-        $this->checkDocumentAccess($dossier, $document);
+    /* 
+    * With the adapter not being available anymore, it takes a bit of extra effort to make this work again. 
+    * Since this feature is not highly values is not phased out. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-1028
+    */
 
-        $adapter = $fileStorageSelector->getFileStorageForDossier()->getAdapter();
+    // #[\Symfony\Component\Routing\Attribute\Route(path: 'app/dossier/detail/{dossierId}/documenten/detail/{documentId}/wordviewer')]
+    // #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
+    // public function wordViewerAction(
+    //     #[MapEntity(id: 'dossierId')]
+    //     Dossier $dossier,
+    //     #[MapEntity(id: 'documentId')]
+    //     Document $document,
+    //     FileStorageSelector $fileStorageSelector
+    // ): Response {
+    //     $this->checkDocumentAccess($dossier, $document);
 
-        /** @var Local $adapter */
-        $rootDirectory = $adapter->getPathPrefix();
-        $filePath = $rootDirectory .  '/dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
+    //     $adapter = $fileStorageSelector->getFileStorageForDossier()->getAdapter();
 
-        try {
-            $phpWord = IOFactory::load($filePath);
-        } catch (\Exception $e) {
-            return new Response('Error loading the Word document: ' . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
+    //     /** @var Local $adapter */
+    //     $rootDirectory = $adapter->getPathPrefix();
+    //     $filePath = $rootDirectory .  '/dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
 
-        $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
-        ob_start();
-        $htmlWriter->save('php://output');
-        $htmlContent = ob_get_clean();
+    //     try {
+    //         $phpWord = IOFactory::load($filePath);
+    //     } catch (\Exception $e) {
+    //         return new Response('Error loading the Word document: ' . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+    //     }
 
-        return $this->render('Dossier/detailDocumentWordViewer.html.twig', [
-            'html_content' => $htmlContent,
-            'document' => $document,
-            'dossier' => $dossier
-        ]);
-    }
+    //     $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
+    //     ob_start();
+    //     $htmlWriter->save('php://output');
+    //     $htmlContent = ob_get_clean();
+
+    //     return $this->render('Dossier/detailDocumentWordViewer.html.twig', [
+    //         'html_content' => $htmlContent,
+    //         'document' => $document,
+    //         'dossier' => $dossier
+    //     ]);
+    // }
 
     private function streamedFileResponse(
         FlysystemFilesystem $filesystem,

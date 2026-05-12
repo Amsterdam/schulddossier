@@ -36,7 +36,12 @@
                                 </div>
                             {% endif %}
 
-                            {% if dossierDocument.document.origineleExtensie|lower == 'docx' %}
+                            {#                               
+                            With the adapter not being available anymore, it takes a bit of extra effort to make this work again. 
+                            Since this feature is not highly values is not phased out. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-1028
+                            #}
+
+                            {# {% if dossierDocument.document.origineleExtensie|lower == 'docx' %}
                                 <div class="bestand-action-list-item">
                                     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_wordviewer', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
                                         title="Open het document in een nieuw tabblad en bekijk het in volledige schermweergave."
@@ -44,7 +49,7 @@
                                         target="_blank">
                                     </a>
                                 </div>
-                            {% endif %}
+                            {% endif %} #}
 
                             <div class="bestand-action-list-item">
                                 <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_downloaddocument', {'dossierId': dossierDocument.dossier.id, 'documentId': dossierDocument.document.id}) }}"
