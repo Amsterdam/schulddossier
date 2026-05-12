@@ -1113,13 +1113,6 @@ class AppDossierController extends AbstractController
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
     }
 
-
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/documenten/detail/dummy-html/')]
-    public function dummyHTMLDocument(EntityManagerInterface $em): Response
-    {
-        return $this->render('Dossier/documentEmailHTML.html.twig', []);
-    }
-
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/naar-prullenbak', methods: ['POST'])]
     #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
     public function moveToPrullenbak(
