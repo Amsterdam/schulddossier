@@ -92,8 +92,8 @@
 									{% if log.dossier.clientNaam is defined %}
 										<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
 									{% endif  %} 
-								gewijzigd door {{ log.data.gebruiker.naam ?? 'Onbekend' }}
-								{% if log.data.remark %}
+								gewijzigd
+								{% if log.data.remark is defined %}
 									<br><br>
 									{{ log.data.remark | sanitize | raw }}
 								{% endif %}
@@ -103,7 +103,7 @@
 									{% if log.dossier.clientNaam is defined %}
 										<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
 									{% endif  %}
-								gewijzigd door {{ log.data.gebruiker.naam }}
+								gewijzigd
                                 <br>
                                 <br>
                                 {% include 'Dossier/partial.logboekUpdates.html.twig' with { changeSet: log.data.changeSet } %}
@@ -130,7 +130,6 @@
 								{% if log.dossier.clientNaam is defined %}
 									<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
 								{% endif  %}
-								door {{ log.data.gebruiker.naam }}
                                 <br>
                                 <br>
                                 {% for schulditemUpdate in log.data.schuldItemUpdates %}
