@@ -889,10 +889,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/allegro/refresh/{dossierId}")
-     * @Security("is_granted('access', dossier)")
-     * @ParamConverter("dossier", options={"id"="dossierId"})
+   /**
      * @return RedirectResponse
      */
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/allegro/refresh/{dossierId}')]
@@ -904,7 +901,7 @@ class AppDossierController extends AbstractController
     ): RedirectResponse {
         try {
             $allegroService->updateDossier($dossier);
-        } catch (Exception | Error $e) {
+        } catch (Exception|Error $e) {
             $this->addFlash('error', 'Ongeldig allegro nummer of geen verbinding met allegro mogelijk.');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
         }
@@ -914,8 +911,7 @@ class AppDossierController extends AbstractController
             ['dossierId' => $dossier->getId()]
         );
     }
-
-    /**
+      /**
      * @param Request $request
      * @param Aantekening $aantekening
      * @param EntityManagerInterface $em
@@ -931,9 +927,9 @@ class AppDossierController extends AbstractController
         EntityManagerInterface $em
     ): JsonResponse {
         if ($this->isCsrfTokenValid(
-            'gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening',
-            $request->request->get('token')
-        ) !== true) {
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening',
+                $request->request->get('token')
+            ) !== true) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
