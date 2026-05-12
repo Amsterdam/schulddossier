@@ -39,7 +39,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
      */
     public function notifyAboutCorrespondentie(DossierAddedCorrespondentie $event): void
     {
-        $dossier = $event->dossier;
+        $dossier = $event->getDossier();
 
         if ($dossier->getMedewerkerOrganisatie() !== null && !empty($dossier->getMedewerkerOrganisatie()->getEmail())) {
             $this->mail(
@@ -148,31 +148,31 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
     public function notifyAboutAantekening(DossierAddedAantekeningEvent $event): void
     {
         if (
-            $event->dossier->getMedewerkerOrganisatie() !== null &&
-            $event->gebruiker->isGka()
+            $event->getDossier()->getMedewerkerOrganisatie() !== null &&
+            $event->getGebruiker()->isGka()
         ) {
             $this->mail(
                 $this->fromNotificiatieAdres,
-                $event->dossier->getMedewerkerOrganisatie()->getEmail(),
+                $event->getDossier()->getMedewerkerOrganisatie()->getEmail(),
                 'mails/notifyAddedAantekening.html.twig',
                 [
-                    'dossier' => $event->dossier,
+                    'dossier' => $event->getDossier(),
                     'tokenStorage' => $this->tokenStorage
                 ]
             );
         }
 
         if (
-            $event->dossier->getMedewerkerOrganisatie() !== null &&
-            $event->gebruiker->isSchuldhulpverlener() &&
-            $event->dossier->isEersteKeerVerzondenAanGKA()
+            $event->getDossier()->getMedewerkerOrganisatie() !== null &&
+            $event->getGebruiker()->isSchuldhulpverlener() &&
+            $event->getDossier()->isEersteKeerVerzondenAanGKA()
         ) {
             $this->mail(
                 $this->fromNotificiatieAdres,
-                $event->dossier->getTeamGka()->getEmail(),
+                $event->getDossier()->getTeamGka()->getEmail(),
                 'mails/notifyAddedAantekening.html.twig',
                 [
-                    'dossier' => $event->dossier,
+                    'dossier' => $event->getDossier(),
                     'tokenStorage' => $this->tokenStorage
                 ]
             );
