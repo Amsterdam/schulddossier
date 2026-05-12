@@ -78,9 +78,7 @@ use ZipArchive;
 class AppDossierController extends AbstractController
 {
 
-    public function __construct(private ManagerRegistry $doctrine)
-    {
-    }
+    public function __construct(private ManagerRegistry $doctrine) {}
 
     /**
      * @throws Exception
@@ -106,7 +104,7 @@ class AppDossierController extends AbstractController
         $section = $request->query->get(
             'section',
             $this->getUser()?->getType() === Gebruiker::TYPE_GKA ||
-            $this->getUser()?->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER ?
+                $this->getUser()?->getType() === Gebruiker::TYPE_GKA_APPBEHEERDER ?
                 'gka' :
                 'shv'
         );
@@ -134,10 +132,10 @@ class AppDossierController extends AbstractController
                 $forcedOrganisaties :
                 $em->getRepository(Organisatie::class)->findAll(),
             'medewerkerOrganisatie' =>
-                $this->getUser()?->getType() === Gebruiker::TYPE_SHV ||
+            $this->getUser()?->getType() === Gebruiker::TYPE_SHV ||
                 $this->getUser()?->getType() === Gebruiker::TYPE_SHV_KEYUSER ?
-                    $this->getUser() :
-                    null,
+                $this->getUser() :
+                null,
             'teamGka' => $this->getUser()?->getTeamGka()
         ];
         $searchForm = $this->createForm(SearchDossierFormType::class, $seachQuery, ['method' => 'GET']);
@@ -583,6 +581,7 @@ class AppDossierController extends AbstractController
     public function detailDocument(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier,
+        #[MapEntity(id: 'documentId')]
         Document $document,
         FileStorageSelector $fileStorageSelector
     ): Response {
@@ -601,6 +600,7 @@ class AppDossierController extends AbstractController
     public function downloadDocument(
         #[MapEntity(id: 'dossierId')]
         Dossier $dossier,
+        #[MapEntity(id: 'documentId')]
         Document $document,
         FileStorageSelector $fileStorageSelector
     ): Response {
@@ -658,7 +658,7 @@ class AppDossierController extends AbstractController
     ): StreamedResponse {
         try {
             $path = 'dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
-            $fileStream = $filesystem->readStream(path: $path);
+            $fileStream = $filesystem->readStream($path);
         } catch (FileNotFoundException $e) {
             throw new NotFoundHttpException('Document not found');
         }
@@ -669,8 +669,8 @@ class AppDossierController extends AbstractController
             preg_replace("/[^A-Za-z0-9 ]/", '', $document->getOrigineleExtensie());
 
         $response = new StreamedResponse();
-        $response->headers->set('Content-Type', $filesystem->getMimetype($path));
-        $response->headers->set('Content-Length', $filesystem->getSize($path));
+        $response->headers->set('Content-Type', $filesystem->mimetype($path));
+        $response->headers->set('Content-Length', $filesystem->fileSize($path));
         $response->headers->set(
             'Content-Disposition',
             HeaderUtils::makeDisposition(
@@ -680,7 +680,7 @@ class AppDossierController extends AbstractController
             )
         );
         $response->setCallback(
-            function () use ($fileStream) {
+            function () use ($fileStream): void {
                 $outputStream = fopen('php://output', 'wb');
                 stream_copy_to_stream($fileStream, $outputStream);
             }
@@ -698,8 +698,8 @@ class AppDossierController extends AbstractController
         PaginatorInterface $paginator,
         ActionEventRepository $actionEventRepository
     ): Response {
-        
-    $eventNames = [
+
+        $eventNames = [
             ActionEvent::DOSSIER_GEWIJZIGD,
             ActionEvent::DOSSIER_SEND_TO_ALLEGRO,
             ActionEvent::DOSSIER_STATUS_GEWIJZIGD,
@@ -901,7 +901,7 @@ class AppDossierController extends AbstractController
     ): RedirectResponse {
         try {
             $allegroService->updateDossier($dossier);
-        } catch (Exception|Error $e) {
+        } catch (Exception | Error $e) {
             $this->addFlash('error', 'Ongeldig allegro nummer of geen verbinding met allegro mogelijk.');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
         }
@@ -928,9 +928,9 @@ class AppDossierController extends AbstractController
         EntityManagerInterface $em
     ): JsonResponse {
         if ($this->isCsrfTokenValid(
-                'gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening',
-                $request->request->get('token')
-            ) !== true) {
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening',
+            $request->request->get('token')
+        ) !== true) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -974,9 +974,9 @@ class AppDossierController extends AbstractController
         EventDispatcherInterface $eventDispatcher
     ) {
         if ($this->isCsrfTokenValid(
-                'gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus',
-                $request->request->get('token')
-            ) === false) {
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus',
+            $request->request->get('token')
+        ) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -1113,7 +1113,7 @@ class AppDossierController extends AbstractController
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailprullenbak', ['dossierId' => $dossier->getId()]);
     }
 
-    
+
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/documenten/detail/dummy-html/')]
     public function dummyHTMLDocument(EntityManagerInterface $em): Response
     {
@@ -1130,9 +1130,9 @@ class AppDossierController extends AbstractController
         EventDispatcherInterface $eventDispatcher
     ): RedirectResponse {
         if ($this->isCsrfTokenValid(
-                'gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak',
-                $request->request->get('token')
-            ) === false) {
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak',
+            $request->request->get('token')
+        ) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -1186,9 +1186,9 @@ class AppDossierController extends AbstractController
         EventDispatcherInterface $eventDispatcher
     ): RedirectResponse {
         if ($this->isCsrfTokenValid(
-                'gemeenteamsterdam_fixxxschuldhulp_appdossier_restore',
-                $request->request->get('token')
-            ) === false) {
+            'gemeenteamsterdam_fixxxschuldhulp_appdossier_restore',
+            $request->request->get('token')
+        ) === false) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
