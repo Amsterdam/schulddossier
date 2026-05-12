@@ -163,8 +163,7 @@ class AppGebruikerController extends AbstractController
         $response = new StreamedResponse(function () use ($gebruikers): void {
             $handle = fopen('php://output', 'w+');
 
-            fputcsv($handle, ['naam', 'e-mail', 'organisatie', 'laatste login datum', 'enabled/disabled'], ';');
-
+            fputcsv($handle, ['e-mail', 'naam', 'organisatie', 'rol', 'laatste login datum', 'enabled/disabled'], ';');
             foreach ($gebruikers as $gebruiker) {
                 $lastLogin = $gebruiker->getLastLogin() !== null
                     ? $gebruiker->getLastLogin()->format('Y-m-d H:i:s')
@@ -180,11 +179,7 @@ class AppGebruikerController extends AbstractController
 
                 $organisaties = implode(',', $organisatieNames);
 
-                fputcsv(
-                    $handle,
-                    [$gebruiker->getNaam(), $gebruiker->getEmail(), $organisaties, $lastLogin, $isEnabled],
-                    ';'
-                );
+                fputcsv($handle, [$gebruiker->getEmail(), $gebruiker->getNaam(), $organisaties, Gebruiker::getTitleFromType($gebruiker->getType()), $lastLogin, $isEnabled], ';');
             }
             fclose($handle);
         });
