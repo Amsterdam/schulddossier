@@ -911,7 +911,8 @@ class AppDossierController extends AbstractController
             ['dossierId' => $dossier->getId()]
         );
     }
-      /**
+   
+    /**
      * @param Request $request
      * @param Aantekening $aantekening
      * @param EntityManagerInterface $em
@@ -919,7 +920,7 @@ class AppDossierController extends AbstractController
      * @return JsonResponse
      */
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/detail/{dossierId}/aantekeningen/{aantekeningId}/verwijder', methods: ['POST'])]
-    #[IsGranted(attribute: new Expression('user == aantekening.getGebruiker()'))]
+    #[IsGranted(attribute: new Expression('user == subject.getGebruiker()'), subject: 'aantekening')]
     public function deleteAantekening(
         Request $request,
         #[MapEntity(id: 'aantekeningId')]
