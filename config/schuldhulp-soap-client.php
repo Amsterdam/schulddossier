@@ -5,14 +5,15 @@ use Phpro\SoapClient\CodeGenerator\Config\Config;
 use Phpro\SoapClient\CodeGenerator\Rules;
 use Phpro\SoapClient\CodeGenerator\Rules\IsRequestRule;
 use Phpro\SoapClient\CodeGenerator\Rules\IsResultRule;
-use Phpro\SoapClient\Soap\CodeGeneratorEngineFactory;
+use Phpro\SoapClient\Soap\DefaultEngineFactory;
+use Phpro\SoapClient\Soap\EngineOptions;
 use Soap\Wsdl\Loader\FlatteningLoader;
 use Soap\Wsdl\Loader\StreamWrapperLoader;
 
 return Config::create()
-    ->setEngine($engine = CodeGeneratorEngineFactory::create(
-    'doc/updated_modified_SchuldHulpService.wsdl',
-    new FlatteningLoader(new StreamWrapperLoader())
+    ->setEngine($engine = DefaultEngineFactory::create(
+        EngineOptions::defaults('doc/updated_modified_SchuldHulpService.wsdl')
+            ->withWsdlLoader(new FlatteningLoader(new StreamWrapperLoader()))
     ))
     ->setTypeDestination('src/Allegro/SchuldHulpUpdated/Type')
     ->setTypeNamespace('GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type')
