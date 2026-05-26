@@ -14,6 +14,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\AWUserInfo;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClientFactory;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\SchuldHulpUpdatedClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\SchuldHulpUpdatedClientFactory;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\Enums\eSoortLening;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\InkomenArray;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray as TypeSchuldArray;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldHulpServiceAanvraag2SR;
@@ -296,8 +297,8 @@ class AllegroService
         if (null !== $dossier->getClientEmail() or null !== $dossier->getClientTelefoonnummer()) {
             $contact = new TContact();
             $contact = $contact->withTelefoonThuis($dossier->getClientTelefoonnummer());
-            $contact = $contact->withEmailAdres($dossier->$dossier->getClientEmail());
-            $aanvrager =  $aanvrager->withContact($contact);
+            $contact = $contact->withEmailAdres($dossier->getClientEmail());
+            $aanvrager = $aanvrager->withContact($contact);
         }
 
         $inkomen = $this->mapInkomen($dossier);
@@ -345,6 +346,7 @@ class AllegroService
         $aanvraag = $aanvraag->withTotaalschuldVullen(false);
         $aanvraag = $aanvraag->withOpdrachtgeverOvernemen(false);
         $aanvraag = $aanvraag->withHulpverlenerOvernemen(false);
+        $aanvraag = $aanvraag->withSoortLening(eSoortLening::SK);
 
         $schulden = $this->mapSchulden($dossier);
         $aanvraag = $aanvraag->withSchulden($schulden);
