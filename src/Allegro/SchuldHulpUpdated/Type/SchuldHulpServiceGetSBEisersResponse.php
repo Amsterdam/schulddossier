@@ -31,4 +31,3 @@ class SchuldHulpServiceGetSBEisersResponse implements ResultInterface
         return $new;
     }
 }
-

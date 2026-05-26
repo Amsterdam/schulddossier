@@ -29,4 +29,3 @@ class SimpleDataParameterArray
         return $new;
     }
 }
-

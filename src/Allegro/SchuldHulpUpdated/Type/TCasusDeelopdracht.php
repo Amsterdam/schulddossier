@@ -354,4 +354,3 @@ class TCasusDeelopdracht
         return $new;
     }
 }
-

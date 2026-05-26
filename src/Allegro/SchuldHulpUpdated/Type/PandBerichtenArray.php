@@ -29,4 +29,3 @@ class PandBerichtenArray
         return $new;
     }
 }
-

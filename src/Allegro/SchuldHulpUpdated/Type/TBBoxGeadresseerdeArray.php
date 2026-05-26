@@ -29,4 +29,3 @@ class TBBoxGeadresseerdeArray
         return $new;
     }
 }
-

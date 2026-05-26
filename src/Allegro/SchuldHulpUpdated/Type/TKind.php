@@ -154,4 +154,3 @@ class TKind
         return $new;
     }
 }
-

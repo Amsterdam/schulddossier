@@ -5,7 +5,8 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 /**
  * AW_aSoortDocument in AllegroWebPortierConst
  */
-enum ESoortDocument: string {
+enum ESoortDocument: string
+{
     case Onbekend = 'Onbekend';
     case Formulier = 'Formulier';
     case Resultaat = 'Resultaat';

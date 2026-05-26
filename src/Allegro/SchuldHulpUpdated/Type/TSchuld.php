@@ -154,4 +154,3 @@ class TSchuld
         return $new;
     }
 }
-

@@ -81,4 +81,3 @@ class LoginServiceGenereerWachtwoordResponse implements ResultInterface
         return $new;
     }
 }
-

@@ -81,4 +81,3 @@ class LoginServiceBSNNaarRelatieResponse implements ResultInterface
         return $new;
     }
 }
-

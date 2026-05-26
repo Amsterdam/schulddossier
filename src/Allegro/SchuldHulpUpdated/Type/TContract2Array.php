@@ -29,4 +29,3 @@ class TContract2Array
         return $new;
     }
 }
-

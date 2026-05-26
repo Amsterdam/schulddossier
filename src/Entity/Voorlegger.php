@@ -422,7 +422,7 @@ class Voorlegger
      */
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $kwijtscheldingGemeenteBelastingNvt;
-  
+
     /**
      * @var string
      */
@@ -1787,7 +1787,7 @@ class Voorlegger
             'nvt' => 'nvt',
         ];
     }
- 
+
     /**
      * @param Dossier $dossier
      */
@@ -2784,7 +2784,7 @@ class Voorlegger
         $this->jssAdviseurEmail = $jssAdviseurEmail;
     }
 
-    
+
     /**
      * Retrieves a list of properties used for the 'statusbolletjes' feature.
      *

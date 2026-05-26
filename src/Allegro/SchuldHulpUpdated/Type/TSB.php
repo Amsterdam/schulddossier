@@ -579,4 +579,3 @@ class TSB
         return $new;
     }
 }
-

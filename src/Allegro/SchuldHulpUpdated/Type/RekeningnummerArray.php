@@ -29,4 +29,3 @@ class RekeningnummerArray
         return $new;
     }
 }
-

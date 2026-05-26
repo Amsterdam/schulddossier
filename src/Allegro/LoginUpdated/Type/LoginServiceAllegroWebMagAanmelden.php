@@ -95,4 +95,3 @@ class LoginServiceAllegroWebMagAanmelden implements RequestInterface
         return $new;
     }
 }
-

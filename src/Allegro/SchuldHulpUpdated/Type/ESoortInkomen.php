@@ -2,7 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
-enum ESoortInkomen: string {
+enum ESoortInkomen: string
+{
     case Werk = 'Werk';
     case Uitkering = 'Uitkering';
     case Combinatie_werk_en_uitkering = 'Combinatie_werk_en_uitkering';

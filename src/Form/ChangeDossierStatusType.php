@@ -22,7 +22,6 @@ use Symfony\Component\Workflow\WorkflowInterface;
  */
 class ChangeDossierStatusType extends AbstractType
 {
-
     /**
      * @var Gebruiker $user
      */

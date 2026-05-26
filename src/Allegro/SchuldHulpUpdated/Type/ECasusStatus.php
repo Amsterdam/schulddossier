@@ -2,7 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
-enum ECasusStatus: string {
+enum ECasusStatus: string
+{
     case csAanmelding = 'csAanmelding';
     case csAanmeldingVoorlopigGeweigerd = 'csAanmeldingVoorlopigGeweigerd';
     case csAanmeldingGeweigerd = 'csAanmeldingGeweigerd';

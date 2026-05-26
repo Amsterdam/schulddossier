@@ -341,4 +341,3 @@ class TPRSAfschrift
         return $new;
     }
 }
-

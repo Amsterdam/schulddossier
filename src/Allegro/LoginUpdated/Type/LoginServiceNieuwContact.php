@@ -284,4 +284,3 @@ class LoginServiceNieuwContact implements RequestInterface
         return $new;
     }
 }
-

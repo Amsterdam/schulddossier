@@ -2,7 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
-enum EVeldSortering: string {
+enum EVeldSortering: string
+{
     case vsCode = 'vsCode';
     case vsAfzenderOntvanger = 'vsAfzenderOntvanger';
     case vsOnderwerp = 'vsOnderwerp';

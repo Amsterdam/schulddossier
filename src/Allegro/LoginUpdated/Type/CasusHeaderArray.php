@@ -5,7 +5,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class CasusHeaderArray
 {
     /**
-     * TCasusHeader bevat : 
+     * TCasusHeader bevat :
      * - Relatiecode
      * - Volgnummer
      * - Aanmaakdatum
@@ -47,4 +47,3 @@ class CasusHeaderArray
         return $new;
     }
 }
-

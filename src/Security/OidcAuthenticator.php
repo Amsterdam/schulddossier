@@ -80,9 +80,11 @@ class OidcAuthenticator extends AbstractAuthenticator implements
      */
     public function supports(Request $request): ?bool
     {
-        if ($this->csrfTokenManager->isTokenValid(
-            new CsrfToken('oidc_login', $request->query->get('state'))
-        ) === false) {
+        if (
+            $this->csrfTokenManager->isTokenValid(
+                new CsrfToken('oidc_login', $request->query->get('state'))
+            ) === false
+        ) {
             $this->logger->warning(
                 'OidcAuthenticator invalid state while getting credentials',
                 array('receivedState' => $request->query->get('state'))
@@ -495,6 +497,4 @@ class OidcAuthenticator extends AbstractAuthenticator implements
     //    {
     //        return false;
     //    }
-
-
 }

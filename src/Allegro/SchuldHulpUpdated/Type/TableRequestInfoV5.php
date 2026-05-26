@@ -79,4 +79,3 @@ class TableRequestInfoV5
         return $new;
     }
 }
-

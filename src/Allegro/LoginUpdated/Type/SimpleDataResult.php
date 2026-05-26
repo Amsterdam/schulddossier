@@ -79,4 +79,3 @@ class SimpleDataResult
         return $new;
     }
 }
-

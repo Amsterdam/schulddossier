@@ -229,4 +229,3 @@ class TPRSMutatiesPeriode
         return $new;
     }
 }
-

@@ -10,7 +10,8 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
  * 5e positie: Eigen organisatie
  * 6e positie: Andere instantie.
  */
-enum ESoortRelatie: string {
+enum ESoortRelatie: string
+{
     case srKlant = 'srKlant';
     case srOpdrachtgever = 'srOpdrachtgever';
     case srHulpverlener = 'srHulpverlener';

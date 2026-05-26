@@ -36,5 +36,4 @@ class DateTimeNormalizer implements NormalizerInterface, NormalizerAwareInterfac
             DateTime::class => true,
         ];
     }
-
 }

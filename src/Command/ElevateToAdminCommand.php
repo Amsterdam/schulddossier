@@ -31,7 +31,7 @@ class ElevateToAdminCommand extends Command
         parent::__construct();
     }
 
-    protected function configure():void
+    protected function configure(): void
     {
         $this->setName('app:gebruikers:make-admin')
             ->addArgument('email', InputArgument::REQUIRED, 'Which email address do you want to make an admin account?');

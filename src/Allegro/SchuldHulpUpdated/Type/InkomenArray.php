@@ -29,4 +29,3 @@ class InkomenArray
         return $new;
     }
 }
-

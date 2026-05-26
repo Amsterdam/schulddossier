@@ -306,4 +306,3 @@ class TDocument
         return $new;
     }
 }
-

@@ -104,4 +104,3 @@ class TSaldoReservering
         return $new;
     }
 }
-

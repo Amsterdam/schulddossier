@@ -520,7 +520,7 @@ class Dossier
         return $this->medewerkerOrganisatie;
     }
 
-    
+
     public function getTeamGka(): ?Team
     {
         return $this->teamGka ?? null;
@@ -828,7 +828,7 @@ class Dossier
                     return false;
                 }
                 return $dossierDocument->getOnderwerp() === $onderwerp && $dossierDocument->getDocument(
-                    )->isInPrullenbak() === false;
+                )->isInPrullenbak() === false;
             }
         );
     }
@@ -842,9 +842,9 @@ class Dossier
     {
         return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerpen) {
             return in_array(
-                    $dossierDocument->getOnderwerp(),
-                    $onderwerpen
-                ) && $dossierDocument->getDocument()->isInPrullenbak() === false;
+                $dossierDocument->getOnderwerp(),
+                $onderwerpen
+            ) && $dossierDocument->getDocument()->isInPrullenbak() === false;
         });
     }
 
@@ -1038,10 +1038,10 @@ class Dossier
         if (!$this->getAantekeningen()->isEmpty()) {
             $csvRows = array_merge(
                 ...$this->getAantekeningen()->map(function (Aantekening $aantekening) {
-                [$csvHeader, $row] = $aantekening->getClassAttributesAndValues();
+                    [$csvHeader, $row] = $aantekening->getClassAttributesAndValues();
 
-                return $row;
-            })->toArray()
+                    return $row;
+                })->toArray()
             );
         }
 
@@ -1055,10 +1055,10 @@ class Dossier
         if (!$this->getActionEvents()) {
             $csvRows = array_merge(
                 ...$this->getActionEvents()->map(function (ActionEvent $actionEvent) {
-                [$csvHeader, $row] = $actionEvent->getClassAttributesAndValues();
+                    [$csvHeader, $row] = $actionEvent->getClassAttributesAndValues();
 
-                return $row;
-            })->toArray()
+                    return $row;
+                })->toArray()
             );
         }
 

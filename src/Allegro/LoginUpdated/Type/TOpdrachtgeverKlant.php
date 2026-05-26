@@ -354,4 +354,3 @@ class TOpdrachtgeverKlant
         return $new;
     }
 }
-

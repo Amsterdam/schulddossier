@@ -29,4 +29,3 @@ class TrajectTaakArray
         return $new;
     }
 }
-

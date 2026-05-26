@@ -2,7 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 
-enum ESoortLening: string {
+enum ESoortLening: string
+{
     case PL = 'PL';
     case SL = 'SL';
     case SK = 'SK';

@@ -2,7 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 
-enum EJaNee: string {
+enum EJaNee: string
+{
     case Ja = 'Ja';
     case Nee = 'Nee';
 }

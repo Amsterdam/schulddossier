@@ -31,4 +31,3 @@ class SchuldHulpServiceGetSRVAanvraagResponse implements ResultInterface
         return $new;
     }
 }
-

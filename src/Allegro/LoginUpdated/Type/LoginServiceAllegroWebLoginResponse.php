@@ -58,4 +58,3 @@ class LoginServiceAllegroWebLoginResponse implements ResultInterface
         return $new;
     }
 }
-

@@ -2,7 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 
-enum EStatusAanvraag: string {
+enum EStatusAanvraag: string
+{
     case A = 'A';
     case B = 'B';
     case C = 'C';

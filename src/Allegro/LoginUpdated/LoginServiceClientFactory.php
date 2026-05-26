@@ -16,26 +16,23 @@ use Symfony\Component\HttpClient\Psr18Client;
 use Symfony\Component\HttpClient\HttpClient;
 use Soap\Psr18Transport\Wsdl\Psr18Loader;
 
-
 class LoginServiceClientFactory
 {
     /**
      * @param non-empty-string $wsdl
      */
     public static function factory(
-        string $wsdl,     
+        string $wsdl,
         ?string $proxyHostIp = null,
         ?string $proxyHostPort = null
-    ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClient{
+    ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClient {
         if (!empty($proxyHostIp) && !empty($proxyHostPort)) {
-
             $httpClient = HttpClient::create([
                 'proxy' => 'http://' . $proxyHostIp . ':' . $proxyHostPort,
                 'headers' => [
                     'User-Agent' => 'fixxx-schuldhulp/1.0'
                 ]
             ]);
-         
         } else {
             $httpClient = HttpClient::create([
                 'headers' => [
@@ -70,4 +67,3 @@ class LoginServiceClientFactory
         return new LoginServiceClient($caller);
     }
 }
-

@@ -118,9 +118,11 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         /** @var $dossier Dossier */
         $dossier = $event->getSubject();
 
-        if ($dossier->getMedewerkerOrganisatie() !== null && empty(
-            $dossier->getMedewerkerOrganisatie()->getEmail()
-            ) === false) {
+        if (
+            $dossier->getMedewerkerOrganisatie() !== null && empty(
+                $dossier->getMedewerkerOrganisatie()->getEmail()
+            ) === false
+        ) {
             $this->mail(
                 $this->fromNotificiatieAdres,
                 $dossier->getMedewerkerOrganisatie()->getEmail(),
@@ -184,9 +186,11 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         /** @var $dossier Dossier */
         $dossier = $event->getSubject();
 
-        if ($dossier->getMedewerkerOrganisatie() !== null && empty(
-            $dossier->getMedewerkerOrganisatie()->getEmail()
-            ) === false) {
+        if (
+            $dossier->getMedewerkerOrganisatie() !== null && empty(
+                $dossier->getMedewerkerOrganisatie()->getEmail()
+            ) === false
+        ) {
             $this->mail(
                 $this->fromNotificiatieAdres,
                 $dossier->getMedewerkerOrganisatie()->getEmail(),
@@ -213,9 +217,11 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         /** @var $dossier Dossier */
         $dossier = $event->getSubject();
 
-        if ($dossier->getMedewerkerOrganisatie() !== null && empty(
-            $dossier->getMedewerkerOrganisatie()->getEmail()
-            ) === false) {
+        if (
+            $dossier->getMedewerkerOrganisatie() !== null && empty(
+                $dossier->getMedewerkerOrganisatie()->getEmail()
+            ) === false
+        ) {
             $this->mail(
                 $this->fromNotificiatieAdres,
                 $dossier->getMedewerkerOrganisatie()->getEmail(),
@@ -242,9 +248,11 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         /** @var $dossier Dossier */
         $dossier = $event->getSubject();
 
-        if ($dossier->getMedewerkerOrganisatie() !== null && empty(
-            $dossier->getMedewerkerOrganisatie()->getEmail()
-            ) === false) {
+        if (
+            $dossier->getMedewerkerOrganisatie() !== null && empty(
+                $dossier->getMedewerkerOrganisatie()->getEmail()
+            ) === false
+        ) {
             $this->mail(
                 $this->fromNotificiatieAdres,
                 $dossier->getMedewerkerOrganisatie()->getEmail(),
@@ -271,9 +279,11 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         /** @var $dossier Dossier */
         $dossier = $event->getSubject();
 
-        if ($dossier->getMedewerkerOrganisatie() !== null && empty(
-            $dossier->getMedewerkerOrganisatie()->getEmail()
-            ) === false) {
+        if (
+            $dossier->getMedewerkerOrganisatie() !== null && empty(
+                $dossier->getMedewerkerOrganisatie()->getEmail()
+            ) === false
+        ) {
             $this->mail(
                 $this->fromNotificiatieAdres,
                 $dossier->getMedewerkerOrganisatie()->getEmail(),
@@ -300,9 +310,11 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         /** @var $dossier Dossier */
         $dossier = $event->getSubject();
 
-        if ($dossier->getMedewerkerOrganisatie() !== null && empty(
-            $dossier->getMedewerkerOrganisatie()->getEmail()
-            ) === false) {
+        if (
+            $dossier->getMedewerkerOrganisatie() !== null && empty(
+                $dossier->getMedewerkerOrganisatie()->getEmail()
+            ) === false
+        ) {
             $this->mail(
                 $this->fromNotificiatieAdres,
                 $dossier->getMedewerkerOrganisatie()->getEmail(),
@@ -337,9 +349,9 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
     protected function mailRedirectAcceptance($from, $to, $template, $data)
     {
         $subject = $this->twig->load($template)->renderBlock(
-                'subject',
-                $data
-            ) . " (Acceptatie-mail. Oorspronkelijke ontvanger: $to)";
+            'subject',
+            $data
+        ) . " (Acceptatie-mail. Oorspronkelijke ontvanger: $to)";
 
         $message = $this->composeEmail($from, $to, $template, $data);
 

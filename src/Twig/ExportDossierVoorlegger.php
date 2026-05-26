@@ -37,5 +37,4 @@ class ExportDossierVoorlegger extends AbstractExtension
         }
         return $html;
     }
-
 }

@@ -2,7 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 
-enum SimpleDataType: string {
+enum SimpleDataType: string
+{
     case String = 'String';
     case Integer = 'Integer';
     case Double = 'Double';

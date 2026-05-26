@@ -46,9 +46,11 @@ class GebruikerChangePasswordFormType extends AbstractType
         $user = $this->security->getUser();
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
-            if ($event->getForm()->get('clearPassword')->getData() !== null && $event->getForm()->get(
+            if (
+                $event->getForm()->get('clearPassword')->getData() !== null && $event->getForm()->get(
                     'clearPassword'
-                )->getData() !== '') {
+                )->getData() !== ''
+            ) {
                 $event->getData()->setPasswordChangedDateTime(new DateTime());
             }
         });

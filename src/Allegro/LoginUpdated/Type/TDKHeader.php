@@ -79,4 +79,3 @@ class TDKHeader
         return $new;
     }
 }
-

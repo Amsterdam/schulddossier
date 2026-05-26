@@ -31,4 +31,3 @@ class PRSAfschriftReseveringArray
         return $new;
     }
 }
-

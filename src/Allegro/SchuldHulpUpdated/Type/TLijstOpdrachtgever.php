@@ -79,4 +79,3 @@ class TLijstOpdrachtgever
         return $new;
     }
 }
-

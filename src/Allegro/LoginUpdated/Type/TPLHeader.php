@@ -79,4 +79,3 @@ class TPLHeader
         return $new;
     }
 }
-

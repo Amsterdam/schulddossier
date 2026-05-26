@@ -29,4 +29,3 @@ class StringArrayArray
         return $new;
     }
 }
-

@@ -29,4 +29,3 @@ class TableRequestInfoV6
         return $new;
     }
 }
-

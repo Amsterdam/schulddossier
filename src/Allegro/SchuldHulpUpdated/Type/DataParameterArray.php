@@ -29,4 +29,3 @@ class DataParameterArray
         return $new;
     }
 }
-

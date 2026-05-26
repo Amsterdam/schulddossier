@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Serializer\Serializer;
 
-
 #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
 class UserReleaseNotesController extends AbstractController
 {

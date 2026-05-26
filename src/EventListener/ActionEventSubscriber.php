@@ -85,7 +85,6 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $action->setDatumTijd($dateTime);
         $action->setData(
             ActionEvent::getGebruikerData($gebruiker)
-
         );
 
         $this->entityManager->persist($action);

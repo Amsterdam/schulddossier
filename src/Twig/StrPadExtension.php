@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Twig;
+
 use Twig\TwigFilter;
 use Twig\Extension\AbstractExtension;
 

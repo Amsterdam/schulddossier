@@ -29,4 +29,3 @@ class CasusPVAProductArray
         return $new;
     }
 }
-

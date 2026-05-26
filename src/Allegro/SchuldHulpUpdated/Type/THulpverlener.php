@@ -254,4 +254,3 @@ class THulpverlener
         return $new;
     }
 }
-

@@ -28,7 +28,6 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 ))]
 class AppGebruikerController extends AbstractController
 {
-
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/')]
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/inactive', name: 'gebruikers_inactive')]
     public function index(
@@ -89,10 +88,12 @@ class AppGebruikerController extends AbstractController
         EventDispatcherInterface $eventDispatcher
     ) {
         if ($this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
-            if (!$gebruiker->getOrganisaties()->isEmpty() && empty(array_intersect(
-                $this->getUser()->getOrganisaties()->toArray(),
-                $gebruiker->getOrganisaties()->toArray()
-            ))) {
+            if (
+                !$gebruiker->getOrganisaties()->isEmpty() && empty(array_intersect(
+                    $this->getUser()->getOrganisaties()->toArray(),
+                    $gebruiker->getOrganisaties()->toArray()
+                ))
+            ) {
                 throw $this->createAccessDeniedException();
             }
         }

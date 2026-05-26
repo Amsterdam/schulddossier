@@ -31,4 +31,3 @@ class PRSAfschriftMutatieArray
         return $new;
     }
 }
-

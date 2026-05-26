@@ -58,4 +58,3 @@ class LoginServiceAllegroWebMagAanmeldenResponse implements ResultInterface
         return $new;
     }
 }
-

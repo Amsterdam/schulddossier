@@ -9,7 +9,6 @@ use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierTimeline;
 
-
 class DossierTimelineFixtures extends Fixture implements DependentFixtureInterface
 {
     public const TIMELINE_JSON_FILENAME = 'timeline.json';

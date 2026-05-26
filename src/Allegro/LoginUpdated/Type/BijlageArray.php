@@ -29,4 +29,3 @@ class BijlageArray
         return $new;
     }
 }
-

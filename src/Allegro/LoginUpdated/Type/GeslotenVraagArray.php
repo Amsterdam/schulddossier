@@ -29,4 +29,3 @@ class GeslotenVraagArray
         return $new;
     }
 }
-

@@ -10,15 +10,12 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Http\Event\LogoutEvent;
-
-
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class LogoutSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private string $url,
-
         private UrlGeneratorInterface $urlGenerator
     ) {
     }

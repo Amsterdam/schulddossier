@@ -104,4 +104,3 @@ class TDocumentSleutel
         return $new;
     }
 }
-

@@ -2,7 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 
-enum EContractSoort: string {
+enum EContractSoort: string
+{
     case scBBR = 'scBBR';
     case scSR = 'scSR';
     case scLening = 'scLening';

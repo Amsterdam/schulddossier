@@ -29,4 +29,3 @@ class RelatiecodeBedrijfcodeArray
         return $new;
     }
 }
-

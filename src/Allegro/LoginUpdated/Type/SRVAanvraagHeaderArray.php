@@ -29,4 +29,3 @@ class SRVAanvraagHeaderArray
         return $new;
     }
 }
-

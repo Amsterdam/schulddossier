@@ -29,4 +29,3 @@ class TBBoxTekstArray
         return $new;
     }
 }
-

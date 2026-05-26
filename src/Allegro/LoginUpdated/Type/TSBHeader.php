@@ -79,4 +79,3 @@ class TSBHeader
         return $new;
     }
 }
-

@@ -729,4 +729,3 @@ class TBBoxDetail
         return $new;
     }
 }
-

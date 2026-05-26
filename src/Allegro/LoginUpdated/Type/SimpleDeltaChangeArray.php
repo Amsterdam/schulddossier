@@ -29,4 +29,3 @@ class SimpleDeltaChangeArray
         return $new;
     }
 }
-

@@ -77,8 +77,9 @@ use ZipArchive;
 ))]
 class AppDossierController extends AbstractController
 {
-
-    public function __construct(private ManagerRegistry $doctrine) {}
+    public function __construct(private ManagerRegistry $doctrine)
+    {
+    }
 
     /**
      * @throws Exception
@@ -613,8 +614,8 @@ class AppDossierController extends AbstractController
         );
     }
 
-    /* 
-    * With the adapter not being available anymore, it takes a bit of extra effort to make this work again. 
+    /*
+    * With the adapter not being available anymore, it takes a bit of extra effort to make this work again.
     * Since this feature is not highly values is not phased out. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-1028
     */
 
@@ -901,7 +902,7 @@ class AppDossierController extends AbstractController
     ): RedirectResponse {
         try {
             $allegroService->updateDossier($dossier);
-        } catch (Exception|Error $e) {
+        } catch (Exception | Error $e) {
             $this->addFlash('error', 'Ongeldig allegro nummer of geen verbinding met allegro mogelijk.');
             return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
         }
@@ -911,7 +912,7 @@ class AppDossierController extends AbstractController
             ['dossierId' => $dossier->getId()]
         );
     }
-   
+
     /**
      * @param Request $request
      * @param Aantekening $aantekening
@@ -927,10 +928,12 @@ class AppDossierController extends AbstractController
         Aantekening $aantekening,
         EntityManagerInterface $em
     ): JsonResponse {
-        if ($this->isCsrfTokenValid(
+        if (
+            $this->isCsrfTokenValid(
                 'gemeenteamsterdam_fixxxschuldhulp_appdossier_removeaantekening',
                 $request->request->get('token')
-            ) !== true) {
+            ) !== true
+        ) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -973,10 +976,12 @@ class AppDossierController extends AbstractController
         EntityManagerInterface $em,
         EventDispatcherInterface $eventDispatcher
     ) {
-        if ($this->isCsrfTokenValid(
-            'gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus',
-            $request->request->get('token')
-        ) === false) {
+        if (
+            $this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_changestatus',
+                $request->request->get('token')
+            ) === false
+        ) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -1122,10 +1127,12 @@ class AppDossierController extends AbstractController
         EntityManagerInterface $em,
         EventDispatcherInterface $eventDispatcher
     ): RedirectResponse {
-        if ($this->isCsrfTokenValid(
-            'gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak',
-            $request->request->get('token')
-        ) === false) {
+        if (
+            $this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_movetoprullenbak',
+                $request->request->get('token')
+            ) === false
+        ) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 
@@ -1178,10 +1185,12 @@ class AppDossierController extends AbstractController
         EntityManagerInterface $em,
         EventDispatcherInterface $eventDispatcher
     ): RedirectResponse {
-        if ($this->isCsrfTokenValid(
-            'gemeenteamsterdam_fixxxschuldhulp_appdossier_restore',
-            $request->request->get('token')
-        ) === false) {
+        if (
+            $this->isCsrfTokenValid(
+                'gemeenteamsterdam_fixxxschuldhulp_appdossier_restore',
+                $request->request->get('token')
+            ) === false
+        ) {
             throw $this->createAccessDeniedException('CSRF token invalid');
         }
 

@@ -30,7 +30,7 @@ class AllegroTypeExtension extends AbstractExtension
         ];
     }
 
-    public function allegroStatus(String $status): string
+    public function allegroStatus(string $status): string
     {
         return Dossier::twigAllegroStatus($status);
     }

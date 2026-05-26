@@ -5,7 +5,7 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 class TCasusInfo
 {
     /**
-     * TCasusHeader bevat : 
+     * TCasusHeader bevat :
      * - Relatiecode
      * - Volgnummer
      * - Aanmaakdatum
@@ -572,4 +572,3 @@ class TCasusInfo
         return $new;
     }
 }
-

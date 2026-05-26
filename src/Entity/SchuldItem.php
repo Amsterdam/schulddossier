@@ -276,7 +276,7 @@ class SchuldItem
 
     public function getBedrag()
     {
-       return $this->bedrag === null ? $this->bedrag : (float) $this->bedrag;
+        return $this->bedrag === null ? $this->bedrag : (float) $this->bedrag;
     }
 
     public function setBedrag($bedrag)
@@ -286,7 +286,8 @@ class SchuldItem
 
     public function getBedragOorspronkelijk()
     {
-        return $this->bedragOorspronkelijk === null ? $this->bedragOorspronkelijk : (float) $this->bedragOorspronkelijk;    }
+        return $this->bedragOorspronkelijk === null ? $this->bedragOorspronkelijk : (float) $this->bedragOorspronkelijk;
+    }
 
     public function setBedragOorspronkelijk($bedragOorspronkelijk = null)
     {
@@ -376,7 +377,7 @@ class SchuldItem
 
     public function isVerlopen(): bool
     {
-        if ($this->getVaststelDatum() instanceof DateTime){
+        if ($this->getVaststelDatum() instanceof DateTime) {
             $gracePeriod = (new DateTime())->modify('-6 months');
             return $this->getVaststelDatum() < $gracePeriod;
         }
