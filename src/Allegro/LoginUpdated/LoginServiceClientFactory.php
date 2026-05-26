@@ -2,36 +2,40 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated;
 
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\AllegroHelper;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClassmap;
-use Http\Client\Common\PluginClient;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
-use Soap\ExtSoapEngine\ExtSoapOptions;
+use Phpro\SoapClient\Soap\EngineOptions;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Caller\EngineCaller;
+use Soap\Encoding\EncoderRegistry;
 use Soap\Psr18Transport\Psr18Transport;
-use Symfony\Component\HttpClient\HttpClient;
+use Http\Client\Common\PluginClient;
 use Symfony\Component\HttpClient\Psr18Client;
+use Symfony\Component\HttpClient\HttpClient;
+use Soap\Psr18Transport\Wsdl\Psr18Loader;
+
 
 class LoginServiceClientFactory
 {
+    /**
+     * @param non-empty-string $wsdl
+     */
     public static function factory(
-        string $wsdl,
+        string $wsdl,     
         ?string $proxyHostIp = null,
         ?string $proxyHostPort = null
-    ): LoginServiceClient {
-        $extSoapOptionsArray = [];
-
+    ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClient{
         if (!empty($proxyHostIp) && !empty($proxyHostPort)) {
+
             $httpClient = HttpClient::create([
                 'proxy' => 'http://' . $proxyHostIp . ':' . $proxyHostPort,
                 'headers' => [
                     'User-Agent' => 'fixxx-schuldhulp/1.0'
                 ]
             ]);
-            $extSoapOptionsArray = AllegroHelper::createSoapOptionsArray($proxyHostIp, $proxyHostPort);
+         
         } else {
             $httpClient = HttpClient::create([
                 'headers' => [
@@ -39,6 +43,7 @@ class LoginServiceClientFactory
                 ]
             ]);
         }
+
 
         $psr18Client = new Psr18Client($httpClient);
 
@@ -49,9 +54,14 @@ class LoginServiceClientFactory
         );
 
         $engine = DefaultEngineFactory::create(
-            ExtSoapOptions::defaults($wsdl, $extSoapOptionsArray)
-                ->withClassMap(LoginServiceClassmap::getCollection()),
-            $transporter
+            EngineOptions::defaults($wsdl)
+                ->withWsdlLoader(Psr18Loader::createForClient($psr18Client))
+                ->withEncoderRegistry(
+                    EncoderRegistry::default()
+                        ->addClassMapCollection(LoginServiceClassmap::types())
+                        ->addBackedEnumClassMapCollection(LoginServiceClassmap::enums())
+                )
+                ->withTransport($transporter)
         );
 
         $eventDispatcher = new EventDispatcher();
@@ -60,3 +70,4 @@ class LoginServiceClientFactory
         return new LoginServiceClient($caller);
     }
 }
+
