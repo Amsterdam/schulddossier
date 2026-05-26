@@ -30,9 +30,9 @@ class TBBRBegunstigde
     private int $Relatiecode;
 
     /**
-     * @var 'ReserveringOfDoorbetaling' | 'Reservering' | 'Doorbetaling'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortOpdracht
      */
-    private string $OpdrachtSoortKeuze;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortOpdracht $OpdrachtSoortKeuze;
 
     /**
      * @var bool
@@ -150,18 +150,18 @@ class TBBRBegunstigde
     }
 
     /**
-     * @return 'ReserveringOfDoorbetaling' | 'Reservering' | 'Doorbetaling'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortOpdracht
      */
-    public function getOpdrachtSoortKeuze(): string
+    public function getOpdrachtSoortKeuze(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortOpdracht
     {
         return $this->OpdrachtSoortKeuze;
     }
 
     /**
-     * @param 'ReserveringOfDoorbetaling' | 'Reservering' | 'Doorbetaling' $OpdrachtSoortKeuze
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortOpdracht $OpdrachtSoortKeuze
      * @return static
      */
-    public function withOpdrachtSoortKeuze(string $OpdrachtSoortKeuze): static
+    public function withOpdrachtSoortKeuze(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortOpdracht $OpdrachtSoortKeuze): static
     {
         $new = clone $this;
         $new->OpdrachtSoortKeuze = $OpdrachtSoortKeuze;

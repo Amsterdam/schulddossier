@@ -37,9 +37,9 @@ class TDocument
     /**
      * AW_aSoortDocument in AllegroWebPortierConst
      *
-     * @var 'Onbekend' | 'Formulier' | 'Resultaat' | 'Leningaanvraag' | 'DKaanvraag' | 'SRaanvraag'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortDocument
      */
-    private string $SoortDocument;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortDocument $SoortDocument;
 
     /**
      * @var string
@@ -187,18 +187,18 @@ class TDocument
     }
 
     /**
-     * @return 'Onbekend' | 'Formulier' | 'Resultaat' | 'Leningaanvraag' | 'DKaanvraag' | 'SRaanvraag'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortDocument
      */
-    public function getSoortDocument(): string
+    public function getSoortDocument(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortDocument
     {
         return $this->SoortDocument;
     }
 
     /**
-     * @param 'Onbekend' | 'Formulier' | 'Resultaat' | 'Leningaanvraag' | 'DKaanvraag' | 'SRaanvraag' $SoortDocument
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortDocument $SoortDocument
      * @return static
      */
-    public function withSoortDocument(string $SoortDocument): static
+    public function withSoortDocument(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortDocument $SoortDocument): static
     {
         $new = clone $this;
         $new->SoortDocument = $SoortDocument;

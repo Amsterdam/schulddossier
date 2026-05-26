@@ -7,9 +7,9 @@ class TBijlage
     /**
      * AW_aSoortDocument in AllegroWebPortierConst
      *
-     * @var 'Onbekend' | 'Formulier' | 'Resultaat' | 'Leningaanvraag' | 'DKaanvraag' | 'SRaanvraag'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortDocument
      */
-    private string $Soort;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortDocument $Soort;
 
     /**
      * @var string
@@ -22,18 +22,18 @@ class TBijlage
     private mixed $Bijlage;
 
     /**
-     * @return 'Onbekend' | 'Formulier' | 'Resultaat' | 'Leningaanvraag' | 'DKaanvraag' | 'SRaanvraag'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortDocument
      */
-    public function getSoort(): string
+    public function getSoort(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortDocument
     {
         return $this->Soort;
     }
 
     /**
-     * @param 'Onbekend' | 'Formulier' | 'Resultaat' | 'Leningaanvraag' | 'DKaanvraag' | 'SRaanvraag' $Soort
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortDocument $Soort
      * @return static
      */
-    public function withSoort(string $Soort): static
+    public function withSoort(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortDocument $Soort): static
     {
         $new = clone $this;
         $new->Soort = $Soort;

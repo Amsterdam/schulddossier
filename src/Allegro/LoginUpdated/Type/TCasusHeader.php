@@ -25,9 +25,9 @@ class TCasusHeader
     private \DateTimeInterface $Aanmaakdatum;
 
     /**
-     * @var 'csAanmelding' | 'csAanmeldingVoorlopigGeweigerd' | 'csAanmeldingGeweigerd' | 'csAanmeldingVoltooid' | 'csCrisis' | 'csInventarisatie' | 'csAnalyse' | 'csPvA' | 'csFiattering' | 'csSlapend' | 'csAfwijzing' | 'csStop' | 'csInactief' | 'csNone'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ECasusStatus
      */
-    private string $CasusStatus;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ECasusStatus $CasusStatus;
 
     /**
      * @var string
@@ -115,18 +115,18 @@ class TCasusHeader
     }
 
     /**
-     * @return 'csAanmelding' | 'csAanmeldingVoorlopigGeweigerd' | 'csAanmeldingGeweigerd' | 'csAanmeldingVoltooid' | 'csCrisis' | 'csInventarisatie' | 'csAnalyse' | 'csPvA' | 'csFiattering' | 'csSlapend' | 'csAfwijzing' | 'csStop' | 'csInactief' | 'csNone'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ECasusStatus
      */
-    public function getCasusStatus(): string
+    public function getCasusStatus(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ECasusStatus
     {
         return $this->CasusStatus;
     }
 
     /**
-     * @param 'csAanmelding' | 'csAanmeldingVoorlopigGeweigerd' | 'csAanmeldingGeweigerd' | 'csAanmeldingVoltooid' | 'csCrisis' | 'csInventarisatie' | 'csAnalyse' | 'csPvA' | 'csFiattering' | 'csSlapend' | 'csAfwijzing' | 'csStop' | 'csInactief' | 'csNone' $CasusStatus
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ECasusStatus $CasusStatus
      * @return static
      */
-    public function withCasusStatus(string $CasusStatus): static
+    public function withCasusStatus(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ECasusStatus $CasusStatus): static
     {
         $new = clone $this;
         $new->CasusStatus = $CasusStatus;

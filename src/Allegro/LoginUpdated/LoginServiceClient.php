@@ -2,7 +2,6 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated;
 
-use Phpro\SoapClient\Caller\Caller;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 use Phpro\SoapClient\Type\ResultInterface;
 use Phpro\SoapClient\Exception\SoapException;
@@ -10,10 +9,7 @@ use Phpro\SoapClient\Type\RequestInterface;
 
 class LoginServiceClient
 {
-    /**
-     * @var Caller
-     */
-    private $caller;
+    private \Phpro\SoapClient\Caller\Caller $caller;
 
     public function __construct(\Phpro\SoapClient\Caller\Caller $caller)
     {

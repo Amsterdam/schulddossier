@@ -5,9 +5,9 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class TSorteerInfo
 {
     /**
-     * @var 'vsCode' | 'vsAfzenderOntvanger' | 'vsOnderwerp' | 'vsTijdstip' | 'vsOntvangen' | 'vsGelezen' | 'vsGearchiveerd' | 'vsBijlagen'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EVeldSortering
      */
-    private string $Veld;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EVeldSortering $Veld;
 
     /**
      * @var bool
@@ -15,18 +15,18 @@ class TSorteerInfo
     private bool $Oplopend;
 
     /**
-     * @return 'vsCode' | 'vsAfzenderOntvanger' | 'vsOnderwerp' | 'vsTijdstip' | 'vsOntvangen' | 'vsGelezen' | 'vsGearchiveerd' | 'vsBijlagen'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EVeldSortering
      */
-    public function getVeld(): string
+    public function getVeld(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EVeldSortering
     {
         return $this->Veld;
     }
 
     /**
-     * @param 'vsCode' | 'vsAfzenderOntvanger' | 'vsOnderwerp' | 'vsTijdstip' | 'vsOntvangen' | 'vsGelezen' | 'vsGearchiveerd' | 'vsBijlagen' $Veld
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EVeldSortering $Veld
      * @return static
      */
-    public function withVeld(string $Veld): static
+    public function withVeld(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EVeldSortering $Veld): static
     {
         $new = clone $this;
         $new->Veld = $Veld;

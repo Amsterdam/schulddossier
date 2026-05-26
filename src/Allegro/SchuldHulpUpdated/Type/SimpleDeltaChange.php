@@ -20,9 +20,9 @@ class SimpleDeltaChange
     private string $Error;
 
     /**
-     * @var 'Insert' | 'Delete' | 'Update'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataMode
      */
-    private string $Mode;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataMode $Mode;
 
     /**
      * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\StringArray
@@ -85,18 +85,18 @@ class SimpleDeltaChange
     }
 
     /**
-     * @return 'Insert' | 'Delete' | 'Update'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataMode
      */
-    public function getMode(): string
+    public function getMode(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataMode
     {
         return $this->Mode;
     }
 
     /**
-     * @param 'Insert' | 'Delete' | 'Update' $Mode
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataMode $Mode
      * @return static
      */
-    public function withMode(string $Mode): static
+    public function withMode(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataMode $Mode): static
     {
         $new = clone $this;
         $new->Mode = $Mode;

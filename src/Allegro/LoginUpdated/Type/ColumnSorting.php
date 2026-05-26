@@ -10,9 +10,9 @@ class ColumnSorting
     private string $FieldName;
 
     /**
-     * @var 'Ascending' | 'Descending'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ColumnSortDirection
      */
-    private string $SortDirection;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ColumnSortDirection $SortDirection;
 
     /**
      * @return string
@@ -35,18 +35,18 @@ class ColumnSorting
     }
 
     /**
-     * @return 'Ascending' | 'Descending'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ColumnSortDirection
      */
-    public function getSortDirection(): string
+    public function getSortDirection(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ColumnSortDirection
     {
         return $this->SortDirection;
     }
 
     /**
-     * @param 'Ascending' | 'Descending' $SortDirection
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ColumnSortDirection $SortDirection
      * @return static
      */
-    public function withSortDirection(string $SortDirection): static
+    public function withSortDirection(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ColumnSortDirection $SortDirection): static
     {
         $new = clone $this;
         $new->SortDirection = $SortDirection;

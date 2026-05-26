@@ -15,14 +15,14 @@ class TPLAanvraag
     private int $Volgnummer;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private \DateTimeInterface $DatumAanvraag;
 
     /**
-     * @var 'PL' | 'SL' | 'SK'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortLening
      */
-    private string $SoortLening;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortLening $SoortLening;
 
     /**
      * @var int
@@ -40,9 +40,9 @@ class TPLAanvraag
     private float $GewenstKrediet;
 
     /**
-     * @var 'A' | 'B' | 'C' | 'D' | 'E' | 'Gefiatteerd' | 'Afgewezen' | 'Ingetrokken'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\EStatusAanvraag
      */
-    private string $Status;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\EStatusAanvraag $Status;
 
     /**
      * @var \DateTimeInterface
@@ -55,37 +55,37 @@ class TPLAanvraag
     private string $RedenAfwijzing;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusA;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusB;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusC;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusD;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusE;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusAfIn;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private \DateTimeInterface $DatumStatusFiat;
 
@@ -130,7 +130,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getDatumAanvraag(): \DateTimeInterface
     {
@@ -150,18 +150,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return 'PL' | 'SL' | 'SK'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortLening
      */
-    public function getSoortLening(): string
+    public function getSoortLening(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortLening
     {
         return $this->SoortLening;
     }
 
     /**
-     * @param 'PL' | 'SL' | 'SK' $SoortLening
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortLening $SoortLening
      * @return static
      */
-    public function withSoortLening(string $SoortLening): static
+    public function withSoortLening(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ESoortLening $SoortLening): static
     {
         $new = clone $this;
         $new->SoortLening = $SoortLening;
@@ -230,18 +230,18 @@ class TPLAanvraag
     }
 
     /**
-     * @return 'A' | 'B' | 'C' | 'D' | 'E' | 'Gefiatteerd' | 'Afgewezen' | 'Ingetrokken'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\EStatusAanvraag
      */
-    public function getStatus(): string
+    public function getStatus(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\EStatusAanvraag
     {
         return $this->Status;
     }
 
     /**
-     * @param 'A' | 'B' | 'C' | 'D' | 'E' | 'Gefiatteerd' | 'Afgewezen' | 'Ingetrokken' $Status
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\EStatusAanvraag $Status
      * @return static
      */
-    public function withStatus(string $Status): static
+    public function withStatus(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\EStatusAanvraag $Status): static
     {
         $new = clone $this;
         $new->Status = $Status;
@@ -250,7 +250,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getDatumStatus(): \DateTimeInterface
     {
@@ -290,7 +290,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getDatumStatusA(): \DateTimeInterface
     {
@@ -310,7 +310,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getDatumStatusB(): \DateTimeInterface
     {
@@ -330,7 +330,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getDatumStatusC(): \DateTimeInterface
     {
@@ -350,7 +350,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getDatumStatusD(): \DateTimeInterface
     {
@@ -370,7 +370,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getDatumStatusE(): \DateTimeInterface
     {
@@ -390,7 +390,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getDatumStatusAfIn(): \DateTimeInterface
     {
@@ -410,7 +410,7 @@ class TPLAanvraag
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getDatumStatusFiat(): \DateTimeInterface
     {

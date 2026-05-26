@@ -45,9 +45,9 @@ class TAanvraag2Persoon
     private int $Geboortedatum;
 
     /**
-     * @var 'Leeg' | 'Nederlandse' | 'Anders'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ENationaliteit
      */
-    private string $Nationaliteit;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ENationaliteit $Nationaliteit;
 
     /**
      * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\Rekeningnummer2Array
@@ -250,18 +250,18 @@ class TAanvraag2Persoon
     }
 
     /**
-     * @return 'Leeg' | 'Nederlandse' | 'Anders'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ENationaliteit
      */
-    public function getNationaliteit(): string
+    public function getNationaliteit(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ENationaliteit
     {
         return $this->Nationaliteit;
     }
 
     /**
-     * @param 'Leeg' | 'Nederlandse' | 'Anders' $Nationaliteit
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ENationaliteit $Nationaliteit
      * @return static
      */
-    public function withNationaliteit(string $Nationaliteit): static
+    public function withNationaliteit(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\ENationaliteit $Nationaliteit): static
     {
         $new = clone $this;
         $new->Nationaliteit = $Nationaliteit;

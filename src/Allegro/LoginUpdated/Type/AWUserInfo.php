@@ -20,7 +20,7 @@ class AWUserInfo
     private string $Naam;
 
     /**
-     * @var DateTimeInterface
+     * @var \DateTimeInterface
      */
     private \DateTimeInterface $LaatsteLogin;
 
@@ -43,18 +43,6 @@ class AWUserInfo
      * @var bool
      */
     private bool $WachtwoordWijzigen;
-
-    /**
-     * This property is manually added after generating the code with phpro soap client wizard
-     * @var string
-     */
-    private $SessionID;
-
-    /**
-     * This property is manually added after generating the code with phpro soap client wizard
-     * @var string
-     */
-    private $UserID;
 
     /**
      * @return string
@@ -117,7 +105,7 @@ class AWUserInfo
     }
 
     /**
-     * @return DateTimeInterface
+     * @return \DateTimeInterface
      */
     public function getLaatsteLogin(): \DateTimeInterface
     {
@@ -214,25 +202,6 @@ class AWUserInfo
         $new->WachtwoordWijzigen = $WachtwoordWijzigen;
 
         return $new;
-    }
-
-    /**
-     * This functions is manually added after generating the code with phpro soap client wizard
-     * @return string
-     */
-    public function getSessionId()
-    {
-        return $this->SessionID;
-    }
-
-
-    /**
-     * This function is manually added after generating the code with phpro soap client wizard
-     * @return string
-     */
-    public function getUserID()
-    {
-        return $this->UserID;
     }
 }
 

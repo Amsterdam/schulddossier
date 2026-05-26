@@ -5,9 +5,9 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class TUitgaven
 {
     /**
-     * @var 'Leeg' | 'Huur' | 'Koop' | 'Inwonend'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EWoningSoort
      */
-    private string $WoningSoort;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EWoningSoort $WoningSoort;
 
     /**
      * @var float
@@ -75,18 +75,18 @@ class TUitgaven
     private string $Toelichting;
 
     /**
-     * @return 'Leeg' | 'Huur' | 'Koop' | 'Inwonend'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EWoningSoort
      */
-    public function getWoningSoort(): string
+    public function getWoningSoort(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EWoningSoort
     {
         return $this->WoningSoort;
     }
 
     /**
-     * @param 'Leeg' | 'Huur' | 'Koop' | 'Inwonend' $WoningSoort
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EWoningSoort $WoningSoort
      * @return static
      */
-    public function withWoningSoort(string $WoningSoort): static
+    public function withWoningSoort(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EWoningSoort $WoningSoort): static
     {
         $new = clone $this;
         $new->WoningSoort = $WoningSoort;

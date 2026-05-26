@@ -10,9 +10,9 @@ class SimpleFieldInfo
     private string $Name;
 
     /**
-     * @var 'String' | 'Integer' | 'Double' | 'DateTime' | 'Int64' | 'Currency' | 'Guid' | 'Binary' | 'Boolean'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataType
      */
-    private string $DataType;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataType $DataType;
 
     /**
      * @var bool
@@ -40,18 +40,18 @@ class SimpleFieldInfo
     }
 
     /**
-     * @return 'String' | 'Integer' | 'Double' | 'DateTime' | 'Int64' | 'Currency' | 'Guid' | 'Binary' | 'Boolean'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataType
      */
-    public function getDataType(): string
+    public function getDataType(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataType
     {
         return $this->DataType;
     }
 
     /**
-     * @param 'String' | 'Integer' | 'Double' | 'DateTime' | 'Int64' | 'Currency' | 'Guid' | 'Binary' | 'Boolean' $DataType
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataType $DataType
      * @return static
      */
-    public function withDataType(string $DataType): static
+    public function withDataType(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\SimpleDataType $DataType): static
     {
         $new = clone $this;
         $new->DataType = $DataType;

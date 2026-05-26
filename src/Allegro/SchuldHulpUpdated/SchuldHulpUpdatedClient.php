@@ -2,18 +2,14 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated;
 
-use Phpro\SoapClient\Caller\Caller;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 use Phpro\SoapClient\Type\ResultInterface;
 use Phpro\SoapClient\Exception\SoapException;
 use Phpro\SoapClient\Type\RequestInterface;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 
 class SchuldHulpUpdatedClient
 {
-    /**
-     * @var Caller
-     */
-    private $caller;
+    private \Phpro\SoapClient\Caller\Caller $caller;
 
     public function __construct(\Phpro\SoapClient\Caller\Caller $caller)
     {
@@ -126,9 +122,6 @@ class SchuldHulpUpdatedClient
     }
 
     /**
-     * deprecated Allegro 3.26.1
-     *       
-     *
      * @param RequestInterface & Type\SchuldHulpServiceAanvraagSR $parameters
      * @return ResultInterface & Type\SchuldHulpServiceAanvraagSRResponse
      * @throws SoapException

@@ -40,9 +40,9 @@ class TPersoonAanvraag
     private int $BSN;
 
     /**
-     * @var 'Leeg' | 'Nederlandse' | 'Anders'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ENationaliteit
      */
-    private string $Nationaliteit;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ENationaliteit $Nationaliteit;
 
     /**
      * @var string
@@ -205,18 +205,18 @@ class TPersoonAanvraag
     }
 
     /**
-     * @return 'Leeg' | 'Nederlandse' | 'Anders'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ENationaliteit
      */
-    public function getNationaliteit(): string
+    public function getNationaliteit(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ENationaliteit
     {
         return $this->Nationaliteit;
     }
 
     /**
-     * @param 'Leeg' | 'Nederlandse' | 'Anders' $Nationaliteit
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ENationaliteit $Nationaliteit
      * @return static
      */
-    public function withNationaliteit(string $Nationaliteit): static
+    public function withNationaliteit(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ENationaliteit $Nationaliteit): static
     {
         $new = clone $this;
         $new->Nationaliteit = $Nationaliteit;

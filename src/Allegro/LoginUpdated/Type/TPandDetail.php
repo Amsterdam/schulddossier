@@ -157,7 +157,7 @@ class TPandDetail
     /**
      * @return \DateTimeInterface
      */
-    public function getBeleenbewijsDatum(): \DateTimeInterface
+    public function getBeleenbewijs_Datum(): \DateTimeInterface
     {
         return $this->Beleenbewijs_Datum;
     }
@@ -166,7 +166,7 @@ class TPandDetail
      * @param \DateTimeInterface $Beleenbewijs_Datum
      * @return static
      */
-    public function withBeleenbewijsDatum(\DateTimeInterface $Beleenbewijs_Datum): static
+    public function withBeleenbewijs_Datum(\DateTimeInterface $Beleenbewijs_Datum): static
     {
         $new = clone $this;
         $new->Beleenbewijs_Datum = $Beleenbewijs_Datum;
@@ -177,7 +177,7 @@ class TPandDetail
     /**
      * @return \DateTimeInterface
      */
-    public function getBeleenbewijsEinddatum(): \DateTimeInterface
+    public function getBeleenbewijs_Einddatum(): \DateTimeInterface
     {
         return $this->Beleenbewijs_Einddatum;
     }
@@ -186,7 +186,7 @@ class TPandDetail
      * @param \DateTimeInterface $Beleenbewijs_Einddatum
      * @return static
      */
-    public function withBeleenbewijsEinddatum(\DateTimeInterface $Beleenbewijs_Einddatum): static
+    public function withBeleenbewijs_Einddatum(\DateTimeInterface $Beleenbewijs_Einddatum): static
     {
         $new = clone $this;
         $new->Beleenbewijs_Einddatum = $Beleenbewijs_Einddatum;
@@ -197,7 +197,7 @@ class TPandDetail
     /**
      * @return float
      */
-    public function getBeleenbewijsBeleensom(): float
+    public function getBeleenbewijs_Beleensom(): float
     {
         return $this->Beleenbewijs_Beleensom;
     }
@@ -206,7 +206,7 @@ class TPandDetail
      * @param float $Beleenbewijs_Beleensom
      * @return static
      */
-    public function withBeleenbewijsBeleensom(float $Beleenbewijs_Beleensom): static
+    public function withBeleenbewijs_Beleensom(float $Beleenbewijs_Beleensom): static
     {
         $new = clone $this;
         $new->Beleenbewijs_Beleensom = $Beleenbewijs_Beleensom;
@@ -237,7 +237,7 @@ class TPandDetail
     /**
      * @return \DateTimeInterface
      */
-    public function getNwBeleenbewijsEinddatum(): \DateTimeInterface
+    public function getNwBeleenbewijs_Einddatum(): \DateTimeInterface
     {
         return $this->NwBeleenbewijs_Einddatum;
     }
@@ -246,7 +246,7 @@ class TPandDetail
      * @param \DateTimeInterface $NwBeleenbewijs_Einddatum
      * @return static
      */
-    public function withNwBeleenbewijsEinddatum(\DateTimeInterface $NwBeleenbewijs_Einddatum): static
+    public function withNwBeleenbewijs_Einddatum(\DateTimeInterface $NwBeleenbewijs_Einddatum): static
     {
         $new = clone $this;
         $new->NwBeleenbewijs_Einddatum = $NwBeleenbewijs_Einddatum;
@@ -257,7 +257,7 @@ class TPandDetail
     /**
      * @return float
      */
-    public function getNwBeleenbewijsRente(): float
+    public function getNwBeleenbewijs_Rente(): float
     {
         return $this->NwBeleenbewijs_Rente;
     }
@@ -266,7 +266,7 @@ class TPandDetail
      * @param float $NwBeleenbewijs_Rente
      * @return static
      */
-    public function withNwBeleenbewijsRente(float $NwBeleenbewijs_Rente): static
+    public function withNwBeleenbewijs_Rente(float $NwBeleenbewijs_Rente): static
     {
         $new = clone $this;
         $new->NwBeleenbewijs_Rente = $NwBeleenbewijs_Rente;

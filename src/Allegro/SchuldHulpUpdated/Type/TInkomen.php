@@ -5,9 +5,9 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class TInkomen
 {
     /**
-     * @var 'Werk' | 'Uitkering' | 'Combinatie_werk_en_uitkering' | 'Studiefinanciering' | 'Pensioen' | 'Combinatie_pensioen_en_uitkering' | 'Combinatie_werk_en_pensioen' | 'Combinatie_werk_en_uitkering_en_pensioen'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortInkomen
      */
-    private string $SoortInkomen;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortInkomen $SoortInkomen;
 
     /**
      * @var string
@@ -25,9 +25,9 @@ class TInkomen
     private int $WerkzaamSinds;
 
     /**
-     * @var 'Leeg' | 'Ja' | 'Nee'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg
      */
-    private string $VastDienstverband;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg $VastDienstverband;
 
     /**
      * @var int
@@ -40,9 +40,9 @@ class TInkomen
     private float $Loon;
 
     /**
-     * @var 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
      */
-    private string $LoonPeriode;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $LoonPeriode;
 
     /**
      * @var string
@@ -60,9 +60,9 @@ class TInkomen
     private float $Uitkering;
 
     /**
-     * @var 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
      */
-    private string $UitkeringPeriode;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $UitkeringPeriode;
 
     /**
      * @var float
@@ -70,9 +70,9 @@ class TInkomen
     private float $Pensioen;
 
     /**
-     * @var 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
      */
-    private string $PensioenPeriode;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $PensioenPeriode;
 
     /**
      * @var float
@@ -85,9 +85,9 @@ class TInkomen
     private float $Vrijwilligers;
 
     /**
-     * @var 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
      */
-    private string $VrijwilligersPeriode;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $VrijwilligersPeriode;
 
     /**
      * @var float
@@ -110,9 +110,9 @@ class TInkomen
     private float $OverigInkomenBedrag;
 
     /**
-     * @var 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
      */
-    private string $OverigInkomenPeriode;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $OverigInkomenPeriode;
 
     /**
      * @var string
@@ -120,18 +120,18 @@ class TInkomen
     private string $Toelichting;
 
     /**
-     * @return 'Werk' | 'Uitkering' | 'Combinatie_werk_en_uitkering' | 'Studiefinanciering' | 'Pensioen' | 'Combinatie_pensioen_en_uitkering' | 'Combinatie_werk_en_pensioen' | 'Combinatie_werk_en_uitkering_en_pensioen'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortInkomen
      */
-    public function getSoortInkomen(): string
+    public function getSoortInkomen(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortInkomen
     {
         return $this->SoortInkomen;
     }
 
     /**
-     * @param 'Werk' | 'Uitkering' | 'Combinatie_werk_en_uitkering' | 'Studiefinanciering' | 'Pensioen' | 'Combinatie_pensioen_en_uitkering' | 'Combinatie_werk_en_pensioen' | 'Combinatie_werk_en_uitkering_en_pensioen' $SoortInkomen
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortInkomen $SoortInkomen
      * @return static
      */
-    public function withSoortInkomen(string $SoortInkomen): static
+    public function withSoortInkomen(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortInkomen $SoortInkomen): static
     {
         $new = clone $this;
         $new->SoortInkomen = $SoortInkomen;
@@ -200,18 +200,18 @@ class TInkomen
     }
 
     /**
-     * @return 'Leeg' | 'Ja' | 'Nee'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg
      */
-    public function getVastDienstverband(): string
+    public function getVastDienstverband(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg
     {
         return $this->VastDienstverband;
     }
 
     /**
-     * @param 'Leeg' | 'Ja' | 'Nee' $VastDienstverband
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg $VastDienstverband
      * @return static
      */
-    public function withVastDienstverband(string $VastDienstverband): static
+    public function withVastDienstverband(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg $VastDienstverband): static
     {
         $new = clone $this;
         $new->VastDienstverband = $VastDienstverband;
@@ -260,18 +260,18 @@ class TInkomen
     }
 
     /**
-     * @return 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
      */
-    public function getLoonPeriode(): string
+    public function getLoonPeriode(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
     {
         return $this->LoonPeriode;
     }
 
     /**
-     * @param 'Leeg' | 'Maand' | 'Vier_weken' | 'Week' $LoonPeriode
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $LoonPeriode
      * @return static
      */
-    public function withLoonPeriode(string $LoonPeriode): static
+    public function withLoonPeriode(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $LoonPeriode): static
     {
         $new = clone $this;
         $new->LoonPeriode = $LoonPeriode;
@@ -340,18 +340,18 @@ class TInkomen
     }
 
     /**
-     * @return 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
      */
-    public function getUitkeringPeriode(): string
+    public function getUitkeringPeriode(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
     {
         return $this->UitkeringPeriode;
     }
 
     /**
-     * @param 'Leeg' | 'Maand' | 'Vier_weken' | 'Week' $UitkeringPeriode
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $UitkeringPeriode
      * @return static
      */
-    public function withUitkeringPeriode(string $UitkeringPeriode): static
+    public function withUitkeringPeriode(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $UitkeringPeriode): static
     {
         $new = clone $this;
         $new->UitkeringPeriode = $UitkeringPeriode;
@@ -380,18 +380,18 @@ class TInkomen
     }
 
     /**
-     * @return 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
      */
-    public function getPensioenPeriode(): string
+    public function getPensioenPeriode(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
     {
         return $this->PensioenPeriode;
     }
 
     /**
-     * @param 'Leeg' | 'Maand' | 'Vier_weken' | 'Week' $PensioenPeriode
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $PensioenPeriode
      * @return static
      */
-    public function withPensioenPeriode(string $PensioenPeriode): static
+    public function withPensioenPeriode(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $PensioenPeriode): static
     {
         $new = clone $this;
         $new->PensioenPeriode = $PensioenPeriode;
@@ -440,18 +440,18 @@ class TInkomen
     }
 
     /**
-     * @return 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
      */
-    public function getVrijwilligersPeriode(): string
+    public function getVrijwilligersPeriode(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
     {
         return $this->VrijwilligersPeriode;
     }
 
     /**
-     * @param 'Leeg' | 'Maand' | 'Vier_weken' | 'Week' $VrijwilligersPeriode
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $VrijwilligersPeriode
      * @return static
      */
-    public function withVrijwilligersPeriode(string $VrijwilligersPeriode): static
+    public function withVrijwilligersPeriode(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $VrijwilligersPeriode): static
     {
         $new = clone $this;
         $new->VrijwilligersPeriode = $VrijwilligersPeriode;
@@ -540,18 +540,18 @@ class TInkomen
     }
 
     /**
-     * @return 'Leeg' | 'Maand' | 'Vier_weken' | 'Week'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
      */
-    public function getOverigInkomenPeriode(): string
+    public function getOverigInkomenPeriode(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode
     {
         return $this->OverigInkomenPeriode;
     }
 
     /**
-     * @param 'Leeg' | 'Maand' | 'Vier_weken' | 'Week' $OverigInkomenPeriode
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $OverigInkomenPeriode
      * @return static
      */
-    public function withOverigInkomenPeriode(string $OverigInkomenPeriode): static
+    public function withOverigInkomenPeriode(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EPeriode $OverigInkomenPeriode): static
     {
         $new = clone $this;
         $new->OverigInkomenPeriode = $OverigInkomenPeriode;

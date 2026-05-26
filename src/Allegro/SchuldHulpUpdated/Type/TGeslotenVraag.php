@@ -10,9 +10,9 @@ class TGeslotenVraag
     private string $Vraag;
 
     /**
-     * @var 'Leeg' | 'Ja' | 'Nee'
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg
      */
-    private string $Antwoord;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg $Antwoord;
 
     /**
      * @return string
@@ -35,18 +35,18 @@ class TGeslotenVraag
     }
 
     /**
-     * @return 'Leeg' | 'Ja' | 'Nee'
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg
      */
-    public function getAntwoord(): string
+    public function getAntwoord(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg
     {
         return $this->Antwoord;
     }
 
     /**
-     * @param 'Leeg' | 'Ja' | 'Nee' $Antwoord
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg $Antwoord
      * @return static
      */
-    public function withAntwoord(string $Antwoord): static
+    public function withAntwoord(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg $Antwoord): static
     {
         $new = clone $this;
         $new->Antwoord = $Antwoord;
