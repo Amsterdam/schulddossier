@@ -55,11 +55,6 @@ class SchuldItem
     #[ORM\Column(type: 'datetime', nullable: false)]
     private $bewerkDatumTijd;
 
-    /*/*
-     * @var SchuldItemHistorie
-     * @ORM\OneToMany(targetEntity="SchuldItemHistorie", mappedBy="SchuldItem", cascade={"persist"})
-     */
-    //private $historie;
     /**
      * @var boolean
      */
