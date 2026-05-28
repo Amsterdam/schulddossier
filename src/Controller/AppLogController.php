@@ -20,7 +20,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class AppLogController extends AbstractController
 {
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/log/')]
-    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
     public function index(Request $request, ActionEventRepository $actionEventRepository, PaginatorInterface $paginator): Response
     {
         $form = $this->createForm(SearchLogFormType::class);
