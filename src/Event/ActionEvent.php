@@ -275,20 +275,20 @@ class ActionEvent extends Event
     /**
      * @param Gebruiker $gebruiker
      * @param Dossier $dossier
-     * @param array $schulditemUpdates,
+     * @param array $schuldItemUpdates,
      *
      * @return ActionEvent
      */
     public static function registerSchuldItemAangemaakt(
         Gebruiker $gebruiker,
         Dossier $dossier,
-        $schulditemUpdates,
+        $schuldItemUpdates,
     ) {
 
         $data = array_merge(
             self::getGebruikerData($gebruiker),
             [
-                "schulditemUpdates" => $schulditemUpdates,
+                "schuldItemUpdates" => $schuldItemUpdates,
             ]
         );
 
