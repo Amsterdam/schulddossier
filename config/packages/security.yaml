@@ -1,8 +1,5 @@
 security:
 
-  #encoders:
-  #  GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker:
-  #    algorithm: bcrypt
   providers:
     database:
       entity:
