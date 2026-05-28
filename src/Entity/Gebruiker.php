@@ -112,7 +112,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      * @var Team
      */
     #[ORM\JoinColumn(name: 'team_id', referencedColumnName: 'id', nullable: true)]
-    #[ORM\ManyToOne(targetEntity: \Team::class)]
+    #[ORM\ManyToOne(targetEntity: Team::class)]
     private $teamGka;
 
     /**
@@ -121,7 +121,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
     #[ORM\JoinTable]
     #[JoinColumn(name: 'gebruiker_id', referencedColumnName: 'id')]
     #[InverseJoinColumn(name: 'organisatie_id', referencedColumnName: 'id')]
-    #[ORM\ManyToMany(targetEntity: \Organisatie::class)]
+    #[ORM\ManyToMany(targetEntity: Organisatie::class)]
     private $organisaties;
 
     /**

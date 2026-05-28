@@ -36,7 +36,7 @@ class Voorlegger
      * @var Dossier
      */
     #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\OneToOne(targetEntity: \Dossier::class, inversedBy: 'voorlegger', orphanRemoval: true)]
+    #[ORM\OneToOne(targetEntity: Dossier::class, inversedBy: 'voorlegger', orphanRemoval: true)]
     private $dossier;
 
     // ---

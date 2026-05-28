@@ -25,7 +25,7 @@ class DossierTimeline
      * @var Dossier
      */
     #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Dossier::class, inversedBy: 'timeline')]
+    #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'timeline')]
     private $dossier;
 
     /**
@@ -38,7 +38,7 @@ class DossierTimeline
      * @var Gebruiker
      */
     #[ORM\JoinColumn(name: 'gebruiker_id', referencedColumnName: 'id', nullable: true)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
+    #[ORM\ManyToOne(targetEntity: Gebruiker::class)]
     private $gebruiker;
 
     /**

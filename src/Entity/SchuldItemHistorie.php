@@ -2,11 +2,6 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
-use Schulditem;
-use Dossier;
-use Gebruiker;
-use Schuldeiser;
-use DossierDocument;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;

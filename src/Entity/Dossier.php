@@ -234,7 +234,7 @@ class Dossier
      * @var Organisatie
      */
     #[ORM\JoinColumn(name: 'organisatie_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Organisatie::class)]
+    #[ORM\ManyToOne(targetEntity: Organisatie::class)]
     #[Assert\NotBlank]
     private $organisatie;
 
@@ -242,7 +242,7 @@ class Dossier
      * @var Gebruiker
      */
     #[ORM\JoinColumn(name: 'medewerker_organisatie_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
+    #[ORM\ManyToOne(targetEntity: Gebruiker::class)]
     #[Assert\NotBlank]
     private $medewerkerOrganisatie;
 
@@ -250,7 +250,7 @@ class Dossier
      * @var Team
      */
     #[ORM\JoinColumn(name: 'team_id', referencedColumnName: 'id', nullable: true)]
-    #[ORM\ManyToOne(targetEntity: \Team::class)]
+    #[ORM\ManyToOne(targetEntity: Team::class)]
     #[Assert\NotBlank(message: 'Vul hier het GKA team in waarnaar dit dossier verstuurd gaat worden')]
     private $teamGka;
 
@@ -296,7 +296,7 @@ class Dossier
      * @var Gebruiker
      */
     #[ORM\JoinColumn(name: 'aanmaker_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
+    #[ORM\ManyToOne(targetEntity: Gebruiker::class)]
     private $aanmaker;
 
     /**
@@ -314,14 +314,14 @@ class Dossier
     /**
      * @var Voorlegger
      */
-    #[ORM\OneToOne(targetEntity: \Voorlegger::class, mappedBy: 'dossier', orphanRemoval: true, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: Voorlegger::class, mappedBy: 'dossier', orphanRemoval: true, cascade: ['persist', 'remove'])]
     #[Assert\Valid]
     private $voorlegger;
 
     /**
      * @var DossierDocument[]|ArrayCollection
      */
-    #[ORM\OneToMany(targetEntity: \DossierDocument::class, mappedBy: 'dossier', cascade: ['persist'])]
+    #[ORM\OneToMany(targetEntity: DossierDocument::class, mappedBy: 'dossier', cascade: ['persist'])]
     private $documenten;
 
     /**
@@ -339,28 +339,28 @@ class Dossier
     /**
      * @var SchuldItem[]|ArrayCollection
      */
-    #[ORM\OneToMany(targetEntity: \SchuldItem::class, mappedBy: 'dossier', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: SchuldItem::class, mappedBy: 'dossier', cascade: ['persist', 'remove'])]
     #[ORM\OrderBy(['id' => 'ASC'])]
     private $schuldItems;
 
     /**
      * @var Aantekening[]|ArrayCollection
      */
-    #[ORM\OneToMany(targetEntity: \Aantekening::class, mappedBy: 'dossier', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: Aantekening::class, mappedBy: 'dossier', cascade: ['persist', 'remove'])]
     #[ORM\OrderBy(['datumTijd' => 'DESC', 'id' => 'DESC'])]
     private $aantekeningen;
 
     /**
      * @var DossierTimeline[]|ArrayCollection
      */
-    #[ORM\OneToMany(targetEntity: \DossierTimeline::class, mappedBy: 'dossier', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: DossierTimeline::class, mappedBy: 'dossier', cascade: ['persist', 'remove'])]
     #[ORM\OrderBy(['datumtijd' => 'DESC', 'id' => 'DESC'])]
     private $timeline;
 
     /**
      * @var ActionEvent[]|ArrayCollection
      */
-    #[ORM\OneToMany(targetEntity: \ActionEvent::class, mappedBy: 'dossier', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: ActionEvent::class, mappedBy: 'dossier', cascade: ['remove'])]
     #[ORM\OrderBy(['id' => 'DESC'])]
     private $actionEvents;
 

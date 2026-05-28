@@ -21,14 +21,14 @@ class DossierDocument
      * @var Dossier
      */
     #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Dossier::class, inversedBy: 'documenten')]
+    #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'documenten')]
     private $dossier;
 
     /**
      * @var Document
      */
     #[ORM\JoinColumn(name: 'document_id', referencedColumnName: 'id', nullable: false, onDelete: 'CASCADE')]
-    #[ORM\ManyToOne(targetEntity: \Document::class, cascade: ['persist'], fetch: 'EAGER')]
+    #[ORM\ManyToOne(targetEntity: Document::class, cascade: ['persist'], fetch: 'EAGER')]
     #[Assert\Valid]
     private $document;
 
@@ -43,7 +43,7 @@ class DossierDocument
      * @var SchuldItem
      */
     #[ORM\JoinColumn(name: 'schuld_item_id', referencedColumnName: 'id', nullable: true)]
-    #[ORM\ManyToOne(targetEntity: \SchuldItem::class, inversedBy: 'dossierDocumenten')]
+    #[ORM\ManyToOne(targetEntity: SchuldItem::class, inversedBy: 'dossierDocumenten')]
     private $schuldItem;
 
     public function getId()

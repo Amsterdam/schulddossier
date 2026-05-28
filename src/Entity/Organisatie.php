@@ -3,7 +3,6 @@
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository;
-use Gebruiker;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -41,7 +40,7 @@ class Organisatie
      * @var Team
      */
     #[ORM\JoinColumn(name: 'team_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
-    #[ORM\ManyToOne(targetEntity: \Team::class)]
+    #[ORM\ManyToOne(targetEntity: Team::class)]
     private $standaardGkaTeam;
 
     /**

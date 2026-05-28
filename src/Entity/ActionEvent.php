@@ -27,7 +27,7 @@ class ActionEvent
      * @var Dossier
      */
     #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id', nullable: true)]
-    #[ORM\ManyToOne(targetEntity: \Dossier::class)]
+    #[ORM\ManyToOne(targetEntity: Dossier::class)]
     private $dossier;
 
     /**

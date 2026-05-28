@@ -25,7 +25,7 @@ class Aantekening
      * @var Dossier
      */
     #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Dossier::class, inversedBy: 'aantekeningen')]
+    #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'aantekeningen')]
     private $dossier;
 
     /**
@@ -38,7 +38,7 @@ class Aantekening
      * @var SchuldItem
      */
     #[ORM\JoinColumn(name: 'schuld_item_id', referencedColumnName: 'id', nullable: true)]
-    #[ORM\ManyToOne(targetEntity: \SchuldItem::class, inversedBy: 'aantekeningen')]
+    #[ORM\ManyToOne(targetEntity: SchuldItem::class, inversedBy: 'aantekeningen')]
     private $schuldItem;
 
     /**
@@ -51,7 +51,7 @@ class Aantekening
      * @var Gebruiker
      */
     #[ORM\JoinColumn(name: 'gebruiker_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
+    #[ORM\ManyToOne(targetEntity: Gebruiker::class)]
     private $gebruiker;
 
     /**

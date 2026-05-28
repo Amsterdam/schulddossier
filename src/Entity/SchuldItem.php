@@ -26,14 +26,14 @@ class SchuldItem
      * @var Dossier
      */
     #[ORM\JoinColumn(name: 'dossier_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Dossier::class, inversedBy: 'schuldItems')]
+    #[ORM\ManyToOne(targetEntity: Dossier::class, inversedBy: 'schuldItems')]
     private $dossier;
 
     /**
      * @var Gebruiker
      */
     #[ORM\JoinColumn(name: 'aanmaker_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
+    #[ORM\ManyToOne(targetEntity: Gebruiker::class)]
     private $aanmaker;
 
     /**
@@ -46,7 +46,7 @@ class SchuldItem
      * @var Gebruiker
      */
     #[ORM\JoinColumn(name: 'aanmaker_id', referencedColumnName: 'id', nullable: false)]
-    #[ORM\ManyToOne(targetEntity: \Gebruiker::class)]
+    #[ORM\ManyToOne(targetEntity: Gebruiker::class)]
     private $bewerker;
 
     /**
@@ -70,7 +70,7 @@ class SchuldItem
      * @var Schuldeiser
      */
     #[ORM\JoinColumn(name: 'schuldeiser_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Schuldeiser::class, cascade: ['persist'])]
+    #[ORM\ManyToOne(targetEntity: Schuldeiser::class, cascade: ['persist'])]
     #[Assert\NotBlank]
     private $schuldeiser;
 
@@ -78,7 +78,7 @@ class SchuldItem
      * @var Schuldeiser
      */
     #[ORM\JoinColumn(name: 'incassant_id', referencedColumnName: 'id')]
-    #[ORM\ManyToOne(targetEntity: \Schuldeiser::class, cascade: ['persist'])]
+    #[ORM\ManyToOne(targetEntity: Schuldeiser::class, cascade: ['persist'])]
     private $incassant;
 
     /**
@@ -136,14 +136,14 @@ class SchuldItem
     /**
      * @var DossierDocument[]|ArrayCollection
      */
-    #[ORM\OneToMany(targetEntity: \DossierDocument::class, mappedBy: 'schuldItem', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: DossierDocument::class, mappedBy: 'schuldItem', cascade: ['persist', 'remove'])]
     #[ORM\OrderBy(['id' => 'ASC'])]
     private $dossierDocumenten;
 
     /**
      * @var Aantekening[]|ArrayCollection
      */
-    #[ORM\OneToMany(targetEntity: \Aantekening::class, mappedBy: 'schuldItem', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: Aantekening::class, mappedBy: 'schuldItem', cascade: ['persist', 'remove'])]
     #[ORM\OrderBy(['datumTijd' => 'DESC', 'id' => 'DESC'])]
     private $aantekeningen;
 
