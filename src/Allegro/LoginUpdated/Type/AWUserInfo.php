@@ -63,6 +63,12 @@ class AWUserInfo
     private ?string $Privileges;
 
     /**
+     * This property is manually added after generating the code with phpro soap client wizard
+     * @var string | null
+     */
+    private ?string $Attributes;
+
+    /**
      * @return string
      */
     public function getLoginType(): string
@@ -249,5 +255,14 @@ class AWUserInfo
     public function getPrivileges()
     {
         return $this->Privileges;
+    }
+
+    /**
+     * This function is manually added after generating the code with phpro soap client wizard
+     * @return string | null
+     */
+    public function getAttributes()
+    {
+        return $this->Attributes;
     }
 }
