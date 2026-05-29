@@ -1688,4 +1688,40 @@ class AppDossierController extends AbstractController
     {
         return $action . ': <strong> ' . $document->getNaam() . '</strong>';
     }
+
+
+    private function validateIndienDossier(Dossier $dossier, Voorlegger $voorlegger): array
+    {
+                    $errors = [];
+                    
+    // NAW gegevens uit dossier
+
+                    if ($dossier->getClientNaam() === null) {
+                        $errors[] = 'clientNaam';
+                    }
+
+                    if ($dossier->getClientVoorletters() === null) {
+                        $errors[] = 'clientVoorletters';
+                    }
+
+                    if ($dossier->getPartnerNvt() === false) {
+                        if ($dossier->getPartnerNaam() === null) {
+                            $errors[] = 'partnerNaam';
+                        }
+
+                        if ($dossier->getPartnerVoorletters() === null) {
+                            $errors[] = 'partnerVoorletters';
+                        }
+                    }
+
+                    
+
+
+                    // Productgegevens uit voorlegger
+
+                    // toelichting uit voorlegger
+
+                    return $errors;
+
+    }
 }
