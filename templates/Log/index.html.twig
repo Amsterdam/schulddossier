@@ -93,7 +93,7 @@
 										<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': log.dossier.Id}) }}">{{ log.dossier.clientNaam }}</a>
 									{% endif  %} 
 								gewijzigd
-								{% if log.data.remark is defined log.data.remark is not null %}
+								{% if log.data.remark is defined and log.data.remark is not null %}
 									<br><br>
 									{{ log.data.remark | sanitize | raw }}
 								{% endif %}
