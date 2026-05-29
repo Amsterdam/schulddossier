@@ -60,7 +60,7 @@ class AWUserInfo
      * This property is manually added after generating the code with phpro soap client wizard
      * @var string | null
      */
-    private ?string $privileges;
+    private ?string $Privileges;
 
     /**
      * @return string
@@ -248,6 +248,6 @@ class AWUserInfo
      */
     public function getPrivileges()
     {
-        return $this->privileges;
+        return $this->Privileges;
     }
 }
