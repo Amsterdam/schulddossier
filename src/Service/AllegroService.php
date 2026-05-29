@@ -171,7 +171,6 @@ class AllegroService
         if ($response->getResult()) {
             $organisatie->setAllegroSessionAge($now);
 
-            /** @var AWUserInfo $aUserInfo */
             $aUserInfo = $response->getAUserInfo();
 
             $organisatie->setAllegroSessionId($aUserInfo->getSessionId());

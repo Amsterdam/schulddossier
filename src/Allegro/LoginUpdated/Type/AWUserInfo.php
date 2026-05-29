@@ -57,6 +57,12 @@ class AWUserInfo
     private $UserID;
 
     /**
+     * This property is manually added after generating the code with phpro soap client wizard
+     * @var string | null
+     */
+    private ?string $privileges;
+
+    /**
      * @return string
      */
     public function getLoginType(): string
@@ -234,5 +240,14 @@ class AWUserInfo
     public function getUserID()
     {
         return $this->UserID;
+    }
+
+    /**
+     * This function is manually added after generating the code with phpro soap client wizard
+     * @return string | null
+     */
+    public function getPrivileges()
+    {
+        return $this->privileges;
     }
 }
