@@ -7,31 +7,31 @@ class SimpleFieldInfo
     /**
      * @var string
      */
-    private $Name;
+    private string $Name;
 
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataType
      */
-    private $DataType;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataType $DataType;
 
     /**
      * @var bool
      */
-    private $Hidden;
+    private bool $Hidden;
 
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->Name;
     }
 
     /**
      * @param string $Name
-     * @return SimpleFieldInfo
+     * @return static
      */
-    public function withName($Name)
+    public function withName(string $Name): static
     {
         $new = clone $this;
         $new->Name = $Name;
@@ -40,18 +40,18 @@ class SimpleFieldInfo
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataType
      */
-    public function getDataType()
+    public function getDataType(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataType
     {
         return $this->DataType;
     }
 
     /**
-     * @param string $DataType
-     * @return SimpleFieldInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataType $DataType
+     * @return static
      */
-    public function withDataType($DataType)
+    public function withDataType(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataType $DataType): static
     {
         $new = clone $this;
         $new->DataType = $DataType;
@@ -62,16 +62,16 @@ class SimpleFieldInfo
     /**
      * @return bool
      */
-    public function getHidden()
+    public function getHidden(): bool
     {
         return $this->Hidden;
     }
 
     /**
      * @param bool $Hidden
-     * @return SimpleFieldInfo
+     * @return static
      */
-    public function withHidden($Hidden)
+    public function withHidden(bool $Hidden): static
     {
         $new = clone $this;
         $new->Hidden = $Hidden;

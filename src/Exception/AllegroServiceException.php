@@ -2,7 +2,9 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Exception;
 
-class AllegroServiceException extends \Exception
+use Exception;
+
+class AllegroServiceException extends Exception
 {
     const TYPE_MISSING_CLIENT_BIRTHDATE = 'MISSING_CLIENT_BIRTHDATE';
     const TYPE_MISSING_CLIENT_GENDER = 'MISSING_CLIENT_GENDER';

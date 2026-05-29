@@ -2,77 +2,77 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\OrganisatieRepository")
- * @ORM\Table
- */
+#[ORM\Table]
+#[ORM\Entity(repositoryClass: OrganisatieRepository::class)]
 class Organisatie
 {
     /**
      * @var integer
-     * @ORM\Id
-     * @ORM\Column(type="integer", nullable=false)
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer', nullable: false)]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private $id;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=125, nullable=false)
-     * @Assert\NotBlank
-     * @Assert\Length(min=1, max=125)
      */
+    #[ORM\Column(type: 'string', length: 125, nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 1, max: 125)]
     private $naam;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Email
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Email]
+    #[Assert\Length(min: 0, max: 255)]
     private $emailAdresControle;
 
     /**
      * @var Team
-     * @ORM\ManyToOne(targetEntity="Team")
-     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
+    #[ORM\JoinColumn(name: 'team_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[ORM\ManyToOne(targetEntity: Team::class)]
     private $standaardGkaTeam;
 
     /**
      * @var Gebruiker[]|ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Gebruiker", mappedBy="organisaties")
      */
+    #[ORM\ManyToMany(targetEntity: Gebruiker::class, mappedBy: 'organisaties')]
     private $gebruikers;
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $allegroUsername;
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $allegroPassword;
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $allegroSessionId;
 
     /**
-     * @var \DateTime|null
-     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime|null
      */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $allegroSessionAge;
 
     public function __construct()
@@ -188,18 +188,18 @@ class Organisatie
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getAllegroSessionAge(): ?\DateTime
+    public function getAllegroSessionAge(): ?DateTime
     {
         return $this->allegroSessionAge;
     }
 
     /**
-     * @param \DateTime|null $allegroSessionAge
+     * @param DateTime|null $allegroSessionAge
      * @return Organisatie
      */
-    public function setAllegroSessionAge(?\DateTime $allegroSessionAge): Organisatie
+    public function setAllegroSessionAge(?DateTime $allegroSessionAge): Organisatie
     {
         $this->allegroSessionAge = $allegroSessionAge;
 

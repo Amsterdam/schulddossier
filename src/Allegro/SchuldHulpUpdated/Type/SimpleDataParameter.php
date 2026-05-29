@@ -5,33 +5,33 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class SimpleDataParameter
 {
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataType
      */
-    private $DataType;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataType $DataType;
 
     /**
      * @var string
      */
-    private $Name;
+    private string $Name;
 
     /**
      * @var string
      */
-    private $Value;
+    private string $Value;
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataType
      */
-    public function getDataType()
+    public function getDataType(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataType
     {
         return $this->DataType;
     }
 
     /**
-     * @param string $DataType
-     * @return SimpleDataParameter
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataType $DataType
+     * @return static
      */
-    public function withDataType($DataType)
+    public function withDataType(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SimpleDataType $DataType): static
     {
         $new = clone $this;
         $new->DataType = $DataType;
@@ -42,16 +42,16 @@ class SimpleDataParameter
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->Name;
     }
 
     /**
      * @param string $Name
-     * @return SimpleDataParameter
+     * @return static
      */
-    public function withName($Name)
+    public function withName(string $Name): static
     {
         $new = clone $this;
         $new->Name = $Name;
@@ -62,16 +62,16 @@ class SimpleDataParameter
     /**
      * @return string
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->Value;
     }
 
     /**
      * @param string $Value
-     * @return SimpleDataParameter
+     * @return static
      */
-    public function withValue($Value)
+    public function withValue(string $Value): static
     {
         $new = clone $this;
         $new->Value = $Value;

@@ -7,26 +7,26 @@ class ColumnSorting
     /**
      * @var string
      */
-    private $FieldName;
+    private string $FieldName;
 
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ColumnSortDirection
      */
-    private $SortDirection;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ColumnSortDirection $SortDirection;
 
     /**
      * @return string
      */
-    public function getFieldName()
+    public function getFieldName(): string
     {
         return $this->FieldName;
     }
 
     /**
      * @param string $FieldName
-     * @return ColumnSorting
+     * @return static
      */
-    public function withFieldName($FieldName)
+    public function withFieldName(string $FieldName): static
     {
         $new = clone $this;
         $new->FieldName = $FieldName;
@@ -35,18 +35,18 @@ class ColumnSorting
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ColumnSortDirection
      */
-    public function getSortDirection()
+    public function getSortDirection(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ColumnSortDirection
     {
         return $this->SortDirection;
     }
 
     /**
-     * @param string $SortDirection
-     * @return ColumnSorting
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ColumnSortDirection $SortDirection
+     * @return static
      */
-    public function withSortDirection($SortDirection)
+    public function withSortDirection(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ColumnSortDirection $SortDirection): static
     {
         $new = clone $this;
         $new->SortDirection = $SortDirection;

@@ -5,28 +5,28 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class TSorteerInfo
 {
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EVeldSortering
      */
-    private $Veld;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EVeldSortering $Veld;
 
     /**
      * @var bool
      */
-    private $Oplopend;
+    private bool $Oplopend;
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EVeldSortering
      */
-    public function getVeld()
+    public function getVeld(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EVeldSortering
     {
         return $this->Veld;
     }
 
     /**
-     * @param string $Veld
-     * @return TSorteerInfo
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EVeldSortering $Veld
+     * @return static
      */
-    public function withVeld($Veld)
+    public function withVeld(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EVeldSortering $Veld): static
     {
         $new = clone $this;
         $new->Veld = $Veld;
@@ -37,16 +37,16 @@ class TSorteerInfo
     /**
      * @return bool
      */
-    public function getOplopend()
+    public function getOplopend(): bool
     {
         return $this->Oplopend;
     }
 
     /**
      * @param bool $Oplopend
-     * @return TSorteerInfo
+     * @return static
      */
-    public function withOplopend($Oplopend)
+    public function withOplopend(bool $Oplopend): static
     {
         $new = clone $this;
         $new->Oplopend = $Oplopend;

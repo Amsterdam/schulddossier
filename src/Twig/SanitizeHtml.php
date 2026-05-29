@@ -6,7 +6,8 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Twig;
 
 use HTMLPurifier;
 use HTMLPurifier_Config;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 /**
  * Class SanitizeHtml
@@ -14,22 +15,27 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
  * This class extends Twig's functionality by adding a custom filter to sanitize HTML input.
  * It uses the HTMLPurifier library to allow only specific HTML tags (e.g., <strong>).
  */
-class SanitizeHtml extends \Twig_Extension
+class SanitizeHtml extends AbstractExtension
 {
     /**
-     * @return array|\Twig_Filter[]
+     * @return array Twig_Filter[]
      */
     public function getFilters(): array
     {
         return [
-            new \Twig_Filter('sanitize', function ($input) {
-                $config = HTMLPurifier_Config::createDefault();
-                $config->set('HTML.Allowed', 'strong, br');
-                $purifier = new HTMLPurifier($config);
-                $purifiedInput =  $purifier->purify($input);
-
-                return $purifiedInput;
-            })
+            new TwigFilter(
+                'sanitize',
+                [$this, 'sanitize']
+            )
         ];
+    }
+
+    public function sanitize(string $input): string
+    {
+        $config = HTMLPurifier_Config::createDefault();
+        $config->set('HTML.Allowed', 'strong, br');
+        $purifier = new HTMLPurifier($config);
+        $purifiedInput = $purifier->purify($input);
+        return $purifiedInput;
     }
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Traits;
 
+use DateTime;
+use PhpOffice\PhpSpreadsheet\Exception;
 use Doctrine\ORM\PersistentCollection;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent;
@@ -21,7 +23,7 @@ trait ExportAble
 {
     /**
      * @return Spreadsheet
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws Exception
      */
     public function toSpreadsheetCsv(): Spreadsheet
     {
@@ -49,7 +51,7 @@ trait ExportAble
      * @param array $rows
      *
      * @return Spreadsheet
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws Exception
      */
     public function batchToSpreadsheetCsv(array $header, array $rows): Spreadsheet
     {
@@ -114,7 +116,7 @@ trait ExportAble
                 $attributeValue = '';
             }
 
-            if ($attributeValue instanceof \DateTime) {
+            if ($attributeValue instanceof DateTime) {
                 $attributeValue = $attributeValue->format('d-m-Y h:i:s');
             }
 

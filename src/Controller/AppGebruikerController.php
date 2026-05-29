@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
@@ -9,38 +10,32 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
 use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\GebruikerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
-use GemeenteAmsterdam\FixxxSchuldhulp\Traits\FilterAble;
 use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Component\ExpressionLanguage\Expression;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-/**
- * @Route("/app/gebruiker")
- * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
- */
+#[IsGranted(attribute: new Expression(
+    "is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
+))]
 class AppGebruikerController extends AbstractController
 {
-    use FilterAble;
-
-    /**
-     * @Route("/")
-     * @Route("/inactive", name="gebruikers_inactive")
-     */
-    public function indexAction(Request $request, PaginatorInterface $paginator, GebruikerRepository $repository)
-    {
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/')]
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/inactive', name: 'gebruikers_inactive')]
+    public function index(
+        Request $request,
+        PaginatorInterface $paginator,
+        GebruikerRepository $repository
+    ): Response {
         $inactive = 'gebruikers_inactive' === $request->get('_route');
-
-        if ($this->containsForbiddenFilterFields($request)) {
-            return new RedirectResponse($this->generateUnfilteredUrl($request));
-        }
 
         $pagination = $paginator->paginate(
             $repository->generatePaginationQueryForUser($this->getUser(), $inactive, false),
@@ -57,11 +52,11 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/nieuw")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
-     */
-    public function createAction(Request $request, EntityManagerInterface $em)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/nieuw')]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
+    ))]
+    public function create(Request $request, EntityManagerInterface $em)
     {
         $gebruiker = new Gebruiker();
         $form = $this->createForm(GebruikerFormType::class, $gebruiker);
@@ -81,25 +76,23 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/detail/{gebruikerId}/bewerken")
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
-     */
-    public function updateAction(
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/detail/{gebruikerId}/bewerken')]
+    #[IsGranted(attribute: new Expression(
+        "is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_SHV_KEYUSER') || is_granted('ROLE_ADMIN')"
+    ))]
+    public function update(
         Request $request,
         EntityManagerInterface $em,
+        #[MapEntity(id: 'gebruikerId')]
         Gebruiker $gebruiker,
         EventDispatcherInterface $eventDispatcher
     ) {
         if ($this->getUser()->getType() === Gebruiker::TYPE_SHV_KEYUSER) {
             if (
-                !$gebruiker->getOrganisaties()->isEmpty() && empty(
-                    array_intersect(
-                        $this->getUser()->getOrganisaties()->toArray(),
-                        $gebruiker->getOrganisaties()->toArray()
-                    )
-                )
+                !$gebruiker->getOrganisaties()->isEmpty() && empty(array_intersect(
+                    $this->getUser()->getOrganisaties()->toArray(),
+                    $gebruiker->getOrganisaties()->toArray()
+                ))
             ) {
                 throw $this->createAccessDeniedException();
             }
@@ -126,18 +119,14 @@ class AppGebruikerController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/detail/{gebruikerId}/verwijder")
-     * @Method({"POST"})
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     * @ParamConverter("gebruiker", options={"id"="gebruikerId"})
-     */
-    public function deleteAction(
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/detail/{gebruikerId}/verwijder', methods: ['POST'])]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
+    public function delete(
         Request $request,
         EntityManagerInterface $em,
-        Gebruiker $gebruiker,
+        #[MapEntity(id: 'gebruikerId')]
         EventDispatcherInterface $eventDispatcher
-    ) {
+    ): RedirectResponse {
         // TODO Dit punt is in opverleg met de kredietbank uitgeschakeld om te refinen welke gegevens er moeten worden geanonimiseerd
         // TODO Weergave is ook weg gehaald in schulddossier/templates/Gebruiker/update.html.twig
         throw $this->createAccessDeniedException('Deze functionaliteit is uitgeschakeld');
@@ -157,7 +146,7 @@ class AppGebruikerController extends AbstractController
             ActionEvent::NAME
         );
 
-        $gebruiker->setVerwijderd(new \DateTime());
+        $gebruiker->setVerwijderd(new DateTime());
         $gebruiker->anonymize();
         $em->persist($gebruiker);
         $this->addFlash('success', 'Gebruiker verwijderd en geanonimiseerd');
@@ -166,19 +155,16 @@ class AppGebruikerController extends AbstractController
         return new RedirectResponse('/app/gebruiker');
     }
 
-    /**
-     * @Route("/download-gebruikers-csv", name="get_gebruikers_csv", methods={"GET"})
-     * @Security("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')")
-     */
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/gebruiker/download-gebruikers-csv', name: 'get_gebruikers_csv', methods: ['GET'])]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"))]
     public function getGebruikersCsv(GebruikerRepository $repository): StreamedResponse
     {
         $gebruikers = $repository->findAll(0, 100000);
 
-        $response = new StreamedResponse(function () use ($gebruikers) {
+        $response = new StreamedResponse(function () use ($gebruikers): void {
             $handle = fopen('php://output', 'w+');
 
             fputcsv($handle, ['e-mail', 'naam', 'organisatie', 'rol', 'laatste login datum', 'enabled/disabled'], ';');
-
             foreach ($gebruikers as $gebruiker) {
                 $lastLogin = $gebruiker->getLastLogin() !== null
                     ? $gebruiker->getLastLogin()->format('Y-m-d H:i:s')

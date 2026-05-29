@@ -10,89 +10,107 @@
     {% endif %}
     {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-schuldenoverzicht"
      data-hashevent="activate-section" data-keyupper="section-document-nav">
-    <div class="dossier__voorlegger__header">
+	<div class="dossier__voorlegger__header">
 
-        <div class="voorlegger-header">
-            <h3 class="naam">
-                <a href="#id_voorlegger-schuldenoverzicht">{{ title }}</a>
-            </h3>
-            {% if dossierDocumenten|length > 0 %}
-                <div class="voortgang">
-                    <span>{{ dossierDocumenten|length }}</span>
-                </div>
-            {% endif %}
-            {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
-        </div>
-    </div>
-    <div class="dossier__voorlegger__body">
-        <div class="dossier__voorlegger__sectie">
-            <div class="dossier__voorlegger__sectie__header">
-                <a class="dossier__voorlegger__sectie__close" href="#_"></a>
-                <div class="status-container hide"><span>Status:</span>
-                    {{ form_row(form.schuldenoverzichtOntvangenShv) }}
-                    {{ form_row(form.schuldenoverzichtOntvangenGka) }}
-                </div>
-                {% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
-                <h3>{{ title }}</h3>
-                <hr>
-            </div>
-            <div class="dossier__voorlegger__sectie__body">
-                {{ detailsMacro({
+
+		<div class="voorlegger-header">
+			<h3 class="naam">
+				<a href="#id_voorlegger-schuldenoverzicht">{{ title }}</a>
+			</h3>
+			{% if dossierDocumenten|length > 0 %}
+				<div class="voortgang">
+					<span>{{ dossierDocumenten|length }}</span>
+				</div>
+			{% endif %}
+			{% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
+		</div>
+	</div>
+	<div class="dossier__voorlegger__body">
+		<div class="dossier__voorlegger__sectie">
+			<div class="dossier__voorlegger__sectie__header">
+				<a class="dossier__voorlegger__sectie__close" href="#_"></a>
+
+				<div class="status-container hide">
+					<span>Status:</span>
+					{{ form_row(form.schuldenoverzichtOntvangenShv) }}
+					{{ form_row(form.schuldenoverzichtOntvangenGka) }}
+				</div>
+				{% include 'Dossier/partial.statusChanger.html.twig'  with {'show_nvt': false} %}
+				<h3>{{ title }}</h3>
+				<hr></div>
+			<div class="dossier__voorlegger__sectie__body">
+				{{ detailsMacro({
+
                     class: "explanation",
                     title: "Toelichting",
                     value: "<p>Voeg een kopie van het schuldenoverzicht toe.</p>
                             <p>Op basis van de gegevens die zijn ingevuld in het tabblad Schulden wordt automatisch een schuldenoverzicht gegenereerd. Dit overzicht kan ook worden toegevoegd.</p>
                             <p>Het is belangrijk dat de Amsterdammer akkoord gaat met het schuldenoverzicht.</p>"
                 }) }}
-                <div class="table">
-                    <h4>Samenvatting</h4>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Schuldeiser</th>
-                            <th>Referentie</th>
-                            <th>Type</th>
-                            <th style="text-align: right">Schuld</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% set empty = true %}
-                        {% for schuldItem in dossier.schuldItems if schuldItem.verwijderd == false %}
-                            {% set empty = false %}
-                            <tr class="row-link">
-                                <th>
-                                    {{ schuldItem.schuldeiser|default('-') }} {% if schuldItem.incassant %}/{% endif %} {{ schuldItem.incassant }}
-                                </th>
-                                <td>{{ schuldItem.referentie }}</td>
-                                <td>{{ schuldItem.type }}</td>
-                                <td align="right">&euro;&nbsp;{{ schuldItem.bedrag|number_format(2, ',', '.') }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+				<div class="table">
+					<h4>Samenvatting</h4>
+					<table>
+						<thead>
+							<tr>
+								<th>Schuldeiser</th>
+								<th>Referentie</th>
+								<th>Type</th>
+								<th style="text-align: right">Schuld</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% set empty = true %}
+						</tbody>
 
-                    {% if empty %}
-                        <p class="empty-table">Er zijn nog geen schulden ingevoerd. Ga naar <a
-                                    href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">schuldenoverzicht</a>
-                            om een schuld in te voeren.</p>
-                    {% endif %}
+						{% for schuldItem in dossier.schuldItems %}
+							{% if schuldItem.verwijderd == false %}
+								{% set empty = false %}
+								<tr class="row-link">
+									<th></th>
+								</tr>
+
+								{{ schuldItem.schuldeiser|default('-') }}
+								{% if schuldItem.incassant %}/
+								{% endif %}
+								{{ schuldItem.incassant }}</th>
+							<td>{{ schuldItem.referentie }}</td>
+							<td>{{ schuldItem.type }}</td>
+							<td align="right">&euro;&nbsp;{{ schuldItem.bedrag|number_format(2, ',', '.') }}</td>
+						</tr>
+
+					{% endif %}
 
 
-                    <p class="nav-internal">
-                        <a class="primary"
-                           href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">Ga
-                            naar overzicht</a>
-                    </p>
+				{% endfor %}
+			</tbody>
+		</table>
 
-                </div>
 
-                {% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Schuldenoverzicht'} only %}
-                {% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
+		{% if empty %}
 
-                <h4>Aantekeningen</h4>{{ form_row(form.aantekening) }}
-                {% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('schuldenoverzicht')} only %}
-            </div>
-            {% include 'Dossier/partial.documentViewer.html.twig' %}
-        </div>
-    </div>
-</div>
+			<p class="empty-table">Er zijn nog geen schulden ingevoerd. Ga naar
+				<a
+                                    href= = = ="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">schuldenoverzicht</a>
+				om een schuld in te voeren.</p>
+		{% endif %}
+
+
+		<p class="nav-internal">
+			<a class="primary"
+
+href= = ="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">Ga
+												                            naar overzicht</a>
+		</p>
+
+
+	</div>
+
+
+	{% include 'partial.files-container.html.twig' with {'form_elm': form.file, 'defaultDocumentNaam': 'Schuldenoverzicht'} only %}
+	{% include 'partial.files-list.html.twig' with {'dossierDocumenten': dossierDocumenten, 'removeFile': form.removeFile} only %}
+
+
+	<h4>Aantekeningen</h4>
+	{{ form_row(form.aantekening) }}
+	{% include 'Dossier/partial.aantekeningen.html.twig' with {'aantekeningen': dossier.getAantekeningenByOnderwerp('schuldenoverzicht')} only %}</div>
+{% include 'Dossier/partial.documentViewer.html.twig' %}</div></div></div>

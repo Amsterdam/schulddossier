@@ -33,23 +33,25 @@
             </thead>
             <tbody>
 {% set empty = true %}
-{% for document in dossier.documenten if document.document.inPrullenbak == false %}
-{% set empty = false %}
+{% for document in dossier.documenten %}
+{% if document.document.inPrullenbak == false %}
+    {% set empty = false %}
                 <tr>
                     <td>
                         <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detaildocument', {'dossierId': dossier.id, 'documentId': document.document.id}) }}"><strong>{{ document.document.naam }}</strong></a>
                     </td>
                     <td>
 
-{% if (document.onderwerp and document.onderwerp == 'overige') %}
+    {% if (document.onderwerp and document.onderwerp == 'overige') %}
   <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailoverigedocumenten', {'dossierId': dossier.id}) }}">{{ document.onderwerp|capitalize }}</a>
-{% elseif ((document.onderwerp and document.onderwerp == 'schuldenoverzicht') or (document.schuldItem)) %}
+    {% elseif ((document.onderwerp and document.onderwerp == 'schuldenoverzicht') or (document.schuldItem)) %}
   <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}{% if document.schuldItem %}#schuldItem-{{ document.schuldItem.id }}{% endif %}">Schuldenoverzicht{% if document.schuldItem %} ({{ document.schuldItem.schuldeiser.bedrijfsnaam }}/{{ document.schuldItem.referentie }}{% endif %})</a>
-{% else %}
+    {% else %}
   <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', {'dossierId': dossier.id}) }}#voorlegger-{{ document.onderwerp }}">{{ document.onderwerp|capitalize }}</a>
-{% endif %}
+    {% endif %}
                     </td>
                 </tr>
+            {% endif %}
 {% endfor %}
             </tbody>
         </table>

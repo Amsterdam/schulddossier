@@ -5,33 +5,35 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type;
 class TBijlage
 {
     /**
-     * @var string
+     * AW_aSoortDocument in AllegroWebPortierConst
+     *
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortDocument
      */
-    private $Soort;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortDocument $Soort;
 
     /**
      * @var string
      */
-    private $Extension;
+    private string $Extension;
 
     /**
-     * @var string
+     * @var mixed
      */
-    private $Bijlage;
+    private mixed $Bijlage;
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortDocument
      */
-    public function getSoort()
+    public function getSoort(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortDocument
     {
         return $this->Soort;
     }
 
     /**
-     * @param string $Soort
-     * @return TBijlage
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortDocument $Soort
+     * @return static
      */
-    public function withSoort($Soort)
+    public function withSoort(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortDocument $Soort): static
     {
         $new = clone $this;
         $new->Soort = $Soort;
@@ -42,16 +44,16 @@ class TBijlage
     /**
      * @return string
      */
-    public function getExtension()
+    public function getExtension(): string
     {
         return $this->Extension;
     }
 
     /**
      * @param string $Extension
-     * @return TBijlage
+     * @return static
      */
-    public function withExtension($Extension)
+    public function withExtension(string $Extension): static
     {
         $new = clone $this;
         $new->Extension = $Extension;
@@ -60,18 +62,18 @@ class TBijlage
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getBijlage()
+    public function getBijlage(): mixed
     {
         return $this->Bijlage;
     }
 
     /**
-     * @param string $Bijlage
-     * @return TBijlage
+     * @param mixed $Bijlage
+     * @return static
      */
-    public function withBijlage($Bijlage)
+    public function withBijlage(mixed $Bijlage): static
     {
         $new = clone $this;
         $new->Bijlage = $Bijlage;

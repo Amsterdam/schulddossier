@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent as ActionEventEntity;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
@@ -59,7 +60,7 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $action->setIp(
             in_array($event->getActionName(), self::systemActions) ?
                 '127.0.0.1' :
-                $this->requestStack->getMasterRequest()->getClientIp()
+                $this->requestStack->getMainRequest()->getClientIp()
         );
 
         if (!empty($event->getData())) {
@@ -75,7 +76,7 @@ class ActionEventSubscriber implements EventSubscriberInterface
         /** @var Gebruiker $gebruiker */
         $gebruiker = $event->getAuthenticationToken()->getUser();
         $action = new ActionEventEntity();
-        $dateTime = new \DateTime();
+        $dateTime = new DateTime();
 
         $gebruiker->setLastLogin($dateTime);
 
@@ -101,12 +102,12 @@ class ActionEventSubscriber implements EventSubscriberInterface
         $dossier = $event->getDossier();
         $action = new ActionEventEntity();
 
-        $dateTime = new \DateTime();
+        $dateTime = new DateTime();
 
         $action->setName(null === $event->getForceType() ? ActionEvent::DOSSIER_GEWIJZIGD : $event->getForceType());
         $action->setDatumTijd($dateTime);
         $action->setDossier($dossier);
-        $action->setIp($this->requestStack->getMasterRequest()->getClientIp());
+        $action->setIp($this->requestStack->getMainRequest()->getClientIp());
         $action->setData(
             array_merge(
                 ActionEvent::getGebruikerData($gebruiker),

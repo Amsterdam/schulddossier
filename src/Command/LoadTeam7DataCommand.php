@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Command;
 
+use Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldhulpbureau;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -21,7 +22,7 @@ class LoadTeam7DataCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('app:data:load-test-template');
     }
@@ -37,7 +38,7 @@ class LoadTeam7DataCommand extends Command
         return false;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $io->title('Testdata laden voor Team 7');
@@ -61,7 +62,7 @@ class LoadTeam7DataCommand extends Command
                 $statements++;
             }
             $pdo->commit();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $pdo->rollBack();
             $io->warning("Importeren van Team 7 test data geeft een foutmelding, de database is terug gezet naar de status toen dit commando begon.");
             $io->warning("Database foutmelding: {$e->getMessage()}");
@@ -70,6 +71,6 @@ class LoadTeam7DataCommand extends Command
 
         $io->success("Load complete");
         $io->success("Executed {$statements} statements");
-        return command::SUCCESS;
+        return Command::SUCCESS;
     }
 }

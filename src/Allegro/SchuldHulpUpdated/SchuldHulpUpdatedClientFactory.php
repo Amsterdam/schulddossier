@@ -2,19 +2,22 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated;
 
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\AllegroHelper;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
-use Http\Client\Common\PluginClient;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\SchuldHulpUpdatedClient;
+use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\SchuldHulpUpdatedClassmap;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Phpro\SoapClient\Soap\DefaultEngineFactory;
-use Soap\ExtSoapEngine\ExtSoapOptions;
+use Phpro\SoapClient\Soap\EngineOptions;
 use Phpro\SoapClient\Caller\EventDispatchingCaller;
 use Phpro\SoapClient\Caller\EngineCaller;
+use Soap\Encoding\EncoderRegistry;
+use Symfony\Component\HttpClient\Psr18Client;
+use Symfony\Component\HttpClient\HttpClient;
 use Soap\Psr18Transport\Psr18Transport;
+use Http\Client\Common\PluginClient;
+use Soap\Psr18Transport\Wsdl\Psr18Loader;
 use Soap\Psr18Transport\Middleware\SoapHeaderMiddleware;
 use Soap\Xml\Builder\SoapHeader;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Component\HttpClient\Psr18Client;
+use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 
 use function VeeWee\Xml\Dom\Builder\children;
 use function VeeWee\Xml\Dom\Builder\namespaced_element;
@@ -22,14 +25,16 @@ use function VeeWee\Xml\Dom\Builder\value;
 
 class SchuldHulpUpdatedClientFactory
 {
+    /**
+     * @param non-empty-string $wsdl
+     */
     public static function factory(
         string $wsdl,
         Organisatie $organisatie,
         ?string $proxyHostIp = null,
         ?string $proxyHostPort = null
-    ): SchuldHulpUpdatedClient {
-        $extSoapOptionsArray = [];
-
+        ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\SchuldHulpUpdatedClient{
+       
         if (!empty($proxyHostIp) && !empty($proxyHostPort)) {
             $httpClient = HttpClient::create([
                 'proxy' => 'http://' . $proxyHostIp . ':' . $proxyHostPort,
@@ -37,7 +42,6 @@ class SchuldHulpUpdatedClientFactory
                     'User-Agent' => 'fixxx-schuldhulp/1.0'
                 ]
             ]);
-            $extSoapOptionsArray = AllegroHelper::createSoapOptionsArray($proxyHostIp, $proxyHostPort);
         } else {
             $httpClient = HttpClient::create([
                 'headers' => [
@@ -67,9 +71,14 @@ class SchuldHulpUpdatedClientFactory
         );
 
         $engine = DefaultEngineFactory::create(
-            ExtSoapOptions::defaults($wsdl, $extSoapOptionsArray)
-                ->withClassMap(SchuldHulpUpdatedClassmap::getCollection()),
-            $transporter
+            EngineOptions::defaults($wsdl)
+                ->withWsdlLoader(Psr18Loader::createForClient($psr18Client))
+                ->withEncoderRegistry(
+                    EncoderRegistry::default()
+                        ->addClassMapCollection(SchuldHulpUpdatedClassmap::types())
+                        ->addBackedEnumClassMapCollection(SchuldHulpUpdatedClassmap::enums())
+                )
+                ->withTransport($transporter)
         );
 
         $eventDispatcher = new EventDispatcher();
@@ -78,3 +87,4 @@ class SchuldHulpUpdatedClientFactory
         return new SchuldHulpUpdatedClient($caller);
     }
 }
+

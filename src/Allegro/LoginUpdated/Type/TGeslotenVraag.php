@@ -7,26 +7,26 @@ class TGeslotenVraag
     /**
      * @var string
      */
-    private $Vraag;
+    private string $Vraag;
 
     /**
-     * @var string
+     * @var \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\EJaNeeLeeg
      */
-    private $Antwoord;
+    private \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\EJaNeeLeeg $Antwoord;
 
     /**
      * @return string
      */
-    public function getVraag()
+    public function getVraag(): string
     {
         return $this->Vraag;
     }
 
     /**
      * @param string $Vraag
-     * @return TGeslotenVraag
+     * @return static
      */
-    public function withVraag($Vraag)
+    public function withVraag(string $Vraag): static
     {
         $new = clone $this;
         $new->Vraag = $Vraag;
@@ -35,18 +35,18 @@ class TGeslotenVraag
     }
 
     /**
-     * @return string
+     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\EJaNeeLeeg
      */
-    public function getAntwoord()
+    public function getAntwoord(): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\EJaNeeLeeg
     {
         return $this->Antwoord;
     }
 
     /**
-     * @param string $Antwoord
-     * @return TGeslotenVraag
+     * @param \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\EJaNeeLeeg $Antwoord
+     * @return static
      */
-    public function withAntwoord($Antwoord)
+    public function withAntwoord(\GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\EJaNeeLeeg $Antwoord): static
     {
         $new = clone $this;
         $new->Antwoord = $Antwoord;
