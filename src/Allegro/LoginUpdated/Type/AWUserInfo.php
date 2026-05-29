@@ -2,7 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
 
-class AWUserInfo extends UserInfo
+class AWUserInfo
 {
     /**
      * @var string
@@ -44,7 +44,17 @@ class AWUserInfo extends UserInfo
      */
     private bool $WachtwoordWijzigen;
 
- 
+    /**
+     * This property is manually added after generating the code with phpro soap client wizard
+     * @var string
+     */
+    private $SessionID;
+
+    /**
+     * This property is manually added after generating the code with phpro soap client wizard
+     * @var string
+     */
+    private $UserID;
 
     /**
      * @return string
@@ -206,4 +216,23 @@ class AWUserInfo extends UserInfo
         return $new;
     }
 
+    
+    /**
+     * This functions is manually added after generating the code with phpro soap client wizard
+     * @return string
+     */
+    public function getSessionId()
+    {
+        return $this->SessionID;
+    }
+
+
+    /**
+     * This function is manually added after generating the code with phpro soap client wizard
+     * @return string
+     */
+    public function getUserID()
+    {
+        return $this->UserID;
+    }
 }
