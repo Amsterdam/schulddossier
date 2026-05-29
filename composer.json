@@ -78,9 +78,6 @@
         "preferred-install": {
             "*": "dist"
         },
-        "audit": {
-            "block-insecure": false
-        },
         "sort-packages": true,
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
