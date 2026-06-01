@@ -1720,12 +1720,38 @@ class AppDossierController extends AbstractController
                             $errors[] = 'PartnerVoorletters';
                         }
                     }
-
-                    // Productgegevens uit voorlegger
-                            
-                    // toelichting uit voorlegger
-
+                    
                     $voorlegger = $dossier->getVoorlegger();
+                  
+                    // Productgegevens uit voorlegger       
+                    if($voorlegger->getJongerenSchuldenvrijeStart() === true) {
+                        if ($voorlegger->getJssAdviseurEmail() === null) {
+                            $errors[] = 'JssAdviseurEmail';
+                        }
+                        if ($voorlegger->getJssAdviseurTelefoon() === null) {
+                            $errors[] = 'JssAdviseurTelefoon';
+                        }
+                        if ($voorlegger->getJssAdviseurNaam() === null) {
+                            $errors[] = 'JssAdviseurNaam';
+                        }
+                    }
+
+                    $productChoices = [
+                        $voorlegger->getJongerenSchuldenvrijeStart(),
+                        $voorlegger->getKindregeling(),
+                        $voorlegger->getSaneringskrediet(),
+                        $voorlegger->getPrincipeBeslissing(),
+                    ];  
+
+                    $trueCount = array_sum($productChoices );
+                    if ($trueCount === 0) {
+                        $errors[] = 'Product';
+                    }
+                    if ($trueCount > 1) {
+                        $errors[] = 'TeVeelProducten';
+                    }
+
+                    // toelichting uit voorlegger
                     if ($voorlegger->getOntstaanVanSchulden() === null) {
                         $errors[] = 'OntstaanVanSchulden';
                     }
@@ -1735,6 +1761,5 @@ class AppDossierController extends AbstractController
                     }
 
                     return $errors;
-
     }
 }
