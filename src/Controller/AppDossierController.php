@@ -1694,32 +1694,34 @@ class AppDossierController extends AbstractController
     {
                     $errors = [];
                     
-    // NAW gegevens uit dossier
-
                     if ($dossier->getClientNaam() === null) {
-                        $errors[] = 'clientNaam';
+                        $errors[] = 'ClientNaam';
                     }
 
                     if ($dossier->getClientVoorletters() === null) {
-                        $errors[] = 'clientVoorletters';
+                        $errors[] = 'ClientVoorletters';
                     }
-
+                    
                     if ($dossier->getPartnerNvt() === false) {
                         if ($dossier->getPartnerNaam() === null) {
-                            $errors[] = 'partnerNaam';
+                            $errors[] = 'PartnerNaam';
                         }
-
+                        
                         if ($dossier->getPartnerVoorletters() === null) {
-                            $errors[] = 'partnerVoorletters';
-                        }
-                    }
-
-                    
-
+                            $errors[] = 'PartnerVoorletters';
+                            }
+                            }
 
                     // Productgegevens uit voorlegger
-
+                            
                     // toelichting uit voorlegger
+                    if ($voorlegger->getOntstaanVanSchulden() === null) {
+                        $errors[] = 'OntstaanVanSchulden';
+                    }
+              
+                    if ($voorlegger->getInspanningsverplichting() === null) {
+                        $errors[] = 'Inspanningsverplichting';
+                    }
 
                     return $errors;
 
