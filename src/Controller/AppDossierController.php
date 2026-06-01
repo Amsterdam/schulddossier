@@ -378,6 +378,15 @@ class AppDossierController extends AbstractController
             $subForm = $voorleggerForm->get('cdst');
             if (!is_null($subForm['transition']->getData())) {
                 if ($subForm['transition']->getData() === 'verzenden_shv') {
+
+                    $validationErrors = $this->validateIndienDossier($dossier);
+                    if (count($validationErrors) > 0) {
+                        $this->addFlash('error', 'De volgende velden ontbreken: ' . implode(', ', $validationErrors));
+                        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
+                            'dossierId' => $dossier->getId()
+                        ]);
+                    }
+
                     $dossier->setEersteKeerVerzondenAanGKA(true);
                     $dossier->setIndiendatumTijd(new DateTime('now'));
                 }
@@ -1690,7 +1699,7 @@ class AppDossierController extends AbstractController
     }
 
 
-    private function validateIndienDossier(Dossier $dossier, Voorlegger $voorlegger): array
+    private function validateIndienDossier(Dossier $dossier): array
     {
                     $errors = [];
                     
@@ -1709,12 +1718,14 @@ class AppDossierController extends AbstractController
                         
                         if ($dossier->getPartnerVoorletters() === null) {
                             $errors[] = 'PartnerVoorletters';
-                            }
-                            }
+                        }
+                    }
 
                     // Productgegevens uit voorlegger
                             
                     // toelichting uit voorlegger
+
+                    $voorlegger = $dossier->getVoorlegger();
                     if ($voorlegger->getOntstaanVanSchulden() === null) {
                         $errors[] = 'OntstaanVanSchulden';
                     }
