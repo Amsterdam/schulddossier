@@ -1703,6 +1703,7 @@ class AppDossierController extends AbstractController
     {
                     $errors = [];
                     
+                    // check names
                     if ($dossier->getClientNaam() === null) {
                         $errors[] = 'ClientNaam';
                     }
@@ -1720,10 +1721,15 @@ class AppDossierController extends AbstractController
                             $errors[] = 'PartnerVoorletters';
                         }
                     }
+
+                    // minimal one legitimatie document
+                    if($dossier->getNietVerwijderdeDocumentenByOnderwerp('legitimatie')->count() === 0) {
+                        $errors[] = 'LegitimatieDocument';
+                    }
                     
                     $voorlegger = $dossier->getVoorlegger();
                   
-                    // Productgegevens uit voorlegger       
+                    // check products
                     if($voorlegger->getJongerenSchuldenvrijeStart() === true) {
                         if ($voorlegger->getJssAdviseurEmail() === null) {
                             $errors[] = 'JssAdviseurEmail';
@@ -1751,7 +1757,7 @@ class AppDossierController extends AbstractController
                         $errors[] = 'TeVeelProducten';
                     }
 
-                    // toelichting uit voorlegger
+                    //check volmacht
                     if ($voorlegger->getOntstaanVanSchulden() === null) {
                         $errors[] = 'OntstaanVanSchulden';
                     }
