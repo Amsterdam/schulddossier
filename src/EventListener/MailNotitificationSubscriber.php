@@ -67,7 +67,7 @@ class MailNotitificationSubscriber implements EventSubscriberInterface
         /** @var $dossier Dossier */
         $dossier = $event->getSubject();
 
-        $request = $this->requestStack->getMasterRequest();
+        $request = $this->requestStack->getMainRequest();
 
         if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
             $this->mail(
