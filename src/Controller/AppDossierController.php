@@ -35,6 +35,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use GemeenteAmsterdam\FixxxSchuldhulp\Constants\SchuldeiserOrganisationType;
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierFormLabel;
 use Http\Discovery\Exception\NotFoundException;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -381,7 +382,14 @@ class AppDossierController extends AbstractController
 
                     $validationErrors = $this->validateIndienDossier($dossier);
                     if (count($validationErrors) > 0) {
-                        $this->addFlash('error', 'De volgende velden ontbreken: ' . implode(', ', $validationErrors));
+
+                        $humanReadableErrors = array_map(
+                            [DossierFormLabel::class, 'getFormLabelOrHumanize'],
+                            $validationErrors
+                        );
+
+                        $this->addFlash('error', 'Het dossier is niet verzonden. De volgende velden ontbreken: ' . implode(', ', $humanReadableErrors));
+
                         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
                             'dossierId' => $dossier->getId()
                         ]);
