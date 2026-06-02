@@ -391,16 +391,14 @@ class AppDossierController extends AbstractController
                     $dossier->setIndiendatumTijd(new DateTime('now'));
                 }
                 $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
+
+                if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
+                    $this->addFlash('success', 'De status is gewijzigd. Mail is verzonden naar ' . $request->get('voorlegger_form')['controleerGebruiker']);
+                } else {
+                    $this->addFlash('success', 'De status is gewijzigd');
+                }
+                
                 $workflow->apply($dossier, $subForm['transition']->getData());
-
-                // TODO: This code is never reached, because workflow apply return the method.
-                // Nevertheless it would be nice to give the user feedback about an update. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-580
-
-                // if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
-                //     $this->addFlash('success', 'De status is gewijzigd. Mail is verzonden naar ' . $request->get('voorlegger_form')['controleerGebruiker']);
-                // } else {
-                //     $this->addFlash('success', 'De status is gewijzigd');
-                // }
             }
 
             $em->flush();
