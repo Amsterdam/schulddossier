@@ -68,6 +68,13 @@ class AWUserInfo
      */
     private ?string $Attributes;
 
+
+    /**
+     * This property is manually added after generating the code with phpro soap client wizard
+     * @var string | null
+     */
+    private ?string $UserData;
+
     /**
      * @return string
      */
@@ -264,5 +271,14 @@ class AWUserInfo
     public function getAttributes()
     {
         return $this->Attributes;
+    }
+  
+    /**
+     * This function is manually added after generating the code with phpro soap client wizard
+     * @return string | null
+     */
+    public function getUserData()
+    {
+        return $this->UserData;
     }
 }

@@ -35,7 +35,6 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use GemeenteAmsterdam\FixxxSchuldhulp\Constants\SchuldeiserOrganisationType;
-use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierFormLabel;
 use Http\Discovery\Exception\NotFoundException;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
