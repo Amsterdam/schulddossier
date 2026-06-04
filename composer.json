@@ -14,7 +14,6 @@
         "knplabs/knp-paginator-bundle": "5.4.1",
         "lcobucci/jwt": "^3.2",
         "league/flysystem": "^1.0",
-        "markei/filesystemoperations": "dev-symfony5support",
         "mozilla/pdf.js": "1.9.426",
         "mrrio/jspdf": "1.3.5",
         "nelmio/security-bundle": "^3.4",
@@ -106,19 +105,17 @@
         "symfony/polyfill-php70": "*",
         "symfony/polyfill-php56": "*"
     },
-    "scripts": {
+      "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts",
-            "Markei\\FileSystemOperations\\Composer::run"
+            "@auto-scripts"
         ],
         "post-update-cmd": [
-            "@auto-scripts",
-            "Markei\\FileSystemOperations\\Composer::run"
+            "@auto-scripts"
         ]
     },
     "conflict": {
@@ -129,13 +126,7 @@
             "id": "01C78G17XCNVEZ49WHBEVGCP02",
             "allow-contrib": false,
             "require": "5.4.*"
-        },
-        "markei-filesystemoperations": [
-            ["mkdir", "public/vendor"],
-            ["mirror", "vendor/mozilla/pdf.js", "public/vendor/mozilla/pdf.js", null, {"delete": true}],
-            ["mirror", "vendor/mrrio/jspdf", "public/vendor/mrrio/jspdf", null, {"delete": true}],
-            ["mirror", "vendor/jshjohnson/choices", "public/vendor/jshjohnson/choices", null, {"delete": true}]
-        ]
+        }
     },
     "repositories": [
         {
