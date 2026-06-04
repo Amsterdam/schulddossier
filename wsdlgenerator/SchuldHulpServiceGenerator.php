@@ -1,14 +1,17 @@
 <?php
 
+use Wsdl2PhpGenerator\Generator;
+use Wsdl2PhpGenerator\Config;
+
 class SchuldHulpServiceGenerator
 {
 
     public function generate()
     {
-        $generator = new \Wsdl2PhpGenerator\Generator();
+        $generator = new Generator();
         $soapClientOptions = [];
 
-        $config = new \Wsdl2PhpGenerator\Config([
+        $config = new Config([
             'inputFile' => '../doc/modified_schuldhulpservice.wsdl',
             'outputDir' => '../src/Allegro/SchuldHulpAlt',
             'namespaceName' => 'GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpAlt',

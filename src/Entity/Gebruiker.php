@@ -2,29 +2,29 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\InverseJoinColumn;
+use DateTime;
+use Rollerworks\Component\PasswordStrength\Validator\Constraints\PasswordStrength;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Serializable;
 use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-/**
- * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\GebruikerRepository")
- * @ORM\Table(
- *  uniqueConstraints={
- *      @ORM\UniqueConstraint(name="uq_username", columns={"username"}),
- *      @ORM\UniqueConstraint(name="uq_email", columns={"email"})
- *  },
- *  indexes={
- *      @ORM\Index(name="idx_verwijderd_datetime", columns={"verwijderd_date_time"}),
- *  })
- * )
- * @UniqueEntity("email")
- * @UniqueEntity("username")
- */
-class Gebruiker implements UserInterface, \Serializable, EquatableInterface
+#[ORM\Table]
+#[ORM\Index(name: 'idx_verwijderd_datetime', columns: ['verwijderd_date_time'])]
+#[ORM\UniqueConstraint(name: 'uq_username', columns: ['username'])]
+#[ORM\UniqueConstraint(name: 'uq_email', columns: ['email'])]
+#[ORM\Entity(repositoryClass: GebruikerRepository::class)]
+#[UniqueEntity('email')]
+#[UniqueEntity('username')]
+class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthenticatedUserInterface
 {
     const TYPE_ADMIN = 'admin';
 
@@ -38,103 +38,102 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
 
     /**
      * @var integer
-     * @ORM\Id
-     * @ORM\Column(type="integer", nullable=false)
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer', nullable: false)]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private $id;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $username;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $password;
 
     /**
      * @var string
      * Not mapped to database
-     * @Assert\Length(min=8, groups={"password"})
-     * @Rollerworks\Component\PasswordStrength\Validator\Constraints\PasswordStrength(minStrength=4, message="Een wachtwoord moet minimaal een cijfer, een speciaal karakter, hoofdletter en kleine letter bevatten en bij elkaar 8 tekens of meer zijn.", minLength=0, groups={"password"})
+     * @PasswordStrength(minStrength=4, message="Een wachtwoord moet minimaal een cijfer, een speciaal karakter, hoofdletter en kleine letter bevatten en bij elkaar 8 tekens of meer zijn.", minLength=0, groups={"password"})
      */
+    #[Assert\Length(min: 8, groups: ['password'])]
     private $clearPassword;
 
     /**
-     * @var \DateTime|NULL
-     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime|NULL
      */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $passwordChangedDateTime;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=100, nullable=false)
-     * @Assert\NotBlank
-     * @Assert\Choice(callback="getTypesList")
      */
+    #[ORM\Column(type: 'string', length: 100, nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Choice(callback: 'getTypesList')]
     private $type;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank
-     * @Assert\Length(min=1, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 1, max: 255)]
     private $naam;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank
-     * @Assert\Email
-     * @Assert\Length(min=1, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Email]
+    #[Assert\Length(min: 1, max: 255)]
     private $email;
 
     /**
-     * @var \DateTime|null
-     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime|null
      */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $lastLogin;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=12, nullable=true)
-     * @Assert\Length(max=12, groups={"mijn-gegevens"})
      */
+    #[ORM\Column(type: 'string', length: 12, nullable: true)]
+    #[Assert\Length(max: 12, groups: ['mijn-gegevens'])]
     private $telefoonnummer;
 
     /**
      * @var Team
-     * @ORM\ManyToOne(targetEntity="Team")
-     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true)
      */
+    #[ORM\JoinColumn(name: 'team_id', referencedColumnName: 'id', nullable: true)]
+    #[ORM\ManyToOne(targetEntity: Team::class)]
     private $teamGka;
 
     /**
      * @var Organisatie[]|ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Organisatie")
-     * @ORM\JoinTable(
-     *  joinColumns={@ORM\JoinColumn(name="gebruiker_id", referencedColumnName="id")},
-     *  inverseJoinColumns={@ORM\JoinColumn(name="organisatie_id", referencedColumnName="id")}
-     * )
      */
+    #[ORM\JoinTable]
+    #[JoinColumn(name: 'gebruiker_id', referencedColumnName: 'id')]
+    #[InverseJoinColumn(name: 'organisatie_id', referencedColumnName: 'id')]
+    #[ORM\ManyToMany(targetEntity: Organisatie::class)]
     private $organisaties;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean", nullable=false)
      */
+    #[ORM\Column(type: 'boolean', nullable: false)]
     private $enabled;
 
     /**
-     * @var \DateTime|NULL
-     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime|NULL
      */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $verwijderdDateTime;
 
     public function __construct()
@@ -147,7 +146,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getRoles()
      */
-    public function getRoles()
+    public function getRoles(): array
     {
         return ['ROLE_USER', 'ROLE_' . strtoupper($this->getType())];
     }
@@ -156,7 +155,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getSalt()
      */
-    public function getSalt()
+    public function getSalt(): ?string
     {
         return null;
     }
@@ -165,7 +164,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::eraseCredentials()
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         //
     }
@@ -174,7 +173,12 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getUsername()
      */
-    public function getUsername()
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function getUserIdentifier(): string
     {
         return $this->username;
     }
@@ -183,7 +187,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      * {@inheritDoc}
      * @see \Symfony\Component\Security\Core\User\UserInterface::getPassword()
      */
-    public function getPassword()
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -197,7 +201,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @return \DateTime|NULL
+     * @return DateTime|NULL
      */
     public function getPasswordChangedDateTime()
     {
@@ -245,9 +249,9 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @param \DateTime $passwordChangedDateTime
+     * @param DateTime $passwordChangedDateTime
      */
-    public function setPasswordChangedDateTime(\DateTime $passwordChangedDateTime = null)
+    public function setPasswordChangedDateTime(?DateTime $passwordChangedDateTime)
     {
         $this->passwordChangedDateTime = $passwordChangedDateTime;
     }
@@ -279,22 +283,22 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
         $this->telefoonnummer = $telefoonnummer;
     }
 
-    public function getTeamGka()
+    public function getTeamGka(): ?Team
     {
         return $this->teamGka;
     }
 
-    public function setTeamGka(Team $teamGka = null)
+    public function setTeamGka(?Team $teamGka = null): void
     {
         $this->teamGka = $teamGka;
     }
 
-    public function getOrganisaties()
+    public function getOrganisaties(): ArrayCollection|PersistentCollection|array
     {
         return $this->organisaties;
     }
 
-    public function addOrganisatie(Organisatie $organisatie)
+    public function addOrganisatie(Organisatie $organisatie): void
     {
         if ($this->hasOrganisatie($organisatie) === false) {
             $this->organisaties->add($organisatie);
@@ -395,7 +399,7 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
      *
      * @return string[]
      */
-    public static function getTypes(string $type = null)
+    public static function getTypes(?string $type = null)
     {
         $defaultTypes = [];
         switch ($type) {
@@ -449,27 +453,29 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
         return array_search($type, array_merge(...array_values(self::getTypes('ALL_TYPES'))));
     }
 
-    public function isEqualTo(UserInterface $user)
+    /**
+     * The equality comparison should neither be done by referential equality
+     * nor by comparing identities (i.e. getId() === getId()).
+     *
+     * However, you do not need to compare every attribute, but only those that
+     * are relevant for assessing whether re-authentication is required.
+     *
+     * @return bool
+     */
+    public function isEqualTo(UserInterface $user): bool
     {
         /* @var $user Gebruiker */
-        if ($user->getId() !== $this->getId()) {
+        if (
+            $user->getId() !== $this->getId() ||
+            $user->getEmail() !== $this->getEmail() ||
+            $user->getTelefoonnummer() !== $this->getTelefoonnummer() ||
+            $user->getUserIdentifier() !== $this->getUserIdentifier() ||
+            $user->getType() !== $this->getType() ||
+            $user->isEnabled() !== $this->isEnabled()
+        ) {
             return false;
         }
-        if ($user->getEmail() !== $this->getEmail()) {
-            return false;
-        }
-        if ($user->getTelefoonnummer() !== $this->getTelefoonnummer()) {
-            return false;
-        }
-        if ($user->getUsername() !== $this->getUsername()) {
-            return false;
-        }
-        if ($user->getType() !== $this->getType()) {
-            return false;
-        }
-        if ($user->isEnabled() !== $this->isEnabled()) {
-            return false;
-        }
+
         return true;
     }
 
@@ -569,25 +575,25 @@ class Gebruiker implements UserInterface, \Serializable, EquatableInterface
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getLastLogin(): ?\DateTime
+    public function getLastLogin(): ?DateTime
     {
         return $this->lastLogin;
     }
 
     /**
-     * @param \DateTime|null $lastLogin
+     * @param DateTime|null $lastLogin
      * @return Gebruiker
      */
-    public function setLastLogin(?\DateTime $lastLogin): Gebruiker
+    public function setLastLogin(?DateTime $lastLogin): Gebruiker
     {
         $this->lastLogin = $lastLogin;
 
         return $this;
     }
 
-    public function anonymize()
+    public function anonymize(): void
     {
         $uniqueSuffix = uniqid();
         $this->setUsername("geanonimiseerd-" . $uniqueSuffix);

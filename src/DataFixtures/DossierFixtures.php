@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
@@ -10,13 +11,14 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 
-class DossierFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
+class DossierFixtures extends Fixture implements DependentFixtureInterface
 {
     public const DOSSIERS_JSON_FILENAME = 'dossiers.json';
 
     /**
      * @inheritDoc
      */
+    #[Override]
     public function load(ObjectManager $manager): void
     {
         $dossiers = $this->loadDossiersJson();

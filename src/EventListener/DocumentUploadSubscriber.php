@@ -2,6 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\EventListener;
 
+use Exception;
+use Throwable;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use Doctrine\ORM\Event\PostRemoveEventArgs;
@@ -14,7 +16,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[AsDoctrineListener(event: Events::prePersist, priority: 500, connection: 'default')]
 #[AsDoctrineListener(event: Events::postRemove, priority: 500, connection: 'default')]
-class DocumentUploadSubscriber implements EventSubscriberInterface
+class DocumentUploadSubscriber
 {
     /**
      * @param FileStorageSelector $fileStorageSelector
@@ -39,7 +41,6 @@ class DocumentUploadSubscriber implements EventSubscriberInterface
      */
     public function prePersist(PrePersistEventArgs $args): void
     {
-
         $object = $args->getObject();
 
 
@@ -73,9 +74,11 @@ class DocumentUploadSubscriber implements EventSubscriberInterface
         try {
             $flysystem->writeStream($object->getDirectory() . '/' . $object->getBestandsnaam(), $stream);
             fclose($stream);
-        } catch (\Exception $e) {
-            $this->logger->error(__CLASS__ . ":" . __METHOD__ . ": Failed to store file, errormessage: " . $e->getMessage());
-        } catch (\Throwable $e) {
+        } catch (Exception $e) {
+            $this->logger->error(
+                __CLASS__ . ":" . __METHOD__ . ": Failed to store file, errormessage: " . $e->getMessage()
+            );
+        } catch (Throwable $e) {
             $this->logger->error(__CLASS__ . ":" . __METHOD__ . ": Failed fclose, errormessage: " . $e->getMessage());
         }
     }
@@ -95,11 +98,17 @@ class DocumentUploadSubscriber implements EventSubscriberInterface
         $flysystem = $this->fileStorageSelector->getByGroep($object->getGroep());
 
         if ($flysystem->has($object->getDirectory() . '/' . $object->getBestandsnaam())) {
-            $this->logger->debug(__CLASS__ . ":" . __METHOD__ . ": Removing file " . $object->getDirectory() . '/' . $object->getBestandsnaam());
+            $this->logger->debug(
+                __CLASS__ . ":" . __METHOD__ . ": Removing file " . $object->getDirectory(
+                ) . '/' . $object->getBestandsnaam()
+            );
             $flysystem->delete($object->getDirectory() . '/' . $object->getBestandsnaam());
             return;
         }
 
-        $this->logger->debug(__CLASS__ . ":" . __METHOD__ . ": File not found: " . $object->getDirectory() . '/' . $object->getBestandsnaam());
+        $this->logger->debug(
+            __CLASS__ . ":" . __METHOD__ . ": File not found: " . $object->getDirectory(
+            ) . '/' . $object->getBestandsnaam()
+        );
     }
 }

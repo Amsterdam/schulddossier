@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Event;
 
+use DateTime;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -55,7 +56,7 @@ class ActionEvent extends Event
         $this->action = $actionName;
         $this->data = $data;
         $this->dossier = $dossier;
-        $this->dateTimeOfEvent = new \DateTime();
+        $this->dateTimeOfEvent = new DateTime();
     }
 
     /**
@@ -67,9 +68,9 @@ class ActionEvent extends Event
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDateTimeOfEvent(): \DateTime
+    public function getDateTimeOfEvent(): DateTime
     {
         return $this->dateTimeOfEvent;
     }
@@ -274,20 +275,20 @@ class ActionEvent extends Event
     /**
      * @param Gebruiker $gebruiker
      * @param Dossier $dossier
-     * @param array $schulditemUpdates,
+     * @param array $schuldItemUpdates,
      *
      * @return ActionEvent
      */
     public static function registerSchuldItemAangemaakt(
         Gebruiker $gebruiker,
         Dossier $dossier,
-        $schulditemUpdates,
+        $schuldItemUpdates,
     ) {
 
         $data = array_merge(
             self::getGebruikerData($gebruiker),
             [
-                "schulditemUpdates" => $schulditemUpdates,
+                "schuldItemUpdates" => $schuldItemUpdates,
             ]
         );
 

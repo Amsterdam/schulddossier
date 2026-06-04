@@ -64,14 +64,20 @@ composer-update:
 npm-install:
 	docker run --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm install --no-audit --no-fund"
 
+npm-update:
+	docker run --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm update"
+
 npm-run-dev:
 	docker run --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm run dev && /usr/local/bin/npm run css:build"
 
 npm-watch:
 	docker run -it --init --rm -v .:/app -w /app -u 1000:1000 node:24 sh -c "/usr/local/bin/npm run watch"
 
-enter-pod:
+enter-php:
 	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh
+
+enter-ng:
+	kubectl exec -it deploy/schulddossier-nginx-schulddossier -- sh
 
 check-php-format:
 	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh -c "vendor/bin/phpcs --extensions=php"

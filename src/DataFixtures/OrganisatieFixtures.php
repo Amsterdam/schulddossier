@@ -2,12 +2,13 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team;
 use Override;
 
-class OrganisatieFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture
+class OrganisatieFixtures extends Fixture
 {
     public const ORGANISATIES_JSON_FILENAME = 'organisaties.json';
 

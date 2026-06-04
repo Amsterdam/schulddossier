@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Twig;
 
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
+use Twig\TwigFilter;
+use Twig\Extension\AbstractExtension;
 
 /**
  * Class AllegroTypeExtension
  * @package GemeenteAmsterdam\FixxxSchuldhulp\Twig
  */
-class StrPadExtension extends \Twig_Extension
+class StrPadExtension extends AbstractExtension
 {
     /**
-     * @return array|\Twig_Filter[]
+     * @return array|TwigFilter[]
      */
     public function getFilters(): array
     {
         return [
-            new \Twig_Filter('str_pad', function ($input, $pad_length, $pad_string = " ") {
+            new TwigFilter('str_pad', function ($input, $pad_length, $pad_string = " ") {
                     return str_pad((string)$input, $pad_length, $pad_string, STR_PAD_LEFT);
             })
         ];

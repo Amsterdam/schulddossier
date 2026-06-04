@@ -1,7 +1,9 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.4-fpm-alpine
 
 COPY certificates/adp_rootca.crt /usr/local/share/ca-certificates/adp_rootca.crt
 RUN update-ca-certificates --fresh
+
+RUN apk update && apk upgrade
 
 RUN apk add --no-cache \
     icu-dev \
@@ -28,7 +30,8 @@ RUN docker-php-ext-install \
     soap \
     intl \
     gd \
-    xsl
+    xsl \
+    bcmath
 
 RUN docker-php-ext-configure \
     gd \

@@ -2,36 +2,33 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\ExpressionLanguage\Expression;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class DefaultController extends AbstractController
 {
-    /**
-     * @Route("/")
-     */
-    public function indexAction(Request $request)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/')]
+    public function index(): Response
     {
         return $this->render('Default/index.html.twig');
     }
 
-    /**
-     * @Route("/app")
-     * @Security("is_granted('ROLE_USER')")
-     */
-    public function appRedirectAction(Request $request)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app')]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+    public function appRedirect(): RedirectResponse
     {
         return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_index');
     }
 
-    /**
-     * @Route("/app/debug")
-     * @Security("is_granted('ROLE_USER')")
-     */
-    public function debugAction(Request $request)
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/debug')]
+    #[IsGranted(attribute: new Expression("is_granted('ROLE_USER')"))]
+    public function debug(Request $request): JsonResponse
     {
         return new JsonResponse([
             'clientIp' => $request->getClientIp(),
@@ -41,10 +38,10 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/ping")
      * @return JsonResponse
      */
-    public function pingAction()
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/ping')]
+    public function ping(): JsonResponse
     {
         return new JsonResponse(['status' => 'OK']);
     }

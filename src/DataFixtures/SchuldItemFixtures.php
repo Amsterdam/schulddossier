@@ -2,6 +2,7 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\DataFixtures;
 
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
@@ -9,11 +10,12 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\SchuldItem;
 
-class SchuldItemFixtures extends \Doctrine\Bundle\FixturesBundle\Fixture implements DependentFixtureInterface
+class SchuldItemFixtures extends Fixture implements DependentFixtureInterface
 {
     /**
      * @inheritDoc
      */
+    #[Override]
     public function load(ObjectManager $manager): void
     {
         $dossier = $this->getReference('dossier', Dossier::class);

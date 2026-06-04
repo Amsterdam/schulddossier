@@ -2,6 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Entity;
 
+use GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use GemeenteAmsterdam\FixxxSchuldhulp\Traits\ExportAble;
@@ -10,11 +12,9 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="GemeenteAmsterdam\FixxxSchuldhulp\Repository\DossierRepository")
- * @ORM\Table
- * @UniqueEntity("allegroNummer")
- */
+#[ORM\Table]
+#[ORM\Entity(repositoryClass: DossierRepository::class)]
+#[UniqueEntity('allegroNummer')]
 class Dossier
 {
     use ExportAble;
@@ -51,322 +51,322 @@ class Dossier
 
     /**
      * @var integer
-     * @ORM\Id
-     * @ORM\Column(type="integer", nullable=false)
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer', nullable: false)]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     private $id;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=25, nullable=false)
      */
+    #[ORM\Column(type: 'string', length: 25, nullable: false)]
     private $dossierTemplate;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=25, nullable=false)
      */
+    #[ORM\Column(type: 'string', length: 25, nullable: false)]
     private $status;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank
-     * @Assert\Length(min=1, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 1, max: 255)]
     private $clientNaam;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $clientVoorletters;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
-     * @Assert\Choice(callback="getGeslachtOpties")
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
+    #[Assert\Choice(callback: 'getGeslachtOpties')]
     private $clientGeslacht;
 
     /**
      * @var \Date
-     * @ORM\Column(type="date", nullable=true)
      */
+    #[ORM\Column(type: 'date', nullable: true)]
     private $clientGeboortedatum;
 
     /**
-     * @var \DateTime|null
-     * @ORM\Column(type="date", nullable=true)
+     * @var DateTime|null
      */
+    #[ORM\Column(type: 'date', nullable: true)]
     private $clientHuwelijksdatum;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      * @BSN()
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $clientBSN;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $clientBanknaam;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $clientTelefoonnummer;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $clientEmail;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $clientStraat;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=50, nullable=true)
-     * @Assert\Length(min=0, max=50)
      */
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    #[Assert\Length(min: 0, max: 50)]
     private $clientHuisnummer;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=50, nullable=true)
-     * @Assert\Length(min=0, max=50)
      */
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    #[Assert\Length(min: 0, max: 50)]
     private $clientPostcode;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $clientWoonplaats;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
-     * @Assert\Choice(callback="getBurgelijkeStaatOpties")
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
+    #[Assert\Choice(callback: 'getBurgelijkeStaatOpties')]
     private $clientBurgelijkeStaat;
 
     /**
-     * @var \DateTime|null
-     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime|null
      */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $clientBurgelijkeStaatSinds;
 
     /**
      * @var array
-     * @ORM\Column(type="json", nullable=true)
      */
+    #[ORM\Column(type: 'json', nullable: true)]
     private $clientKinderen;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean", nullable=true)
      */
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private $partnerNvt;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $partnerNaam;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $partnerVoorletters;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
-     * @Assert\Choice(callback="getGeslachtOpties")
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
+    #[Assert\Choice(callback: 'getGeslachtOpties')]
     private $partnerGeslacht;
 
     /**
      * @var \Date
-     * @ORM\Column(type="date", nullable=true)
      */
+    #[ORM\Column(type: 'date', nullable: true)]
     private $partnerGeboortedatum;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      * @BSN()
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $partnerBSN;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $partnerBanknaam;
 
     /**
      * @var Organisatie
-     * @ORM\ManyToOne(targetEntity="Organisatie")
-     * @ORM\JoinColumn(name="organisatie_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotBlank
      */
+    #[ORM\JoinColumn(name: 'organisatie_id', referencedColumnName: 'id', nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Organisatie::class)]
+    #[Assert\NotBlank]
     private $organisatie;
 
     /**
      * @var Gebruiker
-     * @ORM\ManyToOne(targetEntity="Gebruiker")
-     * @ORM\JoinColumn(name="medewerker_organisatie_id", referencedColumnName="id", nullable=false)
-     * @Assert\NotBlank
      */
+    #[ORM\JoinColumn(name: 'medewerker_organisatie_id', referencedColumnName: 'id', nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Gebruiker::class)]
+    #[Assert\NotBlank]
     private $medewerkerOrganisatie;
 
     /**
      * @var Team
-     * @ORM\ManyToOne(targetEntity="Team")
-     * @ORM\JoinColumn(name="team_id", referencedColumnName="id", nullable=true)
-     * @Assert\NotBlank(message="Vul hier het GKA team in waarnaar dit dossier verstuurd gaat worden")
      */
+    #[ORM\JoinColumn(name: 'team_id', referencedColumnName: 'id', nullable: true)]
+    #[ORM\ManyToOne(targetEntity: Team::class)]
+    #[Assert\NotBlank(message: 'Vul hier het GKA team in waarnaar dit dossier verstuurd gaat worden')]
     private $teamGka;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $regasNummer;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(min=0, max=255)
      */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(min: 0, max: 255)]
     private $allegroNummer;
 
     /**
-     * @var \DateTime|null
-     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime|null
      */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $allegroSyncDate;
 
     /**
-     * @var \DateTime|null
-     * @ORM\Column(type="datetime", nullable=true)
+     * @var DateTime|null
      */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private $sendToAllegro;
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=1, nullable=true)
      */
+    #[ORM\Column(type: 'string', length: 1, nullable: true)]
     private $allegroStatus;
 
     /**
      * @var string|null
-     * @ORM\Column(type="text", nullable=true)
      */
+    #[ORM\Column(type: 'text', nullable: true)]
     private $allegroExtraStatus;
 
     /**
      * @var Gebruiker
-     * @ORM\ManyToOne(targetEntity="Gebruiker")
-     * @ORM\JoinColumn(name="aanmaker_id", referencedColumnName="id", nullable=false)
      */
+    #[ORM\JoinColumn(name: 'aanmaker_id', referencedColumnName: 'id', nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Gebruiker::class)]
     private $aanmaker;
 
     /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=false)
+     * @var DateTime
      */
+    #[ORM\Column(type: 'datetime', nullable: false)]
     private $aanmaakDatumTijd;
 
-    /**
-     * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=true)
+     /**
+     * @var DateTime
      */
+    #[ORM\Column(type: 'datetime', nullable: false)]
     private $indiendatumTijd;
 
     /**
      * @var Voorlegger
-     * @ORM\OneToOne(targetEntity="Voorlegger", mappedBy="dossier", orphanRemoval=true, cascade={"persist", "remove"})
-     * @Assert\Valid
      */
+    #[ORM\OneToOne(targetEntity: Voorlegger::class, mappedBy: 'dossier', orphanRemoval: true, cascade: ['persist', 'remove'])]
+    #[Assert\Valid]
     private $voorlegger;
 
     /**
      * @var DossierDocument[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="DossierDocument", mappedBy="dossier", cascade={"persist"})
      */
+    #[ORM\OneToMany(targetEntity: DossierDocument::class, mappedBy: 'dossier', cascade: ['persist'])]
     private $documenten;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean", nullable=false)
      */
+    #[ORM\Column(type: 'boolean', nullable: false)]
     private $inPrullenbak;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean", nullable=true, options={"default" : true})
      */
+    #[ORM\Column(type: 'boolean', nullable: true, options: ['default' => true])]
     private $eersteKeerVerzondenAanGKA;
 
     /**
      * @var SchuldItem[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="SchuldItem", mappedBy="dossier", cascade={"persist", "remove"})
-     * @ORM\OrderBy({"id"="ASC"})
      */
+    #[ORM\OneToMany(targetEntity: SchuldItem::class, mappedBy: 'dossier', cascade: ['persist', 'remove'])]
+    #[ORM\OrderBy(['id' => 'ASC'])]
     private $schuldItems;
 
     /**
      * @var Aantekening[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="Aantekening", mappedBy="dossier", cascade={"persist", "remove"})
-     * @ORM\OrderBy({"datumTijd"="DESC", "id"="DESC"})
      */
+    #[ORM\OneToMany(targetEntity: Aantekening::class, mappedBy: 'dossier', cascade: ['persist', 'remove'])]
+    #[ORM\OrderBy(['datumTijd' => 'DESC', 'id' => 'DESC'])]
     private $aantekeningen;
 
     /**
      * @var DossierTimeline[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="DossierTimeline", mappedBy="dossier", cascade={"persist", "remove"})
-     * @ORM\OrderBy({"datumtijd"="DESC", "id"="DESC"})
      */
+    #[ORM\OneToMany(targetEntity: DossierTimeline::class, mappedBy: 'dossier', cascade: ['persist', 'remove'])]
+    #[ORM\OrderBy(['datumtijd' => 'DESC', 'id' => 'DESC'])]
     private $timeline;
 
     /**
      * @var ActionEvent[]|ArrayCollection
-     * @ORM\OneToMany(targetEntity="ActionEvent", mappedBy="dossier", cascade={"remove"})
-     * @ORM\OrderBy({"id"="DESC"})
      */
+    #[ORM\OneToMany(targetEntity: ActionEvent::class, mappedBy: 'dossier', cascade: ['remove'])]
+    #[ORM\OrderBy(['id' => 'DESC'])]
     private $actionEvents;
 
     public function __construct()
     {
-        $this->aanmaakDatumTijd = new \DateTime();
+        $this->aanmaakDatumTijd = new DateTime();
         $this->documenten = new ArrayCollection();
         $this->schuldItems = new ArrayCollection();
         $this->inPrullenbak = false;
@@ -404,7 +404,7 @@ class Dossier
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
     public function getClientGeboortedatum()
     {
@@ -505,7 +505,7 @@ class Dossier
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie
+     * @return Organisatie
      */
     public function getOrganisatie()
     {
@@ -513,19 +513,17 @@ class Dossier
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker
+     * @return Gebruiker
      */
     public function getMedewerkerOrganisatie()
     {
         return $this->medewerkerOrganisatie;
     }
 
-    /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Team
-     */
-    public function getTeamGka()
+
+    public function getTeamGka(): ?Team
     {
-        return $this->teamGka;
+        return $this->teamGka ?? null;
     }
 
     public function getRegasNummer()
@@ -539,7 +537,7 @@ class Dossier
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker
+     * @return Gebruiker
      */
     public function getAanmaker()
     {
@@ -576,7 +574,7 @@ class Dossier
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getAanmaakDatumTijd()
     {
@@ -671,7 +669,7 @@ class Dossier
     /**
      * @param array $clientKinderen
      */
-    public function setClientKinderen(array $clientKinderen = null): void
+    public function setClientKinderen(?array $clientKinderen = null): void
     {
         $this->clientKinderen = $clientKinderen;
     }
@@ -714,7 +712,7 @@ class Dossier
     /**
      * @param Organisatie $organisatie
      */
-    public function setOrganisatie(Organisatie $organisatie = null)
+    public function setOrganisatie(?Organisatie $organisatie = null)
     {
         $this->organisatie = $organisatie;
     }
@@ -730,7 +728,7 @@ class Dossier
     /**
      * @param Team $teamGka
      */
-    public function setTeamGka(Team $teamGka = null)
+    public function setTeamGka(?Team $teamGka = null)
     {
         $this->teamGka = $teamGka;
     }
@@ -751,31 +749,31 @@ class Dossier
     }
 
     /**
-     * @param \DateTime $aanmaakDatumTijd
+     * @param DateTime $aanmaakDatumTijd
      */
-    public function setAanmaakDatumTijd(\DateTime $aanmaakDatumTijd)
+    public function setAanmaakDatumTijd(DateTime $aanmaakDatumTijd)
     {
         $this->aanmaakDatumTijd = $aanmaakDatumTijd;
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getIndiendatumTijd(): ?\DateTime
+    public function getIndiendatumTijd(): ?DateTime
     {
         return $this->indiendatumTijd;
     }
 
     /**
-     * @param \DateTime|null $indiendatumTijd
+     * @param DateTime|null $indiendatumTijd
      */
-    public function setIndiendatumTijd(?\DateTime $indiendatumTijd)
+    public function setIndiendatumTijd(?DateTime $indiendatumTijd)
     {
         $this->indiendatumTijd = $indiendatumTijd;
     }
 
-    /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\Voorlegger
+     /**
+     * @return Voorlegger
      */
     public function getVoorlegger()
     {
@@ -785,7 +783,7 @@ class Dossier
     /**
      * @param Voorlegger $voorlegger
      */
-    public function setVoorlegger(Voorlegger $voorlegger = null)
+    public function setVoorlegger(?Voorlegger $voorlegger = null)
     {
         $oldVoorlegger = $this->voorlegger;
         $this->voorlegger = $voorlegger;
@@ -798,7 +796,7 @@ class Dossier
     }
 
     /**
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
+     * @return DossierDocument[]|ArrayCollection
      */
     public function getDocumenten()
     {
@@ -808,7 +806,7 @@ class Dossier
     /**
      * @param string $onderwerp
      *
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
+     * @return DossierDocument[]|ArrayCollection
      */
     public function getDocumentenByOnderwerp($onderwerp)
     {
@@ -820,22 +818,25 @@ class Dossier
     /**
      * @param string $onderwerp
      *
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
+     * @return DossierDocument[]|ArrayCollection
      */
     public function getNietVerwijderdeDocumentenByOnderwerp($onderwerp, $zonderSchulditem = false)
     {
-        return $this->documenten->filter(function (DossierDocument $dossierDocument) use ($onderwerp, $zonderSchulditem) {
-            if ($zonderSchulditem && null !== $dossierDocument->getSchuldItem()) {
-                return false;
+        return $this->documenten->filter(
+            function (DossierDocument $dossierDocument) use ($onderwerp, $zonderSchulditem) {
+                if ($zonderSchulditem && null !== $dossierDocument->getSchuldItem()) {
+                    return false;
+                }
+                return $dossierDocument->getOnderwerp() === $onderwerp && $dossierDocument->getDocument(
+                )->isInPrullenbak() === false;
             }
-            return $dossierDocument->getOnderwerp() === $onderwerp && $dossierDocument->getDocument()->isInPrullenbak() === false;
-        });
+        );
     }
 
     /**
      * @param Array $onderwerpen
      *
-     * @return \GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument[]|\Doctrine\Common\Collections\ArrayCollection
+     * @return DossierDocument[]|ArrayCollection
      */
     public function getNietVerwijderdeDocumentenByOnderwerpen($onderwerpen)
     {
@@ -1035,11 +1036,13 @@ class Dossier
         $csvHeader = array_keys((new Aantekening())->getClassAttributes());
         $csvRows = [];
         if (!$this->getAantekeningen()->isEmpty()) {
-            $csvRows = array_merge(...$this->getAantekeningen()->map(function (Aantekening $aantekening) {
-                [$csvHeader, $row] = $aantekening->getClassAttributesAndValues();
+            $csvRows = array_merge(
+                ...$this->getAantekeningen()->map(function (Aantekening $aantekening) {
+                    [$csvHeader, $row] = $aantekening->getClassAttributesAndValues();
 
-                return $row;
-            })->toArray());
+                    return $row;
+                })->toArray()
+            );
         }
 
         return $this->batchToSpreadsheetCsv($csvHeader, $csvRows);
@@ -1050,11 +1053,13 @@ class Dossier
         $csvHeader = array_keys((new ActionEvent())->getClassAttributes());
         $csvRows = [];
         if (!$this->getActionEvents()) {
-            $csvRows = array_merge(...$this->getActionEvents()->map(function (ActionEvent $actionEvent) {
-                [$csvHeader, $row] = $actionEvent->getClassAttributesAndValues();
+            $csvRows = array_merge(
+                ...$this->getActionEvents()->map(function (ActionEvent $actionEvent) {
+                    [$csvHeader, $row] = $actionEvent->getClassAttributesAndValues();
 
-                return $row;
-            })->toArray());
+                    return $row;
+                })->toArray()
+            );
         }
 
         return $this->batchToSpreadsheetCsv($csvHeader, $csvRows);
@@ -1100,18 +1105,18 @@ class Dossier
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getAllegroSyncDate(): ?\DateTime
+    public function getAllegroSyncDate(): ?DateTime
     {
         return $this->allegroSyncDate;
     }
 
     /**
-     * @param \DateTime|null $allegroSyncDate
+     * @param DateTime|null $allegroSyncDate
      * @return Dossier
      */
-    public function setAllegroSyncDate(?\DateTime $allegroSyncDate): Dossier
+    public function setAllegroSyncDate(?DateTime $allegroSyncDate): Dossier
     {
         $this->allegroSyncDate = $allegroSyncDate;
 
@@ -1158,22 +1163,22 @@ class Dossier
 
     public static function twigAllegroStatus(string $status): string
     {
-        return isset(self::ALLEGRO_STATUS[$status]) ? self::ALLEGRO_STATUS[$status] : 'Onbekend';
+        return self::ALLEGRO_STATUS[$status] ?? 'Onbekend';
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getClientHuwelijksdatum(): ?\DateTime
+    public function getClientHuwelijksdatum(): ?DateTime
     {
         return $this->clientHuwelijksdatum;
     }
 
     /**
-     * @param \DateTime|null $clientHuwelijksdatum
+     * @param DateTime|null $clientHuwelijksdatum
      * @return Dossier
      */
-    public function setClientHuwelijksdatum(?\DateTime $clientHuwelijksdatum): Dossier
+    public function setClientHuwelijksdatum(?DateTime $clientHuwelijksdatum): Dossier
     {
         $this->clientHuwelijksdatum = $clientHuwelijksdatum;
 
@@ -1181,18 +1186,18 @@ class Dossier
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getSendToAllegro(): ?\DateTime
+    public function getSendToAllegro(): ?DateTime
     {
         return $this->sendToAllegro;
     }
 
     /**
-     * @param \DateTime|null $sendToAllegro
+     * @param DateTime|null $sendToAllegro
      * @return Dossier
      */
-    public function setSendToAllegro(?\DateTime $sendToAllegro): Dossier
+    public function setSendToAllegro(?DateTime $sendToAllegro): Dossier
     {
         $this->sendToAllegro = $sendToAllegro;
 
@@ -1200,18 +1205,18 @@ class Dossier
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getClientBurgelijkeStaatSinds(): ?\DateTime
+    public function getClientBurgelijkeStaatSinds(): ?DateTime
     {
         return $this->clientBurgelijkeStaatSinds;
     }
 
     /**
-     * @param \DateTime|null $clientBurgelijkeStaatSinds
+     * @param DateTime|null $clientBurgelijkeStaatSinds
      * @return Dossier
      */
-    public function setClientBurgelijkeStaatSinds(?\DateTime $clientBurgelijkeStaatSinds): Dossier
+    public function setClientBurgelijkeStaatSinds(?DateTime $clientBurgelijkeStaatSinds): Dossier
     {
         $this->clientBurgelijkeStaatSinds = $clientBurgelijkeStaatSinds;
 

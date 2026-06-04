@@ -1,0 +1,106 @@
+<?php
+
+namespace GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type;
+
+class TCasusPVAProduct
+{
+    /**
+     * @var string
+     */
+    private string $Naam;
+
+    /**
+     * @var int
+     */
+    private int $IDAanvraag;
+
+    /**
+     * @var bool
+     */
+    private bool $Geactiveerd;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private \DateTimeInterface $DatumActivering;
+
+    /**
+     * @return string
+     */
+    public function getNaam(): string
+    {
+        return $this->Naam;
+    }
+
+    /**
+     * @param string $Naam
+     * @return static
+     */
+    public function withNaam(string $Naam): static
+    {
+        $new = clone $this;
+        $new->Naam = $Naam;
+
+        return $new;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIDAanvraag(): int
+    {
+        return $this->IDAanvraag;
+    }
+
+    /**
+     * @param int $IDAanvraag
+     * @return static
+     */
+    public function withIDAanvraag(int $IDAanvraag): static
+    {
+        $new = clone $this;
+        $new->IDAanvraag = $IDAanvraag;
+
+        return $new;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getGeactiveerd(): bool
+    {
+        return $this->Geactiveerd;
+    }
+
+    /**
+     * @param bool $Geactiveerd
+     * @return static
+     */
+    public function withGeactiveerd(bool $Geactiveerd): static
+    {
+        $new = clone $this;
+        $new->Geactiveerd = $Geactiveerd;
+
+        return $new;
+    }
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getDatumActivering(): \DateTimeInterface
+    {
+        return $this->DatumActivering;
+    }
+
+    /**
+     * @param \DateTimeInterface $DatumActivering
+     * @return static
+     */
+    public function withDatumActivering(\DateTimeInterface $DatumActivering): static
+    {
+        $new = clone $this;
+        $new->DatumActivering = $DatumActivering;
+
+        return $new;
+    }
+}

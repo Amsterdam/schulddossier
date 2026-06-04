@@ -2,6 +2,8 @@
 
 namespace GemeenteAmsterdam\FixxxSchuldhulp\Normalizer;
 
+use ArrayObject;
+use Symfony\Component\Form\FormErrorIterator;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
@@ -11,13 +13,16 @@ class SchuldItemNormalizer implements NormalizerInterface, NormalizerAwareInterf
 {
     use NormalizerAwareTrait;
 
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof SchuldItem;
     }
 
-    public function normalize($object, $format = null, array $context = [])
-    {
+    public function normalize(
+        $object,
+        $format = null,
+        array $context = []
+    ): array|string|int|float|bool|ArrayObject|null {
         /** @var $object SchuldItem */
         return [
             'id' => $object->getId(),
@@ -35,6 +40,13 @@ class SchuldItemNormalizer implements NormalizerInterface, NormalizerAwareInterf
             'vaststelDatum' => $this->normalizer->normalize($object->getVaststelDatum(), $format),
             'ontstaansDatum' => $this->normalizer->normalize($object->getOntstaansDatum(), $format),
             'dossierDocumenten' => $this->normalizer->normalize($object->getDossierDocumenten(), $format)
+        ];
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            SchuldItem::class => false,
         ];
     }
 }
