@@ -8,11 +8,11 @@
 
 {% block document %}
 
-{% set releaseDate = "2026-04-14" %}
+{% set releaseDate = "2026-06-08" %}
 {% if "now"|date("Y-m-d") < releaseDate | date_modify("+1 week") | date("Y-m-d") %}
     <div class="announcement">
-        <h4 class="title">Nieuwe versie staat live</h4>
-        <span class="message"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}#release{{ releaseDate }}">Bekijk versies</a> voor een toelichting op de laatste update.</span>
+        <h4 class="title">Er wordt momenteel onderhoud uitgevoerd</h4>
+        <span class="message">Mogelijk ervaart u of uw collega problemen met het gebruik van de applicatie. Dit onderhoud is gepland voor vandaag tot 09.00 uur.</span>
     </div>
 {% endif %}
 
