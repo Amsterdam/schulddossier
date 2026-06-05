@@ -184,7 +184,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements
             $userBadge,
             [$csrfTokenBadge]
         );
-
+        $this->logger->debug('created passport for user', array('username' => $username, 'passport' => $return));
         return $return;
     }
 
@@ -202,6 +202,8 @@ class OidcAuthenticator extends AbstractAuthenticator implements
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $firewallName): ?Response
     {
+        $this->logger->debug('authentication success', array('username' => $token->getUserIdentifier()));
+    
         $gebruiker = $token->getUser();
         /**
          * @var Gebruiker $gebruiker
@@ -214,14 +216,17 @@ class OidcAuthenticator extends AbstractAuthenticator implements
         $request->getSession()->set('refresh_token', $request->getSession()->get('refresh_token_temp'));
 
         if ($request->getSession()->has('loginReturnUrl')) {
+            $this->logger->debug('redirecting after successful authentication', array('username' => $token->getUserIdentifier(), 'returnUrl' => $request->getSession()->get('loginReturnUrl')));
             return new RedirectResponse($request->getSession()->get('loginReturnUrl'));
         }
 
+        $this->logger->debug('redirecting to homepage after successful authentication', array('username' => $token->getUserIdentifier()));
         return new RedirectResponse($this->urlGenerator->generate('app_home_index'));
     }
 
     public function start(Request $request, ?AuthenticationException $authException = null): RedirectResponse
     {
+        $this->logger->debug('starting authentication process, redirecting to IdP');
         $request->getSession()->set('loginReturnUrl', $request->getUri());
 
         $csrfToken = $this->csrfTokenManager->getToken('oidc_login');

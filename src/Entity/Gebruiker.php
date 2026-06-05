@@ -16,6 +16,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 #[ORM\Table]
 #[ORM\Index(name: 'idx_verwijderd_datetime', columns: ['verwijderd_date_time'])]
@@ -136,10 +138,22 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $verwijderdDateTime;
 
-    public function __construct()
+
+      // Not mapped — no #[ORM\Column]
+    private LoggerInterface $logger;
+
+    public function __construct(
+                   private LoggerInterface $log
+    )
     {
         $this->enabled = true;
         $this->organisaties = new ArrayCollection();
+        $this->logger = new NullLogger(); 
+    }
+
+    public function setLogger(LoggerInterface $logger): void
+    {
+        $this->logger = $logger;
     }
 
     /**
@@ -464,7 +478,29 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      */
     public function isEqualTo(UserInterface $user): bool
     {
+
         /* @var $user Gebruiker */
+        $this->logger->debug('isEqualTo', [
+            'currentUser' => [
+                'id' => $this->getId(),
+                'email' => $this->getEmail(),
+                'telefoonnummer' => $this->getTelefoonnummer(),
+                'userIdentifier' => $this->getUserIdentifier(),
+                'username' => $this->getUsername(),
+                'type' => $this->getType(),
+                'enabled' => $this->isEnabled(),
+            ],
+            'givenUser' => [
+                'id' => $user->getId(),
+                'email' => $user->getEmail(),
+                'telefoonnummer' => $user->getTelefoonnummer(),
+                'userIdentifier' => $user->getUserIdentifier(),
+                'username' => $user->getUsername(),
+                'type' => $user->getType(),
+                'enabled' => $user->isEnabled(),
+            ],
+        ]);
+
         if (
             $user->getId() !== $this->getId() ||
             $user->getEmail() !== $this->getEmail() ||
@@ -473,9 +509,11 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
             $user->getType() !== $this->getType() ||
             $user->isEnabled() !== $this->isEnabled()
         ) {
+            $this->logger->debug('gebruiker.isEqualTo returns FALSE');
             return false;
         }
 
+        $this->logger->debug('gebruiker.isEqualTo returns TRUE');
         return true;
     }
 
