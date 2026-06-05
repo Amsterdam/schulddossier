@@ -3020,44 +3020,6 @@
             "time": "2022-12-02T22:17:43+00:00"
         },
         {
-            "name": "markei/filesystemoperations",
-            "version": "dev-symfony5support",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ConductionNL/FileSystemOperations.git",
-                "reference": "29099aebf015bbf970bb23ecaffb4724949fe0f3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ConductionNL/FileSystemOperations/zipball/29099aebf015bbf970bb23ecaffb4724949fe0f3",
-                "reference": "29099aebf015bbf970bb23ecaffb4724949fe0f3",
-                "shasum": ""
-            },
-            "require": {
-                "symfony/filesystem": "^3|^4|^5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Markei\\FileSystemOperations\\": "src/Markei/FileSystemOperations"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Maarten de Keizer",
-                    "email": "m.de.keizer@markei.nl"
-                }
-            ],
-            "description": "Add filesystem operations on Composer events",
-            "support": {
-                "source": "https://github.com/ConductionNL/FileSystemOperations/tree/symfony5support"
-            },
-            "time": "2022-03-09T08:36:52+00:00"
-        },
-        {
             "name": "monolog/monolog",
             "version": "2.11.0",
             "source": {
@@ -11333,9 +11295,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "markei/filesystemoperations": 20
-    },
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
