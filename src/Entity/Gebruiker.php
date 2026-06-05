@@ -505,7 +505,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
             $user->getId() !== $this->getId() ||
             $user->getEmail() !== $this->getEmail() ||
             $user->getTelefoonnummer() !== $this->getTelefoonnummer() ||
-            $user->getUserIdentifier() !== $this->getUserIdentifier() ||
+            $user->getUsername() !== $this->getUsername() ||
             $user->getType() !== $this->getType() ||
             $user->isEnabled() !== $this->isEnabled()
         ) {
