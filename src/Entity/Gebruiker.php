@@ -139,13 +139,12 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
     private $verwijderdDateTime;
 
 
-      // Not mapped — no #[ORM\Column]
+    // Not mapped — no #[ORM\Column]
     private LoggerInterface $logger;
 
     public function __construct(
-                   private LoggerInterface $log
-    )
-    {
+        private LoggerInterface $log
+    ) {
         $this->enabled = true;
         $this->organisaties = new ArrayCollection();
         $this->logger = new NullLogger();
@@ -478,29 +477,6 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      */
     public function isEqualTo(UserInterface $user): bool
     {
-
-        /* @var $user Gebruiker */
-        $this->logger->warning('TEMP_DEBUG: isEqualTo', [
-            'currentUser' => [
-                'id' => $this->getId(),
-                'email' => $this->getEmail(),
-                'telefoonnummer' => $this->getTelefoonnummer(),
-                'userIdentifier' => $this->getUserIdentifier(),
-                'username' => $this->getUsername(),
-                'type' => $this->getType(),
-                'enabled' => $this->isEnabled(),
-            ],
-            'givenUser' => [
-                'id' => $user->getId(),
-                'email' => $user->getEmail(),
-                'telefoonnummer' => $user->getTelefoonnummer(),
-                'userIdentifier' => $user->getUserIdentifier(),
-                'username' => $user->getUsername(),
-                'type' => $user->getType(),
-                'enabled' => $user->isEnabled(),
-            ],
-        ]);
-
         if (
             $user->getId() !== $this->getId() ||
             $user->getEmail() !== $this->getEmail() ||
@@ -509,11 +485,59 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
             $user->getType() !== $this->getType() ||
             $user->isEnabled() !== $this->isEnabled()
         ) {
-            $this->logger->warning('TEMP_DEBUG: gebruiker.isEqualTo returns FALSE');
+
+            if ($user->getId() !== $this->getId()) {
+                $this->logger->debug('TEMP_DEBUG: gebruiker.isEqualTo returns FALSE - verschil in ID', [
+                    'userId' => $user->getId(),
+                    'db' => $this->getId(),
+                    'session' => $user->getId(),
+                ]);
+            }
+
+            if ($user->getEmail() !== $this->getEmail()) {
+                $this->logger->debug('TEMP_DEBUG: gebruiker.isEqualTo returns FALSE - verschil in email', [
+                    'userId' => $user->getId(),
+                    'db' => $this->getEmail(),
+                    'session' => $user->getEmail(),
+                ]);
+            }
+
+            if ($user->getTelefoonnummer() !== $this->getTelefoonnummer()) {
+                $this->logger->debug('TEMP_DEBUG: gebruiker.isEqualTo returns FALSE - verschil in telefoonnummer', [
+                    'userId' => $user->getId(),
+                    'db' => $this->getTelefoonnummer(),
+                    'session' => $user->getTelefoonnummer(),
+                ]);
+            }
+
+            if ($user->getUsername() !== $this->getUsername()) {
+                $this->logger->debug('TEMP_DEBUG: gebruiker.isEqualTo returns FALSE - verschil in gebruikersnaam', [
+                    'userId' => $user->getId(),
+                    'db' => $this->getUsername(),
+                    'session' => $user->getUsername(),
+                ]);
+            }
+
+            if ($user->getType() !== $this->getType()) {
+                $this->logger->debug('TEMP_DEBUG: gebruiker.isEqualTo returns FALSE - verschil in type', [
+                    'userId' => $user->getId(),
+                    'db' => $this->getType(),
+                    'session' => $user->getType(),
+                ]);
+            }
+            if ($user->isEnabled() !== $this->isEnabled()) {
+                $this->logger->debug('TEMP_DEBUG: gebruiker.isEqualTo returns FALSE - verschil in enabled status', [
+                    'userId' => $user->getId(),
+                    'db' => $this->isEnabled(),
+                    'session' => $user->isEnabled(),
+                ]);
+            }
+
+            $this->logger->debug('TEMP_DEBUG: gebruiker.isEqualTo returns FALSE');
             return false;
         }
 
-        $this->logger->warning('TEMP_DEBUG: gebruiker.isEqualTo returns TRUE');
+        $this->logger->debug('TEMP_DEBUG: gebruiker.isEqualTo returns TRUE');
         return true;
     }
 

@@ -85,7 +85,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements
                 new CsrfToken('oidc_login', $request->query->get('state'))
             ) === false
         ) {
-            $this->logger->warning(
+            $this->logger->debug(
                 'OidcAuthenticator invalid state while getting credentials',
                 array('receivedState' => $request->query->get('state'))
             );
@@ -101,7 +101,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements
         $code = $request->query->get('code');
 
         if ($this->csrfTokenManager->isTokenValid(new CsrfToken('oidc_login', $state)) === false) {
-            $this->logger->warning(
+            $this->logger->debug(
                 'OidcAuthenticator invalid state while getting credentials',
                 array('receivedState' => $state)
             );
@@ -139,13 +139,13 @@ class OidcAuthenticator extends AbstractAuthenticator implements
             $request->getSession()->set('id_token_temp', $info['id_token']);
             $request->getSession()->set('refresh_token_temp', $info['refresh_token']);
         } catch (TransportExceptionInterface $e) {
-            $this->logger->warning(
+            $this->logger->debug(
                 'OidcAuthenticator IdP can not connect to token endpoint',
                 array('e' => get_class($e), 'msg' => $e->getMessage())
             );
             throw $e;
         } catch (HttpExceptionInterface $e) {
-            $this->logger->warning(
+            $this->logger->debug(
                 'OidcAuthenticator IdP invalid response from token endpoint',
                 array(
                     'e' => get_class($e),
@@ -155,7 +155,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements
             );
             throw $e;
         } catch (DecodingExceptionInterface $e) {
-            $this->logger->warning(
+            $this->logger->debug(
                 'Error decoding token from OidcAuthenticator',
                 array(
                     'e' => get_class($e),
@@ -166,7 +166,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements
             throw $e;
         }
 
-        $this->logger->warning('TEMP_DEBUG: exchange code for access token', array('code' => $code, 'response' => $info));
+        $this->logger->debug('TEMP_DEBUG: exchange code for access token', array('code' => $code, 'response' => $info));
 
         $parsedIdToken = $this->configuration->parser()->parse($info['id_token']);
         $username = $this->getUsernameFromToken($parsedIdToken);
@@ -184,7 +184,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements
             $userBadge,
             [$csrfTokenBadge]
         );
-        $this->logger->warning('TEMP_DEBUG: created passport for user', array('username' => $username, 'passport' => $return));
+        $this->logger->debug('TEMP_DEBUG: created passport for user', array('username' => $username, 'passport' => $return));
         return $return;
     }
 
@@ -195,6 +195,8 @@ class OidcAuthenticator extends AbstractAuthenticator implements
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
+        $this->logger->debug('TEMP_DEBUG: authentication failure', array('exception' => $exception));
+
         return new Response($this->twig->render('OidcAuthenticator/failure.html.twig', [
             'e' => $exception
         ]));
@@ -202,7 +204,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $firewallName): ?Response
     {
-        $this->logger->warning('TEMP_DEBUG: authentication success', array('username' => $token->getUserIdentifier()));
+        $this->logger->debug('TEMP_DEBUG: authentication success', array('username' => $token->getId()));
 
         $gebruiker = $token->getUser();
         /**
@@ -216,17 +218,14 @@ class OidcAuthenticator extends AbstractAuthenticator implements
         $request->getSession()->set('refresh_token', $request->getSession()->get('refresh_token_temp'));
 
         if ($request->getSession()->has('loginReturnUrl')) {
-            $this->logger->warning('TEMP_DEBUG: redirecting after successful authentication', array('username' => $token->getUserIdentifier(), 'returnUrl' => $request->getSession()->get('loginReturnUrl')));
             return new RedirectResponse($request->getSession()->get('loginReturnUrl'));
         }
 
-        $this->logger->warning('TEMP_DEBUG: redirecting to homepage after successful authentication', array('username' => $token->getUserIdentifier()));
         return new RedirectResponse($this->urlGenerator->generate('app_home_index'));
     }
 
     public function start(Request $request, ?AuthenticationException $authException = null): RedirectResponse
     {
-        $this->logger->warning('TEMP_DEBUG: starting authentication process, redirecting to IdP');
         $request->getSession()->set('loginReturnUrl', $request->getUri());
 
         $csrfToken = $this->csrfTokenManager->getToken('oidc_login');
