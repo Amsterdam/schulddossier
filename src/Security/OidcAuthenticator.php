@@ -85,7 +85,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements
                 new CsrfToken('oidc_login', $request->query->get('state'))
             ) === false
         ) {
-            $this->logger->debug(
+            $this->logger->warning(
                 'OidcAuthenticator invalid state while getting credentials',
                 array('receivedState' => $request->query->get('state'))
             );
@@ -101,7 +101,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements
         $code = $request->query->get('code');
 
         if ($this->csrfTokenManager->isTokenValid(new CsrfToken('oidc_login', $state)) === false) {
-            $this->logger->debug(
+            $this->logger->warning(
                 'OidcAuthenticator invalid state while getting credentials',
                 array('receivedState' => $state)
             );
@@ -139,13 +139,13 @@ class OidcAuthenticator extends AbstractAuthenticator implements
             $request->getSession()->set('id_token_temp', $info['id_token']);
             $request->getSession()->set('refresh_token_temp', $info['refresh_token']);
         } catch (TransportExceptionInterface $e) {
-            $this->logger->debug(
+            $this->logger->warning(
                 'OidcAuthenticator IdP can not connect to token endpoint',
                 array('e' => get_class($e), 'msg' => $e->getMessage())
             );
             throw $e;
         } catch (HttpExceptionInterface $e) {
-            $this->logger->debug(
+            $this->logger->warning(
                 'OidcAuthenticator IdP invalid response from token endpoint',
                 array(
                     'e' => get_class($e),
@@ -155,7 +155,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements
             );
             throw $e;
         } catch (DecodingExceptionInterface $e) {
-            $this->logger->debug(
+            $this->logger->warning(
                 'Error decoding token from OidcAuthenticator',
                 array(
                     'e' => get_class($e),
@@ -166,7 +166,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements
             throw $e;
         }
 
-        $this->logger->debug('TEMP_DEBUG: exchange code for access token', array('code' => $code, 'response' => $info));
+        $this->logger->debug('exchange code for access token', array('code' => $code, 'response' => $info));
 
         $parsedIdToken = $this->configuration->parser()->parse($info['id_token']);
         $username = $this->getUsernameFromToken($parsedIdToken);
@@ -184,7 +184,6 @@ class OidcAuthenticator extends AbstractAuthenticator implements
             $userBadge,
             [$csrfTokenBadge]
         );
-        $this->logger->debug('TEMP_DEBUG: created passport for user', array('username' => $username, 'passport' => $return));
         return $return;
     }
 
