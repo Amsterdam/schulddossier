@@ -203,7 +203,7 @@ class OidcAuthenticator extends AbstractAuthenticator implements
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $firewallName): ?Response
     {
-        $this->logger->debug('TEMP_DEBUG: authentication success', array('username' => $token->getId()));
+        $this->logger->debug('TEMP_DEBUG: authentication success', array('userid' => $token->getId()));
 
         $gebruiker = $token->getUser();
         /**
