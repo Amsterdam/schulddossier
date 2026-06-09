@@ -1,6 +1,7 @@
 monolog:
     channels:
         - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists
+        - gebruiker
     handlers:
         nested:
             type: stream
@@ -12,6 +13,11 @@ monolog:
             path: "%kernel.logs_dir%/%kernel.environment%-csp_violations.log"
             level: notice
             channels: [ "csp_violations" ]
+        gebruiker:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            channels: [gebruiker]
 
 when@dev:
     monolog:

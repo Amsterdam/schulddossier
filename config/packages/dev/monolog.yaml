@@ -1,6 +1,7 @@
 monolog:
     channels:
         - mail
+        - gebruiker
     handlers:
         mail:
             level: debug
@@ -16,6 +17,11 @@ monolog:
             type: stream
             path: "%kernel.logs_dir%/%kernel.environment%.deprecations.log"
             channels: ["deprecation"]
+        gebruiker:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            channels: [gebruiker]
         # uncomment to get logging in your browser
         # you may have to allow bigger header sizes in your Web server configuration
         #firephp:
