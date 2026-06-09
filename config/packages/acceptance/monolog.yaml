@@ -6,16 +6,16 @@ monolog:
         mail:
             level: debug
             type: stream
-            path: "%kernel.logs_dir%/mail-%kernel.environment%.log"
+            path: php://stderr
             channels: ['mail']
         main:
             type: stream
-            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            path: php://stderr
             level: debug
             channels: ["!event"]
         gebruiker:
             type: stream
-            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            path: php://stderr
             level: debug
             channels: [gebruiker]
         # uncomment to get logging in your browser

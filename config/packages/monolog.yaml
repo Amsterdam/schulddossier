@@ -6,7 +6,7 @@ monolog:
         nested:
             type: stream
             path: php://stderr
-            level: error
+            level: debug
             formatter: monolog.formatter.json
         csp_violations: # Add a handler for the csp_violations channel
             type: stream
@@ -15,7 +15,7 @@ monolog:
             channels: [ "csp_violations" ]
         gebruiker:
             type: stream
-            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            path: php://stderr
             level: debug
             channels: [gebruiker]
 
