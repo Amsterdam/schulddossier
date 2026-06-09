@@ -10,7 +10,6 @@ use Rollerworks\Component\PasswordStrength\Validator\Constraints\PasswordStrengt
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
-use Serializable;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -374,30 +373,21 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
         return $this->naam . ' (' . $this->username . ')';
     }
 
-    /**
-     * {@inheritDoc}
-     * @see Serializable::serialize()
-     */
-    public function serialize()
+    public function __serialize(): array
     {
-        return serialize([
+        return [
             'id' => $this->id,
             'username' => $this->username,
             'email' => $this->email,
             'telefoonnummer' => $this->telefoonnummer,
             'password' => $this->password,
             'type' => $this->type,
-            'enabled' => $this->enabled
-        ]);
+            'enabled' => $this->enabled,
+        ];
     }
 
-    /**
-     * {@inheritDoc}
-     * @see Serializable::unserialize()
-     */
-    public function unserialize($serialized)
+    public function __unserialize(array $data): void
     {
-        $data = unserialize($serialized);
         $this->id = $data['id'];
         $this->username = $data['username'];
         $this->email = $data['email'];
@@ -406,7 +396,6 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
         $this->type = $data['type'];
         $this->enabled = $data['enabled'];
     }
-
     /**
      * @param string $type
      *
