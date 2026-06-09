@@ -379,7 +379,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      * {@inheritDoc}
      * @see Serializable::serialize()
      */
-    public function __serialize()
+    public function serialize()
     {
         return serialize([
             'id' => $this->id,
@@ -396,7 +396,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
      * {@inheritDoc}
      * @see Serializable::unserialize()
      */
-    public function __unserialize($serialized)
+    public function unserialize($serialized)
     {
         $data = unserialize($serialized);
         $this->id = $data['id'];
