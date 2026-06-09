@@ -148,7 +148,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
     {
         $this->enabled = true;
         $this->organisaties = new ArrayCollection();
-        $this->logger = new NullLogger(); 
+        $this->logger = new NullLogger();
     }
 
     public function setLogger(LoggerInterface $logger): void
@@ -480,7 +480,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
     {
 
         /* @var $user Gebruiker */
-        $this->logger->debug('isEqualTo', [
+        $this->logger->warning('TEMP_DEBUG: isEqualTo', [
             'currentUser' => [
                 'id' => $this->getId(),
                 'email' => $this->getEmail(),
@@ -509,11 +509,11 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
             $user->getType() !== $this->getType() ||
             $user->isEnabled() !== $this->isEnabled()
         ) {
-            $this->logger->debug('gebruiker.isEqualTo returns FALSE');
+            $this->logger->warning('TEMP_DEBUG: gebruiker.isEqualTo returns FALSE');
             return false;
         }
 
-        $this->logger->debug('gebruiker.isEqualTo returns TRUE');
+        $this->logger->warning('TEMP_DEBUG: gebruiker.isEqualTo returns TRUE');
         return true;
     }
 
