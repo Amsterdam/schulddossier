@@ -7,39 +7,20 @@ use Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\LoginServiceAllegroWebLogin;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\Type\AWUserInfo;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClientFactory;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\EJaNeeLeeg;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\SchuldHulpUpdatedClient;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\SchuldHulpUpdatedClientFactory;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\Enums\eSoortLening;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\InkomenArray;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldArray as TypeSchuldArray;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldHulpServiceAanvraag2SR;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldHulpServiceGetLijstSchuldeisers as TypeSchuldHulpServiceGetLijstSchuldeisers;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldHulpServiceGetSRVAanvraag as TypeSchuldHulpServiceGetSRVAanvraag;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldHulpServiceGetSRVEisers as TypeSchuldHulpServiceGetSRVEisers;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\SchuldHulpServiceGetSRVOverzicht as TypeSchuldHulpServiceGetSRVOverzicht;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2Persoon;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAanvraag2SR;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TAdres;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TContact;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TGezinsSituatie;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TInkomen;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TOrganisatie as TypeTOrganisatie;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSchuld as TypeTSchuld;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraag as TypeTSRVAanvraag;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVEisers;
 use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\TSRVAanvraagHeader;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ENationaliteit;
-use GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\Type\ESoortInkomen;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Organisatie;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Schuldeiser;
-use GemeenteAmsterdam\FixxxSchuldhulp\Event\ActionEvent;
-use GemeenteAmsterdam\FixxxSchuldhulp\Event\DossierChangedEvent;
-use GemeenteAmsterdam\FixxxSchuldhulp\Exception\AllegroServiceException;
 use Phpro\SoapClient\Exception\SoapException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -54,26 +35,6 @@ class AllegroService
     const MAPPING_GESLACHT = [
         'Man' => 'M',
         'Vrouw' => 'V',
-    ];
-
-    /**
-     * Burgerlijke staat:
-     * varchar(1), Null allowed, waarden(@, A = Onbekend, B = Alleenstaand, C = Samenwonend, D = Geregistreerd partnerschap, E = Gehuwd, F = Gescheiden, G = Weduwnaar, Null)
-     *
-     * Gemeenschap van goederen:
-     * varchar(1), Null allowed, waarden(A = Algemene gemeenschap, B = Buiten iedere gemeenschap, H = Huwelijkse voorwaarden, O = Onbekend, U = Buitenlands huwelijk)
-     * Omzetting:
-     * Gehuwd gemeenschap van goederen -> Burgerlijke staat = E  en Gemeenschap van goederen = A
-     * Gehuwd huwelijkse voorwaarden -> Burgerlijke staat = E en Gemeenschap van goederen = H
-     * Samenwonend -> Burgerlijke staat = C en Gemeenschap van goederen = O ???
-     * Ongehuwd ->   Burgerlijke staat = B ??? en Gemeenschap van goederen = B ???
-     */
-    const MAPPING_BURGERLIJKE_STAAT = [
-        'Gehuwd in gemeenschap van goederen' => ['E', 'A'],
-        'Gehuwd buiten iedere gemeenschap' => ['E', 'H'],
-        'Samenwonend' => ['C', 'O'],
-        'Ongehuwd' => ['B', 'B'],
-        'Gescheiden' => ['F', 'B'],
     ];
 
     /**
@@ -226,273 +187,7 @@ class AllegroService
         return $response->getResult();
     }
 
-    /**
-     * @param Dossier $dossier
-     * @throws Exception
-     */
-    public function sendAanvraag(Dossier $dossier): bool
-    {
-        $organisatie = $dossier->getOrganisatie();
-        $loginSucces = $this->login($organisatie);
-
-        if (!$loginSucces) {
-            throw new \Exception('Login of organisatie failed');
-        }
-
-        $bedrijfscode = 2; // Vaste waarde 2 = Kredietbank
-        $aanvragerCorrespondentieMail = false;
-        $aanvragerCorrespondentieWeb = false;
-        $aanvraagSchuldbedrag = $dossier->getSumSchuldItemsNotInPrullenbak();
-
-        $huisnummer = explode(' ', $dossier->getClientHuisnummer());
-        $omzetting = isset(
-            self::MAPPING_BURGERLIJKE_STAAT[$dossier->getClientBurgelijkeStaat()]
-        ) ? self::MAPPING_BURGERLIJKE_STAAT[$dossier->getClientBurgelijkeStaat()] : [
-            'A',
-            'O',
-        ];
-
-        $kinderen = null !== $dossier->getClientKinderen() ? count($dossier->getClientKinderen()) : 0;
-
-        $aanvragerAdres = new TAdres();
-
-        if (null !== $dossier->getClientStraat()) {
-            $aanvragerAdres = $aanvragerAdres->withStraat($dossier->getClientStraat());
-        }
-
-        if (null !== $dossier->getClientHuisnummer()) {
-            $aanvragerAdres = $aanvragerAdres->withHuisnr($huisnummer[0]);
-        }
-
-        if (isset($huisnummer[1])) {
-            $aanvragerAdres = $aanvragerAdres->withHuisnrToev($huisnummer[1]);
-        }
-
-        if (null !== $dossier->getClientPostcode()) {
-            $aanvragerAdres = $aanvragerAdres->withPostcode($dossier->getClientPostcode());
-        }
-
-        if (null !== $dossier->getClientWoonplaats()) {
-            $aanvragerAdres = $aanvragerAdres->withWoonplaats($dossier->getClientWoonplaats());
-        }
-
-        $this->validateDossier($dossier);
-
-        $relatiecode = (null === $dossier->getAllegroNummer() || '' === $dossier->getAllegroNummer(
-        )) ? 0 : (int) $dossier->getAllegroNummer();
-
-        $aanvrager = new TAanvraag2Persoon();
-        $aanvrager = $aanvrager->withRelatiecode($relatiecode);
-        $aanvrager = $aanvrager->withBSN($dossier->getClientBSN());
-        $aanvrager = $aanvrager->withVoorletters($dossier->getClientVoorletters());
-        $aanvrager = $aanvrager->withAchternaam($dossier->getClientNaam());
-        $aanvrager = $aanvrager->withGeslacht(self::MAPPING_GESLACHT[$dossier->getClientGeslacht()]);
-        $aanvrager = $aanvrager->withGeboortedatum($dossier->getClientGeboortedatum()->format('Ymd'));
-        $aanvrager = $aanvrager->withNationaliteit(ENationaliteit::Leeg);
-        $aanvrager = $aanvrager->withCorrespondentieMail($aanvragerCorrespondentieMail);
-        $aanvrager = $aanvrager->withCorrespondentieWeb($aanvragerCorrespondentieWeb);
-        $aanvrager = $aanvrager->withBezoekadres($aanvragerAdres);
-
-        if (null !== $dossier->getClientEmail() or null !== $dossier->getClientTelefoonnummer()) {
-            $contact = new TContact();
-            $contact = $contact->withTelefoonThuis($dossier->getClientTelefoonnummer());
-            $contact = $contact->withEmailAdres($dossier->getClientEmail());
-            $aanvrager = $aanvrager->withContact($contact);
-        }
-
-        $inkomen = $this->mapInkomen($dossier);
-        $aanvrager = $aanvrager->withInkomen($inkomen);
-
-        // Partner
-        $partner = null;
-        if (!$dossier->getPartnerNvt()) {
-            $partner = new TAanvraag2Persoon();
-            $partner = $partner->withRelatiecode(0);
-            $partner = $partner->withBSN($dossier->getPartnerBSN());
-            $partner = $partner->withVoorletters($dossier->getPartnerVoorletters());
-            $partner = $partner->withAchternaam($dossier->getPartnerNaam());
-            $partner = $partner->withGeslacht(self::MAPPING_GESLACHT[$dossier->getPartnerGeslacht()]);
-            $partner = $partner->withGeboortedatum($dossier->getPartnerGeboortedatum()->format('Ymd'));
-            $partner = $partner->withNationaliteit(ENationaliteit::Leeg);
-            $partner = $partner->withCorrespondentieMail(false);
-            $partner = $partner->withCorrespondentieWeb(false);
-        }
-
-        $gemeenschapVanGoederen = 'Gehuwd in gemeenschap van goederen' === $dossier->getClientBurgelijkeStaat(
-        ) ? 'Ja' : 'Nee';
-        $kinderenInGezin = 1 >= $kinderen ? 'Ja' : 'Nee';
-
-        $gezin = new TGezinsSituatie();
-        $gezin = $gezin->withBurgerlijkeStaat($omzetting[0]);
-        $gezin = $gezin->withGemeenschapVanGoederen($gemeenschapVanGoederen);
-        $gezin = $gezin->withKinderen($kinderenInGezin);
-        $gezin = $gezin->withBurgerlijkeStaatSinds(new \DateTime('0001-01-01T00:00:00'));
-
-        $aanvraag = new TAanvraag2SR();
-        $aanvraag = $aanvraag->withBedrijfscode($bedrijfscode);
-        $aanvraag = $aanvraag->withAanvrager($aanvrager);
-        $aanvraag = $aanvraag->withPartner($partner);
-        $aanvraag = $aanvraag->withGezinsSituatie($gezin);
-        $aanvraag = $aanvraag->withAantalKinderen($kinderen);
-        $aanvraag = $aanvraag->withSchuldbedrag($aanvraagSchuldbedrag);
-        $aanvraag = $aanvraag->withSchuldeisers(count($dossier->getSchuldItemsNotInPrullenbak()));
-        $aanvraag = $aanvraag->withGewenstKrediet(0);
-        $aanvraag = $aanvraag->withGewenstAflossing(0);
-        $aanvraag = $aanvraag->withOpdrachtgeverCode(0);
-        $aanvraag = $aanvraag->withBorgstelling(false);
-        $aanvraag = $aanvraag->withCollectieveBorgstelling(false);
-        $aanvraag = $aanvraag->withNPS($dossier->getVoorlegger()->getJongerenSchuldenvrijeStart());
-        $aanvraag = $aanvraag->withTotaalschuldVullen(false);
-        $aanvraag = $aanvraag->withOpdrachtgeverOvernemen(false);
-        $aanvraag = $aanvraag->withHulpverlenerOvernemen(false);
-        $aanvraag = $aanvraag->withSoortLening(eSoortLening::SK);
-
-        $schulden = $this->mapSchulden($dossier);
-        $aanvraag = $aanvraag->withSchulden($schulden);
-
-        if (null !== $partner) {
-            $aanvraag = $aanvraag->withPartner($partner);
-        }
-
-        $schuldHulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyHostPort);
-        $schuldHulpServiceAanvraag2SR = new SchuldHulpServiceAanvraag2SR($aanvraag);
-
-        $aanvraagResponse = $schuldHulpService->Aanvraag2SR($schuldHulpServiceAanvraag2SR);
-
-        if (!$aanvraagResponse->getResult()) {
-            $this->logger->error(sprintf('%s - %s', $aanvraagResponse->getExtraInfo(), $aanvraagResponse->getExtraInfoOmschrijving()), [AllegroService::LOGGING_CONTEXT]);
-        }
-
-        $user = $this->security->getUser();
-
-        /**
-         * @var Gebruiker $user
-         */
-        $this->eventDispatcher->dispatch(
-            new DossierChangedEvent($dossier, $user, ActionEvent::DOSSIER_SEND_TO_ALLEGRO),
-            DossierChangedEvent::NAME
-        );
-
-        return $aanvraagResponse->getResult();
-    }
-
-    private function mapInkomen(Dossier $dossier): InkomenArray
-    {
-
-        $inkomenArray = new InkomenArray();
-
-        if ($dossier->getVoorlegger()->isBeschikkingUwvZw()) {
-            $inkomen = $this->createInkomen();
-            $inkomen = $inkomen->withSoortUitkering('ZW');
-            $inkomenArray = $inkomenArray->withTInkomen((array)$inkomen);
-        }
-
-        if ($dossier->getVoorlegger()->isBeschikkingUwvWw()) {
-            $inkomen = $this->createInkomen();
-            $inkomen = $inkomen->withSoortUitkering('WW');
-            $inkomenArray = $inkomenArray->withTInkomen((array)$inkomen);
-        }
-
-        if ($dossier->getVoorlegger()->isBeschikkingUwvWia()) {
-            $inkomen = $this->createInkomen();
-            $inkomen = $inkomen->withSoortUitkering('WIA');
-            $inkomenArray = $inkomenArray->withTInkomen((array)$inkomen);
-        }
-
-        if ($dossier->getVoorlegger()->isBeschikkingUwvWajong()) {
-            $inkomen = $this->createInkomen();
-            $inkomen = $inkomen->withSoortUitkering('Wajong');
-            $inkomenArray = $inkomenArray->withTInkomen((array)$inkomen);
-        }
-
-        if ($dossier->getVoorlegger()->isBeschikkingGemeenteAmsterdamWPI()) {
-            $inkomen = $this->createInkomen();
-            $inkomen =  $inkomen->withUitkeringsInstantie('Gemeente Amsterdam');
-            $inkomen =  $inkomen->withSoortUitkering('WPI');
-            $inkomenArray = $inkomenArray->withTInkomen((array)$inkomen);
-        }
-
-        if ($dossier->getVoorlegger()->isBeschikkingSVBAOW()) {
-            $inkomen = $this->createInkomen();
-            $inkomen = $inkomen->withUitkeringsInstantie('SVB');
-            $inkomen = $inkomen->withSoortUitkering('AOW');
-            $inkomenArray = $inkomenArray->withTInkomen((array)$inkomen);
-        }
-
-        if ($dossier->getVoorlegger()->isBeschikkingSVBANW()) {
-            $inkomen = $this->createInkomen();
-            $inkomen = $inkomen->withUitkeringsInstantie('SVB');
-            $inkomen = $inkomen->withSoortUitkering('ANW');
-            $inkomenArray = $inkomenArray->withTInkomen((array)$inkomen);
-        }
-
-        if ($dossier->getVoorlegger()->isBeschikkingGemeenteAmsterdamIOAW()) {
-            $inkomen = $this->createInkomen();
-            $inkomen =  $inkomen->withUitkeringsInstantie('Gemeente Amsterdam');
-            $inkomen =  $inkomen->withSoortUitkering('IOAW');
-            $inkomenArray = $inkomenArray->withTInkomen((array)$inkomen);
-        }
-
-        if (null !== $dossier->getVoorlegger()->getBeschikkingUwvOverig() && strlen($dossier->getVoorlegger()->getBeschikkingUwvOverig())) {
-            $inkomen = $this->createInkomen();
-            $inkomen = $inkomen->withUitkeringsInstantie('Overig');
-            $inkomen = $inkomen->withSoortUitkering($dossier->getVoorlegger()->getBeschikkingUwvOverig());
-            $inkomenArray = $inkomenArray->withTInkomen((array)$inkomen);
-        }
-
-        if ($dossier->getVoorlegger()->isBeschikkingInkomenUitWerk()) {
-            $dienstVerbandTot = null !== $dossier->getVoorlegger()->getArbeidsovereenkomstEinddatum() ? $dossier->getVoorlegger()->getArbeidsovereenkomstEinddatum()->format('Ymd') : 0;
-            $inkomen = $this->createInkomen();
-            $inkomen = $inkomen->withSoortInkomen(EsoortInkomen::Werk);
-            $inkomen = $inkomen->withDienstVerbandTot($dienstVerbandTot);
-            $inkomen = $inkomen->withWerkgever($dossier->getVoorlegger()->getArbeidsovereenkomstWerkgever());
-
-            $vastDienstverband = 'Vast contract' === $dossier->getVoorlegger()->getArbeidsovereenkomstContract() ? EJaNeeLeeg::Ja : EJaNeeLeeg::Nee;
-            $vastDienstverband = null === $dossier->getVoorlegger()->getArbeidsovereenkomstContract() ? EJaNeeLeeg::Leeg : $vastDienstverband;
-
-            $inkomen = $inkomen->withVastDienstverband($vastDienstverband);
-            $inkomenArray = $inkomenArray->withTInkomen((array)$inkomen);
-        }
-
-        return $inkomenArray;
-    }
-
-    private function mapSchulden(Dossier $dossier): TypeSchuldArray
-    {
-        $schuldArray = new TypeSchuldArray();
-
-        foreach ($dossier->getSchuldItems() as $item) {
-            if ($item->isVerwijderd()) {
-                continue;
-            }
-
-            $codeEiser = null === $item->getSchuldeiser()->getAllegroCode(
-            ) ? $this->onbekendeSchuldeiser : $item->getSchuldeiser()->getAllegroCode();
-
-            $omschrijving = $item->getBedrag();
-            if ($item->getSchuldeiser()->getAllegroCode() === $this->onbekendeSchuldeiser) {
-                $omschrijving = sprintf('%s - %s', $omschrijving, $item->getToevoegingOnbekendeSchuldeiser());
-                if (strlen($omschrijving) > 200) {
-                    $omschrijving = sprintf('%s%s', substr($omschrijving, 0, 200), ' VOOR MEER ZIE SCHULDDOSSIER...');
-                }
-            }
-
-            $schuld = new TypeTSchuld();
-            $schuld = $schuld->withNaam($item->getSchuldeiser()->getBedrijfsnaam());
-            $schuld = $schuld->withSchuld(1);
-            $schuld = $schuld->withOmschrijving($omschrijving);
-            $schuld = $schuld->withCodeEiser($codeEiser);
-
-            if (null !== $item->getReferentie() && strlen($item->getReferentie())) {
-                $schuld = $schuld->withReferentie($item->getReferentie());
-            }
-
-            $schuldArray = $schuldArray->withTSchuld((array)$schuld);
-        }
-
-        return $schuldArray;
-    }
-
+   
     private function getSchuldHulpService(
         Organisatie $organisatie,
         ?string $proxyHostIp = null,
@@ -550,58 +245,6 @@ class AllegroService
         $schuldHulpService = $this->getSchuldHulpService($dossier->getOrganisatie());
         $srvEisers = $schuldHulpService->getSRVEisers($schuldHulpServiceGetSRVEisers);
         return $srvEisers->getResult();
-    }
-
-    /**
-     * @param Dossier $dossier
-     * @return bool
-     * @throws AllegroServiceException
-     */
-    public function validateDossier(Dossier $dossier): bool
-    {
-        if (null === $dossier->getClientHuisnummer() || '' === $dossier->getClientHuisnummer()) {
-            throw AllegroServiceException::missingClientHousenumber();
-        }
-
-        if (null === $dossier->getClientStraat() || '' === $dossier->getClientStraat()) {
-            throw AllegroServiceException::missingClientStreet();
-        }
-
-        if (null === $dossier->getClientPostcode() || '' === $dossier->getClientPostcode()) {
-            throw AllegroServiceException::missingClientPostalcode();
-        }
-
-        if (null === $dossier->getClientWoonplaats() || '' === $dossier->getClientWoonplaats()) {
-            throw AllegroServiceException::missingClientResidence();
-        }
-
-        if (null === $dossier->getClientGeboortedatum()) {
-            throw AllegroServiceException::missingClientBirthdate();
-        }
-
-        if (!isset(self::MAPPING_GESLACHT[$dossier->getClientGeslacht()])) {
-            throw AllegroServiceException::missingClientGender();
-        }
-
-        if (null === $dossier->getClientBSN()) {
-            throw AllegroServiceException::missingClientBSN();
-        }
-
-        if (null === $dossier->getClientVoorletters() || 0 === strlen($dossier->getClientVoorletters())) {
-            throw AllegroServiceException::missingClientInitials();
-        }
-
-        if (!$dossier->getPartnerNvt()) {
-            if (!isset(self::MAPPING_GESLACHT[$dossier->getPartnerGeslacht()])) {
-                throw AllegroServiceException::missingPartnerGender();
-            }
-
-            if (null === $dossier->getPartnerGeboortedatum()) {
-                throw AllegroServiceException::missingPartnerBirthdate();
-            }
-        }
-
-        return true;
     }
 
     /**
@@ -712,23 +355,5 @@ class AllegroService
         $schuldeiser->setStraat($adres->getStraat());
 
         return $schuldeiser;
-    }
-
-    private function createInkomen(): TInkomen
-    {
-        $inkomen = new TInkomen();
-        $inkomen = $inkomen->withSoortInkomen(ESoortInkomen::Uitkering);
-        $inkomen = $inkomen->withWerkzaamSinds(0);
-        $inkomen = $inkomen->withDienstVerbandTot(0);
-        $inkomen = $inkomen->withLoon(1);
-        $inkomen = $inkomen->withUitkering(0);
-        $inkomen = $inkomen->withPensioen(0);
-        $inkomen = $inkomen->withKGB(0);
-        $inkomen = $inkomen->withVrijwilligers(0);
-        $inkomen = $inkomen->withKinderAlimentatieBedrag(0);
-        $inkomen = $inkomen->withPartnerAlimentatieBedrag(0);
-        $inkomen = $inkomen->withOverigInkomenBedrag(0);
-        $inkomen = $inkomen->withUitkeringsInstantie('UWV');
-        return $inkomen;
     }
 }
