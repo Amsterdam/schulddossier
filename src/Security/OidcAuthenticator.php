@@ -169,11 +169,9 @@ class OidcAuthenticator extends AbstractAuthenticator implements
         $this->logger->debug('exchange code for access token', array('code' => $code, 'response' => $info));
 
         $parsedIdToken = $this->configuration->parser()->parse($info['id_token']);
-        $username = $this->getUsernameFromToken($parsedIdToken);
+        $email = $this->getEmailFromToken($parsedIdToken);
 
-        $user = $this->userProvider->loadUserByIdentifier($username);
-
-        $userBadge = new UserBadge($username, function ($userIdentifier) {
+        $userBadge = new UserBadge($email, function ($userIdentifier) {
             return $this->userProvider->loadUserByIdentifier($userIdentifier);
         });
 
@@ -188,9 +186,9 @@ class OidcAuthenticator extends AbstractAuthenticator implements
         return $return;
     }
 
-    private function getUsernameFromToken(Token $token): ?string
+    private function getEmailFromToken(Token $token): ?string
     {
-        return $token->claims()->get('preferred_username');
+        return $token->claims()->get('email');
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response

@@ -180,7 +180,7 @@ class Gebruiker implements UserInterface, EquatableInterface, PasswordAuthentica
 
     public function getUserIdentifier(): string
     {
-        return $this->username;
+        return $this->email;
     }
 
     /**
