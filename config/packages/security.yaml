@@ -4,7 +4,7 @@ security:
     database:
       entity:
         class: GemeenteAmsterdam\FixxxSchuldhulp\Entity\Gebruiker
-        property: username
+        property: email
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js|localworkingstorage)/
