@@ -379,10 +379,8 @@ class AppDossierController extends AbstractController
             $subForm = $voorleggerForm->get('cdst');
             if (!is_null($subForm['transition']->getData())) {
                 if ($subForm['transition']->getData() === 'verzenden_shv') {
-
                     $validationErrors = $this->validateIndienDossier($dossier);
                     if (count($validationErrors) > 0) {
-
                         $humanReadableErrors = array_map(
                             [DossierFormLabel::class, 'getFormLabelOrHumanize'],
                             $validationErrors
@@ -405,7 +403,7 @@ class AppDossierController extends AbstractController
                 } else {
                     $this->addFlash('success', 'De status is gewijzigd');
                 }
-                
+
                 $workflow->apply($dossier, $subForm['transition']->getData());
             }
 
@@ -1708,54 +1706,54 @@ class AppDossierController extends AbstractController
     private function validateIndienDossier(Dossier $dossier): array
     {
                     $errors = [];
-                    
-                    // check names
-                    if ($dossier->getClientNaam() === null) {
-                        $errors[] = 'ClientNaam';
-                    }
 
-                    if ($dossier->getClientVoorletters() === null) {
-                        $errors[] = 'ClientVoorletters';
-                    }
-                    
-                    if ($dossier->getPartnerNvt() === false) {
-                        if ($dossier->getPartnerNaam() === null) {
-                            $errors[] = 'PartnerNaam';
-                        }
-                        
-                        if ($dossier->getPartnerVoorletters() === null) {
-                            $errors[] = 'PartnerVoorletters';
-                        }
-                    }
+                    // check names
+        if ($dossier->getClientNaam() === null) {
+            $errors[] = 'ClientNaam';
+        }
+
+        if ($dossier->getClientVoorletters() === null) {
+            $errors[] = 'ClientVoorletters';
+        }
+
+        if ($dossier->getPartnerNvt() === false) {
+            if ($dossier->getPartnerNaam() === null) {
+                $errors[] = 'PartnerNaam';
+            }
+
+            if ($dossier->getPartnerVoorletters() === null) {
+                $errors[] = 'PartnerVoorletters';
+            }
+        }
 
                     // minimal one legitimatie document
-                    if($dossier->getNietVerwijderdeDocumentenByOnderwerp('legitimatie')->count() === 0) {
-                        $errors[] = 'LegitimatieDocument';
-                    }
-                    
+        if ($dossier->getNietVerwijderdeDocumentenByOnderwerp('legitimatie')->count() === 0) {
+            $errors[] = 'LegitimatieDocument';
+        }
+
                     $voorlegger = $dossier->getVoorlegger();
-                  
+
                     // check products
-                    if($voorlegger->getJongerenSchuldenvrijeStart() === true) {
-                        if ($voorlegger->getJssAdviseurEmail() === null) {
-                            $errors[] = 'JssAdviseurEmail';
-                        }
-                        if ($voorlegger->getJssAdviseurTelefoon() === null) {
-                            $errors[] = 'JssAdviseurTelefoon';
-                        }
-                        if ($voorlegger->getJssAdviseurNaam() === null) {
-                            $errors[] = 'JssAdviseurNaam';
-                        }
-                    }
+        if ($voorlegger->getJongerenSchuldenvrijeStart() === true) {
+            if ($voorlegger->getJssAdviseurEmail() === null) {
+                $errors[] = 'JssAdviseurEmail';
+            }
+            if ($voorlegger->getJssAdviseurTelefoon() === null) {
+                $errors[] = 'JssAdviseurTelefoon';
+            }
+            if ($voorlegger->getJssAdviseurNaam() === null) {
+                $errors[] = 'JssAdviseurNaam';
+            }
+        }
 
                     $productChoices = [
                         $voorlegger->getJongerenSchuldenvrijeStart(),
                         $voorlegger->getKindregeling(),
                         $voorlegger->getSaneringskrediet(),
                         $voorlegger->getPrincipeBeslissing(),
-                    ];  
+                    ];
 
-                    $trueCount = array_sum($productChoices );
+                    $trueCount = array_sum($productChoices);
                     if ($trueCount === 0) {
                         $errors[] = 'Product';
                     }
@@ -1767,7 +1765,7 @@ class AppDossierController extends AbstractController
                     if ($voorlegger->getOntstaanVanSchulden() === null) {
                         $errors[] = 'OntstaanVanSchulden';
                     }
-              
+
                     if ($voorlegger->getInspanningsverplichting() === null) {
                         $errors[] = 'Inspanningsverplichting';
                     }
