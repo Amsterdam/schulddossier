@@ -26,7 +26,6 @@
         "php-soap/ext-soap-engine": "^1.7",
         "php-soap/xml": "^1.8",
         "phpoffice/phpspreadsheet": "1.29.*",
-        "phpoffice/phpword": "^1.4",
         "phpro/soap-client": "^4.0",
         "phpseclib/phpseclib": "^2.0",
         "psr/http-client": "^1.0",

@@ -179,9 +179,6 @@
                        class="button secondary">Vernieuwen <i class="icon-reload"></i></a>
                     <a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_allegrosrveisers', {'dossierId': dossier.id}) }}"
                        class="button secondary">Uitgebreide status</a>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a id="send_to_allegro" class="button {% if dossier.sendToAllegro is null %}secondary{% else %}grey{% endif %}">Exporteren</a>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -211,5 +208,3 @@
 
     </div>
 </div>
-<input type="hidden" id="allegro_validate_url" value="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_validatesendtoallegro',{'dossierId': dossier.id}) }}">
-<input type="hidden" id="allegro_send_url" value="{{ path('gemeenteamsterdam_fixxxschuldhulp_allegro_send',{'dossierId': dossier.id}) }}">
