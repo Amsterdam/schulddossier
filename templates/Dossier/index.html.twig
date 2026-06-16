@@ -8,10 +8,10 @@
 
 {% block document %}
 
-{% set releaseDate = "2026-04-14" %}
+{% set releaseDate = "2026-06-08" %}
 {% if "now"|date("Y-m-d") < releaseDate | date_modify("+1 week") | date("Y-m-d") %}
     <div class="announcement">
-        <h4 class="title">Nieuwe versie staat live</h4>
+        <h4 class="title">Vanaf nu worden verplichte velden gecontroleerd bij het verzenden naar GKA</h4>
         <span class="message"><a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_userreleasenotes_index') }}#release{{ releaseDate }}">Bekijk versies</a> voor een toelichting op de laatste update.</span>
     </div>
 {% endif %}
