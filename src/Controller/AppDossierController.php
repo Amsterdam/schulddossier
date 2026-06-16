@@ -1659,9 +1659,9 @@ class AppDossierController extends AbstractController
 
     private function validateIndienDossier(Dossier $dossier): array
     {
-                    $errors = [];
+        $errors = [];
 
-                    // check names
+        // check names
         if ($dossier->getClientNaam() === null) {
             $errors[] = 'ClientNaam';
         }
@@ -1680,14 +1680,14 @@ class AppDossierController extends AbstractController
             }
         }
 
-                    // minimal one legitimatie document
+        // minimal one legitimatie document
         if ($dossier->getNietVerwijderdeDocumentenByOnderwerp('legitimatie')->count() === 0) {
             $errors[] = 'LegitimatieDocument';
         }
 
-                    $voorlegger = $dossier->getVoorlegger();
+        $voorlegger = $dossier->getVoorlegger();
 
-                    // check products
+        // check products
         if ($voorlegger->getJongerenSchuldenvrijeStart() === true) {
             if ($voorlegger->getJssAdviseurEmail() === null) {
                 $errors[] = 'JssAdviseurEmail';
@@ -1700,30 +1700,30 @@ class AppDossierController extends AbstractController
             }
         }
 
-                    $productChoices = [
-                        $voorlegger->getJongerenSchuldenvrijeStart(),
-                        $voorlegger->getKindregeling(),
-                        $voorlegger->getSaneringskrediet(),
-                        $voorlegger->getPrincipeBeslissing(),
-                    ];
+        $productChoices = [
+            $voorlegger->getJongerenSchuldenvrijeStart(),
+            $voorlegger->getKindregeling(),
+            $voorlegger->getSaneringskrediet(),
+            $voorlegger->getPrincipeBeslissing(),
+        ];
 
-                    $trueCount = array_sum($productChoices);
-                    if ($trueCount === 0) {
-                        $errors[] = 'Product';
-                    }
-                    if ($trueCount > 1) {
-                        $errors[] = 'TeVeelProducten';
-                    }
+        $trueCount = array_sum($productChoices);
+        if ($trueCount === 0) {
+            $errors[] = 'Product';
+        }
+        if ($trueCount > 1) {
+            $errors[] = 'TeVeelProducten';
+        }
 
-                    //check volmacht
-                    if ($voorlegger->getOntstaanVanSchulden() === null) {
-                        $errors[] = 'OntstaanVanSchulden';
-                    }
+        //check volmacht
+        if ($voorlegger->getOntstaanVanSchulden() === null) {
+            $errors[] = 'OntstaanVanSchulden';
+        }
 
-                    if ($voorlegger->getInspanningsverplichting() === null) {
-                        $errors[] = 'Inspanningsverplichting';
-                    }
+        if ($voorlegger->getInspanningsverplichting() === null) {
+            $errors[] = 'Inspanningsverplichting';
+        }
 
-                    return $errors;
+        return $errors;
     }
 }
