@@ -30,25 +30,14 @@ class SchuldHulpUpdatedClientFactory
      */
     public static function factory(
         string $wsdl,
-        Organisatie $organisatie,
-        ?string $proxyHostIp = null,
-        ?string $proxyHostPort = null
-        ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\SchuldHulpUpdatedClient{
-       
-        if (!empty($proxyHostIp) && !empty($proxyHostPort)) {
-            $httpClient = HttpClient::create([
-                'proxy' => 'http://' . $proxyHostIp . ':' . $proxyHostPort,
-                'headers' => [
-                    'User-Agent' => 'fixxx-schuldhulp/1.0'
-                ]
-            ]);
-        } else {
-            $httpClient = HttpClient::create([
-                'headers' => [
-                    'User-Agent' => 'fixxx-schuldhulp/1.0'
-                ]
-            ]);
-        }
+        Organisatie $organisatie
+    ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\SchuldHulpUpdated\SchuldHulpUpdatedClient {
+
+        $httpClient = HttpClient::create([
+            'headers' => [
+                'User-Agent' => 'fixxx-schuldhulp/1.0'
+            ]
+        ]);
 
         $psr18Client = new Psr18Client($httpClient);
 
@@ -87,4 +76,3 @@ class SchuldHulpUpdatedClientFactory
         return new SchuldHulpUpdatedClient($caller);
     }
 }
-

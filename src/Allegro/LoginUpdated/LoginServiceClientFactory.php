@@ -22,24 +22,13 @@ class LoginServiceClientFactory
      * @param non-empty-string $wsdl
      */
     public static function factory(
-        string $wsdl,
-        ?string $proxyHostIp = null,
-        ?string $proxyHostPort = null
+        string $wsdl
     ): \GemeenteAmsterdam\FixxxSchuldhulp\Allegro\LoginUpdated\LoginServiceClient {
-        if (!empty($proxyHostIp) && !empty($proxyHostPort)) {
-            $httpClient = HttpClient::create([
-                'proxy' => 'http://' . $proxyHostIp . ':' . $proxyHostPort,
-                'headers' => [
-                    'User-Agent' => 'fixxx-schuldhulp/1.0'
-                ]
-            ]);
-        } else {
-            $httpClient = HttpClient::create([
-                'headers' => [
-                    'User-Agent' => 'fixxx-schuldhulp/1.0'
-                ]
-            ]);
-        }
+        $httpClient = HttpClient::create([
+            'headers' => [
+                'User-Agent' => 'fixxx-schuldhulp/1.0'
+            ]
+        ]);
 
 
         $psr18Client = new Psr18Client($httpClient);
