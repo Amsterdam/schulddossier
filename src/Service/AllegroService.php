@@ -72,26 +72,13 @@ class AllegroService
      */
     private $onbekendeSchuldeiser;
 
-    /**
-     * @var ?string
-     */
-    private $proxyHostIp;
-
-    /**
-     * @var ?string
-     */
-    private $proxyHostPort;
-
-
     public function __construct(
         string $allegroEndpoint,
         EntityManagerInterface $em,
         LoggerInterface $logger,
         EventDispatcherInterface $eventDispatcher,
         Security $security,
-        $allegroOnbekendeSchuldeiser,
-        ?string $proxyHostIp = null,
-        ?string $proxyHostPort = null,
+        $allegroOnbekendeSchuldeiser
     ) {
         $this->loginWsdl = sprintf('%s?service=LoginService', $allegroEndpoint);
         $this->schuldHulpWsdl = sprintf('%s?service=SchuldHulpService', $allegroEndpoint);
@@ -100,8 +87,6 @@ class AllegroService
         $this->security = $security;
         $this->em = $em;
         $this->onbekendeSchuldeiser = (string) $allegroOnbekendeSchuldeiser;
-        $this->proxyHostIp = $proxyHostIp;
-        $this->proxyHostPort = $proxyHostPort;
     }
 
     /**
@@ -122,7 +107,7 @@ class AllegroService
             return $organisatie;
         }
 
-        $loginService = $this->getLoginService($this->proxyHostIp, $this->proxyHostPort);
+        $loginService = $this->getLoginService();
         $response =  $loginService->allegroWebLogin(
             (new LoginServiceAllegroWebLogin(
                 $organisatie->getAllegroUsername(),
@@ -154,7 +139,7 @@ class AllegroService
     public function getSRVAanvraagHeader(Organisatie $organisatie, string $relatieCode): ?TSRVAanvraagHeader
     {
         $organisatie = $this->login($organisatie);
-        $schuldhulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyHostPort);
+        $schuldhulpService = $this->getSchuldHulpService($organisatie);
         $response = $schuldhulpService->getSRVOverzicht(
             (new TypeSchuldHulpServiceGetSRVOverzicht($relatieCode))
         );
@@ -179,7 +164,7 @@ class AllegroService
     public function getSRVAanvraag(Organisatie $organisatie, TSRVAanvraagHeader $header): ?TypeTSRVAanvraag
     {
         $organisatie = $this->login($organisatie);
-        $schuldhulpService = $this->getSchuldHulpService($organisatie, $this->proxyHostIp, $this->proxyHostPort);
+        $schuldhulpService = $this->getSchuldHulpService($organisatie);
         $response = $schuldhulpService->getSRVAanvraag(
             (new TypeSchuldHulpServiceGetSRVAanvraag($header))
         );
@@ -190,14 +175,10 @@ class AllegroService
    
     private function getSchuldHulpService(
         Organisatie $organisatie,
-        ?string $proxyHostIp = null,
-        ?string $proxyHostPort = null
     ): SchuldHulpUpdatedClient {
         return SchuldHulpUpdatedClientFactory::factory(
             $this->schuldHulpWsdl,
             $organisatie,
-            $proxyHostIp,
-            $proxyHostPort
         );
     }
 
@@ -214,14 +195,9 @@ class AllegroService
         $this->em->flush();
     }
 
-    private function getLoginService(
-        ?string $proxyHostIp = null,
-        ?string $proxyHostPort = null
-    ): LoginServiceClient {
+    private function getLoginService(    ): LoginServiceClient {
         return LoginServiceClientFactory::factory(
             $this->loginWsdl,
-            $proxyHostIp,
-            $proxyHostPort
         );
     }
 
@@ -345,7 +321,6 @@ class AllegroService
         Schuldeiser $schuldeiser,
         TypeTOrganisatie $allegroSchuldeiser
     ): Schuldeiser {
-
         $adres = $allegroSchuldeiser->getPostAdres();
         $schuldeiser->setBedrijfsnaam($allegroSchuldeiser->getNaam());
         $schuldeiser->setPlaats($adres->getWoonplaats());
