@@ -5,17 +5,12 @@ namespace GemeenteAmsterdam\FixxxSchuldhulp\Controller;
 use Exception;
 use Error;
 use DateTime;
-use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
-use GemeenteAmsterdam\FixxxSchuldhulp\Exception\AllegroServiceException;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
-use Psr\Log\LoggerInterface;
 
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bridge\Twig\Attribute\Template;
 
@@ -59,57 +54,5 @@ class AllegroController extends AbstractController
             'eisers' => $eisers,
             'compareDate' => $compareDate,
         ];
-    }
-
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/allegro/validate/{dossierId}')]
-    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
-    #[IsGranted(attribute: new Expression(
-        "is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"
-    ))]
-    public function validateSendToAllegro(
-        #[MapEntity(id: 'dossierId')]
-        Dossier $dossier,
-        AllegroService $allegroService,
-        TranslatorInterface $translator
-    ): JsonResponse {
-        try {
-            $allegroService->validateDossier($dossier);
-        } catch (AllegroServiceException $e) {
-            return new JsonResponse(['valid' => false, 'message' => $translator->trans($e->getMessage())]);
-        }
-        return new JsonResponse(['valid' => true]);
-    }
-
-    #[\Symfony\Component\Routing\Attribute\Route(path: '/app/allegro/send/{dossierId}', methods: ['POST'])]
-    #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
-    #[IsGranted(attribute: new Expression(
-        "is_granted('ROLE_GKA') || is_granted('ROLE_GKA_APPBEHEERDER') || is_granted('ROLE_ADMIN')"
-    ))]
-    public function send(
-        #[MapEntity(id: 'dossierId')]
-        Dossier $dossier,
-        AllegroService $allegroService,
-        TranslatorInterface $translator,
-        EntityManagerInterface $em,
-        LoggerInterface $logger
-    ): JsonResponse {
-        try {
-            $response = $allegroService->sendAanvraag($dossier);
-
-            $em->flush();
-            $dossier->setSendToAllegro((new DateTime()));
-
-            if ($response) {
-                return new JsonResponse(['send' => true]);
-            } else {
-                return new JsonResponse(['send' => false, 'message' => 'Er is iets mis gegaan in het contact met allegro, probeer het later nog een keer of neem contact op met het beheer']);
-            }
-        } catch (AllegroServiceException $e) {
-            return new JsonResponse(['send' => false, 'message' => $translator->trans($e->getMessage())]);
-        } catch (Exception $e) {
-            // Logging toevoegen
-            $logger->error($e->getMessage(), [AllegroService::LOGGING_CONTEXT]);
-            return new JsonResponse(['send' => false, 'message' => 'Er is iets mis gegaan in het contact met allegro, probeer het later nog een keer of neem contact op met het beheer']);
-        }
     }
 }

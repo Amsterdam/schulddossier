@@ -9,7 +9,6 @@ use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Doctrine\ORM\EntityManagerInterface;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Aantekening;
-use GemeenteAmsterdam\FixxxSchuldhulp\Entity\ActionEvent as ActionEventEntity;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Document;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\Dossier;
 use GemeenteAmsterdam\FixxxSchuldhulp\Entity\DossierDocument;
@@ -35,7 +34,7 @@ use GemeenteAmsterdam\FixxxSchuldhulp\Form\Type\VoorleggerFormType;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\AllegroService;
 use GemeenteAmsterdam\FixxxSchuldhulp\Service\FileStorageSelector;
 use GemeenteAmsterdam\FixxxSchuldhulp\Constants\SchuldeiserOrganisationType;
-use Http\Discovery\Exception\NotFoundException;
+use GemeenteAmsterdam\FixxxSchuldhulp\Constants\DossierFormLabel;
 use League\Flysystem\Filesystem as FlysystemFilesystem;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
@@ -45,9 +44,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use GemeenteAmsterdam\FixxxSchuldhulp\Repository\ActionEventRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\ExpressionLanguage\Expression;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -68,8 +65,6 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Workflow\Registry as WorkflowRegistry;
-use Symfony\Contracts\Cache\ItemInterface;
-use Symfony\Contracts\HttpClient\ResponseInterface;
 use ZipArchive;
 
 #[IsGranted(attribute: new Expression(
@@ -378,20 +373,32 @@ class AppDossierController extends AbstractController
             $subForm = $voorleggerForm->get('cdst');
             if (!is_null($subForm['transition']->getData())) {
                 if ($subForm['transition']->getData() === 'verzenden_shv') {
+                    $validationErrors = $this->validateIndienDossier($dossier);
+                    if (count($validationErrors) > 0) {
+                        $humanReadableErrors = array_map(
+                            [DossierFormLabel::class, 'getFormLabelOrHumanize'],
+                            $validationErrors
+                        );
+
+                        $this->addFlash('error', 'Het dossier is niet verzonden. De volgende velden ontbreken: ' . implode(', ', $humanReadableErrors));
+
+                        return $this->redirectToRoute('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailvoorlegger', [
+                            'dossierId' => $dossier->getId()
+                        ]);
+                    }
+
                     $dossier->setEersteKeerVerzondenAanGKA(true);
                     $dossier->setIndiendatumTijd(new DateTime('now'));
                 }
                 $eventDispatcher->dispatch(ActionEvent::registerDossierStatusGewijzigd($this->getUser(), $dossier, $currentStatus, $subForm['transition']->getData()), ActionEvent::NAME);
+
+                if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
+                    $this->addFlash('success', 'De status is gewijzigd. Mail is verzonden naar ' . $request->get('voorlegger_form')['controleerGebruiker']);
+                } else {
+                    $this->addFlash('success', 'De status is gewijzigd');
+                }
+
                 $workflow->apply($dossier, $subForm['transition']->getData());
-
-                // TODO: This code is never reached, because workflow apply return the method.
-                // Nevertheless it would be nice to give the user feedback about an update. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-580
-
-                // if (!empty($request->get('voorlegger_form')['controleerGebruiker'])) {
-                //     $this->addFlash('success', 'De status is gewijzigd. Mail is verzonden naar ' . $request->get('voorlegger_form')['controleerGebruiker']);
-                // } else {
-                //     $this->addFlash('success', 'De status is gewijzigd');
-                // }
             }
 
             $em->flush();
@@ -613,46 +620,6 @@ class AppDossierController extends AbstractController
             $document
         );
     }
-
-    /*
-    * With the adapter not being available anymore, it takes a bit of extra effort to make this work again.
-    * Since this feature is not highly values is not phased out. See ticket: https://gemeente-amsterdam.atlassian.net/browse/SCHUL-1028
-    */
-
-    // #[\Symfony\Component\Routing\Attribute\Route(path: 'app/dossier/detail/{dossierId}/documenten/detail/{documentId}/wordviewer')]
-    // #[IsGranted(attribute: new Expression("is_granted('access', subject)"), subject: new Expression('args["dossier"]'))]
-    // public function wordViewerAction(
-    //     #[MapEntity(id: 'dossierId')]
-    //     Dossier $dossier,
-    //     #[MapEntity(id: 'documentId')]
-    //     Document $document,
-    //     FileStorageSelector $fileStorageSelector
-    // ): Response {
-    //     $this->checkDocumentAccess($dossier, $document);
-
-    //     $adapter = $fileStorageSelector->getFileStorageForDossier()->getAdapter();
-
-    //     /** @var Local $adapter */
-    //     $rootDirectory = $adapter->getPathPrefix();
-    //     $filePath = $rootDirectory .  '/dossier-' . $dossier->getId() . '/' . $document->getBestandsnaam();
-
-    //     try {
-    //         $phpWord = IOFactory::load($filePath);
-    //     } catch (\Exception $e) {
-    //         return new Response('Error loading the Word document: ' . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
-    //     }
-
-    //     $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
-    //     ob_start();
-    //     $htmlWriter->save('php://output');
-    //     $htmlContent = ob_get_clean();
-
-    //     return $this->render('Dossier/detailDocumentWordViewer.html.twig', [
-    //         'html_content' => $htmlContent,
-    //         'document' => $document,
-    //         'dossier' => $dossier
-    //     ]);
-    // }
 
     private function streamedFileResponse(
         FlysystemFilesystem $filesystem,
@@ -1687,5 +1654,76 @@ class AppDossierController extends AbstractController
     private function writeActionEventRemark(string $action, Document $document)
     {
         return $action . ': <strong> ' . $document->getNaam() . '</strong>';
+    }
+
+
+    private function validateIndienDossier(Dossier $dossier): array
+    {
+        $errors = [];
+
+        // check names
+        if ($dossier->getClientNaam() === null) {
+            $errors[] = 'ClientNaam';
+        }
+
+        if ($dossier->getClientVoorletters() === null) {
+            $errors[] = 'ClientVoorletters';
+        }
+
+        if ($dossier->getPartnerNvt() === false) {
+            if ($dossier->getPartnerNaam() === null) {
+                $errors[] = 'PartnerNaam';
+            }
+
+            if ($dossier->getPartnerVoorletters() === null) {
+                $errors[] = 'PartnerVoorletters';
+            }
+        }
+
+        // minimal one legitimatie document
+        if ($dossier->getNietVerwijderdeDocumentenByOnderwerp('legitimatie')->count() === 0) {
+            $errors[] = 'LegitimatieDocument';
+        }
+
+        $voorlegger = $dossier->getVoorlegger();
+
+        // check products
+        if ($voorlegger->getJongerenSchuldenvrijeStart() === true) {
+            if ($voorlegger->getJssAdviseurEmail() === null) {
+                $errors[] = 'JssAdviseurEmail';
+            }
+            if ($voorlegger->getJssAdviseurTelefoon() === null) {
+                $errors[] = 'JssAdviseurTelefoon';
+            }
+            if ($voorlegger->getJssAdviseurNaam() === null) {
+                $errors[] = 'JssAdviseurNaam';
+            }
+        }
+
+        $productChoices = [
+            $voorlegger->getJongerenSchuldenvrijeStart(),
+            $voorlegger->getKindregeling(),
+            $voorlegger->getSaneringskrediet(),
+            $voorlegger->getPrincipeBeslissing(),
+        ];
+
+        $trueCount = array_sum($productChoices);
+        if ($trueCount === 0) {
+            $errors[] = 'Product';
+        }
+        if ($trueCount > 1) {
+            $errors[] = 'TeVeelProducten';
+        }
+
+        //check volmacht
+        if ($voorlegger->getOntstaanVanSchulden() === null) {
+            $errors[] = 'OntstaanVanSchulden';
+        }
+
+        if ($voorlegger->getInspanningsverplichting() === null) {
+            $errors[] = 'Inspanningsverplichting';
+        }
+
+        return $errors;
     }
 }
