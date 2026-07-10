@@ -72,9 +72,7 @@ use ZipArchive;
 ))]
 class AppDossierController extends AbstractController
 {
-    public function __construct(private ManagerRegistry $doctrine)
-    {
-    }
+    public function __construct(private ManagerRegistry $doctrine) {}
 
     /**
      * @throws Exception
@@ -857,7 +855,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-   /**
+    /**
      * @return RedirectResponse
      */
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/allegro/refresh/{dossierId}')]
@@ -1668,16 +1666,6 @@ class AppDossierController extends AbstractController
 
         if ($dossier->getClientVoorletters() === null) {
             $errors[] = 'ClientVoorletters';
-        }
-
-        if ($dossier->getPartnerNvt() === false) {
-            if ($dossier->getPartnerNaam() === null) {
-                $errors[] = 'PartnerNaam';
-            }
-
-            if ($dossier->getPartnerVoorletters() === null) {
-                $errors[] = 'PartnerVoorletters';
-            }
         }
 
         // minimal one legitimatie document
