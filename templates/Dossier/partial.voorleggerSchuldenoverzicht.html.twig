@@ -79,9 +79,7 @@
 					</table>
 
 					{% if empty %}
-						<p class="empty-table">Er zijn nog geen schulden ingevoerd. Ga naar
-							<a href=== ="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">schuldenoverzicht</a>
-							om een schuld in te voeren.</p>
+							<a href="{{ path('gemeenteamsterdam_fixxxschuldhulp_appdossier_detailschulden', {'dossierId': dossier.id}) }}">schuldenoverzicht</a>
 					{% endif %}
 
 					<p class="nav-internal">
