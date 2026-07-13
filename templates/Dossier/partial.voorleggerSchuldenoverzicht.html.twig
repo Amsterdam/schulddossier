@@ -3,15 +3,13 @@
 {% set dossierDocumenten = dossier.getNietVerwijderdeDocumentenByOnderwerp('schuldenoverzicht', true) %}
 
 <div class="dossier__item
-													    {% if app.user.type == 'shv' or app.user.type == 'shv_keyuser' %}
-													    status-shv-{{ dossier.voorlegger.schuldenoverzichtOntvangenShv }}
-													    {% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
-													    status-gka-{{ dossier.voorlegger.schuldenoverzichtOntvangenGka }}
-													    {% endif %}
-													    {{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-schuldenoverzicht" data-hashevent="activate-section" data-keyupper="section-document-nav">
+	{% if app.user.type == 'shv' or app.user.type == 'shv_keyuser' %}
+		status-shv-{{ dossier.voorlegger.schuldenoverzichtOntvangenShv }}
+	{% elseif app.user.type == 'gka' or app.user.type == 'gka_appbeheerder' %}
+		status-gka-{{ dossier.voorlegger.schuldenoverzichtOntvangenGka }}
+	{% endif %}
+	{{ app.request.isXmlHttpRequest ? 'active' }}" id="voorlegger-schuldenoverzicht" data-hashevent="activate-section" data-keyupper="section-document-nav">
 	<div class="dossier__voorlegger__header">
-
-
 		<div class="voorlegger-header">
 			<h3 class="naam">
 				<a href="#id_voorlegger-schuldenoverzicht">{{ title }}</a>
