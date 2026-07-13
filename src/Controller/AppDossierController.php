@@ -72,9 +72,7 @@ use ZipArchive;
 ))]
 class AppDossierController extends AbstractController
 {
-    public function __construct(private ManagerRegistry $doctrine)
-    {
-    }
+    public function __construct(private ManagerRegistry $doctrine) {}
 
     /**
      * @throws Exception
@@ -857,7 +855,7 @@ class AppDossierController extends AbstractController
         ]);
     }
 
-   /**
+    /**
      * @return RedirectResponse
      */
     #[\Symfony\Component\Routing\Attribute\Route(path: '/app/dossier/allegro/refresh/{dossierId}')]
@@ -1670,16 +1668,6 @@ class AppDossierController extends AbstractController
             $errors[] = 'ClientVoorletters';
         }
 
-        if ($dossier->getPartnerNvt() === false) {
-            if ($dossier->getPartnerNaam() === null) {
-                $errors[] = 'PartnerNaam';
-            }
-
-            if ($dossier->getPartnerVoorletters() === null) {
-                $errors[] = 'PartnerVoorletters';
-            }
-        }
-
         // minimal one legitimatie document
         if ($dossier->getNietVerwijderdeDocumentenByOnderwerp('legitimatie')->count() === 0) {
             $errors[] = 'LegitimatieDocument';
@@ -1687,7 +1675,7 @@ class AppDossierController extends AbstractController
 
         $voorlegger = $dossier->getVoorlegger();
 
-        // check products
+        // Adviseur gegevens are required when the product is JSS or Kindregeling
         if ($voorlegger->getJongerenSchuldenvrijeStart() === true) {
             if ($voorlegger->getJssAdviseurEmail() === null) {
                 $errors[] = 'JssAdviseurEmail';
@@ -1699,7 +1687,19 @@ class AppDossierController extends AbstractController
                 $errors[] = 'JssAdviseurNaam';
             }
         }
+        if ($voorlegger->getKindregeling() === true) {
+            if ($voorlegger->getJssAdviseurEmail() === null) {
+                $errors[] = 'KindregelingAdviseurEmail';
+            }
+            if ($voorlegger->getJssAdviseurTelefoon() === null) {
+                $errors[] = 'KindregelingAdviseurTelefoon';
+            }
+            if ($voorlegger->getJssAdviseurNaam() === null) {
+                $errors[] = 'KindregelingAdviseurNaam';
+            }
+        }
 
+        // one product should be selected, not more and not less
         $productChoices = [
             $voorlegger->getJongerenSchuldenvrijeStart(),
             $voorlegger->getKindregeling(),

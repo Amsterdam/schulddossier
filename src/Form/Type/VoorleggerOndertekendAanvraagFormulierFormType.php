@@ -47,18 +47,18 @@ class VoorleggerOndertekendAanvraagFormulierFormType extends AbstractType
                  */
                 $voorlegger = $executionContext->getRoot()->getData();
 
-                if (!$voorlegger->getJongerenSchuldenvrijeStart() && ($voorlegger->getJssAdviseurEmail() || $voorlegger->getJssAdviseurNaam() || $voorlegger->getJssAdviseurTelefoon())) {
+                if ((!$voorlegger->getJongerenSchuldenvrijeStart() && !$voorlegger->getKindregeling()) && ($voorlegger->getJssAdviseurEmail() || $voorlegger->getJssAdviseurNaam() || $voorlegger->getJssAdviseurTelefoon())) {
                     $voorlegger->setJssAdviseurEmail(null);
                     $voorlegger->setJssAdviseurNaam(null);
                     $voorlegger->setJssAdviseurTelefoon(null);
 
-                    $executionContext->buildViolation('De JSS velden dienen alleen ingevuld te worden bij Jongeren Schuldenvrije Start.')
+                    $executionContext->buildViolation('De adviseur velden dienen alleen ingevuld te worden bij Jongeren Schuldenvrije Start of Kindregeling.')
                         ->atPath('jongerenSchuldenvrijeStart')
                         ->addViolation();
                 }
 
                 if ($voorlegger->getJongerenSchuldenvrijeStart() && (!$voorlegger->getJssAdviseurEmail() || !$voorlegger->getJssAdviseurNaam() || !$voorlegger->getJssAdviseurTelefoon())) {
-                    $executionContext->buildViolation('Vul alle JSS velden in.')
+                    $executionContext->buildViolation('Vul alle adviseur velden in.')
                         ->atPath('jongerenSchuldenvrijeStart')
                         ->addViolation();
                 }
