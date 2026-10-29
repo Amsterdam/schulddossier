@@ -1,6 +1,7 @@
 .PHONY: manifests deploy
 
 dc = docker compose
+dev-dc = LOCAL_UID=$(shell id -u) LOCAL_GID=$(shell id -g) docker compose -f docker-compose.dev.yml
 
 ENVIRONMENT ?= local
 HELM_ARGS = manifests/chart \
@@ -50,6 +51,35 @@ refresh: reset all
 
 dev:
 	nohup kubycat kubycat-config.yaml > /dev/null 2>&1&
+
+# Standalone development; deliberately separate from deployment Compose/Helm.
+.PHONY: dev-up dev-down dev-logs dev-init dev-migrate dev-shell dev-test dev-smoke
+dev-up:
+	$(dev-dc) up -d --build --wait --wait-timeout 300
+
+dev-down:
+	$(dev-dc) down
+
+dev-logs:
+	$(dev-dc) logs -f
+
+dev-migrate:
+	$(dev-dc) exec php php bin/console doctrine:migrations:migrate --no-interaction
+
+# First-time setup. Doctrine asks for confirmation before replacing fixture data.
+dev-init: dev-migrate
+	$(dev-dc) exec php php bin/console doctrine:fixtures:load --purge-with-truncate
+
+dev-shell:
+	$(dev-dc) exec php sh
+
+dev-test:
+	python3 -m unittest discover -s tests/dev -v
+	$(dev-dc) run --rm --no-deps assets node --test tests/dev/webpack.test.js
+
+dev-smoke:
+	python3 tests/dev/smoke.py
+	$(dev-dc) exec -T assets node --test tests/dev/hmr.test.js
 
 fixtures:
 	kubectl exec -it deploy/schulddossier-phpfpm-schulddossier -- sh -c "php bin/console --no-interaction doctrine:migrations:migrate"

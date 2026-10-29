@@ -29,6 +29,7 @@ docker-compose-dev.override.yml
 /var/
 /vendor/
 /public/vendor/
+/public/localworkingstorage/
 ###< symfony/framework-bundle ###
 /public/scss/.sass-cache
 
@@ -39,6 +40,7 @@ kubycat-config.yaml
 /node_modules/
 /public/build/
 npm-debug.log
+__pycache__/
 
 ###> phpstan/phpstan ###
 phpstan.neon

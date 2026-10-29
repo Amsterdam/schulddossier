@@ -80,4 +80,29 @@ Encore
 // })
 ;
 
-module.exports = Encore.getWebpackConfig();
+if (process.env.COMPOSE_DEV_SERVER === '1') {
+    Encore.configureDevServerOptions((options) => {
+        options.allowedHosts = ['localhost', '127.0.0.1'];
+        options.liveReload = true;
+        // Nginx serves public/. Watching generated manifests would turn CSS HMR
+        // into a full page reload on every compilation.
+        options.static.watch = false;
+        options.client = {
+            ...options.client,
+            webSocketURL: 'auto://0.0.0.0:0/ws',
+        };
+        options.watchFiles = ['templates/**/*.twig', 'src/**/*.php'];
+    });
+}
+
+const config = Encore.getWebpackConfig();
+
+if (process.env.COMPOSE_DEV_SERVER === '1' && process.env.WATCH_POLL === '1') {
+    config.watchOptions = { poll: 1000, ignored: /node_modules/ };
+    config.devServer.watchFiles = {
+        paths: ['templates/**/*.twig', 'src/**/*.php'],
+        options: { usePolling: true, interval: 1000 },
+    };
+}
+
+module.exports = config;

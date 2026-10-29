@@ -1,0 +1,65 @@
+{
+  "realm": "schulddossier",
+  "enabled": true,
+  "sslRequired": "none",
+  "registrationAllowed": false,
+  "resetPasswordAllowed": false,
+  "clients": [
+    {
+      "clientId": "schulddossier",
+      "secret": "insecure",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "standardFlowEnabled": true,
+      "redirectUris": ["http://localhost:8080/*", "http://127.0.0.1:8080/*"],
+      "webOrigins": ["+"],
+      "attributes": {"post.logout.redirect.uris": "+"},
+      "defaultClientScopes": ["web-origins", "profile", "email"]
+    }
+  ],
+  "users": [
+    {
+      "username": "schulddossier_admin",
+      "email": "schulddossier_admin@amsterdam.nl",
+      "firstName": "Local", "lastName": "Admin",
+      "enabled": true, "emailVerified": true,
+      "credentials": [{"type": "password", "value": "insecure", "temporary": false}]
+    },
+    {
+      "username": "schulddossier_gka",
+      "email": "schulddossier_gka@amsterdam.nl",
+      "firstName": "Local", "lastName": "GKA",
+      "enabled": true, "emailVerified": true,
+      "credentials": [{"type": "password", "value": "insecure", "temporary": false}]
+    },
+    {
+      "username": "schulddossier_gka_appbeheerder",
+      "email": "schulddossier_gka_appbeheerder@amsterdam.nl",
+      "firstName": "Local", "lastName": "Appbeheerder",
+      "enabled": true, "emailVerified": true,
+      "credentials": [{"type": "password", "value": "insecure", "temporary": false}]
+    },
+    {
+      "username": "schulddossier_shv",
+      "email": "schulddossier_shv@amsterdam.nl",
+      "firstName": "Local", "lastName": "SHV",
+      "enabled": true, "emailVerified": true,
+      "credentials": [{"type": "password", "value": "insecure", "temporary": false}]
+    },
+    {
+      "username": "schulddossier_shv_keyuser",
+      "email": "schulddossier_shv_keyuser@amsterdam.nl",
+      "firstName": "Local", "lastName": "Keyuser",
+      "enabled": true, "emailVerified": true,
+      "credentials": [{"type": "password", "value": "insecure", "temporary": false}]
+    },
+    {
+      "username": "schulddossier_disabled",
+      "email": "schulddossier_disabled@amsterdam.nl",
+      "firstName": "Local", "lastName": "Disabled",
+      "enabled": true, "emailVerified": true,
+      "credentials": [{"type": "password", "value": "insecure", "temporary": false}]
+    }
+  ]
+}
