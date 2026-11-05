@@ -1,0 +1,121 @@
+# Standalone development stack: docker compose -f docker-compose.dev.yml up --build
+name: schulddossier-dev
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: docker/dev/Dockerfile
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    working_dir: /var/www
+    env_file: docker/dev/app.env
+    environment:
+      HOME: /tmp
+      COMPOSER_HOME: /tmp/composer
+      PHP_IDE_CONFIG: serverName=SCHULDDOSSIER
+      XDEBUG_MODE: "${XDEBUG_MODE:-develop,debug}"
+      XDEBUG_CONFIG: client_host=host.docker.internal
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - .:/var/www
+    command: ["sh", "docker/dev/php-entrypoint.sh"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@fsockopen('127.0.0.1', 9000) ? 0 : 1);"]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+      start_period: 30s
+
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "127.0.0.1:${APP_PORT:-8080}:8080"
+    volumes:
+      - ./public:/var/www/public:ro
+      - ./docker/dev/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      php:
+        condition: service_healthy
+      assets:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+
+  assets:
+    image: node:24-alpine
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    working_dir: /var/www
+    init: true
+    environment:
+      HOME: /tmp
+      COMPOSE_DEV_SERVER: "1"
+      WATCH_POLL: "${WATCH_POLL:-0}"
+    volumes:
+      - .:/var/www
+    command: sh -c 'npm ci --no-audit --no-fund && npm run dev-server'
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/build/entrypoints.json"]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+      start_period: 30s
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: schulddossier
+      POSTGRES_USER: schulddossier
+      POSTGRES_PASSWORD: insecure
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./docker/dev/postgres-init.sql:/docker-entrypoint-initdb.d/schulddossier.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U schulddossier -d schulddossier"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.3
+    command: ["start-dev", "--http-port=8084", "--import-realm"]
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: insecure
+      KC_HOSTNAME_URL: http://keycloak.schulddossier.test:8084
+      KC_HOSTNAME_STRICT: "false"
+      JAVA_OPTS_KC_HEAP: -Xms64m -Xmx384m
+    healthcheck:
+      test:
+        - CMD
+        - bash
+        - -ec
+        - >-
+          exec 3<>/dev/tcp/127.0.0.1/8084;
+          printf 'GET /realms/schulddossier/.well-known/openid-configuration HTTP/1.0\r\nHost: localhost\r\n\r\n' >&3;
+          grep -q '200 OK' <&3
+      interval: 5s
+      timeout: 3s
+      retries: 60
+      start_period: 30s
+    ports:
+      - "127.0.0.1:8084:8084"
+    networks:
+      default:
+        aliases:
+          - keycloak.schulddossier.test
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+      - ./docker/dev/keycloak-realm.json:/opt/keycloak/data/import/schulddossier-realm.json:ro
+
+  mailpit:
+    image: axllent/mailpit:v1.27
+    ports:
+      - "127.0.0.1:${MAIL_PORT:-8025}:8025"
+
+volumes:
+  postgres-data:
+  keycloak-data:
