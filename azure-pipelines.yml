@@ -1,29 +1,31 @@
 trigger:
+  batch: false
   tags:
-    include:
-      - '*'
+    exclude:
+      - "*"
   branches:
     include:
-      - '*'
+      - acceptance
+      - main
 
 pr: none
 
-pool: Selfhosted Azure Devops Agents
+pool: ManagedDevOpsPools
 
 # These defaults need to be set as variables on the pipeline in the Devops webinterface
 parameters:
   - name: organization
     displayName: The Azure Devops organisation URL
     type: string
-    default: $(devops-organisation-url)
+    default: https://dev.azure.com/CloudCompetenceCenter
   - name: project
     displayName: The Azure Devops project which hosts the pipelines
     type: string
-    default: $(devops-project-name)
+    default: AMS-PRJ-SALM
   - name: pipelineId
     displayName: The Azure Devops pipeline ID which should be activated, this should be the Github application pipeline
     type: string
-    default: $(devops-pipeline-id)
+    default: 6572
   - name: buildPipelineBranch
     displayName: The Github application pipeline branch to use, this normally should be main
     type: string
@@ -31,7 +33,23 @@ parameters:
 
 steps:
   - bash: |
-      az pipelines run --project ${{parameters.project}} --id ${{parameters.pipelineId}} --branch ${{parameters.buildPipelineBranch}} --org ${{parameters.organization}} --parameters applicationBranch=$(Build.SourceBranch)
-    displayName: 'Trigger Schulddossier application pipeline for branch $(Build.SourceBranch)'
+      case "$BUILD_REASON:$BUILD_SOURCEBRANCH" in
+        Manual:*) environment=dev ;;
+        *:refs/heads/acceptance) environment=acc ;;
+        *:refs/heads/main) environment=prod ;;
+        *) environment=dev ;;
+      esac
+
+      az pipelines run \
+        --project "$DEPLOY_PROJECT" \
+        --id "$DEPLOY_PIPELINE_ID" \
+        --branch "$DEPLOY_INFRA_BRANCH" \
+        --org "$DEPLOY_ORGANIZATION" \
+        --parameters applicationBranch="$BUILD_SOURCEBRANCH" deploymentEnvironment="$environment"
+    displayName: Trigger Schulddossier deployment for $(Build.SourceBranch)
     env:
-      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken) 
+      AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
+      DEPLOY_ORGANIZATION: ${{ parameters.organization }}
+      DEPLOY_PROJECT: ${{ parameters.project }}
+      DEPLOY_PIPELINE_ID: ${{ parameters.pipelineId }}
+      DEPLOY_INFRA_BRANCH: ${{ parameters.buildPipelineBranch }}
