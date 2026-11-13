@@ -1,12 +1,13 @@
 name: Main Branch Protection
 
-# Runs from the workflow file on main (pull_request_target), so a PR can't
-# change this check. It doesn't check out or run PR code.
+# Runs trusted base-branch workflow code (pull_request_target), not PR code.
+# It doesn't check out or run PR code.
 on:
   pull_request_target:
     branches:
       - main
-    # "edited" re-runs the check when someone changes a PR's base to main.
+      - acceptance
+    # Re-run on base changes in either direction, clearing stale failures.
     types: [opened, edited, synchronize, reopened]
 
 permissions: {}
@@ -18,10 +19,16 @@ jobs:
     steps:
       - name: Only allow PRs from acceptance in this repo
         env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
           HEAD_REF: ${{ github.event.pull_request.head.ref }}
           HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
           THIS_REPO: ${{ github.repository }}
         run: |
+          if [[ "$BASE_REF" != "main" ]]; then
+            echo "PR targets '$BASE_REF'; the acceptance-only source rule applies only to main."
+            exit 0
+          fi
+
           if [[ "$HEAD_REF" != "acceptance" || "$HEAD_REPO" != "$THIS_REPO" ]]; then
             echo "::error::PRs into main must come from '$THIS_REPO:acceptance' (got '$HEAD_REPO:$HEAD_REF')."
             exit 1

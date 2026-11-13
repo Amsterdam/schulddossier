@@ -1,0 +1,60 @@
+name: CalVer Release
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+
+jobs:
+  tag:
+    if: >-
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.head.ref == 'acceptance'
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Nodig om alle tags op te halen voor de CalVer telling
+
+      - name: Generate CalVer Version (YYYY.MM.x)
+        id: set_version
+        run: |
+          YEAR_MONTH=$(date -u +"%Y.%m")
+          EXISTING_TAGS=$(git tag -l "${YEAR_MONTH}.*")
+
+          if [ -z "$EXISTING_TAGS" ]; then
+            PATCH=1
+          else
+            COUNT=$(echo "$EXISTING_TAGS" | wc -l)
+            PATCH=$((COUNT + 1))
+          fi
+
+          VERSION="${YEAR_MONTH}.${PATCH}"
+          echo "Gegenereerde versie: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create Git Tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          TAG="${{ steps.set_version.outputs.version }}"
+          git tag -a "$TAG" -m "Automated release $TAG"
+          git push origin "$TAG"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.set_version.outputs.version }}
+        run: |
+          gh release create "$RELEASE_TAG" \
+            --verify-tag \
+            --title "Release $RELEASE_TAG" \
+            --generate-notes
