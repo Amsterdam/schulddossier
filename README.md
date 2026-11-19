@@ -29,6 +29,13 @@ Dit project maakt gebruik van diverse andere Open Source software componenten. O
 [Twig](http://twig.sensiolabs.org/),
 [Swiftmailer](http://swiftmailer.org/)
 
+## Git-flow en deploymentpipelines
+
+- Ontwikkel op featurebranches en merge deze via een pull request naar `acceptance`, niet rechtstreeks naar `main`.
+- De deploymentpipeline deployt de branch `acceptance` naar de acceptatieomgeving (`acc`).
+- Merge na validatie `acceptance` via een pull request naar `main`. De deploymentpipeline deployt `main` naar productie (`prod`).
+- Bij het mergen van `acceptance` naar `main` maakt de GitHub Actions-workflow automatisch een CalVer-tag (`YYYY.MM.x`) en een GitHub Release met automatisch gegenereerde release notes.
+
 ## Installeren
 
 Er zijn verschillende installatie methodes beschikbaar.
